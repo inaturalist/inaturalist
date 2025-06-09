@@ -101,9 +101,6 @@
   };
   
   function buildControls(wrapper, options) {
-    // If there are no urls and no sources, there's no reason to build out this UI
-    if ( ( !options.urls || options.urls.length === 0 ) && ( !options.sources || options.sources.length === 0 ) ) return;
-
     if (options.bootstrap) {
       // Insert a search field and button.  No forms, please
       var controls = $('<div class="photoSelectorControls"></div>').css(
@@ -136,180 +133,137 @@
       $searchInput.val(options.defaultQuery)
     }
 
-    // this branch is for backwards compatibility 
-    // options.urls is used by legacy photoSelectors, but is now deprecated. 
-    // use options.sources (see below) instead.
-    if (typeof options != 'undefined' && typeof options.urls != 'undefined') {
-      var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
-      urlSelect.change(function() {
-        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val());
-      })
-      var urls = options.urls || [];
-      if (!options.skipLocal) {
-        urls.push({
-          title:  I18n.t('your_hard_drive'),
-          url: '/photos/local_photo_fields'
+    // Build source selector if necessary
+    if ( ( options.urls && options.urls.length > 0 ) || ( options.sources && options.sources.length > 0 ) ) {
+      // this branch is for backwards compatibility
+      // options.urls is used by legacy photoSelectors, but is now deprecated.
+      // use options.sources (see below) instead.
+      if (typeof options != 'undefined' && typeof options.urls != 'undefined') {
+        var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
+        urlSelect.change(function() {
+          $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val());
         })
-      }
-      $.each(urls, function() {
-        if (this.url) {
-          var title = this.title;
-          var url = this.url;
-        } else {
-          var title = this;
-          var url = this;
+        var urls = options.urls || [];
+        if (!options.skipLocal) {
+          urls.push({
+            title:  I18n.t('your_hard_drive'),
+            url: '/photos/local_photo_fields'
+          })
         }
-        var option = $('<option value="'+url+'">'+title+'</option>');
-        if (url === options.baseURL) $(option).attr('selected', 'selected');
-        $(urlSelect).append(option);
-      })
-      $sourceWrapper.append(urlSelect);
-    }
-
-    // this branch is for options.sources (new style of photoselector)
-    if (typeof options != 'undefined' && typeof options.sources != 'undefined') {
-
-      // this is called when you change either the source <select> or context <select>
-      function updateSource(sourceOptions){
-        $searchWrapper.hide()
-        $searchInput.val('')
-        var newSource = sources[currentSource]
-        sourceOptions = sourceOptions || {}
-        sourceOptions['url'] = sourceOptions.url || newSource.url
-        sourceOptions['object_id'] = sourceOptions.object_id || false
-        if (typeof newSource.$contextWrapper == 'undefined') {
-          // TODO: this is what happens when there isn't a $contextSelect for this source (i.e. only one available context)
-          //sourceOptions['context'] = newSource.defaultContext;
-        } else {
-          var currentContextName = newSource.$contextWrapper.find('select').val()
-          sourceOptions['context'] = currentContextName
-          for (var i = 0; i < newSource.contexts.length; i++) {
-            var currentContext = newSource.contexts[i]
-            if (newSource.contexts[i][0] == currentContextName) break
-          }
-          if (currentContext && currentContext[currentContext.length-1].searchable) {
-            // show search field
-            $searchWrapper.show();
+        $.each(urls, function() {
+          if (this.url) {
+            var title = this.title;
+            var url = this.url;
           } else {
-            $searchWrapper.hide();
+            var title = this;
+            var url = this;
           }
-        }
-        $.fn.photoSelector.changeBaseUrl(wrapper, sourceOptions['url'], sourceOptions['context'], sourceOptions['object_id']);
+          var option = $('<option value="'+url+'">'+title+'</option>');
+          if (url === options.baseURL) $(option).attr('selected', 'selected');
+          $(urlSelect).append(option);
+        })
+        $sourceWrapper.append(urlSelect);
       }
 
-      $searchWrapper.hide();
-      var sources = options.sources || {};
-      var currentSource = options.defaultSource;
-      var $allContextWrappers = [];
-      if (!options.skipLocal) { sources['local'] = {title: "Your computer", url: '/photos/local_photo_fields'}; }
-      var $sourceSelect = $("<select class='select'></select>");
-      var sourceIndex = 0; // used as index when iterating over sources below
-      $.each(sources, function(sourceKey, sourceData){
-        var $sourceOption = $("<option value='"+sourceKey+"'>"+sourceData.title+"</option>");
-        $sourceSelect.append($sourceOption);
-        var $contextWrapper = $("<span style='display:none'></span>");
-        if (typeof options.defaultSource != 'undefined') { 
-          if (options.defaultSource == sourceKey) { // if we've specified a default source, and this it, show the associated contextSelect
-            $contextWrapper.css('display','inline-block');
-            $sourceOption.attr('selected','selected');
-            currentSource = sourceKey; 
-          } 
-        } else if (sourceIndex==0) { // if we haven't specified a default source but this is the first one, show the associated contextSelect
-          currentSource = sourceKey; 
-          $contextWrapper.css('display','inline-block');
-        }
-        sourceIndex += 1;
-        sourceData.contexts = (sourceData.contexts || []);
-        // create a sub-<select> menu for contexts, but only if this photo source has more than one possible context
-        if (sourceData.contexts.length > 1) {
-          var $contextSelect = $("<select class='select'></select>").change(updateSource);
-          $.each(sourceData.contexts, function(i,context){
-            var $contextOption = $("<option value='"+context[1]+"'>"+context[0]+"</option>");
-            // if searchable=true in context options, search box will be visible when this context is selected
-            // for example, if context is flickr public photos, we want to show the search box
-            // e.g. ["Public photos", "public", {searchable:true}]
-            var searchable = (context[2] && context[2].searchable);
-            if (searchable) { $contextOption.data('searchable', true); } 
-            if ((typeof options.defaultContext != 'undefined') && (options.defaultContext==context[1])) { // default context
-              $contextOption.attr('selected','selected');
-              if (searchable) { $searchWrapper.show() }
+      // this branch is for options.sources (new style of photoselector)
+      if (typeof options != 'undefined' && typeof options.sources != 'undefined') {
+        // this is called when you change either the source <select> or context <select>
+        function updateSource(sourceOptions){
+          $searchWrapper.hide()
+          $searchInput.val('')
+          var newSource = sources[currentSource]
+          sourceOptions = sourceOptions || {}
+          sourceOptions['url'] = sourceOptions.url || newSource.url
+          sourceOptions['object_id'] = sourceOptions.object_id || false
+          if (typeof newSource.$contextWrapper == 'undefined') {
+            // TODO: this is what happens when there isn't a $contextSelect for this source (i.e. only one available context)
+            //sourceOptions['context'] = newSource.defaultContext;
+          } else {
+            var currentContextName = newSource.$contextWrapper.find('select').val()
+            sourceOptions['context'] = currentContextName
+            for (var i = 0; i < newSource.contexts.length; i++) {
+              var currentContext = newSource.contexts[i]
+              if (newSource.contexts[i][0] == currentContextName) break
             }
-            $contextSelect.append($contextOption);
-          });
-          $contextWrapper.append($contextSelect);
-        } else if (sourceData.contexts.length == 1) {
-          var context = sourceData.contexts[0],
-              searchable = (context[2] && context[2].searchable)
-          if (searchable) { $searchWrapper.show() }
-        }
-        sources[sourceKey].$contextWrapper = $contextWrapper;
-        $allContextWrappers.push($contextWrapper);
-      });
-
-
-      $sourceSelect.change(function(){
-        var sourceKey = $sourceSelect.val();
-        var sourceData = sources[sourceKey];
-        // show the associated context <select>, and hide all the other context <selects>
-        $.each($allContextWrappers, function(i,c) { 
-          if (sourceData.$contextWrapper && (sourceData.$contextWrapper==c)) {
-            c.show();
-          } else {
-            c.hide(); 
+            if (currentContext && currentContext[currentContext.length-1].searchable) {
+              // show search field
+              $searchWrapper.show();
+            } else {
+              $searchWrapper.hide();
+            }
           }
+          $.fn.photoSelector.changeBaseUrl(wrapper, sourceOptions['url'], sourceOptions['context'], sourceOptions['object_id']);
+        }
+
+        $searchWrapper.hide();
+        var sources = options.sources || {};
+        var currentSource = options.defaultSource;
+        var $allContextWrappers = [];
+        if (!options.skipLocal) { sources['local'] = {title: "Your computer", url: '/photos/local_photo_fields'}; }
+        var $sourceSelect = $("<select class='select'></select>");
+        var sourceIndex = 0; // used as index when iterating over sources below
+        $.each(sources, function(sourceKey, sourceData){
+          var $sourceOption = $("<option value='"+sourceKey+"'>"+sourceData.title+"</option>");
+          $sourceSelect.append($sourceOption);
+          var $contextWrapper = $("<span style='display:none'></span>");
+          if (typeof options.defaultSource != 'undefined') {
+            if (options.defaultSource == sourceKey) { // if we've specified a default source, and this it, show the associated contextSelect
+              $contextWrapper.css('display','inline-block');
+              $sourceOption.attr('selected','selected');
+              currentSource = sourceKey;
+            }
+          } else if (sourceIndex==0) { // if we haven't specified a default source but this is the first one, show the associated contextSelect
+            currentSource = sourceKey;
+            $contextWrapper.css('display','inline-block');
+          }
+          sourceIndex += 1;
+          sourceData.contexts = (sourceData.contexts || []);
+          // create a sub-<select> menu for contexts, but only if this photo source has more than one possible context
+          if (sourceData.contexts.length > 1) {
+            var $contextSelect = $("<select class='select'></select>").change(updateSource);
+            $.each(sourceData.contexts, function(i,context){
+              var $contextOption = $("<option value='"+context[1]+"'>"+context[0]+"</option>");
+              // if searchable=true in context options, search box will be visible when this context is selected
+              // for example, if context is flickr public photos, we want to show the search box
+              // e.g. ["Public photos", "public", {searchable:true}]
+              var searchable = (context[2] && context[2].searchable);
+              if (searchable) { $contextOption.data('searchable', true); }
+              if ((typeof options.defaultContext != 'undefined') && (options.defaultContext==context[1])) { // default context
+                $contextOption.attr('selected','selected');
+                if (searchable) { $searchWrapper.show() }
+              }
+              $contextSelect.append($contextOption);
+            });
+            $contextWrapper.append($contextSelect);
+          } else if (sourceData.contexts.length == 1) {
+            var context = sourceData.contexts[0],
+                searchable = (context[2] && context[2].searchable)
+            if (searchable) { $searchWrapper.show() }
+          }
+          sources[sourceKey].$contextWrapper = $contextWrapper;
+          $allContextWrappers.push($contextWrapper);
         });
-        currentSource = sourceKey;
-        updateSource();
-      });
 
-      $sourceWrapper.append($sourceSelect);
-      $.each($allContextWrappers, function(i,c){ $sourceWrapper.append(c); });
 
+        $sourceSelect.change(function(){
+          var sourceKey = $sourceSelect.val();
+          var sourceData = sources[sourceKey];
+          // show the associated context <select>, and hide all the other context <selects>
+          $.each($allContextWrappers, function(i,c) {
+            if (sourceData.$contextWrapper && (sourceData.$contextWrapper==c)) {
+              c.show();
+            } else {
+              c.hide();
+            }
+          });
+          currentSource = sourceKey;
+          updateSource();
+        });
+
+        $sourceWrapper.append($sourceSelect);
+        $.each($allContextWrappers, function(i,c){ $sourceWrapper.append(c); });
+      }
     }
-  
-    $(wrapper).on('click', '.back_to_albums', function(){
-      try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
-      catch(e) {
-        $.fn.photoSelector.changeBaseUrl(
-          wrapper, 
-          urlSelect.val(), 
-          'user', //contextSelect.val(), 
-          $(this).attr('data-friend_id'));
-      }
-      return false;
-    });
-
-    $(wrapper).on('click', '.back_to_friends', function(){
-      try { updateSource(); } 
-      catch(e) { $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val()); }
-      return false;
-    });
-
-    $(wrapper).on('click', '.back_to_groups', function(){
-      try { updateSource({ object_id: $(this).attr('data-group_id') }); } 
-      catch(e) {
-        $.fn.photoSelector.changeBaseUrl(
-          wrapper, 
-          urlSelect.val(), 
-          'groups', //contextSelect.val(), 
-          $(this).attr('data-group_id'));
-      }
-      return false;
-    });
-
-    // friend selector
-    $(wrapper).on('click', '.friendSelector .friend', function(){
-      try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
-      catch(e) {
-        $.fn.photoSelector.changeBaseUrl(
-          wrapper, 
-          urlSelect.val(), 
-          'user', // contextSelect.val(), 
-          $(this).attr('data-friend_id'));
-      }
-      return false;
-    });
-
     
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>')
@@ -396,7 +350,16 @@
       clear: 'both'})
     )
     
-    $(wrapper).append(controls);
+    // We don't need search controls if we're only showing local photos,
+    // otherwise we do
+    const searchControlsRequired = !(
+      options.baseURL?.match( /local_photo/ )
+      && ( !options.sources || options.sources.length === 0 )
+      && ( !options.urls || options.urls.length === 0 )
+    );
+    if ( searchControlsRequired )
+      $( wrapper ).append( controls );
+    }
     
     if (options.baseURL && options.baseURL.match(/local_photo/) && $sourceWrapper.find('select').length != 0) {
       $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).hide()
