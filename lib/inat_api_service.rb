@@ -24,6 +24,7 @@ module INatAPIService
     "created_month",
     "created_on",
     "created_year",
+    "disagreements",
     "d1",
     "d2",
     "day",
