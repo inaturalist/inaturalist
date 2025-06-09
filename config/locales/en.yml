@@ -6861,6 +6861,10 @@ en:
         Time in your account time zone that this announcement will stop
         appearing. Applies across time zones, so everyone will stop seeing
         it at the same time, not relative to their local time.
+      excludes_non_site_desc: |
+        If your announcement targets a site (which is the default if you're a
+        Site Admin), this will exclude announcements that target all sites in
+        this placement.
       ip_countries_desc: |
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
@@ -9996,6 +10000,7 @@ en:
         exclude_donor_start_date: Exclude donor start date
         # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclude donor end date
+        excludes_non_site: Hide other announcements in this placement that have no Site ID
         # iNat client applications that the user must not have made an observation
         # with to see the announcement
         exclude_observation_oauth_application_ids: Exclude observers from apps
