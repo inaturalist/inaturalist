@@ -21,6 +21,12 @@ bg:
   x_identifications_:
     one: '1 Разпознаване'
     other: '%{count} Разпознавания'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> РАЗПОЗНАВАЧ'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> РАЗПОЗНАВАЧИ'
   x_languages:
     one: "%{count} език"
     other: "%{count} езика"
@@ -50,12 +56,18 @@ bg:
   x_observations_html:
     one: "<span class='count'>1</span> наблюдение"
     other: "<span class='count'>%{count}</span> наблюдения"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> НАБЛЮДЕНИЕ"
+    other: "<span class='count'>%{count}</span> НАБЛЮДЕНИЯ"
   x_observations_link_html:
     one: "<a href='%{url}'>1 наблюдение</a>"
     other: "<a href='%{url}'>%{count} наблюдения</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> рецензирано наблюдение"
     other: "<span class='count'>%{count}</span> рецензирани наблюдения"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> НАБЛЮДАТЕЛ'
+    other: '<span class="count">%{count}</span> НАБЛЮДАТЕЛИ'
   x_others:
     one: "%{count} друг"
     other: "%{count} други"
@@ -75,6 +87,9 @@ bg:
   x_species:
     one: '1 вид'
     other: '%{count} вида'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ВИД"
+    other: "<span class='count'>%{count}</span> ВИДА"
   x_species_html:
     one: "<span class='count'>1</span> вид"
     other: "<span class='count'>%{count}</span> вида"
@@ -989,7 +1004,7 @@ bg:
     индивидуални наблюдения.
   current_flags: Текущи маркери
   #Button to customize projects that appear in the header
-  customize__projects: Персонализирате
+  customize__projects: Персонализиране
   darr_apply_darr: "&darr; Приложи &darr;"
   daily_users: Дневни потребители
   danger_zone: Опасна зона
