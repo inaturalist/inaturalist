@@ -134,7 +134,10 @@
     }
 
     // Build source selector if necessary
-    if ( ( options.urls && options.urls.length > 0 ) || ( options.sources && options.sources.length > 0 ) ) {
+    if (
+      ( options.urls && options.urls.length > 0 )
+      || ( options.sources && options.sources.length > 0 )
+    ) {
       // this branch is for backwards compatibility
       // options.urls is used by legacy photoSelectors, but is now deprecated.
       // use options.sources (see below) instead.
@@ -142,7 +145,7 @@
         var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
         urlSelect.change(function() {
           $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val());
-        })
+        });
         var urls = options.urls || [];
         if (!options.skipLocal) {
           urls.push({
@@ -357,7 +360,7 @@
       && ( !options.sources || options.sources.length === 0 )
       && ( !options.urls || options.urls.length === 0 )
     );
-    if ( searchControlsRequired )
+    if ( searchControlsRequired ) {
       $( wrapper ).append( controls );
     }
     
@@ -387,7 +390,7 @@
         return false;
       };
     });
-  }
+  };
   
   $.fn.photoSelector.changeBaseUrl = function(wrapper, url, context, object_id) {
     var options = $(wrapper).data('photoSelectorOptions');
