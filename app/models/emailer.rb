@@ -28,6 +28,10 @@ class Emailer < ActionMailer::Base
       skip_past_activity: true,
       viewer: @user
     )
+    # TODO replace "default" (which is "transactional") with new "activity" group
+    # rubocop:disable Style/SafeNavigationChainLength
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
+    # rubocop:enable Style/SafeNavigationChainLength
     mail_with_defaults(
       to: user.email,
       subject: [:updates_notification_email_subject, { prefix: subject_prefix, date: Date.today }]
@@ -46,8 +50,12 @@ class Emailer < ActionMailer::Base
     return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @message.from_user.suspended?
     return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).count.positive?
-    return unless user.prefers_message_email_notification?
+    return unless @user.prefers_message_email_notification?
 
+    # TODO replace "default" (which is "transactional") with new "messages" group
+    # rubocop:disable Style/SafeNavigationChainLength
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
+    # rubocop:enable Style/SafeNavigationChainLength
     mail_with_defaults( to: @user.email, subject: "#{subject_prefix} #{@message.subject}" )
   end
 
@@ -217,9 +225,6 @@ class Emailer < ActionMailer::Base
     opts[:subject] = "Curator Application from #{user.login} (#{user.id})"
     @user = user
     @application = application
-    # Small guard against not receiving applications if help@inat gets
-    # unsubscribed from transactional emails
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.account
     mail( opts )
   end
 
@@ -238,6 +243,7 @@ class Emailer < ActionMailer::Base
     @user = user
     @resource = @user
     set_locale
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.account
     mail( set_site_specific_opts.merge(
       to: user.email,
       subject: t( :welcome_to_inat, site_name: site_name )
@@ -314,6 +320,10 @@ class Emailer < ActionMailer::Base
     @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
 
     # Mail settings
+    # TODO replace "default" (which is "transactional") with new "onboarding" group
+    # rubocop:disable Style/SafeNavigationChainLength
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
+    # rubocop:enable Style/SafeNavigationChainLength
     set_locale
     mail(
       to: user.email,
@@ -329,6 +339,10 @@ class Emailer < ActionMailer::Base
     @errors = options[:errors]
 
     # Mail settings
+    # TODO replace "default" (which is "transactional") with new "onboarding" group
+    # rubocop:disable Style/SafeNavigationChainLength
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
+    # rubocop:enable Style/SafeNavigationChainLength
     subject = "Will you improve your #{site_name} observation's value for science?"
     set_locale
     mail(
@@ -360,6 +374,10 @@ class Emailer < ActionMailer::Base
     @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
 
     # Mail settings
+    # TODO replace "default" (which is "transactional") with new "onboarding" group
+    # rubocop:disable Style/SafeNavigationChainLength
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
+    # rubocop:enable Style/SafeNavigationChainLength
     subject = "Will you try observing a wild species to share with #{site_name}?"
     set_locale
     mail(
@@ -385,6 +403,10 @@ class Emailer < ActionMailer::Base
     end
 
     # Mail settings
+    # TODO replace "default" (which is "transactional") with new "onboarding" group
+    # rubocop:disable Style/SafeNavigationChainLength
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
+    # rubocop:enable Style/SafeNavigationChainLength
     subject = "Congratulations on posting a Research Grade observation to #{site_name}!"
     set_locale
     mail(
@@ -463,10 +485,11 @@ class Emailer < ActionMailer::Base
 
   def set_x_smtpapi_headers
     @x_smtpapi_headers = {
-      # This is an identifier specifying the Sendgrid Unsubscribe Group this
-      # email belongs to. This assumes we're using one for all email sent from
-      # the webapp
-      asm_group_id: CONFIG&.sendgrid&.asm_group_ids&.default,
+      # Note that there is no default asm_group_id. Most email we routinely
+      # send should be transactional and therefore does not require a
+      # single-click-to-unsubscribe link. Email that the user isn't expecting
+      # should get one via an asm_group_id
+
       # We're having Sendgrid perform this substitution because ERB freaks out
       # when you put tags like this in a template
       sub: {

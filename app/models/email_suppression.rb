@@ -73,17 +73,17 @@ class EmailSuppression < ApplicationRecord
     end
 
     if suppression_type == BOUNCES
-      SendgridService.delete_bounce( email )
+      SendgridService.delete_bounce_suppression( email )
       return
     end
 
     if suppression_type == SPAM_REPORTS
-      SendgridService.delete_spam_report( email )
+      SendgridService.delete_spam_report_suppression( email )
       return
     end
 
     if suppression_type == BLOCKS
-      SendgridService.delete_block( email )
+      SendgridService.delete_block_suppression( email )
       return
     end
 
