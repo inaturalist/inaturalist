@@ -243,7 +243,6 @@ class Emailer < ActionMailer::Base
     @user = user
     @resource = @user
     set_locale
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.account
     mail( set_site_specific_opts.merge(
       to: user.email,
       subject: t( :welcome_to_inat, site_name: site_name )
