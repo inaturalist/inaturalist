@@ -39,6 +39,9 @@
   :css
     .table th {
       white-space: nowrap;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .table td {
       width: 100%;
@@ -65,8 +68,9 @@
           .col-xs-4
             %table#announcement.table.table-bordered
               - group.compact.each do |a|
+                - attr_name = t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )
                 %tr
-                  %th=t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )
+                  %th{ title: attr_name }=attr_name
                   %td
                     - val = @announcement.send( a )
                     - if a == "ip_countries"
