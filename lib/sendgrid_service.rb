@@ -23,6 +23,18 @@ class SendgridService
     @debug ||= options[:debug]
   end
 
+  def delete_block_suppression( email )
+    request( :delete, "#{ENDPOINT}/suppression/blocks/#{email}" )
+  end
+
+  def delete_bounce_suppression( email )
+    request( :delete, "#{ENDPOINT}/suppression/bounces/#{email}" )
+  end
+
+  def delete_global_suppression( email )
+    request( :delete, "#{ENDPOINT}/asm/suppressions/global/#{email}" )
+  end
+
   def delete_group_suppression( email, group_id )
     request( :delete, "#{ENDPOINT}/asm/groups/#{group_id}/suppressions/#{email}" )
   end
@@ -31,6 +43,14 @@ class SendgridService
     request( :post, "#{ENDPOINT}/asm/groups/#{group_id}/suppressions", {
       recipient_emails: [email]
     } )
+  end
+
+  def delete_invalid_email_suppression( email )
+    request( :delete, "#{ENDPOINT}/suppression/invalid_emails/#{email}" )
+  end
+
+  def delete_spam_report_suppression( email )
+    request( :delete, "#{ENDPOINT}/suppression/spam_reports/#{email}" )
   end
 
   def asm_group_ids
