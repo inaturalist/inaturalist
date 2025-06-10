@@ -913,7 +913,7 @@ class User < ApplicationRecord
     unsuppressed_groups = [
       EmailSuppression::ACCOUNT_EMAILS,
       EmailSuppression::DONATION_EMAILS,
-      EmailSuppression::NEWS_EMAILS,
+      EmailSuppression::NEWS_FROM_INATURALIST,
       EmailSuppression::TRANSACTIONAL_EMAILS
     ].reject {| i | ( suppressed_groups.include? i ) }
     return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)",

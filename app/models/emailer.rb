@@ -19,6 +19,7 @@ class Emailer < ActionMailer::Base
     return if user.blank? || updates.blank?
     return if user.email.blank?
     return if user.prefers_no_email
+    return if user.email_suppressed_in_group?( EmailSuppression::ACTIVITY )
     return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return unless user.prefers_activity_email_notification?
 
@@ -28,10 +29,7 @@ class Emailer < ActionMailer::Base
       skip_past_activity: true,
       viewer: @user
     )
-    # TODO replace "default" (which is "transactional") with new "activity" group
-    # rubocop:disable Style/SafeNavigationChainLength
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
-    # rubocop:enable Style/SafeNavigationChainLength
+    set_unsubscribe_group_to( EmailSuppression::ACTIVITY )
     mail_with_defaults(
       to: user.email,
       subject: [:updates_notification_email_subject, { prefix: subject_prefix, date: Date.today }]
@@ -47,15 +45,13 @@ class Emailer < ActionMailer::Base
     return if @user.email.blank?
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
+    return if @user.email_suppressed_in_group?( EmailSuppression::MESSAGES )
     return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @message.from_user.suspended?
     return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).count.positive?
     return unless @user.prefers_message_email_notification?
 
-    # TODO replace "default" (which is "transactional") with new "messages" group
-    # rubocop:disable Style/SafeNavigationChainLength
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
-    # rubocop:enable Style/SafeNavigationChainLength
+    set_unsubscribe_group_to( EmailSuppression::MESSAGES )
     mail_with_defaults( to: @user.email, subject: "#{subject_prefix} #{@message.subject}" )
   end
 
@@ -243,6 +239,7 @@ class Emailer < ActionMailer::Base
     @user = user
     @resource = @user
     set_locale
+    set_unsubscribe_group_to( EmailSuppression::ONBOARDING )
     mail( set_site_specific_opts.merge(
       to: user.email,
       subject: t( :welcome_to_inat, site_name: site_name )
@@ -257,7 +254,7 @@ class Emailer < ActionMailer::Base
     # return unless @user&.confirmed?
     return if @user.prefers_no_email?
     return if @user.suspended?
-    return if @user.email_suppressed_in_group?( EmailSuppression::NEWS_EMAILS )
+    return if @user.email_suppressed_in_group?( EmailSuppression::NEWS_FROM_INATURALIST )
 
     @year = Date.today.year
     global_year_statistic = YearStatistic.
@@ -269,7 +266,7 @@ class Emailer < ActionMailer::Base
       raise "Cannot send YIR email if YIR for this year does not exist"
     end
 
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.news
+    set_unsubscribe_group_to( EmailSuppression::NEWS_FROM_INATURALIST )
     @force_default_site_url_options = true
     set_locale
     @shareable_image_url = global_year_statistic.
@@ -319,10 +316,7 @@ class Emailer < ActionMailer::Base
     @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
 
     # Mail settings
-    # TODO replace "default" (which is "transactional") with new "onboarding" group
-    # rubocop:disable Style/SafeNavigationChainLength
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
-    # rubocop:enable Style/SafeNavigationChainLength
+    set_unsubscribe_group_to( EmailSuppression::ONBOARDING )
     set_locale
     mail(
       to: user.email,
@@ -338,10 +332,7 @@ class Emailer < ActionMailer::Base
     @errors = options[:errors]
 
     # Mail settings
-    # TODO replace "default" (which is "transactional") with new "onboarding" group
-    # rubocop:disable Style/SafeNavigationChainLength
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
-    # rubocop:enable Style/SafeNavigationChainLength
+    set_unsubscribe_group_to( EmailSuppression::ONBOARDING )
     subject = "Will you improve your #{site_name} observation's value for science?"
     set_locale
     mail(
@@ -373,10 +364,7 @@ class Emailer < ActionMailer::Base
     @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
 
     # Mail settings
-    # TODO replace "default" (which is "transactional") with new "onboarding" group
-    # rubocop:disable Style/SafeNavigationChainLength
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
-    # rubocop:enable Style/SafeNavigationChainLength
+    set_unsubscribe_group_to( EmailSuppression::ONBOARDING )
     subject = "Will you try observing a wild species to share with #{site_name}?"
     set_locale
     mail(
@@ -402,10 +390,7 @@ class Emailer < ActionMailer::Base
     end
 
     # Mail settings
-    # TODO replace "default" (which is "transactional") with new "onboarding" group
-    # rubocop:disable Style/SafeNavigationChainLength
-    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.default
-    # rubocop:enable Style/SafeNavigationChainLength
+    set_unsubscribe_group_to( EmailSuppression::ONBOARDING )
     subject = "Congratulations on posting a Research Grade observation to #{site_name}!"
     set_locale
     mail(
@@ -480,6 +465,14 @@ class Emailer < ActionMailer::Base
       from: "#{@site.name} <#{@site.email_noreply}>",
       reply_to: @site.email_noreply
     }
+  end
+
+  def set_unsubscribe_group_to( unsubscribe_group_name )
+    unless ( asm_group_id = SendgridService.asm_group_ids[unsubscribe_group_name] )
+      raise NoAsmGroupIdError, "Could not find id for #{unsubscribe_group_name} unsubscribe group"
+    end
+
+    @x_smtpapi_headers[:asm_group_id] = asm_group_id
   end
 
   def set_x_smtpapi_headers

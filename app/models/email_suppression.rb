@@ -7,31 +7,40 @@ class EmailSuppression < ApplicationRecord
   # The IDs of the suppression groups that we actually use when sending emails
   # are specified in config/config.yml.
   ACCOUNT_EMAILS = "account_emails"
+  ACTIVITY = "activity"
   BLOCKS = "blocks"
   BOUNCES = "bounces"
   DONATION_EMAILS = "donation_emails"
   INVALID_EMAILS = "invalid_emails"
-  NEWS_EMAILS = "news_from_inaturalist"
+  MESSAGES = "messages"
+  NEWS_FROM_INATURALIST = "news_from_inaturalist"
+  ONBOARDING = "onboarding"
   SPAM_REPORTS = "spam_reports"
   TRANSACTIONAL_EMAILS = "transactional_emails"
   UNSUBSCRIBES = "unsubscribes"
 
   SUPRESSION_TYPES = [
     ACCOUNT_EMAILS,
-    DONATION_EMAILS,
-    NEWS_EMAILS,
-    TRANSACTIONAL_EMAILS,
-    BOUNCES,
+    ACTIVITY,
     BLOCKS,
+    BOUNCES,
+    DONATION_EMAILS,
     INVALID_EMAILS,
+    MESSAGES,
+    NEWS_FROM_INATURALIST,
+    ONBOARDING,
     SPAM_REPORTS,
+    TRANSACTIONAL_EMAILS,
     UNSUBSCRIBES
   ].freeze
 
   GROUP_TYPES = [
     ACCOUNT_EMAILS,
+    ACTIVITY,
     DONATION_EMAILS,
-    NEWS_EMAILS,
+    MESSAGES,
+    NEWS_FROM_INATURALIST,
+    ONBOARDING,
     TRANSACTIONAL_EMAILS
   ].freeze
 
