@@ -6483,6 +6483,10 @@ da:
         Tid i kontoens tidszone, hvor denne meddelelse ophører med at
         vises. Anvendes på tværs af tidszoner, så alle ophører med at se
         den på samme tid, ikke i forhold til deres lokale tid.
+      excludes_non_site_desc: |
+        Er meddelelsen er rettet mod et websted (hvilket er standard, hvis man er
+        webstedsadministrator), vil dette udelukke meddelelser målrettet alle
+        websteder på denne placering.
       ip_countries_desc: |
         CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
         intet valg, vises bekendtgørelsen til alle brugere uanset IP-land.
@@ -9113,6 +9117,7 @@ da:
         exclude_donor_start_date: Undtag donationsstartdato
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Undtag donationsslutdato
+        excludes_non_site: Skjul andre meddelelser uden Websteds-ID på denne placering
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Undtag observatører fra apps
