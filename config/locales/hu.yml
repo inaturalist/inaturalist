@@ -5325,6 +5325,8 @@ hu:
         CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül a klienstől.
       end_desc: |
         A bejelentés leállításának időpontja a fiókod időzonája szerint. Időzónákon keresztül érvényes, így mindenkinek ugyanakkor fog eltűnni a bejelentés, nem pedig a helyi időzónájuk alapján.
+      excludes_non_site_desc: |
+        Ha a bejelentés egy webhelyet céloz meg (ami az alapértelmezett, ha adminisztrátor vagy), ez kizárja azokat a bejelentéseket, amelyek az összes webhelyet megcélozzák.
       ip_countries_desc: |
         CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül az IP-cím alapján mehatározott országtól.
       #Note about how the announcement last observation date property works
@@ -6591,6 +6593,7 @@ hu:
         exclude_donor_start_date: Kizárás a támogatás kezdő dátumának alapján
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kizárás a támogatás befejezési dátumának alapján
+        excludes_non_site: Webhelyazonosítóval nem rendelkező egyéb bejelentések elrejtése ebben az elhelyezésben.
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Applikáció-specifikus megfigyelők mellőzése
