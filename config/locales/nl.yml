@@ -1728,6 +1728,8 @@ nl:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONEREN
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Schenken
   donate_again_caps: DONEER OPNIEUW
   donate_again_today_caps: DONEER VANDAAG OPNIEUW
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -6407,6 +6409,10 @@ nl:
         Tijd in de tijdzone van uw account waarop deze aankondiging stopt
         Verschijnen. Geldt voor meerdere tijdzones, zodat iedereen niet meer te zien is
         het tegelijkertijd, niet ten opzichte van hun lokale tijd.
+      excludes_non_site_desc: |
+        Als jouw aankondiging gericht is op een site (wat standaard is als je een
+        sitebeheerder bent), dan sluit dit aankondigingen uit die op alle sites in
+        gericht zijn.
       observation_oauth_application_ids_desc: |
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
         Een selectie toont de aankondiging aan alle gebruikers, ongeacht
@@ -8622,6 +8628,7 @@ nl:
         exclude_donor_start_date: Uitsluiten donor met startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Uitsluiten donor met einddatum
+        excludes_non_site: Verberg andere mededelingen in deze plaatsing zonder Site ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Waarnemers uitsluiten van apps
