@@ -19,6 +19,8 @@ class EmailSuppression < ApplicationRecord
   TRANSACTIONAL_EMAILS = "transactional_emails"
   UNSUBSCRIBES = "unsubscribes"
 
+  # Sendgrid has a number of different kinds of suppressions, not all of which
+  # are under the user's control
   SUPRESSION_TYPES = [
     ACCOUNT_EMAILS,
     ACTIVITY,
@@ -34,6 +36,8 @@ class EmailSuppression < ApplicationRecord
     UNSUBSCRIBES
   ].freeze
 
+  # These are the unsubscribe groups that iNat creates and users can
+  # selectively add themselves to using unsubscribe links in email footers
   GROUP_TYPES = [
     ACCOUNT_EMAILS,
     ACTIVITY,
@@ -44,12 +48,21 @@ class EmailSuppression < ApplicationRecord
     TRANSACTIONAL_EMAILS
   ].freeze
 
-  SENDGRID_REST_OPTS = { Authorization: "Bearer #{CONFIG&.sendgrid&.api_key}" }.freeze
+  # Sendgrid webhook even types
+  GROUP_UNSUBSCRIBE = "group_unsubscribe"
+  GROUP_RESUBSCRIBE = "group_resubscribe"
 
   validates :suppression_type, inclusion: { in: SUPRESSION_TYPES }
+  validates :email, presence: true, format: Devise.email_regexp
+
+  before_validation :set_email_from_user, on: :create
 
   def to_s
     "<EmailSuppression #{id} #{suppression_type} />"
+  end
+
+  def set_email_from_user
+    self.email ||= user&.email
   end
 
   def self.new_after_remote( attrs )
@@ -58,13 +71,6 @@ class EmailSuppression < ApplicationRecord
     asm_group_id = SendgridService.asm_group_ids[attrs[:suppression_type]]
     SendgridService.post_group_suppression( email, asm_group_id )
     new( attrs )
-  end
-
-  def delete_url_for_group_type
-    return nil unless sendgrid_api_available?
-
-    group_id = SendgridService.asm_group_ids[suppression_type]
-    "https://api.sendgrid.com/v3/asm/groups/#{group_id}/suppressions/#{email}"
   end
 
   def destroy_remote
@@ -113,6 +119,47 @@ class EmailSuppression < ApplicationRecord
       suppression.destroy
     rescue RestClient::Exception => e
       Rails.logger.error "Failed to destroy suppression on Sendgrid: #{suppression}, #{e}"
+    end
+  end
+
+  # Sendgrid webhook events tell us about things like unsubscribe and
+  # resubscribe events in near-realtime, letting us updating corresponding
+  # local state before our regular sync process handles things like
+  # suppressions
+  def self.handle_sendgrid_webhook_event( sendgrid_event )
+    event = sendgrid_event.to_h.symbolize_keys
+    # We don't need to process events that we don't care about
+    return unless [GROUP_RESUBSCRIBE, GROUP_UNSUBSCRIBE].include?( event[:event] )
+
+    # We only need to do things if we can find a corresponding user
+    return unless ( user = User.find_by_email( event[:email] ) )
+
+    group_name, _group_id = SendgridService.asm_group_ids.detect do | _name, id |
+      id == event[:asm_group_id]
+    end
+    # If we don't know about the unsusbscribe group specified, we don't do anything
+    return if group_name.blank?
+
+    if event[:event] == GROUP_UNSUBSCRIBE
+      # Create a local EmailSuppression record if necessary
+      unless user.email_suppressions.where( suppression_type: group_name ).exists?
+        user.email_suppressions.create!( email: user.email, suppression_type: group_name )
+      end
+
+      # Keep local prefs in sync with suppressions
+      # TODO: remove when all relevant prefs have been transitioned to email suppressions
+      if event[:asm_group_id] == SendgridService.asm_group_ids[EmailSuppression::MESSAGES]
+        user.update( prefers_message_email_notification: false )
+      end
+    elsif event[:event] == GROUP_RESUBSCRIBE
+      # Delete any local suppressions
+      user.email_suppressions.where( suppression_type: group_name ).delete_all
+
+      # Keep local prefs in sync
+      # TODO: remove when all relevant prefs have been transitioned to email suppressions
+      if event[:asm_group_id] == SendgridService.asm_group_ids[EmailSuppression::MESSAGES]
+        user.update( prefers_message_email_notification: true )
+      end
     end
   end
 

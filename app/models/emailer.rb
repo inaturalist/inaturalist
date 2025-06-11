@@ -19,9 +19,8 @@ class Emailer < ActionMailer::Base
     return if user.blank? || updates.blank?
     return if user.email.blank?
     return if user.prefers_no_email
-    return if user.email_suppressed_in_group?( EmailSuppression::ACTIVITY )
     return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
-    return unless user.prefers_activity_email_notification?
+    return if user.email_suppressed_in_group?( EmailSuppression::ACTIVITY )
 
     @user = user
     @grouped_updates = UpdateAction.group_and_sort(

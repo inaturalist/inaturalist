@@ -1294,7 +1294,6 @@ class UsersController < ApplicationController
       :preferred_photo_license,
       :preferred_project_addition_by,
       :preferred_sound_license,
-      :prefers_activity_email_notification,
       :prefers_automatic_taxonomic_changes,
       :prefers_captive_obs_maps,
       :prefers_comment_email_notification,

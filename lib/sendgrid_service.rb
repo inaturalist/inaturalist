@@ -35,6 +35,10 @@ class SendgridService
     request( :delete, "#{ENDPOINT}/asm/suppressions/global/#{email}" )
   end
 
+  def get_group_suppressions_for_email( email )
+    request( :get, "#{ENDPOINT}/asm/suppressions/#{email}" )
+  end
+
   def delete_group_suppression( email, group_id )
     request( :delete, "#{ENDPOINT}/asm/groups/#{group_id}/suppressions/#{email}" )
   end

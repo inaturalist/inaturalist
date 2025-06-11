@@ -63,7 +63,9 @@ describe UpdateAction do
         end
       end
       it "message_email_notification" do
-        test_preference( "message_email_notification" ) do |u|
+        allow( SendgridService ).to receive( :post_group_suppression )
+        allow( SendgridService ).to receive( :delete_group_suppression )
+        test_preference( "message_email_notification" ) do | u |
           sender = make_user_with_privilege( UserPrivilege::SPEECH )
           Message.make!( user: sender, from_user: sender, to_user: u )
         end

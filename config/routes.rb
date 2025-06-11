@@ -789,6 +789,8 @@ Rails.application.routes.draw do
   get "/terms/numIdentificationDisagreements",
     to: redirect( "/terminology/num_identification_disagreements", status: 301 )
 
+  post "/webhooks/sendgrid" => "webhooks#sendgrid", as: :sendgrid_webhook
+
   # Hack to enable mail previews. You could also remove get
   # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You
   # could also fix that other stuff, if you're weren't a horrible person, but

@@ -36,9 +36,9 @@ class User < ApplicationRecord
     :incognito_mode
 
   # Email notification preferences
-  preference :activity_email_notification, :boolean, default: true
   preference :comment_email_notification, :boolean, default: true
   preference :identification_email_notification, :boolean, default: true
+  # Deprecated: use EmailSuppression instead when all this data has been synced w/ sendgrid
   preference :message_email_notification, :boolean, default: true
   preference :no_email, :boolean, default: false
   preference :project_invitation_email_notification, :boolean, default: true
@@ -120,19 +120,6 @@ class User < ApplicationRecord
   preference :suggestions_sort, :string
   preference :taxon_page_tab, :string
   preference :taxon_page_ancestors_shown, :boolean, default: false
-
-  NOTIFICATION_PREFERENCES = %w(
-    comment_email_notification
-    identification_email_notification
-    mention_email_notification
-    message_email_notification
-    project_journal_post_email_notification
-    project_added_your_observation_email_notification
-    project_curator_change_email_notification
-    taxon_change_email_notification
-    user_observation_email_notification
-    taxon_or_place_observation_email_notification
-  ).freeze
 
   has_many :provider_authorizations, dependent: :delete_all
   has_one  :flickr_identity, dependent: :delete
@@ -300,6 +287,7 @@ class User < ApplicationRecord
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
   after_save :send_messages_by_unsuspended_user
+  after_save :sync_email_suppressions
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_save :update_taxon_name_priorities
@@ -907,19 +895,15 @@ class User < ApplicationRecord
   end
 
   def email_suppressed_in_group?( suppressed_groups )
-    unless suppressed_groups.is_a?( Array )
-      suppressed_groups = [suppressed_groups]
-    end
-    unsuppressed_groups = [
-      EmailSuppression::ACCOUNT_EMAILS,
-      EmailSuppression::DONATION_EMAILS,
-      EmailSuppression::NEWS_FROM_INATURALIST,
-      EmailSuppression::TRANSACTIONAL_EMAILS
-    ].reject {| i | ( suppressed_groups.include? i ) }
-    return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)",
-      email, unsuppressed_groups ).first
-
-    false
+    # Check the explicit association first, who knows, maybe their email changed
+    email_suppressions.
+      where( suppression_type: [suppressed_groups].flatten ).
+      exists? ||
+      # Then check by email
+      EmailSuppression.
+        where( email: email ).
+        where( suppression_type: [suppressed_groups].flatten ).
+        exists?
   end
 
   def get_lat_lon_from_ip_if_last_ip_changed
@@ -1424,6 +1408,33 @@ class User < ApplicationRecord
     Message.
       delay( priority: USER_INTEGRITY_PRIORITY ).
       resend_unsent_for_user( id )
+  end
+
+  # TODO: remove when Sendgrid suppressions are fully synced
+  def sync_email_suppressions
+    if prefers_message_email_notification?
+      # Remove any existing EmailSuppressions
+      existing = email_suppressions.where( suppression_type: EmailSuppression::MESSAGES ).all
+      existing += EmailSuppression.
+        where( email: email, suppression_type: EmailSuppression::MESSAGES ).
+        where( "id != ?", id ).all
+      existing.uniq!
+      unless existing.blank?
+        # Update Sendgrid
+        existing.each do | suppression |
+          suppression.destroy_remote
+          suppression.destroy
+        end
+      end
+    else
+      SendgridService.post_group_suppression(
+        email,
+        SendgridService.asm_group_ids[EmailSuppression::MESSAGES]
+      )
+      unless email_suppressions.where( suppression_type: EmailSuppression::MESSAGES ).exists?
+        email_suppressions.create( suppression_type: EmailSuppression::MESSAGES )
+      end
+    end
   end
 
   def revoke_access_tokens_by_suspended_user
