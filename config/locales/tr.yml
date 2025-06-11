@@ -2918,7 +2918,7 @@ tr:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
-    datetime_with_offset: "D MMM YYYY · LT Z\n\nDD MMMM YYYY · HH:mm Z"
+    datetime_with_offset: "DD MMMM YYYY · HH:mm Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "DD MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -3189,13 +3189,13 @@ tr:
   #Title for a preference to control whether you receive notifications about
   #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
   #someone else adds an ID of Mammalia but does not make it a disagreement.
-  non_disagreeing_ancestor_ids: Çelişmeyen Üst Soy Tanımlamaları
+  non_disagreeing_ancestor_ids: Uyuşan Üst Soy Tanımlamaları
   #Description of a preference to control whether you receive notifications
   #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
   #and someone else adds an ID of Mammalia but does not make it a
   #disagreement.
   non_disagreeing_ancestor_ids_description: |
-    Bunu kapatırsan, tanımlamandaki taksonun üst taksonunu içeren ve Topluluk Taksonu ile açıkça çelişmeyen bir takson tanımlaması eklendiğinde bildirim almazsın. Ancak, tanımlama ek açıklamalar içeriyorsa bildirim almaya devam edeceksin.
+    Bunu kapatırsan, tanımlamandaki taksonun üst taksonunu içeren ve Topluluk Taksonu ile açıkça uyuşan bir takson tanımlaması eklendiğinde bildirim almazsın. Ancak, tanımlama ek açıklamalar içeriyorsa bildirim almaya devam edeceksin.
   non_human?: İnsan değil mi?
   #A user who does not admin any projects
   non_project_admin: Proje yöneticisi olmayan kişi
@@ -3499,9 +3499,9 @@ tr:
   official_blog: Resmi Blog
   offline_access_enabled: Çevrim dışı erişim etkin
   #Header label for hiding or unhiding the time shifter in the Uploader
-  offset_time: "Saat Farkı"
+  offset_time: "Zaman Kaydırma"
   #Button label to offset the date/time of observations by a set number of hours
-  offset_time_verb: Ayarla
+  offset_time_verb: Uygula
   old_observation_form: Eski gözlem formu (kullanımdan kaldırıldı)
   ok: "TAMAM"
   on_caps: "AÇIK"
@@ -5608,9 +5608,9 @@ tr:
   #@gender operates on %{x}
   user_added_a_x: "%{user} bir %{x} ekledi"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}e %{x} ekledi"
+  user_added_a_x_to_noun_by_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}e %{x} ekledi"
+  user_added_a_x_to_noun_by_user_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
   #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user}, senin yaptığın %{noun}e %{x} ekledi"
   #@gender operates on %{x}
@@ -6157,6 +6157,8 @@ tr:
         Birden fazla seçim yapmak için CMD veya SHIFT tuşuna basarak tıkla. "Tümünü" seçmek ya da herhangi bir seçim yapmamak, duyurunun istemci fark etmeksizin tüm kullanıcılara gösterilmesini sağlar.
       end_desc: |
         Bu duyurunun görünmeyi durduracağı zaman, hesap saat diliminize göre ayarlanır. Saat dilimleri arasında geçerlidir; yani herkes duyuruyu aynı anda görmeyi bırakır, yerel saatlerine göre değil.
+      excludes_non_site_desc: |
+        Duyurunuz bir siteyi hedefliyorsa (Site Yöneticisiyseniz varsayılan olarak böyledir), bu bölümde tüm siteleri hedefleyen duyurular hariç tutulacaktır.
       ip_countries_desc: |
         Birden fazla seçim yapmak için CMD- veya SHIFT-tıklayın. "Tümünü" seçmek veya seçim yapmamak, duyuruyu IP ülkesine bakılmaksızın tüm kullanıcılara gösterecektir.
       #Note about how the announcement last observation date property works
@@ -8329,6 +8331,7 @@ tr:
         exclude_donor_start_date: Bağışçı başlangıç tarihini hariç tut
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Bağışçı bitiş tarihini hariç tut
+        excludes_non_site: Site ID'si bulunmayan diğer duyuruları bu bölümde gizle
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Uygulamalardan gelen gözlemcileri hariç tut
