@@ -11,6 +11,7 @@ class EmailSuppression < ApplicationRecord
   BLOCKS = "blocks"
   BOUNCES = "bounces"
   DONATION_EMAILS = "donation_emails"
+  FEEDBACK = "feedback"
   INVALID_EMAILS = "invalid_emails"
   MESSAGES = "messages"
   NEWS_FROM_INATURALIST = "news_from_inaturalist"
@@ -27,6 +28,7 @@ class EmailSuppression < ApplicationRecord
     BLOCKS,
     BOUNCES,
     DONATION_EMAILS,
+    FEEDBACK,
     INVALID_EMAILS,
     MESSAGES,
     NEWS_FROM_INATURALIST,
@@ -42,6 +44,7 @@ class EmailSuppression < ApplicationRecord
     ACCOUNT_EMAILS,
     ACTIVITY,
     DONATION_EMAILS,
+    FEEDBACK,
     MESSAGES,
     NEWS_FROM_INATURALIST,
     ONBOARDING,

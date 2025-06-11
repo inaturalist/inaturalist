@@ -206,8 +206,8 @@ const Notifications = ( { userSettings } ) => (
               <p className="text-muted">We love hearing from you, so we might ask for your opinion on specific topics.</p>
             </div>
             <ToggleSwitchContainer
-              name="email_suppression_feedback_emails"
-              checked={!userSettings.email_suppression_types?.includes( "feedback_emails" )}
+              name="email_suppression_feedback"
+              checked={!userSettings.email_suppression_types?.includes( "feedback" )}
             />
           </div>
         </SettingsItem>
