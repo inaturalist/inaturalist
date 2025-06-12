@@ -297,7 +297,7 @@ class Identification < ApplicationRecord
     Observation.preload_associations( observation, { identifications: [:taxon, :moderator_actions] } )
     observation.set_community_taxon( force: true )
     observation.set_taxon_geoprivacy
-    # reoad observation quality metrics before recalculating quality grade in case quality metrics
+    # reload observation quality metrics before recalculating quality grade in case quality metrics
     # were added in another thread in the middle of the Identification adding transaction
     observation.quality_metrics.reload
     observation.set_quality_grade
@@ -525,6 +525,14 @@ class Identification < ApplicationRecord
 
       Identification.where( id: cat_idents.map( &:id ) ).update_all( category: category )
     end
+
+    # Now that categories are up-to-date, the quality grade may need to change
+    # if the observer has opted out of the Community Taxon and their ident is
+    # now maverick
+    obs.set_quality_grade
+    obs.skip_indexing = true # we're about to index
+    obs.save
+
     return if options[:skip_indexing]
 
     Identification.elastic_index!( ids: idents.map( &:id ) )

@@ -362,6 +362,25 @@ describe Identification, "creation" do
       expect( o.taxon_geoprivacy ).to eq Observation::OBSCURED
     end
 
+    it "should make the observation casual if the observer has opted out and their ID is now maverick" do
+      f = create :taxon, :as_family
+      g = create :taxon, :as_genus, parent: f
+      sp1 = create :taxon, :as_species, parent: g
+      sp2 = create :taxon, :as_species, parent: g
+      o = make_research_grade_candidate_observation( taxon: sp1, prefers_community_taxon: false )
+      expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      _id1 = create :identification, observation: o, taxon: sp2
+      expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      _id2 = create :identification, observation: o, taxon: sp2
+      expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      puts "adding final ident"
+      _id3 = create :identification, observation: o, taxon: sp2
+      puts "added final ident"
+      o.reload
+      expect( o.owners_identification.category ).to eq Identification::MAVERICK
+      expect( o.quality_grade ).to eq Observation::CASUAL
+    end
+
     describe "with indexing" do
       elastic_models( Observation, Identification )
 
