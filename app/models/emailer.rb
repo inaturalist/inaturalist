@@ -48,7 +48,6 @@ class Emailer < ActionMailer::Base
     return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @message.from_user.suspended?
     return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).count.positive?
-    return unless @user.prefers_message_email_notification?
 
     set_unsubscribe_group_to( EmailSuppression::MESSAGES )
     mail_with_defaults( to: @user.email, subject: "#{subject_prefix} #{@message.subject}" )
