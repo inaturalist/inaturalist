@@ -179,11 +179,11 @@ const Notifications = ( { userSettings } ) => (
           </div>
         </SettingsItem>
         <SettingsItem>
-          <h4>Occasional Emails</h4>
+          <h4>{ I18n.t( "occasional_emails" ) }</h4>
           <div className="row">
             <div className="col-sm-9">
-              <label>News</label>
-              <p className="text-muted">News about the organization and the platform.</p>
+              <label>{ I18n.t( "news" ) }</label>
+              <p className="text-muted">{ I18n.t( "occasional_emails_news_desc" ) }</p>
             </div>
             <ToggleSwitchContainer
               name="email_suppression_news_from_inaturalist"
@@ -192,8 +192,8 @@ const Notifications = ( { userSettings } ) => (
           </div>
           <div className="row">
             <div className="col-sm-9">
-              <label>Donations</label>
-              <p className="text-muted">iNat is free to use, but it costs money to run, so sometimes we might ask you to pitch in a few bucks.</p>
+              <label>{ I18n.t( "donations" ) }</label>
+              <p className="text-muted">{ I18n.t( "occasional_emails_donations_desc" ) }</p>
             </div>
             <ToggleSwitchContainer
               name="email_suppression_donation_emails"
@@ -202,8 +202,8 @@ const Notifications = ( { userSettings } ) => (
           </div>
           <div className="row">
             <div className="col-sm-9">
-              <label>Feedback</label>
-              <p className="text-muted">We love hearing from you, so we might ask for your opinion on specific topics.</p>
+              <label>{ I18n.t( "feedback" ) }</label>
+              <p className="text-muted">{ I18n.t( "occasional_emails_feedback_desc" ) }</p>
             </div>
             <ToggleSwitchContainer
               name="email_suppression_feedback"
