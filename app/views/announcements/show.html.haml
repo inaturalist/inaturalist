@@ -97,7 +97,8 @@
               %p
                 = link_to "View in new window", url_for( body: true ), class: "readmore"
             - else
-              %div{style: "width: #{width};"}= raw @announcement.body
+              %div{style: "width: #{width};"}
+                = render "announcements/announcement", announcement: @announcement, preview: true
         %tr
           %th=t :dismissed_by
           %td
