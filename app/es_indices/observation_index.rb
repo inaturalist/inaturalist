@@ -994,8 +994,18 @@ class Observation < ApplicationRecord
         nested_query = {
           nested: {
             path: "ofvs",
-            query: { bool: { must: [ { match: {
-              "ofvs.name_ci" => v[:observation_field].name } } ] }
+            query: {
+              bool: {
+                must: [
+                  {
+                    match: {
+                      # If the field doesn't exist, we want to return no
+                      # results, not all results
+                      "ofvs.name_ci" => v[:observation_field]&.name || v[:normalized_name]
+                    }
+                  }
+                ]
+              }
             }
           }
         }
