@@ -124,7 +124,12 @@ class ObservationField < ApplicationRecord
     if changed && !save
       Rails.logger.debug "[DEBUG] Failed to save: #{errors.full_messages.to_sentence}"
     end
+    reject_obs_ids = ObservationFieldValue.where( observation_field_id: reject.id ).pluck( :observation_id )
     reject.observation_field_values.update_all( observation_field_id: id )
+    Observation.elastic_index!(
+      ids: reject_obs_ids,
+      delay: true
+    )
     reject.destroy
   end
 

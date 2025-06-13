@@ -384,7 +384,6 @@ module ObservationSearch
             v[:normalized_name] == ObservationField.normalize_name(of.name)
           end
         end
-        p[:ofv_params].delete_if{|k,v| v[:observation_field].blank?}
       end
 
       p[:user_id] = p[:user_id] || p[:user]

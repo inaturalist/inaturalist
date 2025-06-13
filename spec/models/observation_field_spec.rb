@@ -121,5 +121,21 @@ describe ObservationField do
 
       expect( ObservationField.find_by_id( reject.id ) ).not_to be_blank
     end
+
+    it "reindexes observations associated with both fields" do
+      field1 = create :observation_field, name: "field1"
+      field2 = create :observation_field, name: "field2"
+      ofv1 = create :observation_field_value, observation_field: field1
+      ofv2 = create :observation_field_value, observation_field: field2
+      Observation.elastic_index!( ids: [ofv1.observation_id, ofv2.observation_id] )
+      expect( Observation.page_of_results( { "field:#{field1.name}": nil } ).total_entries ).to eq 1
+      expect( Observation.page_of_results( { "field:#{field2.name}": nil } ).total_entries ).to eq 1
+      without_delay { field1.merge( field2 ) }
+      field1.reload
+      expect( field1.name ).to eq "field1"
+      expect( ObservationField.find_by_id( field2.id ) ).to be_blank
+      expect( Observation.page_of_results( { "field:field1": nil } ).total_entries ).to eq 2
+      expect( Observation.page_of_results( { "field:field2": nil } ).total_entries ).to eq 0
+    end
   end
 end
