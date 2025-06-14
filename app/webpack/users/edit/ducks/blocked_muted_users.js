@@ -21,9 +21,23 @@ export function blockUser( id ) {
     dispatch( fetchUserSettings( false, true ) );
   } ).catch( e => {
     e.response.json( ).then( json => {
-      const baseErrors = _.get( json, "error.original.errors.base", [] );
-      if ( baseErrors.length > 0 ) {
-        alert( baseErrors.join( "; " ) );
+      const errors = json?.error?.original?.errors?.base
+        || json?.errors?.map( error => {
+          if ( typeof ( error ) === "string" ) return error;
+          if ( error?.message?.match( /\{/ ) ) {
+            try {
+              const crazyErrors = JSON.parse( error.message );
+              return crazyErrors.errors.base.join( "; " ).replace( /\s+/g, " " );
+            } catch ( parseError ) {
+              console.error( "Failed to deal with weird error: ", parseError );
+              return I18n.t( "doh_something_went_wrong" );
+            }
+          }
+          return error.message;
+        } )
+        || [];
+      if ( errors.length > 0 ) {
+        alert( errors.join( "; " ) );
       }
     } );
     console.log( `Failed to block user: ${e}` );
