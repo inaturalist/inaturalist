@@ -604,7 +604,7 @@ fr:
   #Label for an option to show content with photos, sounds, or neither
   any_media: Tous
   #Label for an option to show any place
-  any_place: Quelconque
+  any_place: N'importe
   #Label for an option to show content from any project
   any_project: Tous
   #Label for an option to show content with any quality grade
@@ -749,11 +749,11 @@ fr:
   attribution_uploaded_by_user: "%{attribution}, publiées par %{user}"
   #Adjective describing when a place in an atlas was "exploded," i.e. divided
   #into its constituent places
-  atlas_alteration_action_exploded: Explosé
+  atlas_alteration_action_exploded: Disloquer
   #Adjective describing when a place in an atlas was "unexploded," i.e. its
   #constituent places were removed and now the atlas just contains this
   #place
-  atlas_alteration_action_unexploded: Non explosé
+  atlas_alteration_action_unexploded: Réassemblé
   authority_list:
     iucn_red_list: Liste rouge de l’UICN
     natureserve: NatureServe
@@ -828,13 +828,10 @@ fr:
   be_the_first_to_fave_this_observation: Soyez le premier à ajouter cette observation comme favori !
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
-    Étant donné que nous estimons que ce changement entraînera plus de 10 désaccords
-    involontaires, <strong>nous vous recommandons de valider également un changement de taxon concernant %{old_parent}, par exemple en divisant %{new_parent} de %{old_parent}</strong>.
+    Étant donné que nous estimons que ce changement entraînera plus de 10 désaccords involontaires, <strong>nous vous recommandons de valider également une modification de taxon concernant %{old_parent}, par exemple en divisant %{new_parent} de %{old_parent}</strong>.
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_dont_act_html: |
-    Étant donné que nous estimons que ce changement entraînera au plus 10 désaccords involontaires,
-     <strong>il n'est probablement pas nécessaire de valider un changement de taxon
-    concernant %{old_parent}</strong>.
+    Étant donné que nous estimons que ce changement entraînera au plus 10 désaccords involontaires, <strong>il n'est probablement pas nécessaire de valider une modification de taxon concernant %{old_parent}</strong>.
   become_a_donor_caps: FAITES UN DON
   become_a_donor_today_caps: DEVENEZ UN DONATEUR AUJOURD'HUI
   before_importing_photos: avant d’importer des photos
@@ -1102,7 +1099,7 @@ fr:
   confirmation_email_sent_at_datetime: E-mail de confirmation envoyé à %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmé le %{date}
-  confirming_ids: Confirmation des IDs
+  confirming_ids: IDs confirmant
   confirming_ids_description: |
     Si vous désactivez cette option, vous ne serez plus informé des IDs en accord
     avec le vôtre à moins qu’ils n’aient des remarques supplémentaires.
@@ -1464,12 +1461,9 @@ fr:
   curators_changed_for_x_html: "Les curateurs ont modifiés à %{x}"
   curators: Curateurs
   curators_can_remove_observations_from: Les responsables de l’organisation peuvent supprimer des observations du projet. Leurs identifications sont affichées à côté des observations dans certaines vues du projet. Les responsables de l’organisation peuvent aussi voir les vraies coordonnées des contributions privées et masquées du projet.
-  curator_coordinate_access: Accès coordonné par le curateur
+  curator_coordinate_access: Accès des coordonnées aux curateurs
   curator_coordinate_access_desc: |
-    L’accès coordonné du curateur pour les projets traditionnels dépend de qui a ajouté
-    l’observation du projet. Il s’agit simplement du paramètre par défaut pour les
-    observations dans les projets. Les observateurs peuvent également choisir de modifier cela pour
-    observations individuelles.
+    L'accès des coordonnées aux curateurs dans les projets traditionnels dépendent de qui a ajouté l'observation au projet. Il s'agit simplement du paramètre par défaut pour les observations des projets. Les observateurs peuvent aussi changer cela individuellement pour les observations.
   curator_identification: Identification du responsable de l’organisation
   current_flags: Signalements actuels
   #Label for a custom boundary for an observation search
@@ -2398,15 +2392,12 @@ fr:
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
-  infraspecies_ids: Identifiants infra-espèces
+  infraspecies_ids: IDs intraspécifiques
   #Description of preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids_description: |
-    Si vous désactivez cette option, vous ne serez plus informé des identifiants des taxons
-    en dessous du niveau de l’espèce (comme les sous-espèces et les variétés) qui correspondent à votre
-    ID au niveau de l’espèce. Vous serez averti s’ils ne sont pas d’accord avec votre identifiant ou
-    s’ils contiennent des remarques supplémentaires.
+    Si vous désactivez cette option, vous ne serez plus informé des identifications des taxons en dessous du niveau de l’espèce (comme les sous-espèces et les variétés) qui confirment votre ID au niveau de l’espèce. Vous serez averti s’ils ne sont pas d’accord avec votre identifiant ou s’ils contiennent des remarques supplémentaires.
   input_taxon: Taxon en entrée
   insects: insectes
   insect_life_stage: Stade de l'insecte
@@ -2695,9 +2686,9 @@ fr:
   listed_taxa: Taxons listés
   listed_taxon: Taxon listé
   #Adjective describing addition of a taxon to a list
-  listed_taxon_alteration_action_listed: Énumérés
+  listed_taxon_alteration_action_listed: Listées
   #Adjective describing removal of a taxon from a list
-  listed_taxon_alteration_action_unlisted: Non cotées
+  listed_taxon_alteration_action_unlisted: Non listées
   listed_taxon_updated: Taxon listé à jour
   listing_lists: Liste de listes
   listing_project_assets: Liste des fichiers du projet
@@ -3254,15 +3245,16 @@ fr:
   noble_curators: "Les éminents curateurs d'%{site}"
   #A user who is not a curator
   non_curator: Non curateur
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: IDs parentes non en désaccord
   #Description of a preference to control whether you receive notifications
   #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
   #and someone else adds an ID of Mammalia but does not make it a
   #disagreement.
   non_disagreeing_ancestor_ids_description: |
-    Si vous désactivez cette option, vous ne serez plus averti lorsque quelqu’un ajoute 
-    l'ID d'un taxon qui est un ancêtre du taxon de votre ID et qui n’est pas
-    explicitement en désaccord avec le taxon communautaire. Vous serez informé si 
-    l'ID a des remarques supplémentaires.
+    Si vous désactivez cette option, vous ne serez plus averti lorsque quelqu’un ajoute l'ID d'un taxon qui est un parent du taxon de votre ID et qui n’est pas explicitement en désaccord avec le taxon communautaire. Vous serez informé si l'ID a des remarques supplémentaires.
   non_human?: Non-humain ?
   #A user who does not admin any projects
   non_project_admin: Non-administrateur de projet
@@ -4296,7 +4288,7 @@ fr:
   profile_picture: Photo de profil
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
-  profile_picture_file_type: Le type de fichier de l'image de profil
+  profile_picture_file_type: Type de fichier de l'image de profil
   profile_visibility_desc: |
     Afin de combattre les spams sur %{site_name}, les profils des utilisateurs sont seulement visibles publiquement après qu'ils aient contribué à plusieurs observations de niveau "Research Grade".
   project: Projet
@@ -4389,7 +4381,7 @@ fr:
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
-    genus: Genre / Genrehybride
+    genus: Genre / Genre hybride
     #Label when displaying species level, which is the same for species and
     #hybrid
     species: Espèce / Hybride
@@ -5641,17 +5633,13 @@ fr:
   update: Mettre à jour
   update_existing_observations_with_new_license: Mettre à jour les observations existantes au moyen des nouveaux choix de licence
   update_existing_observations_with_new_license_desc: |
-    En sélectionnant cette option, votre nouveau choix de licence s’appliquera à toutes vos
-    observations existantes. Cela peut prendre quelques heures si vous avez beaucoup d'observations.
+    En sélectionnant cette option, votre nouveau choix de licence s’appliquera à toutes vos observations existantes. Cela peut prendre quelques heures si vous avez beaucoup d'observations.
   update_existing_photos_with_new_license: Mettre à jour les photos existantes au moyen des nouveaux choix de licence
   update_existing_photos_with_new_license_desc: |
-    En sélectionnant cette option, votre nouveau choix de licence s’appliquera à toutes vos
-    photos existantes. Cela peut prendre quelques heures si vous avez beaucoup d'observations.
+    En sélectionnant cette option, votre nouveau choix de licence s’appliquera à toutes vos photos existantes. Cela peut prendre quelques heures si vous avez beaucoup d'observations.
   update_existing_sounds_with_new_license: Mettre à jour les sons existants au moyen des nouveaux choix de licence
   update_existing_sounds_with_new_license_desc: |
-    En sélectionnant cette option, votre nouveau choix de licence s’appliquera à tous vos
-    sons existants. Cela peut prendre quelques heures si vous avez beaucoup de
-    Sons.
+    En sélectionnant cette option, votre nouveau choix de licence s’appliquera à tous vos sons existants. Cela peut prendre quelques heures si vous avez beaucoup de sons.
   update_observations: Mettre à jour les observations
   update_past: "Mettre à jour les derniers %{type}"
   update_photos: Mettre à jour les photos
@@ -5802,11 +5790,9 @@ fr:
   user_trusts_this_project_for_taxon: |
     L'utilisateur ne donne à ce projet l'accès à ses coordonnées masquées que si celles-ci ont été occultées parce qu'un taxon est menacé.
   user_trusts_this_project_when_added_by_any: |
-    L’utilisateur fait confiance aux curateurs de projet avec des coordonnées cachées d'observations ajoutées
-    au projet par n’importe qui.
+    L’utilisateur fait confiance aux curateurs de projet avec des coordonnées cachées des observations ajoutées au projet par n’importe qui.
   user_trusts_this_project_when_added_by_observer: |
-    L’utilisateur fait confiance aux curateurs de projet avec des coordonnées cachées d'observations ajoutées
-    au projet par l’observateur.
+    L’utilisateur fait confiance aux curateurs de projet avec des coordonnées cachées d'observations ajoutées au projet par l’observateur.
   user_trusts_this_project_when_added_by_none: |
     L’utilisateur ne fait pas confiance aux curateurs de projets avec des coordonnées cachées.
   user_trusts_you_with_their_private_coordinates: "%{user} vous a fait confiance avec ses coordonnées masquées"
@@ -5898,7 +5884,7 @@ fr:
   view_more_observations_of_x_taxon: "Afficher plus d’observations de %{taxon} sur <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Afficher plus d'observations non vérifiées"
   #Link to view identifications affected by a taxon change
-  view_your_affected_ids: Voir vos identifiants affectés
+  view_your_affected_ids: Voir vos IDs affectées
   view_observation: Afficher l’observation
   view_observations: Afficher les observations
   view_observation_flags: Voir les signalements pour cette observation
@@ -6298,59 +6284,41 @@ fr:
     views: 'Vues'
     announcements:
       locales_desc: |
-        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
-        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
-        paramètres régionaux. Le choix d’une langue sans région ne ciblera *pas*
-        locales avec des régions, par exemple si vous avez choisi l’anglais, il n’apparaîtra pas
-        pour les personnes qui ont choisi l’anglais (Royaume-Uni).
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Toutes" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment de la localisation. Choisir un langage sans une région ne ciblera *pas* les localisations avec régions, par ex. si vous choisissez Anglais, cela n'apparaîtra pas pour les personnes ayant choisi Anglais (Royaume-Uni).
       clients_desc: |
-        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
-        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
-        client.
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Tout" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment du client.
       end_desc: |
-        Heure dans le fuseau horaire de votre compte à laquelle cette annonce s’arrêtera
-        Apparaissant. S’applique à tous les fuseaux horaires, de sorte que tout le monde cessera de voir
-        en même temps, non par rapport à leur heure locale.
+        Heure dans le fuseau horaire de votre compte à laquelle cette annonce n'apparaîtra plus. S'applique au-delà des fuseaux horaires, de sorte que tout le monde ne la voient plus en même, sans relation avec leur temps local.
       ip_countries_desc: |
-        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
-        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
-        Pays de propriété intellectuelle.
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Tout" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment du pays de l'adresse IP.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
-        Notez que la date de création de la dernière
-        observation est mise en cache, il peut donc s’écouler quelques heures avant que le ciblage
-        entrer en vigueur
+        Notez que la date de création de l'observation la plus récente de l'observateur est mise en cache, cela peut donc prendre plusieurs heures pour la cible à prendre effet.
       observation_oauth_application_ids_desc: |
-        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner « Tous » ou ne pas réaliser de sélection affichera l’annonce à tous les utilisateurs, indépendamment de l'appli.
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Tout" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment de l'appli.
       site_ids_desc: |
-        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
-        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
-        affiliation au site.
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Tout" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment de l'affiliation du site.
       start_desc: |
-        Heure dans le fuseau horaire de votre compte à laquelle cette annonce commencera
-        Apparaissant. S’applique à tous les fuseaux horaires, de sorte que tout le monde commencera à voir
-        en même temps, non par rapport à leur heure locale.
+        Heure sur votre compte à laquelle cette annonce va commencer à apparaître. S'applique au-delà des fuseaux horaires, de sorte que tout le monde ne la voient plus en même, sans relation avec leur temps local.
       #Description of a group of options for targeting announcements based
       #on donation behavior
-      target_users_by_donation_behavior: Ciblez les utilisateurs en fonction de leur comportement de donateur
+      target_users_by_donation_behavior: Cibler les utilisateurs en fonction de leur comportement de donateur
       #Description of a group of options for targeting announcements based
       #on identification behavior
-      target_users_by_identification_behavior: Ciblez les utilisateurs en fonction de leur comportement d’identification
+      target_users_by_identification_behavior: Cibler les utilisateurs en fonction de leur comportement d’identification
       #Description of a group of options for targeting announcements based
       #on observation behavior
-      target_users_by_observation_behavior: Ciblez les utilisateurs en fonction de leur comportement d’observation
+      target_users_by_observation_behavior: Cibler les utilisateurs en fonction de leur comportement d’observation
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Cibler les utilisateurs en fonction d’autres attributs
     atlases:
       show:
         #Title for section describing atlases
-        about_atlases: À propos des atlas
+        about_atlases: À propos des Atlas
         #Description of what atlases are
         atlases_convey_the_global_distribution: |
-          Les atlas transmettent la distribution mondiale d’un taxon. Les commissaires font
-          en définissant la structure d’un atlas et en organisant les
-          les taxons répertoriés qui l’alimentent.
+          Les atlas expriment la distribution globale d'un taxon. Les curateurs créent des atlas en définissant la structure d'un atlas et curationnant les taxons listés qui le composent.
         #Label for a button that divides a place in an atlas into it's
         #constituent places. E.g. if the atlas for Red Fox contained Europe
         #you wanted to specify that Red Fox only occurs in Belgium and
@@ -6361,7 +6329,7 @@ fr:
         #that contains them. E.g. if an atlas contains Europe but it has
         #been "exploded" into its constituent countries, this would remove
         #those countries so the atlas would just contain Europe again.
-        unexplode_this_place: Assembler ce lieu
+        unexplode_this_place: Réassembler ce lieu
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Aucune modification n’a encore été apportée à cet atlas
         #Title for a section showing recent alterations to an atlas
@@ -6370,14 +6338,12 @@ fr:
         #list
         recent_listed_taxon_additions: Modifications récentes des taxons répertoriés
         #Label for a button that shows taxa on checklists for a place
-        show_listed_taxa: Afficher les taxons listés
+        show_listed_taxa: Afficher les taxons répertoriés
         #Notice when an atlas is not active
-        this_atlas_is_not_currently_active: Cet atlas n’est pas actif actuellement
+        this_atlas_is_not_currently_active: Cet atlas n’est actuellement pas actif
         #Warning before removing a place from an atlas
         this_will_remove_this_taxon_and_all: |
-          Cela supprimera ce taxon et tous ses descendants des listes de contrôle
-          associés à ce lieu et à tous les lieux standard qu’il contient. Il
-          ne peut pas être défait. Êtes-vous sûr de vouloir le faire ?
+          Cela supprimera ce taxon et tous ses descendants des checklists associées avec ce lieu et tous les Lieux Standards qu'il contient. Cela ne peut pas être annulé. Êtes-vous certain de vouloir le faire ?
         #Warning when there are observations outside of the places defined by
         #the atlas
         warning_there_are_observations_not_represented: |
@@ -6488,16 +6454,16 @@ fr:
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Cliquez ici pour envoyer un nouvel e-mail de confirmation
       #message displayed after users trigger sending a email to confirm their email address
-      confirmation_email_sent: Courriel de confirmation envoyé
+      confirmation_email_sent: E-mail de confirmation envoyé
       #text displayed before showing a user the email address that we will
       #resend a confirmation email to
       here_is_the_email_colon: |
         Voici l’adresse e-mail à laquelle nous enverrons la confirmation :
       #statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
-        Si vous ne recevez pas le courriel, voici quelques conseils :
+        Si vous ne recevez pas l'e-mail, voici quelques conseils :
       #statement telling users to contact us if they are not receiving confirmation emails
-      if_you_are_still_not_receiving_email_contact_us_html: Si vous ne recevez toujours pas le courriel de confirmation, veuillez nous contacter à <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> afin que nous puissions vous aider.
+      if_you_are_still_not_receiving_email_contact_us_html: Si vous ne recevez toujours pas l'e-mail de confirmation, veuillez nous contacter à <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> afin que nous puissions vous aider.
       please_add_an_email_and_password: Veuillez ajouter un e-mail et un mot de passe pour ne pas perdre l'accès à votre compte
       please_click_the_link_sent_to_email_to_confirm_html: Veuillez cliquer sur le lien envoyé à <span class="email">%{email}</span> pour confirmer votre adresse e-mail.
       please_confirm_that_email_is_the_best_contact_html: Veuillez confirmer que <span class="email">%{email}</span> est le meilleur moyen de vous contacter. #message requesting users confirm their email address to be able to engage with other users
@@ -6507,7 +6473,7 @@ fr:
       #statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Veuillez confirmer votre adresse e-mail pour utiliser cette page
       #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Vérifiez les filtres que vous avez mis en place et qui pourraient supprimer nos courriels de votre boîte de réception #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_email_filters: Vérifiez les filtres que vous avez mis en place et qui pourraient supprimer nos e-mails de votre boîte de réception #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Vérifiez votre dossier de courriers indésirables (spam)
       your_site_account_has_no_email: Votre compte %{site_name} n'est associé à aucune adresse e-mail.
     flags:
@@ -6615,7 +6581,7 @@ fr:
           « telle quelle » ; bien que nous n'ayons pas prévu de la supprimer, nous ne prévoyons pas
           de la développer d'avantage.
         funding2_html: |
-          Le financement de l’élaboration des guides a été fourni par
+          Le financement de l’élaboration des Guides a été fourni par
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Les guides vous aident à en apprendre d'avantage sur la biodiversité dans le monde entier.
@@ -6836,7 +6802,7 @@ fr:
         #Users cannot create messages if they lack the criteria for
         #earning interaction or speech privilege
         privilege_notice: |
-          Vous pourrez envoyer de nouveaux messages une fois que vous aurez confirmé votre adresse e-mail, et ajouté trois observations vérifiables ou trois identifications pour d'autres utilisateurs. Pour l'instant, vous pouvez lire et répondre aux messages que d'autres personnes vous envoient.
+          Vous pourrez envoyer de nouveaux messages une fois que vous aurez confirmé votre adresse e-mail et ajouté trois observations vérifiables ou trois identifications pour d'autres utilisateurs. Pour l'instant, vous pouvez lire et répondre aux messages que d'autres personnes vous envoient.
       show:
         flag_notice_html: |
           Vous avez signalé cette conversation le %{date}. Le drapeau sera maintenu même
@@ -8849,7 +8815,7 @@ fr:
       announcement:
         created_at: 'Création :'
         #Whether or not the announcement can be dismissed by people who see it
-        dismissible: Renvoi
+        dismissible: Ignorable
         updated_at: 'Mise à jour :'
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8878,15 +8844,15 @@ fr:
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: Pays de propriété intellectuelle
         #Start of a date range that includes the viewer's most recent observation
-        last_observation_start_date: Date de début du dernier obs
+        last_observation_start_date: Date de début de la dernière obs
         #end of a date range that includes the viewer's most recent observation
-        last_observation_end_date: Date de fin du dernier obs
+        last_observation_end_date: Date de fin de la dernière obs
         #Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Nombre maximal d’identifications
         #Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: Identifications minimales
         #Maximum number of observations the viewer must have added for others to see the announcement
-        max_observations: Nombre maximal d’observations
+        max_observations: Max d’observations
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min d’observations
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
@@ -8896,9 +8862,9 @@ fr:
         #Whether or not the announcement is shown to logged in users
         target_logged_in: Cible connectée
         #Earliest date the viewer can have signed up to see the announcement
-        user_created_start_date: Date d’inscription de l’utilisateur le plus proche
+        user_created_start_date: Date d’inscription d'utilisateur la plus ancienne
         #Latest date the viewer can have signed up to see the announcement
-        user_created_end_date: Date de la dernière inscription de l’utilisateur
+        user_created_end_date: Date d’inscription d'utilisateur la plus récente
       assessment:
         description: Description
       assessment_section:
@@ -9193,10 +9159,10 @@ fr:
               only_hidden_content_can_be_private: Seul le contenu caché peut être privé
               #Error saying that only curator and admin users are allowed to create
               #a ModeratorAction with action Hide
-              only_staff_and_curators_can_hide: Seuls l'équipe iNaturalist et les curateurs peuvent masquer le contenu
+              only_staff_and_curators_can_hide: Seuls le personnel et les curateurs peuvent masquer le contenu
               only_staff_and_hiding_curators_can_unhide: Seuls le personnel et les superviseurs qui masquent du contenu peuvent l'afficher à nouveau
               #Error saying that only staff can rename
-              only_staff_can_rename: Seule l'équipe iNaturalist peut renommer
+              only_staff_can_rename: Seule le personnel peut renommer
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Seul le personnel peut définir le contenu comme privé
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
