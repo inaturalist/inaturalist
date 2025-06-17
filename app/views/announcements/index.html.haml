@@ -57,9 +57,11 @@
                   %span.label.label-success=t :active
               %td.announcement-body
                 - if announcement.placement === "users/dashboard#sidebar"
-                  %div.sidebar-body=raw announcement.body
+                  %div.sidebar-body
+                    = render "announcements/announcement", announcement: announcement, preview: true
                 - else
-                  %div.general-body=raw announcement.body
+                  %div.general-body
+                    = render "announcements/announcement", announcement: announcement, preview: true
               %td.user
                 = link_to( user_image( announcement.user), announcement.user ) if announcement.user
                 = link_to_user announcement.user, missing: t( :unknown )
