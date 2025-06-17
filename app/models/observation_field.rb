@@ -95,7 +95,7 @@ class ObservationField < ApplicationRecord
   end
 
   def editable_by?( user )
-    user && ( uuser.id == user_id || uuser.is_curator? )
+    user && ( user.id == user_id || user.is_curator? )
   end
 
   def normalized_name( options = {} )
