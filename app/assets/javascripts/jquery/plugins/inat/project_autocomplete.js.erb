@@ -40,4 +40,6 @@ $.fn.projectAutocomplete = function ( opts ) {
       } );
     }
   } ) );
+  // Make absolutely sure this.options gets has the initial values
+  field.autocomplete( "option", options );
 };
