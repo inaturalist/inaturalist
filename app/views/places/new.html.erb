@@ -115,6 +115,26 @@
         <li>
           <p class="ui"><%=t :places_warning_quota %></p>
         </li>
+        <%- unless current_user.is_admin? -%>
+        <li>
+          <p class="ui"><%=
+            t( CONFIG.content_freeze_enabled ?
+              :places_warning_observation_count_during_content_freeze :
+              :places_warning_observation_count
+            )
+          %></p>
+        </li>
+        <%- end -%>
+        <%- unless current_user.is_admin? -%>
+        <li>
+          <p class="ui"><%=
+            t( CONFIG.content_freeze_enabled ?
+              :places_warning_area_during_content_freeze :
+              :places_warning_area
+            )
+          %></p>
+        </li>
+        <%- end -%>
       </ul>
       <p class="ui"><%=t :places_warning_the_future %></p>
     </div>
