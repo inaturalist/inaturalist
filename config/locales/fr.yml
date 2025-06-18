@@ -4227,6 +4227,20 @@ fr:
     La modification des limites des endroits est l'une des plus grandes sources de ralentissements sur iNat. Si vous pouvez l'éviter, n'ajoutez, ne modifiez pas ou ne supprimez pas les limites d'endroits, sauf si c'est absolument nécessaire.
   places_warning_quota: |
     Vous ne pouvez créer que trois lieux par jour.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Les lieux ne peuvent pas dépasser 700 000 kilomètres carrés.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Les lieux ne peuvent pas dépasser 70 000 kilomètres carrés.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Les lieux ne peuvent pas contenir plus de 200 000 observations.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Les lieux ne peuvent pas contenir plus de 10 000 observations.
   places_warning_the_future: |
     NDLR: compte tenu du taux de croissance actuel d'iNat, nous allons prochainement devoir restreindre les conditions dans lesquelles les gens peuvent créer de nouveaux lieux.
   plants: plantes
