@@ -4289,6 +4289,20 @@ nl:
     Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
   places_warning_quota: |
     Je kunt slechts drie gebieden per dag maken.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Gebieden mogen niet groter zijn dan 700.000 vierkante kilometer.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Gebieden mogen niet groter zijn dan 70.000 vierkante kilometer.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Gebieden mogen niet meer dan 200.000 waarnemingen bevatten.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Gebieden mogen niet meer dan 10.000 waarnemingen bevatten.
   places_warning_the_future: |
     Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
     mensen in de toekomst gebieden kunnen toevoegen.
