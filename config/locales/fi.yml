@@ -1381,10 +1381,7 @@ fi:
   curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
   curator_coordinate_access: Kuraattorin koordinaattien käyttöoikeus
   curator_coordinate_access_desc: |
-    Kuraattorin koordinointi perinteisiin projekteihin riippuu siitä, kuka on lisännyt
-    havainto hankkeeseen. Tämä on vain oletusasetus
-    havaintoja hankkeissa. Tarkkailijat voivat myös halutessaan muuttaa tätä
-    yksittäisiä havaintoja.
+    Kuraattorin koordinoima pääsy perinteisiin hankkeisiin riippuu siitä, kuka on lisännyt havainnon hankkeeseen. Tämä on vain oletusasetus hankkeissa oleville havainnoille. Havainnoitsijat voivat myös muuttaa tätä asetusta yksittäisten havaintojen osalta.
   curator_identification: Kuraattorin tunnistus
   current_flags: Nykyiset liput
   #Label for a custom boundary for an observation search
@@ -2154,7 +2151,7 @@ fi:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist on itsenäinen järjestö, joka toimii USA:ssa veroista vapautettuna epäkaupallisena 501(c)(3) -organisaationa (Tax ID: 92-1296468).
   #Title of identification that was automatically added by a taxon change
-  inaturalist_updated_the_id_suggested_by_user: iNaturalist päivitti ehdottamansa tunnuksen %{user}
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist päivitti käyttäjän %{user} ehdottaman tunnistuksen
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
     Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
@@ -3166,7 +3163,7 @@ fi:
   observation_field_type_taxon: Taksoni
   observation_field_type_dna: DNA
   observation_fields: Havainnointikentät
-  observation_fields_for_projects: Hankkeiden havaintokentät
+  observation_fields_for_projects: Havaintokentät projekteille
   observation_fields_are_additional: Havaintokentät ovat lisätietokenttiä, joita voidaan lisätä havaintoihin.
   observation_fields_by_preferences_description: |
     Havaintokentät ovat vähän kuin tunnisteita, mutta kuka tahansa voi lisätä niitä havaintoosi oletuksena. Jos haluat mieluummin, että vain sinä tai vain sivuston kuraattorit voivat lisätä havaintokenttiä, sinun täytyy muuttaa oletusasetusta.
@@ -3861,6 +3858,20 @@ fi:
     uuden paikan, joka sisältää paljon havaintoja, tulet hidastamaan iNaturalistin toimintaa kaikilla. Tässä on joitain vaihtoehtoisia lähestymistapoja:
   places_warning_quota: |
     Voit luoda vain kolme paikkaa päivässä.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Paikka voi olla korkeintaan 700 000 neliökilometriä.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Paikat eivät saa olla suurempia kuin 70 000 neliökilometriä.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Paikassa voi olla korkeintaan 200 000 havaintoa.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Paikassa voi olla enintään 10 000 havaintoa.
   places_warning_the_future: |
     Meidän täytyy rajoittaa paikkojen lisäämistä tulevaisuudesta, koska iNaturalistin käyttö kasvaa jatkuvasti.
   plants: kasvit
@@ -5073,6 +5084,8 @@ fi:
   #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Tallentanut
   uploader:
+    errors:
+      unsupported_file_type: Tiedostotyyppiä ei tueta. Hyväksymme JPG-, PNG-, GIF-, HEIC-, HEIF-, WAV-, AAC-, MP3- ja MP4-tiedostot (vain ääni)
     tooltips:
       add: Lisää havainto(ja)
       combine: Yhdistä valitut havainnot
@@ -5153,13 +5166,11 @@ fi:
     %{user} havaitsi %{date} paikassa %{place}
   user_suggested_an_id: "%{user} ehdotti tunnistusta"
   user_trusts_this_project_when_added_by_any: |
-    Käyttäjä luottaa projektin kuraattoreihin, joihin on lisätty havaintojen piilotetut koordinaatit
-    projektiin kenen tahansa toimesta.
+    Käyttäjä sallii projektin kuraattoreiden nähdä niiden havaintojen piilotetut koordinaatit, jotka kuka tahansa on lisännyt projektiin.
   user_trusts_this_project_when_added_by_observer: |
-    Käyttäjä luottaa projektin kuraattoreihin, joihin on lisätty havaintojen piilotetut koordinaatit
-    tarkkailijan hankkeeseen.
+    Käyttäjä sallii projektin kuraattoreiden nähdä niiden havaintojen piilotetut koordinaatit, jotka havainnoija on lisännyt projektiin.
   user_trusts_this_project_when_added_by_none: |
-    Käyttäjä ei luota projektin kuraattoreihin, joilla on piilotetut koordinaatit.
+    Käyttäjä ei salli piilotettujen koordinaattien näkymistä kuraattoreille.
   user_updated_an_observation_field_html: '%{user} päivitti arvon kentälle "%{field_name}" havaintoon, jonka teki %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> kirjoitti,
   username: Käyttäjänimi
@@ -5286,7 +5297,7 @@ fi:
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
   we_also_support3: |
-    Tuemme myös valokuvien tuontia <a href="http://flickr.com">Flickr</a>.
+    Tuemme myös valokuvien tuontia <a href="http://flickr.com">Flickr-palvelusta</a>.
   we_can_only_understand_csv_in: Voimme ymmärtää CSV-tiedostoa vain seuraavassa muodossa
   we_couldnt_find_a_user: Emme löytäneet käyttäjää kyseisellä sähköpostiosoitteella.
   we_couldnt_find_a_user_with_that_activation_code: "Emme löytäneet käyttäjää tällä aktivointikoodilla. Voi olla että aktivoit jo tilisi, joten ole hyvä ja kokeile kirjautumista sisään."
@@ -5574,6 +5585,8 @@ fi:
         Aikavyöhykkeellä oleva aika, jolloin tämä ilmoitus päättyy
         esiintyminen. Koskee kaikkia aikavyöhykkeitä, joten kaikki eivät enää näe
         se samaan aikaan, ei suhteessa paikalliseen aikaansa.
+      excludes_non_site_desc: |
+        Jos ilmoituksesi kohdistuu sivustoon (mikä on oletusarvo, jos olet sivuston ylläpitäjä), tämä sulkee pois ilmoitukset, jotka kohdistuvat kaikkiin sivustoihin.
       ip_countries_desc: |
         CMD- tai VAIHTO-napsauta valitaksesi useita. Valitsemalla "Kaikki" tai tekemättä jättäminen
         valinta näyttää ilmoituksen kaikille käyttäjille riippumatta siitä,
@@ -7069,6 +7082,7 @@ fi:
         exclude_donor_start_date: Jätä luovuttajan aloituspäivä pois
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Luovutuksen antajan sulkeminen pois
+        excludes_non_site: Piilota muut ilmoitukset, joilla ei ole sivustotunnusta
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Jätä havainnoijat pois sovelluksista
