@@ -4148,6 +4148,20 @@ tr:
     Konum sınırlarını düzenlemek iNat'taki en büyük yavaşlama kaynaklarından biridir. Bundan kaçınabiliyorsan, kesinlikle gerekli olmadıkça konum sınırlarını ekleme, değiştirme ya da kaldırma.
   places_warning_quota: |
     Günde üçten fazla konum oluşturamazsın.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Konumlar 700.000 kilometrekareden büyük olamaz.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Konumlar 70.000 kilometrekareden büyük olamaz.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Konumlar 200.000'den fazla gözlem içeremez.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Konumlar 10.000'den fazla gözlem içeremez.
   places_warning_the_future: |
     Ne olursa olsun, iNat'in mevcut büyüme hızı göz önüne alındığında, gelecekte insanların konum ekleyebileceği koşulları kısıtlamamız gerekecek.
   plants: bitkiler
