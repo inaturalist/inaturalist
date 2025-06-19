@@ -4305,6 +4305,20 @@ da:
     Hvis du kan undgå det, så undlad at tilføje, ændre eller fjerne stedgrænser, medmindre det er absolut nødvendigt.
   places_warning_quota: |
     Kun tre steder kan oprettes dagligt.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Steder må ikke overstige 700.000 kvadratkilometer.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Steder må ikke overstige 70.000 kvadratkilometer.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Steder må ikke indeholde flere end 200.000 observationer.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Steder må ikke indeholde flere end 10.000 observationer.
   places_warning_the_future: |
     For hvad det er værd, så bliver vi, grundet iNat's nuværende vækstrate, fremadrettet nødt til at begrænse de betingelser, under hvilke folk kan tilføje steder.
   plants: planter
