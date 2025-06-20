@@ -60,6 +60,8 @@ mi:
   activity: Hohenga
   add: Tāpiri
   add_a_comment: Tāpiri tētahi kōrero
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Tāpiri tūnga whāomoomo
   add_a_field: Tāpiri te āpure
   add_a_name: Tāpiri tētahi ingoa
   add_a_single_observation: Tāpiritia mauhanga tautahi
@@ -407,6 +409,9 @@ mi:
   default: taunoa
   #Default option
   default_: Taunoa
+  default_observation_license: Raihana taunoa mō ngā mauhanga
+  default_photo_license: Raihana taunoa mō ngā whakaahua
+  default_sound_license: Raihana taunoa mō ngā oro
   delete: Mukua
   delete_all: Mukua katoa
   delete_photo: Mukua whakaahua
@@ -458,6 +463,8 @@ mi:
   draft: hukihuki
   #Noun, as in a journal post that has not been published
   draft_: Hukihuki
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Nā %{user} te hukihuki
   #Noun, as in a journal post that has not been published
   draft_saved: Kua tiakina te hukihuki!
   #Noun, as in journal posts that has not been published
@@ -470,6 +477,7 @@ mi:
   edit_comment: Whakatika au kōrero
   edit_conservation_status: Whakatika tūnga whāomoomo
   edit_field: Whakatika te āpure
+  edit_license: Whakatike te Raihana
   edit_notes: Whakatika ngā kupu tīpoka
   edit_observations: Whakatika ngā mauhanga
   edit_photos: Whakatika ngā whakaahua
@@ -512,6 +520,7 @@ mi:
   'false': 'Teka'
   Family: Whānau
   favorites: "Tino mauhanga"
+  feedback: Urupare
   fields: āpure
   fields_: Āpure
   file: Kōnae
@@ -569,6 +578,8 @@ mi:
   following: E whai ana
   forgot_your_password: Kua warewarehia tō kupuhipa?
   forum: Wānanga
+  forum_categories:
+    forum_feedback: Urupare Wānanga
   full_screen: Mata katoa
   fungi:
     other: hekaheka
@@ -1255,6 +1266,7 @@ mi:
   save_all: Tiaki katoa
   save_and_continue: "Tiaki &amp; haere tonu"
   save_comment: Tiaki te kōrero
+  save_draft: Tiakina te hukihuki
   save_identification: Tiakina te tautuhi
   save_observation: Tiakina te mauhanga
   save_photos: Tiakina ngā whakaahua
@@ -1316,6 +1328,9 @@ mi:
   start_date_time: Rā/Wā tīmatanga
   stats: Tauanga
   stats_for_this_year_have_not_been_generated: Kāore anō kia tatauhia ngā tauanga mō tēnei tau
+  status: Tūnga
+  status_globally: '"%{status}" ki te Ao Whānui'
+  status_in_place: '"%{status}" i roto i %{place}'
   stop_editing: Kāti te whakatika
   stop_following_user: "Kati e whai ana a %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
@@ -1890,6 +1905,7 @@ mi:
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Rā tohuake kaiwhakamahi hōu rawa
       conservation_status:
+        status: Tūnga
         place_id: Wāhi
       flag:
         #The kind of flag that was made
