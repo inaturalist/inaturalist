@@ -4117,6 +4117,20 @@ de:
     Wenn du es vermeiden kannst, füge keine Grenzen hinzu, ändere oder entferne sie nicht - außer es ist unbedingt notwendig.
   places_warning_quota: |
     Du kannst nur drei Orte pro Tag erstellen.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Gebiete dürfen nicht größer als 700.000 Quadratkilometer sein.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Gebiete dürfen nicht größer als 70.000 Quadratkilometer sein.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Gebiete dürfen nicht mehr als 200.000 Beobachtungen enthalten.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Gebiete dürfen nicht mehr als 10.000 Beobachtungen enthalten.
   places_warning_the_future: |
     Nebenbei bemerkt, unter Berücksichtigung der aktuellen Wachstumsrate von iNat werden wir wohl die Befugnisse einschränken müssen, mit denen Benutzer in Zukunft Gebiete hinzufügen können.
   plants: Pflanzen
