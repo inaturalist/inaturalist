@@ -945,7 +945,7 @@ tr:
   changing_the_ancestry_to_that_parent: Soyun bu üst soyla değiştirilmesi beklenmeyen uyuşmazlıklara neden olabilir. Lütfen önce bunları analiz edin, bu biraz zaman alabilir.
   changing_the_geoprivacy: 'Coğrafi gizliliği değiştirmek, diğer kişilerin, gözleminin konumunu nasıl göreceğini değiştirir.'
   check_above_for_errors: Yukarıdaki hataları kontrol et
-  check_back_soon: Yakında kontrol et!
+  check_back_soon: Yakında tekrar kontrol et!
   check_here_to_autoload_description: Vikipedi'den açıklamayı otomatik yüklemek için burayı işaretle. Bir taksonun bilimsel adı aynı zamanda bilimsel olmayan bir sözcük ya da "Parus" gibi yaygın bir yanlış yazım olduğunda bu işareti kaldırmak isteyebilirsin.
   check_here_to_autoload_photos: Flickr'dan fotoğrafları otomatik yüklemek için burayı işaretle. Bir taksonun bilimsel adı aynı zamanda bilimsel olmayan bir sözcük ya da "Parus" gibi yaygın bir yanlış yazım olduğunda bu işareti kaldırmak isteyebilirsin.
   check_list: Kontrol listesi
@@ -1559,7 +1559,7 @@ tr:
   destination: Hedef
   destroy: İmha et
   details: Ayrıntılar
-  deviation: Uygunsuzluk
+  deviation: Sapma
   devise:
     confirmations:
       confirmed: |
@@ -1763,14 +1763,14 @@ tr:
   editing: Düzenleme
   #Title for a page to edit an announcement
   editing_announcement_x: Duyuru düzenleme %{id}
-  editing_custom_project_fields_for: Şunun için özel proje alanlarını düzenleme
+  editing_custom_project_fields_for: 'Özel proje alanlarını düzenleme:'
   editing_observation_field: Gözlem alanını düzenleme
   editing_observation_id: "%{obs_id} Gözlemini Düzenleme"
   editing_observations:
     one: '<span class="count">1</span> gözlemi düzenleme:'
     other: '<span class="count">%{count}</span> gözlemi düzenleme:'
   editing_project: '%{project} Düzenleme'
-  editing_project_asset: 'Şunun için Proje İçeriğini Düzenleme:'
+  editing_project_asset: 'Proje Öğesi Düzenleme:'
   editing_subscription_to_x_html: "%{x} Aboneliğini Düzenleme"
   editing_taxon: '%{taxon} düzenleme'
   editing_taxon_link: Takson Bağlantısını Düzenleme
@@ -1870,12 +1870,12 @@ tr:
   external_applications: Harici Uygulamalar
   external_applications_description: |
     Harici Uygulamalar, iNaturalist hesabına senin adına erişmelerine izin verdiğin üçüncü parti uygulamalardır. Genel olarak, hesabınla yapabildiğin her şeyi onlar da yapabilir, bu yüzden erişim izni vermeden önce uygulamanın geliştiricilerine güvendiğinden emin olmalısın.
-  external_taxon_including_children: Harici takson (alt taksonları dahil)
+  external_taxon_including_children: Harici takson (alt taksonlar dahil)
   extinct: soyu tükenmiş
   extinct_in_the_wild: Doğada Soyu Tükenmiş
   extra_properties: Ek Özellikler
   evidence_of_organism: Organizmanın kanıtı
-  evidence_related_to_single_subject: Tek bir süjeyle ilgili kanıt
+  evidence_related_to_single_subject: Tek bir organizmayla ilgili kanıt
   facebook: Facebook
   failed_to_find_your_location: Konumun bulunamadı.
   failed_to_repair_photo: "Fotoğraf onarılamadı: %{errors}"
@@ -2129,11 +2129,11 @@ tr:
   has_id_supported_by_two_or_more: İki ya da daha çok kişi tarafından desteklenen tanım var
   has_one_or_more_faves: Bir veya Daha Fazla Favorisi Var
   has_photo: Fotoğraf Var
-  has_photos: Fotoğraflar Var
+  has_photos: Fotoğraf Var
   has_photo_and_sound: Hem Fotoğraf Hem Ses Var
-  has_photos_or_sounds: Fotoğraflar ya da Sesler Var
+  has_photos_or_sounds: Fotoğraf veya ses var
   has_sound: Ses Var
-  has_sounds: Sesler Var
+  has_sounds: Ses Var
   hasnt_contributed_any_observations: bu projeye herhangi bir gözlem katkısında bulunmamıştır.
   header_your_observations: Gözlemlerin
   header_your_calendar: Takvimin
@@ -2187,7 +2187,7 @@ tr:
   high: Yüksek
   #Highest taxonomic rank to filter by, where the "highest" possible rank is
   #kingdom
-  highest_rank: En Yüksek Sıra
+  highest_rank: En Yüksek Düzey
   highlights_and_stats_from_year_on_site: "%{site} sayfasının %{year} yılındaki öne çıkanları ve istatistikleri"
   history: Geçmiş
   home: Ana Sayfa
@@ -2255,7 +2255,7 @@ tr:
     Bilgisayarla görü, bilgisayarlara görüntüdeki şekilleri öğretme sürecidir. Kendiliğinden tamamlama ve karşılaştırma özellikleri gibi tanımlama önerileri sağlamak için topluluğun fotoğrafları üzerinde eğitilmiş bilgisayarlı görme modellerini kullanan araçlar sunuyoruz. Bu etiket, bir kişinin bu araçlardan birini kullanarak ne zaman tanımlama eklediğini gösterir.
   identifiers: Tanımlayıcılar
   identotron: Identotron
-  identotron_for: Şunun için Identotron
+  identotron_for: 'Identotron:'
   identotron_help: Identotron yardımı
   ids: "Tanımlamalar"
   ids_made_for_others__title: Diğerleri için Yapılan Tanımlamalar
@@ -2327,11 +2327,11 @@ tr:
   inactive: Pasif
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
-  inactive_complete_set_status: Devre Dışı
+  inactive_complete_set_status: Pasif
   inactive_taxon: Pasif Takson
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
-  inactive_taxon_status: Devre Dışı
+  inactive_taxon_status: Pasif
   inactive_taxon_concepts_are: Pasif takson ya taksonomik olarak güncel değildir ya da bir takson değiştirme için hazırlanmaktadır. Eski kavramlar, geçmişi korumak ve bazı ortak sitelerle uyumluluğu sağlamak için korunmaktadır.
   inappropriate_content: Uygunsuz içerik mi?
   inat_account_action: "%{site_name}&#58; Hesap &#58;%{action_name}"
@@ -2359,7 +2359,7 @@ tr:
   insert_a_quote: Bir alıntı ekle
   interactions: Etkileşimler
   internal_server_error: İç Sunucu Hatası
-  internal_taxon_including_descendants: Dahili takson (alt taksonları içerir)
+  internal_taxon_including_descendants: Dahili takson (alt taksonlar dahil)
   internal_taxon_rank: Dahili takson düzeyi
   introduced: Egzotik Tür
   introduced_in_place: "%{place} konumunda egzotik tür"
@@ -2761,7 +2761,7 @@ tr:
   low: Düşük
   #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
   #subspecies or variety
-  lowest_rank: En Düşük Sıra
+  lowest_rank: En Düşük Düzey
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
   make_admin: Yönetici yap
@@ -3052,7 +3052,7 @@ tr:
   new_check_list_record: "Bu listeyi kapsamlı olarak işaretlemek istiyorsan, onu oluştur, takson ekle ve ardından düzenle; burada kapsamlı olarak işaretleme seçeneğin olacaktır."
   new_comment_on_a_parent_by_user_link: '%{user_link} tarafından %{parent} hakkında yeni yorum'
   new_conservation_status: Yeni Koruma Durumu
-  new_flag_for: Şunun için Yeni İşaret
+  new_flag_for: 'Yeni İşaret:'
   new_guide: Yeni Rehber
   new_journal_post: Yeni Günlük Gönderisi
   new_lexicon: Yeni Sözlük
@@ -3070,13 +3070,13 @@ tr:
   new_post: Yeni Gönderi
   new_project: Yeni Proje
   new_project_asset: Yeni Proje İçeriği
-  new_project_asset_for: 'Şunun için Yeni Proje İçeriği:'
+  new_project_asset_for: 'Yeni Proje Öğesi:'
   new_source: Yeni Kaynak
   new_species_added_in_interval: '%{interval} Aralığında Eklenen Yeni Türler'
   new_species_added_in_interval_x_of_y: '%{interval} Aralığında Yeni Türler Eklendi (%{y} / %{x})'
   new_taxon_change: Yeni takson değiştirme
   new_taxon_link: Yeni Takson Bağlantısı
-  new_taxon_name_for: 'Şunun için Yeni Takson Adı:'
+  new_taxon_name_for: 'Yeni Takson Adı:'
   new_taxon_range: Yeni Takson Yayılımı
   new_taxonomic_change: Yeni Taksonomik Değişiklik (Taslak)
   new_trip: Yeni gezi
@@ -3160,7 +3160,7 @@ tr:
   no_recent_activity: Son etkinlik yok
   no_relevant_annotations: İlgili Açıklama Yok
   no_reply_yet: Henüz yanıt yok
-  no_results_found: Sonuçlar bulunamadı
+  no_results_found: Sonuç bulunamadı
   no_results_for: 'Şunun için sonuç yok: '
   no_results_matching: Eşleşen sonuç yok
   no_sections_available: Geçerli bölümler yok.
@@ -3179,7 +3179,7 @@ tr:
   no_taxa_listed: Listelenmiş taksonlar yok
   no_taxa_selected: Seçilmiş taksonlar yok!
   no_taxa_with_unknown_relationships: Bilinmeyen ilişkileri olan taksonlar yok
-  no_taxon_framework_relationships: takson çerçevesi ilişkileri yok
+  no_taxon_framework_relationships: takson çerçevesi ilişkisi yok
   no_taxonomic_changes_match_those_criteria: Bu ölçüte uygun taksonomik değişiklikler yok
   no_users_found_with_those_filters: Bu filtrelerle eşleşen herhangi bir kullanıcı bulunamadı
   no_wikipedia_page_for_taxon: Bu takson için Vikipedi sayfası yok.
@@ -3189,7 +3189,7 @@ tr:
   #Title for a preference to control whether you receive notifications about
   #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
   #someone else adds an ID of Mammalia but does not make it a disagreement.
-  non_disagreeing_ancestor_ids: Uyuşan Üst Soy Tanımlamaları
+  non_disagreeing_ancestor_ids: Uyuşan üst soy tanımlamaları
   #Description of a preference to control whether you receive notifications
   #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
   #and someone else adds an ID of Mammalia but does not make it a
@@ -3215,7 +3215,7 @@ tr:
   not_finding_place_you_want?: İstediğin konumu bulamıyor musun?
   not_found: Bulunamadı
   #Filter for observations not in a particular place
-  not_in_place: Konumlandırılmamış
+  not_in_place: Şu konum hariç
   not_linked_flickr: "%{site_name} hesabın, Flickr hesabına bağlı değil"
   not_on_this_list: Bu listede değil.
   not_recorded: Kaydedilmemiş
@@ -3445,7 +3445,7 @@ tr:
     Bir konumun "yakınındaki" gözlemler, konum sınırının etrafına çizilen bir dikdörtgenin içindedir; bu da dikdörtgene benzemeyen yerler için bazı yanlış sonuçlara neden olabilir. Bu durum, veritabanımızda çözmeye çalıştığımız bir sınırlamadan kaynaklanmaktadır.
   observations_needing_curation: Düzenleme Gerektiren Gözlemler
   observations_observed_this_month: Bu ay <em>gözlemlenen</em> gözlemler, bu ay eklenmedi. Dışarı çık!
-  observations_of_relatives: Benzer Gözlemler
+  observations_of_relatives: Benzer gözlemler
   observations_of_taxon: "%{taxon_name} gözlemleri"
   observations_per_month: Gözlemler / Ay
   observations_removed_from_the_project: "Gözlemler, \"%{project}\" projesinden kaldırıldı"
@@ -3678,7 +3678,7 @@ tr:
   photos_locked_desc: Bu takson için varsayılan fotoğrafları yalnızca personel değiştirebilir
   photos_of_taxon_html: "%{taxon} Fotoğrafları"
   photos_or_sounds: Fotoğraflar veya sesler
-  photos_or_sounds?: Fotoğraflar veya sesler var mı?
+  photos_or_sounds?: Fotoğraf veya ses var mı?
   photos_size:
     small: küçük
     medium: orta
@@ -4477,7 +4477,7 @@ tr:
   receive_project_journal_notifications?: Proje günlüklerinden bildirim almak ister misin?
   receive_updates_from_this_project: Bu projeden güncellemeleri al
   recent: Son
-  recent_evidence_of_organism: Bir organizmanın son kanıtı
+  recent_evidence_of_organism: Organizmanın yakın zamanlı kanıtı
   recent_exports: Son Dışa Aktarmalar
   recent_new_users: Son Yeni Kullanıcılar
   recent_observations: Son gözlemler
@@ -4508,7 +4508,7 @@ tr:
   relationships:
     match: eşleme
     one_to_one: birden bire
-    alternate_position: alternati̇f pozi̇syon
+    alternate_position: alternatif pozisyon
     many_to_many: çoktan çoğa
     many_to_one: çoktan bire
     one_to_many: birden çoğa
@@ -4673,7 +4673,7 @@ tr:
   search_projects: Projeleri Ara
   #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
   search_reasons: Nedenleri Ara
-  search_results_for: Sonuçları Şunun için Ara
+  search_results_for: 'Arama Sonuçları:'
   search_results_for_query: '"%{query}" için Sonuçları Ara'
   search_remote: Uzaktan Ara
   search_species: Tür Ara
@@ -4746,7 +4746,7 @@ tr:
   #have no annotation
   show_no_annotation: '"Açıklama Notu Olmayan"ları Göster'
   show_off_your_recent_observations: Son gözlemlerini kendi blogunda ya da web sitende göster!
-  show_only: Sadece göster
+  show_only: 'Sadece şu(nlar):'
   #Label for a button that shows map data from OpenStreetMap
   show_openstreetmap: OpenStreetMap'i göster
   show_relative_proportions_of_all_observations: Tüm gözlemlerin göreli oranlarını göster
@@ -5113,7 +5113,7 @@ tr:
   taxon_colors: Takson Renkleri
   taxon_curators: Takson Küratörleri
   taxon_framework_complete: "Tamamlama: evet"
-  taxon_framework_deviations_with_count_html: "Uygunsuzluklar: %{count}"
+  taxon_framework_deviations_with_count_html: "Sapmalar: %{count}"
   taxon_framework_relationships_with_count_html: "Takson Çerçevesi İlişkileri: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "İşaretlenmiş kapsanan taksonlar: %{count}"
@@ -5161,7 +5161,7 @@ tr:
   taxon_scheme: Takson şeması
   taxon_schemes: "Takson Şemaları"
   taxon_search: Takson Arama
-  taxon_search_results_for: 'Şunun için Takson Araması sonuçları:'
+  taxon_search_results_for: 'Takson Araması sonuçları:'
   taxon_split: takson bölme
   #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
@@ -5187,7 +5187,7 @@ tr:
   taxonomic_status: Taksonomik durum
   taxonomic_tags_for_flickr: Flickr için Taksonomik Etiketler
   taxonomy_details: Taksonomi Detayları
-  taxonomy_details_for: 'Şunun için taksonomi ayrıntıları:'
+  taxonomy_details_for: 'Taksonomi ayrıntıları:'
   taxonomy_details_info: 'Taksonomi Ayrıntıları sayfası, bir taksonla neyi kastettiğimizi açıklamaya yardımcı olmak için Takson Çerçevelerini kullanır. <a href="/pages/taxon_frameworks">Daha çok bilgi edin.</a>'
   taxonomy_settings: Taksonomi Ayarları
   teachers_guide: Öğretmen Rehberi
@@ -5902,7 +5902,7 @@ tr:
   without_annotation: Açıklamasız
   widget: Widget
   widget_code: Widget kodu
-  widget_for: Şunun için widget
+  widget_for: 'Widget:'
   wikipedia_attribution_cc_by_sa_3: |
     Kaynak: Vikipedi, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
