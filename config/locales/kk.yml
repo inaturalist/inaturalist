@@ -27,6 +27,15 @@ kk:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЯ'
     other: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЯ'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> САРАПШЫ'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> САРАПШЫ'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> Басқалар үшін жасалған ID'
+    other: '<span class="count">%{count}</span> Басқалар үшін жасалған ID'
   x_languages:
     one: "%{count} тіл"
     other: "%{count} тіл"
@@ -74,6 +83,9 @@ kk:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> бақылау қарастырылды"
     other: "<span class='count'>%{count}</span> бақылау қарастырылды"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> БАҚЫЛАУШЫ'
+    other: '<span class="count">%{count}</span> БАҚЫЛАУШЫ'
   x_others:
     one: "%{count} басқа"
     other: "%{count} басқа"
@@ -120,6 +132,9 @@ kk:
   x_sounds:
     one: "%{count} дыбыс"
     other: "%{count} дыбыс"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> таксонға куратор"
+    other: "<span class='count'>%{count}</span> таксонға куратор"
   x_taxa_matching_current_filters:
     one: "%{count} ағымдағы сүзгілерге сәйкес таксон"
     other: "%{count} ағымдағы сүзгілерге сәйкес таксон"
@@ -223,6 +238,8 @@ kk:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Таңбаланған тізім қосу
   add_a_comment: Пікір қосу
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Қорғау статусын қосу
   add_a_field: Өріс қосу
   add_a_flag: Белгі қосу
   #Tool tip for a button that adds a link to a text area
@@ -232,6 +249,8 @@ kk:
   add_a_new_change_group: Жаңа өзгерістер тобын қосу
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Нөмірленген тізім қосу
+  #Placeholder for a project autocomplete field
+  add_a_project: Жобаны қосу
   add_a_single_observation: Жалғыз бақылауды қосу.
   add_a_taxon: Таксон қосу
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -277,6 +296,7 @@ kk:
   add_new_source: "Жаңа дереккөз қосу..."
   add_new_taxon_name: Жаңа таксон атауын қосу
   add_obs_from_a_link: "Тізімнен бақылау қосу: %{link}"
+  add_observation_fields: Бақылау өрісін қосу
   add_observations: Бақылау қосу
   add_observations_project: Осы жобаға бақылаулар қосу
   #Used for buttons to add observations where the words "Add"
@@ -1166,6 +1186,11 @@ kk:
     Сіз нематодтарды зерттейсіз бе? Сіз шаяндар таксономиясы бойынша әлемдегі ең жетекші мамансыз ба? Сіз жай ғана әдемі гүлдерді көргенді ұнатасыз ба? Профильді толтыру кейбір тұлғалық қасиеттерді қосады және адамдарға идентификация арқылы көмектескен кезде сенімділікті орнатуға көмектеседі.
   doh_something_went_wrong: Ой, бірдеңе дұрыс болмады.
   doh_something_went_wrong_error: "Ой, бірдеңе дұрыс болмады: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: ДОНАТ
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Донат
   done: Дайын
   dont_have_an_account_sign_up_html: Аккаунт жоқ па? <strong>Тіркеліңіз.</strong>
   dont_use_double_quotes: Қос тырнақшаны басқа жерде қолданбаңыз
@@ -1323,6 +1348,7 @@ kk:
   Genus: Тұқымдас
   geoprivacy: Геоқұпиялылық
   get_started: Жұмысты бастау
+  getting_started_guide: Жұмысты бастау нұсқаулығы
   go_back: Артқа қайту
   google: Google
   got_it!: Түсінікті!
@@ -1780,6 +1806,7 @@ kk:
   needs_id_: ID керек
   new_guide: Жаңа нұсқаулық
   new_observations_ellispsis: "Жаңа бақылаулар ..."
+  new_observations_from_place_html: "%{place} жаңа бақылаулары"
   new_observations_may_take_up_to: Жаңа бақылаулар виджетте пайда болу үшін %{widget_expiration} минутқа дейін кетуі мүмкін.
   new_password: Жаңа құпиясөз
   new_project: Жаңа жоба
@@ -2905,6 +2932,7 @@ kk:
   show_history_for_this_record: Осы жазбаның тарихын көрсету
   show_less: Азырақ көрсету
   show_more: Көбірек көрсету
+  show_off_your_recent_observations: Өз блогыңызда немесе веб-сайтыңызда соңғы бақылауларыңызды көрсетіңіз!
   sign_in: Кіру
   #Button to sign in to iNat with your Apple account
   sign_in_with_apple: Apple арқылы жүйеге кіру
@@ -3026,6 +3054,7 @@ kk:
   subscribe: Жазылу
   subscribe_to_a_taxon: Таксонға жазылу
   subscribe_to_a_place: Орынға жазылу
+  subscriptions: Жазылымдар
   suggestions: Ұсыныстар
   suitable_for_the_global_biodiversity_information_facility: Жаһандық биоәртүрлілік ақпарат орталығы үшін қолайлы (GBIF)
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Wikipedia және басқа Wikimedia Foundation жобалары үшін қолайлы
@@ -3450,6 +3479,7 @@ kk:
   your_flickr_account: Flickr аккаунтыңыз
   your_flickr_photos_have_been_tagged: Flickr фотосуреттеріңізге тег қойылды!
   your_hard_drive: сіздің қатты дискіңіз
+  your_home: Басты бет
   your_id: Сіздің ID
   your_identification: Сіздің идентификацияңыз
   your_membership: Сіздің мүшелігіңіз
@@ -3485,6 +3515,8 @@ kk:
         Тіркелгі уақыт белдеуіндегі бұл хабарландырудың тоқтатылатын уақыты
         пайда болады. Уақыт белдеулері бойынша қолданылады, сондықтан әркім көруді тоқтатады
         бұл олардың жергілікті уақытына қатысты емес.
+      excludes_non_site_desc: |
+        Егер хабарландыру сайтқа бағытталса (егер сіз сайт әкімшісі болсаңыз, бұл әдепкі), бұл осы орналастырудағы барлық сайттарға бағытталған хабарландыруларды қоспайды.
       ip_countries_desc: |
         Бірнешеуді таңдау үшін CMD немесе SHIFT түймешігін басыңыз. «Барлығын» таңдау немесе жасамау
         таңдау хабарландыруды барлық пайдаланушыларға тәуелсіз көрсетеді
@@ -3636,6 +3668,7 @@ kk:
         donate_title: "Барша қолдаушыларымызға ерекше алғыс айтамыз"
         donors_guide_label_our_goal_is_1000: Біздің мақсатымыз айына 1000 тұрақты демеуші
         inaturalist_network: iNaturalist желісі
+        include_usa: АҚШ кіреді
         growth_in_year_obs: "%{year} бойынша өсім (бақ)"
         growth_title: Өсім
         #Label when a mark on a chart has a value that is too small to
@@ -3700,6 +3733,7 @@ kk:
           "Plant Phenology=Flowering": Гүлдену
           "Plant Phenology=Fruiting": Жеміс беру
           "Plant Phenology=No Evidence of Flowering": Гүлденудің дәлелі жоқ
+          "Flowers and Fruits=Flowers": Гүлдер
           "Life Stage=Egg": Жұмыртқа
           "Life Stage=Larva": Дернәсіл
           "Life Stage=Juvenile": Жас
@@ -3783,6 +3817,8 @@ kk:
         notification_preferences_project_journal_posts: Жоба журналындағы посттар
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Таксономиялық өзгерістер
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Мен бақылайтын адамдардың бақылаулары
         project_addition_preferences:
           any: Кез-келген
           joined: Сіз қосылған жобалар
@@ -4087,6 +4123,10 @@ kk:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -4131,6 +4171,7 @@ kk:
         site_ids: Сайт ID
         #Preference for an announcement that is only shown to staff
         prefers_target_staff: Мақсатты персонал (сынау үшін)
+        prefers_exclude_monthly_supporters: Ай сайынғы қолдаушыларды қоспағанда
         clients: Клиенттер
         #Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: Донордың басталу күнін алып тастау
@@ -4175,6 +4216,8 @@ kk:
       assessment_section:
         title: Тақырып
         body: Мәтін
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Бұғатталған пайдаланушы
