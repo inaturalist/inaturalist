@@ -3176,35 +3176,52 @@ class Observation < ApplicationRecord
     true
   end
 
-  def self.update_observations_places(options = { })
-    filter_scope = options.delete(:scope)
-    scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
-      filter_scope : self.all
-    if filter_ids = options.delete(:ids)
+  def self.update_observations_places( options = {} )
+    filter_scope = options.delete( :scope )
+    scope = filter_scope.is_a?( ActiveRecord::Relation ) ? filter_scope : all
+    if ( filter_ids = options.delete( :ids ) )
       if filter_ids.length > 100
         # call again for each batch, then return
-        filter_ids.each_slice(100) do |slice|
-          update_observations_places(options.merge(ids: slice))
+        filter_ids.each_slice( 100 ) do | slice |
+          update_observations_places( options.merge( ids: slice ) )
         end
         return
       end
-      scope = scope.where(id: filter_ids)
+      scope = scope.where( id: filter_ids )
     end
     options[:batch_size] = 100
-    scope.select(:id).find_in_batches(**options) do |batch|
-      ids = batch.map(&:id)
+    scope.select( :id ).find_in_batches( **options ) do | batch |
+      ids = batch.map( &:id )
+      batch_ids_string = ids.join( "," )
       Observation.transaction do
-        connection.execute("DELETE FROM observations_places
-          WHERE observation_id IN (#{ ids.join(',') })")
-        connection.execute("INSERT INTO observations_places (observation_id, place_id)
-          SELECT DISTINCT o.id, pg.place_id FROM observations o
+        existing_observations_places = Observation.connection.execute(
+          "SELECT observation_id, place_id
+          FROM observations_places
+          WHERE observation_id IN (#{batch_ids_string})"
+        ).to_a.uniq
+
+        desired_observations_places = Observation.connection.execute(
+          "SELECT DISTINCT o.id observation_id, pg.place_id FROM observations o
           JOIN place_geometries pg ON ST_Intersects(pg.geom, o.private_geom)
-          WHERE o.id IN (#{ ids.join(',') })
-          AND pg.place_id IS NOT NULL
-          AND NOT EXISTS (
-            SELECT observation_id FROM observations_places
-            WHERE place_id = pg.place_id AND observation_id = o.id
-          )")
+          WHERE o.id IN (#{batch_ids_string})
+          AND pg.place_id IS NOT NULL"
+        ).to_a.uniq
+
+        observations_places_to_delete = existing_observations_places - desired_observations_places
+        observations_places_to_delete.each do | op |
+          ObservationsPlace.where(
+            observation_id: op["observation_id"],
+            place_id: op["place_id"]
+          ).delete_all
+        end
+
+        observations_places_to_add = desired_observations_places - existing_observations_places
+        observations_places_to_add.each do | op |
+          ObservationsPlace.create(
+            observation_id: op["observation_id"],
+            place_id: op["place_id"]
+          )
+        end
       end
     end
   end
