@@ -1712,13 +1712,15 @@ module ApplicationHelper
       s += content_tag( :ul ) do
         hidden_errors.inject( "" ) do | hidden_errors_memo, pair |
           k, errors = pair
-          hidden_errors_memo << errors.inject( "" ) do | errors_memo, e |
-            errors_memo << content_tag( :li, I18n.t( "errors.format",
+          hidden_errors_message = hidden_errors_memo.dup
+          hidden_errors_message << errors.inject( "" ) do | errors_memo, e |
+            errors_message = errors_memo.dup
+            errors_message << content_tag( :li, I18n.t( "errors.format",
               attribute: I18n.t( "activerecord.attributes.#{record.class.name.underscore}.#{k}" ),
               message: e ) )
-            errors_memo.html_safe
+            errors_message.html_safe
           end
-          hidden_errors_memo.html_safe
+          hidden_errors_message.html_safe
         end
       end
       s.html_safe
