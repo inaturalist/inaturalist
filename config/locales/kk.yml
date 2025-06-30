@@ -329,6 +329,7 @@ kk:
   added: Енгізілді
   added!: Енгізілді!
   added_by: Енгізген
+  added_by_user_on_date_html: "%{date} күні %{user} қосқан"
   added_on_datetime: "%{datetime} енгізілді"
   #Message displayed after a project user changes role, e.g. they become a manager or a curator
   added_role: Қосылған рөл
@@ -999,6 +1000,8 @@ kk:
     Басқа пайдаланушылар жасаған контентті жою.
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Сіз бірнеше ай бойы сәйкестендірулерді және/немесе бақылауларды қосып жатырсыз және жалғастырғыңыз келеді.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Куратор нұсқаулығы
   curator_coordinate_access: Куратордың координатаға кіруі
   curator_coordinate_access_desc: |
     Дәстүрлі жобалар үшін куратордың координатаға қол жеткізуі кімнің қосқанына байланысты
@@ -1006,6 +1009,8 @@ kk:
     жобалардағы бақылаулар. Бақылаушылар мұны өзгертуді де таңдай алады
     жеке бақылаулар.
   current_flags: Ағымдағы белгілер
+  #Button to customize projects that appear in the header
+  customize__projects: Баптау
   darr_apply_darr: "&darr; Қолдану &darr;"
   daily_users: Күнделікті пайдаланушылар
   danger_zone: Қауіпті аймақ
@@ -1071,6 +1076,8 @@ kk:
   default_observation_license: Әдепкі бақылау лицензиясы
   default_photo_license: Әдепкі фотосурет лицензиясы
   default_search_place: Әдепкі іздеу орны
+  default_search_place_description: |
+    Бұл Зерттеу and Идентификация бетіндегі барлық іздеулер үшін әдепкі орын болады.
   default_sound_license: Әдепкі дыбыс лицензиясы
   defines_a_taxon_framework_for: '%{taxon_name} үшін таксон құрылымын анықтайды'
   definitions: Анықтамалар
@@ -1099,6 +1106,7 @@ kk:
   description_sections: Сипаттама бөлімдері
   description_slash_tags: Сипаттама / Тегтер
   desription: Сипаттама
+  details: Мәліметтер
   deviation: Ауытқу
   devise:
     confirmations:
@@ -1108,6 +1116,7 @@ kk:
       send_paranoid_instructions: |
         Егер сіздің электрондық пошта мекенжайыңыз біздің дерекқорымызда болса, бірнеше минут ішінде электрондық пошта мекенжайыңызды растау туралы нұсқаулары бар электрондық хат аласыз.
     failure:
+      already_authenticated: 'Сіз жүйеге кірдіңіз.'
       unauthenticated: 'Жалғастырмас бұрын жүйеге кіру немесе тіркелу қажет.'
       invalid: 'Жарамсыз электрондық пошта, пайдаланушы аты немесе құпия сөз.'
       unconfirmed: |
@@ -1181,6 +1190,7 @@ kk:
   display_name_description: Бұл сіздің профиліңізде, сондай-ақ авторлық құқық атрибуты үшін көрсетілетін атау
   distance_traveled_value: "Жүрген жол: %{distance}(м)"
   distance_traveled: "Жүрген жол (м)"
+  documentation_for_developers_html: <a href="/pages/developers">Әзірлеушілерге</a> арналған құжаттама
   do_not_show_this_message_again: Бұл хабарламаны қайта көрсетпеңіз
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Сіз нематодтарды зерттейсіз бе? Сіз шаяндар таксономиясы бойынша әлемдегі ең жетекші мамансыз ба? Сіз жай ғана әдемі гүлдерді көргенді ұнатасыз ба? Профильді толтыру кейбір тұлғалық қасиеттерді қосады және адамдарға идентификация арқылы көмектескен кезде сенімділікті орнатуға көмектеседі.
@@ -1202,12 +1212,14 @@ kk:
   draft_saved: Нобай сақталды!
   #Noun, as in journal posts that has not been published
   drafts: Нобайлар
+  drag_and_drop_some_photos_or_sounds: Кейбір суреттерді немесе дыбыстарды сүйреп әкеліңіз
   drawings: Сызбалар
   duplicate_verb: Көшірме
   duration_value: "Ұзақтығы: %{duration} минут"
   edit: Өңдеу
   #Title of the moderation note editor
   edit_moderator_note: Модератор ескертпесін өңдеу
+  edit_account_settings_and_profile: "Аккаунт &amp; профиль баптауларын өңдеу"
   edit_assessment: Бағалауды өңдеу
   edit_atlas: Атласты өңдеу
   edit_atlas_for_taxon_html: '%{taxon} үшін атласты өңдеу'
@@ -1234,9 +1246,14 @@ kk:
   edit_taxon_link: Таксон сілтемесін өңдеу
   #Title for a page to edit an announcement
   editing_announcement_x: Өңдеу хабарландыруы %{id}
+  editing_observations:
+    one: '<span class="count">1</span> бақылауды өңдеу:'
+    other: '<span class="count">%{count}</span> бақылауды өңдеу:'
   editing_taxon_name_for_taxon_html: '%{taxon} үшін "%{name}" таксон атауын өңдеу'
   editing_this: '%{elem} өңдеу'
   editors: Редакторлар
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Білім берушілер нұсқаулығы
   eligible_for_research_grade: Зерттеу дәрежесіне жарамды
   email: Электрондық пошта
   #Introductory form of address in an email. %{user} could be a username or a
@@ -1334,6 +1351,10 @@ kk:
   flickr_photos: Flickr фотосуреттері
   flickr_style: Flickr стилі
   flickr_tags: Flickr тегтері
+  followers: Жазылушылар
+  following_x_people:
+    one: '1 адамға жазылған'
+    other: '%{count} адамға жазылған'
   forgot_your_password: Құпиясөзді ұмыттыңыз ба?
   forum: Форум
   forum_categories:
@@ -1348,7 +1369,10 @@ kk:
   Genus: Тұқымдас
   geoprivacy: Геоқұпиялылық
   get_started: Жұмысты бастау
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Жұмысты бастау
   getting_started_guide: Жұмысты бастау нұсқаулығы
+  go: Кеттік
   go_back: Артқа қайту
   google: Google
   got_it!: Түсінікті!
@@ -1393,6 +1417,8 @@ kk:
   identification: идентификация
   identifications: Идентификациялар
   identotron: Идентотрон
+  ids: "ID"
+  ids_made_for_others__title: Басқалар үшін жасалған ID
   inappropriate_content: Орынсыз мазмұн ба?
   inat_account_action: "%{site_name} &#58; Аккаунт&#58; %{action_name}"
   inat_user_profile: "%{site_name}: %{user} профилі"
@@ -1404,7 +1430,12 @@ kk:
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
-  infraspecies_ids: Infraspecies идентификациялары
+  infraspecies_ids: Инфратүрлер идентификациялары
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Бұны өшірсеңіз, түр деңгейінен төмен (мысалы, түршелер мен вариациялар) идентификацияларыңызға сәйкес келетін таксондардың идентификациялары туралы хабарландыру бұдан былай жіберілмейді. Егер олар сіздің идентификацияңызбен келіспесе немесе оларда қосымша ескертулер болса, сізге хабарланады.
   insects: жәндіктер
   insect_life_stage: Жәндіктердің өмір сүру кезеңі
   instagram: Instagram
@@ -1412,12 +1443,17 @@ kk:
   iphone: iPhone
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: көлбеу мәтін
+  jobs: Жұмыс орындары
   join_the_largest_group_of_naturalists_in_the_world: Әлемдегі ең үлкен натуралистер тобына қосылыңыз!
+  joined_with_date: "Қосылды: %{date}"
   journal: Журнал
   journal_posts: Журнал жазбалары
   jpg_png_or_gif: "JPG, PNG немесе GIF"
   kml: KML
   labels: Белгілер
+  language_slash_locale: Тіл/жергілікті тіл
+  language_slash_locale_description: Бұл сіздің тіліңізге негізделген iNaturalist ішінде тіл мен күн форматын орнатады. Өзгерістер бет жаңартылғаннан кейін күшіне енеді.
+  last_active_with_date: "Соңғы белсенділік: %{date}"
   last_observation_caps: СОҢҒЫ БАҚЫЛАУ
   lat: 'Ендік:'
   latitude: Ендік
@@ -1548,6 +1584,7 @@ kk:
   linkedin: LinkedIn
   list: Тізім
   lists: Тізімдер
+  loading: "Жүктелуде..."
   locales_: Жергілікті тіл
   locales:
     ar: Арабша
@@ -1606,7 +1643,13 @@ kk:
     uk: Украинша
     zh-CN: Қытайша (жеңілдетілген)
     zh-TW: Қытайша (дәстүрлі)
+  locality_notes: Орын туралы ескертпелер
   location: Орналасқан жер
+  location_is_accurate: Дәл орын
+  location_is_exact: нақты орын
+  location_is_public: Жалпыға ортақ орын
+  location_is_obscured: Жасырын орын
+  location_is_private: Жеке орын
   location_specified: Орын көрсетілген
   log_in: Жүйеге кіру
   log_in_or_sign_up_to_add_comments_html: |
@@ -1701,6 +1744,8 @@ kk:
   merging: Біріктіру
   message: Хабарлама
   message_deleted: Хабарлама жойылды
+  message_from_user_at_time: '%{user} пайдаланушысынан %{time}'
+  message_from_user_on_date: '%{date} күні %{user} жіберген'
   messages: Хабарламалар
   mollusks: моллюскілер
   momentjs:
@@ -1805,10 +1850,12 @@ kk:
   needs_id: ID керек
   needs_id_: ID керек
   new_guide: Жаңа нұсқаулық
+  new_list: Жаңа тізім
   new_observations_ellispsis: "Жаңа бақылаулар ..."
   new_observations_from_place_html: "%{place} жаңа бақылаулары"
   new_observations_may_take_up_to: Жаңа бақылаулар виджетте пайда болу үшін %{widget_expiration} минутқа дейін кетуі мүмкін.
   new_password: Жаңа құпиясөз
+  new_post: Жаңа пост
   new_project: Жаңа жоба
   new_source: Жаңа дереккөз
   new_taxon_change: Жаңа таксон өзгерісі
@@ -1818,11 +1865,13 @@ kk:
   next_date_short: Келесі
   next_page: Келесі бет
   next_page_short: Келесі
+  'no': 'Жоқ'
   no_curators_yet: Әзірге кураторлар жоқ!
   no_description: Сипаттама жоқ
   no_flags: Бұл жолы белгілер жоқ
   no_observations: Бақылаулар жоқ
   no_observations_yet: Әзірге бақылаулар жоқ
+  no_post_yet: Әлі жазбалар жоқ!
   no_such_wiki_page_html: Ондай парақша жоқ. <a href="%{new_url}">оны жасауды</a> қалайсыз ба?
   no_suggestions_available: Ұсыныстар жоқ
   no_summary_from_wikipedia: Уикипедиядан түйіндеме жоқ
@@ -1832,7 +1881,10 @@ kk:
   non_human?: Адам емес пе?
   #A user who does not admin any projects
   non_project_admin: Жобалық емес әкімші
+  notes: Ескертпелер
+  notifications: Хабарландырулар
   notify_me_of_mentions: Маған ескертулер туралы хабарлау (мысалы, @username)
+  notify_me_of_mentions_description: "Мұны өшірсеңіз, %{site_name} сайтында біреу сізді атап өткенде, сіз ешқандай хабарландыру алмайсыз."
   observation: Бақылау
   observation_: бақылау
   observations_by_app: Қолданба бойынша бақылаулар
@@ -2454,7 +2506,7 @@ kk:
   please_explain_why_you_want_to_hide_this: Мұны неге жасырып жатқаныңызды түсіндіріңіз
   please_explain_why_you_want_to_unhide_this: Мұны неге жасырып жатқаныңызды түсіндіріңіз
   please_fix_your_csv_and_try_again: CSV файлын түзетіп, қайталап көріңіз.
-  popular: Танымал
+  popular: Таңдаулы
   position: Позиция
   #Post is a noun
   post_from_journal_by_parent_html: <a href="%{url}">%{parent}</a> журналынан жазба
@@ -2537,6 +2589,7 @@ kk:
   projects: Жобалар
   #@vow_or_con should work on %{place}
   projects_from_place: "%{place} жобалары"
+  projects_you_admin: Сіз әкімшілік ететін жобалар
   protozoans: қарапайымдылар
   provider_authorizations: Провайдер авторизациялары
   provider_without_email_error_apple: |
@@ -2721,6 +2774,7 @@ kk:
   reason_you_are_flagging_this_item: Бұл элементті белгілеу себебіңіз.
   recaptcha_verification_failed: reCAPTCHA расталмады
   receive_email_notifications: Электрондық пошта хабарландыруларын алу
+  receive_email_notifications_description: "Мұны өшірсеңіз, енді %{site_name} сайтынан хабарландыруларға қатысты электрондық хаттарды алмайсыз."
   receive_project_journal_notifications?: Жоба журналының хабарламаларын алу керек пе?
   receive_updates_from_this_project: Осы жобадан жаңартуларды алу
   recent: Соңғы
@@ -2920,6 +2974,7 @@ kk:
   seek: Seek
   select: Таңдау
   select_all: Барлығын таңдау
+  select_options: Опцияларды таңдаңыз
   set_license: Лицензияны орнату
   settings: Баптаулар
   share: Бөлісу
@@ -3035,6 +3090,7 @@ kk:
   species_name_cap: Түр атауы
   species_names: түр атауы
   species_search: Түрлерді іздеу
+  species_taxon_name: Түрлер / Таксон атауы
   standard: Стандарт
   start: Басталуы
   start_a_new_project: Жаңа жобаны бастау
@@ -3091,6 +3147,7 @@ kk:
   this_observation: Бұл байқау
   this_observation_is_research_grade: Бұл бақылау зерттеу дәрежесі болып табылады!
   this_year: Осы жылы
+  threatened: Қауіп төнген
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_algiers: Орталық Еуропа уақыты
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -3226,8 +3283,11 @@ kk:
   total_observations_caps: ЖАЛПЫ БАҚЫЛАУЛАР
   total_species_observed_caps: ЖАЛПЫ БАҚЫЛАНҒАН ТҮРЛЕР
   translated_languages: Аударылған тілдер
+  trust_with_private_coordinates: Жасырын координаттармен бөлісу
   twitter: Твиттер
   two_thirds: 2/3
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Жобаны түсіну
   unique_observers: бірегей бақылаушылар
   unknown: Белгісіз
   unknown_error: Белгісіз қате
@@ -3299,10 +3359,31 @@ kk:
   user_added_a_flag_html: "%{user} белгі қосты"
   #@gender operates on %{x}
   user_added_a_x: "%{user} %{x} қосты"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_html: "%{user} %{by} арқылы %{noun} дегенге %{x} қосты"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_user_html: "%{user} %{by} арқылы %{noun} дегенге %{x} қосты"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_you_html: "%{user} сіз %{noun} дегенге %{x} қосты"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_html: "%{user} %{noun} дегенге %{x} қосты"
   user_added_an_identification_html: "%{user} идентификация қосты"
+  user_added_an_observation_field_html: '%{user} %{owner} бақылауына "%{field_name}" мәнін қосты'
+  user_added_an_observation_field_value_html: "%{user} бақылау өрісінің мәнін қосты"
   user_added_an_observation_html: "%{user} бақылау қосты"
   #@gender operates on %{x}
   user_added_an_x: "%{user} %{x} қосты"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_html: "%{user} %{by} арқылы %{noun} дегенге %{x} қосты"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_user_html: "%{user} %{by} арқылы %{noun} дегенге %{x} қосты"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_by_you_html: "%{user} сіз %{noun} дегенге %{x} қосты"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_html: "%{user} %{noun} дегенге %{x} қосты"
+  user_added_x_observations2_html:
+    one: "%{user} %{count} бақылау қосты"
+    other: "%{user} %{count} бақылау қосты"
   user_already_authenticated: Пайдаланушы аутентификациядан өтіп қойған
   user_already_app_owner: Пайдаланушы бұрыннан қолданба иесі
   user_autocomplete_placeholder: kueda, simon123 және т.б.
@@ -3328,6 +3409,7 @@ kk:
   user_trusts_this_project_when_added_by_none: |
     Пайдаланушы жасырын координаттары бар жоба кураторларына сенбейді.
   username: Пайдаланушы аты
+  username_description: Бұл жүйеге кіру үшін пайдаланылатын пайдаланушы аты және басқа пайдаланушылар сізді iNaturalist сайтында анықтау үшін пайдалана алады
   username_or_email: Қолданушы аты немесе электрондық пошта
   username_or_user_id: Пайдаланушы аты немесе пайдаланушы ID
   users: Қолданушылар
@@ -3355,6 +3437,7 @@ kk:
   view_original: "Түпнұсқаны көру"
   view_sample: Үлгіні көру
   view_stats: Статистиканы көру
+  view_your_inbox: Поштаңызды қараңыз
   view_your_observations: Бақылауларыңызды қараңыз
   view_yours: Өзіңізді көру
   view_all_of_your_observations_from_x: "%{x} сайтындағы барлық бақылауларыңызды көру"
@@ -3812,13 +3895,23 @@ kk:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Идентификациялар
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Атап өтулер
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Хабарламалар
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Жоба журналындағы посттар
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Жоба сіздің бақылауларыңызды қосқанда
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
+        notification_preferences_project_curator_changes: Жоба кураторы ауысқанда
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Таксономиялық өзгерістер
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: Мен бақылайтын адамдардың бақылаулары
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Таксондарды немесе мен жазылған жерлерден бақылау
         project_addition_preferences:
           any: Кез-келген
           joined: Сіз қосылған жобалар
