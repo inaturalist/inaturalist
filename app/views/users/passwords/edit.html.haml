@@ -1,3 +1,8 @@
+- unless resource.errors[:reset_password_token].blank?
+  .container.password-reset-invalid
+    .alert.alert-warning
+      = raw I18n.t( "devise.failure.reset_password_token_invalid", url: new_password_path( resource_name ) )
+  - resource.errors.delete( :reset_password_token )
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   %h1=t :change_your_password
   = f.hidden_field :reset_password_token

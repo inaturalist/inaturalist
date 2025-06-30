@@ -1815,6 +1815,10 @@ en:
         to confirm your account.
       user:
         suspended: Your account has been suspended
+      # Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid:
+        The reset password token is invalid. Please use the link in the most recently sent
+        reset password email, or <a href="%{url}">request a new one</a>.
     sessions:
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
