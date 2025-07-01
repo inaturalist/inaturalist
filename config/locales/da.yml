@@ -1653,6 +1653,8 @@ da:
         Tjek din e-mail og klik på linket i den modtagne e-mail for at bekræfte din konto.
       user:
         suspended: Din konto er suspenderet
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Tokenet til nulstilling af adgangskode er ugyldigt. Brug linket i den senest sendte e-mail til adgangskodenulstilling, eller <a href="%{url}">anmod om et nyt</a>.
     sessions:
       signed_in: 'Du er nu logget ind.'
       signed_out: 'Du er nu logget ud.'
