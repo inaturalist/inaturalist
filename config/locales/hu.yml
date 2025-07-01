@@ -1395,6 +1395,8 @@ hu:
         Nézd meg az emailjeidet, és kattints a megerősítő emailünkben található linkre.
       user:
         suspended: A fiókod fel van függesztetve
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: A jelszóvisszaállító token érvénytelen. Kérjük, hogy a legutóbbi emailünkben található linket használd, vagy <a href="%{url}">kérj egy újat</a>.
     sessions:
       signed_in: 'Sikeres bejelentkezés.'
       signed_out: 'A kijelentkezés sikeres.'
