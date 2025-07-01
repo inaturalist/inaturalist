@@ -768,6 +768,51 @@ describe Observation do
     end
   end
 
+  describe "update_observations_places" do
+    let!( :place1 ) do
+      make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" )
+    end
+    let!( :place2 ) do
+      make_place_with_geom( wkt: "MULTIPOLYGON(((0.25 0.25,0.25 1.25,1.25 1.25,1.25 0.25,0.25 0.25)))" )
+    end
+    let!( :place3 ) do
+      make_place_with_geom( wkt: "MULTIPOLYGON(((1.2 1.2,1.2 2.2,2.2 2.2,2.2 1.2,1.2 1.2)))" )
+    end
+
+    it "adds and removes observations from places based on location" do
+      o = Observation.make!( latitude: nil, longitude: nil )
+      expect( o.public_places ).to be_empty
+      expect( o.observations_places ).to be_empty
+      o.update( latitude: 0.1, longitude: 0.1 )
+      expect( o.observations_places.length ).to eq 1
+      expect( o.public_places ).to include( place1 )
+      expect( o.public_places ).not_to include( place2 )
+      expect( o.public_places ).not_to include( place3 )
+
+      o.update( latitude: 0.3, longitude: 0.3 )
+      expect( o.observations_places.length ).to eq 2
+      expect( o.public_places ).to include( place1 )
+      expect( o.public_places ).to include( place2 )
+      expect( o.public_places ).not_to include( place3 )
+
+      o.update( latitude: 1.21, longitude: 1.21 )
+      expect( o.observations_places.length ).to eq 2
+      expect( o.public_places ).not_to include( place1 )
+      expect( o.public_places ).to include( place2 )
+      expect( o.public_places ).to include( place3 )
+
+      o.update( latitude: 1.5, longitude: 1.5 )
+      expect( o.observations_places.length ).to eq 1
+      expect( o.public_places ).not_to include( place1 )
+      expect( o.public_places ).not_to include( place2 )
+      expect( o.public_places ).to include( place3 )
+
+      o.update( latitude: 2.5, longitude: 2.5 )
+      expect( o.public_places ).to be_empty
+      expect( o.observations_places ).to be_empty
+    end
+  end
+
   describe "update_for_taxon_change" do
     before( :each ) do
       @taxon_swap = TaxonSwap.make
@@ -1616,6 +1661,43 @@ describe Observation do
       expect( o.reviewed_by?( o.user ) ).to be false
       ObservationReview.make!( observation: o, user: o.user, reviewed: false )
       expect( o.reviewed_by?( o.user ) ).to be false
+    end
+  end
+
+  describe "notfications" do
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
+
+    it "notifies subscribers of the observer" do
+      subscriber = User.make!
+      observer = User.make!
+      Subscription.make!( user: subscriber, resource: observer )
+      observation = after_delayed_job_finishes do
+        Observation.make!( user: observer )
+      end
+      expect(
+        UpdateAction.unviewed_by_user_from_query(
+          subscriber.id, notifier: observation, resource: observer
+        )
+      ).to eq true
+    end
+
+    it "notifies subscribers of the observer even if the observer has recently hid something" do
+      subscriber = User.make!
+      observer = make_curator
+      Subscription.make!( user: subscriber, resource: observer )
+      comment = Comment.make!
+      _user_action = ModeratorAction.make!(
+        resource: comment, action: ModeratorAction::HIDE, user: observer
+      )
+      observation = after_delayed_job_finishes do
+        Observation.make!( user: observer )
+      end
+      expect(
+        UpdateAction.unviewed_by_user_from_query(
+          subscriber.id, notifier: observation, resource: observer
+        )
+      ).to eq true
     end
   end
 

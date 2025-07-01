@@ -554,6 +554,8 @@ et:
   any_license: Kõik
   #Label for an option to show content with photos, sounds, or neither
   any_media: Kõik
+  #Label for an option to show any place
+  any_place: Mistahes
   #Label for an option to show content from any project
   any_project: Kõik
   #Label for an option to show content with any quality grade
@@ -1023,6 +1025,10 @@ et:
   confirmation_email_sent_at_datetime: Kinnituskiri saadetud kuupäeval %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Kinnitatud kuupäeval %{date}
+  confirming_ids: ID-de kinnitamine
+  confirming_ids_description: |
+    Kui lülitate selle välja, ei teavitata teid enam vastavatest ID-dest
+    teie omaga, välja arvatud juhul, kui neil on täiendavaid märkusi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Ühenda
@@ -1335,6 +1341,12 @@ et:
   curators_changed_for_x_html: "%{x} kuraator muutus"
   curators: Kuraatorid
   curators_can_remove_observations_from: Kuraatorid võivad projektist vaatlusi eemaldada ja nende tehtud määratlused on projektipõhistel lehtedel vaatluse kõrval eraldi ära toodud. Kuraatorid näevad ka selle projekti alla lisatud vaatluste privaatseid ja varjatud tõeliseid koordinaate.
+  curator_coordinate_access: Kuraatori koordinaatide juurdepääs
+  curator_coordinate_access_desc: |
+    Kuraatori koordineeritud juurdepääs traditsioonilistele projektidele sõltub sellest, kes lisas
+    tähelepaneku projektile. See on ainult vaikesäte
+    tähelepanekud projektides. Vaatlejad võivad seda ka muuta
+    individuaalsed tähelepanekud.
   curator_identification: Kuraatoritunnus
   current_flags: Praegused märkused
   #Label for a custom boundary for an observation search
@@ -1542,6 +1554,11 @@ et:
   disable_comments: Keela kommentaarid
   disable_comments_desc: Ära luba inimestel uusi kommentaare jätta
   disagree_: Ei nõustu
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Erimeelsused
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Näita tähelepanekuid, millel on lahkarvamusi
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Ühenda lahti
@@ -1654,6 +1671,8 @@ et:
   edited_by_name_some_rights_reserved_html: |
     Muutnud %{name}, mõned õigused kaitstud (%{license})
   editing: Muudan
+  #Title for a page to edit an announcement
+  editing_announcement_x: Teate muutmine %{id}
   editing_custom_project_fields_for: Muudan spetsiaalseid välju projektis
   editing_observation_field: Vaatlusvälja muutmine
   editing_observation_id: "Muudan vaatlust %{obs_id}"
@@ -2173,6 +2192,10 @@ et:
   inaturalist_applications: "iNaturalisti rakendused"
   inaturalist_places: "%{site_name} kohad"
   info: Teave
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infraliikide ID-d
   input_taxon: Sisendtakson
   insects: putukad
   insect_life_stage: Putuka elujärk
@@ -2419,7 +2442,6 @@ et:
   #a noun.
   link_to_authorization_code: Autoriseerimiskoodi link
   link_your_flickr_account: Ühenda oma Flickr konto
-  link_your_google_account: Ühenda oma Google'i konto
   linked_flickr: "Sinu lehe %{site_name} konto on praegu ühendatud sinu Flickr kontoga."
   linked_flickr_automatically: "Pea lisaks meeles, et kui sa sisened lehele %{site_name} Flickr konto abil, ühendame me automaatsel need kontod omavahel uuesti. Näib mõistlik, et kui kasutad Flickrit, soovid sa ka vajadusel importida Flickris olevaid fotosid."
   linked_flickr_description: "Ühendades lehe %{site_name} konto Flickri omaga saad lisada vaatlustele mitu fotot korraga. Kui tahad kunagi kahte kontot omavahel lahti ühendada, siis me loomulikult ei takista sind, kuid sellisel juhul ei saa sa fotosid lisada. Mõnikord võib see olla parim lahendus, näiteks kui lood uue Flickr konto ning soovid hoopis seda lehe %{site_name} kontoga ühendada."
@@ -2540,6 +2562,10 @@ et:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Login välja lehelt %{site_name}?"
   log_scale_label: Logi
+  #Adjectival phrase describing state of being logged in
+  logged_in: Sisse logitud
+  #Adjectival phrase describing state of being logged out
+  logged_out: Välja logitud
   #Status message shown while logging in
   logging_in: Login sisse...
   logo:
@@ -2737,6 +2763,8 @@ et:
   more_info_title: Lisateave
   more_journal_posts: Veel päevikukandeid
   more_observations: Veel vaatluseid
+  #Label for a button or section that shows additional options
+  more_options: Rohkem valikuid
   more_photos: Veel fotosid
   more_than_a_week_ago: Rohkem kui nädal tagasi
   most_agree: enamik nõustub
@@ -2934,7 +2962,11 @@ et:
   no_taxonomic_changes_match_those_criteria: Ükski taksonoomiline muutus ei vasta nendele kriteeriumitele
   no_wikipedia_page_for_taxon: Selle taksoni kohta Wikipedia lehekülg puudub.
   noble_curators: "Lehe %{site} üllad kuraatorid"
+  #A user who is not a curator
+  non_curator: Mittekuraator
   non_human?: Pole inimene?
+  #A user who does not admin any projects
+  non_project_admin: Projektiväline administraator
   none: Puudub
   none_found: Ei leitud
   normal: normaalne
@@ -2998,6 +3030,7 @@ et:
   observation_field: Vaatlusväli
   observation_field_details: Vaatlusvälja andmed
   observation_fields: Vaatlusväljad
+  observation_fields_for_projects: Projektide vaatlusväljad
   observation_fields_are_additional: Vaatlusväljad on lisa andmeväljad, mida saab vaatlustele lisada.
   observation_fields_by_preferences_description: |
     Vaatlusväljad töötavad natuke nagu märksõnad, kuid neid saavad vaikimisi sinu vaatlustele lisada kõik kasutajad. Muuda seda sätet, kui soovid, et neid saaksid peale sinu lisada vaid lehekülje kuraatorid.
@@ -3613,6 +3646,8 @@ et:
   profile_visibility_desc: |
     Proovime hoida rämsposti lehelt %{site_name} eemal muutes kasutajate profiilid avalikult nähtavaks alles peale seda, kui kasutaja on lisanud mitu teaduskõlbulikku vaatlust.
   project: Projekt
+  #A user who admin's a project
+  project_admin: Projekti administraator
   project_admins:
     one: Projekti administraator
     other: Projekti administraatorid
@@ -3672,6 +3707,16 @@ et:
   range: Piirkond
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Kategooria
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Perekond / Perekond hübriid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Liik / hübriid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Alamliik / Sort / Vorm
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4159,6 +4204,9 @@ et:
     one: Lisa 1 vaatlus
     other: Lisa %{count} vaatlust
   submitted: Lisatud
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Telli
   subscribe_to_a_taxon: Jälgi taksonit
   subscribe_to_a_place: Jälgi kohta
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Jälgi%{tag_end} selle märkuse kommentaare"
@@ -4492,7 +4540,6 @@ et:
   unknown: Teadmata
   unknown_error: Teadmata viga
   unknown_rank: '(Tundmatu kategooria)'
-  unlink_your_google_account: Ühenda oma Google'i konto lahti
   unmute: Lõpeta vaigistamine
   updates_notification_email_subject: "%{prefix} uudised %{date}"
   updates_suspension_email_subject: "%{prefix} sinu jälgimised on peatatud"
@@ -4609,6 +4656,14 @@ et:
     Kasutaja usaldab sellele projektile kõik muidu mingil põhjusel varjatud koordinaadid.
   user_trusts_this_project_for_taxon: |
     Kasutaja usaldab sellele projektile ainult need varjatud koordinaadid, mille põhjuseks olid ohustatud liigid.
+  user_trusts_this_project_when_added_by_any: |
+    Kasutaja usaldab projekti kuraatoreid, lisades vaatluste peidetud koordinaadid
+    projekti igaühe poolt.
+  user_trusts_this_project_when_added_by_observer: |
+    Kasutaja usaldab projekti kuraatoreid, lisades vaatluste peidetud koordinaadid
+    vaatleja projektile.
+  user_trusts_this_project_when_added_by_none: |
+    Kasutaja ei usalda varjatud koordinaatidega projekti kuraatoreid.
   user_trusts_you_with_their_private_coordinates: "Kasutaja %{user} usaldab sind oma peidetud koordinaatidega"
   user_trusts_you_with_their_private_coordinates_desc: |
     Kasutaja on otsustanud usaldata sulle kõigi oma vaatluste peidetud koordinaadid
@@ -4725,6 +4780,8 @@ et:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Otsime
   was_it_captive_cultivated?: "Oli see vangistatud / kultiveeritud?"
+  we_also_support3: |
+    Toetame ka fotode importimist <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Me mõistame CSV-faile ainult järgnevas formaadis
   we_couldnt_find_a_user: Me ei leidnud sellise e-posti aadressiga kasutajat.
   we_couldnt_find_a_user_with_that_activation_code: "Me ei leidnus sellise aktiveerimiskoodiga kasutajat. Võib-olla oled juba oma konto aktiveerinud, proovi palun sisse logida."
@@ -4970,6 +5027,54 @@ et:
   verifiable_observations: Tõendatud vaatlused
   views:
     views: 'Vaatamisi'
+    announcements:
+      locales_desc: |
+        CMD- või SHIFT-klõpsake mitme valimiseks. "Kõik" valimine või mitte tegemine
+        valik näitab teadaannet kõigile kasutajatele, olenemata sellest, kas
+        Locale. Ilma piirkonnata keele valimine *mitte* sihtmärgiks
+        lokaadid koos piirkondadega, nt kui valisite inglise keele, siis seda ei kuvata
+        inimestele, kes on valinud inglise keele (UK).
+      clients_desc: |
+        CMD- või SHIFT-klõpsake mitme valimiseks. "Kõik" valimine või mitte tegemine
+        valik näitab teadaannet kõigile kasutajatele, olenemata sellest, kas
+        klient.
+      end_desc: |
+        Kellaaeg teie konto ajavööndis, mille jooksul see teade peatatakse
+        Ilmumist. Kehtib ajavööndite lõikes, nii et kõik ei näe enam
+        seda samal ajal, mitte nende kohaliku aja suhtes.
+      ip_countries_desc: |
+        CMD- või SHIFT-klõpsake mitme valimiseks. "Kõik" valimine või mitte tegemine
+        valik näitab teadaannet kõigile kasutajatele, olenemata sellest, kas
+        IP riik.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Pange tähele, et kasutaja viimati loodud
+        vaatlus on vahemällu salvestatud, nii et sihtimiseks võib kuluda paar tundi
+        jõustuma
+      observation_oauth_application_ids_desc: |
+        CMD- või SHIFT-klõpsake mitme valimiseks. "Kõik" valimine või mitte tegemine
+        valik näitab teadaannet kõigile kasutajatele, olenemata sellest, kas
+        app.
+      site_ids_desc: |
+        CMD- või SHIFT-klõpsake mitme valimiseks. "Kõik" valimine või mitte tegemine
+        valik näitab teadaannet kõigile kasutajatele, olenemata sellest, kas
+        Saidi kuuluvus.
+      start_desc: |
+        Kellaaeg teie konto ajavööndis, millal see teadaanne algab.
+        Ilmumist. Kehtib ajavööndite lõikes, nii et kõik hakkavad nägema
+        seda samal ajal, mitte nende kohaliku aja suhtes.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Sihtige kasutajaid annetuskäitumise järgi
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Kasutajate sihtimine identifitseerimiskäitumise järgi
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Sihtige kasutajaid vaatluskäitumise järgi
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Kasutajate sihtimine muude atribuutide järgi
     content_freeze:
       content_freeze: Sisu külmutamine
       during_this_time: |
@@ -5030,9 +5135,9 @@ et:
           Palun märgi <code>rämpspost</code> ja <code>autoriõiguste rikkumine</code> märkused lahendatuks vaid siis, kui sisu pole rämpspost või ei sisalda autoriõiguste rikkumist.
     guides:
       index:
-        funding_html: |
-          Juhendite arendamist rahastas 
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Juhendite väljatöötamist rahastas
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Juhendid räägivad sulle maailma bioloogilisest mitmekesisusest. Hoolimata sellest, kas avastad Serengetit või kohalikku parki (mis võib-olla ongi Serengeti), aitavad juhendid sul mõista meie planeedi elu imetabast mitmekesisust.
       edit:
@@ -6058,6 +6163,44 @@ et:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Saada kinnitamata e-postiga kasutajatele
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Doonori väljajätmise alguskuupäev
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Doonori lõppkuupäeva väljajätmine
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Vaatlejate välistamine rakendustest
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Lisage doonori alguskuupäev
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Lisage doonori lõppkuupäev
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Rakenduste vaatlejate kaasamine
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP riigid
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Viimane obs alguskuupäev
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Viimane obs lõppkuupäev
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Maksimaalne identifitseerimine
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Minimaalsed identifitseerimisandmed
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Maksimaalsed vaatlused
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Minimaalsed tähelepanekud
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Paigutuse
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Sihtmärgi looja (testimiseks)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Sihtmärk on sisse logitud
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Varaseim kasutaja registreerumise kuupäev
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Viimase kasutaja registreerimise kuupäev
       assessment:
         description: Kirjeldus
       assessment_section:
@@ -6152,6 +6295,7 @@ et:
         place: Koht
       user:
         email: E-post
+        faved_project_ids: Lemmikprojektid
         login: Kasutajatunnus
         name: Nimi
         locale: Keel
@@ -6162,6 +6306,7 @@ et:
     errors:
       messages:
         empty: ei saa olla tühi
+        must_look_like_an_email_address: peab välja nägema nagu e-posti aadress
         even: peab olema paarisarv
         exclusion: on reserveeritud
         inclusion: pole nimekirjas
@@ -6226,6 +6371,10 @@ et:
             user:
               must_be_on_site_long_enough: |
                 peab postitamiseks olema kasutajaks registreerunud vähemalt 24 tundi tagasi. Palju rämpspostitajad proovivad ennast kasutajaks registreerida ja see on üks moodus nendega toimetulekuks. Saad mustandi salvestada ja kui sa lehte päeva pärast ikka veel kasutad, saad ka postitada.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Saate lemmikuks ainult 7 projekti
         project_observation:
           attributes:
             base:
@@ -6276,9 +6425,18 @@ et:
                 ei saa olla sama kui selle sõnastiku liigi teaduslik nimi
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: ei tohi hõlmata rohkem kui 7 projekti
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: peavad kõik olemas olema
             login:
               must_begin_with_a_letter: |
                 peab algama tähega, ei tohi sisalda tühikuid ning võib kasutada ainult tähti, numbreid, kriipse ja alljooni
+              domain_is_not_supported: domeeni ei toetata
   doorkeeper:
     scopes:
       login: |

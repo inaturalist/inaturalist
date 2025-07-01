@@ -1,6 +1,20 @@
 # frozen_string_literal: true
 
 class BootstrapFormBuilder < DefaultFormBuilder
+  def description_tip( description )
+    content_tag(
+      :button,
+      content_tag( :i, "", class: "fa fa-info-circle" ),
+      class: "btn btn-nostyle",
+      data: {
+        toggle: "popover",
+        content: description,
+        placement: "bottom"
+      },
+      onclick: "return false;"
+    )
+  end
+
   def form_field( field, field_content = nil, options = {}, &block )
     options = field_content if block_given?
     options ||= {}
@@ -33,17 +47,7 @@ class BootstrapFormBuilder < DefaultFormBuilder
         I18n.t( "activerecord.attributes.#{object.class.name.underscore}.#{field}", default: field.to_s.humanize )
       ).to_s.html_safe
       if options[:description_tip]
-        label_inside += content_tag(
-          :button,
-          content_tag( :i, "", class: "fa fa-info-circle" ),
-          class: "btn btn-nostyle",
-          data: {
-            toggle: "popover",
-            content: description,
-            placement: "bottom"
-          },
-          onclick: "return false;"
-        )
+        label_inside += description_tip( description )
       end
       label_tag = label(
         label_field,
@@ -88,16 +92,18 @@ class BootstrapFormBuilder < DefaultFormBuilder
   end
 
   def check_radio_field( field, field_content = nil, options = {}, wrapper_options = {}, description = nil )
-    wrapper_options[:class] = wrapper_options[:class].gsub( "form-group", field == "check_box" ? "checkbox" : "radio" )
+    css_classes = wrapper_options[:class].to_s.split.reject {| klass | klass == "form-group" }
+    css_classes << ( options[:field_name] == "check_box" ? "checkbox" : "radio" )
+    wrapper_options[:class] = css_classes.join( " " )
     label_content = if options[:label] == false
       nil
     else
-      (
-        options[:label] ||
+      options[:label] ||
         I18n.t( "activerecord.attributes.#{object.class.name.underscore}.#{field}", default: nil ) ||
         field
-      )
-    end.to_s.html_safe
+    end
+    label_content += description_tip( description ) if options[:description_tip]
+    label_content = label_content.to_s.html_safe
     if options[:required]
       label_content += content_tag( :span, " *", class: "required" )
     end
@@ -105,7 +111,9 @@ class BootstrapFormBuilder < DefaultFormBuilder
       field == "check_box" ? "checkbox-inline" : "radio-inline"
     end
     content = @template.content_tag( :label, [field_content, label_content].join( " " ).html_safe, class: label_class )
-    content += @template.content_tag( :div, description.html_safe ) unless description.blank?
+    if !options[:description_tip] && !description.blank?
+      content += @template.content_tag( :div, description.html_safe )
+    end
     if options[:inline]
       return content
     end

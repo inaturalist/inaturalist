@@ -258,8 +258,19 @@ input[type="color"]:focus,
   }
 }
 
-.form-group input[type="checkbox"] {
+.form-group input[type="checkbox"],
+.checkbox input[type="checkbox"],
+.radio-inline input[type="radio"] {
   margin-right: 5px;
+}
+
+// Firefox has weird line-heights for some reason
+@-moz-document url-prefix() {
+  .form-group input[type="checkbox"],
+  .checkbox input[type="checkbox"],
+  .radio-inline input[type="radio"] {
+    margin-top: 2px;
+  }
 }
 
 .nav-tabs.user-subnav .glyphicon,

@@ -52,6 +52,7 @@
           = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true, description: t( "views.announcements.site_ids_desc" ), description_tip: true
       - else
         = f.hidden_field :site_ids
+      = f.check_box :excludes_non_site, description: t( "views.announcements.excludes_non_site_desc" ), description_tip: true
     .col-xs-4
       = f.select :locales, locale_options, { include_blank: t( :all ) }, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_tip: true }
   .row

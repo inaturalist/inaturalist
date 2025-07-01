@@ -1428,6 +1428,7 @@ de:
   curators_changed_for_x_html: "Kuratoren für %{x} geändert"
   curators: Kuratoren
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Des Weiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
+  curator_coordinate_access: Kurator Koordinieren Sie den Zugriff
   curator_identification: Bestimmung des Kurators
   current_flags: Aktuelle Meldungen
   #Label for a custom boundary for an observation search
@@ -1518,6 +1519,8 @@ de:
   default_time_zone_desc: |
     Dies ist die Standard-Zeitzone. Die finale Zeitzone wird dann basierend auf dem Standort der Beobachtung zugeordnet, wenn sie gespeichert wird
   defaults_to_your_name_or_username: Standard ist dein Name oder Benutzername
+  #As in the definition of a word
+  definition: Definition
   defines_a_taxon_framework_for: Definiert ein Taxon-Framework für %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definiert ein Taxon-Framework für %{taxon} auf Grundlage von %{source}
   definitions: Definitionen
@@ -1639,6 +1642,9 @@ de:
   disable_comments: Kommentare deaktivieren
   disable_comments_desc: Benutzer daran hindern, neue Kommentare hinzuzufügen
   disagree_: Widersprechen
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Unstimmigkeiten
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Verbindung trennen
@@ -1745,6 +1751,8 @@ de:
   edited_by_name_some_rights_reserved_html: |
     Bearbeitet von %{name}, einige Rechte vorbehalten (%{license})
   editing: Bearbeiten
+  #Title for a page to edit an announcement
+  editing_announcement_x: Ankündigung bearbeiten %{id}
   editing_custom_project_fields_for: Benutzerdefinierte Projektfelder bearbeiten für
   editing_observation_field: Beobachtungsfeld bearbeiten
   editing_observation_id: "Beobachtung %{obs_id} bearbeiten"
@@ -2308,6 +2316,8 @@ de:
   internal_taxon_rank: Interner Taxonrang
   introduced: eingeführt
   introduced_in_place: "Eingeführt in %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Ungültiges Datum
   invitation: Einladung
   invite: einladen
   invite_people: andere Personen einladen
@@ -2320,6 +2330,11 @@ de:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Soll der Bestimmung '%{taxon}' widersprochen werden?
   is_this_offensive_html: 'Ist dies <a href="/help#inappropriate">unangemessen</a>, Spam, oder anstößig?'
   is_this_place_a_duplicate: Ist dieser Ort ein Duplikat?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Ist dieser wissenschaftliche Name derzeit akzeptiert?
   it_can_now_be_used_for_research: Sie kann nun für Forschungszwecke verwendet und auf anderen Websites genutzt werden
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: Kursiver Text
@@ -2548,7 +2563,6 @@ de:
   #a noun.
   link_to_authorization_code: Link zum Autorisierungscode
   link_your_flickr_account: Verknüpfe deinen Flickr-Account
-  link_your_google_account: Verknüpfe deinen Google-Account
   linked_flickr: "Dein %{site_name}-Konto ist derzeit mit deinem Flickr-Account verknüpft."
   linked_flickr_automatically: "Beachte auch, dass wenn du dich bei %{site_name} über Flickr einloggst, dass wir deinen %{site_name} und Flicker-Account automatisch neu verlinken. Es ist doch klar, dass wenn du Flickr benutzt, auch deine Flickr-Bilder importieren kannst, richtig?"
   linked_flickr_description: "Wenn du dein %{site_name}-Account mit deinem Flickr-Account verlinkt behältst, kannst du mehrere Bilder zu deinen Beobachtungen hinzufügen.  Natürlich, wenn du jemals willst, dass %{site_name} und Flickr nicht mehr verknüpft sein sollen, werden wir dich nicht aufhalten, du wirst einfach keine Bilder mehr hinzufügen können. Manchmal ist das am besten, wenn deu einen neuen Flickr-Account erstellt, mit dem du %{site_name} verlinken möchtest."
@@ -2903,6 +2917,8 @@ de:
   more_info_title: Mehr Infos
   more_journal_posts: Mehr Journal-Einträge
   more_observations: Mehr Beobachtungen
+  #Label for a button or section that shows additional options
+  more_options: Weitere Optionen
   more_photos: Weitere Fotos
   more_than_a_week_ago: Vor über einer Woche
   most_agree: Mehrheit stimmt zu
@@ -3046,6 +3062,8 @@ de:
   next_tab: Nächster Tab
   next_taxon_short: Weiter
   'no': 'Nein'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Noch keine Anwendungen
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
   no_but_it_is_a_member_of_taxon: "Widerspruch ('%{taxon}' ist als ID aber möglich)"
   no_comments_yet: Noch keine Kommentare.
@@ -3083,6 +3101,7 @@ de:
   no_more_taxa_to_load: Keine Taxa mehr zu laden!
   no_more_results_found: Keine weiteren Ergebnisse gefunden
   no_new_messages: Keine neuen Nachrichten
+  no_new_parent_specified: Kein neues Elternteil angegeben
   no_observations: keine Beobachtungen
   no_observations_from_this_place_yet: Noch keine Beobachtungen von diesem Ort.
   no_observations_matching_those_ids: Keine Beobachtungen, die zu diesen IDs passen.
@@ -3512,6 +3531,8 @@ de:
   original_url_for_this_map: Ursprüngliche URL für diese Karte
   organism_appears_captive_cultivated: wahrscheinlich in Haltung/kultiviert
   other: Sonstiges
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Sonstiges
   other_animals: andere Tiere
   other_lexicons: Andere Lexika
   other_listings_of_this_taxon_for_this_place: Andere Auflistungen dieses Taxons für diesen Ort
@@ -4486,6 +4507,8 @@ de:
   remove_tags: Stichwörter entfernen
   removed: Entfernt
   removed_project_user: Projektbenutzer entfernen
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Entfernte Rolle
   removing: "Entferne…"
   reorder_by_taxonomy: Neuordnen nach Taxonomie
   repair_broken_urls: Fehlerhafte URLs reparieren
@@ -4676,6 +4699,8 @@ de:
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Weitere Anmeldeoptionen anzeigen
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Beobachtungen ohne Angaben anzeigen
@@ -5078,7 +5103,11 @@ de:
   taxon_framework_relationship_unknown_count_html: "unbekannte Beziehungen-Zähler: %{count}"
   taxon_framework_relationships: Taxon Framework-Beziehungen
   taxon_framework_taxon: Taxonomisches Gerüst Taxon
+  taxon_history_notice: Das Archiv (History) wurde im Februar 2022 eingeführt, somit sind vor diesem Datum keine Daten verfügbar.
   taxon_merge: Taxon-Zusammenführung
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Taxon-Zusammenführung betrifft %{taxa}
   taxon_name: Taxonname
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonname muss mit einem existierenden Taxon in unserer Datenbank übereinstimmen
   taxon_observed_by_html: |
@@ -5115,9 +5144,17 @@ de:
   taxon_search: Taxon-Suche
   taxon_search_results_for: Taxon-Suchergebnisse für
   taxon_split: Taxon-Split
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Taxon-Aufteilung betrifft %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: Taxon-Vorbereitung
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Taxon-Phase betrifft %{taxon}
   taxon_swap: Taxon-Tausch
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Taxon-Tausch betrifft %{taxa}
   taxon_swap_only_has_one_input: nur eine einzelne Eingabe für einen Swap erlaubt
   taxon_swap_has_inputs_and_outputs: Swap muss sowohl Inputs als auch Outputs haben
   taxon_name_was_deleted: Der Taxonname wurde gelöscht.
@@ -5217,6 +5254,7 @@ de:
   there_were_some_problems_with_fields: "Es gab einige Probleme mit den folgenden Feldern:"
   there_were_some_problems_with_these_files: "Es gab einige Probleme mit diesen Dateien:"
   theres_something_wrong_with_taxon_framework_relationship: Hier stimmt etwas nicht - wir können die Beziehung zwischen internen und externen Taxa nicht bestimmen
+  therefore_committing_additional_taxon_changes: Daher ist es nicht erforderlich, nach diesem Taxon-Tausch weitere Taxon-Änderungen vorzunehmen.
   these_are_items_people_on: |
     Das sind Dinge, die die Leute auf der Seite zur Kuration gemeldet haben. Spam-Kommentare sollten gelöscht werden und Benutzer, die Spam verbreiten, sollten gesperrt werden (gehe zu deren Profilseite und klicke unten rechts auf "Benutzer sperren", um sie am Einloggen zu hindern). Andere gemeldete Sachen sollten nur gelöscht werden, wenn sie eindeutig hasserfüllt, illegal usw. sind. Unhöflichkeit, beleidigende Sprache usw. sollten mit einem höflichen Kommentar behandelt werden. Wiederholungstäter sollten einem Seitenadministrator oder %{email} gemeldet werden.
   these_are_taxa_that: |
@@ -5472,7 +5510,6 @@ de:
   unfollow_observation: Der Beobachtung nicht mehr folgen
   #Text for a button to stop following updates from a user
   unfollow_user: Dem Benutzer nicht mehr folgen
-  unlink_your_google_account: Dein Google-Konto trennen
   unlink_your_flickr_account: "Entferne dein Flickr-Konto"
   unmute: Stummschaltung aufheben
   updates_notification_email_subject: "%{prefix} Neue Aktualisierungen %{date}"
@@ -5492,7 +5529,15 @@ de:
   upcoming_bioblitzes: Bevorstehende bioblitze
   update: Aktualisierung
   update_existing_observations_with_new_license: Bestehende Beobachtungen mit der neuen Lizenzauswahl aktualisieren
+  update_existing_observations_with_new_license_desc: |
+    Wenn Sie diese Option auswählen, wird Ihre neue Lizenzauswahl auf alle Ihre
+    Beobachtungen zu berücksichtigen. Dies kann einige Stunden dauern, wenn Sie viele
+    Beobachtungen.
   update_existing_photos_with_new_license: Bestehende Bilder mit der neuen Lizenzauswahl aktualisieren
+  update_existing_photos_with_new_license_desc: |
+    Wenn Sie diese Option auswählen, wird Ihre neue Lizenzauswahl auf alle Ihre
+    vorhandene Fotos. Dies kann einige Stunden dauern, wenn Sie viele
+    Fotos.
   update_existing_sounds_with_new_license: Bestehende Sounds mit der neuen Lizenzauswahl aktualisieren
   update_observations: Beobachtungen aktualisieren
   update_past: "Einstellungen der %{type} aktualisieren"
@@ -5635,6 +5680,8 @@ de:
     Benutzer vertraut diesem Projekt Beobachtungen mit verborgenen Koordinaten an, egal auf welchem Grund die Verschleierung basiert.
   user_trusts_this_project_for_taxon: |
     Benutzer vertraut diesem Projekt Beobachtungen mit verborgenen Koordinaten an, die aufgrund von Schutzkategorien verschleiert wurden
+  user_trusts_this_project_when_added_by_none: |
+    Der Benutzer vertraut den Projektkuratoren nicht mit versteckten Koordinaten.
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut dir seine/ihre verborgenen Koordinaten an"
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat dir die verborgenen Koordinaten all seiner Beobachtungen anvertraut.
@@ -5766,9 +5813,8 @@ de:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesucht
   was_it_captive_cultivated?: "In Haltung, gezüchtet oder kultiviert?"
-  we_also_support2: |
-    Wir unterstützen auch das Importieren von Fotos von <a href="http://flickr.com">Flickr</a>
-    und <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Wir unterstützen auch den Import von Fotos aus <a href="http://flickr.com">Flickr (Englisch)</a>.
   we_can_only_understand_csv_in: Wir können CSV nur im folgenden Format verarbeiten
   we_couldnt_find_a_user: Wir konnten keinen Benutzer mit dieser E-Mail-Adresse finden.
   we_couldnt_find_a_user_with_that_activation_code: "Wir konnten keinen Benutzer mit diesem Aktivierungscode finden. Vielleicht hast du dein Konto bereits aktiviert, versuche dich einzuloggen."
@@ -5817,6 +5863,8 @@ de:
   where_were_they?: Wo?
   where_were_you?: Wo war das?
   which_projects_can_add_your_observations?: Welche traditionellen Projekte können deine Beobachtungen hinzufügen?
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Warum diese Änderung? (optional)
   why_are_you_making_this_change_cite_source_required: Bitte erläutere den Grund für die Änderung und zitiere eine Quelle, falls möglich. (Erforderlich)
   why_you_can_see_the_coordinates: Warum Du die Koordinaten sehen kannst
   who_can_add_observation_fields_to_my_obs: Wer kann Beobachtungsfelder zu meinen Beobachtungen hinzufügen?
@@ -5963,6 +6011,8 @@ de:
   yir_millions_of_people_used_inaturalist: |
     Millionen von Menschen haben iNaturalist und Seek in diesem Jahr benutzt, um
     sich mit der Natur zu verbinden
+  yir_monthly_supporters_random_selection: |
+    Hier ist eine zufällige Auswahl von heroischen iNat-Mitgliedern, die jeden Monat spenden.
   yir_thank_your_for_being_generous2: |
     Vielen Dank für deine Zeit, Zuwendung, Fachwissen und deine
     Spenden! iNaturalist ist eine gemeinnützige Organisation. Das
@@ -6103,9 +6153,38 @@ de:
   views:
     views: 'Aufrufe'
     announcements:
+      locales_desc: |
+        CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
+        Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
+        Gebietsschema. Die Wahl einer Sprache ohne Region wird *nicht*
+        Gebietsschemata mit Regionen, z.B. wenn Sie Englisch gewählt haben, wird es nicht angezeigt
+        für Personen, die Englisch (UK) gewählt haben.
+      clients_desc: |
+        CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
+        Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
+        Kunde.
+      ip_countries_desc: |
+        CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
+        Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
+        Land des geistigen Eigentums.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Beachten Sie, dass das Erstellungsdatum der zuletzt erstellten Datei des Benutzers
+        Die Beobachtung wird zwischengespeichert, sodass es einige Stunden dauern kann, bis das Targeting
+        wirken
       observation_oauth_application_ids_desc: |
         CTRL- oder SHIFT-Klick, um mehrere auszuwählen. Wenn "Alle" oder keine ausgewählt sind,
         wird die Ankündigung allen Benutzern angezeigt, unabhängig von der App-Nutzung
+      site_ids_desc: |
+        CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
+        Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
+        Zugehörigkeit zur Website.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Nutzer nach Spendenverhalten ansprechen
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Targeting von Benutzern mit anderen Attributen
     atlases:
       show:
         #Title for section describing atlases
@@ -6369,9 +6448,9 @@ de:
       index:
         deprecated_banner: |
           Bitte beachte, dass ab Januar 2019 die Guides-Funktion im Status Quo verbleibt. Obwohl wir nicht vorhaben, die Guides zu löschen, planen wir auch nicht diese weiterzuentwickeln.
-        funding_html: |
-          Die Finanzierung für die Entwicklung von Guides wurde von
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a> bereitgestellt
+        funding2_html: |
+          Die Entwicklung der Leitfäden wurde finanziert von
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Guides helfen dir, mehr über die biologische Vielfalt auf der ganzen Welt zu erfahren.
           Ob du die Serengeti oder nur deinen örtlichen Park (der vielleicht die Serengeti ist) erkundest, Guides können dir helfen, die erstaunliche Vielfalt unseres Planeten zu verstehen.
@@ -8245,12 +8324,36 @@ de:
         #announcement should be shown on
         site_ids: Website-IDs
         prefers_exclude_monthly_supporters: Monatliche Unterstützer ausschließen
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Startdatum des Spenders ausschließen
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Enddatum des Spenders ausschließen
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Ausschließen von Beobachtern mit Apps
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Geben Sie das Startdatum des Spenders an
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Geben Sie das Enddatum des Spenders an
         #iNat client applications that the user must have made an observation
         #with to see the announcement
         include_observation_oauth_application_ids: Einschließen von Beobachtern mit Apps
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP-Länder
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Maximale Beobachtungen
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Minimale Beobachtungen
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Platzierung
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Zielersteller (zum Testen)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Ziel eingeloggt
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Datum der frühesten Benutzeranmeldung
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Datum der letzten Benutzeranmeldung
       assessment:
         description: Beschreibung
       assessment_section:
@@ -8532,6 +8635,9 @@ de:
                 kann nicht größer als das Datum sein, an dem die Beobachtung hinzugefügt wurde
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: muss innerhalb der letzten 130 Jahre liegen
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: Es muss sich um einen einzelnen Tag handeln, nicht um eine Spanne
         observation_field_value:
           attributes:
             value:
@@ -8562,6 +8668,9 @@ de:
               invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
               must_have_more_than_three_points: muss mehr als 3 Punkte haben
               polygon_with_less_than_four_points: hat ein Polygon mit weniger als 4 Punkten
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: hat ein Polygon ohne Fläche (alle Punkte sind gleich)
         place_geometry:
           attributes:
             geom:

@@ -45,7 +45,7 @@
     .col-xs-12
       = link_to "Repair your #{@type}s", "#repair", data: {toggle: :modal}, :class => "pull-right btn btn-success"
       %ul.nav.nav-pills
-        - %w(FlickrPhoto PicasaPhoto).each do |type|
+        - %w(FlickrPhoto).each do |type|
           %li{:class => type == @type ? 'active' : nil}
             = link_to t(type.underscore.gsub(/_photo/, '')), url_for(type: type)
   - if @photos.blank?

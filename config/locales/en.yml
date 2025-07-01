@@ -1815,6 +1815,10 @@ en:
         to confirm your account.
       user:
         suspended: Your account has been suspended
+      # Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid:
+        The reset password token is invalid. Please use the link in the most recently sent
+        reset password email, or <a href="%{url}">request a new one</a>.
     sessions:
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
@@ -1921,6 +1925,8 @@ en:
   # Button text to donate to iNaturalist. Please try to keep translations as
   # short as possible
   donate: DONATE
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Donate
   donate_again_caps: DONATE AGAIN
   donate_again_today_caps: DONATE AGAIN TODAY
   # Title for pages and sections that encourage people to donate to iNaturalist
@@ -2931,7 +2937,6 @@ en:
   # a noun.
   link_to_authorization_code: Link to authorization code
   link_your_flickr_account: Link your Flickr account
-  link_your_google_account: Link your Google account
   linked_flickr: "Your %{site_name} account is currently linked to your Flickr account."
   linked_flickr_automatically: "Also, keep in mind that if you log in to %{site_name} via Flickr, we will automatically re-link your %{site_name} and Flickr accounts. Seems reasonable that if you use Flickr you'll want to be able to import Flickr photos, right?"
   linked_flickr_description: "Keeping your %{site_name} account linked to your Flickr account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Flickr to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Flickr account that you want to link %{site_name} to."
@@ -3764,6 +3769,7 @@ en:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: DNA
   observation_fields: Observation Fields
+  observation_fields_for_projects: Observation Fields for Projects
   observation_fields_are_additional: Observation fields are additional data fields that can be added to observations.
   observation_fields_by_preferences_description: |
     Observation fields are a bit like tags, except anyone can add them to your
@@ -4582,6 +4588,20 @@ en:
     it's absolutely necessary.
   places_warning_quota: |
     You can only create three places per day.
+  # user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Places cannot be larger than 700,000 square kilometers.
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Places cannot be larger than 70,000 square kilometers.
+  # user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Places cannot contain more than 200,000 observations.
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Places cannot contain more than 10,000 observations.
   places_warning_the_future: |
     For what it's worth, we will have to restrict the conditions under which
     people can add places in the future given iNat's current rate of growth.
@@ -6113,7 +6133,6 @@ en:
   unfollow_observation: Unfollow observation
   # Text for a button to stop following updates from a user
   unfollow_user: Unfollow user
-  unlink_your_google_account: Unlink Your Google Account
   unlink_your_flickr_account: "Unlink your Flickr Account"
   unmute: Unmute
   updates_notification_email_subject: "%{prefix} New updates %{date}"
@@ -6462,9 +6481,8 @@ en:
   # Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
-  we_also_support2: |
-    We also support importing photos from <a href="http://flickr.com">Flickr</a>
-    and <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    We also support importing photos from <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_couldnt_find_a_user: We couldn't find a user with that email address.
   we_couldnt_find_a_user_with_that_activation_code: "We couldn't find a user with that activation code. You may have already activated your account, please try signing in."
@@ -6861,6 +6879,10 @@ en:
         Time in your account time zone that this announcement will stop
         appearing. Applies across time zones, so everyone will stop seeing
         it at the same time, not relative to their local time.
+      excludes_non_site_desc: |
+        If your announcement targets a site (which is the default if you're a
+        Site Admin), this will exclude announcements that target all sites in
+        this placement.
       ip_countries_desc: |
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
@@ -7928,22 +7950,6 @@ en:
         geoprivacy_must_be_in_english: |
           The geoprivacy column must be in English and must be blank or have a
           value of "obscured" or "private"
-        google_photos_notice_html: |
-          In February 2019, Google changed their API, making it impossible for
-          us to access GPS coordinates, license information, and almost any
-          information we could use to add an identification (like tags). They
-          also removed text search and numerical pagination. On top of that,
-          they required all connected accounts to have an additional permission,
-          and before a third party can request that permission from users, the
-          third party has to be verified. We are awaiting verification, but
-          until that happens, you will not be able to import photos from Google.
-          If we get approved, you will be able to import photos, but they won't
-          include any location information or license information that you might
-          be able to see on Google Photos. You can read more about this at <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Downloading the
-          original files and adding them using the <a
-          href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
           There is a template file for this project that may help you with the structure of the CSV file.
           <a href="%{url}">Download template</a>
@@ -10012,6 +10018,7 @@ en:
         exclude_donor_start_date: Exclude donor start date
         # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclude donor end date
+        excludes_non_site: Hide other announcements in this placement that have no Site ID
         # iNat client applications that the user must not have made an observation
         # with to see the announcement
         exclude_observation_oauth_application_ids: Exclude observers from apps

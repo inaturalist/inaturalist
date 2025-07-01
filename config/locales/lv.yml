@@ -579,6 +579,8 @@ lv:
   any_license: Jebkura
   #Label for an option to show content with photos, sounds, or neither
   any_media: Jebkādas
+  #Label for an option to show any place
+  any_place: Jebkuru
   #Label for an option to show content from any project
   any_project: Jebkāds
   #Label for an option to show content with any quality grade
@@ -1034,6 +1036,10 @@ lv:
   confirm_new_password: Apstiprināt jauno paroli
   confirm_now: Apstiprināt tagad
   confirm_your_info: Apstiprināt informāciju par sevi
+  confirming_ids: ID apstiprināšana
+  confirming_ids_description: |
+    Ja izslēdzat šo informāciju, jūs vairs netiks informēts par ID, kas piekrīt
+    ar jūsu, ja vien viņiem nav papildu piezīmju.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Savienot
@@ -1323,6 +1329,12 @@ lv:
   curators_changed_for_x_html: "Pārziņu maiņa iekš %{x}"
   curators: Pārziņi
   curators_can_remove_observations_from: Pārziņiem ir atļauja izņemt novērojumus no projekta. Projektu skatījuma režīmā pārziņu identifikācijas tiek rādītas blakus novērojumiem. Turklāt pārziņiem ir pieeja pie privātā un noslēptā satura faktiskajām koordinātām.
+  curator_coordinate_access: Kuratora koordinātu piekļuve
+  curator_coordinate_access_desc: |
+    Kuratoru koordinācijas piekļuve tradicionālajiem projektiem ir atkarīga no tā, kurš pievienoja
+    projekta novērojums. Šis ir tikai noklusējuma iestatījums
+    novērojumi projektos. Novērotāji var arī izvēlēties to mainīt
+    individuāli novērojumi.
   curator_identification: Pārziņa identifikācija
   current_flags: Pašreizējie karodziņi
   custom_project_fields: Pielāgojamie projekta lauki
@@ -1506,6 +1518,11 @@ lv:
   disable_comments: Vai izslēgt komentārus?
   disable_comments_desc: Atturēt lietotājus no jaunu komentāru pievienošanas
   disagree_: Nepiekrist
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Nesaskaņas
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Rādīt novērojumus, kuriem ir nepiekrītošas identifikācijas
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Atvienot
@@ -1609,6 +1626,8 @@ lv:
   edited_by_name_some_rights_reserved_html: |
     Rediģējis lietotājs: %{name}, daļa no tiesībām paturētas (%{license})
   editing: Rediģēšana
+  #Title for a page to edit an announcement
+  editing_announcement_x: Paziņojuma rediģēšana %{id}
   editing_custom_project_fields_for: Rediģē projektam pielāgojamos laukus
   editing_observation_field: Rediģē novērojuma laukus
   editing_observation_id: "Rediģē novērojumu %{obs_id}"
@@ -2099,6 +2118,10 @@ lv:
   inaturalist_applications: "iNaturalist lietotnes"
   inaturalist_places: "%{site_name} vietnes vietas"
   info: Info
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infrasugu ID
   input_taxon: Sākotnējais taksons
   insects: kukaiņi
   insect_life_stage: Kukaiņu dzīves stadija
@@ -2304,7 +2327,6 @@ lv:
   #a noun.
   link_to_authorization_code: Saite uz autorizācijas kodu
   link_your_flickr_account: Pievieno savu Flickr kontu
-  link_your_google_account: Pievieno savu Google kontu
   linked_flickr: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Flickr kontu."
   linked_flickr_automatically: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Flickr kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Flickr kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Flickr."
   linked_flickr_description: "%{site_name} konta savienošana ar Flickr kontu, sniedz tev iespēju pievienot saviem novērojumiem vairākas fotogrāfijas reizē. Ja izlem atvienot %{site_name} kontu no Flickr konta, mēs tevi no tā neatturēsim, bet tev vairs nebūs iespējas pievienot fotogrāfijas. Noteiktos gadījumos kontu atvienošana varētu būt pareizā izvēle, piemēram, ja izveidosi jaunu Flickr kontu, ko gribēsi savienot ar %{site_name} kontu."
@@ -2416,6 +2438,10 @@ lv:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Iziet no %{site_name}?"
   log_scale_label: Žurnāls
+  #Adjectival phrase describing state of being logged in
+  logged_in: Pieteicies
+  #Adjectival phrase describing state of being logged out
+  logged_out: Izrakstījies
   #Status message shown while logging in
   logging_in: Pieslēdzas...
   logo:
@@ -2600,6 +2626,8 @@ lv:
   more_info_title: Vairāk informācijas
   more_journal_posts: Vairāk žurnāla ierakstu
   more_observations: Vairāk novērojumu
+  #Label for a button or section that shows additional options
+  more_options: Vairāk iespēju
   more_photos: Vairāk fotogrāfiju
   more_than_a_week_ago: Vairāk nekā pirms nedēļas
   most_agree: vairums piekrīt
@@ -2825,7 +2853,11 @@ lv:
   no_users_found_with_those_filters: Izmantojot šos filtrus, netika atrasts neviens lietotājs
   no_wikipedia_page_for_taxon: Šim taksonam nav Vikipēdijas apraksta
   noble_curators: "%{site} vietnes cēlie pārziņi"
+  #A user who is not a curator
+  non_curator: Nekurators
   non_human?: Mākslīgs?
+  #A user who does not admin any projects
+  non_project_admin: Administrators, kas nav projekts
   none: Nodzēst
   none_found: Nekas netika atrasts
   normal: normāls
@@ -2936,6 +2968,7 @@ lv:
   observation_field_type_taxon: Taksons
   observation_field_type_dna: DNS
   observation_fields: Novērojuma lauki
+  observation_fields_for_projects: Projektu novērošanas lauki
   observation_fields_are_additional: Novērojuma lauki ir papildu informācijas lauki, kas pievienojami novērojumiem.
   observation_fields_by_preferences_description: |
     Novērojumu lauki nedaudz līdzinās tagiem, bet jau noklusējuma režīmā jebkurš lietotājs tos var pievienot taviem novērojumiem. Pielāgo attiecīgos iestatījumus, ja vēlies, lai tikai tu vai pārziņi varētu veikt šo darbību.
@@ -3679,6 +3712,8 @@ lv:
   profile_visibility_desc: |
     Lai izvairītos no mēstulēm %{site_name} vietnē, lietotāju profili kļūst publiski redzami tikai tad, kad lietotāji ir pievienojuši vairākus pētniecības līmeņa novērojumus.
   project: Projekts
+  #A user who admin's a project
+  project_admin: Projekta administrators
   project_admins:
     zero: Projekta administratori
     one: Projekta administrators
@@ -3753,6 +3788,16 @@ lv:
   range: Periods
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikācija
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Ģints / ģintshibrīds
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Sugas / hibrīds
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Pasugas / Šķirne / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4371,6 +4416,9 @@ lv:
     one: Pievienot 1 novērojumu
     other: Pievienot %{count} novērojumus
   submitted: Pievienots
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Abonēt
   subscribe_to_a_taxon: Sekot taksonam
   subscribe_to_a_place: Sekot vietai
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Sekot%{tag_end} komentāriem pie šī karodziņa"
@@ -4899,7 +4947,6 @@ lv:
   unknown: Nezināms
   unknown_error: Nezināma kļūda
   unknown_rank: '(Nezināma klasifikācija)'
-  unlink_your_google_account: Atvienot Google kontu
   unlink_your_flickr_account: "Atvienot Flickr kontu"
   unmute: Iespējot paziņojumus
   updates_notification_email_subject: "%{prefix} Jaunumi %{date}"
@@ -5048,6 +5095,14 @@ lv:
   user_observed_on_on_date_in_place: |
     %{user} novēroja tādu %{date} iekš %{place}
   user_suggested_an_id: "%{user} ieteica ID"
+  user_trusts_this_project_when_added_by_any: |
+    Lietotājs uzticas projekta kuratoriem ar pievienotām slēptām novērojumu koordinātām
+    uz projektu ikviens.
+  user_trusts_this_project_when_added_by_observer: |
+    Lietotājs uzticas projekta kuratoriem ar pievienotām slēptām novērojumu koordinātām
+    novērotāja projektam.
+  user_trusts_this_project_when_added_by_none: |
+    Lietotājs neuzticas projektu kuratoriem ar slēptām koordinātām.
   user_trusts_you_with_their_private_coordinates: "%{user} tev uzticas ar savām noslēptajām koordinātām"
   user_trusts_you_with_their_private_coordinates_desc: |
     Novērotājs tev uzticas ar visu savu novērojumu noslēptajām koordinātām.
@@ -5151,6 +5206,8 @@ lv:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Nesameklētie
   was_it_captive_cultivated?: "Organisms bija nebrīvē vai kultivēts?"
+  we_also_support3: |
+    Mēs atbalstām arī fotoattēlu importēšanu no <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Sistēma saprot CSV tikai šādā formātā
   we_couldnt_find_a_user: Neatradām lietotāju ar šo e-pasta adresi.
   we_couldnt_find_a_user_with_that_activation_code: "Neatradām lietotāju ar šo aktivizācijas kodu. Iespējams, ka jau aktivizēji savu kontu. Pamēģini pierakstīties."
@@ -5433,6 +5490,54 @@ lv:
   verifiable_observations: Pierādāmi novērojumi
   views:
     views: 'Skatījumi'
+    announcements:
+      locales_desc: |
+        CMD vai SHIFT noklikšķiniet, lai atlasītu vairākus. Izvēloties "Visi" vai neveicot
+        Atlase parādīs paziņojumu visiem lietotājiem neatkarīgi no tā, kā
+        Lokalizācijas. Valodas izvēle bez reģiona nebūs mērķauditorija
+        lokalizācijas ar reģioniem, piemēram, ja izvēlējāties angļu valodu, tā netiks parādīta
+        cilvēkiem, kuri ir izvēlējušies angļu valodu (UK).
+      clients_desc: |
+        CMD vai SHIFT noklikšķiniet, lai atlasītu vairākus. Izvēloties "Visi" vai neveicot
+        Atlase parādīs paziņojumu visiem lietotājiem neatkarīgi no tā, kā
+        klients.
+      end_desc: |
+        Laiks jūsu konta laika joslā, kad šis paziņojums tiks pārtraukts
+        Parādās. Tiek piemērots dažādās laika joslās, tāpēc visi vairs neredzēs
+        tajā pašā laikā, nevis attiecībā pret vietējo laiku.
+      ip_countries_desc: |
+        CMD vai SHIFT noklikšķiniet, lai atlasītu vairākus. Izvēloties "Visi" vai neveicot
+        Atlase parādīs paziņojumu visiem lietotājiem neatkarīgi no tā, kā
+        IP valsts.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Ņemiet vērā, ka lietotāja pēdējā izveidotā izveides datums
+        novērošana tiek saglabāta kešatmiņā, tāpēc var paiet dažas stundas, lai mērķauditorijas atlase tiktu
+        stājas spēkā
+      observation_oauth_application_ids_desc: |
+        CMD vai SHIFT noklikšķiniet, lai atlasītu vairākus. Izvēloties "Visi" vai neveicot
+        Atlase parādīs paziņojumu visiem lietotājiem neatkarīgi no tā, kā
+        lietotne.
+      site_ids_desc: |
+        CMD vai SHIFT noklikšķiniet, lai atlasītu vairākus. Izvēloties "Visi" vai neveicot
+        Atlase parādīs paziņojumu visiem lietotājiem neatkarīgi no tā, kā
+        vietnes piederība.
+      start_desc: |
+        Laiks jūsu konta laika joslā, kad sāksies šis paziņojums
+        Parādās. Tiek piemērots dažādās laika joslās, tāpēc ikviens sāks redzēt
+        tajā pašā laikā, nevis attiecībā pret vietējo laiku.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Lietotāju mērķauditorija pēc ziedojumu uzvedības
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Lietotāju mērķauditorija pēc identifikācijas darbības
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Lietotāju mērķauditorija pēc novērošanas uzvedības
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Lietotāju mērķauditorijas atlase pēc citiem atribūtiem
     content_freeze:
       content_freeze: Satura iesaldēšana
       during_this_time: |
@@ -5494,8 +5599,9 @@ lv:
       index:
         deprecated_banner: |
           Jāņem vērā, ka kopš 2019. gada janvāra "Padomu" sadaļa vairs netiek atjaunota. Neplānojam sadaļu dzēst, bet tā vairāk netiks attīstīta.
-        funding_html: |
-          Padomu sadaļas izstrādi finansēja <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Finansējumu ceļvežu izstrādei nodrošināja
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Padomu sadaļa veicina bioloģiskās daudzveidības iepazīšanu visā pasaulē. Vienalga, vai esi devies izzināt Serengeti nacionālo parku vai kādu vietējo parku, padomu sadaļā atradīsi informāciju, kas palīdzēs aptvert mūsu planētas neiedomājami skaisto dzīvās dabas dažādību.
       edit:
@@ -5879,11 +5985,6 @@ lv:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Ģeoprivātuma slejai jābūt tukšai vai arī aizpildītai ar vērtībām angļu valodā – "obscured" (noslēpta) vai "private" (privāta).
-        google_photos_notice_html: |
-          2019. gada februārī Google izmainīja savu lietojumprogrammas saskarni (API), kas liedza mums piekļuvi pie GPS koordinātām, licenču informācijas un gandrīz visas citas informācijas, ko varētu izmantot identifikāciju pievienošanai. Viņi atspējoja arī teksta meklēšanas un lappušu skaitīšanas funkcijas. Turklāt Google pieprasīja papildu atļaujas visiem savienotajiem kontiem. Trešās puses var pieprasīt šīs atļaujas no lietotājiem tikai tad, kad tās ir verificētas. Mēs vēl aizvien gaidām, kad mūsu tīkla verificēšana būs pabeigta. Tikmēr lietotāji nevarēs importēt fotogrāfijas no Google. Ja mūs verificēs, fotogrāfijas varēs importēt, bet tajās nebūs iekļauta Google Photos vietnē pieejamā informācija par atrašanās vietu un licencēm. Vairāk informācijas: <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Labākais risinājums šai problēmai ir lejupielādēt sākotnējos failus un pievienot tos mūsu <a
-          href="/observations/upload">Augšupielādes sadaļā</a>.
         project_csv_template_notice_html: |
           Projektam pieejams fails ar veidni, kas var noderēt CSV faila struktūras veidošanai.
           <a href="%{url}">Lejupielādēt veidni</a>
@@ -6989,6 +7090,45 @@ lv:
       OauthApplication: Lietotne
       TaxonLink: Taksona saite
     attributes:
+      announcement:
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Izslēgt ziedotāja sākuma datumu
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Izslēgt ziedotāju beigu datumu
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Novērotāju izslēgšana no lietotnēm
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Iekļaujiet ziedotāja sākuma datumu
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Iekļaut ziedotāja beigu datumu
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Novērotāju iekļaušana no lietotnēm
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP valstis
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Pēdējais obs sākuma datums
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Pēdējais obs beigu datums
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Maksimālais identifikācijas skaits
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Minimālās identifikācijas
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Maksimālais novērojumu skaits
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Minimālie novērojumi
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Izvietošana
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Mērķa veidotājs (testēšanai)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Mērķis ir pieteicies
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Agrākais lietotāja reģistrēšanās datums
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Pēdējais lietotāja reģistrācijas datums
       assessment:
         description: Apraksts
       assessment_section:
@@ -7142,6 +7282,7 @@ lv:
         source_identifier: Avota identificētājs
       user:
         email: E-pasts
+        faved_project_ids: Mīļākie projekti
         login: Lietotājvārds
         name: Vārds
         locale: Darbības vieta
@@ -7156,6 +7297,7 @@ lv:
         blank: nevar būt tukšs
         confirmation: nesakrīt ar paroli
         empty: nevar būt tukšs
+        must_look_like_an_email_address: Jāizskatās kā e-pasta adresei
         even: jābūt vienādam
         exclusion: ir rezervēts
         inclusion: nav iekļauts sarakstā
@@ -7271,6 +7413,10 @@ lv:
             user:
               must_be_on_site_long_enough: |
                 lai publicētu ierakstus, jābūt reģistrētam jau vismaz 24 stundas. Lai ierobežotu neskaitāmos mēstuļotājus, mums jāmeklē arī šādi nedaudz muļķīgi risinājumi. Iespējams saglabāt melnrakstu, lai to publicētu pēc vienas dienas.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Jūs varat iecienīt tikai 7 projektus
         project_observation:
           attributes:
             base:
@@ -7344,9 +7490,18 @@ lv:
               already_has_a_range: izplatības apgabals jau piešķirts
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: nevar iekļaut vairāk par 7 projektiem;
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: visiem jābūt pastāvētiem
             login:
               must_begin_with_a_letter: |
                 jāsākas ar burtu, nedrīkst saturēt atstarpes, jāsastāv tikai no burtiem, skaitļiem, defisēm un apakšvītrām
+              domain_is_not_supported: domēns netiek atbalstīts
         user_block:
           attributes:
             base:

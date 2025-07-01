@@ -332,15 +332,7 @@ class Announcement < ApplicationRecord
     end
 
     # Site filtering
-    scope = if user
-      # authenticated requests include announcements targeted at the users site,
-      # or that have no site affiliation
-      scope.
-        where(
-          "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
-          user.site_id || Site.default.id
-        )
-    elsif site
+    scope = if site
       scope.
         where(
           "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
@@ -385,15 +377,17 @@ class Announcement < ApplicationRecord
     end
 
     # Remove non-site announcements if some announcements target sites
-    announcement_target_site = announcements.detect {| annc | annc.site_ids.present? }
+    announcement_target_site = announcements.detect do | annc |
+      annc.site_ids.present? && annc.excludes_non_site
+    end
     if announcement_target_site
       announcements = announcements.select do | annc |
         annc.site_ids.present?
       end
     end
+
     announcements.sort_by do | a |
       [
-        a.site_ids.include?( site.try( :id ) ) ? 0 : 1,
         a.locales.include?( I18n.locale ) ? 0 : 1,
         a.id * -1
       ]

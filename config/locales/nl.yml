@@ -758,6 +758,13 @@ nl:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, geüpload door %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Ontplofte
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Geimplodeerde
   authority_list:
     iucn_red_list: De IUCN Rode Lijst
     natureserve: NatureServe
@@ -2317,6 +2324,8 @@ nl:
   inaturalist_global_year_in_review: "iNaturalist's %{year} Jaaroverzicht van de Wereld"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist is een onafhankelijke 501(c)(3) vrijgesteld van belastingen, non-profit organisatie gevestigd in de Verenigde Staten (EIN 92-1296468)
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist heeft de ID bijgewerkt die wordt voorgesteld door %{user}
   computer_vision_suggestion: Computer Vision Voorstel
   computer_vision_suggestion_desc: |
     Computervisie is het proces waarbij computers worden geleerd om patronen te herkennen in afbeeldingen. We bieden hulpmiddelen die gebruik maken van computervisie-modellen die zijn getraind met de foto's van de gemeenschap om determinatiesuggesties te doen, zoals functionaliteit voor automatisch aanvullen en vergelijken. Dit pictogram geeft aan dat een persoon een determinatie heeft toegevoegd met behulp van één van deze tools.
@@ -2689,7 +2698,6 @@ nl:
   #a noun.
   link_to_authorization_code: Link naar autorisatiecode
   link_your_flickr_account: Verbind je Flickr-account
-  link_your_google_account: Verbind je Google-account
   linked_flickr: "Je account op %{site_name} is nu gekoppeld aan je Flickr-account."
   linked_flickr_automatically: "Bedenk ook dat wanneer je op %{site_name} inlogt via Flickr, we je %{site_name}- en Flickraccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Flickr gebruikt, je Flickrfoto's wilt kunnen importeren, toch?"
   linked_flickr_description: "Door je account op %{site_name} aan je Flickr-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Flickr wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Flickr-account aanmaakt om aan %{site_name} te koppelen."
@@ -2713,6 +2721,10 @@ nl:
   list_with_two_items: "%{one} en %{two}"
   listed_taxa: Taxa opgenomen in de lijst
   listed_taxon: taxon in de lijst
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Vermeld
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Niet vermeld
   listed_taxon_updated: taxon in de lijst bijgewerkt
   listing_lists: Lijsten oplijsten
   listing_project_assets: Projectbestanden weergeven
@@ -2813,6 +2825,10 @@ nl:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Afmelden bij %{site_name}?"
   log_scale_label: Logboek
+  #Adjectival phrase describing state of being logged in
+  logged_in: Ingelogd
+  #Adjectival phrase describing state of being logged out
+  logged_out: Uitgelogd
   #Status message shown while logging in
   logging_in: Aanmelden...
   logo:
@@ -3267,6 +3283,8 @@ nl:
   no_users_found_with_those_filters: Geen gebruikers gevonden met deze filters
   no_wikipedia_page_for_taxon: Geen Wikipediapagina voor dit taxon
   noble_curators: "%{site}'s Edele Curatoren"
+  #A user who is not a curator
+  non_curator: Niet-curator
   #Title for a preference to control whether you receive notifications about
   #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
   #someone else adds an ID of Mammalia but does not make it a disagreement.
@@ -3281,6 +3299,8 @@ nl:
     expliciet niet akkoord gaat met het GemeenschapsTaxon. Je wordt op de hoogte gebracht als het 
     ID aanvullende opmerkingen heeft.
   non_human?: Niet-menselijk?
+  #A user who does not admin any projects
+  non_project_admin: Niet-projectbeheerder
   none: Geen
   none_found: Niet gevonden
   normal: normaal
@@ -3494,6 +3514,7 @@ nl:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: DNA
   observation_fields: Waarnemingsvelden
+  observation_fields_for_projects: Waarnemingsvelden voor projecten
   observation_fields_are_additional: Waarnemingsvelden zijn extra gegevens die aan waarnemingen kunnen worden toegevoegd.
   observation_fields_by_preferences_description: |
     Waarnemingsvelden lijken een beetje op labels, behalve dat iedereen ze standaard kan toevoegen
@@ -4333,6 +4354,8 @@ nl:
     In een poging om spam van %{site_name} te weren, zijn gebruikersprofielen alleen
     publiekelijk zichtbaar nadat een gebruiker verschillende waarnemingen van onderzoekskwaliteit heeft bijgedragen.
   project: Project
+  #A user who admin's a project
+  project_admin: Projectbeheerder
   project_admins:
     one: Projectadministrator
     other: Projectadministratoren
@@ -5695,7 +5718,6 @@ nl:
   unfollow_observation: Deze waarneming ontvolgen
   #Text for a button to stop following updates from a user
   unfollow_user: Gebruiker ontvolgen
-  unlink_your_google_account: Verbreek de koppeling met je Google-account
   unlink_your_flickr_account: "Verbreek koppeling met je Flickr-account"
   unmute: Niet meer dempen
   updates_notification_email_subject: "%{prefix} Nieuwe updates %{date}"
@@ -6018,9 +6040,8 @@ nl:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gezocht
   was_it_captive_cultivated?: "Was het in gevangenschap/gecultiveerd?"
-  we_also_support2: |
-    We ondersteunen ook het importeren van foto's van <a href="http://flickr.com">Flickr</a>
-    en <a href="http://photos.google.com">Google Foto's</a>.
+  we_also_support3: |
+    We ondersteunen ook het importeren van foto's uit <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: We kunnen CSV alleen in het volgende formaat begrijpen
   we_couldnt_find_a_user: We vonden geen gebruiker met dat e-mailadres.
   we_couldnt_find_a_user_with_that_activation_code: "We konden geen gebruiker met die activeringscode vinden. Je hebt je account misschien al geactiveerd, probeer je aan te melden."
@@ -6372,6 +6393,24 @@ nl:
   views:
     views: 'Weergaven'
     announcements:
+      locales_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
+        Een selectie toont de aankondiging aan alle gebruikers, ongeacht
+        oord. Het kiezen van een taal zonder regio zal *niet* doel
+        landinstellingen met regio's, bijvoorbeeld als u Engels heeft gekozen, wordt dit niet weergegeven
+        voor mensen die voor Engels (UK) hebben gekozen.
+      clients_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
+        Een selectie toont de aankondiging aan alle gebruikers, ongeacht
+        klant.
+      end_desc: |
+        Tijd in de tijdzone van uw account waarop deze aankondiging stopt
+        Verschijnen. Geldt voor meerdere tijdzones, zodat iedereen niet meer te zien is
+        het tegelijkertijd, niet ten opzichte van hun lokale tijd.
+      observation_oauth_application_ids_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
+        Een selectie toont de aankondiging aan alle gebruikers, ongeacht
+        app.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Target gebruikers op basis van donatiegedrag
@@ -6384,6 +6423,33 @@ nl:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Target gebruikers op basis van hun andere eigenschappen
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Over atlassen
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlassen geven de wereldwijde verspreiding van een taxon weer. Curatoren maken
+          atlassen door de structuur van een atlas te definiëren en de
+          vermelde taxa die het aandrijven.
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Nog geen wijzigingen in deze atlas
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Recente wijzigingen in de atlas
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Recente wijzigingen in het taxon
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Toon vermelde taxa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Deze atlas is momenteel niet actief
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Hierdoor wordt dit taxon en al zijn afstammelingen van de checklists van dit gebied verwijderd en eventuele standaardgebieden die deze bevat. Dit kan niet ongedaan worden gemaakt. Weet je zeker dat je dit wilt doen?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Waarschuwing: er zijn waarnemingen die niet in deze atlas voorkomen
     content_freeze:
       content_freeze: Inhoud bevroren
       during_this_time: |
@@ -6636,9 +6702,9 @@ nl:
       index:
         deprecated_banner: |
           Houd er rekening mee dat de functionaliteit voor gidsen vanaf januari 2019 worden gepresenteerd "zoals het is"; hoewel we geen plannen hebben om het te verwijderen, zijn we niet van plan om het verder te ontwikkelen.
-        funding_html: |
-          Financiering voor de ontwikkeling van gidsen is verstrekt door
-          <a href="http://eol.org"><img src="https://eol.org/assets/large_logo-61d6036612463aa36f3a2561bf2e258d133eb693a737a7169af0efb2b31d5454.png"></a>
+        funding2_html: |
+          Financiering voor de ontwikkeling van gidsen werd verstrekt door
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Gidsen leren je over de biodiversiteit van de gehele wereld.
           Of je nu de Serengeti verkent of het plaatselijke park (wat misschien toevallig de Serengeti is), gidsen kunnen je helpen de verbluffende diversiteit van het leven op aarde te begrijpen.
@@ -7089,12 +7155,6 @@ nl:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           De geoprivacy-kolom moet in het Engels zijn en moet leeg zijn of de waarde "obscured" of "private" hebben
-        google_photos_notice_html: |
-          In februari 2019 veranderde Google hun API, waardoor het onmogelijk voor ons werd om toegang te krijgen tot GPS-coördinaten, licentie-informatie en bijna alle informatie die we kunnen gebruiken om een determinatie toe te voegen (zoals tags). Ze verwijderden ook tekst zoeken en numerieke paginering. 
-          Bovendien vereisten ze dat alle verbonden accounts een extra toestemming hadden en voordat een derde partij toestemming van gebruikers kon vragen, de derde partij moet worden geverifieerd. We wachten op verificatie, maar
-          tot dat gebeurt, kun je geen foto's van Google importeren.
-          Als we goedgekeurd worden, kun je nog steeds foto's importeren, maar deze bevatten geen locatie-informatie of licentie-informatie die je mogelijk kunt zien op Google Foto's. Hierover kun je meer lezen op <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          De originele bestanden downloaden en toevoegen met behulp van de <a href="/observations/upload">uploader</a> is de beste oplossing.
         project_csv_template_notice_html: |
           Er is een sjabloonbestand voor dit project dat je kan helpen met de structuur van het CSV-bestand. <a href="%{url}">Sjabloon downloaden</a>
         soundcloud_notice_html: |
@@ -8503,6 +8563,10 @@ nl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d. %=B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -8541,6 +8605,8 @@ nl:
     attributes:
       announcement:
         created_at: Aangemaakt op
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Afgewezen
         updated_at: Bijgewerkt op
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8556,10 +8622,16 @@ nl:
         exclude_donor_start_date: Uitsluiten donor met startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Uitsluiten donor met einddatum
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Waarnemers uitsluiten van apps
         #start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Inclusief donor startdatum
         #End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Inclusief donor einddatum
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Waarnemers uit apps opnemen
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP-landen
         #Start of a date range that includes the viewer's most recent observation
@@ -8570,12 +8642,18 @@ nl:
         max_identifications: Max determinaties
         #Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: Min. determinaties
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Max waarnemingen
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Min. waarnemingen
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Plaatsing
         #Preference for an announcement that is only shown to the user who created the announcement
         target_creator: Target maker (voor testdoeleinden)
         #Whether or not the announcement is shown to logged in users
         target_logged_in: Target alleen aangemelde gebruikers
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Vroegste aanmeldingsdatum gebruiker
       assessment:
         description: Beschrijving
       assessment_section:

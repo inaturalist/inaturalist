@@ -283,6 +283,8 @@ it:
   add_a_new_change_group: Aggiungi un Nuovo Gruppo di Modifiche
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Aggiungi un elenco numerato
+  #Placeholder for a project autocomplete field
+  add_a_project: Aggiungere un progetto
   add_a_single_observation: Aggiungi una singola osservazione.
   add_a_taxon: Aggiungi un taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -747,6 +749,13 @@ it:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, caricata da %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Esploso
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Inesploso
   authority_list:
     iucn_red_list: Lista Rossa IUCN
     natureserve: NatureServe
@@ -1435,6 +1444,12 @@ it:
   curators_changed_for_x_html: "Curatori cambiati per %{x}"
   curators: Curatori
   curators_can_remove_observations_from: I curatori possono rimuovere le osservazioni dal progetto e le loro identificazioni sono indicate a fianco delle osservazioni nella pagina del progetto. I curatori possono anche accedere alle coordinate private e oscurate delle osservazioni.
+  curator_coordinate_access: Accesso coordinato curatore
+  curator_coordinate_access_desc: |
+    L'accesso coordinato del curatore per i progetti tradizionali dipende da chi ha aggiunto
+    l'osservazione al progetto. Questa è solo l'impostazione predefinita per
+    osservazioni nei progetti. Gli osservatori possono anche scegliere di modificare questa impostazione per
+    osservazioni individuali.
   curator_identification: Identificazione del curatore
   current_flags: Segnalazione corrente
   #Label for a custom boundary for an observation search
@@ -1442,6 +1457,8 @@ it:
   custom_project_fields: Campi personalizzati del progetto
   custom_project_was_successfully_created: Personalizzazioni del progetto aggiunte
   custom_project_was_successfully_updated: Personalizzazioni del progetto aggiornate
+  #Button to customize projects that appear in the header
+  customize__projects: Personalizza
   customize_location: Personalizza la posizione
   darr_apply_darr: "&darr; Applica &darr;"
   daily_users: Utenti per giorno
@@ -1645,6 +1662,11 @@ it:
   disable_comments: Disabilita commenti
   disable_comments_desc: Impedisci alle persone di aggiungere nuovi commenti
   disagree_: Non d'accordo
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Disaccordi
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Mostrare osservazioni che hanno identificazioni discordanti
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Disconnetti
@@ -1884,6 +1906,12 @@ it:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Preferiti
   Family: Famiglia
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Progetti preferiti
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Scegli fino a sette progetti che appaiono come link nell'intestazione. Aggiornamenti
+    apparirà dopo l'aggiornamento della pagina.
   favorite_taxa: Taxa preferiti
   favorites: "Preferiti"
   feature_this_project_: "Evidenzia questo progetto"
@@ -2245,6 +2273,8 @@ it:
   inaturalist_global_year_in_review: "Rassegna dell'Anno %{year} Globale di iNaturalist"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist è un'organizzazione indipendente 501(c)(3), esente dalle imposte e senza scopo di lucro, con sede negli Stati Uniti d'America (Tax ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist ha aggiornato l'ID suggerito da %{user}
   computer_vision_suggestion: Suggerimento della visione artificiale
   computer_vision_suggestion_desc: |
     La visione artificiale è il processo di addestramento dei computer a riconoscere gli schemi nelle immagini. Noi forniamo gli strumenti che usano i modelli di visione artificiale allenati sulle foto della comunità per fornire suggerimenti di identificazione, come l'auto-completamento e i confronti. Questa etichetta indica quando una persona ha aggiunto una identificazione per mezzo di uno di questi strumenti.
@@ -2361,6 +2391,8 @@ it:
   internal_taxon_rank: Rango del taxon interno
   introduced: Introdotta
   introduced_in_place: "Introdotto in %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Data non valida
   invitation: Invito
   invite: invito
   invite_people: Invita persone
@@ -2609,7 +2641,6 @@ it:
   #a noun.
   link_to_authorization_code: Link al codice di autorizzazione
   link_your_flickr_account: Collega il tuo account Flickr
-  link_your_google_account: Collega il tuo account Google
   linked_flickr: "Il tuo account %{site_name} è attualmente collegato a quello di Flickr."
   linked_flickr_automatically: "Inoltre, ricordati che se tu accedi a %{site_name} via Flickr, automaticamente ricollegheremo i tuoi account %{site_name} e Flickr. Se usi Flickr è probabile che tu voglia poter importare le foto di Flickr, vero?"
   linked_flickr_description: "Mantenere il tuo account %{site_name} collegato a quello di Flickr ti permette di aggiungere foto multiple alle tue osservazioni. Se vuoi mantenere %{site_name} e Flickr separati, non è un problema, ma non ti sarà possibile aggiungere foto. In alcuni casi è addirittura preferibile, ad esempio quando crei un nuovo account Flickr che vuoi collegare a %{site_name}."
@@ -2633,6 +2664,10 @@ it:
   list_with_two_items: "%{one} e %{two}"
   listed_taxa: Taxa Elencati
   listed_taxon: Taxa elencati
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Elencato
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Unlisted
   listed_taxon_updated: Taxa elencati aggiornati
   listing_lists: Elencazione liste
   listing_project_assets: Elenco delle Risorse di Progetto in corso
@@ -3415,6 +3450,7 @@ it:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: DNA
   observation_fields: Campi dell'osservazione
+  observation_fields_for_projects: Campi di osservazione per i progetti
   observation_fields_are_additional: I campi delle osservazioni sono dati aggiuntivi che possono essere aggiunti alle osservazioni.
   observation_fields_by_preferences_description: |
     I campi delle osservazioni sono un po' come i tags, se non che, in modo predefinito, chiunque può aggiungerli alle tue osservazioni. Chambia questa opzione se preferisci che sia solo tu o i curatori del sito a poter fare ciò.
@@ -4214,6 +4250,9 @@ it:
   processing3p: "Elaborazione..."
   profile: Profilo
   profile_picture: Immagine del Profilo
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Tipo di file dell'immagine del profilo
   profile_visibility_desc: |
     Nello sforzo di tenere fuori lo spam da %{site_name}, i profili degli utenti diventano visibili pubblicamente solo dopo che un utente ha contribuito con alcune osservazioni a Livello Ricerca.
   project: Progetto
@@ -4301,6 +4340,16 @@ it:
   range: Intervallo
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rango
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Genere / Genere ibrido
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Specie / Ibrido
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Sottospecie / Varietà / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5522,7 +5571,6 @@ it:
   unfollow_observation: Smetti di seguire osservazione
   #Text for a button to stop following updates from a user
   unfollow_user: Smetti di seguire utente
-  unlink_your_google_account: Scollega il tuo account Google
   unlink_your_flickr_account: "Scollega il tuo Account Flickr"
   unmute: Riattiva
   updates_notification_email_subject: "Nuovi aggiornamenti %{prefix} in data %{date}"
@@ -5542,8 +5590,20 @@ it:
   upcoming_bioblitzes: Prossime blioblitz
   update: Aggiorna
   update_existing_observations_with_new_license: Aggiorna le osservazioni esistenti con la nuova licenza scelta
+  update_existing_observations_with_new_license_desc: |
+    Selezionando questa opzione, la nuova scelta di licenza verrà applicata a tutti i
+    osservazioni esistenti. Questo può richiedere alcune ore se hai molto
+    Osservazioni.
   update_existing_photos_with_new_license: Aggiorna le foto con la nuova licenza scelta
+  update_existing_photos_with_new_license_desc: |
+    Selezionando questa opzione, la nuova scelta di licenza verrà applicata a tutti i
+    foto esistenti. Questo può richiedere alcune ore se hai molto
+    Foto.
   update_existing_sounds_with_new_license: Aggiorna i suoni con la nuova licenza scelta
+  update_existing_sounds_with_new_license_desc: |
+    Selezionando questa opzione, la nuova scelta di licenza verrà applicata a tutti i
+    suoni esistenti. Questo può richiedere alcune ore se hai molto
+    Suoni.
   update_observations: Aggiorna osservazioni
   update_past: "Aggiorna le vecchie %{type}"
   update_photos: Aggiorna le foto
@@ -5691,6 +5751,11 @@ it:
     L'utente si fida a rivelare le coordinate nascoste a questo progetto, oscurate per qualsiasi motivo.
   user_trusts_this_project_for_taxon: |
     L'utente si fida a rivelare le coordinate nascoste a questo progetto solo se oscurate perchè appartenenti a taxa minacciati.
+  user_trusts_this_project_when_added_by_observer: |
+    L'utente si fida dei curatori del progetto con le coordinate nascoste delle osservazioni aggiunte
+    al progetto da parte dell'osservatore.
+  user_trusts_this_project_when_added_by_none: |
+    L'utente non si fida dei curatori del progetto con coordinate nascoste.
   user_trusts_you_with_their_private_coordinates: "%{user} ti ha rivelato le sue coordinate nascoste"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'osservatore ha deciso di rivelarti le coordinate nascoste di tutte le sue osservazioni.
@@ -5786,6 +5851,8 @@ it:
   view_more_observations_of_x_project: "Visualizza più osservazioni dal progetto %{project} su <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Visualizza più osservazioni di %{taxon} su <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Esamina altri tra i non esaminati."
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Visualizza i tuoi ID interessati
   view_observation: Visualizza osservazione
   view_observations: Visualizza osservazioni
   view_observation_flags: Visualizza i contrassegni delle osservazioni
@@ -5828,8 +5895,8 @@ it:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ricercate
   was_it_captive_cultivated?: "Era in cattività / coltivato?"
-  we_also_support2: |
-    Supportiamo anche l'importazione di foto da <a href="http://flickr.com">Flickr</a> e <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Supportiamo anche l'importazione di foto da <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Possiamo processare i file CSV solo se hanno la seguente formattazione
   we_couldnt_find_a_user: Non siamo riusciti a trovare alcun utente con questo indirizzo email.
   we_couldnt_find_a_user_with_that_activation_code: "Non siamo riusciti a trovare alcun utente con questo codice di attivazione. Potresti già aver attivato il tuo account, per favore prova ad accedere."
@@ -6194,6 +6261,35 @@ it:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Utenti target in base al comportamento relativo ad altri attributi
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Informazioni su Atlanti
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Gli atlanti trasmettono la distribuzione globale di un taxon. I curatori fanno
+          atlanti definendo la struttura di un atlante e curando il
+          taxa elencati che lo guidano.
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Nessuna modifica a questo atlante ancora
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Recenti modifiche dell'atlante
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Recenti modifiche ai taxon elencati
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Mostra taxa elencati
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Questo atlante non è attualmente attivo
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Questo rimuoverà questo taxon e tutti i suoi discendenti dalle liste di controllo
+          associati a questo luogo e a tutti i luoghi standard in esso contenuti. Esso
+          non può essere annullato. Sei sicuro di volerlo fare?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Attenzione: ci sono osservazioni non rappresentate da questo atlante
     content_freeze:
       content_freeze: Blocco Contenuti
       during_this_time: |
@@ -6436,8 +6532,9 @@ it:
       index:
         deprecated_banner: |
           Per favore, considera che a partire da Gennaio 2019, la funzione Guide è presentata "così com'è"; anche se non pensiamo di eliminarla, non abbiamo intenzione di svilupparla ulteriormente.
-        funding_html: |
-          I finanziamenti per lo sviluppo delle Guide sono forniti da <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Il finanziamento per lo sviluppo delle guide è stato fornito da
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Le Guide ti aiutano a conoscere la biodiversità in tutto il mondo. Sia che tu stia esplorando il Serengheti o solo il parco sotto casa tua (che potrebbe essere il Serengheti!), le Guide possono aiutarti ad interpretare la stupefacente diversità delle forme di vita del nostro pianeta.
       edit:
@@ -6927,11 +7024,6 @@ it:
         decimal_degrees_format: gg.gggg
         geoprivacy_must_be_in_english: |
           La colonna geoprivacy deve essere in inglese e può essere vuota o avere i valori "obscured" o "private"
-        google_photos_notice_html: |
-          Nel febbraio 2019 Google ha modificato le sue API, rendendoci impossibile accedere alle coordinate GPS, alle informazioni di licenza, e a quasi tutte le informazioni che potremmo utilizzare per aggiungere un'identificazione (come le etichette). Ha anche rimosso la ricerca testuale e la paginazione numerica. Inoltre, hanno richiesto che tutti gli account connessi abbiano un'ulteriore autorizzazione, e prima che una terza parte possa richiedere tale autorizzazione agli utenti, la terza parte deve essere verificata. Siamo in attesa di verifica, ma fino a quando ciò non si verificherà, non potrai importare foto da Google. Se approvato, potrai ancora importare le foto, ma queste non includeranno nessuna informazione di localizzazione o di licenza che puoi visualizzare in Google Foto.
-          Può leggere più su questo argomento su:
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          La migliore alternativa è scaricare i file originali e aggiungerli usando l'<a href="/observations/upload">Uploader</a>
         project_csv_template_notice_html: |
           C'è un modello di file per questo progetto che potrebbe aiutarti nella preparazione del file CSV. 
           <a href="%{url}">Scarica modello</a>
@@ -7901,6 +7993,10 @@ it:
           </p>
         licensing_desc_html: |
           Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Tipo di file non supportato. Accettiamo JPG, PNG e GIF
         monthly_supporter_desc_html: |
           I Sostenitori Mensili di iNaturalist effettuano contributi mensili automatici
           a iNaturalist (Stati Uniti IRS EIN 92-1296468) per supportare l'operazione
@@ -8279,6 +8375,10 @@ it:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8317,6 +8417,8 @@ it:
     attributes:
       announcement:
         created_at: Creato il
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Ignorabile
         updated_at: Aggiornato al
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8541,6 +8643,7 @@ it:
         show_for_descendent_taxa: Mostra per taxa discendenti
       user:
         email: Email
+        faved_project_ids: Progetti preferiti
         login: Nome utente
         name: Nome
         locale: Localizzazione
@@ -8681,6 +8784,9 @@ it:
                 non può essere successiva alla data in cui l'osservazione è stata aggiunta
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: deve essere negli ultimi 130 anni
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: deve essere un solo giorno, non un intervallo
         observation_field_value:
           attributes:
             value:
@@ -8715,6 +8821,9 @@ it:
               invalid_point: ha un punto non valido, es. longitudine maggiore di 180 o latitudine inferiore a -90
               must_have_more_than_three_points: deve avere oltre 3 punti
               polygon_with_less_than_four_points: ha un poligono con meno di 4 punti
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: ha un poligono senza area (tutti i punti sono uguali)
         place_geometry:
           attributes:
             geom:
@@ -8732,6 +8841,10 @@ it:
             user:
               must_be_on_site_long_enough: |
                 devi essere registrato da più di 24 ore per pubblicare. Abbiamo un sacco di spammer, e questo è un modo per contrastarli. Tu puoi comunque salvare una bozza, e se tra un giorno userai ancora il sito, potrai pubblicare.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Puoi aggiungere ai preferiti solo 7 progetti
         project_observation:
           attributes:
             base:
@@ -8784,6 +8897,11 @@ it:
             name:
               bad_format: |
                 può solo contenere caratteri Latino standard, trattini, spazi, e ×; nota che taxa presunti e cultivar non sono permessi
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Il taxon Vita non può essere coinvolto nelle modifiche del taxon
         taxon_name:
           attributes:
             lexicon:
@@ -8818,6 +8936,14 @@ it:
               already_has_a_range: ha già un areale
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: non può includere più di 7 progetti
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: devono esistere tutti
             login:
               must_begin_with_a_letter: |
                 deve iniziare con una lettera, non contenere spazi e deve avere solo lettere, numeri, trattini e trattini in basso

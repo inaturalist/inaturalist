@@ -73,6 +73,8 @@ af:
   activity: Aktiwiteit
   add: Sit By
   add_a_comment: Voeg Kommentaar By
+  #Placeholder for a project autocomplete field
+  add_a_project: Voeg 'n projek by
   add_a_taxon: Voeg 'n takson by
   add_an_observation: Voeg 'n waarneming by
   add_another_photo: Voeg nog 'n foto by
@@ -270,6 +272,7 @@ af:
   computer_vision_model_included: Ingesluit
   computer_vision_model_included_desc: |
     Die huidige Rekenaarvisie Model weet van hierdie takson, so dit kan dalk ingesluit word in die outomatiese voorstelle met die "Visueel soortgelyk" aanduiding
+  confirming_ids: Bevestig tans ID's
   confirming_ids_description: |
     As jy dit afskakel, sal jy nie meer in kennis gestel word van ID's wat saamstem nie
     met joune, tensy hulle bykomende opmerkings het.
@@ -344,6 +347,14 @@ af:
   created_by: Geskep deur
   created_by_user_on_date: Geskep deur %{user} op %{date}
   created_on: Geskep op
+  curator_coordinate_access: Kurator koördinaat toegang
+  curator_coordinate_access_desc: |
+    Kurator-koördinaattoegang vir tradisionele projekte hang af van wie bygevoeg het
+    die waarneming van die projek. Hierdie is net die verstekinstelling vir
+    waarnemings in projekte. Waarnemers kan ook kies om dit te verander vir
+    individuele waarnemings.
+  #Button to customize projects that appear in the header
+  customize__projects: Pasmaak
   dashboard: Paneelbord
   date_: Datum
   date_format:
@@ -384,6 +395,11 @@ af:
     Klik asseblief op die skakel hieronder om jou e-posadres te bevestig. As jy nie jou e-pos bevestig nie
     adres, sal jy nie met ander gebruikers se inhoud kan kommunikeer nie.
   devise_reset_password_instructions_hello_email: Hallo %{email}
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Meningsverskille
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Wys waarnemings wat nie saamstem nie
   edit_observations: Redigeer waarnemings
   #Title for a page to edit an announcement
   editing_announcement_x: Redigeer tans aankondiging %{id}
@@ -394,6 +410,12 @@ af:
   explore: Verken
   facebook: Facebook
   Family: Familie
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Gunsteling projekte
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Kies tot sewe projekte wat as skakels in die opskrif verskyn. Bywerkings
+    sal verskyn nadat die bladsy verfris is.
   favorites: "Gunstelinge"
   filter: Filter
   find: Vind
@@ -417,6 +439,8 @@ af:
   id: ID
   identify: Identifiseer
   identifications: Identifikasie
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist het die ID wat voorgestel is deur opgedateer %{user}
   identifiers: Identifiseerder
   ids: "ID's"
   inaturalist_network: iNaturalist Netwerk
@@ -441,6 +465,8 @@ af:
     as hulle addisionele opmerkings bevat.
   insects: insekte
   instagram: Instagram
+  #Error message shown when a date format is invalid
+  invalid_date: Ongeldige datum
   iphone: iPhone
   join_the_largest_group_of_naturalists_in_the_world: Sluit aan by die grootste groep natuurkundiges ter wêreld!
   journal: Joernaal
@@ -576,6 +602,7 @@ af:
   observation_field_type_time: Tyd
   observation_field_type_taxon: Takson
   observation_field_type_dna: DNS
+  observation_fields_for_projects: Waarnemingsvelde vir projekte
   observations: Waarnemings
   observations_: waarnemings
   observer: Waarnemer
@@ -725,11 +752,24 @@ af:
   privacy: Privaatheid
   private_: Privaat
   profile: Profiel
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profielfoto lêer tipe
   project: Projek
   #A user who admin's a project
   project_admin: Projek admin
   project_group_label: Groep
   projects: Projekte
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Geslag / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Spesie / baster
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Subspesies / Verskeidenheid / Vorm
   ranks:
     family: Familie
     genus: Genus
@@ -799,9 +839,29 @@ af:
   unblock: Deblokkeer
   unknown: Onbekend
   update: Opdateer
+  update_existing_observations_with_new_license_desc: |
+    Deur hierdie opsie te kies, sal jou nuwe lisensiekeuse op al jou toegepas word
+    bestaande waarnemings. Dit kan 'n paar uur neem as jy baie het
+    Waarnemings.
+  update_existing_photos_with_new_license_desc: |
+    Deur hierdie opsie te kies, sal jou nuwe lisensiekeuse op al jou toegepas word
+    bestaande foto's. Dit kan 'n paar uur neem as jy baie het
+    Foto's.
+  update_existing_sounds_with_new_license_desc: |
+    Deur hierdie opsie te kies, sal jou nuwe lisensiekeuse op al jou toegepas word
+    bestaande klanke. Dit kan 'n paar uur neem as jy baie het
+    Klanke.
   upload: Oplaai
   user: Gebruiker
   user_blocked: Gebruiker geblokkeer
+  user_trusts_this_project_when_added_by_any: |
+    Gebruiker vertrou projekkurators met verborge koördinate van waarnemings wat bygevoeg is
+    aan die projek deur enigiemand.
+  user_trusts_this_project_when_added_by_observer: |
+    Gebruiker vertrou projekkurators met verborge koördinate van waarnemings wat bygevoeg is
+    na die projek deur die waarnemer.
+  user_trusts_this_project_when_added_by_none: |
+    Gebruiker vertrou nie projekkurators met verborge koördinate nie.
   username: Gebruikersnaam
   username_or_email: Gebruikersnaam of e-pos
   video_tutorials: Video tutoriale
@@ -809,6 +869,8 @@ af:
   view_your_affected_ids: Bekyk jou geaffekteerde ID's
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesoek
+  we_also_support3: |
+    Ons ondersteun ook die invoer van foto's vanaf <a href="http://flickr.com">Flickr</a>.
   weather: Weer
   welcome: welkom
   welcome_back!: Welkom terug!
@@ -943,6 +1005,10 @@ af:
       tips_check_your_spam_folder: Gaan jou strooiposgids na
       your_site_account_has_no_email: Jou %{site_name} rekening het geen e-posadres daaraan geassosieer nie.
     guides:
+      index:
+        funding2_html: |
+          Befondsing vir die ontwikkeling van gidse is verskaf deur
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
       pdf_layouts:
         book: boek
     lifelists:
@@ -991,12 +1057,21 @@ af:
           takson om dit onder die aandag van terreinkurators te bring.
     users:
       edit:
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Lêertipe word nie ondersteun nie. Ons aanvaar JPG, PNG en GIF
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Identifikasie
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Boodskappe
         project_addition_preferences:
           any: Enige
+        this_only_applies_to_traditional_projects2: |
+          Dit geld slegs vir tradisionele projekte. Jy kan nie waarnemings uitsluit nie
+          van versamelings- of sambreelprojekte, wat in wese gestoorde soektogte is.
+          Jy kan meer lees
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Hier</a>.
     welcome:
       index:
         connect_with_nature: Verbind met die natuur
@@ -1157,6 +1232,7 @@ af:
         place: Plek
       user:
         email: E-pos
+        faved_project_ids: Gunsteling projekte
         time_zone: Tydsone
         place_id: Plek
     errors:
@@ -1164,12 +1240,27 @@ af:
         must_look_like_an_email_address: moet soos 'n e-posadres lyk
         requires_privilege_interaction: moet 'n bevestigde e-posadres hê om dit te doen
       models:
+        moderator_action:
+          attributes:
+            base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Slegs personeel kan hernoem
         observation:
           attributes:
             observed_on:
               #Error message when user attempts to enter an observation date
               #like "2020 or "2020-05"
               must_be_a_single_day: moet 'n enkele dag wees, nie 'n reeks nie
+        place:
+          attributes:
+            place_geometry:
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: het 'n veelhoek sonder oppervlakte (alle punte is dieselfde)
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Jy kan net 7 projekte gunsteling
         taxon_change:
           attributes:
             base:
@@ -1177,6 +1268,14 @@ af:
               life_taxon_cannot_be_involved: Die Life-takson kan nie by taksonveranderinge betrokke wees nie
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: kan nie meer as 7 projekte insluit nie
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: moet almal bestaan
             login:
               domain_is_not_supported: domein word nie ondersteun nie
   i18n:

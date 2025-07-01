@@ -37,6 +37,7 @@ SEEK_LOCALES = [
   "ro",
   "ru",
   "si",
+  "sk",
   "sv",
   "tr",
   "uk",

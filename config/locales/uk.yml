@@ -320,6 +320,8 @@ uk:
   add_a_new_change_group: Додати нову групу змін
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Додати нумерований список
+  #Placeholder for a project autocomplete field
+  add_a_project: Додати проект
   add_a_single_observation: Додати окреме спостереження
   add_a_taxon: Додати таксон
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -642,6 +644,8 @@ uk:
   any_license: Будь-яка
   #Label for an option to show content with photos, sounds, or neither
   any_media: Будь-які
+  #Label for an option to show any place
+  any_place: Будь-які
   #Label for an option to show content from any project
   any_project: Будь-який
   #Label for an option to show content with any quality grade
@@ -767,6 +771,13 @@ uk:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Атрибут
   attribution: Авторство
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Вибухнула
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Не вибухнув
   authority_list:
     iucn_red_list: Червоний список IUCN
     natureserve: NatureServe
@@ -1327,11 +1338,14 @@ uk:
   curators_changed_for_x_html: "Кураторів змінено для %{x}"
   curators: Куратори
   curators_can_remove_observations_from: Куратори можуть вилучати спостереження з проєкту, а також ті їхні визначення, що відображаються разом із спостереженнями під час перегляду проєкту. Куратори також можуть бачити справжні координати для тих спостережень проєкту, які були приховані налаштуваннями приватності місцезнаходження.
+  curator_coordinate_access: Куратор координат доступу
   curator_identification: Визначення куратора
   current_flags: Поточні прапорці
   custom_project_fields: Користувальницькі поля проєкту
   custom_project_was_successfully_created: Налаштування проєкту додано
   custom_project_was_successfully_updated: Налаштування проєкту оновлено
+  #Button to customize projects that appear in the header
+  customize__projects: Налаштувати
   customize_location: Настроюване розташування
   darr_apply_darr: "&darr; Застосувати &darr;"
   daily_users: Користувачі за добу
@@ -1499,6 +1513,11 @@ uk:
   disable_comments: Вимкнути коментарі
   disable_comments_desc: Заборонити людям додавати нові коментарі
   disagree_: Не погоджуюсь
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Розбіжності
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Покажіть спостереження, які мають розбіжні ототожнення
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Від'єднати
@@ -1595,6 +1614,8 @@ uk:
   edited_by_name_some_rights_reserved_html: |
     Відредагував/ла %{name}, деякі права захищені (%{license})
   editing: Редагування
+  #Title for a page to edit an announcement
+  editing_announcement_x: Оголошення про редагування %{id}
   editing_custom_project_fields_for: Редагування полів користувацького проєкту для
   editing_observation_field: Редагування поля спостереження
   editing_observation_id: "Редагування спостереження %{obs_id}"
@@ -1694,6 +1715,12 @@ uk:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Уподобані
   Family: Родина
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Улюблені проекти
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Виберіть до семи проектів, які відображаються як посилання в заголовку. Оновлення
+    з'явиться після оновлення сторінки.
   favorite_taxa: Уподобані таксони
   favorites: "Уподобані"
   feature_this_project_: "Рекомендувати цей проєкт"
@@ -1982,6 +2009,8 @@ uk:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Визначення відкликано.
   identifications: Визначення
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist оновив ідентифікатор, запропонований %{user}
   computer_vision_suggestion: Пропозиція від системи комп'ютерного бачення
   computer_vision_suggestion_desc: |
     Комп'ютерне бачення — процес навчання комп'ютерів розпізнаванню шаблонів
@@ -2066,6 +2095,8 @@ uk:
   internal_taxon_rank: Внутрішній ранг таксону
   introduced: Інтродукований
   introduced_in_place: "Інтродукований у такому місці: %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Неприпустима дата
   invitation: Запрошення
   invite: запросити
   invite_people: Запросити людей
@@ -2229,7 +2260,6 @@ uk:
   linear_scale_label: Лінійна
   link: Посилання
   link_your_flickr_account: Прив'язати обліковий запис Flickr
-  link_your_google_account: Прив'язати обліковий запис Google
   linked_flickr: "Ваш обліковий запис %{site_name} прив'язаний до вашого облікового запису Flickr."
   linked_flickr_automatically: "Також, майте на увазі, що при вході до %{site_name} через Flickr, ми автоматично зв'яжемо ваші облікові записи %{site_name} та Flickr. Гадаємо, що якщо ви користуєтесь Flickr, то захочете мати можливість імпортувати фото з Flickr, чи не так?"
   linked_flickr_description: "Зберігання вашого облікового запису %{site_name} пов'язаним з вашим обліковим записом Flickr, дозволяє додавати серії фото до ваших спостережень. Звичайно, якщо ви вирішете, що %{site_name} та Flickr краще роз'єднати, ми не перешкоджатимемо, просто ви не зможете більше додавати фото. Іноді це може бути на краще, наприклад, якщо ви створите новий обліковий запис у Flickr, до якого захочете прив'язати %{site_name}."
@@ -2249,6 +2279,10 @@ uk:
   list_was_successfully_created: Список було успішно створено.
   listed_taxa: Таксони зі списку
   listed_taxon: Таксон зі списку
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Перераховані
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Не вказано
   listed_taxon_updated: Таксон зі списку оновдено
   listing_lists: Списки зі списків
   listing_project_assets: Ресурси проєктів зі списків
@@ -2335,6 +2369,10 @@ uk:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Вийти з %{site_name}?"
   log_scale_label: Журнал подій
+  #Adjectival phrase describing state of being logged in
+  logged_in: Увійшли
+  #Adjectival phrase describing state of being logged out
+  logged_out: Вийшли
   #Status message shown while logging in
   logging_in: Вхід...
   logo:
@@ -2515,6 +2553,8 @@ uk:
   more_info_title: Докладніше
   more_journal_posts: Більше дописів у журналі
   more_observations: Більше спостережень
+  #Label for a button or section that shows additional options
+  more_options: Більше варіантів
   more_photos: Більше фото
   more_than_a_week_ago: Понад тиждень тому
   most_agree: більшість згодні
@@ -2725,7 +2765,11 @@ uk:
   no_users_found_with_those_filters: За вказаними фільтрами користувачів не знайдено
   no_wikipedia_page_for_taxon: Немає сторінки на Вікіпедії для цього таксону.
   noble_curators: "Почесні куратори %{site}"
+  #A user who is not a curator
+  non_curator: Не опікун
   non_human?: Не людина?
+  #A user who does not admin any projects
+  non_project_admin: Не адміністратор проекту
   none: Нічого
   none_found: Нічого не знайдено
   normal: нормальний
@@ -2819,6 +2863,7 @@ uk:
   observation_field_type_taxon: Таксон
   observation_field_type_dna: ДНК
   observation_fields: Поля спостереження
+  observation_fields_for_projects: Поля спостереження для проектів
   observation_fields_are_additional: Поля спостереження — це додаткові поля даних, які можна додавати до спостережень.
   observation_fields_by_preferences_description: |
     Поля спостереження чимось подібні до тегів, за винятком того, що кожен може додати їх до вашого спостереження за промовчанням. Змініть це, якщо ви бажаєте залишити цю можливість за собою або довірити її лише кураторам сайту.
@@ -3597,10 +3642,15 @@ uk:
   processing3p: "Обробка..."
   profile: Профіль
   profile_picture: Зображення профілю
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Тип файлу зображення профілю
   profile_visibility_desc: |
     З метою захисту %{site_name} від спаму профілі користувачів
     стають публічно видимі тільки після того, як користувач зробить кілька спостережень дослідницького рівня.
   project: Проєкт
+  #A user who admin's a project
+  project_admin: Адміністратор проекту
   project_admins:
     one: Адміністратор проєкту
     few: Адміністратори проєкту
@@ -3679,6 +3729,16 @@ uk:
   range: Проміжок
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Рід / Рідгібрид
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Види / Гібрид
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Підвиди / Сорт / Форма
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4660,7 +4720,6 @@ uk:
   unknown: Невідомий
   unknown_error: Невідома помилка
   unknown_rank: '(Невідомий ранг)'
-  unlink_your_google_account: Від'єднати свій обліковий запис Google
   unlink_your_flickr_account: "Від'єднати свій обліковий запис Flickr"
   unmute: Скасувати ігнорування
   updates_notification_email_subject: "%{prefix} Свіжі оновлення %{date}"
@@ -4677,7 +4736,15 @@ uk:
   upcoming_bioblitzes: Майбутні бібліци
   update: Оновити
   update_existing_observations_with_new_license: Оновити ліцензії наявних спостережень відповідно до обраної ліцензії
+  update_existing_observations_with_new_license_desc: |
+    Вибір цього параметра застосує ваш новий вибір ліцензії до всіх ваших
+    існуючі спостереження. Це може зайняти кілька годин, якщо у вас багато
+    Спостережень.
   update_existing_photos_with_new_license: Оновити ліцензії наявних фото відповідно до обраної ліцензії
+  update_existing_photos_with_new_license_desc: |
+    Вибір цього параметра застосує ваш новий вибір ліцензії до всіх ваших
+    існуючі фотографії. Це може зайняти кілька годин, якщо у вас багато
+    Фото.
   update_existing_sounds_with_new_license: Оновити ліцензії наявних звукозаписів відповідно до обраної ліцензії
   update_observations: Оновити спостереження
   update_past: "Оновити минулі %{type}"
@@ -4808,6 +4875,8 @@ uk:
   user_observed_on_on_date_in_place: |
     Користувач %{user} спостерігав це %{date} у такому місці: %{place}
   user_suggested_an_id: "%{user} запропонував/ла визначення"
+  user_trusts_this_project_when_added_by_none: |
+    Користувач не довіряє кураторам проекту приховані координати.
   user_trusts_you_with_their_private_coordinates: "%{user} довіряє вам приховані координати"
   user_trusts_you_with_their_private_coordinates_desc: |
     Спостерігач вирішив довірити вам приховані координати всіх своїх спостережень.
@@ -4902,9 +4971,8 @@ uk:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Розшукуються
   was_it_captive_cultivated?: "Це утримувалося в неволі або культивувалося?"
-  we_also_support2: |
-    Ми також підтримуємо імпорт фотографій з <a href="http://flickr.com">Flickr</a>
-    та <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Ми також підтримуємо імпорт фотографій з <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Ми можемо розпізнати лише CSV у такому форматі
   we_couldnt_find_a_user: Ми не можемо знайти користувача із такою електронною адресою.
   we_couldnt_find_a_user_with_that_activation_code: "Ми не змогли знайти користувача з цим кодом активації. Можливо, ви вже активували свій обліковий запис, будь ласка, спробуйте увійти."
@@ -5160,6 +5228,65 @@ uk:
   verifiable_observations: Перевірювані спостереження
   views:
     views: 'Перегляди'
+    announcements:
+      locales_desc: |
+        Натисніть, утримуючи клавіші CMD або SHIFT, щоб вибрати кілька. Вибір "Всі" або не внесення
+        Вибраний варіант покаже оголошення всім користувачам, незалежно від
+        Локалі. Вибір мови без регіону *не* буде цілеспрямованим
+        локалі з регіонами, наприклад, якщо ви вибрали англійську, вона не відображатиметься
+        для людей, які обрали англійську мову (Великобританія).
+      clients_desc: |
+        Натисніть, утримуючи клавіші CMD або SHIFT, щоб вибрати кілька. Вибір "Всі" або не внесення
+        Вибраний варіант покаже оголошення всім користувачам, незалежно від
+        клієнт.
+      end_desc: |
+        Час у часовому поясі вашого облікового запису, коли це оголошення буде зупинено
+        З'являються. Застосовується в різних часових поясах, тому всі користувачі перестануть бачити
+        це в той же час, а не по відношенню до їх місцевого часу.
+      observation_oauth_application_ids_desc: |
+        Натисніть, утримуючи клавіші CMD або SHIFT, щоб вибрати кілька. Вибір "Всі" або не внесення
+        Вибраний варіант покаже оголошення всім користувачам, незалежно від
+        додаток.
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Про Атласи
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Атласи передають глобальне поширення таксона. Куратори роблять
+          атласів шляхом визначення структури атласу та кураторства
+          перелічені таксони, які керують ним.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Підірвати це місце
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Розірвіть це місце
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Змін до цього атласу поки що немає
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Останні зміни в атласі
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Нещодавні зміни в таксонах
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Показати перераховані таксони
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Цей атлас на даний момент не активний
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Це видалить цей таксон та всіх його нащадків із чек-листів
+          пов'язані з цим місцем і будь-якими стандартними місцями, які в ньому містяться. Вона
+          не може бути скасована. Ви впевнені, що хочете це зробити?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Увага: є спостереження, не представлені цим атласом
     content_freeze:
       content_freeze: Замороження вмісту
       during_this_time: |
@@ -5224,9 +5351,9 @@ uk:
         deprecated_banner: |
           Будь ласка, зверніть увагу, що від січня 2019 року, функція Посібників надається
           "як є"; попри те, що ми не плануємо її видаляти, ми не плануємо розвивати її надалі.
-        funding_html: |
-          Фінансування для розробки посібників було надано
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Фінансування на розробку Посібників надали
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Посібники допоможуть вам дізнатися про біорізноманіття по всьому світу.
           Досліджуєте Серенгеті чи просто ваш місцевий парк (який може бути й Серенгеті)? Посібники можуть допомогти вам розібратися у неймовірній різноманітності життя на нашій планеті.
@@ -5653,13 +5780,6 @@ uk:
         decimal_degrees_format: гг.гггг (градус)
         geoprivacy_must_be_in_english: |
           Колонка конфіденційність геоданих (geoprivacy) має бути англійською і бути пустою, або містити значення "obscured"(розмиті) або "private"(приватні)
-        google_photos_notice_html: |
-          У лютому 2019 року Google змінив свій API, унеможлививши нам доступ до координат GPS, інформації про ліцензію і майже будь-якої інформації, яку можна використовувати для додавання визначення (наприклад, теги). Вони також видалили текстовий пошук та числовий порядок сторінок. На додачу до цього, вони вимагають від усіх підключених акаунтів додаткових дозволів, і до того, як сторонні застосунки можуть запитати додаткові дозволи у користувача, сторонні застосунки також мають бути верифіковані. Ми очікуємо на верифікацію, але поки це не відбудеться, ви не зможете імпортувати фото з Google.
-          Якщо ми отримаємо схвалення, ви зможете імпортувати фотографії, але вони не
-          не міститимуть жодної інформації про місцезнаходження чи інформацію про ліцензію, яку ви можете бачити на Google Photos. Про це можна дізнатися більше <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Завантаження оригінальних файлів і додавання їх за допомогою <a
-          href="/observations/upload">Завантажувача</a> є найкращим виходом.
         project_csv_template_notice_html: |
           Для цього проєкту існує шаблон файлу, який може допомогти вам з структурою файлу CSV.
           <a href="%{url}">Завантажити шаблон</a>
@@ -6371,6 +6491,11 @@ uk:
           Зверніть увагу, що на сторінці таксону відображені світлини цього таксону та його дочірніх таксонів. Утім, світлини, обрані для цього таксону, будуть показані першими. Першим фото буде стандартне зображення, яке використовується на всьому сайті.
         rare_desc: Таксони під загрозою із найменшою кількістю спостережень
         rare_in_place_desc_html: Таксони під загрозою із найменшою кількістю спостережень у <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Куратори сайту відключили показ <a href="%{url}">цей
+          контент з Вікіпедії</a>. Ви можете допомогти, відредагувавши сторінку на
+          Вікіпедії, щоб зробити його відповідним для цього таксона, або позначивши це
+          таксону, щоб привернути до нього увагу кураторів сайту.
         trending_desc: Найчастіше спостережені таксони за останній місяць
         trending_in_place_desc_html: 'Найчастіше спостережені таксони за останній місяць у такому місці: <a href="%{url}">%{place}</a>'
         wanted_desc: Види цього таксону, яких ще не спостерігали.
@@ -6478,6 +6603,10 @@ uk:
           Ліцензування вашого доробку дає усім законне право використовувати його без запиту вашого дозволу, за умови, що вони дотримуються умов ліцензії. Крім того, %{site_name} долучає ваш доробок, ліцензований Creative Commons,
           до регулярно оновлюваних архівів, які створюються для деяких партнерських організацій, які цікавляться нашими даними. Наприклад, ми включаємо записи, ліцензовані No Copyright (CC0), Attribution (CC BY) та Attribution-NonCommercial
           (CC BY-NC) в архів, який ми створюємо для <a href="http://www.gbif.org/"> Глобальної інформаційної системи з біорізноманіття</a> (GBIF) - міжнародної міжурядової організації, яка збирає та розповсюджує інформацію про біорізноманіття з усього світу.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Тип файлу не підтримується. Ми приймаємо формати JPG, PNG і GIF
         muting_desc_html: |
           <p>
           Вимкнення когось заважатиме вам отримувати сповіщення про те, що вони роблять, зокрема про коментарі до ваших спостережень, надісланих вам повідомлень, згадувань про вас тощо. Вимкнення допоможе вам ігнорувати когось, але не завадить їм будь-що робити.
@@ -6857,6 +6986,10 @@ uk:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d %B %Y %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -6883,6 +7016,17 @@ uk:
       ModeratorNote: Примітка модератора
       TaxonLink: Посилання на таксон
     attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Звільнено
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Як виключити спостерігачів із додатків
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Включення спостерігачів із додатків
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Творець цілі (для тестування)
       assessment:
         description: Опис
       assessment_section:
@@ -6977,6 +7121,8 @@ uk:
         name: Назва
         parent_id: ID початкового запису
         rank: Ранг
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Показує Вікіпедію
         source_identifier: Ідентифікатор джерела
         source_url: Посилання на джерело
         wikipedia_summary: Зведення з Вікіпедії
@@ -6987,6 +7133,7 @@ uk:
         source_identifier: Ідентифікатор джерела
       user:
         email: Email
+        faved_project_ids: Улюблені проекти
         login: Ім’я користувача
         name: Назва
         locale: Мова
@@ -7001,6 +7148,7 @@ uk:
         blank: не можуть залишатися порожніми
         confirmation: не збігається з паролем
         empty: не може бути порожнім
+        must_look_like_an_email_address: має виглядати як адреса електронної пошти
         even: може мати тільки парне значення
         exclusion: зарезервовано
         inclusion: не включено до переліку
@@ -7069,6 +7217,9 @@ uk:
             observed_on:
               cannot_be_greater_than_date_created: |
                 не може бути пізніше за дату додавання спостереження
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: має бути одним днем, а не діапазоном
         observation_field_value:
           attributes:
             value:
@@ -7093,6 +7244,9 @@ uk:
               is_too_large_to_edit: занадто великий для редагування
               is_too_large_to_import: занадто великий для імпорту
               contains_too_many_observations: містить забагато спостережень для імпорту
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: має багатокутник без площі (всі точки однакові)
         post:
           attributes:
             parent:
@@ -7103,6 +7257,10 @@ uk:
             user:
               must_be_on_site_long_enough: |
                 має бути зареєстрований більш ніж за 24 години до першого публікування. Нам часто випадає стикатися зі спамерами, тож ми змушені піти на такий крок, аби бодай частково боротися з цим. Ви все ще можете зберегти чернетку, і якщо ви використовуватимете сайт і завтра, ви зможете опублікувати її.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Ви можете вловити лише 7 проектів
         project_observation:
           attributes:
             base:
@@ -7148,6 +7306,11 @@ uk:
               bad_format: |
                 може містити лише стандартні латинські символи, дефіси, пробіли і
                 ×; зауважте, що довільні таксони й сорти не допускаються
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Таксон Life не може брати участь у зміні таксонів
         taxon_name:
           attributes:
             lexicon:
@@ -7171,10 +7334,19 @@ uk:
                 не може містити більше ніж %{max} фотографій
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: не може включати більше 7 проектів
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: повинні всі існувати
             login:
               must_begin_with_a_letter: |
                 має починатися з літери, не містити пробілів і використовувати лише
                 літери, цифри, дефіси та підкреслення
+              domain_is_not_supported: домен не підтримується
         user_block:
           attributes:
             base:

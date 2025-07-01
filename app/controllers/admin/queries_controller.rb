@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Admin::QueriesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_required
+
   def index
     redirect_to :primary_admin_queries
   end
