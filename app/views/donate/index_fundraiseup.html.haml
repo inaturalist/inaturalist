@@ -1,7 +1,6 @@
 - content_for :title do
   =t :donate_to_inaturalist
 - content_for :extrajs do
-  = javascript_include_tag "https://donorbox.org/widget.js", paypalExpress: false
   :javascript
     $( ".sharing .btn" ).click( function( ) {
       return !window.open( this.href, $(this).text( ), "width=640,height=400" );
@@ -32,8 +31,8 @@
       %h1=t :donate_to_inaturalist
   .row
     .col-md-5.col-md-offset-1.col-xs-12
-      - # Note: the donorbox iframe does *not* support utm params as of 2020-12-17. It retrieves those from the URL of the parent window. ~~~kueda 20201217
-      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist?", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
+      .fundraiseup-form
+        %a{ href: "#XWLLKFCZ", style:"display: none" }
       - if I18n.locale.to_s =~ /^en/
         %script{ type: "text/javascript" }
           var _msdaf_id = "d54712882b88c";
