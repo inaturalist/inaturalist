@@ -1578,6 +1578,8 @@ tr:
         Lütfen e-postanı kontrol et ve hesabını doğrulamak için aldığın e-postadaki bağlantıya tıkla.
       user:
         suspended: Hesabın askıya alındı
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Şifre sıfırlama belirteci geçersiz. Lütfen en son gönderilen şifre sıfırlama e-postasındaki bağlantıyı kullanın veya <a href="%{url}">yeni bir tane isteyin</a>.
     sessions:
       signed_in: 'Başarıyla giriş yapıldı.'
       signed_out: 'Başarıyla çıkış yapıldı.'
