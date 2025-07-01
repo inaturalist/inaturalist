@@ -1546,6 +1546,8 @@ id:
         Silakan cek email Anda dan klik tautan pada email yang Anda terima untuk mengonfirmasi akun Anda.
       user:
         suspended: Akun Anda telah ditangguhkan
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Token reset sandi tidak valid. Silakan gunakan tautan di email reset kata sandi yang terakhir dikirim, atau <a href="%{url}">minta yang baru</a>.
     sessions:
       signed_in: 'Berhasil masuk.'
       signed_out: 'Berhasil keluar.'
