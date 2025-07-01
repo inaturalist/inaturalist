@@ -1578,6 +1578,8 @@ de:
         um dein Konto zu bestätigen.
       user:
         suspended: Dein Benutzerkonto wurde gesperrt
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Das Token zum Zurücksetzen des Kennworts ist ungültig. Bitte verwende den Link in der zuletzt gesendeten E-Mail zum Zurücksetzen des Passworts, oder <a href="%{url}">fordere ein Neues an</a>.
     sessions:
       signed_in: 'Erfolgreich angemeldet.'
       signed_out: 'Erfolgreich abgemeldet.'
