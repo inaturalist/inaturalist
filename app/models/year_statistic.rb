@@ -1503,6 +1503,7 @@ class YearStatistic < ApplicationRecord
     donorbox_key = CONFIG.donorbox.key
     return if donorbox_key.blank?
 
+    # TODO: update with FundraiseUp
     page = 1
     per_page = 100
     donations = []
@@ -1579,6 +1580,7 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.monthly_supporters( year, options = {} )
+    # TODO: update with FundraiseUp
     if options[:debug]
       puts "[#{Time.now}] monthly_supporters, year: #{year}, options: #{options}"
     end

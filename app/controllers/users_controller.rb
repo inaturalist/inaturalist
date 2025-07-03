@@ -599,6 +599,7 @@ class UsersController < ApplicationController
           redirect_to generic_edit_user_url( anchor: "notifications" )
         else
           @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
+          # TODO: update with FundraiseUp
           render :edit2, layout: "bootstrap"
         end
       end

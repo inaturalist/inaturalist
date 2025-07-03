@@ -38,6 +38,8 @@ class UserParent < ApplicationRecord
     if parent_user && !parent_user.donorbox_donor_id.blank?
       self.donorbox_donor_id = parent_user.donorbox_donor_id
     end
+    # TODO: update with FundraiseUp
+
     true
   end
 
@@ -49,6 +51,8 @@ class UserParent < ApplicationRecord
       # so now we can welcome them
       user.send_welcome_email
     end
+    # TODO: update with FundraiseUp
+
     true
   end
 
@@ -65,5 +69,6 @@ class UserParent < ApplicationRecord
 
   def donor?
     donorbox_donor_id.to_i.positive?
+    # TODO: update with FundraiseUp
   end
 end

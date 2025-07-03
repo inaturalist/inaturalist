@@ -5627,7 +5627,8 @@ CREATE TABLE public.user_parents (
     child_name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    donorbox_donor_id integer
+    donorbox_donor_id integer,
+    fundraiseup_supporter_id character varying
 );
 
 
@@ -5795,7 +5796,11 @@ CREATE TABLE public.users (
     unconfirmed_email character varying,
     annotated_observations_count integer DEFAULT 0,
     icon_path_version smallint DEFAULT 0 NOT NULL,
-    canonical_email character varying(100)
+    canonical_email character varying(100),
+    fundraiseup_supporter_id character varying,
+    fundraiseup_plan_frequency character varying,
+    fundraiseup_plan_status character varying,
+    fundraiseup_plan_started_at date
 );
 
 
@@ -11597,6 +11602,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250409212827'),
 ('20250410213850'),
 ('20250417172959'),
-('20250519192340');
+('20250519192340'),
+('20250702141918');
 
 

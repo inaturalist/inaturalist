@@ -475,6 +475,7 @@ class User < ApplicationRecord
 
   def child_without_permission?
     child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+    # TODO: update with FundraiseUp
   end
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
@@ -1695,17 +1696,21 @@ class User < ApplicationRecord
 
   def donor?
     donorbox_donor_id.to_i.positive?
+    # TODO: update with FundraiseUp
   end
 
   def monthly_donor?
     donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
+    # TODO: update with FundraiseUp
   end
 
   def display_donor_since
     return nil unless prefers_monthly_supporter_badge?
+
     donorbox_plan_status == "active" &&
       donorbox_plan_type == "monthly" &&
       donorbox_plan_started_at
+    # TODO: update with FundraiseUp
   end
 
   # given an array of taxa, return the taxa and ancestors that were not observed
