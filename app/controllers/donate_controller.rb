@@ -30,6 +30,11 @@ class DonateController < ApplicationController
     redirect_to donate_index_fundraiseup_url( new_params ) if new_params
   end
 
+  def monthly_supporters_fundraiseup
+    new_params = redirect_params
+    redirect_to donate_monthly_supporters_fundraiseup_url( new_params ) if new_params
+  end
+
   private
 
   def redirect_params
