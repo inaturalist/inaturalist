@@ -375,7 +375,7 @@ class User < ApplicationRecord
     return if UsernameReservedWord.all_cached.empty?
     return unless login.match( /(#{UsernameReservedWord.all_cached.map( &:word ).join( '|' )})/ )
 
-    errors.add( :login, :exclusion )
+    errors.add( :login, :invalid )
   end
 
   def validate_email_pattern
