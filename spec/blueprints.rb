@@ -600,6 +600,10 @@ UserMute.blueprint do
   muted_user { User.make! }
 end
 
+UsernameReservedWord.blueprint do
+  word { Faker::Lorem.word }
+end
+
 UserParent.blueprint do
   email { Faker::Internet.email }
   name { Faker::Name.name }

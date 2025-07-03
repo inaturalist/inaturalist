@@ -5726,6 +5726,37 @@ ALTER SEQUENCE public.user_signups_id_seq OWNED BY public.user_signups.id;
 
 
 --
+-- Name: username_reserved_words; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.username_reserved_words (
+    id bigint NOT NULL,
+    word character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: username_reserved_words_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.username_reserved_words_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: username_reserved_words_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.username_reserved_words_id_seq OWNED BY public.username_reserved_words.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7010,6 +7041,13 @@ ALTER TABLE ONLY public.user_signups ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: username_reserved_words id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.username_reserved_words ALTER COLUMN id SET DEFAULT nextval('public.username_reserved_words_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8184,6 +8222,14 @@ ALTER TABLE ONLY public.user_privileges
 
 ALTER TABLE ONLY public.user_signups
     ADD CONSTRAINT user_signups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: username_reserved_words username_reserved_words_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.username_reserved_words
+    ADD CONSTRAINT username_reserved_words_pkey PRIMARY KEY (id);
 
 
 --
@@ -11597,6 +11643,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250409212827'),
 ('20250410213850'),
 ('20250417172959'),
-('20250519192340');
+('20250519192340'),
+('20250702141918');
 
 

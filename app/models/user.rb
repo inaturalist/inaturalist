@@ -345,6 +345,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :login
   validates_format_of :login, with: login_regex, message: :must_begin_with_a_letter
   validates_exclusion_of :login, in: %w(password new edit create update delete destroy)
+  validate :login_must_not_contain_reserved_words
 
   validates_exclusion_of :password, in: %w(password)
 
@@ -368,6 +369,14 @@ class User < ApplicationRecord
   scope :admins, -> { joins( :roles ).where( "roles.name = 'admin'" ) }
   scope :active, -> { where( "suspended_at IS NULL" ) }
   scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
+
+  def login_must_not_contain_reserved_words
+    return unless new_record? || login_changed?
+    return if UsernameReservedWord.all_cached.empty?
+    return unless login.match( /(#{UsernameReservedWord.all_cached.map( &:word ).join( '|' )})/ )
+
+    errors.add( :login, :exclusion )
+  end
 
   def validate_email_pattern
     return unless new_record? || email_changed?
