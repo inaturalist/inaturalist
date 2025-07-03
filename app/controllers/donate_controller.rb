@@ -3,8 +3,10 @@
 class DonateController < ApplicationController
   layout "bootstrap"
 
-  before_action :authenticate_user!, only: :index_fundraiseup
-  before_action :admin_required, only: :index_fundraiseup
+  before_action :authenticate_user!,
+    only: [:index_fundraiseup, :monthly_supporters_fundraiseup]
+  before_action :admin_required,
+    only: [:index_fundraiseup, :monthly_supporters_fundraiseup]
 
   before_action do
     @responsive = true
