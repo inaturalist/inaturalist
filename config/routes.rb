@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   # Shortcuts
   get "/donate", to: "donate#index"
   get "/donate/fundraiseup", to: "donate#fundraiseup"
+  get "/donate/index_fundraiseup", to: "donate#index_fundraiseup"
+  get "/donate/monthly_supporters_fundraiseup", to: "donate#monthly_supporters_fundraiseup"
   get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
   get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
   get "/independence",

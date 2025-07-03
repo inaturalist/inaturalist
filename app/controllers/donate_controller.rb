@@ -2,26 +2,40 @@
 
 class DonateController < ApplicationController
   layout "bootstrap"
+
+  before_action :authenticate_user!,
+    only: [:index_fundraiseup, :monthly_supporters_fundraiseup]
+  before_action :admin_required,
+    only: [:index_fundraiseup, :monthly_supporters_fundraiseup]
+
   before_action do
     @responsive = true
     @footless = true
     @no_footer_gap = true
     @shareable_image_url = helpers.image_url( "donate-banner.png" )
-    @moore_start_date = DateTime.parse( "2023-09-13T03:00:00-07:00" )
-    @moore_end_date = DateTime.parse( "2024-01-01T00:00:00-07:00" )
   end
 
   def index
     new_params = redirect_params
-    return redirect_to donate_url( new_params ) if new_params
+    redirect_to donate_url( new_params ) if new_params
   end
 
   def monthly_supporters
     new_params = redirect_params
-    return redirect_to monthly_supporters_url( new_params ) if new_params
+    redirect_to monthly_supporters_url( new_params ) if new_params
   end
 
   def fundraiseup; end
+
+  def index_fundraiseup
+    new_params = redirect_params
+    redirect_to donate_index_fundraiseup_url( new_params ) if new_params
+  end
+
+  def monthly_supporters_fundraiseup
+    new_params = redirect_params
+    redirect_to donate_monthly_supporters_fundraiseup_url( new_params ) if new_params
+  end
 
   private
 
