@@ -1,0 +1,32 @@
+- content_for :title do
+  = @title = "Username Reserved Words"
+
+- content_for :extrajs do
+  = javascript_include_tag "admin/username_reserved_words"
+
+%h2 Username Reserved Words
+
+.row
+  .col-xs-12
+    = form_tag admin_username_reserved_words_path, method: :post, class: "form-inline" do
+      = text_field_tag :word, "", placeholder: "Create a reserved word", class: "form-control"
+      = submit_tag "Submit", class: "btn btn-default"
+.row
+  .col-xs-12
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th word
+          %th created at
+          %th delete
+      %tbody
+        - for username_reserved_word in UsernameReservedWord.all
+          %tr
+            - word = username_reserved_word.word
+            - obfuscated_word = word[0] + ("*" * ( word.length - 2 ) ) + word[-1]
+            %td= obfuscated= username_reserved_word.id
+            %td.word{ original: username_reserved_word.word, obfuscated: obfuscated_word }
+              = obfuscated_word
+            %td= username_reserved_word.created_at
+            %td= link_to t( :delete ), admin_username_reserved_word_path( username_reserved_word ), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
