@@ -1631,6 +1631,8 @@ nl:
         om jouw account te bevestigen.
       user:
         suspended: Je account is opgeschort
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Het token voor het opnieuw instellen van het wachtwoord is ongeldig. Gebruik de link in de meest recent verzonden e-mail voor het opnieuw instellen van het wachtwoord, of <a href="%{url}">vraag een nieuwe aan</a>.
     sessions:
       signed_in: 'Succesvol ingelogd.'
       signed_out: 'Succesvol uitgelogd.'
