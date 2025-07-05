@@ -782,8 +782,7 @@ th:
   confirm_your_info: ยืนยันข้อมูลของคุณ
   confirming_ids: ยืนยันการจำแนก
   confirming_ids_description: |
-    หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเกี่ยวกับรหัสที่ตกลง
-    กับคุณเว้นแต่พวกเขาจะมีข้อสังเกตเพิ่มเติม
+    หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีผู้เห็นด้วยกับการจำแนกของคุณ หากไม่มีหมายเหตุเพิ่มเติม
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: เชื่อมต่อ
@@ -1430,7 +1429,7 @@ th:
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
-  infraspecies_ids: รหัสอินฟราสปีชีส์
+  infraspecies_ids: การจำแนกระดับต่ำกว่าชนิด
   insects: แมลง
   insect_life_stage: ระยะการเจริญของแมลง
   instagram: อินสตาแกรม
@@ -1927,6 +1926,7 @@ th:
   note: หมายเหตุ
   notes: คำอธิบาย
   notifications: การแจ้งเตือน
+  notify_me_of_mentions: แจ้งเตือนเมื่อมีคนพูดถึง (เช่น @ชื่อผู้ใช้งาน)
   notify_me_of_mentions_description: "หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีคนพูดถึงคุณใน %{site_name}"
   number_of_observations: จำนวนการสังเกต
   number_of_observers_value: "จำนวนผู้สังเกต: %{number}"
