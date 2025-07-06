@@ -1430,6 +1430,11 @@ th:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: การจำแนกระดับต่ำกว่าชนิด
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีผู้จำแนกในระดับต่ำกว่าชนิดที่คุณเคยจำแนกไว้โดยไม่ขัดแย้งกับคุณ (เช่น ชนิดย่อย พันธุ์) แต่จะได้รับการแจ้งเตือนหากมีผู้ไม่เห็นด้วยกับการจำแนกของคุณหรือมีหมายเหตุเพิ่มเติม
   insects: แมลง
   insect_life_stage: ระยะการเจริญของแมลง
   instagram: อินสตาแกรม
