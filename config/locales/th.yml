@@ -2333,7 +2333,7 @@ th:
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
-    genus: สกุล / สกุลไฮบริด
+    genus: สกุล / สกุลผสม
     #Label when displaying species level, which is the same for species and
     #hybrid
     species: ชนิด / พันธุ์ผสม
@@ -3379,6 +3379,8 @@ th:
       your_site_account_has_no_email: ของคุณ %{site_name} บัญชีไม่มีที่อยู่อีเมลที่เชื่อมโยง
     guides:
       index:
+        deprecated_banner: |
+          แจ้งให้ทราบว่า ตั้งแต่เดือนมกราคม 2019 เป็นต้นไป ฟีเจอร์คู่มือสำรวจนี้จะไม่มีการพัฒนาเพิ่มเติมแล้ว โดยจะคงไว้ในสภาพเดิมและไม่มีการลบฟีเจอร์นี้ออกไป
         funding2_html: |
           เงินทุนสําหรับการพัฒนา Guides จัดทําโดย
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
