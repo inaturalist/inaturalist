@@ -6429,6 +6429,10 @@ nl:
         Als jouw aankondiging gericht is op een site (wat standaard is als je een
         sitebeheerder bent), dan sluit dit aankondigingen uit die op alle sites in
         gericht zijn.
+      ip_countries_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
+        een selectie toont de aankondiging aan alle gebruikers, ongeacht het IP van het land.
+        klant.
       observation_oauth_application_ids_desc: |
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
         Een selectie toont de aankondiging aan alle gebruikers, ongeacht
@@ -7162,6 +7166,9 @@ nl:
           coördinaten omvat, indien bekend
         private_place_guess: |
           Waarnemingslocatie zoals opgeschreven door de waarnemer als de locatie verborgen is
+        uuid: |
+          Universeel unieke identifier voor de waarneming. Zie
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Markeer alle waarnemingen op de pagina als nagekeken"
         you_reviewed_message: "Je hebt %{reviewed} van de %{pageTotal} waarnemingen op deze pagina nagekeken van de %{total} overeenkomende waarnemingen."
@@ -8093,6 +8100,12 @@ nl:
           Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende gebieden opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende gebieden conflicterende namen hebben.
     terminology:
       index:
+        exports_can_also_contain_observation_field_values_html: |
+          Exporten kunnen ook kolommen met waarnemingsveldwaarden bevatten. De
+          definities hiervan vind je op 
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          of voeg de kolomnaam (met de kolom) toe aan
+          <code>%{terminology_url}</code> (e. . <a href="%{term_url}">%{term_url}</a>.
         inaturalist_employs_a_variety_of_terms: |
           iNaturalist gebruikt verschillende unieke termen om verschillende
           aspecten van de service te beschrijven. Hier hebben we geprobeerd enkele ervan
@@ -8677,6 +8690,8 @@ nl:
         target_logged_in: Target alleen aangemelde gebruikers
         #Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: Vroegste aanmeldingsdatum gebruiker
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Laatste aanmeldingsdatum van gebruiker
       assessment:
         description: Beschrijving
       assessment_section:
