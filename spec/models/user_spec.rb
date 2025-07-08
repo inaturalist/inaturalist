@@ -152,6 +152,52 @@ describe User, "validations" do
   it { is_expected.to validate_presence_of :password }
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_uniqueness_of( :login ).case_insensitive }
+
+  describe "login_must_not_contain_reserved_words" do
+    after( :each ) { UsernameReservedWord.destroy_all }
+
+    it "new user logins must not contain reserved words" do
+      UsernameReservedWord.make!( word: "test" )
+      expect do
+        User.make!( login: "test" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+      expect do
+        User.make!( login: "TEST" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+      expect do
+        User.make!( login: "thisisAtEsT" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+      expect do
+        User.make!( login: "testing" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+      expect do
+        User.make!( login: "unreserved" )
+      end.not_to raise_error
+    end
+
+    it "existing usernames can contain reserved words" do
+      user = User.make!( login: "test" )
+      UsernameReservedWord.make!( word: "test" )
+      expect( user ).to be_valid
+      expect do
+        User.make!( login: "test2" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+
+      UsernameReservedWord.make!( word: "fail" )
+      expect do
+        User.make!( login: "failure" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+    end
+
+    it "usernames cannot be updated to contain reserved words" do
+      user = User.make!( login: "test" )
+      user.update( login: "test2" )
+      expect( user ).to be_valid
+      UsernameReservedWord.make!( word: "test" )
+      user.update( login: "test3" )
+      expect( user ).to be_invalid
+    end
+  end
 end
 
 describe User do
