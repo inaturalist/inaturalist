@@ -13,8 +13,8 @@ tr:
     one: '%{count} favori'
     other: '%{count} favori'
   x_flags_resolved_html:
-    one: "<span class='count'>%{count}</span> işaret kaldırıldı"
-    other: "<span class='count'>%{count}</span> işaret kaldırıldı"
+    one: "<span class='count'>%{count}</span> işaret çözümlendi"
+    other: "<span class='count'>%{count}</span> işaret çözümlendi"
   x_identifications:
     one: '%{count} tanımlama'
     other: '%{count} tanımlama'
@@ -3446,7 +3446,7 @@ tr:
   observations_near_a_place_are: |
     Bir konumun "yakınındaki" gözlemler, konum sınırının etrafına çizilen bir dikdörtgenin içindedir; bu da dikdörtgene benzemeyen yerler için bazı yanlış sonuçlara neden olabilir. Bu durum, veritabanımızda çözmeye çalıştığımız bir sınırlamadan kaynaklanmaktadır.
   observations_needing_curation: Düzenleme Gerektiren Gözlemler
-  observations_observed_this_month: Bu ay <em>gözlemlenen</em> gözlemler, bu ay eklenmedi. Dışarı çık!
+  observations_observed_this_month: Bu ay <em>gözlemlenen</em> gözlemler, bu ay eklenenler değil. Haydi doğaya!
   observations_of_relatives: Benzer gözlemler
   observations_of_taxon: "%{taxon_name} gözlemleri"
   observations_per_month: Gözlemler / Ay
@@ -3640,12 +3640,12 @@ tr:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
     #added an observation
-    observation: bir <a href="%{observation_url}">gözlem</a> eklendi
+    observation: bir <a href="%{observation_url}">gözlem</a> ekledi
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: '%{user_link} tarafından bir %{observation_link}e <strong>tanımlama</strong> eklendi'
+      with_observation: '%{user_link} tarafından yapılan bir %{observation_link}e <strong>tanımlama</strong> ekledi'
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
@@ -8182,11 +8182,11 @@ tr:
         other: neredeyse %{count} yıl
       half_a_minute: yarım dakika
       less_than_x_minutes:
-        one: '%{count} dakikadan az'
-        other: '%{count} dakikadan az'
+        one: '%{count} dakikadan kısa süre önce'
+        other: '%{count} dakikadan kısa süre önce'
       less_than_x_seconds:
-        one: '%{count} saniyeden az'
-        other: '%{count} saniyeden az'
+        one: '%{count} saniyeden kısa süre önce'
+        other: '%{count} saniyeden kısa süre önce'
       over_x_years:
         one: '%{count} yıldan fazla'
         other: '%{count} yıldan fazla'
