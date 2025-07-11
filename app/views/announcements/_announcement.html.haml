@@ -1,12 +1,13 @@
 - preview = defined?( preview ) && preview
 - create_announcement_impression( announcement ) unless preview
-%template{ shadowrootmode: "open" }
-  = render "shared/common_stylesheets"
-  = stylesheet_link_tag 'bootstrap_bundle'
-  = stylesheet_link_tag 'bootstrap-rtl' if @rtl
-  .bootstrap
-    .announcement
-      = announcement.body.html_safe
-      - if announcement.dismissible? && current_user && !preview
-        = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
-          %i.fa.fa-close
+%div
+  %template{ shadowrootmode: "open" }
+    = render "shared/common_stylesheets"
+    = stylesheet_link_tag 'bootstrap_bundle'
+    = stylesheet_link_tag 'bootstrap-rtl' if @rtl
+    .bootstrap
+      .announcement
+        = announcement.body.html_safe
+        - if announcement.dismissible? && current_user && !preview
+          = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
+            %i.fa.fa-close
