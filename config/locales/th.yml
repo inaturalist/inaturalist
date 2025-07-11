@@ -203,6 +203,8 @@ th:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: เพิ่มรายการสัญลักษณ์แสดงหัวข้อย่อย
   add_a_comment: เพิ่มข้อเสนอแนะ
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: เพิ่มสถานะการอนุรักษ์
   add_a_field: เพิ่มข้อมูลเสริม
   add_a_flag: เพิ่มการรายงาน
   #Tool tip for a button that adds a link to a text area
@@ -212,6 +214,8 @@ th:
   add_a_new_change_group: เพิ่มการเปลี่ยนแปลงกลุ่ม
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: เพิ่มรายการลำดับเลข
+  #Placeholder for a project autocomplete field
+  add_a_project: เพิ่มโครงการ
   add_a_single_observation: เพิ่มการสังเกตอันเดียว
   add_a_taxon: เพิ่มอันดับอนุกรมวิธาน
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -226,6 +230,7 @@ th:
     sex: เพิ่มหมายเหตุสำหรับ "เพศ"
     plant_phenology: เพิ่มหมายเหตุสำหรับ "ชีพลักษณ์ของพืช"
     flowers_and_fruits: เพิ่มหมายเหตุสำหรับ "การออกดอกและผล"
+    leaves: เพิ่มหมายเหตุสำหรับ "ใบ"
     life_stage: เพิ่มหมายเหตุสำหรับ "ระยะการเจริญ"
     evidence_of_presence: เพิ่มหมายเหตุสำหรับ "หลักฐานที่พบ"
   add_another_flag: เพิ่มอีกรายงาน
@@ -283,9 +288,12 @@ th:
   add_plant_phenology_fruiting_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดผล"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): ไม่มีหลักฐานของการเกิดดอก"'
   add_flowers_and_fruits_flower_buds_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: แตกตาดอก"'
+  add_flowers_and_fruits_flowers_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: ออกดอก"'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: ออกผลหรือเมล็ด"'
   add_flowers_and_fruits_no_flower_or_fruits: 'เพิ่มหมายเหตุ "การออกดอกและผล: ไม่ออกดอกหรือผล"'
   add_leaves_breaking_leaf_buds: 'เพิ่มหมายเหตุ "ใบ: แตกใบอ่อน"'
+  add_leaves_green_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบเขียว"'
+  add_leaves_colored_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบเปลี่ยนสี"'
   add_life_stage_adult_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวเต็มวัย"'
   add_life_stage_teneral_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: หลังลอกคราบ"'
   add_life_stage_subimago_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวรองตัวเต็มวัย"'
