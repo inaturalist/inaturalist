@@ -13,8 +13,8 @@ tr:
     one: '%{count} favori'
     other: '%{count} favori'
   x_flags_resolved_html:
-    one: "<span class='count'>%{count}</span> işaret kaldırıldı"
-    other: "<span class='count'>%{count}</span> işaret kaldırıldı"
+    one: "<span class='count'>%{count}</span> işaret çözümlendi"
+    other: "<span class='count'>%{count}</span> işaret çözümlendi"
   x_identifications:
     one: '%{count} tanımlama'
     other: '%{count} tanımlama'
@@ -372,7 +372,7 @@ tr:
   add_life_stage_pupa_annotation: '"Yaşam Evresi: Pupa" açıklaması ekle'
   add_life_stage_nymph_annotation: '"Yaşam Evresi: Nemf" açıklaması ekle'
   add_life_stage_larva_annotation: '"Yaşam Evresi: Larva" açıklaması ekle'
-  add_life_stage_juvenile_annotation: '"Yaşam Evresi: Olgunlaşmamış" açıklaması ekle'
+  add_life_stage_juvenile_annotation: '"Yaşam Evresi: Jüvenil" açıklaması ekle'
   add_life_stage_egg_annotation: '"Yaşam Evresi: Yumurta" açıklaması ekle'
   add_evidence_of_presence_organism_annotation: '"Varlık Kanıtı: organizma" ek açıklaması ekle'
   add_evidence_of_presence_feather_annotation: '"Varlık Kanıtı: tüy" ek açıklaması ekle'
@@ -942,10 +942,10 @@ tr:
   #Plural noun, as in changes to a taxon record over time
   changes: Değişiklikler
   #disagreements are identifications that disagree with other identifications on the same observation
-  changing_the_ancestry_to_that_parent: Soyun bu üst sınıfla değiştirilmesi beklenmeyen uyuşmazlıklara neden olabilir. Lütfen önce bunları analiz edin, bu biraz zaman alabilir.
+  changing_the_ancestry_to_that_parent: Soyun bu üst soyla değiştirilmesi beklenmeyen uyuşmazlıklara neden olabilir. Lütfen önce bunları analiz edin, bu biraz zaman alabilir.
   changing_the_geoprivacy: 'Coğrafi gizliliği değiştirmek, diğer kişilerin, gözleminin konumunu nasıl göreceğini değiştirir.'
   check_above_for_errors: Yukarıdaki hataları kontrol et
-  check_back_soon: Yakında kontrol et!
+  check_back_soon: Yakında tekrar kontrol et!
   check_here_to_autoload_description: Vikipedi'den açıklamayı otomatik yüklemek için burayı işaretle. Bir taksonun bilimsel adı aynı zamanda bilimsel olmayan bir sözcük ya da "Parus" gibi yaygın bir yanlış yazım olduğunda bu işareti kaldırmak isteyebilirsin.
   check_here_to_autoload_photos: Flickr'dan fotoğrafları otomatik yüklemek için burayı işaretle. Bir taksonun bilimsel adı aynı zamanda bilimsel olmayan bir sözcük ya da "Parus" gibi yaygın bir yanlış yazım olduğunda bu işareti kaldırmak isteyebilirsin.
   check_list: Kontrol listesi
@@ -983,7 +983,7 @@ tr:
   citation: Atıf
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
   clashes_occur_for_moves_html: |
-    Beklenmeyen uyuşmazlıklar, bir alt taksonun <strong>(E)</strong> taksonomik ağacın başka bir bölümüne taşınmasıyla bir üst taksonun <strong>(B)</strong> daraltılması sonucu oluşur. Bu durum, üst taksona ait mevcut tanımlamaların, taşınan alt taksona ait mevcut kimliklerle çeliştiği şeklinde yorumlanmasına neden olur.
+    Beklenmeyen uyuşmazlıklar, bir alt taksonun <strong>(E)</strong> taksonomik ağacın başka bir bölümüne taşınmasıyla bir üst taksonun <strong>(B)</strong> daraltılması sonucu oluşur. Bu durum, üst taksona ait mevcut tanımlamaların, taşınan alt taksona ait mevcut tanımlamalarla çeliştiği şeklinde yorumlanmasına neden olur.
   #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
   clashes_occur_for_swaps_html: |
     Beklenmeyen uyuşmazlıklar, bir alt taksonun <strong>(E)</strong> taksonomik ağacın başka bir bölümüne taşınmasıyla, üst taksonun <strong>(B)</strong> daraltılması sonucu oluşur. Bu durum, üst taksona ait mevcut tanımlamaların, taşınan alt taksona ait mevcut tanımlamalarla uyuşmazlık olarak yorumlanmasına neden olur.
@@ -1098,7 +1098,7 @@ tr:
   conservation_status_deleted: Koruma durumu silindi
   conservation_status_updated: Koruma durumu güncellendi
   conservation_status_descriptions:
-    status: Statü kodu, rütbe, vb. E ya da CR gibi kısa bir kod var ise lütfen bunu kullanın ancak yok ise lütfen tam durumu kullanın, ör. nesli tükenmekte ya da kritik derecede tehlikede.
+    status: Statü kodu, rütbe, vb. E ya da CR gibi kısa bir kod var ise lütfen bunu kullanın ancak yok ise lütfen tam durumu kullanın, ör. nesli tükenmekte ya da kritik derecede nesli tükenmekte.
     description: Bunun neden listelendiğinin kısa açıklaması.
     authority: |
       Bu statüyü ilan eden kuruluş. Lütfen yeni bir otorite eklemeden önce mevcut bir otoriteyi seçmek için otomatik tamamlamayı kullanın. Eğer *sen* yetkili olarak listelenmek istiyorsan bunu atlayabilirsin.
@@ -1175,7 +1175,7 @@ tr:
     larva: Larva
     #Evidence of an egg of an organism
     egg: Yumurta
-    juvenile: Olgunlaşmamış
+    juvenile: Jüvenil
     alive_or_dead: Canlı ya da Ölü
     alive: Canlı
     dead: Ölü
@@ -1302,7 +1302,7 @@ tr:
   created_on: Oluşturma tarihi
   creative_commons_flickr_tagged: Creative Commons Flickr Fotoğrafları Etiketlendi
   creative_commons_unless_otherwise_noted: "Tersi belirtilmediği sürece Creative Commons."
-  critically_endangered: Kritik Derecede Tehlikede
+  critically_endangered: Kritik Derecede Nesli Tükenmekte
   css_description: Bu, sayfadaki diğer tüm css'lerden sonra eklenecektir.
   csv: CSV
   csv_file: CSV dosyası
@@ -1559,7 +1559,7 @@ tr:
   destination: Hedef
   destroy: İmha et
   details: Ayrıntılar
-  deviation: Uygunsuzluk
+  deviation: Sapma
   devise:
     confirmations:
       confirmed: |
@@ -1578,6 +1578,8 @@ tr:
         Lütfen e-postanı kontrol et ve hesabını doğrulamak için aldığın e-postadaki bağlantıya tıkla.
       user:
         suspended: Hesabın askıya alındı
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Şifre sıfırlama belirteci geçersiz. Lütfen en son gönderilen şifre sıfırlama e-postasındaki bağlantıyı kullanın veya <a href="%{url}">yeni bir tane isteyin</a>.
     sessions:
       signed_in: 'Başarıyla giriş yapıldı.'
       signed_out: 'Başarıyla çıkış yapıldı.'
@@ -1691,8 +1693,8 @@ tr:
   download_kml: KML'yi İndir
   downstream_coverage_rank: Alt soy kapsam düzeyi
   downstream_coverage_colon_rank: "Alt soy kapsamı: %{rank} düzeyi"
-  downstream_deviations: Alt soy uyumsuzlukları
-  downstream_deviations_for_taxon: "%{taxon} için alt takson uyumsuzluğu"
+  downstream_deviations: Alt soy sapmaları
+  downstream_deviations_for_taxon: "%{taxon} için alt soy sapmaları"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Alt soy işaretli taksonlar
@@ -1763,14 +1765,14 @@ tr:
   editing: Düzenleme
   #Title for a page to edit an announcement
   editing_announcement_x: Duyuru düzenleme %{id}
-  editing_custom_project_fields_for: Şunun için özel proje alanlarını düzenleme
+  editing_custom_project_fields_for: 'Özel proje alanlarını düzenleme:'
   editing_observation_field: Gözlem alanını düzenleme
   editing_observation_id: "%{obs_id} Gözlemini Düzenleme"
   editing_observations:
     one: '<span class="count">1</span> gözlemi düzenleme:'
     other: '<span class="count">%{count}</span> gözlemi düzenleme:'
   editing_project: '%{project} Düzenleme'
-  editing_project_asset: 'Şunun için Proje İçeriğini Düzenleme:'
+  editing_project_asset: 'Proje Öğesi Düzenleme:'
   editing_subscription_to_x_html: "%{x} Aboneliğini Düzenleme"
   editing_taxon: '%{taxon} düzenleme'
   editing_taxon_link: Takson Bağlantısını Düzenleme
@@ -1870,12 +1872,12 @@ tr:
   external_applications: Harici Uygulamalar
   external_applications_description: |
     Harici Uygulamalar, iNaturalist hesabına senin adına erişmelerine izin verdiğin üçüncü parti uygulamalardır. Genel olarak, hesabınla yapabildiğin her şeyi onlar da yapabilir, bu yüzden erişim izni vermeden önce uygulamanın geliştiricilerine güvendiğinden emin olmalısın.
-  external_taxon_including_children: Harici takson (alt taksonları dahil)
+  external_taxon_including_children: Harici takson (alt taksonlar dahil)
   extinct: soyu tükenmiş
   extinct_in_the_wild: Doğada Soyu Tükenmiş
   extra_properties: Ek Özellikler
   evidence_of_organism: Organizmanın kanıtı
-  evidence_related_to_single_subject: Tek bir süjeyle ilgili kanıt
+  evidence_related_to_single_subject: Tek bir organizmayla ilgili kanıt
   facebook: Facebook
   failed_to_find_your_location: Konumun bulunamadı.
   failed_to_repair_photo: "Fotoğraf onarılamadı: %{errors}"
@@ -2129,11 +2131,11 @@ tr:
   has_id_supported_by_two_or_more: İki ya da daha çok kişi tarafından desteklenen tanım var
   has_one_or_more_faves: Bir veya Daha Fazla Favorisi Var
   has_photo: Fotoğraf Var
-  has_photos: Fotoğraflar Var
+  has_photos: Fotoğraf Var
   has_photo_and_sound: Hem Fotoğraf Hem Ses Var
-  has_photos_or_sounds: Fotoğraflar ya da Sesler Var
+  has_photos_or_sounds: Fotoğraf veya ses var
   has_sound: Ses Var
-  has_sounds: Sesler Var
+  has_sounds: Ses Var
   hasnt_contributed_any_observations: bu projeye herhangi bir gözlem katkısında bulunmamıştır.
   header_your_observations: Gözlemlerin
   header_your_calendar: Takvimin
@@ -2187,7 +2189,7 @@ tr:
   high: Yüksek
   #Highest taxonomic rank to filter by, where the "highest" possible rank is
   #kingdom
-  highest_rank: En Yüksek Sıra
+  highest_rank: En Yüksek Düzey
   highlights_and_stats_from_year_on_site: "%{site} sayfasının %{year} yılındaki öne çıkanları ve istatistikleri"
   history: Geçmiş
   home: Ana Sayfa
@@ -2255,7 +2257,7 @@ tr:
     Bilgisayarla görü, bilgisayarlara görüntüdeki şekilleri öğretme sürecidir. Kendiliğinden tamamlama ve karşılaştırma özellikleri gibi tanımlama önerileri sağlamak için topluluğun fotoğrafları üzerinde eğitilmiş bilgisayarlı görme modellerini kullanan araçlar sunuyoruz. Bu etiket, bir kişinin bu araçlardan birini kullanarak ne zaman tanımlama eklediğini gösterir.
   identifiers: Tanımlayıcılar
   identotron: Identotron
-  identotron_for: Şunun için Identotron
+  identotron_for: 'Identotron:'
   identotron_help: Identotron yardımı
   ids: "Tanımlamalar"
   ids_made_for_others__title: Diğerleri için Yapılan Tanımlamalar
@@ -2327,11 +2329,11 @@ tr:
   inactive: Pasif
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
-  inactive_complete_set_status: Devre Dışı
+  inactive_complete_set_status: Pasif
   inactive_taxon: Pasif Takson
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
-  inactive_taxon_status: Devre Dışı
+  inactive_taxon_status: Pasif
   inactive_taxon_concepts_are: Pasif takson ya taksonomik olarak güncel değildir ya da bir takson değiştirme için hazırlanmaktadır. Eski kavramlar, geçmişi korumak ve bazı ortak sitelerle uyumluluğu sağlamak için korunmaktadır.
   inappropriate_content: Uygunsuz içerik mi?
   inat_account_action: "%{site_name}&#58; Hesap &#58;%{action_name}"
@@ -2359,7 +2361,7 @@ tr:
   insert_a_quote: Bir alıntı ekle
   interactions: Etkileşimler
   internal_server_error: İç Sunucu Hatası
-  internal_taxon_including_descendants: Dahili takson (alt taksonları içerir)
+  internal_taxon_including_descendants: Dahili takson (alt taksonlar dahil)
   internal_taxon_rank: Dahili takson düzeyi
   introduced: Egzotik Tür
   introduced_in_place: "%{place} konumunda egzotik tür"
@@ -2761,7 +2763,7 @@ tr:
   low: Düşük
   #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
   #subspecies or variety
-  lowest_rank: En Düşük Sıra
+  lowest_rank: En Düşük Düzey
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
   make_admin: Yönetici yap
@@ -2918,13 +2920,13 @@ tr:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
-    datetime_with_offset: "D MMM YYYY · LT Z\n\nDD MMMM YYYY · HH:mm Z"
+    datetime_with_offset: "DD MMMM YYYY · HH:mm Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "DD MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "DD MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    time_hours: "h:mm a"
+    time_hours: "HH:mm"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -3052,7 +3054,7 @@ tr:
   new_check_list_record: "Bu listeyi kapsamlı olarak işaretlemek istiyorsan, onu oluştur, takson ekle ve ardından düzenle; burada kapsamlı olarak işaretleme seçeneğin olacaktır."
   new_comment_on_a_parent_by_user_link: '%{user_link} tarafından %{parent} hakkında yeni yorum'
   new_conservation_status: Yeni Koruma Durumu
-  new_flag_for: Şunun için Yeni İşaret
+  new_flag_for: 'Yeni İşaret:'
   new_guide: Yeni Rehber
   new_journal_post: Yeni Günlük Gönderisi
   new_lexicon: Yeni Sözlük
@@ -3070,13 +3072,13 @@ tr:
   new_post: Yeni Gönderi
   new_project: Yeni Proje
   new_project_asset: Yeni Proje İçeriği
-  new_project_asset_for: 'Şunun için Yeni Proje İçeriği:'
+  new_project_asset_for: 'Yeni Proje Öğesi:'
   new_source: Yeni Kaynak
   new_species_added_in_interval: '%{interval} Aralığında Eklenen Yeni Türler'
   new_species_added_in_interval_x_of_y: '%{interval} Aralığında Yeni Türler Eklendi (%{y} / %{x})'
   new_taxon_change: Yeni takson değiştirme
   new_taxon_link: Yeni Takson Bağlantısı
-  new_taxon_name_for: 'Şunun için Yeni Takson Adı:'
+  new_taxon_name_for: 'Yeni Takson Adı:'
   new_taxon_range: Yeni Takson Yayılımı
   new_taxonomic_change: Yeni Taksonomik Değişiklik (Taslak)
   new_trip: Yeni gezi
@@ -3160,7 +3162,7 @@ tr:
   no_recent_activity: Son etkinlik yok
   no_relevant_annotations: İlgili Açıklama Yok
   no_reply_yet: Henüz yanıt yok
-  no_results_found: Sonuçlar bulunamadı
+  no_results_found: Sonuç bulunamadı
   no_results_for: 'Şunun için sonuç yok: '
   no_results_matching: Eşleşen sonuç yok
   no_sections_available: Geçerli bölümler yok.
@@ -3179,7 +3181,7 @@ tr:
   no_taxa_listed: Listelenmiş taksonlar yok
   no_taxa_selected: Seçilmiş taksonlar yok!
   no_taxa_with_unknown_relationships: Bilinmeyen ilişkileri olan taksonlar yok
-  no_taxon_framework_relationships: takson çerçevesi ilişkileri yok
+  no_taxon_framework_relationships: takson çerçevesi ilişkisi yok
   no_taxonomic_changes_match_those_criteria: Bu ölçüte uygun taksonomik değişiklikler yok
   no_users_found_with_those_filters: Bu filtrelerle eşleşen herhangi bir kullanıcı bulunamadı
   no_wikipedia_page_for_taxon: Bu takson için Vikipedi sayfası yok.
@@ -3189,13 +3191,13 @@ tr:
   #Title for a preference to control whether you receive notifications about
   #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
   #someone else adds an ID of Mammalia but does not make it a disagreement.
-  non_disagreeing_ancestor_ids: Çelişmeyen Üst Soy Tanımlamaları
+  non_disagreeing_ancestor_ids: Uyuşan üst soy tanımlamaları
   #Description of a preference to control whether you receive notifications
   #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
   #and someone else adds an ID of Mammalia but does not make it a
   #disagreement.
   non_disagreeing_ancestor_ids_description: |
-    Bunu kapatırsan, tanımlamandaki taksonun üst taksonunu içeren ve Topluluk Taksonu ile açıkça çelişmeyen bir takson tanımlaması eklendiğinde bildirim almazsın. Ancak, tanımlama ek açıklamalar içeriyorsa bildirim almaya devam edeceksin.
+    Bunu kapatırsan, tanımlamandaki taksonun üst taksonunu içeren ve Topluluk Taksonu ile açıkça uyuşan bir takson tanımlaması eklendiğinde bildirim almazsın. Ancak, tanımlama ek açıklamalar içeriyorsa bildirim almaya devam edeceksin.
   non_human?: İnsan değil mi?
   #A user who does not admin any projects
   non_project_admin: Proje yöneticisi olmayan kişi
@@ -3215,7 +3217,7 @@ tr:
   not_finding_place_you_want?: İstediğin konumu bulamıyor musun?
   not_found: Bulunamadı
   #Filter for observations not in a particular place
-  not_in_place: Konumlandırılmamış
+  not_in_place: Şu konum hariç
   not_linked_flickr: "%{site_name} hesabın, Flickr hesabına bağlı değil"
   not_on_this_list: Bu listede değil.
   not_recorded: Kaydedilmemiş
@@ -3444,8 +3446,8 @@ tr:
   observations_near_a_place_are: |
     Bir konumun "yakınındaki" gözlemler, konum sınırının etrafına çizilen bir dikdörtgenin içindedir; bu da dikdörtgene benzemeyen yerler için bazı yanlış sonuçlara neden olabilir. Bu durum, veritabanımızda çözmeye çalıştığımız bir sınırlamadan kaynaklanmaktadır.
   observations_needing_curation: Düzenleme Gerektiren Gözlemler
-  observations_observed_this_month: Bu ay <em>gözlemlenen</em> gözlemler, bu ay eklenmedi. Dışarı çık!
-  observations_of_relatives: Benzer Gözlemler
+  observations_observed_this_month: Bu ay <em>gözlemlenen</em> gözlemler, bu ay eklenenler değil. Haydi doğaya!
+  observations_of_relatives: Benzer gözlemler
   observations_of_taxon: "%{taxon_name} gözlemleri"
   observations_per_month: Gözlemler / Ay
   observations_removed_from_the_project: "Gözlemler, \"%{project}\" projesinden kaldırıldı"
@@ -3499,9 +3501,9 @@ tr:
   official_blog: Resmi Blog
   offline_access_enabled: Çevrim dışı erişim etkin
   #Header label for hiding or unhiding the time shifter in the Uploader
-  offset_time: "Saat Farkı"
+  offset_time: "Zaman Kaydırma"
   #Button label to offset the date/time of observations by a set number of hours
-  offset_time_verb: Ayarla
+  offset_time_verb: Uygula
   old_observation_form: Eski gözlem formu (kullanımdan kaldırıldı)
   ok: "TAMAM"
   on_caps: "AÇIK"
@@ -3542,7 +3544,7 @@ tr:
   only_an_admin_can_remove_project_users: Proje kullanıcılarını yalnızca bir yönetici kaldırabilir
   only_curators_can_add_edit_scientific_names: Yalnızca küratörler bilimsel isimleri ekleyebilir/düzenleyebilir.
   only_curators_can_access_that_page: Bu sayfaya yalnızca küratörler erişebilir.
-  only_files_with_10000_rows_at_a_time: Lütfen, yalnızca 10,000 satırdan az dosyalar
+  only_files_with_10000_rows_at_a_time: Lütfen, yalnızca 10.000 satırdan az dosyalar
   only_one_coordinate_system_per_file: |
     Dosya başına yalnızca bir koordinat sistemi kullanılabilir, aksi takdirde yanlış dönüştürme veya görüntüleme meydana gelir.
   only_project_curators_can_do_that: Bunu sadece proje küratörleri yapabilir.
@@ -3618,9 +3620,9 @@ tr:
   overlapping_downstream_taxon_frameworks_html: "Çakışan alt takson Takson Çerçeveleri: %{count}"
   owner: Sahip
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
-  parent: Üst sınıf
+  parent: Üst Kategori
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
-  parent_name: Üst sınıf adı
+  parent_name: Üst soy adı
   parental_consent:
     must_specify_email: Bir e-posta adresi belirtmelisin
     invalid_email: Geçersiz e-posta formatı
@@ -3638,12 +3640,12 @@ tr:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
     #added an observation
-    observation: bir <a href="%{observation_url}">gözlem</a> eklendi
+    observation: bir <a href="%{observation_url}">gözlem</a> ekledi
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: '%{user_link} tarafından bir %{observation_link}e <strong>tanımlama</strong> eklendi'
+      with_observation: '%{user_link} tarafından yapılan bir %{observation_link}e <strong>tanımlama</strong> ekledi'
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
@@ -3678,7 +3680,7 @@ tr:
   photos_locked_desc: Bu takson için varsayılan fotoğrafları yalnızca personel değiştirebilir
   photos_of_taxon_html: "%{taxon} Fotoğrafları"
   photos_or_sounds: Fotoğraflar veya sesler
-  photos_or_sounds?: Fotoğraflar veya sesler var mı?
+  photos_or_sounds?: Fotoğraf veya ses var mı?
   photos_size:
     small: küçük
     medium: orta
@@ -4148,6 +4150,20 @@ tr:
     Konum sınırlarını düzenlemek iNat'taki en büyük yavaşlama kaynaklarından biridir. Bundan kaçınabiliyorsan, kesinlikle gerekli olmadıkça konum sınırlarını ekleme, değiştirme ya da kaldırma.
   places_warning_quota: |
     Günde üçten fazla konum oluşturamazsın.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Konumlar 700.000 kilometrekareden büyük olamaz.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Konumlar 70.000 kilometrekareden büyük olamaz.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Konumlar 200.000'den fazla gözlem içeremez.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Konumlar 10.000'den fazla gözlem içeremez.
   places_warning_the_future: |
     Ne olursa olsun, iNat'in mevcut büyüme hızı göz önüne alındığında, gelecekte insanların konum ekleyebileceği koşulları kısıtlamamız gerekecek.
   plants: bitkiler
@@ -4463,7 +4479,7 @@ tr:
   receive_project_journal_notifications?: Proje günlüklerinden bildirim almak ister misin?
   receive_updates_from_this_project: Bu projeden güncellemeleri al
   recent: Son
-  recent_evidence_of_organism: Bir organizmanın son kanıtı
+  recent_evidence_of_organism: Organizmanın yakın zamanlı kanıtı
   recent_exports: Son Dışa Aktarmalar
   recent_new_users: Son Yeni Kullanıcılar
   recent_observations: Son gözlemler
@@ -4494,7 +4510,7 @@ tr:
   relationships:
     match: eşleme
     one_to_one: birden bire
-    alternate_position: alternati̇f pozi̇syon
+    alternate_position: alternatif pozisyon
     many_to_many: çoktan çoğa
     many_to_one: çoktan bire
     one_to_many: birden çoğa
@@ -4659,7 +4675,7 @@ tr:
   search_projects: Projeleri Ara
   #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
   search_reasons: Nedenleri Ara
-  search_results_for: Sonuçları Şunun için Ara
+  search_results_for: 'Arama Sonuçları:'
   search_results_for_query: '"%{query}" için Sonuçları Ara'
   search_remote: Uzaktan Ara
   search_species: Tür Ara
@@ -4732,7 +4748,7 @@ tr:
   #have no annotation
   show_no_annotation: '"Açıklama Notu Olmayan"ları Göster'
   show_off_your_recent_observations: Son gözlemlerini kendi blogunda ya da web sitende göster!
-  show_only: Sadece göster
+  show_only: 'Sadece şu(nlar):'
   #Label for a button that shows map data from OpenStreetMap
   show_openstreetmap: OpenStreetMap'i göster
   show_relative_proportions_of_all_observations: Tüm gözlemlerin göreli oranlarını göster
@@ -5099,7 +5115,7 @@ tr:
   taxon_colors: Takson Renkleri
   taxon_curators: Takson Küratörleri
   taxon_framework_complete: "Tamamlama: evet"
-  taxon_framework_deviations_with_count_html: "Uygunsuzluklar: %{count}"
+  taxon_framework_deviations_with_count_html: "Sapmalar: %{count}"
   taxon_framework_relationships_with_count_html: "Takson Çerçevesi İlişkileri: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "İşaretlenmiş kapsanan taksonlar: %{count}"
@@ -5147,7 +5163,7 @@ tr:
   taxon_scheme: Takson şeması
   taxon_schemes: "Takson Şemaları"
   taxon_search: Takson Arama
-  taxon_search_results_for: 'Şunun için Takson Araması sonuçları:'
+  taxon_search_results_for: 'Takson Araması sonuçları:'
   taxon_split: takson bölme
   #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
@@ -5173,7 +5189,7 @@ tr:
   taxonomic_status: Taksonomik durum
   taxonomic_tags_for_flickr: Flickr için Taksonomik Etiketler
   taxonomy_details: Taksonomi Detayları
-  taxonomy_details_for: 'Şunun için taksonomi ayrıntıları:'
+  taxonomy_details_for: 'Taksonomi ayrıntıları:'
   taxonomy_details_info: 'Taksonomi Ayrıntıları sayfası, bir taksonla neyi kastettiğimizi açıklamaya yardımcı olmak için Takson Çerçevelerini kullanır. <a href="/pages/taxon_frameworks">Daha çok bilgi edin.</a>'
   taxonomy_settings: Taksonomi Ayarları
   teachers_guide: Öğretmen Rehberi
@@ -5608,9 +5624,9 @@ tr:
   #@gender operates on %{x}
   user_added_a_x: "%{user} bir %{x} ekledi"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}e %{x} ekledi"
+  user_added_a_x_to_noun_by_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}e %{x} ekledi"
+  user_added_a_x_to_noun_by_user_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
   #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user}, senin yaptığın %{noun}e %{x} ekledi"
   #@gender operates on %{x}
@@ -5888,7 +5904,7 @@ tr:
   without_annotation: Açıklamasız
   widget: Widget
   widget_code: Widget kodu
-  widget_for: Şunun için widget
+  widget_for: 'Widget:'
   wikipedia_attribution_cc_by_sa_3: |
     Kaynak: Vikipedi, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
@@ -5930,7 +5946,7 @@ tr:
     other: "%{x} / %{count} gözlemlendi"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x}/%{y} kişi (2/3'ü geçen) bunu kabul ediyor"
   x_is_the_root_of_the_tree: "%{rank} %{name} ağacın köküdür"
-  x_project_journal: "%{project} projesinin adı: %{name}"
+  x_project_journal: "%{project}: %{name}"
   x_project_stats: "%{project} İstatistikleri"
   x_sent_you_a_new_message_on_y_html: "%{x} sana %{y} üzerine bir ileti yolladı: "
   x_site_is_a_social_network_for_naturalist: |
@@ -6157,6 +6173,8 @@ tr:
         Birden fazla seçim yapmak için CMD veya SHIFT tuşuna basarak tıkla. "Tümünü" seçmek ya da herhangi bir seçim yapmamak, duyurunun istemci fark etmeksizin tüm kullanıcılara gösterilmesini sağlar.
       end_desc: |
         Bu duyurunun görünmeyi durduracağı zaman, hesap saat diliminize göre ayarlanır. Saat dilimleri arasında geçerlidir; yani herkes duyuruyu aynı anda görmeyi bırakır, yerel saatlerine göre değil.
+      excludes_non_site_desc: |
+        Duyurunuz bir siteyi hedefliyorsa (Site Yöneticisiyseniz varsayılan olarak böyledir), bu bölümde tüm siteleri hedefleyen duyurular hariç tutulacaktır.
       ip_countries_desc: |
         Birden fazla seçim yapmak için CMD- veya SHIFT-tıklayın. "Tümünü" seçmek veya seçim yapmamak, duyuruyu IP ülkesine bakılmaksızın tüm kullanıcılara gösterecektir.
       #Note about how the announcement last observation date property works
@@ -6907,7 +6925,7 @@ tr:
       import:
         coordinate_systems_help: |
           %{site_name} birkaç farklı koordinat sistemi kullanan koordinatları kabul eder, bu nedenle koordinatları enlem / boylam dışında bir sistemde verdiğinizde, bunları doğru bir şekilde yorumlayabilmek için hangi koordinat sistemini kullandığın bilmemiz gerekir. Lütfen verilerin için doğru koordinat sistemini seçtiğinden emin ol, aksi takdirde konum olması gereken yerden çok uzakta olabilir. Koordinatların bir GPS ünitesinden alındıysa, kullandığı koordinat sisteminin adını öğrenmek için ünitenin ayarlarını kontrol et. Özel koordinatları saklamadığımızı, yalnızca enlem/boylam dönüşümlerini sakladığımızı unutma.
-        date_column_format: YYYY-AA-GG SS:DD
+        date_column_format: GG-AA-YYYY SS:DD
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Coğrafi gizlilik sütunu İngilizce olmalı ve boş olmalı, veya "özel" ya da "gizlenmiş" bir değere sahip olmalı
@@ -7710,7 +7728,7 @@ tr:
           "Leaves=No Live Leaves": Canlı Yaprak Yok
           "Life Stage=Egg": Yumurta
           "Life Stage=Larva": Larva
-          "Life Stage=Juvenile": Olgunlaşmamış
+          "Life Stage=Juvenile": Jüvenil
           "Life Stage=Nymph": Nemf
           "Life Stage=Pupa": Pupa
           "Life Stage=Subimago": Subimago
@@ -7977,7 +7995,7 @@ tr:
           select_a_lexicon: Bir sözlük seç
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
-          the_maximum_number_of_lexicons_have_been_added: En çok 3 yaygın ad sözlüğü halihazırda eklenmiştir
+          the_maximum_number_of_lexicons_have_been_added: En fazla 3 yaygın ad sözlüğü halihazırda eklenmiştir
         this_only_applies_to_traditional_projects2: |
           Bu yalnızca geleneksel projeler için geçerlidir. Gözlemleri, esasen kaydedilmiş aramalar olan koleksiyon veya şemsiye projelerden hariç tutamazsın. Daha fazlasını <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">buradan</a> okuyabilirsin.
       recent:
@@ -8164,11 +8182,11 @@ tr:
         other: neredeyse %{count} yıl
       half_a_minute: yarım dakika
       less_than_x_minutes:
-        one: '%{count} dakikadan az'
-        other: '%{count} dakikadan az'
+        one: '%{count} dakikadan kısa süre önce'
+        other: '%{count} dakikadan kısa süre önce'
       less_than_x_seconds:
-        one: '%{count} saniyeden az'
-        other: '%{count} saniyeden az'
+        one: '%{count} saniyeden kısa süre önce'
+        other: '%{count} saniyeden kısa süre önce'
       over_x_years:
         one: '%{count} yıldan fazla'
         other: '%{count} yıldan fazla'
@@ -8266,21 +8284,21 @@ tr:
     am: öö
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      default: '%-d %b %Y, %H.%M.%S %z'
+      default: '%d %b %Y, %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      long: '%-d %B %Y %H.%M'
+      long: '%d %B %Y %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
+      short: '%d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short_with_year: "%-d %b %Y %H:%M\n\n"
+      short_with_year: '%d %b %Y %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      compact: "%I:%M %p"
+      compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      observed_at: '%I:%M %p %Z'
+      observed_at: '%H:%M %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      day_month_year: "%-d %B %Y"
+      day_month_year: "%d %B %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      hours: "%l:%M %p"
+      hours: "%H:%M"
     pm: ös
   activerecord:
     models:
@@ -8329,6 +8347,7 @@ tr:
         exclude_donor_start_date: Bağışçı başlangıç tarihini hariç tut
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Bağışçı bitiş tarihini hariç tut
+        excludes_non_site: Site ID'si bulunmayan diğer duyuruları bu bölümde gizle
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Uygulamalardan gelen gözlemcileri hariç tut

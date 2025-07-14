@@ -1395,6 +1395,8 @@ hu:
         Nézd meg az emailjeidet, és kattints a megerősítő emailünkben található linkre.
       user:
         suspended: A fiókod fel van függesztetve
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: A jelszóvisszaállító token érvénytelen. Kérjük, hogy a legutóbbi emailünkben található linket használd, vagy <a href="%{url}">kérj egy újat</a>.
     sessions:
       signed_in: 'Sikeres bejelentkezés.'
       signed_out: 'A kijelentkezés sikeres.'
@@ -3696,6 +3698,20 @@ hu:
     Az új hozzáadott területek nagyon nagy mértékben hozzájárulnak az iNatralist lassulásához, ezért <strong>csak nagyon indokolt esetben hozz létre új területet</strong>. A néhány ezer megfigyeléssel rendelkező kisebb területek elfogadhatóak, azonban a sok megfigyeléssel rendelkező nagyobb területek hozzáadásával minden felhasználó számára érhezető módon lelassul a rendszer. Alternatívák:
   places_warning_quota: |
     Csak három területet hozhatsz létre egy nap.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    A helyek nem lehetnek nagyobbak 700 000 négyzetkilométernél.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    A helyek nem lehetnek nagyobbak 70 000 négyzetkilométernél.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    A helyek nem tartalmazhatnak 200 000-nél több megfigyelést.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    A helyek nem tartalmazhatnak 10 000-nél több megfigyelést.
   places_warning_the_future: |
     Az iNaturalist jelenlegi növekedési rátáját szemlélve a jövőben további korlátozások lesznek indokoltak.
   plants: növények
@@ -5325,6 +5341,8 @@ hu:
         CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül a klienstől.
       end_desc: |
         A bejelentés leállításának időpontja a fiókod időzonája szerint. Időzónákon keresztül érvényes, így mindenkinek ugyanakkor fog eltűnni a bejelentés, nem pedig a helyi időzónájuk alapján.
+      excludes_non_site_desc: |
+        Ha a bejelentés egy webhelyet céloz meg (ami az alapértelmezett, ha adminisztrátor vagy), ez kizárja azokat a bejelentéseket, amelyek az összes webhelyet megcélozzák.
       ip_countries_desc: |
         CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül az IP-cím alapján mehatározott országtól.
       #Note about how the announcement last observation date property works
@@ -6591,6 +6609,7 @@ hu:
         exclude_donor_start_date: Kizárás a támogatás kezdő dátumának alapján
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kizárás a támogatás befejezési dátumának alapján
+        excludes_non_site: Webhelyazonosítóval nem rendelkező egyéb bejelentések elrejtése ebben az elhelyezésben.
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Applikáció-specifikus megfigyelők mellőzése
