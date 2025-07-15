@@ -1,11 +1,11 @@
 - content_for :title do
   =t "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist"
 - content_for :extrajs do
-  = javascript_include_tag "https://donorbox.org/widget.js", paypalExpress: false
   :javascript
     $( ".sharing .btn" ).click( function( ) {
       return !window.open( this.href, $(this).text( ), "width=640,height=400" );
     } );
+  = fundraise_up_js
 - content_for :extracss do
   = stylesheet_link_tag :donate, media: "all", cache: true
 - content_for :extrahead do
@@ -20,8 +20,7 @@
       %h1=t "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist"
   .row
     .col-md-5.col-md-offset-1.col-xs-12
-      - # Note: the donorbox iframe supports an amount param in the URL, but it does *not* support utm params as of 2020-12-17. It retrieves those from the URL of the parent window. ~~~kueda 20201217
-      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/inaturalist-monthly-supporters?", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
+      %a{ href: "#XVHLJQGR", style:"display: none" }
     .col-md-5.col-xs-12
       =t "views.donate.monthly_supporters.desc3_html", donate_url: donate_url( utm_campaign: "monthly-supporters", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: "one-time" )
       .sharing

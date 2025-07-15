@@ -3,11 +3,6 @@
 class DonateController < ApplicationController
   layout "bootstrap"
 
-  before_action :authenticate_user!,
-    only: [:index_fundraiseup, :monthly_supporters_fundraiseup]
-  before_action :admin_required,
-    only: [:index_fundraiseup, :monthly_supporters_fundraiseup]
-
   before_action do
     @responsive = true
     @footless = true
@@ -26,16 +21,6 @@ class DonateController < ApplicationController
   end
 
   def fundraiseup; end
-
-  def index_fundraiseup
-    new_params = redirect_params
-    redirect_to donate_index_fundraiseup_url( new_params ) if new_params
-  end
-
-  def monthly_supporters_fundraiseup
-    new_params = redirect_params
-    redirect_to donate_monthly_supporters_fundraiseup_url( new_params ) if new_params
-  end
 
   private
 
