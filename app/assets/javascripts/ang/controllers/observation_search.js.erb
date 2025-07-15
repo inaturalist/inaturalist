@@ -1739,10 +1739,10 @@ var SearchController = function (
   $scope.preInitialize( );
 };
 
-application.controller( "MapController", ["ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope", "testingApiV2",
-  function ( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope, testingApiV2 ) {
+application.controller( "MapController", ["ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope",
+  function ( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     // eslint-disable-next-line no-use-before-define
-    MapController( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope, testingApiV2 );
+    MapController( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope );
     initializeMapController = function ( ) {
       $scope.dragIconMarker = new google.maps.Marker( {
         position: { lat: 0, lng: 0 },
@@ -1764,8 +1764,7 @@ var MapController = function (
   PlacesFactory,
   shared,
   $scope,
-  $rootScope,
-  testingApiV2
+  $rootScope
 ) {
   $rootScope.$on( "updateParamsForCurrentRect", function ( ) {
     $scope.updateParamsForCurrentRect( );
@@ -2139,7 +2138,7 @@ var MapController = function (
       + I18n.t( "loading" ) + "</div>", options );
     var time = new Date( ).getTime( );
     $scope.infoWindowCallbackStartTime = time;
-    var observationID = testingApiV2 ? observation.uuid : observation.id;
+    var observationID = observation.uuid;
     ObservationsFactory.show( observationID, iNaturalist.localeParams( ) )
       .then( function ( response ) {
         var observations = ObservationsFactory.responseToInstances( response );
