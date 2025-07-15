@@ -8,26 +8,18 @@
 /* global CURRENT_USER */
 
 var iNatAPI = angular.module( "iNatAPI", [] );
-iNatAPI.constant( "testingApiV2", (
-  CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" )
-    && CURRENT_USER.roles && CURRENT_USER.roles.includes( "admin" ) )
-  || window.location.search.match( /test=apiv2/ ) );
 
-iNatAPI.factory( "shared", ["$http", "$rootScope", "$filter", "testingApiV2",
-  function ( $http, $rootScope, $filter, testingApiV2 ) {
+iNatAPI.factory( "shared", ["$http", "$rootScope", "$filter",
+  function ( $http, $rootScope, $filter ) {
     var basicGet = function ( url, inputParams ) {
       var params = _.extend( { }, inputParams || { } );
       var config = {
         timeout: 60000 // 60 second timeout
       };
-      var apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
-      if ( testingApiV2 ) {
-        apiURL = apiURL.replace( "/v1", "/v2" );
-        if ( params.fields ) {
-          params.fields = rison.encode( params.fields );
-        }
-      } else {
-        delete params.fields;
+      var apiURL = $( "meta[name='config:inaturalist_api_url']" )
+        .attr( "content" ).replace( "/v1", "/v2" );
+      if ( params.fields ) {
+        params.fields = rison.encode( params.fields );
       }
       var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
       if ( apiToken ) {
