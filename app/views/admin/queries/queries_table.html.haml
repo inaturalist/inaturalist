@@ -1,4 +1,5 @@
-%h2.sub-header= "#{title} (#{queries.count})"
+- title = @source == :replica ? "Replica Queries" : "Primary Queries"
+%h2.sub-header= "#{title} (#{@queries.count})"
 
 %table.table.table-striped
   %thead
@@ -6,7 +7,7 @@
       %th Timing
       %th Info
   %tbody
-    - queries.each do |query|
+    - @queries.each do |query|
       %tr
         %td
           %strong Duration:
