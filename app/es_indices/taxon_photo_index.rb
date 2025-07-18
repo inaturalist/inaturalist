@@ -94,7 +94,8 @@ class TaxonPhoto < ApplicationRecord
         :ancestor_ids
       ]
     ).index_by {| d | d["id"] }
-    batch.reject do | taxon_photo |
+    batch.select {| taxon_photo | taxon_photo&.taxon&.is_active? }.
+      reject do | taxon_photo |
       indexed_doc = existing_indexed_documents[taxon_photo.id]
       # if there is an existing indexed document with an embedding, the same taxon ancestors,
       # and the same photo and version, no need to reindex
