@@ -620,6 +620,8 @@ class Taxon < ApplicationRecord
 
     Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow" ).
       update_stats_for_observations_of( id )
+    TaxonPhoto.elastic_delete_by_ids!( taxon_photos.pluck( :id ) )
+    TaxonPhoto.elastic_index!( ids: taxon_photos.pluck( :id ), delay: true )
     true
   end
 
