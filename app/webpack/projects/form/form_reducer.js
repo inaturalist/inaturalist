@@ -110,6 +110,7 @@ export function createNewProject( type, copyProject ) {
 }
 
 export function setCopyProject( p ) {
+  delete p.admins;
   setAttributes( { copy_project: new Project( p ) } );
   return createNewProject( p.project_type, p );
 }
