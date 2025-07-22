@@ -1524,6 +1524,8 @@ fi:
         vahvistaaksesi tilisi.
       user:
         suspended: Käyttäjätunnuksesi on suljettu
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Salasanan palautustunnus on virheellinen. Käytä viimeksi lähetetyssä salasanan palautussähköpostissa olevaa linkkiä tai <a href="%{url}">pyydä uusi</a>.
     sessions:
       signed_in: 'Sisäänkirjautuminen onnistui.'
       signed_out: 'Uloskirjautuminen onnistui.'
