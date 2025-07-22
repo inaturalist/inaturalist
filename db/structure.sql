@@ -8380,10 +8380,24 @@ CREATE INDEX index_announcement_impressions_on_announcement_id ON public.announc
 
 
 --
+-- Name: index_announcement_impressions_on_ip_and_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcement_impressions_on_ip_and_id ON public.announcement_impressions USING btree (request_ip, announcement_id);
+
+
+--
 -- Name: index_announcement_impressions_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_announcement_impressions_on_user_id ON public.announcement_impressions USING btree (user_id);
+
+
+--
+-- Name: index_announcement_impressions_on_user_id_and_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcement_impressions_on_user_id_and_id ON public.announcement_impressions USING btree (user_id, announcement_id);
 
 
 --
@@ -11645,6 +11659,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250417172959'),
 ('20250519192340'),
 ('20250618190319'),
-('20250702141918');
+('20250702141918'),
+('20250722154500');
 
 
