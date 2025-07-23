@@ -90,6 +90,8 @@ opts = Optimist.options do
   opt :nelng, "Bounding box right longitude", type: :double
   opt :nelat, "Bounding box top latitude", type: :double
   opt :include_uuid, "Add observation UUIDs as otherCatalogNumbers", type: :boolean, default: false
+  opt :include_county, "Add observation county place name", type: :boolean, default: false
+  opt :include_public_coordinates, "Add observation public coordinates if private coordinates used", type: :boolean, default: false
   opt :with_annotations, "Only include observations with annotations that have occurrence fields", type: :boolean, default: false
   opt :with_controlled_terms, "Only include observations with annotations of this term name", type: :strings
   opt :with_controlled_values, "Only include observations with annotations with this value (must be combined with `with_controlled_terms`)", type: :strings

@@ -82,7 +82,16 @@ module DarwinCore
 
     OTHER_CATALOGUE_NUMBERS_TERM = %w(
       otherCatalogueNumbers http://rs.tdwg.org/dwc/terms/otherCatalogNumbers
-    )
+    ).freeze
+
+    COUNTY_TERM = %w(
+      county http://rs.tdwg.org/dwc/terms/county
+    ).freeze
+
+    PUBLIC_COORDINATES_TERMS = [
+      %w(publicLatitude https://www.inaturalist.org/terminology/latitude),
+      %w(publicLongitude https://www.inaturalist.org/terminology/longitude)
+    ].freeze
 
     GBIF_LIFE_STAGES = %w(
       adult
@@ -371,6 +380,12 @@ module DarwinCore
         observations_places.map( &:place ).compact.detect {| p | p.admin_level == Place::STATE_LEVEL }.try( :name )
       end
 
+      def county
+        return if latitude.blank?
+
+        place_county_name
+      end
+
       def identificationID
         first_improving_identification.try( :id )
       end
@@ -553,6 +568,24 @@ module DarwinCore
 
       def projectId
         projects.map {| project | FakeView.project_url( project ) }.join( "|" )
+      end
+
+      # public latitude for when decimalLatitude contains the private latitude
+      def publicLatitude
+        return unless @show_private_coordinates
+        return if private_latitude.blank?
+        return if latitude.blank?
+
+        latitude.to_f
+      end
+
+      # public longitude for when decimalLongitude contains the private longitude
+      def publicLongitude
+        return unless @show_private_coordinates
+        return if private_longitude.blank?
+        return if longitude.blank?
+
+        longitude.to_f
       end
     end
   end

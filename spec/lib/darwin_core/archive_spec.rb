@@ -73,6 +73,30 @@ describe DarwinCore::Archive, "make_descriptor" do
     core_field_terms = xml.xpath( "//xmlns:archive/xmlns:core/xmlns:field" ).map{ |f| f["term"] }
     expect( core_field_terms ).to include "http://rs.tdwg.org/dwc/terms/otherCatalogNumbers"
   end
+  it "should include additional field for county if requested" do
+    archive = DarwinCore::Archive.new
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
+    core_field_terms = xml.xpath( "//xmlns:archive/xmlns:core/xmlns:field" ).map {| f | f["term"] }
+    expect( core_field_terms ).to_not include "http://rs.tdwg.org/dwc/terms/county"
+
+    archive = DarwinCore::Archive.new( include_county: true )
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
+    core_field_terms = xml.xpath( "//xmlns:archive/xmlns:core/xmlns:field" ).map {| f | f["term"] }
+    expect( core_field_terms ).to include "http://rs.tdwg.org/dwc/terms/county"
+  end
+  it "should include additional fields for public coordinates if requested" do
+    archive = DarwinCore::Archive.new
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
+    core_field_terms = xml.xpath( "//xmlns:archive/xmlns:core/xmlns:field" ).map {| f | f["term"] }
+    expect( core_field_terms ).to_not include "https://www.inaturalist.org/terminology/latitude"
+    expect( core_field_terms ).to_not include "https://www.inaturalist.org/terminology/longitude"
+
+    archive = DarwinCore::Archive.new( include_public_coordinates: true )
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
+    core_field_terms = xml.xpath( "//xmlns:archive/xmlns:core/xmlns:field" ).map {| f | f["term"] }
+    expect( core_field_terms ).to include "https://www.inaturalist.org/terminology/latitude"
+    expect( core_field_terms ).to include "https://www.inaturalist.org/terminology/longitude"
+  end
 end
 
 describe DarwinCore::Archive, "make_simple_multimedia_data" do
