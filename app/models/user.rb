@@ -318,6 +318,7 @@ class User < ApplicationRecord
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
   after_destroy :reindex_faved_observations_after_destroy_later
+  after_destroy :reindex_observations_with_voted_annotations_after_destroy_later
   after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
@@ -1362,7 +1363,7 @@ class User < ApplicationRecord
   end
 
   def self.reindex_faved_observations_after_destroy( user_id )
-    while true
+    loop do
       obs = Observation.elastic_search(
         _source: [:id],
         limit: 200,
@@ -1382,12 +1383,44 @@ class User < ApplicationRecord
         }
       ).results.results
       break if obs.blank?
-      Observation.elastic_index!( ids: obs.map(&:id), wait_for_index_refresh: true )
+
+      Observation.elastic_index!( ids: obs.map( &:id ), wait_for_index_refresh: true )
     end
   end
 
   def reindex_faved_observations_after_destroy_later
     User.delay.reindex_faved_observations_after_destroy( id )
+    true
+  end
+
+  def self.reindex_observations_with_voted_annotations_after_destroy( user_id )
+    loop do
+      obs = Observation.elastic_search(
+        _source: [:id],
+        limit: 200,
+        where: {
+          nested: {
+            path: "annotations",
+            query: {
+              bool: {
+                filter: {
+                  term: {
+                    "annotations.votes.user_id": user_id
+                  }
+                }
+              }
+            }
+          }
+        }
+      ).results.results
+      break if obs.blank?
+
+      Observation.elastic_index!( ids: obs.map( &:id ), wait_for_index_refresh: true )
+    end
+  end
+
+  def reindex_observations_with_voted_annotations_after_destroy_later
+    User.delay.reindex_observations_with_voted_annotations_after_destroy( id )
     true
   end
 

@@ -783,6 +783,24 @@ describe User do
       expect( es_response.annotations.size ).to eq 0
     end
 
+    it "should reindex observations with annotations voted on by the user" do
+      o = Observation.make!
+      annotator = make_user_with_privilege( UserPrivilege::INTERACTION )
+      annotation = make_annotation!( resource: o, user: annotator )
+      annotation_voter = make_user_with_privilege( UserPrivilege::INTERACTION )
+      annotation.vote_by voter: annotation_voter, vote: true
+      es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+      expect( es_response.annotations.size ).to eq 1
+      expect( es_response.annotations.first.vote_score_short ).to eq 1
+      expect( es_response.annotations.first.votes.first.user_id ).to eq annotation_voter.id
+      annotation_voter.destroy
+      Delayed::Worker.new.work_off
+      es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+      expect( es_response.annotations.size ).to eq 1
+      expect( es_response.annotations.first.vote_score_short ).to eq 0
+      expect( es_response.annotations.first.votes ).to be_empty
+    end
+
     it "should destroy friendships where user is the friend" do
       f = Friendship.make!
       f.friend.destroy
