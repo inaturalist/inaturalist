@@ -996,7 +996,7 @@ module ApplicationHelper
     elsif code == Observation::CC0
       "https://creativecommons.org/publicdomain/zero/#{Shared::LicenseModule::CC0_VERSION}/"
     elsif code =~ /CC-/
-      "http://creativecommons.org/licenses/#{code[/CC-(.+)/, 1].downcase}/#{Shared::LicenseModule::CC_VERSION}/"
+      "https://creativecommons.org/licenses/#{code[/CC-(.+)/, 1].downcase}/#{Shared::LicenseModule::CC_VERSION}/"
     end
   end
 
