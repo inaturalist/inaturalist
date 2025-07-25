@@ -1706,6 +1706,8 @@ nl:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Meningsverschillen
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Toon waarnemingen met afwijkende determinaties
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Ontkoppelen
@@ -6435,10 +6437,21 @@ nl:
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
         een selectie toont de aankondiging aan alle gebruikers, ongeacht het IP van het land.
         klant.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Merk op dat de aanmaakdatum van de meest recent aangemaakte
+        waarneming is gecached, dus kan het enkele uren duren voordat het van kracht wordt
       observation_oauth_application_ids_desc: |
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
         Een selectie toont de aankondiging aan alle gebruikers, ongeacht
         app.
+      site_ids_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
+        een selectie toont de aankondiging aan alle gebruikers, ongeacht ongeacht
+        site affiliatie.
+      start_desc: |
+        Tijd in de tijdzone van jouw account waarna deze aankondiging zal verschijnen.
+        Geldt voor meerdere tijdzones, zodat iedereen het op dezelfde tijd zal zien, niet ten opzichte van hun lokale tijd.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Target gebruikers op basis van donatiegedrag
@@ -6460,6 +6473,17 @@ nl:
           Atlassen geven de wereldwijde verspreiding van een taxon weer. Curatoren maken
           atlassen door de structuur van een atlas te definiëren en de
           vermelde taxa die het aandrijven.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Klap dit gebied uit
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Klap dit gebied in
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Nog geen wijzigingen in deze atlas
         #Title for a section showing recent alterations to an atlas
@@ -7134,22 +7158,29 @@ nl:
           </li>
           </ul>
       field_descriptions:
+        id: Unieke, sequentiële identifier voor de waarneming
         species_guess: |
           Gewone tekstnaam van het waargenomen taxon; kan door de waarnemer worden ingesteld
           tijdens het maken van een waarneming, maar kan worden vervangen door canonieke,
           locale namen wanneer het taxon verandert
+        scientific_name: "Wetenschappelijke naam van het waargenomen taxon volgens iNaturalist"
         common_name: "Lokale of vernacular name van het waargenomen taxon volgens iNaturalist"
         iconic_taxon_name: Hogere taxonomische categorie voor het waargenomen taxon
+        taxon_id: Unieke, sequentiële identifier voor het waargenomen taxon
         id_please: Of de waarnemer determinatie-hulp heeft gevraagd of niet
+        num_identification_agreements: Aantal determinaties geassocieerd met taxa die overeenkomen met of zijn opgenomen in het taxon van de determinatie van de waarnemer
+        num_identification_disagreements: Aantal determinaties geassocieerd met taxa die niet overeenkomen met of niet zijn opgenomen in het taxon van de determinatie van de waarnemer
         observed_on_string: Datum/tijd zoals door de waarnemer ingegeven
         observed_on: Genormaliseerde datum van de waarneming
         time_observed_at: Genormaliseerde datumtijd van de waarneming
         time_zone: Tijdzone van de waarneming
         place_guess: Localiteitsbeschrijving zoals ingevoerd door de waarnemer
         latitude: Openbaar zichtbare breedtegraad vanaf de waarneminglocatie
+        longitude: Openbaar zichtbare breedtegraad van de waarneminglocatie
         positional_accuracy: "Precisie coördinaten (jaja, nauwkeurigheid != precisie, namen zijn ongelukkig gekozen)"
         private_latitude: "Privé-breedtegraad, instellen als privé-waarneming of vervaagd"
         private_longitude: "Privé-lengtegraad, instellen als waarneming privé of onzichtbaar is"
+        geoprivacy: "Of de waarnemer er al dan niet voor heeft gekozen om de coördinaten te vervagen of te verbergen. Bekijk https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "Meest conservatieve geoprivacy toegepast als gevolg van de behoudsstatus van taxa in de huidige determinatie."
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
