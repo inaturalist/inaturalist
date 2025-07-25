@@ -61,7 +61,7 @@ $.fn.loadFlickrPlacePhotos = function(options) {
     extras: extras,
     safe_search: 1,
     text: "landscape -portrait -model -birthday -honeymoon -festival -halloween -iPad",
-    license: '1,2,3,4,5,6'
+    license: '1,2,3,4,5,6,9,10,11,12,13,14,15,16'
   }
   
   if (PLACE.woeid && PLACE.woeid != '') {
