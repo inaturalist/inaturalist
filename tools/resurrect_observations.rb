@@ -149,7 +149,15 @@ has_many_reflections.each do | k, reflection |
   end
   join_condition = "#{reflection.table_name}.#{reflection.foreign_key} = observations.id"
   # if the reflection is polymorphic, we need to add an additional condition for the type column
-  if %w(comments taggings tag_taggings votes_for flags annotations).include?( k.to_s ) && reflection.options[:as]
+  if %w(
+    comments
+    taggings
+    tag_taggings
+    votes_for
+    flags
+    annotations
+    stored_preferences
+  ).include?( k.to_s ) && reflection.options[:as]
     join_condition += " AND #{reflection.table_name}.#{reflection.options[:as]}_type = 'Observation'"
   end
   if OPTS.from_user_resurrection && @user
@@ -172,6 +180,24 @@ has_many_reflections.each do | k, reflection |
   resurrection_cmds << "psql #{OPTS.dbname} -c \"\\COPY #{reflection.table_name} " \
     "(#{column_names.join( ', ' )}) FROM '#{fname}' WITH CSV\""
 end
+
+puts "Exporting from identification preferences..."
+fname = "resurrect_#{session_id}-identification_preferences.csv"
+column_names = Preference.column_names
+sql = <<-SQL
+  SELECT DISTINCT
+    #{column_names.map {| cn | "preferences.#{cn}" }.join( ', ' )}
+  FROM preferences
+    JOIN identifications ON (
+      preferences.owner_id = identifications.id AND preferences.owner_type = 'Identification'
+    ) JOIN observations ON observations.id = identifications.observation_id
+  WHERE #{@where.join( ' AND ' )}
+SQL
+cmd = "psql #{OPTS.dbname} -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
+puts "\t#{cmd}"
+system cmd
+resurrection_cmds << "psql #{OPTS.dbname} -c \"\\COPY preferences " \
+  "(#{column_names.join( ', ' )}) FROM '#{fname}' WITH CSV\""
 
 unless OPTS.skip.include?( "Photo" )
   puts "Exporting from photos..."
