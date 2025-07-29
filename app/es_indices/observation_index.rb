@@ -247,7 +247,7 @@ class Observation < ApplicationRecord
       indexes :spam, type: "boolean"
       indexes :species_guess, type: "keyword"
       indexes :tags, type: "text", analyzer: "ascii_snowball_analyzer" do
-        indexes :strict, type: "keyword", analyzer: "standard_analyzer"
+        indexes :strict, type: "text", analyzer: "standard_analyzer"
       end
       indexes :taxon do
         indexes :ancestor_ids, type: "integer" do
