@@ -228,6 +228,7 @@ class User < ApplicationRecord
   has_many :user_donations, dependent: :delete_all
   has_many :redirect_links, dependent: :nullify
   has_many :announcements, dependent: :nullify
+  has_many :user_virtuous_tags, dependent: :delete_all
 
   file_options = {
     processors: [:deanimator],
