@@ -38,22 +38,14 @@ potential_errors = [
   RestClient::InternalServerError
 ]
 
-tags_to_sync = %w(
-  MajorDonor
-  MajorDonorProspect
-  Foundation
-  FoundationProspect
-  Ambassador
-)
-
-tag_users = tags_to_sync.to_h {| k | [k, []] }
+tag_users = UserVirtuousTag::POSSIBLE_TAGS.to_h {| k | [k, []] }
 last_contact_id = nil
 
 loop do
   conditions = [{
     parameter: "Tag",
     operator: "IsAnyOf",
-    values: tags_to_sync
+    values: UserVirtuousTag::POSSIBLE_TAGS
   }]
   if last_contact_id
     conditions << {
