@@ -6906,6 +6906,14 @@ en:
         Time in your account time zone that this announcement will start
         appearing. Applies across time zones, so everyone will start seeing
         it at the same time, not relative to their local time.
+      include_virtuous_tags_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "Any" or not making
+        a selection will show the announcement to all users regardless of
+        their Virtuous tags.
+      exclude_virtuous_tags_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "None" or not making
+        a selection will show the announcement to all users regardless of
+        their Virtuous tags.
 
       # Description of a group of options for targeting announcements based
       # on donation behavior

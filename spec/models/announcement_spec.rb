@@ -469,6 +469,24 @@ describe Announcement do
       expect( annc.targeted_to_user?( exclude_user ) ).to be false
       expect( annc.targeted_to_user?( both_user ) ).to be false
     end
+
+    it "includes and excludes users by virtuous tags" do
+      tag_to_include = "Include"
+      tag_to_exclude = "Exclude"
+      annc = create :announcement,
+        target_logged_in: Announcement::YES,
+        include_virtuous_tags: [tag_to_include],
+        exclude_virtuous_tags: [tag_to_exclude]
+      include_user = UserVirtuousTag.make!( virtuous_tag: tag_to_include ).user
+      exclude_user = UserVirtuousTag.make!( virtuous_tag: tag_to_exclude ).user
+      both_user = User.make!
+      UserVirtuousTag.make!( virtuous_tag: tag_to_include, user: both_user )
+      UserVirtuousTag.make!( virtuous_tag: tag_to_exclude, user: both_user )
+      expect( annc.targeted_to_user?( include_user ) ).to be true
+      expect( annc.targeted_to_user?( exclude_user ) ).to be false
+      expect( annc.targeted_to_user?( both_user ) ).to be false
+      expect( annc.targeted_to_user?( User.make! ) ).to be false
+    end
   end
 
   describe "dismissals" do

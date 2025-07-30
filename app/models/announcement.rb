@@ -115,13 +115,19 @@ class Announcement < ApplicationRecord
   end
 
   def compact_array_attributes
-    self.clients = ( clients || [] ).reject( &:blank? ).compact
-    self.locales = ( locales || [] ).reject( &:blank? ).compact
-    self.ip_countries = ( ip_countries || [] ).reject( &:blank? ).compact
-    self.include_observation_oauth_application_ids = ( include_observation_oauth_application_ids || [] ).
-      reject( &:blank? ).compact
-    self.exclude_observation_oauth_application_ids = ( exclude_observation_oauth_application_ids || [] ).
-      reject( &:blank? ).compact
+    array_attributes = %w(
+      clients
+      locales
+      ip_countries
+      include_observation_oauth_application_ids
+      exclude_observation_oauth_application_ids
+      include_virtuous_tags
+      exclude_virtuous_tags
+    )
+    array_attributes.each do | attr |
+      send( "#{attr}=", ( send( attr ) || [] ).reject( &:blank? ).compact )
+    end
+    nil
   end
 
   def clean_target_group
@@ -145,6 +151,8 @@ class Announcement < ApplicationRecord
     self.last_observation_end_date = nil
     self.include_observation_oauth_application_ids = []
     self.exclude_observation_oauth_application_ids = []
+    self.include_virtuous_tags = []
+    self.exclude_virtuous_tags = []
     self.min_identifications = nil
     self.max_identifications = nil
     self.user_created_start_date = nil
@@ -284,6 +292,13 @@ class Announcement < ApplicationRecord
       ).total_entries
       return false if num_obs_from_excluded_apps.positive?
     end
+
+    return false if user && !include_virtuous_tags.blank? &&
+      !user.user_virtuous_tags.map( &:virtuous_tag ).intersect?( include_virtuous_tags )
+
+    return false if user && !exclude_virtuous_tags.blank? &&
+      user.user_virtuous_tags.map( &:virtuous_tag ).intersect?( exclude_virtuous_tags )
+
     true
   end
 

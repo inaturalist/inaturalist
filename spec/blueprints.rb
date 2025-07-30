@@ -616,6 +616,11 @@ UserPrivilege.blueprint do
   privilege { UserPrivilege::SPEECH }
 end
 
+UserVirtuousTag.blueprint do
+  user { User.make! }
+  virtuous_tag { Faker::Lorem.word }
+end
+
 WikiPage.blueprint do
   t = Faker::Lorem.sentence
   title { t }

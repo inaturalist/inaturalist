@@ -413,7 +413,9 @@ CREATE TABLE public.announcements (
     target_curators character varying DEFAULT 'any'::character varying,
     target_project_admins character varying DEFAULT 'any'::character varying,
     target_creator boolean DEFAULT false,
-    excludes_non_site boolean DEFAULT false
+    excludes_non_site boolean DEFAULT false,
+    include_virtuous_tags text[] DEFAULT '{}'::text[],
+    exclude_virtuous_tags text[] DEFAULT '{}'::text[]
 );
 
 
@@ -11722,6 +11724,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250618190319'),
 ('20250702141918'),
 ('20250722154500'),
-('20250729144230');
+('20250729144230'),
+('20250729180530');
 
 

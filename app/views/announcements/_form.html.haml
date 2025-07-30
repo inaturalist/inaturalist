@@ -79,6 +79,11 @@
             .col-xs-2= f.text_field :exclude_donor_end_date, type: "date"
             .col-xs-4
               = f.check_box :prefers_exclude_monthly_supporters, label_after: true
+          .row
+            .col-xs-2
+              = f.select :include_virtuous_tags, UserVirtuousTag::POSSIBLE_TAGS, { include_blank: t( :any_ ) }, multiple: true, description: t( "views.announcements.include_virtuous_tags_desc" ), description_tip: true
+            .col-xs-2
+              = f.select :exclude_virtuous_tags, UserVirtuousTag::POSSIBLE_TAGS, { include_blank: t( :none ) }, multiple: true, description: t( "views.announcements.exclude_virtuous_tags_desc" ), description_tip: true
           %h4
             %i.fa.fa-binoculars
             =t :observations
