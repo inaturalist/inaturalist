@@ -5726,6 +5726,38 @@ ALTER SEQUENCE public.user_signups_id_seq OWNED BY public.user_signups.id;
 
 
 --
+-- Name: user_virtuous_tags; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_virtuous_tags (
+    id bigint NOT NULL,
+    user_id integer,
+    virtuous_tag character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_virtuous_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_virtuous_tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_virtuous_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_virtuous_tags_id_seq OWNED BY public.user_virtuous_tags.id;
+
+
+--
 -- Name: username_reserved_words; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7041,6 +7073,13 @@ ALTER TABLE ONLY public.user_signups ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: user_virtuous_tags id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_virtuous_tags ALTER COLUMN id SET DEFAULT nextval('public.user_virtuous_tags_id_seq'::regclass);
+
+
+--
 -- Name: username_reserved_words id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8222,6 +8261,14 @@ ALTER TABLE ONLY public.user_privileges
 
 ALTER TABLE ONLY public.user_signups
     ADD CONSTRAINT user_signups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_virtuous_tags user_virtuous_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_virtuous_tags
+    ADD CONSTRAINT user_virtuous_tags_pkey PRIMARY KEY (id);
 
 
 --
@@ -10837,6 +10884,20 @@ CREATE UNIQUE INDEX index_user_signups_on_user_id ON public.user_signups USING b
 
 
 --
+-- Name: index_user_virtuous_tags_on_user_id_and_virtuous_tag; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_virtuous_tags_on_user_id_and_virtuous_tag ON public.user_virtuous_tags USING btree (user_id, virtuous_tag);
+
+
+--
+-- Name: index_user_virtuous_tags_on_virtuous_tag; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_virtuous_tags_on_virtuous_tag ON public.user_virtuous_tags USING btree (virtuous_tag);
+
+
+--
 -- Name: index_users_on_canonical_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11660,6 +11721,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250519192340'),
 ('20250618190319'),
 ('20250702141918'),
-('20250722154500');
+('20250722154500'),
+('20250729144230');
 
 

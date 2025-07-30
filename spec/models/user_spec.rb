@@ -1,6 +1,7 @@
-# Not sure why but freezing string literals breaks stub_request
 # rubocop:disable Style/FrozenStringLiteralComment
-require "#{File.dirname( __FILE__ )}/../spec_helper"
+# Not sure why but freezing string literals breaks stub_request
+
+require "spec_helper"
 
 # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead.
 # Then, you can remove it from this and the functional test.
@@ -25,6 +26,7 @@ describe User, "associations" do
   it { is_expected.to belong_to( :site ).inverse_of :users }
   it { is_expected.to belong_to( :suspended_by_user ).class_name "User" }
   it { is_expected.to have_many( :annotations ).dependent :destroy }
+  it { is_expected.to have_many( :announcements ).dependent :nullify }
   it { is_expected.to have_many( :atlases ).inverse_of( :user ).dependent :nullify }
   it { is_expected.to have_many( :comments ).dependent :destroy }
   it {
@@ -94,6 +96,7 @@ describe User, "associations" do
   it { is_expected.to have_many( :project_users ).dependent :destroy }
   it { is_expected.to have_many( :provider_authorizations ).dependent :delete_all }
   it { is_expected.to have_many( :quality_metrics ).dependent :destroy }
+  it { is_expected.to have_many( :redirect_links ).dependent :nullify }
   it { is_expected.to have_many( :saved_locations ).inverse_of( :user ).dependent :destroy }
   it { is_expected.to have_many( :site_admins ).inverse_of :user }
   it { is_expected.to have_many( :sounds ).dependent :destroy }
@@ -104,6 +107,7 @@ describe User, "associations" do
   it { is_expected.to have_many( :taxon_curators ).inverse_of( :user ).dependent :destroy }
   it { is_expected.to have_many :taxon_framework_relationships }
   it { is_expected.to have_many( :taxon_links ).dependent :nullify }
+  it { is_expected.to have_many( :taxon_name_priorities ).dependent :destroy }
   it { is_expected.to have_many( :taxon_names ).with_foreign_key( "creator_id" ).inverse_of :creator }
   it {
     is_expected.to have_many( :updated_guide_sections ).
@@ -127,6 +131,7 @@ describe User, "associations" do
       inverse_of( :blocked_user ).
       dependent :destroy
   }
+  it { is_expected.to have_many( :user_donations ).dependent :delete_all }
   it { is_expected.to have_many( :user_mutes ).inverse_of( :user ).dependent :destroy }
   it {
     is_expected.to have_many( :user_mutes_as_muted_user ).
@@ -140,6 +145,7 @@ describe User, "associations" do
   it { is_expected.to have_one( :soundcloud_identity ).dependent :delete }
   it { is_expected.to have_one( :user_daily_active_category ).dependent :delete }
   it { is_expected.to have_one( :user_parent ).dependent( :destroy ).inverse_of :user }
+  it { is_expected.to have_many( :user_virtuous_tags ).dependent :delete_all }
 end
 
 describe User, "validations" do
