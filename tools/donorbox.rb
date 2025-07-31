@@ -75,7 +75,7 @@ loop do
     if opts.debug
       puts donor
     end
-    if ( user = User.find_by_email( donor["email"] ) )
+    if ( user = User.find_by_email( donor["email"].downcase ) )
       puts "\tDonor: #{user.donor?}" if opts.debug
       unless user.donor?
         if opts.dry || user.update( donorbox_donor_id: donor["id"] )
@@ -88,7 +88,7 @@ loop do
       end
       total_verified_users += 1
     end
-    user_parent = UserParent.find_by_email( donor["email"] )
+    user_parent = UserParent.find_by_email( donor["email"].downcase )
     # Sometimes the parent enters the same email on Donorobox as they use for
     # their iNat account, but they entered a different email address when
     # filling out the UserParent form. This should make sure that if we know the

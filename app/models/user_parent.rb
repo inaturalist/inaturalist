@@ -25,6 +25,10 @@ class UserParent < ApplicationRecord
     "<UserParent #{id} parent_user_id: #{parent_user_id}>"
   end
 
+  def email=( value )
+    write_attribute :email, value&.to_s&.downcase
+  end
+
   def strip_strings
     [:name, :child_name, :email].each do | a |
       next if send( a ).blank?

@@ -717,15 +717,15 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def curation
     if params[:id].blank?
-      @users = User.paginate(page: params[:page]).order(id: :desc)
-      @comment_counts_by_user_id = Comment.where(user_id: @users).group(:user_id).count
+      @users = User.paginate( page: params[:page] ).order( id: :desc )
+      @comment_counts_by_user_id = Comment.where( user_id: @users ).group( :user_id ).count
     else
-      @display_user = User.find_by_id(params[:id].to_i)
-      @display_user ||= User.find_by_login(params[:id])
-      @display_user ||= User.find_by_email(params[:id]) unless params[:id].blank?
+      @display_user = User.find_by_id( params[:id].to_i )
+      @display_user ||= User.find_by_login( params[:id] )
+      @display_user ||= User.find_by_email( params[:id].downcase ) unless params[:id].blank?
       @display_user ||= User.where( "email ILIKE ?", "%#{params[:id]}%" ).first
       @display_user ||= User.elastic_paginate( query: {
         bool: {
@@ -736,12 +736,12 @@ class UsersController < ApplicationController
         }
       } ).first
       if @display_user.blank?
-        flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
+        flash[:error] = t( :couldnt_find_a_user_matching_x_param, id: params[:id] )
       else
         @observations = Observation.page_of_results( user_id: @display_user.id )
       end
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html { render layout: "bootstrap" }
     end
   end

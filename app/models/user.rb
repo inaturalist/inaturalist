@@ -968,7 +968,7 @@ class User < ApplicationRecord
     email = auth_info["info"].try( :[], "email" )
     email ||= auth_info["extra"].try( :[], "user_hash" ).try( :[], "email" )
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
-    if !email.blank? && ( u = User.find_by_email( email ) )
+    if !email.blank? && ( u = User.find_by_email( email.downcase ) )
       u.add_provider_auth( auth_info )
       return u
     end
