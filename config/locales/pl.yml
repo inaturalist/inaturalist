@@ -372,6 +372,8 @@ pl:
   add_a_new_change_group: Dodaj nową grupę zmian
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Dodaj listę numerowaną
+  #Placeholder for a project autocomplete field
+  add_a_project: Dodaj projekt
   add_a_single_observation: Dodaj pojedynczą obserwację
   add_a_taxon: Dodaj takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1216,6 +1218,9 @@ pl:
   confirmation_email_sent_at_datetime: E-mail z potwierdzeniem wysłany o %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potwierdzono %{date}
+  confirming_ids: Oznaczenia potwierdzające
+  confirming_ids_description: |
+    Jeśli wyłączysz tę opcję, nie będziesz już otrzymywać powiadomień o oznaczeniach zgodnych z Twoimi, chyba że będą zawierały dodatkowe uwagi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Połącz
@@ -2359,7 +2364,7 @@ pl:
   identifications: Oznaczenia
   inaturalist_global_year_in_review: "Globalny przegląd roku %{year} iNaturalist"
   #Title of identification that was automatically added by a taxon change
-  inaturalist_updated_the_id_suggested_by_user: iNaturalist zaktualizował identyfikator sugerowany przez %{user}
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist zaktualizował oznaczenie zasugerowane przez użytkownika %{user}
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
   computer_vision_suggestion_desc: |
     Rozpoznawanie obrazów to proces uczenia komputerów rozpoznawania wzorów w ilustracjach. Dostarczamy narzędzi (np. autouzupełniania czy porównywania), które używają rozpoznawania obrazów wyuczonego na bazie zdjęć społeczności, aby proponować sugestie identyfikacji. Ta etykieta informuje, że osoba dodała identyfikację korzystając z jednego z tych narzędzi.

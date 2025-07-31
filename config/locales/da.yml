@@ -1653,6 +1653,8 @@ da:
         Tjek din e-mail og klik på linket i den modtagne e-mail for at bekræfte din konto.
       user:
         suspended: Din konto er suspenderet
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Tokenet til nulstilling af adgangskode er ugyldigt. Brug linket i den senest sendte e-mail til adgangskodenulstilling, eller <a href="%{url}">anmod om et nyt</a>.
     sessions:
       signed_in: 'Du er nu logget ind.'
       signed_out: 'Du er nu logget ud.'
@@ -4001,6 +4003,8 @@ da:
       zone: zone
   place_guess: sted gæt
   place_imported: Sted importeret!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Det kan tage op til en dag at associere observationer med dette sted.
   place_must_have_a_boundary_defined: Sted skal have et defineret omrids.
   place_name: Sted navn
   place_notes: Sted bemærkninger
@@ -4305,6 +4309,20 @@ da:
     Hvis du kan undgå det, så undlad at tilføje, ændre eller fjerne stedgrænser, medmindre det er absolut nødvendigt.
   places_warning_quota: |
     Kun tre steder kan oprettes dagligt.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Steder må ikke overstige 700.000 kvadratkilometer.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Steder må ikke overstige 70.000 kvadratkilometer.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Steder må ikke indeholde flere end 200.000 observationer.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Steder må ikke indeholde flere end 10.000 observationer.
   places_warning_the_future: |
     For hvad det er værd, så bliver vi, grundet iNat's nuværende vækstrate, fremadrettet nødt til at begrænse de betingelser, under hvilke folk kan tilføje steder.
   plants: planter
@@ -6483,6 +6501,10 @@ da:
         Tid i kontoens tidszone, hvor denne meddelelse ophører med at
         vises. Anvendes på tværs af tidszoner, så alle ophører med at se
         den på samme tid, ikke i forhold til deres lokale tid.
+      excludes_non_site_desc: |
+        Er meddelelsen er rettet mod et websted (hvilket er standard, hvis man er
+        webstedsadministrator), vil dette udelukke meddelelser målrettet alle
+        websteder på denne placering.
       ip_countries_desc: |
         CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
         intet valg, vises bekendtgørelsen til alle brugere uanset IP-land.
@@ -9113,6 +9135,7 @@ da:
         exclude_donor_start_date: Undtag donationsstartdato
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Undtag donationsslutdato
+        excludes_non_site: Skjul andre meddelelser uden Websteds-ID på denne placering
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Undtag observatører fra apps
