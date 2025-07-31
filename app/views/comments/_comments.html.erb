@@ -2,7 +2,7 @@
   parent ||= comments
   parent_comments_disabled ||= parent && parent.respond_to?(:prefers_no_comments?) && parent.prefers_no_comments?
   hide_form ||= false
-  hide_form = true if current_user && current_user.blocked_by?( parent.try(:user) )
+  hide_form = current_user&.blocked_by?( parent.try(:user) ) && !parent.is_a?( TaxonChange) && !parent.is_a?( Flag )
   remote ||= nil 
   header_tag ||= "h3"
   comments = if is_admin? || is_curator?
