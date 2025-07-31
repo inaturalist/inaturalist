@@ -1330,6 +1330,7 @@ class UsersController < ApplicationController
       :time_zone,
       # FYI this attribute gets submitted as an array, and arrays won't be
       # permitted unless allowed like this
+      email_suppression_types: [],
       faved_project_ids: []
     )
   end
