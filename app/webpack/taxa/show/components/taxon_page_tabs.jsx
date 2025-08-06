@@ -17,6 +17,7 @@ import ArticlesTabContainer from "../containers/articles_tab_container";
 import InteractionsTabContainer from "../containers/interactions_tab_container";
 import HighlightsTabContainer from "../containers/highlights_tab_container";
 import SimilarTabContainer from "../containers/similar_tab_container";
+import IdentificationsTabContainer from "../containers/identifications_tab_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
 
 class TaxonPageTabs extends React.Component {
@@ -62,9 +63,9 @@ class TaxonPageTabs extends React.Component {
     const flagsCount = taxon.flag_counts
       ? parseInt( taxon.flag_counts.resolved, 10 ) + parseInt( taxon.flag_counts.unresolved, 10 )
       : 0;
+    const isCurator = currentUser?.roles.indexOf( "curator" ) >= 0 || currentUser?.roles.indexOf( "admin" ) >= 0;
+    const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
     if ( currentUser?.privilegedWith( "interaction" ) ) {
-      const isCurator = currentUser.roles.indexOf( "curator" ) >= 0 || currentUser.roles.indexOf( "admin" ) >= 0;
-      const isAdmin = currentUser.roles.indexOf( "admin" ) >= 0;
       let atlasItem;
       if ( isCurator && taxon.rank_level <= 10 ) {
         atlasItem = taxon.atlas_id ? (
@@ -244,6 +245,14 @@ class TaxonPageTabs extends React.Component {
                     { speciesOrLower ? I18n.t( "similar_species" ) : I18n.t( "similar_taxa" ) }
                   </a>
                 </li>
+                { isAdmin && (
+                  <li
+                    role="presentation"
+                    className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "identifications" ? "active" : ""}`}
+                  >
+                    <a href="#identifications-tab" role="tab" data-toggle="tab">{ I18n.t( "identifications" ) }</a>
+                  </li>
+                ) }
                 { curationTab }
               </ul>
             </Col>
@@ -317,6 +326,13 @@ class TaxonPageTabs extends React.Component {
             id="similar-tab"
           >
             <SimilarTabContainer />
+          </div>
+          <div
+            role="tabpanel"
+            className={`tab-pane ${genusOrSpecies ? "" : "hidden"} ${chosenTab === "identifications" ? "active" : ""}`}
+            id="identifications-tab"
+          >
+            <IdentificationsTabContainer />
           </div>
         </div>
       </div>

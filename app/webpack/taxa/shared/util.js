@@ -225,7 +225,8 @@ const tabFromLocationHash = ( ) => {
     "taxonomy",
     "status",
     "similar",
-    "curation"
+    "curation",
+    "identifications"
   ];
   const urlTabMatches = window.location.hash.match( /^#([a-z-]+)-tab$/ );
   if ( urlTabMatches ) {

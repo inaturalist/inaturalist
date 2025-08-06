@@ -9,11 +9,12 @@ import {
   fetchInteractions,
   fetchTrending,
   fetchSimilar,
+  fetchIdentifications,
   showPhotoChooser
 } from "../../shared/ducks/taxon";
 
 function mapStateToProps( state ) {
-  const speciesTabs = ["map", "articles", "interactions", "taxonomy", "status", "similar"];
+  const speciesTabs = ["map", "articles", "interactions", "taxonomy", "status", "similar", "identifications"];
   const genusTabs = ["map", "articles", "highlights", "taxonomy", "similar"];
   const aboveGenusTabs = ["map", "articles", "highlights", "taxonomy"];
   let chosenTab;
@@ -53,6 +54,9 @@ function mapDispatchToProps( dispatch ) {
         break;
       case "similar":
         dispatch( fetchSimilar( ) );
+        break;
+      case "identifications":
+        dispatch( fetchIdentifications( ) );
         break;
       default:
         // it's cool, you probably have what you need

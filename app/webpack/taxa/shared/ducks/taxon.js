@@ -17,6 +17,8 @@ const SET_RARE = "taxa-show/taxon/SET_RARE";
 const SET_RECENT = "taxa-show/taxon/SET_RECENT";
 const SET_WANTED = "taxa-show/taxon/SET_WANTED";
 const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
+const SET_IDENTIFICATIONS = "taxa-show/taxon/SET_IDENTIFICATIONS";
+const SET_IDENTIFICATIONS_QUERY = "taxa-show/taxon/SET_IDENTIFICATIONS_QUERY";
 const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
 const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
@@ -51,6 +53,8 @@ export default function reducer( state = { counts: {} }, action ) {
       delete newState.rare;
       delete newState.recent;
       delete newState.similar;
+      delete newState.identifications;
+      delete newState.identificationsQuery;
       delete newState.species;
       delete newState.taxonChange;
       delete newState.trending;
@@ -87,6 +91,12 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_SIMILAR:
       newState.similar = action.results;
+      break;
+    case SET_IDENTIFICATIONS:
+      newState.identifications = action.results;
+      break;
+    case SET_IDENTIFICATIONS_QUERY:
+      newState.identificationsQuery = action.parameters;
       break;
     case SET_WANTED:
       newState.wanted = action.taxa;
@@ -188,6 +198,13 @@ export function setWanted( taxa ) {
 export function setSimilar( results ) {
   return {
     type: SET_SIMILAR,
+    results
+  };
+}
+
+export function setIdentifications( results ) {
+  return {
+    type: SET_IDENTIFICATIONS,
     results
   };
 }
@@ -633,6 +650,40 @@ export function fetchSimilar( ) {
       },
       error => console.log( "[DEBUG] error: ", error )
     );
+  };
+}
+
+export function fetchIdentifications( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const { taxon } = state.taxon;
+    const params = {
+      direct_taxon_id: taxon.id
+    };
+    const queryParams = state.taxon?.identificationsQuery || {};
+    if ( queryParams.q ) {
+      params.q = queryParams.q;
+    }
+    if ( queryParams.term_value_id ) {
+      params.term_value_id = queryParams.term_value_id;
+    }
+    params.fields = "all";
+    inatjs.taxon_identifications.search( params ).then(
+      response => {
+        dispatch( setIdentifications( response ) );
+      },
+      error => console.log( "[DEBUG] error: ", error )
+    );
+  };
+}
+
+export function setIdentificationsQuery( parameters ) {
+  return dispatch => {
+    dispatch( {
+      type: SET_IDENTIFICATIONS_QUERY,
+      parameters
+    } );
+    dispatch( fetchIdentifications( ) );
   };
 }
 

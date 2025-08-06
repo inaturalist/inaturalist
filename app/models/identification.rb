@@ -64,7 +64,11 @@ class Identification < ApplicationRecord
   include ActsAsUUIDable
 
   acts_as_votable
+  # acts_as_votable automatically includes `has_subscribers` but
+  # we don't want people to subscribe to identifications. Without this,
+  # voting on annotations would invoke auto-subscription to the votable
   SUBSCRIBABLE = false
+
   attr_accessor :skip_observation, :html, :captive_flag, :skip_set_previous_observation_taxon, :skip_set_disagreement,
     :bulk_delete, :wait_for_obs_index_refresh
 

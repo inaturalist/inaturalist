@@ -954,6 +954,84 @@ $nav-btn-dim: 40px;
   width: 18.9%;
 }
 
+.IdentificationsTab {
+  .search {
+    margin-bottom: 40px;
+  }
+  .annotation-search {
+    margin-top: 10px;
+    button + button {
+      margin-left: 5px;
+    }
+  }
+  .TaxonMap {
+    height: 300px;
+  }
+  .taxon-map-container {
+    position: sticky;
+    top: 0;
+    padding-top: 1px;
+  }
+  & > .row {
+    display: flex;
+    & > .col-xs-4 {
+      display: flex;
+      & > .row {
+        flex: 1;
+      }
+    }
+  }
+  .Identification {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    .contents {
+      display: flex;
+    }
+    .preview {
+      width: 120px;
+      .image {
+        height: 125px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 3px;
+      }
+    }
+    .content {
+      flex: 1;
+      padding-left: 10px;
+    }
+    .panel {
+      margin-bottom: 0px;
+      time {
+        float: right;
+        a {
+          color: inherit;
+        }
+      }
+    }
+    .panel-heading, .panel-footer {
+      padding: 8px 15px;
+    }
+    .panel-footer {
+      background: none;
+    }
+    .panel-title {
+      font-size: 14px;
+    }
+    .annotations {
+      padding-top: 8px;
+    }
+    .btn-sm {
+      border-radius: 3px;
+      padding: 3px 8px;
+    }
+    .btn-sm + .btn-sm {
+      margin-left: 8px;
+    }
+  }
+}
+
 .DraggablePhoto {
   display: inline-block;
   position: relative;

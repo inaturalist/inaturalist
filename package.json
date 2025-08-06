@@ -1,6 +1,6 @@
 {
   "name": "inaturalist",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "iNaturalist npm package for managing node dependencies.",
   "scripts": {
     "webpack": "webpack --config config/webpack.config.js",
@@ -32,7 +32,7 @@
     "heic-to": "^1.1.11",
     "html-truncate": "^1.2.1",
     "immutability-helper": "^2.8.1",
-    "inaturalistjs": "github:inaturalist/inaturalistjs",
+    "inaturalistjs": "github:inaturalist/inaturalistjs#373a33ff2fdd88e5538d4835eabb8d60f36ec105",
     "jquery": ">=3.5.0",
     "json-loader": "^0.5.4",
     "kind-of": ">=6.0.3",

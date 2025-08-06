@@ -8,7 +8,8 @@ module ActsAsElasticModel
   module ClassMethods
     def acts_as_elastic_model( options = {} )
       # do not let this initialization method run twice
-      return if instance_methods.include?( :es_source )
+      # TODO: fix initialization
+      return if instance_methods.include?( :es_source ) && !options[:initialize]
 
       options[:lifecycle_callbacks] ||= [:create, :update, :destroy]
       @inserts = 0
@@ -298,10 +299,13 @@ module ActsAsElasticModel
           Elastic::Transport::Transport::Errors::TooManyRequests
         ], sleep: 1, tries: 10
       ) do
+        body = prepare_for_index( batch_to_index, options )
+        return if body.blank?
+
         begin
           __elasticsearch__.client.bulk( {
             index: __elasticsearch__.index_name,
-            body: prepare_for_index( batch_to_index, options ),
+            body: body,
             refresh: options[:wait_for_index_refresh] ? "wait_for" : false
           } )
           if batch_to_index.first.respond_to?( :last_indexed_at )
@@ -326,9 +330,12 @@ module ActsAsElasticModel
       if self.respond_to?(:prepare_batch_for_index) && !options[:skip_prepare_batch]
         prepare_batch_for_index(batch)
       end
-      batch.map do |obj|
-        { index: { _id: obj.id, data: obj.as_indexed_json } }
-      end
+      batch.map do | obj |
+        indexed_json = obj.as_indexed_json
+        next if indexed_json.blank?
+
+        { index: { _id: obj.id, data: indexed_json } }
+      end.compact
     end
 
     def bulk_delete( ids, options = { } )

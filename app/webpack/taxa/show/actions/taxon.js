@@ -10,7 +10,8 @@ import {
   fetchLinks,
   fetchInteractions,
   fetchTrending,
-  fetchSimilar
+  fetchSimilar,
+  fetchIdentifications
 } from "../../shared/ducks/taxon";
 import {
   fetchMonthOfYearFrequency,
@@ -60,6 +61,9 @@ export function fetchTaxonAssociates( t ) {
         break;
       case "similar":
         dispatch( fetchSimilar( ) );
+        break;
+      case "identifications":
+        dispatch( fetchIdentifications( ) );
         break;
       default:
         // it's cool, you probably have what you need
