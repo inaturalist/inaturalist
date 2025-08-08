@@ -93,7 +93,8 @@ class UserText extends React.Component {
   constructor( ) {
     super( );
     this.state = {
-      more: false
+      more: false,
+      original: false
     };
   }
 
@@ -102,9 +103,15 @@ class UserText extends React.Component {
     this.setState( { more: !more } );
   }
 
+  toggleOriginalTranslated( ) {
+    const { original } = this.state;
+    this.setState( { original: !original } );
+  }
+
   render( ) {
     const {
       text,
+      originalText,
       truncate,
       config,
       moreToggle,
@@ -113,11 +120,11 @@ class UserText extends React.Component {
       className,
       markdown
     } = this.props;
-    const { more } = this.state;
+    const { more, original } = this.state;
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`} />;
     }
-    let html = text;
+    let html = original ? originalText : text;
     // replace ampersands in URL params with entities so they don't get
     // interpretted by safeHtml
     html = html.replace( /&(\w+=)/g, "&amp;$1" );
@@ -188,6 +195,18 @@ class UserText extends React.Component {
         </button>
       );
     }
+    let toggleOriginalTranslatedLink = (
+      <button
+        type="button"
+        onClick={( ) => {
+          this.toggleOriginalTranslated( );
+          return false;
+        }}
+        className={`btn btn-nostyle linky more`}
+      >
+        see original
+      </button>
+    );
     let htmlToDisplay = truncatedHtml || html;
     if ( !stripTags ) {
       htmlToDisplay = sanitizeHtml(
@@ -208,6 +227,8 @@ class UserText extends React.Component {
           className="content"
           dangerouslySetInnerHTML={{ __html: htmlToDisplay }}
         />
+        { toggleOriginalTranslatedLink ? " " : null }
+        { toggleOriginalTranslatedLink }
         { moreLink ? " " : null }
         { moreLink }
       </div>

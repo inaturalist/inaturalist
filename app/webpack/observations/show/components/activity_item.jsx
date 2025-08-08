@@ -344,7 +344,7 @@ class ActivityItem extends React.Component {
           key={`ActivityItem-UserLink-${item.id}`}
         />
       ];
-      contents = editing ? this.editItemForm( ) : ( <UserText text={item.body} /> );
+      contents = editing ? this.editItemForm( ) : ( <UserText text={item.body} originalText={item.original_body} /> );
     }
     const inativersary = (
       <Inativersary
