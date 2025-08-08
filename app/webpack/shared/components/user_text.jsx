@@ -238,6 +238,7 @@ class UserText extends React.Component {
 
 UserText.propTypes = {
   text: PropTypes.string,
+  originalText: PropTypes.string,
   truncate: PropTypes.number,
   config: PropTypes.object,
   className: PropTypes.string,
