@@ -124,7 +124,8 @@ class UserText extends React.Component {
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`} />;
     }
-    let html = original ? originalText : text;
+    const source = original ? ( originalText || "" ) : ( text || "" );
+    let html = source; 
     // replace ampersands in URL params with entities so they don't get
     // interpretted by safeHtml
     html = html.replace( /&(\w+=)/g, "&amp;$1" );
@@ -195,18 +196,23 @@ class UserText extends React.Component {
         </button>
       );
     }
-    let toggleOriginalTranslatedLink = (
-      <button
-        type="button"
-        onClick={( ) => {
-          this.toggleOriginalTranslated( );
-          return false;
-        }}
-        className={`btn btn-nostyle linky more`}
-      >
-        see original
-      </button>
-    );
+    const hasOriginal = !!( originalText && originalText.trim() && text && text.trim() ) &&
+      originalText !== text;
+    let toggleOriginalTranslatedLink = null;
+    if ( hasOriginal ) {
+      toggleOriginalTranslatedLink = (
+        <button
+          type="button"
+          onClick={( ) => {
+            this.toggleOriginalTranslated( );
+            return false;
+          }}
+          className={`btn btn-nostyle linky more`}
+        >
+          {original ? "See translation" : "See original" }
+        </button>
+      );
+    }
     let htmlToDisplay = truncatedHtml || html;
     if ( !stripTags ) {
       htmlToDisplay = sanitizeHtml(

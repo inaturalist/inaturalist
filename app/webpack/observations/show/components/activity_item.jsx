@@ -308,7 +308,7 @@ class ActivityItem extends React.Component {
       if ( editing ) {
         idBody = this.editItemForm( );
       } else if ( item.body && item.body.length > 0 ) {
-        idBody = <UserText text={item.body} className="id_body" />;
+        idBody = <UserText text={item.body} originalText={item.original_body} className="id_body" />;
       }
       contents = (
         <div className="identification">
