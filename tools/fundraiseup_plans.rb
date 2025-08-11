@@ -126,7 +126,6 @@ loop do
     unless ["failed", "canceled"].include?( plan["status"] )
       active_user_ids << user.id
     end
-    user.fundraiseup_supporter_id = supporter["id"]
     user.fundraiseup_plan_frequency = plan["frequency"]
     user.fundraiseup_plan_status = plan["status"]
     user.fundraiseup_plan_started_at = monthly_fundraiseup_plan_started_at
@@ -135,12 +134,11 @@ loop do
     # plan is active
     puts "\tExisting change queued: #{changes[user.id]}" if opts.debug
     puts "\tPlan status: #{plan['status']}" if opts.debug
-    unless !changes.dig( user.id, :fundraiseup_supporter_id ) || plan["status"] == "active"
+    unless !changes.dig( user.id, :fundraiseup_plan_frequency ) || plan["status"] == "active"
       next
     end
 
     changes[user.id] = {
-      fundraiseup_supporter_id: user.fundraiseup_supporter_id,
       fundraiseup_plan_frequency: user.fundraiseup_plan_frequency,
       fundraiseup_plan_status: user.fundraiseup_plan_status,
       fundraiseup_plan_started_at: min_fundraiseup_plan_started_at
