@@ -57,7 +57,7 @@ loop do
   puts url if opts.debug
   response = try_and_try_again( potential_errors, exponential_backoff: true, sleep: 3 ) do
     RestClient.get( url, {
-      "Authorization" => "Bearer #{CONFIG.fundraiseup.test_token}",
+      "Authorization" => "Bearer #{CONFIG.fundraiseup.token}",
       "User-Agent" => "iNaturalist/FundraiseUp"
     } )
   end
