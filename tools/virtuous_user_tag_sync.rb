@@ -18,7 +18,7 @@ opts = Optimist.options do
 end
 
 if !CONFIG.virtuous || !CONFIG.virtuous.token
-  raise "Donorbox email an API key haven't been added to config"
+  raise "Virtuous token hasn't been added to config"
 end
 
 if opts.log_task_name

@@ -84,7 +84,7 @@ def save_emails( emails, suppression_type )
   failed_to_save = []
   emails.each do | email |
     es = EmailSuppression.find_or_initialize_by( email: email, suppression_type: suppression_type )
-    es.user = User.find_by_email( email )
+    es.user = User.find_by_email( email.downcase )
     if es.new_record?
       unless es.save
         failed_to_save << { email: email, suppression_type: suppression_type }

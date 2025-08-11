@@ -229,7 +229,7 @@ class ProviderOauthController < ApplicationController
     end
     existing_pa = ProviderAuthorization.where( provider_name: "apple", provider_uid: provider_uid ).first
     user = existing_pa&.user
-    user ||= User.find_by_email( id_token_contents["email"] ) unless id_token_contents["email"].blank?
+    user ||= User.find_by_email( id_token_contents["email"].downcase ) unless id_token_contents["email"].blank?
     unless user
       auth_info = {
         "provider" => "apple",
