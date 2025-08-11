@@ -5862,7 +5862,11 @@ CREATE TABLE public.users (
     annotated_observations_count integer DEFAULT 0,
     icon_path_version smallint DEFAULT 0 NOT NULL,
     canonical_email character varying(100),
-    virtuous_donor_contact_id integer
+    virtuous_donor_contact_id integer,
+    fundraiseup_plan_frequency character varying,
+    fundraiseup_plan_status character varying,
+    fundraiseup_plan_started_at date
+
 );
 
 
@@ -11729,6 +11733,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250729144230'),
 ('20250729180530'),
 ('20250730163800'),
-('20250730210202');
+('20250730210202'),
+('20250807145445');
 
 

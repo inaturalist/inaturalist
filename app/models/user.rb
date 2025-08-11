@@ -485,7 +485,10 @@ class User < ApplicationRecord
   end
 
   def child_without_permission?
-    child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+    child? && UserParent.where(
+      "user_id = ? AND donorbox_donor_id IS NULL AND virtuous_donor_contact_id IS NULL",
+      id
+    ).exists?
   end
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
@@ -1737,18 +1740,33 @@ class User < ApplicationRecord
   end
 
   def donor?
-    donorbox_donor_id.to_i.positive?
+    donorbox_donor_id.to_i.positive? || virtuous_donor_contact_id.to_i.positive?
   end
 
   def monthly_donor?
-    donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
+    donor? && (
+      (
+        donorbox_plan_status == "active" &&
+        donorbox_plan_type == "monthly"
+      ) || (
+        fundraiseup_plan_status == "active" &&
+        fundraiseup_plan_frequency == "monthly"
+      )
+    )
   end
 
   def display_donor_since
     return nil unless prefers_monthly_supporter_badge?
-    donorbox_plan_status == "active" &&
+
+    (
+      donorbox_plan_status == "active" &&
       donorbox_plan_type == "monthly" &&
       donorbox_plan_started_at
+    ) || (
+      fundraiseup_plan_status == "active" &&
+      fundraiseup_plan_frequency == "monthly" &&
+      fundraiseup_plan_started_at
+    )
   end
 
   # given an array of taxa, return the taxa and ancestors that were not observed

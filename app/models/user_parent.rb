@@ -18,7 +18,7 @@ class UserParent < ApplicationRecord
 
   before_validation :strip_strings
 
-  before_create :set_donorbox_donor_id_from_parent_user
+  before_create :set_donor_from_parent_user
   after_save :deliver_confirmation_email_if_donor_verified
 
   def to_s
@@ -38,15 +38,39 @@ class UserParent < ApplicationRecord
     true
   end
 
-  def set_donorbox_donor_id_from_parent_user
-    if parent_user && !parent_user.donorbox_donor_id.blank?
+  def set_donor_from_parent_user
+    return unless parent_user
+
+    unless parent_user.donorbox_donor_id.blank?
       self.donorbox_donor_id = parent_user.donorbox_donor_id
     end
-    true
+    return if parent_user.virtuous_donor_contact_id.blank?
+
+    self.virtuous_donor_contact_id = parent_user.virtuous_donor_contact_id
   end
 
   def deliver_confirmation_email_if_donor_verified
-    if saved_change_to_donorbox_donor_id? && previous_changes[:donorbox_donor_id][0].blank? && donor?
+    if donor? && ( (
+      # donorbox_donor_id set to something from nil, and virtuous_donor_contact_id is nil
+      # or was also set to something from nil at the same time
+      saved_change_to_donorbox_donor_id? &&
+      previous_changes[:donorbox_donor_id][0].blank? && (
+        virtuous_donor_contact_id.blank? || (
+          saved_change_to_virtuous_donor_contact_id? &&
+          previous_changes[:virtuous_donor_contact_id][0].blank?
+        )
+      )
+    ) || (
+      # virtuous_donor_contact_id set to something from nil, and donorbox_donor_id is nil
+      # or was also set to something from nil at the same time
+      saved_change_to_virtuous_donor_contact_id? &&
+      previous_changes[:virtuous_donor_contact_id][0].blank? && (
+        donorbox_donor_id.blank? || (
+          saved_change_to_donorbox_donor_id? &&
+          previous_changes[:donorbox_donor_id][0].blank?
+        )
+      )
+    ) )
       Emailer.user_parent_confirmation( self ).deliver_now
       # In theory the child user did not receive their welcome email when
       # their account was created b/c they were an unverified child account,
@@ -68,6 +92,6 @@ class UserParent < ApplicationRecord
   end
 
   def donor?
-    donorbox_donor_id.to_i.positive?
+    donorbox_donor_id.to_i.positive? || virtuous_donor_contact_id.to_i.positive?
   end
 end

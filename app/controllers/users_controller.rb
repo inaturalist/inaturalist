@@ -598,7 +598,6 @@ class UsersController < ApplicationController
         if params[:notifications]
           redirect_to generic_edit_user_url( anchor: "notifications" )
         else
-          @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
           render :edit2, layout: "bootstrap"
         end
       end
