@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import IdentificationsTab from "../components/identifications_tab";
-import { setIdentificationsQuery } from "../../shared/ducks/taxon";
+import {
+  setIdentificationsQuery,
+  voteIdentification,
+  unvoteIdentification
+} from "../../shared/ducks/taxon";
 import { updateCurrentUser } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
@@ -59,7 +63,9 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     setIdentificationsQuery: parameters => dispatch( setIdentificationsQuery( parameters ) ),
-    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+    voteIdentification: ( id, vote ) => { dispatch( voteIdentification( id, vote ) ); },
+    unvoteIdentification: id => { dispatch( unvoteIdentification( id ) ); }
   };
 }
 

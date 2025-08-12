@@ -31,7 +31,9 @@ const IdentificationsTab = ( {
   zoomLevel,
   config,
   taxon,
-  currentUser
+  currentUser,
+  voteIdentification,
+  unvoteIdentification
 } ) => {
   let content;
   const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
@@ -99,6 +101,20 @@ const IdentificationsTab = ( {
           </a>
         </time>
       );
+      const votesFor = [];
+      let userVotedFor;
+      _.each( result.votes, v => {
+        if ( v.vote_flag === true ) {
+          votesFor.push( v );
+        }
+        if ( v.user?.id === config.currentUser.id ) {
+          userVotedFor = ( v.vote_flag === true );
+        }
+      } );
+      const voteAction = () => (
+        userVotedFor ? unvoteIdentification( result.uuid ) : voteIdentification( result.uuid )
+      );
+      const agreeClass = userVotedFor ? "fa-thumbs-up" : "fa-thumbs-o-up";
       return (
         <div
           key={`identification-${result.id}`}
@@ -122,13 +138,39 @@ const IdentificationsTab = ( {
                   </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body>
-                  {result.body}
+                  <div className="body">
+                    {result.body}
+                  </div>
+                  <div className="votes">
+                    <button
+                      type="button"
+                      className="btn btn-nostyle"
+                      onClick={voteAction}
+                      aria-label={I18n.t( "agree_" )}
+                      title={I18n.t( "agree_" )}
+                    >
+                      <i className={`fa ${agreeClass}`} />
+                    </button>
+                    { !_.isEmpty( votesFor ) && (
+                      <span className="vote-count">
+                        { votesFor.length }
+                      </span>
+                    ) }
+                  </div>
                 </Panel.Body>
-                <Panel.Footer>
-                  <b>{result.user.login}</b>
-                  &nbsp;marked this as an ID tip
-                  {time}
-                </Panel.Footer>
+                { !_.isEmpty( votesFor ) && (
+                  <Panel.Footer>
+                    <b>{_.first( votesFor ).user.login}</b>
+                    &nbsp;marked this as an ID tip
+                    <time
+                      className="time"
+                      dateTime={_.first( votesFor ).created_at}
+                      title={moment( _.first( votesFor ).created_at ).format( I18n.t( "momentjs.datetime_with_zone" ) )}
+                    >
+                      {moment.parseZone( _.first( votesFor ).created_at ).fromNow( )}
+                    </time>
+                  </Panel.Footer>
+                ) }
               </Panel>
               {annotations}
             </div>
@@ -141,6 +183,11 @@ const IdentificationsTab = ( {
     _.uniqBy( allAttributeValues, "value.id" ),
     ["term.label", "value.label"]
   );
+  const orderByFields = [
+    { value: "votes", label: "Votes" },
+    { value: "created_at", label: "date_added" },
+    { value: "word_count", label: "Word Count" }
+  ];
   return (
     <Grid className="IdentificationsTab">
       <Row>
@@ -185,6 +232,39 @@ const IdentificationsTab = ( {
                   }}
                 />
               </span>
+              <select
+                className="form-control"
+                onChange={e => {
+                  setIdentificationsQuery( {
+                    ...identificationsQuery,
+                    order_by: e.target.value
+                  } );
+                }}
+                value={identificationsQuery.order_by || "votes"}
+              >
+                { orderByFields.map( field => (
+                  <option value={field.value} key={`params-order-by-${field.value}`}>
+                    { I18n.t( field.label, { defaultValue: field.label } ) }
+                  </option>
+                ) ) }
+              </select>
+              <select
+                className="form-control order"
+                onChange={e => {
+                  setIdentificationsQuery( {
+                    ...identificationsQuery,
+                    order: e.target.value
+                  } );
+                }}
+                value={identificationsQuery.order || "desc"}
+              >
+                <option value="asc">
+                  Asc
+                </option>
+                <option value="desc">
+                  Desc
+                </option>
+              </select>
             </div>
             { !_.isEmpty( uniqueAttributeValues ) && (
               <div className="annotation-search">
@@ -256,7 +336,9 @@ IdentificationsTab.propTypes = {
   latitude: PropTypes.number,
   longitude: PropTypes.number,
   zoomLevel: PropTypes.number,
-  taxon: PropTypes.object
+  taxon: PropTypes.object,
+  voteIdentification: PropTypes.func,
+  unvoteIdentification: PropTypes.func
 };
 
 export default IdentificationsTab;

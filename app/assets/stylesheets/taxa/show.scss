@@ -957,6 +957,12 @@ $nav-btn-dim: 40px;
 .IdentificationsTab {
   .search {
     margin-bottom: 40px;
+    select.form-control {
+      width: 120px;
+      &.order {
+        width: 80px;
+      }
+    }
   }
   .annotation-search {
     margin-top: 10px;
@@ -1007,6 +1013,25 @@ $nav-btn-dim: 40px;
         float: right;
         a {
           color: inherit;
+        }
+      }
+    }
+    .panel-body {
+      display: flex;
+      .body {
+        flex: 1
+      }
+      .votes {
+        align-content: center;
+        width: 40px;
+        text-align: right;
+        .fa-thumbs-up,
+        .fa-thumbs-o-up {
+          font-size: 18px;
+          color: #BBBBBB;
+        }
+        .vote-count {
+          margin-left: 3px;
         }
       }
     }

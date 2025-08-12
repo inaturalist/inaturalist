@@ -667,6 +667,12 @@ export function fetchIdentifications( ) {
     if ( queryParams.term_value_id ) {
       params.term_value_id = queryParams.term_value_id;
     }
+    if ( queryParams.order_by ) {
+      params.order_by = queryParams.order_by;
+    }
+    if ( queryParams.order ) {
+      params.order = queryParams.order;
+    }
     params.fields = "all";
     inatjs.taxon_identifications.search( params ).then(
       response => {
@@ -677,6 +683,47 @@ export function fetchIdentifications( ) {
   };
 }
 
+export function voteIdentification( id, voteValue ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const identifications = _.cloneDeep( state.taxon.identifications );
+    const newIdentifications = _.map( identifications.results, identification => (
+      ( identification.uuid === id )
+        ? {
+          ...identification,
+          votes: ( identification.votes || [] ).concat( [{
+            vote_flag: ( voteValue !== "bad" ),
+            user: state.config.currentUser,
+            api_status: "saving"
+          }] )
+        }
+        : identification
+    ) );
+    identifications.results = newIdentifications;
+    dispatch( setIdentifications( identifications ) );
+    inatjs.identifications.vote( { id, vote: voteValue } );
+  };
+}
+
+export function unvoteIdentification( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const identifications = _.cloneDeep( state.taxon.identifications );
+    const newIdentifications = _.map( identifications.results, identification => (
+      ( identification.uuid === id )
+        ? {
+          ...identification,
+          votes: _.filter( identification.votes, v => (
+            v.user.id !== state.config.currentUser.id
+          ) )
+        }
+        : identification
+    ) );
+    identifications.results = newIdentifications;
+    dispatch( setIdentifications( identifications ) );
+    inatjs.identifications.unvote( { id } );
+  };
+}
 export function setIdentificationsQuery( parameters ) {
   return dispatch => {
     dispatch( {

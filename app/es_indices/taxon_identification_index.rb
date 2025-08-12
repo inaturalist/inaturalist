@@ -21,7 +21,11 @@ class TaxonIdentification < Identification
       indexes :id, type: "integer" do
         indexes :keyword, type: "keyword"
       end
+      indexes :uuid, type: "keyword"
       indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :body_word_length, type: "integer"
+      indexes :body_character_length, type: "integer"
+      indexes :cached_votes_total, type: "short"
       indexes :created_at, type: "date"
       indexes :user do
         indexes :id, type: "integer" do
@@ -78,5 +82,9 @@ class TaxonIdentification < Identification
         indexes :vote_flag, type: "boolean"
       end
     end
+  end
+
+  def self.prepare_batch_for_index( identifications )
+    # do nothing
   end
 end

@@ -45,6 +45,7 @@ class Identification < ApplicationRecord
     :update_observation,
     :update_obs_stats,
     :update_user_counter_cache,
+    :index_taxon_identification,
     unless: proc {| i | i.observation.destroyed? }
 
   # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
@@ -391,6 +392,11 @@ class Identification < ApplicationRecord
     end
     true
   end
+
+  def index_taxon_identification
+    TaxonIdentification.elastic_index!( ids: [id], wait_for_index_refresh: true )
+  end
+  alias :votable_callback :index_taxon_identification
 
   def set_last_identification_as_current
     last_current = observation.identifications.current.by( user_id ).order( "id ASC" ).last

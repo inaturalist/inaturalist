@@ -7,9 +7,9 @@ class TaxonIdentification < Identification
 
   def as_indexed_json( _options = {} )
     return nil if body.blank? || !current?
-
     {
       id: id,
+      uuid: uuid,
       created_at: created_at,
       observation: {
         id: observation.id,
@@ -34,7 +34,10 @@ class TaxonIdentification < Identification
         ancestor_ids: ( ( taxon.ancestry ? taxon.ancestry.split( "/" ).map( &:to_i ) : [] ) << id )
       },
       body: body,
-      votes: votes_for.map( &:as_indexed_json )
+      body_word_length: body.blank? ? 0 : body.split( /\s+/ ).length,
+      body_character_length: body.blank? ? 0 : body.length,
+      votes: votes_for.map( &:as_indexed_json ),
+      cached_votes_total: votes_for.select{|v| v.vote_scope.blank?}.size,
     }
   end
 end
