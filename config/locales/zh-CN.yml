@@ -1525,6 +1525,8 @@ zh-CN:
         请检查您的电子邮箱，并点击邮件中的链接来确认您的帐户。
       user:
         suspended: 您的账户已被停用
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: 重置密码令牌无效。请使用最近发送的重置密码电子邮件中的链接，或 <a href="%{url}">申请新的</a>.
     sessions:
       signed_in: '登录成功。'
       signed_out: '已成功登出。'
@@ -1617,6 +1619,8 @@ zh-CN:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: 捐款
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: 捐赠
   donate_again_caps: 再次捐款
   donate_again_today_caps: 今天再次捐款
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -4093,6 +4097,20 @@ zh-CN:
     编辑地方边界是iNat网站速度降低的最大原因之一。如果您可以避开它，就请不要添加、更改或移除地方边界，除非它是绝对必要的。
   places_warning_quota: |
     您每天只能创建三个地方。
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    区域面积不能超过700,000 平方公里。
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    区域面积不能超过70,000 平方公里。
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    该区域包含的观测数量不能超过 200,000 个。
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    该区域包含的观察数量不能超过10,000个。
   places_warning_the_future: |
     出于效能考虑， 鉴于iNat目前的增长速度，我们必须对今后增加地方的条件进行限制。
   plants: 植物
@@ -6072,6 +6090,8 @@ zh-CN:
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论客户端是什么。
       end_desc: |
         在您的帐户时区，这个通知将会停止呈现的时间。跨时区适用，所以每个人都在同一时间停止看到它，这跟他们的当地时间无关。
+      excludes_non_site_desc: |
+        如果您的公告以站点为目标（如果您是网站超管的话这将是默认设置），这将排除被发送给全部站点的通知。
       ip_countries_desc: |
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论 IP 所在国家/地区。
       #Note about how the announcement last observation date property works
@@ -8053,9 +8073,9 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y年%B%d日 %p %I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d%B日 %p%I:%M'
+      short: '%B%-d日 %p%I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short_with_year: '%Y年%-d%B日 %p%I:%M'
+      short_with_year: '%Y年%B%-d日 %p%I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%p %I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -8112,6 +8132,7 @@ zh-CN:
         exclude_donor_start_date: 排除捐助者开始日期
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: 排除捐助者结束日期
+        excludes_non_site: 隐藏此版面中没有站点标识的其他公告
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: 排除来自应用软件的观察者
