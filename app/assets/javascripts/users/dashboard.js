@@ -243,4 +243,27 @@ $( function( ) {
     $( "#participate_section" ).show( );
     $( "#close_needs_id_pilot_panel" ).show( );
   });
+
+  $( "#close_gaps_obs_pilot_panel" ).on( "click", function( e ) {
+    e.preventDefault( );
+    $( "#gaps_obs_pilot_panel" ).hide( );
+    updateSession( { prefers_gaps_obs__pilot: false } );
+  } );
+
+  $( "#gaps_obs_participate_button" ).on( "click", function( e ) {
+    e.preventDefault( );
+    updateSession( { prefers_gaps_obs_pilot: true } );
+    $( "#gaps_obs_participate_section" ).hide( );
+    $( "#gaps_obs_stop_participating_section" ).show( );
+    $( "#close_gaps_obs_pilot_panel" ).hide( );
+
+  });
+
+  $( "#gaps_obs_stop_participating_link" ).on( "click", function( e ) {
+    e.preventDefault( );
+    updateSession( { prefers_gaps_obs_pilot: null } );
+    $( "#gaps_obs_stop_participating_section" ).hide( );
+    $( "#gaps_obs_participate_section" ).show( );
+    $( "#close_gaps_obs_pilot_panel" ).show( );
+  });
 });

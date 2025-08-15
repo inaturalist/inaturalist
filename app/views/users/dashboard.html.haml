@@ -152,6 +152,29 @@
                 %p Check back tomorrow for a link to observations that match your identification skills.
               %p.text-right
                 = link_to "stop participating", "#", id: "stop_participating_link", class: "btn-link"
+      - if ObservationAccuracyExperiment.user_eligible_for_gaps_obs_pilot?( current_user )
+        #gaps_obs_pilot_panel.panel.panel-default
+          .panel-heading
+            %a.close{ "data-panel-type" => "gaps_obs_pilot_panel", id: "close_gaps_obs_pilot_panel", style: ( current_user.prefers_gaps_obs_pilot == true ? "display:none;" : "" ) } &#215;
+            %h3.panel-title= "Observation Gaps Pilot: Nearby Wanted Species"
+          .panel-body
+            #gaps_obs_participate_section{ style: ( current_user.prefers_gaps_obs_pilot.nil? ? "" : "display:none;" ) }
+              %p
+                Beginning tomorrow, receive a set of species not yet in the Computer Vision model that have been observed this season near your last observation. By observing them you can help us fill gaps. You can opt out at any time.
+                - post = ObservationAccuracyExperiment.gaps_obs_pilot_post
+                - if post
+                  = link_to "Read more on our blog.", post_url( post )
+              %button{ type: "button", id: "gaps_obs_participate_button", class: "btn btn-default btn-md" } Yes! I'd like to participate.
+            #gaps_obs_stop_participating_section{ style: ( current_user.prefers_gaps_obs_pilot == true ? "" : "display:none;" ) }
+              - gaps_obs_pilot_params = ObservationAccuracyExperiment.gaps_obs_pilot_params_for_user( current_user )
+              - if gaps_obs_pilot_params
+                %p
+                  Below is a set of species not yet in the Computer Vision model that have been observed this season near your last observation. By observing them you can help us fill gaps.
+                = link_to "Browse species", observations_url(gaps_obs_pilot_params), class: "btn btn-primary btn-md"
+              - else
+                %p Check back tomorrow for a link to a set of species not yet in the Computer Vision model that have been observed this season near your last observation.
+              %p.text-right
+                = link_to "stop participating", "#", id: "gaps_obs_stop_participating_link", class: "btn-link"
       - if @discourse_url && !@discourse_data.blank?
         #forum
           .panel.panel-default
