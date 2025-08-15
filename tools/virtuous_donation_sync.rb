@@ -156,7 +156,7 @@ loop do
   response_body["list"].each do | gift |
     contact_id = gift["contactId"]
     donors[contact_id] = true
-    contact_inaturalist_users[contact_id]&.each do | user |
+    contact_inaturalist_users[contact_id]&.uniq&.each do | user |
       puts "\tDonor: #{user.donor?}" if opts.debug
       if user.virtuous_donor_contact_id.blank?
         if opts.dry || user.update( virtuous_donor_contact_id: contact_id )
@@ -169,16 +169,17 @@ loop do
       end
       total_verified_users += 1
 
-      next if UserDonation.where( user: user ).where( "DATE(donated_at) = ?", gift["giftDate"] ).exists?
+      gift_date = Date.strptime( gift["giftDate"], "%m/%e/%Y" )
+      next if UserDonation.where( user: user ).where( "DATE(donated_at) = ?", gift_date ).exists?
 
       puts "\tAdding donation for #{user} on #{gift['giftDate']}"
       unless opts.dry
-        UserDonation.create( user: user, donated_at: gift["giftDate"] )
+        UserDonation.create( user: user, donated_at: gift_date )
       end
       user_donations += 1
     end
 
-    contact_user_parents[contact_id]&.each do | user_parent |
+    contact_user_parents[contact_id]&.uniq&.each do | user_parent |
       next unless user_parent.virtuous_donor_contact_id.blank?
 
       begin

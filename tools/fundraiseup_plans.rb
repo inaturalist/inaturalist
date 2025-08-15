@@ -163,10 +163,6 @@ changes.each do | user_id, updates |
   puts user if opts.debug
   puts "\tAssigning changes: #{updates}" if opts.debug
   user.assign_attributes( updates )
-  # If status changed to cancelled, remove the monthly supporter badge
-  if user.fundraiseup_plan_status_changed? && user.fundraiseup_plan_status != "active"
-    user.prefers_monthly_supporter_badge = false
-  end
   user_updated = opts.dry || user.save
   applied_changes = opts.dry ? user.changes : user.saved_changes
   if applied_changes.blank?

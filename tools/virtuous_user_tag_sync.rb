@@ -105,7 +105,7 @@ end
 
 user_tags_created = 0
 tag_users.each do | tag, user_ids |
-  user_ids.each do | user_id |
+  user_ids.uniq.each do | user_id |
     next if UserVirtuousTag.where( user_id: user_id, virtuous_tag: tag ).exists?
 
     puts "Creating new UserVirtuousTag => { user_id: #{user_id}, virtuous_tag: #{tag} }"
