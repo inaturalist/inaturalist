@@ -1101,7 +1101,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     params = {
       place_id: "any",
-      id: obs_ids.join( "," )
+      id: obs_ids.join( "," ),
+      view: "species"
     }
     return if INatAPIService.observations(
       params.merge( per_page: 0, viewer_id: user.id )
@@ -1145,15 +1146,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def self.get_nearby_gaps( lat, lng, month, radius, modeled_taxon_ids )
-    uri = URI( "https://api.inaturalist.org/v1/observations/taxonomy" )
     params = { month: month, lat: lat, lng: lng, radius: radius, verifiable: true, rank: "species" }
-    uri.query = URI.encode_www_form( params )
-    res = Net::HTTP.start( uri.host, uri.port, use_ssl: true ) do | http |
-      req = Net::HTTP::Get.new( uri )
-      req["Accept"] = "application/json"
-      http.request( req )
-    end
-    result = JSON.parse( res.body )
+    result = INatAPIService.get( "/observations/taxonomy", params )
     result["results"].select {| a | a["rank"] == "species" }.map {| a | a["id"] } - modeled_taxon_ids
   end
 
@@ -1177,19 +1171,19 @@ class ObservationAccuracyExperiment < ApplicationRecord
         observer.save!
       end
 
-      lat, lng = get_observer_location( user_id )
+      lng, lat  = get_observer_location( user_id )
       next if lat.nil?
 
       month = Time.now.month
       radius = 50
-      get_nearby_gap_taxon_ids = get_nearby_gaps( lat, lng, month, radius, modeled_taxon_ids )
+      nearby_gap_taxon_ids = get_nearby_gaps( lat, lng, month, radius, modeled_taxon_ids )
 
       observations = INatAPIService.observations(
         month: month,
         lat: lat,
         lng: lng,
         radius: radius,
-        taxon_ids: get_nearby_gap_taxon_ids.sample( 300 ),
+        taxon_ids: nearby_gap_taxon_ids.sample( 300 ),
         per_page: 200
       )
       next if observations.nil?
@@ -1216,7 +1210,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def self.process_gaps_obs
-    puts "processing gaps id..."
+    puts "processing gaps obs..."
     gaps_obs_pilot = ObservationAccuracyExperiment.find_by( version: GAPS_OBS_PILOT_VERSION )
     gaps_obs_pilot ||= ObservationAccuracyExperiment.create(
       version: GAPS_OBS_PILOT_VERSION

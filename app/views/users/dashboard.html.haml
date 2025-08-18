@@ -167,12 +167,16 @@
               %button{ type: "button", id: "gaps_obs_participate_button", class: "btn btn-default btn-md" } Yes! I'd like to participate.
             #gaps_obs_stop_participating_section{ style: ( current_user.prefers_gaps_obs_pilot == true ? "" : "display:none;" ) }
               - gaps_obs_pilot_params = ObservationAccuracyExperiment.gaps_obs_pilot_params_for_user( current_user )
-              - if gaps_obs_pilot_params
-                %p
-                  Below is a set of species not yet in the Computer Vision model that have been observed this season near your last observation. By observing them you can help us fill gaps.
-                = link_to "Browse species", observations_url(gaps_obs_pilot_params), class: "btn btn-primary btn-md"
-              - else
-                %p Check back tomorrow for a link to a set of species not yet in the Computer Vision model that have been observed this season near your last observation.
+              .stacked
+                .container2
+                  %img{ src: "https://static.inaturalist.org/wiki_page_attachments/4630-original.png", style: "width:100px;float: right;clear: right;margin-left: 10px;margin-right: 0;" }
+                  - if gaps_obs_pilot_params
+                    %p
+                      Below is a set of species not yet in the Computer Vision model that have been observed this season near your last observation. By observing them you can help us fill gaps.
+                    = link_to "Browse species", observations_url( gaps_obs_pilot_params ), class: "btn btn-primary btn-md"
+                  - else
+                    %p Check back tomorrow for a link to a set of species not yet in the Computer Vision model that have been observed this season near your last observation.
+                %div{ style: "clear: both;" }    
               %p.text-right
                 = link_to "stop participating", "#", id: "gaps_obs_stop_participating_link", class: "btn-link"
       - if @discourse_url && !@discourse_data.blank?
