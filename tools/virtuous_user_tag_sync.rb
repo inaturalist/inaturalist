@@ -35,7 +35,8 @@ potential_errors = [
   RestClient::ServiceUnavailable,
   RestClient::GatewayTimeout,
   RestClient::TooManyRequests,
-  RestClient::InternalServerError
+  RestClient::InternalServerError,
+  RestClient::BadGateway
 ]
 
 tag_users = UserVirtuousTag::POSSIBLE_TAGS.to_h {| k | [k, []] }

@@ -37,7 +37,8 @@ potential_errors = [
   RestClient::ServiceUnavailable,
   RestClient::GatewayTimeout,
   RestClient::TooManyRequests,
-  RestClient::InternalServerError
+  RestClient::InternalServerError,
+  RestClient::BadGateway
 ]
 
 total_verified_users = 0

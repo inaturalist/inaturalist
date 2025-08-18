@@ -34,7 +34,8 @@ potential_errors = [
   RestClient::ServiceUnavailable,
   RestClient::GatewayTimeout,
   RestClient::TooManyRequests,
-  RestClient::InternalServerError
+  RestClient::InternalServerError,
+  RestClient::BadGateway
 ]
 
 num_plans = 0
