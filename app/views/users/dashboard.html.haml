@@ -159,11 +159,22 @@
             %h3.panel-title= "Observation Gaps Pilot: Nearby Wanted Species"
           .panel-body
             #gaps_obs_participate_section{ style: ( current_user.prefers_gaps_obs_pilot.nil? ? "" : "display:none;" ) }
-              %p
-                Beginning tomorrow, receive a set of species not yet in the Computer Vision model that have been observed this season near your last observation. By observing them you can help us fill gaps. You can opt out at any time.
-                - post = ObservationAccuracyExperiment.gaps_obs_pilot_post
-                - if post
-                  = link_to "Read more on our blog.", post_url( post )
+              .stacked
+                .container2
+                  %img{ src: "https://static.inaturalist.org/wiki_page_attachments/4630-original.png", style: "width:100px;float: right;clear: right;margin-left: 10px;margin-right: 0;" }
+                  %p
+                    Starting tomorrow, you'll receive a list of species that:
+                  %ul
+                    %li Are not yet in the Computer Vision Model
+                    %li Have recently been observed this season
+                    %li Were seen near your last observation
+                  %p
+                    By observing these species, you'll help improve the model and fill biodiversity data gaps.
+                    You can opt out at any time.
+                    - post = ObservationAccuracyExperiment.gaps_obs_pilot_post
+                    - if post
+                      = link_to "Read more on our blog.", post_url( post )
+                  %div{ style: "clear: both;" }
               %button{ type: "button", id: "gaps_obs_participate_button", class: "btn btn-default btn-md" } Yes! I'd like to participate.
             #gaps_obs_stop_participating_section{ style: ( current_user.prefers_gaps_obs_pilot == true ? "" : "display:none;" ) }
               - gaps_obs_pilot_params = ObservationAccuracyExperiment.gaps_obs_pilot_params_for_user( current_user )
@@ -172,10 +183,18 @@
                   %img{ src: "https://static.inaturalist.org/wiki_page_attachments/4630-original.png", style: "width:100px;float: right;clear: right;margin-left: 10px;margin-right: 0;" }
                   - if gaps_obs_pilot_params
                     %p
-                      Below is a set of species not yet in the Computer Vision model that have been observed this season near your last observation. By observing them you can help us fill gaps.
+                      Here’s your current list of species that are:
+                    %ul
+                      %li Not yet included in the Computer Vision model
+                      %li Observed near your last location this season
+                    %p
+                      By observing these, you’re helping improve species recognition and fill critical gaps.
                     = link_to "Browse species", observations_url( gaps_obs_pilot_params ), class: "btn btn-primary btn-md"
                   - else
-                    %p Check back tomorrow for a link to a set of species not yet in the Computer Vision model that have been observed this season near your last observation.
+                    %p
+                      Check back tomorrow for a personalized list of nearby species not yet in the Computer Vision model, observed this season.
+                    %p
+                      These suggestions will help guide your observations to fill key data gaps.
                 %div{ style: "clear: both;" }    
               %p.text-right
                 = link_to "stop participating", "#", id: "gaps_obs_stop_participating_link", class: "btn-link"

@@ -1139,10 +1139,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def self.get_observer_location( user_id )
-    last_observation = INatAPIService.observations( user_id: user_id, order_by: "observed_on", per_page: 1 )
-    return nil unless last_observation
+    observations = INatAPIService.observations( user_id: user_id, order_by: "observed_on", per_page: 1 )
+    return nil unless observations
 
-    last_observation["results"][0]["geojson"]["coordinates"]
+    return nil unless last_observation = observations["results"][0]
+
+    last_observation["geojson"]["coordinates"]
   end
 
   def self.get_nearby_gaps( lat, lng, month, radius, modeled_taxon_ids )
