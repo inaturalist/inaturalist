@@ -4,7 +4,6 @@
 - content_for :extracss do
   = stylesheet_link_tag :user_parents
 - content_for :extrajs do
-  = javascript_include_tag "https://donorbox.org/widget.js", paypalExpress: false
   = fundraise_up_js
   :javascript
     FundraiseUp.on( "donationComplete", function( details ) {
@@ -54,7 +53,7 @@
               =t "views.user_parents.new.step#{step}_desc"
   - unless existing_donor
     .fundraiseup-form
-      %a{ href: "#XWLLKFCZ", style:"display: none" }
+      %a{ href: "#XDBENMYL", style:"display: none" }
   #user-parent-thanks{ class: existing_donor ? "existing-donor" : "" }
     %h2=t "views.user_parents.confirm.thanks_for_creating_a_minor_account"
     - if existing_donor

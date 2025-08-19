@@ -89,15 +89,25 @@ class UserParentsController < ApplicationController
     # include utm params on redirect, so do not attempt to redirect again
     return nil if params[:redirect]
 
-    {
-      form: "FUNGFBWMWPP",
-      utm_content: "user_parent",
-      email: @user_parent_email,
-      firstName: @user_parent_name.split.first,
-      lastName: @user_parent_name.split.last,
-      utm_source: @site.name,
-      utm_medium: "web",
+    params_for_redirect = {
       redirect: true
-    }.merge( request.query_parameters.reject {| k, _v | k.to_s == "inat_site_id" } )
+    }
+    if @user_parent && !@user_parent.donor?
+      # in order for FundraiseUp to populate the name and email fields with what we specify here,
+      # which is helpful to ensure the same email address is used to connect the donation with the
+      # account, the elementId parameter must be set to the value of the donation form element
+      params_for_redirect.merge!( {
+        elementId: "XDBENMYL",
+        utm_content: "user_parent",
+        email: @user_parent_email,
+        firstName: @user_parent_name.split.first,
+        lastName: @user_parent_name.split.last,
+        utm_source: @site.name,
+        utm_medium: "web"
+      } )
+    end
+    params_for_redirect.merge(
+      request.query_parameters.reject {| k, _v | k.to_s == "inat_site_id" }
+    )
   end
 end
