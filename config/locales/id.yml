@@ -1546,6 +1546,8 @@ id:
         Silakan cek email Anda dan klik tautan pada email yang Anda terima untuk mengonfirmasi akun Anda.
       user:
         suspended: Akun Anda telah ditangguhkan
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Token reset sandi tidak valid. Silakan gunakan tautan di email reset kata sandi yang terakhir dikirim, atau <a href="%{url}">minta yang baru</a>.
     sessions:
       signed_in: 'Berhasil masuk.'
       signed_out: 'Berhasil keluar.'
@@ -6152,6 +6154,10 @@ id:
         Waktu di zona waktu akun Anda di mana pengumuman ini akan berhenti 
         ditampilkan. Berlaku di seluruh zona waktu, sehingga semua orang akan berhenti 
         melihatnya di waktu yang sama, tidak relatif terhadap waktu lokal mereka.
+      excludes_non_site_desc: |
+        Jika pengumuman Anda menargetkan situs (ini standarnya jika Anda merupakan
+        Admin Situs), pengumuman yang menargetkan semua situs di
+        penempatan ini tidak akan dimasukkan.
       ip_countries_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang IP negaranya.
       #Note about how the announcement last observation date property works
