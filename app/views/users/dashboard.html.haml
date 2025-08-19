@@ -163,14 +163,14 @@
                 .container2
                   %img{ src: "https://static.inaturalist.org/wiki_page_attachments/4630-original.png", style: "width:100px;float: right;clear: right;margin-left: 10px;margin-right: 0;" }
                   %p
-                    Starting tomorrow, you'll receive a list of species that:
+                    Tomorrow, you'll receive a list of species that:
                   %ul
                     %li Are not yet in the Computer Vision Model
-                    %li Have recently been observed this season
-                    %li Were seen near your last observation
+                    %li Have been observed this season near your last observation
+                    %li Are driven by a sample of up to 200 observations of up to 300 species prioritizing plants
                   %p
                     By observing these species, you'll help improve the model and fill biodiversity data gaps.
-                    You can opt out at any time.
+                    This list will update when the Model updates. You can opt out at any time.
                     - post = ObservationAccuracyExperiment.gaps_obs_pilot_post
                     - if post
                       = link_to "Read more on our blog.", post_url( post )

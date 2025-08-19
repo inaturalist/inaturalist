@@ -1139,29 +1139,52 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def self.get_observer_location( user_id )
-    observations = INatAPIService.observations( user_id: user_id, order_by: "observed_on", per_page: 1 )
+    observations = INatAPIService.
+      observations( user_id: user_id, order_by: "observed_on", per_page: 1, verifiable: true )
     return nil unless observations
 
-    return nil unless last_observation = observations["results"][0]
+    last_observation = observations["results"][0]
+    return nil unless last_observation
+
+    return nil unless last_observation["geojson"]
 
     last_observation["geojson"]["coordinates"]
   end
 
   def self.get_nearby_gaps( lat, lng, month, radius, modeled_taxon_ids )
     params = { month: month, lat: lat, lng: lng, radius: radius, verifiable: true, rank: "species" }
-    result = INatAPIService.get( "/observations/taxonomy", params )
-    result["results"].select {| a | a["rank"] == "species" }.map {| a | a["id"] } - modeled_taxon_ids
+    response = INatAPIService.get( "/observations/taxonomy", params )
+
+    raw = response["results"].select {| r | r["rank"] == "species" }
+    ids = raw.map {| r | r["id"] } - modeled_taxon_ids
+    allowed_ids = Taxon.where( id: ids ).where( "observations_count <= ?", 200 ).pluck( :id ).to_set
+    results = raw.select {| r | allowed_ids.include?( r["id"] ) }
+    results.sort_by {| r | ( r["iconic_taxon_name"] == "Plantae" ) ? 0 : 1 }.map {| r | r["id"] }
   end
 
-  def self.process_observers( gaps_obs_pilot )
+  def self.process_observers( gaps_obs_pilot, new_model )
     modeled_taxon_ids = get_modeled_taxa
     active_observers = Preference.where(
       "owner_type = 'User' AND name = 'gaps_obs_pilot' AND value = 't'"
     ).pluck( :owner_id )
     ObservationAccuracyValidator.where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).
       where( "user_id NOT IN (?)", active_observers ).destroy_all
-    ObservationAccuracySample.where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).destroy_all
-    active_observers.each do | user_id |
+
+    if new_model
+      ObservationAccuracySample.where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).destroy_all
+      missing_validator_user_ids = active_observers
+    else
+      ObservationAccuracySample.where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).
+        left_outer_joins( :observation_accuracy_validators ).
+        where( observation_accuracy_validators: { id: nil } ).destroy_all
+
+      existing = ObservationAccuracyValidator.
+        where( observation_accuracy_experiment_id: gaps_obs_pilot.id, user_id: active_observers ).
+        distinct.pluck( :user_id )
+      missing_validator_user_ids = active_observers - existing
+    end
+
+    missing_validator_user_ids.each do | user_id |
       observer = ObservationAccuracyValidator.
         where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).
         where( user_id: user_id ).first
@@ -1173,7 +1196,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         observer.save!
       end
 
-      lng, lat  = get_observer_location( user_id )
+      lng, lat = get_observer_location( user_id )
       next if lat.nil?
 
       month = Time.now.month
@@ -1185,7 +1208,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         lat: lat,
         lng: lng,
         radius: radius,
-        taxon_ids: nearby_gap_taxon_ids.sample( 300 ),
+        taxon_ids: nearby_gap_taxon_ids.first( 300 ),
         per_page: 200
       )
       next if observations.nil?
@@ -1211,12 +1234,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  def self.process_gaps_obs
+  def self.process_gaps_obs( new_model )
     puts "processing gaps obs..."
     gaps_obs_pilot = ObservationAccuracyExperiment.find_by( version: GAPS_OBS_PILOT_VERSION )
     gaps_obs_pilot ||= ObservationAccuracyExperiment.create(
       version: GAPS_OBS_PILOT_VERSION
     )
-    process_observers( gaps_obs_pilot )
+    process_observers( gaps_obs_pilot, new_model )
   end
 end
