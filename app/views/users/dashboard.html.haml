@@ -136,7 +136,8 @@
             %h3.panel-title= t( :identification_pilot_title )
           .panel-body
             #participate_section{ style: ( current_user.prefers_needs_id_pilot.nil? ? "" : "display:none;" ) }
-              %p= t( :identification_pilot_body_intro )
+              %p
+                = t( :identification_pilot_body_intro )
                 - post = ObservationAccuracyExperiment.needs_id_pilot_post
                 - if post
                   = link_to t( :pilot_read_more ), post_url( post )
