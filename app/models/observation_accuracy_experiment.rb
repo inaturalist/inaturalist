@@ -23,6 +23,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   GAPS_ID_PILOT_VERSION = "Gaps Identification Pilot"
   GAPS_OBS_PILOT_VERSION = "Gaps Observation Pilot"
   GAPS_OBS_PILOT_POST_TITLE = "Observation Gaps Pilot: Nearby Wanted Species"
+  GAPS_ID_PILOT_POST_TITLE = "Identification Gaps Pilot: Nearby Wanted Species"
 
   def generate_sample_if_requested
     generate_sample if generate_sample_now
@@ -1060,20 +1061,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
     return unless validator
 
+    return if validator.validation_count.nil?
+
     obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
     return if obs_ids.blank?
 
-    params = {
+    {
       reviewed: "false",
       quality_grade: "needs_id",
       place_id: "any",
       id: obs_ids.join( "," )
     }
-    return if INatAPIService.observations(
-      params.merge( per_page: 0, viewer_id: user.id )
-    ).total_results.zero?
-
-    params
   end
 
   def self.top_identifiers
@@ -1083,7 +1081,18 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
   end
 
-  # Gaps Pilot Methods
+  def self.get_modeled_taxa
+    modeled_taxon_ids = []
+    CSV.foreach( CONFIG&.model_taxonomy, headers: :first_row, col_sep: ",", quote_char: "|" ) do | row |
+      next if row[3].nil? || row[2].nil? || row[2].to_i > 10
+
+      modeled_taxon_ids << row[1].to_i
+    end
+
+    modeled_taxon_ids
+  end
+
+  # Gaps Obs Pilot Methods
   def self.gaps_obs_pilot
     ObservationAccuracyExperiment.find_by( version: GAPS_OBS_PILOT_VERSION )
   end
@@ -1096,19 +1105,16 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
     return unless observer
 
+    return if observer.validation_count.nil?
+
     obs_ids = observer.observation_accuracy_samples.pluck( :observation_id )
     return if obs_ids.blank?
 
-    params = {
+    {
       place_id: "any",
       id: obs_ids.join( "," ),
       view: "species"
     }
-    return if INatAPIService.observations(
-      params.merge( per_page: 0, viewer_id: user.id )
-    ).total_results.zero?
-
-    params
   end
 
   def self.gaps_obs_pilot_post
@@ -1125,22 +1131,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
     user.site.try( :name ) == "iNaturalist Canada"
   end
 
-  def self.get_modeled_taxa
-    path = "/disk/mnt/nfs/ml_models/models/latest/taxonomy.csv"
-    modeled_taxon_ids = []
-
-    CSV.foreach( path, headers: :first_row, col_sep: ",", quote_char: "|" ) do | row |
-      next if row[3].nil? || row[2].nil? || row[2].to_i > 10
-
-      modeled_taxon_ids << row[1].to_i
-    end
-
-    modeled_taxon_ids
-  end
-
   def self.get_observer_location( user_id )
     observations = INatAPIService.
-      observations( user_id: user_id, order_by: "observed_on", per_page: 1, verifiable: true )
+      observations( user_id: user_id, order_by: "observed_on", per_page: 1, verifiable: true, obscuration: none )
     return nil unless observations
 
     last_observation = observations["results"][0]
@@ -1231,6 +1224,18 @@ class ObservationAccuracyExperiment < ApplicationRecord
         where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).
         where( "observation_id IN (?)", obs_ids )
       observer.observation_accuracy_samples << samples
+
+      params = {
+        place_id: "any",
+        id: obs_ids.join( "," ),
+        view: "species"
+      }
+      next if INatAPIService.observations(
+        params.merge( per_page: 0, viewer_id: user.id )
+      ).total_results.zero?
+
+      observer.validation_count = nil
+      observer.save!
     end
   end
 
@@ -1241,5 +1246,124 @@ class ObservationAccuracyExperiment < ApplicationRecord
       version: GAPS_OBS_PILOT_VERSION
     )
     process_observers( gaps_obs_pilot, new_model )
+  end
+
+  # Gaps ID Pilot Methods
+  def self.gaps_id_pilot
+    ObservationAccuracyExperiment.find_by( version: GAPS_ID_PILOT_VERSION )
+  end
+
+  def self.gaps_id_pilot_params_for_user( user )
+    return unless gaps_id_pilot && user
+
+    identifier = gaps_id_pilot.observation_accuracy_validators.find_by(
+      user_id: user.id
+    )
+    return unless identifier
+
+    return if identifier.validation_count.nil?
+
+    obs_ids = identifier.observation_accuracy_samples.pluck( :observation_id )
+    return if obs_ids.blank?
+
+    {
+      reviewed: "false",
+      quality_grade: "needs_id",
+      place_id: "any",
+      id: obs_ids.join( "," )
+    }
+  end
+
+  def self.gaps_id_pilot_post
+    Post.where(
+      title: GAPS_ID_PILOT_POST_TITLE,
+      parent_type: "Site"
+    ).where.not( published_at: nil ).first
+  end
+
+  def self.user_eligible_for_gaps_id_pilot?( user )
+    return false if !gaps_id_pilot || user.nil? || user.prefers_gaps_id_pilot == false
+    return true if user.prefers_gaps_id_pilot == true || user.is_admin?
+
+    user.site.try( :name ) == "iNaturalist Canada"
+  end
+
+  def self.process_iders( gaps_id_pilot )
+    modeled_taxon_ids = get_modeled_taxa
+    participating_identifier_ids = Preference.where(
+      "owner_type = 'User' AND name = 'gaps_id_pilot' AND value = 't'"
+    ).pluck( :owner_id )
+    ObservationAccuracyValidator.where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
+      where( "user_id NOT IN (?)", participating_identifier_ids ).destroy_all
+    ObservationAccuracySample.where( observation_accuracy_experiment_id: gaps_id_pilot.id ).destroy_all
+    country_place_ids = Place.where( admin_level: Place::COUNTRY_LEVEL ).pluck( :id )
+
+    participating_identifier_ids.each do | user_id |
+      identifier = ObservationAccuracyValidator.
+        where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
+        where( user_id: user_id ).first
+      unless identifier
+        identifier = ObservationAccuracyValidator.new(
+          observation_accuracy_experiment_id: gaps_id_pilot.id,
+          user_id: user_id
+        )
+        identifier.save!
+      end
+
+      improving_id_matches = CohortLifecycle.get_improving_identifiers( user_id, country_place_ids )
+      unmodeled_taxon_ids = improving_id_matches.keys - modeled_taxon_ids
+      next if unmodeled_taxon_ids.count.zero?
+
+      target_taxon_ids = Taxon.where( id: unmodeled_taxon_ids ).
+        where( "observations_count < 300" ).pluck( :id )
+      target_place_ids = improving_id_matches.values.flatten.uniq
+      observations = INatAPIService.observations(
+        taxon_ids: target_taxon_ids.shuffle.take( 200 ),
+        quality_grade: "needs_id",
+        without_user_id: user_id,
+        per_page: 200,
+        place_id: target_place_ids
+      )
+      obs_ids = observations["results"].map {| a | a["id"] }
+      obs_ids.each do | obs_id |
+        sample = ObservationAccuracySample.
+          where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
+          where( observation_id: obs_id ).first
+        next if sample
+
+        sample = ObservationAccuracySample.new(
+          observation_accuracy_experiment_id: gaps_id_pilot.id,
+          observation_id: obs_id
+        )
+        sample.save!
+      end
+
+      samples = ObservationAccuracySample.
+        where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
+        where( "observation_id IN (?)", obs_ids )
+      identifier.observation_accuracy_samples << samples
+
+      params = {
+        reviewed: "false",
+        quality_grade: "needs_id",
+        place_id: "any",
+        id: obs_ids.join( "," )
+      }
+      next if INatAPIService.observations(
+        params.merge( per_page: 0, viewer_id: user.id )
+      ).total_results.zero?
+
+      identifier.validation_count = nil
+      identifier.save!
+    end
+  end
+
+  def self.process_gaps_id
+    puts "processing gaps id..."
+    gaps_id_pilot = ObservationAccuracyExperiment.find_by( version: GAPS_ID_PILOT_VERSION )
+    gaps_id_pilot ||= ObservationAccuracyExperiment.create(
+      version: GAPS_ID_PILOT_VERSION
+    )
+    process_iders( gaps_id_pilot )
   end
 end

@@ -202,6 +202,13 @@ $( function( ) {
   });
 
   $( "a[data-panel-type]" ).click( function( e ) {
+    // If a specific handler exists, skip the generic one
+    if ( this.id === "close_gaps_obs_pilot_panel" ||
+         this.id === "close_needs_id_pilot_panel" ||
+         this.id === "close_gaps_id_pilot_panel" ) {
+      return;
+    }
+
     e.preventDefault( );
     panelType = $( this ).data( "panel-type" );
     DASHBOARD.closePanel( this, panelType );
@@ -233,7 +240,6 @@ $( function( ) {
     $( "#participate_section" ).hide( );
     $( "#stop_participating_section" ).show( );
     $( "#close_needs_id_pilot_panel" ).hide( );
-
   });
 
   $( "#stop_participating_link" ).on( "click", function( e ) {
@@ -244,10 +250,11 @@ $( function( ) {
     $( "#close_needs_id_pilot_panel" ).show( );
   });
 
+  // gaps obs
   $( "#close_gaps_obs_pilot_panel" ).on( "click", function( e ) {
     e.preventDefault( );
     $( "#gaps_obs_pilot_panel" ).hide( );
-    updateSession( { prefers_gaps_obs__pilot: false } );
+    updateSession( { prefers_gaps_obs_pilot: false } );
   } );
 
   $( "#gaps_obs_participate_button" ).on( "click", function( e ) {
@@ -256,7 +263,6 @@ $( function( ) {
     $( "#gaps_obs_participate_section" ).hide( );
     $( "#gaps_obs_stop_participating_section" ).show( );
     $( "#close_gaps_obs_pilot_panel" ).hide( );
-
   });
 
   $( "#gaps_obs_stop_participating_link" ).on( "click", function( e ) {
@@ -265,5 +271,29 @@ $( function( ) {
     $( "#gaps_obs_stop_participating_section" ).hide( );
     $( "#gaps_obs_participate_section" ).show( );
     $( "#close_gaps_obs_pilot_panel" ).show( );
+  });
+
+  // gaps id
+    $( "#close_gaps_id_pilot_panel" ).on( "click", function( e ) {
+    e.preventDefault( );
+    $( "#gaps_id_pilot_panel" ).hide( );
+    updateSession( { prefers_gaps_id_pilot: false } );
+  } );
+
+  $( "#gaps_id_participate_button" ).on( "click", function( e ) {
+    e.preventDefault( );
+    updateSession( { prefers_gaps_id_pilot: true } );
+    $( "#gaps_id_participate_section" ).hide( );
+    $( "#gaps_id_stop_participating_section" ).show( );
+    $( "#close_gaps_id_pilot_panel" ).hide( );
+
+  });
+
+  $( "#gaps_id_stop_participating_link" ).on( "click", function( e ) {
+    e.preventDefault( );
+    updateSession( { prefers_gaps_id_pilot: null } );
+    $( "#gaps_id_stop_participating_section" ).hide( );
+    $( "#gaps_id_participate_section" ).show( );
+    $( "#close_gaps_id_pilot_panel" ).show( );
   });
 });
