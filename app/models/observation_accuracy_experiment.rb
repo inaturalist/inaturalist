@@ -1127,6 +1127,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   def self.user_eligible_for_gaps_obs_pilot?( user )
     return false if !gaps_obs_pilot || user.nil? || user.prefers_gaps_obs_pilot == false
     return true if user.prefers_gaps_obs_pilot == true || user.is_admin?
+    return false if user.observations_count < 1000
 
     user.site.try( :name ) == "iNaturalist Canada"
   end
@@ -1190,7 +1191,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
       end
 
       lng, lat = get_observer_location( user_id )
-      next if lat.nil?
+      if lat.nil?
+        observer.validation_count = nil
+        observer.save!
+
+        next
+      end
 
       month = Time.now.month
       radius = 50
@@ -1204,7 +1210,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
         taxon_ids: nearby_gap_taxon_ids.first( 300 ),
         per_page: 200
       )
-      next if observations.nil?
+      if observations.nil?
+        observer.validation_count = nil
+        observer.save!
+
+        next
+      end
 
       obs_ids = observations["results"].map {| a | a["id"] }
       obs_ids.each do | obs_id |
@@ -1230,8 +1241,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
         id: obs_ids.join( "," ),
         view: "species"
       }
-      next if INatAPIService.observations(
-        params.merge( per_page: 0, viewer_id: user.id )
+      next unless INatAPIService.observations(
+        params.merge( per_page: 0, viewer_id: user_id )
       ).total_results.zero?
 
       observer.validation_count = nil
@@ -1284,6 +1295,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   def self.user_eligible_for_gaps_id_pilot?( user )
     return false if !gaps_id_pilot || user.nil? || user.prefers_gaps_id_pilot == false
     return true if user.prefers_gaps_id_pilot == true || user.is_admin?
+    return false if user.identifications_count < 10_000
 
     user.site.try( :name ) == "iNaturalist Canada"
   end
@@ -1312,10 +1324,22 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
       improving_id_matches = CohortLifecycle.get_improving_identifiers( user_id, country_place_ids )
       unmodeled_taxon_ids = improving_id_matches.keys - modeled_taxon_ids
-      next if unmodeled_taxon_ids.count.zero?
+      if unmodeled_taxon_ids.count.zero?
+        identifier.validation_count = nil
+        identifier.save!
+        next
+
+      end
 
       target_taxon_ids = Taxon.where( id: unmodeled_taxon_ids ).
         where( "observations_count < 300" ).pluck( :id )
+      if target_taxon_ids.count.zero?
+        identifier.validation_count = nil
+        identifier.save!
+        next
+
+      end
+
       target_place_ids = improving_id_matches.values.flatten.uniq
       observations = INatAPIService.observations(
         taxon_ids: target_taxon_ids.shuffle.take( 200 ),
@@ -1325,6 +1349,12 @@ class ObservationAccuracyExperiment < ApplicationRecord
         place_id: target_place_ids
       )
       obs_ids = observations["results"].map {| a | a["id"] }
+      if obs_ids.count.zero?
+        identifier.validation_count = nil
+        identifier.save!
+        next
+
+      end
       obs_ids.each do | obs_id |
         sample = ObservationAccuracySample.
           where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
@@ -1349,8 +1379,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
         place_id: "any",
         id: obs_ids.join( "," )
       }
-      next if INatAPIService.observations(
-        params.merge( per_page: 0, viewer_id: user.id )
+      next unless INatAPIService.observations(
+        params.merge( per_page: 0, viewer_id: user_id )
       ).total_results.zero?
 
       identifier.validation_count = nil
