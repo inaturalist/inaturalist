@@ -36,7 +36,7 @@ gem "daemons"
 gem "dalli"
 gem "dbf" # Needed for georuby shapefile support
 gem "delayed_job"
-gem "delayed_job_active_record"
+gem "delayed_job_active_record", "~> 4.1.11"
 gem "devise"
 gem "devise-encryptable"
 gem "devise-i18n"

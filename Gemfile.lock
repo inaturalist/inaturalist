@@ -299,10 +299,10 @@ GEM
     date (3.4.1)
     dbf (4.2.0)
     debug_inspector (1.1.0)
-    delayed_job (4.1.9)
-      activesupport (>= 3.0, < 6.2)
-    delayed_job_active_record (4.1.6)
-      activerecord (>= 3.0, < 6.2)
+    delayed_job (4.1.13)
+      activesupport (>= 3.0, < 9.0)
+    delayed_job_active_record (4.1.11)
+      activerecord (>= 3.0, < 9.0)
       delayed_job (>= 3.0, < 5)
     devise (4.8.0)
       bcrypt (~> 3.0)
@@ -747,7 +747,7 @@ GEM
     ya2yaml (0.31)
     yajl-ruby (1.4.3)
     yui-compressor (0.12.0)
-    zeitwerk (2.7.2)
+    zeitwerk (2.7.3)
 
 PLATFORMS
   ruby
@@ -790,7 +790,7 @@ DEPENDENCIES
   database_cleaner
   dbf
   delayed_job
-  delayed_job_active_record
+  delayed_job_active_record (~> 4.1.11)
   devise
   devise-encryptable
   devise-i18n
