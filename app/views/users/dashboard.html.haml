@@ -141,7 +141,7 @@
                 - post = ObservationAccuracyExperiment.needs_id_pilot_post
                 - if post
                   = link_to t( :pilot_read_more ), post_url( post )
-              %button{ type: "button", id: "participate_button", class: "btn btn-default btn-md" } t( :pilot_participate )
+              %button{ type: "button", id: "participate_button", class: "btn btn-default btn-md" }= t( :pilot_participate )
             #stop_participating_section{ style: ( current_user.prefers_needs_id_pilot == true ? "" : "display:none;" ) }
               - needs_id_pilot_params = ObservationAccuracyExperiment.needs_id_pilot_params_for_user( current_user )
               - if needs_id_pilot_params
@@ -166,12 +166,13 @@
                     %li= t( :gaps_obs_pilot_condition_1 )
                     %li= t( :gaps_obs_pilot_condition_2 )
                     %li= t( :gaps_obs_pilot_condition_3 )
-                  %p= t( :gaps_obs_pilot_body )
+                  %p
+                    = t( :gaps_obs_pilot_body )
                     - post = ObservationAccuracyExperiment.gaps_obs_pilot_post
                     - if post
                       = link_to t( :pilot_read_more ), post_url( post )
                   %div{ style: "clear: both;" }
-              %button{ type: "button", id: "gaps_obs_participate_button", class: "btn btn-default btn-md" } t( :pilot_participate )
+              %button{ type: "button", id: "gaps_obs_participate_button", class: "btn btn-default btn-md" }= t( :pilot_participate )
             #gaps_obs_stop_participating_section{ style: ( current_user.prefers_gaps_obs_pilot == true ? "" : "display:none;" ) }
               - gaps_obs_pilot_params = ObservationAccuracyExperiment.gaps_obs_pilot_params_for_user( current_user )
               .stacked
@@ -200,7 +201,8 @@
               .stacked
                 .container2
                   %img{ src: "https://static.inaturalist.org/wiki_page_attachments/4649-original.png", style: "width:100px;float: right;clear: right;margin-left: 10px;margin-right: 0;" }
-                  %p= t( :gaps_id_pilot_intro )
+                  %p
+                    = t( :gaps_id_pilot_intro )
                     %ul
                       %li= t( :gaps_id_pilot_condition_1 )
                       %li= t( :gaps_id_pilot_condition_2 )
@@ -208,7 +210,7 @@
                     - if post
                       = link_to t( :pilot_read_more ) , post_url( post )
                   %div{ style: "clear: both;" }
-              %button{ type: "button", id: "gaps_id_participate_button", class: "btn btn-default btn-md" } t( :pilot_participate )
+              %button{ type: "button", id: "gaps_id_participate_button", class: "btn btn-default btn-md" }= t( :pilot_participate )
             #gaps_id_stop_participating_section{ style: ( current_user.prefers_gaps_id_pilot == true ? "" : "display:none;" ) }
               - gaps_id_pilot_params = ObservationAccuracyExperiment.gaps_id_pilot_params_for_user( current_user )
               .stacked
