@@ -148,7 +148,7 @@ base: &base
             default: 1234
     help_email: help@inaturalist.org
 
-    model_taxonomy: /disk/mnt/nfs/ml_models/models/latest/taxonomy.csv
+    model_taxonomy: taxonomy.csv
 
 development:
     <<: *base

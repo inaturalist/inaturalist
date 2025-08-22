@@ -581,11 +581,10 @@ class CohortLifecycle < ApplicationRecord
         place_id: "any",
         id: obs_ids.join( "," )
       }
-      next unless INatAPIService.observations(
+      validation_count = INatAPIService.observations(
         params.merge( per_page: 0, viewer_id: user_id )
-      ).total_results.zero?
-
-      validator.validation_count = nil
+      ).total_results
+      validator.validation_count = validation_count
       validator.save!
     end
   end

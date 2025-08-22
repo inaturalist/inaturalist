@@ -1673,6 +1673,61 @@ en:
   daily_users: Daily Users
   danger_zone: Danger Zone
   dashboard: Dashboard
+  dashboard_pilots:
+    # button asking to participate in a pilot
+    pilot_participate: "Yes! I'd like to participate."
+    # state of button asking to participate in a pilot after participating
+    pilot_stop: "stop participating"
+    # link to a blog post
+    pilot_read_more: "Read more on our blog."
+    # title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Identification Gaps Pilot: Needs ID Wanted Species"
+    # description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Help us fill gaps by participating to recieve daily link to observations:"
+    # description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Not yet included in the Computer Vision model"
+    # description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "We think you can identify"
+    # instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Here's a link to observations of species not yet included in the Computer Vision Model that we think you can identify."
+    # instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Check back tomorrow for a link to observations of species not yet included in the Computer Vision Model that we think you can identify. You'll be shown species where you have made at least 3 improving identifications."
+    # instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "If you don't see a link, there may not be any observations matching these criteria that Need ID. It will check once per day."
+    # title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Observation Gaps Pilot: Nearby Wanted Species"
+    # description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Tomorrow, you'll receive a list of species that:"
+    # description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Are not yet in the Computer Vision Model"
+    # description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Have been observed this season near your last observation"
+    # description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Are driven by a sample of up to 200 observations of up to 300 species prioritizing plants"
+    # instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "By observing these species, you'll help improve the model and fill biodiversity data gaps. This list will update when the Model updates. You can opt out at any time."
+    # instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Here’s your current list of species that are:"
+    # instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Not yet included in the Computer Vision model"
+    # instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Observed near your last location this season"
+    # instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "By observing these, you’re helping improve species recognition and fill critical gaps."
+    # label of link to explore species view
+    gaps_obs_pilot_browse: "Browse species"
+    # instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Check back tomorrow for a personalized list of species not yet in the Computer Vision model, observed this season. The personalized list will use the location of your most recent observation."
+    # instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "If you don't see a link there might not be any species matching these criteria near you"
+    # title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Identification Pilot: Onboarding New Users"
+    # instructions explaining the pilot
+    identification_pilot_body_intro: "Beginning tomorrow, receive up to 30 observations daily that match your identification skills, helping to onboard new users. You can opt out at any time."
+    # instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Below are up to 30 observations that match your identification skills."
+    # instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Check back tomorrow for a link to observations that match your identification skills."
   data_deficient: Data Deficient
   data_quality: Data Quality
   data_quality_assessment: Data Quality Assessment
@@ -2336,30 +2391,6 @@ en:
   fungi:
     one: fungus
     other: fungi
-  gaps_id_pilot_title: "Identification Gaps Pilot: Needs ID Wanted Species"
-  gaps_id_pilot_intro: "Help us fill gaps by participating to recieve daily link to observations:"
-  gaps_id_pilot_condition_1: "Not yet included in the Computer Vision model"
-  gaps_id_pilot_condition_2: "We think you can identify"
-  gaps_id_pilot_participate: "Yes! I'd like to participate."
-  gaps_id_pilot_current_intro: "Here's a link to observations of species not yet included in the Computer Vision Model that we think you can identify."
-  gaps_id_pilot_check_back: "Check back tomorrow for a link to observations of species not yet included in the Computer Vision Model that we think you can identify (at least 3 improving identifications)."
-  gaps_id_pilot_check_back_body: "If you don't see a link there might not be any observations matching these criteria that Need ID."
-  gaps_id_pilot_stop: "stop participating"
-  gaps_obs_pilot_title: "Observation Gaps Pilot: Nearby Wanted Species"
-  gaps_obs_pilot_intro: "Tomorrow, you'll receive a list of species that:"
-  gaps_obs_pilot_condition_1: "Are not yet in the Computer Vision Model"
-  gaps_obs_pilot_condition_2: "Have been observed this season near your last observation"
-  gaps_obs_pilot_condition_3: "Are driven by a sample of up to 200 observations of up to 300 species prioritizing plants"
-  gaps_obs_pilot_body: "By observing these species, you'll help improve the model and fill biodiversity data gaps. This list will update when the Model updates. You can opt out at any time."
-  gaps_obs_pilot_participate: "Yes! I'd like to participate."
-  gaps_obs_pilot_current_intro: "Here’s your current list of species that are:"
-  gaps_obs_pilot_current_condition_1: "Not yet included in the Computer Vision model"
-  gaps_obs_pilot_current_condition_2: "Observed near your last location this season"
-  gaps_obs_pilot_current_body: "By observing these, you’re helping improve species recognition and fill critical gaps."
-  gaps_obs_pilot_browse: "Browse species"
-  gaps_obs_pilot_check_back: "Check back tomorrow for a personalized list of nearby species not yet in the Computer Vision model, observed this season."
-  gaps_obs_pilot_check_back_body: "If you don't see a link there might not be any species matching these criteria near you"
-  gaps_obs_pilot_stop: "stop participating"
   gbif: GBIF
   gbif_occurrences: GBIF Occurrences
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
@@ -2561,10 +2592,6 @@ en:
   identification_by_user: Identification by %{user}
   # Notification when an identification has been deleted
   identification_deleted: Identification deleted.
-  identification_pilot_title: "Identification Pilot: Onboarding New Users"
-  identification_pilot_body_intro: "Beginning tomorrow, receive up to 30 observations daily that match your identification skills, helping to onboard new users. You can opt out at any time."
-  identification_pilot_current_intro: "Below are up to 30 observations that match your identification skills."
-  identification_pilot_check_back: "Check back tomorrow for a link to observations that match your identification skills."
   identification_saved: "Identification saved!"
   # Notice when an identification has been hidden by moderators
   identification_hidden: Identification hidden
@@ -4123,9 +4150,6 @@ en:
   pi_consent_child_label: |
     I consent to allow iNaturalist to store and process limited kinds of
     personal information about my child in order to manage my child's account
-  pilot_participate: "Yes! I'd like to participate."
-  pilot_stop: "stop participating"
-  pilot_read_more: "Read more on our blog."
   data_transfer_consent_desc_title: About Personal Information Transfer Consent
   data_transfer_consent_desc_html: |
     <p>

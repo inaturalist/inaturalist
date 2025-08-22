@@ -133,98 +133,98 @@
         #needs_id_pilot_panel.panel.panel-default
           .panel-heading
             %a.close{ "data-panel-type" => "needs_id_pilot_panel", id: "close_needs_id_pilot_panel", style: ( current_user.prefers_needs_id_pilot == true ? "display:none;" : "" ) } &#215;
-            %h3.panel-title= t( :identification_pilot_title )
+            %h3.panel-title= t( "dashboard_pilots.identification_pilot_title" )
           .panel-body
             #participate_section{ style: ( current_user.prefers_needs_id_pilot.nil? ? "" : "display:none;" ) }
               %p
-                = t( :identification_pilot_body_intro )
+                = t( "dashboard_pilots.identification_pilot_body_intro" )
                 - post = ObservationAccuracyExperiment.needs_id_pilot_post
                 - if post
-                  = link_to t( :pilot_read_more ), post_url( post )
-              %button{ type: "button", id: "participate_button", class: "btn btn-default btn-md" }= t( :pilot_participate )
+                  = link_to t( "dashboard_pilots.pilot_read_more" ), post_url( post )
+              %button{ type: "button", id: "participate_button", class: "btn btn-default btn-md" }= t( "dashboard_pilots.pilot_participate" )
             #stop_participating_section{ style: ( current_user.prefers_needs_id_pilot == true ? "" : "display:none;" ) }
               - needs_id_pilot_params = ObservationAccuracyExperiment.needs_id_pilot_params_for_user( current_user )
               - if needs_id_pilot_params
-                %p= t( :identification_pilot_current_intro )
+                %p= t( "dashboard_pilots.identification_pilot_current_intro" )
                 = link_to t( :identify_observations ), identify_observations_url( needs_id_pilot_params ), class: "btn btn-primary btn-md"
               - else
-                %p= t( :identification_pilot_check_back )
+                %p= t( "dashboard_pilots.identification_pilot_check_back" )
               %p.text-right
-                = link_to t( :pilot_stop ), "#", id: "stop_participating_link", class: "btn-link"
+                = link_to t( "dashboard_pilots.pilot_stop" ), "#", id: "stop_participating_link", class: "btn-link"
       - if ObservationAccuracyExperiment.user_eligible_for_gaps_obs_pilot?( current_user )
         #gaps_obs_pilot_panel.panel.panel-default
           .panel-heading
             %a.close{ "data-panel-type" => "gaps_obs_pilot_panel", id: "close_gaps_obs_pilot_panel", style: ( current_user.prefers_gaps_obs_pilot == true ? "display:none;" : "" ) } &#215;
-            %h3.panel-title= t( :gaps_obs_pilot_title )
+            %h3.panel-title= t( "dashboard_pilots.gaps_obs_pilot_title" )
           .panel-body
             #gaps_obs_participate_section{ style: ( current_user.prefers_gaps_obs_pilot.nil? ? "" : "display:none;" ) }
               .stacked
                 .container2
                   %img{ src: "https://static.inaturalist.org/wiki_page_attachments/4650-original.png", style: "width:100px;float: right;clear: right;margin-left: 10px;margin-right: 0;" }
-                  %p= t( :gaps_obs_pilot_intro )
+                  %p= t( "dashboard_pilots.gaps_obs_pilot_intro" )
                   %ul
-                    %li= t( :gaps_obs_pilot_condition_1 )
-                    %li= t( :gaps_obs_pilot_condition_2 )
-                    %li= t( :gaps_obs_pilot_condition_3 )
+                    %li= t( "dashboard_pilots.gaps_obs_pilot_condition_1" )
+                    %li= t( "dashboard_pilots.gaps_obs_pilot_condition_2" )
+                    %li= t( "dashboard_pilots.gaps_obs_pilot_condition_3" )
                   %p
-                    = t( :gaps_obs_pilot_body )
+                    = t( "dashboard_pilots.gaps_obs_pilot_body" )
                     - post = ObservationAccuracyExperiment.gaps_obs_pilot_post
                     - if post
-                      = link_to t( :pilot_read_more ), post_url( post )
+                      = link_to t( "dashboard_pilots.pilot_read_more" ), post_url( post )
                   %div{ style: "clear: both;" }
-              %button{ type: "button", id: "gaps_obs_participate_button", class: "btn btn-default btn-md" }= t( :pilot_participate )
+              %button{ type: "button", id: "gaps_obs_participate_button", class: "btn btn-default btn-md" }= t( "dashboard_pilots.pilot_participate" )
             #gaps_obs_stop_participating_section{ style: ( current_user.prefers_gaps_obs_pilot == true ? "" : "display:none;" ) }
               - gaps_obs_pilot_params = ObservationAccuracyExperiment.gaps_obs_pilot_params_for_user( current_user )
               .stacked
                 .container2
                   %img{ src: "https://static.inaturalist.org/wiki_page_attachments/4650-original.png", style: "width:100px;float: right;clear: right;margin-left: 10px;margin-right: 0;" }
                   - if gaps_obs_pilot_params
-                    %p= t( :gaps_obs_pilot_current_intro )
+                    %p= t( "dashboard_pilots.gaps_obs_pilot_current_intro" )
                     %ul
-                      %li= t( :gaps_obs_pilot_current_condition_1 )
-                      %li= t( :gaps_obs_pilot_current_condition_2 )
-                    %p= t( :gaps_obs_pilot_current_body )
-                    = link_to t( :gaps_obs_pilot_browse ), observations_url( gaps_obs_pilot_params ), class: "btn btn-primary btn-md"
+                      %li= t( "dashboard_pilots.gaps_obs_pilot_current_condition_1" )
+                      %li= t( "dashboard_pilots.gaps_obs_pilot_current_condition_2" )
+                    %p= t( "dashboard_pilots.gaps_obs_pilot_current_body" )
+                    = link_to t( "dashboard_pilots.gaps_obs_pilot_browse" ), observations_url( gaps_obs_pilot_params ), class: "btn btn-primary btn-md"
                   - else
-                    %p= t( :gaps_obs_pilot_check_back )
-                    %p= t( :gaps_obs_pilot_check_back_body )
+                    %p= t( "dashboard_pilots.gaps_obs_pilot_check_back" )
+                    %p= t( "dashboard_pilots.gaps_obs_pilot_check_back_body" )
                 %div{ style: "clear: both;" }    
               %p.text-right
-                = link_to t( :pilot_stop ), "#", id: "gaps_obs_stop_participating_link", class: "btn-link"
+                = link_to t( "dashboard_pilots.pilot_stop" ), "#", id: "gaps_obs_stop_participating_link", class: "btn-link"
       - if ObservationAccuracyExperiment.user_eligible_for_gaps_id_pilot?( current_user )
         #gaps_id_pilot_panel.panel.panel-default
           .panel-heading
             %a.close{ "data-panel-type" => "gaps_id_pilot_panel", id: "close_gaps_id_pilot_panel", style: ( current_user.prefers_gaps_id_pilot == true ? "display:none;" : "" ) } &#215;
-            %h3.panel-title= t( :gaps_id_pilot_title )
+            %h3.panel-title= t( "dashboard_pilots.gaps_id_pilot_title" )
           .panel-body
             #gaps_id_participate_section{ style: ( current_user.prefers_gaps_id_pilot.nil? ? "" : "display:none;" ) }
               .stacked
                 .container2
                   %img{ src: "https://static.inaturalist.org/wiki_page_attachments/4649-original.png", style: "width:100px;float: right;clear: right;margin-left: 10px;margin-right: 0;" }
                   %p
-                    = t( :gaps_id_pilot_intro )
+                    = t( "dashboard_pilots.gaps_id_pilot_intro" )
                     %ul
-                      %li= t( :gaps_id_pilot_condition_1 )
-                      %li= t( :gaps_id_pilot_condition_2 )
+                      %li= t( "dashboard_pilots.gaps_id_pilot_condition_1" )
+                      %li= t( "dashboard_pilots.gaps_id_pilot_condition_2" )
                     - post = ObservationAccuracyExperiment.gaps_id_pilot_post
                     - if post
-                      = link_to t( :pilot_read_more ) , post_url( post )
+                      = link_to t( "dashboard_pilots.pilot_read_more" ) , post_url( post )
                   %div{ style: "clear: both;" }
-              %button{ type: "button", id: "gaps_id_participate_button", class: "btn btn-default btn-md" }= t( :pilot_participate )
+              %button{ type: "button", id: "gaps_id_participate_button", class: "btn btn-default btn-md" }= t( "dashboard_pilots.pilot_participate" )
             #gaps_id_stop_participating_section{ style: ( current_user.prefers_gaps_id_pilot == true ? "" : "display:none;" ) }
               - gaps_id_pilot_params = ObservationAccuracyExperiment.gaps_id_pilot_params_for_user( current_user )
               .stacked
                 .container2
                   %img{ src: "https://static.inaturalist.org/wiki_page_attachments/4649-original.png", style: "width:100px;float: right;clear: right;margin-left: 10px;margin-right: 0;" }
                   - if gaps_id_pilot_params
-                    %p= t( :gaps_id_pilot_current_intro )
+                    %p= t( "dashboard_pilots.gaps_id_pilot_current_intro" )
                     = link_to t( :identify_observations ), identify_observations_url(gaps_id_pilot_params), class: "btn btn-primary btn-md"
                   - else
-                    %p= t( :gaps_id_pilot_check_back )
-                    %p= t( :gaps_id_pilot_check_back_body )
+                    %p= t( "dashboard_pilots.gaps_id_pilot_check_back" )
+                    %p= t( "dashboard_pilots.gaps_id_pilot_check_back_body" )
                 %div{ style: "clear: both;" }    
               %p.text-right
-                = link_to t( :gaps_id_pilot_stop ), "#", id: "gaps_id_stop_participating_link", class: "btn-link"
+                = link_to t( "dashboard_pilots.pilot_stop" ), "#", id: "gaps_id_stop_participating_link", class: "btn-link"
       - if @discourse_url && !@discourse_data.blank?
         #forum
           .panel.panel-default

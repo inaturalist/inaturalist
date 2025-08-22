@@ -1061,7 +1061,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
     return unless validator
 
-    return if validator.validation_count.nil?
+    return if ( validator&.validation_count || 0 ).zero?
 
     obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
     return if obs_ids.blank?
@@ -1105,7 +1105,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
     return unless observer
 
-    return if observer.validation_count.nil?
+    return if ( observer&.validation_count || 0 ).zero?
 
     obs_ids = observer.observation_accuracy_samples.pluck( :observation_id )
     return if obs_ids.blank?
@@ -1192,7 +1192,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
       lng, lat = get_observer_location( user_id )
       if lat.nil?
-        observer.validation_count = nil
+        observer.validation_count = 0
         observer.save!
 
         next
@@ -1211,7 +1211,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         per_page: 200
       )
       if observations.nil?
-        observer.validation_count = nil
+        observer.validation_count = 0
         observer.save!
 
         next
@@ -1241,11 +1241,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
         id: obs_ids.join( "," ),
         view: "species"
       }
-      next unless INatAPIService.observations(
+      validation_count = INatAPIService.observations(
         params.merge( per_page: 0, viewer_id: user_id )
-      ).total_results.zero?
-
-      observer.validation_count = nil
+      ).total_results
+      observer.validation_count = validation_count
       observer.save!
     end
   end
@@ -1272,7 +1271,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
     return unless identifier
 
-    return if identifier.validation_count.nil?
+    return if ( identifier&.validation_count || 0 ).zero?
 
     obs_ids = identifier.observation_accuracy_samples.pluck( :observation_id )
     return if obs_ids.blank?
@@ -1325,7 +1324,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       improving_id_matches = CohortLifecycle.get_improving_identifiers( user_id, country_place_ids )
       unmodeled_taxon_ids = improving_id_matches.keys - modeled_taxon_ids
       if unmodeled_taxon_ids.count.zero?
-        identifier.validation_count = nil
+        identifier.validation_count = 0
         identifier.save!
         next
 
@@ -1334,7 +1333,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       target_taxon_ids = Taxon.where( id: unmodeled_taxon_ids ).
         where( "observations_count < 300" ).pluck( :id )
       if target_taxon_ids.count.zero?
-        identifier.validation_count = nil
+        identifier.validation_count = 0
         identifier.save!
         next
 
@@ -1350,7 +1349,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       )
       obs_ids = observations["results"].map {| a | a["id"] }
       if obs_ids.count.zero?
-        identifier.validation_count = nil
+        identifier.validation_count = 0
         identifier.save!
         next
 
@@ -1379,11 +1378,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
         place_id: "any",
         id: obs_ids.join( "," )
       }
-      next unless INatAPIService.observations(
+      validation_count = INatAPIService.observations(
         params.merge( per_page: 0, viewer_id: user_id )
-      ).total_results.zero?
-
-      identifier.validation_count = nil
+      ).total_results
+      identifier.validation_count = validation_count
       identifier.save!
     end
   end
