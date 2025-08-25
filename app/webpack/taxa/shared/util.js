@@ -243,7 +243,6 @@ const tabFromLocationHash = (rankLevel ) => {
   return !chosenTab?undefined:{tab:chosenTab, hash: `${chosenTab}-tab`};
 };
 
-
 const getChosenTab = (tab, rankLevel) => {
   const speciesTabsSet = new Set([TABS.map, TABS.articles, TABS.interactions, TABS.taxonomy, TABS.status, TABS.similar]);
   const genusTabsSet = new Set([TABS.map, TABS.articles, TABS.highlights, TABS.taxonomy, TABS.similar]);
