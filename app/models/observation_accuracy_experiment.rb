@@ -1129,7 +1129,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return true if user.prefers_gaps_obs_pilot == true || user.is_admin?
     return false if user.observations_count < 1000
 
-    user.site.try( :name ) == "iNaturalist Canada"
+    false # user.site.try( :name ) == "iNaturalist Canada"
   end
 
   def self.get_observer_location( user_id )
@@ -1150,10 +1150,16 @@ class ObservationAccuracyExperiment < ApplicationRecord
     response = INatAPIService.get( "/observations/taxonomy", params )
 
     raw = response["results"].select {| r | r["rank"] == "species" }
-    ids = raw.map {| r | r["id"] } - modeled_taxon_ids
-    allowed_ids = Taxon.where( id: ids ).where( "observations_count <= ?", 200 ).pluck( :id ).to_set
-    results = raw.select {| r | allowed_ids.include?( r["id"] ) }
-    results.sort_by {| r | ( r["iconic_taxon_name"] == "Plantae" ) ? 0 : 1 }.map {| r | r["id"] }
+    candidate_ids = raw.map {| r | r["id"] }.select( &:even? ) - modeled_taxon_ids
+    allowed_counts = Taxon.where( id: candidate_ids ).where( "observations_count <= ?", 200 ).
+      pluck( :id, :observations_count ).to_h
+    filtered = raw.select {| r | allowed_counts.key?( r["id"] ) }
+
+    sorted = filtered.sort_by do | r |
+      group_key = ( r["iconic_taxon_name"] == "Plantae" ) ? 0 : 1
+      [group_key, -( allowed_counts[r["id"]] || 0 )]
+    end
+    sorted.map {| r | r["id"] }
   end
 
   def self.process_observers( gaps_obs_pilot, new_model )
@@ -1296,7 +1302,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return true if user.prefers_gaps_id_pilot == true || user.is_admin?
     return false if user.identifications_count < 10_000
 
-    user.site.try( :name ) == "iNaturalist Canada"
+    false # user.site.try( :name ) == "iNaturalist Canada"
   end
 
   def self.process_iders( gaps_id_pilot )
@@ -1322,7 +1328,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       end
 
       improving_id_matches = CohortLifecycle.get_improving_identifiers( user_id, country_place_ids )
-      unmodeled_taxon_ids = improving_id_matches.keys - modeled_taxon_ids
+      unmodeled_taxon_ids = improving_id_matches.keys.select( &:even? ) - modeled_taxon_ids
       if unmodeled_taxon_ids.count.zero?
         identifier.validation_count = 0
         identifier.save!
