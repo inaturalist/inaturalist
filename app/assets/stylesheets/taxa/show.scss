@@ -144,6 +144,13 @@
     }
   }
 }
+
+#main-tabs-content {
+  & [role="tabpanel"] {
+    scroll-margin-top: 80px; // add some spacing at the top to prevent anchor behavior to hide the tabs
+  }
+}
+
 #ChartsHelpModal .modal-title {
   line-height: 1;
   padding: 0;
