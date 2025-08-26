@@ -115,13 +115,19 @@ class Announcement < ApplicationRecord
   end
 
   def compact_array_attributes
-    self.clients = ( clients || [] ).reject( &:blank? ).compact
-    self.locales = ( locales || [] ).reject( &:blank? ).compact
-    self.ip_countries = ( ip_countries || [] ).reject( &:blank? ).compact
-    self.include_observation_oauth_application_ids = ( include_observation_oauth_application_ids || [] ).
-      reject( &:blank? ).compact
-    self.exclude_observation_oauth_application_ids = ( exclude_observation_oauth_application_ids || [] ).
-      reject( &:blank? ).compact
+    array_attributes = %w(
+      clients
+      locales
+      ip_countries
+      include_observation_oauth_application_ids
+      exclude_observation_oauth_application_ids
+      include_virtuous_tags
+      exclude_virtuous_tags
+    )
+    array_attributes.each do | attr |
+      send( "#{attr}=", ( send( attr ) || [] ).reject( &:blank? ).compact )
+    end
+    nil
   end
 
   def clean_target_group
@@ -145,6 +151,8 @@ class Announcement < ApplicationRecord
     self.last_observation_end_date = nil
     self.include_observation_oauth_application_ids = []
     self.exclude_observation_oauth_application_ids = []
+    self.include_virtuous_tags = []
+    self.exclude_virtuous_tags = []
     self.min_identifications = nil
     self.max_identifications = nil
     self.user_created_start_date = nil
@@ -284,6 +292,13 @@ class Announcement < ApplicationRecord
       ).total_entries
       return false if num_obs_from_excluded_apps.positive?
     end
+
+    return false if user && !include_virtuous_tags.blank? &&
+      !user.user_virtuous_tags.map( &:virtuous_tag ).intersect?( include_virtuous_tags )
+
+    return false if user && !exclude_virtuous_tags.blank? &&
+      user.user_virtuous_tags.map( &:virtuous_tag ).intersect?( exclude_virtuous_tags )
+
     true
   end
 
@@ -332,15 +347,7 @@ class Announcement < ApplicationRecord
     end
 
     # Site filtering
-    scope = if user
-      # authenticated requests include announcements targeted at the users site,
-      # or that have no site affiliation
-      scope.
-        where(
-          "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
-          user.site_id || Site.default.id
-        )
-    elsif site
+    scope = if site
       scope.
         where(
           "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
@@ -385,15 +392,17 @@ class Announcement < ApplicationRecord
     end
 
     # Remove non-site announcements if some announcements target sites
-    announcement_target_site = announcements.detect {| annc | annc.site_ids.present? }
+    announcement_target_site = announcements.detect do | annc |
+      annc.site_ids.present? && annc.excludes_non_site
+    end
     if announcement_target_site
       announcements = announcements.select do | annc |
         annc.site_ids.present?
       end
     end
+
     announcements.sort_by do | a |
       [
-        a.site_ids.include?( site.try( :id ) ) ? 0 : 1,
         a.locales.include?( I18n.locale ) ? 0 : 1,
         a.id * -1
       ]

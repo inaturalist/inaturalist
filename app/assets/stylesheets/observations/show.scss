@@ -362,6 +362,29 @@ a.UserImage,
             }
           }
         }
+        .image-gallery-slide:has(.SoundPlayer) {
+          display: flex;
+          align-items: flex-start;
+          .image-gallery-image {
+            display: flex;
+            height: 100%;
+            position: inherit;
+            .image-gallery-description {
+              display: flex;
+              height: 100%;
+              position: inherit;
+              bottom: revert;
+              .sound-container {
+                position: inherit;
+                top: revert;
+                .SoundPlayer {
+                  display: block;
+                }
+              }
+            }
+          }
+
+        }
         .image-gallery-thumbnails-wrapper {
           margin: 12px 0;
           .image-gallery-thumbnails {

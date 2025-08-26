@@ -320,11 +320,24 @@ describe UpdateAction do
       expect( subscription ).not_to be_blank
       subscription.destroy
       expect( comment_with_action.user ).not_to be_subscribed_to post
-      other_comment = create :comment, parent: post
+      create :comment, parent: post
       update_action = create :update_action, resource: post, notifier: comment_with_action
       grouped = UpdateAction.group_and_sort( [update_action], viewer: comment_with_action.user )
       stub_update_action = grouped.map( &:last ).flatten.detect( &:new_record? )
       expect( stub_update_action ).to be_nil
+    end
+
+    it "does stub UpdateAction for additional notifiers on a resource if the viewer owns the resource" do
+      taxon = create :taxon
+      observation = create :observation, taxon: taxon
+      comment_with_action = create :comment, parent: observation
+      subscription = observation.user.subscriptions.where( resource: observation ).first
+      expect( subscription ).to be_blank
+      create :comment, parent: observation
+      update_action = create :update_action, resource: observation, notifier: comment_with_action
+      grouped = UpdateAction.group_and_sort( [update_action], viewer: observation.user )
+      stub_update_action = grouped.map( &:last ).flatten.detect( &:new_record? )
+      expect( stub_update_action.notifier.taxon ).to eq taxon
     end
   end
 end

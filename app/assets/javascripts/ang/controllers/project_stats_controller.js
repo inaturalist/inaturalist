@@ -48,12 +48,12 @@ application.controller( "ProjectStatsController", ["ObservationsFactory", "share
       $scope.observationSearchParams = _.extend( { }, p );
     };
     $scope.$watch( "observationSearchParams", function ( ) {
-      var statsParams = _.extend(
+      var statsParams = ObservationsFactory.processParamsForAPI( _.extend(
         {},
         $scope.observationSearchParams,
         iNaturalist.localeParams( ),
         { per_page: 5 }
-      );
+      ) );
       $scope.searchURL = "/observations?" + $.param( $scope.observationSearchParams );
       ObservationsFactory.speciesCounts( statsParams ).then( function ( response ) {
         $scope.speciesCount = response.data.total_results;

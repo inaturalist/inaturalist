@@ -25,8 +25,10 @@ describe "TaxonPhoto Index" do
     allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
       { taxon_photo_id.to_s => embedding }
     end.once
+    expect( TaxonPhoto.elastic_search.results.size ).to eq 0
     tp = TaxonPhoto.make!( id: taxon_photo_id )
     tp.elastic_index!
+    expect( TaxonPhoto.elastic_search.results.size ).to eq 1
     tp.elastic_index!
     tp.elastic_index!
   end
@@ -95,5 +97,15 @@ describe "TaxonPhoto Index" do
     expect( json[:photo]["medium_url"] ).to eq tp.photo.best_url( :medium )
     expect( json[:photo]["large_url"] ).to eq tp.photo.best_url( :large )
     expect( json[:photo]["original_url"] ).to eq tp.photo.best_url( :original )
+  end
+
+  it "does not index taxon photos on inactive taxa" do
+    expect( TaxonPhoto ).not_to receive( :embeddings_for_taxon_photos )
+    taxon = Taxon.make!( is_active: false )
+    taxon_photo = TaxonPhoto.make!( taxon: taxon )
+    expect( TaxonPhoto.prune_batch_for_index( [taxon_photo] ) ).to be_empty
+    expect( TaxonPhoto.elastic_search.results.size ).to eq 0
+    taxon_photo.elastic_index!
+    expect( TaxonPhoto.elastic_search.results.size ).to eq 0
   end
 end

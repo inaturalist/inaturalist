@@ -381,6 +381,8 @@ ru:
   add_a_new_change_group: Добавить новую группу изменений
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Добавить нумерованный список
+  #Placeholder for a project autocomplete field
+  add_a_project: Добавить проект
   add_a_single_observation: Добавить одиночное наблюдение.
   add_a_taxon: Добавить таксон
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1579,6 +1581,8 @@ ru:
   custom_project_fields: Пользовательские Поля Проекта
   custom_project_was_successfully_created: CustomProject был успешно создан.
   custom_project_was_successfully_updated: CustomProject был успешно обновлён.
+  #Button to customize projects that appear in the header
+  customize__projects: Настроить
   customize_location: Настройка местоположения
   darr_apply_darr: "&darr; Применить &darr;"
   daily_users: Пользователей за сутки
@@ -1781,6 +1785,11 @@ ru:
   disable_comments: Отключить комментарии
   disable_comments_desc: Запретить добавлять новые комментарии
   disagree_: Не согласен
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Несогласия
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Показать наблюдения, которые имеют несогласующиеся идентификации
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Отключиться
@@ -2025,6 +2034,8 @@ ru:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Фавориты
   Family: Семейство
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Любимые проекты
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Выбрать до семи проектов, которые будут отображаться в виде ссылок в заголовке. Эти обновления появятся после перезагрузки страницы.
@@ -2511,6 +2522,8 @@ ru:
   internal_taxon_rank: Ранг внутреннего таксона
   introduced: Интродуцент
   introduced_in_place: "Интродуцирован в %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Неверная дата
   invitation: Приглашение
   invite: пригласить
   invite_people: Пригласить людей
@@ -2760,7 +2773,6 @@ ru:
   #a noun.
   link_to_authorization_code: Ссылка на код авторизации
   link_your_flickr_account: Привязать свою учётную запись Flickr
-  link_your_google_account: Привязать свою учётную запись Google
   linked_flickr: "Ваша учётная запись на сайте %{site_name} в настоящее время связана с вашей учётной записью Flickr."
   linked_flickr_automatically: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Flickr, мы автоматически перепривяжем ваши учетные записи %{site_name} и Flickr. Кажется разумным, что если вы используете Flickr, вы захотите иметь возможность импортировать фото из Flickr, верно?"
   linked_flickr_description: "Привязка вашей учётной записи %{site_name} к учётной записи Flickr даёт возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Flickr не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Flickr, которую хотите привязать к %{site_name}."
@@ -3561,6 +3573,7 @@ ru:
   observation_field_type_taxon: Таксон
   observation_field_type_dna: ДНК
   observation_fields: Поля наблюдения
+  observation_fields_for_projects: Поля наблюдения для проектов
   observation_fields_are_additional: Поля наблюдения - это дополнительные поля данных, которые могут быть добавлены к наблюдениям.
   observation_fields_by_preferences_description: |
     Поля наблюдения похожи на теги, за исключением того, что любой может добавить их в ваше наблюдение по умолчанию. Измените эту настройку, если вы хотите, чтобы только вы или кураторы сайта могли это делать.
@@ -5740,7 +5753,6 @@ ru:
   unfollow_observation: Отписаться от наблюдения
   #Text for a button to stop following updates from a user
   unfollow_user: Отписаться от пользователя
-  unlink_your_google_account: Отвязать ваш аккаунт Google
   unlink_your_flickr_account: "Отвязать свою учётную запись Flickr"
   unmute: Отмена игнорирования
   updates_notification_email_subject: "%{prefix} Новые обновления %{date}"
@@ -5800,6 +5812,7 @@ ru:
   uploader:
     errors:
       file_too_big: Размер файла должен быть не более %{megabytes} Мб
+      unsupported_file_type: Данный тип файла не поддерживается. Поддерживаются типы JPG, PNG, GIF, WAV, AAC, MP3, и MP4 (только для аудио)
     resize_tip: |
       Если ваши фото слишком большие, попробуйте обрезать их до максимум 2048 на 2048 пикселей. Так или иначе, это будет сделано со всеми фото на сервере, и это ускорит загрузку.
     tooltips:
@@ -6062,9 +6075,8 @@ ru:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Разыскиваемые
   was_it_captive_cultivated?: "Было ли оно в неволе / культивируемое?"
-  we_also_support2: |
-    Мы также поддерживаем импорт фото из <a href="http://flickr.com">Flickr</a>
-    и <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Мы также поддерживаем импорт фото из <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Мы можем понимать CSV только в следующем формате
   we_couldnt_find_a_user: Мы не смогли найти пользователя с этим адресом электронной почты.
   we_couldnt_find_a_user_with_that_activation_code: "Мы не смогли найти пользователя с этим кодом активации. Возможно, вы уже активировали свою учётную запись, пожалуйста, попробуйте войти."
@@ -6711,8 +6723,9 @@ ru:
       index:
         deprecated_banner: |
           Обратите внимание, что по состоянию на январь 2019 года функционал «Руководства» представлен «как есть»; хотя у нас нет никаких планов по его удалению, мы не планируем его дальнейшее развитие.
-        funding_html: |
-          Финансирование разработки руководств было обеспечено <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Финансирование разработки Руководств осуществила
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Руководства помогают вам узнать о биоразнообразии во всем мире. Изучаете ли вы Серенгети или только свой местный парк (который может быть Серенгети), руководства могут помочь вам понять потрясающее многообразие нашей планеты.
       edit:
@@ -7228,10 +7241,6 @@ ru:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Столбец geoprivacy должен быть на английском языке и должен быть пустым или иметь значение "obscured" (скрытый) или "private" (конфиденциальный)
-        google_photos_notice_html: |
-          В феврале 2019 года Google изменил свой API, что сделало невозможным для нас доступ к координатам GPS, лицензионной информации и почти любой информации, которую мы могли бы использовать для добавления идентификации (например, тегов). Они также удалили текстовый поиск и нумерацию страниц. Кроме того, они потребовали, чтобы все подключенные учетные записи имели дополнительное разрешение, и прежде чем третья сторона может запросить это разрешение у пользователей, третья сторона должна быть проверена. Мы ждем проверки, но пока этого не произойдет, вы не сможете импортировать фотографии из Google.
-          Если мы получим одобрение, вы сможете импортировать фото, но они не будут содержать сведений о местоположении или лицензии, которые могут отображаться в Google фото. Прочесть об этом подробно вы можете здесь <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Наилучшая возможность сейчас - использовать <a href="/observations/upload">Загрузчик</a>.
         project_csv_template_notice_html: |
           Для этого проекта есть файл шаблона, который может помочь вам со структурой файла CSV.
           <a href="%{url}">Загрузить шаблон</a>
@@ -8882,6 +8891,7 @@ ru:
         show_for_descendent_taxa: Показать таксоны-потомки
       user:
         email: Электронная почта
+        faved_project_ids: Любимые проекты
         login: Имя пользователя
         name: Имя
         locale: Языковой стандарт
@@ -9018,6 +9028,8 @@ ru:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Только сотрудники и кураторы могут скрывать контент
               only_staff_and_hiding_curators_can_unhide: Только сотрудники и кураторы, которые блокируют контент, могут его разблокировать
+              #Error saying that only staff can rename
+              only_staff_can_rename: Только сотрудники могут переименовать
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Только сотрудники могут устанавливать контент как приватный
               staff_cannot_be_suspended: Работа сотрудников не может быть приостановлена
@@ -9075,6 +9087,9 @@ ru:
               invalid_point: содержит недопустимую точку, например, долгота больше 180 или широта меньше -90
               must_have_more_than_three_points: должно содержаться не менее 3 значений
               polygon_with_less_than_four_points: содержит многоугольник с количеством точек менее 4
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: является многоугольником без площади (все точки одинаковы)
         place_geometry:
           attributes:
             geom:
@@ -9188,6 +9203,9 @@ ru:
         user:
           attributes:
             faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: не может включать более 7 проектов
               #Error when a user tries to add a project that does not exist
               #to their favorite projects, e.g. "Faved projects must all
               #exist"

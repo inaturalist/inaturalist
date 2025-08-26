@@ -45,7 +45,7 @@ class FlickrController < ApplicationController
   def photo_fields
     @flickr = get_flickr
     if params[:licenses].blank?
-      @license_numbers = [1,2,3,4,5,6].join(',')
+      @license_numbers = [1, 2, 3, 4, 5, 6, 9, 11, 12, 13, 14, 15, 16].join( "," )
     elsif params[:licenses] == 'any'
       @license_numbers = nil
     else

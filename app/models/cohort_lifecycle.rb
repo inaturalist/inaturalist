@@ -122,8 +122,8 @@ class CohortLifecycle < ApplicationRecord
     observation_array = []
     ( 0..6 ).each do | d |
       iteration_cohort_date = ( date - d.days ).to_s
-      slot = "day#{d}".to_sym
-      prev_slots = ( 0...d ).map {| q | "day#{q}".to_sym }
+      slot = :"day#{d}"
+      prev_slots = ( 0...d ).map {| q | :"day#{q}" }
 
       puts "#{iteration_cohort_date} #{slot}"
       next unless grouped_cohort_data[iteration_cohort_date]
@@ -331,7 +331,7 @@ class CohortLifecycle < ApplicationRecord
         grouped_cohort_data[cohort_date] ||= {}
         grouped_cohort_data[cohort_date][user_id_sym] ||= {}
 
-        grouped_cohort_data[cohort_date][user_id_sym]["day#{cohort_day_offset}".to_sym] = category.to_s
+        grouped_cohort_data[cohort_date][user_id_sym][:"day#{cohort_day_offset}"] = category.to_s
       end
     end
   end
@@ -417,7 +417,7 @@ class CohortLifecycle < ApplicationRecord
 
     obs_data.each do | observation |
       user_id = observation["key"]
-      quality_counts = observation["quality_grade"]["buckets"].map {| q | [q["key"].to_sym, q["doc_count"]] }.to_h
+      quality_counts = observation["quality_grade"]["buckets"].to_h {| q | [q["key"].to_sym, q["doc_count"]] }
       result_hash[user_id] = quality_counts
     end
 
@@ -469,7 +469,7 @@ class CohortLifecycle < ApplicationRecord
         place_ids: taxon_bucket.place_ids.buckets.map {| place_bucket | place_bucket["key"] } & place_ids
       }
     end
-    results.map {| a | [a[:taxon_id], a[:place_ids]] }.to_h
+    results.to_h {| a | [a[:taxon_id], a[:place_ids]] }
   end
 
   def self.get_place_obs( observation_ids, place_ids )
@@ -575,6 +575,17 @@ class CohortLifecycle < ApplicationRecord
         where( observation_accuracy_experiment_id: needs_id_pilot.id ).
         where( "observation_id IN (?)", obs_ids )
       validator.observation_accuracy_samples << samples
+      params = {
+        reviewed: "false",
+        quality_grade: "needs_id",
+        place_id: "any",
+        id: obs_ids.join( "," )
+      }
+      validation_count = INatAPIService.observations(
+        params.merge( per_page: 0, viewer_id: user_id )
+      ).total_results
+      validator.validation_count = validation_count
+      validator.save!
     end
   end
 

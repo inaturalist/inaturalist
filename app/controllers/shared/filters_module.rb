@@ -52,7 +52,7 @@ module Shared
       if params[:inat_site_id]
         @site ||= Site.find_by_id( params[:inat_site_id] )
       end
-      @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
+      @site ||= Site.where( "url LIKE ?", "%#{request.host}%" ).first
       @site ||= Site.default
       @site
     end

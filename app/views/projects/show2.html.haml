@@ -30,8 +30,10 @@
         blockedUserHashes: current_user.user_blocks.map{|ub| Digest::SHA256.hexdigest( ub.blocked_user_id.to_s ) },
         blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::SHA256.hexdigest( ub.user_id.to_s ) },
         sites_admined: current_user.site_admins.pluck(:site_id),
-        testGroups: current_user.test_groups_array
+        testGroups: current_user.test_groups_array,
+        privileges: []
       }
+      js_current_user[:privileges] << "interaction" if current_user.privileged_with?( UserPrivilege::INTERACTION )
   :javascript
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json.html_safe : "{ }" };
     var PROJECT_DATA = #{ @projects_data.to_json.html_safe };

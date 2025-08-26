@@ -78,7 +78,7 @@ loop do
     if opts.debug
       puts plan
     end
-    unless ( user = User.find_by_email( donor["email"] ) )
+    unless ( user = User.find_by_email( donor["email"].downcase ) )
       puts "\tNo user"
       next
     end

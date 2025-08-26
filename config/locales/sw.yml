@@ -1,9 +1,219 @@
 sw:
+  #Placeholder for a project autocomplete field
+  add_a_project: Ongeza mradi
+  #Label for an option to show any place
+  any_place: Yoyote
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Lililipuka
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Haijalipuka
+  confirming_ids: Kuthibitisha vitambulisho
+  confirming_ids_description: |
+    Ukizima hii, hutaarifiwa tena kuhusu vitambulisho vinavyokubali
+    na yako isipokuwa wana maoni ya ziada.
+  curator_coordinate_access: Upatikanaji wa Kuratibu wa Mtunzaji
+  curator_coordinate_access_desc: |
+    Curator kuratibu ufikiaji wa miradi ya jadi inategemea ni nani aliyeongeza
+    uchunguzi wa mradi. Huu ni mpangilio chaguo-msingi wa
+    uchunguzi katika miradi. Waangalizi wanaweza pia kuchagua kubadilisha hii kwa
+    uchunguzi wa mtu binafsi.
+  #Button to customize projects that appear in the header
+  customize__projects: Geuza kukufaa
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Tafadhali bonyeza kiungo hapa chini ili kuthibitisha anwani yako ya barua pepe. Kama huna email yako
     Anwani, hautaweza kuingiliana na maudhui ya watumiaji wengine.
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Kutokubaliana
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Onyesha uchunguzi ambao una vitambulisho visivyokubaliana
+  #Title for a page to edit an announcement
+  editing_announcement_x: Tangazo la kuhariri %{id}
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Miradi inayopendwa
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Chagua hadi miradi saba inayoonekana kama viungo kwenye kichwa. Sasishi
+    itaonekana baada ya kuonyesha upya ukurasa.
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist ilisasisha kitambulisho kilichopendekezwa na %{user}
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Vitambulisho vya Infraspecies
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Ukizima hii, hutaarifiwa tena kuhusu vitambulisho vya taxa
+    chini ya kiwango cha spishi (kama spishi ndogo na aina) ambazo zinakubaliana na yako
+    Kitambulisho cha kiwango cha spishi. Utaarifiwa ikiwa hawakubaliani na kitambulisho chako au
+    ikiwa zina maoni ya ziada.
+  #Error message shown when a date format is invalid
+  invalid_date: Tarehe batili
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Zilizoorodheshwa
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Haijaorodheshwa
+  #Adjectival phrase describing state of being logged in
+  logged_in: Imeingia
+  #Adjectival phrase describing state of being logged out
+  logged_out: Imeondoka
+  #Label for a button or section that shows additional options
+  more_options: Chaguzi zaidi
+  #A user who is not a curator
+  non_curator: Asiye mtunzaji
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Vitambulisho vya Mababu visivyokubaliana
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Ukizima hii, hutaarifiwa tena wakati mtu anaongeza
+    Kitambulisho cha taxon ambayo ni babu wa taxon kutoka kwa kitambulisho chako na haifanyi hivyo
+    haikubaliani wazi na Ushuru wa Jamii. Utaarifiwa ikiwa
+    Kitambulisho kina maoni ya ziada.
+  #A user who does not admin any projects
+  non_project_admin: Msimamizi asiye wa mradi
+  observation_fields_for_projects: Sehemu za Uchunguzi kwa Miradi
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Aina ya faili ya Picha ya Wasifu
+  #A user who admin's a project
+  project_admin: Msimamizi wa mradi
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Jenasi / Jenasi, mseto
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Spishi / Mseto
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Aina ndogo / Aina / Fomu
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Kujiunga
+  update_existing_observations_with_new_license_desc: |
+    Kuchagua chaguo hili kutatumia chaguo lako jipya la leseni kwa wote wako
+    uchunguzi uliopo. Hii inaweza kuchukua masaa machache ikiwa una mengi
+    Uchunguzi.
+  update_existing_photos_with_new_license_desc: |
+    Kuchagua chaguo hili kutatumia chaguo lako jipya la leseni kwa wote wako
+    picha zilizopo. Hii inaweza kuchukua masaa machache ikiwa una mengi
+    Picha.
+  update_existing_sounds_with_new_license_desc: |
+    Kuchagua chaguo hili kutatumia chaguo lako jipya la leseni kwa wote wako
+    sauti zilizopo. Hii inaweza kuchukua masaa machache ikiwa una mengi
+    Sauti.
+  user_trusts_this_project_when_added_by_any: |
+    Mtumiaji anaamini wasimamizi wa mradi na kuratibu zilizofichwa za uchunguzi zilizoongezwa
+    kwa mradi na mtu yeyote.
+  user_trusts_this_project_when_added_by_observer: |
+    Mtumiaji anaamini wasimamizi wa mradi na kuratibu zilizofichwa za uchunguzi zilizoongezwa
+    kwa mradi na mwangalizi.
+  user_trusts_this_project_when_added_by_none: |
+    Mtumiaji haamini wasimamizi wa mradi na kuratibu zilizofichwa.
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Tazama vitambulisho vyako vilivyoathiriwa
+  we_also_support3: |
+    Pia tunaunga mkono kuagiza picha kutoka <a href="http://flickr.com">Flickr</a>.
   views:
+    announcements:
+      locales_desc: |
+        CMD- au SHIFT-bonyeza ili kuchagua nyingi. Kuchagua "Zote" au kutofanya
+        Uteuzi utaonyesha tangazo kwa watumiaji wote bila kujali
+        Mandhari. Kuchagua lugha bila mkoa * haitalengwa *
+        maeneo yenye mikoa, kwa mfano ukichagua Kiingereza haitaonekana
+        kwa watu ambao wamechagua Kiingereza (Uingereza).
+      clients_desc: |
+        CMD- au SHIFT-bonyeza ili kuchagua nyingi. Kuchagua "Zote" au kutofanya
+        Uteuzi utaonyesha tangazo kwa watumiaji wote bila kujali
+        Mteja.
+      end_desc: |
+        Wakati katika eneo la saa za akaunti yako kwamba tangazo hili litasimama
+        Kuonekana. Inatumika katika maeneo ya saa, kwa hivyo kila mtu ataacha kuona
+        wakati huo huo, sio kuhusiana na wakati wao wa ndani.
+      ip_countries_desc: |
+        CMD- au SHIFT-bonyeza ili kuchagua nyingi. Kuchagua "Zote" au kutofanya
+        Uteuzi utaonyesha tangazo kwa watumiaji wote bila kujali
+        Nchi ya IP.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Kumbuka kuwa tarehe ya uundaji wa mtumiaji iliyoundwa hivi karibuni
+        uchunguzi umehifadhiwa, kwa hivyo inaweza kuchukua masaa machache kwa kulenga
+        Anza kutumika
+      observation_oauth_application_ids_desc: |
+        CMD- au SHIFT-bonyeza ili kuchagua nyingi. Kuchagua "Zote" au kutofanya
+        Uteuzi utaonyesha tangazo kwa watumiaji wote bila kujali
+        Programu.
+      site_ids_desc: |
+        CMD- au SHIFT-bonyeza ili kuchagua nyingi. Kuchagua "Zote" au kutofanya
+        Uteuzi utaonyesha tangazo kwa watumiaji wote bila kujali
+        ushirika wa tovuti.
+      start_desc: |
+        Muda katika eneo la saa za akaunti yako ambapo tangazo hili litaanza
+        Kuonekana. Inatumika katika maeneo ya saa, kwa hivyo kila mtu ataanza kuona
+        wakati huo huo, sio kuhusiana na wakati wao wa ndani.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Watumiaji walengwa kwa tabia ya mchango
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Watumiaji walengwa kwa tabia ya kitambulisho
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Watumiaji walengwa kwa tabia ya uchunguzi
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Watumiaji walengwa kwa sifa zingine
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Kuhusu Atlasi
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasi huwasilisha usambazaji wa kimataifa wa taxon. Wasimamizi hufanya
+          atlasi kwa kufafanua muundo wa atlasi na kuratibu
+          taxa iliyoorodheshwa ambayo inaiendesha.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Mlipuko mahali hapa
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Unexplode mahali hapa
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Bado hakuna mabadiliko kwenye atlasi hii
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Mabadiliko ya Hivi karibuni ya Atlasi
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Mabadiliko ya Hivi Karibuni ya Taxon Yaliyoorodheshwa
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Onyesha taxa iliyoorodheshwa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Atlasi hii haifanyi kazi kwa sasa
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Hii itaondoa taxon hii na vizazi vyake vyote kutoka kwa orodha za ukaguzi
+          inayohusishwa na mahali hapa na Maeneo yoyote ya Kawaida yaliyomo. Ni
+          haiwezi kutenduliwa. Je, una uhakika unataka kufanya hivi?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Onyo: kuna uchunguzi ambao haujawakilishwa na atlasi hii
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Bonyeza hapa kutuma tena barua pepe ya uthibitisho
       #message displayed after users trigger sending a email to confirm their email address
@@ -29,6 +239,11 @@ sw:
       tips_check_email_filters: Angalia vichungi vyovyote ulivyotengeneza ambavyo vinaweza kuondoa barua pepe zetu kutoka kwa kikasha chako #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Angalia folda yako ya barua taka
       your_site_account_has_no_email: Yako %{site_name} Akaunti haina anwani ya barua pepe inayohusishwa nayo.
+    guides:
+      index:
+        funding2_html: |
+          Ufadhili wa ukuzaji wa Miongozo ulitolewa na
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -42,6 +257,24 @@ sw:
           Utaweza kutuma ujumbe mpya baada ya kuthibitisha barua pepe yako
           anwani, na kuongeza uchunguzi wa kuthibitishwa tatu au vitambulisho vitatu
           kwa wengine. Kwa sasa unaweza kusoma na kujibu ujumbe ambao watu wengine wanakutumia.
+    taxa:
+      show:
+        site_curators_disabled_wikipedia_html: |
+          Wasimamizi wa tovuti wamelemaza maonyesho <a href="%{url}">Hii
+          yaliyomo kutoka Wikipedia</a>. Unaweza kusaidia kwa kuhariri ukurasa kwenye
+          Wikipedia kuifanya ifae kwa ushuru huu, au kwa kuashiria hii
+          taxon kuileta kwa wasimamizi wa tovuti.
+    users:
+      edit:
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Aina ya faili haitumiki. Tunakubali JPG, PNG, na GIF
+        this_only_applies_to_traditional_projects2: |
+          Hii inatumika tu kwa miradi ya jadi. Huwezi kuwatenga uchunguzi
+          kutoka kwa miradi ya ukusanyaji au mwavuli, ambayo kimsingi ni utaftaji uliohifadhiwa.
+          Unaweza kusoma zaidi
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Hapa</a>.
   number:
     format:
       significant: false
@@ -50,7 +283,100 @@ sw:
       format:
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
+    attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Inakataliwa
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Ondoa tarehe ya kuanza kwa wafadhili
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Ondoa tarehe ya mwisho ya wafadhili
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Kuwatenga waangalizi kutoka kwa programu
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Jumuisha tarehe ya kuanza kwa wafadhili
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Jumuisha tarehe ya mwisho ya wafadhili
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Jumuisha waangalizi kutoka kwa programu
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: Nchi za IP
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Tarehe ya hivi punde ya kuanza kwa obs
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Tarehe ya mwisho ya obs ya hivi punde
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Utambulisho wa juu
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Vitambulisho vya chini
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Uchunguzi wa juu
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Uchunguzi mdogo
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Uwekaji
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Muundaji wa lengo (kwa majaribio)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Lengo limeingia
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Tarehe ya kwanza ya kujisajili kwa mtumiaji
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Tarehe ya hivi punde ya kujisajili kwa mtumiaji
+      taxon:
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Inaonyesha Wikipedia
+      user:
+        faved_project_ids: Miradi inayopendwa
     errors:
       messages:
+        must_look_like_an_email_address: lazima ionekane kama anwani ya barua pepe
         requires_privilege_interaction: Lazima uwe na anwani ya barua pepe iliyothibitishwa kufanya hivyo
+      models:
+        moderator_action:
+          attributes:
+            base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Wafanyakazi pekee ndio wanaweza kubadilisha jina
+        observation:
+          attributes:
+            observed_on:
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: lazima iwe siku moja, sio masafa
+        place:
+          attributes:
+            place_geometry:
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: ina poligoni isiyo na eneo (alama zote ni sawa)
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Unaweza tu kupenda miradi 7
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Ushuru wa Maisha hauwezi kuhusika katika mabadiliko ya ushuru
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: haiwezi kujumuisha miradi zaidi ya 7
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: lazima zote ziwepo
+            login:
+              domain_is_not_supported: kikoa hakitumiki

@@ -600,6 +600,10 @@ UserMute.blueprint do
   muted_user { User.make! }
 end
 
+UsernameReservedWord.blueprint do
+  word { Faker::Lorem.word }
+end
+
 UserParent.blueprint do
   email { Faker::Internet.email }
   name { Faker::Name.name }
@@ -610,6 +614,11 @@ end
 UserPrivilege.blueprint do
   user { User.make! }
   privilege { UserPrivilege::SPEECH }
+end
+
+UserVirtuousTag.blueprint do
+  user { User.make! }
+  virtuous_tag { Faker::Lorem.word }
 end
 
 WikiPage.blueprint do

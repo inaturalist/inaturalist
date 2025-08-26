@@ -114,6 +114,8 @@ class User < ApplicationRecord
   preference :lifelist_tree_mode, :string
   preference :taxon_photos_query, :string
   preference :needs_id_pilot, :boolean, default: nil
+  preference :gaps_id_pilot, :boolean, default: nil
+  preference :gaps_obs_pilot, :boolean, default: nil
   preference :identify_map_zoom_level, :integer
   preference :suggestions_source, :string
   preference :suggestions_sort, :string
@@ -228,6 +230,7 @@ class User < ApplicationRecord
   has_many :user_donations, dependent: :delete_all
   has_many :redirect_links, dependent: :nullify
   has_many :announcements, dependent: :nullify
+  has_many :user_virtuous_tags, dependent: :delete_all
 
   file_options = {
     processors: [:deanimator],
@@ -318,6 +321,7 @@ class User < ApplicationRecord
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
   after_destroy :reindex_faved_observations_after_destroy_later
+  after_destroy :reindex_observations_with_voted_annotations_after_destroy_later
   after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
@@ -345,6 +349,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :login
   validates_format_of :login, with: login_regex, message: :must_begin_with_a_letter
   validates_exclusion_of :login, in: %w(password new edit create update delete destroy)
+  validate :login_must_not_contain_reserved_words
 
   validates_exclusion_of :password, in: %w(password)
 
@@ -368,6 +373,14 @@ class User < ApplicationRecord
   scope :admins, -> { joins( :roles ).where( "roles.name = 'admin'" ) }
   scope :active, -> { where( "suspended_at IS NULL" ) }
   scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
+
+  def login_must_not_contain_reserved_words
+    return unless new_record? || login_changed?
+    return if UsernameReservedWord.all_cached.empty?
+    return unless login.match( /(#{UsernameReservedWord.all_cached.map( &:word ).join( '|' )})/ )
+
+    errors.add( :login, :invalid )
+  end
 
   def validate_email_pattern
     return unless new_record? || email_changed?
@@ -474,7 +487,10 @@ class User < ApplicationRecord
   end
 
   def child_without_permission?
-    child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+    child? && UserParent.where(
+      "user_id = ? AND donorbox_donor_id IS NULL AND virtuous_donor_contact_id IS NULL",
+      id
+    ).exists?
   end
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
@@ -630,11 +646,6 @@ class User < ApplicationRecord
     end
     friendships.where( friend_id: user, trust: true ).exists?
   end
-  
-  def picasa_client
-    return nil unless (pa = has_provider_auth('google'))
-    @picasa_client ||= Picasa.new(pa.token)
-  end
 
   def facebook_api
     # As of Spring 2023 we can no longer access the Facebook API on behalf of users
@@ -648,10 +659,6 @@ class User < ApplicationRecord
 
   def facebook_token
     facebook_identity.try(:token)
-  end
-
-  def picasa_identity
-    @picasa_identity ||= has_provider_auth('google_oauth2')
   end
 
   def api_token
@@ -966,7 +973,7 @@ class User < ApplicationRecord
     email = auth_info["info"].try( :[], "email" )
     email ||= auth_info["extra"].try( :[], "user_hash" ).try( :[], "email" )
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
-    if !email.blank? && ( u = User.find_by_email( email ) )
+    if !email.blank? && ( u = User.find_by_email( email.downcase ) )
       u.add_provider_auth( auth_info )
       return u
     end
@@ -1362,7 +1369,7 @@ class User < ApplicationRecord
   end
 
   def self.reindex_faved_observations_after_destroy( user_id )
-    while true
+    loop do
       obs = Observation.elastic_search(
         _source: [:id],
         limit: 200,
@@ -1382,12 +1389,44 @@ class User < ApplicationRecord
         }
       ).results.results
       break if obs.blank?
-      Observation.elastic_index!( ids: obs.map(&:id), wait_for_index_refresh: true )
+
+      Observation.elastic_index!( ids: obs.map( &:id ), wait_for_index_refresh: true )
     end
   end
 
   def reindex_faved_observations_after_destroy_later
     User.delay.reindex_faved_observations_after_destroy( id )
+    true
+  end
+
+  def self.reindex_observations_with_voted_annotations_after_destroy( user_id )
+    loop do
+      obs = Observation.elastic_search(
+        _source: [:id],
+        limit: 200,
+        where: {
+          nested: {
+            path: "annotations",
+            query: {
+              bool: {
+                filter: {
+                  term: {
+                    "annotations.votes.user_id": user_id
+                  }
+                }
+              }
+            }
+          }
+        }
+      ).results.results
+      break if obs.blank?
+
+      Observation.elastic_index!( ids: obs.map( &:id ), wait_for_index_refresh: true )
+    end
+  end
+
+  def reindex_observations_with_voted_annotations_after_destroy_later
+    User.delay.reindex_observations_with_voted_annotations_after_destroy( id )
     true
   end
 
@@ -1620,8 +1659,8 @@ class User < ApplicationRecord
     "User #{login}"
   end
 
-  def subscribed_to?(resource)
-    subscriptions.where(resource: resource).exists?
+  def subscribed_to?( resource )
+    resource.try( :user_id ) == id || subscriptions.where( resource: resource ).exists?
   end
 
   def recent_observation_fields
@@ -1703,18 +1742,33 @@ class User < ApplicationRecord
   end
 
   def donor?
-    donorbox_donor_id.to_i.positive?
+    donorbox_donor_id.to_i.positive? || virtuous_donor_contact_id.to_i.positive?
   end
 
   def monthly_donor?
-    donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
+    donor? && (
+      (
+        donorbox_plan_status == "active" &&
+        donorbox_plan_type == "monthly"
+      ) || (
+        fundraiseup_plan_status == "active" &&
+        fundraiseup_plan_frequency == "monthly"
+      )
+    )
   end
 
   def display_donor_since
     return nil unless prefers_monthly_supporter_badge?
-    donorbox_plan_status == "active" &&
+
+    (
+      donorbox_plan_status == "active" &&
       donorbox_plan_type == "monthly" &&
       donorbox_plan_started_at
+    ) || (
+      fundraiseup_plan_status == "active" &&
+      fundraiseup_plan_frequency == "monthly" &&
+      fundraiseup_plan_started_at
+    )
   end
 
   # given an array of taxa, return the taxa and ancestors that were not observed

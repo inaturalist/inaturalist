@@ -996,7 +996,7 @@ module ApplicationHelper
     elsif code == Observation::CC0
       "https://creativecommons.org/publicdomain/zero/#{Shared::LicenseModule::CC0_VERSION}/"
     elsif code =~ /CC-/
-      "http://creativecommons.org/licenses/#{code[/CC-(.+)/, 1].downcase}/#{Shared::LicenseModule::CC_VERSION}/"
+      "https://creativecommons.org/licenses/#{code[/CC-(.+)/, 1].downcase}/#{Shared::LicenseModule::CC_VERSION}/"
     end
   end
 
@@ -1712,13 +1712,15 @@ module ApplicationHelper
       s += content_tag( :ul ) do
         hidden_errors.inject( "" ) do | hidden_errors_memo, pair |
           k, errors = pair
-          hidden_errors_memo << errors.inject( "" ) do | errors_memo, e |
-            errors_memo << content_tag( :li, I18n.t( "errors.format",
+          hidden_errors_message = hidden_errors_memo.dup
+          hidden_errors_message << errors.inject( "" ) do | errors_memo, e |
+            errors_message = errors_memo.dup
+            errors_message << content_tag( :li, I18n.t( "errors.format",
               attribute: I18n.t( "activerecord.attributes.#{record.class.name.underscore}.#{k}" ),
               message: e ) )
-            errors_memo.html_safe
+            errors_message.html_safe
           end
-          hidden_errors_memo.html_safe
+          hidden_errors_message.html_safe
         end
       end
       s.html_safe
@@ -1794,5 +1796,19 @@ module ApplicationHelper
     return url if url =~ /http/
 
     URI.join( site.url.to_s, url.to_s ).to_s
+  end
+
+  def fundraise_up_js
+    raw <<-HTML
+      <script type="text/javascript">
+        (function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+        .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+        :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+        j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+        t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+        for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+        })(window,document,'script','FundraiseUp','ACSSCSPN');
+      </script>
+    HTML
   end
 end

@@ -12,6 +12,9 @@ body {
 #header {
   margin-bottom: 0px;
 }
+#full-width-notice {
+  margin: 0px;
+}
 #bodywrapper, #wrapper {
  background: $page-background-grey;
 }
@@ -45,6 +48,7 @@ body {
     border-color: $fail-red;
     &:focus {
       border-color: $fail-red;
+      outline-color: $fail-red;
     }
   }
   .btn.done {
@@ -276,6 +280,9 @@ body>div>.popover[role="tooltip"].popover-error {
         padding: 5px 12px;
         border-radius: 20px;
         font-weight: 500;
+        &.owner {
+          line-height: 1.5;
+        }
         .btn-nostyle {
           margin-left: 5px;
           margin-right: 0px;
@@ -283,6 +290,9 @@ body>div>.popover[role="tooltip"].popover-error {
           cursor: pointer;
           &:hover {
             opacity: 1;
+          }
+          .fa {
+            padding-bottom: 4px;
           }
         }
       }

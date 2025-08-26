@@ -67,7 +67,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     opts = {
       # Apparently this just triggers scary permissions errors until we're a "verified" app on Google
       # :scope => "userinfo.email,userinfo.profile,plus.me,https://picasaweb.google.com/data/,https://www.googleapis.com/auth/photoslibrary.readonly",
-      :scope => "userinfo.email,userinfo.profile,plus.me,https://www.googleapis.com/auth/photoslibrary.readonly",
+      :scope => "userinfo.email,userinfo.profile,plus.me",
       :prompt => "select_account",
       :access_type => "offline"
     }

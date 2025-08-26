@@ -187,7 +187,9 @@ module DarwinCore
         core: @opts[:core],
         extensions: extensions,
         ala: @opts[:ala],
-        include_uuid: @opts[:include_uuid]
+        include_uuid: @opts[:include_uuid],
+        include_county: @opts[:include_county],
+        include_public_coordinates: @opts[:include_public_coordinates]
       )
       tmp_path = File.join( @opts[:work_path], "meta.xml" )
       File.open( tmp_path , "w" ) do |f|
@@ -327,6 +329,12 @@ module DarwinCore
       end
       if @opts[:include_uuid]
         @occurrence_terms += [DarwinCore::Occurrence::OTHER_CATALOGUE_NUMBERS_TERM]
+      end
+      if @opts[:include_county]
+        @occurrence_terms += [DarwinCore::Occurrence::COUNTY_TERM]
+      end
+      if @opts[:include_public_coordinates]
+        @occurrence_terms += DarwinCore::Occurrence::PUBLIC_COORDINATES_TERMS
       end
       headers = DarwinCore::Occurrence.term_names( @occurrence_terms )
       fname = "observations.csv"

@@ -227,7 +227,10 @@ class Taxonomy extends Component {
               { isRoot ? "Combined" : _.round( result.normalized_combined_score, 3 ) }
             </div>
             <div className="score">
-              { isRoot ? "Geo" : _.round( result.geo_score, 3 ) }
+              { isRoot ? "Geo" : _.round( result.raster_geo_score, 3 ) }
+            </div>
+            <div className="score">
+              { isRoot ? "H3Geo" : _.round( result.geo_score, 3 ) }
             </div>
             <div className="score">
               { isRoot ? "Threshold" : _.round( result.geo_threshold, 3 ) }

@@ -113,7 +113,10 @@ const FIELDS = {
   comments: {
     body: true,
     created_at: true,
-    flags: { id: true },
+    flags: {
+      id: true,
+      resolved: true
+    },
     hidden: true,
     id: true,
     moderator_actions: MODERATOR_ACTION_FIELDS,
@@ -142,7 +145,10 @@ const FIELDS = {
     created_at: true,
     current: true,
     disagreement: true,
-    flags: { id: true },
+    flags: {
+      id: true,
+      resolved: true
+    },
     hidden: true,
     moderator_actions: MODERATOR_ACTION_FIELDS,
     previous_observation_taxon: TAXON_FIELDS,

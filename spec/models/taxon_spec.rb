@@ -421,6 +421,49 @@ describe Taxon, "updating" do
     expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 3
   end
 
+  describe "indexed taxon_photos" do
+    let( :embedding ) { Array.new( 2048 ) { rand } }
+    elastic_models( TaxonPhoto )
+
+    it "removes indexed taxon photos when is_active changes" do
+      taxon_photo = TaxonPhoto.make!
+      allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
+        { taxon_photo.id.to_s => embedding }
+      end
+      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
+      taxon_photo.elastic_index!
+      expect( TaxonPhoto.elastic_search.results.size ).to eq 1
+      taxon_photo.taxon.update( is_active: false )
+      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
+    end
+
+    it "queues a taxon photo indexing job when is_active changes" do
+      taxon_photo = TaxonPhoto.make!
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 0
+      taxon_photo.taxon.update( is_active: false )
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 1
+    end
+
+    it "does not index taxon photos for inactive taxa" do
+      taxon_photo = TaxonPhoto.make!
+      allow( TaxonPhoto ).to receive( :embeddings_for_taxon_photos ) do
+        { taxon_photo.id.to_s => embedding }
+      end
+      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
+      taxon_photo.elastic_index!
+      expect( TaxonPhoto.elastic_search.results.size ).to eq 1
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 0
+
+      taxon_photo.taxon.update( is_active: false )
+      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 1
+
+      Delayed::Worker.new.work_off
+      expect( TaxonPhoto.elastic_search.results.size ).to eq 0
+      expect( Delayed::Job.where( "handler LIKE '%TaxonPhoto%elastic_index!%'" ).count ).to eq 0
+    end
+  end
+
   describe "reindexing identifications" do
     elastic_models( Identification )
     it "should happen when the rank_level changes" do

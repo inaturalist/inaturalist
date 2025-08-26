@@ -179,8 +179,6 @@ describe Place, "updating" do
   end
 end
 
-# These pass individually but fail as a group, probably due to some
-# transaction weirdness.
 describe Place, "merging" do
   elastic_models( Observation, Place )
   before( :each ) do
@@ -382,6 +380,57 @@ describe Place, "merging" do
     rlt.reload
     expect( klt ).to be_primary_listing
     expect( rlt ).to be_primary_listing
+  end
+
+  it "updates project observation rules" do
+    keeper = make_place_with_geom
+    reject = make_place_with_geom
+    project_with_keeper = Project.make!
+    project_with_keeper.project_observation_rules.create(
+      operator: "observed_in_place?",
+      operand: keeper
+    )
+    project_with_reject = Project.make!
+    project_with_reject.project_observation_rules.create(
+      operator: "observed_in_place?",
+      operand: reject
+    )
+
+    expect( ProjectObservationRule.count ).to eq 2
+    keeper.merge( reject )
+    expect( ProjectObservationRule.count ).to eq 2
+    project_with_keeper.reload
+    project_with_reject.reload
+
+    expect( project_with_keeper.project_observation_rules.any? do | rule |
+      rule.operator == "observed_in_place?" && rule.operand == keeper
+    end ).to be true
+    expect( project_with_reject.project_observation_rules.any? do | rule |
+      rule.operator == "observed_in_place?" && rule.operand == keeper
+    end ).to be true
+  end
+
+  it "removes rules that would become duplicates" do
+    keeper = make_place_with_geom
+    reject = make_place_with_geom
+    project_with_both_places = Project.make!
+    project_with_both_places.project_observation_rules.create(
+      operator: "observed_in_place?",
+      operand: keeper
+    )
+    project_with_both_places.project_observation_rules.create(
+      operator: "observed_in_place?",
+      operand: reject
+    )
+
+    expect( ProjectObservationRule.count ).to eq 2
+    keeper.merge( reject )
+    expect( ProjectObservationRule.count ).to eq 1
+    project_with_both_places.reload
+
+    expect( project_with_both_places.project_observation_rules.any? do | rule |
+      rule.operator == "observed_in_place?" && rule.operand == keeper
+    end ).to be true
   end
 end
 

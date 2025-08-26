@@ -244,7 +244,10 @@ class PlacesController < ApplicationController
     end
 
     if @place.save
-      notice ||= t( :place_imported )
+      if notice.blank?
+        notice = t( :place_imported )
+        notice += "<br>#{t( :place_imported_delay )}"
+      end
       flash[:notice] = notice
       redirect_to @place
     else

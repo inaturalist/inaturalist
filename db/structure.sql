@@ -412,7 +412,10 @@ CREATE TABLE public.announcements (
     exclude_observation_oauth_application_ids integer[] DEFAULT '{}'::integer[],
     target_curators character varying DEFAULT 'any'::character varying,
     target_project_admins character varying DEFAULT 'any'::character varying,
-    target_creator boolean DEFAULT false
+    target_creator boolean DEFAULT false,
+    excludes_non_site boolean DEFAULT false,
+    include_virtuous_tags text[] DEFAULT '{}'::text[],
+    exclude_virtuous_tags text[] DEFAULT '{}'::text[]
 );
 
 
@@ -5626,7 +5629,8 @@ CREATE TABLE public.user_parents (
     child_name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    donorbox_donor_id integer
+    donorbox_donor_id integer,
+    virtuous_donor_contact_id integer
 );
 
 
@@ -5725,6 +5729,69 @@ ALTER SEQUENCE public.user_signups_id_seq OWNED BY public.user_signups.id;
 
 
 --
+-- Name: user_virtuous_tags; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_virtuous_tags (
+    id bigint NOT NULL,
+    user_id integer,
+    virtuous_tag character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_virtuous_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_virtuous_tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_virtuous_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_virtuous_tags_id_seq OWNED BY public.user_virtuous_tags.id;
+
+
+--
+-- Name: username_reserved_words; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.username_reserved_words (
+    id bigint NOT NULL,
+    word character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: username_reserved_words_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.username_reserved_words_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: username_reserved_words_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.username_reserved_words_id_seq OWNED BY public.username_reserved_words.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5794,7 +5861,12 @@ CREATE TABLE public.users (
     unconfirmed_email character varying,
     annotated_observations_count integer DEFAULT 0,
     icon_path_version smallint DEFAULT 0 NOT NULL,
-    canonical_email character varying(100)
+    canonical_email character varying(100),
+    virtuous_donor_contact_id integer,
+    fundraiseup_plan_frequency character varying,
+    fundraiseup_plan_status character varying,
+    fundraiseup_plan_started_at date
+
 );
 
 
@@ -7009,6 +7081,20 @@ ALTER TABLE ONLY public.user_signups ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: user_virtuous_tags id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_virtuous_tags ALTER COLUMN id SET DEFAULT nextval('public.user_virtuous_tags_id_seq'::regclass);
+
+
+--
+-- Name: username_reserved_words id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.username_reserved_words ALTER COLUMN id SET DEFAULT nextval('public.username_reserved_words_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8186,6 +8272,22 @@ ALTER TABLE ONLY public.user_signups
 
 
 --
+-- Name: user_virtuous_tags user_virtuous_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_virtuous_tags
+    ADD CONSTRAINT user_virtuous_tags_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: username_reserved_words username_reserved_words_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.username_reserved_words
+    ADD CONSTRAINT username_reserved_words_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8333,10 +8435,24 @@ CREATE INDEX index_announcement_impressions_on_announcement_id ON public.announc
 
 
 --
+-- Name: index_announcement_impressions_on_ip_and_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcement_impressions_on_ip_and_id ON public.announcement_impressions USING btree (request_ip, announcement_id);
+
+
+--
 -- Name: index_announcement_impressions_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_announcement_impressions_on_user_id ON public.announcement_impressions USING btree (user_id);
+
+
+--
+-- Name: index_announcement_impressions_on_user_id_and_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcement_impressions_on_user_id_and_id ON public.announcement_impressions USING btree (user_id, announcement_id);
 
 
 --
@@ -10776,6 +10892,20 @@ CREATE UNIQUE INDEX index_user_signups_on_user_id ON public.user_signups USING b
 
 
 --
+-- Name: index_user_virtuous_tags_on_user_id_and_virtuous_tag; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_virtuous_tags_on_user_id_and_virtuous_tag ON public.user_virtuous_tags USING btree (user_id, virtuous_tag);
+
+
+--
+-- Name: index_user_virtuous_tags_on_virtuous_tag; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_virtuous_tags_on_virtuous_tag ON public.user_virtuous_tags USING btree (virtuous_tag);
+
+
+--
 -- Name: index_users_on_canonical_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11594,7 +11724,16 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250328144900'),
 ('20250404192042'),
 ('20250409212827'),
+('20250410213850'),
 ('20250417172959'),
-('20250519192340');
+('20250519192340'),
+('20250618190319'),
+('20250702141918'),
+('20250722154500'),
+('20250729144230'),
+('20250729180530'),
+('20250730163800'),
+('20250730210202'),
+('20250807145445');
 
 

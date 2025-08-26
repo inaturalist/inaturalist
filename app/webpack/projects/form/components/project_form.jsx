@@ -156,45 +156,48 @@ class ProjectForm extends React.Component {
                 <div className="icon-previews">
                   <table className="table">
                     <tbody>
-                      { _.map( project.undestroyedAdmins, admin => (
-                        <tr className="badge-div" key={`user_rule_${admin.user.id}`}>
-                          <td>
-                            <UserImage user={admin.user} />
-                          </td>
-                          <td>
-                            <span className="badge">
-                              { admin.user.login }
-                              { ( project.user && admin.user.id === project.user.id ) ? " (owner)" : (
-                                <button
-                                  type="button"
-                                  className="btn btn-nostyle"
-                                  onClick={( ) => removeProjectManager( admin )}
-                                  alt={I18n.t( "remove" )}
-                                >
-                                  <i className="fa fa-times-circle-o" />
-                                </button>
-                              ) }
-                            </span>
-                          </td>
-                          <td>
-                            {
-                              project.user
-                                && config.currentUser.id === project.user.id
-                                && admin.id
-                                && admin.user.id !== config.currentUser.id
-                                && (
+                      { _.map( project.undestroyedAdmins, admin => {
+                        const isOwner = ( project.user && admin.user.id === project.user.id );
+                        return (
+                          <tr className="badge-div" key={`user_rule_${admin.user.id}`}>
+                            <td>
+                              <UserImage user={admin.user} />
+                            </td>
+                            <td>
+                              <span className={`badge${isOwner ? " owner" : ""}`}>
+                                { admin.user.login }
+                                { isOwner ? " (owner)" : (
                                   <button
-                                    className="btn btn-sm btn-default"
                                     type="button"
-                                    onClick={( ) => changeOwner( admin )}
+                                    className="btn btn-nostyle"
+                                    onClick={( ) => removeProjectManager( admin )}
+                                    alt={I18n.t( "remove" )}
                                   >
-                                    { I18n.t( "views.projects.edit.make_owner" ) }
+                                    <i className="fa fa-times-circle-o" />
                                   </button>
-                                )
-                            }
-                          </td>
-                        </tr>
-                      ) ) }
+                                ) }
+                              </span>
+                            </td>
+                            <td>
+                              {
+                                project.user
+                                  && config.currentUser.id === project.user.id
+                                  && admin.id
+                                  && admin.user.id !== config.currentUser.id
+                                  && (
+                                    <button
+                                      className="btn btn-sm btn-default"
+                                      type="button"
+                                      onClick={( ) => changeOwner( admin )}
+                                    >
+                                      { I18n.t( "views.projects.edit.make_owner" ) }
+                                    </button>
+                                  )
+                              }
+                            </td>
+                          </tr>
+                        )
+                      } ) }
                     </tbody>
                   </table>
                 </div>

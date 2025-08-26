@@ -96,11 +96,23 @@ describe Announcement do
       expect( annc.targeted_to_user?( unconfirmed_user_no_obs ) ).to be false
     end
 
-    it "can exclude monthly supporters" do
+    it "can exclude monthly donorbox supporters" do
       monthly_supporter = User.make!(
         donorbox_donor_id: 1,
         donorbox_plan_status: "active",
         donorbox_plan_type: "monthly"
+      )
+      non_monthly_supporter = User.make!
+      a = create( :announcement, target_logged_in: Announcement::YES, prefers_exclude_monthly_supporters: true )
+      expect( a.targeted_to_user?( monthly_supporter ) ).to be false
+      expect( a.targeted_to_user?( non_monthly_supporter ) ).to be true
+    end
+
+    it "can exclude monthly fundraiseup supporters" do
+      monthly_supporter = User.make!(
+        virtuous_donor_contact_id: 1,
+        fundraiseup_plan_status: "active",
+        fundraiseup_plan_frequency: "monthly"
       )
       non_monthly_supporter = User.make!
       a = create( :announcement, target_logged_in: Announcement::YES, prefers_exclude_monthly_supporters: true )
@@ -468,6 +480,24 @@ describe Announcement do
       expect( annc.targeted_to_user?( include_user ) ).to be true
       expect( annc.targeted_to_user?( exclude_user ) ).to be false
       expect( annc.targeted_to_user?( both_user ) ).to be false
+    end
+
+    it "includes and excludes users by virtuous tags" do
+      tag_to_include = "Include"
+      tag_to_exclude = "Exclude"
+      annc = create :announcement,
+        target_logged_in: Announcement::YES,
+        include_virtuous_tags: [tag_to_include],
+        exclude_virtuous_tags: [tag_to_exclude]
+      include_user = UserVirtuousTag.make!( virtuous_tag: tag_to_include ).user
+      exclude_user = UserVirtuousTag.make!( virtuous_tag: tag_to_exclude ).user
+      both_user = User.make!
+      UserVirtuousTag.make!( virtuous_tag: tag_to_include, user: both_user )
+      UserVirtuousTag.make!( virtuous_tag: tag_to_exclude, user: both_user )
+      expect( annc.targeted_to_user?( include_user ) ).to be true
+      expect( annc.targeted_to_user?( exclude_user ) ).to be false
+      expect( annc.targeted_to_user?( both_user ) ).to be false
+      expect( annc.targeted_to_user?( User.make! ) ).to be false
     end
   end
 

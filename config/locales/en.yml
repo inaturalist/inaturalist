@@ -1278,7 +1278,7 @@ en:
       Equivalent IUCN Red List code. This is not the actual IUCN assessment,
       just the IUCN code that best matches the threat of coordinate disclosure
       implied by this status. This will override the geoprivacy if it is "Least
-      Concern" or below, so if you've want to obscure observations of this
+      Concern" or below, so if you want to obscure observations of this
       taxon, set this to "Near Threatened" or above.
   conservation_status_geoprivacy_desc: |
     Default geoprivacy applied to all observations of this taxon in this place
@@ -1673,6 +1673,61 @@ en:
   daily_users: Daily Users
   danger_zone: Danger Zone
   dashboard: Dashboard
+  dashboard_pilots:
+    # button asking to participate in a pilot
+    pilot_participate: "Yes! I'd like to participate."
+    # state of button asking to participate in a pilot after participating
+    pilot_stop: "Stop Participating"
+    # link to a blog post
+    pilot_read_more: "Read more on our blog."
+    # title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Identification Gaps Pilot: Needs ID Wanted Species"
+    # description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Help us fill gaps by participating to recieve daily link to observations:"
+    # description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Not yet included in the Computer Vision Model"
+    # description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "We think you can identify"
+    # instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Here's a link to observations of species not yet included in the Computer Vision Model that we think you can identify."
+    # instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Check back tomorrow for a link to observations of species not yet included in the Computer Vision Model that we think you can identify. You'll be shown species where you have made at least 3 improving identifications."
+    # instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "If you don't see a link, there may not be any observations matching these criteria that Need ID. It will check once per day."
+    # title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Observation Gaps Pilot: Nearby Wanted Species"
+    # description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Tomorrow, you'll receive a list of species that:"
+    # description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Are not yet in the Computer Vision Model"
+    # description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Have been observed this season near your last observation"
+    # description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Are driven by a sample of up to 200 observations of up to 300 species prioritizing plants"
+    # instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "By observing these species, you'll help improve the model and fill biodiversity data gaps. This list will update when the Model updates. You can opt out at any time."
+    # instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Here’s your current list of species that are:"
+    # instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Not yet included in the Computer Vision Model"
+    # instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Observed near your last location this season"
+    # instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "By observing these, you’re helping improve species recognition and fill critical gaps."
+    # label of link to explore species view
+    gaps_obs_pilot_browse: "Browse species"
+    # instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Check back tomorrow for a personalized list of species not yet in the Computer Vision Model, observed this season. The personalized list will use the location of your most recent observation."
+    # instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "If you don't see a link, there might not be any species matching these criteria near you."
+    # title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Identification Pilot: Onboarding New Users"
+    # instructions explaining the pilot
+    identification_pilot_body_intro: "Beginning tomorrow, receive up to 30 observations daily that match your identification skills, helping to onboard new users. You can opt out at any time."
+    # instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Below are up to 30 observations that match your identification skills."
+    # instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Check back tomorrow for a link to observations that match your identification skills."
   data_deficient: Data Deficient
   data_quality: Data Quality
   data_quality_assessment: Data Quality Assessment
@@ -1815,6 +1870,10 @@ en:
         to confirm your account.
       user:
         suspended: Your account has been suspended
+      # Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid:
+        The reset password token is invalid. Please use the link in the most recently sent
+        reset password email, or <a href="%{url}">request a new one</a>.
     sessions:
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
@@ -1921,6 +1980,8 @@ en:
   # Button text to donate to iNaturalist. Please try to keep translations as
   # short as possible
   donate: DONATE
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Donate
   donate_again_caps: DONATE AGAIN
   donate_again_today_caps: DONATE AGAIN TODAY
   # Title for pages and sections that encourage people to donate to iNaturalist
@@ -2931,7 +2992,6 @@ en:
   # a noun.
   link_to_authorization_code: Link to authorization code
   link_your_flickr_account: Link your Flickr account
-  link_your_google_account: Link your Google account
   linked_flickr: "Your %{site_name} account is currently linked to your Flickr account."
   linked_flickr_automatically: "Also, keep in mind that if you log in to %{site_name} via Flickr, we will automatically re-link your %{site_name} and Flickr accounts. Seems reasonable that if you use Flickr you'll want to be able to import Flickr photos, right?"
   linked_flickr_description: "Keeping your %{site_name} account linked to your Flickr account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Flickr to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Flickr account that you want to link %{site_name} to."
@@ -3764,6 +3824,7 @@ en:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: DNA
   observation_fields: Observation Fields
+  observation_fields_for_projects: Observation Fields for Projects
   observation_fields_are_additional: Observation fields are additional data fields that can be added to observations.
   observation_fields_by_preferences_description: |
     Observation fields are a bit like tags, except anyone can add them to your
@@ -4272,6 +4333,8 @@ en:
             zone: zone
   place_guess: place guess
   place_imported: Place imported!
+  # message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: It may take up to a day for observations to be associated with this place.
   place_must_have_a_boundary_defined: Place Must Have A Boundary Defined.
   place_name: Place name
   place_notes: Place Notes
@@ -4582,6 +4645,20 @@ en:
     it's absolutely necessary.
   places_warning_quota: |
     You can only create three places per day.
+  # user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Places cannot be larger than 700,000 square kilometers.
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Places cannot be larger than 70,000 square kilometers.
+  # user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Places cannot contain more than 200,000 observations.
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Places cannot contain more than 10,000 observations.
   places_warning_the_future: |
     For what it's worth, we will have to restrict the conditions under which
     people can add places in the future given iNat's current rate of growth.
@@ -6113,7 +6190,6 @@ en:
   unfollow_observation: Unfollow observation
   # Text for a button to stop following updates from a user
   unfollow_user: Unfollow user
-  unlink_your_google_account: Unlink Your Google Account
   unlink_your_flickr_account: "Unlink your Flickr Account"
   unmute: Unmute
   updates_notification_email_subject: "%{prefix} New updates %{date}"
@@ -6462,9 +6538,8 @@ en:
   # Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
-  we_also_support2: |
-    We also support importing photos from <a href="http://flickr.com">Flickr</a>
-    and <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    We also support importing photos from <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_couldnt_find_a_user: We couldn't find a user with that email address.
   we_couldnt_find_a_user_with_that_activation_code: "We couldn't find a user with that activation code. You may have already activated your account, please try signing in."
@@ -6861,6 +6936,10 @@ en:
         Time in your account time zone that this announcement will stop
         appearing. Applies across time zones, so everyone will stop seeing
         it at the same time, not relative to their local time.
+      excludes_non_site_desc: |
+        If your announcement targets a site (which is the default if you're a
+        Site Admin), this will exclude announcements that target all sites in
+        this placement.
       ip_countries_desc: |
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
@@ -6882,6 +6961,14 @@ en:
         Time in your account time zone that this announcement will start
         appearing. Applies across time zones, so everyone will start seeing
         it at the same time, not relative to their local time.
+      include_virtuous_tags_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "Any" or not making
+        a selection will show the announcement to all users regardless of
+        their Virtuous tags.
+      exclude_virtuous_tags_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "None" or not making
+        a selection will show the announcement to all users regardless of
+        their Virtuous tags.
 
       # Description of a group of options for targeting announcements based
       # on donation behavior
@@ -7928,22 +8015,6 @@ en:
         geoprivacy_must_be_in_english: |
           The geoprivacy column must be in English and must be blank or have a
           value of "obscured" or "private"
-        google_photos_notice_html: |
-          In February 2019, Google changed their API, making it impossible for
-          us to access GPS coordinates, license information, and almost any
-          information we could use to add an identification (like tags). They
-          also removed text search and numerical pagination. On top of that,
-          they required all connected accounts to have an additional permission,
-          and before a third party can request that permission from users, the
-          third party has to be verified. We are awaiting verification, but
-          until that happens, you will not be able to import photos from Google.
-          If we get approved, you will be able to import photos, but they won't
-          include any location information or license information that you might
-          be able to see on Google Photos. You can read more about this at <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Downloading the
-          original files and adding them using the <a
-          href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
           There is a template file for this project that may help you with the structure of the CSV file.
           <a href="%{url}">Download template</a>
@@ -10017,6 +10088,7 @@ en:
         exclude_donor_start_date: Exclude donor start date
         # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclude donor end date
+        excludes_non_site: Hide other announcements in this placement that have no Site ID
         # iNat client applications that the user must not have made an observation
         # with to see the announcement
         exclude_observation_oauth_application_ids: Exclude observers from apps

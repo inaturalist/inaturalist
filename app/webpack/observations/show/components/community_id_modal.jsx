@@ -15,7 +15,7 @@ class CommunityIDModal extends Component {
 
   getUsableIdentifications( ) {
     const { observation } = this.props;
-    if ( !observation ) return [];
+    if ( !observation || !observation.identifications ) return [];
     return observation.identifications.filter( i => !i.hidden );
   }
 

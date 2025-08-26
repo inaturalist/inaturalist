@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import {
-  Grid, Row, Col, Panel
+  Grid, Row, Col, Panel, Overlay, Popover
 } from "react-bootstrap";
 import DateTimeFieldWrapper from
   "../../../observations/uploader/components/date_time_field_wrapper";
@@ -15,6 +15,9 @@ import UserSelector from "./user_selector";
 class RegularForm extends React.Component {
   constructor( props ) {
     super( props );
+    this.observedOnInput = React.createRef( );
+    this.dateRangeD1Input = React.createRef( );
+    this.dateRangeD2Input = React.createRef( );
     this.state = {
       inverseFiltersOpen: null
     };
@@ -398,24 +401,40 @@ class RegularForm extends React.Component {
               <label className="inline" htmlFor="project-date-type-exact">
                 { I18n.t( "exact" ) }
               </label>
-              <DateTimeFieldWrapper
-                className="datefield"
-                mode="date"
-                ref="exactDate"
-                inputFormat="YYYY-MM-DD"
-                defaultText={project.rule_observed_on}
-                onChange={date => setRulePreference( "observed_on", date )}
-                allowFutureDates
-                inputProps={{
-                  className: "form-control",
-                  placeholder: "YYYY-MM-DD",
-                  onClick: ( ) => this.refs.exactDate.onClick( )
-                }}
-              />
+              <div className={`datetime-wrapper ${project.errors.observed_on && "has-error"}`}>
+                <DateTimeFieldWrapper
+                  className="datefield"
+                  mode="date"
+                  ref={this.observedOnInput}
+                  inputFormat="YYYY-MM-DD"
+                  defaultText={project.rule_observed_on}
+                  onChange={date => setRulePreference( "observed_on", date )}
+                  allowFutureDates
+                  inputProps={{
+                    className: "form-control",
+                    placeholder: "YYYY-MM-DD",
+                    onClick: ( ) => this.observedOnInput.current.onClick( )
+                  }}
+                />
+              </div>
+              { project.errors.observed_on && (
+                <Overlay
+                  show
+                  placement="top"
+                  target={( ) => this.observedOnInput.current}
+                >
+                  <Popover
+                    id="popover-observed-on"
+                    className="popover-error"
+                  >
+                    { project.errors.observed_on }
+                  </Popover>
+                </Overlay>
+              ) }
             </Col>
           </Row>
           <Row className="date-row">
-            <Col xs={12} className="date-range-col" className={`members-only${usingDelegation ? " disabled" : ""}`}>
+            <Col xs={12} className={`date-range-col members-only${usingDelegation ? " disabled" : ""}`}>
               <input
                 type="radio"
                 id="project-date-type-range"
@@ -425,32 +444,64 @@ class RegularForm extends React.Component {
               <label className="inline" htmlFor="project-date-type-range">
                 { I18n.t( "date_picker.range" ) }
               </label>
-              <DateTimeFieldWrapper
-                mode="datetime"
-                ref="dateRangeD1"
-                inputFormat="YYYY-MM-DD HH:mm Z"
-                defaultText={project.rule_d1}
-                onChange={date => setRulePreference( "d1", date )}
-                allowFutureDates
-                inputProps={{
-                  className: "form-control",
-                  placeholder: I18n.t( "start_date_time" ),
-                  onClick: ( ) => this.refs.dateRangeD1.onClick( )
-                }}
-              />
-              <DateTimeFieldWrapper
-                mode="datetime"
-                ref="dateRangeD2"
-                inputFormat="YYYY-MM-DD HH:mm Z"
-                defaultText={project.rule_d2}
-                onChange={date => setRulePreference( "d2", date )}
-                allowFutureDates
-                inputProps={{
-                  className: "form-control",
-                  placeholder: I18n.t( "end_date_time" ),
-                  onClick: ( ) => this.refs.dateRangeD2.onClick( )
-                }}
-              />
+              <div className={`datetime-wrapper ${project.errors.d1 && "has-error"}`}>
+                <DateTimeFieldWrapper
+                  mode="datetime"
+                  ref={this.dateRangeD1Input}
+                  inputFormat="YYYY-MM-DD HH:mm Z"
+                  defaultText={project.rule_d1}
+                  onChange={date => setRulePreference( "d1", date )}
+                  allowFutureDates
+                  inputProps={{
+                    className: "form-control",
+                    placeholder: I18n.t( "start_date_time" ),
+                    onClick: ( ) => this.dateRangeD1Input.current.onClick( )
+                  }}
+                />
+              </div>
+              { project.errors.d1 && (
+                <Overlay
+                  show
+                  placement="top"
+                  target={( ) => this.dateRangeD1Input.current}
+                >
+                  <Popover
+                    id="popover-d1"
+                    className="popover-error"
+                  >
+                    { project.errors.d1 }
+                  </Popover>
+                </Overlay>
+              ) }
+              <div className={`datetime-wrapper ${project.errors.d2 && "has-error"}`}>
+                <DateTimeFieldWrapper
+                  mode="datetime"
+                  ref={this.dateRangeD2Input}
+                  inputFormat="YYYY-MM-DD HH:mm Z"
+                  defaultText={project.rule_d2}
+                  onChange={date => setRulePreference( "d2", date )}
+                  allowFutureDates
+                  inputProps={{
+                    className: "form-control",
+                    placeholder: I18n.t( "end_date_time" ),
+                    onClick: ( ) => this.dateRangeD2Input.current.onClick( )
+                  }}
+                />
+              </div>
+              { project.errors.d2 && (
+                <Overlay
+                  show
+                  placement="top"
+                  target={( ) => this.dateRangeD2Input.current}
+                >
+                  <Popover
+                    id="popover-d2"
+                    className="popover-error"
+                  >
+                    { project.errors.d2 }
+                  </Popover>
+                </Overlay>
+              ) }
               <div className="help-text">
                 { I18n.t( "views.projects.new.note_you_can_delete_the_time" ) }
               </div>

@@ -1,9 +1,219 @@
 gu:
+  #Placeholder for a project autocomplete field
+  add_a_project: પ્રોજેક્ટ ને ઉમેરો
+  #Label for an option to show any place
+  any_place: કોઇપણ
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: વિસ્ફોટિત
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: એક્સ્પ્લોડ થયેલ નથી
+  confirming_ids: IDs ની ખાતરી કરી રહ્યા છે
+  confirming_ids_description: |
+    જો તમે આ બંધ કરશો, તો તમને સંમત થનારા આઈડી વિશે સૂચિત કરવામાં આવશે નહીં
+    તમારી સાથે સિવાય કે તેમની પાસે વધારાની ટિપ્પણીઓ ન હોય.
+  curator_coordinate_access: ક્યુરેટર યામાક્ષ પ્રવેશ
+  curator_coordinate_access_desc: |
+    પરંપરાગત પ્રોજેક્ટ્સ માટે ક્યુરેટર કોઓર્ડિનેટ એક્સેસ કોણે ઉમેર્યું તેના પર આધાર રાખે છે
+    પ્રોજેક્ટનું નિરીક્ષણ. આ ફક્ત તેના માટે મૂળભૂત સુયોજન છે
+    પ્રોજેક્ટોમાં અવલોકનો. નિરીક્ષકો આ માટે આને બદલવાનું પણ પસંદ કરી શકે છે
+    વ્યક્તિગત નિરીક્ષણો.
+  #Button to customize projects that appear in the header
+  customize__projects: વૈવિધ્યપૂર્ણ બનાવો
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     તમારા ઇમેઇલ એડ્રેસની ખાત્રી કરવા માટે કૃપા કરીને નીચેની લિંક પર ક્લિક કરો. જો તમે તમારા ઇમેઇલની પુષ્ટિ ન કરો તો
     સરનામું, તમે અન્ય વપરાશકર્તાઓની સામગ્રી સાથે ક્રિયાપ્રતિક્રિયા કરવા માટે સમર્થ હશો નહીં.
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: મતભેદ
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: નિરીક્ષણો બતાવો કે જેમને અસંમત ઓળખાણો છે
+  #Title for a page to edit an announcement
+  editing_announcement_x: સંપાદન જાહેરાત %{id}
+  #Header for a section showing the user's favorite projects
+  favorite_projects: મનગમતા પ્રોજેક્ટો
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    હેડરમાં લિંક્સ તરીકે દેખાતા સાત પ્રોજેક્ટ્સ પસંદ કરો. અપડેટ
+    પૃષ્ઠને રિફ્રેશ કર્યા પછી દેખાશે.
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaururalist એ આના દ્વારા સૂચવેલ ID ને અપડેટ કર્યું %{user}
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: ઇન્ફ્રાસ્પેસીઝ IDS
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    જો તમે આ બંધ કરો છો, તો તમને ટેક્સાના આઈડી વિશે સૂચિત કરવામાં આવશે નહીં
+    પ્રજાતિ-સ્તરથી નીચે (જેમ કે ઉપજાતિઓ અને જાતો) જે તમારી સાથે સંમત થાય છે
+    પ્રજાતિ-સ્તર ID. જો તેઓ તમારા આઈડી સાથે અસંમત હોય તો તમને જાણ કરવામાં આવશે અથવા
+    જો તેમાં વધારાની ટીપ્પણીઓ હોય તો.
+  #Error message shown when a date format is invalid
+  invalid_date: અયોગ્ય તારીખ
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: યાદી થયેલ
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: યાદી ન થયેલ
+  #Adjectival phrase describing state of being logged in
+  logged_in: પ્રવેશેલ છે
+  #Adjectival phrase describing state of being logged out
+  logged_out: લૉગ આઉટ થયેલ
+  #Label for a button or section that shows additional options
+  more_options: વધારે વિકલ્પો
+  #A user who is not a curator
+  non_curator: નોન-ક્યુરેટર
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: અસંમત ન હોય તેવા પૂર્વજ IDs
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    જો તમે આ બંધ કરો, તો તમને સૂચિત કરવામાં આવશે નહીં જ્યારે કોઈ એક ઉમેરે છે
+    એક ટેક્સોનની આઈડી કે જે તમારા આઈડીમાંથી ટેક્સનનો પૂર્વજ છે અને તે નથી
+    કોમ્યુનિટી ટેક્સન સાથે સ્પષ્ટપણે અસંમત છે. તમને સૂચિત કરવામાં આવશે જો
+    આઇડીમાં વધારાની ટીપ્પણીઓ છે.
+  #A user who does not admin any projects
+  non_project_admin: બિન-પ્રોજેક્ટ સંચાલક
+  observation_fields_for_projects: પ્રોજેક્ટો માટે નિરીક્ષણ ક્ષેત્રો
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: પ્રોફાઇલ ચિત્ર ફાઇલ પ્રકાર
+  #A user who admin's a project
+  project_admin: પ્રોજેક્ટ સંચાલક
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: જીનસ / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: પ્રજાતિઓ / વર્ણસંકર
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: ઉપપ્રજાતિઓ/વિવિધતા /ફોર્મ
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: ઉમેદવારી નોંધાવો
+  update_existing_observations_with_new_license_desc: |
+    આ વિકલ્પને પસંદ કરવાનું તમારા બધા માટે તમારી નવી લાઇસન્સ પસંદગીને લાગુ કરશે
+    પ્રવર્તમાન અવલોકનો. જો તમારી પાસે ઘણું બધું હોય તો આમાં થોડા કલાકો લાગી શકે છે
+    નિરીક્ષણો.
+  update_existing_photos_with_new_license_desc: |
+    આ વિકલ્પને પસંદ કરવાનું તમારા બધા માટે તમારી નવી લાઇસન્સ પસંદગીને લાગુ કરશે
+    હાલનાં ફોટાઓ. જો તમારી પાસે ઘણું બધું હોય તો આમાં થોડા કલાકો લાગી શકે છે
+    ફોટા.
+  update_existing_sounds_with_new_license_desc: |
+    આ વિકલ્પને પસંદ કરવાનું તમારા બધા માટે તમારી નવી લાઇસન્સ પસંદગીને લાગુ કરશે
+    હાલના અવાજો. જો તમારી પાસે ઘણું બધું હોય તો આમાં થોડા કલાકો લાગી શકે છે
+    અવાજો.
+  user_trusts_this_project_when_added_by_any: |
+    વપરાશકર્તા ઉમેરવામાં આવેલા અવલોકનોના છુપાયેલા સંકલનો સાથે પ્રોજેક્ટ ક્યુરેટર્સ પર વિશ્વાસ કરે છે
+    કોઈ પણ વ્યક્તિ દ્વારા પ્રોજેક્ટ માટે.
+  user_trusts_this_project_when_added_by_observer: |
+    વપરાશકર્તા ઉમેરવામાં આવેલા અવલોકનોના છુપાયેલા સંકલનો સાથે પ્રોજેક્ટ ક્યુરેટર્સ પર વિશ્વાસ કરે છે
+    નિરીક્ષક દ્વારા પ્રોજેક્ટ માટે.
+  user_trusts_this_project_when_added_by_none: |
+    વપરાશકર્તા છુપાયેલા કોઓર્ડિનેટ્સવાળા પ્રોજેક્ટ ક્યુરેટર્સ પર વિશ્વાસ કરતો નથી.
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: તમારી અસર પામેલ આઇડી જુઓ
+  we_also_support3: |
+    અમે તેમાંથી ફોટાને આયાત કરવાનું પણ સમર્થન કરીએ છીએ <a href="http://flickr.com">Flickr</a>.
   views:
+    announcements:
+      locales_desc: |
+        બહુવિધ પસંદ કરવા માટે CMD- અથવા SHIFT-ક્લિક કરો. "બધા" ને પસંદ કરવા અથવા બનાવતા નથી
+        પસંદગી બધા વપરાશકર્તાઓને ઘોષણાને આને ધ્યાનમાં લીધા વગર બતાવશે
+        લોકલે. વિસ્તાર વગર ભાષાને પસંદ કરવાનું *not* લક્ષ્ય હશે
+        પ્રદેશો સાથેના લોકેલ્સ, દા.ત. જો તમે અંગ્રેજી પસંદ કરો તો તે દેખાશે નહિં
+        એવા લોકો માટે જેમણે અંગ્રેજી (યુકે) પસંદ કર્યું છે.
+      clients_desc: |
+        બહુવિધ પસંદ કરવા માટે CMD- અથવા SHIFT-ક્લિક કરો. "બધા" ને પસંદ કરવા અથવા બનાવતા નથી
+        પસંદગી બધા વપરાશકર્તાઓને ઘોષણાને આને ધ્યાનમાં લીધા વગર બતાવશે
+        ક્લાયન્ટ.
+      end_desc: |
+        તમારા એકાઉન્ટ ટાઇમ ઝોનમાં સમય કે જે આ જાહેરાત બંધ થશે
+        દેખાય છે. તમામ ટાઇમ ઝોનમાં લાગુ પડે છે, તેથી દરેક જણ જોવાનું બંધ કરશે
+        તે જ સમયે, તેમના સ્થાનિક સમયની સાપેક્ષમાં નહીં.
+      ip_countries_desc: |
+        બહુવિધ પસંદ કરવા માટે CMD- અથવા SHIFT-ક્લિક કરો. "બધા" ને પસંદ કરવા અથવા બનાવતા નથી
+        પસંદગી બધા વપરાશકર્તાઓને ઘોષણાને આને ધ્યાનમાં લીધા વગર બતાવશે
+        આઈ.પી. દેશ.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        નોંધ લો કે વપરાશકર્તાએ તાજેતરમાં બનાવેલ ની બનાવટ તારીખ
+        નિરીક્ષણ કેશ થયેલ છે, તેથી તેને લક્ષ્ય બનાવવા માટે થોડા કલાકો લાગી શકે છે
+        અસર કરે છે
+      observation_oauth_application_ids_desc: |
+        બહુવિધ પસંદ કરવા માટે CMD- અથવા SHIFT-ક્લિક કરો. "બધા" ને પસંદ કરવા અથવા બનાવતા નથી
+        પસંદગી બધા વપરાશકર્તાઓને ઘોષણાને આને ધ્યાનમાં લીધા વગર બતાવશે
+        એપ્લિકેશન.
+      site_ids_desc: |
+        બહુવિધ પસંદ કરવા માટે CMD- અથવા SHIFT-ક્લિક કરો. "બધા" ને પસંદ કરવા અથવા બનાવતા નથી
+        પસંદગી બધા વપરાશકર્તાઓને ઘોષણાને આને ધ્યાનમાં લીધા વગર બતાવશે
+        સાઇટ જોડાણ.
+      start_desc: |
+        તમારા ખાતાના ટાઇમ ઝોનમાં સમય કે જે આ જાહેરાત શરૂ થશે
+        દેખાય છે. તમામ ટાઇમ ઝોનમાં લાગુ પડે છે, તેથી દરેક જણ જોવાનું શરૂ કરશે
+        તે જ સમયે, તેમના સ્થાનિક સમયની સાપેક્ષમાં નહીં.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: દાન વર્તણૂક દ્વારા વપરાશકર્તાઓને લક્ષ્ય બનાવો
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: ઓળખ વર્તણૂક દ્વારા વપરાશકર્તાઓને લક્ષ્ય બનાવો
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: નિરીક્ષણ વર્તણૂક દ્વારા વપરાશકર્તાઓને લક્ષ્ય બનાવો
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: અન્ય ગુણધર્મો દ્દારા વપરાશકર્તાઓને લક્ષ્ય બનાવો
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: એટલાસીસ વિશે
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          એટલાસ ટેક્સોનનું વૈશ્વિક વિતરણ વ્યક્ત કરે છે. ક્યુરેટર્સ બનાવે છે
+          એટલાસની રચનાને વ્યાખ્યાયિત કરીને અને ક્યુરેટ કરીને એટલાસ
+          સૂચિબદ્ધ ટેક્સા જે તેને ચલાવે છે.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: આ જગ્યાએ વિસ્ફોટ કરો
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: આ જગ્યાનું વર્ણન દૂર કરો
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: આ એટલાસમાં હજુ સુધી કોઈ ફેરફાર થયો નથી
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: તાજેતરના એટલાસ ફેરફારો
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: તાજેતરના લિસ્ટેડ ટેક્સોન ફેરફારો
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: સૂચિબદ્ધ ટેક્સા બતાવો
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: આ એટલાસ હાલમાં સક્રિય નથી
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          આ ટેક્સન અને તેના બધા વંશજોને ચેકલિસ્ટમાંથી દૂર કરશે
+          આ સ્થળ અને તેમાં સમાવિષ્ટ કોઈપણ પ્રમાણભૂત સ્થાનો સાથે સંકળાયેલ છે. તે
+          પૂર્વવત્ કરી શકાતું નથી. શું તમે ખરેખર આ કરવા માંગો છો?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          ચેતવણી: આ એટલાસ દ્વારા રજૂ થતા અવલોકનો નથી
     email_confirmation:
       click_here_to_resend_a_confirmation_email: પુષ્ટિ ઇમેઇલને ફરી મોકલવા માટે અંહિ ક્લિક કરો
       #message displayed after users trigger sending a email to confirm their email address
@@ -29,6 +239,11 @@ gu:
       tips_check_email_filters: તમારા ઇનબોક્સમાંથી અમારા ઇમેઇલ્સ દૂર કરી શકે તેવા તમે બનાવેલા કોઇ પણ ફિલ્ટર્સ માટે તપાસ કરો #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: તમારા સ્પામ ફોલ્ડરને ચકાસો
       your_site_account_has_no_email: તમારું %{site_name} એકાઉન્ટ પાસે તેની સાથે સંકળાયેલ કોઈ ઇમેઇલ સરનામું નથી.
+    guides:
+      index:
+        funding2_html: |
+          માર્ગદર્શિકાઓના વિકાસ માટેનું ભંડોળ આના દ્વારા પૂરું પાડવામાં આવ્યું હતું
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -42,6 +257,24 @@ gu:
           તમે તમારા ઇમેઇલની પુષ્ટિ કર્યા પછી તમે નવા સંદેશા મોકલી શકશો
           સરનામું, અને ત્રણ ચકાસી શકાય તેવા અવલોકનો અથવા ત્રણ ઓળખો ઉમેરી
           બીજાઓ માટે. હમણાં માટે તમે વાંચી શકો છો અને અન્ય લોકો તમને મોકલેલા સંદેશનો જવાબ આપી શકો છો.
+    taxa:
+      show:
+        site_curators_disabled_wikipedia_html: |
+          સાઇટ ક્યુરેટરોએ બતાવવાનું નિષ્ક્રિય કર્યું છે <a href="%{url}">આ
+          વિકિપીડિયામાંથી સમાવિષ્ટ</a>. તમે તેની પર પાનાંને સંપાદિત કરીને મદદ કરી શકો છો
+          વિકિપીડિયા તેને આ ટેક્સન માટે યોગ્ય બનાવવા માટે, અથવા આને ફ્લેગ કરીને
+          તેને સાઇટ ક્યુરેટર્સના ધ્યાન પર લાવવા માટે ટેક્સન.
+    users:
+      edit:
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: ફાઇલ પ્રકાર આધારભૂત નથી. અમે JPG, PNG અને GIF ને સ્વીકારીએ છીએ
+        this_only_applies_to_traditional_projects2: |
+          આ માત્ર પરંપરાગત પ્રોજેક્ટ્સને જ લાગુ પડે છે. તમે નિરીક્ષણોને નહિં સમાવી શકો
+          સંગ્રહ અથવા છત્રી પ્રોજેક્ટ્સમાંથી, જે આવશ્યકપણે સાચવવામાં આવે છે.
+          તમે વધુ વાંચી શકો છો
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">અહીં</a>.
   number:
     format:
       significant: false
@@ -50,7 +283,100 @@ gu:
       format:
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
+    attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: કાઢી શકાય તેવું
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: દાતા શરૂઆત તારીખને સમાવો નહિં
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: દાતાની અંતિમ તારીખને સમાવો નહિં
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: નિરીક્ષકોને એપ્લિકેશનોમાંથી સમાવો નહિં
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: દાતાની શરૂઆતની તારીખને સમાવો
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: દાતાની અંતિમ તારીખને સમાવો
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: એપ્લિકેશનમાંથી નિરીક્ષકોને સામેલ કરો
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP દેશો
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: તાજેતરની ઓબ્સ શરૂઆતની તારીખ
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: તાજેતરની ઓબ્સની અંતિમ તારીખ
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: મહત્તમ ઓળખાણો
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: ન્યૂનત્તમ ઓળખાણો
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: મહત્તમ નિરીક્ષણો
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: ન્યૂનત્તમ અવલોકનો
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: સ્થાન
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: લક્ષ્ય બનાવનાર (ચકાસણી માટે)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: લક્ષ્ય પ્રવેશેલ છે
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: શરુઆતની વપરાશકર્તા સાઇન અપ તારીખ
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: વપરાશકર્તા સાઇન અપ કરવાની છેલ્લી તારીખ
+      taxon:
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: વિકિપીડિયા બતાવે છે
+      user:
+        faved_project_ids: મનગમતા પ્રોજેક્ટો
     errors:
       messages:
+        must_look_like_an_email_address: ઈ-મેઈલ એડ્રેસ જેવું જ લાગવું જોઈએ
         requires_privilege_interaction: તે કરવા માટે પુષ્ટિ થયેલ ઇમેઇલ એડ્રેસ હોવું આવશ્યક છે
+      models:
+        moderator_action:
+          attributes:
+            base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: ફક્ત સ્ટાફ જ નામ બદલી શકે છે
+        observation:
+          attributes:
+            observed_on:
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: એક જ દિવસ હોવો જ જોઇએ, સીમા નહિં
+        place:
+          attributes:
+            place_geometry:
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: પાસે બહુકોણ છે જેનો કોઈ વિસ્તાર નથી (બધા બિંદુઓ સમાન છે)
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: તમે માત્ર 7 પ્રોજેક્ટ્સને જ પસંદ કરી શકો છો
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: લાઇફ ટેક્સોનને ટેક્સોન ફેરફારોમાં સામેલ કરી શકાતું નથી
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 7 કરતા વધુ પ્રોજેક્ટોનો સમાવેશ કરી શકાતો નથી
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: બધું અસ્તિત્વ ધરાવતું હોવું જ જોઈએ
+            login:
+              domain_is_not_supported: ડોમેઈન આધારભૂત નથી

@@ -614,6 +614,7 @@ Rails.application.routes.draw do
         get :index
       end
     end
+    resources :username_reserved_words, controller: "admin/username_reserved_words", only: [:index, :create, :destroy]
   end
   get "admin/user_content/:id/(:type)", to: "admin#user_content", as: "admin_user_content"
   delete "admin/destroy_user_content/:id/:type", to: "admin#destroy_user_content", as: "destroy_user_content"

@@ -22,10 +22,7 @@ describe UsersController, "dashboard" do
       expect( assigns( :announcements ) ).to include annc
     end
 
-    # The intent is to allow the creation of a siteless announcement that can
-    # be *overridden* for a site, e.g. an announcement to all iNat users that
-    # iNatMX chooses to translate into Spanish
-    it "should not include an anouncement without a site if one with a site exists" do
+    it "should include an anouncement without a site if one with a site exists" do
       annc = create :announcement
       site = create :site
       site_annc = create :announcement
@@ -34,7 +31,24 @@ describe UsersController, "dashboard" do
       sign_in user
       get :dashboard, params: { inat_site_id: site.id }
       expect( assigns( :announcements ) ).to include site_annc
-      expect( assigns( :announcements ) ).not_to include annc
+      expect( assigns( :announcements ) ).to include annc
+    end
+
+    # The intent is to allow the creation of a siteless announcement that can
+    # be *overridden* for a site, e.g. an announcement to all iNat users that
+    # iNatMX chooses to translate into Spanish
+    describe "there exists another annc targeting a site that excludes non-site anncs" do
+      it "should not include an anouncement without a site" do
+        annc = create :announcement
+        site = create :site
+        site_annc = create :announcement, excludes_non_site: true
+        site_annc.sites << site
+        user = create :user, site: site
+        sign_in user
+        get :dashboard, params: { inat_site_id: site.id }
+        expect( assigns( :announcements ) ).to include site_annc
+        expect( assigns( :announcements ) ).not_to include annc
+      end
     end
 
     it "should target locales" do
@@ -101,11 +115,23 @@ describe UsersController, "dashboard" do
         expect( response.body ).to include a.body
       end
 
-      it "should exclude monthly supporters" do
+      it "should exclude donorbox monthly supporters" do
         user = create :user,
           donorbox_donor_id: 1,
           donorbox_plan_status: "active",
           donorbox_plan_type: "monthly"
+        expect( user ).to be_monthly_donor
+        sign_in user
+        a = create :announcement, target_logged_in: Announcement::YES, prefers_exclude_monthly_supporters: true
+        get :dashboard
+        expect( response.body ).not_to include a.body
+      end
+
+      it "should exclude fundraiseup monthly supporters" do
+        user = create :user,
+          virtuous_donor_contact_id: 1,
+          fundraiseup_plan_status: "active",
+          fundraiseup_plan_frequency: "monthly"
         expect( user ).to be_monthly_donor
         sign_in user
         a = create :announcement, target_logged_in: Announcement::YES, prefers_exclude_monthly_supporters: true

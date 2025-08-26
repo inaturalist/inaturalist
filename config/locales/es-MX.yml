@@ -2598,7 +2598,6 @@ es-MX:
   #a noun.
   link_to_authorization_code: Enlace al código de autorización
   link_your_flickr_account: Enlaza tu cuenta de Flickr
-  link_your_google_account: Enlaza tu cuenta de Google
   linked_flickr: "Tu cuenta %{site_name} está enlazada con tu cuenta de Flickr."
   linked_flickr_automatically: "También ten en cuenta que cuando entras a %{site_name} via Flickr, automáticamente re-enlazaremos tus cuentas de  %{site_name} y de Flickr. Nos parece razonable que si utilizas Flickr querrás importar tus fotos de Flickr¿Correcto?"
   linked_flickr_description: "Al mantener tu cuenta %{site_name} ligada a tu cuenta de Flickr puedes añadir muchas fotos a tus observaciones. Por supuesto, si quieres desenlazar %{site_name} y Flickr, no te detendremos, pero no podrás añadir fotos. Algunas veces puede ser la mejor opción, como cuando quieres crear una nueva cuenta de Flickr y enlazarla a  %{site_name}."
@@ -5511,7 +5510,6 @@ es-MX:
   unfollow_observation: Dejar de seguir esta observación
   #Text for a button to stop following updates from a user
   unfollow_user: Dejar de seguir usuario
-  unlink_your_google_account: Desvincular tu cuenta de Google
   unlink_your_flickr_account: "Desvincular tu cuenta de Flickr"
   unmute: Desactivar silenciamiento
   updates_notification_email_subject: "%{prefix} Nuevas actualizaciones %{date}"
@@ -5814,9 +5812,6 @@ es-MX:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerido
   was_it_captive_cultivated?: "¿En cautiverio o cultivada?"
-  we_also_support2: |
-    También admitimos la importación de fotos de <a href="http://flickr.com">Flickr</a>
-    y <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Solamente podemos entender CSV en el siguiente formato
   we_couldnt_find_a_user: No pudimos encontrar a un usuario con esa dirección de correo electrónico.
   we_couldnt_find_a_user_with_that_activation_code: "No pudimos encontrar ningun usuario con ese código de activación. Puede que tu cuenta ya haya sido activada, porfavor trata de ingresar al sistema"
@@ -6382,9 +6377,6 @@ es-MX:
         deprecated_banner: |
           Ten en cuenta que a partir de enero de 2019, la función Guías se muestra
           "tal cual". Aunque no tenemos planes para eliminarla, tampoco tenemos previsto desarrollarla más.
-        funding_html: |
-          Los fondos para el desarrollo de la sección de Guías fueron proporcionados por
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |
           Las guías te ayudan a aprender sobre la biodiversidad en todo el mundo.
           Si estás explorando la Selva Lacandona o simplemente tu parque local,
@@ -6833,12 +6825,6 @@ es-MX:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           La columna de geoprivacidad debe ir en inglés y debe estar vacía o tener el valor de "oculto" o "privado"
-        google_photos_notice_html: |
-          En febrero del 2019 Google cambió su API, haciéndonos imposible acceder a las coordenadas GPS, la licencia, y casi cualquier información  que podríamos utilizar para añadir una identificación (como etiquetas). Google también quitó la búsqueda de texto y la paginación numérica.  Usted todavía puede importar fotos, pero no incluirán ninguna información de ubicación o información de licencia que le permita verlas en Google Photos.
-          Puede leer más sobre esto en:
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Descargando los archivos originales y añadiéndoles la información usando
-          <a href="/observations/upload">Uploader</a> es la mejor alternativa.
         project_csv_template_notice_html: |
           Hay un archivo templete para este proyecto que te puede ayudar con la estructura de tu archivo CSV. 
           <a href="%{url}">Descarga templete</a>

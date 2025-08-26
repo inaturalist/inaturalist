@@ -1,6 +1,7 @@
-# Not sure why but freezing string literals breaks stub_request
 # rubocop:disable Style/FrozenStringLiteralComment
-require "#{File.dirname( __FILE__ )}/../spec_helper"
+# Not sure why but freezing string literals breaks stub_request
+
+require "spec_helper"
 
 # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead.
 # Then, you can remove it from this and the functional test.
@@ -25,6 +26,7 @@ describe User, "associations" do
   it { is_expected.to belong_to( :site ).inverse_of :users }
   it { is_expected.to belong_to( :suspended_by_user ).class_name "User" }
   it { is_expected.to have_many( :annotations ).dependent :destroy }
+  it { is_expected.to have_many( :announcements ).dependent :nullify }
   it { is_expected.to have_many( :atlases ).inverse_of( :user ).dependent :nullify }
   it { is_expected.to have_many( :comments ).dependent :destroy }
   it {
@@ -94,6 +96,7 @@ describe User, "associations" do
   it { is_expected.to have_many( :project_users ).dependent :destroy }
   it { is_expected.to have_many( :provider_authorizations ).dependent :delete_all }
   it { is_expected.to have_many( :quality_metrics ).dependent :destroy }
+  it { is_expected.to have_many( :redirect_links ).dependent :nullify }
   it { is_expected.to have_many( :saved_locations ).inverse_of( :user ).dependent :destroy }
   it { is_expected.to have_many( :site_admins ).inverse_of :user }
   it { is_expected.to have_many( :sounds ).dependent :destroy }
@@ -104,6 +107,7 @@ describe User, "associations" do
   it { is_expected.to have_many( :taxon_curators ).inverse_of( :user ).dependent :destroy }
   it { is_expected.to have_many :taxon_framework_relationships }
   it { is_expected.to have_many( :taxon_links ).dependent :nullify }
+  it { is_expected.to have_many( :taxon_name_priorities ).dependent :destroy }
   it { is_expected.to have_many( :taxon_names ).with_foreign_key( "creator_id" ).inverse_of :creator }
   it {
     is_expected.to have_many( :updated_guide_sections ).
@@ -127,6 +131,7 @@ describe User, "associations" do
       inverse_of( :blocked_user ).
       dependent :destroy
   }
+  it { is_expected.to have_many( :user_donations ).dependent :delete_all }
   it { is_expected.to have_many( :user_mutes ).inverse_of( :user ).dependent :destroy }
   it {
     is_expected.to have_many( :user_mutes_as_muted_user ).
@@ -140,6 +145,7 @@ describe User, "associations" do
   it { is_expected.to have_one( :soundcloud_identity ).dependent :delete }
   it { is_expected.to have_one( :user_daily_active_category ).dependent :delete }
   it { is_expected.to have_one( :user_parent ).dependent( :destroy ).inverse_of :user }
+  it { is_expected.to have_many( :user_virtuous_tags ).dependent :delete_all }
 end
 
 describe User, "validations" do
@@ -152,6 +158,52 @@ describe User, "validations" do
   it { is_expected.to validate_presence_of :password }
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_uniqueness_of( :login ).case_insensitive }
+
+  describe "login_must_not_contain_reserved_words" do
+    after( :each ) { UsernameReservedWord.destroy_all }
+
+    it "new user logins must not contain reserved words" do
+      UsernameReservedWord.make!( word: "test" )
+      expect do
+        User.make!( login: "test" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+      expect do
+        User.make!( login: "TEST" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+      expect do
+        User.make!( login: "thisisAtEsT" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+      expect do
+        User.make!( login: "testing" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+      expect do
+        User.make!( login: "unreserved" )
+      end.not_to raise_error
+    end
+
+    it "existing usernames can contain reserved words" do
+      user = User.make!( login: "test" )
+      UsernameReservedWord.make!( word: "test" )
+      expect( user ).to be_valid
+      expect do
+        User.make!( login: "test2" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+
+      UsernameReservedWord.make!( word: "fail" )
+      expect do
+        User.make!( login: "failure" )
+      end.to raise_error( ActiveRecord::RecordInvalid )
+    end
+
+    it "usernames cannot be updated to contain reserved words" do
+      user = User.make!( login: "test" )
+      user.update( login: "test2" )
+      expect( user ).to be_valid
+      UsernameReservedWord.make!( word: "test" )
+      user.update( login: "test3" )
+      expect( user ).to be_invalid
+    end
+  end
 end
 
 describe User do
@@ -723,6 +775,36 @@ describe User do
       Delayed::Worker.new.work_off
       es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
       expect( es_response.votes.size ).to eq 0
+    end
+
+    it "should reindex observations annotated by the user" do
+      o = Observation.make!
+      u = make_user_with_privilege( UserPrivilege::INTERACTION )
+      make_annotation!( resource: o, user: u )
+      es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+      expect( es_response.annotations.size ).to eq 1
+      u.destroy
+      Delayed::Worker.new.work_off
+      es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+      expect( es_response.annotations.size ).to eq 0
+    end
+
+    it "should reindex observations with annotations voted on by the user" do
+      o = Observation.make!
+      annotator = make_user_with_privilege( UserPrivilege::INTERACTION )
+      annotation = make_annotation!( resource: o, user: annotator )
+      annotation_voter = make_user_with_privilege( UserPrivilege::INTERACTION )
+      annotation.vote_by voter: annotation_voter, vote: true
+      es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+      expect( es_response.annotations.size ).to eq 1
+      expect( es_response.annotations.first.vote_score_short ).to eq 1
+      expect( es_response.annotations.first.votes.first.user_id ).to eq annotation_voter.id
+      annotation_voter.destroy
+      Delayed::Worker.new.work_off
+      es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+      expect( es_response.annotations.size ).to eq 1
+      expect( es_response.annotations.first.vote_score_short ).to eq 0
+      expect( es_response.annotations.first.votes ).to be_empty
     end
 
     it "should destroy friendships where user is the friend" do
