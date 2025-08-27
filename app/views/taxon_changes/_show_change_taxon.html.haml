@@ -24,9 +24,9 @@
             :method => :put,                                               |
             :class => "btn btn-primary"
       - if show_commit_button && taxon_change.status_withdrawn?
-        = link_to t("taxon_changes.restore"),
+        = link_to t("views.taxon_changes.restore"),
           restore_taxon_change_path(taxon_change),
-          data: { confirm: t("taxon_changes.are_you_sure_you_want_to_restore_this_taxon_change"), loading_click: t("taxon_changes.restoring") },
+          data: { confirm: t("views.taxon_changes.are_you_sure_you_want_to_restore_this_taxon_change"), loading_click: t("views.taxon_changes.restoring") },
           method: :put,
           class: "btn btn-warning"
   - unless hide_title
