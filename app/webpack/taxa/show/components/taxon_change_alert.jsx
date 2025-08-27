@@ -6,16 +6,31 @@ import moment from "moment";
 import { urlForTaxon, commasAnd } from "../../shared/util";
 
 const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
-  console.log(taxonChange);
-  console.log(taxon.is_active);
+  if ( !taxonChange ) return ( <div /> );
+
+  const { status } = taxonChange; // "draft" | "committed" | "withdrawn" | ...
+  const isCommitted = status === "committed";
+  const isDraft = status === "draft";
+
+  // hide if this taxon isn't the relevant input taxon
+  if ( taxon.is_active && taxonChange.input_taxa[0] && taxonChange.input_taxa[0].id !== taxon.id ) {
+    return ( <div /> );
+  }
+
+  // original suppression: for swaps, if committed AND this taxon equals an output taxon, hide alert
   if (
-    !taxonChange
-    || ( taxon.is_active && taxonChange.input_taxa[0] && taxonChange.input_taxa[0].id !== taxon.id )
-    || ( taxonChange.type === "TaxonSwap" && taxonChange.committed_on
-      && _.includes( _.map( taxonChange.output_taxa, "id" ), taxon.id ) )
+    taxonChange.type === "TaxonSwap"
+    && isCommitted
+    && _.includes( _.map( taxonChange.output_taxa, "id" ), taxon.id )
   ) {
     return ( <div /> );
   }
+
+  // new: don’t show alerts for withdrawn (or any non-draft/non-committed state)
+  if ( !isDraft && !isCommitted ) {
+    return ( <div /> );
+  }
+
   const committedOn = taxonChange.committed_on ? moment( taxonChange.committed_on ) : null;
   const linkToTaxon = t => {
     if ( !t ) {
