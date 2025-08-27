@@ -37,7 +37,7 @@
         - if taxon_change.status_committed?
           = t(:committed_on, date: l(taxon_change.committed_on))
         - elsif taxon_change.status_withdrawn?
-          = t(:withdrawn)
+          = t("views.taxon_changes.withdrawn")
         - else
           = t(:draft_)
   .meta.ui.stacked
