@@ -217,7 +217,8 @@ class TaxonChange < ApplicationRecord
         skip_taxon_framework_checks: true
       )
     end
-    update_columns(committed_on: Time.current, status: :committed)
+    assign_attributes( committed_on: Time.current, status: :committed )
+    save( validate: false )  # runs callbacks, updates updated_at, skips validations
   end
 
   # For all records with a taxon association affected by this change, update the record if
