@@ -92,7 +92,13 @@
               :checked => @types.include?("Taxon#{type.capitalize}") |
         = f.select :change_group, @change_groups, :include_blank => t(:none), :selected => @change_group, :label => t(:change_group)
         = f.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :include_blank => t(:none), :selected => @taxon_scheme.try(:id), :label => t(:taxon_scheme)
-        = f.select :committed, [t(:yes), t(:no)], :include_blank => t(:either), :selected => @committed, :label => t(:committed)
+        = f.select :status,
+          [[t("taxon_changes.draft"), "draft"],
+            [t("taxon_changes.committed"), "committed"],
+            [t("taxon_changes.withdrawn"), "withdrawn"]],
+          include_blank: t( :any ),
+          selected: @status,
+          label: t("taxon_changes.status")
         = f.select :iconic_taxon_id, Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, :include_blank => t(:any), :selected => @iconic_taxon.try(:read_attribute, :id), :label => t(:iconic_taxon)
         = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:taxon)
         = f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil

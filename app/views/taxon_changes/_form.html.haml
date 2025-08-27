@@ -149,8 +149,19 @@
   .column.span-24.buttonrow
     = f.submit t( :save ), class: "default button", "data-loading-click" => t( :saving )
     = link_to t( :cancel ), taxon_change, class: "button"
-    - unless taxon_change.committed?
-      = link_to t( :delete ), taxon_change,
-        method: :delete,
-        data: { confirm: t( :are_you_sure_you_want_to_delete_this_taxon_change ) },
-        class: "minor delete button"
+    - if taxon_change.persisted?
+      - unless taxon_change.committed?
+        = link_to t( :delete ), taxon_change,
+          method: :delete,
+          data: { confirm: t( :are_you_sure_you_want_to_delete_this_taxon_change ) },
+          class: "minor delete button"
+        - if taxon_change.status_withdrawn?
+          = link_to t( "taxon_changes.restore" ), restore_taxon_change_path(taxon_change),
+            method: :put,
+            data: { confirm: t( "taxon_changes.are_you_sure_you_want_to_restore_this_taxon_change" ) },
+            class: "minor button"
+        - else
+          = link_to t( "taxon_changes.withdraw" ), withdraw_taxon_change_path( taxon_change ),
+            method: :put,
+            data: { confirm: t( "taxon_changes.are_you_sure_you_want_to_withdraw_this_taxon_change" ) },
+            class: "minor button"

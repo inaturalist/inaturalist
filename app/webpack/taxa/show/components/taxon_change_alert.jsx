@@ -6,6 +6,8 @@ import moment from "moment";
 import { urlForTaxon, commasAnd } from "../../shared/util";
 
 const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
+  console.log(taxonChange);
+  console.log(taxon.is_active);
   if (
     !taxonChange
     || ( taxon.is_active && taxonChange.input_taxa[0] && taxonChange.input_taxa[0].id !== taxon.id )

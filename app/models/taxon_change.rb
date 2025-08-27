@@ -43,6 +43,12 @@ class TaxonChange < ApplicationRecord
 
   TYPES = %w(TaxonChange TaxonMerge TaxonSplit TaxonSwap TaxonDrop TaxonStage)
   
+  enum status: {
+    draft: "draft",
+    committed: "committed",
+    withdrawn: "withdrawn"
+  }, _prefix: :status
+
   scope :types, lambda {|types| where("taxon_changes.type IN (?)", types)}
   scope :committed, -> { where("committed_on IS NOT NULL") }
   scope :uncommitted, -> { where("committed_on IS NULL") }
@@ -211,7 +217,7 @@ class TaxonChange < ApplicationRecord
         skip_taxon_framework_checks: true
       )
     end
-    update_attribute(:committed_on, Time.now)
+    update_columns(committed_on: Time.current, status: :committed)
   end
 
   # For all records with a taxon association affected by this change, update the record if

@@ -3,7 +3,12 @@
     =t :editing
     =t @taxon_change.class.name.underscore
     = surround '(', ')' do
-      = @taxon_change.committed? ? t(:committed_on, date: l( @taxon_change.committed_on ) ) : t(:draft)
+      - if @taxon_change.status_committed?
+        = t(:committed_on, date: l(@taxon_change.committed_on))
+      - elsif @taxon_change.status_withdrawn?
+        = t(:withdrawn)
+      - else
+        = t(:draft)
   = strip_tags @title
 = render partial: "form_head"
 .last.column.span-24#pageheader
