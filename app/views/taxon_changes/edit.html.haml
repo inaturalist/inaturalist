@@ -4,11 +4,11 @@
     =t @taxon_change.class.name.underscore
     = surround '(', ')' do
       - if @taxon_change.status_committed?
-        = t(:committed_on, date: l(@taxon_change.committed_on))
+        = t( :committed_on, date: l( @taxon_change.committed_on ) )
       - elsif @taxon_change.status_withdrawn?
-        = t(:withdrawn)
+        = t( "views.taxon_changes.withdrawn" )
       - else
-        = t(:draft)
+        = t( "views.taxon_changes.draft" )
   = strip_tags @title
 = render partial: "form_head"
 .last.column.span-24#pageheader

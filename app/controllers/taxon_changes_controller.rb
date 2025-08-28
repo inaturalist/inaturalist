@@ -12,7 +12,7 @@ class TaxonChangesController < ApplicationController
 
   def index
     filter_params = params[:filters] || params
-    # NEW: status param for 4-state enum; keep old @committed for legacy URLs/UI
+    # NEW: status param for 3-state enum; keep old @committed for legacy URLs/UI
     @status    = filter_params[:status].presence
     @committed = filter_params[:committed]
     @types = filter_params[:types]
@@ -419,7 +419,6 @@ class TaxonChangesController < ApplicationController
   end
 
   def withdraw
-    @taxon_change = TaxonChange.find( params[:id] )
     if @taxon_change.status_withdrawn!
       flash[:notice] = "Taxon change was withdrawn."
     else
