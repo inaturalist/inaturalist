@@ -34,7 +34,10 @@ class EmailerPreview < ActionMailer::Preview
     # ft = if (ftid = @rack_env["QUERY_STRING"].to_s[/flow_task_id=([^&]+)/, 1])
     #   FlowTask.find_by_id(ftid)
     # end
-    ft ||= ObservationsExportFlowTask.includes( :outputs ).where( "flow_task_resources.id IS NOT NULL" ).last
+    ft ||= ObservationsExportFlowTask.
+      includes( :outputs ).
+      joins( :outputs ).
+      where( "flow_task_resources.id IS NOT NULL" ).last
     Emailer.observations_export_notification( ft )
   end
 
@@ -54,6 +57,12 @@ class EmailerPreview < ActionMailer::Preview
     DeviseMailer.devise_mail( @user, :confirmation_instructions )
   end
 
+  def welcome
+    set_user
+    @user ||= User.first
+    Emailer.welcome( @user )
+  end
+
   def bulk_observation_success
     set_locale
     @user ||= User.first
@@ -63,7 +72,7 @@ class EmailerPreview < ActionMailer::Preview
   def bulk_observation_error
     set_locale
     @user ||= User.first
-    bof = BulkObservationFile.new( nil, nil, nil, @user )
+    bof = BulkObservationFile.new( "some file", @user )
     o = Observation.new
     e = BulkObservationFile::BulkObservationException.new(
       "failed to process",
@@ -81,7 +90,11 @@ class EmailerPreview < ActionMailer::Preview
 
   def user_parent_confirmation
     set_locale
-    Emailer.user_parent_confirmation( UserParent.last )
+    if UserParent.count.zero?
+      Emailer.user_parent_confirmation( UserParent.new( parent_user: User.first, user: User.last ) )
+    else
+      Emailer.user_parent_confirmation( UserParent.last )
+    end
   end
 
   def reset_password_instructions
