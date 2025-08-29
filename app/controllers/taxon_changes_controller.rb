@@ -12,6 +12,8 @@ class TaxonChangesController < ApplicationController
 
   def index
     filter_params = params[:filters] || params
+    # NEW: status param for 3-state enum; keep old @committed for legacy URLs/UI
+    @status    = filter_params[:status].presence
     @committed = filter_params[:committed]
     @types = filter_params[:types]
     @types ||= %w(split merge swap stage drop).map{|t| filter_params[t] == "1" ? t : nil}
@@ -31,9 +33,19 @@ class TaxonChangesController < ApplicationController
     @taxon_schemes = TaxonScheme.limit(100).sort_by{ |ts| ts.title }
     
     scope = TaxonChange.all
-    if @committed == 'Yes'
+    # Prefer new status filter if provided
+    if @status.present?
+      allowed_statuses = TaxonChange.statuses.keys
+      if allowed_statuses.include?(@status)
+        scope = scope.where(status: @status)
+      else
+        # ignore unknown status values
+        @status = nil
+      end
+    # Backward-compat: support old committed=Yes/No URLs
+    elsif @committed == "Yes"
       scope = scope.committed
-    elsif @committed == 'No'
+    elsif @committed == "No"
       scope = scope.uncommitted
     end
     scope = scope.types(@types) unless @types.blank?
@@ -71,6 +83,7 @@ class TaxonChangesController < ApplicationController
         taxon_options = { only: [:id, :name, :rank] }
         render json: @taxon_changes.map{|tc|
           json = tc.as_json( methods: [:type ] )
+          json[:status] = tc.status
           json[:input_taxa] = tc.input_taxa.as_json( taxon_options ).compact
           json[:output_taxa] = tc.output_taxa.as_json( taxon_options ).compact
           json
@@ -404,7 +417,25 @@ class TaxonChangesController < ApplicationController
       format.json { render json: response[:json], status: response[:status] }
     end
   end
+
+  def withdraw
+    if @taxon_change.status_withdrawn!
+      flash[:notice] = "Taxon change was withdrawn."
+    else
+      flash[:error] = "Could not withdraw taxon change."
+    end
+    redirect_to edit_taxon_change_path( @taxon_change )
+  end
   
+  def restore
+    if @taxon_change.update(status: :draft)
+      flash[:notice] = "Taxon change was restored to draft."
+    else
+      flash[:error] = "Could not restore taxon change."
+    end
+    redirect_to taxon_change_path(@taxon_change)
+  end
+
   private
   def load_taxon_change
     render_404 unless @taxon_change = TaxonChange.where(id: params[:id] || params[:taxon_change_id]).

@@ -4892,7 +4892,8 @@ CREATE TABLE public.taxon_changes (
     committed_on date,
     change_group character varying(255),
     committer_id integer,
-    move_children boolean DEFAULT false
+    move_children boolean DEFAULT false,
+    status character varying DEFAULT 'draft'::character varying NOT NULL
 );
 
 
@@ -11734,6 +11735,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250729180530'),
 ('20250730163800'),
 ('20250730210202'),
-('20250807145445');
+('20250807145445'),
+('20250826232001');
 
 
