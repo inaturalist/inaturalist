@@ -1,10 +1,27 @@
 - preview = defined?( preview ) && preview
 - create_announcement_impression( announcement ) unless preview
-%div
+%div{ id: "announcement-#{announcement.id}" }
   %template{ shadowrootmode: "open" }
     = render "shared/common_stylesheets"
-    = stylesheet_link_tag 'bootstrap_bundle'
-    = stylesheet_link_tag 'bootstrap-rtl' if @rtl
+    = stylesheet_link_tag "bootstrap_bundle"
+    = stylesheet_link_tag "bootstrap-rtl" if @rtl
+    = javascript_include_tag "jquery/jquery-1.11.3.min.js"
+    - # because this announcement is being rendered in a shadow DOM, the rails.js implementation
+    - # of jquery-ujs to handle the `remote: true` part of the below form submit button will not
+    - # activate. The JS below is an attempt to replicate the necessary functionality of
+    - # submitting the form asynchronously and not caring about the response
+    :javascript
+      $( function ( ) {
+        var announcementRoot = $( "#announcement-#{announcement.id}" )[0];
+        $( announcementRoot.shadowRoot ).find( "form" ).on( "submit", function ( e ) {
+          e.preventDefault( );
+          $( announcementRoot ).fadeOut( );
+          $.ajax( {
+            type: "PUT",
+            url: $( this ).attr( "action" )
+          } );
+        } );
+      } );
     .bootstrap
       .announcement
         = announcement.body.html_safe
