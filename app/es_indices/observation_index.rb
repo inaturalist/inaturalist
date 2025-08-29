@@ -734,6 +734,12 @@ class Observation < ApplicationRecord
           "taxon.ancestor_ids.keyword" => ElasticModel.id_or_object( p[:without_observations_taxon] )
         }
       }
+    elsif p[:without_taxon_id]
+      inverse_filters << {
+        terms: {
+          "taxon.ancestor_ids.keyword" => p[:without_taxon_id].to_s.split( "," )
+        }
+      }
     end
     if p[:license] == "any"
       search_filters << { exists: { field: "license_code" } }
