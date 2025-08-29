@@ -428,7 +428,6 @@ class TaxonChangesController < ApplicationController
   end
   
   def restore
-    @taxon_change = TaxonChange.find(params[:id])
     if @taxon_change.update(status: :draft)
       flash[:notice] = "Taxon change was restored to draft."
     else
