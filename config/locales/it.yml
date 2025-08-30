@@ -619,8 +619,6 @@ it:
     ti consente di effettuare chiamate API che fanno cose come creare osservazioni o
     identificazioni. I casi d'uso tipici sono app come app desktop o app per dispositivi mobili che includono funzionalità per consentire ai propri utenti di creare osservazioni iNaturalist. Questo contenuto deve essere generato con un vero coinvolgimento o supervisione umana. Per maggiori dettagli si prega di leggere le nostre <a href="/pages/community+guidelines"
     target="_blank">Linee Guida della Comunità</a> che proibiscono osservazioni, identificazioni e commenti generati da macchine.
-  app_owner_application_about_p2_html: |
-    A partire dal 2022 abbiamo bisogno di approvazione manuale per gli utenti che desiderano fare da client API. Per creare app di terze parti, è necessario prima inviare un'applicazione per diventare un "proprietario dell'app". Questa domanda dovrebbe descrivere la funzionalità della tua app proposta e come hai intenzione di utilizzarla. Per poter presentare una domanda, il tuo account deve avere almeno 2 mesi di età e deve aver effettuato almeno 10 <a href="/pages/help#identification" target="_blank">identificazioni di miglioramento</a> nell'ultimo mese. Potremmo porti ulteriori domande sul tuo piano e ci riserviamo il diritto di respingere le domande per qualsiasi motivo.
   app_owner_application_inelligible: |
     Al fine di sottomettere un applicazione, il tuo account deve avere almeno 2 mesi di vita e deve aver effettuato almeno 10 identificazioni di miglioramento nell'ultimo mese.
   app_owner_application_fields_explanation_html: Descrivi la funzionalità che la tua app avrà e come intendi utilizzarla.
@@ -1121,8 +1119,6 @@ it:
     url: URL di una pagina che descrive questo stato conservazionistico.
     geoprivacy: |
       Geoprivacy predefinita per le osservazioni di questo taxon. Nota che la geoprivacy di uno stato associato a un livello di continente, paese, o nazione può sovrascrivere uno stato che è globale od associato ad un luogo di livello superiore.
-    iucn: |
-      Equivalente del Codice della Lista Rossa IUCN. Questa non è l’effettiva valutazione della IUCN, ma il codice IUCN che meglio corrisponde al rischio di divulgazione delle coordinate implicita in questo stato. Questo sovrascriverà la geoprivacy se è "Minor Preoccupazione" o inferiore: quindi se si vuole oscurare le osservazioni di questo taxon, bisogna impostare questo codice su "Quasi Minacciato" o superiore.
   conservation_status_geoprivacy_desc: |
     Geoprivacy predefinita applicata a tutte le osservazioni di questo taxon per questo luogo
   contact_support: Contatta il supporto

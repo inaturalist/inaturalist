@@ -535,9 +535,6 @@ es-CO:
     Debes proporcionar una explicación más detallada de lo que quieres construir.
   app_owner_application_about_p1a_html: |
     Las aplicaciones de iNaturalist permiten el uso autenticado de la API de iNaturalist. Esto te permite hacer llamadas a la API que hacen cosas como crear observaciones o identificaciones. Los casos comunes son aplicaciones como las del escritorio o del móvil que incluyen la funcionalidad de crear observaciones en iNaturalist para el usuario. Este contenido debe generarse con la participación o supervisión humana. Por favor, para más detalles lee nuestras <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a> que prohíben observaciones, identificaciones y comentarios generados por computadora.
-  app_owner_application_about_p2_html: |
-    A partir del 2022 se requiere de la aprobación manual para los usuarios que quieran hacer clientes de la API. Para crear aplicaciones de terceros, primero debes enviar una solicitud para convertite en "propietario de aplicación". Esta solicitud debe describir la funcionalidad de la aplicaación que propones y cómo planeas usarla. Para enviar una solicitud, tu cuenta debe tener al menos dos meses de creación y haber obtenido al menos 10 <a href="/pages/help#identification"
-    target="_blank">mejora de identificación</a> en el último mes. Es posible que hagamos preguntas adicionales sobre tu plan y nos reservamos el derecho de rechazar aplicaciones por cualquier motivo.
   app_owner_application_inelligible: |
     Para enviar una solicitud, tu cuenta debe tener al menos dos meses de creación y haber obtenido al menos 10 mejora de identificación en el último mes.
   app_owner_application_fields_explanation_html: Describe la funcionalidad que tendría tu aplicación y cómo planeas usarla.
@@ -1008,9 +1005,6 @@ es-CO:
     url: URL de una página que describe este estado.
     geoprivacy: |
       Geoprivacidad predeterminada para las observaciones de este taxón. Ten en cuenta que la geoprivacidad de un estatus asociado a un continente, país, o lugar con nivel de estado puede reemplazar un estatus que es global o que está asociado con un lugar de nivel superior.
-    iucn: |
-      Código de la lista roja UICN equivalente. Esta no es la evaluación real del UICN,
-      únicamente el código UICN que mejor se ajusta a la amenaza que supone la divulgación de las coordenadas indicada por el estatus. Esto reemplazara la geoprivacidad si es de "Preocupación Menor" o inferior, así que si quieres ocultar las observaciones de este taxón, establece esto en "Casi Amenazado" o superior.
   conservation_status_geoprivacy_desc: |
     La geoprivacidad predeterminada se aplica a todas las observaciones de este taxón en este lugar
   contact_support: Contactar el servicio técnico

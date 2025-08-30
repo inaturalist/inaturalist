@@ -627,15 +627,6 @@ sv:
     För mer information, läs våra <a href="/pages/community+guidelines"
     target="_blank">community-riktlinjer</a>, som förbjuder maskingenererade
     observationer, bestämningar och kommentarer.
-  app_owner_application_about_p2_html: |
-    Från och med 2022 kräver vi manuellt godkännande för användare som vill göra API-klienter.
-    För att skapa tredje parts-appar måste du först skicka in en ansökan för att bli
-    en "appägare". Den här ansökan ska beskriva funktionaliteten i din föreslagna app
-    och hur du planerar att använda den. För att kunna skicka in en ansökan måste ditt konto vara
-    minst 2 månader gammalt och ha gjort minst 10 <a href="/pages/help#identification"
-    target="_blank">förbättringsbestämningar</a> under den senaste månaden. Vi kan komma att
-    ställa uppföljningsfrågor om din plan och vi förbehåller oss rätten att avslå ansökningar av vilken
-    anledning som helst.
   app_owner_application_inelligible: |
     För att kunna skicka in en ansökan måste ditt konto vara minst 2 månader gammalt och
     ha gjort minst 10 förbättringsbestämningar under den senaste månaden.
@@ -1147,10 +1138,6 @@ sv:
     url: URL till en sida som beskriver denna status.
     geoprivacy: |
       Standard koordinatsekretess för fynd av detta taxon. Notera att koordinatsekretess som är knuten till en fyndplats av kontinent-, land- eller statsnivå kan åsidosätta en status som är global eller knuten till fyndplats på högre nivå.
-    iucn: |
-      Motsvarande IUCN-rödlistekod. Detta är inte den faktiska IUCN-bedömningen,
-      bara den IUCN-kod som bäst matchar det hot om som denna status implicerar vid utlämnande av koordinater. Detta kommer att åsidosätta koordinatsekretessen om det är "Livskraftig" eller lägre, så om du vill dölja observationer av detta
-      taxon, sätt det till "Nära hotad" eller högre.
   conservation_status_geoprivacy_desc: |
     Standard koordinatsekretess tillämpas på alla fynd av detta taxon på denna plats
   contact_support: Kontakta support

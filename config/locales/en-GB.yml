@@ -612,9 +612,6 @@ en-GB:
   app_owner_application_about_p1a_html: |
     iNaturalist apps allow authenticated use of the iNaturalist API. This allows you to make API calls that do things like create observations or identifications. Usual use cases are apps such as desktop apps or mobile apps that include functionality for their user(s) to create iNaturalist observations. This content must be generated with real human involvement or oversight. Please read our <a href="/pages/community+guidelines"
     target="_blank">Community Guidelines</a> prohibiting machine-generated observations, identifications, and comments for more details.
-  app_owner_application_about_p2_html: |
-    As of 2022 we are requiring manual approval for users wishing to make API clients. In order to create third-party apps, you must first submit an application to become an "app owner." This application should describe the functionality of your proposed app and how you plan to use it. In order to submit an application your account must be at least 2 months old and must have made at least 10 <a href="/pages/help#identification"
-    target="_blank">improving identifications</a> in the last month. We may ask follow-up questions about your plan and we reserve the right to turn down applications for any reason.
   app_owner_application_inelligible: |
     In order to submit an application your account must be at least 2 months old and must
     have made at least 10 improving identifications in the last month.
@@ -1129,8 +1126,6 @@ en-GB:
       geoprivacy of a status associated with a continent-, country-, or
       state-level place can override a status that is global or associated
       with a higher-level place.
-    iucn: |
-      Equivalent IUCN Red List code. This is not the actual IUCN assessment, just the IUCN code that best matches the threat of coordinate disclosure implied by this status. This will override the geoprivacy if it is "Least Concern" or below, so if you've want to obscure observations of this taxon, set this to "Near Threatened" or above.
   conservation_status_geoprivacy_desc: |
     Default geoprivacy applied to all observations of this taxon in this place
   contact_support: Contact Support

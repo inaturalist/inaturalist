@@ -626,11 +626,6 @@ nl:
     API calls te doen die waarnemingen of determinaties maken. Veel voorkomende voorbeelden zijn desktop applicaties of mobiele apps die waarnemingen in iNaturalist maken voor zijn gebruiker. Deze inhoud moet tot stand worden gebracht met echte menselijke betrokkenheid
     of toezicht. Lees onze <a href="/pages/community+guidelines"
     target="_blank">Gemeenschapsrichtlijnen</a> voor meer informatie waarin machine-gegenereerde waarnemingen, determinaties en opmerkingen worden verboden.
-  app_owner_application_about_p2_html: |
-    Vanaf 2022 is handmatige goedkeuring vereist voor gebruikers die API-clients willen maken.
-    Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken. Om een aanvraag in te kunnen dienen moet jouw account minimaal 2 maanden oud zijn en minimaal 10 <a href="/pages/help#identification"
-    target="_blank">improving identifications</a> hebben gemaakt in de afgelopen maand. We kunnen follow-up vragen
-    vragen over jouw plan en we behouden ons het recht voor om aanvragen om welke reden dan ook af te wijzen.
   app_owner_application_inelligible: |
     Om een toepassing in te kunnen dienen moet je account minimaal 2 maanden oud zijn en moet minstens 10 verbeterende determinaties hebben gedaan in de afgelopen maand.
   app_owner_application_fields_explanation_html: Beschrijf de functionaliteit van je app en hoe je deze gaat gebruiken.
@@ -1144,8 +1139,6 @@ nl:
       geoprivacy van een status geassocieerd met een continent, land of
       plaats op staatsniveau een status kan overschrijven die globaal is of geassocieerd is
       met een gebied op een hoger niveau.
-    iucn: |
-      Equivalent van de IUCN Rode Lijst code. Dit is niet de huidige IUCN-beoordeling maar de IUCN-code die het beste overeenkomt met de dreiging van het openbaar maken van de coördinaten door deze status. Dit zal de geoprivacy overschrijven als het Niet bedreigd (veilig) is of lager. Dus als je waarnemingen van dit taxon wilt vervagen, stel deze in op "Gevoelig" of hoger.
   conservation_status_geoprivacy_desc: |
     Default geoprivacy toegepast op alle waarnemingen van dit taxon uit dit gebied
   contact_support: Neem contact op met support
@@ -1631,6 +1624,8 @@ nl:
         om jouw account te bevestigen.
       user:
         suspended: Je account is opgeschort
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Het token voor het opnieuw instellen van het wachtwoord is ongeldig. Gebruik de link in de meest recent verzonden e-mail voor het opnieuw instellen van het wachtwoord, of <a href="%{url}">vraag een nieuwe aan</a>.
     sessions:
       signed_in: 'Succesvol ingelogd.'
       signed_out: 'Succesvol uitgelogd.'
@@ -1704,6 +1699,8 @@ nl:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Meningsverschillen
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Toon waarnemingen met afwijkende determinaties
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Ontkoppelen
@@ -1728,6 +1725,8 @@ nl:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONEREN
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Schenken
   donate_again_caps: DONEER OPNIEUW
   donate_again_today_caps: DONEER VANDAAG OPNIEUW
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -2269,7 +2268,7 @@ nl:
   #Message displayed on an observation detail page when the observation is
   #not licensed. "It" refers to the observation.
   however_not_licensed: |
-    Het is echter geen licentie voor hergebruik en zal niet worden gedeeld met datarepositories die de licentiekeuzes respecteren.
+    Het heeft echter geen licentie voor hergebruik en zal niet worden gedeeld met datarepositories die de licentiekeuzes respecteren.
   #Message displayed on an observation detail page when the observation is
   #not licensed and the page is being viewed by the person who made the
   #observation. "You" is the person that made the observation.
@@ -2811,7 +2810,7 @@ nl:
   location_is_accurate: Locatie klopt
   location_is_exact: locatie is nauwkeurig
   location_is_public: Locatie is openbaar
-  location_is_obscured: Locatie is verborgen
+  location_is_obscured: Locatie is vervaagd
   location_is_private: Locatie is privé
   location_specified: Locatie opgegeven
   locked_taxa_will_not_allow_new: Taxa die op slot zijn gezet staan niet toe dat er nieuwe onderliggende taxa aan worden toegevoegd. Als je Reptilia op slot zet en iemand probeert <i>Zootoca carniolica</i> te importeren van een externe naamaanbieder, dan wordt het nieuwe taxon aangemaakt, maar kan het niet worden geclassificeerd als een reptiel. Wanneer dit gebeurt, moeten de nieuw toegevoegde taxa worden gemeld aan de curator. Dit zou eigenlijk alleen voor taxa moeten worden gebruikt waarvan we denken dat we alle onderliggende taxa al hebben. Curatoren kunnen dit omzeilen door taxa rechtstreeks te bewerken en ouder-ID's in te voeren, maar overweeg alsjeblieft nieuwe taxa samen te voegen met bestaande.
@@ -3336,7 +3335,7 @@ nl:
   obs: Waarnemingen
   obs_cid_d: Wrn CID'd
   obs_id_d: Wrn ID'd
-  obscured: Verborgen
+  obscured: Vervaagd
   obscured_or_private: vervaagd of verborgen
   obscured_description: |
     Openbare coördinaten worden weergegeven als een willekeurig punt in de 0.2 graden lat/lon cel die de werkelijke coördinaten omvat.
@@ -3987,6 +3986,8 @@ nl:
       zone: zone
   place_guess: plaats raden
   place_imported: Gebied geïmporteerd!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Het kan tot een dag duren voordat waarnemingen bij een nieuw gebied worden getoond.
   place_must_have_a_boundary_defined: Gebied moet een grens gedefinieerd hebben.
   place_name: Gebiedsnaam
   place_notes: Gebied-notities
@@ -4287,6 +4288,20 @@ nl:
     Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
   places_warning_quota: |
     Je kunt slechts drie gebieden per dag maken.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Gebieden mogen niet groter zijn dan 700.000 vierkante kilometer.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Gebieden mogen niet groter zijn dan 70.000 vierkante kilometer.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Gebieden mogen niet meer dan 200.000 waarnemingen bevatten.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Gebieden mogen niet meer dan 10.000 waarnemingen bevatten.
   places_warning_the_future: |
     Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
     mensen in de toekomst gebieden kunnen toevoegen.
@@ -6307,7 +6322,7 @@ nl:
   you_cannot_delete_taxa_involved_in_taxon_changes: Je kunt geen taxa verwijderen die onderdeel zijn van taxonwijzigingen of die taxa bevatten die onderdeel zijn van taxonwijzigingen
   you_curate_a_project_that_contains_this_observation: Je stelt een project samen dat deze waarneming bevat
   you_curate_a_project_that_contains_this_observation_desc: |
-    Je kunt verborgen coördinaten zien wanneer je een project beheert dat een waarneming bevat en de waarnemer daarvan er voor heeft gekozen om de coördinaten met curatoren van dat project te delen.
+    Je kunt vervaagde coördinaten zien wanneer je een project beheert dat een waarneming bevat en de waarnemer daarvan er voor heeft gekozen om de coördinaten met curatoren van dat project te delen.
   you_didnt_select_any_observations: Je selecteerde geen waarnemingen.
   you_didnt_select_any_photos_to_tag: U hebt geen te labelen foto's geselecteerd.
   you_dont_have_permission_to_do_that: Je hebt hiervoor geen rechten.
@@ -6407,10 +6422,29 @@ nl:
         Tijd in de tijdzone van uw account waarop deze aankondiging stopt
         Verschijnen. Geldt voor meerdere tijdzones, zodat iedereen niet meer te zien is
         het tegelijkertijd, niet ten opzichte van hun lokale tijd.
+      excludes_non_site_desc: |
+        Als jouw aankondiging gericht is op een site (wat standaard is als je een
+        sitebeheerder bent), dan sluit dit aankondigingen uit die op alle sites in
+        gericht zijn.
+      ip_countries_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
+        een selectie toont de aankondiging aan alle gebruikers, ongeacht het IP van het land.
+        klant.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Merk op dat de aanmaakdatum van de meest recent aangemaakte
+        waarneming is gecached, dus kan het enkele uren duren voordat het van kracht wordt
       observation_oauth_application_ids_desc: |
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
         Een selectie toont de aankondiging aan alle gebruikers, ongeacht
         app.
+      site_ids_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
+        een selectie toont de aankondiging aan alle gebruikers, ongeacht ongeacht
+        site affiliatie.
+      start_desc: |
+        Tijd in de tijdzone van jouw account waarna deze aankondiging zal verschijnen.
+        Geldt voor meerdere tijdzones, zodat iedereen het op dezelfde tijd zal zien, niet ten opzichte van hun lokale tijd.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Target gebruikers op basis van donatiegedrag
@@ -6432,6 +6466,17 @@ nl:
           Atlassen geven de wereldwijde verspreiding van een taxon weer. Curatoren maken
           atlassen door de structuur van een atlas te definiëren en de
           vermelde taxa die het aandrijven.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Klap dit gebied uit
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Klap dit gebied in
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Nog geen wijzigingen in deze atlas
         #Title for a section showing recent alterations to an atlas
@@ -7106,22 +7151,29 @@ nl:
           </li>
           </ul>
       field_descriptions:
+        id: Unieke, sequentiële identifier voor de waarneming
         species_guess: |
           Gewone tekstnaam van het waargenomen taxon; kan door de waarnemer worden ingesteld
           tijdens het maken van een waarneming, maar kan worden vervangen door canonieke,
           locale namen wanneer het taxon verandert
+        scientific_name: "Wetenschappelijke naam van het waargenomen taxon volgens iNaturalist"
         common_name: "Lokale of vernacular name van het waargenomen taxon volgens iNaturalist"
         iconic_taxon_name: Hogere taxonomische categorie voor het waargenomen taxon
+        taxon_id: Unieke, sequentiële identifier voor het waargenomen taxon
         id_please: Of de waarnemer determinatie-hulp heeft gevraagd of niet
+        num_identification_agreements: Aantal determinaties geassocieerd met taxa die overeenkomen met of zijn opgenomen in het taxon van de determinatie van de waarnemer
+        num_identification_disagreements: Aantal determinaties geassocieerd met taxa die niet overeenkomen met of niet zijn opgenomen in het taxon van de determinatie van de waarnemer
         observed_on_string: Datum/tijd zoals door de waarnemer ingegeven
         observed_on: Genormaliseerde datum van de waarneming
         time_observed_at: Genormaliseerde datumtijd van de waarneming
         time_zone: Tijdzone van de waarneming
         place_guess: Localiteitsbeschrijving zoals ingevoerd door de waarnemer
         latitude: Openbaar zichtbare breedtegraad vanaf de waarneminglocatie
+        longitude: Openbaar zichtbare breedtegraad van de waarneminglocatie
         positional_accuracy: "Precisie coördinaten (jaja, nauwkeurigheid != precisie, namen zijn ongelukkig gekozen)"
         private_latitude: "Privé-breedtegraad, instellen als privé-waarneming of vervaagd"
-        private_longitude: "Privé-lengtegraad, instellen als waarneming privé of onzichtbaar is"
+        private_longitude: "Privé-lengtegraad, instellen als waarneming privé of vervaagd is"
+        geoprivacy: "Of de waarnemer er al dan niet voor heeft gekozen om de coördinaten te vervagen of te verbergen. Bekijk https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "Meest conservatieve geoprivacy toegepast als gevolg van de behoudsstatus van taxa in de huidige determinatie."
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
@@ -7140,6 +7192,9 @@ nl:
           coördinaten omvat, indien bekend
         private_place_guess: |
           Waarnemingslocatie zoals opgeschreven door de waarnemer als de locatie verborgen is
+        uuid: |
+          Universeel unieke identifier voor de waarneming. Zie
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Markeer alle waarnemingen op de pagina als nagekeken"
         you_reviewed_message: "Je hebt %{reviewed} van de %{pageTotal} waarnemingen op deze pagina nagekeken van de %{total} overeenkomende waarnemingen."
@@ -8071,6 +8126,12 @@ nl:
           Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende gebieden opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende gebieden conflicterende namen hebben.
     terminology:
       index:
+        exports_can_also_contain_observation_field_values_html: |
+          Exporten kunnen ook kolommen met waarnemingsveldwaarden bevatten. De
+          definities hiervan vind je op 
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          of voeg de kolomnaam (met de kolom) toe aan
+          <code>%{terminology_url}</code> (e. . <a href="%{term_url}">%{term_url}</a>.
         inaturalist_employs_a_variety_of_terms: |
           iNaturalist gebruikt verschillende unieke termen om verschillende
           aspecten van de service te beschrijven. Hier hebben we geprobeerd enkele ervan
@@ -8087,7 +8148,7 @@ nl:
           Vraag je je af waarom je nu administrator bent voor dit project? Ofwel heeft de vorige eigenaar je aangewezen als de nieuwe administrator, of diegene heeft zijn of haar account verwijderd en %{site_name} heeft jou aangewezen omdat je een projectbeheerder of sitecurator bent. Als je de projectadministrator niet wilt zijn, neem dan contact op met <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
           Vergeet niet dat projectcuratoren de privé en vervaagde
-          coördinaten kunnen zien van waarnemingen die u toevoegt aan dit project.
+          coördinaten kunnen zien van waarnemingen die je toevoegt aan dit project.
       delete:
         by_deleting_your_account_you_will_remove: |
           Door je account te verwijderen, verwijder je
@@ -8151,7 +8212,7 @@ nl:
           Het <a href="%{url}" target="_blank">iNaturalist Network</a> is een verzameling van gelokaliseerde websites verbonden met de wereldwijde iNaturalist gemeenschap. Netwerksites worden ondersteund door lokale instellingen die een overeenkomst met iNaturalist hebben gesloten om lokaal gebruik te bevorderen en de lokale biodiversiteit ten goede te komen. Ze hebben toegang tot de echte coördinaten uit hun eigen land die automatisch worden verborgen om bedreigde soorten te beschermen.
           </p>
           <p>
-          Je gebruikersnaam en wachtwoord werken op alle sites die deel uitmaken van het iNaturalist Network. Als je ervoor kiest om lid te worden van een lokale netwerksite zal de lokale instelling die de site exploiteert ook toegang hebben tot je e-mailadres (voor communicatie over je site-activiteiten) en toegang tot de echte coördinaten voor waarnemingen die openbaar verduisterd of privé zijn.
+          Je gebruikersnaam en wachtwoord werken op alle sites die deel uitmaken van het iNaturalist Network. Als je ervoor kiest om lid te worden van een lokale netwerksite zal de lokale instelling die de site exploiteert ook toegang hebben tot je e-mailadres (voor communicatie over je site-activiteiten) en toegang tot de echte coördinaten voor waarnemingen die openbaar vervaagd of privé zijn.
           </p>
           <p>
           Let op: Ga alsjeblieft niet experimenteel lid worden van een lokale netwerksite als je meer dan 1000 waarnemingen hebt.
@@ -8622,6 +8683,7 @@ nl:
         exclude_donor_start_date: Uitsluiten donor met startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Uitsluiten donor met einddatum
+        excludes_non_site: Verberg andere mededelingen in deze plaatsing zonder Site ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Waarnemers uitsluiten van apps
@@ -8654,6 +8716,8 @@ nl:
         target_logged_in: Target alleen aangemelde gebruikers
         #Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: Vroegste aanmeldingsdatum gebruiker
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Laatste aanmeldingsdatum van gebruiker
       assessment:
         description: Beschrijving
       assessment_section:
