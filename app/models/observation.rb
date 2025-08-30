@@ -1573,7 +1573,11 @@ class Observation < ApplicationRecord
         NEEDS_ID
       end
     elsif community_taxon_at_species_or_lower?
-      RESEARCH_GRADE
+      if taxon < Taxon::SPECIES_LEVEL && community_taxon == Taxon::SPECIES_LEVEL
+        NEEDS_ID
+      else
+        RESEARCH_GRADE
+      end
     elsif community_taxon_id && voted_out_of_needs_id?
       if community_taxon_below_family?
         RESEARCH_GRADE
