@@ -616,9 +616,6 @@ tr:
   app_owner_application_about_p1a_html: |
     iNaturalist uygulamaları, iNaturalist API'sinin kimliği doğrulanmış kullanımına izin verir. Bu, gözlemler ya da tanımlamalar oluşturmak gibi şeyler yapan API çağrıları yapmanıza olanak tanır. Genel kullanım durumları, kullanıcılarının iNaturalist gözlemleri oluşturması için işlevsellik içeren masaüstü ya da mobil uygulamalardır. Bu içerik gerçek insan katılımı ya da gözetimi ile oluşturulmalıdır. Daha fazla ayrıntı için lütfen makine tarafından oluşturulan gözlemleri, tanımlamaları ve yorumları yasaklayan <a href="/pages/community+guidelines"
     target="_blank">Topluluk İlkelerimizi</a> okuyun.
-  app_owner_application_about_p2_html: |
-    2022'den itibaren API istemcisi olmak isteyen kullanıcılar için manuel onay şartı getiriyoruz. Üçüncü taraf uygulamaları oluşturmak için öncelikle "uygulama sahibi" olmak üzere bir başvuru göndermeniz gerekir. Bu başvuru, önerdiğiniz uygulamanın işlevselliğini ve onu nasıl kullanmayı tasarladığınızı açıklamalıdır. Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 <a href="/pages/help#identification"
-    target="_blank">geliştirme tanımlaması</a> yapmış olmanız gerekmektedir.
   app_owner_application_inelligible: |
     Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 geliştirme tanımlaması yapmış olmanız gerekmektedir.
   app_owner_application_fields_explanation_html: Uygulamanızın sahip olacağı işlevselliği ve nasıl kullanmayı tasarladığınızı açıklayın.
@@ -1106,8 +1103,6 @@ tr:
     url: Bu statüyü açıklayan bir sayfanın URL'si.
     geoprivacy: |
       Bu taksonun gözlemleri için varsayılan coğrafi gizlilik. Kıta, ülke ya da eyalet düzeyinde bir konumla ilişkili bir durumun coğrafi gizliliğinin, küresel olan ya da daha üst düzey bir yerle ilişkili bir durumu geçersiz kılabileceğini unutmayın.
-    iucn: |
-      Eşdeğer IUCN Kırmızı Liste kodu. Bu gerçek IUCN değerlendirmesi değildir, sadece bu durumun ima ettiği koordinat ifşası tehdidine en iyi uyan IUCN kodudur. Bu, "En Az Endişe Verici" ya da altında ise coğrafi gizliliği geçersiz kılacaktır, bu nedenle bu taksonun gözlemlerini gizlemek istiyorsanız için bunu "Tehdide Yakın" ya da daha yüksek bir değere ayarlayın.
   conservation_status_geoprivacy_desc: |
     Bu konumdaki tüm sınıf gözlemlerine uygulanan varsayılan coğrafi gizlilik
   contact_support: Destekle İletişime Geç
