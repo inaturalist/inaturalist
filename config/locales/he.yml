@@ -722,9 +722,6 @@ he:
     עליך לספק הסבר יותר מפורט על מה שברצונך לבנות.
   app_owner_application_about_p1a_html: |
     אפליקציית iNaturalist מאפשרת שימוש מאומת ב-API של iNaturalist. זה מאפשר לך לבצע בקשות API המבצעות פעולות כגון יצירת תצפיות או זיהויים. מקרי שימוש טיפוסיים הם אפליקציות כמו בשולחן העבודה או בטלפון הנייד הכוללות פונקציונאליות עבור משתמשיהן ליצור תצפיות iNaturalist. תוכן זה חייב להיווצר במעורבות או בהנחייה אנושית אמיתית. למידע נוסף נא לקרוא את <a href="/pages/community+guidelines" target="_blank">כללי הקהילה</a> שלנו האוסרים על ייצור תצפיות, זיהויים ותגובות באמצעות מכונה.
-  app_owner_application_about_p2_html: |
-    נכון ל-2022 אנו דורשות אישור ידני מיוזרים שברצונם ליצור כלי API. על מנת ליצור אפליקציות צד-שלישי, עליך להגיש קודם בקשת מועמדות להפוך ל"בעל.ת אפליקציה". בקשה זו צריכה לתאר את הפונקציונאליות של האפליקציה המוצעת שלך וכיצד את.ה מתכננ.ת להשתמש בה. על מנת להגיש בקשה החשבון שלך חייב להיות בן חודשיים לפחות ועליך לבצע לפחות 10 <a href="/pages/help#identification"
-    target="_blank">זיהויים משפרים</a> בחודש האחרון. יתכן ונשאל שאלות עוקבות אודות התכנית שלך ואנו שומרות זכות לדחות בקשות מכל סיבה.
   app_owner_application_inelligible: |
     כדי להגיש מועמדות, החשבון שלך חייב להיות בן חודשיים לפחות ובעל לפחות 10 זיהויים משפרים בחודש האחרון.
   app_owner_application_fields_explanation_html: תיאור של פונקציונליות היישום ואיזה שימוש בכוונתך לעשות בו.
@@ -1218,8 +1215,6 @@ he:
     url: URL לדף המתאר סטטוס זה
     geoprivacy: |
       פרטיות המיקום ברירת המחדל עבור תצפיות מטקסון זה. יש לציין כי פרטיות המיקום של סטטוס המשוייך למקום ברמת יבשת, ארץ או מדינה יכולה לעקוף סטטוס שהוא גלובי או משוייך למקום בדרגה יותר גבוהה.
-    iucn: |
-      קוד זהה של הרשימה האדומה של ה-IUCN. זה אינו הערכת ה-IUCN בפועל, רק הקוד המתאים ביותר של ה-IUCN לסיכון הכרוך בחשיפת קואורדינטות כפי שמשתמע מסטטוס זה. זה יעקוף את פרטיות המיקום אם הסטטוס הוא "לא חשש" או פחות, כך שאם רצית להסתיר תצפיות של טקסון זה, יש להגדירו כ"קרוב לסיכון" או יותר.
   conservation_status_geoprivacy_desc: |
     מיקום מוסתר מוגדר כברירת מחדל עבור טקסון זה במקום זה
   contact_support: יצירת קשר עם תמיכה
@@ -1689,6 +1684,8 @@ he:
         נא לבדוק את הדוא"ל שלך וללחוץ על הקישור במייל שקיבלת כדי לאשר את חשבונך.
       user:
         suspended: חשבונך הושהה
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: האסימון לאיפוס הסיסמה אינו תקף. אנא השתמשו בקישור שבהודעת האיפוס האחרונה שנשלחה אליכם, או <a href="%{url}">בקשו קישור חדש</a>.
     sessions:
       signed_in: 'ההתחברות בוצעה בהצלחה.'
       signed_out: 'היציאה בוצעה בהצלחה.'
@@ -1781,6 +1778,8 @@ he:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: לתרומה
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: לתרומה
   donate_again_caps: לתרומה נוספת
   donate_again_today_caps: לתרומה נוספת עכשיו
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -3982,6 +3981,8 @@ he:
       zone: אזור
   place_guess: ניחוש מקום
   place_imported: מיקום יובא!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: יכול לעבור עד יום שלם עד שהתצפיות יקושרו למקום זה.
   place_must_have_a_boundary_defined: למקום חייבת להיות הגדרת גבול
   place_name: שם המקום
   place_notes: הערות אודות המקום
@@ -4274,6 +4275,20 @@ he:
     עריכת גבולות של מקומות היא אחד המקורות הגדולים ביותר להאטות ב-iNaturalist. אם באפשרותך להימנע מזה, נא לא להוסיף, לשנות או להסיר גבולות של מקומות אלא אם זה הכרחי בהחלט.
   places_warning_quota: |
     באפשרותך ליצור רק שלושה מקומות ביום.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    מקומות לא יכולים להיות גדולים מ-700,000 קמ"ר.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    מקומות לא יכולים להיות גדולים מ-70,000 קמ"ר.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    מקומות אינם יכולים להכיל יותר מ-200,000 תצפיות.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    מקומות אינם יכולים להכיל יותר מ-10,000 תצפיות.
   places_warning_the_future: |
     אם זה שווה משהו, נצטרך להגביל את התנאים להוספת מקומות בעתיד, בהינתן קצב הצמיחה הנוכחי של iNaturalist.
   plants: צמחים
@@ -6370,6 +6385,8 @@ he:
         השעה באזור הזמן של החשבון שלך שבה הודעה זו תפסיק
         להופיע. חל על פני אזורי זמן שונים, כך שכולם יפסיקו לראות
         אותו באותו הזמן, לא ביחס לזמן המקומי שלהם.
+      excludes_non_site_desc: |
+        אם ההודעה שלך מיועדת לאתר (שזה ברירת המחדל אם את.ה מנהל.ת אתר), אפשרות זו תסתיר הודעות שמכוונות לכל האתרים באותו מיקום.
       ip_countries_desc: |
         לחיצה עם CMD או SHIFT תאפשר לבחור מספר פריטים. בחירה ב"הכל" או אי-בחירה תציג את ההודעה לכל המשתמשים, ללא תלות במדינת ה־IP שלהם.
       #Note about how the announcement last observation date property works
@@ -8542,6 +8559,7 @@ he:
         exclude_donor_start_date: תאריך תחילת תרומה שיש להחריג
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: תאריך סיום תרומה שיש להחריג
+        excludes_non_site: הסתר הודעות אחרות במיקום זה שאין להן מזהה אתר
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: להחריג מתצפתים מאפליקציות
