@@ -627,13 +627,6 @@ pt-BR:
     Este conteúdo deve ser gerado com participação ou supervisão humana.
     Para mais detalhes, por favor, leia as nossas <a href="/pages/community+guidelines"
     target="_blank">Diretrizes da Comunidade</a> que proíbem observações, identificações e comentários gerados por máquina.
-  app_owner_application_about_p2_html: |
-    A partir de 2022 estamos exigindo aprovação manual para usuários que desejam criar clientes API.
-    Para criar aplicativos de terceiros, você deve primeiro submeter uma inscrição para se tornar
-    um "proprietário de aplicativos". Nesta inscrição se deve descrever a funcionalidade do aplicativo proposto
-    e como você planeja usá-lo. Para enviar uma inscrição, sua conta deve ter mais de 2 meses e devem ter sido feitos pelo menos 10 <a href="/pages/help#identification"
-    target="_blank">melhoramentos de identificações</a> no último mês. Podemos fazer perguntas de esclarecimento
-    sobre o seu plano e nos reservamos o direito de recusar os pedidos por qualquer motivo.
   app_owner_application_inelligible: |
     Para enviar uma solicitação, sua conta deve ter pelo menos 2 meses e você
     ter feito pelo menos 10 sugestões de melhoria de identificações no mês passado.
@@ -1144,12 +1137,6 @@ pt-BR:
     url: URL que descreve esta condição.
     geoprivacy: |
       Geoprivacidade padrão para as observações deste táxon. Note que a geoprivacidade de um status associado a um nível de continente, país ou estado podem sobrepor um status que é associado a um nível maior ou global.
-    iucn: |
-      Código equivalente na Lista Vermelha da IUCN. Esta não é a avaliação atual da IUCN,
-      apenas o código IUCN que melhor corresponde à ameaça de divulgação de coordenadas
-      implícita por este status. Isto irá sobrescrever a geoprivacidade se estiver "Pouco
-      preocupante" ou abaixo, então se você quer obscurecer observações deste
-      táxon, defina isso como "Quase ameaçada" ou superior.
   conservation_status_geoprivacy_desc: |
     Geoprivacidade padrão aplicada a todas as observações deste táxon neste local
   contact_support: Fale com o Suporte
