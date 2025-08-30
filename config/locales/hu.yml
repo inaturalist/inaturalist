@@ -373,6 +373,12 @@ hu:
   add_your_own_observations_at: "Megfigyelés hozzáadása itt: %{site_name}"
   added: Hozzáadva
   added!: Hozzáadva!
+  added_as_a_part_of_a_taxon_change_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">Taxonmódosítás</a>ként hozzáadva
+  added_as_a_part_of_a_taxon_merge_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">Taxonegyesítés</a>ként hozzáadva
+  added_as_a_part_of_a_taxon_split_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">Taxonszétválasztás</a>ként hozzáadva
   added_as_a_part_of_a_taxon_swap_html: |
     <a target="%{target}" class="%{class}" href="%{url}">Taxoncsere</a>ként hozzáadva
   added_by: 'Hozzáadta:'
@@ -1997,7 +2003,7 @@ hu:
   inaturalist_is_an_independent_nonprofit: |
     Az iNaturalist egy független 501(c)(3), adómentes, nonprofit szervezet, amely az Amerikai Egyesült Államokban található (adóazonosító szám: 92-1296468).
   #Title of identification that was automatically added by a taxon change
-  inaturalist_updated_the_id_suggested_by_user: Az iNaturalist frissítette a által javasolt azonosítót %{user}
+  inaturalist_updated_the_id_suggested_by_user: Az iNaturalist frissítette %{user} által javasolt azonosítót
   computer_vision_suggestion: Gépi képfelismerés javaslata
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
