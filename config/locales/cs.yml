@@ -735,8 +735,6 @@ cs:
     Musíte poskytnout podrobnější vysvětlení toho, co chcete vytvořit.
   app_owner_application_about_p1a_html: |
     Aplikace iNaturalist umožňují ověřené použití rozhraní iNaturalist API. To vám umožňuje provádět volání API, která dělají věci, jako je vytváření pozorování nebo identifikace. Obvyklé případy použití jsou aplikace, jako jsou aplikace pro stolní počítače nebo mobilní aplikace, které svým uživatelům nabízejí funkce pro vytváření pozorování iNaturalist. Tento obsah musí být generován se skutečným lidským zapojením nebo dohledem. Pro více informací si prosím přečtěte naše <a href="/pages/community+guidelines" target="_blank">Pokyny pro komunitu</a>, které zakazují strojově generovaná pozorování, identifikace a komentáře.
-  app_owner_application_about_p2_html: |
-    Od roku 2022 vyžadujeme ruční schválení pro uživatele, kteří chtějí vytvářet API klienty. Chcete-li vytvářet aplikace třetích stran, musíte nejprve odeslat žádost, abyste se stali „vlastníkem aplikace“. Tato žádost by měla popisovat funkce navrhované aplikace a způsob, jakým ji plánujete používat. Abyste mohli odeslat žádost, váš účet musí být alespoň 2 měsíce starý a musí mít za poslední měsíc alespoň 10 <a href="/pages/help#identification" target="_blank">zlepšujících identifikací</a> . Můžeme klást doplňující otázky týkající se vašeho plánu a vyhrazujeme si právo odmítnout žádosti z jakéhokoli důvodu.
   app_owner_application_inelligible: |
     Aby bylo možné podat žádost, musí být váš účet nejméně 2 měsíce starý a
     musí za poslední měsíc zlepšit aspoň 10 identifikací.
@@ -1251,8 +1249,6 @@ cs:
       geosoukromí statusu spojeného s kontinentem, zemí; nebo
       státem umístěné místo může přepsat stav globální nebo přidružený
       k vyšší úrovni.
-    iucn: |
-      Ekvivalentní kód Červeného seznamu IUCN. Nejedná se o skutečné hodnocení IUCN, pouze o kód IUCN, který nejlépe odpovídá hrozbě odhalení koordinace, kterou tento stav implikuje. Tento kód bude mít přednost před geoprvkem, pokud je to "Nejmenší obavy" nebo nižší, takže pokud chcete zastínit pozorování tohoto taxonu, nastavte jej na "Téměř ohrožený" nebo vyšší.
   conservation_status_geoprivacy_desc: |
     Na všechna pozorování tohoto taxonu v tomto místě se použilo výchozí soukromí zeměpisné polohy
   contact_support: Kontaktovat podporu
