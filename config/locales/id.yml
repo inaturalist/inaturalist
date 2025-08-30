@@ -560,9 +560,6 @@ id:
   app_owner_application_about_p1a_html: |
     Aplikasi pihak ketiga iNaturalist mengizinkan penggunaan berotentikasi atas API iNaturalist. Hal ini mengizinkan Anda untuk membuat panggilan API yang melakukan hal-hal seperti membuat pengamatan atau identifikasi. Ini biasa digunakan oleh aplikasi-aplikasi desktop atau mobile yang memiliki fungsi untuk membuat pengamatan iNaturalist. Konten ini harus dibuat dengan pengawasan dan campur tangan manusia. Silakan membaca <a href="/pages/community+guidelines"
     target="_blank">Pedoman Komunitas</a> kami yang melarang pengamatan, identifikasi, dan komentar yang dibuat bot untuk detail lebih lanjut.
-  app_owner_application_about_p2_html: |
-    Sejak 2022, kami mewajibkan persetujuan manual untuk pengguna-pengguna yang ingin membuat klien API. Untuk membuat aplikasi pihak ketiga, Anda harus mengajukan permohonan untuk menjadi "pemilik aplikasi". Permohonan ini harus mencakup fungsi aplikasi yang diajukan dan bagaimana Anda berencana untuk menggunakannya. Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 <a href="/pages/help#identification"
-    target="_blank">identifikasi pengembang</a> dalam sebulan terakhir. Kami mungkin akan menanyakan pertanyaan-pertanyaan lanjutan tentang rencana Anda dan kami memiliki hak untuk menolak permohonan Anda untuk alasan apapun.
   app_owner_application_inelligible: |
     Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 identifikasi pengembang dalam sebulan terakhir.
   app_owner_application_fields_explanation_html: Jelaskan fungsi yang akan dimiliki aplikasi Anda dan bagaimana rencana Anda untuk menggunakannya.
@@ -1050,8 +1047,6 @@ id:
     url: URL untuk sebuah halaman yang menjelaskan status ini.
     geoprivacy: |
       Geoprivasi standar untuk pengamatan takson ini. Ingat bahwa geoprivasi dari sebuah status yang terkait dengan tempat bertingkat benua, negara, atau provinsi dapat membatalkan status yang global atau status dengan tempat yang tingkatnya lebih tinggi.
-    iucn: |
-      Kode IUCN Daftar Merah yang sederajat. Ini bukan penilaian IUCN yang sebenarnya, hanya merupakan kode IUCN yang paling mendekati ancaman penyingkapan koordinat yang ditunjukkan oleh status ini. Hal ini akan membatalkan pengaturan geoprivasimu jika ia berada di tingkat "Berisiko Rendah" atau di bawahnya, jadi jika kamu ingin mengaburkan pengamatan dari takson ini, atur pengamatan ini ke tingkat "Hampir Terancam" atau lebih tinggi lagi.
   conservation_status_geoprivacy_desc: |
     Pengaturan geoprivasi bawaan diterapkan untuk semua pengamatan takson ini di tempat ini
   contact_support: Hubungi Bantuan
