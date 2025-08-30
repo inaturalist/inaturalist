@@ -620,8 +620,6 @@ fr:
   app_owner_application_about_p1a_html: |
     Les applications iNaturalist permettent l'utilisation authentifiée de l'API iNaturalist. Cela vous permet de faire des appels API qui font des choses comme créer des observations ou des identifications. Les utilisations habituelles sont des applications comme des applications de bureau ou des applications mobiles qui comprennent des fonctionnalités permettant à leurs utilisateurs de créer des observations iNaturalist. Ce contenu doit être produit avec une implication ou une surveillance humaine réelle. Pour en savoir plus, veuillez lire les <a href="/pages/community+guidelines"
     target="_blank">Règles de la communauté</a> qui interdisent les observations, identifications et commentaires générés par ordinateur.
-  app_owner_application_about_p2_html: |
-    À partir de 2022, nous imposons une approbation manuelle aux utilisateurs qui souhaitent faire un client API. Pour créer une application tierce, vous devez d'abord soumettre une demande pour devenir «propriétaire d'application». Dans cette demande, vous devez décrire la fonctionnalité de l'application que vous proposez et comment vous comptez l'utiliser. Pour pouvoir soumettre une demande, vous devez avoir créé votre compte il y a au moins 2 mois et vous devez avoir ajouté au moins 10 <a href="/pages/help#identification" target="_blank">identifications d'amélioration</a> au cours du mois dernier. Nous vous poserons peut-être des questions sur votre projet et nous nous réservons le droit de refuser les demandes, quelle que soit la raison du refus.
   app_owner_application_inelligible: |
     Pour pouvoir soumettre une demande, vous devez avoir créé votre compte il y a au moins 2 mois et vous devez avoir ajouté au moins 10 identifications d'amélioration au cours du mois dernier.
   app_owner_application_fields_explanation_html: Décrivez la fonctionnalité de votre application et comment vous comptez l'utiliser.
@@ -1128,10 +1126,6 @@ fr:
     url: URL d’une page décrivant ce statut.
     geoprivacy: |
       Géoconfidentialité par défaut pour les observations de ce taxon. Notez que la géoconfidentialité d'un statut associé à un continent, à un pays ou à une région peut remplacer celle d'un statut mondial ou associé à une étendue géographique plus grande.
-    iucn: |
-      Code équivalent de la liste rouge de l'UICN. Ce n'est pas l'évaluation de l'UICN,
-      mais le code de l'UICN qui correspond le mieux au risque de divulgation des coordonnées
-      qu'implique ce statut. Cela remplacera toute géoconfidentialité de niveau inférieur ou égal à « Préoccupation mineure » (LC). Si vous voulez masquer les observations de ce taxon, optez pour « Quasi menacée » (NT) ou pour un niveau supérieur.
   conservation_status_geoprivacy_desc: |
     La géoconfidentialité par défaut est appliquée à toutes les observations de ce taxon à cet endroit
   contact_support: Contacter le soutien
