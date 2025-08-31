@@ -3725,6 +3725,20 @@ pl:
     zambia: Zambia
     zimbabwe: Zimbabwe
   places_of_interest: Ciekawe miejsca
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Miejsca nie mogą być większe niż 700 000 kilometrów kwadratowych.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Miejsca nie mogą być większe niż 70 000 kilometrów kwadratowych.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Miejsca nie mogą zawierać więcej niż 200 000 obserwacji.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Miejsca nie mogą zawierać więcej niż 10 000 obserwacji.
   plants: rośliny
   popular: Obs. popularne
   position: Pozycja
