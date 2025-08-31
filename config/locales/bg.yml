@@ -3053,6 +3053,20 @@ bg:
     Новите места са една от основните причини на забавяне на iNat, така че <strong>моля, обмислете възможността да не създавате ново място</strong>. Малки места, съдържащи само няколко хиляди наблюдения, обикновено не са проблем, но ако създадете място съдържащо много наблюдения – ще забавите iNat за всички потребители. Ето няколко алтернативи:
   places_warning_quota: |
     Можете да създадете само три места на ден.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Местата не могат да бъдат по-големи от 700 000 квадратни километра.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Местата не могат да бъдат по-големи от 70 000 квадратни километра.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Местата не могат да съдържат повече от 200 000 наблюдения.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Местата не могат да съдържат повече от 10 000 наблюдения.
   places_warning_the_future: |
     Така или иначе, ще трябва да ограничим създаването на места в бъдеще, имайки предвид скоростта на разрастване на iNat.
   plants: растения
