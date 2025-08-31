@@ -2872,6 +2872,20 @@ pt:
     west_africa: África Ocidental
   places_of_interest: Locais de interesse
   places_merged_successfully: Lugares agrupados com sucesso!
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Lugares não podem ter mais de 700.000 quilómetros quadrados.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Lugares não podem ter mais de 70.000 quilómetros quadrados.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Lugares não podem conter mais de 200.000 observações.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Lugares não podem conter mais de 10.000 observações.
   plants: plantas
   please_add_a_citation_for_this_change: Por favor adicione uma referência para esta alteração.
   please_allow_a_few_weeks_for_external_sites: Por favor, aguarde algumas semanas para que os sites externos sincronizem as alterações desta observação #Request that a known child ask their parents for permission to use this service
