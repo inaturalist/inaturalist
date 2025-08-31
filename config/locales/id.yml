@@ -1405,6 +1405,57 @@ id:
   daily_users: Pengguna Harian
   danger_zone: Wilayah Berbahaya
   dashboard: Dasbor
+  dashboard_pilots:
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Berhenti Berpartisipasi"
+    #link to a blog post
+    pilot_read_more: "Baca lebih banyak di blog kami."
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Bantu kami mengisi kekosongan dengan berpartisipasi untuk menerima tautan harian menuju pengamatan-pengamatan:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Belum disertakan di Model Penglihatan Komputer"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Kami pikir Anda bisa mengidentifikasinya"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Berikut adalah tautan ke pengamatan spesies yang belum dimasukkan ke dalam Model Penglihatan Komputer yang kami pikir Anda bisa identifikasi."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Periksa kembali besok untuk tautan ke pengamatan spesies yang belum termasuk dalam Model Visi Komputer yang menurut kami dapat Anda identifikasi. Anda akan diperlihatkan spesies di mana Anda telah membuat setidaknya 3 identifikasi yang ditingkatkan."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Jika Anda tidak melihat tautannya, mungkin tidak ada pengamatan yang cocok dengan kriteria Memerlukan ID ini. Ini akan diperiksa sekali sehari."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Percontohan Kesenjangan Pengamatan: Spesies yang Dicari di Sekitar"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Besok, Anda akan menerima daftar spesies yang:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Belum disertakan di Model Penglihatan Komputer"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Telah diamati musim ini di dekat pengamatan terakhir Anda"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Didorong oleh sampel hingga 200 pengamatan dari hingga 300 spesies yang memprioritaskan tanaman"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Dengan mengamati spesies ini, Anda akan membantu meningkatkan model dan mengisi kesenjangan data keanekaragaman hayati. Daftar ini akan diperbarui saat Model diperbarui. Anda dapat memilih untuk keluar kapan saja."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Berikut daftar spesies Anda saat ini yaitu:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Belum disertakan di Model Penglihatan Komputer"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Diamati di dekat lokasi terakhir Anda musim ini"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Dengan mengamati mereka, Anda membantu meningkatkan pengenalan spesies dan mengisi kesenjangan kritis."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Telusuri spesies"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Periksa kembali besok untuk daftar spesies yang dipersonalisasi yang belum ada dalam Model Penglihatan Komputer, yang diamati musim ini. Daftar yang dipersonalisasi akan menggunakan lokasi pengamatan terbaru Anda."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Jika Anda tidak melihat tautan, mungkin tidak ada spesies yang cocok dengan kriteria ini di dekat Anda."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Uji Coba Identifikasi: Orientasi Pengguna Baru"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Mulai besok, terima hingga 30 pengamatan setiap hari yang sesuai dengan keterampilan identifikasi Anda, sehingga membantu pengguna baru. Anda dapat memilih keluar kapan saja."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Di bawah ini terdapat hingga 30 pengamatan yang sesuai dengan keterampilan identifikasi Anda."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Periksa kembali besok untuk tautan ke pengamatan yang sesuai dengan keterampilan identifikasi Anda."
   data_deficient: Kekurangan Data
   data_quality: Kualitas Data
   data_quality_assessment: Penilaian Kualitas Data
@@ -6166,6 +6217,10 @@ id:
         Waktu di zona waktu akun Anda di mana pengumuman ini akan mulai 
         ditampilkan. Berlaku di seluruh zona waktu, sehingga semua orang akan mulai 
         melihatnya di waktu yang sama, tidak relatif terhadap waktu lokal mereka.
+      include_virtuous_tags_desc: |
+        Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih "Semua" atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang tag Virtuous-nya.
+      exclude_virtuous_tags_desc: |
+        Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih "Tidak ada" atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang tag Virtuous-nya.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Target pengguna berdasarkan perilaku donasi
@@ -7746,8 +7801,26 @@ id:
         trending_in_place_desc_html: Taksa yang paling banyak diamati sejak bulan lalu di <a href="%{url}">%{place}</a>
         wanted_desc: Spesies di dalam takson ini yang belum diamati.
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Apakah Anda yakin ingin memulihkan perubahan takson ini?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Apakah Anda yakin ingin menarik perubahan takson ini?
       move_children_desc: |
         Anak-anak takson input yang berupa genus atau lebih kasar lagi akan dipindahkan ke output; spesies, subspesies, varietas, dll. akan diganti dengan sejenisnya dengan nama genus atau spesies baru.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Pulihkan
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: memulihkan
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Tarik Kembali
+      #state of an abandoned taxon change
+      withdrawn: ditarik
+      #state of a committed taxon change
+      committed: diterapkan
+      #state of a draft taxon change
+      draft: draf
+      #the status of a taxon change: draft, withdrawn or committed
+      status: status
       form:
         move_children_desc2_html: |
           Dengan mencentang kotak ini, anak-anak takson input akan dipindahkan ke takson output untuk Penggantian dan Peleburan Takson ketika perubahannya diterapkan. Jika ini perubahan genus atau tingkat yang lebih rendah, ini akan membuat Penggantian Takson untuk semua turunan dengan nama yang harus diubah juga. Contohnya, jika Anda mengganti famili Canidae menjadi Dogidae, tindakan ini akan mengubah induk genus <i>Canis</i> dari Canidae menjadi Dogidae. Jika Anda mengganti genus <i>Canis</i> menjadi genus <i>Dogis</i>, tindakan ini akan membuat dan menerapkan Penggantian Takson untuk mengubah <i>Canis lupus</i> menjadi <i>Dogis lupus</i> dan <i>Canis lupus</i> ssp. <i>lupus</i> menjadi <i>Dogis lupus</i> ssp. <i>lupus</i>. Hal ini dapat membuat kekacauan, jadi gunakanlah dengan bijak.
