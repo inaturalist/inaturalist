@@ -627,6 +627,14 @@ sv:
     För mer information, läs våra <a href="/pages/community+guidelines"
     target="_blank">community-riktlinjer</a>, som förbjuder maskingenererade
     observationer, bestämningar och kommentarer.
+  app_owner_application_about_p2_html: |
+    Från och med 2022 kräver vi manuellt godkännande för användare som vill göra API-klienter.
+    För att kunna skapa appar från tredje part måste du först skicka in en ansökan om att bli
+    En "appägare". Det här programmet bör beskriva funktionerna i den föreslagna appen
+    och hur du planerar att använda den. För att kunna skicka in en ansökan måste ditt konto vara på
+    minst 2 månader gammal och måste ha gjort minst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Förbättrad identifiering</a> under den senaste månaden. Vi kan komma att be om uppföljning
+    frågor om din plan och vi förbehåller oss rätten att neka ansökningar av vilken anledning som helst.
   app_owner_application_inelligible: |
     För att kunna skicka in en ansökan måste ditt konto vara minst 2 månader gammalt och
     ha gjort minst 10 förbättringsbestämningar under den senaste månaden.
@@ -4267,6 +4275,20 @@ sv:
     Om du kan undvika det, lägg inte till, ändra eller ta bort fyndplatsgränser om du inte verkligen måste.
   places_warning_quota: |
     Du kan bara skapa tre fyndplatser per dag.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Platser får inte vara större än 700 000 kvadratkilometer.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Platser får inte vara större än 70 000 kvadratkilometer.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Platser får inte innehålla mer än 200 000 observationer.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Platser får inte innehålla mer än 10 000 observationer.
   places_warning_the_future: |
     Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka användare kan lägga till fyndplatser i framtiden givet iNats nuvarande tillväxttakt.
   plants: växter
