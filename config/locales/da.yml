@@ -636,6 +636,14 @@ da:
     apps, som omfatter funktionalitet for deres bruger til at oprette iNaturalist-observationer. Dette indhold skal genereres med reel menneskelig involvering
     eller tilsyn. For yderligere detaljer, læs venligst vores <a href="/pages/community+guidelines"
     target="_blank">Fællesskabsretningslinjer</a>, som forbyder maskingenererede observationer, identifikationer og kommentarer.
+  app_owner_application_about_p2_html: |
+    Fra 2022 kræver vi manuel godkendelse for brugere, som ønsker at oprette API-klienter.
+    For at oprette tredjeparts-apps skal man først indsende en ansøgning for at blive
+    en "app-ejer". Ansøgning skal beskrive funktionaliteten af den foreslåede app,
+    samt hvordan den planlægges brugt. For at indsende en ansøgning skal brugerkontoen være
+    mindst 2 måneder gammel og skal have foretaget mindst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">forbedrende identifikationer</a> den seneste måned. Vi kan have opfølgende
+    spørgsmål om brugerens plan, og vi forbeholder os retten til at afvise ansøgninger uanset årsag.
   app_owner_application_inelligible: |
     For at kunne indsende en ansøgning skal din konto være mindst 2 måneder gammel og skal
     have foretaget mindst 10 forbedrende identifikationer den seneste måned.
@@ -1152,6 +1160,12 @@ da:
       geofortroligheden for en status forbundet med et sted på kontinent-, land- eller
       statsniveau kan tilsidesætte en status, der er global eller tilknyttet et sted på
       et højere niveau.
+    iucn: |
+      Ækvivalent IUCN Red List-kode. Dette er ikke den faktiske IUCN-vurdering,
+      blot den IUCN-kode, der bedst matcher truslen om koordinatafsløring
+      indikeret af denne status. Geofortrolighed tilsidesættes, hvis den er "Mindst
+      bekymring" eller derunder, så vil man skjule observationer af denne
+      takson, skal denne som minimum indstilles til "Næsten truet".
   conservation_status_geoprivacy_desc: |
     Standard lokalitetsbeskyttelse anvendt på alle observationer af dette takson på dette sted
   contact_support: Kontakt support
@@ -1505,6 +1519,61 @@ da:
   daily_users: Daglige brugere
   danger_zone: Farezone
   dashboard: Betjeningspanel
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ja! Jeg vil gerne deltage."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Stop deltagelse"
+    #link to a blog post
+    pilot_read_more: "Læs mere på vores blog"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Identifikationshuller-pilotprojekt: Behøver ID ønskede arter"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Hjælp os med at udfylde huller ved at deltage for at modtage dagligt link til observationer:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Endnu ikke inkluderet i Computer Vision Model"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Vi tror, du kan identificere"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Her er et link til observationer af arter, som endnu ikke er inkluderet i Computer Vision Model, som vi tror, du kan identificere."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Tjek tilbage i morgen for et link til observationer af arter, som endnu ikke er inkluderet i Computer Vision Model, som vi tror, du kan identificere. Man vil få vist arter, hvor man har foretaget mindst 3 forbedrende identifikationer."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Ses ikke noget link, er der muligvis ingen observationer matchende disse kriterier, som kræver ID. Tjek udføres én gang dagligt."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Observationshuller-pilotprojekt: Ønskede arter i nærheden"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "I morgen fremsendes en liste over arter, som:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Findes endnu ikke i Computer Vision Model"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Har været observeret i denne sæson nær din seneste observation"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Er drevet af en prøve på op til 200 observationer af op til 300 arter med planter som prioritet"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Ved at observere disse arter, assisterer man med at forbedre modellen og udfylde biodiversitetsdatahuller. Denne liste opdateres, når modellen opdateres. Man kan til enhver tid fravælge den."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Her er din nuværende liste over arter, som er:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Endnu ikke inkluderet i Computer Vision Model"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Observeret nær din seneste placering i denne sæson"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Ved at observere disse, assisterer man med at forbedre artsgenkendelsen og udfylde kritiske huller."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Gennemse arter"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Tjek tilbage i morgen for en personlig liste over arter, som endnu ikke er i Computer Vision Model, observeret i denne sæson. Den personlige liste vil bruge placeringen af din seneste observation."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Ses intet link, er der muligvis ingen arter, som matcher disse kriterier i din nærhed."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Identifikation-pilotprojekt: Onboarding af nye brugere"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Start i morgen, modtag op til 30 observationer dagligt matchende ens egne identifikationsfærdigheder, hvilket hjælpe med onboarding af nye brugere. Dette kan når som helst fravælges."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Nedenfor er op til 30 observationer matchende ens egne identifikationsfærdigheder."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Tjek tilbage i morgen for et link til observationer, matchende ens egne identifikationsfærdigheder."
   data_deficient: Mangelfuld data
   data_quality: Datakvalitet
   data_quality_assessment: Vurdering af datakvalitet
@@ -8464,9 +8533,27 @@ da:
         trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Sikker på, at takson-ændringen skal gendannes?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Sikker på, at takson-ændringen skal tilbagetrækkes?
       move_children_desc: |
         Underordner af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
         ækvivalenter med den nye slægt eller artsnavn.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Gendan
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: gendanner
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Tilbagetræk
+      #state of an abandoned taxon change
+      withdrawn: tilbagetrukket
+      #state of a committed taxon change
+      committed: gemt
+      #state of a draft taxon change
+      draft: udkast
+      #the status of a taxon change: draft, withdrawn or committed
+      status: status
       form:
         move_children_desc2_html: |
           Markering dette afkrydsningsfelt flytter underordnede til input taksonet til
