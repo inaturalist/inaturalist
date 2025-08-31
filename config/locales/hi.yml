@@ -56,6 +56,12 @@ hi:
   #A user who does not admin any projects
   non_project_admin: गैर-परियोजना व्यवस्थापक
   observation_fields_for_projects: परियोजनाओं के लिए अवलोकन क्षेत्र
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    स्थान 700,000 वर्ग किलोमीटर से बड़े नहीं हो सकते।
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    स्थानों में 200,000 से अधिक अवलोकन नहीं हो सकते।
   #A user who admin's a project
   project_admin: प्रोजेक्ट व्यवस्थापक
   rank_levels:
