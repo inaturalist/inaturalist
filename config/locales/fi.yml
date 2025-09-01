@@ -614,6 +614,13 @@ fi:
   #Label for an option to show/include content by any user
   any_user: Mikä tahansa
   anyone: Kuka tahansa
+  app_owner_application_about_p2_html: |
+    Vuodesta 2022 alkaen käyttäjiltä, jotka haluavat tehdä API-asiakasohjelmia, vaaditaan manuaalinen hyväksyntä.
+    Jotta voit luoda kolmannen osapuolen sovelluksia, sinun on ensin haettava "sovelluksen omistajaksi". Hakemuksessa tulee kuvata ehdottamasi sovelluksen toiminnallisuus ja se, miten aiot sitä käyttää.
+
+    Hakemuksen lähettäminen edellyttää, että tilisi on ollut olemassa vähintään 2 kuukautta ja että olet tehnyt vähintään 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241" target="_blank">parantavaa tunnistusta</a> viimeisen kuukauden aikana.
+
+    Saatamme esittää lisäkysymyksiä suunnitelmastasi, ja pidätämme oikeuden hylätä hakemuksia mistä tahansa syystä.
   app_owner_application_inelligible: |
     Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 tunnistuksen parantamista viime kuussa.
   app_owner_application_fields_explanation_html: Kuvaile sovelluksesi toiminnallisuus ja miten aiot käyttää sitä.
@@ -1058,6 +1065,8 @@ fi:
     description: Kirjoita lyhyt kuvaus luokitteluun johtaneista syistä.
     place: Paikka, johon tämä status on rajattu.
     url: URL-sivusto, jossa luokittelut on määritelty.
+    iucn: |
+      Vastaava IUCN:n uhanalaisuusluokan koodi. Tämä ei ole varsinainen IUCN-arviointi, vaan koodi, joka parhaiten vastaa tämän tilan ilmaisemaa koordinaattien paljastamiseen liittyvää uhkaa. Tämä ohittaa maantieteellisen tietosuojan, jos kyseessä on luokka "Least Concern" (LC, elinvoimainen) tai alempi. Jos siis haluat, että tämän lajin havainnot näkyvät rajatusti, aseta koodiksi vähintään "Near Threatened" (NT, silmälläpidettävä) tai sitä korkeampi luokka.
   conservation_status_geoprivacy_desc: |
     Kaikille tämän paikan ja taksonin havainnoille on asetettu oletusarvoinen sijainnin tietosuoja
   contact_support: Ota yhteyttä käyttäjätukeen
@@ -1394,6 +1403,53 @@ fi:
   daily_users: Päivittäiskäyttäjät
   danger_zone: Vaaravyöhyke
   dashboard: Kojelauta
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Kyllä! Haluaisin osallistua."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Lopeta osallistuminen"
+    #link to a blog post
+    pilot_read_more: "Lue lisää blogistamme."
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Auta meitä täyttämään aukot osallistumalla ja saat päivittäin linkin havaintoihin:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Ei vielä sisälly tietokonenäkömalliin"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Uskomme, että voit tunnistaa"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Tässä on linkki havaintoihin lajeista, jotka eivät vielä sisälly tietokonenäkömalliin ja jotka uskomme sinun voivan tunnistaa."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Tarkista huomenna linkki havaintoihin lajeista, jotka eivät vielä sisälly tietokonenäkömalliin ja joiden uskomme sinun voivan tunnistaa. Sinulle näytetään lajeja, joissa olet tehnyt vähintään 3 parantavaa tunnistusta."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Jos et näe linkkiä, näitä kriteerejä vastaavia havaintoja ei ehkä ole. Havainnot tarkistetaan kerran päivässä."
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Saat huomenna luettelon lajeista, jotka:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Eivät vielä sisälly tietokonenäkömalliin"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "On havaittu tällä kaudella lähellä viimeistä havaintoasi"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Havainnoimalla näitä lajeja autat parantamaan mallia ja täyttämään biodiversiteettitietojen aukkoja. Tämä luettelo päivittyy, kun malli päivittyy. Voit lopettaa milloin tahansa."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Tässä on nykyinen luettelosi lajeista, jotka ovat:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Eivät vielä sisälly tietokonenäkömalliin"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Havaittu lähellä viimeistä sijaintiasi tällä kaudella"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Havainnoimalla näitä autat parantamaan lajien tunnistamista ja täyttämään kriittisiä aukkoja."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Selaa lajeja"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Tarkista huomenna sinulle räätälöity luettelo lajeista, jotka olet havainnut tällä kaudella, jotka eivät ole vielä tietokonenäkömallissa. Henkilökohtainen luettelosi käyttää viimeisimmän havaintosi sijaintia."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Jos et näe linkkiä, ei ehkä ole yhtään lajia, joka vastaa näitä kriteerejä lähelläsi."
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Huomisesta alkaen saat päivittäin jopa 30 havaintoa, jotka vastaavat tunnistamistaitojasi, mikä auttaa uusien käyttäjien perehdyttämisessä. Voit lopettaa milloin tahansa."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Alla on korkeintaan 30 havaintoa, jotka vastaavat tunnistustaitojasi."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Tarkista huomenna linkki tunnistamistaitojasi vastaaviin havaintoihin."
   data_deficient: Puutteellisesti tunnettu
   data_quality: Tiedon laatu
   data_quality_assessment: Tietojen laatuarvio
