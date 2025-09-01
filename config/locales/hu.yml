@@ -1280,8 +1280,18 @@ hu:
     pilot_read_more: "További információk a blogunkon."
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Azonosításhiány teszt: keresett fajok szükséges azonosítása"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Segíts a hiányosságok pótlásában azzal, hogy naponta linkeket fogadsz olyan megfigyelésekhez:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Még nem szerepelnek a gépi látás modellben"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
     gaps_id_pilot_condition_2: "Úgy gondoljuk, hogy azonosítani tudod"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Itt egy link olyan megfigyelésekhez, amelyek a gépi látás modellben még nem szereplő fajokhoz tartoznak, és amelyekről azt gondoljuk, hogy meg tudod határozni."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Látogass vissza holnap azon megfigyelések linkjéért, amelyek még nem szerepelnek a gépi látás modellben. Ezek olyan fajok lesznek, amelyekhez már fűztél legalább három javító meghatározást."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Ha nem látod a linket, akkor még nincs a feltételeknek eleget tevő megfigyelés. A frissítés naponta történik."
     #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
     gaps_obs_pilot_title: "Megfigyeléshiány teszt: Keresett fajok a közelben"
     #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
@@ -1298,8 +1308,18 @@ hu:
     gaps_obs_pilot_current_condition_1: "Még nem szerepelnek a gépi látás modellben"
     #instructions once people have participated explaining the list of observations, the second condition for observations in the list
     gaps_obs_pilot_current_condition_2: "Ebben a szezonban megfigyelték az utolsó lokációd közelében"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Ezek megfigyelésével segítesz javítani a fajok felismerését és pótolni a kritikus hiányosságokat."
     #label of link to explore species view
     gaps_obs_pilot_browse: "Fajok böngészése"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Látogass vissza holnap az ebben a szezonban megfigyelt, de a gépi látási modellben még nem szereplő fajok személyre szabott listájáért. A személyre szabás a legutóbbi megfigyelésed helye alapján történik."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Ha nem látod a linket, akkor még nincs a feltételeknek eleget tevő megfigyelés a közeledben."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Meghatározási tesztprogram: Új felhasználók felvétele"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Holnaptól kezdve naponta legfeljebb 30 megfigyelés érkezhet hozzád, amelyek megfelelnek az azonosítási profilodnak, és segítenek az új felhasználók bevonásában. Bármikor leiratkozhatsz."
   data_deficient: Adathiányos
   data_quality: Adatminőség
   data_quality_assessment: Adatminőség
@@ -6263,6 +6283,10 @@ hu:
         trending_desc: Legtöbbször megfigyelt taxon az elmúlt hónapban
         trending_in_place_desc_html: 'Legtöbbször megfigyelt taxon az elmúlt hónapban itt: <a href="%{url}">%{place}</a>'
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Biztosan visszaállítod ezt a taxonváltoztatást?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Biztosan visszavonod ezt a taxonváltoztatást?
       #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
       restore: Visszaállítás
       #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
