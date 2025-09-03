@@ -1,4 +1,5 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class ObservationsController < ApplicationController
   before_action :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
   before_action :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
@@ -2113,6 +2114,7 @@ class ObservationsController < ApplicationController
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
     @without_observations_taxon = search_params[:without_observations_taxon]
+    @without_taxon_id = @without_observations_taxon ? nil : search_params[:without_taxon_id]
     @observations_taxon_name = search_params[:taxon_name]
     @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
@@ -2180,6 +2182,7 @@ class ObservationsController < ApplicationController
       !@observations_taxon_id.blank? ||
       !@observations_taxon_name.blank? ||
       !@without_observations_taxon.blank? ||
+      !@without_taxon_ids.blank? ||
       !@iconic_taxa.blank? ||
       @id_please == true ||
       !@with_photos.blank? ||
