@@ -1472,6 +1472,15 @@ fr:
   daily_users: Utilisateurs journaliers
   danger_zone: Zone dangereuse
   dashboard: Tableau de bord
+  dashboard_pilots:
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Arrêter de participer"
+    #link to a blog post
+    pilot_read_more: "En savoir plus sur notre blog."
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Pas encore inclus dans le Modèle de Vision par Ordinateur."
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Nous pensons que vous pouvez identifier"
   data_deficient: Données insuffisantes
   data_quality: Qualité des données
   data_quality_assessment: Évaluation de la qualité des données
