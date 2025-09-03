@@ -1,3 +1,4 @@
+import _ from "lodash";
 import inatjs from "inaturalistjs";
 
 const SET_SUBSCRIPTIONS = "obs-show/subscriptions/SET_SUBSCRIPTIONS";
@@ -45,7 +46,15 @@ export function fetchSubscriptions( options = {} ) {
       params.id = observation.uuid;
     }
     return inatjs.observations.subscriptions( params ).then( response => {
-      dispatch( setSubscriptions( response.results ) );
+      let subscriptions = response.results;
+      // v2 handles followers through relationships, not subscriptions
+      if ( testingApiV2 ) {
+        subscriptions = _.reject(
+          subscriptions,
+          subscription => subscription.resource_type === "User"
+        );
+      }
+      dispatch( setSubscriptions( subscriptions ) );
     } ).catch( e => { } );
   };
 }

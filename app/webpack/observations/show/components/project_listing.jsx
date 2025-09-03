@@ -97,7 +97,7 @@ class ProjectListing extends React.Component {
         <MenuItem
           key={`project-global-${obj.project.id}`}
           eventKey="globalSettings"
-          href="/users/edit#projects"
+          href="/users/edit#content"
         >
           { I18n.t( "edit_your_global_project_settings" ) }
         </MenuItem>
