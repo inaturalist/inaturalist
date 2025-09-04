@@ -9343,6 +9343,10 @@ en:
       no_changes_specified: No changes specified
       # a message when a taxon change was successfully created
       taxon_change_successfully_created: Taxon Change was successfully created.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one:   "Requires approval by 1 other curator to commit"
+        other: "Requires approval by %{count} other curators to commit"
     taxon_links:
       form:
         name_with_rank_desc: |

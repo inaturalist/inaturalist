@@ -7,7 +7,7 @@
 
 - can_vote = current_user.present? && current_user.id != tc.user_id && current_user.try( :is_curator? ) == true
 
-= "Requires approval by #{threshold} other curators"
+= t( "views.taxon_changes.requires_approval", count: threshold )
 - if can_vote
   = button_to like_taxon_change_path( tc ),
       method: :post,
