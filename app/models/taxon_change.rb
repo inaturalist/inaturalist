@@ -217,14 +217,17 @@ class TaxonChange < ApplicationRecord
 
   def requires_approval?
     if is_a?( TaxonDrop ) || is_a?( TaxonStage )
-      return true
+      return false
     end
 
     if is_a?( TaxonMerge )
       input_taxon = input_taxa.first
     end
     plant_id = Taxon::ICONIC_TAXA.find {| i | i.name == "Plantae" }&.id
-    if input_taxon.nil? || input_taxon.iconic_taxon_id.nil? || input_taxon.iconic_taxon_id != plant_id
+    if input_taxon.nil? || input_taxon.iconic_taxon_id.nil?
+      return false
+    end
+    if input_taxon.iconic_taxon_id != plant_id
       return true
     end
 
@@ -247,7 +250,7 @@ class TaxonChange < ApplicationRecord
       raise RankLevelError, "Output taxon rank level not coarser than rank level of an input taxon's active children"
     end
 
-    if requires_approval? && status_draft
+    if requires_approval? && status_draft?
       update_attribute( :status, :pending )
       return
     elsif requires_approval? && !status_approved
