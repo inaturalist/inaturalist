@@ -220,14 +220,12 @@ class TaxonChange < ApplicationRecord
       return false
     end
 
-    if is_a?( TaxonMerge )
-      input_taxon = input_taxa.first
-    end
+    i_t = is_a?( TaxonMerge ) ? input_taxa.first : input_taxon
     plant_id = Taxon::ICONIC_TAXA.find {| i | i.name == "Plantae" }&.id
-    if input_taxon.nil? || input_taxon.iconic_taxon_id.nil?
+    if i_t.nil? || i_t.iconic_taxon_id.nil?
       return false
     end
-    if input_taxon.iconic_taxon_id != plant_id
+    if i_t.iconic_taxon_id == plant_id
       return true
     end
 
