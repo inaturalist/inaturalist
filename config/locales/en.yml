@@ -9294,6 +9294,10 @@ en:
       withdrawn: withdrawn
       # state of a committed taxon change
       committed: committed
+      # state of a pending taxon change
+      pending: pending
+      # state of a approved taxon change
+      approved: approved
       # state of a draft taxon change
       draft: draft
       # the status of a taxon change: draft, withdrawn or committed
@@ -9310,6 +9314,35 @@ en:
           Taxon Swaps to change <i>Canis lupus</i> to <i>Dogis lupus</i> and
           <i>Canis lupus</i> ssp. <i>lupus</i> to <i>Dogis lupus</i> ssp.
           <i>lupus</i>. This can cause quite a mess, so use with care.
+      # for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Vote added
+      # for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Vote removed
+      # a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: No votes yet
+      # message when taxon change is committed
+      taxon_change_committed: Taxon change committed! Records that can be automatically updated will be changed soon.
+      # message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one:   "This taxon change is now pending. It requires approval by 1 curator to be able to commit."
+        other: "This taxon change is now pending. It requires approval by %{count} curators to be able to commit."
+      # message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Input taxon cannot have active children, move them first, or select the 'Move children to output?' option
+      output_taxon_rank_level_not_coarser_html: >
+        Output taxon rank level not coarser than rank level of active children of input taxon %{taxon_link}.
+      # a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: This taxonomic change was already committed!
+      # an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Something went wrong deleting the taxon change '%{id}'!"
+      # a message when a taxon change was deleted
+      taxon_change_deleted: Taxon change was deleted.
+      # a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Taxon Change was successfully updated.
+      # an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: No changes specified
+      # a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taxon Change was successfully created.
     taxon_links:
       form:
         name_with_rank_desc: |

@@ -7,6 +7,10 @@
         = t( :committed_on, date: l( @taxon_change.committed_on ) )
       - elsif @taxon_change.status_withdrawn?
         = t( "views.taxon_changes.withdrawn" )
+      - elsif @taxon_change.status_approved?
+        = t( "views.taxon_changes.approved" )
+      - elsif @taxon_change.status_pending?
+        = t( "views.taxon_changes.pending" )
       - else
         = t( "views.taxon_changes.draft" )
   = strip_tags @title

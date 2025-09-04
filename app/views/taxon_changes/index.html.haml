@@ -93,9 +93,11 @@
         = f.select :change_group, @change_groups, :include_blank => t(:none), :selected => @change_group, :label => t(:change_group)
         = f.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :include_blank => t(:none), :selected => @taxon_scheme.try(:id), :label => t(:taxon_scheme)
         = f.select :status,
-          [[t("views.taxon_changes.draft"), "draft"],
-            [t("views.taxon_changes.committed"), "committed"],
-            [t("views.taxon_changes.withdrawn"), "withdrawn"]],
+          [[t( "views.taxon_changes.draft" ), "draft"],
+            [t( "views.taxon_changes.pending" ), "pending"],
+            [t( "views.taxon_changes.approved" ), "approved"],
+            [t( "views.taxon_changes.committed" ), "committed"],
+            [t( "views.taxon_changes.withdrawn" ), "withdrawn"]],
           include_blank: t( :any ),
           selected: @status,
           label: t("views.taxon_changes.status")
