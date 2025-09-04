@@ -18,7 +18,7 @@ class TaxonChange < ApplicationRecord
   after_update :commit_records_later
   before_validation :sync_status_and_committed_on
   after_save :force_draft_and_reset_votes,
-    f: -> { ( status_pending? || status_approved? ) && saved_change_to_taxon_id? }
+    if: -> { ( status_pending? || status_approved? ) && saved_change_to_taxon_id? }
   after_touch :force_draft_and_reset_votes_if_needed
 
   validates_presence_of :taxon_id
