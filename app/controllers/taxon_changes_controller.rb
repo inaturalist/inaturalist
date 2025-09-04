@@ -515,7 +515,7 @@ class TaxonChangesController < ApplicationController
 
   def get_change_params
     change_params = params[:taxon_change]
-    TaxonChange::TYPES.each { type | change_params ||= params[type.underscore] }
+    TaxonChange::TYPES.each {| type | change_params ||= params[type.underscore] }
     change_params
   end
 
