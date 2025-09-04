@@ -4892,7 +4892,8 @@ CREATE TABLE public.taxon_changes (
     committed_on date,
     change_group character varying(255),
     committer_id integer,
-    move_children boolean DEFAULT false
+    move_children boolean DEFAULT false,
+    status character varying DEFAULT 'draft'::character varying NOT NULL
 );
 
 
@@ -9471,6 +9472,13 @@ CREATE INDEX index_observation_field_values_on_observation_field_id ON public.ob
 
 
 --
+-- Name: index_observation_field_values_on_observation_field_id_and_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_field_values_on_observation_field_id_and_id ON public.observation_field_values USING btree (observation_field_id, id);
+
+
+--
 -- Name: index_observation_field_values_on_observation_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11734,6 +11742,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250729180530'),
 ('20250730163800'),
 ('20250730210202'),
-('20250807145445');
+('20250807145445'),
+('20250826232001'),
+('20250903221143');
 
 

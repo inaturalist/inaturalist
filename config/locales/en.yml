@@ -727,7 +727,7 @@ en:
     In order to create third-party apps, you must first submit an application to become
     an "app owner." This application should describe the functionality of your proposed app
     and how you plan to use it. In order to submit an application your account must be at
-    least 2 months old and must have made at least 10 <a href="/pages/help#identification"
+    least 2 months old and must have made at least 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">improving identifications</a> in the last month. We may ask follow-up
     questions about your plan and we reserve the right to turn down applications for any reason.
   app_owner_application_inelligible: |
@@ -9276,10 +9276,28 @@ en:
         trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
         wanted_desc: Species in this taxon that have not been observed yet.
     taxon_changes:
+      # warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Are you sure you want to restore this taxon change?
+      # warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Are you sure you want to withdraw this taxon change?
       move_children_desc: |
         Children of the input taxon that are genera or coarser will be moved to
         the output; species, subspecies, varieties, etc. will be swapped into
         equivalents with the new genus or species name.
+      # act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Restore
+      # in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: restoring
+      # act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Withdraw
+      # state of an abandoned taxon change
+      withdrawn: withdrawn
+      # state of a committed taxon change
+      committed: committed
+      # state of a draft taxon change
+      draft: draft
+      # the status of a taxon change: draft, withdrawn or committed
+      status: status
       form:
         move_children_desc2_html: |
           Checking this box will move the children of the input taxon to the

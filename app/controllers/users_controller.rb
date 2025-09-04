@@ -1092,41 +1092,39 @@ class UsersController < ApplicationController
     if friendship.errors.any? && !error_msg
       error_msg = friendship.errors.full_messages.to_sentence
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         flash[:error] = error_msg
         flash[:notice] = notice_msg
-        redirect_back_or_default(person_by_login_path(:login => current_user.login))
+        redirect_back_or_default( person_by_login_path( login: current_user.login ) )
       end
-      format.json do
-        render status: :unprocessable_entity,
-          json: { error: error_msg || notice_msg, friendship: friendship }
-      end
+      format.json { render json: { msg: error_msg || notice_msg, friendship: friendship } }
     end
   end
-  
+
   def remove_friend
-    error_msg, notice_msg = [nil, nil]
-    if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
-      notice_msg = t(:you_are_no_longer_following_x, :friend => friendship.friend.login)
+    error_msg = nil
+    notice_msg = nil
+    if ( friendship = current_user.friendships.find_by_friend_id( params[:remove_friend_id] ) )
+      notice_msg = t( :you_are_no_longer_following_x, friend: friendship.friend.login )
       if friendship.trust?
         friendship.update( following: false )
       else
         friendship.destroy
       end
     else
-      error_msg = t(:you_arent_following_that_person)
+      error_msg = t( :you_arent_following_that_person )
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         flash[:error] = error_msg
         flash[:notice] = notice_msg
-        redirect_back_or_default(person_by_login_path(:login => current_user.login))
+        redirect_back_or_default( person_by_login_path( login: current_user.login ) )
       end
-      format.json { render :json => {:msg => error_msg || notice_msg, :friendship => friendship} }
+      format.json { render json: { msg: error_msg || notice_msg, friendship: friendship } }
     end
   end
-  
+
   def update_password
     if params[:password].blank? || params[:password_confirmation].blank?
       flash[:error] = t(:you_must_specify_and_confirm_a_new_password)

@@ -16,11 +16,13 @@ class TaxonChange < ApplicationRecord
   after_create :index_taxon
   after_destroy :index_taxon
   after_update :commit_records_later
+  before_validation :sync_status_and_committed_on
 
   validates_presence_of :taxon_id
   validate :uniqueness_of_taxa
   validate :uniqueness_of_output_taxa
   validate :taxa_do_not_include_life
+  validate :status_committed_consistency
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
@@ -43,6 +45,12 @@ class TaxonChange < ApplicationRecord
 
   TYPES = %w(TaxonChange TaxonMerge TaxonSplit TaxonSwap TaxonDrop TaxonStage)
   
+  enum status: {
+    draft: "draft",
+    committed: "committed",
+    withdrawn: "withdrawn"
+  }, _prefix: :status
+
   scope :types, lambda {|types| where("taxon_changes.type IN (?)", types)}
   scope :committed, -> { where("committed_on IS NOT NULL") }
   scope :uncommitted, -> { where("committed_on IS NULL") }
@@ -211,7 +219,8 @@ class TaxonChange < ApplicationRecord
         skip_taxon_framework_checks: true
       )
     end
-    update_attribute(:committed_on, Time.now)
+    assign_attributes( committed_on: Time.current, status: :committed )
+    save( validate: false )  # runs callbacks, updates updated_at, skips validations
   end
 
   # For all records with a taxon association affected by this change, update the record if
@@ -590,6 +599,25 @@ class TaxonChange < ApplicationRecord
 
   def draft?
     committed_on.blank?
+  end
+
+  private
+
+  def sync_status_and_committed_on
+    if committed_on.present?
+      self.status = "committed"
+    else
+      self.status = "draft" if status == "committed"
+    end
+  end
+
+  def status_committed_consistency
+    if committed_on.present? && status != "committed"
+      errors.add( :status, "must be 'committed' when committed_on is set" )
+    end
+    if status == "committed" && committed_on.blank?
+      errors.add( :committed_on, "must be present when status is 'committed'" )
+    end
   end
 
 end
