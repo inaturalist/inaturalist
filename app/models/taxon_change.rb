@@ -467,7 +467,7 @@ class TaxonChange < ApplicationRecord
     end
   end
 
-  def output_taxon_for_record
+  def output_taxon_for_record( _record )
     output_taxa.first if output_taxa.size == 1
   end
 
