@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserBlock < ApplicationRecord
   # After a single user has been blocked this many times we alert staff about it
   PROBLEMATIC_BLOCK_THRESHOLD = 3
@@ -36,7 +38,7 @@ class UserBlock < ApplicationRecord
   end
 
   def cant_block_staff
-    if blocked_user && blocked_user.is_admin?
+    if blocked_user&.is_admin?
       errors.add( :base, :user_cannot_be_staff2 )
     end
     true
@@ -50,9 +52,9 @@ class UserBlock < ApplicationRecord
   end
 
   def remove_from_projects
-    [user, blocked_user].permutation.each do |(a, b)|
-      ProjectUser.joins(:project).where(user: a, project: {user: b}).destroy_all
-      ProjectUserInvitation.joins(:project).where(user: a, project: {user: b}).destroy_all
+    [user, blocked_user].permutation.each do | ( a, b ) |
+      ProjectUser.joins( :project ).where( user: a, project: { user: b } ).destroy_all
+      ProjectUserInvitation.joins( :project ).where( user: a, project: { user: b } ).destroy_all
     end
   end
 
