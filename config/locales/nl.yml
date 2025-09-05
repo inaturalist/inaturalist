@@ -626,6 +626,11 @@ nl:
     API calls te doen die waarnemingen of determinaties maken. Veel voorkomende voorbeelden zijn desktop applicaties of mobiele apps die waarnemingen in iNaturalist maken voor zijn gebruiker. Deze inhoud moet tot stand worden gebracht met echte menselijke betrokkenheid
     of toezicht. Lees onze <a href="/pages/community+guidelines"
     target="_blank">Gemeenschapsrichtlijnen</a> voor meer informatie waarin machine-gegenereerde waarnemingen, determinaties en opmerkingen worden verboden.
+  app_owner_application_about_p2_html: |
+    Vanaf 2022 is handmatige goedkeuring vereist voor gebruikers die API-clients willen maken.
+    Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken. Om een aanvraag in te kunnen dienen moet jouw account minimaal 2 maanden oud zijn en minimaal 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">improving identifications</a> hebben gemaakt in de afgelopen maand. We kunnen follow-up vragen
+    vragen over jouw plan en we behouden ons het recht voor om aanvragen om welke reden dan ook af te wijzen.
   app_owner_application_inelligible: |
     Om een toepassing in te kunnen dienen moet je account minimaal 2 maanden oud zijn en moet minstens 10 verbeterende determinaties hebben gedaan in de afgelopen maand.
   app_owner_application_fields_explanation_html: Beschrijf de functionaliteit van je app en hoe je deze gaat gebruiken.
@@ -1139,6 +1144,12 @@ nl:
       geoprivacy van een status geassocieerd met een continent, land of
       plaats op staatsniveau een status kan overschrijven die globaal is of geassocieerd is
       met een gebied op een hoger niveau.
+    iucn: |
+      Equivalente IUCN Rode Lijst-code. Dit is niet de daadwerkelijke IUCN-beoordeling,
+      alleen de IUCN-code die het beste past bij de dreiging bij de openbaarmaking van de coordinaten
+      geïmpliceerd door deze status. Dit overschrijft de geoprivacy als deze "Minst
+      Concern" is of lager, dus als je waarnemingen hiervan wilt vervagen van dit 
+      taxon, stel dit dan in op "Bijna bedreigd" of hoger.
   conservation_status_geoprivacy_desc: |
     Default geoprivacy toegepast op alle waarnemingen van dit taxon uit dit gebied
   contact_support: Neem contact op met support
@@ -1489,6 +1500,37 @@ nl:
   daily_users: Dagelijkse gebruikers
   danger_zone: Gevaarlijke zone
   dashboard: Dashboard
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ja! Ik wil graag meedoen."
+    #link to a blog post
+    pilot_read_more: "Lees meer op onze blog"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Pilot met determinatielacunes: \"ID nodig\"-soorten gezocht"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Zijn nog niet opgenomen in het Computer Vision Model"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Hier is een link naar waarnemingen van soorten die nog niet zijn opgenomen in het Computer Vision Model die jij volgens ons kunt determineren."
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Zijn nog niet opgenomen in het Computer Vision Model"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Zijn dit seizoen waargenomen in de buurt van je laatste waarneming"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Wordt gedreven door een steekproef van maximaal 200 waarnemingen van maximaal 300 soorten die prioriteit geven aan planten"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Door deze soorten waar te nemen help je het model te verbeteren en lacunes in de biodiversiteitsgegevens op te vullen. Deze lijst wordt bijgewerkt wanneer het model wordt bijgewerkt. U kunt zich op elk gewenst moment afmelden."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Hier is je huidige lijst van soorten:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Nog niet opgenomen in het Computer Vision Model"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Dit seizoen nabij jouw laatste locatie waargenomen"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Door deze waar te nemen, help je met het verbeteren van de herkenning van soorten en het vullen van kritieke hiaten."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Determinatie Pilot: Onboarding Nieuwe Gebruikers"
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Kom morgen terug voor een link naar waarnemingen die overeenkomen met jouw determinatievaardigheden."
   data_deficient: Gegevens Tekort
   data_quality: Gegevenskwaliteit
   data_quality_assessment: Beoordeling van Gegevenskwaliteit
@@ -8190,19 +8232,39 @@ nl:
           Je moet de "%{confirmation_code}" in het formulier invoeren om je account te verwijderen
       edit:
         about_third_party_tracking: Over het volgen door derden
-        blocking_desc_html: |
-          <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien of reageren op jouw waarnemingen, je waarnemingen determineren of andere interacties met je hebben op %{site_name}. Het verwijdert ook hun waarnemingen uit je zoekresultaten en verwijdert jouw waarnemingen uit hun zoekresultaten. Het maakt je echter niet onzichtbaar voor ze. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met je aangaan.
-          </p>
-          <p>
-            Blokkeren is voor situaties waar je gewoon niet kunt opschieten met iemand en ze je niet met rust laten, ondanks je inspanningen om geschillen op een beschaafde manier regelen. Het is geen manier om je te verbergen voor mensen, om determinaties te voorkomen van mensen van wie je de mening niet vertrouwt, of niet voor het gemeenschaps-ID kiest (daar is een andere instelling voor). Blokkeren werkt dus in beide richtingen: als je iemand blokkeert, kunnen ze geen interactie met je hebben, maar je kunt ook geen interactie hebben met hen. Als je het misbruikt om te voorkomen dat iemand je waarnemingen determineert, voorkomt je ook dat je diegenes waarnemingen kan determineren.
-          </p>
-          <p>
-            Je kunt maar drie mensen blokkeren. We denken dat dit een redelijk aantal is dat geschikt is voor de mensen die blokkering nodig hebben. Dit is om misbruik van blokkering te voorkomen. Als je vindt dat je meer mensen moet kunnen blokkeren <a href="mailto:%{help_email}">neem dan contact met ons op</a>.
-          </p>
-          <p>
-            Als iemand je lastigvalt of stalkt op %{site_name}, <a href="mailto:%{help_email}">laat het ons weten</a>. Als
-            het een schending van onze gebruiksvoorwaarden is of ander gedrag dat we ongepast achten voor onze site, zullen we onderzoek doen.
-          </p>
+        block_desc_blocking_someone_prevents: |
+          Als je iemand blokkeert, kan deze persoon je geen berichten sturen of reageren op je
+          waarnemingen, of het determineren van jouw waarnemingen en andere interacties met jou op %{site_name}. Het verwijdert ook hun waarnemingen uit jouw 
+          zoekresultaten en verwijdert jouw waarnemingen uit hun zoekopdracht
+          resultaten. Het maakt je echter niet onzichtbaar voor hen. Ze kunnen
+          nog steeds je waarnemingen en je profiel bekijken, ze kunnen alleen niet meer met jou
+          communiceren.
+        block_desc_blocking_is_for_situations: |
+          Blokkeren is voor situaties waarin je gewoon niet samen tot een oplossing kan komen met
+          iemand en ze kunnen je niet met rust laten. Ondanks je beste inspanningen om
+          geschillen op een beschaafde manier te beslechten. Het is geen manier om
+          mensen te verbergen, om determinaties te voorkomen van mensen wier mening je
+          niet vertrouwt, of afmelden voor de community ID (hier is een instelling voor). Het blokkeren werkt dus op beide manieren: als je
+          iemand blokkeert, kunnen ze niet met je communiceren, maar je kan ook niet met hen 
+          communiceren. Als je het misbruikt om te voorkomen dat iemand je
+          waarnemingen determineert, voorkomt je ook dat je hun
+          waarnemingen kan determineren.
+        block_desc_there_are_two_exceptions: |
+          Er zijn twee situaties waarin blokkeren interactie niet verhindert:
+        block_desc_comments_on_taxon_flags: Opmerkingen over taxonmeldingen die door jou zijn gemaakt
+        block_desc_comments_on_taxon_changes: Reacties op taxonwijzigingen gemaakt door jou
+        block_desc_unlike_more_personal: |
+          In tegenstelling tot meer persoonlijke vormen van inhoud zoals waarnemingen en dagboek-
+          berichten, worden taxa gedeeld door iedereen en moeten daarom open zijn voor
+          discussie door iedereen. Blokkeren voorkomt nog steeds dat je
+          meldingen ontvangt over reacties op dit soort inhoud door
+          degene die je hebt geblokkeerd.
+        block_desc_if_harassing_html: |
+          Als iemand je lastigvalt of stalkt op %{site_name},
+          <a href="mailto:%{help_email}">neem dan contact met ons op</a>. Als
+          dit een schending van onze Gebruiksvoorwaarden vormt of
+          ander gedrag dat wij ongepast achten voor onze site, zullen wij het verder
+          onderzoeken.
         common_scientific_name_display_order: Weergavevolgorde van lokale/wetenschappelijke namen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Als je van gedachten verandert, kun je dat altijd via 
