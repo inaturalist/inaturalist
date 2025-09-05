@@ -619,9 +619,6 @@ es:
     Debes proporcionar una explicación más detallada de lo que quieres construir.
   app_owner_application_about_p1a_html: |
     Las apps de iNaturalist permiten el uso autenticado de la API de iNaturalist. Esto te permite hacer llamadas API que hacen cosas como crear observaciones o identificaciones. Los casos comunes son apps como las de escritorio o de móvil que incluyen funcionalidad para sus usuarios(s) para crear observaciones de iNaturalist. Este contenido debe generarse con la participación humana real o supervisada. Por favor, para más detalles lee nuestras <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a> que prohíben observaciones, identificaciones y comentarios generados por máquinas.
-  app_owner_application_about_p2_html: |
-    A partir de 2022 estamos requiriendo la aprobación manual a los usuarios que deseen hacer clientes API. Para crear aplicaciones de terceros, primero debes enviar una solicitud para convertirte en "propietario de la aplicación". Esta solicitud debe describir la funcionalidad de la app propuesta y cómo planeas utilizarla. Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes haber hecho al menos 10 <a href="/pages/help#identification"
-    target="_blank">mejoras de identificaciones</a> en el último mes. Podemos hacer preguntas de seguimiento sobre tus planes y nos reservamos el derecho de rechazar las solicitudes por cualquier razón.
   app_owner_application_inelligible: |
     Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes
     haber hecho al menos 10 mejoras de identificaciones en el último mes.
@@ -1126,10 +1123,6 @@ es:
     url: URL de una página que describa este estado.
     geoprivacy: |
       Geoprivacidad predeterminada para las observaciones de este taxón. Ten en cuenta que la geoprivacidad de un status asociado a un continente, país, o el lugar de nivel estado puede reemplazar un status que es global o que está asociado con un lugar de nivel superior.
-    iucn: |
-      Código de la lista roja IUCN equivalente. Esta no es la evaluación real del IUCN,
-      únicamente el código IUCN que se ajusta mejor a la amenazaque supone la divulgación de coordenadas
-      implícita por este estado. Esto anulará la geoprivacidad si es de "Mínima de preocupación" o inferior, así que si quieres ocultar las observaciones de este taxón, establece esto en "Casi Amenazado" o superior.
   conservation_status_geoprivacy_desc: |
     La geoprivacidad predeterminada se aplica a todas las observaciones de este taxón en este lugar
   contact_support: Contactar el servicio técnico
@@ -7872,19 +7865,6 @@ es:
           Introduce "%{confirmation_code}"  en la aplicación para eliminar tu cuenta
       edit:
         about_third_party_tracking: Acerca de rastreo por parte de terceros
-        blocking_desc_html: |
-          <p>
-          Bloquear a alguien evita que te envíe mensajes, comente tus observaciones, identifique tus observaciones e interactúen contigo en %{site_name}. También elimina tus observaciones de sus resultados de búsqueda y elimina sus observaciones de tus resultados de búsqueda. Sin embargo, no te hace invisible para él. Todavía puede encontrar tus observaciones y ver tu perfil, simplemente no puede interactuar contigo.
-          </p>
-          <p>
-          El bloqueo es útil para situaciones en las que, simplemente, no puedes llevarte bien con alguien y no te deja en paz, a pesar de tus mejores intentos de resolver las disputas de forma civilizada. No es una forma de esconderse de las personas, de evitar identificaciones de personas en cuyas opiniones no confía, o de optar por no participar en la identificación de la comunidad (existe otra configuración para hacerlo). Por lo tanto, el bloqueo funciona en ambos sentidos: si bloquea a alguien, no podrá interactuar contigo, pero tampoco podrás interactuar con él. Si lo usa mal, para evitar que alguien identifique tus observaciones, también te impide identificar sus observaciones.
-          </p>
-          <p>
-          Solo puedes bloquear un máximo de tres personas. Creemos que este es un número razonable que se adapta a aquellas personas que necesitan bloqueo, pero previene el abuso de bloqueo. Si crees que necesitas bloquear a más personas, <a href="mailto:%{help_email}">contacta con nosotros</a>.
-          </p>
-          <p>
-          Si alguien te está acosando en %{site_name}, <a href="mailto:%{help_email}">infórmanos</a>. Si eso representa una violación de nuestros Términos de uso o representa otro comportamiento que podamos considerar inapropiado para nuestro sitio, lo investigaremos.
-          </p>
         common_scientific_name_display_order: Orden de Visualización de Nombres Comunes/Científicos
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si cambias de opinión siempre puedes

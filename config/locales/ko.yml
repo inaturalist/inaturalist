@@ -2178,6 +2178,20 @@ ko:
     zambia: 잠비아
     zimbabwe: 짐바브웨
   places_merged_successfully: 장소가 성공적으로 합쳐졌습니다!
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    장소는 700,000제곱킬로미터를 초과할 수 없습니다.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    장소는 70,000제곱킬로미터를 초과할 수 없습니다.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    장소에는 200,000개 이상의 관측치가 포함될 수 없습니다.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    장소에는 10,000개 이상의 관측치가 포함될 수 없습니다.
   plants: 식물
   please_explain_why_you_want_to_hide_this: 이것을 숨기려는 이유를 설명해 주십시오
   please_explain_why_you_want_to_unhide_this: 이것의 숨김을 해제하려는 이유를 설명해 주십시오

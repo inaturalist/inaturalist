@@ -627,13 +627,6 @@ pt-BR:
     Este conteúdo deve ser gerado com participação ou supervisão humana.
     Para mais detalhes, por favor, leia as nossas <a href="/pages/community+guidelines"
     target="_blank">Diretrizes da Comunidade</a> que proíbem observações, identificações e comentários gerados por máquina.
-  app_owner_application_about_p2_html: |
-    A partir de 2022 estamos exigindo aprovação manual para usuários que desejam criar clientes API.
-    Para criar aplicativos de terceiros, você deve primeiro submeter uma inscrição para se tornar
-    um "proprietário de aplicativos". Nesta inscrição se deve descrever a funcionalidade do aplicativo proposto
-    e como você planeja usá-lo. Para enviar uma inscrição, sua conta deve ter mais de 2 meses e devem ter sido feitos pelo menos 10 <a href="/pages/help#identification"
-    target="_blank">melhoramentos de identificações</a> no último mês. Podemos fazer perguntas de esclarecimento
-    sobre o seu plano e nos reservamos o direito de recusar os pedidos por qualquer motivo.
   app_owner_application_inelligible: |
     Para enviar uma solicitação, sua conta deve ter pelo menos 2 meses e você
     ter feito pelo menos 10 sugestões de melhoria de identificações no mês passado.
@@ -1144,12 +1137,6 @@ pt-BR:
     url: URL que descreve esta condição.
     geoprivacy: |
       Geoprivacidade padrão para as observações deste táxon. Note que a geoprivacidade de um status associado a um nível de continente, país ou estado podem sobrepor um status que é associado a um nível maior ou global.
-    iucn: |
-      Código equivalente na Lista Vermelha da IUCN. Esta não é a avaliação atual da IUCN,
-      apenas o código IUCN que melhor corresponde à ameaça de divulgação de coordenadas
-      implícita por este status. Isto irá sobrescrever a geoprivacidade se estiver "Pouco
-      preocupante" ou abaixo, então se você quer obscurecer observações deste
-      táxon, defina isso como "Quase ameaçada" ou superior.
   conservation_status_geoprivacy_desc: |
     Geoprivacidade padrão aplicada a todas as observações deste táxon neste local
   contact_support: Fale com o Suporte
@@ -8201,40 +8188,6 @@ pt-BR:
           Você deve inserir "%{confirmation_code}" no formulário para excluir sua conta
       edit:
         about_third_party_tracking: Sobre o rastreamento de terceiros
-        blocking_desc_html: |
-          <p>
-          Bloquear alguém o impede de enviar mensagens a você, comentar nas suas
-          observações, identificar suas observações, e interagir com você de outra forma 
-          em %{site_name}. Isso também remove as observações dele dos seus
-          resultados de pesquisa e remove suas observações dos resultados da pesquisa 
-          dele. No entanto, não te torna invisível para ele. Ele ainda pode encontrar as
-          suas observações e ver o seu perfil, ele simplesmente não consegue
-          interagir com você.
-          </p>
-          <p>
-          Bloquear é para situações em que você simplesmente não consegue se dar 
-          bem com alguém e ele não te deixa em paz, apesar de seus melhores esforços 
-          para resolver disputas de forma civilizada. Não é uma maneira de se esconder 
-          de pessoas, de prevenir identificações de pessoas cujas opiniões você não 
-          confia, ou de optar por não participar da identificação feita pela comunidade 
-          (há outra configuração para isso). Assim, bloquear funciona das duas maneiras: 
-          se você bloquear alguém, ele não pode interagir com você, mas você também 
-          não pode interagir mais com ele. Se você o usar indevidamente para impedir 
-          que alguém identifique suas observações, você também se impede de identificar
-          as observações dele.
-          </p>
-          <p>
-          Você só pode bloquear três pessoas. Achamos que este é um número razoável 
-          que acomoda as pessoas que precisam de bloqueio, sem permitir o abuso do 
-          bloqueio. Se você acha que precisa bloquear mais pessoas, por favor 
-          <a href="mailto:%{help_email}">entre em contato conosco</a>.
-          </p>
-          <p>
-          Se alguém está assediando ou perseguindo você em %{site_name}, <a href="mailto:%{help_email}">por favor, nos informe</a>. Se isso representa 
-          uma violação dos nossos Termos de Uso ou representa outros 
-          comportamentos que consideramos inapropriados em nosso site,
-          investigaremos.
-          </p>
         common_scientific_name_display_order: Ordem de Exibição de Nome Comum / Científico
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se você mudar de ideia você sempre pode

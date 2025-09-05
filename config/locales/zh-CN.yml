@@ -561,9 +561,6 @@ zh-CN:
   app_owner_application_about_p1a_html: |
     iNaturalist应用软件允许经过授权的API使用。这允许您通过调用API来完成物种观察或者物种识认记录的创建。通常情况下，用户可以在移动端或者电脑端的应用创建iNaturalist观察记录。记录中的内容必须在真人的参与或者监管下生成。更多细节请阅读我们的<a href="/pages/community+guidelines"
     target="_blank">社区指导手册</a>禁止机器生成的物种观察记录、物种识认记录和评论。
-  app_owner_application_about_p2_html: |
-    自2022年，希望使用API客户端的用户需要通过我们的人工审批。为了创建第三方应用程序，您必须首先提交一份申请，以成为 "应用程序所有者"。这份申请应包含该应用程序的功能，以及您计划如何使用它。在提交申请前，您的账户注册时间需至少已有2个月，并在过去的一个月里完成了10次<a href="/pages/help#identification"
-    target="_blank">改进鉴定（Improving identifications）</a>。我们可能会对您的计划提出后续问题，并保留以任何理由拒绝申请的权利。
   app_owner_application_inelligible: |
     在提交申请前，您的账户注册时间需至少已有2个月，并在过去的一个月里完成了10次改进鉴定（Improving identifications）。
   app_owner_application_fields_explanation_html: 描述您的应用将具有的功能以及您计划如何使用它。
@@ -1051,8 +1048,6 @@ zh-CN:
     url: 描述此状态的页面的URL。
     geoprivacy: |
       该分类单元观测的默认地理隐私。 请注意，与大陆、国家或州相关的地理隐私状态的优先级高于全球的或较高级别的地方隐私状态。
-    iucn: |
-      等效的 IUCN 红色名录代码。 这不是实际的 IUCN 评估，只是最符合该状态所暗示的坐标泄露威胁的 IUCN 代码。 如果地理隐私为“最不关心”或更低，其优先级将覆盖地理隐私；因此如果您想模糊对该分类单元的观察，请将其设置为“近危”或更高。
   conservation_status_geoprivacy_desc: |
     默认的地理敏感信息应用到该地址的所有观察到的分类上
   contact_support: 联系客服支持
@@ -1525,6 +1520,8 @@ zh-CN:
         请检查您的电子邮箱，并点击邮件中的链接来确认您的帐户。
       user:
         suspended: 您的账户已被停用
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: 重置密码令牌无效。请使用最近发送的重置密码电子邮件中的链接，或 <a href="%{url}">申请新的</a>.
     sessions:
       signed_in: '登录成功。'
       signed_out: '已成功登出。'
@@ -1617,6 +1614,8 @@ zh-CN:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: 捐款
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: 捐赠
   donate_again_caps: 再次捐款
   donate_again_today_caps: 今天再次捐款
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -3801,6 +3800,8 @@ zh-CN:
       zone: 地带
   place_guess: 地点猜测
   place_imported: 地点已导入！
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: 观察结果可能需要一天的时间才能与这个地方相关联。
   place_must_have_a_boundary_defined: 地点必须定义边界。
   place_name: 地名
   place_notes: 地点注释
@@ -4093,6 +4094,20 @@ zh-CN:
     编辑地方边界是iNat网站速度降低的最大原因之一。如果您可以避开它，就请不要添加、更改或移除地方边界，除非它是绝对必要的。
   places_warning_quota: |
     您每天只能创建三个地方。
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    区域面积不能超过700,000 平方公里。
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    区域面积不能超过70,000 平方公里。
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    该区域包含的观测数量不能超过 200,000 个。
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    该区域包含的观察数量不能超过10,000个。
   places_warning_the_future: |
     出于效能考虑， 鉴于iNat目前的增长速度，我们必须对今后增加地方的条件进行限制。
   plants: 植物
@@ -4523,7 +4538,7 @@ zh-CN:
   #access their iNat account
   revoke_external_application: "收回 %{site_name}的权限?"
   revoke_privacy_consent_warning: "撤销此同意的唯一方法是删除您的帐户和所有相关数据。"
-  rg_observations: RG观察
+  rg_observations: 研究级观察
   role: 角色
   rotate_left: 向左旋转
   rotate_right: 向右旋转
@@ -6072,6 +6087,8 @@ zh-CN:
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论客户端是什么。
       end_desc: |
         在您的帐户时区，这个通知将会停止呈现的时间。跨时区适用，所以每个人都在同一时间停止看到它，这跟他们的当地时间无关。
+      excludes_non_site_desc: |
+        如果您的公告以站点为目标（如果您是网站超管的话这将是默认设置），这将排除被发送给全部站点的通知。
       ip_countries_desc: |
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论 IP 所在国家/地区。
       #Note about how the announcement last observation date property works
@@ -7667,19 +7684,6 @@ zh-CN:
           您必须在表单中输入"%{confirmation_code}"才能删除您的帐户
       edit:
         about_third_party_tracking: 关于第三方的追踪
-        blocking_desc_html: |
-          <p>
-          屏蔽某人会阻止他们向您发送消息、评论您的观察结果、鉴定您的观察结果以及以其他方式在 %{site_name} 上与您互动。 它还会从您的搜索结果中删除他们的观察结果，并从他们的搜索结果中删除您的观察结果。 然而，这并不会让他们看不见你。 他们仍然可以找到您的观察结果并查看您的个人资料，只是无法与您互动。
-          </p>
-          <p>
-          屏蔽适用于以下情况：您与某人无法相处，尽管您尽了最大努力以文明方式解决争端，但他们也不肯放过您。 这不是一种躲避他人的方式，也无法防止您不信任其观点的人识别您的身份，也不是选择退出社区鉴定（还有另一种设置）。因此，屏蔽是双向的：如果你屏蔽某人，他们就无法与你互动，但你也无法与他们互动。如果你滥用它来阻止别人鉴定你的观察结果，你也会阻止你自己鉴定他们的观察结果。
-          </p>
-          <p>
-          您只能屏蔽三个人。 我们认为这是一个合理的数字，可以容纳需要屏蔽的人，同时防止滥用屏蔽。 如果您觉得需要屏蔽更多人，请<a href="mailto:%{help_email}">发邮件联系我们</a>。
-          </p>
-          <p>
-          如果有人在 %{site_name} 上骚扰或跟踪您，<a href="mailto:%{help_email}">请告知我们</a>。 如果这违反了我们的使用条款或代表了我们认为不适合我们网站的其他行为，我们将进行调查。
-          </p>
         common_scientific_name_display_order: 俗名/学名显示顺序
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
@@ -7924,7 +7928,7 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y年%B%d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%b%d日'
+      short: '%b%-d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -7932,7 +7936,7 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%Y年%B'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      month_day_year: '%Y年%B%d日'
+      month_day_year: '%Y年%B%-d日'
     month_names:
       - 
       - 一月
@@ -8049,19 +8053,19 @@ zh-CN:
     am: 上午
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      default: '%Y年%b%d日 %H:%M:%S %z'
+      default: '%Y年%b%-d日 %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y年%B%d日 %p %I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d%B日 %p%I:%M'
+      short: '%B%-d日 %p%I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short_with_year: '%Y年%-d%B日 %p%I:%M'
+      short_with_year: '%Y年%B%-d日 %p%I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%p %I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%p %I:%M %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      day_month_year: "%Y年%B%d日"
+      day_month_year: "%Y年%B%-d日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%p %l:%M"
     pm: 下午
@@ -8112,6 +8116,7 @@ zh-CN:
         exclude_donor_start_date: 排除捐助者开始日期
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: 排除捐助者结束日期
+        excludes_non_site: 隐藏此版面中没有站点标识的其他公告
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: 排除来自应用软件的观察者
