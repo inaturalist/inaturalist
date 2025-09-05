@@ -6688,20 +6688,6 @@ lv:
           Lai izdzēstu savu kontu, veidlapā jāievada "%{confirmation_code}"
       edit:
         about_third_party_tracking: Par trešo pušu izsekošanu
-        blocking_desc_html: |
-          <p>
-          Ja kāds tiek nobloķēts, šim lietotājam vairs nav iespējas nosūtīt tev ziņas, komentēt un identificēt tavus novērojumus vai kādā citā veidā sazināties ar tevi %{site_name} vietnē. Turklāt lietotāja novērojumi nebūs redzami tavos meklēšanas rezultātos un tavi novērojumi nebūs redzami lietotāja meklēšanas rezultātos. Tomēr tas nepadara tevi lietotājam neredzamu. Tavi novērojumi un profils tāpat būs atrodams, bet lietotājs nevarēs sazināties ar tevi.
-          </p>
-          <p>
-          Bloķēšana lietojama situācijās, kad nevari ar kādu satikt un par spīti taviem centieniem atrisināt nesaskaņas civilizētā ceļā lietotājs tevi tāpat neliek mierā. Bloķēšana nav paredzēta tam, lai slēptos no citiem, izvairītos no cilvēkiem, kuru novērojumiem neuzticies vai, lai atteiktos no kopienas ID (tam parezēta cita funkcija). Bloķēšana funkcionē abējādi – ja kādu nobloķēsi, lietotājs nevarēs ar tevi sazināties, bet arī tu nevarēsi sazināties ar viņu. Ja šo funkciju lietosi nepareizi, piemēram, lai izvairītos no kāda lietotāja identifikācijām, tad liegsi arī sev iespēju identificēt šī lietotāja novērojumus.
-          </p>
-          <p>
-          Nobloķēt iespējams tikai trīs lietotājus. Uzskatām, ka tas ir pamatots daudzums, kas sniedz iespēju nobloķēt traucējošus lietotājus un tai pašā laikā liedz kādam izmantot šo funkciju maldinošā veidā. Ja tev rodas nepieciešamība nobloķēt vairāk lietotāju, lūdzu, sazinies ar mums.
-          </p>
-          <p>
-          Ja kāds tevi neliek mierā vai izseko %{site_name} vietnē, lūdzu,
-          <a href="mailto:%{help_email}">sazinies ar mums</a>. Ja lietotāja darbības pārkāpj lietošanas noteikumus vai uzskatām, ka lietotāja izturēšanās ir nepiemērota mūsu vietnei, veiksim izmeklēšanu. <a href="mailto:%{help_email}">
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
         inaturalist_network_affiliation_desc_html: |
