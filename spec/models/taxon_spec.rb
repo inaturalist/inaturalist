@@ -1888,3 +1888,164 @@ describe "audits" do
     expect( t.audits.size ).to eq 1
   end
 end
+
+describe Taxon, "name change restrictions by rank" do
+  context "ranks coarser than species (rank_level > 10, e.g. genus)" do
+    it "should not be able to change name when rank_level coarser than 10" do
+      t = Taxon.make!( name: "Turdus", rank: "genus" ) # rank_level=20 in iNat
+      expect( t.update( name: "Turdi" ) ).to be( false )
+      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
+    end
+  end
+
+  context "species (rank_level = 10)" do
+    it "should be able to add minor changes to a species epithet when rank_level 10" do
+      t = Taxon.make!( name: "Turdus tarocha", rank: "species" )
+      # Minor / gender-like change: tarocha -> tarochus
+      expect( t.update( name: "Turdus tarochus" ) ).to be( true )
+    end
+
+    it "should not be able to add major changes to a species epithet when rank_level 10" do
+      t = Taxon.make!( name: "Turdus tarocha", rank: "species" )
+      expect( t.update( name: "Turdus meei" ) ).to be( false )
+      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
+    end
+
+    it "should not be able to change genus epithet when rank_level 10" do
+      t = Taxon.make!( name: "Turdus tarocha", rank: "species" )
+      expect( t.update( name: "Turdi tarocha" ) ).to be( false )
+      expect( t.errors.of_kind?( :name, :genus_changed ) ).to be( true )
+    end
+
+    it "should be able to remove an × between genus and species when rank_level 10" do
+      t = Taxon.make!( name: "Citrus × aurantium", rank: "species" )
+      expect( t.update( name: "Citrus aurantium" ) ).to be( true )
+    end
+
+    it "should be able to remove an x between genus and species when rank_level 10" do
+      t = Taxon.make!( name: "Citrus x aurantium", rank: "species" )
+      expect( t.update( name: "Citrus aurantium" ) ).to be( true )
+    end
+
+    it "should be able to add an × between genus and species when rank_level 10" do
+      t = Taxon.make!( name: "Citrus aurantium", rank: "species" )
+      expect( t.update( name: "Citrus × aurantium" ) ).to be( true )
+    end
+
+    it "should not be able to add an x between genus and species when rank_level 10" do
+      t = Taxon.make!( name: "Citrus aurantium", rank: "species" )
+      expect( t.update( name: "Citrus x aurantium" ) ).to be( false )
+      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
+    end
+  end
+
+  context "infraspecific (rank_level = 5, e.g. subspecies/var.)" do
+    it "should be able to add minor changes to a sspspecies epithet when rank_level 5" do
+      t = Taxon.make!( name: "Taricha torosa scottii", rank: "subspecies" ) # rl=5
+      # Minor change: scottii -> scotti
+      expect( t.update( name: "Taricha torosa scotti" ) ).to be( true )
+    end
+
+    it "should not be able to add major changes to a sspspecies epithet when rank_level 5" do
+      t = Taxon.make!( name: "Taricha torosa scottii", rank: "subspecies" )
+      expect( t.update( name: "Taricha torosa meei" ) ).to be( false )
+      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
+    end
+
+    it "should not be able to change species epithet when rank_level 5" do
+      t = Taxon.make!( name: "Taricha torosa scottii", rank: "subspecies" )
+      expect( t.update( name: "Taricha torosus scottii" ) ).to be( false )
+      expect( t.errors.of_kind?( :name, :species_changed ) ).to be( true )
+    end
+
+    it "should not be able to change genus epithet when rank_level 5" do
+      t = Taxon.make!( name: "Taricha torosa scottii", rank: "subspecies" )
+      expect( t.update( name: "Tarricha torosa scottii" ) ).to be( false )
+      expect( t.errors.of_kind?( :name, :genus_changed ) ).to be( true )
+    end
+  end
+
+  describe Taxon, "sync_scientific_taxon_names_for_name_change" do
+    let( :lexicon ) { "Scientific Names" }
+
+    context "when a matching Scientific Names row already exists but is invalid" do
+      it "promotes it to valid and invalidates the previous valid row (no new row created)" do
+        t = Taxon.make!( name: "Taricha torosa", rank: "species" )
+        old_valid = t.taxon_names.first
+
+        existing_invalid_new = TaxonName.make!(
+          taxon: t, name: "Taricha torosus", lexicon: lexicon, is_valid: false
+        )
+
+        expect do
+          expect( t.update( name: "Taricha torosus" ) ).to be( true )
+        end.not_to(
+          change { TaxonName.where( taxon_id: t.id, lexicon: lexicon ).count }
+        )
+
+        t.reload
+        expect( existing_invalid_new.reload.is_valid ).to be( true )
+        expect( old_valid.reload.is_valid ).to be( false )
+        expect(
+          t.taxon_names.where( lexicon: lexicon, is_valid: true ).pluck( :name )
+        ).to eq( ["Taricha torosus"] )
+      end
+    end
+
+    context "when no Scientific Names row exists for the new name" do
+      it "creates a new valid row for the new name and invalidates the previous valid row" do
+        t = Taxon.make!( name: "Taricha torosa", rank: "species" )
+
+        old_valid = t.taxon_names.first
+        # No row for "Taricha torosus" yet
+
+        expect do
+          expect( t.update( name: "Taricha torosus" ) ).to be( true )
+        end.to change {
+          TaxonName.where( taxon_id: t.id, lexicon: lexicon ).count
+        }.by( 1 )
+
+        new_valid = t.taxon_names.where( lexicon: lexicon, is_valid: true ).order( :id ).last
+        expect( new_valid.name ).to eq( "Taricha torosus" )
+        expect( old_valid.reload.is_valid ).to be( false )
+      end
+    end
+
+    context "when other lexicons exist" do
+      it "does not touch non-Scientific lexicons" do
+        t = Taxon.make!( name: "Taricha torosa", rank: "species" )
+
+        common_name = TaxonName.make!(
+          taxon: t, name: "Common Newt", lexicon: "English", is_valid: true
+        )
+
+        expect( t.update( name: "Taricha torosus" ) ).to be( true )
+
+        expect( common_name.reload.is_valid ).to be( true )
+        expect(
+          t.taxon_names.where( lexicon: "English", is_valid: true ).pluck( :name )
+        ).to include( "Common Newt" )
+      end
+    end
+
+    it "results in exactly one valid Scientific Names row after the name change" do
+      t = Taxon.make!( name: "Taricha torosa", rank: "species" )
+      TaxonName.make!( taxon: t, name: "Taricha torosus", lexicon: lexicon, is_valid: false )
+
+      expect( t.update( name: "Taricha torosus" ) ).to be( true )
+
+      valid_scientific = t.taxon_names.where( lexicon: lexicon, is_valid: true )
+      expect( valid_scientific.count ).to eq( 1 )
+      expect( valid_scientific.first.name ).to eq( "Taricha torosus" )
+    end
+
+    it "does nothing when the new name already matches the valid scientific name" do
+      t = Taxon.make!( name: "Taricha torosa", rank: "species" )
+      expect do
+        expect( t.update( name: "Taricha torosa" ) ).to be( true )
+      end.not_to(
+        change { t.reload.taxon_names.where( lexicon: "Scientific Names" ).order( :id ).pluck( :name, :is_valid ) }
+      )
+    end
+  end
+end
