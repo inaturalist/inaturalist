@@ -54,7 +54,7 @@
         = f.hidden_field :site_ids
       = f.check_box :excludes_non_site, description: t( "views.announcements.excludes_non_site_desc" ), description_tip: true
     .col-xs-4
-      = f.select :exclude_ip_countries, country_options, { include_blank: t( :all ) }, multiple: true, description: t( "views.announcements.exclude_ip_countries_desc" ), description_tip: true
+      = f.select :exclude_ip_countries, country_options, { include_blank: t( :none ) }, multiple: true, description: t( "views.announcements.exclude_ip_countries_desc" ), description_tip: true
       = f.select :locales, locale_options, { include_blank: t( :all ) }, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_tip: true }
   .row
     .col-xs-12

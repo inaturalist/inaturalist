@@ -399,9 +399,14 @@ class Announcement < ApplicationRecord
 
     if options[:ip]
       geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
-      if geoip_country
-        announcements = announcements.select {| a | a.visible_in_country?( geoip_country ) }
-      end
+
+      announcements =
+        if geoip_country.present?
+          announcements.select {| a | a.visible_in_country?( geoip_country ) }
+        else
+          # No country detected: only show announcements that are not country-targeted
+          announcements.select {| a | a.ip_countries.blank? }
+        end
     end
 
     # Remove non-site announcements if some announcements target sites

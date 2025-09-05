@@ -15,6 +15,7 @@
     site_ids
     excludes_non_site
     ip_countries
+    exclude_ip_countries
     dismissible
     dismissals_count
     impressions_count
@@ -81,6 +82,8 @@
                   %td
                     - val = @announcement.send( a )
                     - if a == "ip_countries"
+                      = val.map { | code | Place::COUNTRIES_BY_NAME.values.detect { | country | country[:code] == code }.try(:[], :name) }.sort.join( ", " )
+                    - elsif a == "exclude_ip_countries"
                       = val.map { | code | Place::COUNTRIES_BY_NAME.values.detect { | country | country[:code] == code }.try(:[], :name) }.sort.join( ", " )
                     - elsif a == "locales"
                       = val.map { | locale | I18n.t( "locales.#{locale}" ) }.sort.join( ", " )
