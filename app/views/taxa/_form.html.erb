@@ -2,14 +2,25 @@
 <%= form_for(taxon, :builder => DefaultFormBuilder) do |f| %>
   <%= error_messages_for :taxon %>
   <div class="last column span-24">
-    <% unless @taxon.new_record? -%>
-      <div class="meta">
-        <%= t("views.taxa.edit.you_can_only_make_minor_changes_to_the_species_epithet_directly_html", url: new_taxon_change_path( type: "TaxonSwap", input_taxon_ids: @taxon.id ) ) %>
+    <% if !@taxon.new_record? && @taxon.rank_level > Taxon::SPECIES_LEVEL -%>
+      <div class="column span-8">
+        <%= f.form_field :name, label: t(:scientific_name) do %>
+          <strong><%= @taxon.name %></strong>
+          <div class="meta">
+            <%= t :add_a_taxon_swap_if_you_want_to_change_the_name_html, url: new_taxon_change_path( type: "TaxonSwap", input_taxon_ids: @taxon.id ) %>
+          </div>
+        <% end %>
       </div>
-    <% end -%>
-    <div class="column span-8">
-      <%= f.text_field :name, class: "text", required: true, label: t(:scientific_name) %>
-    </div>
+    <% else -%>
+      <% unless @taxon.new_record? -%>
+        <div class="meta">
+          <%= t("views.taxa.edit.you_can_only_make_minor_changes_to_the_species_epithet_directly_html", url: new_taxon_change_path( type: "TaxonSwap", input_taxon_ids: @taxon.id ) ) %>
+        </div>
+      <% end -%>
+      <div class="column span-8">
+        <%= f.text_field :name, class: "text", required: true, label: t(:scientific_name) %>
+      </div>
+    <% end %>
     <div class="column span-8">
       <%= f.select :rank, Taxon::RANK_LEVELS.keys.reject {|r| r === "root" },
         { }, { class: "text", required: true, disabled: !@protected_attributes_editable } %>
