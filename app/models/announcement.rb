@@ -119,6 +119,7 @@ class Announcement < ApplicationRecord
       clients
       locales
       ip_countries
+      exclude_ip_countries
       include_observation_oauth_application_ids
       exclude_observation_oauth_application_ids
       include_virtuous_tags
@@ -128,6 +129,16 @@ class Announcement < ApplicationRecord
       send( "#{attr}=", ( send( attr ) || [] ).reject( &:blank? ).compact )
     end
     nil
+  end
+
+  def visible_in_country?( country )
+    includes = ip_countries || []
+    excludes = exclude_ip_countries || []
+    if includes.present?
+      ( includes - excludes ).include?( country )
+    else
+      !excludes.include?( country )
+    end
   end
 
   def clean_target_group
@@ -388,7 +399,9 @@ class Announcement < ApplicationRecord
 
     if options[:ip]
       geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
-      announcements = announcements.select {| a | a.ip_countries.blank? || a.ip_countries.include?( geoip_country ) }
+      if geoip_country
+        announcements = announcements.select {| a | a.visible_in_country?( geoip_country ) }
+      end
     end
 
     # Remove non-site announcements if some announcements target sites
