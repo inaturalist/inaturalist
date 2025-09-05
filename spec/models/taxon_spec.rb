@@ -1872,7 +1872,7 @@ describe "taxon_framework_relationship" do
       et.save
       tfr.reload
       expect( tfr.relationship ).to eq "match"
-      species.update( name: "Taricha granulosa" )
+      species.update( name: "Taricha torosus" )
       tfr.reload
       expect( tfr.relationship ).to eq "one_to_one"
     end

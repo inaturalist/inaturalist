@@ -154,7 +154,9 @@ class Taxon < ApplicationRecord
   validate :active_parent_if_active
   validate :ancestry_and_active_if_taxon_framework
   validate :cannot_edit_parent_during_content_freeze
-  validate :restrict_name_changes_by_rank, on: :update
+  validate :restrict_name_changes_by_rank,
+    on: :update,
+    unless: -> { validation_context == :bypass_name_restrictions }
 
   has_subscribers to: {
     observations: { notification: "new_observations", include_owner: false }

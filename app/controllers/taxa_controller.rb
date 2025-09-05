@@ -1761,7 +1761,7 @@ class TaxaController < ApplicationController
       TaxonName.update( params[:taxon_names].keys, params[:taxon_names].values )
     end
 
-    unless params[:taxon][:parent_id].present? && Taxon.exists?( params[:taxon][:parent_id].to_i )
+    unless params[:taxon][:parent_id].blank? || Taxon.exists?( params[:taxon][:parent_id].to_i )
       flash[:error] = "That parent taxon doesn't exist (try a different ID)"
       render action: "edit"
       return false
