@@ -97,6 +97,11 @@
   %ul#usernav.navtabs
     - unless logged_in?
       %li.navtab.signedout
+        - if Site.default && @site && @site.id == Site.default&.id
+          .navtabs.donate-cta
+            = link_to donate_path( utm_content: "logged-out-header-button", utm_campaign: "default", utm_medium: "web" ), class: "btn btn-default btn-inat btn-focus" do
+              %i.fa.fa-heart
+              %span.header-md.header-lg=t :donate_
         = link_to t(:log_in), login_path, class: "signin_link"
         %span= t :or
         = link_to t(:sign_up), signup_url, class: "signup_link"
