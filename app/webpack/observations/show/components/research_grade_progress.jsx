@@ -139,6 +139,10 @@ class ResearchGradeProgress extends React.Component {
               icon = "icon-icn-subject";
               label = I18n.t( "evidence_related_to_single_subject" );
               break;
+            case "metric-accurate":
+              icon = "icon-sparkly-label";
+              label = I18n.t( "evidence_accurately_depicts_organism_or_scene" );
+              break;
             case "metric-recent":
               icon = "fa-clock-o";
               label = I18n.t( "recent_evidence_of_organism" );

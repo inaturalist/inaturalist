@@ -194,6 +194,28 @@ class FlaggingModal extends Component {
         </div>
       );
     }
+    if ( radioOptions.indexOf( "artificially generated content" ) >= 0 ) {
+      inputs.push(
+        <div className="flagInput" key="FlaggingModal-input-artificial">
+          <label className="heading">
+            <input
+              type="radio"
+              name="artificially generated content"
+              checked={state.radioOption === "artificially generated content"}
+              onChange={( ) => { this.setRadioOption( "artificially generated content" ); }}
+            />
+            { " " }
+            { I18n.t( "artificially_generated_content" ) }
+          </label>
+          <div
+            className="help-block"
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "artificially_generated_content_desc" )
+            }}
+          />
+        </div>
+      );
+    }
     return (
       <Modal
         show={show}
