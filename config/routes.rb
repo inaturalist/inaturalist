@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
   get "/giving", to: redirect( "/pages/giving", status: 302 )
   get "/ted", to: redirect( "/pages/ted", status: 302 )
+  get "/gifts", to: redirect( "https://giving.inaturalist.org/page/FUNATVAYGEH", status: 302 )
+  get "/supportersurvey", to: redirect( "https://docs.google.com/forms/d/12mSK_93McY60oWaCaWpjBib495PaMSByRpVl1ichCIY/", status: 302 )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
