@@ -829,6 +829,8 @@ en:
     Are you sure you want to remove this observation from %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   are_you_sure_you_want_to_flag_as_spammer: Are you sure you want to flag this user as a spammer?
+  artificially_generated_content: Artificially Generated Content
+  artificially_generated_content_desc: Contains content that is mostly or wholly generated through artificial intelligence.
   associated_observations: Associated observations
   associated_taxa: Associated taxa
   attention: Attention
@@ -2197,6 +2199,7 @@ en:
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
   extra_properties: Extra Properties
+  evidence_accurately_depicts_organism_or_scene: Evidence accurately depicts organism or scene
   evidence_of_organism: Evidence of organism
   evidence_related_to_single_subject: Evidence related to a single subject
   facebook: Facebook
@@ -8145,6 +8148,12 @@ en:
           the observation <strong>doesn't present evidence related to one
           subject</strong> (e.g. it has four photos of unrelated organisms; a
           photo showing habitat of the observation’s subject is OK)
+        # One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          the observation <strong>doesn't present accurate evidence of the organism or
+          scene</strong> (e.g. artificial intelligence was used to add,remove, or replace
+          elements in the image or sound. Denoising, focus stacking, or making
+          small fixes like removing sensor dust is usually OK).
         # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           the observation no longer needs an ID <em>and</em> the Community

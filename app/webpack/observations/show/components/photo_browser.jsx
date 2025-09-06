@@ -180,7 +180,7 @@ class PhotoBrowser extends React.Component {
                     setFlaggingModalState( {
                       item: photo,
                       show: true,
-                      radioOptions: ["spam", "copyright infringement", "inappropriate"]
+                      radioOptions: ["spam", "copyright infringement", "inappropriate", "artificially generated content"]
                     } );
                   }, {
                     permitOwnerOf: observation
