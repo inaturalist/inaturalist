@@ -1320,6 +1320,10 @@ hu:
     identification_pilot_title: "Meghatározási tesztprogram: Új felhasználók felvétele"
     #instructions explaining the pilot
     identification_pilot_body_intro: "Holnaptól kezdve naponta legfeljebb 30 megfigyelés érkezhet hozzád, amelyek megfelelnek az azonosítási profilodnak, és segítenek az új felhasználók bevonásában. Bármikor leiratkozhatsz."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Alább találod a legfeljebb 30 megfigyelésből álló listát, amelyek megfelelnek az azonosítási képességeidnek."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Nézz vissza holnap az azonosítási képességeidnek megfelelő megfigyelések linkjéért."
   data_deficient: Adathiányos
   data_quality: Adatminőség
   data_quality_assessment: Adatminőség
@@ -6327,6 +6331,20 @@ hu:
           Ha kitörlöd fiókod, eltávolítod
         type_confirmation_code: Írd be a %{confirmation_code}t
       edit:
+        block_desc_blocking_someone_prevents: |
+          Ha letiltasz egy felhasználót, akkor az nem tud neked üzenetet küldeni, a megfigyeléseidet azonosítani vagy kommentálni, és egyéb módon kapcsolatba lépni veled a %{site_name}-on. Továbbá a megfigyelései nem lesznek láthatók a kereséseidnél, és viszont. Fontos, hogy nem leszel telkesen láthatatlan a letiltott felhasználó számára. Továbbra is láthatja a megfigyeléseidet és a profilodat, csak nem léphet interakcióba veled.
+        block_desc_blocking_is_for_situations: |
+          A tiltás akkor segít, ha nem jössz ki egy felhasználóval és a civilizált konfliktusmegoldás nem vezet eredményre. Nem arra szolgál, hogy elrejtsd a tevékenységedet bizonyos fehahsználók elől, vagy hogy elkerüld, hogy olyan felhasználók azonosítsák be a megfigyeléseidet, amelyekben nem bízol. A közösségi meghatározás alól ezzel nem lehet kibújni - erre más opció létezik. Ezért a tiltás kétirányú: a tiltott felhasználó nem tud interakcióba lépni veled, és fordítva. Ha azért használod a letiltást, hogy valaki ne tudja azonosítani a megfigyeléseidet, fontos tudnod, hogy te sem tudod azonosítani az övéit.
+        block_desc_you_can_only_block_html: |
+          Legfeljebb három felhasználót tilthatsz. Szerintünk ez az ideális határ annak érdekében, hogy elkerüljük e funkció nem rendeltetésszerű használatát. Ha több felhasználót is szeretnél tiltani, lépj velünk <a href="mailto:%{help_email}">kapcsolatba</a>.
+        block_desc_there_are_two_exceptions: |
+          Két helyzetben nem akadályozza meg a tiltás az interakciót:
+        block_desc_comments_on_taxon_flags: megjegyzések az általad létrehozott taxonbejelentésekhez
+        block_desc_comments_on_taxon_changes: megjegyzések az általad létrehozott taxonmódosításokhoz
+        block_desc_unlike_more_personal: |
+          Ellentétben a személyesebb tartalomformákkal, mint például a megfigyelések és a hírmondóbejegyzések, a taxonok a teljes platformon átívelődnek és mindenki számára nyitottnak kell maradniuk. A tiltott felhasználó hozzászólásairól nem kapsz értesítést.
+        block_desc_if_harassing_html: |
+          Ha egy felhasználó zaklat az %{site_name}on, lépj velünk <a href="mailto:%{help_email}">kapcsolatba</a>. Ha a tevékenység nincs összhangban a Felhasználói Feltételeinkkel, megtesszük a szükséges lépéseket.
         common_scientific_name_display_order: Köznyelvi / tudományos nevek megjelenítési sorrendje
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ha meggondolod magad, bármikor
