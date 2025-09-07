@@ -616,6 +616,9 @@ tr:
   app_owner_application_about_p1a_html: |
     iNaturalist uygulamaları, iNaturalist API'sinin kimliği doğrulanmış kullanımına izin verir. Bu, gözlemler ya da tanımlamalar oluşturmak gibi şeyler yapan API çağrıları yapmanıza olanak tanır. Genel kullanım durumları, kullanıcılarının iNaturalist gözlemleri oluşturması için işlevsellik içeren masaüstü ya da mobil uygulamalardır. Bu içerik gerçek insan katılımı ya da gözetimi ile oluşturulmalıdır. Daha fazla ayrıntı için lütfen makine tarafından oluşturulan gözlemleri, tanımlamaları ve yorumları yasaklayan <a href="/pages/community+guidelines"
     target="_blank">Topluluk İlkelerimizi</a> okuyun.
+  app_owner_application_about_p2_html: |
+    2022 itibariyle, API istemcileri oluşturmak isteyen kullanıcılar için manuel onay talep ediyoruz. Üçüncü taraf uygulamalar oluşturmak için, önce “uygulama sahibi” olmak üzere bir başvuru yapmanız gerekir. Bu başvuruda, önerdiğiniz uygulamanın işlevselliğini ve onu nasıl kullanmayı planladığınızı açıklamalısınız. Başvuru göndermek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">geliştirici tanımlama</a> yapmış olması gerekir. Planınızla ilgili sorular sorabiliriz ve herhangi bir nedenle başvuruları reddetme hakkını saklı tutarız.
   app_owner_application_inelligible: |
     Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 geliştirme tanımlaması yapmış olmanız gerekmektedir.
   app_owner_application_fields_explanation_html: Uygulamanızın sahip olacağı işlevselliği ve nasıl kullanmayı tasarladığınızı açıklayın.
@@ -1103,6 +1106,8 @@ tr:
     url: Bu statüyü açıklayan bir sayfanın URL'si.
     geoprivacy: |
       Bu taksonun gözlemleri için varsayılan coğrafi gizlilik. Kıta, ülke ya da eyalet düzeyinde bir konumla ilişkili bir durumun coğrafi gizliliğinin, küresel olan ya da daha üst düzey bir yerle ilişkili bir durumu geçersiz kılabileceğini unutmayın.
+    iucn: |
+      Eşdeğer IUCN Kırmızı Liste kodu. Bu, gerçek IUCN değerlendirmesi değil, sadece bu durumun ima ettiği koordinat ifşa tehdidine en uygun IUCN kodudur. Bu, “En Az Endişe Verici” veya daha düşükse coğrafi gizliliği geçersiz kılar, bu nedenle bu taksonun gözlemlerini gizlemek istiyorsanız, bunu “Neredeyse Tehdit Altında” veya daha üstüne ayarlayın.
   conservation_status_geoprivacy_desc: |
     Bu konumdaki tüm sınıf gözlemlerine uygulanan varsayılan coğrafi gizlilik
   contact_support: Destekle İletişime Geç
@@ -1439,6 +1444,61 @@ tr:
   daily_users: Günlük Kullanıcılar
   danger_zone: Tehlikeli Alan
   dashboard: Kontrol Paneli
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Evet! Katılmak isterim."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Katılımı Durdur"
+    #link to a blog post
+    pilot_read_more: "Blogumuzda daha çok bilgi edinin."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Tanımlama Boşlukları Pilot Çalışması: Tanımlama Gerekli Türler"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Gözlemlerin günlük bağlantısını almak için katılım göstererek boşlukları doldurmamıza yardımcı olun:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Henüz Bilgisayar Görü Modeline dahil edilmemiştir"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Bizce bunu tanımlayabilirsiniz"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "İşte, Bilgisayar Görü Modeline henüz dahil edilmemiş, sizin tanımlayabileceğinizi düşündüğümüz türlerin gözlemlerine bir bağlantı."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Yarın tekrar kontrol edin, Bilgisayar Görü Modeline henüz dahil edilmemiş, sizin tanımlayabileceğinizi düşündüğümüz türlerin gözlemlerine ilişkin bağlantıyı bulabilirsiniz. En az 3 kez doğru tanımlama yaptığınız türler size gösterilecektir."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Bağlantı görmüyorsanız, bu ölçütlere uyan ve Tanımlama Gerekli herhangi bir gözlem olmayabilir. Her gün bir kez kontrol edilecektir."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Gözlem Boşlukları Pilot Çalışması: Yakındaki Aranan Türler"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Yarın, aşağıdaki türlerin bir listesini alacaksınız:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Henüz Bilgisayar Görü Modelinde değil"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Bu sezon son gözleminize yakın bir yerde gözlemlendi"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Bitkileri önceliklendirerek, 300 türe kadar 200 gözlemden oluşan bir örneklemle yönlendirilir"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Bu türleri gözlemleyerek, modelin iyileştirilmesine ve biyolojik çeşitlilik verilerindeki boşlukların doldurulmasına yardımcı olacaksınız. Bu liste, Model güncellendiğinde güncellenecektir. İstediğiniz zaman bu programdan çıkabilirsiniz."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "İşte mevcut tür listeniz:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Henüz Bilgisayar Görü Modeline dahil edilmemiştir"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Bu sezon son konumunuzun yakınında gözlemlendi"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Bunları gözlemleyerek, türlerin tanınmasını geliştirmeye ve kritik boşlukları doldurmaya yardımcı oluyorsunuz."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Türlere göz at"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Yarın tekrar kontrol edin, bu sezon gözlemlenen ve henüz Bilgisayar Görü Modelinde yer almayan türlerin kişiselleştirilmiş listesini bulabilirsiniz. Kişiselleştirilmiş liste, en son gözleminizin yapıldığı konumu kullanacaktır."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Bir bağlantı görmüyorsanız, yakınınızda bu ölçütlere uyan herhangi bir tür olmayabilir."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Tanımlama Pilot Çalışması: Yeni Kullanıcıların Eklenmesi"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Yarından itibaren, tanımlama becerilerinize uygun günlük 30 adede kadar gözlem alın ve yeni kullanıcıların sisteme dahil olmasına yardımcı olun. İstediğiniz zaman bu hizmetten vazgeçebilirsiniz."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Aşağıda, tanımlama becerilerinize uygun 30 adede kadar gözlem bulunmaktadır."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Tanımlama becerilerinizle eşleşen gözlemlere bir bağlantı için yarın tekrar kontrol edin."
   data_deficient: Eksik Veri
   data_quality: Veri Niteliği
   data_quality_assessment: Veri Nitelik Değerlendirmesi
@@ -7749,8 +7809,26 @@ tr:
         trending_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda geçen ay en çok gözlemlenen taksonlar
         wanted_desc: Bu taksonda yer alan henüz gözlemlenmemiş türler.
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Bu takson değiştirmeyi geri yüklemek istediğinizden emin misiniz?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Bu takson değiştirmeyi geri çekmek istediğinizden emin misiniz?
       move_children_desc: |
         Girdi taksonunun cins veya daha büyük olan alt taksonları çıktıya taşınacaktır; türler, alt türler, varyeteler vb. yeni cins veya tür adıyla eşdeğerleriyle değiştirilecektir.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Geri yükle
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: geri yükleniyor
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Geri çek
+      #state of an abandoned taxon change
+      withdrawn: geri çekiliyor
+      #state of a committed taxon change
+      committed: onaylandı
+      #state of a draft taxon change
+      draft: taslak
+      #the status of a taxon change: draft, withdrawn or committed
+      status: durum
       form:
         move_children_desc2_html: |
           Bu kutunun işaretlenmesi, bu değişiklik gerçekleştiğinde Takson Yer Değişimi ve Takson Birleştirmeleri için girdi taksonunun alt soyunu çıktı sınıfına taşıyacaktır. Eğer bu bir cins veya daha altı için bir değişiklik ise değişmesi gereken isimlere sahip tüm alt soy için Takson Yer Değişimi yaratacaktır. Örneğin, Canidae familyasını Dogidae ile değiştirirsen, bu <i>Canis</i> cinsinin üst soyunu Canidae'den Dogidae'ye geçirecektir. <i>Canis</i> cinsini <i>Dogis</i> cinsi ile değiştirirsen, <i>Canis lupus</i>'u <i>Dogis lupus</i> ve <i>Canis lupus</i> ssp. <i>lupus</i>'u <i>Dogis lupus</i> ssp. <i>lupus</i> olarak değiştirmek için Takson Yer Değişimi oluşturacak ve gerçekleştirecektir. Bu ise karışıklığa neden olabilir, dolayısıyla dikkatli kullanın.
@@ -7852,6 +7930,20 @@ tr:
           Hesabını silmek için forma "%{confirmation_code}" girmelisin
       edit:
         about_third_party_tracking: Üçüncü tarafın izlemesi hakkında
+        block_desc_blocking_someone_prevents: |
+          Birini engellemek, o kişinin size mesaj göndermesini, gözlemlerinize yorum yapmasını, gözlemlerinizi tanımlamasını ve %{site_name} üzerinde sizinle başka şekillerde etkileşime girmesini engeller. Ayrıca, o kişinin gözlemlerini arama sonuçlarınızdan ve sizin gözlemlerinizi de o kişinin arama sonuçlarından kaldırır. Ancak, bu sizi o kişiye görünmez yapmaz. O kişi hâlâ gözlemlerinizi bulabilir ve profilinizi görüntüleyebilir, sadece sizinle etkileşime giremez.
+        block_desc_blocking_is_for_situations: |
+          Engelleme, biriyle anlaşamadığınız ve sizin tüm çabalarınıza rağmen sizi rahat bırakmayan durumlar içindir. Bu, insanlardan saklanmak, güvenmediğiniz kişilerin sizi tanımlamasını önlemek veya topluluk tanımlamasından çıkmak için bir yol değildir (bunun için başka bir ayar vardır). Dolayısıyla, engelleme iki yönlüdür: Birini engellerseniz, o kişi sizinle etkileşime giremez ancak siz de onunla etkileşime giremezsiniz. Birinin sizin gözlemlerinizi görmesini engellemek için bu özelliği kötüye kullanırsanız, kendiniz de onun gözlemlerini göremezsiniz.
+        block_desc_you_can_only_block_html: |
+          Sadece üç kişiyi engelleyebilirsiniz. Bu sayının, engellenmesi gereken kişileri kapsarken engelleme özelliğinin kötüye kullanılmasını önleyecek makul bir sayı olduğunu düşünüyoruz. Daha çok kişiyi engellemeniz gerektiğini düşünüyorsanız, lütfen <a href="mailto:%{help_email}">bizimle iletişime geçin</a>.
+        block_desc_there_are_two_exceptions: |
+          Engellemenin etkileşimi engellemediği iki durum vardır:
+        block_desc_comments_on_taxon_flags: sizin tarafınızdan oluşturulan takson işaretleri hakkındaki yorumlar
+        block_desc_comments_on_taxon_changes: sizin tarafınızdan oluşturulan takson değiştirmeler hakkındaki yorumlar
+        block_desc_unlike_more_personal: |
+          Gözlemler ve günlük yazıları gibi daha kişisel içerik türlerinden farklı olarak, taksonlar herkes tarafından paylaşılır ve herkesin tartışmasına açıktır. Engelleme, engellediğiniz kişinin bu tür içeriklere yaptığı yorumlarla ilgili bildirimleri almayı engellemeye devam edecektir.
+        block_desc_if_harassing_html: |
+          %{site_name}'te birisi sizi taciz ediyorsa, <a href="mailto:%{help_email}">lütfen bize bildirin</a>. Bu durum, Kullanım Koşullarımızı ihlal ediyor veya sitemiz için uygunsuz olduğunu düşündüğümüz başka bir davranışı temsil ediyorsa, konuyu inceleyeceğiz.
         common_scientific_name_display_order: Yaygın / Bilimsel Ad Görüntüleme Sırası
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Fikrinizi değiştirirsen, her zaman <a href='/users/edit'>ayarlarını düzenleyebilirsin</a>.
