@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var inaturalist = inaturalist || { };
 // sort iconic taxa so all apps use the same order and have identical assets
 inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.sort.map{ |t|
@@ -348,7 +350,7 @@ $.fn.taxonAutocomplete = function( options ) {
     field.trigger( "assignSelection", options.initialSelection );
   }
 
-  if ( $( options.idEl ).val( ) ) {
+  if ( !options.skipInitialLookup && $( options.idEl ).val( ) ) {
     var url = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/taxa/"+$( options.idEl ).val( )
     var jsonpCallback = "initialTaxonCallback";
     // try to make jsonp callback unique to handle multiple taxon autocompletes on a page

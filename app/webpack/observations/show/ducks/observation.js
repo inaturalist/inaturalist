@@ -8,12 +8,13 @@ import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
 import { resetControlledTerms, fetchControlledTerms } from "./controlled_terms";
 import {
-  fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
+  fetchMoreFromThisUser,
   setEarlierUserObservations, setLaterUserObservations, setNearby,
-  setMoreFromClade, resetOtherObservations
+  setMoreFromClade
 } from "./other_observations";
 import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions, resetSubscriptions, setSubscriptions } from "./subscriptions";
+import { fetchRelationships, resetRelationships, setRelationships } from "./relationships";
 import { fetchIdentifiers, setIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
 import { setConfirmModalState, handleAPIError } from "../../../shared/ducks/confirm_modal";
@@ -239,6 +240,11 @@ const FIELDS = {
     play_local: true,
     url: true,
     uuid: true,
+    flags: {
+      id: true,
+      flag: true,
+      resolved: true
+    },
     moderator_actions: MODERATOR_ACTION_FIELDS,
     hidden: true
   },
@@ -308,7 +314,6 @@ export function setAttributes( attributes ) {
   };
 }
 
-/* global SITE */
 export function windowStateForObservation( observation, state, opts = { } ) {
   const options = { hash: "", ...opts };
   const currentUser = state && state.config && state.config.currentUser;
@@ -402,6 +407,7 @@ export function resetStates( ) {
     dispatch( setNearby( null ) );
     dispatch( setMoreFromClade( null ) );
     dispatch( setSubscriptions( [] ) );
+    dispatch( setRelationships( [] ) );
   };
 }
 
@@ -504,6 +510,7 @@ export function renderObservation( observation, options = { } ) {
     if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
     if ( hasObsAndLoggedIn( s ) && ( fetchAll || options.fetchSubscriptions ) ) {
       dispatch( resetSubscriptions( ) );
+      dispatch( resetRelationships( ) );
     }
     if ( fetchAll || options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
     if ( fetchAll || options.replaceState ) {
@@ -655,7 +662,7 @@ export function addTag( tag ) {
     const state = getState( );
     if ( !tag || !hasObsAndLoggedIn( state ) ) { return; }
     if ( _.find( state.observation.tags, t => (
-      _.lowerCase( t.tag || t ) === _.lowerCase( tag ) ) ) ) { return; }
+      _.toLower( t.tag || t ) === _.toLower( tag ) ) ) ) { return; }
     dispatch( setAttributes( {
       tags: state.observation.tags.concat( [{ tag, api_status: "saving" }] )
     } ) );
@@ -831,8 +838,8 @@ export function addID( taxon, options = { } ) {
     let observationTaxon = o.taxon;
     if (
       o.preferences.prefers_community_taxon === false
-      || (o.user.preferences.prefers_community_taxa === false 
-      && o.preferences.prefers_community_taxon === null)
+      || ( o.user.preferences.prefers_community_taxa === false
+      && o.preferences.prefers_community_taxon === null )
     ) {
       observationTaxon = o.community_taxon || o.taxon;
     }
@@ -1029,6 +1036,23 @@ export function followUser( ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     if ( userIsObserver( state ) ) { return; }
+    const { testingApiV2 } = state.config;
+    if ( testingApiV2 ) {
+      // v2 handles following through the relationships endpoints
+      dispatch( setRelationships( [{
+        api_status: "saving"
+      }] ) );
+      const payload = {
+        relationship: {
+          friend_id: state.observation.user.id
+        }
+      };
+      dispatch( callAPI( inatjs.relationships.create, payload, {
+        callback: ( ) => dispatch( fetchRelationships( ) )
+      } ) );
+      return;
+    }
+
     const newSubscriptions = state.subscriptions.subscriptions.concat( [{
       resource_type: "User",
       resource_id: state.observation.user.id,
@@ -1048,8 +1072,26 @@ export function unfollowUser( ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     if ( userIsObserver( state ) ) { return; }
-    const newSubscriptions = _.map( state.subscriptions, s => (
-      s.resource_type === "User"
+    const { testingApiV2 } = state.config;
+    if ( testingApiV2 ) {
+      // v2 handles following through the relationships endpoints
+      const relationship = state.relationships.relationships[0];
+      if ( _.isEmpty( relationship ) ) {
+        return;
+      }
+      dispatch( setRelationships( [{
+        api_status: "deleting"
+      }] ) );
+      dispatch( callAPI( inatjs.relationships.delete, { id: relationship.id }, {
+        callback: ( ) => {
+          dispatch( fetchRelationships( ) );
+        }
+      } ) );
+      return;
+    }
+
+    const newSubscriptions = _.map( state.subscriptions.subscriptions, s => (
+      ( s.resource_type === "User" )
         ? { ...s, api_status: "deleting" }
         : s
     ) );
@@ -1369,7 +1411,7 @@ export function setItemAPIStatus( item, apiStatus ) {
   };
 }
 
-export function onFileDrop( droppedFiles, rejectedFiles, dropEvent ) {
+export function onFileDrop( droppedFiles, rejectedFiles ) {
   return ( dispatch, getState ) => {
     const { observation } = getState( );
     if ( rejectedFiles && rejectedFiles.length > 0 ) {
