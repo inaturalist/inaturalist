@@ -1503,14 +1503,26 @@ nl:
   dashboard_pilots:
     #button asking to participate in a pilot
     pilot_participate: "Ja! Ik wil graag meedoen."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Stoppen met deelname"
     #link to a blog post
     pilot_read_more: "Lees meer op onze blog"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Pilot met determinatielacunes: \"ID nodig\"-soorten gezocht"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Help ons hiaten op te vullen door deel te nemen door de de dagelijkse link naar waarnemingen te ontvangen:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Zijn nog niet opgenomen in het Computer Vision Model"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Wij denken dat je kan determineren"
     #instructions once people have participated explaining the list of observations
     gaps_id_pilot_current_intro: "Hier is een link naar waarnemingen van soorten die nog niet zijn opgenomen in het Computer Vision Model die jij volgens ons kunt determineren."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Kom morgen terug voor een link naar waarnemingen van soorten die nog niet zijn opgenomen in het Computer Vision Model en waarvan we denken dat jij ze kunt determineren. Je krijgt soorten te zien waarvan je ten minste 3 verbeterende determinaties hebt gemaakt."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Waarneming Witte Gebieden: \"ID nodig\"-soorten gezocht"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Morgen ontvang je een lijst met soorten die:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_obs_pilot_condition_1: "Zijn nog niet opgenomen in het Computer Vision Model"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1527,8 +1539,18 @@ nl:
     gaps_obs_pilot_current_condition_2: "Dit seizoen nabij jouw laatste locatie waargenomen"
     #instructions showing the benefit of participating in the pilot
     gaps_obs_pilot_current_body: "Door deze waar te nemen, help je met het verbeteren van de herkenning van soorten en het vullen van kritieke hiaten."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Blader door soorten"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Kom morgen terug voor een gepersonaliseerde lijst van soorten die nog niet in het Computer Vision Model zijn opgenomen, in dit seizoen waargenomen. De gepersonaliseerde lijst gebruikt de locatie van je meest recente waarneming."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Als je geen link ziet, zijn er mogelijk geen soorten die aan deze criteria voldoen."
     #title for a pilot asking users to help onboard new users by identifying their obs
     identification_pilot_title: "Determinatie Pilot: Onboarding Nieuwe Gebruikers"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Vanaf morgen ontvang je dagelijks tot 30 waarnemingen die overeenkomen met je determinatievaardigheden, door nieuwe gebruikers aan boord te helpen. Je kunt je op elk moment afmelden."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Hieronder staan tot 30 waarnemingen die overeenkomen met jouw determinatievaardigheden."
     #instructions for people participating in the pilot if the list is not ready
     identification_pilot_check_back: "Kom morgen terug voor een link naar waarnemingen die overeenkomen met jouw determinatievaardigheden."
   data_deficient: Gegevens Tekort
@@ -6487,6 +6509,10 @@ nl:
       start_desc: |
         Tijd in de tijdzone van jouw account waarna deze aankondiging zal verschijnen.
         Geldt voor meerdere tijdzones, zodat iedereen het op dezelfde tijd zal zien, niet ten opzichte van hun lokale tijd.
+      include_virtuous_tags_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alle" selecteren of het niet maken van een selectie toont de aankondiging aan alle gebruikers, ongeacht hun Virtuous labels.
+      exclude_virtuous_tags_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Geen" selecteren of het niet maken van een selectie toont de aankondiging aan alle gebruikers, ongeacht hun Virtuous labels.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Target gebruikers op basis van donatiegedrag
@@ -8124,6 +8150,10 @@ nl:
         trending_in_place_desc_html: Meest waargenomen taxa gedurende de laatste maand uit <a href="%{url}">%{place}</a>
         wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Weet je zeker dat je deze taxonwijziging wilt herstellen?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Weet je zeker dat je deze taxonwijziging wilt intrekken?
       move_children_desc: |
         Kinderen van het input-taxon die genera of grover zijn, worden verplaatst naar 
         het resultaat; soorten, ondersoorten, variëteiten, etc. worden ingeruild voor
@@ -8249,6 +8279,8 @@ nl:
           communiceren. Als je het misbruikt om te voorkomen dat iemand je
           waarnemingen determineert, voorkomt je ook dat je hun
           waarnemingen kan determineren.
+        block_desc_you_can_only_block_html: |
+          Je kunt maar drie personen blokkeren. Wij denken dat dit een redelijk aantal is dat rekening houdt met mensen die moeten worden geblokkeerd terwijl misbruik van blokkeringen wordt voorkomen. Als het gevoel hebt dat je meer mensen moet kunnen blokkeren, please <a href="mailto:%{help_email}">contact us</a>.
         block_desc_there_are_two_exceptions: |
           Er zijn twee situaties waarin blokkeren interactie niet verhindert:
         block_desc_comments_on_taxon_flags: Opmerkingen over taxonmeldingen die door jou zijn gemaakt
