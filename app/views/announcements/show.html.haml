@@ -85,9 +85,7 @@
                   %th{ title: attr_name }=attr_name
                   %td
                     - val = @announcement.send( a )
-                    - if a == "ip_countries"
-                      = val.map { | code | Place::COUNTRIES_BY_NAME.values.detect { | country | country[:code] == code }.try(:[], :name) }.sort.join( ", " )
-                    - elsif a == "exclude_ip_countries"
+                    - if a == "ip_countries" || a == "exclude_ip_countries"
                       = val.map { | code | Place::COUNTRIES_BY_NAME.values.detect { | country | country[:code] == code }.try(:[], :name) }.sort.join( ", " )
                     - elsif a == "locales"
                       = val.map { | locale | I18n.t( "locales.#{locale}" ) }.sort.join( ", " )
