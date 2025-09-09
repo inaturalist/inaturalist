@@ -110,25 +110,7 @@ class AnnouncementsController < ApplicationController
   end
 
   def duplicate
-    original = @announcement
-    @announcement = original.dup
-
-    # Explicitly dup array columns so edits don’t mutate the original
-    @announcement.clients                                 = original.clients&.dup
-    @announcement.locales                                 = original.locales&.dup
-    @announcement.ip_countries                            = original.ip_countries&.dup
-    @announcement.exclude_ip_countries                    = original.exclude_ip_countries&.dup
-    @announcement.include_observation_oauth_application_ids = original.include_observation_oauth_application_ids&.dup
-    @announcement.exclude_observation_oauth_application_ids = original.exclude_observation_oauth_application_ids&.dup
-    @announcement.include_virtuous_tags                   = original.include_virtuous_tags&.dup
-    @announcement.exclude_virtuous_tags                   = original.exclude_virtuous_tags&.dup
-
-    # Don’t carry over dismissals; set creator to current user
-    @announcement.dismiss_user_ids = []
-    @announcement.user = current_user
-
-    # Copy site associations
-    @announcement.sites = original.sites
+    @announcement = @announcement.duplicate_as_user( current_user )
 
     # Show the form with all fields prefilled (unsaved record)
     render :new

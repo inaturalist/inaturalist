@@ -452,4 +452,18 @@ class Announcement < ApplicationRecord
     options[:only].uniq!
     super( options )
   end
+
+  def duplicate_as_user( duplicate_user )
+    announcement = deep_dup
+
+    # Don’t carry over dismissals; set creator to specified user
+    announcement.dismiss_user_ids = []
+    announcement.user = duplicate_user
+
+    # Copy site associations and preferences
+    announcement.sites = sites
+    announcement.stored_preferences = stored_preferences
+
+    announcement
+  end
 end
