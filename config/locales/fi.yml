@@ -6732,6 +6732,24 @@ fi:
           Jos saat liian paljon ilmoituksia sivustolta, voit <a href="/users/edit">asetuksistasi</a> muokata, mitä ilmoituksia lähetetään tai estää sähköpostin lähetyksen. Jos saat liikaa ilmoituksia joltakin henkilöltä, harkitse hänen <a href="/users/edit">vaimentamistaan</a> tilisi poistamisen sijaan.
       edit:
         about_third_party_tracking: Tietoja kolmannen osapuolen tekemästä seurannasta
+        block_desc_blocking_someone_prevents: |
+          Henkilön estäminen estää häntä lähettämästä sinulle viestejä tai kommentoimasta
+          havaintojasi, havaintojesi tunnistamista ja muuta vuorovaikutusta kanssasi %{site_name} -palvelussa. Se myös poistaa heidän havaintonsa hakutuloksistasi ja poistaa sinun havaintosi heidän hakutuloksista. Se ei kuitenkaan tee sinusta heille näkymätöntä. He voivat silti löytää havaintosi ja tarkastella profiiliasi, he eivät vain voi olla vuorovaikutuksessa kanssasi.
+        block_desc_blocking_is_for_situations: |
+          Estäminen on sellaisia tilanteita varten, kun et vain tule toimeen jonkun kanssa, eivätkä he jätä sinua rauhaan, vaikka yrität parhaasi mukaan ratkaista riidat sivistyneesti. Se ei ole tapa piiloutua henkilöiltä, joiden mielipiteisiin et luota tai kieltäytyä yhteisötunnistuksesta (on olemassa toinen asetus sitä varten). Näin ollen estäminen toimii molempiin suuntiin: jos estät jonkun, hän ei voi olla vuorovaikutuksessa kanssasi, mutta et voi myöskään itse olla vuorovaikutuksessa hänen kanssaan. Jos käytät sitä väärin estääksesi jotakuta tunnistamasta havaintojasi, estät myös itseäsi tunnistamasta hänen havaintojaan.
+        block_desc_you_can_only_block_html: |
+          Voit estää vain kolme henkilöä. Mielestämme tämä on kohtuullinen määrä, johon mahtuu ne henkilöt, jotka täytyy estää estämällä kuitenkin eston väärinkäytön. Jos sinun täytyy mielestäsi estää enemmän ihmisiä, <a href="mailto:%{help_email}">Ota yhteyttä</a>.
+        block_desc_there_are_two_exceptions: |
+          On kaksi tilannetta, joissa estäminen ei estä vuorovaikutusta:
+        block_desc_comments_on_taxon_flags: kommentteja taksonilipuista, jotka olet luonut
+        block_desc_comments_on_taxon_changes: kommentit taksonin muutoksista jotka olet tehnyt
+        block_desc_unlike_more_personal: |
+          Toisin kuin henkilökohtaisemmat sisällöt kuten havainnot ja päiväkirjamerkinnät, taksonit ovat yhteisiä kaikille ja niiden pitäisi olla avoimia keskustelulle. Esto estää edelleen sinua vastaanottamasta ilmoituksia kommenteista tämäntyyppisestä sisällöstä
+          henkilöltä, jonka esitit.
+        block_desc_if_harassing_html: |
+          Jos joku häiritsee tai vainoaa sinua %{site_name},
+          <a href="mailto:%{help_email}">ole hyvä ja kerro meille</a>. Jos
+          tämä rikkoo käyttöehtojamme tai edustaa muuta sivustolle sopimatonta käytöstä, tutkimme asian.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jos muutat mielesi, voit aina <a href='/users/edit'>muokata asetuksiasi</a>.
         inaturalist_network_affiliation_desc_html: |
