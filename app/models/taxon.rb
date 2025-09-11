@@ -156,6 +156,7 @@ class Taxon < ApplicationRecord
   validate :cannot_edit_parent_during_content_freeze
   validate :restrict_name_changes_by_rank,
     on: :update,
+    # bypass name restrictions only used in specs
     unless: -> { validation_context == :bypass_name_restrictions }
 
   has_subscribers to: {
@@ -2239,17 +2240,20 @@ class Taxon < ApplicationRecord
         end
         params = { id: id_obs[0..499] }
         obs = INatAPIService.get( "/observations", params ).results
-        id_taxa = []
-        obs.map do | o |
-          id_taxa << o["identifications"].select {| a | a["current"] == true }.map {| i | i["taxon"]["id"] }
+        id_taxa = obs.flat_map do | o |
+          o.fetch( "identifications", [] ).filter_map {| i | i["current"] ? i.dig( "taxon", "id" ) : nil }
         end
-        id_taxa = id_taxa.flatten
-        id_taxon_array = []
-        obs.map do | o |
-          id_taxon_array << o["identifications"].select {| a | a["current"] == true }.
-            map {| i | { id: i["taxon"]["id"], ancestor_ids: i["taxon"]["ancestor_ids"] } }
-        end
-        id_taxon_array = id_taxon_array.flatten.uniq
+        id_taxon_array = obs.flat_map do | o |
+          o.fetch( "identifications", [] ).filter_map do | i |
+            next unless i["current"]
+
+            t = i["taxon"] || {}
+            id = t["id"]
+            next unless id
+
+            { id: id, ancestor_ids: t["ancestor_ids"] || [] }
+          end
+        end.uniq
         id_taxon_hash = id_taxon_array.to_h {| a | [a[:id], a[:ancestor_ids]] }
         child_desc_ids = id_taxon_hash.
           select {| taxon, ancestors | ( child_ids.include? taxon ) || ( child_ids & ancestors ).count.positive? }.keys
@@ -2639,151 +2643,223 @@ class Taxon < ApplicationRecord
     lexicon = "Scientific Names"
 
     # Guard before transaction: nothing to do if already matches
-    old_valid = taxon_names.where( is_valid: true, lexicon: lexicon ).order( :id ).first
-    return if old_valid&.name.to_s == name.to_s
+    sci_name = taxon_names.where( is_valid: true, lexicon: lexicon ).order( :id ).first
+    return if sci_name&.name.to_s == name.to_s
 
     TaxonName.transaction do
       # re-fetch inside the transaction to avoid drift
-      old_valid = taxon_names.where( is_valid: true, lexicon: lexicon ).order( :id ).first
+      sci_name = taxon_names.where( is_valid: true, lexicon: lexicon ).order( :id ).first
 
-      new_row = taxon_names.where( name: name, lexicon: lexicon ).order( :id ).first
-      if new_row
-        new_row.update_columns( is_valid: true, updated_at: Time.current ) unless new_row.is_valid?
+      taxon_name_matching_name = taxon_names.where( name: name, lexicon: lexicon ).order( :id ).first
+      if taxon_name_matching_name
+        taxon_name_matching_name.update( is_valid: true ) unless taxon_name_matching_name.is_valid?
       else
-        new_row = taxon_names.create!( name: name, lexicon: lexicon, is_valid: true )
+        taxon_name_matching_name = taxon_names.create!( name: name, lexicon: lexicon, is_valid: true )
       end
 
-      if old_valid && old_valid.id != new_row.id && old_valid.is_valid?
-        old_valid.update_columns( is_valid: false, updated_at: Time.current )
+      if sci_name && sci_name.id != taxon_name_matching_name.id && sci_name.is_valid?
+        sci_name.update( is_valid: false )
       end
     end
+
+    index_observations
   end
+
+  # --- Validation ----------------------------------------------------------
 
   def restrict_name_changes_by_rank
     return unless will_save_change_to_name?
 
-    # 1) Coarser than species: disallow any name edits and use :not_similar
+    # Only allow animals, plants, fungi
+    unless iconic_taxon_id.present?
+      errors.add( :name, :not_similar, message: "name changes are only allowed for animals, plants, and fungi" )
+      return
+    end
+
+    # 1) Coarser than species: disallow any edits
     if rank_level && rank_level > 10
       errors.add( :name, :not_similar, message: "name changes are not allowed for ranks coarser than species" )
       return
     end
 
     old_name, new_name = name_change
-    old_marker = hybrid_marker_kind( old_name ) # :none, :times, :x
+    old_marker = hybrid_marker_kind( old_name )
     new_marker = hybrid_marker_kind( new_name )
 
-    o = parse_name_parts( old_name )
-    n = parse_name_parts( new_name )
+    old_name_parts = extract_parts( old_name )
+    new_name_parts = extract_parts( new_name )
 
-    # Need at least Genus + species to compare properly
-    unless [o[:genus], o[:species], n[:genus], n[:species]].all?( &:present? )
+    # Must be at least binomial (Genus + species) to compare
+    unless [old_name_parts[:genus], old_name_parts[:species], new_name_parts[:genus], new_name_parts[:species]].
+        all?( &:present? )
       errors.add( :name, :invalid_name, message: "must be binomial (Genus species) for checking" )
       return
     end
 
-    # ❌ Never allow genus to change
-    unless o[:genus].casecmp?( n[:genus] )
+    # Genus cannot change
+    unless old_name_parts[:genus].to_s.casecmp?( new_name_parts[:genus].to_s )
       errors.add( :name, :genus_changed, message: "genus cannot change" )
+      return
+    end
+
+    # If taxon rank is 'hybrid' and either side is a hybrid *formula*, block with custom message
+    if respond_to?( :rank ) && rank.to_s == "hybrid" && ( hybrid_formula?( old_name ) || hybrid_formula?( new_name ) )
+
+      errors.add( :name, :not_similar, message: "name changes are not allowed for hybrid formulas" )
       return
     end
 
     case rank_level
     when 10 # species
-      # Allow adding/removing Unicode ×; disallow adding ASCII 'x' from none.
+      # Reject hybrid formulas at species rank (spec expects :not_similar)
+      if hybrid_formula?( old_name ) || hybrid_formula?( new_name )
+        errors.add( :name, :not_similar, message: "hybrid formulas cannot be edited at species rank" )
+        return
+      end
+
+      # Disallow introducing ASCII 'x' between genus–species
       if old_marker == :none && new_marker == :x
         errors.add( :name, :not_similar, message: "cannot add 'x' as a hybrid marker between genus and species" )
         return
       end
-      # proceed with minor-change rule for specific epithet
-      unless epithet_similar?( o[:species], n[:species] )
+
+      # Specific epithet must be similar (minor typo/gender only)
+      unless epithet_similar_by_stem?( old_name_parts[:species_stem], new_name_parts[:species_stem] )
         errors.add( :name, :not_similar, message: "specific epithet must be similar (minor typo/gender only)" )
       end
 
-    when 5 # infraspecific (subspecies/variety)
-      # Species epithet must not change; only infra may change slightly
-      unless normalize_epithet( o[:species] ) == normalize_epithet( n[:species] )
+    when 5 # infraspecific (subspecies/var./forma...)
+      # Species epithet may not change at all
+      unless old_name_parts[:species].present? && old_name_parts[:species].casecmp?( new_name_parts[:species] )
         errors.add( :name, :species_changed, message: "species epithet cannot change for infraspecific ranks" )
         return
       end
-      unless o[:infra].present? && n[:infra].present?
+
+      # Require infra epithet on both sides
+      unless old_name_parts[:infra].present? && new_name_parts[:infra].present?
         errors.add( :name, :invalid_infraspecific, message: "infraspecific epithet required for this rank" )
         return
       end
-      unless epithet_similar?( o[:infra], n[:infra] )
+
+      # Only the *final* token may change for infra ranks
+      old_tokens = name_tokens( old_name )
+      new_tokens = name_tokens( new_name )
+      if old_tokens.length != new_tokens.length
+        errors.add( :name, :not_similar, message: "only the infraspecific epithet may change for infraspecific ranks" )
+        return
+      end
+      norm = ->( s ) { s.to_s.downcase.delete( "." ) }
+      changed_nonfinal = old_tokens[0...-1].zip( new_tokens[0...-1] ).any? {| a, b | norm.call( a ) != norm.call( b ) }
+      if changed_nonfinal
+        errors.add( :name, :not_similar, message: "only the infraspecific epithet may change for infraspecific ranks" )
+        return
+      end
+
+      # Minor-change rule on the infra epithet itself
+      unless epithet_similar_by_stem?( old_name_parts[:infra_stem], new_name_parts[:infra_stem] )
         errors.add( :name, :not_similar, message: "infraspecific epithet must be similar (minor typo/gender only)" )
       end
     end
   end
 
-  # Detect which hybrid marker (if any) appears between Genus and species.
-  # Returns :times for Unicode ×, :x for ASCII x, or :none.
+  # --- Helpers -------------------------------------------------------------
+
+  # Detect hybrid *marker* between Genus and species in verbatim string.
+  # Returns :times (Unicode ×), :x (ASCII x), or :none.
   def hybrid_marker_kind( str )
-    s = str.to_s.strip
-    return :times if s =~ /\A[A-Z][a-z-]*\s+×\s+[a-z-]+\b/
-    return :x     if s =~ /\A[A-Z][a-z-]*\s+x\s+[a-z-]+\b/
+    cleaned_str = str.to_s.strip
+    return :times if cleaned_str =~ /\A[A-Z][a-z\.-]*\s+×\s+[a-z-]+/
+    return :x     if cleaned_str =~ /\A[A-Z][a-z\.-]*\s+x\s+[a-z-]+/
 
     :none
   end
 
-  # Parse name into parts, ignoring hybrid marker (×/x) and optional subgenus
-  # Returns { genus:, species:, infra: }
-  def parse_name_parts( str )
-    s = str.to_s.strip.gsub( /\s+/, " " )
-    # Treat a hybrid marker between genus and species as just a space
-    s = s.sub( /\s+[×x]\s+/, " " )
-    parts = s.split
+  # True hybrid *formula*: "Genus species × (Genus) species"
+  # (NOT a named nothospecies like "Citrus × aurantium")
+  def hybrid_formula?( str )
+    cleaned_str = str.to_s.strip
+    # normalize NBSP and collapse spaces
+    cleaned_str = cleaned_str.tr( "\u00A0", " " ).gsub( /\s+/, " " )
+    # normalize the marker:
+    #  - pad real × with single spaces
+    #  - replace ASCII 'x' only when it's a standalone token
+    cleaned_str = cleaned_str.gsub( /\s*×\s*/, " × " ).gsub( /(?<=\s)[xX](?=\s)/, " × " )
 
-    # Remove "(Subgenus)" if present in the 2nd position
-    if parts.length >= 3 && parts[1].start_with?( "(" )
-      parts.delete_at( 1 )
-    end
+    # drop optional subgenus right after genus: "Genus (Subgenus) species ..."
+    cleaned_str.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
+
+    # Must have: Genus species × (optional Genus) species
+    /\A[A-Z][A-Za-z\.-]+ [a-z-]+ × (?:[A-Z][A-Za-z\.-]+ )?[a-z-]+(?:\b|\z)/.match?( cleaned_str )
+  end
+
+  # Prefer GNparser, but fall back gracefully if it can’t provide clean tokens/stems.
+  # Returns { genus:, species:, infra:, species_stem:, infra_stem:, ok: true/false }
+  def extract_parts( name )
+    parsed = Biodiversity::Parser.parse( name.to_s )
+    simple = parsed.dig( :canonical, :simple ).to_s
+    stem   = parsed.dig( :canonical, :stem ).to_s
+
+    tokens = simple.split( /\s+/ )
+    stems  = stem.split( /\s+/ )
+
+    parts = {
+      genus: tokens[0],
+      species: tokens[1],
+      infra: tokens[2],
+      species_stem: stems[1],
+      infra_stem: stems[2]
+    }
+
+    ok = parts[:genus].present? && parts[:species].present? && parts[:species_stem].present?
+    return parts.merge( ok: true ) if ok
+
+    # Fallback: tolerant tokenizer
+    fb = fallback_parts( name )
+    parts[:genus]        ||= fb[:genus]
+    parts[:species]      ||= fb[:species]
+    parts[:infra]        ||= fb[:infra]
+    parts[:species_stem] ||= fallback_stem( fb[:species] )
+    parts[:infra_stem]   ||= fallback_stem( fb[:infra] )
+    parts.merge( ok: false )
+  end
+
+  # Fallback tokenizer if GNparser fails or returns blanks.
+  # Returns { genus:, species:, infra: }
+  def fallback_parts( name )
+    cleaned_name = name.to_s.strip.gsub( /\s+/, " " )
+    # Remove (Subgenus)
+    cleaned_name.sub!( /\A([A-Z][a-z-]+)\s+\([A-Z][a-z-]+\)\s+/, "\\1 " )
+    # Normalize a genus–species hybrid marker into a space
+    cleaned_name.sub!( /\s+[×x]\s+/, " " )
+    parts = cleaned_name.split( /\s+/ )
 
     genus   = parts[0]
     species = parts[1]
-    infra   = nil
-
-    if parts.length >= 3
-      token = parts[-2].to_s.downcase.gsub( ".", "" )
-      rank_tokens = %w(subsp ssp var subvar form forma f)
-      infra = rank_tokens.include?( token ) ? parts[-1] : parts[2]
-    end
+    infra   = parts[-1] if parts.length >= 3 # always treat the final token as infra
 
     { genus: genus, species: species, infra: infra }
   end
 
-  def epithet_similar?( old_epithet, new_epithet )
-    a = normalize_epithet( old_epithet )
-    b = normalize_epithet( new_epithet )
-    return true if a == b
-    return true if gender_variant?( a, b )
-
-    levenshtein( a, b ) <= 2 # small typos / minor edits only
+  def name_tokens( name )
+    cleaned_name = name.to_s.strip
+    cleaned_name = cleaned_name.tr( "\u00A0", " " ).gsub( /\s+/, " " )
+    # drop optional (Subgenus)
+    cleaned_name.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
+    # normalize genus–species hybrid marker
+    cleaned_name.gsub!( /\s*[x×]\s*/i, " " )
+    cleaned_name.split( /\s+/ )
   end
 
-  def normalize_epithet( str )
-    str.to_s.downcase.gsub( /[^a-z-]/, "" )
+  # Crude stemmer good enough for small-typo/gender-variant checks
+  def fallback_stem( str )
+    str.to_s.downcase.gsub( /[^a-z-]/, "" ).sub( /(ius|us|a|um|is|e|er|es|ii|i)\z/, "" )
   end
 
-  def gender_variant?( left, right )
-    variants = [%w(us a), %w(us um), %w(a um), %w(is e), %w(er a), %w(er um), %w(es is), %w(i ii)]
-    variants.any? {| from, to | left == right.sub( /#{to}\z/, from ) || right == left.sub( /#{from}\z/, to ) }
-  end
+  # “Similar” = identical stems or DamerauLevenshteinLevenshtein <= 2 (and not blank)
+  def epithet_similar_by_stem?( old_stem, new_stem )
+    return false if old_stem.blank? || new_stem.blank?
+    return true  if old_stem == new_stem
 
-  def levenshtein( source, target )
-    m = source.length
-    n = target.length
-    return n if m.zero?
-    return m if n.zero?
-
-    d = Array.new( m + 1 ) { Array.new( n + 1, 0 ) }
-    ( 0..m ).each {| i | d[i][0] = i }
-    ( 0..n ).each {| j | d[0][j] = j }
-    ( 1..m ).each do | i |
-      ( 1..n ).each do | j |
-        cost = ( source[i - 1] == target[j - 1] ) ? 0 : 1
-        d[i][j] = [d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost].min
-      end
-    end
-    d[m][n]
+    DamerauLevenshtein.distance( old_stem, new_stem ) <= 2
   end
 end

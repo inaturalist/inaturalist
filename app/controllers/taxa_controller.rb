@@ -363,15 +363,7 @@ class TaxaController < ApplicationController
   end
 
   def edit
-    @observations_exist = @taxon.observations_count.positive?
-    @listed_taxa_exist = ListedTaxon.where( taxon_id: @taxon.id ).any?
-    @identifications_exist = Identification.elastic_search(
-      filters: [{ term: { "taxon.id" => @taxon.id } }],
-      size: 0
-    ).total_entries.positive?
-    @descendants_exist = @taxon.descendants.exists?
-    @taxon_range = TaxonRange.without_geom.where( taxon_id: @taxon ).first
-    @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
+    build_edit_ivars
     return if @protected_attributes_editable
 
     flash.now[:notice] ||= t(
@@ -408,17 +400,7 @@ class TaxaController < ApplicationController
         @taxon.errors.full_messages.to_sentence
       end
 
-      # Rebuild ivars needed by the edit view
-      @observations_exist = @taxon.observations_count.positive?
-      @listed_taxa_exist = ListedTaxon.where( taxon_id: @taxon.id ).any?
-      @identifications_exist = Identification.elastic_search(
-        filters: [{ term: { "taxon.id" => @taxon.id } }],
-        size: 0
-      ).total_entries.positive?
-      @descendants_exist = @taxon.descendants.exists?
-      @taxon_range = TaxonRange.without_geom.where( taxon_id: @taxon ).first
-      @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-
+      build_edit_ivars
       render action: "edit"
     end
   end
@@ -1298,6 +1280,18 @@ class TaxaController < ApplicationController
   end
 
   private
+
+  def build_edit_ivars
+    @observations_exist = @taxon.observations_count.positive?
+    @listed_taxa_exist = ListedTaxon.exists?( taxon_id: @taxon.id )
+    @identifications_exist = Identification.elastic_search(
+      filters: [{ term: { "taxon.id" => @taxon.id } }],
+      size: 0
+    ).total_entries.positive?
+    @descendants_exist = @taxon.descendants.exists?
+    @taxon_range = TaxonRange.without_geom.find_by( taxon_id: @taxon.id )
+    @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
+  end
 
   def respond_to_merge_error( msg )
     respond_to do | format |
