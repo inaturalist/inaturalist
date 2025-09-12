@@ -151,6 +151,10 @@ class PhotoBrowser extends React.Component {
         ( { original, large, square } = SITE.copyrighted_media_image_urls );
       }
 
+      if ( photo.flags && photo.flaggedAsArtificial( ) ) {
+        ( { original, large, square } = SITE.artificial_media_image_urls );
+      }
+
       if ( !photo.url && !photo.preview ) {
         original = SITE.processing_image_urls.small;
         large = SITE.processing_image_urls.small;
@@ -180,7 +184,7 @@ class PhotoBrowser extends React.Component {
                     setFlaggingModalState( {
                       item: photo,
                       show: true,
-                      radioOptions: ["spam", "copyright infringement", "inappropriate", "artificially generated content"]
+                      radioOptions: ["spam", "copyright infringement", "artificially generated content", "inappropriate"]
                     } );
                   }, {
                     permitOwnerOf: observation
