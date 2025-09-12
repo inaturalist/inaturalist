@@ -187,6 +187,7 @@ class Sound < ApplicationRecord
     if flag_is_copyright && !other_unresolved_copyright_flags_exist
       # TODO this is copypasta from photo.rb, but we should do something to
       # replace sounds with something equivalent to the copyright infringement
+      # or artificially generated content
       # notice
       # if options[:action] == "created"
       #   styles = %w(original large medium small thumb square)

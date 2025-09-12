@@ -77,6 +77,11 @@ class MediaViewer extends Component {
         large = SITE.copyrighted_media_image_urls.large;
         medium = SITE.copyrighted_media_image_urls.medium;
       }
+      if ( photo.flags && photo.flaggedAsArtificial( ) ) {
+        original = SITE.artificial_media_image_urls.original;
+        large = SITE.artificial_media_image_urls.large;
+        medium = SITE.artificial_media_image_urls.medium;
+      }
       if ( !photo.url && !photo.preview ) {
         original = SITE.processing_image_urls.small;
         large = SITE.processing_image_urls.small;

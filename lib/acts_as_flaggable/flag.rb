@@ -11,10 +11,12 @@ class Flag < ApplicationRecord
   SPAM = "spam"
   INAPPROPRIATE = "inappropriate"
   COPYRIGHT_INFRINGEMENT = "copyright infringement"
+  ARTIFICIALLY_GENERATED_CONTENT = "artificially generated content"
   FLAGS = [
     SPAM,
     INAPPROPRIATE,
-    COPYRIGHT_INFRINGEMENT
+    COPYRIGHT_INFRINGEMENT,
+    ARTIFICIALLY_GENERATED_CONTENT
   ].freeze
   TYPES = %w(CheckList Comment Guide GuideSection Identification List Message Observation Photo Place Post Project Sound
              Taxon User).freeze
