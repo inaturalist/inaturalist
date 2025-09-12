@@ -2665,19 +2665,17 @@ class Taxon < ApplicationRecord
     index_observations
   end
 
-  # --- Validation ----------------------------------------------------------
-
   def restrict_name_changes_by_rank
     return unless will_save_change_to_name?
 
-    # Only allow animals, plants, fungi
+    # require iconic_taxon_id (e.g. no viruses bacteria)
     unless iconic_taxon_id.present?
-      errors.add( :name, :not_similar, message: "name changes are only allowed for animals, plants, and fungi" )
+      errors.add( :name, :not_similar, message: "name changes not allowed for viruses, bacteria, or ungrafted clades" )
       return
     end
 
-    # 1) Coarser than species: disallow any edits
-    if rank_level && rank_level > 10
+    # Coarser than species: disallow any edits
+    if rank_level.to_i > 10
       errors.add( :name, :not_similar, message: "name changes are not allowed for ranks coarser than species" )
       return
     end
@@ -2686,64 +2684,86 @@ class Taxon < ApplicationRecord
     old_marker = hybrid_marker_kind( old_name )
     new_marker = hybrid_marker_kind( new_name )
 
-    old_name_parts = extract_parts( old_name )
-    new_name_parts = extract_parts( new_name )
+    # 1) Block hybrid formulas up front (covers name+rank edits too)
+    if hybrid_formula?( old_name ) || hybrid_formula?( new_name )
+      errors.add( :name, :not_similar, message: "name changes are not allowed for hybrid formulas" )
+      return
+    end
+
+    # 2) Early allow-list: marker-only normalization at Genus–species boundary
+    #    BUT never allow introducing ASCII 'x'.
+    if [10, 5].include?( rank_level.to_i ) && marker_only_between_genus_species?( old_name, new_name )
+      if old_marker == :none && new_marker == :x
+        errors.add( :name, :not_similar, message: "cannot add 'x' as a hybrid marker between genus and species" )
+        return
+      end
+      return
+    end
+
+    # Use tokens for structural checks (robust to ×/x)
+    old_tokens = name_tokens( old_name )
+    new_tokens = name_tokens( new_name )
 
     # Must be at least binomial (Genus + species) to compare
-    unless [old_name_parts[:genus], old_name_parts[:species], new_name_parts[:genus], new_name_parts[:species]].
-        all?( &:present? )
+    unless old_tokens.length >= 2 && new_tokens.length >= 2
       errors.add( :name, :invalid_name, message: "must be binomial (Genus species) for checking" )
       return
     end
 
     # Genus cannot change
-    unless old_name_parts[:genus].to_s.casecmp?( new_name_parts[:genus].to_s )
+    unless old_tokens.first.to_s.casecmp?( new_tokens.first.to_s )
       errors.add( :name, :genus_changed, message: "genus cannot change" )
       return
     end
 
-    # If taxon rank is 'hybrid' and either side is a hybrid *formula*, block with custom message
-    if respond_to?( :rank ) && rank.to_s == "hybrid" && ( hybrid_formula?( old_name ) || hybrid_formula?( new_name ) )
+    # Parse once for stems (used below)
+    old_name_parts = extract_parts( old_name )
+    new_name_parts = extract_parts( new_name )
 
-      errors.add( :name, :not_similar, message: "name changes are not allowed for hybrid formulas" )
+    # Disallow introducing ASCII 'x' between genus–species
+    if old_marker == :none && new_marker == :x
+      errors.add( :name, :not_similar, message: "cannot add 'x' as a hybrid marker between genus and species" )
       return
     end
 
-    case rank_level
+    case rank_level.to_i
     when 10 # species
-      # Reject hybrid formulas at species rank (spec expects :not_similar)
-      if hybrid_formula?( old_name ) || hybrid_formula?( new_name )
-        errors.add( :name, :not_similar, message: "hybrid formulas cannot be edited at species rank" )
+      # If either side isn't strictly binomial, only allow:
+      #   - removing a marker (× or x), or
+      #   - adding a Unicode × (as a standalone token)
+      if old_tokens.length != 2 || new_tokens.length != 2
+        allowed_nonbinomial_change =
+          ( [:times, :x].include?( old_marker ) && new_marker == :none ) || # remove ×/x
+          ( old_marker == :none && new_marker == :times ) # add ×
+        unless allowed_nonbinomial_change
+          errors.add( :name, :not_similar,
+            message: "non-standard species name: only removing 'x'/'×' or adding '×' is allowed" )
+          return
+        end
         return
       end
 
-      # Disallow introducing ASCII 'x' between genus–species
-      if old_marker == :none && new_marker == :x
-        errors.add( :name, :not_similar, message: "cannot add 'x' as a hybrid marker between genus and species" )
-        return
-      end
-
-      # Specific epithet must be similar (minor typo/gender only)
+      # Strictly binomial: allow only minor changes to the specific epithet
       unless epithet_similar_by_stem?( old_name_parts[:species_stem], new_name_parts[:species_stem] )
         errors.add( :name, :not_similar, message: "specific epithet must be similar (minor typo/gender only)" )
       end
 
     when 5 # infraspecific (subspecies/var./forma...)
-      # Species epithet may not change at all
-      unless old_name_parts[:species].present? && old_name_parts[:species].casecmp?( new_name_parts[:species] )
+      # Species epithet may not change at all (exact token compare, not stems)
+      old_species = old_tokens[1]
+      new_species = new_tokens[1]
+      unless old_species.present? && new_species.present? && old_species.casecmp?( new_species )
         errors.add( :name, :species_changed, message: "species epithet cannot change for infraspecific ranks" )
         return
       end
 
-      # Require infra epithet on both sides
-      unless old_name_parts[:infra].present? && new_name_parts[:infra].present?
+      # Require an infra epithet on both sides (last token; need at least 3 tokens)
+      unless old_tokens.length >= 3 && new_tokens.length >= 3
         errors.add( :name, :invalid_infraspecific, message: "infraspecific epithet required for this rank" )
         return
       end
 
-      # Only the *final* token may change for infra ranks
-      old_tokens = name_tokens( old_name )
-      new_tokens = name_tokens( new_name )
+      # Only the *final* token may change for infra ranks (non-final tokens must be identical)
       if old_tokens.length != new_tokens.length
         errors.add( :name, :not_similar, message: "only the infraspecific epithet may change for infraspecific ranks" )
         return
@@ -2755,14 +2775,21 @@ class Taxon < ApplicationRecord
         return
       end
 
-      # Minor-change rule on the infra epithet itself
-      unless epithet_similar_by_stem?( old_name_parts[:infra_stem], new_name_parts[:infra_stem] )
+      # Minor-change rule on the infra epithet itself — use GNparser stems, with fallback if blank
+      old_infra = old_tokens.last
+      new_infra = new_tokens.last
+      old_infra_stem = old_name_parts[:infra_stem].presence || fallback_stem( old_infra )
+      new_infra_stem = new_name_parts[:infra_stem].presence || fallback_stem( new_infra )
+
+      unless epithet_similar_by_stem?( old_infra_stem, new_infra_stem )
         errors.add( :name, :not_similar, message: "infraspecific epithet must be similar (minor typo/gender only)" )
       end
     end
   end
 
-  # --- Helpers -------------------------------------------------------------
+  def normalize_ws( str )
+    str.to_s.strip.tr( "\u00A0", " " ).gsub( /\s+/, " " )
+  end
 
   # Detect hybrid *marker* between Genus and species in verbatim string.
   # Returns :times (Unicode ×), :x (ASCII x), or :none.
@@ -2777,18 +2804,9 @@ class Taxon < ApplicationRecord
   # True hybrid *formula*: "Genus species × (Genus) species"
   # (NOT a named nothospecies like "Citrus × aurantium")
   def hybrid_formula?( str )
-    cleaned_str = str.to_s.strip
-    # normalize NBSP and collapse spaces
-    cleaned_str = cleaned_str.tr( "\u00A0", " " ).gsub( /\s+/, " " )
-    # normalize the marker:
-    #  - pad real × with single spaces
-    #  - replace ASCII 'x' only when it's a standalone token
+    cleaned_str = normalize_ws( str )
     cleaned_str = cleaned_str.gsub( /\s*×\s*/, " × " ).gsub( /(?<=\s)[xX](?=\s)/, " × " )
-
-    # drop optional subgenus right after genus: "Genus (Subgenus) species ..."
     cleaned_str.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
-
-    # Must have: Genus species × (optional Genus) species
     /\A[A-Z][A-Za-z\.-]+ [a-z-]+ × (?:[A-Z][A-Za-z\.-]+ )?[a-z-]+(?:\b|\z)/.match?( cleaned_str )
   end
 
@@ -2813,7 +2831,6 @@ class Taxon < ApplicationRecord
     ok = parts[:genus].present? && parts[:species].present? && parts[:species_stem].present?
     return parts.merge( ok: true ) if ok
 
-    # Fallback: tolerant tokenizer
     fb = fallback_parts( name )
     parts[:genus]        ||= fb[:genus]
     parts[:species]      ||= fb[:species]
@@ -2823,30 +2840,20 @@ class Taxon < ApplicationRecord
     parts.merge( ok: false )
   end
 
-  # Fallback tokenizer if GNparser fails or returns blanks.
-  # Returns { genus:, species:, infra: }
+  # Fallback tokenizer if GNparser fails or returns blanks. { genus:, species:, infra: }
   def fallback_parts( name )
-    cleaned_name = name.to_s.strip.gsub( /\s+/, " " )
-    # Remove (Subgenus)
+    cleaned_name = normalize_ws( name )
     cleaned_name.sub!( /\A([A-Z][a-z-]+)\s+\([A-Z][a-z-]+\)\s+/, "\\1 " )
-    # Normalize a genus–species hybrid marker into a space
-    cleaned_name.sub!( /\s+[×x]\s+/, " " )
+    cleaned_name.gsub!( /\s+[×x]\s+/, " " ) # treat marker as a space
     parts = cleaned_name.split( /\s+/ )
-
-    genus   = parts[0]
-    species = parts[1]
-    infra   = parts[-1] if parts.length >= 3 # always treat the final token as infra
-
-    { genus: genus, species: species, infra: infra }
+    { genus: parts[0], species: parts[1], infra: ( parts[-1] if parts.length >= 3 ) }
   end
 
   def name_tokens( name )
-    cleaned_name = name.to_s.strip
-    cleaned_name = cleaned_name.tr( "\u00A0", " " ).gsub( /\s+/, " " )
-    # drop optional (Subgenus)
+    cleaned_name = normalize_ws( name )
     cleaned_name.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
-    # normalize genus–species hybrid marker
-    cleaned_name.gsub!( /\s*[x×]\s*/i, " " )
+    # normalize only the standalone marker token (won't touch 'max', 'plexippus', etc.)
+    cleaned_name = cleaned_name.gsub( /\s*×\s*/, " " ).gsub( /(?<=\s)[xX](?=\s)/, " " )
     cleaned_name.split( /\s+/ )
   end
 
@@ -2855,11 +2862,40 @@ class Taxon < ApplicationRecord
     str.to_s.downcase.gsub( /[^a-z-]/, "" ).sub( /(ius|us|a|um|is|e|er|es|ii|i)\z/, "" )
   end
 
-  # “Similar” = identical stems or DamerauLevenshteinLevenshtein <= 2 (and not blank)
+  # “Similar” = identical stems or Damerau-Levenshtein <= 2 (and not blank)
   def epithet_similar_by_stem?( old_stem, new_stem )
     return false if old_stem.blank? || new_stem.blank?
     return true  if old_stem == new_stem
 
     DamerauLevenshtein.distance( old_stem, new_stem ) <= 2
+  end
+
+  # Marker-only normalization exactly between Genus and species; tail must match.
+  def marker_only_between_genus_species?( old_str, new_str )
+    old = normalize_ws( old_str )
+    new = normalize_ws( new_str )
+
+    genus    = "[A-Z][A-Za-z\\.-]+"
+    subgenus = "\\([A-Z][A-Za-z\\.-]+\\)"
+    species  = "[a-z-]+"
+
+    with_marker = /\A(#{genus})\s+(?:#{subgenus}\s+)?(?:×|[xX])\s+(#{species})(.*)\z/
+    no_marker   = /\A(#{genus})\s+(?:#{subgenus}\s+)?(#{species})(.*)\z/
+
+    cmp = lambda do | m, n |
+      g1, sp1, tail1 = m.captures
+      g2, sp2, tail2 = n.captures
+      g1.casecmp?( g2 ) && sp1.casecmp?( sp2 ) && tail1 == tail2
+    end
+
+    m_old_with = with_marker.match( old )
+    n_new_no   = no_marker.match( new )
+    return cmp.call( m_old_with, n_new_no ) if m_old_with && n_new_no
+
+    m_old_no   = no_marker.match( old )
+    n_new_with = with_marker.match( new )
+    return cmp.call( m_old_no, n_new_with ) if m_old_no && n_new_with
+
+    false
   end
 end

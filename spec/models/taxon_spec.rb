@@ -1890,130 +1890,139 @@ describe "audits" do
   end
 end
 
+# spec/models/taxon_name_change_spec.rb
 describe Taxon, "name change restrictions by rank" do
-  before( :each ) do
-    load_test_taxa
+  before( :each ) { load_test_taxa }
+
+  def expect_update_pass( taxon, **attrs )
+    expect( taxon.update( **attrs ) ).to be( true )
   end
 
-  context "ranks coarser than species (rank_level > 10, e.g. genus)" do
-    it "should not be able to change name when rank_level coarser than 10" do
+  def expect_update_fail( taxon, error_key = :not_similar, **attrs )
+    expect( taxon.update( **attrs ) ).to be( false )
+    expect( taxon.errors.of_kind?( :name, error_key ) ).to be( true )
+  end
+
+  context "policy gates" do
+    it "disallows edits for ranks coarser than species" do
       t = Taxon.make!( name: "Turdus", rank: "genus", iconic_taxon: @Aves )
-      expect( t.update( name: "Turdi" ) ).to be( false )
-      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
-    end
-  end
-
-  context "species (rank_level = 10)" do
-    let( :species ) do
-      Taxon.make!( name: "Turdus migratorius", rank: "species", iconic_taxon: @Aves )
+      expect_update_fail( t, :not_similar, name: "Turdi" )
     end
 
-    it "should be able to add minor changes to a species epithet when rank_level 10" do
-      # Minor / gender-like change: migratorius -> migratorius
-      expect( species.update( name: "Turdus migratoria" ) ).to be( true )
-    end
-
-    it "should not be able to add major changes to a species epithet when rank_level 10" do
-      expect( species.update( name: "Turdus meei" ) ).to be( false )
-      expect( species.errors.of_kind?( :name, :not_similar ) ).to be( true )
-    end
-
-    it "should not be able to change genus epithet when rank_level 10" do
-      expect( species.update( name: "Turdi migratorius" ) ).to be( false )
-      expect( species.errors.of_kind?( :name, :genus_changed ) ).to be( true )
-    end
-
-    it "should be able to remove an × between genus and species when rank_level 10" do
-      hybrid = Taxon.make!( name: "Turdus × migratorius", rank: "hybrid", iconic_taxon: @Aves )
-      expect( hybrid.update( name: "Turdus migratorius" ) ).to be( true )
-    end
-
-    it "should be able to remove an x between genus and species when rank_level 10" do
-      hybrid = Taxon.make!( name: "Turdus x migratorius", rank: "hybrid", iconic_taxon: @Aves )
-      expect( hybrid.update( name: "Turdus migratorius" ) ).to be( true )
-    end
-
-    it "should be able to add an × between genus and species when rank_level 10" do
-      expect( species.update( name: "Turdus × migratorius" ) ).to be( true )
-    end
-
-    it "should not be able to add an x between genus and species when rank_level 10" do
-      expect( species.update( name: "Turdus x migratorius" ) ).to be( false )
-      expect( species.errors.of_kind?( :name, :not_similar ) ).to be( true )
-    end
-
-    it "should not be able to change hybrid formulas (e.g. Danaus plexippus × gilippus)" do
-      t = Taxon.make!( name: "Danaus plexippus × gilippus", rank: "hybrid", iconic_taxon: @Insecta )
-      expect( t.update( name: "Danaus plexippus × auratus" ) ).to be( false )
-      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
-    end
-
-    it "should not be able to add minor changes to a non epithet" do
-      t = Taxon.make!( name: "Glycine max minius gracilis", rank: "species", iconic_taxon: @Insecta )
-      expect( t.update( name: "Glycine max miniii gracilis" ) ).to be( false )
-      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
-    end
-  end
-
-  context "infraspecific (rank_level = 5, e.g. subspecies/var.)" do
-    let( :species ) do
-      Taxon.make!( name: "Taricha torosa trueii", rank: "subspecies", iconic_taxon: @Amphibia )
-    end
-
-    it "should be able to add minor changes to a sspspecies epithet when rank_level 5" do
-      # Minor change: trueii -> truei
-      expect( species.update( name: "Taricha torosa truei" ) ).to be( true )
-    end
-
-    it "should not be able to add major changes to a sspspecies epithet when rank_level 5" do
-      expect( species.update( name: "Taricha torosa meei" ) ).to be( false )
-      expect( species.errors.of_kind?( :name, :not_similar ) ).to be( true )
-    end
-
-    it "should not be able to change species epithet when rank_level 5" do
-      expect( species.update( name: "Taricha torosus trueii" ) ).to be( false )
-      expect( species.errors.of_kind?( :name, :species_changed ) ).to be( true )
-    end
-
-    it "should not be able to change genus epithet when rank_level 5" do
-      expect( species.update( name: "Tarricha torosa trueii" ) ).to be( false )
-      expect( species.errors.of_kind?( :name, :genus_changed ) ).to be( true )
-    end
-
-    it "should be able to add minor changes to a ssp epithet when rank written out" do
-      t = Taxon.make!( name: "Glycine max nothosubsp gracilis", rank: "subspecies", iconic_taxon: @Amphibia )
-      expect( t.update( name: "Glycine max nothosubsp gracilii" ) ).to be( true )
-    end
-
-    it "should not be able to add major changes to a ssp epithet when rank written out" do
-      t = Taxon.make!( name: "Glycine max nothosubsp gracilis", rank: "subspecies", iconic_taxon: @Amphibia )
-      expect( t.update( name: "Glycine max nothosubsp torosa" ) ).to be( false )
-      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
-    end
-
-    it "should not be able to add minor changes to a non epithet" do
-      t = Taxon.make!( name: "Glycine max minius gracilis", rank: "subspecies", iconic_taxon: @Amphibia )
-      expect( t.update( name: "Glycine max miniii gracilis" ) ).to be( false )
-      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
-    end
-  end
-
-  context "iconic taxon guard (only animals, plants, and fungi)" do
-    it "should not be able to change name when iconic_taxon_id is nil" do
+    it "requires iconic taxon (animals/plants/fungi); blocks when iconic_taxon_id is nil" do
       t = Taxon.make!( name: "Turdus merula", rank: "species" )
       t.update_columns( iconic_taxon_id: nil )
-
-      # This would otherwise be a minor species-epithet edit; the guard should block it.
-      expect( t.update( name: "Turdus meruli" ) ).to be( false )
-      expect( t.errors.of_kind?( :name, :not_similar ) ).to be( true )
+      expect_update_fail( t, :not_similar, name: "Turdus meruli" )
     end
 
-    it "allows validation to proceed when iconic taxon is Aves" do
+    it "allows validation to proceed when iconic taxon is set (e.g., Aves)" do
       t = Taxon.make!( name: "Turdus merula", rank: "species", iconic_taxon: @Aves )
-
-      # The guard won’t block; outcome will depend on other validators.
-      # Use a no-op change or a clearly valid minor change for your setup:
       expect( t.update( name: "Turdus meruli" ) ).to be( true ).or be( false )
+    end
+  end
+
+  context "hybrid formulas (never allowed to change)" do
+    it "blocks changing hybrid formulas at species/hybrid ranks" do
+      t = Taxon.make!( name: "Danaus plexippus × gilippus", rank: "hybrid", iconic_taxon: @Insecta )
+      expect_update_fail( t, :not_similar, name: "Danaus plexippus × auratus" )
+    end
+
+    it "blocks simultaneous rank+name edits when a hybrid formula is involved" do
+      t = Taxon.make!( name: "Aix sponsa × Spatula clypeata", rank: "hybrid", iconic_taxon: @Aves )
+      expect_update_fail( t, :not_similar, name: "Aix sponsa Spatula clypeata", rank: "subspecies" )
+    end
+  end
+
+  context "species rules (rank_level = 10)" do
+    let( :sp ) { Taxon.make!( name: "Turdus migratorius", rank: "species", iconic_taxon: @Aves ) }
+
+    it "allows minor changes to the species epithet (e.g., gender/typo)" do
+      expect_update_pass( sp, name: "Turdus migratoria" )
+    end
+
+    it "rejects major changes to the species epithet" do
+      expect_update_fail( sp, :not_similar, name: "Turdus meei" )
+    end
+
+    it "rejects changing the genus" do
+      expect_update_fail( sp, :genus_changed, name: "Turdi migratorius" )
+    end
+
+    context "hybrid marker handling at species rank" do
+      it "allows adding a Unicode × between genus and species" do
+        expect_update_pass( sp, name: "Turdus × migratorius" )
+      end
+
+      it "allows removing a Unicode ×" do
+        h = Taxon.make!( name: "Turdus × migratorius", rank: "hybrid", iconic_taxon: @Aves )
+        expect_update_pass( h, name: "Turdus migratorius" )
+      end
+
+      it "allows removing an ASCII x" do
+        h = Taxon.make!( name: "Turdus x migratorius", rank: "hybrid", iconic_taxon: @Aves )
+        expect_update_pass( h, name: "Turdus migratorius" )
+      end
+
+      it "rejects adding an ASCII x" do
+        expect_update_fail( sp, :not_similar, name: "Turdus x migratorius" )
+      end
+    end
+
+    context "non-binomial species names" do
+      it "rejects non-binomial edits unless it is ONLY marker add/remove" do
+        t = Taxon.make!( name: "Some long non standard name", rank: "species", iconic_taxon: @Aves )
+        expect_update_fail( t, :not_similar, name: "Some non standard name" )
+      end
+
+      it "allows marker-only normalization even when extra tokens are present" do
+        # e.g., legacy strings where a marker is present with extra tokens — only removing/adding × is allowed
+        t = Taxon.make!( name: "Turdus × migratorius something", rank: "species", iconic_taxon: @Aves )
+        expect_update_pass( t, name: "Turdus migratorius something" )
+      end
+    end
+  end
+
+  context "infraspecific rules (rank_level = 5, e.g., subspecies/var.)" do
+    let( :ssp ) { Taxon.make!( name: "Taricha torosa trueii", rank: "subspecies", iconic_taxon: @Amphibia ) }
+
+    it "allows minor changes to the infraspecific epithet" do
+      # trueii -> truei
+      expect_update_pass( ssp, name: "Taricha torosa truei" )
+    end
+
+    it "rejects major changes to the infraspecific epithet" do
+      expect_update_fail( ssp, :not_similar, name: "Taricha torosa meei" )
+    end
+
+    it "rejects changes to the species epithet" do
+      expect_update_fail( ssp, :species_changed, name: "Taricha torosus trueii" )
+    end
+
+    it "rejects changes to the genus" do
+      expect_update_fail( ssp, :genus_changed, name: "Tarricha torosa trueii" )
+    end
+
+    it "supports written-out rank tokens (e.g., nothosubsp.) with minor changes to infra epithet" do
+      t = Taxon.make!( name: "Glycine max nothosubsp gracilis", rank: "subspecies", iconic_taxon: @Amphibia )
+      expect_update_pass( t, name: "Glycine max nothosubsp gracilii" )
+    end
+
+    it "rejects major changes when rank token is written out" do
+      t = Taxon.make!( name: "Glycine max nothosubsp gracilis", rank: "subspecies", iconic_taxon: @Amphibia )
+      expect_update_fail( t, :not_similar, name: "Glycine max nothosubsp torosa" )
+    end
+
+    it "rejects changing a non-final token (only last epithet may change)" do
+      t = Taxon.make!( name: "Glycine max minius gracilis", rank: "subspecies", iconic_taxon: @Amphibia )
+      expect_update_fail( t, :not_similar, name: "Glycine max miniii gracilis" )
+    end
+
+    it "does not care about marker normalization (adding/removing ×) between genus and species" do
+      rm = Taxon.make!( name: "Taricha × torosa trueii", rank: "subspecies", iconic_taxon: @Amphibia )
+      expect_update_pass( rm, name: "Taricha torosa trueii" )
+
+      add = Taxon.make!( name: "Taricha torosa trueii", rank: "subspecies", iconic_taxon: @Amphibia )
+      expect_update_pass( add, name: "Taricha × torosa trueii" )
     end
   end
 end
