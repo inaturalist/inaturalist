@@ -6944,6 +6944,10 @@ en:
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
         IP country.
+      exclude_ip_countries_desc: |
+        CMD- or SHIFT-click to select multiple. Selected countries will not be shown
+        the announcment. If IP countries are selected, selected Exclude IP countries
+        will be subtracted from the former.
       # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Note that the creation date of the user's most recently-created

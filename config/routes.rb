@@ -195,6 +195,7 @@ Rails.application.routes.draw do
     end
     member do
       put :dismiss
+      get :duplicate
     end
   end
   get "/users/dashboard" => "users#dashboard", :as => :dashboard

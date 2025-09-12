@@ -556,5 +556,42 @@ describe Announcement do
         expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).not_to include annc
       end
     end
+
+    describe "ip_country with exclude_ip_countries" do
+      it "excludes announcements when exclude_ip_countries matches IP country and no ip_countries are set" do
+        annc = create :announcement, exclude_ip_countries: ["US"], ip_countries: []
+        test_ip = "1.2.3.4"
+        allow( INatAPIService ).to receive( :geoip_lookup )
+          .and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+
+        expect(
+          Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
+        ).not_to include( annc )
+      end
+
+      it "excludes announcements when ip_countries overlaps exclude_ip_countries for the IP country" do
+        # Both include and exclude contain "US" → exclude wins
+        annc = create :announcement, ip_countries: ["US", "CA"], exclude_ip_countries: ["US"]
+        test_ip = "1.2.3.4"
+        allow( INatAPIService ).to receive( :geoip_lookup )
+          .and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+
+        expect(
+          Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
+        ).not_to include( annc )
+      end
+
+      it "includes announcements when ip_countries includes IP country and exclude_ip_countries has no overlap" do
+        # Include has "US", exclude has "PL" → allowed
+        annc = create :announcement, ip_countries: ["US"], exclude_ip_countries: ["PL"]
+        test_ip = "1.2.3.4"
+        allow( INatAPIService ).to receive( :geoip_lookup )
+          .and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+
+        expect(
+          Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
+        ).to include( annc )
+      end
+    end
   end
 end

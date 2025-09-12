@@ -3,9 +3,9 @@
 class AnnouncementsController < ApplicationController
   before_action :authenticate_user!, except: [:active]
   before_action :site_admin_required, except: [:active, :dismiss]
-  before_action :load_announcement, only: [:show, :edit, :update, :destroy, :dismiss]
-  before_action :load_sites, only: [:new, :edit, :create]
-  before_action :load_oauth_applications, only: [:new, :edit, :create]
+  before_action :load_announcement, only: [:show, :edit, :update, :destroy, :dismiss, :duplicate]
+  before_action :load_sites, only: [:new, :edit, :create, :duplicate]
+  before_action :load_oauth_applications, only: [:new, :edit, :create, :duplicate]
 
   layout "bootstrap"
 
@@ -107,6 +107,13 @@ class AnnouncementsController < ApplicationController
       format.any { head :no_content }
       format.html { redirect_back_or_default( dashboard_path ) }
     end
+  end
+
+  def duplicate
+    @announcement = @announcement.duplicate_as_user( current_user )
+
+    # Show the form with all fields prefilled (unsaved record)
+    render :new
   end
 
   private
