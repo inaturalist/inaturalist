@@ -6566,6 +6566,10 @@ da:
       ip_countries_desc: |
         CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
         intet valg, vises bekendtgørelsen til alle brugere uanset IP-land.
+      exclude_ip_countries_desc: |
+        CMD- eller SKIFT-klik for at vælge flere. Valgte lande får ikke vist
+        bekendtgørelsen. Er IP-lande valgt, vil valgte Undtag IP-lande
+        blive fratrukket førstnævnte.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Bemærk, at oprettelsesdatoen for brugerens senest oprettede
