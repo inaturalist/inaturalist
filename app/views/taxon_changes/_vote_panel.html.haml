@@ -1,0 +1,21 @@
+- tc = taxon_change
+- threshold = TaxonChange::VOTE_APPROVAL_THRESHOLD
+
+- upvote_scope = tc.votes_for.where( vote_flag: true, vote_scope: nil ).includes( :voter )
+- voters = upvote_scope.map { |v| v.voter&.login }.compact
+- tooltip = voters.present? ? voters.join( ", " ) : t( "views.taxon_changes.no_votes_yet" )
+
+- can_vote = current_user.present? && current_user.id != tc.user_id && current_user.try( :is_curator? ) == true
+
+= t( "views.taxon_changes.requires_approval", count: threshold )
+- if can_vote
+  = button_to like_taxon_change_path( tc ),
+      method: :post,
+      class: "btn btn-sm btn-primary",
+      title: tooltip do
+    %span{ aria: { hidden: true } } 👍
+    %span.ml-1= upvote_scope.size
+- else
+  %button.btn.btn-sm.btn-primary{ disabled: true, title: tooltip, aria: { disabled: true } }
+    %span{ aria: { hidden: true } } 👍
+    %span.ml-1= upvote_scope.size
