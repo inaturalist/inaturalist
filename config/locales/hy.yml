@@ -83,6 +83,20 @@ hy:
   #A user who does not admin any projects
   non_project_admin: Ոչ նախագծի ադմինիստրատոր
   observation_fields_for_projects: Նախագծերի դիտարկման դաշտեր
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Տեղերը չեն կարող լինել ավելի մեծ քան 700,000 քառակուսի կիլոմետր։
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Տեղերը չեն կարող լինել ավելի մեծ քան 70,000 քառակուսի կիլոմետր։
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Վայրերը չեն կարող պարունակել ավելի քան 200,000 դիտարկումներ։
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Վայրերը չեն կարող պարունակել ավելի քան 10,000 դիտարկումներ։
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Պրոֆիլի նկարի ֆայլի տիպ

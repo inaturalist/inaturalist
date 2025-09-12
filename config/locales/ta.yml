@@ -454,6 +454,12 @@ ta:
     new_zealand: நியுசிலாந்து
     nicaragua: நிகரகுவா
     north_america: நோர்த் அமெரிக்கா
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    இடங்கள் 700,000 சதுர கிலோமீட்டருக்கு மேல் இருக்க முடியாது.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    இடங்களில் 200,000 க்கும் மேற்பட்ட அவதானிப்புகள் இருக்க முடியாது.
   #Title to a section warning a user to exercise caution
   please_be_careful!: தயவுசெய்து கவனமாக இருங்கள்!
   privacy: தனியுரிமை

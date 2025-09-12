@@ -372,6 +372,8 @@ pl:
   add_a_new_change_group: Dodaj nową grupę zmian
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Dodaj listę numerowaną
+  #Placeholder for a project autocomplete field
+  add_a_project: Dodaj projekt
   add_a_single_observation: Dodaj pojedynczą obserwację
   add_a_taxon: Dodaj takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -735,10 +737,6 @@ pl:
     identyfikacji. Zwykle używane są aplikacje takie jak aplikacje desktopowe lub mobilne aplikacje, które zawierają funkcje dla swoich użytkowników do tworzenia obserwacji iNaturalist. Zawartość ta musi być generowana z prawdziwym zaangażowaniem ludzi
     lub pod ich nadzorem. Przeczytaj nasze <a href="/pages/community+guidelines"
     target="_blank">Wytyczne Społeczności</a> zakazujące wygenerowanych maszynowo obserwacji, identyfikacji i komentarzy po więcej szczegółów.
-  app_owner_application_about_p2_html: |
-    Od 2022 r. wymagamy ręcznej akceptacji dla użytkowników, którzy chcą tworzyć klientów API.
-    Aby utworzyć aplikacje firm trzecich, musisz najpierw złożyć aplikację, aby stać się "właścicielem aplikacji''. Ta aplikacja powinna opisać funkcjonalność proponowanej aplikacji i sposób jej używania. Aby złożyć wniosek, Twoje konto musi mieć co najmniej 2 miesiące i mieć zrobione co najmiej 10 <a href="/pages/help#identification"
-    target="_blank">poprawek danych</a> w ostatnim miesiącu. Możemy zadawać dalsze pytania dotyczące Twojego planu i z jakiegokolwiek powodu zastrzegamy sobie prawo do odrzucenia wniosków.
   app_owner_application_inelligible: |
     Aby złożyć wniosek, Twoje konto musi mieć co najmniej 2 miesiące i
     musi mieć zrobione co najmniej 10 poprawek danych identyfikacyjnych w ostatnim miesiącu.
@@ -1216,6 +1214,9 @@ pl:
   confirmation_email_sent_at_datetime: E-mail z potwierdzeniem wysłany o %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potwierdzono %{date}
+  confirming_ids: Oznaczenia potwierdzające
+  confirming_ids_description: |
+    Jeśli wyłączysz tę opcję, nie będziesz już otrzymywać powiadomień o oznaczeniach zgodnych z Twoimi, chyba że będą zawierały dodatkowe uwagi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Połącz
@@ -1244,12 +1245,6 @@ pl:
       geoprywatność statusu związanego z kontynentem, krajem, lub
       miejscem na poziomie stanu może nadpisać status globalny lub powiązany z
       z miejscem wyższego poziomu.
-    iucn: |
-      Równoważny kod Czerwonej Księgi IUCN. To nie jest rzeczywista ocena IUCN,
-      tylko kod IUCN, który najlepiej odpowiada zagrożeniu z ujawnienia współrzędnych
-      wynikający z tego statusu. Spowoduje to zastąpienie geoprywatności, jeśli jest to "Najmniejszej
-      Troski" lub poniżej, więc jeśli chcesz zaciemnić obserwacje na ten temat
-      takson, ustaw to na "Bliski Wymarcia" lub wyżej.
   conservation_status_geoprivacy_desc: |
     Domyślne ustawienia geoprywatności dla wszystkich obserwacji tego taksonu w tej lokalizacji
   contact_support: Skontaktuj się z pomocą
@@ -2359,7 +2354,7 @@ pl:
   identifications: Oznaczenia
   inaturalist_global_year_in_review: "Globalny przegląd roku %{year} iNaturalist"
   #Title of identification that was automatically added by a taxon change
-  inaturalist_updated_the_id_suggested_by_user: iNaturalist zaktualizował identyfikator sugerowany przez %{user}
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist zaktualizował oznaczenie zasugerowane przez użytkownika %{user}
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
   computer_vision_suggestion_desc: |
     Rozpoznawanie obrazów to proces uczenia komputerów rozpoznawania wzorów w ilustracjach. Dostarczamy narzędzi (np. autouzupełniania czy porównywania), które używają rozpoznawania obrazów wyuczonego na bazie zdjęć społeczności, aby proponować sugestie identyfikacji. Ta etykieta informuje, że osoba dodała identyfikację korzystając z jednego z tych narzędzi.
@@ -3730,6 +3725,20 @@ pl:
     zambia: Zambia
     zimbabwe: Zimbabwe
   places_of_interest: Ciekawe miejsca
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Miejsca nie mogą być większe niż 700 000 kilometrów kwadratowych.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Miejsca nie mogą być większe niż 70 000 kilometrów kwadratowych.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Miejsca nie mogą zawierać więcej niż 200 000 obserwacji.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Miejsca nie mogą zawierać więcej niż 10 000 obserwacji.
   plants: rośliny
   popular: Obs. popularne
   position: Pozycja

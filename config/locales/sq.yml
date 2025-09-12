@@ -2080,6 +2080,20 @@ sq:
     west_africa: Afrika Perëndimore
   places_of_interest: Vendet e interesit
   places_merged_successfully: Vendet u bashkuan me sukses!
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Vendet nuk mund të jenë më të mëdha se 700,000 kilometra katrorë.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Vendet nuk mund të jenë më të mëdha se 70,000 kilometra katrorë.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Vendet nuk mund të përmbajnë më shumë se 200,000 vëzhgime.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Vendet nuk mund të përmbajnë më shumë se 10,000 vëzhgime.
   plants: bimët
   please_add_a_citation_for_this_change: Ju lutem shtoni citat për këtë ndryshim.
   please_allow_a_few_weeks_for_external_sites: Ju lutem prisni ca javë derisa faqet e jashtme të sinkonizojnë ndryshimet nga ky vëzhgim #Request that a known child ask their parents for permission to use this service

@@ -615,7 +615,12 @@ fi:
   any_user: Mikä tahansa
   anyone: Kuka tahansa
   app_owner_application_about_p2_html: |
-    Vuodesta 2022 lähtien vaadimme manuaalista hyväksyntää käyttäjille, jotka haluavat tehdä API-sovelluksia. Jotta voit luoda kolmannen osapuolen sovelluksia, sinun on ensin lähetettävä hakemus. Hakemuksen tulisi kuvata suunnitellun sovelluksen toiminnallisuutta ja sitä, mihin aiot käyttää sitä. Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 <a href="/pages/help#identification"target="_blank">tunnistuksen parantamista</a> viime kuussa. Saatamme kysyä jatkokysymyksiä suunnitelmastasi ja varaamme oikeuden hylätä hakemuksen mistä tahansa syystä.
+    Vuodesta 2022 alkaen käyttäjiltä, jotka haluavat tehdä API-asiakasohjelmia, vaaditaan manuaalinen hyväksyntä.
+    Jotta voit luoda kolmannen osapuolen sovelluksia, sinun on ensin haettava "sovelluksen omistajaksi". Hakemuksessa tulee kuvata ehdottamasi sovelluksen toiminnallisuus ja se, miten aiot sitä käyttää.
+
+    Hakemuksen lähettäminen edellyttää, että tilisi on ollut olemassa vähintään 2 kuukautta ja että olet tehnyt vähintään 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241" target="_blank">parantavaa tunnistusta</a> viimeisen kuukauden aikana.
+
+    Saatamme esittää lisäkysymyksiä suunnitelmastasi, ja pidätämme oikeuden hylätä hakemuksia mistä tahansa syystä.
   app_owner_application_inelligible: |
     Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 tunnistuksen parantamista viime kuussa.
   app_owner_application_fields_explanation_html: Kuvaile sovelluksesi toiminnallisuus ja miten aiot käyttää sitä.
@@ -1060,6 +1065,8 @@ fi:
     description: Kirjoita lyhyt kuvaus luokitteluun johtaneista syistä.
     place: Paikka, johon tämä status on rajattu.
     url: URL-sivusto, jossa luokittelut on määritelty.
+    iucn: |
+      Vastaava IUCN:n uhanalaisuusluokan koodi. Tämä ei ole varsinainen IUCN-arviointi, vaan koodi, joka parhaiten vastaa tämän tilan ilmaisemaa koordinaattien paljastamiseen liittyvää uhkaa. Tämä ohittaa maantieteellisen tietosuojan, jos kyseessä on luokka "Least Concern" (LC, elinvoimainen) tai alempi. Jos siis haluat, että tämän lajin havainnot näkyvät rajatusti, aseta koodiksi vähintään "Near Threatened" (NT, silmälläpidettävä) tai sitä korkeampi luokka.
   conservation_status_geoprivacy_desc: |
     Kaikille tämän paikan ja taksonin havainnoille on asetettu oletusarvoinen sijainnin tietosuoja
   contact_support: Ota yhteyttä käyttäjätukeen
@@ -1381,10 +1388,7 @@ fi:
   curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
   curator_coordinate_access: Kuraattorin koordinaattien käyttöoikeus
   curator_coordinate_access_desc: |
-    Kuraattorin koordinointi perinteisiin projekteihin riippuu siitä, kuka on lisännyt
-    havainto hankkeeseen. Tämä on vain oletusasetus
-    havaintoja hankkeissa. Tarkkailijat voivat myös halutessaan muuttaa tätä
-    yksittäisiä havaintoja.
+    Kuraattorin koordinoima pääsy perinteisiin hankkeisiin riippuu siitä, kuka on lisännyt havainnon hankkeeseen. Tämä on vain oletusasetus hankkeissa oleville havainnoille. Havainnoitsijat voivat myös muuttaa tätä asetusta yksittäisten havaintojen osalta.
   curator_identification: Kuraattorin tunnistus
   current_flags: Nykyiset liput
   #Label for a custom boundary for an observation search
@@ -1399,6 +1403,53 @@ fi:
   daily_users: Päivittäiskäyttäjät
   danger_zone: Vaaravyöhyke
   dashboard: Kojelauta
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Kyllä! Haluaisin osallistua."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Lopeta osallistuminen"
+    #link to a blog post
+    pilot_read_more: "Lue lisää blogistamme."
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Auta meitä täyttämään aukot osallistumalla ja saat päivittäin linkin havaintoihin:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Ei vielä sisälly tietokonenäkömalliin"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Uskomme, että voit tunnistaa"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Tässä on linkki havaintoihin lajeista, jotka eivät vielä sisälly tietokonenäkömalliin ja jotka uskomme sinun voivan tunnistaa."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Tarkista huomenna linkki havaintoihin lajeista, jotka eivät vielä sisälly tietokonenäkömalliin ja joiden uskomme sinun voivan tunnistaa. Sinulle näytetään lajeja, joissa olet tehnyt vähintään 3 parantavaa tunnistusta."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Jos et näe linkkiä, näitä kriteerejä vastaavia havaintoja ei ehkä ole. Havainnot tarkistetaan kerran päivässä."
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Saat huomenna luettelon lajeista, jotka:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Eivät vielä sisälly tietokonenäkömalliin"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "On havaittu tällä kaudella lähellä viimeistä havaintoasi"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Havainnoimalla näitä lajeja autat parantamaan mallia ja täyttämään biodiversiteettitietojen aukkoja. Tämä luettelo päivittyy, kun malli päivittyy. Voit lopettaa milloin tahansa."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Tässä on nykyinen luettelosi lajeista, jotka ovat:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Eivät vielä sisälly tietokonenäkömalliin"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Havaittu lähellä viimeistä sijaintiasi tällä kaudella"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Havainnoimalla näitä autat parantamaan lajien tunnistamista ja täyttämään kriittisiä aukkoja."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Selaa lajeja"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Tarkista huomenna sinulle räätälöity luettelo lajeista, jotka olet havainnut tällä kaudella, jotka eivät ole vielä tietokonenäkömallissa. Henkilökohtainen luettelosi käyttää viimeisimmän havaintosi sijaintia."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Jos et näe linkkiä, ei ehkä ole yhtään lajia, joka vastaa näitä kriteerejä lähelläsi."
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Huomisesta alkaen saat päivittäin jopa 30 havaintoa, jotka vastaavat tunnistamistaitojasi, mikä auttaa uusien käyttäjien perehdyttämisessä. Voit lopettaa milloin tahansa."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Alla on korkeintaan 30 havaintoa, jotka vastaavat tunnistustaitojasi."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Tarkista huomenna linkki tunnistamistaitojasi vastaaviin havaintoihin."
   data_deficient: Puutteellisesti tunnettu
   data_quality: Tiedon laatu
   data_quality_assessment: Tietojen laatuarvio
@@ -1527,6 +1578,8 @@ fi:
         vahvistaaksesi tilisi.
       user:
         suspended: Käyttäjätunnuksesi on suljettu
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Salasanan palautustunnus on virheellinen. Käytä viimeksi lähetetyssä salasanan palautussähköpostissa olevaa linkkiä tai <a href="%{url}">pyydä uusi</a>.
     sessions:
       signed_in: 'Sisäänkirjautuminen onnistui.'
       signed_out: 'Uloskirjautuminen onnistui.'
@@ -1624,6 +1677,8 @@ fi:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: LAHJOITA
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Tee lahjoitus
   donate_again_caps: LAHJOITA UUDELLEEN
   donate_again_today_caps: LAHJOITA UUDELLEEN TÄNÄÄN
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -2152,7 +2207,7 @@ fi:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist on itsenäinen järjestö, joka toimii USA:ssa veroista vapautettuna epäkaupallisena 501(c)(3) -organisaationa (Tax ID: 92-1296468).
   #Title of identification that was automatically added by a taxon change
-  inaturalist_updated_the_id_suggested_by_user: iNaturalist päivitti ehdottamansa tunnuksen %{user}
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist päivitti käyttäjän %{user} ehdottaman tunnistuksen
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
     Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
@@ -3164,7 +3219,7 @@ fi:
   observation_field_type_taxon: Taksoni
   observation_field_type_dna: DNA
   observation_fields: Havainnointikentät
-  observation_fields_for_projects: Hankkeiden havaintokentät
+  observation_fields_for_projects: Havaintokentät projekteille
   observation_fields_are_additional: Havaintokentät ovat lisätietokenttiä, joita voidaan lisätä havaintoihin.
   observation_fields_by_preferences_description: |
     Havaintokentät ovat vähän kuin tunnisteita, mutta kuka tahansa voi lisätä niitä havaintoosi oletuksena. Jos haluat mieluummin, että vain sinä tai vain sivuston kuraattorit voivat lisätä havaintokenttiä, sinun täytyy muuttaa oletusasetusta.
@@ -3479,7 +3534,7 @@ fi:
       Country: Maa
       country: maa
       County: Maa
-      county: maa
+      county: paikka
       District: Piiri
       district: piiri
       Division: Kaari
@@ -3490,8 +3545,8 @@ fi:
       estate: maatila
       Governorate: Kuvernementti
       governorate: kuvernementti
-      Historical_County: Historiallinen maa
-      historical_county: historiallinen maa
+      Historical_County: Historiallinen paikka
+      historical_county: historiallinen paikka
       Historical_State: Historiallinen osavaltio
       historical_state: historiallinen osavaltio
       Historical_Town: Historiallinen kaupunki
@@ -3564,6 +3619,8 @@ fi:
       zone: vyöhyke
   place_guess: arvaus paikasta
   place_imported: Paikka tuotu!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Voi kestää jopa päivän, ennen kuin havainnot liitetään tähän paikkaan.
   place_must_have_a_boundary_defined: Paikalla täytyy olla raja määritettynä.
   place_name: Paikan nimi
   place_notes: Paikkamerkinnät
@@ -3859,6 +3916,20 @@ fi:
     uuden paikan, joka sisältää paljon havaintoja, tulet hidastamaan iNaturalistin toimintaa kaikilla. Tässä on joitain vaihtoehtoisia lähestymistapoja:
   places_warning_quota: |
     Voit luoda vain kolme paikkaa päivässä.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Paikka voi olla korkeintaan 700 000 neliökilometriä.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Paikat eivät saa olla suurempia kuin 70 000 neliökilometriä.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Paikassa voi olla korkeintaan 200 000 havaintoa.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Paikassa voi olla enintään 10 000 havaintoa.
   places_warning_the_future: |
     Meidän täytyy rajoittaa paikkojen lisäämistä tulevaisuudesta, koska iNaturalistin käyttö kasvaa jatkuvasti.
   plants: kasvit
@@ -5071,6 +5142,8 @@ fi:
   #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Tallentanut
   uploader:
+    errors:
+      unsupported_file_type: Tiedostotyyppiä ei tueta. Hyväksymme JPG-, PNG-, GIF-, HEIC-, HEIF-, WAV-, AAC-, MP3- ja MP4-tiedostot (vain ääni)
     tooltips:
       add: Lisää havainto(ja)
       combine: Yhdistä valitut havainnot
@@ -5151,13 +5224,11 @@ fi:
     %{user} havaitsi %{date} paikassa %{place}
   user_suggested_an_id: "%{user} ehdotti tunnistusta"
   user_trusts_this_project_when_added_by_any: |
-    Käyttäjä luottaa projektin kuraattoreihin, joihin on lisätty havaintojen piilotetut koordinaatit
-    projektiin kenen tahansa toimesta.
+    Käyttäjä sallii projektin kuraattoreiden nähdä niiden havaintojen piilotetut koordinaatit, jotka kuka tahansa on lisännyt projektiin.
   user_trusts_this_project_when_added_by_observer: |
-    Käyttäjä luottaa projektin kuraattoreihin, joihin on lisätty havaintojen piilotetut koordinaatit
-    tarkkailijan hankkeeseen.
+    Käyttäjä sallii projektin kuraattoreiden nähdä niiden havaintojen piilotetut koordinaatit, jotka havainnoija on lisännyt projektiin.
   user_trusts_this_project_when_added_by_none: |
-    Käyttäjä ei luota projektin kuraattoreihin, joilla on piilotetut koordinaatit.
+    Käyttäjä ei salli piilotettujen koordinaattien näkymistä kuraattoreille.
   user_updated_an_observation_field_html: '%{user} päivitti arvon kentälle "%{field_name}" havaintoon, jonka teki %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> kirjoitti,
   username: Käyttäjänimi
@@ -5284,7 +5355,7 @@ fi:
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
   we_also_support3: |
-    Tuemme myös valokuvien tuontia <a href="http://flickr.com">Flickr</a>.
+    Tuemme myös valokuvien tuontia <a href="http://flickr.com">Flickr-palvelusta</a>.
   we_can_only_understand_csv_in: Voimme ymmärtää CSV-tiedostoa vain seuraavassa muodossa
   we_couldnt_find_a_user: Emme löytäneet käyttäjää kyseisellä sähköpostiosoitteella.
   we_couldnt_find_a_user_with_that_activation_code: "Emme löytäneet käyttäjää tällä aktivointikoodilla. Voi olla että aktivoit jo tilisi, joten ole hyvä ja kokeile kirjautumista sisään."
@@ -5572,6 +5643,8 @@ fi:
         Aikavyöhykkeellä oleva aika, jolloin tämä ilmoitus päättyy
         esiintyminen. Koskee kaikkia aikavyöhykkeitä, joten kaikki eivät enää näe
         se samaan aikaan, ei suhteessa paikalliseen aikaansa.
+      excludes_non_site_desc: |
+        Jos ilmoituksesi kohdistuu sivustoon (mikä on oletusarvo, jos olet sivuston ylläpitäjä), tämä sulkee pois ilmoitukset, jotka kohdistuvat kaikkiin sivustoihin.
       ip_countries_desc: |
         CMD- tai VAIHTO-napsauta valitaksesi useita. Valitsemalla "Kaikki" tai tekemättä jättäminen
         valinta näyttää ilmoituksen kaikille käyttäjille riippumatta siitä,
@@ -6659,6 +6732,24 @@ fi:
           Jos saat liian paljon ilmoituksia sivustolta, voit <a href="/users/edit">asetuksistasi</a> muokata, mitä ilmoituksia lähetetään tai estää sähköpostin lähetyksen. Jos saat liikaa ilmoituksia joltakin henkilöltä, harkitse hänen <a href="/users/edit">vaimentamistaan</a> tilisi poistamisen sijaan.
       edit:
         about_third_party_tracking: Tietoja kolmannen osapuolen tekemästä seurannasta
+        block_desc_blocking_someone_prevents: |
+          Henkilön estäminen estää häntä lähettämästä sinulle viestejä tai kommentoimasta
+          havaintojasi, havaintojesi tunnistamista ja muuta vuorovaikutusta kanssasi %{site_name} -palvelussa. Se myös poistaa heidän havaintonsa hakutuloksistasi ja poistaa sinun havaintosi heidän hakutuloksista. Se ei kuitenkaan tee sinusta heille näkymätöntä. He voivat silti löytää havaintosi ja tarkastella profiiliasi, he eivät vain voi olla vuorovaikutuksessa kanssasi.
+        block_desc_blocking_is_for_situations: |
+          Estäminen on sellaisia tilanteita varten, kun et vain tule toimeen jonkun kanssa, eivätkä he jätä sinua rauhaan, vaikka yrität parhaasi mukaan ratkaista riidat sivistyneesti. Se ei ole tapa piiloutua henkilöiltä, joiden mielipiteisiin et luota tai kieltäytyä yhteisötunnistuksesta (on olemassa toinen asetus sitä varten). Näin ollen estäminen toimii molempiin suuntiin: jos estät jonkun, hän ei voi olla vuorovaikutuksessa kanssasi, mutta et voi myöskään itse olla vuorovaikutuksessa hänen kanssaan. Jos käytät sitä väärin estääksesi jotakuta tunnistamasta havaintojasi, estät myös itseäsi tunnistamasta hänen havaintojaan.
+        block_desc_you_can_only_block_html: |
+          Voit estää vain kolme henkilöä. Mielestämme tämä on kohtuullinen määrä, johon mahtuu ne henkilöt, jotka täytyy estää estämällä kuitenkin eston väärinkäytön. Jos sinun täytyy mielestäsi estää enemmän ihmisiä, <a href="mailto:%{help_email}">Ota yhteyttä</a>.
+        block_desc_there_are_two_exceptions: |
+          On kaksi tilannetta, joissa estäminen ei estä vuorovaikutusta:
+        block_desc_comments_on_taxon_flags: kommentteja taksonilipuista, jotka olet luonut
+        block_desc_comments_on_taxon_changes: kommentit taksonin muutoksista jotka olet tehnyt
+        block_desc_unlike_more_personal: |
+          Toisin kuin henkilökohtaisemmat sisällöt kuten havainnot ja päiväkirjamerkinnät, taksonit ovat yhteisiä kaikille ja niiden pitäisi olla avoimia keskustelulle. Esto estää edelleen sinua vastaanottamasta ilmoituksia kommenteista tämäntyyppisestä sisällöstä
+          henkilöltä, jonka esitit.
+        block_desc_if_harassing_html: |
+          Jos joku häiritsee tai vainoaa sinua %{site_name},
+          <a href="mailto:%{help_email}">ole hyvä ja kerro meille</a>. Jos
+          tämä rikkoo käyttöehtojamme tai edustaa muuta sivustolle sopimatonta käytöstä, tutkimme asian.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jos muutat mielesi, voit aina <a href='/users/edit'>muokata asetuksiasi</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -7067,6 +7158,7 @@ fi:
         exclude_donor_start_date: Jätä luovuttajan aloituspäivä pois
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Luovutuksen antajan sulkeminen pois
+        excludes_non_site: Piilota muut ilmoitukset, joilla ei ole sivustotunnusta
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Jätä havainnoijat pois sovelluksista

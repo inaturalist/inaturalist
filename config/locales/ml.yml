@@ -503,6 +503,12 @@ ml:
     vatican_city: വത്തിക്കാൻ സിറ്റി
   places_warning_export_complex_boundary_html: |
     തീവ്രമായ അതിരുകളിൽ നിന്ന് നിരീക്ഷണങ്ങൾ കയറ്റുമതി ചെയ്യാൻ ശ്രമിക്കുന്നെങ്കിൽ, <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF-ൽ നിന്ന് അവയെ ഡൗൺലോഡ് ചെയ്യുന്നതിനെ പകരം പരിഗണിക്കുക</a>, അവിടെ നിങ്ങൾക്ക് സ്വതന്ത്ര അതിരുകൾ വരക്കാം, അല്ലെങ്കിൽ iNat-ൽ നിന്നുള്ള നിലവിലുള്ള സ്ഥലങ്ങൾ ഉപയോഗിച്ച് അല്ലെങ്കിൽ ഒരു ബൗണ്ടിംഗ് ബോക്സ് കയറ്റുമതി ചെയ്യുകയും, അത് ഡൗൺലോഡ് ചെയ്ത ശേഷം ഡാറ്റ വീണ്ടും ഫിൽട്ടർ ചെയ്യുകയും ചെയ്യാം.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    സ്ഥലങ്ങൾ 700,000 ചതുരശ്ര കിലോമീറ്ററിൽ കൂടുതൽ വലുതാകാൻ പാടില്ല.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    സ്ഥലങ്ങളിൽ 200,000 നിരീക്ഷണങ്ങളിൽ കൂടുതൽ ഉണ്ടാകാൻ പാടില്ല.
   please_confirm_your_inat_username: "ദയവായി നിങ്ങളുടെ %{site_name} ഉപയോക്തൃനാമം സ്ഥിരീകരിക്കുക."
   profile: പരിചയ
   profile_picture: പരിചയയുടെ ചിത്രങ്ങൾ

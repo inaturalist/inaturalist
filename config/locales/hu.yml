@@ -373,6 +373,12 @@ hu:
   add_your_own_observations_at: "Megfigyelés hozzáadása itt: %{site_name}"
   added: Hozzáadva
   added!: Hozzáadva!
+  added_as_a_part_of_a_taxon_change_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">Taxonmódosítás</a>ként hozzáadva
+  added_as_a_part_of_a_taxon_merge_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">Taxonegyesítés</a>ként hozzáadva
+  added_as_a_part_of_a_taxon_split_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">Taxonszétválasztás</a>ként hozzáadva
   added_as_a_part_of_a_taxon_swap_html: |
     <a target="%{target}" class="%{class}" href="%{url}">Taxoncsere</a>ként hozzáadva
   added_by: 'Hozzáadta:'
@@ -1265,6 +1271,59 @@ hu:
   daily_users: Napi felhasználók
   danger_zone: Veszélyes zóna
   dashboard: Vezérlőpult
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Igen, szeretnék részt venni."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Leiratkozás"
+    #link to a blog post
+    pilot_read_more: "További információk a blogunkon."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Azonosításhiány teszt: keresett fajok szükséges azonosítása"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Segíts a hiányosságok pótlásában azzal, hogy naponta linkeket fogadsz olyan megfigyelésekhez:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Még nem szerepelnek a gépi látás modellben"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Úgy gondoljuk, hogy azonosítani tudod"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Itt egy link olyan megfigyelésekhez, amelyek a gépi látás modellben még nem szereplő fajokhoz tartoznak, és amelyekről azt gondoljuk, hogy meg tudod határozni."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Látogass vissza holnap azon megfigyelések linkjéért, amelyek még nem szerepelnek a gépi látás modellben. Ezek olyan fajok lesznek, amelyekhez már fűztél legalább három javító meghatározást."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Ha nem látod a linket, akkor még nincs a feltételeknek eleget tevő megfigyelés. A frissítés naponta történik."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Megfigyeléshiány teszt: Keresett fajok a közelben"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Holnap kapsz egy listát olyan fajokkal, melyek:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Nem szerepelnek a gépi látás modellben"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Ebben a szezonban megfigyelték az utolsó megfigyelésed közelében"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "E fajok megfigyelése javítja a modellt és segít betölteni az űrt a biodiverzitási adatokban. Ez a lista a model frissítésével frissül. Bármikor leiratkozhatsz."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "A jelenlegi listátdolyan fajokkal, melyek:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Még nem szerepelnek a gépi látás modellben"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Ebben a szezonban megfigyelték az utolsó lokációd közelében"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Ezek megfigyelésével segítesz javítani a fajok felismerését és pótolni a kritikus hiányosságokat."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Fajok böngészése"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Látogass vissza holnap az ebben a szezonban megfigyelt, de a gépi látási modellben még nem szereplő fajok személyre szabott listájáért. A személyre szabás a legutóbbi megfigyelésed helye alapján történik."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Ha nem látod a linket, akkor még nincs a feltételeknek eleget tevő megfigyelés a közeledben."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Meghatározási tesztprogram: Új felhasználók felvétele"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Holnaptól kezdve naponta legfeljebb 30 megfigyelés érkezhet hozzád, amelyek megfelelnek az azonosítási profilodnak, és segítenek az új felhasználók bevonásában. Bármikor leiratkozhatsz."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Alább találod a legfeljebb 30 megfigyelésből álló listát, amelyek megfelelnek az azonosítási képességeidnek."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Nézz vissza holnap az azonosítási képességeidnek megfelelő megfigyelések linkjéért."
   data_deficient: Adathiányos
   data_quality: Adatminőség
   data_quality_assessment: Adatminőség
@@ -1395,6 +1454,8 @@ hu:
         Nézd meg az emailjeidet, és kattints a megerősítő emailünkben található linkre.
       user:
         suspended: A fiókod fel van függesztetve
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: A jelszóvisszaállító token érvénytelen. Kérjük, hogy a legutóbbi emailünkben található linket használd, vagy <a href="%{url}">kérj egy újat</a>.
     sessions:
       signed_in: 'Sikeres bejelentkezés.'
       signed_out: 'A kijelentkezés sikeres.'
@@ -1995,7 +2056,7 @@ hu:
   inaturalist_is_an_independent_nonprofit: |
     Az iNaturalist egy független 501(c)(3), adómentes, nonprofit szervezet, amely az Amerikai Egyesült Államokban található (adóazonosító szám: 92-1296468).
   #Title of identification that was automatically added by a taxon change
-  inaturalist_updated_the_id_suggested_by_user: Az iNaturalist frissítette a által javasolt azonosítót %{user}
+  inaturalist_updated_the_id_suggested_by_user: Az iNaturalist frissítette %{user} által javasolt azonosítót
   computer_vision_suggestion: Gépi képfelismerés javaslata
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
@@ -3410,6 +3471,8 @@ hu:
       zone: zóna
   place_guess: terület kitalálása
   place_imported: Terület importálva!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Akár egy napig is eltarthat, amíg a megfigyelések ehhez a helyhez kapcsolódnak.
   place_must_have_a_boundary_defined: A területnek rendelkeznie kell határvonallal.
   place_name: Terület neve
   place_notes: Megjegyzés a területhez
@@ -3696,6 +3759,20 @@ hu:
     Az új hozzáadott területek nagyon nagy mértékben hozzájárulnak az iNatralist lassulásához, ezért <strong>csak nagyon indokolt esetben hozz létre új területet</strong>. A néhány ezer megfigyeléssel rendelkező kisebb területek elfogadhatóak, azonban a sok megfigyeléssel rendelkező nagyobb területek hozzáadásával minden felhasználó számára érhezető módon lelassul a rendszer. Alternatívák:
   places_warning_quota: |
     Csak három területet hozhatsz létre egy nap.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    A helyek nem lehetnek nagyobbak 700 000 négyzetkilométernél.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    A helyek nem lehetnek nagyobbak 70 000 négyzetkilométernél.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    A helyek nem tartalmazhatnak 200 000-nél több megfigyelést.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    A helyek nem tartalmazhatnak 10 000-nél több megfigyelést.
   places_warning_the_future: |
     Az iNaturalist jelenlegi növekedési rátáját szemlélve a jövőben további korlátozások lesznek indokoltak.
   plants: növények
@@ -4897,9 +4974,9 @@ hu:
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} egy %{taxon} taxont érintő taxontörlést hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa2: "%{user} egy %{taxa} taxonokat érintő taxonegyesítést hajtott végre"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} egy %{taxa} taxont érintő taxonegyesítést hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa2: "%{user} egy %{taxa} taxonokat érintő taxonszétválasztást hajtott végre"
+  user_committed_taxon_split_affecting_taxa2: "%{user} egy %{taxa} taxont érintő taxonszétválasztást hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_stage_affecting_taxon2: "%{user} egy %{taxon} taxont érintő taxonmódosítást hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
@@ -5325,6 +5402,8 @@ hu:
         CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül a klienstől.
       end_desc: |
         A bejelentés leállításának időpontja a fiókod időzonája szerint. Időzónákon keresztül érvényes, így mindenkinek ugyanakkor fog eltűnni a bejelentés, nem pedig a helyi időzónájuk alapján.
+      excludes_non_site_desc: |
+        Ha a bejelentés egy webhelyet céloz meg (ami az alapértelmezett, ha adminisztrátor vagy), ez kizárja azokat a bejelentéseket, amelyek az összes webhelyet megcélozzák.
       ip_countries_desc: |
         CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül az IP-cím alapján mehatározott országtól.
       #Note about how the announcement last observation date property works
@@ -6208,6 +6287,24 @@ hu:
         trending_desc: Legtöbbször megfigyelt taxon az elmúlt hónapban
         trending_in_place_desc_html: 'Legtöbbször megfigyelt taxon az elmúlt hónapban itt: <a href="%{url}">%{place}</a>'
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Biztosan visszaállítod ezt a taxonváltoztatást?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Biztosan visszavonod ezt a taxonváltoztatást?
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Visszaállítás
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: visszaállítás...
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Visszavonás
+      #state of an abandoned taxon change
+      withdrawn: visszavonva
+      #state of a committed taxon change
+      committed: végrehajtva
+      #state of a draft taxon change
+      draft: piszkozat
+      #the status of a taxon change: draft, withdrawn or committed
+      status: státusz
       form:
         move_children_desc2_html: |
           E négyzet bejelölésével a bementi taxon minden gyermeke áthelyeződik a kimeneti taxon alá Taxoncsere és Taxonegyesítés esetén, amikor ez a művelet végrehajtódik. Ha ez a változás nemzetség szintjén vagy azalatt történik, akkor Taxoncserét hoz létre minden olyan leszármazottra, amelyek neve változásra szorul. Például ha felcseréled a Canidae családot Dogidae-ra, akkor ez megváltoztatja a <i>Canis</i> nemzetség szülőjét Canidae-ról Dogidae-ra. Ha felcseréled a <i>Canis</i> nemzetséget a <i>Dogis</i> nemzetségre, ez létrehoz és végrehajt Taxoncseréket és megváltoztatja a <i>Canis lupus</i>t <i>Dogis lupus</i>ra és a <i>Canis lupus</i> ssp. <i>lupus</i>t <i>Dogis lupus</i> ssp.
@@ -6234,6 +6331,20 @@ hu:
           Ha kitörlöd fiókod, eltávolítod
         type_confirmation_code: Írd be a %{confirmation_code}t
       edit:
+        block_desc_blocking_someone_prevents: |
+          Ha letiltasz egy felhasználót, akkor az nem tud neked üzenetet küldeni, a megfigyeléseidet azonosítani vagy kommentálni, és egyéb módon kapcsolatba lépni veled a %{site_name}-on. Továbbá a megfigyelései nem lesznek láthatók a kereséseidnél, és viszont. Fontos, hogy nem leszel telkesen láthatatlan a letiltott felhasználó számára. Továbbra is láthatja a megfigyeléseidet és a profilodat, csak nem léphet interakcióba veled.
+        block_desc_blocking_is_for_situations: |
+          A tiltás akkor segít, ha nem jössz ki egy felhasználóval és a civilizált konfliktusmegoldás nem vezet eredményre. Nem arra szolgál, hogy elrejtsd a tevékenységedet bizonyos fehahsználók elől, vagy hogy elkerüld, hogy olyan felhasználók azonosítsák be a megfigyeléseidet, amelyekben nem bízol. A közösségi meghatározás alól ezzel nem lehet kibújni - erre más opció létezik. Ezért a tiltás kétirányú: a tiltott felhasználó nem tud interakcióba lépni veled, és fordítva. Ha azért használod a letiltást, hogy valaki ne tudja azonosítani a megfigyeléseidet, fontos tudnod, hogy te sem tudod azonosítani az övéit.
+        block_desc_you_can_only_block_html: |
+          Legfeljebb három felhasználót tilthatsz. Szerintünk ez az ideális határ annak érdekében, hogy elkerüljük e funkció nem rendeltetésszerű használatát. Ha több felhasználót is szeretnél tiltani, lépj velünk <a href="mailto:%{help_email}">kapcsolatba</a>.
+        block_desc_there_are_two_exceptions: |
+          Két helyzetben nem akadályozza meg a tiltás az interakciót:
+        block_desc_comments_on_taxon_flags: megjegyzések az általad létrehozott taxonbejelentésekhez
+        block_desc_comments_on_taxon_changes: megjegyzések az általad létrehozott taxonmódosításokhoz
+        block_desc_unlike_more_personal: |
+          Ellentétben a személyesebb tartalomformákkal, mint például a megfigyelések és a hírmondóbejegyzések, a taxonok a teljes platformon átívelődnek és mindenki számára nyitottnak kell maradniuk. A tiltott felhasználó hozzászólásairól nem kapsz értesítést.
+        block_desc_if_harassing_html: |
+          Ha egy felhasználó zaklat az %{site_name}on, lépj velünk <a href="mailto:%{help_email}">kapcsolatba</a>. Ha a tevékenység nincs összhangban a Felhasználói Feltételeinkkel, megtesszük a szükséges lépéseket.
         common_scientific_name_display_order: Köznyelvi / tudományos nevek megjelenítési sorrendje
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ha meggondolod magad, bármikor
@@ -6591,6 +6702,7 @@ hu:
         exclude_donor_start_date: Kizárás a támogatás kezdő dátumának alapján
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kizárás a támogatás befejezési dátumának alapján
+        excludes_non_site: Webhelyazonosítóval nem rendelkező egyéb bejelentések elrejtése ebben az elhelyezésben.
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Applikáció-specifikus megfigyelők mellőzése
