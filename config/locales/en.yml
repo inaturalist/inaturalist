@@ -10605,6 +10605,28 @@ en:
               bad_format: |
                 can only contain standard Latin characters, hyphens, spaces, and
                 ×; note that putative taxa and cultivars are not allowed
+              # Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "name changes not allowed for viruses, bacteria, or ungrafted clades"
+              # Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "name changes are not allowed for ranks coarser than species"
+              # Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "name changes are not allowed for hybrid formulas"
+              # Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "cannot add 'x' as a hybrid marker between genus and species"
+              # Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "must be binomial (Genus species) for checking"
+              # Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "genus cannot change"
+              # Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "non-standard species name: only removing 'x'/'×' or adding '×' is allowed"
+              # Error message trying make major changes to sp epithet
+              specific_epithet_similar: "specific epithet must be similar (minor typo/gender only)"
+              # Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "infraspecific epithet required for this rank"
+              # Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "only the infraspecific epithet may change for infraspecific ranks"
+              # Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "infraspecific epithet must be similar (minor typo/gender only)"
         taxon_change:
           attributes:
             base:

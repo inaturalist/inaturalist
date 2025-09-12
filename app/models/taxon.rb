@@ -2668,15 +2668,23 @@ class Taxon < ApplicationRecord
   def restrict_name_changes_by_rank
     return unless will_save_change_to_name?
 
+    i18n_base = "activerecord.errors.models.taxon.attributes.name"
+
     # require iconic_taxon_id (e.g. no viruses bacteria)
     unless iconic_taxon_id.present?
-      errors.add( :name, :not_similar, message: "name changes not allowed for viruses, bacteria, or ungrafted clades" )
+      errors.add(
+        :name, :not_similar,
+        message: I18n.t( "#{i18n_base}.microbe_or_ungrafted" )
+      )
       return
     end
 
     # Coarser than species: disallow any edits
     if rank_level.to_i > 10
-      errors.add( :name, :not_similar, message: "name changes are not allowed for ranks coarser than species" )
+      errors.add(
+        :name, :not_similar,
+        message: I18n.t( "#{i18n_base}.coarser_than_species" )
+      )
       return
     end
 
@@ -2686,7 +2694,10 @@ class Taxon < ApplicationRecord
 
     # 1) Block hybrid formulas up front (covers name+rank edits too)
     if hybrid_formula?( old_name ) || hybrid_formula?( new_name )
-      errors.add( :name, :not_similar, message: "name changes are not allowed for hybrid formulas" )
+      errors.add(
+        :name, :not_similar,
+        message: I18n.t( "#{i18n_base}.hybrid_formulas" )
+      )
       return
     end
 
@@ -2694,7 +2705,10 @@ class Taxon < ApplicationRecord
     #    BUT never allow introducing ASCII 'x'.
     if [10, 5].include?( rank_level.to_i ) && marker_only_between_genus_species?( old_name, new_name )
       if old_marker == :none && new_marker == :x
-        errors.add( :name, :not_similar, message: "cannot add 'x' as a hybrid marker between genus and species" )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.add_ascii_x_disallowed" )
+        )
         return
       end
       return
@@ -2706,13 +2720,19 @@ class Taxon < ApplicationRecord
 
     # Must be at least binomial (Genus + species) to compare
     unless old_tokens.length >= 2 && new_tokens.length >= 2
-      errors.add( :name, :invalid_name, message: "must be binomial (Genus species) for checking" )
+      errors.add(
+        :name, :invalid_name,
+        message: I18n.t( "#{i18n_base}.must_be_binomial" )
+      )
       return
     end
 
     # Genus cannot change
     unless old_tokens.first.to_s.casecmp?( new_tokens.first.to_s )
-      errors.add( :name, :genus_changed, message: "genus cannot change" )
+      errors.add(
+        :name, :genus_changed,
+        message: I18n.t( "#{i18n_base}.genus_cannot_change" )
+      )
       return
     end
 
@@ -2722,7 +2742,10 @@ class Taxon < ApplicationRecord
 
     # Disallow introducing ASCII 'x' between genus–species
     if old_marker == :none && new_marker == :x
-      errors.add( :name, :not_similar, message: "cannot add 'x' as a hybrid marker between genus and species" )
+      errors.add(
+        :name, :not_similar,
+        message: I18n.t( "#{i18n_base}.add_ascii_x_disallowed" )
+      )
       return
     end
 
@@ -2736,8 +2759,10 @@ class Taxon < ApplicationRecord
           ( [:times, :x].include?( old_marker ) && new_marker == :none ) || # remove ×/x
           ( old_marker == :none && new_marker == :times ) # add ×
         unless allowed_nonbinomial_change
-          errors.add( :name, :not_similar,
-            message: "non-standard species name: only removing 'x'/'×' or adding '×' is allowed" )
+          errors.add(
+            :name, :not_similar,
+            message: I18n.t( "#{i18n_base}.nonstandard_species_marker_only" )
+          )
           return
         end
         return
@@ -2745,7 +2770,10 @@ class Taxon < ApplicationRecord
 
       # Strictly binomial: allow only minor changes to the specific epithet
       unless epithet_similar_by_stem?( old_name_parts[:species_stem], new_name_parts[:species_stem] )
-        errors.add( :name, :not_similar, message: "specific epithet must be similar (minor typo/gender only)" )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.specific_epithet_similar" )
+        )
       end
 
     when 5 # infraspecific (subspecies/var./forma...)
@@ -2753,25 +2781,37 @@ class Taxon < ApplicationRecord
       old_species = old_tokens[1]
       new_species = new_tokens[1]
       unless old_species.present? && new_species.present? && old_species.casecmp?( new_species )
-        errors.add( :name, :species_changed, message: "species epithet cannot change for infraspecific ranks" )
+        errors.add(
+          :name, :species_changed,
+          message: I18n.t( "#{i18n_base}.only_infra_may_change" )
+        )
         return
       end
 
       # Require an infra epithet on both sides (last token; need at least 3 tokens)
       unless old_tokens.length >= 3 && new_tokens.length >= 3
-        errors.add( :name, :invalid_infraspecific, message: "infraspecific epithet required for this rank" )
+        errors.add(
+          :name, :invalid_infraspecific,
+          message: I18n.t( "#{i18n_base}.infra_required" )
+        )
         return
       end
 
       # Only the *final* token may change for infra ranks (non-final tokens must be identical)
       if old_tokens.length != new_tokens.length
-        errors.add( :name, :not_similar, message: "only the infraspecific epithet may change for infraspecific ranks" )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.only_infra_may_change" )
+        )
         return
       end
       norm = ->( s ) { s.to_s.downcase.delete( "." ) }
       changed_nonfinal = old_tokens[0...-1].zip( new_tokens[0...-1] ).any? {| a, b | norm.call( a ) != norm.call( b ) }
       if changed_nonfinal
-        errors.add( :name, :not_similar, message: "only the infraspecific epithet may change for infraspecific ranks" )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.only_infra_may_change" )
+        )
         return
       end
 
@@ -2782,7 +2822,10 @@ class Taxon < ApplicationRecord
       new_infra_stem = new_name_parts[:infra_stem].presence || fallback_stem( new_infra )
 
       unless epithet_similar_by_stem?( old_infra_stem, new_infra_stem )
-        errors.add( :name, :not_similar, message: "infraspecific epithet must be similar (minor typo/gender only)" )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.infra_epithet_similar" )
+        )
       end
     end
   end
