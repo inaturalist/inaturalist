@@ -6206,6 +6206,10 @@ id:
         penempatan ini tidak akan dimasukkan.
       ip_countries_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang IP negaranya.
+      exclude_ip_countries_desc: |
+        CMD atau SHIFT-klik untuk memilih beberapa. 
+        Pengumuman tidak akan ditampilkan untuk negara-negara yang dipilih. Jika negara-negara IP dipilih, negara-negara Kecualikan IP yang dipilih
+        akan dikeluarkan dari negara-negara IP yang dipilih.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Perhatikan bahwa tanggal pembuatan pengamatan yang paling baru dibuat oleh pengguna di-cache, jadi mungkin perlu beberapa jam hingga penargetannya diterapkan
