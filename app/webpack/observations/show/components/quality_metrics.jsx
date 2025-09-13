@@ -428,7 +428,7 @@ class QualityMetrics extends React.Component {
             </tr>
             <tr className={accurateCells.loading || accurateVoteDisabled ? "disabled" : ""}>
               <td className="metric_title">
-                <i className="fa icon-sparkly-label" />
+                <i className="fa icon-icn-dna-check" />
                 { I18n.t( "evidence_accurately_depicts_organism_or_scene" ) }
               </td>
               <td className="agree">{ accurateCells.agreeCell }</td>
