@@ -2634,6 +2634,118 @@ class Taxon < ApplicationRecord
     Taxon.elastic_index!( ids: taxon_ids )
   end
 
+  def self.normalize_ws( str )
+    str.to_s.strip.tr( "\u00A0", " " ).gsub( /\s+/, " " )
+  end
+
+  # Detect hybrid *marker* between Genus and species in verbatim string.
+  # Returns :times (Unicode ×), :x (ASCII x), or :none.
+  def self.hybrid_marker_kind( str )
+    cleaned_str = str.to_s.strip
+    return :times if cleaned_str =~ /\A[A-Z][a-z\.-]*\s+×\s+[a-z-]+/
+    return :x     if cleaned_str =~ /\A[A-Z][a-z\.-]*\s+x\s+[a-z-]+/
+
+    :none
+  end
+
+  # True hybrid *formula*: "Genus species × (Genus) species"
+  # (NOT a named nothospecies like "Citrus × aurantium")
+  def self.hybrid_formula?( str )
+    cleaned_str = Taxon.normalize_ws( str )
+    cleaned_str = cleaned_str.gsub( /\s*×\s*/, " × " ).gsub( /(?<=\s)[xX](?=\s)/, " × " )
+    cleaned_str.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
+    /\A[A-Z][A-Za-z\.-]+ [a-z-]+ × (?:[A-Z][A-Za-z\.-]+ )?[a-z-]+(?:\b|\z)/.match?( cleaned_str )
+  end
+
+  # Prefer GNparser, but fall back gracefully if it can’t provide clean tokens/stems.
+  # Returns { genus:, species:, infra:, species_stem:, infra_stem:, ok: true/false }
+  def self.extract_parts( name )
+    parsed = ::Biodiversity::Parser.parse( name.to_s )
+    simple = parsed.dig( :canonical, :simple ).to_s
+    stem   = parsed.dig( :canonical, :stem ).to_s
+
+    tokens = simple.split( /\s+/ )
+    stems  = stem.split( /\s+/ )
+
+    parts = {
+      genus: tokens[0],
+      species: tokens[1],
+      infra: tokens[2],
+      species_stem: stems[1],
+      infra_stem: stems[2]
+    }
+
+    ok = parts[:genus].present? && parts[:species].present? && parts[:species_stem].present?
+    return parts.merge( ok: true ) if ok
+
+    fb = Taxon.fallback_parts( name )
+    parts[:genus]        ||= fb[:genus]
+    parts[:species]      ||= fb[:species]
+    parts[:infra]        ||= fb[:infra]
+    parts[:species_stem] ||= Taxon.fallback_stem( fb[:species] )
+    parts[:infra_stem]   ||= Taxon.fallback_stem( fb[:infra] )
+    parts.merge( ok: false )
+  end
+
+  # Fallback tokenizer if GNparser fails or returns blanks. { genus:, species:, infra: }
+  def self.fallback_parts( name )
+    cleaned_name = Taxon.normalize_ws( name )
+    cleaned_name.sub!( /\A([A-Z][a-z-]+)\s+\([A-Z][a-z-]+\)\s+/, "\\1 " )
+    cleaned_name.gsub!( /\s+[×x]\s+/, " " ) # treat marker as a space
+    parts = cleaned_name.split( /\s+/ )
+    { genus: parts[0], species: parts[1], infra: ( parts[-1] if parts.length >= 3 ) }
+  end
+
+  def self.name_tokens( name )
+    cleaned_name = Taxon.normalize_ws( name )
+    cleaned_name.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
+    # normalize only the standalone marker token (won't touch 'max', 'plexippus', etc.)
+    cleaned_name = cleaned_name.gsub( /\s*×\s*/, " " ).gsub( /(?<=\s)[xX](?=\s)/, " " )
+    cleaned_name.split( /\s+/ )
+  end
+
+  # Crude stemmer good enough for small-typo/gender-variant checks
+  def self.fallback_stem( str )
+    str.to_s.downcase.gsub( /[^a-z-]/, "" ).sub( /(ius|us|a|um|is|e|er|es|ii|i)\z/, "" )
+  end
+
+  # “Similar” = identical stems or Damerau-Levenshtein <= 2 (and not blank)
+  def self.epithet_similar_by_stem?( old_stem, new_stem )
+    return false if old_stem.blank? || new_stem.blank?
+    return true  if old_stem == new_stem
+
+    DamerauLevenshtein.distance( old_stem, new_stem ) <= 2
+  end
+
+  # Marker-only normalization exactly between Genus and species; tail must match.
+  def self.marker_only_between_genus_species?( old_str, new_str )
+    old = Taxon.normalize_ws( old_str )
+    new = Taxon.normalize_ws( new_str )
+
+    genus    = "[A-Z][A-Za-z\\.-]+"
+    subgenus = "\\([A-Z][A-Za-z\\.-]+\\)"
+    species  = "[a-z-]+"
+
+    with_marker = /\A(#{genus})\s+(?:#{subgenus}\s+)?(?:×|[xX])\s+(#{species})(.*)\z/
+    no_marker   = /\A(#{genus})\s+(?:#{subgenus}\s+)?(#{species})(.*)\z/
+
+    cmp = lambda do | m, n |
+      g1, sp1, tail1 = m.captures
+      g2, sp2, tail2 = n.captures
+      g1.casecmp?( g2 ) && sp1.casecmp?( sp2 ) && tail1 == tail2
+    end
+
+    m_old_with = with_marker.match( old )
+    n_new_no   = no_marker.match( new )
+    return cmp.call( m_old_with, n_new_no ) if m_old_with && n_new_no
+
+    m_old_no   = no_marker.match( old )
+    n_new_with = with_marker.match( new )
+    return cmp.call( m_old_no, n_new_with ) if m_old_no && n_new_with
+
+    false
+  end
+
   # /Static #################################################################
 
   private
@@ -2689,11 +2801,11 @@ class Taxon < ApplicationRecord
     end
 
     old_name, new_name = name_change
-    old_marker = hybrid_marker_kind( old_name )
-    new_marker = hybrid_marker_kind( new_name )
+    old_marker = Taxon.hybrid_marker_kind( old_name )
+    new_marker = Taxon.hybrid_marker_kind( new_name )
 
     # 1) Block hybrid formulas up front (covers name+rank edits too)
-    if hybrid_formula?( old_name ) || hybrid_formula?( new_name )
+    if Taxon.hybrid_formula?( old_name ) || Taxon.hybrid_formula?( new_name )
       errors.add(
         :name, :not_similar,
         message: I18n.t( "#{i18n_base}.hybrid_formulas" )
@@ -2703,7 +2815,7 @@ class Taxon < ApplicationRecord
 
     # 2) Early allow-list: marker-only normalization at Genus–species boundary
     #    BUT never allow introducing ASCII 'x'.
-    if [10, 5].include?( rank_level.to_i ) && marker_only_between_genus_species?( old_name, new_name )
+    if [10, 5].include?( rank_level.to_i ) && Taxon.marker_only_between_genus_species?( old_name, new_name )
       if old_marker == :none && new_marker == :x
         errors.add(
           :name, :not_similar,
@@ -2715,8 +2827,11 @@ class Taxon < ApplicationRecord
     end
 
     # Use tokens for structural checks (robust to ×/x)
-    old_tokens = name_tokens( old_name )
-    new_tokens = name_tokens( new_name )
+    old_tokens = Taxon.name_tokens( old_name )
+    new_tokens = Taxon.name_tokens( new_name )
+
+    # helper: first alphabetic character of a token (case-insensitive)
+    first_alpha = ->( s ) { s.to_s.downcase[/[a-z]/] }
 
     # Must be at least binomial (Genus + species) to compare
     unless old_tokens.length >= 2 && new_tokens.length >= 2
@@ -2737,8 +2852,8 @@ class Taxon < ApplicationRecord
     end
 
     # Parse once for stems (used below)
-    old_name_parts = extract_parts( old_name )
-    new_name_parts = extract_parts( new_name )
+    old_name_parts = Taxon.extract_parts( old_name )
+    new_name_parts = Taxon.extract_parts( new_name )
 
     # Disallow introducing ASCII 'x' between genus–species
     if old_marker == :none && new_marker == :x
@@ -2769,7 +2884,15 @@ class Taxon < ApplicationRecord
       end
 
       # Strictly binomial: allow only minor changes to the specific epithet
-      unless epithet_similar_by_stem?( old_name_parts[:species_stem], new_name_parts[:species_stem] )
+      # BUT never allow changing the first letter of the specific epithet
+      if first_alpha.call( old_tokens[1] ) != first_alpha.call( new_tokens[1] )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.first_letter_of_epithet_cannot_change" )
+        )
+        return
+      end
+      unless Taxon.epithet_similar_by_stem?( old_name_parts[:species_stem], new_name_parts[:species_stem] )
         errors.add(
           :name, :not_similar,
           message: I18n.t( "#{i18n_base}.specific_epithet_similar" )
@@ -2818,127 +2941,24 @@ class Taxon < ApplicationRecord
       # Minor-change rule on the infra epithet itself — use GNparser stems, with fallback if blank
       old_infra = old_tokens.last
       new_infra = new_tokens.last
-      old_infra_stem = old_name_parts[:infra_stem].presence || fallback_stem( old_infra )
-      new_infra_stem = new_name_parts[:infra_stem].presence || fallback_stem( new_infra )
+      old_infra_stem = old_name_parts[:infra_stem].presence || Taxon.fallback_stem( old_infra )
+      new_infra_stem = new_name_parts[:infra_stem].presence || Taxon.fallback_stem( new_infra )
 
-      unless epithet_similar_by_stem?( old_infra_stem, new_infra_stem )
+      # Never allow changing the first letter of the infraspecific epithet
+      if first_alpha.call( old_infra ) != first_alpha.call( new_infra )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.first_letter_of_epithet_cannot_change" )
+        )
+        return
+      end
+
+      unless Taxon.epithet_similar_by_stem?( old_infra_stem, new_infra_stem )
         errors.add(
           :name, :not_similar,
           message: I18n.t( "#{i18n_base}.infra_epithet_similar" )
         )
       end
     end
-  end
-
-  def normalize_ws( str )
-    str.to_s.strip.tr( "\u00A0", " " ).gsub( /\s+/, " " )
-  end
-
-  # Detect hybrid *marker* between Genus and species in verbatim string.
-  # Returns :times (Unicode ×), :x (ASCII x), or :none.
-  def hybrid_marker_kind( str )
-    cleaned_str = str.to_s.strip
-    return :times if cleaned_str =~ /\A[A-Z][a-z\.-]*\s+×\s+[a-z-]+/
-    return :x     if cleaned_str =~ /\A[A-Z][a-z\.-]*\s+x\s+[a-z-]+/
-
-    :none
-  end
-
-  # True hybrid *formula*: "Genus species × (Genus) species"
-  # (NOT a named nothospecies like "Citrus × aurantium")
-  def hybrid_formula?( str )
-    cleaned_str = normalize_ws( str )
-    cleaned_str = cleaned_str.gsub( /\s*×\s*/, " × " ).gsub( /(?<=\s)[xX](?=\s)/, " × " )
-    cleaned_str.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
-    /\A[A-Z][A-Za-z\.-]+ [a-z-]+ × (?:[A-Z][A-Za-z\.-]+ )?[a-z-]+(?:\b|\z)/.match?( cleaned_str )
-  end
-
-  # Prefer GNparser, but fall back gracefully if it can’t provide clean tokens/stems.
-  # Returns { genus:, species:, infra:, species_stem:, infra_stem:, ok: true/false }
-  def extract_parts( name )
-    parsed = Biodiversity::Parser.parse( name.to_s )
-    simple = parsed.dig( :canonical, :simple ).to_s
-    stem   = parsed.dig( :canonical, :stem ).to_s
-
-    tokens = simple.split( /\s+/ )
-    stems  = stem.split( /\s+/ )
-
-    parts = {
-      genus: tokens[0],
-      species: tokens[1],
-      infra: tokens[2],
-      species_stem: stems[1],
-      infra_stem: stems[2]
-    }
-
-    ok = parts[:genus].present? && parts[:species].present? && parts[:species_stem].present?
-    return parts.merge( ok: true ) if ok
-
-    fb = fallback_parts( name )
-    parts[:genus]        ||= fb[:genus]
-    parts[:species]      ||= fb[:species]
-    parts[:infra]        ||= fb[:infra]
-    parts[:species_stem] ||= fallback_stem( fb[:species] )
-    parts[:infra_stem]   ||= fallback_stem( fb[:infra] )
-    parts.merge( ok: false )
-  end
-
-  # Fallback tokenizer if GNparser fails or returns blanks. { genus:, species:, infra: }
-  def fallback_parts( name )
-    cleaned_name = normalize_ws( name )
-    cleaned_name.sub!( /\A([A-Z][a-z-]+)\s+\([A-Z][a-z-]+\)\s+/, "\\1 " )
-    cleaned_name.gsub!( /\s+[×x]\s+/, " " ) # treat marker as a space
-    parts = cleaned_name.split( /\s+/ )
-    { genus: parts[0], species: parts[1], infra: ( parts[-1] if parts.length >= 3 ) }
-  end
-
-  def name_tokens( name )
-    cleaned_name = normalize_ws( name )
-    cleaned_name.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
-    # normalize only the standalone marker token (won't touch 'max', 'plexippus', etc.)
-    cleaned_name = cleaned_name.gsub( /\s*×\s*/, " " ).gsub( /(?<=\s)[xX](?=\s)/, " " )
-    cleaned_name.split( /\s+/ )
-  end
-
-  # Crude stemmer good enough for small-typo/gender-variant checks
-  def fallback_stem( str )
-    str.to_s.downcase.gsub( /[^a-z-]/, "" ).sub( /(ius|us|a|um|is|e|er|es|ii|i)\z/, "" )
-  end
-
-  # “Similar” = identical stems or Damerau-Levenshtein <= 2 (and not blank)
-  def epithet_similar_by_stem?( old_stem, new_stem )
-    return false if old_stem.blank? || new_stem.blank?
-    return true  if old_stem == new_stem
-
-    DamerauLevenshtein.distance( old_stem, new_stem ) <= 2
-  end
-
-  # Marker-only normalization exactly between Genus and species; tail must match.
-  def marker_only_between_genus_species?( old_str, new_str )
-    old = normalize_ws( old_str )
-    new = normalize_ws( new_str )
-
-    genus    = "[A-Z][A-Za-z\\.-]+"
-    subgenus = "\\([A-Z][A-Za-z\\.-]+\\)"
-    species  = "[a-z-]+"
-
-    with_marker = /\A(#{genus})\s+(?:#{subgenus}\s+)?(?:×|[xX])\s+(#{species})(.*)\z/
-    no_marker   = /\A(#{genus})\s+(?:#{subgenus}\s+)?(#{species})(.*)\z/
-
-    cmp = lambda do | m, n |
-      g1, sp1, tail1 = m.captures
-      g2, sp2, tail2 = n.captures
-      g1.casecmp?( g2 ) && sp1.casecmp?( sp2 ) && tail1 == tail2
-    end
-
-    m_old_with = with_marker.match( old )
-    n_new_no   = no_marker.match( new )
-    return cmp.call( m_old_with, n_new_no ) if m_old_with && n_new_no
-
-    m_old_no   = no_marker.match( old )
-    n_new_with = with_marker.match( new )
-    return cmp.call( m_old_no, n_new_with ) if m_old_no && n_new_with
-
-    false
   end
 end

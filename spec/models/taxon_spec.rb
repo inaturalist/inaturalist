@@ -2025,6 +2025,36 @@ describe Taxon, "name change restrictions by rank" do
       expect_update_pass( add, name: "Taricha × torosa trueii" )
     end
   end
+
+  context "species" do
+    let!( :taxon ) { Taxon.create!( name: "Taricha torosa", rank: "species", iconic_taxon: @Amphibia ) }
+
+    it "rejects changing the first letter of the genus" do
+      expect( taxon.update( name: "Daricha torosa" ) ).to be( false )
+    end
+
+    it "rejects changing the first letter of the species epithet" do
+      expect( taxon.update( name: "Taricha dorosa" ) ).to be( false )
+      expect( taxon.errors[:name].join ).to match( /first letter/i )
+    end
+  end
+
+  context "subspecies" do
+    let!( :taxon ) { Taxon.create!( name: "Taricha torosa torosa", rank: "subspecies", iconic_taxon: @Amphibia ) }
+
+    it "rejects changing the first letter of the genus" do
+      expect( taxon.update( name: "Daricha torosa torosa" ) ).to be( false )
+    end
+
+    it "rejects changing the first letter of the species epithet" do
+      expect( taxon.update( name: "Taricha dorosa torosa" ) ).to be( false )
+    end
+
+    it "rejects changing the first letter of the infraspecific epithet" do
+      expect( taxon.update( name: "Taricha torosa dorosa" ) ).to be( false )
+      expect( taxon.errors[:name].join ).to match( /first letter/i )
+    end
+  end
 end
 
 describe Taxon, "sync_scientific_taxon_names_for_name_change" do

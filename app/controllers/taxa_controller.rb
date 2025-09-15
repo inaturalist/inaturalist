@@ -151,7 +151,12 @@ class TaxaController < ApplicationController
         pagination_headers_for @taxa
         Taxon.preload_associations(
           @taxa,
-          [{ taxon_photos: { photo: :user } }, :taxon_descriptions, { taxon_names: :place_taxon_names }, :iconic_taxon]
+          [
+            { taxon_photos: { photo: :user } },
+            :taxon_descriptions,
+            { taxon_names: :place_taxon_names },
+            :iconic_taxon
+          ]
         )
         options = Taxon.default_json_options
         options[:include].merge!(

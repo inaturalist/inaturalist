@@ -10627,6 +10627,8 @@ en:
               only_infra_may_change: "only the infraspecific epithet may change for infraspecific ranks"
               # Error message trying make major changes to the ssp epithet
               infra_epithet_similar: "infraspecific epithet must be similar (minor typo/gender only)"
+              # Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "first letter of any epithet cannot change."
         taxon_change:
           attributes:
             base:
