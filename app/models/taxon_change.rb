@@ -221,7 +221,7 @@ class TaxonChange < ApplicationRecord
     end
 
     single_input_taxon = is_a?( TaxonMerge ) ? input_taxa.first : input_taxon
-    plant_id = Taxon::ICONIC_TAXA_BY_NAME["Plantae"]
+    plant_id = Taxon::ICONIC_TAXA_BY_NAME["Plantae"].id
     if single_input_taxon.nil? || single_input_taxon.iconic_taxon_id.nil?
       return false
     end
