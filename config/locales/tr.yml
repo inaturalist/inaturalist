@@ -6234,6 +6234,8 @@ tr:
         Duyurunuz bir siteyi hedefliyorsa (Site Yöneticisiyseniz varsayılan olarak böyledir), bu bölümde tüm siteleri hedefleyen duyurular hariç tutulacaktır.
       ip_countries_desc: |
         Birden fazla seçim yapmak için CMD- veya SHIFT-tıklayın. "Tümünü" seçmek veya seçim yapmamak, duyuruyu IP ülkesine bakılmaksızın tüm kullanıcılara gösterecektir.
+      exclude_ip_countries_desc: |
+        Çoklu seçim için CMD veya SHIFT tuşuna basılı tutarak tıklayın. Seçili ülkeler duyuruyu görmeyecektir. Eğer IP ülkeleri seçilirse, seçili 'IP Ülkelerini Hariç Tut' seçeneği öncekinden çıkarılacaktır.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Kullanıcının en son oluşturduğu gözlemin oluşturulma tarihinin önbelleğe alındığını unutmayın, bu nedenle hedeflemenin etkili olması birkaç saat sürebilir.
