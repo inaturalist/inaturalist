@@ -3,6 +3,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import UsersPopover from "./users_popover";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { inatreact } from "../../../shared/util";
 
 class QualityMetrics extends React.Component {
   constructor( ) {
@@ -145,11 +147,24 @@ class QualityMetrics extends React.Component {
         />
       )
       : null;
+    const currentCommunityTaxon = observation.communityTaxon 
+      ? <>
+          <br />
+          <span className="current-community-taxon">
+            {
+              inatreact.t( "current_community_id", {
+                taxon: <SplitTaxon taxon={observation.communityTaxon} /> 
+              })
+            }
+          </span>
+        </>
+      : null;
     return (
       <tr className={`improve${needsIDVoteDisabled ? " disabled" : ""}`}>
         <td className="metric_title" colSpan={3}>
           <i className="fa fa-gavel" />
           { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
+          { currentCommunityTaxon }
           <div className="inputs">
             <div className="yes">
               { checkboxYes }

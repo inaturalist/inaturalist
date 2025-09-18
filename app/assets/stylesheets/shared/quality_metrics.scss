@@ -51,6 +51,12 @@
         }
       }
     }
+    .current-community-taxon {
+      margin-inline-start: 35px;
+      .SplitTaxon > span {
+        color: #333;
+      }
+    }
   }
   h3 {
     margin-top: 30px;
