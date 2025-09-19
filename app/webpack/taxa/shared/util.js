@@ -146,8 +146,8 @@ const windowStateForTaxon = taxon => {
     }
   };
 
-  const tabHash = tabFromLocationHash(taxon.rank_level )?.hash;
-  
+  const tabHash = tabFromLocationHash( taxon.rank_level )?.hash;
+
   return {
     state,
     title,
@@ -220,46 +220,15 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
 };
 
 const TABS = {
-    map:"map",
-    articles:"articles",
-    highlights:"highlights",
-    interactions:"interactions",
-    taxonomy:"taxonomy",
-    status:"status",
-    similar:"similar",
-    curation:"curation"
-}
-
-const tabFromLocationHash = (rankLevel ) => {
-  const urlTabMatches = window.location.hash.match( /^#([a-z-]+)-tab$/ );
-  const tabMatch = urlTabMatches?.[1];
-
-  if ( !urlTabMatches || !tabMatch || !(tabMatch in TABS) ) {
-    return null;
-  }
-
-  const chosenTab = getChosenTab(tabMatch, rankLevel);
-
-  return !chosenTab?undefined:{tab:chosenTab, hash: `${chosenTab}-tab`};
+  map: "map",
+  articles: "articles",
+  highlights: "highlights",
+  interactions: "interactions",
+  taxonomy: "taxonomy",
+  status: "status",
+  similar: "similar",
+  curation: "curation"
 };
-
-const getChosenTab = (tab, rankLevel) => {
-  const speciesTabsSet = new Set([TABS.map, TABS.articles, TABS.interactions, TABS.taxonomy, TABS.status, TABS.similar]);
-  const genusTabsSet = new Set([TABS.map, TABS.articles, TABS.highlights, TABS.taxonomy, TABS.similar]);
-  const aboveGenusTabsSet = new Set([TABS.map, TABS.articles, TABS.highlights, TABS.taxonomy]);
-
-  if (
-    ( rankLevel <= RANK_LEVELS.species && speciesTabsSet.has( tab ) >= 0 )
-    || ( rankLevel === RANK_LEVELS.genus && genusTabsSet.has( tab ) >= 0 )
-    || (
-      ( rankLevel > RANK_LEVELS.genus
-      || ( rankLevel > RANK_LEVELS.species && rankLevel < RANK_LEVELS.genus ) )
-      && aboveGenusTabsSet.has( tab ) >= 0
-    )
-  ) {
-     return tab;
-  }
-}
 
 const RANK_LEVELS = {
   root: 100,
@@ -296,6 +265,41 @@ const RANK_LEVELS = {
   variety: 5,
   form: 5,
   infrahybrid: 5
+};
+
+const getChosenTab = ( tab, rankLevel ) => {
+  const speciesTabsSet = new Set( [TABS.map, TABS.articles, TABS.interactions,
+    TABS.taxonomy, TABS.status, TABS.similar] );
+  const genusTabsSet = new Set( [TABS.map, TABS.articles,
+    TABS.highlights, TABS.taxonomy, TABS.similar] );
+  const aboveGenusTabsSet = new Set( [TABS.map, TABS.articles, TABS.highlights, TABS.taxonomy] );
+
+  if (
+    ( rankLevel <= RANK_LEVELS.species && speciesTabsSet.has( tab ) >= 0 )
+    || ( rankLevel === RANK_LEVELS.genus && genusTabsSet.has( tab ) >= 0 )
+    || (
+      ( rankLevel > RANK_LEVELS.genus
+      || ( rankLevel > RANK_LEVELS.species && rankLevel < RANK_LEVELS.genus ) )
+      && aboveGenusTabsSet.has( tab ) >= 0
+    )
+  ) {
+    return tab;
+  }
+
+  return null;
+};
+
+const tabFromLocationHash = rankLevel => {
+  const urlTabMatches = window.location.hash.match( /^#([a-z-]+)-tab$/ );
+  const tabMatch = urlTabMatches?.[1];
+
+  if ( !urlTabMatches || !tabMatch || !( tabMatch in TABS ) ) {
+    return null;
+  }
+
+  const chosenTab = getChosenTab( tabMatch, rankLevel );
+
+  return !chosenTab ? undefined : { tab: chosenTab, hash: `${chosenTab}-tab` };
 };
 
 const MAX_TAXON_PHOTOS = 12;

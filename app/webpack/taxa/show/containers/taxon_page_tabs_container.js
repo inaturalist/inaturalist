@@ -13,9 +13,8 @@ import {
 } from "../../shared/ducks/taxon";
 import { getChosenTab } from "../../shared/util";
 
-
 function mapStateToProps( state ) {
-  const chosenTab= getChosenTab(state.config.chosenTab, state.taxon.taxon.rank_level);
+  const chosenTab = getChosenTab( state.config.chosenTab, state.taxon.taxon.rank_level );
 
   return {
     taxon: state.taxon.taxon,
@@ -50,7 +49,9 @@ function mapDispatchToProps( dispatch ) {
   return {
     showPhotoChooserModal: ( ) => dispatch( showPhotoChooser( ) ),
     choseTab: tab => {
-      location.hash = `#${tab}-tab`;
+      const newURL = new URL( window.location.href );
+      newURL.hash = `#${tab}-tab`;
+      history.replaceState( history.state, "", newURL.toString() );
       dispatch( setConfig( { chosenTab: tab } ) );
       loadDataForTab( tab );
       updateSession( { preferred_taxon_page_tab: tab } );
