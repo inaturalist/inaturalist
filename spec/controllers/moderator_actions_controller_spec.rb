@@ -6,7 +6,7 @@ describe ModeratorActionsController do
   let( :generic_reason ) { Faker::Lorem.sentence }
 
   describe "create" do
-    it "creates moderator actions" do
+    it "creates moderator actions for photo with json format" do
       user = make_admin
       sign_in user
       photo = Photo.make!
@@ -25,6 +25,21 @@ describe ModeratorActionsController do
       expect( json["action"] ).to eq ModeratorAction::HIDE
       expect( json["private"] ).to eq true
       expect( json["user_id"] ).to eq user.id
+    end
+
+    it "creates moderator actions for sound with html format" do
+      user = make_admin
+      sign_in user
+      sound = Sound.make!
+      post :create, format: :html, params: { moderator_action: {
+        resource_type: "Sound",
+        resource_id: sound.id,
+        reason: generic_reason,
+        action: ModeratorAction::UNHIDE,
+        private: false
+      } }
+      expect( ModeratorAction.where("resource_id = #{sound.id}").count).to eq(1)
+      expect( response ).to redirect_to(sound)
     end
   end
 

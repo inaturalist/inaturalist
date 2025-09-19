@@ -43,6 +43,14 @@ class ModeratorActionsController < ApplicationController
             end
             redirect_to @moderator_action.resource.becomes( Photo )
             return
+          when "Sound"
+            case @moderator_action.action
+            when ModeratorAction::HIDE then t( 'sounds.sound_hidden' )
+            when ModeratorAction::UNHIDE then t( 'sounds.sound_unhidden' )
+            else default_notice
+            end
+            redirect_to @moderator_action.resource.becomes( Sound )
+            return
           else
             default_notice
           end
@@ -61,6 +69,10 @@ class ModeratorActionsController < ApplicationController
           end
           if @moderator_action.resource_type == "Photo"
             redirect_to hide_photo_path( @moderator_action.resource )
+            return
+          end
+          if @moderator_action.resource_type == "Sound"
+            redirect_to hide_sound_path( @moderator_action.resource )
             return
           end
           redirect_back_or_default @moderator_action.resource

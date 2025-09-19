@@ -471,6 +471,11 @@ class PhotoBrowser extends React.Component {
                   </button>
                   )
                 }
+                <a href={`/sounds/${sound.id}`}>
+                  <Badge>
+                    <i className="fa fa-info" />
+                  </Badge>
+                </a>
               </div>
             </div>
           </div>

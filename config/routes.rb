@@ -266,10 +266,13 @@ Rails.application.routes.draw do
   resources :observation_photos, only: [:show, :create, :update, :destroy]
   resources :observation_sounds, only: [:show, :create, :update, :destroy]
   resources :soundcloud_sounds, only: [:index]
-  resources :sounds, only: [:show, :local_sound_fields, :create] do
+  resources :sounds, only: [:show, :update, :local_sound_fields, :create] do
     resources :flags
     collection do
       get :local_sound_fields
+    end
+    member do
+      get :hide
     end
   end
   resources :observations, constraints: { id: id_param_pattern } do
