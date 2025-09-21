@@ -27,7 +27,8 @@ class AnnouncementsController < ApplicationController
       client: params[:client],
       user_agent_client: user_agent_client,
       user: current_user,
-      site: @site
+      site: current_user&.site,
+      ip: Logstasher.ip_from_request_env( request.env )
     )
     @announcements.each do | announcement |
       helpers.create_announcement_impression( announcement )
