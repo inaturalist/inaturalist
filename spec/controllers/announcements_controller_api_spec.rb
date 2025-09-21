@@ -195,7 +195,7 @@ describe AnnouncementsController do
         expect( annc_ids ).to include( active_announcement.id )
       end
 
-      it "targets by site viewed, not by user site affiliation" do
+      it "targets by site affiliation, not by site viewed" do
         create( :site ) unless Site.default
         user_site = create :site
         user = create :user, site: user_site
@@ -206,8 +206,8 @@ describe AnnouncementsController do
         sign_in user
         get :active, format: :json, params: { inat_site_id: other_site.id }
         annc_ids = response.parsed_body.map {| a | a["id"] }
-        expect( annc_ids ).not_to include( user_site_announcement.id )
-        expect( annc_ids ).to include( other_site_announcement.id )
+        expect( annc_ids ).to include( user_site_announcement.id )
+        expect( annc_ids ).not_to include( other_site_announcement.id )
         expect( annc_ids ).to include( nosite_announcement.id )
       end
 
