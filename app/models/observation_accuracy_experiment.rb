@@ -1129,7 +1129,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return true if user.prefers_gaps_obs_pilot == true || user.is_admin?
     return false if user.observations_count < 1000
 
-    false # user.site.try( :name ) == "iNaturalist Canada"
+    user.site.try( :name ) == "iNaturalist Canada"
   end
 
   def self.get_observer_location( user_id )
@@ -1302,7 +1302,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     return true if user.prefers_gaps_id_pilot == true || user.is_admin?
     return false if user.identifications_count < 10_000
 
-    false # user.site.try( :name ) == "iNaturalist Canada"
+    user.site.try( :name ) == "iNaturalist Canada"
   end
 
   def self.process_iders( gaps_id_pilot )
