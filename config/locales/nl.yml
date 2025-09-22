@@ -1519,6 +1519,8 @@ nl:
     gaps_id_pilot_current_intro: "Hier is een link naar waarnemingen van soorten die nog niet zijn opgenomen in het Computer Vision Model die jij volgens ons kunt determineren."
     #instructions once people have participated if the list of observaitons is not ready
     gaps_id_pilot_check_back: "Kom morgen terug voor een link naar waarnemingen van soorten die nog niet zijn opgenomen in het Computer Vision Model en waarvan we denken dat jij ze kunt determineren. Je krijgt soorten te zien waarvan je ten minste 3 verbeterende determinaties hebt gemaakt."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Als je geen link ziet, zijn er mogelijk geen waarnemingen die aan de criteria voldoen met de status ''ID nodig''. Dit wordt eenmaal per dag gecontroleerd."
     #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
     gaps_obs_pilot_title: "Waarneming Witte Gebieden: \"ID nodig\"-soorten gezocht"
     #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
@@ -8158,6 +8160,20 @@ nl:
         Kinderen van het input-taxon die genera of grover zijn, worden verplaatst naar 
         het resultaat; soorten, ondersoorten, variëteiten, etc. worden ingeruild voor
         equivalenten met de nieuwe genus- of soortnaam.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Herstel
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: Aan het herstellen ...
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Intrekken
+      #state of an abandoned taxon change
+      withdrawn: Ingetrokken
+      #state of a committed taxon change
+      committed: bevestigd
+      #state of a draft taxon change
+      draft: concept
+      #the status of a taxon change: draft, withdrawn or committed
+      status: status
       form:
         move_children_desc2_html: |
           Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor Taxonwissels en Taxonsamenvoegingen wanneer deze wijziging is bevestigd. Als dit een verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met namen die gewijzigd moeten worden. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er
