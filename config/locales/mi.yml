@@ -31,6 +31,7 @@ mi:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A ki Z"
+  about: Pārongo
   about_conservation_status: Mō tūnga whāomoomo
   about_license_options: Mō kōwhiringa raihana
   about_licenses: Mō ngā raihana
@@ -60,7 +61,10 @@ mi:
   activity: Hohenga
   add: Tāpiri
   add_a_comment: Tāpiri tētahi kōrero
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Tāpiri tūnga whāomoomo
   add_a_field: Tāpiri te āpure
+  add_a_flag: Tāpiritia Kara
   add_a_name: Tāpiri tētahi ingoa
   add_a_single_observation: Tāpiritia mauhanga tautahi
   add_a_taxon: Tāpiri tētahi rōpū
@@ -87,6 +91,7 @@ mi:
   add_to_favorites: Tapiri ki āu tino mauhanga
   add_to_list: Tāpiri ki te rārangi
   add_to_project: Tāpiri ki te kohinga
+  add_to_your_list: Tāpiri ki Tōu Rārangi
   added: Kua tāpiritia
   added!: Kua tāpiritia!
   added_by: I tāpiri nā
@@ -213,6 +218,7 @@ mi:
   bg_color: Tae papamuri
   birds: manu
   birthday: Huritau
+  body: Tinana
   browse: Tirotiro
   browse_all_projects: Tirotiro ngā kohinga katoa
   browse_all_species: Tirotiro ngā momo katoa
@@ -252,6 +258,7 @@ mi:
   clear_search: Ūkuia te rapunga
   click_the_map: "<strong>Pāwhiria te mahere</strong> i tāpiritia tētahi wāhi."
   close: Kati
+  colors: Ngā tae
   columns: Tīwae
   combine: Paheko
   #Noun, used to label a comment or a comment field in a form
@@ -299,6 +306,7 @@ mi:
     sex: Taihema taketake
     male: Tourawhi
     female: Uwha
+    flowers: Puāwai
     adult: Pakeke
     pupa: Tūngoungou
     larva: Pūhouhou
@@ -407,6 +415,9 @@ mi:
   default: taunoa
   #Default option
   default_: Taunoa
+  default_observation_license: Raihana taunoa mō ngā mauhanga
+  default_photo_license: Raihana taunoa mō ngā whakaahua
+  default_sound_license: Raihana taunoa mō ngā oro
   delete: Mukua
   delete_all: Mukua katoa
   delete_photo: Mukua whakaahua
@@ -446,6 +457,8 @@ mi:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: KOHA
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Koha
   donate_again_caps: TAKOHATIA ANŌ
   donate_again_today_caps: TAKOHATIA ANŌ INAIANEI
   done: Ka oti
@@ -458,6 +471,8 @@ mi:
   draft: hukihuki
   #Noun, as in a journal post that has not been published
   draft_: Hukihuki
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Nā %{user} te hukihuki
   #Noun, as in a journal post that has not been published
   draft_saved: Kua tiakina te hukihuki!
   #Noun, as in journal posts that has not been published
@@ -470,6 +485,7 @@ mi:
   edit_comment: Whakatika au kōrero
   edit_conservation_status: Whakatika tūnga whāomoomo
   edit_field: Whakatika te āpure
+  edit_license: Whakatike te Raihana
   edit_notes: Whakatika ngā kupu tīpoka
   edit_observations: Whakatika ngā mauhanga
   edit_photos: Whakatika ngā whakaahua
@@ -479,10 +495,13 @@ mi:
   edit_remove: Whakatika/Tangohia
   edit_taxa: Whakatika ngā rōpū
   edit_taxon: Whakatika te rōpū
+  edit_the_observation: Whakatika te mauhanga
   edit_your_account_and_profile_html: "Whakatika i tāu tautuhinga pūkete me tāu kīwhaiaro"
+  edit_your_identification: Whakatika tāu tautuhi
   edited_by_name_html: "I whakatika nā %{name}"
   edited_by_name_some_rights_reserved_html: |
     Whakatika nā %{name}, kua rāhuitia ngā mōtika ētahi (%{license})
+  editing: E whakatika ana
   #Title for a page to edit an announcement
   editing_announcement_x: Pānui whakatika ana %{id}
   editing_observation_id: "E whakatika ana te mauhanga %{obs_id}"
@@ -494,6 +513,7 @@ mi:
   #Introductory form of address in an email. %{user} could be a username or a
   #name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: Kia ora %{user},
+  end: Mutunga
   end_date_time: Rā/Wā mutunga
   endangered: Mōrearea
   endemic: Taketake
@@ -512,6 +532,7 @@ mi:
   'false': 'Teka'
   Family: Whānau
   favorites: "Tino mauhanga"
+  feedback: Urupare
   fields: āpure
   fields_: Āpure
   file: Kōnae
@@ -569,6 +590,8 @@ mi:
   following: E whai ana
   forgot_your_password: Kua warewarehia tō kupuhipa?
   forum: Wānanga
+  forum_categories:
+    forum_feedback: Urupare Wānanga
   full_screen: Mata katoa
   fungi:
     other: hekaheka
@@ -622,9 +645,11 @@ mi:
   import_photos: Kawe mai ngā whakaahua
   importing: "E kawe mai ana..."
   improving: Whakapai
+  in_n: "i roto i %{n}"
   #Label for messages you've received
   inbox: Pouakauru
   inat_user_profile: "%{site_name}: Kīwhaiaro tō %{user}"
+  info: Pārongo
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
@@ -632,8 +657,12 @@ mi:
   insects: pepeke
   instagram: Paeāhua
   jobs: He tūranga mahi
+  join: Hono mai
   join_the_largest_group_of_naturalists_in_the_world: E kuhu mai koe i te rōpū nui o kaitaiao i te ao!
   journal: Rangitaki
+  jpg_png_or_gif: "JPG, PNG, GIF rānei"
+  kml: KML
+  label_colon: "%{label}:"
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
@@ -655,6 +684,10 @@ mi:
   list: Tūtira
   list_views:
     photo: whakaahua
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, me %{three}"
+  list_with_two_items: "%{one} me %{two}"
   lists: Tūtira
   lists_by_login:
     title:
@@ -709,6 +742,9 @@ mi:
   members: Huānga
   merge: Hanumi
   message: Karere
+  message_deleted: Kua mukua te karere
+  message_from_user_at_time: Nā %{user} i %{time}
+  message_from_user_on_date: Nā %{user} i %{date}
   messages: Karere
   #Label shown when a date has not been entered
   missing_date: Rā ngaro
@@ -717,6 +753,7 @@ mi:
   mollusks: kaiwhao
   momentjs:
     shortRelativeTime:
+      past: "%s"
       #Short text representing 1 second in the past
       s: "1 he"
       #Short text representing 1 minute in the past
@@ -777,6 +814,7 @@ mi:
   #Label for a button or section that shows additional options
   more_options: Ngā kōwhiringa anō
   more_photos: Tonuhia ngā whakaahua
+  n_ago: "%{n} i mua"
   name: Ingoa
   names: Ingoa
   names_for_taxon_html: "Ingoa mō %{taxon}"
@@ -1255,6 +1293,7 @@ mi:
   save_all: Tiaki katoa
   save_and_continue: "Tiaki &amp; haere tonu"
   save_comment: Tiaki te kōrero
+  save_draft: Tiakina te hukihuki
   save_identification: Tiakina te tautuhi
   save_observation: Tiakina te mauhanga
   save_photos: Tiakina ngā whakaahua
@@ -1316,6 +1355,9 @@ mi:
   start_date_time: Rā/Wā tīmatanga
   stats: Tauanga
   stats_for_this_year_have_not_been_generated: Kāore anō kia tatauhia ngā tauanga mō tēnei tau
+  status: Tūnga
+  status_globally: '"%{status}" ki te Ao Whānui'
+  status_in_place: '"%{status}" i roto i %{place}'
   stop_editing: Kāti te whakatika
   stop_following_user: "Kati e whai ana a %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
@@ -1890,6 +1932,7 @@ mi:
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Rā tohuake kaiwhakamahi hōu rawa
       conservation_status:
+        status: Tūnga
         place_id: Wāhi
       flag:
         #The kind of flag that was made

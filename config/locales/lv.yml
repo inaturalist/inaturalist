@@ -594,9 +594,6 @@ lv:
   app_owner_application_about_p1a_html: |
     iNaturalist aplikācijas atļauj autentificētu iNaturalist API izmantošanu novērojumu izveides un idenficēšanas nolūkos. Parasti tas tiek pielietots darbvirsmas vai mobilajās aplikācijās, lai padarīto to lietošanu un iNaturalist novērojumu iesniegšanu funkcionālāku. Šo saturu ir jāveido ar cilvēka līdzdalību vai pārraudzību. Sīkāku informāciju par mašīnģenerētu novērojumu aizliegumu, identificēšanu, komentāriem u.c. varat izlasīt sadaļā <a href="/pages/community+guidelines"
     target="_blank">Kopienas vadlīnijas</a>
-  app_owner_application_about_p2_html: |
-    No 2022. gada lietotājiem, kas vēlas izveidot trešo pušu lietotnes un lietojumprogrammas saskarnes (API) klientus, vispirms jāiesniedz pieteikums, lai kļūtu par lietotnes īpašnieku. Pieteikumā jāapraksta lietotnes funkcionalitāte un iecerētais pielietojums. Lai iesniegtu pieteikumu, tavam kontam jābūt vismaz divus mēnešus vecam un pēdējā mēneša laikā tajā jābūt veiktām vismaz 10 <a href="/pages/help#identification"
-    target="_blank">identifikācijām, kas tiek precizētas</a>. Iespējams, ka uzdosim vēl papildu jautājumus par tavām iecerēm. Mums ir tiesības noraidīt pieteikumus dažādu iemeslu dēļ.
   app_owner_application_inelligible: |
     Lai iesniegtu pieteikumu, tavam kontam jābūt vismaz 2 mēnešus vecam, kā arī pēdējā mēneša laikā ir jābūt veiktām vismaz 10 identifikācijām, kas tiek precizētas.
   app_owner_application_fields_explanation_html: Apraksti tavas aplikācijas funkcionalitāti un kā to plāno izmantot.
@@ -1063,8 +1060,6 @@ lv:
     url: URL vietrādis uz lapu ar šī statusa aprakstu.
     geoprivacy: |
       Taksona novērojumu noklusējuma ģeoprivātuma iestatījumi. Jāņem vērā, ka statusa ģeoprivātums, kas saistīts ar kontinentu, valsti vai pavalsti var aizvietot citu globālo vai ar augstākas pakāpes vietu saistītu statusu.
-    iucn: |
-      Līdzvērtīgs IUCN Sarkanās grāmatas kods. Šis nav IUCN veikts novērtējums, bet gan tikai IUCN kods, kas vislabāk atbilst statusā norādītajai koordinātu atklāšanas draudu pakāpei. Ja taksona statuss ir "Zems risks", ģeoprivātuma iestatījumi tiks automātiski pielāgoti. Ja vēlies, lai taksona novērojumu koordinātas būtu noslēptas, atzīmē taksonu kā "Gandrīz apdraudēts" vai kā vēl apdraudētāku.
   conservation_status_geoprivacy_desc: |
     Visiem šī taksona novērojumiem šajā vietā pielietoti noklusējuma ģeoprivātuma iestatījumi
   contact_support: Sazināties ar atbalsta dienestu
@@ -3656,6 +3651,20 @@ lv:
     Vietu robežu mainīšana ir viens no lielākajiem cēloņiem tam, kāpēc iNat darbības ātrums pasliktinās. Ja vien bez tā nekādi nevar iztikt, nepievieno, nemaini un nedzēs vietu robežas.
   places_warning_quota: |
     Vienas dienas laikā iespējams izveidot tikai trīs vietas.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Vietas nevar būt lielākas par 700 000 kvadrātkilometru.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Vietas nevar būt lielākas par 70 000 kvadrātkilometru.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Vietas nevar saturēt vairāk par 200 000 novērojumu.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Vietas nevar saturēt vairāk par 10 000 novērojumu.
   places_warning_the_future: |
     Ņemot vērā iNat straujo attīstības tempu, nākotnē mums nāksies ierobežot lietotāju iespējas pievienot vietas.
   plants: augi
@@ -6679,20 +6688,6 @@ lv:
           Lai izdzēstu savu kontu, veidlapā jāievada "%{confirmation_code}"
       edit:
         about_third_party_tracking: Par trešo pušu izsekošanu
-        blocking_desc_html: |
-          <p>
-          Ja kāds tiek nobloķēts, šim lietotājam vairs nav iespējas nosūtīt tev ziņas, komentēt un identificēt tavus novērojumus vai kādā citā veidā sazināties ar tevi %{site_name} vietnē. Turklāt lietotāja novērojumi nebūs redzami tavos meklēšanas rezultātos un tavi novērojumi nebūs redzami lietotāja meklēšanas rezultātos. Tomēr tas nepadara tevi lietotājam neredzamu. Tavi novērojumi un profils tāpat būs atrodams, bet lietotājs nevarēs sazināties ar tevi.
-          </p>
-          <p>
-          Bloķēšana lietojama situācijās, kad nevari ar kādu satikt un par spīti taviem centieniem atrisināt nesaskaņas civilizētā ceļā lietotājs tevi tāpat neliek mierā. Bloķēšana nav paredzēta tam, lai slēptos no citiem, izvairītos no cilvēkiem, kuru novērojumiem neuzticies vai, lai atteiktos no kopienas ID (tam parezēta cita funkcija). Bloķēšana funkcionē abējādi – ja kādu nobloķēsi, lietotājs nevarēs ar tevi sazināties, bet arī tu nevarēsi sazināties ar viņu. Ja šo funkciju lietosi nepareizi, piemēram, lai izvairītos no kāda lietotāja identifikācijām, tad liegsi arī sev iespēju identificēt šī lietotāja novērojumus.
-          </p>
-          <p>
-          Nobloķēt iespējams tikai trīs lietotājus. Uzskatām, ka tas ir pamatots daudzums, kas sniedz iespēju nobloķēt traucējošus lietotājus un tai pašā laikā liedz kādam izmantot šo funkciju maldinošā veidā. Ja tev rodas nepieciešamība nobloķēt vairāk lietotāju, lūdzu, sazinies ar mums.
-          </p>
-          <p>
-          Ja kāds tevi neliek mierā vai izseko %{site_name} vietnē, lūdzu,
-          <a href="mailto:%{help_email}">sazinies ar mums</a>. Ja lietotāja darbības pārkāpj lietošanas noteikumus vai uzskatām, ka lietotāja izturēšanās ir nepiemērota mūsu vietnei, veiksim izmeklēšanu. <a href="mailto:%{help_email}">
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
         inaturalist_network_affiliation_desc_html: |

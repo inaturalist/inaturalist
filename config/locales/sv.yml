@@ -629,13 +629,12 @@ sv:
     observationer, bestämningar och kommentarer.
   app_owner_application_about_p2_html: |
     Från och med 2022 kräver vi manuellt godkännande för användare som vill göra API-klienter.
-    För att skapa tredje parts-appar måste du först skicka in en ansökan för att bli
-    en "appägare". Den här ansökan ska beskriva funktionaliteten i din föreslagna app
-    och hur du planerar att använda den. För att kunna skicka in en ansökan måste ditt konto vara
-    minst 2 månader gammalt och ha gjort minst 10 <a href="/pages/help#identification"
-    target="_blank">förbättringsbestämningar</a> under den senaste månaden. Vi kan komma att
-    ställa uppföljningsfrågor om din plan och vi förbehåller oss rätten att avslå ansökningar av vilken
-    anledning som helst.
+    För att kunna skapa appar från tredje part måste du först skicka in en ansökan om att bli
+    En "appägare". Det här programmet bör beskriva funktionerna i den föreslagna appen
+    och hur du planerar att använda den. För att kunna skicka in en ansökan måste ditt konto vara på
+    minst 2 månader gammal och måste ha gjort minst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Förbättrad identifiering</a> under den senaste månaden. Vi kan komma att be om uppföljning
+    frågor om din plan och vi förbehåller oss rätten att neka ansökningar av vilken anledning som helst.
   app_owner_application_inelligible: |
     För att kunna skicka in en ansökan måste ditt konto vara minst 2 månader gammalt och
     ha gjort minst 10 förbättringsbestämningar under den senaste månaden.
@@ -1147,10 +1146,6 @@ sv:
     url: URL till en sida som beskriver denna status.
     geoprivacy: |
       Standard koordinatsekretess för fynd av detta taxon. Notera att koordinatsekretess som är knuten till en fyndplats av kontinent-, land- eller statsnivå kan åsidosätta en status som är global eller knuten till fyndplats på högre nivå.
-    iucn: |
-      Motsvarande IUCN-rödlistekod. Detta är inte den faktiska IUCN-bedömningen,
-      bara den IUCN-kod som bäst matchar det hot om som denna status implicerar vid utlämnande av koordinater. Detta kommer att åsidosätta koordinatsekretessen om det är "Livskraftig" eller lägre, så om du vill dölja observationer av detta
-      taxon, sätt det till "Nära hotad" eller högre.
   conservation_status_geoprivacy_desc: |
     Standard koordinatsekretess tillämpas på alla fynd av detta taxon på denna plats
   contact_support: Kontakta support
@@ -4280,6 +4275,20 @@ sv:
     Om du kan undvika det, lägg inte till, ändra eller ta bort fyndplatsgränser om du inte verkligen måste.
   places_warning_quota: |
     Du kan bara skapa tre fyndplatser per dag.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Platser får inte vara större än 700 000 kvadratkilometer.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Platser får inte vara större än 70 000 kvadratkilometer.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Platser får inte innehålla mer än 200 000 observationer.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Platser får inte innehålla mer än 10 000 observationer.
   places_warning_the_future: |
     Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka användare kan lägga till fyndplatser i framtiden givet iNats nuvarande tillväxttakt.
   plants: växter
@@ -8286,21 +8295,6 @@ sv:
           Du måste ange "%{confirmation_code}" i formuläret för att radera ditt konto
       edit:
         about_third_party_tracking: Om spårning av tredjepart
-        blocking_desc_html: |
-          <p>
-          Att blockera någon hindrar dem från att skicka meddelanden till dig, kommentera dina fynd, artbestämma dina fynd, och på annat sätt interagera med dig på %{site_name}. Det tar också bort deras fynd från dina sökresultat och dina fynd från deras sökresultat. Det gör dig dock inte osynlig för dem. De kan fortfarande hitta dina fynd och se din profil, de kan helt enkelt bara inte interagera med dig.
-          </p>
-          <p>
-          Blockering är till för situationer där du helt enkelt inte kan komma överens med någon och de lämnar dig inte i fred, trots att du ansträngt dig för att lösa tvister på ett civiliserat sätt. Det är inte ett sätt att gömma sig från personer, förhindra artbestämningar från personer vars åsikter du inte litar på eller välja bort community-bestämningar (det finns en annan inställning för det). Blockeringen verkar alltså åt
-          båda hållen: om du blockerar någon kan de inte interagera med dig, men du kan inte heller interagera med dem. Om du missbrukar detta för att hindra någon från att artbestämma dina fynd hindrar du också dig själv från att bestämma deras fynd.
-          </p>
-          <p>
-          Du kan bara blockera tre personer. Vi tycker att det är ett rimligt antal som tillmötesgår de personer som behöver blockera någon medan det förhindrar missbruk av blockering. Om du känner att du behöver blockera fler personer, vänligen <a href="mailto:%{help_email}">kontakta oss</a>.
-          </p>
-          <p>
-          Om någon trakasserar eller förföljer dig på %{site_name},
-          <a href="mailto:%{help_email}">vänligen meddela oss</a>. Om det visar sig vara ett brott mot våra Användarvillkor, eller något annat beteende som vi anser är olämpligt på vår webbplats, kommer vi att titta närmare på det.
-          </p>
         common_scientific_name_display_order: Visningsordning för vardagligt / vetenskapligt namn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.

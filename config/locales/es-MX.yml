@@ -603,9 +603,6 @@ es-MX:
     identificaciones. Los casos de uso habitual son aplicaciones como aplicaciones de escritorio o aplicaciones móviles que incluyen funcionalidad para sus usuarios(s) para crear observaciones de iNaturalist. Este contenido debe ser generado con una implicación humana real o supervisada. Por favor, para más detalles, lea nuestras <a href="/pages/community+guidelines"
     target="_blank">Guás comunitarias</a> que prohibiben observaciones, identificaciones y comentarios generados por máquinas.
     .
-  app_owner_application_about_p2_html: |
-    A partir de 2022 estamos requiriendo aprobación manual para usuarios que deseen hacerse clientes API. Para crear aplicaciones de terceros, primero debes enviar una solicitud para convertirte en "propietario de aplicación". Esta solicitud debe describir la funcionalidad de tu app propuesta y cómo planeas utilizarla. Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes haber hecho al menos 10 <a href="/pages/help#identification"
-    target="_blank">identificaciones mejorando </a> en el último mes. Podemos hacer preguntas de seguimiento sobre tu plan y nos reservamos el derecho de rechazar las solicitudes por cualquier razón.
   app_owner_application_inelligible: |
     Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes
     haber hecho al menos 10 mejoras de identificaciones en el último mes.
@@ -1110,8 +1107,6 @@ es-MX:
     url: URL que describa este estaus.
     geoprivacy: |
       Geoprivacidad predeterminada para esta especie o grupo.
-    iucn: |
-      Código equivalente a la Lista roja de IUCN.
   conservation_status_geoprivacy_desc: |
     La geoprivacidad predeterminada se aplica a todas las observaciones de este taxón en este lugar
   contact_support: Contacta a soporte
@@ -7854,20 +7849,6 @@ es-MX:
           Introduce "%{confirmation_code}" en la aplicación para eliminar tu cuenta
       edit:
         about_third_party_tracking: Acerca de rastreo por parte de terceros
-        blocking_desc_html: |
-          <p>
-          El bloqueo de una persona previene que te envíe mensajes, comente tus observaciones, identifique tus observaciones, e interactúe contigo en %{site_name}. También suprime sus observaciones de tus resultados de búsqueda y remueve tus observaciones de sus resultados de búsqueda. Sin embargo, no te hace invisible. Pueden encontrar tus observaciones y ver tu perfil, solamente no pueden interactuar contigo.
-          </p>
-          <p>
-          El bloqueo es para situaciones en donde no puedes llevarte con alguna personas y no dejan de molestarte, a pesar de tus mejores esfuerzos de aclarar las discusiones de forma civilizada. No es una forma para esconderte de la gente, para prevenir identificaciones de gente de la cual no confías en sus identificaciones, o de salirte de las identificaciones de la comunidad (hay otras maneras para eso). Así que el bloqueo funciona de las dos maneras: si bloqueas a alguien, no podrá interactuar contigo, ni tu podrás interactuar con ellos. Si lo utilizas erróneamente para prevenir que alguien identifique tus observaciones, no podrás tampoco identificar sus observaciones.
-          </p>
-          <p>
-          Solamente puedes bloquear a tres personas. Pensamos que este es un número razonable y previene el abuso del bloqueo. Si piensan que tienes que bloquear a mas gente, por favor <a href="mailto:%{help_email}">contáctanos</a>.
-          </p>
-          <p>
-          Si alguien te está molestando %{site_name},
-          <a href="mailto:%{help_email}">contáctanos </a>. Si esto representa una violación a nuestros Términos de Uso o representa comportamiento que consideramos es inapropiado en nuestro sitio, investigaremos.
-          </p>
         common_scientific_name_display_order: Orden para mostrar nombres comúnes / científicos
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si cambias de opinión siempre puedes

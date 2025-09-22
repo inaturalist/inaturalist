@@ -578,9 +578,6 @@ nb:
   app_owner_application_about_p1a_html: |
     iNaturalist-apper tillater autentisert bruk av iNaturalists API. Dette lar deg gjøre API-anrop som blant annet kan opprette observasjoner eller identifikasjoner. Vanlige bruksområder er stasjonære eller mobile apper som inkluderer funksjonalitet der brukerne deres kan opprette iNaturalist-observasjoner. Dette innholdet må skapes med involvering eller tilsyn av virkelige mennesker. Vennligst les våre <a href="/pages/community+guidelines"
     target="_blank">Fellesskapsretningslinjer</a> som forbyr maskingenererte observasjoner, identifikasjoner og kommentarer for flere detaljer.
-  app_owner_application_about_p2_html: |
-    Per 2022 krever vi manuell godkjenning for brukere som ønsker å lage API-klienter. For å kunne skape tredjepartsapper, må du først sende inn en søknad for å bli en "app-eier". Denne søknaden skal beskrive funksjonaliteten til din foreslåtte app og hvordan du planlegger å bruke den. For å kunne sende en søknad må kontoen din være minst 2 måneder gammel og du må ha gjort minst 10 <a href="/pages/help#identification"
-    target="_blank">forbedrende identifikasjoner</a> den siste måneden. Det kan hende vi har oppfølgingsspørsmål om planen din og vi ivaretar vår rett til å avslå søknader av hvilken som helst grunn.
   app_owner_application_inelligible: |
     For å sende inn en søknad må kontoen din være minst 2 måneder gammel og må ha gjort minst 10 forbedrende identifikasjoner den siste måneden.
   app_owner_application_fields_explanation_html: Beskriv funksjonaliteten til appen din og hvordan du planlegger å bruke den.
@@ -1064,8 +1061,6 @@ nb:
     url: Url til en side som beskriver denne statusen.
     geoprivacy: |
       Standard geosperring for observasjoner av dette taksonet. Merk at geosperringen av en status tilknyttet steder med verdensdel-, land- eller statsnivå kan overskrive en status som er global eller forbundet med et sted av høyere nivå.
-    iucn: |
-      Tilsvarende IUCN rødlistekode. Dette er ikke den faktiske vurderingen fra IUCN, bare IUCN-koden som samsvarer best med trusselen om koordinatavsløring implisert av denne statusen. Dette vil overskrive geosperringen hvis den er "Livskraftig" eller lavere, så hvis du ønsker å skjule observasjoner av dette taksonet, sett det til "Nær truet" eller høyere.
   conservation_status_geoprivacy_desc: |
     Standard geosperring påført alle observasjoner av dette taksonet på dette stedet
   contact_support: Kontakt brukerstøtte
@@ -3968,6 +3963,20 @@ nb:
     Redigering av stedsgrenser er en av de største kildene til at det går tregt på iNat. Dersom du kan unngå det, ikke legg til, endre eller fjern stedsgrenser hvis det ikke er absolutt nødvendig.
   places_warning_quota: |
     Du kan bare opprette tre steder per dag.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Steder kan ikke være større enn 700 000 kvadratkilometer.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Steder kan ikke være større enn 70 000 kvadratkilometer.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Steder kan ikke inneholde mer enn 200 000 observasjoner.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Steder kan ikke inneholde mer enn 10 000 observasjoner.
   places_warning_the_future: |
     For hva det er verdt, vi må begrense under hvilke betingelser folk kan legge til steder i fremtiden gitt iNats vekst for tiden.
   plants: planter

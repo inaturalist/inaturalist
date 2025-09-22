@@ -652,14 +652,6 @@ hr:
     sadržaj mora biti generiran uz stvarno ljudsko sudjelovanje ili nadzor. Molimo pročitajte
     naše <a href="/pages/community+guidelines" target="_blank">Smjernice zajednice</a>
     koje zabranjuju strojno generirana opažanja, identifikacije i komentare za više detalja.
-  app_owner_application_about_p2_html: |
-    Od 2022. godine zahtijevamo ručno odobrenje za korisnike koji žele kreirati API klijente.
-    Kako biste stvorili aplikacije treće strane, najprije morate podnijeti prijavu za postajanje
-    "vlasnikom aplikacije." Ova prijava treba opisati funkcionalnost vaše predložene aplikacije
-    i kako planirate koristiti je. Da biste podnijeli prijavu, vaš račun mora biti star najmanje
-    2 mjeseca i mora imati najmanje 10 <a href="/pages/help#identification" target="_blank">
-    poboljšanih identifikacija</a> u posljednjem mjesecu. Možemo postaviti dodatna pitanja
-    o vašem planu i zadržavamo pravo odbiti prijave iz bilo kojeg razloga.
   app_owner_application_inelligible: |
     Da biste podnijeli prijavu, vaš račun mora biti star najmanje 2 mjeseca i mora
     imati najmanje 10 poboljšanih identifikacija u posljednjem mjesecu.
@@ -1169,8 +1161,6 @@ hr:
     url: URL za stranicu koja opisuje ovaj status.
     geoprivacy: |
       Zadana geoprivatnost za opažanja ovog taksona. Napominjemo da geoprivatnost statusa povezana s mjestom na razini kontinenta, države ili države može nadjačati status koji je globalan ili povezan s mjestom višeg nivoa.
-    iucn: |
-      Ekvivalentni IUCN Red List kod. Ovo nije stvarna IUCN procjena, već IUCN kod koji najbolje odgovara prijetnji otkrivanja koordinata koju implicira ovaj status. Ovo će nadjačati geoprivatnost ako je "Najmanje zabrinjavajuće" ili niže, pa ako želite sakriti opažanja ovog taksona, postavite ovo na "Blizu ugroženih" ili više.
   conservation_status_geoprivacy_desc: |
     Zadana geoprivatnost primijenjena na sva opažanja ovog taksona na ovom mjestu
   contact_support: Kontaktirajte podršku
@@ -8465,39 +8455,6 @@ hr:
           Morate unijeti "%{confirmation_code}" u obrazac da biste izbrisali svoj račun
       edit:
         about_third_party_tracking: O praćenju trećih strana
-        blocking_desc_html: |
-          <p>
-          Blokiranje nekoga sprječava ih da vam šalju poruke, komentiraju vaše
-          promatranja, identificiraju vaše promatranja i na drugi način
-          interagiraju s vama na %{site_name}. Također uklanja njihova promatranja iz vaših
-          rezultata pretraživanja i uklanja vaša promatranja iz njihovih rezultata
-          pretraživanja. Međutim, to vas ne čini nevidljivima za njih. Oni mogu
-          i dalje pronaći vaša promatranja i vidjeti vaš profil, samo ne mogu
-          interagirati s vama.
-          </p>
-          <p>
-          Blokiranje je za situacije u kojima se jednostavno ne možete slagati s
-          nekim i oni vas ne ostavljaju na miru, unatoč vašim najboljim naporima da
-          riješite sukobe na civiliziran način. To nije način da se sakrijete od
-          ljudi, spriječite identifikacije od ljudi kojima ne vjerujete ili da
-          se isključite iz zajedničke identifikacije (za to postoji druga postavka).
-          Stoga, blokiranje djeluje u oba smjera: ako nekoga blokirate, oni ne mogu
-          interagirati s vama, ali ni vi ne možete interagirati s njima. Ako ga zloupotrijebite
-          kako biste spriječili nekoga da identificira vaša promatranja, također
-          sprječavate sebe da identificirate njihova promatranja.
-          </p>
-          <p>
-          Možete blokirati samo tri osobe. Mislimo da je ovo razuman broj koji
-          zadovoljava potrebe ljudi koji trebaju biti blokirani, a sprječava zloupotrebu blokiranja.
-          Ako osjećate da trebate blokirati više ljudi, molimo <a href="mailto:%{help_email}">kontaktirajte nas</a>.
-          </p>
-          <p>
-          Ako vas netko uznemirava ili vas prati na %{site_name},
-          <a href="mailto:%{help_email}">molimo obavijestite nas</a>. Ako
-          to predstavlja kršenje naših Uvjeta korištenja ili predstavlja
-          drugo ponašanje koje smatramo neprikladnim za našu stranicu, mi ćemo
-          istražiti.
-          </p>
         common_scientific_name_display_order: Redoslijed prikaza uobičajenih / znanstvenih imena
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ako promijenite mišljenje, uvijek možete

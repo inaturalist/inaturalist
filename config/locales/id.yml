@@ -560,9 +560,6 @@ id:
   app_owner_application_about_p1a_html: |
     Aplikasi pihak ketiga iNaturalist mengizinkan penggunaan berotentikasi atas API iNaturalist. Hal ini mengizinkan Anda untuk membuat panggilan API yang melakukan hal-hal seperti membuat pengamatan atau identifikasi. Ini biasa digunakan oleh aplikasi-aplikasi desktop atau mobile yang memiliki fungsi untuk membuat pengamatan iNaturalist. Konten ini harus dibuat dengan pengawasan dan campur tangan manusia. Silakan membaca <a href="/pages/community+guidelines"
     target="_blank">Pedoman Komunitas</a> kami yang melarang pengamatan, identifikasi, dan komentar yang dibuat bot untuk detail lebih lanjut.
-  app_owner_application_about_p2_html: |
-    Sejak 2022, kami mewajibkan persetujuan manual untuk pengguna-pengguna yang ingin membuat klien API. Untuk membuat aplikasi pihak ketiga, Anda harus mengajukan permohonan untuk menjadi "pemilik aplikasi". Permohonan ini harus mencakup fungsi aplikasi yang diajukan dan bagaimana Anda berencana untuk menggunakannya. Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 <a href="/pages/help#identification"
-    target="_blank">identifikasi pengembang</a> dalam sebulan terakhir. Kami mungkin akan menanyakan pertanyaan-pertanyaan lanjutan tentang rencana Anda dan kami memiliki hak untuk menolak permohonan Anda untuk alasan apapun.
   app_owner_application_inelligible: |
     Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 identifikasi pengembang dalam sebulan terakhir.
   app_owner_application_fields_explanation_html: Jelaskan fungsi yang akan dimiliki aplikasi Anda dan bagaimana rencana Anda untuk menggunakannya.
@@ -1050,8 +1047,6 @@ id:
     url: URL untuk sebuah halaman yang menjelaskan status ini.
     geoprivacy: |
       Geoprivasi standar untuk pengamatan takson ini. Ingat bahwa geoprivasi dari sebuah status yang terkait dengan tempat bertingkat benua, negara, atau provinsi dapat membatalkan status yang global atau status dengan tempat yang tingkatnya lebih tinggi.
-    iucn: |
-      Kode IUCN Daftar Merah yang sederajat. Ini bukan penilaian IUCN yang sebenarnya, hanya merupakan kode IUCN yang paling mendekati ancaman penyingkapan koordinat yang ditunjukkan oleh status ini. Hal ini akan membatalkan pengaturan geoprivasimu jika ia berada di tingkat "Berisiko Rendah" atau di bawahnya, jadi jika kamu ingin mengaburkan pengamatan dari takson ini, atur pengamatan ini ke tingkat "Hampir Terancam" atau lebih tinggi lagi.
   conservation_status_geoprivacy_desc: |
     Pengaturan geoprivasi bawaan diterapkan untuk semua pengamatan takson ini di tempat ini
   contact_support: Hubungi Bantuan
@@ -1410,6 +1405,57 @@ id:
   daily_users: Pengguna Harian
   danger_zone: Wilayah Berbahaya
   dashboard: Dasbor
+  dashboard_pilots:
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Berhenti Berpartisipasi"
+    #link to a blog post
+    pilot_read_more: "Baca lebih banyak di blog kami."
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Bantu kami mengisi kekosongan dengan berpartisipasi untuk menerima tautan harian menuju pengamatan-pengamatan:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Belum disertakan di Model Penglihatan Komputer"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Kami pikir Anda bisa mengidentifikasinya"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Berikut adalah tautan ke pengamatan spesies yang belum dimasukkan ke dalam Model Penglihatan Komputer yang kami pikir Anda bisa identifikasi."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Periksa kembali besok untuk tautan ke pengamatan spesies yang belum termasuk dalam Model Visi Komputer yang menurut kami dapat Anda identifikasi. Anda akan diperlihatkan spesies di mana Anda telah membuat setidaknya 3 identifikasi yang ditingkatkan."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Jika Anda tidak melihat tautannya, mungkin tidak ada pengamatan yang cocok dengan kriteria Memerlukan ID ini. Ini akan diperiksa sekali sehari."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Percontohan Kesenjangan Pengamatan: Spesies yang Dicari di Sekitar"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Besok, Anda akan menerima daftar spesies yang:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Belum disertakan di Model Penglihatan Komputer"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Telah diamati musim ini di dekat pengamatan terakhir Anda"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Didorong oleh sampel hingga 200 pengamatan dari hingga 300 spesies yang memprioritaskan tanaman"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Dengan mengamati spesies ini, Anda akan membantu meningkatkan model dan mengisi kesenjangan data keanekaragaman hayati. Daftar ini akan diperbarui saat Model diperbarui. Anda dapat memilih untuk keluar kapan saja."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Berikut daftar spesies Anda saat ini yaitu:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Belum disertakan di Model Penglihatan Komputer"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Diamati di dekat lokasi terakhir Anda musim ini"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Dengan mengamati mereka, Anda membantu meningkatkan pengenalan spesies dan mengisi kesenjangan kritis."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Telusuri spesies"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Periksa kembali besok untuk daftar spesies yang dipersonalisasi yang belum ada dalam Model Penglihatan Komputer, yang diamati musim ini. Daftar yang dipersonalisasi akan menggunakan lokasi pengamatan terbaru Anda."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Jika Anda tidak melihat tautan, mungkin tidak ada spesies yang cocok dengan kriteria ini di dekat Anda."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Uji Coba Identifikasi: Orientasi Pengguna Baru"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Mulai besok, terima hingga 30 pengamatan setiap hari yang sesuai dengan keterampilan identifikasi Anda, sehingga membantu pengguna baru. Anda dapat memilih keluar kapan saja."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Di bawah ini terdapat hingga 30 pengamatan yang sesuai dengan keterampilan identifikasi Anda."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Periksa kembali besok untuk tautan ke pengamatan yang sesuai dengan keterampilan identifikasi Anda."
   data_deficient: Kekurangan Data
   data_quality: Kualitas Data
   data_quality_assessment: Penilaian Kualitas Data
@@ -1546,6 +1592,8 @@ id:
         Silakan cek email Anda dan klik tautan pada email yang Anda terima untuk mengonfirmasi akun Anda.
       user:
         suspended: Akun Anda telah ditangguhkan
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Token reset sandi tidak valid. Silakan gunakan tautan di email reset kata sandi yang terakhir dikirim, atau <a href="%{url}">minta yang baru</a>.
     sessions:
       signed_in: 'Berhasil masuk.'
       signed_out: 'Berhasil keluar.'
@@ -6152,8 +6200,16 @@ id:
         Waktu di zona waktu akun Anda di mana pengumuman ini akan berhenti 
         ditampilkan. Berlaku di seluruh zona waktu, sehingga semua orang akan berhenti 
         melihatnya di waktu yang sama, tidak relatif terhadap waktu lokal mereka.
+      excludes_non_site_desc: |
+        Jika pengumuman Anda menargetkan situs (ini standarnya jika Anda merupakan
+        Admin Situs), pengumuman yang menargetkan semua situs di
+        penempatan ini tidak akan dimasukkan.
       ip_countries_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang IP negaranya.
+      exclude_ip_countries_desc: |
+        CMD atau SHIFT-klik untuk memilih beberapa. 
+        Pengumuman tidak akan ditampilkan untuk negara-negara yang dipilih. Jika negara-negara IP dipilih, negara-negara Kecualikan IP yang dipilih
+        akan dikeluarkan dari negara-negara IP yang dipilih.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Perhatikan bahwa tanggal pembuatan pengamatan yang paling baru dibuat oleh pengguna di-cache, jadi mungkin perlu beberapa jam hingga penargetannya diterapkan
@@ -6165,6 +6221,10 @@ id:
         Waktu di zona waktu akun Anda di mana pengumuman ini akan mulai 
         ditampilkan. Berlaku di seluruh zona waktu, sehingga semua orang akan mulai 
         melihatnya di waktu yang sama, tidak relatif terhadap waktu lokal mereka.
+      include_virtuous_tags_desc: |
+        Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih "Semua" atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang tag Virtuous-nya.
+      exclude_virtuous_tags_desc: |
+        Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih "Tidak ada" atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang tag Virtuous-nya.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Target pengguna berdasarkan perilaku donasi
@@ -7745,8 +7805,26 @@ id:
         trending_in_place_desc_html: Taksa yang paling banyak diamati sejak bulan lalu di <a href="%{url}">%{place}</a>
         wanted_desc: Spesies di dalam takson ini yang belum diamati.
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Apakah Anda yakin ingin memulihkan perubahan takson ini?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Apakah Anda yakin ingin menarik perubahan takson ini?
       move_children_desc: |
         Anak-anak takson input yang berupa genus atau lebih kasar lagi akan dipindahkan ke output; spesies, subspesies, varietas, dll. akan diganti dengan sejenisnya dengan nama genus atau spesies baru.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Pulihkan
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: memulihkan
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Tarik Kembali
+      #state of an abandoned taxon change
+      withdrawn: ditarik
+      #state of a committed taxon change
+      committed: diterapkan
+      #state of a draft taxon change
+      draft: draf
+      #the status of a taxon change: draft, withdrawn or committed
+      status: status
       form:
         move_children_desc2_html: |
           Dengan mencentang kotak ini, anak-anak takson input akan dipindahkan ke takson output untuk Penggantian dan Peleburan Takson ketika perubahannya diterapkan. Jika ini perubahan genus atau tingkat yang lebih rendah, ini akan membuat Penggantian Takson untuk semua turunan dengan nama yang harus diubah juga. Contohnya, jika Anda mengganti famili Canidae menjadi Dogidae, tindakan ini akan mengubah induk genus <i>Canis</i> dari Canidae menjadi Dogidae. Jika Anda mengganti genus <i>Canis</i> menjadi genus <i>Dogis</i>, tindakan ini akan membuat dan menerapkan Penggantian Takson untuk mengubah <i>Canis lupus</i> menjadi <i>Dogis lupus</i> dan <i>Canis lupus</i> ssp. <i>lupus</i> menjadi <i>Dogis lupus</i> ssp. <i>lupus</i>. Hal ini dapat membuat kekacauan, jadi gunakanlah dengan bijak.
@@ -7835,19 +7913,6 @@ id:
           Anda harus memasukkan "%{confirmation_code}" di formulir untuk menghapus akun Anda
       edit:
         about_third_party_tracking: Tentang pelacakan pihak ketiga
-        blocking_desc_html: |
-          <p>
-          Memblokir seseorang mencegah seseorang mengirim pesan kepada Anda, mengomentari pengamatan Anda, mengidentifikasi pengamatan Anda, serta berinteraksi dengan Anda di %{site_name}. Ini akan menghilangkan pengamatan mereka dari hasil pencarian Anda dan menghilangkan pengamatan Anda pada hasil pencarian mereka. Namun, hal ini tidak membuat Anda tidak terlihat bagi mereka. Mereka masih bisa menemukan pengamatan Anda dan melihat profil Anda, tetapi mereka hanya tidak bisa berinteraksi dengan Anda.
-          </p>
-          <p>
-          Pemblokiran diperuntukkan untuk situasi di mana Anda tidak bisa bergaul dengan seseorang dan mereka terus mengganggu Anda, meskipun Anda telah berusaha untuk menyelesaikan perselisihan dengan cara yang manusiawi. Ini bukanlah cara untuk bersembunyi dari orang, untuk mencegah identifikasi dari orang-orang yang pendapatnya tidak Anda percayai, atau untuk mematikan ID komunitas (ada pengaturan lain untuk itu). Jadi, pemblokiran bekerja dua arah: jika Anda memblokir seseorang, mereka tidak dapat berinteraksi dengan Anda, tetapi Anda juga tidak bisa berinteraksi dengan mereka. Jika Anda menyalahgunakan ini untuk mencegah seseorang untuk mengidentifikasi pengamatan Anda, Anda juga mencegah diri Anda untuk mengidentifikasi pengamatan mereka.
-          </p>
-          <p>
-          Anda hanya bisa memblokir tiga orang. Kami pikir angka ini adalah jumlah yang masuk akal yang mengakomodasi orang-orang yang membutuhkan pemblokiran sambil mencegah penyalahgunaan fitur pemblokiran. Jika Anda rasa Anda perlu memblokir lebih banyak orang, silakan <a href="mailto:%{help_email}">menghubungi kami</a>.
-          </p>
-          <p>
-          Jika seseorang mengganggu atau melakukan stalking kepada Anda di %{site_name}, <a href="mailto:%{help_email}">beritahu kami</a>. Jika hal itu merupakan pelanggaran Syarat dan Ketentuan Penggunaan kami atau merupakan perilaku yang kami anggap tidak pantas untuk situs kami, kami akan menyelidikinya.
-          </p>
         common_scientific_name_display_order: Urutan Penampilan Nama Umum / Ilmiah
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jika Anda berubah pikiran, Anda selalu dapat <a href='/users/edit'>mengubah pengaturan Anda</a>.
