@@ -11,23 +11,11 @@ import {
   fetchSimilar,
   showPhotoChooser
 } from "../../shared/ducks/taxon";
+import { getChosenTab } from "../../shared/util";
 
 function mapStateToProps( state ) {
-  const speciesTabs = ["map", "articles", "interactions", "taxonomy", "status", "similar"];
-  const genusTabs = ["map", "articles", "highlights", "taxonomy", "similar"];
-  const aboveGenusTabs = ["map", "articles", "highlights", "taxonomy"];
-  let chosenTab;
-  if (
-    ( state.taxon.taxon.rank_level <= 10 && speciesTabs.indexOf( state.config.chosenTab ) >= 0 )
-    || ( state.taxon.taxon.rank_level === 20 && genusTabs.indexOf( state.config.chosenTab ) >= 0 )
-    || (
-      ( state.taxon.taxon.rank_level > 20
-      || ( state.taxon.taxon.rank_level > 10 && state.taxon.taxon.rank_level < 20 ) )
-      && aboveGenusTabs.indexOf( state.config.chosenTab ) >= 0
-    )
-  ) {
-    ( { chosenTab } = state.config );
-  }
+  const chosenTab = getChosenTab( state.config.chosenTab, state.taxon.taxon.rank_level );
+
   return {
     taxon: state.taxon.taxon,
     currentUser: state.config.currentUser,
@@ -61,6 +49,9 @@ function mapDispatchToProps( dispatch ) {
   return {
     showPhotoChooserModal: ( ) => dispatch( showPhotoChooser( ) ),
     choseTab: tab => {
+      const newURL = new URL( window.location.href );
+      newURL.hash = `#${tab}-tab`;
+      history.replaceState( history.state, "", newURL.toString() );
       dispatch( setConfig( { chosenTab: tab } ) );
       loadDataForTab( tab );
       updateSession( { preferred_taxon_page_tab: tab } );

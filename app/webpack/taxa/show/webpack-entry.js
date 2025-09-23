@@ -48,7 +48,7 @@ if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
   } ) );
 }
 sharedStore.dispatch( setConfig( {
-  chosenTab: tabFromLocationHash( ) || serverPayload.chosenTab || "articles"
+  chosenTab: tabFromLocationHash( serverPayload.taxon.rank_level )?.tab || serverPayload.chosenTab || "articles"
 } ) );
 if ( serverPayload.ancestorsShown ) {
   sharedStore.dispatch( setConfig( {
