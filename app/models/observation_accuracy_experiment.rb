@@ -22,8 +22,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
   NEEDS_ID_PILOT_POST_TITLE = "Identification Pilot to Onboard New Users"
   GAPS_ID_PILOT_VERSION = "Gaps Identification Pilot"
   GAPS_OBS_PILOT_VERSION = "Gaps Observation Pilot"
-  GAPS_OBS_PILOT_POST_TITLE = "Observation Gaps Pilot: Nearby Wanted Species"
-  GAPS_ID_PILOT_POST_TITLE = "Identification Gaps Pilot: Nearby Wanted Species"
+  GAPS_OBS_PILOT_POST_TITLE = "Based in Canada? Help us observe and identify species gaps in the Computer Vision Model!"
+  GAPS_ID_PILOT_POST_TITLE = "Based in Canada? Help us observe and identify species gaps in the Computer Vision Model!"
 
   def generate_sample_if_requested
     generate_sample if generate_sample_now
