@@ -2334,6 +2334,13 @@ bg:
     Координатите се показват като произволна точка в рамките на правоъгълник с размери 0,2 градуса геогр. дължина и ширина, който съдържа реалните координати на неопределено място в себе си.
   observation: Наблюдение
   observation_: наблюдение
+  observation_accuracy_experiment_continent: "Континент"
+  observation_accuracy_experiment_year: "Година"
+  observation_accuracy_experiment_correct: "Правилно"
+  observation_accuracy_experiment_uncertain: "Несигурно"
+  observation_accuracy_experiment_incorrect2: "Неправилно"
+  observation_accuracy_experiment_accuracy: "Точност"
+  observation_accuracy_experiment_precision: "Прецизност"
   observation_added_to_the_project: "Наблюдението е добавено към проекта \"%{project}\""
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
@@ -2347,6 +2354,8 @@ bg:
   observation_attribution_copyright_html: Наблюдение &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Наблюдението е включено в проект, който изисква това поле. Наблюдението трябва да се премахне от проекта, за да може това поле да бъде изтрито.
+  observation_brief_something_on_day: "Нещо на %{day}"
+  observation_brief_something_on_day_at_time: "Нещо на %{day} в %{time}"
   observation_brief_something_on_day_at_time_by_user: "Нещо на %{day} в %{time} от %{user}"
   observation_brief_something_on_day_by_user: "Нещо на %{day} от %{user}"
   #%{month} will be filled in the name of the month
@@ -2364,6 +2373,8 @@ bg:
   observation_brief_something_from_place_in_month_year: "Нещо от %{place} през %{month} %{year}"
   #%{month} will be filled in the name of the month
   observation_brief_something_from_place_in_month_year_by_user: "Нещо от %{place} през %{month} %{year} от %{user}"
+  observation_brief_taxon_on_day: "%{taxon} на %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} на %{day} в %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} на %{day} в %{time} от %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} на %{day} от %{user}"
   #%{month} will be filled in the name of the month
@@ -4197,7 +4208,7 @@ bg:
   view_more_observations_of_x_taxon: "Виж още наблюдения на %{taxon} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Виж още нерецензирани"
   #Link to view identifications affected by a taxon change
-  view_your_affected_ids: Преглед на засегнатите Ви идентификатори
+  view_your_affected_ids: Преглед на засегнатите Ви разпознавания
   view_observation: Виж наблюдението
   view_observations: Виж наблюденията
   view_observation_flags: Виж маркерите на наблюдението
