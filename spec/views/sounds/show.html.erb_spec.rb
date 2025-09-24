@@ -259,9 +259,9 @@ describe "sounds/show" do
           
           render
 
-          expect( rendered ).not_to have_tag( "a", 
-            text: t( :flag_this_sound ),
-            href: new_sound_flag_path(s) )
+          expect( rendered ).to have_tag( "a", 
+            text: t( :hide_content ),
+            href: hide_sound_path(s) )
         end
       end
     end
