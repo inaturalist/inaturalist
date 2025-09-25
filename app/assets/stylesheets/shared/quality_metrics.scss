@@ -35,7 +35,6 @@
   tr.improve {
     background: $light-grey;
     .inputs {
-      margin-inline-start: 35px;
       margin-top: 5px;
       .yes, .no {
         display: inline-block;
@@ -51,8 +50,11 @@
         }
       }
     }
+    div.grid-container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
     .current-community-taxon {
-      margin-inline-start: 35px;
       .SplitTaxon > span {
         color: #333;
       }
