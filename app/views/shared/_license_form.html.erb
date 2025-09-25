@@ -1,12 +1,14 @@
 <%-
   record ||= @observation || @photo || @sound
-  record = record.becomes(Photo) if record.is_a?(Photo)
-  record = record.becomes(Sound) if record.is_a?(Sound)
+  record = record.becomes( Phot ) if record.is_a?( Photo )
+  record = record.becomes( Sound ) if record.is_a?( Sound )
   record_type = record.class.to_s.underscore.humanize.downcase
-  no_license_value = if record.is_a?(Photo)
+  no_license_value = if record.is_a?( Photo )
     Photo::COPYRIGHT
-  elsif record.is_a?(Sound)
+  elsif record.is_a?( Sound )
     Sound::COPYRIGHT
+  else
+    nil
   end
 -%>
 <%= form_for record, :builder => DefaultFormBuilder do |f| %>
@@ -15,10 +17,10 @@
   <% end -%>
   <% for code, name, description in Observation::LICENSES %>
     <%- 
-      value = if record.is_a?(Photo) 
-        Photo.license_number_for_code(code) 
-      elsif record.is_a?(Sound)
-        Sound.license_number_for_code(code)
+      value = if record.is_a?( Photo ) 
+        Photo.license_number_for_code( code ) 
+      elsif record.is_a?( Sound )
+        Sound.license_number_for_code( code )
       else 
         code
       end

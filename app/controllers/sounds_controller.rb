@@ -78,7 +78,7 @@ class SoundsController < ApplicationController
   def destroy
     resource = @sound.observations.first
     @sound.destroy
-    flash[:notice] = t( 'sounds.sound_deleted' )
+    flash[:notice] = t( "sounds.sound_deleted" )
     redirect_back_or_default( resource || "/" )
   end
 

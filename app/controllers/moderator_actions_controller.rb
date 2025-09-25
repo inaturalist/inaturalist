@@ -45,8 +45,8 @@ class ModeratorActionsController < ApplicationController
             return
           when "Sound"
             case @moderator_action.action
-            when ModeratorAction::HIDE then t( 'sounds.sound_hidden' )
-            when ModeratorAction::UNHIDE then t( 'sounds.sound_unhidden' )
+            when ModeratorAction::HIDE then t( "sounds.sound_hidden" )
+            when ModeratorAction::UNHIDE then t( "sounds.sound_unhidden" )
             else default_notice
             end
             redirect_to @moderator_action.resource.becomes( Sound )
@@ -86,7 +86,7 @@ class ModeratorActionsController < ApplicationController
     when "Photo"
       @moderator_action.resource.presigned_url( params[:size] || "original" )
     when "Sound"
-      if @moderator_action.resource.is_a?(SoundcloudSound)
+      if @moderator_action.resource.is_a?( SoundcloudSound )
         @moderator_action.resource.native_page_url
       else
         @moderator_action.resource.presigned_url

@@ -133,7 +133,7 @@ class FlagsController < ApplicationController
     @flag = Flag.new(params[:flag])
     @object = find_object
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
-    @object = @object.becomes(Sound) if @object.is_a?(Sound)
+    @object = @object.becomes( Sound ) if @object.is_a?( Sound )
     @flag.flaggable ||= @object
     @flags = @object.flags.where(resolved: false).includes(:user)
     if PARTIALS.include?(params[:partial])
@@ -181,8 +181,8 @@ class FlagsController < ApplicationController
           redirect_to messages_path
         elsif @object.is_a?(Photo)
           redirect_to @object.becomes(Photo)
-        elsif @object.is_a?(Sound)
-          redirect_to @object.becomes(Sound)
+        elsif @object.is_a?( Sound )
+          redirect_to @object.becomes( Sound )
         else
           redirect_to @object
         end

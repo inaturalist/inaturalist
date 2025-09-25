@@ -437,12 +437,12 @@ end
 
 Sound.blueprint do
   user { User.make }
-  native_sound_id { rand(1000) }
+  native_sound_id { rand( 1000 ) }
 end
 
 SoundcloudSound.blueprint do
   native_response { { secret_token: "secret" } }
-  native_sound_id { rand(1000) }
+  native_sound_id { rand( 1000 ) }
 end
 
 Source.blueprint do

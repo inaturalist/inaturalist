@@ -38,8 +38,8 @@ describe ModeratorActionsController do
         action: ModeratorAction::UNHIDE,
         private: false
       } }
-      expect( ModeratorAction.where("resource_id = #{sound.id}").count).to eq(1)
-      expect( response ).to redirect_to(sound)
+      expect( ModeratorAction.where( "resource_id = #{sound.id}" ).count ).to eq( 1 )
+      expect( response ).to redirect_to( sound )
     end
   end
 
@@ -139,7 +139,7 @@ describe ModeratorActionsController do
   describe "resource_url for SoundcloudSound" do
     let( :admin ) { make_admin }
     let( :resource_url ) { "https://#{Faker::Internet.domain_name}/sound2.mp3" }
-    let( :media ) { SoundcloudSound.make!(native_page_url: resource_url) }
+    let( :media ) { SoundcloudSound.make!( native_page_url: resource_url ) }
 
     include_examples "resource_url"
   end

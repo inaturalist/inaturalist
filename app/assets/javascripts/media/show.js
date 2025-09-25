@@ -3,17 +3,17 @@ $( function ( ) {
     e.preventDefault( );
     // open a new window now in the context of the user action so it doesn't get popup-blocked
     var resourceWindow = window.open( );
-    var resource_data;
-    if ($( this ).data( "size" )) {
-      resource_data = {
+    var resourceData;
+    if ( $( this ).data( "size" ) ) {
+      resourceData = {
         size: $( this ).data( "size" )
-      }
+      };
     } else {
-      resource_data = {}
+      resourceData = {};
     }
     $.ajax( "/moderator_actions/" + $( this ).data( "moderatorActionId" ) + "/resource_url", {
       method: "GET",
-      data: resource_data,
+      data: resourceData,
       dataType: "json",
       authenticity_token: $( "meta[name=csrf-param]" ).attr( "content" ),
       success: function ( response ) {
