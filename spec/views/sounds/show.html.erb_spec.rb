@@ -3,9 +3,13 @@
 require "spec_helper"
 
 describe "sounds/show" do
+  let( :mod ) { make_admin }
+  let( :a_diff_admin ) { make_admin }
+  let( :curator ) { make_curator }
   before do
     assign( :site, create( :site ) )
   end
+
   describe "LocalSound" do
     login = "tester"
     filename = "pika.mp3"
@@ -18,7 +22,6 @@ describe "sounds/show" do
 
     describe "sound player" do
       it "is not rendered if content hidden" do
-        mod = make_admin
         moderator_action = ModeratorAction.make!( user: mod, resource: s,
           action: ModeratorAction::HIDE, created_at: Time.now )
         s.moderator_actions = [moderator_action]
@@ -121,7 +124,6 @@ describe "sounds/show" do
 
     describe "file url" do
       describe "content hidden" do
-        let( :mod ) { make_admin }
         before do
           moderator_action = ModeratorAction.make!( user: mod, resource: s,
             action: ModeratorAction::HIDE, created_at: Time.now )
@@ -159,7 +161,6 @@ describe "sounds/show" do
         end
 
         it "renders file url as hidden-media-link if signed in as curator" do
-          curator = make_curator
           sign_in curator
 
           render
@@ -174,7 +175,6 @@ describe "sounds/show" do
         end
 
         it "does not render file url if modaction is private and signed in as curator" do
-          curator = make_curator
           sign_in curator
           moderator_action = ModeratorAction.make!( user: mod, resource: s,
             action: ModeratorAction::HIDE, created_at: Time.now, private: true )
@@ -186,9 +186,8 @@ describe "sounds/show" do
           sign_out curator
         end
 
-        it "renders file url as hidden-media-link if signed in as admin" do
-          admin = make_admin
-          sign_in admin
+        it "renders file url as hidden-media-link if signed in as a different admin" do
+          sign_in a_diff_admin
 
           render
 
@@ -198,12 +197,11 @@ describe "sounds/show" do
               with_tag( "a", with: { class: "hidden-media-link" } )
             end
           end
-          sign_out admin
+          sign_out a_diff_admin
         end
 
         it "renders file url as hidden-media-link if modaction is private and signed in as different admin" do
-          admin = make_admin
-          sign_in admin
+          sign_in a_diff_admin
           moderator_action = ModeratorAction.make!( user: mod, resource: s,
             action: ModeratorAction::HIDE, created_at: Time.now, private: true )
           s.moderator_actions = [moderator_action]
@@ -216,7 +214,7 @@ describe "sounds/show" do
               with_tag( "a", with: { class: "hidden-media-link" } )
             end
           end
-          sign_out admin
+          sign_out a_diff_admin
         end
       end
 
@@ -254,13 +252,12 @@ describe "sounds/show" do
       end
 
       it "does not show if non owner is logged in" do
-        admin = make_admin
-        sign_in admin
+        sign_in a_diff_admin
 
         render
 
         expect( rendered ).not_to have_tag( "th", text: t( :actions ) )
-        sign_out admin
+        sign_out a_diff_admin
       end
     end
 
@@ -324,9 +321,8 @@ describe "sounds/show" do
 
     describe "hide/unhide action" do
       describe "hidden content" do
-        random_admin = make_admin
         before do
-          moderator_action = ModeratorAction.make!( user: random_admin, resource: s,
+          moderator_action = ModeratorAction.make!( user: mod, resource: s,
             action: ModeratorAction::HIDE, created_at: Time.now )
           s.moderator_actions = [moderator_action]
         end
@@ -352,7 +348,6 @@ describe "sounds/show" do
         end
 
         it "can unhide if content is hidden and logged in as admin" do
-          a_diff_admin = make_admin
           sign_in a_diff_admin
 
           render
@@ -386,14 +381,14 @@ describe "sounds/show" do
         end
 
         it "can hide if content is unhidden and user is admin" do
-          sign_in make_admin
+          sign_in a_diff_admin
 
           render
 
           expect( rendered ).to have_tag( "a",
             text: t( :hide_content ),
             href: hide_sound_path( s ) )
-          sign_out make_admin
+          sign_out a_diff_admin
         end
       end
     end

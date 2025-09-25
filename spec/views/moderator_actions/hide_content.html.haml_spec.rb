@@ -3,8 +3,13 @@
 require "spec_helper"
 
 describe "moderator_actions/hide_content" do
+  let( :admin ) { make_admin }
+  let( :another_admin ) { make_admin }
   before do
-    sign_in make_admin
+    sign_in admin
+  end
+  after do
+    sign_out admin
   end
 
   describe "localsound" do
@@ -25,8 +30,7 @@ describe "moderator_actions/hide_content" do
     end
 
     it "hidden shows content hidden action" do
-      random_admin = make_admin
-      moderator_action = ModeratorAction.make!( user: random_admin, resource: item,
+      moderator_action = ModeratorAction.make!( user: another_admin, resource: item,
         action: ModeratorAction::HIDE, created_at: Time.now )
       item.moderator_actions = [moderator_action]
 
@@ -52,8 +56,7 @@ describe "moderator_actions/hide_content" do
     end
 
     it "hidden shows content hidden action" do
-      random_admin = make_admin
-      moderator_action = ModeratorAction.make!( user: random_admin, resource: item,
+      moderator_action = ModeratorAction.make!( user: another_admin, resource: item,
         action: ModeratorAction::HIDE, created_at: Time.now )
       item.moderator_actions = [moderator_action]
 
