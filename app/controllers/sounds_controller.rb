@@ -3,8 +3,8 @@
 class SoundsController < ApplicationController
   before_action :doorkeeper_authorize!, only: [:create, :update],
     if: -> { authenticate_with_oauth? }
-  before_action :load_record, only: [:show, :update, :hide]
-  before_action :require_owner, only: [:update]
+  before_action :load_record, only: [:show, :update, :destroy, :hide]
+  before_action :require_owner, only: [:update, :destroy]
   before_action :authenticate_user!, except: [:show],
     unless: -> { authenticated_with_oauth? }
   before_action :curator_required, only: [:hide]
@@ -73,6 +73,13 @@ class SoundsController < ApplicationController
         end
       end
     end
+  end
+
+  def destroy
+    resource = @sound.observations.first
+    @sound.destroy
+    flash[:notice] = t( 'sounds.sound_deleted' )
+    redirect_back_or_default( resource || "/" )
   end
 
   def hide

@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag "photos/show" %>
 <%- end -%>
 <%- content_for( :extrajs ) do -%>
-  <%= javascript_include_tag "photos/show" %>
+  <%= javascript_include_tag "media/show" %>
 <%- end -%>
 <%-
   photo_hidden = @photo.hidden?
@@ -131,7 +131,7 @@
                   <%- next if @photo.send("#{size}_url").blank? -%>
                   <li>
                     <% if photo_hidden -%>
-                      <a href="" class="hidden-image" data-size=<%= size %> data-moderator-action-id=<%= last_moderator_action.id %>>
+                      <a href="" class="hidden-media-link" data-size=<%= size %> data-moderator-action-id=<%= last_moderator_action.id %>>
                         <%= t( "photos_size.#{size}", default: t( size ) ) %>
                       </a>
                     <% else -%>

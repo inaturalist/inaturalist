@@ -86,7 +86,11 @@ class ModeratorActionsController < ApplicationController
     when "Photo"
       @moderator_action.resource.presigned_url( params[:size] || "original" )
     when "Sound"
-      @moderator_action.resource.presigned_url
+      if @moderator_action.resource.is_a?(SoundcloudSound)
+        @moderator_action.resource.native_page_url
+      else
+        @moderator_action.resource.presigned_url
+      end
     end
     render json: { resource_url: url }
   end

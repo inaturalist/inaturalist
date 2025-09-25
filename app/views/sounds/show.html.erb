@@ -4,10 +4,13 @@
 <%- content_for( :extracss ) do -%>
   <%= stylesheet_link_tag "sounds/show" %>
 <%- end -%>
+<%- content_for( :extrajs ) do -%>
+  <%= javascript_include_tag "media/show" %>
+<%- end -%>
 <%-
   sound_hidden = @sound.hidden?
   last_moderator_action = @sound.moderator_actions.last
-  sound_url = if @sound.is_a?( SoundcloudSound ) 
+  direct_sound_url = if @sound.is_a?( SoundcloudSound ) 
     @sound.native_page_url 
   else 
     @sound.file.url
@@ -22,7 +25,7 @@
     <% if logged_in? && current_user.is_curator? -%>
       <h4 class="upstacked"><%=t :curators %></h4>
       <p class="ui">
-        <%=t 'views.sounds.show.view_original_html', :url => sound_url %>
+        <%=t 'views.sounds.show.view_original_html', :url => direct_sound_url %>
       </p>
     <% end -%>
   </div>
@@ -55,7 +58,7 @@
       <% else -%>
         <div class="sound" data-sound-class="local_sound">
           <audio controls preload="none" controlsList="nodownload">
-            <source src=<%= @sound.file.url %> type=<%= @sound.file_content_type %> />
+            <source src=<%= direct_sound_url %> type=<%= @sound.file_content_type %> />
           </audio>
         </div>
       <% end -%>
@@ -113,10 +116,18 @@
             <td><%= @sound.file_content_type %></td>
           </tr>
         <% end %>
-        <% unless sound_url.blank? -%>
+        <% unless sound_hidden && !@sound.hidden_content_viewable_by?( current_user ) -%>
           <tr>
             <th><%=t :file_url %></th>
-            <td><%= link_to sound_url, sound_url %></td>
+            <% if sound_hidden -%>
+              <td>
+                <a href="" class="hidden-media-link" data-moderator-action-id=<%= last_moderator_action.id %>>
+                  <%= direct_sound_url %>
+                </a>
+              </td>
+            <% else -%>
+              <td><%= link_to direct_sound_url, direct_sound_url %></td>
+            <% end %>
           </tr>
         <% end %>
         <% unless @sound.file_file_size.blank? -%>
@@ -134,6 +145,19 @@
             <td><%= file_size_str %></td>
           </tr>
         <% end %>
+        <% if is_me?(@sound.user) -%>
+          <tr>
+            <th><%= t(:actions).capitalize %></th>
+            <td>
+              <%= link_to t(:delete_sound), @sound.becomes(Sound), :method => :delete,
+                :data => {
+                  :confirm => t(:are_you_sure_you_want_to_delete_this_sound?),
+                  :loading_click => t(:deleting)
+                },
+                :class => "delete button" %>
+            </td>
+          </tr>
+        <% end -%>
       </table>
       
       <% if @sound.flagged? %>

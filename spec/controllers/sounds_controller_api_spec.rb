@@ -113,8 +113,50 @@ describe SoundsController do
     end
   end
 
+  describe "destroy" do
+    it "non owners cannot access the destroy endpoint" do
+      sound = LocalSound.make!( user: user)
+
+      sign_in User.make!
+      expect{
+        post :destroy, params: { id: sound.id }
+      }.to_not change( Sound, :count )
+
+      sign_in make_admin
+      post :destroy, params: { id: sound.id }
+      expect{
+        post :destroy, params: { id: sound.id }
+      }.to_not change( Sound, :count )
+    end
+
+    it "redirects to first observation if there is one" do
+      sound = LocalSound.make!( user: user)
+      firstObs = Observation.make!( sounds: [sound] )
+      secondObs = Observation.make!( sounds: [sound] )
+      sound.observations = [firstObs, secondObs]
+      sign_in user
+
+      expect {
+        post :destroy, params: { id: sound.id }
+      }.to change( Sound, :count ).by( -1 )
+
+      expect( response ).to redirect_to(firstObs)
+    end
+
+    it "redirects to root if there are no observations" do
+      sound = LocalSound.make!( user: user)
+      sign_in user
+
+      expect {
+        post :destroy, params: { id: sound.id }
+      }.to change( Sound, :count ).by( -1 )
+
+      expect( response ).to redirect_to("/")
+    end
+  end
+
   describe "hide" do
-    let( :sound ) { LocalSound.make!( user: user, id: 1 ) }
+    let( :sound ) { LocalSound.make!( user: user) }
 
     it "regular users cannot access the hide endpoint" do
       sign_in User.make!

@@ -17,9 +17,9 @@ describe "sounds/show" do
     }
 
     describe "sound player" do
-      it "is not rendered if hidden" do
+      it "is not rendered if content hidden" do
         mod = make_admin
-        moderator_action = ModeratorAction.make!( user: mod, action: ModeratorAction::HIDE, created_at: Time.now )
+        moderator_action = ModeratorAction.make!( user: mod, resource: s, action: ModeratorAction::HIDE, created_at: Time.now )
         s.moderator_actions = [moderator_action]
 
         render
@@ -119,12 +119,111 @@ describe "sounds/show" do
       end
     end
 
-    it "renders file url" do
-      render
+    describe "file url" do
+      describe "content hidden" do
+        let( :mod ) { make_admin }
+        before {
+          moderator_action = ModeratorAction.make!( user: mod, resource: s, action: ModeratorAction::HIDE, created_at: Time.now )
+          s.moderator_actions = [moderator_action]
+        }
 
-      expect( rendered ).to have_tag( "tr" ) do
-        with_tag "th", text: t( :file_url )
-        with_tag "td", text: s.file.url
+        it "does not render file url if not signed in" do      
+          render
+        
+          expect( rendered ).not_to have_tag( "th", text: t( :file_url ) )
+        end
+
+        it "does not render file url if signed in as someone else" do
+          another_user = User.make!
+          sign_in another_user
+        
+          render
+        
+          expect( rendered ).not_to have_tag( "th", text: t( :file_url ) )
+          sign_out another_user
+        end
+
+        it "renders file url as hidden-media-link if signed in as owner" do
+          sign_in owner
+        
+          render
+        
+          expect( rendered ).to have_tag( "tr" ) do
+            with_tag "th", text: t( :file_url )
+            with_tag "td" do
+              with_tag( "a", with: { class: "hidden-media-link" } )
+            end
+          end
+          sign_out owner
+        end
+
+        it "renders file url as hidden-media-link if signed in as curator" do
+          curator = make_curator
+          sign_in curator
+        
+          render
+        
+          expect( rendered ).to have_tag( "tr" ) do
+            with_tag "th", text: t( :file_url )
+            with_tag "td" do
+              with_tag( "a", with: { class: "hidden-media-link" } )
+            end
+          end
+          sign_out curator
+        end
+
+        it "does not render file url if modaction is private and signed in as curator" do
+          curator = make_curator
+          sign_in curator
+          moderator_action = ModeratorAction.make!( user: mod, resource: s, action: ModeratorAction::HIDE, created_at: Time.now, private: true )
+          s.moderator_actions = [moderator_action]
+        
+          render
+        
+          expect( rendered ).not_to have_tag( "th", text: t( :file_url ) )
+          sign_out curator
+        end
+
+        it "renders file url as hidden-media-link if signed in as admin" do
+          admin = make_admin
+          sign_in admin
+        
+          render
+        
+          expect( rendered ).to have_tag( "tr" ) do
+            with_tag "th", text: t( :file_url )
+            with_tag "td" do
+              with_tag( "a", with: { class: "hidden-media-link" } )
+            end
+          end
+          sign_out admin
+        end
+
+        it "renders file url as hidden-media-link if modaction is private and signed in as different admin" do
+          admin = make_admin
+          sign_in admin
+          moderator_action = ModeratorAction.make!( user: mod, resource: s, action: ModeratorAction::HIDE, created_at: Time.now, private: true )
+          s.moderator_actions = [moderator_action]
+        
+          render
+        
+          expect( rendered ).to have_tag( "tr" ) do
+            with_tag "th", text: t( :file_url )
+            with_tag "td" do
+              with_tag( "a", with: { class: "hidden-media-link" } )
+            end
+          end
+          sign_out admin
+        end
+      end 
+
+      it "renders file url as regular text if content not hidden" do
+        render
+
+        expect( rendered ).to have_tag( "tr" ) do
+          with_tag "th", text: t( :file_url )
+          with_tag "td", text: s.file.url
+        end
       end
     end
 
@@ -136,6 +235,29 @@ describe "sounds/show" do
           with_tag "th", text: t( :file_size )
           with_tag "td", text: "#{s.file.size / 1000.to_f.round} KB"
         end
+      end
+    end
+
+    describe "actions" do
+      it "shows if owner is logged in" do
+        sign_in owner
+
+        render
+
+        expect( rendered ).to have_tag( "tr" ) do
+          with_tag "th", text: t( :actions )
+        end
+        sign_out owner
+      end
+
+      it "does not show if non owner is logged in" do
+        admin = make_admin
+        sign_in admin
+
+        render
+
+        expect( rendered ).not_to have_tag( "th", text: t( :actions ))
+        sign_out admin
       end
     end
 
@@ -173,6 +295,7 @@ describe "sounds/show" do
         expect( rendered ).to have_tag( "a", 
           text: t( :flag_this_sound ),
           href: new_sound_flag_path(s) )
+        sign_out interaction_u
       end
 
       it "cannot flag if you are not logged in" do
@@ -192,14 +315,15 @@ describe "sounds/show" do
         expect( rendered ).not_to have_tag( "a", 
           text: t( :flag_this_sound ),
           href: new_sound_flag_path(s) )
+        sign_out non_interaction_u
       end
     end
 
     describe "hide/unhide action" do
       describe "hidden content" do
+        random_admin = make_admin
         before {
-          random_admin = make_admin
-          moderator_action = ModeratorAction.make!( user: random_admin, action: ModeratorAction::HIDE, created_at: Time.now )
+          moderator_action = ModeratorAction.make!( user: random_admin, resource: s, action: ModeratorAction::HIDE, created_at: Time.now )
           s.moderator_actions = [moderator_action]
         }
 
@@ -212,26 +336,27 @@ describe "sounds/show" do
         end
 
         it "cannot unhide if logged in user is not admin" do
-          sign_in User.make!
+          another_user = User.make!
+          sign_in another_user
 
           render
 
           expect( rendered ).not_to have_tag( "a", 
             text: t( :unhide_content ),
             href: hide_sound_path(s) )
+          sign_out another_user
         end
 
         it "can unhide if content is hidden and logged in as admin" do
-          sign_in make_admin
           a_diff_admin = make_admin
-          moderator_action = ModeratorAction.make!( user: a_diff_admin, action: ModeratorAction::HIDE, created_at: Time.now )
-          s.moderator_actions = [moderator_action]
+          sign_in a_diff_admin
           
           render
 
           expect( rendered ).to have_tag( "a", 
             text: t( :unhide_content ),
             href: hide_sound_path(s) )
+          sign_out a_diff_admin
         end
       end
 
@@ -245,13 +370,15 @@ describe "sounds/show" do
         end
 
         it "cannot hide if logged in user is not admin" do
-          sign_in User.make!
+          another_user = User.make!
+          sign_in another_user
 
           render
 
           expect( rendered ).not_to have_tag( "a", 
             text: t( :hide_content ),
             href: hide_sound_path(s) )
+          sign_out another_user
         end
 
         it "can hide if content is unhidden and user is admin" do
@@ -262,6 +389,7 @@ describe "sounds/show" do
           expect( rendered ).to have_tag( "a", 
             text: t( :hide_content ),
             href: hide_sound_path(s) )
+          sign_out make_admin
         end
       end
     end

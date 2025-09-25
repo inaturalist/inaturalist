@@ -440,6 +440,11 @@ Sound.blueprint do
   native_sound_id { rand(1000) }
 end
 
+SoundcloudSound.blueprint do
+  native_response { { secret_token: "secret" } }
+  native_sound_id { rand(1000) }
+end
+
 Source.blueprint do
   title { Faker::Lorem.sentence }
 end
