@@ -6496,6 +6496,8 @@ nl:
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
         een selectie toont de aankondiging aan alle gebruikers, ongeacht het IP van het land.
         klant.
+      exclude_ip_countries_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. Geselecteerde landen krijgen de de aankondiging niet te zien. Als IP-landen zijn geselecteerd, worden geselecteerde ´Uitgesloten IP-landen' uitgesloten van de eerste.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Merk op dat de aanmaakdatum van de meest recent aangemaakte
@@ -7247,16 +7249,22 @@ nl:
         taxon_geoprivacy: "Meest conservatieve geoprivacy toegepast als gevolg van de behoudsstatus van taxa in de huidige determinatie."
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
+        user_id: Unieke, sequentiële identifier voor de waarnemer
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
         quality_grade: Kwaliteitsgraad van deze waarneming. Zie de Help-sectie voor meer informatie over wat dit betekent. Zie https://help.inaturalist.org/support/solutions/articles/151000169936
         license: Identificatie voor de licentie of ontheffing die de waarnemer voor deze waarneming heeft gekozen. Alle rechten voorbehouden indien blanco
         url: URL voor de waarneming
+        image_url: URL voor de eerste foto die is gekoppeld aan de waarneming
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
         place_admin2_name: Naam van de administratieve plaats twee rangen onder het landniveau
         positioning_method: Manier waarop de coördinaten bepaald werden
         positioning_device: Toestel gebruikt om coördinaten te bepalen
+        oauth_application_id: |
+          Sequentiële identificatie voor de applicatie die de
+          waarneming heeft gecreëerd. Voor meer informatie over de applicatie voeg deze dan
+          toe aan https://www.inaturalist.org/oauth/applications/
         place_town_name: |
           De naam van de stad of plaats die de waarneming
           coördinaten omvat, indien bekend
