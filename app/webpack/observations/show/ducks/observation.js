@@ -227,6 +227,7 @@ const FIELDS = {
       allows_curator_coordinate_access: true
     },
     project: PROJECT_FIELDS,
+    user_id: true,
     uuid: true
   },
   public_positional_accuracy: true,
