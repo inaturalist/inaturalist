@@ -1,6 +1,6 @@
 <%-
   record ||= @observation || @photo || @sound
-  record = record.becomes( Phot ) if record.is_a?( Photo )
+  record = record.becomes( Photo ) if record.is_a?( Photo )
   record = record.becomes( Sound ) if record.is_a?( Sound )
   record_type = record.class.to_s.underscore.humanize.downcase
   no_license_value = if record.is_a?( Photo )
