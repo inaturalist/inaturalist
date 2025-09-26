@@ -104,6 +104,10 @@ class Photo < ApplicationRecord
         !options[:bypass_flags]
       return ApplicationController.helpers.image_url( "copyright-infringement-#{size}.png" )
     end
+    if flags.any? {| f | f.flag == Flag::ARTIFICIALLY_GENERATED_CONTENT && !f.resolved? } &&
+        !options[:bypass_flags]
+      return ApplicationController.helpers.image_url( "artificially-generated-content-#{size}.png" )
+    end
     if hidden?
       return ApplicationController.helpers.image_url( "media-hidden-#{size}.png" )
     end

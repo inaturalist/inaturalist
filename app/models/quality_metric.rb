@@ -19,7 +19,8 @@ class QualityMetric < ApplicationRecord
     "date" => :does_the_date_seem_accurate,
     "evidence" => :evidence_of_organism?,
     "recent" => :recent_evidence?,
-    "subject" => :evidence_related_to_single_subject?
+    "subject" => :evidence_related_to_single_subject?,
+    "accurate" => :evidence_accurately_depicts_organism_or_scene?
   }.freeze
   METRICS = METRIC_QUESTIONS.keys
   METRICS.each do | metric |
