@@ -122,19 +122,22 @@ class Taxon < ApplicationRecord
     :handle_after_move,
     :handle_after_activate,
     :update_taxon_framework_relationship
+  after_commit :sync_scientific_taxon_names_for_name_change,
+    on: :update,
+    if: -> { saved_change_to_name? }
   after_destroy :update_taxon_framework_relationship
   after_save :index_observations
 
   validates_presence_of :name, :rank, :rank_level
   validates_uniqueness_of :name, scope: %i[ancestry is_active],
-                          unless: lambda {
-                            # If a complex, allow duplicate sibling name for species...
-                            ( ancestry.blank? || !is_active || complex? )
-                          },
-                          message: "already used as a child of this taxon's parent"
+    unless: lambda {
+      # If a complex, allow duplicate sibling name for species...
+      ancestry.blank? || !is_active || complex?
+    },
+    message: "already used as a child of this taxon's parent"
   validates_uniqueness_of :name, scope: %i[ancestry is_active rank],
-                          if: -> { complex? }, # ... but do not allow duplicate sibling complex name
-                          message: "already used as a child complex of this taxon's parent"
+    if: -> { complex? }, # ... but do not allow duplicate sibling complex name
+    message: "already used as a child complex of this taxon's parent"
   validates :name,
     format: { with: TaxonName::SCIENTIFIC_NAME_FORMAT, message: :bad_format },
     if: proc {| t | t.new_record? || t.name_changed? }
@@ -151,6 +154,10 @@ class Taxon < ApplicationRecord
   validate :active_parent_if_active
   validate :ancestry_and_active_if_taxon_framework
   validate :cannot_edit_parent_during_content_freeze
+  validate :restrict_name_changes_by_rank,
+    on: :update,
+    # bypass name restrictions only used in specs
+    unless: -> { validation_context == :bypass_name_restrictions }
 
   has_subscribers to: {
     observations: { notification: "new_observations", include_owner: false }
@@ -373,16 +380,16 @@ class Taxon < ApplicationRecord
     "extinct_in_the_wild" => "EW",
     "extinct" => "EX"
   }.freeze
-  IUCN_STATUSES = IUCN_STATUS_NAMES.map do | status_name |
+  IUCN_STATUSES = IUCN_STATUS_NAMES.to_h do | status_name |
     [const_get( "IUCN_#{status_name.upcase}" ), status_name]
-  end.to_h
+  end
   IUCN_STATUSES_SELECT = IUCN_STATUS_NAMES.map do | status_name |
     ["#{I18n.t( status_name, default: status_name ).humanize} (#{IUCN_STATUS_CODES[status_name]})",
      const_get( "IUCN_#{status_name.upcase}" )]
   end
-  IUCN_STATUS_VALUES = IUCN_STATUS_NAMES.map do | status_name |
+  IUCN_STATUS_VALUES = IUCN_STATUS_NAMES.to_h do | status_name |
     [status_name, const_get( "IUCN_#{status_name.upcase}" )]
-  end.to_h
+  end
   IUCN_STATUS_NAMES.each do | status_name |
     define_method( "#{status_name}?" ) do
       global_conservation_status&.iucn == self.class.const_get( "IUCN_#{status_name.upcase}" )
@@ -682,7 +689,7 @@ class Taxon < ApplicationRecord
   def complete_species_count
     return nil if rank_level.to_i <= SPECIES_LEVEL
 
-    unless taxon_framework&.covers? && taxon_framework&.complete && taxon_framework.rank_level <= SPECIES_LEVEL
+    unless taxon_framework&.covers? && taxon_framework.complete && taxon_framework.rank_level <= SPECIES_LEVEL
       upstream_framework = upstream_taxon_framework
       return nil unless  upstream_framework&.complete && upstream_framework.rank_level <= SPECIES_LEVEL
     end
@@ -905,7 +912,7 @@ class Taxon < ApplicationRecord
       parent_name = name.split[0..-2].join( " " )
       parent = Taxon.single_taxon_for_name( parent_name )
       parent ||= Taxon.import( parent_name, exact: true )
-      if parent&.can_be_grafted_to && rank_level && parent&.rank_level && parent.rank_level > rank_level && [
+      if parent&.can_be_grafted_to && rank_level && parent.rank_level && parent.rank_level > rank_level && [
         GENUS, SPECIES
       ].include?( parent.rank )
         update( parent: parent )
@@ -1077,7 +1084,7 @@ class Taxon < ApplicationRecord
       r = FlickrCache.fetch( flickr, "photos", "search", search_params )
       r = [] if r.blank?
       flickr_chosen_photos = if r.respond_to?( :map )
-        r.map {| fp | fp.respond_to?( :url_s ) && fp.url_s ? FlickrPhoto.new_from_api_response( fp ) : nil }.compact
+        r.map {| fp | ( fp.respond_to?( :url_s ) && fp.url_s ) ? FlickrPhoto.new_from_api_response( fp ) : nil }.compact
       else
         []
       end
@@ -1208,21 +1215,16 @@ class Taxon < ApplicationRecord
     return true if ancestry.nil? || !is_active
 
     if ( destination_taxon_framework = parent.taxon_framework )
+      dtf = destination_taxon_framework
       if !skip_taxon_framework_checks &&
-          destination_taxon_framework &&
-          destination_taxon_framework.covers? &&
-          destination_taxon_framework.taxon_curators.any? &&
-          (
-            current_user.blank? ||
-            (
-              !current_user.blank? &&
-              !destination_taxon_framework.taxon_curators.where( user: current_user ).exists?
-            )
-          )
-        errors.add( :ancestry,
-          "destination #{destination_taxon_framework.taxon} has a curated " \
-            "taxon framework attached to it. Contact the curators of that taxon " \
-            "to request changes." )
+          dtf&.covers? &&
+          dtf.taxon_curators.any? &&
+          ( current_user.blank? || !dtf.taxon_curators.exists?( user: current_user ) )
+        errors.add(
+          :ancestry,
+          "destination #{dtf.taxon} has a curated taxon framework attached to it. " \
+            "Contact the curators of that taxon to request changes."
+        )
       end
     elsif ( destination_upstream_taxon_framework = parent.get_upstream_taxon_framework )
       if !skip_taxon_framework_checks &&
@@ -1245,16 +1247,11 @@ class Taxon < ApplicationRecord
   end
 
   def can_be_grafted_to
+    tf = taxon_framework
     if !skip_taxon_framework_checks &&
-        taxon_framework &&
-        taxon_framework.covers? &&
-        taxon_framework.taxon_curators.any? &&
-        (
-          current_user.blank? || (
-            !current_user.blank? &&
-            !taxon_framework.taxon_curators.where( user: current_user ).exists?
-          )
-        )
+        tf&.covers? &&
+        tf.taxon_curators.any? &&
+        ( current_user.blank? || !tf.taxon_curators.exists?( user: current_user ) )
       return false
     end
 
@@ -1291,7 +1288,7 @@ class Taxon < ApplicationRecord
   end
 
   def get_complete_taxon_framework_for_internode_or_root
-    if taxon_framework&.covers? && taxon_framework&.complete
+    if taxon_framework&.covers? && taxon_framework.complete
       upstream_taxon_framework_including_root = taxon_framework
     else
       upstream_taxon_framework_including_root = upstream_taxon_framework
@@ -1308,7 +1305,7 @@ class Taxon < ApplicationRecord
     upstream_taxon_framework = get_upstream_taxon_framework( ancestry_was.split( "/" ) )
     upstream_taxon_framework_curated_by_current_user =
       !current_user.blank? &&
-      !upstream_taxon_framework&.taxon_curators&.where( user: current_user )&.exists?
+      !upstream_taxon_framework&.taxon_curators&.exists?( user: current_user )
     if upstream_taxon_framework&.taxon_curators&.any? &&
         ( current_user.blank? || upstream_taxon_framework_curated_by_current_user )
       errors.add( :ancestry,
@@ -1818,7 +1815,7 @@ class Taxon < ApplicationRecord
       non_override_statuses = place_statuses_for_taxon.reject do | cs |
         override_admin_levels.include?( cs.place.admin_level )
       end
-      if non_override_statuses.size.zero? && override_statuses.size.positive?
+      if non_override_statuses.empty? && override_statuses.size.positive?
         # If an override status exists, and there are no other kinds of statuses
         # to consider, use the geoprivacy from the finest admin level status
         finest_status = override_statuses.max_by {| cs | cs.place.admin_level }
@@ -1843,7 +1840,7 @@ class Taxon < ApplicationRecord
     return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
     return Observation::OBSCURED if geoprivacies.include?( Observation::OBSCURED )
 
-    geoprivacies.size.zero? ? nil : Observation::OPEN
+    geoprivacies.empty? ? nil : Observation::OPEN
   end
 
   def geoprivacy( options = {} )
@@ -1949,7 +1946,7 @@ class Taxon < ApplicationRecord
   def taxon_range_kml_url
     return nil unless ( tr = taxon_range_without_geom )
 
-    tr ? tr.kml_url : nil
+    tr&.kml_url
   end
 
   def all_names
@@ -2094,7 +2091,6 @@ class Taxon < ApplicationRecord
     nil
   end
 
-  # rubocop:disable Naming/PredicateName
   # FWIW, we *should* rename this, but I'm trying to reduce the impact of this
   # compliace change to just this file and its spec
   def has_ancestor_taxon_id( ancestor_id )
@@ -2244,18 +2240,21 @@ class Taxon < ApplicationRecord
         end
         params = { id: id_obs[0..499] }
         obs = INatAPIService.get( "/observations", params ).results
-        id_taxa = []
-        obs.each do | o |
-          id_taxa << o["identifications"].select {| a | a["current"] == true }.map {| i | i["taxon"]["id"] }
+        id_taxa = obs.flat_map do | o |
+          o.fetch( "identifications", [] ).filter_map {| i | i["current"] ? i.dig( "taxon", "id" ) : nil }
         end
-        id_taxa = id_taxa.flatten
-        id_taxon_array = []
-        obs.each do | o |
-          id_taxon_array << o["identifications"].select {| a | a["current"] == true }.
-            map {| i | { id: i["taxon"]["id"], ancestor_ids: i["taxon"]["ancestor_ids"] } }
-        end
-        id_taxon_array = id_taxon_array.flatten.uniq
-        id_taxon_hash = id_taxon_array.map {| a | [a[:id], a[:ancestor_ids]] }.to_h
+        id_taxon_array = obs.flat_map do | o |
+          o.fetch( "identifications", [] ).filter_map do | i |
+            next unless i["current"]
+
+            t = i["taxon"] || {}
+            id = t["id"]
+            next unless id
+
+            { id: id, ancestor_ids: t["ancestor_ids"] || [] }
+          end
+        end.uniq
+        id_taxon_hash = id_taxon_array.to_h {| a | [a[:id], a[:ancestor_ids]] }
         child_desc_ids = id_taxon_hash.
           select {| taxon, ancestors | ( child_ids.include? taxon ) || ( child_ids & ancestors ).count.positive? }.keys
         if child_desc_ids.count.positive?
@@ -2265,7 +2264,7 @@ class Taxon < ApplicationRecord
           sample = []
           obs.each do | o |
             next unless o["identifications"].
-              select {| i | i["current"] == true && ( child_desc_ids.include? i["taxon"]["id"] ) }.any?
+              any? {| i | i["current"] == true && ( child_desc_ids.include? i["taxon"]["id"] ) }
 
             sample << o
           end
@@ -2274,13 +2273,14 @@ class Taxon < ApplicationRecord
           result[:sample] = sample
         else
           sampled_ids = []
-          obs.each do | o |
-            sampled_ids << o["identifications"].select {| a | a["current"] == true && a["taxon_id"] == parent_id }.count
+          counts = obs.map do | o |
+            idents = o["identifications"] || []
+            idents.count {| a | a["current"] && a["taxon_id"] == parent_id }
           end
-          sampled_ids = sampled_ids.sum
+          sampled_ids.concat( counts )
         end
         result[:id_count] = id_count
-        percent = id_count > sampled_ids && id_count > 200 ? ( sampled_ids / id_count.to_f * 100 ).round : 100
+        percent = ( id_count > sampled_ids && id_count > 200 ) ? ( sampled_ids / id_count.to_f * 100 ).round : 100
         result[:percent] = percent
       end
       results << result
@@ -2393,7 +2393,7 @@ class Taxon < ApplicationRecord
     num_rejects = 0
     duplicate_counts.each_key do | name |
       taxa = Taxon.where( name: name )
-      taxa.group_by( &:parent_id ).each do | _parent_id, child_taxa |
+      taxa.group_by( &:parent_id ).each_value do | child_taxa |
         next unless child_taxa.size > 1
 
         child_taxa = child_taxa.sort_by( &:id )
@@ -2449,7 +2449,6 @@ class Taxon < ApplicationRecord
     connection.execute sql
   end
 
-  # rubocop:disable Metrics/ParameterLists
   def self.occurs_in( minx, miny, maxx, maxy, startdate = nil, enddate = nil )
     startdate = startdate.nil? ? 100.years.ago.to_date : Date.parse( startdate ) # wtf, only 100 years?!
     enddate = enddate.nil? ? Time.now.to_date : Date.parse( enddate )
@@ -2540,7 +2539,7 @@ class Taxon < ApplicationRecord
       sorted.detect( &:grafted? )
 
     # if none are grafted, choose the first
-    elsif sorted.select( &:grafted? ).size.zero?
+    elsif sorted.none?( &:grafted? )
       taxon = sorted.detect {| t | t.taxon_names.detect {| tn | tn.name.downcase == name.downcase && tn.is_valid? } }
       taxon || sorted.first
 
@@ -2618,7 +2617,7 @@ class Taxon < ApplicationRecord
         )
         taxon_ids << t.id
       end
-      if taxon_ids.length === 1
+      if taxon_ids.one?
         # index this taxon in a delayed job with a unique hash, as its possible
         # there's already a job for this taxon, preventing extra indexing
         Taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
@@ -2635,5 +2634,331 @@ class Taxon < ApplicationRecord
     Taxon.elastic_index!( ids: taxon_ids )
   end
 
+  def self.normalize_ws( str )
+    str.to_s.strip.tr( "\u00A0", " " ).gsub( /\s+/, " " )
+  end
+
+  # Detect hybrid *marker* between Genus and species in verbatim string.
+  # Returns :times (Unicode ×), :x (ASCII x), or :none.
+  def self.hybrid_marker_kind( str )
+    cleaned_str = str.to_s.strip
+    return :times if cleaned_str =~ /\A[A-Z][a-z\.-]*\s+×\s+[a-z-]+/
+    return :x     if cleaned_str =~ /\A[A-Z][a-z\.-]*\s+x\s+[a-z-]+/
+
+    :none
+  end
+
+  # True hybrid *formula*: "Genus species × (Genus) species"
+  # (NOT a named nothospecies like "Citrus × aurantium")
+  def self.hybrid_formula?( str )
+    cleaned_str = Taxon.normalize_ws( str )
+    cleaned_str = cleaned_str.gsub( /\s*×\s*/, " × " ).gsub( /(?<=\s)[xX](?=\s)/, " × " )
+    cleaned_str.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
+    /\A[A-Z][A-Za-z\.-]+ [a-z-]+ × (?:[A-Z][A-Za-z\.-]+ )?[a-z-]+(?:\b|\z)/.match?( cleaned_str )
+  end
+
+  # Prefer GNparser, but fall back gracefully if it can’t provide clean tokens/stems.
+  # Returns { genus:, species:, infra:, species_stem:, infra_stem:, ok: true/false }
+  def self.extract_parts( name )
+    parsed = ::Biodiversity::Parser.parse( name.to_s )
+    simple = parsed.dig( :canonical, :simple ).to_s
+    stem   = parsed.dig( :canonical, :stem ).to_s
+
+    tokens = simple.split( /\s+/ )
+    stems  = stem.split( /\s+/ )
+
+    parts = {
+      genus: tokens[0],
+      species: tokens[1],
+      infra: tokens[2],
+      species_stem: stems[1],
+      infra_stem: stems[2]
+    }
+
+    ok = parts[:genus].present? && parts[:species].present? && parts[:species_stem].present?
+    return parts.merge( ok: true ) if ok
+
+    fb = Taxon.fallback_parts( name )
+    parts[:genus]        ||= fb[:genus]
+    parts[:species]      ||= fb[:species]
+    parts[:infra]        ||= fb[:infra]
+    parts[:species_stem] ||= Taxon.fallback_stem( fb[:species] )
+    parts[:infra_stem]   ||= Taxon.fallback_stem( fb[:infra] )
+    parts.merge( ok: false )
+  end
+
+  # Fallback tokenizer if GNparser fails or returns blanks. { genus:, species:, infra: }
+  def self.fallback_parts( name )
+    cleaned_name = Taxon.normalize_ws( name )
+    cleaned_name.sub!( /\A([A-Z][a-z-]+)\s+\([A-Z][a-z-]+\)\s+/, "\\1 " )
+    cleaned_name.gsub!( /\s+[×x]\s+/, " " ) # treat marker as a space
+    parts = cleaned_name.split( /\s+/ )
+    { genus: parts[0], species: parts[1], infra: ( parts[-1] if parts.length >= 3 ) }
+  end
+
+  def self.name_tokens( name )
+    cleaned_name = Taxon.normalize_ws( name )
+    cleaned_name.sub!( /\A([A-Z][A-Za-z\.-]+)\s+\([A-Z][A-Za-z\.-]+\)\s+/, "\\1 " )
+    # normalize only the standalone marker token (won't touch 'max', 'plexippus', etc.)
+    cleaned_name = cleaned_name.gsub( /\s*×\s*/, " " ).gsub( /(?<=\s)[xX](?=\s)/, " " )
+    cleaned_name.split( /\s+/ )
+  end
+
+  # Crude stemmer good enough for small-typo/gender-variant checks
+  def self.fallback_stem( str )
+    str.to_s.downcase.gsub( /[^a-z-]/, "" ).sub( /(ius|us|a|um|is|e|er|es|ii|i)\z/, "" )
+  end
+
+  # “Similar” = identical stems or Damerau-Levenshtein <= 2 (and not blank)
+  def self.epithet_similar_by_stem?( old_stem, new_stem )
+    return false if old_stem.blank? || new_stem.blank?
+    return true  if old_stem == new_stem
+
+    DamerauLevenshtein.distance( old_stem, new_stem ) <= 2
+  end
+
+  # Marker-only normalization exactly between Genus and species; tail must match.
+  def self.marker_only_between_genus_species?( old_str, new_str )
+    old = Taxon.normalize_ws( old_str )
+    new = Taxon.normalize_ws( new_str )
+
+    genus    = "[A-Z][A-Za-z\\.-]+"
+    subgenus = "\\([A-Z][A-Za-z\\.-]+\\)"
+    species  = "[a-z-]+"
+
+    with_marker = /\A(#{genus})\s+(?:#{subgenus}\s+)?(?:×|[xX])\s+(#{species})(.*)\z/
+    no_marker   = /\A(#{genus})\s+(?:#{subgenus}\s+)?(#{species})(.*)\z/
+
+    cmp = lambda do | m, n |
+      g1, sp1, tail1 = m.captures
+      g2, sp2, tail2 = n.captures
+      g1.casecmp?( g2 ) && sp1.casecmp?( sp2 ) && tail1 == tail2
+    end
+
+    m_old_with = with_marker.match( old )
+    n_new_no   = no_marker.match( new )
+    return cmp.call( m_old_with, n_new_no ) if m_old_with && n_new_no
+
+    m_old_no   = no_marker.match( old )
+    n_new_with = with_marker.match( new )
+    return cmp.call( m_old_no, n_new_with ) if m_old_no && n_new_with
+
+    false
+  end
+
   # /Static #################################################################
+
+  private
+
+  # Keeps TaxonName rows in sync with a Taxon name change for the Scientific Names lexicon:
+  def sync_scientific_taxon_names_for_name_change
+    lexicon = "Scientific Names"
+
+    # Guard before transaction: nothing to do if already matches
+    sci_name = taxon_names.where( is_valid: true, lexicon: lexicon ).order( :id ).first
+    return if sci_name&.name.to_s == name.to_s
+
+    TaxonName.transaction do
+      # re-fetch inside the transaction to avoid drift
+      sci_name = taxon_names.where( is_valid: true, lexicon: lexicon ).order( :id ).first
+
+      taxon_name_matching_name = taxon_names.where( name: name, lexicon: lexicon ).order( :id ).first
+      if taxon_name_matching_name
+        taxon_name_matching_name.update( is_valid: true ) unless taxon_name_matching_name.is_valid?
+      else
+        taxon_name_matching_name = taxon_names.create!( name: name, lexicon: lexicon, is_valid: true )
+      end
+
+      if sci_name && sci_name.id != taxon_name_matching_name.id && sci_name.is_valid?
+        sci_name.update( is_valid: false )
+      end
+    end
+
+    index_observations
+  end
+
+  def restrict_name_changes_by_rank
+    return unless will_save_change_to_name?
+
+    i18n_base = "activerecord.errors.models.taxon.attributes.name"
+
+    # require iconic_taxon_id (e.g. no viruses bacteria)
+    unless iconic_taxon_id.present?
+      errors.add(
+        :name, :not_similar,
+        message: I18n.t( "#{i18n_base}.microbe_or_ungrafted" )
+      )
+      return
+    end
+
+    # Coarser than species: disallow any edits
+    if rank_level.to_i > 10
+      errors.add(
+        :name, :not_similar,
+        message: I18n.t( "#{i18n_base}.coarser_than_species" )
+      )
+      return
+    end
+
+    old_name, new_name = name_change
+    old_marker = Taxon.hybrid_marker_kind( old_name )
+    new_marker = Taxon.hybrid_marker_kind( new_name )
+
+    # 1) Block hybrid formulas up front (covers name+rank edits too)
+    if Taxon.hybrid_formula?( old_name ) || Taxon.hybrid_formula?( new_name )
+      errors.add(
+        :name, :not_similar,
+        message: I18n.t( "#{i18n_base}.hybrid_formulas" )
+      )
+      return
+    end
+
+    # 2) Early allow-list: marker-only normalization at Genus–species boundary
+    #    BUT never allow introducing ASCII 'x'.
+    if [10, 5].include?( rank_level.to_i ) && Taxon.marker_only_between_genus_species?( old_name, new_name )
+      if old_marker == :none && new_marker == :x
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.add_ascii_x_disallowed" )
+        )
+        return
+      end
+      return
+    end
+
+    # Use tokens for structural checks (robust to ×/x)
+    old_tokens = Taxon.name_tokens( old_name )
+    new_tokens = Taxon.name_tokens( new_name )
+
+    # helper: first alphabetic character of a token (case-insensitive)
+    first_alpha = ->( s ) { s.to_s.downcase[/[a-z]/] }
+
+    # Must be at least binomial (Genus + species) to compare
+    unless old_tokens.length >= 2 && new_tokens.length >= 2
+      errors.add(
+        :name, :invalid_name,
+        message: I18n.t( "#{i18n_base}.must_be_binomial" )
+      )
+      return
+    end
+
+    # Genus cannot change
+    unless old_tokens.first.to_s.casecmp?( new_tokens.first.to_s )
+      errors.add(
+        :name, :genus_changed,
+        message: I18n.t( "#{i18n_base}.genus_cannot_change" )
+      )
+      return
+    end
+
+    # Parse once for stems (used below)
+    old_name_parts = Taxon.extract_parts( old_name )
+    new_name_parts = Taxon.extract_parts( new_name )
+
+    # Disallow introducing ASCII 'x' between genus–species
+    if old_marker == :none && new_marker == :x
+      errors.add(
+        :name, :not_similar,
+        message: I18n.t( "#{i18n_base}.add_ascii_x_disallowed" )
+      )
+      return
+    end
+
+    case rank_level.to_i
+    when 10 # species
+      # If either side isn't strictly binomial, only allow:
+      #   - removing a marker (× or x), or
+      #   - adding a Unicode × (as a standalone token)
+      if old_tokens.length != 2 || new_tokens.length != 2
+        allowed_nonbinomial_change =
+          ( [:times, :x].include?( old_marker ) && new_marker == :none ) || # remove ×/x
+          ( old_marker == :none && new_marker == :times ) # add ×
+        unless allowed_nonbinomial_change
+          errors.add(
+            :name, :not_similar,
+            message: I18n.t( "#{i18n_base}.nonstandard_species_marker_only" )
+          )
+          return
+        end
+        return
+      end
+
+      # Strictly binomial: allow only minor changes to the specific epithet
+      # BUT never allow changing the first letter of the specific epithet
+      if first_alpha.call( old_tokens[1] ) != first_alpha.call( new_tokens[1] )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.first_letter_of_epithet_cannot_change" )
+        )
+        return
+      end
+      unless Taxon.epithet_similar_by_stem?( old_name_parts[:species_stem], new_name_parts[:species_stem] )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.specific_epithet_similar" )
+        )
+      end
+
+    when 5 # infraspecific (subspecies/var./forma...)
+      # Species epithet may not change at all (exact token compare, not stems)
+      old_species = old_tokens[1]
+      new_species = new_tokens[1]
+      unless old_species.present? && new_species.present? && old_species.casecmp?( new_species )
+        errors.add(
+          :name, :species_changed,
+          message: I18n.t( "#{i18n_base}.only_infra_may_change" )
+        )
+        return
+      end
+
+      # Require an infra epithet on both sides (last token; need at least 3 tokens)
+      unless old_tokens.length >= 3 && new_tokens.length >= 3
+        errors.add(
+          :name, :invalid_infraspecific,
+          message: I18n.t( "#{i18n_base}.infra_required" )
+        )
+        return
+      end
+
+      # Only the *final* token may change for infra ranks (non-final tokens must be identical)
+      if old_tokens.length != new_tokens.length
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.only_infra_may_change" )
+        )
+        return
+      end
+      norm = ->( s ) { s.to_s.downcase.delete( "." ) }
+      changed_nonfinal = old_tokens[0...-1].zip( new_tokens[0...-1] ).any? {| a, b | norm.call( a ) != norm.call( b ) }
+      if changed_nonfinal
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.only_infra_may_change" )
+        )
+        return
+      end
+
+      # Minor-change rule on the infra epithet itself — use GNparser stems, with fallback if blank
+      old_infra = old_tokens.last
+      new_infra = new_tokens.last
+      old_infra_stem = old_name_parts[:infra_stem].presence || Taxon.fallback_stem( old_infra )
+      new_infra_stem = new_name_parts[:infra_stem].presence || Taxon.fallback_stem( new_infra )
+
+      # Never allow changing the first letter of the infraspecific epithet
+      if first_alpha.call( old_infra ) != first_alpha.call( new_infra )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.first_letter_of_epithet_cannot_change" )
+        )
+        return
+      end
+
+      unless Taxon.epithet_similar_by_stem?( old_infra_stem, new_infra_stem )
+        errors.add(
+          :name, :not_similar,
+          message: I18n.t( "#{i18n_base}.infra_epithet_similar" )
+        )
+      end
+    end
+  end
 end
