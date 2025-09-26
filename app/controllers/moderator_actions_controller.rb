@@ -43,6 +43,14 @@ class ModeratorActionsController < ApplicationController
             end
             redirect_to @moderator_action.resource.becomes( Photo )
             return
+          when "Sound"
+            case @moderator_action.action
+            when ModeratorAction::HIDE then t( "sounds.sound_hidden" )
+            when ModeratorAction::UNHIDE then t( "sounds.sound_unhidden" )
+            else default_notice
+            end
+            redirect_to @moderator_action.resource.becomes( Sound )
+            return
           else
             default_notice
           end
@@ -63,6 +71,10 @@ class ModeratorActionsController < ApplicationController
             redirect_to hide_photo_path( @moderator_action.resource )
             return
           end
+          if @moderator_action.resource_type == "Sound"
+            redirect_to hide_sound_path( @moderator_action.resource )
+            return
+          end
           redirect_back_or_default @moderator_action.resource
         end
       end
@@ -74,7 +86,11 @@ class ModeratorActionsController < ApplicationController
     when "Photo"
       @moderator_action.resource.presigned_url( params[:size] || "original" )
     when "Sound"
-      @moderator_action.resource.presigned_url
+      if @moderator_action.resource.is_a?( SoundcloudSound )
+        @moderator_action.resource.native_page_url
+      else
+        @moderator_action.resource.presigned_url
+      end
     end
     render json: { resource_url: url }
   end
