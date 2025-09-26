@@ -1003,6 +1003,7 @@ class User < ApplicationRecord
     if oauth_application.try( :trusted? )
       u.oauth_application_id = oauth_application.id
     end
+    u.wait_for_index_refresh = true
     user_saved = begin
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
