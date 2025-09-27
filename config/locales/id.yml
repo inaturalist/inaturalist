@@ -1821,6 +1821,8 @@ id:
   eol: EK
   eol_collection_url: "URL koleksi EK"
   error_updating_photo: "Terjadi kesalahan pada pembaruan foto: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Eror saat memperbarui suara: %{sound_errors}"
   establishment:
     endemic: Endemik
     establishment: Asal Muasal
@@ -1925,6 +1927,8 @@ id:
   fields_merged: Penggabungan bidang
   file: Berkas
   file_size: Ukuran berkas
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL File
   file_should_be_in_the_following_format: "File harus dalam format berikut: nama takson, deskripsi"
   fill_out_project_observation_fields: Isi bidang pengamatan proyek
   fill_out_your_profile: lengkapi profil Anda
@@ -2168,6 +2172,8 @@ id:
   heads_up_there_are_other_draft_taxon_changes_html:
     other: "<strong>Peringatan:</strong> ada %{count} draf perubahan takson lain dengan taksa input yang sama:"
   heads_up_this_photo_has_been_flagged: "PENTING: Foto ini telah ditandai."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "PERHATIAN: suara ini telah ditandai."
   heads_up_this_photo_is_already_associated_with: "PENTING: foto ini sudah dikaitkan dengan <a target='_blank' href='%{url}'>observasi lain</a>"
   heads_up_you_have_multiple: "PENTING: Anda memiliki beberapa label mesin taksonomi untuk tingkat serupa. Mereka diberikan kode warna di bawahnya berdasarkan tingkatannya."
   help: Bantuan
@@ -4901,6 +4907,10 @@ id:
     selected_sounds: Suara terpilih
     sound: Suara
     sound_has_been_flagged: Suara ini telah ditandai.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Suara disembunyikan
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Suara dibuka
     soundcloud_replied_with_an_error: SoundCloud menjawab dengan kesalahan. Silakan coba lagi nanti.
     sounds: Suara
     your_soundcloud_account: Akun SoundCloud Anda
@@ -5582,6 +5592,8 @@ id:
   updated_by_user_on_date_html: Diperbarui oleh %{user} pada %{date}
   updated_daily: Diperbarui setiap hari
   updated_photo: Foto yang diperbarui
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Suara diperbarui
   upload: Unggah
   upload_a_csv_file: Unggah file CSV
   upload_a_csv_file_with_observation: |
@@ -7577,6 +7589,14 @@ id:
       not_found:
         sorry_that_doesnt_exist: Maaf, itu tidak ada!
         even_our_dedicated_search_mole_couldnt: Bahkan pencarian khusus kami tidak bisa menemukan apa-apa!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Anda dapat melihat aslinya di <a href="%{url}">%{url}</a>. Biarkan 
+          tanda pelanggaran hak cipta tetap belum terselesaikan jika suara ini 
+          melanggar hak cipta.
     stats:
       index:
         active_desc: Membuat sebuah ID, pengamatan, komentar, atau postingan dalam 30 hari terakhir
