@@ -3225,6 +3225,18 @@ en:
   # As in members of a project
   members: Members
   membership_model: Membership Model
+  # Notification text to be seen by a user on their Updates Feed after being mentioned in a specific circumstance
+  mentioned_you_in_a_comment_on_an_assessment_section_by_you_html: '%{user} mentioned you in a comment to an <a href="${url}" rel="nofollow">assessment section (${title})</a> by you'
+  # Notification text to be seen by a user on their Updates Feed after being mentioned in a specific circumstance
+  mentioned_you_in_a_comment_on_an_assessment_section_by_you_no_link_html: '%{user} mentioned you in a comment to an assessment section (${title}) by you'
+  # Notification text to be seen by a user on their Updates Feed after being mentioned in a specific circumstance
+  mentioned_you_in_a_comment_on_an_assessment_section_by_owner_html: '%{user} mentioned you in a comment to an <a href="${url}" rel="nofollow">assessment section (${title})</a> by %{owner}'
+  # Notification text to be seen by a user on their Updates Feed after being mentioned in a specific circumstance
+  mentioned_you_in_a_comment_on_an_assessment_section_by_owner_no_link_html: '%{user} mentioned you in a comment to an assessment section (${title}) by %{owner}'
+  # Notification text to be seen by a user on their Updates Feed after being mentioned in a specific circumstance
+  mentioned_you_in_a_comment_on_an_assessment_section_html: '%{user} mentioned you in a comment to an <a href="${url}" rel="nofollow">assessment section (${title})</a>'
+  # Notification text to be seen by a user on their Updates Feed after being mentioned in a specific circumstance
+  mentioned_you_in_a_comment_on_an_assessment_section_no_link_html: '%{user} mentioned you in a comment to an assessment section (${title})'
   mentioned_you_in_noun_html: "%{user} mentioned you in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} mentioned you in %{noun} by %{by}"
   mentioned_you_in_noun_by_user_html: "%{user} mentioned you in %{noun} by %{by}"
@@ -6321,6 +6333,18 @@ en:
   user1_and_user2_faved_this_observation: "%{user1} and %{user2} faved this observation"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, and %{x_others} faved this observation"
   user_added_a_comment_html: "%{user} added a comment"
+  # Notification text to be seen by subscribers on their Updates feed for a specific circumstance
+  user_added_a_comment_to_assessment_section_by_you_html: '%{user} added a comment to an <a href="${url}" rel="nofollow">assessment section (${title})</a> by you'
+  # Notification text to be seen by subscribers on their Updates feed for a specific circumstance
+  user_added_a_comment_to_assessment_section_by_you_no_link_html: '%{user} added a comment to an assessment section (${title}) by you'
+  # Notification text to be seen by subscribers on their Updates feed for a specific circumstance
+  user_added_a_comment_to_assessment_section_by_owner_html: '%{user} added a comment to an <a href="${url}" rel="nofollow">assessment section (${title})</a> by %{owner}'
+  # Notification text to be seen by subscribers on their Updates feed for a specific circumstance
+  user_added_a_comment_to_assessment_section_by_owner_no_link_html: '%{user} added a comment to an assessment section (${title}) by %{owner}'
+  # Notification text to be seen by subscribers on their Updates feed for a specific circumstance
+  user_added_a_comment_to_assessment_section_html: '%{user} added a comment to an <a href="${url}" rel="nofollow">assessment section (${title})</a>'
+  # Notification text to be seen by subscribers on their Updates feed for a specific circumstance
+  user_added_a_comment_to_assessment_section_no_link_html: '%{user} added a comment to an assessment section (${title})'
   user_added_a_fave_html: "%{user} added a fave"
   user_added_a_flag_html: "%{user} added a flag"
   # @gender operates on %{x}

@@ -1077,6 +1077,7 @@ module ApplicationHelper
     lowercase_model_name
   end
 
+  # Do we need to support :skip_links? It is only set to false for a broken html erb page (path /users/new_updates)
   def update_tagline_for( update, options = {} )
     resource = update.resource
     notifier = update.notifier
@@ -1096,6 +1097,25 @@ module ApplicationHelper
       link_to( resource_txt, url_for_resource_with_host( resource ) )
     end
 
+    ###
+    # If `notifier.is_a?( Comment )` is true, the potential `resource`s (aka nouns) are all classes that
+    #   - have a 'has_many :comments' as a `:parent` relationship in their model file.
+    #   - 'has_subscribers' is defined
+    # As of Sept 2025, those potential `resource`s are: assessment_section, atlas, complete_set,
+    #   flag, listed_taxon, observation, observation_field, post, taxon_change (and subclasses), taxon_link
+    #
+    # If `notifier.is_a?( Identification )` is true, the potential `resource` is always an Observation
+    #
+    # If `update.notification == "mention"`, the potential `notifier`s are
+    # all classes that contains 'notifies_users' with `notification: "mention"`
+    # As of Sept 2025, those potential notifiers are: comment, identification,
+    #   observation, post, taxon_change (and subclasses)
+    # The potential `resources` (aka nouns) restricted to some logic in `def notify_users` in has_subscribers
+    # For comments, it is its parent
+    # For identification, it is its observation
+    # For observation, post, and taxon_change (and subclasses), the resource is itself.
+    #
+    # All of the above is documented in tests in application_helper_update_tagline_for_spec.rb
     if notifier.is_a?( Comment ) || notifier.is_a?( Identification ) || update.notification == "mention"
       noun = t( :activity_snipped_resource_with_indefinite_article,
         resource: resource_link.html_safe,
@@ -1240,6 +1260,13 @@ module ApplicationHelper
           t( :activity_on_a_flag_for_x, x: resource.flaggable.try_methods( :name, :title, :to_plain_s ) )
         end
       else
+        # This else block logically would not be entered in regular execution.
+        # For notification = "activity":
+        #   Comment notifiers for flags are handled in an earlier if-block
+        #   There is not anything else that would trigger an activity notification on a flag
+        # For notification = "mention":
+        #   Handled by an earlier if block
+        # keys starting with "new_activity_on" has no related translations in en.yml, so it is most likely unused.
         activity_snippet( update, notifier, notifier_user, options.merge( noun: noun ) )
       end
     when "TaxonChange"
@@ -1295,6 +1322,7 @@ module ApplicationHelper
         x: localized_notifier_class_name
       }
     else
+      # As of Sept 2025, there are no translations in en.yml for any keys with this as a prefix.
       key = "new_activity_on"
     end
 
@@ -1302,8 +1330,12 @@ module ApplicationHelper
       key += "_noun"
       opts[:noun] = options[:noun]
     end
+    # This if block is intended to prevent mentioning the notifier_user twice
+    # e.g. "user1 mentioned you in an observation by user1"
+    # This works most naturally when resource and notifier are the same model...
+    # ... but they can also be different! e.g. Comment = notifier, Post = resource
     if update.resource_owner && update.resource_owner != notifier_user
-      if is_admin?
+      if is_admin? # Why is this an important distinction? In the end, the role does not matter for the generated string
         if respond_to?( :current_user ) && current_user == update.resource_owner
           key += "_by_you"
         else
@@ -1311,6 +1343,7 @@ module ApplicationHelper
           opts[:by] = update.resource_owner.login
         end
       else
+        # This branch, if the distinction is necessary, it should just defer to using the _by_you or _by_user strings.
         key += "_by"
         opts[:by] = you_or_login( update.resource_owner, capitalize_it: false )
       end
