@@ -646,6 +646,8 @@ hu:
   are_you_sure_you_want_to_delete_this_assessment?: Biztosan törlöd ezt az értékelést?
   are_you_sure_you_want_to_delete_this_photo?: Biztos, hogy törlöd ezt a képet?
   are_you_sure_you_want_to_delete_this_post: Biztos, hogy törlöd ezt a cikket?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Biztos, hogy törlöd ezt a hangot?
   are_you_sure_you_want_to_delete_this_taxon_change: Biztosan törlöd ezt a taxonváltoztatást?
   are_you_sure_you_want_to_remove_all_tags: Biztosan törlöd az összes címkét?
   are_you_sure_you_want_to_remove_curator: Biztosan törlöd %{user} felhasználót mint kurátort?
@@ -1414,6 +1416,8 @@ hu:
   #Label for a button to delete a taxon range
   delete_range: Intervallum törlése
   delete_selected: Kijelöltek törlése
+  #Label for a button to delete a sound file
+  delete_sound: Hang törlése
   delete_user: Felhasználó törlése
   delete_your_account: Saját fiók törlése
   deleted_synonyms: Törölt szinonimák
@@ -1674,6 +1678,8 @@ hu:
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   error_updating_photo: "Hiba a fotó frissítésekor: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Hiba a hang feltöltésénél: %{sound_errors}"
   establishment:
     endemic: Endemikus
     establishment: Honosság
@@ -1762,7 +1768,11 @@ hu:
   fields_: Adatmezők
   fields_merged: Adatmezők egyesítve
   file: Fájl
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Fájlformátum
   file_size: Fájlméret
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Fájl URL
   fill_out_project_observation_fields: A projekt adatmezőinek kitöltése
   fill_out_your_profile: profilod kitöltése
   #The name of a computer file
@@ -1977,6 +1987,8 @@ hu:
   heads_up_automatable_draft_split_notice_html: |
     <strong>Figyelem!</strong> Ennek a változtatásnak az élesítésével a meghatározások a céltaxonok térképei alapján újra azonosításra kerülnek. Ha egy vagy több céltaxon nem rendelkezik térképpel, vagy ha a térképek átfedést mutatnak az adott meghatározásnál, a meghatározások lecserélődnek a legközelebbi közös felmenő taxonnal (%{taxon}).
   heads_up_this_photo_has_been_flagged: "FIGYELEM: ez a fotó meg volt jelölve"
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "FIGYELEM: ez a hang meg van jelölve"
   heads_up_this_photo_is_already_associated_with: "Figyelem: az a fotó már társítva van <a target='_blank' href='%{url}'>egy másik megfigyeléssel</a>"
   help: Súgó
   help_confirm_observations!: Segíts a megfigyeléseket megerősíteni!
@@ -4355,7 +4367,15 @@ hu:
     select_one_or_more_sounds: Hang(ok) kiválasztása
     selected_sounds: Kiválasztott hangok
     sound: Hang
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Hang %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Hang törölve
     sound_has_been_flagged: Ezt a hangot megjelölték.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Hang elrejtve
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Hang elrejtése visszavonva
     soundcloud_replied_with_an_error: A SoundCloud hibát jelzett vissza. Kérünk próbáld meg később.
     sounds: Hangok
     your_soundcloud_account: a SoundCloud fiókod
@@ -4893,6 +4913,8 @@ hu:
   updated_by_user_on_date_html: 'Frissítette %{user} ekkor: %{date}'
   updated_daily: Naponta frissítve
   updated_photo: Fotó frissítve
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Hang frissítve
   upload: Feltöltés
   upload_a_csv_file: CSV-fájl feltöltése
   upload_a_csv_file_with_observation: |
@@ -6096,6 +6118,12 @@ hu:
       not_found:
         sorry_that_doesnt_exist: A túróba, ez nem létezik!
         even_our_dedicated_search_mole_couldnt: Még a keresővakondunk sem túrt fel semmit.
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Az eredetit itt tekintheted meg: <a href="%{url}">%{url}</a>. Ha szerzői jogsértést gyanítasz, kérjük, a szerzői jogok megsértésével kapcsolatos bejelentést hagyd megoldatlanként.
     stats:
       index:
         active_desc: Meghatárott, megfigyelt, hozzászólt vagy posztolt az elmúlt 30 napban
