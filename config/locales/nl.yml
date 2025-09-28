@@ -715,6 +715,8 @@ nl:
   are_you_sure_you_want_to_delete_this_assessment?: Weet je zeker dat je deze beoordeling wilt verwijderen?
   are_you_sure_you_want_to_delete_this_photo?: Weet je zeker dat je deze foto wilt verwijderen?
   are_you_sure_you_want_to_delete_this_post: Weet je zeker dat je dit bericht wilt verwijderen?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Weet je zeker dat je dit geluid wilt verwijderen?
   are_you_sure_you_want_to_delete_this_taxon_change: Weet je zeker dat je deze taxonverandering wilt verwijderen?
   are_you_sure_you_want_to_remove_all_tags: Weet je zeker dat je alle tags wilt verwijderen?
   are_you_sure_you_want_to_remove_curator: Weet je zeker dat je %{user} wilt verwijderen als curator?
@@ -1647,6 +1649,8 @@ nl:
   #Label for a button to delete a taxon range
   delete_range: Verspreiding verwijderen
   delete_selected: Verwijder geselecteerde items
+  #Label for a button to delete a sound file
+  delete_sound: Geluid verwijderen
   delete_taxon_and_merge_most_data_html: |
     Verwijder <i>%{taxon}</i> en voeg het grootste deel van de gegevens samen met een ander taxon. Gebruik deze tool voor <strong>het verwijderen van dubbele taxa</strong>. Maak een taxonwissel aan als je een verouderd synoniem wilt verwijderen. <strong>KIJK UIT!</strong> Het verwijderen van taxa kan erg destructief zijn! Bekijk de <a href="%{curator_url}">richtlijn voor curatoren</a> voor meer details.
   delete_user: Gebruiker verwijderen
@@ -1933,6 +1937,8 @@ nl:
   eol: EOL
   eol_collection_url: "EOL verzameling URL"
   error_updating_photo: "Fout bij bijwerken foto: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Fout bij het bijwerken van geluid: %{sound_errors}"
   establishment:
     endemic: Endemisch
     establishment: Vestiging
@@ -2035,7 +2041,11 @@ nl:
   fields_can_only_be_edited_by_the_people_who: Velden kunnen enkel aangepast worden door de personen die ze aangemaakt hebben of door curatoren
   fields_merged: Velden samengevoegd
   file: Bestand
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Bestandsformaat
   file_size: Bestandsgrootte
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL van bestand
   file_should_be_in_the_following_format: "Het bestand moet in het volgende format zijn: taxonnaam, beschrijving"
   fill_out_project_observation_fields: Vul de waarnemingsvelden in voor dit project
   fill_out_your_profile: voltooi je profiel
@@ -5133,7 +5143,15 @@ nl:
     select_one_or_more_sounds: Selecteer één of meerdere geluiden
     selected_sounds: Geselecteerde geluiden
     sound: Geluid
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Geluid %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Geluid verwijderd
     sound_has_been_flagged: Dit geluid is gemeld.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Geluid verborgen
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Geluid hoorbaar gemaakt
     soundcloud_replied_with_an_error: SoundCloud geeft een foutmelding. Probeer het later opnieuw.
     sounds: Geluiden
     your_soundcloud_account: je SoundCloud-account
@@ -5846,6 +5864,8 @@ nl:
   updated_by_user_on_date_html: Bijgewerkt door %{user} op %{date}
   updated_daily: Dagelijks bijgewerkt
   updated_photo: Bijgewerkte foto
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Bijgewerkt geluid
   upload: Uploaden
   upload_a_csv_file: Upload CSV-bestand
   upload_a_csv_file_with_observation: |
@@ -7864,6 +7884,13 @@ nl:
       not_found:
         sorry_that_doesnt_exist: Sorry, deze bestaat niet!
         even_our_dedicated_search_mole_couldnt: Zelfs onze toegewijde zoekmol kon niets vinden!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          U kunt het origineel bekijken op <a href="%{url}">%{url}</a>. Laat inbreuken op het auteursrecht als onopgelost staan als dit geluid een 
+          inbreuk maakt op het auteursrecht.
     stats:
       index:
         active_desc: Heeft in de afgelopen 30 dagen een determinatie, waarneming, reactie of bericht gemaakt
