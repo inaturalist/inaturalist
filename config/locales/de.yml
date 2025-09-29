@@ -701,6 +701,8 @@ de:
   are_you_sure_you_want_to_delete_this_assessment?: Bist du sicher, dass du die Wertung entfernen willst?
   are_you_sure_you_want_to_delete_this_photo?: Bist du sicher, dass du dieses Bild entfernen willst?
   are_you_sure_you_want_to_delete_this_post: Bist du sicher, dass du diesen Beitrag löschen möchtest?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Bist du sicher, dass du diese Tonaufnahme löschen möchtest?
   are_you_sure_you_want_to_delete_this_taxon_change: Bist du sicher, dass du diese Taxon-Änderung löschen möchtest?
   are_you_sure_you_want_to_remove_all_tags: Bist du sicher, dass du alle Stichwörter entfernen möchtest?
   are_you_sure_you_want_to_remove_curator: Bist du sicher, dass du %{user} als Kurator entfernen möchtest?
@@ -1521,6 +1523,8 @@ de:
   #Label for a button to delete a taxon range
   delete_range: Verbreitungsgebiet löschen
   delete_selected: Ausgewählte löschen
+  #Label for a button to delete a sound file
+  delete_sound: Tonaufnahme löschen
   delete_taxon_and_merge_most_data_html: |
     Lösche <i>%{taxon}</i> und füge die meisten Daten in ein anderes Taxon ein. Verwende dieses Tool zum <strong>Entfernen doppelter Taxa</strong>. Wenn du ein veraltetes Synonym entfernen möchtest, erstelle bitte einen Taxon-Tausch. <strong>ACHTUNG!</strong> Das Löschen von Taxa kann sehr destruktiv sein. Lese den <a href="%{curator_url}">Kurator-Guide</a> für weitere Details.
   delete_user: Benutzer löschen
@@ -1787,6 +1791,8 @@ de:
   eol: EOL
   eol_collection_url: "EOL-Sammlungs-URL"
   error_updating_photo: "Fehler beim updaten der Fotos: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Fehler beim Aktualisieren der Tonaufnahme: %{sound_errors}"
   establishment:
     endemic: endemisch
     establishment: Etablierung
@@ -1881,7 +1887,11 @@ de:
   fields_can_only_be_edited_by_the_people_who: Felder bearbeiten dürfen nur diejenigen, die sie erstellt haben, sowie Kuratoren
   fields_merged: Felder verbunden
   file: Datei
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Dateiformat
   file_size: Dateigröße
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Datei-URL
   file_should_be_in_the_following_format: "Die Datei sollte in folgendem Format sein: Taxon-Name, Beschreibung"
   fill_out_project_observation_fields: Beobachtungsfelder des Projekts ausfüllen
   fill_out_your_profile: vervollständige dein Profil
@@ -2119,6 +2129,8 @@ de:
   header_your_profile: Dein Profil
   heads_up: Achtung
   heads_up_this_photo_has_been_flagged: "Achtung: dieses Foto wurde gemeldet."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "ACHTUNG: Diese Tonaufnahme wurde gemeldet."
   heads_up_this_photo_is_already_associated_with: "Achtung: dieses Foto ist schon mit <a target='_blank' href='%{url}'>einer anderen Beobachtung verbunden</a>"
   heads_up_you_have_multiple: "Achtung: Du hast mehrere taxonomische maschinelle Tags für identische Ränge. Sie sind unten nach Rang farblich gekennzeichnet."
   help: Hilfe
@@ -4866,7 +4878,15 @@ de:
     select_one_or_more_sounds: Eine oder mehrere Audio-Dateien auswählen
     selected_sounds: Ausgewählte Audiodateien
     sound: Audio
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Ton %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Tonaufnahme gelöscht
     sound_has_been_flagged: Diese Tonaufnahme wurde gemeldet.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Tonaufnahme versteckt
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Tonaufnahme freigegeben
     soundcloud_replied_with_an_error: SoundCloud antwortete mit einem Fehler.  Bitte versuche es später noch einmal.
     sounds: Audio
     your_soundcloud_account: dein SoundCloud-Account
@@ -5561,6 +5581,8 @@ de:
   updated_by_user_on_date_html: Aktualisiert von %{user} am %{date}
   updated_daily: Täglich aktualisiert
   updated_photo: Foto aktualisiert
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Tonaufnahme aktualisiert
   upload: Hochladen
   upload_a_csv_file: CSV-Datei hochladen
   upload_a_csv_file_with_observation: |
@@ -7495,6 +7517,14 @@ de:
       not_found:
         sorry_that_doesnt_exist: Sorry, die Seite gibt es nicht!
         even_our_dedicated_search_mole_couldnt: Selbst unser engagierter "Suchmaulwurf" konnte nichts finden!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Du kannst das Original unter <a href="%{url}">%{url}</a> ansehen. Bitte
+          belasse Copyright-Meldungen als ungelöst, falls diese Tonaufnahme
+          das Urheberrecht verletzt.
     stats:
       index:
         active_desc: eine ID, obs, Kommentar oder Beitrag in den letzten 30 Tagen erstellt
