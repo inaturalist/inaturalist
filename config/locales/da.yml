@@ -729,6 +729,8 @@ da:
   are_you_sure_you_want_to_delete_this_assessment?: Er du sikker på at du vil slette vurderingen?
   are_you_sure_you_want_to_delete_this_photo?: Er du sikker på, at du vil slette dette foto?
   are_you_sure_you_want_to_delete_this_post: Er du sikker på, at du vil slette dette indlæg?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Sikker på, at denne lyd skal slettes?
   are_you_sure_you_want_to_delete_this_taxon_change: Er du sikker på at du vil slette den her ændring i takson?
   are_you_sure_you_want_to_remove_all_tags: Er du sikker på, at du ønsker at fjerne alle tags?
   are_you_sure_you_want_to_remove_curator: Er du sikker på at du vil fjerne %{user} som kurator?
@@ -1667,6 +1669,8 @@ da:
   #Label for a button to delete a taxon range
   delete_range: Slet udbredelse
   delete_selected: Slet valgte
+  #Label for a button to delete a sound file
+  delete_sound: Slet lyd
   delete_taxon_and_merge_most_data_html: |
     Slet <i> %{taxon} </i> og sammenlæg det meste af dets data i en anden takson. Brug dette værktøj til <strong> at fjerne dubletter </strong>. Hvis du vil
     fjerne et forældet synonym, så vær venlig at oprette et takson skifte. <strong> VÆR FORSIGTIG! </strong> Sletning af taksa kan være meget ødelæggende. Tjek 
@@ -1951,6 +1955,8 @@ da:
   eol: EOL
   eol_collection_url: "EOL samling´s URL"
   error_updating_photo: "Fejl ved opdatering af billede:%{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Fejl under opdatering af lyd: %{sound_errors}"
   establishment:
     endemic: endemisk
     establishment: Oprindelse
@@ -2054,7 +2060,11 @@ da:
   fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres af de personer, der har oprettet dem og side-kuratorer
   fields_merged: Felterne blev lagt sammen
   file: Fil
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Filformat
   file_size: Filstørrelse
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Fil-URL
   file_should_be_in_the_following_format: "Filen skal være i følgende format: taksonnavn, beskrivelse"
   fill_out_project_observation_fields: Udfyld projekt observationsfelter
   fill_out_your_profile: udfyld din profil
@@ -2316,6 +2326,8 @@ da:
     one: "<strong>Bemærk:</strong> Der er %{count} anden taksonændringsudkast med samme input-taksa:"
     other: "<strong>Bemærk:</strong> Der er %{count} andre taksonændringsudkast med samme input-taksa:"
   heads_up_this_photo_has_been_flagged: "BEMÆRK: dette foto er blevet markeret."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "BEMÆRK: Denne lyd er blevet markeret."
   heads_up_this_photo_is_already_associated_with: "BEMÆRK: Dette billede er allerede forbundet med <a target='_blank' href='%{url}'> en anden observation</a>"
   heads_up_you_have_multiple: "Bemærk: Du har flere taksonomiske maskintags for identiske rangeringer. De er farvekodet nedenfor efter rang."
   help: Hjælp
@@ -5174,7 +5186,15 @@ da:
     select_one_or_more_sounds: Vælg en eller flere lyde
     selected_sounds: Valgte lyde
     sound: Lyd
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Lyd %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Lyd slettet
     sound_has_been_flagged: Denne lyd er blevet markeret.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Lyd skjult
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Lyd gjort tilgængelig
     soundcloud_replied_with_an_error: SoundCloud svarede med en fejl. Prøv igen senere.
     sounds: Lyde
     your_soundcloud_account: din SoundCloud konto
@@ -5903,6 +5923,8 @@ da:
   updated_by_user_on_date_html: Opdateret af %{user} d. %{date}
   updated_daily: Opdateres dagligt
   updated_photo: Opdateret foto
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Opdateret lyd
   upload: Upload
   upload_a_csv_file: Upload CSV fil
   upload_a_csv_file_with_observation: |
@@ -8185,6 +8207,14 @@ da:
       not_found:
         sorry_that_doesnt_exist: Beklager, det eksisterer ikke!
         even_our_dedicated_search_mole_couldnt: Selv vores dedikerede søgemuldvarp kunne ikke finde noget!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Originaludgaven kan ses på <a href="%{url}">%{url}</a>. Lad venligst
+          ophavsretskrænkelsesmarkeringer være uløste, såfremt denne lyd reelt
+          krænker ophavsretten.
     stats:
       index:
         active_desc: Oprettede et ID, en obs, en kommentar eller et indlæg i de forgangne 30 dage
