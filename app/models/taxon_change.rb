@@ -51,7 +51,7 @@ class TaxonChange < ApplicationRecord
 
   acts_as_votable
   SUBSCRIBABLE = false
-  VOTE_APPROVAL_THRESHOLD = 2
+  VOTE_APPROVAL_THRESHOLD = 5
 
   enum status: {
     draft: "draft",
