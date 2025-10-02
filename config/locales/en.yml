@@ -1192,6 +1192,7 @@ en:
   community_id_is_precise: Community Taxon is precise
   community_moderation_settings: Community Moderation Settings
   community_supported_id: Community-supported Taxon?
+  community_taxon_matches_observation_taxon: Community Taxon matches Observation Taxon
   compare: Compare
   compare_with: Compare with
   comparing: comparing
@@ -8133,6 +8134,11 @@ en:
         dqa_help_needs_id_is_not_of_human_html: the observation <strong>isn't of a human</strong>
         # Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Observations become <strong>"research grade"</strong> when
+        # One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          the <strong>Community Taxon and Observation Taxon match</strong>
+          (for those rare occasions when the Observation Taxon can be more
+          specific than the Community Taxon)
         # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           the %{site_name} <strong>community agrees on species-level ID or
