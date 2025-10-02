@@ -698,6 +698,7 @@ Rails.application.routes.draw do
     get :commit_for_user
     put :withdraw, on: :member
     put :restore,  on: :member
+    post :like, on: :member
     put "commit_record/:type/:record_id/to/:taxon_id" => "taxon_changes#commit_records", as: :commit_record
     put "commit_records/:type/(to/:taxon_id)" => "taxon_changes#commit_records", as: :commit_records
     post :analyze_ids
