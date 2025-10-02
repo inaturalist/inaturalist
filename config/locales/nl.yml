@@ -2302,6 +2302,8 @@ nl:
     one: "<strong>Let op:</strong> er is %{count} andere voorlopige taxonwijziging met dezelfde inputtaxa:"
     other: "<strong>Let op:</strong> er zijn %{count} andere voorlopige taxonwijzigingen met dezelfde inputtaxa:"
   heads_up_this_photo_has_been_flagged: "OPGELET: deze foto is gemeld."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "LET OP: dit geluid is gemeld."
   heads_up_this_photo_is_already_associated_with: "Opgelet: deze foto is al gelinkt aan een <a target='_blank' href='%{url}'>andere waarneming</a>"
   heads_up_you_have_multiple: "Let op: je hebt meerdere taxonomische machine-tags voor identieke niveaus. Ze zijn hieronder gekleurd per niveau."
   help: Help
@@ -7270,26 +7272,49 @@ nl:
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
         user_id: Unieke, sequentiële identifier voor de waarnemer
+        user_login: Handvat/gebruikersnaam van de waarnemer, d.w.z. een korte, unieke, alfanumerieke identificatiecode voor een gebruiker
+        user_name: |
+          Naam van de waarnemer, meestal gebruikt voor naamsvermelding op de site.
+          Dit is een optioneel veld en kan een pseudoniem zijn.
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
         quality_grade: Kwaliteitsgraad van deze waarneming. Zie de Help-sectie voor meer informatie over wat dit betekent. Zie https://help.inaturalist.org/support/solutions/articles/151000169936
         license: Identificatie voor de licentie of ontheffing die de waarnemer voor deze waarneming heeft gekozen. Alle rechten voorbehouden indien blanco
         url: URL voor de waarneming
         image_url: URL voor de eerste foto die is gekoppeld aan de waarneming
+        sound_url: |
+          URL voor het eerste geluid dat is gekoppeld aan de waarneming. Merk op dat deze
+          alleen aanwezig is voor directe uploads, geen geluiden die worden gehost op diensten van derden
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
         place_admin2_name: Naam van de administratieve plaats twee rangen onder het landniveau
         positioning_method: Manier waarop de coördinaten bepaald werden
         positioning_device: Toestel gebruikt om coördinaten te bepalen
+        captive_cultivated: |
+          Waarneming is van een organisme dat bestond op de tijd en plaats dat het
+          werd waargenomen omdat mensen dat het toen en daar waarnamen. Voor
+          meer, zie
+          https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Tekst geschreven door de waarnemer die de waarneming of opname beschrijft of alle andere opmerkingen die relevant lijken
         oauth_application_id: |
           Sequentiële identificatie voor de applicatie die de
           waarneming heeft gecreëerd. Voor meer informatie over de applicatie voeg deze dan
           toe aan https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          De naam van het derde niveau administratieve gebied dat de
+          waarnemingscoördinaten bevat (bijvoorbeeld een gemeente)
+        place_country_name: |
+          De naam van de gemeente die de coördinaten van deze waarneming bevat
+        place_state_name: |
+          De naam van het tweede-niveau-administratieve gebied dat de
+          waarnemingscoördinaten bevat (bijvoorbeeld een provincie)
         place_town_name: |
           De naam van de stad of plaats die de waarneming
           coördinaten omvat, indien bekend
         private_place_guess: |
           Waarnemingslocatie zoals opgeschreven door de waarnemer als de locatie verborgen is
+        public_positional_accuracy: Maximale horizontale positieonzekerheid in meters; Omvat onzekerheid toegevoegd door coördinaatsvervaging
         uuid: |
           Universeel unieke identifier voor de waarneming. Zie
           https://datatracker.ietf.org/doc/html/rfc9562
