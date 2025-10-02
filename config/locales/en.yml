@@ -9161,6 +9161,24 @@ en:
           manually refreshed. Refreshing this summary also immediately updates
           our cache of the underlying Wikipedia content that we show on the
           website, which automatically refreshes after a week.
+        # a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          You can only make minor changes to the species epithet directly (e.g. gender changes, mispelling). Add a <a target="_blank" href="%{url}">taxon swap</a> if you need other changes to the name.
+        # message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: 
+          "Heads up: you just added a descendant of a locked taxon 
+          (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>).
+          Please consider merging this into an existing taxon instead."
+        # message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent:
+          " Heads up: the parent of this active taxon is inactive 
+            but it's the output of this <a href='/taxon_changes/%{taxon_change_id}'>
+            draft taxon change</a> that we assume you'll commit shortly."
+        # a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework:
+          This active taxon has more than %{count} downstream observations or is
+          covered by a taxon framework, so some taxonomic attributes can only be
+          editable by staff or taxon curators associated with that taxon framework.
       show:
         about_names_desc: |
           <p>
@@ -9315,6 +9333,15 @@ en:
         trending_desc: Most-observed taxa in the last month
         trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
         wanted_desc: Species in this taxon that have not been observed yet.
+      # an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Names must be similar when editing directly, make a taxon swap for radical name changes
+      # error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} can't add tags to your photos until Flickr knows you've given us permission.
+        <a href='%{url}'>Grant Flickr permission</a>.
+      # error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Something went wrong trying to to post those tags: %{message}
     taxon_changes:
       # warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Are you sure you want to restore this taxon change?
@@ -10623,6 +10650,30 @@ en:
               bad_format: |
                 can only contain standard Latin characters, hyphens, spaces, and
                 ×; note that putative taxa and cultivars are not allowed
+              # Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "name changes not allowed for viruses, bacteria, or ungrafted clades"
+              # Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "name changes are not allowed for ranks coarser than species"
+              # Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "name changes are not allowed for hybrid formulas"
+              # Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "cannot add 'x' as a hybrid marker between genus and species"
+              # Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "must be binomial (Genus species) for checking"
+              # Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "genus cannot change"
+              # Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "non-standard species name: only removing 'x'/'×' or adding '×' is allowed"
+              # Error message trying make major changes to sp epithet
+              specific_epithet_similar: "specific epithet must be similar (minor typo/gender only)"
+              # Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "infraspecific epithet required for this rank"
+              # Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "only the infraspecific epithet may change for infraspecific ranks"
+              # Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "infraspecific epithet must be similar (minor typo/gender only)"
+              # Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "first letter of any epithet cannot change."
         taxon_change:
           attributes:
             base:
