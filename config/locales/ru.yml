@@ -1175,6 +1175,7 @@ ru:
   community_id_is_precise: Таксон сообщества является точным
   community_moderation_settings: Настройки модерации сообщества
   community_supported_id: Таксон, поддержанный сообществом?
+  community_taxon_matches_observation_taxon: Таксон сообщества совпадает с таксоном наблюдения
   compare: Сравнить
   compare_with: Сравнить с
   comparing: сравнение
@@ -7976,6 +7977,12 @@ ru:
         wikipedia_summary_desc_html: |
           Краткое описание этого таксона основано на его <a target="_blank"
           href="%{url}">странице Википедии</a> , которую мы кэшируем неопределенно долго, пока не обновим вручную. Обновление этого описания приводит к немедленному обновлению нашего кэша базового контента Википедии, который автоматически обновляется еженедельно и показывается на веб-сайте.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Вы можете вносить напрямую лишь незначительные изменения в видовой эпитет (например, изменение пола, орфографические ошибки). Добавьте <a target="_blank" href="%{url}">Замена таксонов</a> если вам нужны другие изменения в названии.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Внимание: вы только что добавили потомка заблокированного таксона (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Пожалуйста, рассмотрите возможность объединения его с существующим таксоном." #message when you try to save edits to a taxon that has inactive parents
+        covered_by_taxon_framework: Этот активный таксон имеет более чем %{count} последующих наблюдений или охватывается структурой таксонов, поэтому некоторые таксономические атрибуты могут редактироваться только сотрудниками или кураторами таксонов, связанными с этой структурой таксонов.
       show:
         about_names_desc: |
           <p>
@@ -8077,13 +8084,27 @@ ru:
         trending_desc: Наиболее наблюдаемые таксоны за последний месяц
         trending_in_place_desc_html: Наиболее наблюдаемые таксоны за последний месяц в <a href="%{url}">%{place}</a>
         wanted_desc: Виды этого таксона пока не наблюдались.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Названия при непосредственном редактировании должны быть аналогичны, для радикальной смены названия произведите замену таксона.
     taxon_changes:
       move_children_desc: |
         Потомки входного таксона, которые являются общими или более грубыми, будут перемещены на выход; виды, подвиды, разновидности и т. д. будут заменены на эквиваленты с новым названием рода или вида.
+      #state of a approved taxon change
+      approved: одобренный
       form:
         move_children_desc2_html: |
           Установка этой отметки переместит дочерние элементы входного таксона в выходной таксон при операциях замен и слияний таксонов, как только это изменение будет зафиксировано. Если это изменение произойдёт на уровне рода или ниже, это приведёт к замене таксонов для всех потомков с именами, которые необходимо изменить. Например, если вы замените семейство Canidae на Dogidae, это изменит родителя рода.
           <i>Canis</i> от Canidae до Dogidae. Если вы замените род <i>Canis</i> на род <i>Dogis</i>, он создаст и зафиксирует замену таксонов, чтобы изменить <i>Canis lupus</i> на <i>Dogis lupus</i> и <i>Canis lupus</i> ssp. <i>lupus</i> на <i>Dogis lupus</i> ssp. <i>lupus</i>. Это может привести к изрядному беспорядку, поэтому используйте с осторожностью.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Голос добавлен
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Голос удален
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Голосов пока нет
+      output_taxon_rank_level_not_coarser_html: >
+        Ранговый уровень выходного таксона не грубее, чем ранговый уровень активных потомков входного таксона %{taxon_link}.
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Изменение таксона было удалено.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -9160,6 +9181,12 @@ ru:
             name:
               bad_format: |
                 может содержать только стандартные латинские символы, дефисы, пробелы и ×; обратите внимание, что предполагаемые таксоны и сорта не допускаются
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Изменение названия не допускается для вирусов, бактерий или непривитых клад"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Нестандартное название вида: разрешено только удаление 'x'/'×' или добавление '×'"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "Для инфравидовых рангов может меняться только инфравидовой эпитет"
         taxon_change:
           attributes:
             base:
