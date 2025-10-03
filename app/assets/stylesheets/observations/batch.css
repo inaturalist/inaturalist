@@ -70,6 +70,10 @@ h3 label em {
   vertical-align: middle;
 }
 
+#batch_form_fields {
+  display: block;
+}
+
 .observationform input.text, #batch_form_fields input.text { width: 256px; margin-top: 0;}
 .observationform .compactfield input.text, #batch_form_fields .compactfield input.text { width: auto;}
 .observationform .observation_place_guess, #batch_form_fields .observation_place_guess {margin-bottom: 0;}
