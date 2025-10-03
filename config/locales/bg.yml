@@ -250,6 +250,8 @@ bg:
   add_annotations_for_controlled_attribute:
     sex: Добави анотации за „Пол“
     plant_phenology: Добави анотации за „Фенология на растение“
+    flowers_and_fruits: Добави анотации за „Цветове и плодове“
+    leaves: Добави анотации за „Листа“
     life_stage: Добави анотации за „Жизнен стадий“
     evidence_of_presence: Добави анотации за „Свидетелство за присъствие“
   add_another_flag: Добавяне на друг маркер
@@ -282,6 +284,7 @@ bg:
   add_new_taxon_name: Добави ново име на таксон
   add_obs_from_a_link: "Добавете наблюдения от списък: %{link}"
   add_obs_from_a_list: Добавете наблюдения от списък
+  add_observation_fields: Добави полета за наблюдения
   add_observations: Добавяне на наблюдения
   add_observations_project: Добави наблюдения към проекта
   #Used for buttons to add observations where the words "Add"
@@ -301,6 +304,14 @@ bg:
   add_plant_phenology_flowering_annotation: 'Добави анотация „Фенология на растение: Цъфтене“'
   add_plant_phenology_fruiting_annotation: 'Добави анотация „Фенология на растение: Плодообразуване“'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Добави анотация „Фенология на растение: Няма свидетелства за цъфтене“'
+  add_flowers_and_fruits_flower_buds_annotation: 'Добави анотация „Цветове и плодове: Цветни пъпки“'
+  add_flowers_and_fruits_flowers_annotation: 'Добави анотация „Цветове и плодове: Цветове“'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Добави анотация „Цветове и плодове: Плодове или семена“'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Добави анотация „Цветове и плодове: Няма цветове или плодове“'
+  add_leaves_breaking_leaf_buds: 'Добави анотация „Листа: Разпукнати листни пъпки“'
+  add_leaves_green_leaves: 'Добави анотация „Листа: Зелени листа“'
+  add_leaves_colored_leaves: 'Добави анотация „Листа: Цветни листа“'
+  add_leaves_no_live_leaves: 'Добави анотация „Листа: Няма живи листа“'
   add_life_stage_adult_annotation: 'Добави анотация „Жизнен стадий: Възрастен“'
   add_life_stage_teneral_annotation: 'Добави анотация „Жизнен стадий: Новоимагинирал“'
   add_life_stage_subimago_annotation: 'Добави анотация „Жизнен стадий: Субимаго“'
@@ -316,6 +327,11 @@ bg:
   add_evidence_of_presence_track_annotation: 'Добави анотация „Свидетелство за присъствие: следа“'
   add_evidence_of_presence_bone_annotation: 'Добави анотация „Свидетелство за присъствие: кост“'
   add_evidence_of_presence_molt_annotation: 'Добави анотация „Свидетелство за присъствие: съблекло“'
+  add_evidence_of_presence_leafmine_annotation: 'Добави анотация „Свидетелство за присъствие: листна мина“'
+  add_evidence_of_presence_hair_annotation: 'Добави анотация „Свидетелство за присъствие: косми“'
+  add_evidence_of_presence_egg_annotation: 'Добави анотация „Свидетелство за присъствие: яйце“'
+  add_evidence_of_presence_construction_annotation: 'Добави анотация „Свидетелство за присъствие: конструкция“'
+  add_established_not_established: 'Добави анотация „Установен: Неустановен“'
   add_several_observations_at_once: Добавяне на няколко наблюдения наведнъж.
   add_sex_female_annotation: 'Добави анотация „Пол: Женски“'
   add_sex_male_annotation: 'Добави анотация „Пол: Мъжки“'
@@ -848,6 +864,10 @@ bg:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Без значение
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Без значение
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Без значение
@@ -857,11 +877,17 @@ bg:
     male: Мъжки
     female: Женски
     plant_phenology: Фенология на растение
+    flowers_and_fruits: Цветове и плодове
     budding: Напъпване
     flower_budding: Напъпване на цветове
     flowering: Цъфтене
     fruiting: Плодообразуване
+    no_flowers_or_fruits: Няма цветове или плодове
+    flower_buds: Цветни пъпки
+    flowers: Цветове
+    fruits_or_seeds: Плодове или семена
     leaves: Листа
+    breaking_leaf_buds: Разпукнати листни пъпки
     green_leaves: Зелени листа
     colored_leaves: Цветни листа
     no_live_leaves: Без живи листа
@@ -897,6 +923,16 @@ bg:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Съблекло
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Листна мина
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Косми
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Конструкция
+    #Does the observation belong to a non-established population or not
+    established: Установен
+    #Organism is not a member of an established population
+    not_established: Неустановен
   controlled_term_definitions:
     alive: Организмът е жив и не показва признаци за предстояща смърт
     bone: |
@@ -907,9 +943,18 @@ bg:
     flower_budding: Виждат се цветни пъпки, но не са разтворени
     flowering: Цветовете са видими, напълно развити и все още прикачени към растението
     fruiting: Плодът се вижда и все още е прикрепен към растението
+    flowers: Поне един отворен цвят
+    flower_buds: Поне една затворена цветна пъпка
+    fruits_or_seeds: Поне един плод или семе
+    breaking_leaf_buds: Поне една пъпка с първо листенце, което не е напълно разтворено
+    green_leaves: Поне едно зелено листо или игличка (или червено, ако това е нормалният здравословен цвят)
+    colored_leaves: Поне едно листо или игличка има късносезонен или изсъхнал цвят
+    no_live_leaves: Няма разпукнали листни пъпки, зелени или цветни листа
     gall: Деформирано разрастване на растителна тъкан причинено от паразитен организъм
     molt: Излиняла („съблечена“) кожа или телесна обвивка
     no_evidence_of_flowering: Медията не свидетелства за наличието на репродуктивни структури
+    no_flowers_or_fruits: Не се виждат цветя, плодове или семена (изцяло или частично)
+    not_established: Организмът принадлежи към неустановена популация – например изпуснати или избягали домашни любимци, превозени или блуждаещи (вагрантни) животни
     organism: Цял организъм или част от него
     scat: Фекалии (но не птичи погадки или друга повърната субстанция)
     teneral: Възрастно, което наскоро е излиняло (имагинирало) и все още не е придобило окончателния си вид
@@ -2559,6 +2604,8 @@ bg:
   original_page_url_for_this_photo: "Оригинален уеб адрес на снимката."
   organism_appears_captive_cultivated: Организмът изглежда отгледан от човек
   other: Друго
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Други
   other_animals: други животни
   other_lexicons: Други езици
   other_species_commonly_misidentified_as_this_species: Други видове често обърквани с този вид
@@ -4715,6 +4762,9 @@ bg:
           Брой разпознати таксони, които са сред надтаксоните на таксона, но не са съгласни с таксона (например „Мисля, че е от този род, но не и този вид“)
         curator_coordinate_access_disabled_desc_html: |
           Този проект не приема наблюдения, чиито координати не са видими за кураторите на проекта. Ако не искате да споделяте координатите на това наблюдение с кураторите на проекта, трябва да премахнете наблюдението от проекта.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          наблюдението <strong>не предоставя скорошно (~100 години) свидетелство за организъм</strong> (напр. фосили; но следи, изпражнения или мъртви листа са наред)
         flagged_photos_desc_html: |
           Някои от тези снимки са маркирани за неуместно съдържание или нарушение на авторски права. За подробности вижте %{links}
         observer_only_allows_curators_to_add_fields: Наблюдателят позволява само на кураторите на сайта да добавят полета за наблюдения.
@@ -5065,6 +5115,14 @@ bg:
           "Plant Phenology=Flower Budding": Напъпване на цветове
           "Plant Phenology=Fruiting": Плодообразуване
           "Plant Phenology=No Evidence of Flowering": Няма свидетелства за цъфтене
+          "Flowers and Fruits=Flower Buds": Цветни пъпки
+          "Flowers and Fruits=Flowers": Цветове
+          "Flowers and Fruits=Fruits or Seeds": Плодове или семена
+          "Flowers and Fruits=No Flowers or Fruits": Няма цветове или плодове
+          "Leaves=Breaking Leaf Buds": Разпукнати листни пъпки
+          "Leaves=Green Leaves": Зелени листа
+          "Leaves=Colored Leaves": Цветни листа
+          "Leaves=No Live Leaves": Без живи листа
           unannotated: Без анотация
         max_photos_desc: |
           Един таксон може да има най-много %{max} снимки. За да добавите нови снимки, трябва да премахнете някои от старите.
