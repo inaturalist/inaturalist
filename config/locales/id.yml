@@ -979,6 +979,7 @@ id:
   community_id_is_precise: Takson Komunitas tepat
   community_moderation_settings: Pengaturan Moderasi Komunitas
   community_supported_id: Takson yang didukung komunitas?
+  community_taxon_matches_observation_taxon: Takson Komunitas cocok dengan Takson Pengamatan
   compare: Bandingkan
   compare_with: Bandingkan dengan
   comparing: membandingkan
@@ -7065,6 +7066,11 @@ id:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Pengamatannya menjadi <strong>"kelas riset"</strong> ketika
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Kecocokan Takson Komunitas dan Takson Pengamatan</strong>
+          (untuk kejadian langka ketika Takson Pengamatan bisa lebih
+          spesifik daripada Takson Komunitas)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           <strong>komunitas %{site_name} setuju dengan ID bertingkat spesies atau lebih bawah </strong>, yaitu ketika lebih dari 2/3 pengidentifikasi setuju dengan 
           suatu takson (jika komunitasnya telah memilih bahwa Takson Komunitasnya tidak bisa 
@@ -7738,6 +7744,13 @@ id:
         wikipedia_summary_desc_html: |
           Ringkasan singkat dari takson ini berdasarkan <a target="_blank"
           href="%{url}">halaman Wikipedianya</a> yang terus kami simpan dalam cache hingga disegarkan secara manual. Menyegarkan ringkasan ini juga akan secara langsung mengubah cache konten Wikipedia kami yang kami tampilkan di situs web, yang akan disegarkan secara otomatis setiap minggunya.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Anda hanya dapat membuat perubahan kecil pada julukan spesies secara langsung (misalnya perubahan jenis kelamin, salah ejaan). Tambahkan <a target="_blank" href="%{url}">penukaran takson</a> jika Anda memerlukan perubahan lain pada namanya.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Perhatian: Anda baru saja menambahkan keturunan takson yang terkunci (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Harap pertimbangkan untuk menggabungkan ini ke dalam takson yang sudah ada." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Perhatian: induk dari takson aktif ini tidak aktif, namun ia merupakan hasil dari <a href='/taxon_changes/%{taxon_change_id}'> perubahan takson draf</a> ini yang kami asumsikan akan Anda terapkan segera." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Takson aktif ini memiliki lebih dari %{count} pengamatan hilir atau tercakup dalam kerangka takson, sehingga beberapa atribut taksonominya hanya dapat diubah oleh staf atau kurator takson yang berkaitan dengan kerangka takson tersebut.
       show:
         about_names_desc: |
           <p>
@@ -7824,6 +7837,15 @@ id:
         trending_desc: Taksa yang paling banyak diamati sejak bulan lalu
         trending_in_place_desc_html: Taksa yang paling banyak diamati sejak bulan lalu di <a href="%{url}">%{place}</a>
         wanted_desc: Spesies di dalam takson ini yang belum diamati.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Nama harus mirip saat mengedit secara langsung, buatlah penukaran takson untuk perubahan nama radikal
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} tidak dapat menambahkan tag ke foto-foto Anda hingga Flickr mengetahui bahwa Anda telah memberi kami izin.
+        <a href='%{url}'>Berikan izin Flickr</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Ada yang salah saat mencoba mengunggah tag tersebut: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Apakah Anda yakin ingin memulihkan perubahan takson ini?
@@ -7841,6 +7863,10 @@ id:
       withdrawn: ditarik
       #state of a committed taxon change
       committed: diterapkan
+      #state of a pending taxon change
+      pending: menunggu
+      #state of a approved taxon change
+      approved: disetujui
       #state of a draft taxon change
       draft: draf
       #the status of a taxon change: draft, withdrawn or committed
@@ -7848,6 +7874,37 @@ id:
       form:
         move_children_desc2_html: |
           Dengan mencentang kotak ini, anak-anak takson input akan dipindahkan ke takson output untuk Penggantian dan Peleburan Takson ketika perubahannya diterapkan. Jika ini perubahan genus atau tingkat yang lebih rendah, ini akan membuat Penggantian Takson untuk semua turunan dengan nama yang harus diubah juga. Contohnya, jika Anda mengganti famili Canidae menjadi Dogidae, tindakan ini akan mengubah induk genus <i>Canis</i> dari Canidae menjadi Dogidae. Jika Anda mengganti genus <i>Canis</i> menjadi genus <i>Dogis</i>, tindakan ini akan membuat dan menerapkan Penggantian Takson untuk mengubah <i>Canis lupus</i> menjadi <i>Dogis lupus</i> dan <i>Canis lupus</i> ssp. <i>lupus</i> menjadi <i>Dogis lupus</i> ssp. <i>lupus</i>. Hal ini dapat membuat kekacauan, jadi gunakanlah dengan bijak.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Suara ditambahkan
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Suara dicabut
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Belum ada suara
+      #message when taxon change is committed
+      taxon_change_committed: Perubahan takson diterapkan! Catatan yang dapat diperbarui secara otomatis akan segera diubah.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        other: "Perubahan takson ini sekarang dalam status menunggu. Ia memerlukan persetujuan oleh %{count} kurator sebelum dapat diterapkan."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Takson input tidak boleh memiliki anak aktif. Pindahkan terlebih dahulu, atau pilih opsi 'Pindahkan anak ke hasil?'
+      output_taxon_rank_level_not_coarser_html: >
+        Tingkat kategori takson output tidak lebih kasar dari tingkat kategori anak aktif takson input %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Perubahan taksonomi ini sudah diterapkan!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Ada yang salah saat menghapus perubahan takson '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Perubahan takson telah dihapus.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Perubahan Takson berhasil diperbarui.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Tidak ada perubahan yang ditetapkan
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Perubahan Takson berhasil dibuat.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        other: "Memerlukan persetujuan oleh %{count} kurator lain sebelum bisa diterapkan"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8821,6 +8878,30 @@ id:
             name:
               bad_format: |
                 hanya dapat mengandung karakter Latin standar, tanda hubung, spasi dan ×; ingat bahwa taksa yang masih diperdebatkan atau kultivar tidak diperbolehkan
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Perubahan nama tidak diizinkan untuk virus, bakteri, atau klad yang tidak dicangkokkan"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "perubahan nama tidak diizinkan untuk kategori yang lebih kasar dari spesies"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "perubahan nama tidak diizinkan untuk rumus hibrida"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "tidak dapat menambahkan 'x' sebagai penanda hibrida antara genus dan spesies"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "harus binomial (Genus spesies) untuk pemeriksaan"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "genus tidak boleh berubah"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "nama spesies nonstandar: hanya boleh menghapus 'x'/'×' atau menambahkan '×'"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "julukan tertentu harus mirip (hanya kesalahan ketik/jenis kelamin)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "julukan infraspesifik diperlukan untuk kategori ini"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "hanya julukan infraspesifik yang dapat berubah untuk kategori infraspesifik"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "julukan infraspesifik harus mirip (hanya kesalahan ketik/jenis kelamin)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "huruf pertama dari julukan apa pun tidak boleh berubah."
         taxon_change:
           attributes:
             base:
