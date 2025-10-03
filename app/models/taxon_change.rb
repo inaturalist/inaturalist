@@ -251,7 +251,7 @@ class TaxonChange < ApplicationRecord
     if requires_approval? && status_draft?
       update_attribute( :status, :pending )
       return
-    elsif requires_approval? && !status_approved
+    elsif requires_approval? && !status_approved?
       raise ApprovalError, "Requires approval"
     end
     unless is_a?( TaxonSplit ) && is_branching?
