@@ -8453,6 +8453,8 @@ da:
           href="%{url}">Wikipedia-side</a>, der caches på ubestemt tid indtil
           manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
           hvilket automatisk opfriskes efter én uge.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Bemærk: Man har netop tilføjet en efterkommer af en låst takson (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Overvej venligst at flette denne med en eksisterende takson i stedet." #message when you try to save edits to a taxon that has inactive parents
       show:
         about_names_desc: |
           <p>
