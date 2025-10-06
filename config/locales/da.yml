@@ -1084,6 +1084,7 @@ da:
   community_id_is_precise: Fællesskabstakson er præcis
   community_moderation_settings: Fællesskabs indstillinger
   community_supported_id: Fællesskabs understøttet ID?
+  community_taxon_matches_observation_taxon: Fællesskabstakson matcher Observationstakson
   compare: Sammenlign
   compare_with: Sammenlign med
   comparing: sammenligner
@@ -7558,6 +7559,11 @@ da:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Observationer opnår <strong>"forskningskvalitet/-klasse"</strong>, når
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Matchet mellem Fællesskabstakson og Observationstakson</strong>
+          (i de sjældne tilfælde, hvor Observationstakson kan være mere
+          specifik end Fællesskabstakson)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           %{site_name}-<strong>fællesskabet er enige om artsniveau-ID eller
           lavere</strong>, dvs. når flere end 2/3 af identifikatorer er enige om en
@@ -8453,8 +8459,13 @@ da:
           href="%{url}">Wikipedia-side</a>, der caches på ubestemt tid indtil
           manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
           hvilket automatisk opfriskes efter én uge.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Kun mindre ændringer i artsbetegnelsen kan foretages direkte (f.eks. kønsændringer, stavefejl). Tilføj en <a target="_blank" href="%{url}">taksonombytning</a> ved behov for andre navneændringer.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
-        heads_up_locked: "Bemærk: Man har netop tilføjet en efterkommer af en låst takson (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Overvej venligst at flette denne med en eksisterende takson i stedet." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_locked: "Bemærk: Du har netop tilføjet en efterkommer af en låst takson (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Overvej venligst at flette denne med en eksisterende takson i stedet." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Bemærk: Forælderen til denne aktive takson er inaktiv, men det er outputtet af denne <a href='/taxon_changes/%{taxon_change_id}'> taksons udkastsændring</a>, som vi antager, at du snarest vil angive." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Denne aktive takson har flere end %{count} downstream-observationer eller er omfattet af en taksonramme, hvorfor visse taksonomiske attributter kan kun redigeres af personale eller taksonkuratorer tilknyttet denne taksonramme.
       show:
         about_names_desc: |
           <p>
@@ -8568,6 +8579,15 @@ da:
         trending_desc: Mest observerede taksa i den sidste måned
         trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Navne skal være ens, når der redigeres direkte, foretager en taksonombytning til radikale navneændringer
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} kan ikke føje tags til de aktuelle fotos, før Flickr ved, at man har givet os tilladelse.
+        <a href='%{url}'>Tildel Flickr-tilladelse</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Noget gik galt under forsøget på at poste disse tags: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Sikker på, at takson-ændringen skal gendannes?
@@ -8586,6 +8606,10 @@ da:
       withdrawn: tilbagetrukket
       #state of a committed taxon change
       committed: gemt
+      #state of a pending taxon change
+      pending: Afventer
+      #state of a approved taxon change
+      approved: godkendt
       #state of a draft taxon change
       draft: udkast
       #the status of a taxon change: draft, withdrawn or committed
@@ -8601,6 +8625,39 @@ da:
           Flyttes slægten <i>Canis</i> til slægten <i>Dogis</i>, udløses og udføres en Taksonombytning fra <i>Canis lupus</i> til <i>Dogis lupus</i> og
           <i>Canis lupus</i> ssp. <i>lupus</i> til <i>Dogis lupus</i> ssp.
           <i>lupus</i>. Dette kan medføre et værre rod, så brug muligheden med omtanke.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Stemme tilføjet
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Stemme fjernet
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Endnu ingen stemmer
+      #message when taxon change is committed
+      taxon_change_committed: Taksonændring indsendt! Poster, som kan opdateres automatisk, ændres snarest.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Denne taksonændring er nu afventende. Den kræver godkendelse af 1 kurator for at kunne indsendes."
+        other: "Denne taksonændring er nu afventende. Den kræver godkendelse af %{count} kuratorer for at kunne indsendes."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Input-takson kan ikke have aktive afkom. Flyt dem først, eller vælg valgmuligheden 'Flyt afkom til output?'
+      output_taxon_rank_level_not_coarser_html: >
+        Output-taksonrangniveau ikke grovere end rangniveau for aktive afkom af input-taksonen %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Denne taksonomiske ændring er allerede indsendt!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Noget gik galt under sletningen af taksonnavnet '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Taksonændring er slettet
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Taksonændring er nu opdateret.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Ingen ændringer angivet
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taksonændring er nu oprettet.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Kræver godkendelse af yderligere 1 kurator for indsendelse"
+        other: "Kræver godkendelse af yderligere %{count} kuratorer for indsendelse"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8734,6 +8791,13 @@ da:
           Du skal indtaste "%{confirmation_code}" i formularen, for at slette din konto
       edit:
         about_third_party_tracking: Om tredjepartssporing
+        block_desc_blocking_someone_prevents: |
+          Blokering af nogen forhindrer, at man kan modtage beskeder, kommentarer til
+          og identifikationer af ens observationer og på anden måde interagere
+          med vedkommende på %{site_name}. Det fjerner også gensideige observationer
+          fra begges søgeresultater. Man bliver dog ikke usynlig for vedkommnde, der stadig
+          vil kunne finde ens observationer og se ens profil, men uden mulighed for
+          nogen interaktion.
         common_scientific_name_display_order: Visningsrækkefølge for Almindeligt/Videnskabeligt navn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Hvis du skifter mening, kan du altid
@@ -9703,6 +9767,30 @@ da:
               bad_format: |
                 kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
                 ×; Bemærk, at formodede taksa og sorter ikke er tilladt
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "navneændringer ikke tilladt for vira, bakterier eller upodede clader"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "navneændringer er ikke tilladt for rang grovere end arter"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "navneændringer er ikke tilladt for hybridformler"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "kan ikke tilføje 'x' som hybridmarkør mellem slægt og art"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "skal være binomial (slægtsart) som kontrol"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "slægt kan ikke ændres"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "ikke-standard artsnavn: Kun fjernelse af 'x'/'×' eller tilføjelse af '×' er tilladt"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "specifik betegnelse skal være ens (kun mindre stavefejl/køn)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "infraspecific betegnelse krævet for denne rang"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "kun infraspecifik betegnelse kan ændres ifm. infraspecifikke rang"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "infraspecifik betegnelse skal være ens (kun mindre stavefejl/køn)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "første bogstav i en hvilket som helst betegnelse kan ikke ændres."
         taxon_change:
           attributes:
             base:
