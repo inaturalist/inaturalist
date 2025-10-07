@@ -6,7 +6,7 @@ class GuidesController < ApplicationController
     only: [:show, :user],
     if: -> { authenticate_with_oauth? }
   before_action :authenticate_user!,
-    except: [:index, :show, :search],
+    except: [:index, :show],
     unless: -> { authenticated_with_oauth? }
   load_only = [
     :show, :edit, :update, :destroy, :import_taxa,
@@ -40,10 +40,19 @@ class GuidesController < ApplicationController
       Guide.not_flagged_as_spam.page( params[:page] ).
         per_page( limited_per_page ).order( "guides.id DESC" ).published
     end
-    @guides = @guides.near_point( params[:latitude], params[:longitude] ) if params[:latitude] && params[:longitude]
+    unless ( params[:place_id].blank? && params[:taxon_id].blank? ) || logged_in?
+      authenticate_user!
+      return false
+    end
+
+    if params[:latitude] && params[:longitude]
+      @guides = @guides.near_point( params[:latitude], params[:longitude] )
+    end
 
     @root_place = @site.place if @site
-    @place = Place.find_by_id( params[:place_id] ) unless params[:place_id].blank?
+    unless params[:place_id].blank?
+      @place = Place.find_by_id( params[:place_id] )
+    end
     @place ||= @root_place unless logged_in? && params[:by] == "you"
     if @place
       @guides = @guides.joins( :place ).
@@ -83,6 +92,14 @@ class GuidesController < ApplicationController
     end
     guide_taxa_from_params
     @photo_tag = params["photo-tag"]
+
+    unless (
+      params[:taxon].blank? && params[:tags].blank? && params[:tag].blank? &&
+        params[:sort].blank? && params[:q].blank? && params[:print].blank? && params[:view].blank?
+    ) || logged_in?
+      authenticate_user!
+      return false
+    end
 
     respond_to do | format |
       format.html do

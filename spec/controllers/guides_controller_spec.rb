@@ -31,17 +31,183 @@ describe GuidesController, "show" do
       expect( response ).to be_successful
     end
   end
+
+  describe "filtering" do
+    let( :guide ) { make_published_guide }
+    describe "with authentication" do
+      let( :user ) { User.make! }
+      before do
+        sign_in user
+      end
+      it "allows access to show" do
+        get :show, params: { id: guide.id }
+        expect( assigns( :guide ) ).to eq guide
+      end
+
+      it "allows filtering by taxon" do
+        get :show, params: { id: guide.id, taxon: 1 }
+        expect( response ).to be_successful
+      end
+
+      it "allows filtering by tags" do
+        get :show, params: { id: guide.id, tags: ["tags"] }
+        expect( response ).to be_successful
+      end
+
+      it "allows filtering by tag" do
+        get :show, params: { id: guide.id, tag: "tag" }
+        expect( response ).to be_successful
+      end
+
+      it "allows filtering by search term" do
+        get :show, params: { id: guide.id, q: "q" }
+        expect( response ).to be_successful
+      end
+
+      it "allows sorting" do
+        get :show, params: { id: guide.id, sort: "default" }
+        expect( response ).to be_successful
+      end
+
+      it "allows sending print param" do
+        get :show, params: { id: guide.id, print: "true" }
+        expect( response ).to be_successful
+      end
+
+      it "allows sending view param" do
+        get :show, params: { id: guide.id, view: "card" }
+        expect( response ).to be_successful
+      end
+    end
+
+    describe "without authentication" do
+      before { controller.request.host = URI.parse( Site.default.url ).host }
+      it "allows access to show" do
+        get :show, params: { id: guide.id }
+        expect( assigns( :guide ) ).to eq guide
+      end
+
+      it "does not allow filtering by taxon" do
+        get :show, params: { id: guide.id, taxon: 1 }
+        expect( response.response_code ).to eq 302
+        expect( response ).to be_redirect
+        expect( response ).to redirect_to( new_user_session_url )
+      end
+
+      it "does not allow filtering by tags" do
+        get :show, params: { id: guide.id, tags: ["tags"] }
+        expect( response.response_code ).to eq 302
+        expect( response ).to be_redirect
+        expect( response ).to redirect_to( new_user_session_url )
+      end
+
+      it "does not allow filtering by tag" do
+        get :show, params: { id: guide.id, tag: "tag" }
+        expect( response.response_code ).to eq 302
+        expect( response ).to be_redirect
+        expect( response ).to redirect_to( new_user_session_url )
+      end
+
+      it "does not allow filtering by search term" do
+        get :show, params: { id: guide.id, q: "q" }
+        expect( response.response_code ).to eq 302
+        expect( response ).to be_redirect
+        expect( response ).to redirect_to( new_user_session_url )
+      end
+
+      it "does not allow sorting" do
+        get :show, params: { id: guide.id, sort: "default" }
+        expect( response.response_code ).to eq 302
+        expect( response ).to be_redirect
+        expect( response ).to redirect_to( new_user_session_url )
+      end
+
+      it "does not allow sending print param" do
+        get :show, params: { id: guide.id, print: "true" }
+        expect( response.response_code ).to eq 302
+        expect( response ).to be_redirect
+        expect( response ).to redirect_to( new_user_session_url )
+      end
+
+      it "does not allow sending view param" do
+        get :show, params: { id: guide.id, view: "card" }
+        expect( response.response_code ).to eq 302
+        expect( response ).to be_redirect
+        expect( response ).to redirect_to( new_user_session_url )
+      end
+    end
+  end
 end
 
 describe GuidesController, "index" do
-  it "should filter by place" do
-    p1 = make_place_with_geom
-    p2 = make_place_with_geom
-    g = make_published_guide( place: p1 )
-    get :index, params: { place_id: p1.id }
-    expect( assigns( :guides ) ).to include g
-    get :index, params: { place_id: p2.id }
-    expect( assigns( :guides ) ).not_to include g
+  let( :place1 ) { make_place_with_geom }
+  let( :place2 ) { make_place_with_geom }
+  let( :guide ) do
+    make_published_guide(
+      place: place1,
+      latitude: place1.latitude,
+      longitude: place1.longitude
+    )
+  end
+
+  describe "with authentication" do
+    let( :user ) { User.make! }
+    before do
+      sign_in user
+    end
+    it "filters by place" do
+      get :index, params: { place_id: place1.id }
+      expect( assigns( :guides ) ).to include guide
+      get :index, params: { place_id: place2.id }
+      expect( assigns( :guides ) ).not_to include guide
+    end
+  end
+
+  describe "without authentication" do
+    before { controller.request.host = URI.parse( Site.default.url ).host }
+    it "does not allow filtering by place" do
+      get :index, params: { place_id: place1.id }
+      expect( response.response_code ).to eq 302
+      expect( response ).to be_redirect
+      expect( response ).to redirect_to( new_user_session_url )
+    end
+
+    it "does not allow filtering by taxon" do
+      get :index, params: { taxon_id: 1 }
+      expect( response.response_code ).to eq 302
+      expect( response ).to be_redirect
+      expect( response ).to redirect_to( new_user_session_url )
+    end
+
+    it "allows filtering by lat/lng" do
+      get :index, params: { latitude: guide.place.latitude, longitude: guide.place.longitude }
+      expect( assigns( :guides ) ).to include guide
+    end
+  end
+end
+
+describe GuidesController, "search" do
+  let( :guide ) { make_published_guide( title: "Guide title" ) }
+
+  describe "with authentication" do
+    let( :user ) { User.make! }
+    before do
+      sign_in user
+    end
+    it "filters by search term" do
+      get :search, params: { q: "title" }
+      expect( assigns( :guides ) ).to include guide
+    end
+  end
+
+  describe "without authentication" do
+    before { controller.request.host = URI.parse( Site.default.url ).host }
+    it "does not allow searching" do
+      get :search, params: { q: "title" }
+      expect( response.response_code ).to eq 302
+      expect( response ).to be_redirect
+      expect( response ).to redirect_to( new_user_session_url )
+    end
   end
 end
 
