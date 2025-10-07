@@ -311,6 +311,10 @@ class QualityMetrics extends React.Component {
     const subjectCells = this.voteCellsForMetric( "subject", {
       disableVoting: subjectVoteDisabled
     } );
+    const accurateVoteDisabled = !hasMedia && !this.metricHasVotes( "accurate" );
+    const accurateCells = this.voteCellsForMetric( "accurate", {
+      disableVoting: accurateVoteDisabled
+    } );
     const needsIDInfo = this.infoForMetric( "needs_id" );
     const rankText = needsIDInfo.mostDisagree
       ? I18n.t( "community_id_is_precise" )
@@ -421,6 +425,14 @@ class QualityMetrics extends React.Component {
               </td>
               <td className="agree">{ subjectCells.agreeCell }</td>
               <td className="disagree">{ subjectCells.disagreeCell }</td>
+            </tr>
+            <tr className={accurateCells.loading || accurateVoteDisabled ? "disabled" : ""}>
+              <td className="metric_title">
+                <i className="fa icon-icn-dna-check" />
+                { I18n.t( "evidence_accurately_depicts_organism_or_scene" ) }
+              </td>
+              <td className="agree">{ accurateCells.agreeCell }</td>
+              <td className="disagree">{ accurateCells.disagreeCell }</td>
             </tr>
             <tr>
               <td className="metric_title">

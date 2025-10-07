@@ -68,7 +68,7 @@
             .col-xs-3
               %label=t :reason
               .form-group
-                - [Flag::SPAM, Flag::COPYRIGHT_INFRINGEMENT, Flag::INAPPROPRIATE, "other"].each do |f|
+                - [Flag::SPAM, Flag::COPYRIGHT_INFRINGEMENT, Flag::ARTIFICIALLY_GENERATED_CONTENT, Flag::INAPPROPRIATE, "other"].each do |f|
                   %label
                     %input{ type: "checkbox", name: "flags[]", value: f, checked: @flag_types.include?( f ) }
                     =t f.parameterize.underscore

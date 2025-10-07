@@ -159,6 +159,11 @@ class Assessment extends React.Component {
                       />
                       <li
                         dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_not_accurate_evidence_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
                           __html: I18n.t( "views.observations.show.dqa_help_casual_voted_out_html" )
                         }}
                       />
