@@ -729,6 +729,8 @@ nl:
     Weet je zeker dat je deze waarneming uit %{project} wilt verwijderen?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Weet je zeker dat je dit taxon wilt verwijderen uit de checklist voor %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Weet je zeker dat je deze gebruiker wilt markeren als een spammer?
+  artificially_generated_content: Kunstmatig Gegenereerde Inhoud
+  artificially_generated_content_desc: Bevat inhoud die grotendeels of volledig is gegenereerd door kunstmatige intelligentie.
   associated_observations: Bijhorende waarnemingen
   associated_taxa: Bijhorende taxa
   attention: Opgelet
@@ -1489,6 +1491,8 @@ nl:
     waarnemingen in projecten. Waarnemers kunnen ook kiezen om dit voor
     individuele waarnemingen te veranderen.
   curator_identification: Curatordeterminatie
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Huidig gemeenschapstaxon: %{taxon}"
   current_flags: Huidige meldingen
   #Label for a custom boundary for an observation search
   custom_boundary: Grens naar Eigen Wens
@@ -2004,6 +2008,7 @@ nl:
   extinct: uitgestorven
   extinct_in_the_wild: Uitgestorven in het Wild
   extra_properties: Extra eigenschappen
+  evidence_accurately_depicts_organism_or_scene: Bewijs geeft het organisme of de scène nauwkeurig weer
   evidence_of_organism: Bewijs van organisme
   evidence_related_to_single_subject: Er is een taxon dat aanwezig is in al het bewijs
   facebook: Facebook
@@ -7411,6 +7416,11 @@ nl:
         dqa_help_casual_not_one_subject_html: |
           de waarneming <strong>toont geen bewijs voor één organisme op alle foto's</strong> (bijvoorbeeld het heeft vier foto's van niet-verwante organismen; een foto met de leefomgeving van het organisme in de waarneming is OK)
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          De waarneming <strong>levert geen nauwkeurig bewijs van het organisme of
+          scene</strong> (Kunstmatige intelligentie werd bijvoorbeeld gebruikt om elementen toe te voegen, te verwijderen of te vervangen
+           in beeld of geluid. Ruisonderdrukking, focus stacking of het uitvoeren van kleine reparaties zoals het verwijderen van sensorstof is meestal OK).
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           de waarneming heeft niet langer een ID <em>en</em> het GemeenschapsTaxon is een familie of hoger taxon
         #One of a list of reasons for an observation to revert to Casual
@@ -8100,6 +8110,7 @@ nl:
           handmatig wordt vernieuwd. Verversen van deze samenvatting update onmiddellijk
           onze cache van de onderliggende Wikipedia-inhoud die we laten zien op de
           website, die automatisch verversd wordt na een week.
+        covered_by_taxon_framework: Dit actieve taxon heeft meer dan %{count} gekoppelde waarnemingen of wordt gedekt door een taxonraamwerk, dus sommige taxonomische attributen kunnen alleen worden bewerkt door medewerkers of taxoncuratoren die aan dat taxonraamwerk zijn gekoppeld.
       show:
         about_names_desc: |
           <p>
@@ -8211,6 +8222,11 @@ nl:
         trending_desc: Meest waargenomen taxa gedurende de laatste maand
         trending_in_place_desc_html: Meest waargenomen taxa gedurende de laatste maand uit <a href="%{url}">%{place}</a>
         wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Namen moeten vergelijkbaar zijn bij directe bewerking, maak een taxonwissel voor radicale naamsveranderingen
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Er ging iets mis bij het plaatsen van die tags: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Weet je zeker dat je deze taxonwijziging wilt herstellen?
@@ -8230,6 +8246,10 @@ nl:
       withdrawn: Ingetrokken
       #state of a committed taxon change
       committed: bevestigd
+      #state of a pending taxon change
+      pending: in behandeling
+      #state of a approved taxon change
+      approved: goedgekeurd
       #state of a draft taxon change
       draft: concept
       #the status of a taxon change: draft, withdrawn or committed
@@ -8238,6 +8258,20 @@ nl:
         move_children_desc2_html: |
           Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor Taxonwissels en Taxonsamenvoegingen wanneer deze wijziging is bevestigd. Als dit een verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met namen die gewijzigd moeten worden. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er
           taxonwissels gemaakt en vastgelegd om <i>Canis lupus</i> te wijzigen in <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp. <i>lupus</i>. Dit kan een behoorlijke rotzooi veroorzaken, dus gebruik het voorzichtig.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Stem toegevoegd
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Stem verwijderd
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Nog geen stemmen
+      #message when taxon change is committed
+      taxon_change_committed: Taxonverandering bevestigd! Records die automatisch kunnen worden bijgewerkt, worden binnenkort gewijzigd.
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Taxonwijziging is verwijderd.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Taxonwijziging is met succes bijgewerkt.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Geen wijzigingen gespecificeerd
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -9322,6 +9356,8 @@ nl:
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "geslacht kan niet veranderen"
         taxon_change:
           attributes:
             base:
