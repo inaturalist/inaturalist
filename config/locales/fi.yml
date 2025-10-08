@@ -717,6 +717,8 @@ fi:
     Oletko varma että haluat poistaa tämän havainnon projektista %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Haluatko varmasti poistaa tämän taksonin paikan %{place} lajiluettelosta?"
   are_you_sure_you_want_to_flag_as_spammer: Oletko varma, että haluat merkitä tämän käyttäjän roskapostaajaksi?
+  artificially_generated_content: Tekoälyllä tuotettu sisältö
+  artificially_generated_content_desc: Sisältö on pääosin tai kokonaan tuotettu tekoälyn avulla.
   associated_observations: Liittyvät havainnot
   associated_taxa: Liittyvät taksonit
   attention: Huom
@@ -1009,6 +1011,7 @@ fi:
   community_id_is_precise: Yhteisön taksoni on tarkka
   community_moderation_settings: Yhteisön moderointiasetukset
   community_supported_id: Yhteisö-tuettu taksoni?
+  community_taxon_matches_observation_taxon: Yhteisön taksoni vastaa havaintotaksonia
   compare: Vertaa
   compare_with: Vertaa
   comparing: verrataan
@@ -1392,6 +1395,8 @@ fi:
   curator_coordinate_access_desc: |
     Kuraattorin koordinoima pääsy perinteisiin hankkeisiin riippuu siitä, kuka on lisännyt havainnon hankkeeseen. Tämä on vain oletusasetus hankkeissa oleville havainnoille. Havainnoitsijat voivat myös muuttaa tätä asetusta yksittäisten havaintojen osalta.
   curator_identification: Kuraattorin tunnistus
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Nykyinen yhteisön taksoni: %{taxon}"
   current_flags: Nykyiset liput
   #Label for a custom boundary for an observation search
   custom_boundary: Valinnainen rajaus
@@ -6127,6 +6132,10 @@ fi:
           </p>
         curator_coordinate_access_disabled_desc_html: |
           Tähän projektiin ei voi tallentaa havaintoja, joiden koordinaatit eivät näy kuraattoreille. Jos et halua jakaa havainnon koordinaatteja projektin kuraattoreiden kanssa, sinun täytyy poistaa havaintosi projektista.
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Yhteisön taksoni ja havaintotaksoni vastaavat toisiaan</strong>
+          (niissä harvoissa tapauksissa, joissa havaintotaksoni voi olla tarkempi kuin yhteisön taksoni)
         flagged_photos_desc_html: |
           Osa näistä valokuvista on liputettu sopimattomiksi tai tekijänoikeusrikkomuksiksi. Lisätietoja: %{links}
         observation_flagged_notice_html: |
@@ -6666,6 +6675,10 @@ fi:
         translators_prompt: |
           Jos haluat auttaa käännöstyössä, %{link_tag}lue lisää miten%{link_tag_end}.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Voit tehdä vain pieniä muutoksia lajin epiteettiin suoraan (esim. sukupuolen muutokset, kirjoitusvirheet). Lisää <a target="_blank" href="%{url}">taksonin vaihto</a> jos tarvitset muita muutoksia nimeen.
       show:
         about_names_desc: |
           <p>
@@ -6738,6 +6751,11 @@ fi:
         trending_desc: Eniten havaitut taksonit viime kuussa
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
         wanted_desc: Tähän taksoniin kuuluvat lajit, joita ei ole vielä havaittu.
+    taxon_changes:
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Taksonimuutos poistettu.
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taksonimuutos onnistui
     taxon_names:
       taxon:
         about_html: |
@@ -7540,6 +7558,9 @@ fi:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 voi muuttaa vain tämän taksonin kuraattori
+            name:
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "suku ei voi muuttua"
         taxon_change:
           attributes:
             base:
