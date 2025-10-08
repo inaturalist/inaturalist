@@ -655,6 +655,8 @@ id:
     Apakah Anda yakin Anda ingin menghapus pengamatan ini dari %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Apakah Anda yakin ingin menghapus takson ini dari daftar centang %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Apakah Anda yakin ingin menandai pengguna ini sebagai spammer?
+  artificially_generated_content: Konten yang Dibuat AI
+  artificially_generated_content_desc: Berisi konten yang sebagian besar atau seluruhnya dihasilkan melalui kecerdasan buatan.
   associated_observations: Pengamatan terkait
   associated_taxa: Taksa yang terkait
   attention: Perhatian
@@ -1393,6 +1395,8 @@ id:
     pengamatan ke proyeknya. Ini hanya pengaturan standar untuk
     pengamatan-pengamatan di dalam proyek. Pengamat juga dapat mengubahnya untuk masing-masing pengamatan.
   curator_identification: Identifikasi kurator
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Takson Komunitas Saat Ini: %{taxon}"
   current_flags: Tanda Saat Ini
   #Label for a custom boundary for an observation search
   custom_boundary: Batas Kustom
@@ -1889,6 +1893,7 @@ id:
   extinct: punah
   extinct_in_the_wild: Punah di Alam Liar
   extra_properties: Properti Tambahan
+  evidence_accurately_depicts_organism_or_scene: Bukti menggambarkan organisme atau suasana secara akurat
   evidence_of_organism: Bukti organisme
   evidence_related_to_single_subject: Bukti terkait suatu subjek
   facebook: Facebook
@@ -7105,6 +7110,12 @@ id:
           pengamatannya <strong>tidak menunjukkan bukti terkait satu subjek</strong> 
           (contohnya ia memiliki empat gambar yang berisi organisme-organisme yang tidak berkaitan; 
           gambar yang menunjukkan habitat dari subjek pengamatannya masih oke)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          pengamatan <strong>tidak menyajikan bukti organisme atau
+          suasana yang akurat</strong> (misalnya kecerdasan buatan digunakan untuk menambahkan, menghapus, atau mengganti
+          elemen dalam gambar atau suara. Penghilangan derau, penumpukan fokus, atau pembuatan
+          perbaikan kecil seperti menghilangkan debu sensor biasanya tidak apa-apa).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           pengamatannya tidak memerlukan ID lagi <em>dan</em> Takson Komunitasnya 
