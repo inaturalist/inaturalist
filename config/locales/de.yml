@@ -716,6 +716,8 @@ de:
     Bist du sicher, dass du diese Beobachtung aus "%{project}" entfernen möchtest?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bist du sicher, dass du dieses Taxon aus der Prüfliste von %{place} entfernen willst?"
   are_you_sure_you_want_to_flag_as_spammer: Ganz sicher, dass dies als Spam gekennzeichnet werden soll?
+  artificially_generated_content: Künstlich generierter Inhalt
+  artificially_generated_content_desc: Enthält Inhalte, die größtenteils oder vollständig durch künstliche Intelligenz generiert werden.
   associated_observations: Assoziierte Beobachtung(en)
   associated_taxa: Zugehörige Taxa
   attention: Achtung
@@ -1418,6 +1420,8 @@ de:
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Des Weiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
   curator_coordinate_access: Kurator Koordinieren Sie den Zugriff
   curator_identification: Bestimmung des Kurators
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Aktuelles Community-Taxon: %{taxon}"
   current_flags: Aktuelle Meldungen
   #Label for a custom boundary for an observation search
   custom_boundary: angepasste Gebietsgrenze
@@ -1849,6 +1853,7 @@ de:
   extinct: ausgestorben
   extinct_in_the_wild: in der Natur ausgestorben
   extra_properties: Extra Eigenschaften
+  evidence_accurately_depicts_organism_or_scene: Dokumente stellen den Organismus oder die Szene angemessen dar
   evidence_of_organism: Hinweis auf einen Organismus?
   evidence_related_to_single_subject: Alle Nachweise beziehen sich auf den gleichen Organismus
   facebook: Facebook
@@ -6959,6 +6964,10 @@ de:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           dass die Beobachtung <strong> unterschiedliche Lebewesen</strong> in den einzelnen Fotos enthält (z.B sind vier Fotos von Lebewesen in der Beobachtung, die nichts miteinander zu tun haben) - ein Lebensraumfoto ist aber ok
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Die Beobachtung zeigt <strong>keinen akkuraten Nachweis für den Organismus oder
+          Szene</strong> (z.B. wurde künstliche Intelligenz verwendet, um Elemente hinzuzufügen, zu entfernen oder zu ersetzen. Entrauschen, Fokus-Stacking oder kleinere Korrekturen wie das Entfernen von Sensorstaub sind generell in Ordnung).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           dass die Bestimmung nicht weiter verbessert werden kann <em>und</em> das Community-Taxon
