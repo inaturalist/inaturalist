@@ -1,14 +1,61 @@
 #new_flag {
-  .flag-reason-input {
-    max-width: 300px;
+  textarea.form-control {
+    min-height: 150px;
   }
-  .comment-description {
-    clear: both;
+
+  // Make text input and textarea the same width
+  input[type="text"].form-control,
+  textarea.form-control {
+    width: 100%;
+    max-width: 100%;
   }
-  .initial-comment-body {
-    height: 150px;
+
+  // Ensure legacy button styling (border-radius: 5px) takes precedence over Bootstrap
+  input[type="submit"].button,
+  input[type="submit"].button.default {
+    border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    -webkit-border-radius: 5px !important;
   }
-  .submit-flag-button {
-    margin: 140px 0 50px 0;
+}
+
+// Responsive styling for mobile
+.container {
+  // Add padding on mobile devices
+  @media (max-width: 768px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+// Make form elements responsive
+#new_flag {
+  @media (max-width: 768px) {
+    .form-control {
+      font-size: 16px; // Prevents zoom on iOS
+    }
+
+    h2 {
+      font-size: 24px;
+      word-wrap: break-word;
+    }
+
+    .breadcrumbs {
+      margin-bottom: 10px;
+    }
+
+    textarea.form-control {
+      min-height: 120px; // Slightly smaller on mobile
+    }
+
+    .actions.buttons {
+      margin-top: 20px;
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+      }
+    }
   }
 }

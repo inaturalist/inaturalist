@@ -5,6 +5,7 @@ class FlagsController < ApplicationController
   before_action :model_required, except: [:index, :update, :show, :on, :destroy]
   before_action :load_flag, only: [:show, :destroy, :update]
   before_action :check_update_permissions, only: [:update]
+  layout "bootstrap"
 
   requires_privilege :interaction, only: [:new]
 

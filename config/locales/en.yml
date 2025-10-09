@@ -2299,6 +2299,12 @@ en:
   flag_deleted: Flag deleted
   flag_description: Flag this content to let the curators know something is wrong with it.
   flag_comment_description: Add an optional comment to this flag that further explains why you are adding it and provides links to supporting evidence.
+  # Additional notes 
+  flag_comment_taxon_description_p1: |
+    Flags with supporting evidence, such as links to taxonomic sources, conservation listings, and iNaturalist observations documenting the taxon, are much more likely to be investigated and resolved by iNaturalist’s volunteer curators.
+  flag_comment_taxon_description_p2: |
+    iNaturalist follows global taxonomic authorities for many taxa. Please cite the proper relevant authority if one exists for the taxon in question.
+  flag_comment_taxon_description_p2_html: 'iNaturalist <a href="%{url}">follows global taxonomic authorities</a> for many taxa. Please cite the proper relevant authority if one exists for the taxon in question.'
   flag_for_check_list_title_html: |
     Flag for Check List: %{title}
   flag_for_comment_id_html: Flag for <a href="%{url}">Comment %{id}</a>
@@ -2332,7 +2338,7 @@ en:
   flag_marked_as_unresolved_html: '<span class="meta">Flag marked as</span> <strong>unresolved.</strong>'
   # Label for the object that was flagged, e.g. a table header
   flag_object: Object
-  flag_reason: "&ldquo;I'm flagging this %{record} because"
+  flag_reason2: "I'm flagging this %{record} because"
   flag_resolution: Resolution
   flag_saved: Flag Saved
   flag_saved_thanks_html: Flag saved. Thanks! <a href="%{url}" class="readmore">View flag</a>

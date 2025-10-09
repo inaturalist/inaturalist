@@ -1,3 +1,5 @@
+- content_for :title do
+  = @title = "#{t :new_flag_for} #{@object.to_plain_s}"
 - content_for :extracss do
   = stylesheet_link_tag "flags/new"
 - content_for :extrajs do
@@ -6,24 +8,35 @@
       $( "#flag_initial_comment_body" ).textcompleteUsers( );
     } );
 
-#pageheader.column.span-24
-  %span.breadcrumbs
-    = link_to t(:back_to_x, noun: @object.try_methods( :to_plain_s, :to_s ) ), @object, class: "back crumb"
-  %h2
-    = t :new_flag_for
-    = link_to @object.to_plain_s, @object
-.description
-  %p= t :flag_description
-= form_for( [@object,  @flag], html: { class: "clear readable buttonrow" } ) do |f|
-  = f.label :reason, raw( t(:flag_reason, :record => @model.name.downcase) ), class: "inter"
-  = f.text_field :flag, required: true, class: "inter text flag-reason-input", maxlength: 255
-  %label &rdquo;
-  .description
-    %p{ class: "comment-description" }= t :flag_comment_description
-  = f.label t( :comment ), class: "inter"
-  = f.text_area :initial_comment_body, class: "pull-left initial-comment-body", maxlength: Comment::MAX_LENGTH
-  = f.hidden_field :user_id, value: current_user.id
-  = f.hidden_field :flaggable_id, value: @object.id
-  = f.hidden_field :flaggable_type, value: @model.name
-  = f.submit t( :flag_it! ), class: "default button submit-flag-button"
-= render "flag_list", flags: @flags
+.container
+  .row
+    .col-xs-12
+      %ol.breadcrumb
+        %li
+          = link_to t(:back_to_x, noun: @object.try_methods( :to_plain_s, :to_s ) ), @object
+      %h2
+        = t :new_flag_for
+        = link_to @object.to_plain_s, @object
+      %p.text-muted= t :flag_description
+
+      = form_for( [@object,  @flag] ) do |f|
+        .form-group
+          = f.label :reason do
+            &ldquo;#{raw( t(:flag_reason2, :record => @model.name.downcase) )}...&rdquo;
+          = f.text_field :flag, required: true, class: "form-control", maxlength: 255
+        .form-group
+          = f.label t( :comment )
+          %p.text-muted= t :flag_comment_description
+          -if @model.name.downcase == "taxon"
+            %p.text-muted
+              %strong= t :flag_comment_taxon_description_p1
+            %p.text-muted= raw t(:flag_comment_taxon_description_p2_html, url: "/pages/curator+guide#authorities")
+          = f.text_area :initial_comment_body, class: "form-control", maxlength: Comment::MAX_LENGTH
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :flaggable_id, value: @object.id
+        = f.hidden_field :flaggable_type, value: @model.name
+        .form-group
+          = f.submit t( :flag_it! ), class: "btn btn-primary"
+  .row
+    .col-xs-12
+      = render "flag_list", flags: @flags
