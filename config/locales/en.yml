@@ -899,7 +899,6 @@ en:
   back_to_all_species: Back to All Species
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
-  back_to_flags_html: "&laquo; Back to flags"
   back_to_lists: "Back to %{name} lists"
   back_to_observation: Back to observation
   back_to_observation_fields: Back to observation fields
@@ -2299,12 +2298,8 @@ en:
   flag_deleted: Flag deleted
   flag_description: Flag this content to let the curators know something is wrong with it.
   flag_comment_description: Add an optional comment to this flag that further explains why you are adding it and provides links to supporting evidence.
-  # Additional notes 
-  flag_comment_taxon_description_p1: |
-    Flags with supporting evidence, such as links to taxonomic sources, conservation listings, and iNaturalist observations documenting the taxon, are much more likely to be investigated and resolved by iNaturalist’s volunteer curators.
-  flag_comment_taxon_description_p2: |
-    iNaturalist follows global taxonomic authorities for many taxa. Please cite the proper relevant authority if one exists for the taxon in question.
-  flag_comment_taxon_description_p2_html: 'iNaturalist <a href="%{url}">follows global taxonomic authorities</a> for many taxa. Please cite the proper relevant authority if one exists for the taxon in question.'
+  # Text reminding the user to cite sources
+  flag_comment_taxon_description: Flags that cite a source are more likely to be resolved quickly by our volunteer curators.
   flag_for_check_list_title_html: |
     Flag for Check List: %{title}
   flag_for_comment_id_html: Flag for <a href="%{url}">Comment %{id}</a>
