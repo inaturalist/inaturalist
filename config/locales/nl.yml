@@ -9358,6 +9358,14 @@ nl:
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
               #Error message trying to change the genus part of a ssp or sp
               genus_cannot_change: "geslacht kan niet veranderen"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "Het specifieke epitheton moet vergelijkbaar zijn (alleen kleine typefout/geslacht)"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "Alleen het infraspecifieke epitheton kan veranderen voor infraspecifieke rangen"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "Infraspecifiek epitheton moet vergelijkbaar zijn (alleen kleine typefout/geslacht)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "De eerste letter van een epitheton kan niet veranderen."
         taxon_change:
           attributes:
             base:
