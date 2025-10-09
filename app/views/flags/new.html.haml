@@ -29,7 +29,6 @@
           %p.text-muted= t :flag_comment_description
           -if @model.name.downcase == "taxon"
             %p.text-muted= t :flag_comment_taxon_description
-            curator+guide#authorities")
           = f.text_area :initial_comment_body, class: "form-control", maxlength: Comment::MAX_LENGTH
         = f.hidden_field :user_id, value: current_user.id
         = f.hidden_field :flaggable_id, value: @object.id
