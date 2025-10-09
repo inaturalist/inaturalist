@@ -284,6 +284,13 @@ describe TaxaController do
       get :search, params: { q: t.name, per_page: "foo" }
       expect( response ).to be_successful
     end
+    it "does not raise an exception when faceted_iconic_taxa is empty" do
+      t = Taxon.make!
+      get :search, params: { iconic_taxa: t.id }
+      expect( response ).to be_successful
+      expect( assigns( :iconic_taxa ) ).not_to be_empty
+      expect( assigns( :faceted_iconic_taxa ) ).to be_nil
+    end
   end
 
   describe "observation_photos" do
