@@ -744,6 +744,8 @@ da:
     Sikker på, at du vil fjerne denne observation fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne denne takson %{place}'s tjekliste?"
   are_you_sure_you_want_to_flag_as_spammer: Sikker på, at denne bruger skal markeres som spammer?
+  artificially_generated_content: Kunstigt genereret indhold
+  artificially_generated_content_desc: Har indhold, der for det meste eller helt er genereret via kunstig intelligens.
   associated_observations: Tilknyttede observationer
   associated_taxa: Tilknyttede taksa
   attention: Bemærk
@@ -1509,6 +1511,8 @@ da:
     observationer i projekter. Observatører kan også vælge at ændre dette for
     individuelle observationer.
   curator_identification: Kurator identifikation
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Aktuel Fællesskabstakson: %{taxon}"
   current_flags: Aktuelle markeringer
   #Label for a custom boundary for an observation search
   custom_boundary: Tilpasset grænse
@@ -2024,6 +2028,7 @@ da:
   extinct: uddød
   extinct_in_the_wild: Uddøde i naturen
   extra_properties: Ekstra egenskaber
+  evidence_accurately_depicts_organism_or_scene: Beviser afbilder præcist organisme eller scene
   evidence_of_organism: Bevis for organisme
   evidence_related_to_single_subject: Bevis relateret til ét enkelt emne
   facebook: Facebook
@@ -7600,6 +7605,12 @@ da:
           observationen <strong>ikke præsenterer bevis relateret til ét
           emne</strong> (f.eks. har den fire fotos af ikke-beslægtede organismer;
           dog er et foto, der viser emnets levested OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          observationen <strong>præsenterer ikke præcise beviser for organismen eller
+          scenen</strong> (f.eks. kunstig intelligens er brugt til at tilføje/fjerne/erstatte
+          elementer i billedet eller lyden. Støjreduktion, fokus-stacking eller 
+          smårettelser, såsom at fjerne støv fra sensor, er normalt OK).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           observationen behøver ikke længere en ID <em>og</em>
