@@ -661,6 +661,8 @@ hu:
     Biztosan eltávolítod ezt a megfigyelést %{project} projektből?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Biztosan törlöd ezt a taxont %{place} listájáról?"
   are_you_sure_you_want_to_flag_as_spammer: Biztosan megjelölöd ezt a fálhasználót spammerként?
+  artificially_generated_content: Mesterségesen generált tartalom
+  artificially_generated_content_desc: Olyan anyagot tartalmaz, amelyet többnyire vagy teljes egészében mesterséges intelligencia generált.
   associated_observations: Kapcsolódó megfigyelések
   associated_taxa: Társított taxonok
   attention: Figyelem
@@ -1260,6 +1262,8 @@ hu:
     megfigyelések a projektekben. A megfigyelők dönthetnek úgy is, hogy ezt megváltoztatják
     egyéni megfigyelések.
   curator_identification: Kurátor meghatározása
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Jelenlegi közösségi taxon: %{taxon}"
   current_flags: Jelenlegi jelölések
   #Label for a custom boundary for an observation search
   custom_boundary: Tetszőleges határolókeret
@@ -1734,6 +1738,7 @@ hu:
   external_applications: Külső alkalmazások
   extinct: kihalt
   extinct_in_the_wild: Vadon kihalt
+  evidence_accurately_depicts_organism_or_scene: A bizonyíték pontosan ábrázolják az élőlényt vagy a környezetét
   evidence_of_organism: Bizonyíték az organizmusra
   evidence_related_to_single_subject: A bizonyíték egyetlen organizmusra utal
   facebook: Facebook
@@ -5923,6 +5928,11 @@ hu:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_recent_html: |
           a megfigyelés <strong>nem szolgál időszerű (legfeljebb ~100 éves) bizonyítékként</strong>, pl. fosszíliák. A következők elfogadhatók: nyomok, ürülék, száraz levelek.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          a megfigyelés <strong>nem szolág pontos bizonyítékként az élőlényre vagy
+          a környezetére</strong> (pl. mesterséges intelligenciát használtak bizonyos
+          részek hozzáadására, cseréjére vay eltávolítására a képen vagy a hangon. Zajtalanítás, fókuszhalmozás vagy az olyan apró javítások, mint az érzékelőhibák eltávolítása, általában rendben vannak).
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
           Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
