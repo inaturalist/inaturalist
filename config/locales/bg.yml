@@ -1492,6 +1492,7 @@ bg:
   flag_saved_thanks_html: Маркерът е записан. Благодарим! <a href="%{url}" class="readmore">Виж маркера</a>
   flag_this_observation: Маркирай това наблюдение
   flag_this_photo: Маркирай тази снимка
+  flag_this_place: Маркирай това място
   flagged_for_curation: Маркирано за куриране
   flagged_thing_explanation: "Потребителите са маркирали текущ. %{thing}, защото"
   flagging_desc: |
@@ -2833,6 +2834,9 @@ bg:
       unknown: неизвестен
       Zone: Зона
       zone: зона
+  place_imported: Мястото е импортирано!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Може да отнеме до един ден, докато наблюденията бъдат свързани с това място.
   place_name: Име на мястото
   place_too_big_for_check_list: |
     Това място е прекалено голямо за видов списък. Изчисляването на статистиката за видовите списъци е много трудоемко и затова не са разрешени за много големи места, освен ако не са добавени от администраторите на сайта. Все пак, можете да използвате това място за задаване на граници на проекти или при търсене на наблюдения.
@@ -3557,6 +3561,7 @@ bg:
   share: Споделяне
   share_caps: СПОДЕЛИ
   share_colon: "Споделяне:"
+  short_code_for_this_place: Кратък код за това място, например BG за България
   show: Показване
   show_active_and_inactive_taxa: Покажи активни и неактивни таксони
   show_keyboard_shortcuts: Покажи клавишните комбинации
