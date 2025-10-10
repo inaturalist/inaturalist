@@ -1,14 +1,14 @@
 - content_for :title do
-  = @title = raw @page.title
+  = @title = @page.title
 - content_for :extracss do
-  = stylesheet_link_tag 'wiki'
+  = stylesheet_link_tag "wiki"
 - content_for :extrajs do
   = google_maps_js
-  = javascript_include_tag 'map_bundle'
+  = javascript_include_tag "map_bundle"
   :javascript
-    $(document).ready(function() {
-      $('#tabs, .tabs').tabs()
-    })
+    $( function( ) {
+      $( "#tabs, .tabs").tabs( )
+    } )
 
 = wiki_topnav
 %h2= @title
