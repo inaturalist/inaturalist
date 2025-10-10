@@ -90,8 +90,6 @@ class GuidesController < ApplicationController
       end
       return
     end
-    guide_taxa_from_params
-    @photo_tag = params["photo-tag"]
 
     unless (
       params[:taxon].blank? && params[:tags].blank? && params[:tag].blank? &&
@@ -101,6 +99,8 @@ class GuidesController < ApplicationController
       return false
     end
 
+    guide_taxa_from_params
+    @photo_tag = params["photo-tag"]
     respond_to do | format |
       format.html do
         if params[:print].yesish?

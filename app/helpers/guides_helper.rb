@@ -11,7 +11,7 @@ module GuidesHelper
     unless gparams[:taxon].blank?
       @taxon = Taxon::ICONIC_TAXA_BY_ID[gparams[:taxon]]
       @taxon ||= Taxon::ICONIC_TAXA_BY_NAME[gparams[:taxon]]
-      @taxon ||= Taxon.find_by_name( gparams[:taxon] ) || Taxon.find_by_id( gparams[:taxon] )
+      @taxon ||= Taxon.find_by_id( gparams[:taxon] ) || Taxon.find_by_name( gparams[:taxon] )
       @taxon = nil if @taxon == @guide.taxon
     end
     @q = gparams[:q]
