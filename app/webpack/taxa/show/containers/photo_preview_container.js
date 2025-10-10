@@ -27,7 +27,10 @@ function rearrangePhotos( taxonPhotos ) {
 
 function mapStateToProps( state ) {
   if ( !state.taxon.taxonPhotos || state.taxon.taxonPhotos.length === 0 ) {
-    return { taxonPhotos: [] };
+    return {
+      taxonPhotos: [],
+      config: state.config
+    };
   }
   let layout = "gallery";
   let { taxonPhotos } = state.taxon;
