@@ -1073,6 +1073,7 @@ nl:
   community_id_is_precise: Gemeenschapstaxon is precies
   community_moderation_settings: Instellingen voor gemeenschapsmoderatie
   community_supported_id: Gemeenschapondersteunde Taxon?
+  community_taxon_matches_observation_taxon: Gemeenschapstaxon komt overeen met het Waargenomen taxon
   compare: Vergelijken
   compare_with: Vergelijk met
   comparing: vergelijken
@@ -8110,6 +8111,9 @@ nl:
           handmatig wordt vernieuwd. Verversen van deze samenvatting update onmiddellijk
           onze cache van de onderliggende Wikipedia-inhoud die we laten zien op de
           website, die automatisch verversd wordt na een week.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Je kunt alleen kleine wijzigingen rechtstreeks in de soortaanduiding aanbrengen (bijv. geslachtsveranderingen, spelfout)en. Voer een <a target="_blank" href="%{url}">Taxonwissel</a> uit als je andere wijzigingen in de naam nodig hebt.
         covered_by_taxon_framework: Dit actieve taxon heeft meer dan %{count} gekoppelde waarnemingen of wordt gedekt door een taxonraamwerk, dus sommige taxonomische attributen kunnen alleen worden bewerkt door medewerkers of taxoncuratoren die aan dat taxonraamwerk zijn gekoppeld.
       show:
         about_names_desc: |
@@ -8224,6 +8228,10 @@ nl:
         wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
       #an error when someone tried to edit the name of a taxon too radically
       name_must_be_similar: Namen moeten vergelijkbaar zijn bij directe bewerking, maak een taxonwissel voor radicale naamsveranderingen
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} kan geen tags aan jouw foto's toevoegen totdat Flickr weet dat jij ons toestemming hebt gegeven.
+        <a href='%{url}'>Flickr toestemming verlenen</a>.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Er ging iets mis bij het plaatsen van die tags: %{message}
