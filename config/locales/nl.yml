@@ -715,6 +715,8 @@ nl:
   are_you_sure_you_want_to_delete_this_assessment?: Weet je zeker dat je deze beoordeling wilt verwijderen?
   are_you_sure_you_want_to_delete_this_photo?: Weet je zeker dat je deze foto wilt verwijderen?
   are_you_sure_you_want_to_delete_this_post: Weet je zeker dat je dit bericht wilt verwijderen?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Weet je zeker dat je dit geluid wilt verwijderen?
   are_you_sure_you_want_to_delete_this_taxon_change: Weet je zeker dat je deze taxonverandering wilt verwijderen?
   are_you_sure_you_want_to_remove_all_tags: Weet je zeker dat je alle tags wilt verwijderen?
   are_you_sure_you_want_to_remove_curator: Weet je zeker dat je %{user} wilt verwijderen als curator?
@@ -727,6 +729,8 @@ nl:
     Weet je zeker dat je deze waarneming uit %{project} wilt verwijderen?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Weet je zeker dat je dit taxon wilt verwijderen uit de checklist voor %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Weet je zeker dat je deze gebruiker wilt markeren als een spammer?
+  artificially_generated_content: Kunstmatig Gegenereerde Inhoud
+  artificially_generated_content_desc: Bevat inhoud die grotendeels of volledig is gegenereerd door kunstmatige intelligentie.
   associated_observations: Bijhorende waarnemingen
   associated_taxa: Bijhorende taxa
   attention: Opgelet
@@ -1069,6 +1073,7 @@ nl:
   community_id_is_precise: Gemeenschapstaxon is precies
   community_moderation_settings: Instellingen voor gemeenschapsmoderatie
   community_supported_id: Gemeenschapondersteunde Taxon?
+  community_taxon_matches_observation_taxon: Gemeenschapstaxon komt overeen met het Waargenomen taxon
   compare: Vergelijken
   compare_with: Vergelijk met
   comparing: vergelijken
@@ -1487,6 +1492,8 @@ nl:
     waarnemingen in projecten. Waarnemers kunnen ook kiezen om dit voor
     individuele waarnemingen te veranderen.
   curator_identification: Curatordeterminatie
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Huidig gemeenschapstaxon: %{taxon}"
   current_flags: Huidige meldingen
   #Label for a custom boundary for an observation search
   custom_boundary: Grens naar Eigen Wens
@@ -1647,6 +1654,8 @@ nl:
   #Label for a button to delete a taxon range
   delete_range: Verspreiding verwijderen
   delete_selected: Verwijder geselecteerde items
+  #Label for a button to delete a sound file
+  delete_sound: Geluid verwijderen
   delete_taxon_and_merge_most_data_html: |
     Verwijder <i>%{taxon}</i> en voeg het grootste deel van de gegevens samen met een ander taxon. Gebruik deze tool voor <strong>het verwijderen van dubbele taxa</strong>. Maak een taxonwissel aan als je een verouderd synoniem wilt verwijderen. <strong>KIJK UIT!</strong> Het verwijderen van taxa kan erg destructief zijn! Bekijk de <a href="%{curator_url}">richtlijn voor curatoren</a> voor meer details.
   delete_user: Gebruiker verwijderen
@@ -1933,6 +1942,8 @@ nl:
   eol: EOL
   eol_collection_url: "EOL verzameling URL"
   error_updating_photo: "Fout bij bijwerken foto: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Fout bij het bijwerken van geluid: %{sound_errors}"
   establishment:
     endemic: Endemisch
     establishment: Vestiging
@@ -1998,6 +2009,7 @@ nl:
   extinct: uitgestorven
   extinct_in_the_wild: Uitgestorven in het Wild
   extra_properties: Extra eigenschappen
+  evidence_accurately_depicts_organism_or_scene: Bewijs geeft het organisme of de scène nauwkeurig weer
   evidence_of_organism: Bewijs van organisme
   evidence_related_to_single_subject: Er is een taxon dat aanwezig is in al het bewijs
   facebook: Facebook
@@ -2035,7 +2047,11 @@ nl:
   fields_can_only_be_edited_by_the_people_who: Velden kunnen enkel aangepast worden door de personen die ze aangemaakt hebben of door curatoren
   fields_merged: Velden samengevoegd
   file: Bestand
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Bestandsformaat
   file_size: Bestandsgrootte
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL van bestand
   file_should_be_in_the_following_format: "Het bestand moet in het volgende format zijn: taxonnaam, beschrijving"
   fill_out_project_observation_fields: Vul de waarnemingsvelden in voor dit project
   fill_out_your_profile: voltooi je profiel
@@ -2292,6 +2308,8 @@ nl:
     one: "<strong>Let op:</strong> er is %{count} andere voorlopige taxonwijziging met dezelfde inputtaxa:"
     other: "<strong>Let op:</strong> er zijn %{count} andere voorlopige taxonwijzigingen met dezelfde inputtaxa:"
   heads_up_this_photo_has_been_flagged: "OPGELET: deze foto is gemeld."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "LET OP: dit geluid is gemeld."
   heads_up_this_photo_is_already_associated_with: "Opgelet: deze foto is al gelinkt aan een <a target='_blank' href='%{url}'>andere waarneming</a>"
   heads_up_you_have_multiple: "Let op: je hebt meerdere taxonomische machine-tags voor identieke niveaus. Ze zijn hieronder gekleurd per niveau."
   help: Help
@@ -5133,7 +5151,15 @@ nl:
     select_one_or_more_sounds: Selecteer één of meerdere geluiden
     selected_sounds: Geselecteerde geluiden
     sound: Geluid
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Geluid %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Geluid verwijderd
     sound_has_been_flagged: Dit geluid is gemeld.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Geluid verborgen
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Geluid hoorbaar gemaakt
     soundcloud_replied_with_an_error: SoundCloud geeft een foutmelding. Probeer het later opnieuw.
     sounds: Geluiden
     your_soundcloud_account: je SoundCloud-account
@@ -5846,6 +5872,8 @@ nl:
   updated_by_user_on_date_html: Bijgewerkt door %{user} op %{date}
   updated_daily: Dagelijks bijgewerkt
   updated_photo: Bijgewerkte foto
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Bijgewerkt geluid
   upload: Uploaden
   upload_a_csv_file: Upload CSV-bestand
   upload_a_csv_file_with_observation: |
@@ -6496,6 +6524,8 @@ nl:
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
         een selectie toont de aankondiging aan alle gebruikers, ongeacht het IP van het land.
         klant.
+      exclude_ip_countries_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. Geselecteerde landen krijgen de de aankondiging niet te zien. Als IP-landen zijn geselecteerd, worden geselecteerde ´Uitgesloten IP-landen' uitgesloten van de eerste.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Merk op dat de aanmaakdatum van de meest recent aangemaakte
@@ -7247,21 +7277,50 @@ nl:
         taxon_geoprivacy: "Meest conservatieve geoprivacy toegepast als gevolg van de behoudsstatus van taxa in de huidige determinatie."
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
+        user_id: Unieke, sequentiële identifier voor de waarnemer
+        user_login: Handvat/gebruikersnaam van de waarnemer, d.w.z. een korte, unieke, alfanumerieke identificatiecode voor een gebruiker
+        user_name: |
+          Naam van de waarnemer, meestal gebruikt voor naamsvermelding op de site.
+          Dit is een optioneel veld en kan een pseudoniem zijn.
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
         quality_grade: Kwaliteitsgraad van deze waarneming. Zie de Help-sectie voor meer informatie over wat dit betekent. Zie https://help.inaturalist.org/support/solutions/articles/151000169936
         license: Identificatie voor de licentie of ontheffing die de waarnemer voor deze waarneming heeft gekozen. Alle rechten voorbehouden indien blanco
         url: URL voor de waarneming
+        image_url: URL voor de eerste foto die is gekoppeld aan de waarneming
+        sound_url: |
+          URL voor het eerste geluid dat is gekoppeld aan de waarneming. Merk op dat deze
+          alleen aanwezig is voor directe uploads, geen geluiden die worden gehost op diensten van derden
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
         place_admin2_name: Naam van de administratieve plaats twee rangen onder het landniveau
         positioning_method: Manier waarop de coördinaten bepaald werden
         positioning_device: Toestel gebruikt om coördinaten te bepalen
+        captive_cultivated: |
+          Waarneming is van een organisme dat bestond op de tijd en plaats dat het
+          werd waargenomen omdat mensen dat het toen en daar waarnamen. Voor
+          meer, zie
+          https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Tekst geschreven door de waarnemer die de waarneming of opname beschrijft of alle andere opmerkingen die relevant lijken
+        oauth_application_id: |
+          Sequentiële identificatie voor de applicatie die de
+          waarneming heeft gecreëerd. Voor meer informatie over de applicatie voeg deze dan
+          toe aan https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          De naam van het derde niveau administratieve gebied dat de
+          waarnemingscoördinaten bevat (bijvoorbeeld een gemeente)
+        place_country_name: |
+          De naam van de gemeente die de coördinaten van deze waarneming bevat
+        place_state_name: |
+          De naam van het tweede-niveau-administratieve gebied dat de
+          waarnemingscoördinaten bevat (bijvoorbeeld een provincie)
         place_town_name: |
           De naam van de stad of plaats die de waarneming
           coördinaten omvat, indien bekend
         private_place_guess: |
           Waarnemingslocatie zoals opgeschreven door de waarnemer als de locatie verborgen is
+        public_positional_accuracy: Maximale horizontale positieonzekerheid in meters; Omvat onzekerheid toegevoegd door coördinaatsvervaging
         uuid: |
           Universeel unieke identifier voor de waarneming. Zie
           https://datatracker.ietf.org/doc/html/rfc9562
@@ -7357,6 +7416,11 @@ nl:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           de waarneming <strong>toont geen bewijs voor één organisme op alle foto's</strong> (bijvoorbeeld het heeft vier foto's van niet-verwante organismen; een foto met de leefomgeving van het organisme in de waarneming is OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          De waarneming <strong>levert geen nauwkeurig bewijs van het organisme of
+          scene</strong> (Kunstmatige intelligentie werd bijvoorbeeld gebruikt om elementen toe te voegen, te verwijderen of te vervangen
+           in beeld of geluid. Ruisonderdrukking, focus stacking of het uitvoeren van kleine reparaties zoals het verwijderen van sensorstof is meestal OK).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           de waarneming heeft niet langer een ID <em>en</em> het GemeenschapsTaxon is een familie of hoger taxon
@@ -7856,6 +7920,13 @@ nl:
       not_found:
         sorry_that_doesnt_exist: Sorry, deze bestaat niet!
         even_our_dedicated_search_mole_couldnt: Zelfs onze toegewijde zoekmol kon niets vinden!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          U kunt het origineel bekijken op <a href="%{url}">%{url}</a>. Laat inbreuken op het auteursrecht als onopgelost staan als dit geluid een 
+          inbreuk maakt op het auteursrecht.
     stats:
       index:
         active_desc: Heeft in de afgelopen 30 dagen een determinatie, waarneming, reactie of bericht gemaakt
@@ -8040,6 +8111,10 @@ nl:
           handmatig wordt vernieuwd. Verversen van deze samenvatting update onmiddellijk
           onze cache van de onderliggende Wikipedia-inhoud die we laten zien op de
           website, die automatisch verversd wordt na een week.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Je kunt alleen kleine wijzigingen rechtstreeks in de soortaanduiding aanbrengen (bijv. geslachtsveranderingen, spelfout)en. Voer een <a target="_blank" href="%{url}">Taxonwissel</a> uit als je andere wijzigingen in de naam nodig hebt.
+        covered_by_taxon_framework: Dit actieve taxon heeft meer dan %{count} gekoppelde waarnemingen of wordt gedekt door een taxonraamwerk, dus sommige taxonomische attributen kunnen alleen worden bewerkt door medewerkers of taxoncuratoren die aan dat taxonraamwerk zijn gekoppeld.
       show:
         about_names_desc: |
           <p>
@@ -8151,6 +8226,15 @@ nl:
         trending_desc: Meest waargenomen taxa gedurende de laatste maand
         trending_in_place_desc_html: Meest waargenomen taxa gedurende de laatste maand uit <a href="%{url}">%{place}</a>
         wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Namen moeten vergelijkbaar zijn bij directe bewerking, maak een taxonwissel voor radicale naamsveranderingen
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} kan geen tags aan jouw foto's toevoegen totdat Flickr weet dat jij ons toestemming hebt gegeven.
+        <a href='%{url}'>Flickr toestemming verlenen</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Er ging iets mis bij het plaatsen van die tags: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Weet je zeker dat je deze taxonwijziging wilt herstellen?
@@ -8170,6 +8254,10 @@ nl:
       withdrawn: Ingetrokken
       #state of a committed taxon change
       committed: bevestigd
+      #state of a pending taxon change
+      pending: in behandeling
+      #state of a approved taxon change
+      approved: goedgekeurd
       #state of a draft taxon change
       draft: concept
       #the status of a taxon change: draft, withdrawn or committed
@@ -8178,6 +8266,20 @@ nl:
         move_children_desc2_html: |
           Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor Taxonwissels en Taxonsamenvoegingen wanneer deze wijziging is bevestigd. Als dit een verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met namen die gewijzigd moeten worden. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er
           taxonwissels gemaakt en vastgelegd om <i>Canis lupus</i> te wijzigen in <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp. <i>lupus</i>. Dit kan een behoorlijke rotzooi veroorzaken, dus gebruik het voorzichtig.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Stem toegevoegd
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Stem verwijderd
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Nog geen stemmen
+      #message when taxon change is committed
+      taxon_change_committed: Taxonverandering bevestigd! Records die automatisch kunnen worden bijgewerkt, worden binnenkort gewijzigd.
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Taxonwijziging is verwijderd.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Taxonwijziging is met succes bijgewerkt.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Geen wijzigingen gespecificeerd
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -9262,6 +9364,16 @@ nl:
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "geslacht kan niet veranderen"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "Het specifieke epitheton moet vergelijkbaar zijn (alleen kleine typefout/geslacht)"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "Alleen het infraspecifieke epitheton kan veranderen voor infraspecifieke rangen"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "Infraspecifiek epitheton moet vergelijkbaar zijn (alleen kleine typefout/geslacht)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "De eerste letter van een epitheton kan niet veranderen."
         taxon_change:
           attributes:
             base:
