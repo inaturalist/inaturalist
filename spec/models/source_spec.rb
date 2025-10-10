@@ -1,4 +1,6 @@
-require "spec_helper.rb"
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe Source do
   it { is_expected.to have_many :taxa }
@@ -11,4 +13,5 @@ describe Source do
   it { is_expected.to belong_to :user }
 
   it { is_expected.to validate_presence_of :title }
+  it { is_expected.to validate_length_of( :citation ).is_at_most described_class::MAX_LENGTH }
 end

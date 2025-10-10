@@ -30,7 +30,7 @@
         = s.text_field :title, description: t("source_eg.title"), required: true
         = s.text_field :in_text, description: t("source_eg.in_text")
         = s.text_field :url, description: t("source_eg.url")
-        = s.text_area :citation, description: t("source_eg.citation")
+        = s.text_area :citation, description: t("source_eg.citation"), maxlength: Source::MAX_LENGTH
   - else
     - new_source_fields = capture do
       %fieldset
@@ -40,7 +40,7 @@
           = s.text_field :title, description: t("source_eg.title"), required: true
           = s.text_field :in_text, description: t("source_eg.in_text")
           = s.text_field :url, description: t("source_eg.url")
-          = s.text_area :citation, description: t("source_eg.citation")
+          = s.text_area :citation, description: t("source_eg.citation"), maxlength: Source::MAX_LENGTH
         = link_to_function t(:cancel), "$(this).parents('.source_nested_form_fields').find('.choicefields').show(); $(this).parents('fieldset:first').remove();"
     .choicefields
       = f.text_field foreign_key, chooser_options
