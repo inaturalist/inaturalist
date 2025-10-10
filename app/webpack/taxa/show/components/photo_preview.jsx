@@ -57,6 +57,7 @@ class PhotoPreview extends React.Component {
       current
     } = this.state;
     const thumbnailHeight = layout === "gallery" ? 98 : 196.5;
+    const { currentUser } = config;
     let currentPhoto;
     let bgImage;
     let currentPhotoHeight = 590;
@@ -67,13 +68,15 @@ class PhotoPreview extends React.Component {
             <h3>
               { I18n.t( "this_taxon_has_no_default_photo" ) }
             </h3>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={( ) => showPhotoChooserModal( )}
-            >
-              { I18n.t( "add_one_now" ) }
-            </button>
+            { !currentUser?.content_creation_restrictions && (
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={( ) => showPhotoChooserModal( )}
+              >
+                { I18n.t( "add_one_now" ) }
+              </button>
+            ) }
           </div>
         </div>
       );
