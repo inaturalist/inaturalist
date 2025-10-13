@@ -1535,8 +1535,6 @@ da:
     pilot_read_more: "Læs mere på vores blog"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Identifikationshuller-pilotprojekt: Behøver ID ønskede arter"
-    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "Hjælp os med at udfylde huller ved at deltage for at modtage dagligt link til observationer:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Endnu ikke inkluderet i Computer Vision Model"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -8596,9 +8594,6 @@ da:
       cant_tag_photos_html: |
         %{site} kan ikke føje tags til de aktuelle fotos, før Flickr ved, at man har givet os tilladelse.
         <a href='%{url}'>Tildel Flickr-tilladelse</a>.
-      #error message when the Flickr tagger feature fails
-      something_went_wrong_tags: |
-        Noget gik galt under forsøget på at poste disse tags: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Sikker på, at takson-ændringen skal gendannes?
