@@ -1415,8 +1415,6 @@ id:
     pilot_stop: "Berhenti Berpartisipasi"
     #link to a blog post
     pilot_read_more: "Baca lebih banyak di blog kami."
-    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "Bantu kami mengisi kekosongan dengan berpartisipasi untuk menerima tautan harian menuju pengamatan-pengamatan:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Belum disertakan di Model Penglihatan Komputer"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -7854,9 +7852,6 @@ id:
       cant_tag_photos_html: |
         %{site} tidak dapat menambahkan tag ke foto-foto Anda hingga Flickr mengetahui bahwa Anda telah memberi kami izin.
         <a href='%{url}'>Berikan izin Flickr</a>.
-      #error message when the Flickr tagger feature fails
-      something_went_wrong_tags: |
-        Ada yang salah saat mencoba mengunggah tag tersebut: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Apakah Anda yakin ingin memulihkan perubahan takson ini?
