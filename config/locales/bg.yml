@@ -528,6 +528,14 @@ bg:
   #Label for an option to show/include content by any user
   any_user: Без значение
   anyone: Всеки
+  app_owner_application_about_p2_html: |
+    От 2022 г. изискваме ръчно одобрение за потребители, които желаят да направят API клиенти.
+    За да създадете приложения на трети страни, първо трябва да изпратите заявление, за да станете
+    "собственик на приложението". Това приложение трябва да описва функционалността на предложеното от вас приложение
+    и как планирате да го използвате. За да подадете заявление, вашият акаунт трябва да бъде на адрес
+    най-малко 2 месеца и трябва да са навършили поне 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">подобряване на идентификацията</a> през последния месец. Може да поискаме последващи действия
+    въпроси относно вашия план и си запазваме правото да отхвърлим заявленията по каквато и да е причина.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Приложение
@@ -565,12 +573,16 @@ bg:
   are_you_sure_you_want_to_delete_this: Сигурни ли сте, че искате да изтриете това?
   are_you_sure_you_want_to_delete_this_photo?: Сигурни ли сте, че искате да изтриете тази снимка?
   are_you_sure_you_want_to_delete_this_post: Сигурни ли сте, че искате да изтриете тази публикация?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Сигурни ли сте, че искате да изтриете този звук?
   are_you_sure_you_want_to_remove_all_tags: Сигурни ли сте, че искате да премахнете всички етикети?
   are_you_sure_you_want_to_remove_curator: Сигурни ли сте, че искате да премахнете %{user} като куратор?
   are_you_sure_you_want_to_remove_from_project: Сигурни ли сте, че искате да отстраните %{user} от проекта?
   are_you_sure_you_want_to_remove_manager: Сигурни ли сте, че искате да отстраните %{user} като управител?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Сигурни ли сте, че искате да премахнете тези %{x} таксона?"
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Сигурни ли сте, че искате да премахнете този таксон от видовия списък (чеклиста) на %{place}?"
+  artificially_generated_content: Изкуствено генерирано съдържание
+  artificially_generated_content_desc: Съдържа съдържание, което е генерирано предимно или изцяло чрез изкуствен интелект.
   associated_observations: Свързани наблюдения
   associated_taxa: Свързани таксони
   attention: Внимание
@@ -802,6 +814,7 @@ bg:
   community_id_is_precise: Консенсусното разпознаване е точно
   community_moderation_settings: Настройки на редактиране от общността
   community_supported_id: Консенсусно разпознаване от общността?
+  community_taxon_matches_observation_taxon: Таксонът на общността съвпада с таксон за наблюдение
   compare: Сравняване
   compare_with: Сравни с
   comparing_list_to_list: "Сравняване на %{list1} със %{list2}"
@@ -844,6 +857,12 @@ bg:
   conservation_status_descriptions:
     place: Място, до което се отнася този статут.
     url: Адрес на уеб страница описваща този статут.
+    iucn: |
+      Еквивалентен код от Червения списък на IUCN. Това не е действителната оценка на IUCN,
+      само кода на IUCN, който най-добре отговаря на заплахата от разкриване на координати
+      подразбира се от този статут. Това ще отмени геоповерителността, ако е "Най-малко
+      Загриженост" или по-долу, така че ако искате да прикриете наблюденията на това
+      таксон, задайте това на "Почти застрашен" или по-горе.
   conservation_status_geoprivacy_desc: |
     Геоповерителността по подразбиране прилагана към всички наблюдения от този таксон и на това място
   contact_support: Свържете се с поддръжка
@@ -1051,6 +1070,8 @@ bg:
     наблюдението към проекта. Това е само настройката по подразбиране за
     наблюдения в проекти. Наблюдателите могат също да изберат да променят това за
     индивидуални наблюдения.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Текущ таксон на общността: %{taxon}"
   current_flags: Текущи маркери
   #Button to customize projects that appear in the header
   customize__projects: Персонализиране
@@ -1058,6 +1079,61 @@ bg:
   daily_users: Дневни потребители
   danger_zone: Опасна зона
   dashboard: Табло
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Да! Бих искал да участвам."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Спрете да участвате"
+    #link to a blog post
+    pilot_read_more: "Прочетете повече в нашия блог."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Пилотен проект за идентификационни пропуски: Нуждае се от идентификационни видове"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Помогнете ни да запълним пропуските, като участваме, за да получаваме ежедневен линк към наблюдения:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Все още не е включен в модела за компютърно зрение"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Смятаме, че можете да разпознаете"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Ето линк към наблюдения на видове, които все още не са включени в модела на компютърното зрение, които смятаме, че можете да идентифицирате."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Проверете отново утре за връзка към наблюдения на видове, които все още не са включени в модела на компютърното зрение, които смятаме, че можете да идентифицирате. Ще ви бъдат показани видове, за които сте направили поне 3 подобрени идентификации."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Ако не виждате връзка, може да няма наблюдения, отговарящи на тези критерии, които Need ID. Ще проверява веднъж на ден."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Пилотен проект за пропуски в наблюдението: Издирвани близки видове"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Утре ще получите списък с видове, които:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Все още не са в модела за компютърно зрение"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Наблюдавани са през този сезон близо до последното ви наблюдение"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Се ръководят от извадка от до 200 наблюдения на до 300 вида, даващи приоритет на растенията"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Като наблюдавате тези видове, вие ще помогнете за подобряване на модела и ще запълните пропуските в данните за биоразнообразието. Този списък ще се актуализира, когато моделът се актуализира. Можете да се откажете по всяко време."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Ето текущия ви списък с видове, които са:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Все още не е включен в модела за компютърно зрение"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Наблюдаван близо до последното ви местоположение през този сезон"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Като ги наблюдавате, вие помагате за подобряване на разпознаването на видовете и запълването на критичните пропуски."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Преглед на видове"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Проверете отново утре за персонализиран списък на видовете, които все още не са в модела за компютърно зрение, наблюдаван през този сезон. Персонализираният списък ще използва местоположението на последното ви наблюдение."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Ако не виждате връзка, може да няма видове, отговарящи на тези критерии близо до вас."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Пилотен проект за идентификация: Включване на нови потребители"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "От утре получавайте до 30 наблюдения дневно, които съответстват на вашите умения за идентификация, което помага за включването на нови потребители. Можете да се откажете по всяко време."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "По-долу са до 30 наблюдения, които съответстват на вашите умения за идентификация."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Проверете отново утре за връзка към наблюдения, които съответстват на вашите умения за идентификация."
   data_deficient: недостатъчно данни
   data_quality: Качество на данните
   data_quality_assessment: Оценка на качеството на данните
@@ -1137,6 +1213,8 @@ bg:
   delete_icon?: Изтрий иконата?
   delete_photo: Изтрий снимката
   delete_project: Изтрий проекта
+  #Label for a button to delete a sound file
+  delete_sound: Изтриване на звука
   delete_taxon_and_merge_most_data_html: |
     Изтрий таксона <i>%{taxon}</i> и обедини повечето от данните му с друг таксон. Използвайте този инструмент за <strong>премахване на дублиращи се таксони</strong>. Ако искате да премахнете неактуален таксон, моля създайте таксономична размяна. <strong>БЪДЕТЕ ВНИМАТЕЛНИ!</strong> Изтриването на таксони може да бъде много разрушително. Погледнете <a href="%{curator_url}">Наръчника за куратори</a> за повече подробности.
   delete_your_account: Изтриване на акаунта
@@ -1170,6 +1248,8 @@ bg:
         Моля, проверете имейла си и щракнете на препратката в полученото писмото за да потвърдите акаунта си.
       user:
         suspended: Вашият акаунт е запориран
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Маркерът за нулиране на паролата е невалиден. Моля, използвайте връзката в последния изпратен имейл за нулиране на паролата, или <a href="%{url}">Поискайте нов</a>.
     sessions:
       signed_in: 'Влязохте успешно.'
       signed_out: 'Излязохте успешно.'
@@ -1261,6 +1341,8 @@ bg:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: ДАРЕТЕ
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Даря
   done: Готово
   dont_have_an_account_sign_up_html: Нямате акаунт? <strong>Регистрирайте се.</strong>
   dont_use_double_quotes: Не използвайте двойни кавички за нищо друго
@@ -1346,6 +1428,8 @@ bg:
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   error_updating_photo: "Грешка при обновяване на снимката: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Грешка при актуализиране на звука: %{sound_errors}"
   establishment:
     endemic: ендемичен
     establishment: Заселване
@@ -1390,7 +1474,9 @@ bg:
   extinct: изчезнал
   extinct_in_the_wild: изчезнал в природата
   extra_properties: Допълнителни свойства
+  evidence_accurately_depicts_organism_or_scene: Доказателствата точно изобразяват организъм или сцена
   evidence_of_organism: Наличност (или следи) на организъм
+  evidence_related_to_single_subject: Свидетелство свързано с един-единствен организъм
   facebook: Фейсбук
   failed_to_repair_photo: "Неуспешно възстановяване на снимка: %{errors}"
   failed_to_unlink_your_account: Неуспешно разединяване на Вашия акаунт
@@ -1417,7 +1503,11 @@ bg:
   fields_can_only_be_edited_by_the_people_who: Полетата могат да бъдат редактирани само от хората които са ги създали или от куратори
   fields_merged: Полетата са обединени
   file: Файл
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Файлов формат
   file_size: Размер на файла
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL адрес на файла
   file_should_be_in_the_following_format: "Файлът трябва да е в следния формат: име на таксон, описание"
   fill_out_project_observation_fields: Попълнете полетата за наблюдения на проекта
   fill_out_your_profile: довършете профила си
@@ -1590,6 +1680,8 @@ bg:
   header_your_projects: Вашите проекти
   header_your_profile: Вашият профил
   heads_up_this_photo_has_been_flagged: "ВНИМАНИЕ: снимката е била маркирана."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: този звук е маркиран."
   heads_up_this_photo_is_already_associated_with: "Внимание: тази снимка вече е свързана с <a target='_blank' href='%{url}'>друго наблюдение</a>"
   help: Помощ
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
@@ -3638,6 +3730,14 @@ bg:
     photos_sounds: Снимки / звуци
     select_one_or_more_sounds: Изберете един или повече звуци
     sound: Звук
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Звук %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Звукът е изтрит
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Звукът е скрит
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Звук нескрит
     soundcloud_replied_with_an_error: SoundCloud отвърна с грешка. Моля, опитайте пак по-късно.
     sounds: Звуци
   source: Източник
@@ -4105,6 +4205,8 @@ bg:
   updated_by_user_on_date_html: Обновено от %{user} на %{date}
   updated_daily: Обновявано ежедневно
   updated_photo: Обновена снимка
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Актуализиран звук
   upload: Качване
   upload_a_csv_file: Качи CSV файл
   upload_a_csv_file_with_observation: |
@@ -4510,10 +4612,18 @@ bg:
         Време в часовата зона на профила Ви, в което това съобщение ще спре
         Включени. Прилага се в различни часови зони, така че всички ще спрат да виждат
         в същото време, а не спрямо местното им време.
+      excludes_non_site_desc: |
+        Ако съобщението Ви е насочено към сайт (което е по подразбиране, ако сте
+        Администратор на сайта), това ще изключи съобщенията, които са насочени към всички сайтове в
+        това разположение.
       ip_countries_desc: |
         CMD- или SHIFT-щракнете, за да изберете няколко. Избиране на "Всички" или не
         селекцията ще покаже съобщението на всички потребители, независимо от
         Държава на интелектуална собственост.
+      exclude_ip_countries_desc: |
+        CMD- или SHIFT щракнете, за да изберете няколко. Избраните държави няма да се показват
+        съобщението. Ако са избрани IP държави, изберете Изключване на IP държави
+        ще бъдат извадени от първия.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Имайте предвид, че датата на създаване на най-скоро създадения от потребителя
@@ -4531,6 +4641,14 @@ bg:
         Време в часовата зона на вашия акаунт, в което ще започне това съобщение
         Включени. Прилага се в различни часови зони, така че всички ще започнат да виждат
         в същото време, а не спрямо местното им време.
+      include_virtuous_tags_desc: |
+        CMD- или SHIFT-щракнете, за да изберете няколко. Избиране на "Всяка" или не
+        селекцията ще покаже съобщението на всички потребители, независимо от
+        техните добродетелни етикети.
+      exclude_virtuous_tags_desc: |
+        CMD- или SHIFT-щракнете, за да изберете няколко. Избиране на "Няма" или не
+        селекцията ще покаже съобщението на всички потребители, независимо от
+        техните добродетелни етикети.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Насочване към потребители по поведение при дарение
@@ -4767,9 +4885,20 @@ bg:
           Брой разпознати таксони, които са сред надтаксоните на таксона, но не са съгласни с таксона (например „Мисля, че е от този род, но не и този вид“)
         curator_coordinate_access_disabled_desc_html: |
           Този проект не приема наблюдения, чиито координати не са видими за кураторите на проекта. Ако не искате да споделяте координатите на това наблюдение с кураторите на проекта, трябва да премахнете наблюдението от проекта.
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          В <strong>Съвпадение на таксона на общността и таксона на наблюдението</strong>
+          (за онези редки случаи, когато таксонът на наблюдението може да бъде повече
+          специфичен за таксона на Общността)
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_recent_html: |
           наблюдението <strong>не предоставя скорошно (~100 години) свидетелство за организъм</strong> (напр. фосили; но следи, изпражнения или мъртви листа са наред)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Констатацията <strong>не представя точни доказателства за организма или
+          място</strong> (напр. изкуственият интелект е използван за добавяне, премахване или замяна
+          елементи в изображението или звука. Шум, подреждане на фокус или изработване
+          малки корекции като премахване на прах от сензора обикновено са ОК).
         flagged_photos_desc_html: |
           Някои от тези снимки са маркирани за неуместно съдържание или нарушение на авторски права. За подробности вижте %{links}
         observer_only_allows_curators_to_add_fields: Наблюдателят позволява само на кураторите на сайта да добавят полета за наблюдения.
@@ -5021,6 +5150,14 @@ bg:
         message_for_owner_and_curators_html: |
           Този запис е маркиран като спам и вече не е публично достъпен. Вие можете да го видите, защото е създаден от Вас, или защото сте куратор на сайта. Ако мислите, че това е грешка, моля <a href="mailto:%{email}">свържете се с нас</a>.
         this_has_been_flagged_as_spam: Това е маркирано като спам
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Можете да видите оригинала на <a href="%{url}">%{url}</a>. Моля
+          оставете флаговете за нарушаване на авторски права като неразрешени, ако това звучи
+          нарушават авторските права.
     stats:
       index:
         active_desc: Добавили са разпознаване, наблюдение, коментар или публикация през последните 30 дни
@@ -5094,6 +5231,9 @@ bg:
           Един „изчерпателен“ таксон съдържа <em>всички</em> известни дъщерни таксони с даден ранг отговарящи на политиката за куриране на таксони на iNaturalist, независимо дали са били наблюдавани или не. В момента, само администраторите на сайта могат да обявяват таксони като изчерпателни.
         complete_rank_desc_html: |
           Ранг до който този таксон е изчерпателен. Например ако семейство съдържа всичките родове, но не и всичките видове които науката познава, това ще бъде зададено като „род“. По подразбиране е „вид“.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Можете да правите само незначителни промени в епитета на вида директно (напр. промени в пола, правописна грешка). Добавяне на <a target="_blank" href="%{url}">Размяна на таксони</a> ако имате нужда от други промени в името.
       show:
         about_conservation_status_desc: |
           Природозащитният статут обобщава рискът за изчезване на дадена група организми.
@@ -5146,6 +5286,28 @@ bg:
         trending_desc: Най-наблюдаваните таксони през последния месец
         trending_in_place_desc_html: Най-наблюдаваните таксони през последния месец във <a href="%{url}">%{place}</a>
         wanted_desc: Видове от този таксон които все още не са наблюдавани.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Нещо се обърка, опитвайки се да публикувам тези тагове: %{message}
+    taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Сигурни ли сте, че искате да възстановите тази промяна в таксона?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Сигурни ли сте, че искате да оттеглите тази промяна в таксона?
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Възстановявам
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: Възстановяване
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Оттегли
+      #state of an abandoned taxon change
+      withdrawn: Оттеглени
+      #state of a committed taxon change
+      committed: ангажиран
+      #state of a draft taxon change
+      draft: чернова
+      #the status of a taxon change: draft, withdrawn or committed
+      status: статус
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -5167,6 +5329,32 @@ bg:
           Трябва да въведете „%{confirmation_code}“ във формуляра, за да изтриете акаунта си.
       edit:
         about_third_party_tracking: Относно следенето от трети страни
+        block_desc_blocking_someone_prevents: |
+          Блокирането на някого му пречи да ви изпраща съобщения, да коментира вашите съобщения
+          наблюдения, идентифициране на вашите наблюдения и взаимодействие по друг начин
+          с теб на %{site_name}. Той също така премахва техните наблюдения от вашия
+          резултати от търсенето и премахва вашите наблюдения от търсенето си
+          Резултати. Това обаче не ви прави невидими за тях. Те могат
+          все още намират вашите наблюдения и преглеждат профила ви, те просто не могат
+          взаимодейства с вас.
+        block_desc_blocking_is_for_situations: |
+          Блокирането е за ситуации, с които просто не можете да се разбирате
+          някого и те няма да те оставят на мира, въпреки всичките ти усилия да
+          Уреждане на спорове по цивилизован начин. Това не е начин да се скриете от
+          хора, за да предотвратите идентификация от хора, чието мнение сте
+          не се доверявам или да се откажете от идентификатора на общността (има и друг
+          настройка за това). По този начин блокирането работи и в двете посоки: ако блокирате
+          някой, той не може да взаимодейства с вас, но вие също не можете да взаимодействате
+          с тях. Ако злоупотребявате с него, за да попречите на някой да идентифицира вашия
+          наблюдения, вие също си пречите да идентифицирате техните
+          Наблюдения.
+        block_desc_you_can_only_block_html: |
+          Можете да блокирате само трима души. Смятаме, че това е разумно
+          номер, който побира хората, които се нуждаят от блокиране, докато
+          предотвратяване на злоупотреба с блокиране. Ако смятате, че трябва да блокирате повече
+          хора, моля <a href="mailto:%{help_email}">Свържете се с нас</a>.
+        block_desc_there_are_two_exceptions: |
+          Има две ситуации, при които блокирането не пречи на взаимодействието:
         inaturalist_network_affiliation_desc_html: |
           <p>
           <a href="%{url}" target="_blank">Мрежата на iNaturalist</a> е сбор от локализирани сайтове, които са изцяло свързани с международната общност на iNaturalist. Сайтовете от мрежата се поддържат от местни институции, които са подписали споразумение с iNaturalist да популяризират местната му употреба и да са в полза на местното биоразнообразие. Те имат достъп до реалните координати на застрашени видове в рамките на съответната държава, които са автоматично замаскирани за обществото с цел тяхната защита.
@@ -5508,6 +5696,7 @@ bg:
         exclude_donor_start_date: Изключване на началната дата на дарителя
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Изключване на крайната дата на донора
+        excludes_non_site: Скриване на други съобщения в това разположение, които нямат ИД на сайта
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Изключване на наблюдатели от приложения
