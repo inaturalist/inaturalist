@@ -1517,7 +1517,7 @@ nl:
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Pilot met determinatielacunes: \"ID nodig\"-soorten gezocht"
     #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "Help ons hiaten op te vullen door deel te nemen door de de dagelijkse link naar waarnemingen te ontvangen:"
+    gaps_id_pilot_intro: "Help ons hiaten op te vullen door deel te nemen om een dagelijkse link naar observaties te ontvangen:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Zijn nog niet opgenomen in het Computer Vision Model"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -7386,6 +7386,11 @@ nl:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> wanneer
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          de <strong>Gemeenschapstaxon en observatietaxon komen overeen</strong>
+          (voor die zeldzame gevallen waarin het observatietaxon meer kan zijn
+          specifiek dan het Community Taxon)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           de %{site_name} <strong> gemeenschap akkoord gaat met een ID op soortniveau of lager 
           </strong>, bijvoorbeeld wanneer meer dan 2/3 van de experts akkoord gaat met het taxon
@@ -8114,6 +8119,9 @@ nl:
         #a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           Je kunt alleen kleine wijzigingen rechtstreeks in de soortaanduiding aanbrengen (bijv. geslachtsveranderingen, spelfout)en. Voer een <a target="_blank" href="%{url}">Taxonwissel</a> uit als je andere wijzigingen in de naam nodig hebt.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Let op: je hebt zojuist een afstammeling van een gesloten taxon toegevoegd (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Overweeg om dit in plaats daarvan samen te voegen met een bestaand taxon." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Let op: de ouder van dit actieve taxon is inactief, maar het is de output van dit <a href='/taxon_changes/%{taxon_change_id}'> Ontwerp taxon verandering</a> waarvan we aannemen dat u zich binnenkort zult vastleggen." #a message when you try to save an edit to a taxon covered by a taxon framework
         covered_by_taxon_framework: Dit actieve taxon heeft meer dan %{count} gekoppelde waarnemingen of wordt gedekt door een taxonraamwerk, dus sommige taxonomische attributen kunnen alleen worden bewerkt door medewerkers of taxoncuratoren die aan dat taxonraamwerk zijn gekoppeld.
       show:
         about_names_desc: |
@@ -8274,12 +8282,31 @@ nl:
       no_votes_yet: Nog geen stemmen
       #message when taxon change is committed
       taxon_change_committed: Taxonverandering bevestigd! Records die automatisch kunnen worden bijgewerkt, worden binnenkort gewijzigd.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Deze taxonwijziging is nu in behandeling. Het vereist goedkeuring van 1 curator om te kunnen bevestigen."
+        other: "Deze taxonwijziging is nu in behandeling. Het vereist goedkeuring door %{count} curatoren om zich te kunnen binden."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Invoertaxon kan geen actieve onderliggende elementen hebben, verplaats ze eerst, of selecteer de optie 'Kinderen naar uitvoer verplaatsen?'
+      output_taxon_rank_level_not_coarser_html: >
+        Output taxon rangniveau niet grover dan rangniveau van actieve kinderen van inputtaxon %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Deze taxonomische wijziging was al vastgelegd!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Er is iets misgegaan bij het verwijderen van de taxonwijziging '%{id}'!"
       #a message when a taxon change was deleted
       taxon_change_deleted: Taxonwijziging is verwijderd.
       #a message when a taxon change was successfully updated
       taxon_change_successfully_update: Taxonwijziging is met succes bijgewerkt.
       #an error message when trying to modify/create a taxon change that can be found
       no_changes_specified: Geen wijzigingen gespecificeerd
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taxon Change is met succes gemaakt.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Vereist goedkeuring van 1 andere curator om zich te committeren"
+        other: "Vereist goedkeuring door %{count} Andere curatoren om te binden"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -9364,10 +9391,24 @@ nl:
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Naamswijzigingen zijn niet toegestaan voor virussen, bacteriën of niet-geënte clades"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Naamswijzigingen zijn niet toegestaan voor rangen die ruimer zijn dan soorten"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Naamswijzigingen zijn niet toegestaan voor hybride formules"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "kan 'x' niet toevoegen als een hybride marker tussen geslacht en soort"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "moet binomiaal zijn (geslachtsoorten) voor controle"
               #Error message trying to change the genus part of a ssp or sp
               genus_cannot_change: "geslacht kan niet veranderen"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Niet-standaard soortnaam: alleen het verwijderen van 'X'/'×' of het toevoegen van '×' is toegestaan"
               #Error message trying make major changes to sp epithet
               specific_epithet_similar: "Het specifieke epitheton moet vergelijkbaar zijn (alleen kleine typefout/geslacht)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "infraspecifiek epitheton vereist voor deze rang"
               #Error message trying make major changes to a species part of ssp
               only_infra_may_change: "Alleen het infraspecifieke epitheton kan veranderen voor infraspecifieke rangen"
               #Error message trying make major changes to the ssp epithet
