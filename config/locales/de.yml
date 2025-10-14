@@ -1435,6 +1435,9 @@ de:
   daily_users: Tägliche Benutzer
   danger_zone: GEFAHRENZONE!
   dashboard: Dashboard
+  dashboard_pilots:
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Hilf uns, Lücken zu schließen, indem du teilnimmst, um täglich einen Link zu Beobachtungen zu erhalten:"
   data_deficient: ungenügende Datengrundlage
   data_quality: Datenqualität
   data_quality_assessment: Bewertung der Datenqualität
@@ -7783,6 +7786,9 @@ de:
         trending_desc: Am meisten beobachtete Taxa im letzten Monat
         trending_in_place_desc_html: Meistbeobachtete Taxa im letzten Monat in <a href="%{url}">%{place}</a>
         wanted_desc: Arten in diesem Taxon, die noch nicht beobachtet wurden.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Beim Versuch, diese Tags zu posten, ist etwas schief gelaufen: %{message}
     taxon_changes:
       move_children_desc: |
         Untergeordnete Taxa des Input-Taxons auf Gattungsebene oder höher werden zum Output verschoben; Arten, Unterarten, Sorten usw. werden entsprechend der neuen Gattung oder des neuen Artennamens getauscht.
