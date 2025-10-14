@@ -701,6 +701,8 @@ tr:
   are_you_sure_you_want_to_delete_this_assessment?: Değerlendirmeyi silmek istediğine emin misin?
   are_you_sure_you_want_to_delete_this_photo?: Bu fotoğrafı silmek istediğine emin misin?
   are_you_sure_you_want_to_delete_this_post: Bu gönderiyi silmek istediğine emin misin?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Bu sesi silmek istediğinden emin misin?
   are_you_sure_you_want_to_delete_this_taxon_change: Bu takson değiştirmeyi silmek istediğine emin misin?
   are_you_sure_you_want_to_remove_all_tags: Tüm etiketleri kaldırmak istediğine emin misin?
   are_you_sure_you_want_to_remove_curator: '%{user} kişisini küratörlükten çıkartmak istediğine emin misin?'
@@ -714,6 +716,8 @@ tr:
     Bu gözlemi %{project} projesinden kaldırmak istediğinden emin misin?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bu taksonu %{place} konumunun kontrol listesinden kaldırmak istediğine emin misin?"
   are_you_sure_you_want_to_flag_as_spammer: Bu kullanıcıyı istenmeyen olarak işaretlemek istediğinden emin misin?
+  artificially_generated_content: Yapay Olarak Oluşturulan İçerik
+  artificially_generated_content_desc: Çoğunlukla veya tamamen yapay zeka aracılığıyla oluşturulan içerikler barındırır.
   associated_observations: İlgili gözlemler
   associated_taxa: İlişkili taksonlar
   attention: Dikkat
@@ -1039,6 +1043,7 @@ tr:
   community_id_is_precise: Topluluk Taksonu kesin
   community_moderation_settings: Topluluk Denetim Ayarları
   community_supported_id: Topluluk destekli takson mu?
+  community_taxon_matches_observation_taxon: Topluluk Taksonu, Gözlem Taksonu ile eşleşir
   compare: Karşılaştır
   compare_with: Şununla karşılaştır
   comparing: karşılaştırma
@@ -1431,6 +1436,8 @@ tr:
   curator_coordinate_access_desc: |
     Küratör koordinat erişimi, geleneksel projelerde gözlemi projeye ekleyen kişiye bağlıdır. Bu, projelerdeki gözlemler için varsayılan ayardır. Gözlemciler ayrıca bireysel gözlemler için bu ayarı değiştirmeyi tercih edebilirler.
   curator_identification: Küratör tanımlaması
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Mevcut Topluluk Taksonu: %{taxon}"
   current_flags: Mevcut İşaretler
   #Label for a custom boundary for an observation search
   custom_boundary: Özel Sınır
@@ -1453,6 +1460,8 @@ tr:
     pilot_read_more: "Blogumuzda daha çok bilgi edinin."
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Tanımlama Boşlukları Pilot Çalışması: Tanımlama Gerekli Türler"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Gözlemlerin günlük bağlantısını almak için katılım göstererek boşlukları doldurmamıza yardımcı olun:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Henüz Bilgisayar Görü Modeline dahil edilmemiştir"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1589,6 +1598,8 @@ tr:
   #Label for a button to delete a taxon range
   delete_range: Yayılımı sil
   delete_selected: Seçileni sil
+  #Label for a button to delete a sound file
+  delete_sound: Sesi sil
   delete_taxon_and_merge_most_data_html: |
     <i>%{taxon}</i> taksonunu sil ve verilerinin çoğunu başka bir taksona birleştir. Bu aracı <strong>yinelenen taksonları kaldırmak</strong> için kullan. Eğer eski bir eşanlamlıyı kaldırmak istiyorsan, lütfen bir takson yer değişimi oluştur. <strong>DİKKATLİ OL!</strong> Taksonları silmek oldukça yıkıcı sonuçlara yol açabilir. Daha çok bilgi için <a href="%{curator_url}">Küratör Rehberi</a>'ne göz at.
   delete_user: Kullanıcıyı sil
@@ -1864,6 +1875,8 @@ tr:
   eol: Yaşam Ansiklopedisi
   eol_collection_url: "EOL koleksiyon URL'si"
   error_updating_photo: "Fotoğraf yükleme hatası: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Ses güncellenirken hata oluştu: %{sound_errors}"
   establishment:
     endemic: Endemik
     establishment: Yerleşim Tipi
@@ -1929,6 +1942,7 @@ tr:
   extinct: soyu tükenmiş
   extinct_in_the_wild: Doğada Soyu Tükenmiş
   extra_properties: Ek Özellikler
+  evidence_accurately_depicts_organism_or_scene: Kanıtlar organizmayı veya sahneyi doğru bir şekilde tasvir ediyor
   evidence_of_organism: Organizmanın kanıtı
   evidence_related_to_single_subject: Tek bir organizmayla ilgili kanıt
   facebook: Facebook
@@ -1965,7 +1979,11 @@ tr:
   fields_can_only_be_edited_by_the_people_who: Alanlar yalnızca onları oluşturan kişiler ve küratörler tarafından düzenlenebilir
   fields_merged: Alanlar birleştirildi
   file: Dosya
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Dosya biçimi
   file_size: Dosya boyutu
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Dosya URL'si
   file_should_be_in_the_following_format: "Dosya takip eden formatta olmalıdır: takson adı, açıklama"
   fill_out_project_observation_fields: Proje gözlem alanlarını doldur
   fill_out_your_profile: profilini tamamla
@@ -2213,6 +2231,8 @@ tr:
     one: "<strong>Dikkat:</strong> Aynı girdi taksonu ile %{count} tane diğer taslak takson değiştirme var:"
     other: "<strong>Dikkat:</strong> Aynı girdi taksonu ile %{count} tane diğer taslak takson değiştirme var:"
   heads_up_this_photo_has_been_flagged: "UYARI: Bu fotoğraf işaretlendi."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "DİKKAT: Bu ses işaretlendi."
   heads_up_this_photo_is_already_associated_with: "Uyarı: Bu fotoğraf zaten <a target='_blank' href='%{url}'>başka bir gözlemle</a> ilişkilendirilmiş"
   heads_up_you_have_multiple: "Uyarı: Aynı düzeyler için birden çok taksonomik makine etiketine sahipsiniz. Düzeyler için aşağıda renkler kodlanmıştır."
   help: Yardım
@@ -4940,7 +4960,15 @@ tr:
     select_one_or_more_sounds: Bir veya daha fazla ses seçin
     selected_sounds: Seçilen sesler
     sound: Ses
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Ses %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Ses silindi
     sound_has_been_flagged: Bu ses işaretlendi.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Ses gizlendi
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Ses görünür yapıldı
     soundcloud_replied_with_an_error: SoundCloud bir hata ile cevap verdi. Lütfen daha sonra tekrar deneyin.
     sounds: Sesler
     your_soundcloud_account: SoundCloud hesabın
@@ -5625,6 +5653,8 @@ tr:
   updated_by_user_on_date_html: '%{date} tarihinde %{user} tarafından güncellendi'
   updated_daily: Günlük güncellenir
   updated_photo: Güncel fotoğraf
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Güncellenmiş ses
   upload: Yükle
   upload_a_csv_file: CSV dosyası yükle
   upload_a_csv_file_with_observation: |
@@ -6243,6 +6273,10 @@ tr:
         Birden fazla seçim yapmak için CMD- veya SHIFT-tıklayın. "Tümünü" seçmek veya seçim yapmamak, duyuruyu site üyeliğine bakılmaksızın tüm kullanıcılara gösterecektir.
       start_desc: |
         Hesap zaman diliminizde, bu duyurunun görünmeye başlayacağı saat. Zaman dilimleri arasında geçerlidir, yani herkes duyuruyu kendi yerel saatine göre değil, aynı anda görmeye başlayacaktır.
+      include_virtuous_tags_desc: |
+        Birden fazla öğe seçmek için CMD veya SHIFT tuşuna basarak tıklayın. “Herhangi” seçeneğini işaretlerseniz veya hiçbir seçim yapmazsanız, duyuru tüm kullanıcılara gösterilecektir.
+      exclude_virtuous_tags_desc: |
+        Birden fazla öğe seçmek için CMD veya SHIFT tuşuna basarak tıklayın. “Hiçbiri” seçeneğini seçerseniz veya hiçbir seçim yapmazsanız, duyuru tüm kullanıcılara gösterilecektir.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Kullanıcıları bağış davranışına göre hedefleme
@@ -7025,6 +7059,9 @@ tr:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: 'Gözlemler şu durumlarda <strong>"araştırma sınıfı"</strong> olur:'
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Topluluk Taksonu ve Gözlem Taksonu eşleşmesi</strong> (Gözlem Taksonunun Topluluk Taksonundan daha spesifik olabileceği nadir durumlar için)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           %{site_name} <strong>topluluğu tür seviyesi veya daha alt tanımlamalarda anlaşır</strong>, ör. tanımlayıcıların 2/3'ünden çoğu bir takson üzerinde hemfikirse (topluluk, Topluluk Taksonu'nun artık geliştirilemeyeceğine oy verdiyse, bu alt familya seviyesi veya daha alt tanımlamaya döner).
         #Leads a list of ways an observation to revert to Casual status
@@ -7048,6 +7085,9 @@ tr:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           gözlem <strong>tek bir organizmaya ait kanıt sunmuyordur</strong> (ör. birbirinden alakasız dört organizmanın fotoğrafı varsa; ancak gözlemin konusu olan organizmanın yaşam alanını gösteren bir fotoğraf ise kabul edilir)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          gözlem <strong>organizma veya sahne hakkında doğru kanıt sunmamaktadır</strong> (ör. görüntü veya seste öğeler eklemek, çıkarmak veya değiştirmek için yapay zeka kullanılmıştır. Gürültü giderme, odak yığınlama veya sensör tozunu temizlemek gibi küçük düzeltmeler genellikle kabul edilebilir).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           gözlemin artık tanımlamaya ihtiyacı yoktur <em>ve</em> Topluluk Taksonu familya düzeyinde ya da üstündedir
@@ -7561,6 +7601,12 @@ tr:
       not_found:
         sorry_that_doesnt_exist: Üzgünüm, bu mevcut değil!
         even_our_dedicated_search_mole_couldnt: Özel arama casusumuz bile hiçbir şey bulamadı!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Orijinali <a href="%{url}">%{url}</a> adresinde görüntüleyebilirsiniz. Bu ses telif hakkını ihlal ediyorsa, telif hakkı ihlali işaretlerini çözülmemiş olarak bırakın.
     stats:
       index:
         active_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum veya gönderi oluşturuldu
@@ -7729,6 +7775,13 @@ tr:
         wikipedia_summary_desc_html: |
           Bu, taksonun <a target="_blank"
           href="%{url}">Wikipedia sayfasına</a> dayanan ve manuel olarak yenilenene kadar süresiz olarak önbelleğe aldığımız kısa özetidir. Bu özetin yenilenmesi, web sitesinde gösterdiğimiz ve bir hafta sonra otomatik olarak yenilenen temel Wikipedia içeriğinin önbelleğini de hemen günceller.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Tür adında yalnızca küçük değişiklikler yapabilirsiniz (ör. cinsiyet değişiklikleri, yazım hataları). Başka değişiklikler yapmanız gerekiyorsa <a target="_blank" href="%{url}">takson yer değişimi</a> ekleyin.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Dikkat: Az önce kilitli bir taksonun altına bir alt takson eklediniz (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Bunun yerine lütfen bunu mevcut bir taksonla birleştirmeyi düşünün." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Dikkat: Bu aktif taksonun üst taksonu pasif durumda ancak bunun nedeni bu <a href='/taxon_changes/%{taxon_change_id}'>taslak takson değiştirme</a> ve muhtemelen yakında onaylayacağınızı varsayıyoruz." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Bu aktif taksonun +%{count} alt gözlemi bulunmakta veya bir takson çerçevesi tarafından kapsanmakta; bu nedenle bazı taksonomik özellikler yalnızca personele veya ilgili takson çerçevesine bağlı takson küratörleri tarafından düzenlenebilir.
       show:
         about_names_desc: |
           <p>
@@ -7808,6 +7861,15 @@ tr:
         trending_desc: Geçen ayda en çok gözlemlenen taksonlar
         trending_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda geçen ay en çok gözlemlenen taksonlar
         wanted_desc: Bu taksonda yer alan henüz gözlemlenmemiş türler.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Doğrudan düzenleme yaparken isimler benzer olmalıdır, radikal isim değişiklikleri için takson yer değişimi yapın.
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site}, Flickr’dan izin verdiğinizi bilene kadar fotoğraflarınıza etiket ekleyemez.
+        <a href='%{url}'>Flickr’a izin verin</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Bu etiketleri göndermeye çalışırken bir sorun oluştu: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Bu takson değiştirmeyi geri yüklemek istediğinizden emin misiniz?
@@ -7825,6 +7887,10 @@ tr:
       withdrawn: geri çekiliyor
       #state of a committed taxon change
       committed: onaylandı
+      #state of a pending taxon change
+      pending: beklemede
+      #state of a approved taxon change
+      approved: onaylandı
       #state of a draft taxon change
       draft: taslak
       #the status of a taxon change: draft, withdrawn or committed
@@ -7832,6 +7898,39 @@ tr:
       form:
         move_children_desc2_html: |
           Bu kutunun işaretlenmesi, bu değişiklik gerçekleştiğinde Takson Yer Değişimi ve Takson Birleştirmeleri için girdi taksonunun alt soyunu çıktı sınıfına taşıyacaktır. Eğer bu bir cins veya daha altı için bir değişiklik ise değişmesi gereken isimlere sahip tüm alt soy için Takson Yer Değişimi yaratacaktır. Örneğin, Canidae familyasını Dogidae ile değiştirirsen, bu <i>Canis</i> cinsinin üst soyunu Canidae'den Dogidae'ye geçirecektir. <i>Canis</i> cinsini <i>Dogis</i> cinsi ile değiştirirsen, <i>Canis lupus</i>'u <i>Dogis lupus</i> ve <i>Canis lupus</i> ssp. <i>lupus</i>'u <i>Dogis lupus</i> ssp. <i>lupus</i> olarak değiştirmek için Takson Yer Değişimi oluşturacak ve gerçekleştirecektir. Bu ise karışıklığa neden olabilir, dolayısıyla dikkatli kullanın.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Oy eklendi
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Oy kaldırıldı
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Henüz oy yok
+      #message when taxon change is committed
+      taxon_change_committed: Takson değiştirme kaydedildi! Otomatik olarak güncellenebilen kayıtlar yakında değiştirilecektir.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Bu takson değiştirme şu anda beklemededir. Onaylanabilmesi için 1 küratörün onayı gerekmektedir."
+        other: "Bu takson değiştirme şu anda beklemededir. Onaylanabilmesi için %{count} küratörün onayı gerekmektedir."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Seçilen taksonun aktif alt soyu olamaz; önce bunları taşıyın veya 'Alt soy çıktıya taşınsın mı?' seçeneğini işaretleyin.
+      output_taxon_rank_level_not_coarser_html: >
+        Çıktı taksonun düzeyi, girdi taksonun (%{taxon_link}) aktif alt soyunun düzeyinden daha geniş olamaz
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Bu taksonomik değişiklik zaten yapılmıştı!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "'%{id}' takson değiştirmeyi silerken bir sorun oluştu!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Takson değiştirme silindi.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Takson değiştirme başarıyla güncellendi.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Belirtilen değişiklik yok
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Takson değiştirme başarıyla oluşturuldu.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Yürürlüğe girmesi için 1 küratörün onayı gerekir"
+        other: "Yürürlüğe girmesi için %{count} küratörün onayı gerekir"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8889,6 +8988,30 @@ tr:
             name:
               bad_format: |
                 yalnızca standart Latin harfleri, kısa çizgiler (-), boşluklar ve × karakterini içerebilir; varsayımsal taksonlar ve kültivarlar kabul edilmez
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "virüsler, bakteriler veya aşılanmamış kladlar için isim değişikliği yapılamaz"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "türden daha geniş taksonomik düzeylerde isim değişikliği yapılamaz"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "hibrit formüller için isim değişikliği yapılamaz"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "cins ve tür arasında hibrit belirteci olarak ‘x’ eklenemez"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "kontrol için isim iki terimli (Cins tür) olmalıdır"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "cins değiştirilemez"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "standart dışı tür adı: yalnızca ‘x’/‘×’ işaretini kaldırmak veya eklemek mümkündür"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "tür adı benzer olmalıdır (sadece küçük yazım hatası veya cinsiyet değişikliği)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "bu düzey için infra spesifik (ssp) ad gereklidir"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "infra spesifik (ssp) düzeylerde yalnızca infra spesifik ad değiştirilebilir"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "İnfra spesifik (ssp) ad benzer olmalıdır (sadece küçük yazım hataları veya cinsiyet uyumu)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "herhangi bir adın ilk harfi değiştirilemez"
         taxon_change:
           attributes:
             base:
