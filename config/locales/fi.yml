@@ -1417,6 +1417,8 @@ fi:
     pilot_stop: "Lopeta osallistuminen"
     #link to a blog post
     pilot_read_more: "Lue lisää blogistamme."
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Auta meitä täydentämään tietoja osallistumalla – saat päivittäin linkin havaintoihin:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Ei vielä sisälly tietokonenäkömalliin"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -6749,6 +6751,9 @@ fi:
         trending_desc: Eniten havaitut taksonit viime kuussa
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
         wanted_desc: Tähän taksoniin kuuluvat lajit, joita ei ole vielä havaittu.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Jokin meni pieleen näitä tunnisteita lähettäessä: %{message}
     taxon_changes:
       #a message when a taxon change was deleted
       taxon_change_deleted: Taksonimuutos poistettu.
