@@ -109,8 +109,17 @@ class QualityMetrics extends React.Component {
           contents={<span>{`(${needsIDInfo.votersAgainst.length})`}</span>}
         />
       );
-    const needsIDVoteDisabled = !observation.communityTaxon
-      && !this.metricHasVotes( "needs_id" );
+    const observerOptedOutOfCommunityTaxon = (
+      ( !observation.user.prefers_community_taxa && observation.prefers_community_taxon === null )
+      || observation.prefers_community_taxon === false
+    );
+    const needsIDVoteDisabled = (
+      !observation.communityTaxon
+      || (
+        observation.communityTaxon?.id !== observation.taxon?.id
+        && !observerOptedOutOfCommunityTaxon
+      )
+    ) && !this.metricHasVotes( "needs_id" );
     const checkboxYes = userCanInteract
       ? (
         <input

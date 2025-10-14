@@ -1933,10 +1933,15 @@ class Observation < ApplicationRecord
   end
 
   def set_community_taxon(options = {})
+    old_community_taxon_id = community_taxon_id
     community_taxon = get_community_taxon(options)
     self.community_taxon = community_taxon
     if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
       self.species_guess = ( community_taxon.common_name( user: user ).try( :name ) || community_taxon.name )
+    end
+    # Reset needs_id votes when community_taxon changes
+    if community_taxon_id_changed? && old_community_taxon_id != community_taxon_id
+      reset_needs_id_votes
     end
     true
   end
@@ -3348,6 +3353,14 @@ class Observation < ApplicationRecord
 
   def casual?
     quality_grade == CASUAL
+  end
+
+  def reset_needs_id_votes
+    ActsAsVotable::Vote.where(
+      votable_type: "Observation",
+      votable_id: id,
+      vote_scope: "needs_id"
+    ).delete_all
   end
 
   def flagged_with(flag, options)
