@@ -652,6 +652,8 @@ zh-CN:
   are_you_sure_you_want_to_delete_this_assessment?: 您确定您想要删除此评估吗？
   are_you_sure_you_want_to_delete_this_photo?: 您确定要删除这张照片么？
   are_you_sure_you_want_to_delete_this_post: 您确定要删除此投稿么？
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: 你确定要删除这个声音吗？
   are_you_sure_you_want_to_delete_this_taxon_change: 您确定要删除此分类单元更改么？
   are_you_sure_you_want_to_remove_all_tags: 您确定您要移除所有标签么？
   are_you_sure_you_want_to_remove_curator: 您确定要移除作为馆长的 %{user} 么？
@@ -665,6 +667,8 @@ zh-CN:
     您确定要从%{project}中移除这条观察记录吗？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您确定要从%{place}的名录中移除这个分类单元吗？"
   are_you_sure_you_want_to_flag_as_spammer: 您确定要将此用户标记为垃圾邮件发送者？
+  artificially_generated_content: 人工智能生成的内容
+  artificially_generated_content_desc: 包含大部分或全部通过人工智能生成的内容。
   associated_observations: 相关观察
   associated_taxa: 相关分类群
   attention: 关注
@@ -763,7 +767,7 @@ zh-CN:
     other: |
       根据这些 ID中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的 ID <strong>无意中产生分歧</strong> 。
   based_on_the_evidence_can_id_be_improved: |
-    基于现有证据, 社区鉴定能否被确认或仍需改进？
+    基于现有证据, 社区鉴定能否已可被确认，或仍需改进？
   batch: 批
   batch_edit: 批量编辑
   #Where x is the title of a list of taxa
@@ -989,6 +993,7 @@ zh-CN:
   community_id_is_precise: 社群分类单元是精确的
   community_moderation_settings: 社群管制设置
   community_supported_id: 是社群支持的分类单元吗？
+  community_taxon_matches_observation_taxon: 社群分类单元与观察分类单元匹配
   compare: 比较
   compare_with: 比较
   comparing: 比较
@@ -1387,6 +1392,8 @@ zh-CN:
   curator_coordinate_access_desc: |
     传统项目的馆长坐标访问权限取决于添加者对项目的观察。这只是项目中观察的默认设置。观察者还可以针对具体的观察结果更改此设置。
   curator_identification: 馆长鉴定
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "当前群落分类单元： %{taxon}"
   current_flags: 当前标记
   #Label for a custom boundary for an observation search
   custom_boundary: 自定义边界
@@ -1409,6 +1416,8 @@ zh-CN:
     pilot_read_more: "浏览我们的博客以了解更多信息。"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "鉴定差距试点：需要鉴定通缉物种"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "通过参与接收每日观察链接来帮助我们填补空白："
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "尚未列入计算机视觉模型"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1545,6 +1554,8 @@ zh-CN:
   #Label for a button to delete a taxon range
   delete_range: 删除分布范围
   delete_selected: 删除所选
+  #Label for a button to delete a sound file
+  delete_sound: 删除声音
   delete_taxon_and_merge_most_data_html: |
     删除<i>%{taxon}</i>，并将其数据合并到另一个分类单元。这个工具是用于<strong>移除重复的分类单元</strong>的。如果您要移除某个同物异名，请创建一个分类交换组。<strong>请谨慎操作！</strong>删除分类单元的后果可能十分严重。请仔细阅读<a href="%{curator_url}">馆长指南</a>中的具体内容。
   delete_user: 删除用户
@@ -1819,6 +1830,8 @@ zh-CN:
   eol: 生命大百科
   eol_collection_url: "EOL收藏URL"
   error_updating_photo: "上传图片时出错：%{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "更新声音时出错： %{sound_errors}"
   establishment:
     endemic: 特有
     establishment: 定殖
@@ -1885,6 +1898,7 @@ zh-CN:
   extinct: 灭绝
   extinct_in_the_wild: 野外灭绝
   extra_properties: 额外属性
+  evidence_accurately_depicts_organism_or_scene: 证据准确地描述了个体或场景
   evidence_of_organism: 生物证据
   evidence_related_to_single_subject: 与单一主体有关的证据
   facebook: 脸书
@@ -1921,7 +1935,11 @@ zh-CN:
   fields_can_only_be_edited_by_the_people_who: 字段只能由创建者和站点馆长编辑
   fields_merged: 字段已合并
   file: 文件
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: 文件格式
   file_size: 文件大小
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: 文件网址
   file_should_be_in_the_following_format: "文件应该为以下格式：分类单元名称、描述"
   fill_out_project_observation_fields: 填写项目观察领域
   fill_out_your_profile: 完成您的个人资料
@@ -2166,6 +2184,8 @@ zh-CN:
   heads_up_there_are_other_draft_taxon_changes_html:
     other: "<strong>注意：</strong>还有关于同一个分类群的%{count}个分类群变化草案。"
   heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "注意：此声音已被标记。"
   heads_up_this_photo_is_already_associated_with: "请注意：这张照片已经同<a target='_blank' href='%{url}'>另一条观察记录</a>进行过关联"
   heads_up_you_have_multiple: "请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。"
   help: 帮助
@@ -2730,7 +2750,7 @@ zh-CN:
   locality_notes: 位置注释
   localized_species_accounts: 本地化物种账户
   location: 位置
-  location_is_accurate: 位置准确
+  location_is_accurate: 位置是准确的
   location_is_exact: 位置是精确的
   location_is_public: 位置是公开的
   location_is_obscured: 位置已遮盖
@@ -4891,7 +4911,15 @@ zh-CN:
     select_one_or_more_sounds: 请选择一个或多个声音
     selected_sounds: 已选择声音
     sound: 声音
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: 声音 %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: 声音已删除
     sound_has_been_flagged: 此声音已被标记。
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: 声音已隐藏
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: 声音未隐藏
     soundcloud_replied_with_an_error: SoundCloud回答遇到错误。请稍后再试。
     sounds: 声音
     your_soundcloud_account: 您的SoundCloud账户
@@ -5559,6 +5587,8 @@ zh-CN:
   updated_by_user_on_date_html: 由 %{user} 于 %{date} 更新
   updated_daily: 每日更新
   updated_photo: 已更新照片
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: 更新的声音
   upload: 上传
   upload_a_csv_file: 上传CSV文件
   upload_a_csv_file_with_observation: |
@@ -6158,6 +6188,10 @@ zh-CN:
         如果您的公告以站点为目标（如果您是网站超管的话这将是默认设置），这将排除被发送给全部站点的通知。
       ip_countries_desc: |
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论 IP 所在国家/地区。
+      exclude_ip_countries_desc: |
+        按住 CMD 或 SHIFT 键并单击以选择多个。选定的国家/地区将不会显示
+        公告。如果选择了 IP 国家/地区，则选择“排除 IP 国家/地区”
+        将从前者中减去。
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         请注意，用户最近创建的观察的创建日期会被缓存，因此定位可能需要几个小时才能生效
@@ -6954,6 +6988,11 @@ zh-CN:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: 在满足下列条件后，观察结果会变成 <strong>"研究等级"</strong>：
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          这 <strong>群落分类单元和观察分类单元匹配</strong>
+          （对于那些极少数情况下，观察分类单元可能更多
+          比社区分类单元更具体）
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           %{site_name}<strong>社群同意鉴定到种或更低层级</strong>，即超过2/3的鉴定者同意的分类单元（如果社群投票决定社群分类单元不能被进一步改进了，那么可以回滚到亚科或更低层级）
         #Leads a list of ways an observation to revert to Casual status
@@ -6977,6 +7016,12 @@ zh-CN:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           观察<strong>不是关于单一主体的证据</strong>（如关于四个无关生物体的四张照片；但有一张照片呈现观察主体的生境是可以的）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          观察 <strong>没有提供生物体的准确证据或
+          现场</strong> （例如，人工智能被用来添加、删除或替换
+          图像或声音中的元素。去噪、焦点堆叠或制作
+          清除传感器灰尘等小修复通常没问题）。
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           观察不再需要鉴定<em>且</em>社群鉴定在科或更高层级
@@ -7454,6 +7499,14 @@ zh-CN:
       not_found:
         sorry_that_doesnt_exist: 抱歉，它不存在！
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          您可以在以下位置查看原件 <a href="%{url}">%{url}</a>.请
+          如果此声音确实如此，请将版权侵权标志保留为未解决
+          侵犯版权。
     stats:
       index:
         active_desc: 此前30天内创建过鉴定、观察、评论或帖子
@@ -7590,6 +7643,9 @@ zh-CN:
         wikipedia_summary_desc_html: |
           基于<a target="_blank"
           href="%{url}">维基百科</a>页面的关于该分类单元的简介会由我站进行无限期缓存，直到手动更新为止。更新这一简介也会立刻更新我站对上述维基百科内容的缓存，以供显示在网站上，这会在一个星期后自动刷新。
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          您只能直接对物种绰号进行细微的更改（例如性别更改、拼写错误）。添加一个 <a target="_blank" href="%{url}">分类单元交换</a> 如果您需要对名称进行其他更改。
       show:
         about_names_desc: |
           <p>
@@ -7669,6 +7725,15 @@ zh-CN:
         trending_desc: 上个月观察到最多的分类群
         trending_in_place_desc_html: 上个月在<a href="%{url}">%{place}</a>中观察到最多的分类群
         wanted_desc: 此分类中尚未观察到的物种。
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: 直接编辑时名称必须相似，进行分类单元交换以进行彻底的名称更改
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} 在 Flickr 知道您已授予我们许可之前，无法为您的照片添加标签。
+        <a href='%{url}'>授予 Flickr 权限</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        在尝试发布这些标签时出了问题： %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: 您确定要恢复此分类单元更改么？
@@ -7686,6 +7751,10 @@ zh-CN:
       withdrawn: 已撤回
       #state of a committed taxon change
       committed: 已提交
+      #state of a pending taxon change
+      pending: 待确认
+      #state of a approved taxon change
+      approved: 已批准
       #state of a draft taxon change
       draft: 草稿
       #the status of a taxon change: draft, withdrawn or committed
@@ -7694,6 +7763,32 @@ zh-CN:
         move_children_desc2_html: |
           选中此框将会将输入分类单元的子分类单元移动到用于分类单元交换和分类单元合并的
           输出分类单元中。 如果这是对属或是更低层级的更改， 它将为所有下层分类单元的学名创建需要更改的分类群互换。 例如，如果你将Canidae科通过交换并入到Dogidae科，就将把<i>Canis</i> 属从Canidae科改为Dogidae科。如果你把<i>Canis</i>属通过交换并入到 <i>Dogis</i>属里，它将创建并提交分类群互换以将<i>Canis lupus</i> 更名为 <i>Dogis lupus</i> ，并将<i>Canis lupus</i> ssp. <i>lubus</i> 更名为 <i>Dogis lupus</i> ssp.<i>lupus</i>。这可能会引起极大混乱，所以请小心使用。
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: 投票已添加
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: 投票已删除
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: 尚无投票
+      #message when taxon change is committed
+      taxon_change_committed: 分类单元更改已提交！自动更新的记录将很快更改。
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        other: "此分类单元更改现在正在等待确认中。它需要获得 %{count} 名馆长的批准才能得到提交。"
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: 分类单元更改已提交！
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "更改分类单元名称“%{id}”时发生了错误！"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: 分类单元更改已删除。
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: 分类单元更改已更新。
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: 未指定更改
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: 已成功创建分类单元更改。
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        other: "需要由 %{count} 名馆长批准才能发布"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8694,6 +8789,30 @@ zh-CN:
             name:
               bad_format: |
                 只能包含标准的拉丁字符、连字符、空格和×；注意不允许假定的分类单元和栽培品种。
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "病毒、细菌或未嫁接的进化枝不允许更改名称"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "对于比物种更粗略的等级不允许更改名称"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "杂交种不允许更改名称"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "不能在属和种之间添加“x”作为的杂交标记"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "必须为二名法（属·种）格式才能送检"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "属不能更改"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "非标准物种名称：只允许删除“x”/“×”或添加“×”"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "具体的种小名必须相似（仅限轻微的拼写错误/词性差异）"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "这个等级需要设定种小名加词"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "只有种小名加词会因种下等级而改变"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "种小名必须相似（仅限轻微的拼写错误/词性差异）"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "种小名的第一个字母不能改变。"
         taxon_change:
           attributes:
             base:
