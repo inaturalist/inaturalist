@@ -1535,6 +1535,8 @@ da:
     pilot_read_more: "Læs mere på vores blog"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Identifikationshuller-pilotprojekt: Behøver ID ønskede arter"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Hjælp os med at udfylde huller ved at deltage for at modtage daglige links til observationer:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Endnu ikke inkluderet i Computer Vision Model"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -6611,6 +6613,14 @@ da:
         Tid i kontoens tidszone, hvor denne meddelelse påbegyndes
         vist. Anvendes på tværs af tidszoner, så alle begynder at se
         den på samme tid, ikke i forhold til deres lokale tid.
+      include_virtuous_tags_desc: |
+        CMD- eller SHIFT-klik for multivalg. Valg af "Enhver" eller intet
+        valg vil vise meddelelsen til alle brugere uanset
+        deres Virtuous tags.
+      exclude_virtuous_tags_desc: |
+        CMD- eller SHIFT-klik for multivalg. Valg af "Ingen" eller intet
+        valg vil vise meddelelsen til alle brugere uanset
+        deres Virtuous tags.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Målbrugere efter donationsadfærd
@@ -8594,6 +8604,9 @@ da:
       cant_tag_photos_html: |
         %{site} kan ikke føje tags til de aktuelle fotos, før Flickr ved, at man har givet os tilladelse.
         <a href='%{url}'>Tildel Flickr-tilladelse</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Noget gik galt i forsøget på at poste disse tags: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Sikker på, at takson-ændringen skal gendannes?
@@ -8804,6 +8817,36 @@ da:
           fra begges søgeresultater. Man bliver dog ikke usynlig for vedkommnde, der stadig
           vil kunne finde ens observationer og se ens profil, men uden mulighed for
           nogen interaktion.
+        block_desc_blocking_is_for_situations: |
+          Blokering er til situationer, hvor man bare ikke kan enes med
+          nogen, og hvor de vil ikke lade dig være, på trods af dine bedste
+          bestræbelser på at bilægge tvister på en civiliseret måde. Det er ikke en
+          måde at gemme sig for folk, at forhindre identifikationer fra personer, hvis
+          meninger man ikke har tillid til, eller at fravælge fællesskabs-ID'et (der er
+          en anden indstilling til det). Blokering fungerer således begge veje: Blokeres
+          nogen, kan de ikke interagere med dig, og du kan heller ikke interagere
+          med dem. Misbruger man det til at forhindre nogen i at identificere ens
+          observationer, forhindres man også selv i at identificere deres observationer.
+        block_desc_you_can_only_block_html: |
+          Man kan kun blokere tre personer. Vi synes, det er et rimeligt
+          antal, der rummer de personer, som behøver blokering, og
+          samtidig forhindre blokeringsmisbrug. Ved et ønske om at blokere
+          flere folk, <a href="mailto:%{help_email}">kontakt os</a> venligst.
+        block_desc_there_are_two_exceptions: |
+          Der er to situationer, hvor blokering ikke forhindrer interaktion:
+        block_desc_comments_on_taxon_flags: kommentarer til taksonmarkeringer oprettet af dig
+        block_desc_comments_on_taxon_changes: kommentarer til taksonændringer oprettet af dig
+        block_desc_unlike_more_personal: |
+          Modsat mere personlige former for indhold, såsom observationer og
+          journalindlæg, deles taksaer af alle og bør være åbne for debat for alle.
+          Blokering vil stadig forhindre, at man modtager notifikationer om kommentarer
+          til denne type indhold fra den person, man har blokeret.
+        block_desc_if_harassing_html: |
+          Chikaneres eller stalkes man af nogen på %{site_name},
+          <a href="mailto:%{help_email}">så giv os besked</a>. Hvis
+          dette udgør en overtrædelse af vores brugsbetingelser eller udgør
+          anden adfærd, som vi anser for upassende for vores websted, vil vi
+          undersøge sagen.
         common_scientific_name_display_order: Visningsrækkefølge for Almindeligt/Videnskabeligt navn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Hvis du skifter mening, kan du altid
