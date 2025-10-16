@@ -22,7 +22,7 @@ class AddUniqueIndexToVotes < ActiveRecord::Migration[6.1]
 
         if vote.votable_type == "Observation"
           observation_ids_to_index << vote.votable_id
-        elsif r["votable_type"] == "Annotation" && vote.votable.resource.is_a?( Observation )
+        elsif r["votable_type"] == "Annotation" && vote&.votable&.resource.is_a?( Observation )
           observation_ids_to_index << vote.votable.resource_id
         end
         vote.destroy
