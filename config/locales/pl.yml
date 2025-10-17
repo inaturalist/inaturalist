@@ -737,6 +737,14 @@ pl:
     identyfikacji. Zwykle używane są aplikacje takie jak aplikacje desktopowe lub mobilne aplikacje, które zawierają funkcje dla swoich użytkowników do tworzenia obserwacji iNaturalist. Zawartość ta musi być generowana z prawdziwym zaangażowaniem ludzi
     lub pod ich nadzorem. Przeczytaj nasze <a href="/pages/community+guidelines"
     target="_blank">Wytyczne Społeczności</a> zakazujące wygenerowanych maszynowo obserwacji, identyfikacji i komentarzy po więcej szczegółów.
+  app_owner_application_about_p2_html: |
+    Od 2022 roku wymagamy ręcznego zatwierdzania dla użytkowników, którzy chcą tworzyć klientów API.
+    Aby utworzyć aplikacje innych firm, musisz najpierw przesłać aplikację, aby stać się
+    "Właściciel aplikacji". Ta aplikacja powinna opisywać funkcjonalność proponowanej aplikacji
+    i jak planujesz z niego korzystać. Aby złożyć wniosek, Twoje konto musi znajdować się na stronie
+    co najmniej 2 miesiące i musi mieć ukończone co najmniej 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">poprawa identyfikacji</a> w ostatnim miesiącu. Możemy poprosić o dalsze działania
+    pytania dotyczące Twojego planu i zastrzegamy sobie prawo do odrzucenia zgłoszeń z dowolnego powodu.
   app_owner_application_inelligible: |
     Aby złożyć wniosek, Twoje konto musi mieć co najmniej 2 miesiące i
     musi mieć zrobione co najmniej 10 poprawek danych identyfikacyjnych w ostatnim miesiącu.
@@ -820,6 +828,8 @@ pl:
   are_you_sure_you_want_to_delete_this_assessment?: Czy na pewno chcesz usunąć ocenę?
   are_you_sure_you_want_to_delete_this_photo?: Czy na pewno chcesz usunąć to zdjęcie?
   are_you_sure_you_want_to_delete_this_post: Czy na pewno chcesz usunąć ten post?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Czy na pewno chcesz usunąć ten dźwięk?
   are_you_sure_you_want_to_delete_this_taxon_change: Czy na pewno chcesz usunąć zmianę w taksonie?
   are_you_sure_you_want_to_remove_all_tags: Czy na pewno chcesz usunąć wszystkie tagi?
   are_you_sure_you_want_to_remove_curator: Czy jesteś pewien, że chcesz usunąć %{user} jako kuratora?
@@ -833,6 +843,8 @@ pl:
     Czy na pewno chcesz usunąć tę obserwację z projektu %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Czy na pewno chcesz usunąć ten takson z checklisty %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Czy na pewno chcesz oznaczyć tego użytkownika jako spamera?
+  artificially_generated_content: Sztucznie wygenerowane treści
+  artificially_generated_content_desc: Zawiera treści, które są w większości lub w całości generowane przez sztuczną inteligencję.
   associated_observations: Powiązane obserwacje
   associated_taxa: Powiązane taksony
   attention: Uwaga
@@ -1171,6 +1183,7 @@ pl:
   community_id_is_precise: Takson społeczności jest precyzyjny
   community_moderation_settings: Ustawienia moderacji społeczności
   community_supported_id: Takson wspierany przez społeczność?
+  community_taxon_matches_observation_taxon: Takson społeczności jest zgodny z taksonem obserwacyjnym
   compare: Porównaj
   compare_with: Porównaj z
   comparing: porównanie
@@ -1245,6 +1258,12 @@ pl:
       geoprywatność statusu związanego z kontynentem, krajem, lub
       miejscem na poziomie stanu może nadpisać status globalny lub powiązany z
       z miejscem wyższego poziomu.
+    iucn: |
+      Równoważny kod Czerwonej Księgi IUCN. To nie jest rzeczywista ocena IUCN,
+      tylko kod IUCN, który najlepiej odpowiada zagrożeniu ujawnieniem współrzędnych
+      wynikający z tego statusu. Spowoduje to zastąpienie geoprywatności, jeśli jest to "Najmniej
+      Obawa" lub poniżej, więc jeśli chcesz zaciemnić obserwacje tego
+      takson, ustaw to na "Near Threatened" lub wyżej.
   conservation_status_geoprivacy_desc: |
     Domyślne ustawienia geoprywatności dla wszystkich obserwacji tego taksonu w tej lokalizacji
   contact_support: Skontaktuj się z pomocą
@@ -1579,7 +1598,14 @@ pl:
   curators: Kuratorzy
   curators_can_remove_observations_from: Kuratorzy mogą usuwać obserwacje z projektu, a ich identyfikacje są wyświetlane wraz z obserwacjami w widokach specyficznych dla projektu. Kuratorzy mogą również zobaczyć prawdziwe współrzędne prywatnego i ukrytego wkładu w ten projekt.
   curator_coordinate_access: Dostęp do koordynacji kuratora
+  curator_coordinate_access_desc: |
+    Dostęp kuratorów do współrzędnych w tradycyjnych projektach zależy od tego, kto dodał obserwację
+    do projektu. Jest to tylko domyślne ustawienie dla obserwacji
+    w projektach. Obserwatorzy mogą również zmienić to ustawienie dla
+    indywidualnych obserwacji.
   curator_identification: Oznaczenie kuratora
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Aktualny takson wspólnotowy: %{taxon}"
   current_flags: Aktualne zgłoszenia
   #Label for a custom boundary for an observation search
   custom_boundary: Granica niestandardowa
@@ -1593,6 +1619,59 @@ pl:
   daily_users: Dzienni użytkownicy
   danger_zone: Strefa niebezpieczeństwa
   dashboard: Strona główna
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Tak! Chciałbym wziąć udział."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Przestań uczestniczyć"
+    #link to a blog post
+    pilot_read_more: "Przeczytaj więcej na naszym blogu."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Pilotaż luk w identyfikacji: Potrzebuje identyfikacji poszukiwanych gatunków"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Jeszcze nie uwzględnione w modelu przetwarzania obrazów"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Uważamy, że potrafisz zidentyfikować"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Oto link do obserwacji gatunków jeszcze nieuwzględnionych w modelu przetwarzania obrazów, które naszym zdaniem potrafisz zidentyfikować."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Zajrzyj tu jutro, aby uzyskać link do obserwacji gatunków, które nie zostały jeszcze uwzględnione w modelu przetwarzania obrazu, a które naszym zdaniem potrafisz zidentyfikować. Zostaną Ci pokazane gatunki, w przypadku których dokonałeś co najmniej 3 poprawnych identyfikacji."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Jeśli nie widzisz linku, być może nie ma żadnych obserwacji spełniających te kryteria, które wymagają identyfikacji. Będzie to sprawdzane raz dziennie."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Pilotaż luk obserwacyjnych: Pobliskie poszukiwane gatunki"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Jutro otrzymasz listę gatunków, które:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Nie są jeszcze uwzględnione w modelu przetwarzania obrazów"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Zostały zaobserwowane w tym sezonie w pobliżu twojej ostatniej obserwacji"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Są oparte na próbce do 200 obserwacji maksymalnie 300 gatunków, przy priorytetowym traktowaniu roślin"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Obserwując te gatunki, pomożesz ulepszyć model i wypełnić luki w danych dotyczących różnorodności biologicznej. Ta lista zostanie zaktualizowana przy aktualizacji modelu. Możesz zrezygnować w dowolnym momencie."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Oto aktualna lista gatunków, które są:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Jeszcze nie uwzględnione w modelu przetwarzania obrazów"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Zaobserwowane w pobliżu Twojej ostatniej lokalizacji w tym sezonie"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Obserwując je, pomagasz ulepszyć rozpoznawanie gatunków i wypełnić krytyczne luki."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Przeglądaj gatunki"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Zajrzyj tu jutro, aby uzyskać spersonalizowaną listę gatunków, które nie zostały jeszcze uwzględnione w modelu przetwarzania obrazów, zaobserwowanych w tym sezonie. Spersonalizowana lista będzie korzystać z lokalizacji Twojej ostatniej obserwacji."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Jeśli nie widzisz linku, być może w Twojej okolicy nie ma żadnego gatunku spełniającego te kryteria."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Pilotaż identyfikacji: Wdrażanie nowych użytkowników"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Począwszy od jutra, otrzymuj do 30 obserwacji dziennie, zgodnych z Twoimi umiejętnościami identyfikacji, i pomagaj we wdrażaniu nowych użytkowników. Możesz zrezygnować w dowolnym momencie."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Poniżej znajduje się do 30 obserwacji, które odpowiadają Twoim umiejętnościom identyfikacyjnym."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Zajrzyj tu jutro, aby uzyskać link do obserwacji, które pasują do Twoich umiejętności identyfikacji."
   data_deficient: Niepełne dane
   data_quality: Jakość danych
   data_quality_assessment: Ocena jakości danych
@@ -1686,6 +1765,8 @@ pl:
   #Label for a button to delete a taxon range
   delete_range: Usuń zasięg
   delete_selected: Usuń wybrane
+  #Label for a button to delete a sound file
+  delete_sound: Usuń dźwięk
   delete_taxon_and_merge_most_data_html: |
     Usuń <i>%{taxon}</i> i scal większość danych z niego z innym taksonem. Użyj tego narzędzia do <strong>usuwania zduplikowanych taksonów</strong>. Jeśli chcesz usunąć przestarzały synonim, przeprowadź zamianę taksonu. <strong>UWAŻAJ!</strong> Usuwanie taksonów może mieć negatywne skutki. Sprawdź <a href="%{curator_url}">Przewodnik dla Kuratorów</a> po więcej szczegółów.
   delete_user: Usuń użytkownika
@@ -1728,6 +1809,8 @@ pl:
         Sprawdź swoją pocztę e-mail i kliknij link w otrzymanym e-mailu, aby potwierdzić swoje konto.
       user:
         suspended: Twoje konto zostało zawieszone
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Token resetowania hasła jest nieprawidłowy. Użyj linku w ostatnio wysłanej wiadomości e-mail z prośbą o zresetowanie hasła lub <a href="%{url}">Poproś o nowy</a>.
     sessions:
       signed_in: 'Zalogowano pomyślnie.'
       signed_out: 'Wylogowano pomyślnie.'
@@ -1794,6 +1877,8 @@ pl:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Nieporozumień
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Pokaż obserwacje, które mają rozbieżne identyfikacje
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Rozłącz
@@ -1818,6 +1903,8 @@ pl:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: WSPOMÓŻ
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Podarować
   donate_again_caps: PRZEŚLIJ DATEK PONOWNIE
   donate_again_today_caps: PRZEŚLIJ DATEK PONOWNIE DZISIAJ
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1837,6 +1924,8 @@ pl:
   download_kml: Pobierz KML
   downstream_coverage_rank: Ranga zasięgu downstream
   downstream_coverage_colon_rank: "Zasięg downstream: ranga %{rank}"
+  downstream_deviations: Odchylenia w dół łańcucha
+  downstream_deviations_for_taxon: "Odchylenia na dalszych etapach łańcucha dla %{taxon}"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Przenieś oflagowany takson w dół.
@@ -1955,6 +2044,8 @@ pl:
   eol: EOL
   eol_collection_url: "Adres URL kolekcji EOL"
   error_updating_photo: "Wystąpił błąd podczas aktualizacji zdjęcia: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Błąd podczas aktualizacji dźwięku: %{sound_errors}"
   establishment:
     endemic: Endemiczny
     establishment: Placówka
@@ -1995,6 +2086,12 @@ pl:
   exclude_projects: Wyklucz projekty
   exclude_taxa: Wyklucz taksony
   exclude_users: Wyklucz użytkowników
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Z wyłączeniem taksonu %{count}
+    few: Wyłączając %{count} taksony
+    many: Wyłączając %{count} taksonów
+    other: Wyłączając %{count} taksonów
   exclusion_filters: Filtry wykluczające
   existing_flags: Istniejące zgłoszenia
   exit_full_screen: "Wyjdź z trybu pełnoekranowego"
@@ -2021,6 +2118,7 @@ pl:
   extinct: wymarły
   extinct_in_the_wild: Wymarły na wolności
   extra_properties: Dodatkowe właściwości
+  evidence_accurately_depicts_organism_or_scene: Dowody dokładnie opisują organizm lub scenę
   evidence_of_organism: Ślad organizmu
   evidence_related_to_single_subject: Dowody dotyczące pojedynczego organizmu
   facebook: Facebook
@@ -2058,7 +2156,11 @@ pl:
   fields_can_only_be_edited_by_the_people_who: Pola mogą być edytowane tylko przez ich autorów i kuratorów strony
   fields_merged: Scalone pola
   file: Plik
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Format pliku
   file_size: Rozmiar pliku
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Adres URL pliku
   file_should_be_in_the_following_format: "Plik powinien zawierać następującą kolejność: nazwa taksonu, opis"
   fill_out_project_observation_fields: Uzupełnij notatki związane z projektem
   fill_out_your_profile: uzupełnij swój profil
@@ -2299,39 +2401,108 @@ pl:
   header_your_projects: Twoje projekty
   header_your_profile: Twój profil
   heads_up: Uwaga
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Uwaga:</strong> Po zatwierdzeniu tej zmiany oznaczenia zostaną ponownie przypisane do taksonów na podstawie ich atlasów. Jeśli niektóre lub żadne z nich
+    nie posiadają atlasów, lub jeśli atlasy nakładają się na siebie dla danego zapisu,
+    oznaczenia zostaną zastąpione tymi dla najbliższego wspólnego
+    taksonu nadrzędnego (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Uwaga:</strong> Ten podział taksonu obejmuje taksony należne, które albo
+    nie mają atlasów lub nie mają wspólnego przodka, więc zapisy
+    związane z jego taksonami naliczonymi nie mogą być automatycznie przypisane do
+    taksony, gdy ten podział zostanie dokonany, a społeczność będzie musiała dodać nowe
+    oznaczenia dla tych rekordów.
+  heads_up_automatable_split_notice_html: |
+    <strong>Uwaga:</strong> Niektóre lub wszystkie oznaczenia, na które ma wpływ
+    ten podział, mogły zostać zastąpione oznaczeniami %{taxon}. Tak
+    dzieje się, gdy nie możemy automatycznie przypisać oznaczenia do jednego z
+    taksonów należnych.
+  heads_up_observose_taxon_change_html: |
+    <strong>Uwaga:</strong> Co najmniej jeden z taksonów objętych tą
+    zmianą ma ponad %{observose_taxon_threshold} dalszych obserwacji.
+    Tylko administratorzy lub kuratorzy tej struktury taksonów mogą zatwierdzić tę zmianę.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Uwaga:</strong> Co najmniej jeden z taksonów objętych tą
+    zmianą mieści się w obrębie <a href="%{framework_url}">Ram taksonowych</a>. Tylko
+    administratorzy lub kuratorzy mogą wprowadzać zmiany mające wpływ na
+    taksony tej struktury. Skontaktuj się z jednym z kuratorów tego taksonu, aby zatwierdzić tę zmianę.
   heads_up_this_photo_has_been_flagged: "UWAGA: zdjęcie zostało zgłoszone."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: TEN DŹWIĘK ZOSTAŁ OFLAGOWANY."
   heads_up_this_photo_is_already_associated_with: "Uwaga: to zdjęcie jest już powiązane z <a target='_blank' href='%{url}'>inną obserwacją</a>"
+  heads_up_you_have_multiple: "Uwaga: Masz wiele maszynowych tagów taksonomicznych dla identycznych rang. Są one oznaczone kolorami poniżej według rangi."
   help: Pomoc
   help_confirm_observations!: Pomóż potwierdzić obserwacje!
   help_translate!: Pomóż w tłumaczeniu!
   here_are_3_examples: Tutaj są 3 przykłady dobrze przygotowanych danych
+  here_are_our_top_suggestions: 'Oto nasze najlepsze sugestie:'
   here_are_our_top_species_suggestions: Nasze sugestie dot. gatunku
   hex_color_eg: Kod HEX koloru, np. 65644F
   hi_user: "Witaj %{user}"
   #Verb, usually a button to hide an interface element
   hide: Ukryj
   hide_content: Ukryj zawartość
+  hide_desc: |
+    Ukrycie treści spowoduje usunięcie jej z widoku publicznego, ale użytkownicy nadal będą
+    mogli dostrzec, że coś jest ukryte, a kuratorzy strony i autor
+    nadal będą widzieć ukrytą zawartość. Ukryte
+    identyfikacje nie będą miały wpływu na takson społeczności obserwacji.
+  hide_desc_staff_can_unhide: |
+    Tylko personel witryny może odkrywać zawartość po jej ukryciu, więc używaj tej opcji tylko
+    w przypadku wyraźnych naruszeń Wytycznych dla Społeczności.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ukryj "Brak adnotacji"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Ukryj obserwacje z prywatnymi lokalizacjami
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Ukryj sumę bieżącą
+  hide_uncountable_species: Ukryj nieliczone gatunki
+  high: Wysoka
   #Highest taxonomic rank to filter by, where the "highest" possible rank is
   #kingdom
   highest_rank: Najwyższa ranga
   highlights_and_stats_from_year_on_site: "Statystyki i wyróżnienia od %{year} na %{site}"
   history: Historia
   home: Strona główna
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Godziny do skorygowania:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Nie posiada jednak uprawnień do ponownego użycia i nie zostanie udostępniona repozytoriom danych przestrzegającym wyborów licencyjnych.
   #Message displayed on an observation detail page when the observation is
   #not licensed and the page is being viewed by the person who made the
   #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Możesz zmienić swoje ustawienia licencji w <a class="linky" href="/users/edit#content">ustawieniach konta</a>.
   however_there_were_some_issues: "Jednak wystąpiły pewne problemy: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Możesz jednak skomentować obserwacje z niezamierzonymi
+    rozbieżnościami wspomnianymi powyżej, by ostrzec oznaczających, że zakres %{old_parent}
+    został przerzedzony.
   i_dont_know_but_i_am_sure_this_is_taxon: Nie wiem, ale jestem pewien, że to %{taxon}
   icon: Ikona
   icon_size: Rozmiar ikony
+  iconic_taxon: Kultowy takson
   id: Oznaczenie
+  id_categories:
+    tooltips:
+      leading: |
+        Takson wywodzi się od taksonu społeczności. Ta identyfikacja może prowadzić do
+        prawidłowej odpowiedzi.
+      improving: |
+        Pierwsza sugestia tego taksonu, z którą społeczność się zgadza. To
+        przyczynia się do udoskonalenia taksonu społeczności.
+      maverick: |
+        Takson nie jest potomkiem ani przodkiem taksonu wybranego przez społeczność, tj. społeczność nie uznaje tego taksonu.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "Identyfikator 2 taksonu <strong>E</strong> będzie w niezamierzonej niezgodności z identyfikatorem 1 taksonu <strong>B</strong> po zmianie pochodzenia"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "Identyfikator 2 taksonu <strong>E</strong> będzie w niezamierzonej niezgodności z identyfikatorem 1 taksonu <strong>B</strong> po zmianie taksonu"
   id_withdrawn: Oznaczenie wycofane
   ids_by_taxon: Oznaczenia według taksonu
   identify: Oznaczaj
@@ -2349,10 +2520,14 @@ pl:
   identification_unhidden: Oznaczenie odkryte
   #Notification when an identification has been updated
   identification_updated: Oznaczenie zaktualizowane!
+  identification_user_short: Użytkownik oznaczający
   #Notification when an identification has been withdrawn
   identification_withdrawn: Oznaczenie wycofane.
   identifications: Oznaczenia
   inaturalist_global_year_in_review: "Globalny przegląd roku %{year} iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist jest niezależną organizacją non-profit 501(c)(3), zwolnioną z podatku
+    organizacją z siedzibą w Stanach Zjednoczonych Ameryki (numer identyfikacji podatkowej: 92-1296468).
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist zaktualizował oznaczenie zasugerowane przez użytkownika %{user}
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
@@ -2361,13 +2536,31 @@ pl:
   identifiers: Oznaczający
   identotron: Identotron
   identotron_for: Identotron dla
+  identotron_help: Pomoc Identotron
   ids: "Oznaczenia"
+  ids_made_for_others__title: Identyfikatory stworzone dla innych
+  if_for_some_reason_a_user_doesnt_agree: |
+    Jeśli z jakiegoś powodu nie zgadzasz się z taksonem społeczności, możesz go odrzucić,
+    co oznacza, że Twoja identyfikacja będzie służyć do linkowania do innych obserwacji, aktualizowania list życiowych, itd. Oznacza to również, że Twoja obserwacja może uzyskać stopień badawczy tylko wtedy, gdy społeczność zgodzi się z tobą.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Jeśli przerzedzenie rodzica spowoduje więcej niż 10 niezamierzonych nieporozumień,
+    powinieneś podzielić rodzica po przeniesieniu elementu podrzędnego, aby zastąpić istniejące identyfikatory rodzicielskie <strong>(B)</strong> ze zgodnymi oznaczeniami.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Jeśli przerzedzenie rodzica spowoduje więcej niż 10 niezamierzonych nieporozumień,
+    powinieneś podzielić rodzica po zastąpieniu elementu podrzędnego, aby zastąpić istniejące identyfikatory rodzicielskie <strong>(B)</strong> ze zgodnymi oznaczeniami.
+  if_matches_come_from_a_comprehensive_list: Jeśli dopasowania pochodzą z pełnej listy, pojawi się zielony pasek.
   if_this_is_a_scientific_name: Jeśli jest to nazwa naukowa, to czy jest aktualnie akceptowana?
+  if_this_link_will_apply_to_descendant: Jeśli ten link będzie dotyczył taksonu potomnego, możesz użyć tagów szablonu do wypełnienia nazwy taksonu w URL
   if_you_have_any_trouble_with_the_site_check_out: 'Jeśli masz jakieś pytania, zobacz <a href="%{help_url}">sekcję pomocy</a> lub napisz wiadomość do naszej <a href="%{feedback_url}">grupy</a>.'
   if_your_project_is: Jeśli Twój projekt dotyczy konkretnej lokalizacji, ustaw współrzędne klikając na mapę lub wprowadzając je ręcznie.
   ignore_and_continue: Ignoruj i kontynuuj
   ignore_times: Ignoruj czasy
   image_must_be_exactly: obraz musi mieć dokładnie 950px szerokości i najwyżej 400px wysokości
+  image_size_control: Kontrola rozmiaru obrazu
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Zagrożony
   import: Importuj
@@ -2378,6 +2571,7 @@ pl:
   import_from_csv: Importuj z pliku CSV
   import_from_other_photo_sites: Importuj z innych stron fotograficznych
   import_observations: Importuj obserwacje
+  import_observations_from_a_photo: Importuj obserwacje od dostawcy zdjęć lub pliku na komputerze.
   import_photos: Importuj zdjęcia
   import_ranges: Importuj zakresy
   import_sections: Importuj sekcje
@@ -2388,11 +2582,27 @@ pl:
   in_place_x: w miejscu %{place}
   #As in a reason to flag something
   inappropriate: Nieodpowiednie
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Sieć iNaturalist
+  inaturalist_network_affiliation: Przynależność do Sieci iNaturalist
   #Label for messages you've received
   inbox: skrzynka odbiorcza
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Uwzględnij
+  include_places: Uwzględnij miejsca
+  include_projects: Uwzględnij projekty
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Uwzględnianie / wykluczanie taksonów nadrzędnych
   include_suggestions_not_seen_nearby: Uwzględnij sugestie organizmów niewidzianych w pobliżu
   include_suggestions_not_expected_nearby: Uwzględnij sugestie organizmów niespodziewanych w pobliżu
+  include_taxa: Uwzględnij taksony
+  include_users: Uwzględnij użytkowników
+  including: w tym
   increase_brightness: Zwiększ jasność
   in_progress: w trakcie
   in_the_past: w przeszłości
@@ -2415,6 +2625,10 @@ pl:
   inaturalist_applications: "Aplikacje iNaturalist"
   inaturalist_places: "Lokalizacje %{site_name}"
   info: Informacje
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Identyfikatory infragatunków
   input_taxon: Takson wejściowy
   insects: owady
   insect_life_stage: Stadium rozwoju owada
@@ -3455,6 +3669,8 @@ pl:
       Zone: Strefa
       zone: strefa
   place_imported: Lokalizacja zaimportowana!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Może minąć nawet jeden dzień, zanim obserwacje zostaną powiązane z tym miejscem.
   place_name: Nazwa lokalizacji
   place_updated: Lokalizacja zaktualizowana!
   placement: Umiejscowienie
@@ -4085,6 +4301,7 @@ pl:
     many: Zapisywanie %{num} z %{count} obserwacji...
     other: Zapisywanie %{num} z %{count} obserwacji...
   saving_verb: Zapisywanie
+  scale_colon: "Skala:"
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Nazwa naukowa
   search: Szukaj
@@ -4191,6 +4408,14 @@ pl:
     select_one_or_more_sounds: Wybierz jedno lub więcej nagrań dźwiękowych
     selected_sounds: Wybrane nagrania dźwiękowe
     sound: Dźwięk
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Dźwięk %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Dźwięk usunięty
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Ukryty dźwięk
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Dźwięk bez ukrycia
     your_soundcloud_account: Twoje konto SoundCloud
   source: Źródło
   source_: 'Źródło:'
@@ -4514,6 +4739,7 @@ pl:
   total_unique_observers: Całkowita liczba unikalnych obserwatorów
   translated_languages: Przetłumaczone języki
   'true': 'Prawda'
+  trusted: Zaufani
   trusted_project?: Zaufany projekt?
   twitter: Twitter
   two_thirds: 2/3
@@ -4570,6 +4796,8 @@ pl:
   updated: Zaktualizowano
   updated_by: Zaktualizowane przez
   updated_photo: Zaktualizowane zdjęcie
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Zaktualizowany dźwięk
   upload: Prześlij
   upload_a_csv_file: Prześlij plik CSV
   upload_new_photo: Prześlij nowe zdjęcie
@@ -4752,6 +4980,7 @@ pl:
   who_can_add_observations_to_this_project?: Kto może dodawać obserwacje do tego projektu?
   who_can_see_the_coordinates_observer: Osoba, która dokonała obserwacji
   who_can_see_the_coordinates_projects: Kuratorzy następujących projektów
+  who_can_see_the_coordinates_trusted: Osoby, którym obserwator zaufał w kwestii swoich ukrytych współrzędnych
   who_helped_user_the_most: "Kto pomógł %{user} najbardziej"
   who_user_helped_the_most: "Komu %{user} pomógł najbardziej"
   with_annotation: Z adnotacją
@@ -4898,6 +5127,14 @@ pl:
         Kliknij z wciśniętym CMD lub SHIFT, aby wybrać wiele. Wybranie opcji "Wszystkie" lub nietworzenie
         Wybór spowoduje wyświetlenie ogłoszenia wszystkim użytkownikom, niezależnie od
         klient.
+      excludes_non_site_desc: |
+        Jeśli anons jest kierowany na witrynę (co jest ustawieniem domyślnym, jeśli jesteś użytkownikiem
+        Administrator witryny), spowoduje to wykluczenie anonsów kierowanych na wszystkie witryny w
+        w tym umieszczeniu.
+      exclude_ip_countries_desc: |
+        Kliknij z wciśniętym CMD lub SHIFT, aby wybrać wiele. Wybrane kraje nie będą wyświetlane
+        ogłoszenie. Jeśli wybrano opcję Kraje IP, wybierz opcję Wyklucz kraje IP
+        zostanie odjęta od pierwszej.
       observation_oauth_application_ids_desc: |
         Kliknij z wciśniętym CMD lub SHIFT, aby wybrać wiele. Wybranie opcji "Wszystkie" lub nietworzenie
         Wybór spowoduje wyświetlenie ogłoszenia wszystkim użytkownikom, niezależnie od
@@ -5054,6 +5291,17 @@ pl:
       import:
         date_column_format: RRRR-MM-DD GG:MM
       show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ten <strong>Zgodność taksonu wspólnotowego i taksonu obserwacyjnego</strong>
+          (w tych rzadkich przypadkach, gdy takson obserwacyjny może być
+          specyficzne niż takson wspólnotowy)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Z obserwacji wynika, że <strong>nie przedstawia dokładnych dowodów na istnienie organizmu lub
+          scena</strong> (np. sztuczna inteligencja została wykorzystana do dodawania, usuwania lub zastępowania
+          elementów obrazu lub dźwięku. Odszumianie, ustawianie ostrości lub tworzenie
+          drobne poprawki, takie jak usuwanie kurzu z czujnika, są zwykle w porządku).
         observer_does_not_allow_observation_fields: Obserwator nie zezwala na dodatkowe pola obserwacji
     emailer:
       photos_missing:
@@ -5116,6 +5364,14 @@ pl:
       not_found:
         sorry_that_doesnt_exist: Przepraszamy, to nie istnieje!
         even_our_dedicated_search_mole_couldnt: Nawet nasz oddany kret poszukiwacz nie mógł niczego znaleźć!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Oryginał można zobaczyć pod adresem <a href="%{url}">%{url}</a>. Proszę
+          Pozostaw flagi naruszenia praw autorskich jako nierozwiązane, jeśli ten dźwięk tak nie
+          naruszać praw autorskich.
     stats:
       index:
         active_desc: Dodali oznaczenia, obserwacje, komentarze lub posty w poprzednich 30 dniach
@@ -5159,17 +5415,30 @@ pl:
           Pokazano %{x} z <a href="%{url}">%{y} gatunków</a>.
         new_species_desc_html: |
           Gatunki, które zostały dodane po raz pierwszy w tym roku. Kliknij na miesiąc, aby zobaczyć niektóre z nowych gatunków dodanych w tym miesiącu. Możesz również zobaczyć całkowite nagromadzenie gatunków lub przesunąć suwak do tyłu w czasie, aby zobaczyć inne nowo zaobserwowane gatunki. Ten wykres pokazuje gatunki z obserwacji weryfikowalnych według miesiąca, w którym zostały przesłane na %{site_name} (nie miesiąca, w którym zostały zaobserwowane). Nie zawiera taksonów wyższego lub niższego poziomu, a więc obserwacja oznaczona jako Mammalia się nie liczy, a obserwacja <i>Canis lupus</i> ssp. <i>arktos</i> będzie się po prostu liczyła jako <i>Canis lupus</i>.
+        new_species_per_year: Nowe gatunki / rok
         new_species_per_year_by_date_added: Według daty dodania
         new_species_per_year_by_date_observed: Według daty obserwacji
         obs_in_year: Obserwacji w %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Jednorazowi
+        observations_per_year: Obserwacje / Rok
         observations_per_year_by_date_added: Według daty dodania
         observations_per_year_by_date_observed: Według daty obserwacji
         observation_streaks_color_desc: |
           Kolor reprezentuje liczbę dni w skali logarytmicznej:
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Powtarzające się
+        species_per_year: Gatunki / rok
         translators_title: Tłumacze
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Możesz wprowadzać tylko drobne zmiany bezpośrednio w epitecie gatunku (np. zmiany płci, błędy ortograficzne). Dodaj plik <a target="_blank" href="%{url}">Zamiana taksonów</a> Jeśli potrzebujesz innych zmian w nazwie.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Uwaga: właśnie dodałeś potomka zablokowanego taksonu (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Zamiast tego rozważ połączenie tego z istniejącym taksonem." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Uwaga: rodzic tego aktywnego taksonu jest nieaktywny, ale jest to wynik tego <a href='/taxon_changes/%{taxon_change_id}'> Projekt zmiany taksonu</a> Zakładamy, że wkrótce się zobowiążesz." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Ten aktywny takson ma ponad %{count} dalszych obserwacji lub jest objęty ramami taksonicznymi, w związku z czym niektóre atrybuty taksonomiczne mogą być edytowane tylko przez pracowników lub kuratorów taksonów związanych z tymi ramami taksonicznymi.
       show:
         charts_help_seasonality: |
           Ten wykres pokazuje liczbę obserwacji tego taksonu pogrupowanych według miesiąca. Należy pamiętać, że są to liczne obserwacje, a więc ma na nie wpływ zarówno to, kiedy organizm może zostać obserwowany, jak i to, kiedy ludzie go faktycznie obserwują. Tak więc ptak może wydawać się bardzo aktywny w maju, ale może to również wynikać z większej liczby osób obserwujących ptaki w maju, którzy zazwyczaj ignorują ten gatunek w późniejszych miesiącach. Podobnie, jeśli widzisz więcej ważek w czerwcu niż w styczniu, to prawdopodobnie dlatego, że mamy więcej ludzi obserwujących na półkuli północnej niż na półkuli południowej, a nie dlatego, że ważki są bardziej aktywne w czerwcu, zatem sprawdź mapę podczas rozpatrywania tych wykresów. Jest to zawsze dobry pomysł, aby być sceptycznym wobec tych wykresów gdy liczba obserwacji jest niska i/lub są duże rozbieżności pomiędzy liczbą obserwacji 
@@ -5218,9 +5487,59 @@ pl:
         trending_desc: Najczęściej obserwowane taksony w zeszłym miesiącu
         trending_in_place_desc_html: Najczęściej obserwowane taksony w zeszłym miesiącu w <a href="%{url}">%{place}</a>
         wanted_desc: Gatunki należące do tego taksonu, który nie zostały jeszcze zaobserwowane.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Nazwy muszą być podobne podczas bezpośredniej edycji, dokonaj zamiany taksonów w celu radykalnych zmian nazw
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} Nie możemy dodawać tagów do Twoich zdjęć, dopóki Flickr nie dowie się, że udzieliłeś nam zgody.
+        <a href='%{url}'>Udziel uprawnienia Flickr</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Coś poszło nie tak podczas próby opublikowania tych tagów: %{message}
     taxon_changes:
       move_children_desc: |
         Taksony podrzędne taksonu wejściowego, które są rodzajami lub taksonami wyższej rangi, zostaną przeniesione do taksonu wyjściowego; gatunki, podgatunki, odmiany itd. zostaną zastąpione odpowiadającymi im taksonami z nową nazwą rodzaju lub gatunku.
+      #state of a pending taxon change
+      pending: Oczekujące
+      #state of a approved taxon change
+      approved: zatwierdzony
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Głos dodany
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Głos usunięty
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Brak głosów
+      #message when taxon change is committed
+      taxon_change_committed: Zmiana taksonu zatwierdzona! Rekordy, które mogą być automatycznie aktualizowane, zostaną wkrótce zmienione.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Ta zmiana taksonu jest obecnie w toku. Wymaga zatwierdzenia przez 1 kuratora, aby móc się zatwierdzić."
+        few: "Ta zmiana taksonu jest obecnie w toku. Wymaga zatwierdzenia przez %{count} kuratorów, aby mogli się zaangażować."
+        many: "Ta zmiana taksonu jest obecnie w toku. Wymaga zatwierdzenia przez %{count} kuratorów, aby mogli się zaangażować."
+        other: "Ta zmiana taksonu jest obecnie w toku. Wymaga zatwierdzenia przez %{count} kuratorów, aby mogli się zaangażować."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Takson wejściowy nie może mieć aktywnych elementów podrzędnych, przesuń je najpierw lub wybierz opcję "Przenieść elementy podrzędne do danych wyjściowych?"
+      output_taxon_rank_level_not_coarser_html: >
+        Poziom rangi taksonu wyjściowego nie jest niższy niż poziom rangi aktywnych dzieci taksonu wejściowego %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Ta zmiana taksonomiczna została już dokonana!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Coś poszło nie tak podczas usuwania zmiany taksonu '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Zmiana taksonu została usunięta.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Zmiana taksonu została pomyślnie zaktualizowana.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Nie określono żadnych zmian
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Zmiana taksonu została pomyślnie utworzona.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Wymaga zatwierdzenia przez 1 innego kuratora"
+        few: "Wymaga zatwierdzenia przez %{count} innych kuratorów do zobowiązania się"
+        many: "Wymaga zatwierdzenia przez %{count} innych kuratorów do zobowiązania się"
+        other: "Wymaga zatwierdzenia przez %{count} innych kuratorów do zobowiązania się"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -5599,6 +5918,7 @@ pl:
         #Whether or not the announcement can be dismissed by people who see it
         dismissible: Podlegający odrzuceniu
         updated_at: Zaktualizowano
+        excludes_non_site: Ukryj inne ogłoszenia w tym miejscu docelowym, które nie mają identyfikatora witryny
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Wykluczanie obserwatorów z aplikacji
@@ -5885,6 +6205,30 @@ pl:
             name:
               bad_format: |
                 może zawierać wyłącznie podstawowe litery alfabetu łacińskiego, myślniki, odstępy i symbol ×; zwróć uwagę, że domniemane taksony i odmiany uprawne nie są dozwolone
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Niedozwolone zmiany nazw w przypadku wirusów, bakterii lub nieszczepionych kladów"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Zmiana nazwy nie jest dozwolona w przypadku rang grubszych niż gatunek"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Zmiany nazw nie są dozwolone w przypadku formuł hybrydowych"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "Nie można dodać \"x\" jako znacznika hybrydowego między rodzajem a gatunkiem"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "musi być dwumianowy (rodzaj gatunku) w celu sprawdzenia"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "Rodzaj nie może się zmienić"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Niestandardowa nazwa gatunku: dozwolone jest tylko usunięcie \"x\"/\"×\" lub dodanie \"×\""
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "Konkretny epitet musi być podobny (tylko drobna literówka/płeć)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "Epitet infraspecyficzny wymagany dla tej rangi"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "Tylko epitet infraspecyficzny może ulec zmianie dla rang infraspecyficznych"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "epitet infraspecyficzny musi być podobny (tylko drobna literówka/rodzaj)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "pierwsza litera dowolnego epitetu nie może ulec zmianie."
         taxon_change:
           attributes:
             base:
