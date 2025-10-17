@@ -612,6 +612,14 @@ lt:
   #Label for an option to show/include content by any user
   any_user: Bet kuris
   anyone: Betkuris
+  app_owner_application_about_p2_html: |
+    Nuo 2022 m. vartotojams, norintiems sukurti API klientus, reikalingas rankinis patvirtinimas.
+    Norėdami sukurti trečiųjų šalių programas, pirmiausia turite pateikti paraišką, kad taptumėte
+    "Programėlės savininkas". Šioje programoje turėtų būti aprašytos siūlomos programos funkcijos
+    ir kaip planuojate jį naudoti. Norint pateikti paraišką, jūsų paskyra turi būti adresu
+    ne jaunesnis kaip 2 mėnesių amžiaus ir turi būti ne jaunesnis kaip 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">identifikavimo gerinimas</a> per pastarąjį mėnesį. Galime paprašyti tolesnių veiksmų
+    klausimų apie jūsų planą ir mes pasiliekame teisę atmesti paraiškas dėl bet kokios priežasties.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Programėlė
@@ -685,6 +693,8 @@ lt:
   are_you_sure_you_want_to_delete_this_assessment?: Ar tikrai norite ištrinti šį vertinimą?
   are_you_sure_you_want_to_delete_this_photo?: Ar tikrai norite ištrinti šią nuotrauką?
   are_you_sure_you_want_to_delete_this_post: Ar tikrai norite ištrinti šį įrašą?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Ar tikrai norite panaikinti šį garsą?
   are_you_sure_you_want_to_delete_this_taxon_change: Ar tikrai norite ištrinti šio taksono pakeitimą?
   are_you_sure_you_want_to_remove_all_tags: Ar tikrai norite pašalinti visas žymes?
   are_you_sure_you_want_to_remove_curator: Ar tikrai norite pašalinti %{user} kaip kuratorių?
@@ -697,6 +707,8 @@ lt:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Ar tikrai norite panaikinti šį stebėjimą iš projekto %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ar tikrai norite ištrinti šį taksoną iš %{place} kontrolinio sąrašo?"
+  artificially_generated_content: Dirbtinai sukurtas turinys
+  artificially_generated_content_desc: Yra turinio, kuris daugiausia arba visiškai sugeneruotas naudojant dirbtinį intelektą.
   associated_observations: Susiję stebėjimai
   associated_taxa: Susiję taksonai
   attention: Dėmesio
@@ -954,6 +966,7 @@ lt:
   community_id_is_precise: Bendruomenės taksonas yra tikslus
   community_moderation_settings: Bendruomenės Moderavimo Nustatymai
   community_supported_id: Bendruomenės patvirtintas taksonas?
+  community_taxon_matches_observation_taxon: Bendrijos taksonas atitinka stebėjimo taksoną
   compare: Palyginti
   compare_with: Lyginti su
   comparing: lyginama
@@ -1014,6 +1027,12 @@ lt:
       Organizacija, kuri paskelbė šį statusą. Naudokite automatinio užbaigimo funkciją, kad pasirinktumėte egzistuojantį autoritetą, prieš pridedant naują. Galite praleisti, jeigu *jūs* norite būti laikomas autoritetu.
     place: Vietovė, kurioje galioja šis statusas.
     url: Puslapio, apibūdinančio šią būseną, URL.
+    iucn: |
+      Lygiavertis IUCN raudonosios knygos kodas. Tai nėra tikrasis IUCN vertinimas,
+      tik IUCN kodas, kuris geriausiai atitinka koordinačių atskleidimo grėsmę
+      numanoma šio statuso. Tai nepaisys geoprivatumo, jei jis yra "Mažiausiai
+      Susirūpinimas" arba žemiau, taigi, jei norite užgožti pastebėjimus apie tai
+      taksonas, nustatykite tai į "Near Threatened" arba aukščiau.
   conservation_status_geoprivacy_desc: |
     Numatytasis vietos privatumas taikomas visiems šio taksono stebėjimams šioje vietovėje
   contact_support: Susisiekti su pagalba
@@ -1203,6 +1222,8 @@ lt:
     pastebėjimai projektuose. Stebėtojai taip pat gali nuspręsti tai pakeisti
     individualūs pastebėjimai.
   curator_identification: Kuratorius identifikavimas
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Dabartinis Bendrijos taksonas: %{taxon}"
   current_flags: Dabartinės žymės
   custom_project_fields: Sukurti projekto laukai
   customize_location: Pasirinkti vietą
@@ -1210,6 +1231,11 @@ lt:
   daily_users: Vartotojų kasdien
   danger_zone: Pavojinga zona
   dashboard: Valdymo skydas
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Taip! Norėčiau dalyvauti."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Identifikavimo spragų bandomasis projektas: reikia ID Ieškomos rūšys"
   data_deficient: Trūksta duomenų
   data_quality: Duomenų kokybė
   data_quality_assessment: Duomenų kokybės įvertinimas
@@ -1292,6 +1318,8 @@ lt:
   delete_photo: Ištrinti nuotrauką
   delete_project: Ištrinti šį projektą
   delete_selected: Ištrinti Pasirinktus
+  #Label for a button to delete a sound file
+  delete_sound: Ištrinti garsą
   delete_taxon_and_merge_most_data_html: |
     Ištrinti <i>%{taxon}</i> ir perkelti daugumą informacijos į kitą taksoną. Naudokite šį įrankį <strong>naikinant pasikartojančius taksonus</strong>. Jeigu norite ištrinti pasenusį sinonimą, prašome naudoti taksono sukeitimo įrankį. <strong>BŪKITE ATSARGŪS!</strong> Taksonų naikinimas gali padaryti daug žalos. Skaitykite <a href="%{curator_url}">Kuratorių gidą</a>, kad sužinotumėte daugiau.
   delete_user: Ištrinti vartotoją
@@ -1327,6 +1355,8 @@ lt:
       invalid_token: 'Neteisingas autentifikavimo prieigos raktas.'
       user:
         suspended: Jūsų paskyra buvo laikinai sustabdyta
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Slaptažodžio nustatymo iš naujo atpažinimo ženklas neteisingas. Naudokite nuorodą naujausiame išsiųstame slaptažodžio nustatymo iš naujo el. laiške arba <a href="%{url}">prašyti naujo</a>.
     sessions:
       signed_in: 'Prisijungta sėkmingai.'
       signed_out: 'Atsijungta sėkmingai.'
@@ -1395,6 +1425,8 @@ lt:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: PAREMTI
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Paaukoti
   donate_again_caps: PAREMTI VĖL
   donate_again_today_caps: PAREMTI VĖL ŠIANDIEN
   done: Baigta
@@ -1502,6 +1534,8 @@ lt:
   endemic_to_x: "Endeminis vietovėje: %{x}"
   eol_collection_url: "EOL kolekcijos URL"
   error_updating_photo: "Klaida atnaujinant nuotrauką: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Klaida atnaujinant garsą: %{sound_errors}"
   establishment:
     endemic: Endeminis
     establishment: Įsikūrimas
@@ -1538,6 +1572,7 @@ lt:
   extinct: išnykę
   extinct_in_the_wild: išnykę laisvėje
   extra_properties: Papildomos Savybės
+  evidence_accurately_depicts_organism_or_scene: Įrodymai tiksliai vaizduoja organizmą ar sceną
   evidence_of_organism: Organizmo buvimo įrodymai
   facebook: Facebook
   failed_to_find_your_location: Nepavyko rasti jūsų vietos.
@@ -1568,7 +1603,11 @@ lt:
   fields_can_only_be_edited_by_the_people_who: Laukai gali būti redaguojami tik tų žmonių, kurie juos sukūrė arba puslapio kuratorių
   fields_merged: Laukai sujungti
   file: Failas
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Failo formatas
   file_size: Failo dydis
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Failo URL
   file_should_be_in_the_following_format: "Failas turi būti tokio formato: taksono pavadinimas, aprašymas"
   fill_out_project_observation_fields: Užpildyti projekto stebėjimo laukus
   fill_out_your_profile: užbaigti savo profilį
@@ -1767,6 +1806,8 @@ lt:
   header_your_profile: Jūsų profilis
   heads_up: Dėmesio
   heads_up_this_photo_has_been_flagged: "DĖMESIO: ši nuotrauka buvo pažymėta."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS: šis garsas buvo pažymėtas."
   heads_up_this_photo_is_already_associated_with: "Dėmesio: ši nuotrauka jau yra susieta su <a target='_blank' href='%{url}'>kitu stebėjimu</a>"
   help: Pagalba
   help_confirm_observations!: Padėk identifikuoti stebėjimus!
@@ -2840,6 +2881,8 @@ lt:
       Zone: Zona
       zone: zona
   place_imported: Vieta importuota!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Gali užtrukti iki dienos, kol stebėjimai bus susieti su šia vieta.
   place_must_have_a_boundary_defined: Vieta turi turėti apibrėžtą ribą.
   place_name: Vietos pavadinimas
   place_notes: Vietos užrašai
@@ -3633,7 +3676,15 @@ lt:
     select_one_or_more_sounds: Pasirinkite vieną ar daugiau garsų
     selected_sounds: Pasirinkti garsai
     sound: Garsas
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Skambėti %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Garsas ištrintas
     sound_has_been_flagged: Šis garsas buvo pažymėtas.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Garsas paslėptas
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Garsas nepaslėptas
     soundcloud_replied_with_an_error: SoundCloud atsakė su klaida. Prašome bandyti vėliau.
     sounds: Garsai
     your_soundcloud_account: jūsų SoundCloud paskyra
@@ -4047,6 +4098,8 @@ lt:
   updated_by_user_on_date_html: Atnaujino %{user} %{date}
   updated_daily: Atnaujinama kasdien
   updated_photo: Atnaujinta nuotrauka
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Atnaujintas garsas
   upload: Įkelti
   upload_a_csv_file: Įkelti CSV failą
   upload_a_csv_file_with_observation: |
@@ -4408,6 +4461,14 @@ lt:
         Paskyros laiko juostos laikas, per kurį šis pranešimas bus sustabdytas
         pasirodo. Taikoma visose laiko juostose, todėl visi nebematys
         tai tuo pačiu metu, o ne jų vietos laiko atžvilgiu.
+      excludes_non_site_desc: |
+        Jei skelbimas taikomas pagal svetainę (tai yra numatytasis nustatymas, jei esate
+        Site Admin), tai neįtrauks pranešimų, kurie taikomi pagal visas svetaines
+        ši vieta.
+      exclude_ip_countries_desc: |
+        CMD arba SHIFT spustelėkite, kad pasirinktumėte kelis. Pasirinktos šalys nebus rodomos
+        pranešimas. Jei pasirinktos IP šalys, pasirinkite Išskirti IP šalis
+        bus atimta iš pirmosios.
       observation_oauth_application_ids_desc: |
         CMD- arba SHIFT-spustelėkite, kad pasirinktumėte kelis. Pasirinkimas "Visi" arba nedarymas
         Pasirinkimas parodys pranešimą visiems vartotojams, neatsižvelgiant į
@@ -4564,6 +4625,17 @@ lt:
         geoprivacy_must_be_in_english: |
           Vietos privatumo stulpelis turi būti anglų kalba, o langeliai turi būti su vertėmis „paslėptas“, „privatus“ arba palikti tušti
       show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          Programa <strong>Bendrijos taksono ir stebėjimo taksono atitiktis</strong>
+          (tais retais atvejais, kai stebėjimo taksonas gali būti
+          specifinis nei Bendrijos taksonas)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Stebėjimas <strong>nepateikia tikslių organizmo įrodymų arba
+          Scena</strong> (pvz., dirbtinis intelektas buvo naudojamas pridėti, pašalinti arba pakeisti
+          vaizdo ar garso elementai. Triukšmo mažinimas, fokusavimo kaupimas arba kūrimas
+          nedideli pataisymai, tokie kaip jutiklio dulkių pašalinimas, paprastai yra gerai).
         flagged_photos_desc_html: |
           Kai kurios nuotraukos buvo pažymėtos kaip nepriimtinas turinys arba
           autorinių teisių pažeidimas. Daugiau informacijos %{links}
@@ -4686,6 +4758,14 @@ lt:
       not_found:
         sorry_that_doesnt_exist: Atsiprašome, tai neegzistuoja!
         even_our_dedicated_search_mole_couldnt: Net ir mūsų geriausias kurmis nesugebėjo nieko surasti!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Originalą galite peržiūrėti adresu <a href="%{url}">%{url}</a>. Prašau
+          Autorių teisių pažeidimo vėliavėlės paliekamos neišspręstos, jei šis garsas
+          pažeidžia autorių teises.
     stats:
       index:
         new_users_desc: Užsiregistravo šią dieną
@@ -4721,6 +4801,14 @@ lt:
         translators_prompt: |
           Jeigu norite padėti versti, %{link_tag}sužinokite, kaip tą galite padaryti%{link_tag_end}.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Galite atlikti tik nedidelius rūšies epiteto pakeitimus tiesiogiai (pvz., lyties pakeitimai, rašybos klaidos). Pridėti <a target="_blank" href="%{url}">Taksonų apsikeitimas</a> jei reikia kitų pavadinimo pakeitimų.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Įspėjimas: ką tik pridėjote užrakinto taksono palikuonį (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Prašome apsvarstyti galimybę sujungti tai į esamą taksoną." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Įspėjimas: šio aktyvaus taksono tėvas yra neaktyvus, bet tai yra šio rezultatas <a href='/taxon_changes/%{taxon_change_id}'> Taksono pakeitimo projektas</a> kad mes manome, kad netrukus įsipareigosite." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Šis aktyvus taksonas turi daugiau nei %{count} Tolesni stebėjimai arba yra įtraukti į taksonų sistemą, todėl kai kuriuos taksonominius požymius gali redaguoti tik darbuotojai arba taksonų kuratoriai, susiję su ta taksono sistema.
       show:
         about_establishment_desc: |
           „Įsikūrimo būdas“ nusako, kaip rūšis pateko ten, kur ji dabar sutinkama. Introdukuotos rūšys atkeliavo dėl žmonių kaltės, tuo tarpu vietinės rūšys atkeliavo be žmonių pagalbos. Endeminės rūšys aptinkamos tik specifinėje vietoje ir niekur kitur.
@@ -4739,6 +4827,57 @@ lt:
           "Life Stage=Nymph": Nimfa
           "Life Stage=Pupa": Lėliukė
           unannotated: Be papildomos informacijos
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Pavadinimai turi būti panašūs redaguojant tiesiogiai, pakeiskite taksoną radikaliais pavadinimų pakeitimais
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} negali pridėti žymių prie nuotraukų, kol "Flickr" nežino, kad davėte mums leidimą.
+        <a href='%{url}'>Suteikti Flickr teises</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Kažkas nuėjo ne taip bando rašyti šias žymes: %{message}
+    taxon_changes:
+      #state of a pending taxon change
+      pending: Laukiama
+      #state of a approved taxon change
+      approved: Patvirtintas
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Balsas pridėtas
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Balsavimas pašalintas
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Dar nėra balsų
+      #message when taxon change is committed
+      taxon_change_committed: Taksono pakeitimas įvykdytas! Įrašai, kuriuos galima atnaujinti automatiškai, netrukus bus pakeisti.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Šis taksono pakeitimas dabar laukiamas. Norint įsipareigoti, reikia 1 kuratoriaus patvirtinimo."
+        few: "Šis taksono pakeitimas dabar laukiamas. Tam turi pritarti %{count} kuratoriai galėtų įsipareigoti."
+        many: "Šis taksono pakeitimas dabar laukiamas. Tam turi pritarti %{count} kuratoriai galėtų įsipareigoti."
+        other: "Šis taksono pakeitimas dabar laukiamas. Tam turi pritarti %{count} kuratoriai galėtų įsipareigoti."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Įvesties taksonas negali turėti aktyvių vaikų, pirmiausia juos perkelti arba pasirinkti parinktį "Perkelti vaikus į išvestį?"
+      output_taxon_rank_level_not_coarser_html: >
+        Išvesties taksono rango lygis ne šiurkštesnis už įvesties taksono aktyvių vaikų rango lygį %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Šis taksonominis pakeitimas jau buvo įvykdytas!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Kažkas nutiko ištrinant taksono pakeitimą \"%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Taksono keitimas buvo panaikintas.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Taksono keitimas sėkmingai atnaujintas.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Nenurodyta jokių pakeitimų
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taksono keitimas sėkmingai sukurtas.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Norint įsipareigoti, reikalingas 1 kito kuratoriaus patvirtinimas"
+        few: "Reikalingas patvirtinimas %{count} kiti kuratoriai įsipareigoti"
+        many: "Reikalingas patvirtinimas %{count} kiti kuratoriai įsipareigoti"
+        other: "Reikalingas patvirtinimas %{count} kiti kuratoriai įsipareigoti"
     taxon_names:
       form:
         places_help_html: |
@@ -4756,6 +4895,32 @@ lt:
           Ištrindami savo paskyrą jūs panaikinsite
       edit:
         about_third_party_tracking: Apie trečiųjų šalių sekimą
+        block_desc_blocking_someone_prevents: |
+          Užblokavus asmenį, jis negalės jums siųsti žinučių, komentuoti jūsų
+          stebėjimus, atpažinti savo pastebėjimus ir kitaip sąveikauti
+          su jumis %{site_name}. Tai taip pat pašalina jų pastebėjimus iš jūsų
+          paieškos rezultatus ir pašalina jūsų pastebėjimus iš jų
+          Rezultatai. Tačiau tai nepadaro tavęs jiems nematomu. Jie gali
+          vis dar rasti savo pastebėjimus ir peržiūrėti savo profilį, jie tiesiog negali
+          bendrauti su jumis.
+        block_desc_blocking_is_for_situations: |
+          Blokavimas skirtas situacijoms, kai tiesiog negalite susitvarkyti su
+          ir jie nepaliks jūsų ramybėje, nepaisant jūsų visų pastangų
+          spręsti ginčus civilizuotai. Tai nėra būdas pasislėpti nuo
+          žmonių, kad būtų išvengta žmonių, kurių nuomonę
+          nepasitiki arba atsisako bendruomenės ID (yra dar vienas
+          nustatymas). Taigi blokavimas veikia abiem kryptimis: jei blokuojate
+          kažkas, jie negali bendrauti su jumis, bet jūs taip pat negalite bendrauti
+          su jais. Jei piktnaudžiaujate juo, kad kas nors negalėtų identifikuoti jūsų
+          pastebėjimus, taip pat neleidžiate sau nustatyti jų
+          Pastabas.
+        block_desc_you_can_only_block_html: |
+          Galite blokuoti tik tris žmones. Manome, kad tai yra pagrįsta
+          numerį, kuris talpina žmones, kuriuos reikia blokuoti, o
+          užkirsti kelią piktnaudžiavimui blokavimu. Jei manote, kad reikia blokuoti daugiau
+          Žmonės, prašau <a href="mailto:%{help_email}">Susisiekite su mumis</a>.
+        block_desc_there_are_two_exceptions: |
+          Yra dvi situacijos, kai blokavimas netrukdo sąveikai:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jei apsigalvosite visada galite
           <a href='/users/edit'>keisti savo nustatymus</a>.
@@ -5035,6 +5200,7 @@ lt:
       TaxonLink: Taksono nuoroda
     attributes:
       announcement:
+        excludes_non_site: Kitų pranešimų slėpimas šioje paskirties vietoje, neturintis svetainės ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Stebėtojų išskyrimas iš programų
@@ -5235,6 +5401,31 @@ lt:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 gali būti pakeistas tik šio taksono kuratoriaus
+            name:
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Virusų, bakterijų ar neskiepytų kladų pavadinimų keisti neleidžiama"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Pavadinimo keitimas neleidžiamas šiurkštesniems už rūšis rangams"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Hibridinių formulių pavadinimų keisti neleidžiama"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "negalima pridėti \"x\" kaip hibridinio žymens tarp genties ir rūšies"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "turi būti dvinaris (genties rūšis), kad būtų galima patikrinti"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "Gentis negali keistis"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "nestandartinis rūšies pavadinimas: leidžiama išbraukti tik \"x\" / \"×\" arba pridėti \"×\""
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "konkretus epitetas turi būti panašus (tik nedidelė rašybos klaida / lytis)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "šiam rangui reikalingas infraspecifinis epitetas"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "Infraspecifiniams rangams gali keistis tik infraspecifinis epitetas"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "infraspecifinis epitetas turi būti panašus (tik nedidelė rašybos klaida / lytis)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "bet kokio epiteto pirmoji raidė negali keistis."
         taxon_name:
           attributes:
             lexicon:
