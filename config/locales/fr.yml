@@ -620,6 +620,14 @@ fr:
   app_owner_application_about_p1a_html: |
     Les applications iNaturalist permettent l'utilisation authentifiée de l'API iNaturalist. Cela vous permet de faire des appels API qui font des choses comme créer des observations ou des identifications. Les utilisations habituelles sont des applications comme des applications de bureau ou des applications mobiles qui comprennent des fonctionnalités permettant à leurs utilisateurs de créer des observations iNaturalist. Ce contenu doit être produit avec une implication ou une surveillance humaine réelle. Pour en savoir plus, veuillez lire les <a href="/pages/community+guidelines"
     target="_blank">Règles de la communauté</a> qui interdisent les observations, identifications et commentaires générés par ordinateur.
+  app_owner_application_about_p2_html: |
+    À partir de 2022, nous exigeons une approbation manuelle pour les utilisateurs souhaitant créer des clients API.
+    Pour créer des applications tierces, vous devez d’abord soumettre une application pour devenir
+    un « propriétaire d’application ». Cette application doit décrire les fonctionnalités de l’application que vous proposez
+    et comment vous prévoyez de l’utiliser. Pour soumettre une demande, votre compte doit se trouver à l’adresse suivante :
+    âgé d’au moins 2 mois et doit avoir fait au moins 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Améliorer les identifications</a> au cours du dernier mois. Nous pouvons demander un suivi
+    questions sur votre plan et nous nous réservons le droit de refuser les demandes pour quelque raison que ce soit.
   app_owner_application_inelligible: |
     Pour pouvoir soumettre une demande, vous devez avoir créé votre compte il y a au moins 2 mois et vous devez avoir ajouté au moins 10 identifications d'amélioration au cours du mois dernier.
   app_owner_application_fields_explanation_html: Décrivez la fonctionnalité de votre application et comment vous comptez l'utiliser.
@@ -702,6 +710,8 @@ fr:
   are_you_sure_you_want_to_delete_this_assessment?: Êtes-vous certain de vouloir supprimer cette évaluation ?
   are_you_sure_you_want_to_delete_this_photo?: Êtes-vous certain de vouloir supprimer cette photo ?
   are_you_sure_you_want_to_delete_this_post: Êtes-vous certain de vouloir supprimer cette note ?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Êtes-vous sûr de vouloir supprimer ce son ?
   are_you_sure_you_want_to_delete_this_taxon_change: Êtes-vous certain de vouloir supprimer cette modification de taxon ?
   are_you_sure_you_want_to_remove_all_tags: Êtes-vous certain de vouloir supprimer toutes les étiquettes ?
   are_you_sure_you_want_to_remove_curator: Êtes-vous sûr de vouloir supprimer le statut de curateur à %{user} ?
@@ -714,6 +724,8 @@ fr:
     Êtes-vous sûr de vouloir supprimer cette observation de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Êtes-vous certain de vouloir supprimer ce taxon de la check-list de « %{place} » ?"
   are_you_sure_you_want_to_flag_as_spammer: Êtes-vous sûr de vouloir signaler cet utilisateur comme spammeur ?
+  artificially_generated_content: Contenu généré artificiellement
+  artificially_generated_content_desc: Contient du contenu généré en grande partie ou en totalité par l’intelligence artificielle.
   associated_observations: Observations connexes
   associated_taxa: Taxons connexes
   attention: Attention
@@ -1055,6 +1067,7 @@ fr:
   community_id_is_precise: Le Taxon Communautaire est précis
   community_moderation_settings: Paramètres pour modérer la communauté
   community_supported_id: Taxon accepté par la communauté ?
+  community_taxon_matches_observation_taxon: Taxon communautaire correspond Taxon d’observation
   compare: Comparer
   compare_with: Comparer avec
   comparing: comparaison
@@ -1126,6 +1139,12 @@ fr:
     url: URL d’une page décrivant ce statut.
     geoprivacy: |
       Géoconfidentialité par défaut pour les observations de ce taxon. Notez que la géoconfidentialité d'un statut associé à un continent, à un pays ou à une région peut remplacer celle d'un statut mondial ou associé à une étendue géographique plus grande.
+    iucn: |
+      Code équivalent de la Liste rouge de l’UICN. Il ne s’agit pas de l’évaluation réelle de l’UICN,
+      juste le code UICN qui correspond le mieux à la menace de divulgation des coordonnées
+      implicite par ce statut. Cela remplacera la géoconfidentialité s’il s’agit de "Least
+      Concern" ou ci-dessous, donc si vous voulez obscurcir les observations de cela
+      taxon, réglez ceci sur « Quasi menacé » ou supérieur.
   conservation_status_geoprivacy_desc: |
     La géoconfidentialité par défaut est appliquée à toutes les observations de ce taxon à cet endroit
   contact_support: Contacter le soutien
@@ -1459,6 +1478,8 @@ fr:
   curator_coordinate_access_desc: |
     L'accès des coordonnées aux curateurs dans les projets traditionnels dépendent de qui a ajouté l'observation au projet. Il s'agit simplement du paramètre par défaut pour les observations des projets. Les observateurs peuvent aussi changer cela individuellement pour les observations.
   curator_identification: Identification du responsable de l’organisation
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Taxon communautaire actuel : %{taxon}"
   current_flags: Signalements actuels
   #Label for a custom boundary for an observation search
   custom_boundary: Périmètre personnalisé
@@ -1473,10 +1494,14 @@ fr:
   danger_zone: Zone dangereuse
   dashboard: Tableau de bord
   dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Oui! J’aimerais y participer."
     #state of button asking to participate in a pilot after participating
     pilot_stop: "Arrêter de participer"
     #link to a blog post
     pilot_read_more: "En savoir plus sur notre blog."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Projet pilote sur les lacunes en matière d’identification : Besoins Identification des espèces recherchées"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Pas encore inclus dans le Modèle de Vision par Ordinateur."
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1573,6 +1598,8 @@ fr:
   #Label for a button to delete a taxon range
   delete_range: Supprimer l'aire de répartition
   delete_selected: Supprimer la sélection
+  #Label for a button to delete a sound file
+  delete_sound: Supprimer le son
   delete_taxon_and_merge_most_data_html: |
     Supprimez <i>%{taxon}</i> et fusionnez la plupart de ses données dans un autre taxon. Utilisez
     cet outil pour <strong>supprimer les taxons en double</strong>. Si vous voulez
@@ -1618,6 +1645,8 @@ fr:
         Pour confirmer votre compte, veuillez consulter votre courrier et cliquer sur le lien dans l'e-mail que vous avez reçu.
       user:
         suspended: Votre compte a été suspendu
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Le jeton de réinitialisation du mot de passe n’est pas valide. Veuillez utiliser le lien figurant dans le dernier e-mail de réinitialisation de mot de passe envoyé, ou <a href="%{url}">Demander un nouveau</a>.
     sessions:
       signed_in: 'Connexion réussie.'
       signed_out: 'Déconnexion réussie.'
@@ -1848,6 +1877,8 @@ fr:
   eol: EdlV
   eol_collection_url: "URL de la collection de l’EdlV"
   error_updating_photo: "Erreur de mise à jour de la photo : %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Erreur lors de la mise à jour du son : %{sound_errors}"
   establishment:
     endemic: Endémique
     establishment: Établissement
@@ -1915,6 +1946,7 @@ fr:
   extinct: Éteinte
   extinct_in_the_wild: Éteinte à l’état sauvage
   extra_properties: Propriétés supplémentaires
+  evidence_accurately_depicts_organism_or_scene: Les preuves représentent avec précision l’organisme ou la scène
   evidence_of_organism: Preuve de l’organisme
   evidence_related_to_single_subject: Preuve liée à un seul sujet
   facebook: Facebook
@@ -1953,7 +1985,11 @@ fr:
   fields_can_only_be_edited_by_the_people_who: Les champs peuvent uniquement être modifiés par les personnes qui les ont créés et par les responsables de l’organisation du site
   fields_merged: Champs fusionnés
   file: Fichier
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Format de fichier
   file_size: Taille du fichier
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL du fichier
   file_should_be_in_the_following_format: "Le fichier doit être dans le format suivant : nom du taxon, description"
   fill_out_project_observation_fields: Remplir vos champs d’observation de projet
   fill_out_your_profile: compléter votre profil
@@ -2203,6 +2239,8 @@ fr:
     one: "<strong>Avertissement :</strong> Il y a %{count} autre projet de modification de taxon avec les mêmes taxons d'entrée :"
     other: "<strong>Avertissement :</strong> Il y a %{count} autres projets de modification de taxon avec les mêmes taxons d'entrée :"
   heads_up_this_photo_has_been_flagged: "AVERTISSEMENT : cette photo a été signalée."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP : ce son a été signalé."
   heads_up_this_photo_is_already_associated_with: "Avertissement : cette photo est déjà associée à <a target='_blank' href='%{url}'>une autre observation</a>"
   heads_up_you_have_multiple: "Avertissement : Vous avez de multiples étiquettes taxinomiques automatiques pour des rangs identiques. Elles sont codées par couleur et par rang ci-dessous."
   help: Aide
@@ -4973,7 +5011,15 @@ fr:
     select_one_or_more_sounds: Sélectionnez un ou plusieurs sons
     selected_sounds: Sons sélectionnés
     sound: Son
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Son %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Son supprimé
     sound_has_been_flagged: Ce son a été signalé.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Son caché
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Son non caché
     soundcloud_replied_with_an_error: SoundCloud affiche une erreur. Veuillez réessayer plus tard.
     sounds: Sons
     your_soundcloud_account: votre compte SoundCloud
@@ -5677,6 +5723,8 @@ fr:
   updated_by_user_on_date_html: Mis à jour par %{user} le %{date}
   updated_daily: Mis à jour quotidiennement
   updated_photo: Photo mise à jour
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Son mis à jour
   upload: Publier
   upload_a_csv_file: Téléverser le fichier CSV
   upload_a_csv_file_with_observation: |
@@ -6308,8 +6356,16 @@ fr:
         Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Tout" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment du client.
       end_desc: |
         Heure dans le fuseau horaire de votre compte à laquelle cette annonce n'apparaîtra plus. S'applique au-delà des fuseaux horaires, de sorte que tout le monde ne la voient plus en même, sans relation avec leur temps local.
+      excludes_non_site_desc: |
+        Si votre annonce cible un site (ce qui est le cas par défaut si vous êtes un
+        Admin du site), cela exclura les annonces qui ciblent tous les sites de
+        ce placement.
       ip_countries_desc: |
         Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner "Tout" ou ne pas faire de sélection montrera les annonces à tous les utilisateurs indépendamment du pays de l'adresse IP.
+      exclude_ip_countries_desc: |
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Les pays sélectionnés ne seront pas affichés
+        L’annonce. Si les pays IP sont sélectionnés, sélectionnez Exclure les pays IP
+        sera soustrait du premier.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Notez que la date de création de l'observation la plus récente de l'observateur est mise en cache, cela peut donc prendre plusieurs heures pour la cible à prendre effet.
@@ -7238,6 +7294,11 @@ fr:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Les observations deviennent <strong>"qualité rechercher"</strong> quand
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          le <strong>Correspondance entre taxon communautaire et taxon d’observation</strong>
+          (pour les rares occasions où le taxon d’observation peut être plus
+          spécifique que le taxon communautaire)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           la <strong>communauté %{site_name} s'accorde sur l'ID au niveau espèce ou 
           inférieur</strong>, lorsque plus des 2/3 des identifieurs sont d'accord sur un 
@@ -7265,6 +7326,12 @@ fr:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           l'observations <strong>ne présente pas de preuves relatives à un seul sujet</strong> (par ex. : il y a quatre photos d'organismes non apparentés ; une photo montrant l'habitat du sujet de l'observation est OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Le constat <strong>ne présente pas de preuves précises de l’organisme, ou
+          scène</strong> (p. ex., l’intelligence artificielle a été utilisée pour ajouter, supprimer ou remplacer
+          éléments de l’image ou du son. Débruitage, empilement de focus ou fabrication
+          de petites corrections comme l’élimination de la poussière du capteur sont généralement acceptables).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           l'observation ne nécessite plus d'ID <em>et</em> le Taxon Communautaire est au niveau familial ou plus élevé
@@ -7880,6 +7947,14 @@ fr:
       not_found:
         sorry_that_doesnt_exist: Désolé, ça n'existe pas !
         even_our_dedicated_search_mole_couldnt: Même notre taupe de recherche n’a rien pu trouver !
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Vous pouvez voir l’original à l’adresse <a href="%{url}">%{url}</a>. S’il vous plaît
+          laisser les drapeaux de violation du droit d’auteur comme non résolus si ce son
+          enfreindre le droit d’auteur.
     stats:
       index:
         active_desc: A créé une ID, une observation, un commentaire ou un article de journal dans les 30 derniers jours
@@ -8056,6 +8131,9 @@ fr:
           Rang auquel ce taxon est complet, par ex. si cette famille contient tous ses genres, mais pas toutes ses espèces, cela serait mis à « genre ». Par défaut, espèces.
         wikipedia_summary_desc_html: |
           Bref résumé de ce taxon basé sur sa page <a target="_blank" href="%{url}">Wikipédia</a> que nous mettons en cache indéfiniment jusqu'à ce qu'il soit actualisé manuellement. Rafraîchir ce résumé met également immédiatement à jour notre cache du contenu sous-jacent de Wikipédia que nous affichons sur le site Web, et qui se rafraîchit automatiquement après une semaine.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Vous ne pouvez apporter que des modifications mineures à l’épithète d’espèce directement (par exemple, changements de sexe, fautes d’orthographe). Ajoutez un <a target="_blank" href="%{url}">Échange de taxons</a> si vous avez besoin d’autres modifications du nom.
       show:
         about_names_desc: |
           <p>
@@ -8176,6 +8254,9 @@ fr:
         trending_desc: Taxons les plus observés lors du dernier mois
         trending_in_place_desc_html: Taxons les plus observés dans le dernier mois à <a href="%{url}">%{place}</a>
         wanted_desc: Espèces dans ce taxon qui n’ont pas encore été observées.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Quelque chose s’est mal passé en essayant de poster ces tags : %{message}
     taxon_changes:
       move_children_desc: |
         Les enfants du taxon saisi qui sont des genres ou plus gros seront déplacés dans la sortie ; les espèces, sous-espèces, variétés, etc. seront changées dans leur équivalent avec le nouveau nom de genre ou d’espèce.
@@ -8307,6 +8388,32 @@ fr:
           Vous devez saisir « %{confirmation_code} » dans le formulaire pour supprimer votre compte
       edit:
         about_third_party_tracking: À propos du suivi par des sites tiers
+        block_desc_blocking_someone_prevents: |
+          Bloquer quelqu’un l’empêche de vous envoyer des messages, de commenter votre
+          observations, identifier vos observations et interagir d’une autre manière
+          avec vous sur %{site_name}. Cela supprime également leurs observations de votre
+          résultats de recherche et supprime vos observations de leur recherche
+          résultats. Cependant, cela ne vous rend pas invisible pour eux. Ils peuvent
+          toujours trouver vos observations et consulter votre profil, ils ne peuvent tout simplement pas
+          interagir avec vous.
+        block_desc_blocking_is_for_situations: |
+          Le blocage est pour les situations où vous ne pouvez tout simplement pas vous entendre avec
+          quelqu’un et ils ne vous laisseront pas tranquille, malgré tous vos efforts pour
+          régler les différends de manière civilisée. Ce n’est pas une façon de se cacher
+          personnes, pour empêcher les identifications de personnes dont vous
+          ne faites pas confiance, ou de désactiver l’identifiant de la communauté (il y a un autre
+          réglage pour cela). Ainsi, le blocage fonctionne dans les deux sens : si vous bloquez
+          quelqu’un, il ne peut pas interagir avec vous, mais vous ne pouvez pas non plus interagir
+          avec eux. Si vous l’utilisez à mauvais escient pour empêcher quelqu’un d’identifier votre
+          observations, vous vous empêchez également d’identifier leurs
+          observations.
+        block_desc_you_can_only_block_html: |
+          Vous ne pouvez bloquer que trois personnes. Nous pensons qu’il s’agit d’une solution
+          qui accueille les personnes qui ont besoin d’être bloquées pendant
+          prévenir l’abus de blocage. Si vous sentez que vous devez bloquer davantage
+          les gens, s’il vous plaît <a href="mailto:%{help_email}">Contactez-nous</a>.
+        block_desc_there_are_two_exceptions: |
+          Il existe deux situations où le blocage n’empêche pas l’interaction :
         common_scientific_name_display_order: Ordre d'affichage du nom commun et du nom scientifique
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si vous changez d’avis, vous pouvez toujours
@@ -8815,6 +8922,7 @@ fr:
         exclude_donor_start_date: Exclure la date de début du donateur
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclure la date de fin du donateur
+        excludes_non_site: Masquer les autres annonces de cet emplacement qui n’ont pas d’ID de site
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Exclure les observateurs des applications
