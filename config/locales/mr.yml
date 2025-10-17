@@ -467,6 +467,14 @@ mr:
   anyone: कोणीही
   app_owner_application_explanation_required: |
     आपण काय तयार करू इच्छिता याचे अधिक तपशीलवार स्पष्टीकरण प्रदान करणे आवश्यक आहे.
+  app_owner_application_about_p2_html: |
+    2022 पर्यंत आम्हाला एपीआय क्लायंट बनवू इच्छिणाऱ्या वापरकर्त्यांसाठी मॅन्युअल मंजुरीची आवश्यकता आहे.
+    थर्ड पार्टी अॅप्स तयार करण्यासाठी, आपण प्रथम बनण्यासाठी एक अर्ज सबमिट करणे आवश्यक आहे
+    एक "अॅप मालक" हे अनुप्रयोग आपल्या प्रस्तावित अॅपच्या कार्यक्षमतेचे वर्णन केले पाहिजे
+    आणि आपण ते कसे वापरण्याची योजना आखत आहात. अर्ज सबमिट करण्यासाठी तुमचे खाते येथे असणे आवश्यक आहे.
+    कमीत कमी 2 महिन्यांचे आणि कमीतकमी 10 बनवलेले असणे आवश्यक आहे <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">ओळख सुधारणे</a> गेल्या महिन्यात. आम्ही पाठपुरावा विचारू शकतो
+    आपल्या योजनेबद्दल प्रश्न आणि आम्ही कोणत्याही कारणास्तव अर्ज नाकारण्याचा अधिकार राखून ठेवतो.
   apply_app_owner: लागू करा
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -483,6 +491,10 @@ mr:
   are_you_sure_leave_this_project: तुम्हाला नक्की प्रकल्प सोडायचा आहे ?
   are_you_sure_merge_these_places: तुम्हाला हि ठिकाणे नक्की एकत्र करायची आहेत ना? ती परत विलग करता येणार नाहीत.
   are_you_sure_remove_photo: "तुम्हाला नक्की हे छायाचित्र काढून टाकायचे आहे ना?"
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: तुम्हाला खात्री आहे का की तुम्हाला हा आवाज हटवायचा आहे?
+  artificially_generated_content: कृत्रिमरित्या व्युत्पन्न केलेली सामग्री
+  artificially_generated_content_desc: कृत्रिम बुद्धिमत्तेद्वारे मुख्यतः किंवा पूर्णपणे व्युत्पन्न केलेली सामग्री समाविष्ट करते.
   #Shows photo attribution along with who uploaded the photo. %
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
@@ -514,6 +526,7 @@ mr:
   comment_unhidden: टिपण्णी न लपविलेली
   community: समुदाय
   community_guidelines: समुदाय मार्गदर्शक तत्वे
+  community_taxon_matches_observation_taxon: कम्युनिटी टॅक्सॉन निरीक्षण टॅक्सॉनशी जुळते
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
   computer_vision_model: संगणकीय दृश्य प्रतिमा
@@ -528,6 +541,13 @@ mr:
   conservation_status_created: संवर्धन स्थिती निर्माण केली
   conservation_status_deleted: संवर्धन स्थिती हटवली
   conservation_status_updated: संवर्धन स्थिती अद्ययावत केली
+  conservation_status_descriptions:
+    iucn: |
+      समतुल्य आययूसीएन रेड लिस्ट कोड. हे वास्तविक आययूसीएन मूल्यांकन नाही,
+      फक्त आययूसीएन कोड जो समन्वय प्रकटीकरणाच्या धोक्याशी सर्वात चांगला जुळतो
+      या स्थितीद्वारे सूचित केले जाते. जर ते "कमीतकमी" असेल तर हे भूगोपनीयतेवर मात करेल
+      चिंता" किंवा खाली, म्हणून जर आपल्याला याची निरीक्षणे अस्पष्ट करायची असतील तर
+      टॅक्सन, हे "नियर थ्रेट" किंवा त्यापेक्षा जास्त सेट करा.
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: कोणताही
@@ -581,19 +601,31 @@ mr:
     प्रकल्पाचे निरीक्षण. हे फक्त डिफॉल्ट सेटिंग आहे
     प्रकल्पांमधील निरीक्षणे. पर्यवेक्षक यासाठी हे बदलणे देखील निवडू शकतात
     वैयक्तिक निरीक्षणे[संपादन]।
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "सध्याचे समुदाय वर्गीकरण: %{taxon}"
   #Label for a custom boundary for an observation search
   custom_boundary: स्वनिर्मित सीमारेषा
   dashboard: मुख्यपटल
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "हो! मला सहभागी व्हायला आवडेल."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "आयडेंटिफिकेशन गॅप पायलट: आयडी वॉन्टेड प्रजातींची आवश्यकता"
   date_obscured_notice: वैयक्तिक किंवा सजीवाच्या गोपनीयतेच्या संरक्षणासाठी तारीख अनिश्चित ठेवली आहे
   default_display_time_zone: सर्वसाधारण दृश्यमान वेळ क्षेत्र
   default_time_zone_desc: |
     हे सर्वसाधारण वेळ क्षेत्र आहे. अंतिम वेळ क्षेत्र निरीक्षणाच्या स्थानावर आधारित जेव्हा ते जतन केले जाते त्यानुसार नियुक्त केले जाईल.
+  #Label for a button to delete a sound file
+  delete_sound: ध्वनी हटवा
   devise:
     confirmations:
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         जर आपला ईमेल पत्ता आमच्या डेटाबेसमध्ये उपलब्ध असेल, तर आपल्याला काही मिनिटांतच आपल्या ईमेल पत्त्याची पुष्टी कशी करावी यासंबंधीच्या सूचनांसह एक ईमेल प्राप्त होईल.
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: रीसेट पासवर्ड टोकन अवैध आहे. कृपया नुकत्याच पाठविलेल्या रीसेट पासवर्ड ईमेलमधील दुवा वापरा, किंवा <a href="%{url}">नवीन विनंती करा</a>.
     registrations:
       updated_but_not_signed_in: "तुमचे खाते यशस्वीरित्या अपडेट केले गेले आहे, परंतु तुमचा पासवर्ड बदलला असल्याने, तुम्हाला पुन्हा साइन इन करणे आवश्यक आहे."
   #message informing the user the must confirm their email address to interact with other users
@@ -607,6 +639,8 @@ mr:
   disagreements_show_observations_that: असहमत ओळख असलेली निरीक्षणे दाखवा
   #Label for a button that dismisses an alert or popup
   dismiss: बाद करा
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: देणगी देणे
   #Title for pages and sections that encourage people to donate to iNaturalist
   donate_to_inaturalist: iNaturalist ला देणगी द्या
   download_caps: डाउनलोड करा
@@ -624,13 +658,20 @@ mr:
   editing_announcement_x: संपादन घोषणा %{id}
   email: ई-मेल
   email_copyright2: "&copy; %{year} iNaturalist, सर्व हक्क राखीव"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "ध्वनी अद्यतनित करण्यात त्रुटी: %{sound_errors}"
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
     इनपुट वर्गापैकी कोणती निरीक्षणे आऊटपुट वर्गात बदलली जातील आणि कोणती विभक्त झाल्यानंतर सामाईक पूर्वजापर्यंत सीमित केली जातील याचा अंदाज लावा. या संगणनास थोडा वेळ लागू शकतो. निरीक्षणांसाठीचे दुवे २०० च्या उपसंचांमध्ये विभागले आहेत.
   explore: सर्वेक्षण
+  evidence_accurately_depicts_organism_or_scene: पुरावा जीव किंवा दृश्य अचूकपणे दर्शवितो
   favorites: "आवडते"
   #Button to show fewer places
   fewer__context_places: कमी
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: संचिकेचे स्वरूप
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: फाईल URL
   find_a_post: पोस्ट शोधा
   find_posts_for: "याठिकाणी पोस्ट शोधा %{journal_name}"
   forum: मंच
@@ -640,6 +681,8 @@ mr:
     <a href="%{url}">येथे जिओमॉडेलबद्दल अधिक जाणून घ्या</a>.
   grid: ओळखलेली निरीक्षणे
   guides: मार्गदर्शक
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "हेड्स अप: हा आवाज ध्वजांकित केला गेला आहे."
   help: मदत
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "समायोजित करण्याचे तासः"
@@ -853,11 +896,27 @@ mr:
     मी माझी वैयक्तिक माहिती युनायटेड स्टेट्स ऑफ अमेरिका कडे हस्तांतरित करण्याची परवानगी देण्यास मी संमती देतो
   data_transfer_consent_child_label: |
     माझ्या मुलाची वैयक्तिक माहिती युनायटेड स्टेट्स ऑफ अमेरिका कडे हस्तांतरित करण्याची परवानगी देण्यास मी संमती देतो
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: निरीक्षणे या ठिकाणाशी संबंधित होण्यास एक दिवस लागू शकतो.
   places: ठिकाणे
   places_warning_look_for_existing2_html: |
     तुम्ही डुप्लिकेट स्थान तयार करत नाही आहात ना याची खात्री करण्यासाठी <a href="/search?source[]=places">विद्यमान ठिकाणे</a> शोधा. आमच्याकडे आधीपासूनच सर्व खंड, देश आणि इतर अनेक राजकीय सीमा इत्यादी स्थाने उपलब्ध आहेत.
   places_warning_please_keep_in_mind: |
     कृपया खालील निर्बंध लक्षात ठेवा:
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    जागा ७,००,००० चौरस किलोमीटरपेक्षा मोठी असू शकत नाही.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    ठिकाणे ७०,००० चौरस किलोमीटरपेक्षा मोठी असू शकत नाहीत.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    ठिकाणी दोन लाखांहून अधिक निरीक्षणे असू शकत नाहीत.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    ठिकाणी १०,००० पेक्षा जास्त निरीक्षणे असू शकत नाहीत.
   play_first_sound: पहिला आवाज प्ले करा
   #Shows the date a journal post was published
   posted_on_date_html: पोस्ट केले रोजी %{date}
@@ -910,6 +969,15 @@ mr:
     <strong>जर आपल्या संस्थेला iNaturalist नेटवर्क मध्ये सामील होण्यास स्वारस्य असेल, 
     तर आपण अधिक तपशील इथे शोधू शकता 
     %{start_tag_join}here%{end_tag_join}.</strong>
+  sounds:
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: आवाज %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: ध्वनी हटविला
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: लपलेला आवाज
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: न लपविलेला आवाज
   #Displayed on the taxon detail page when a conservation status is being
   #applied from a taxon that contains the current taxon
   status_applied_from_higher_level_taxon_html: |
@@ -1051,6 +1119,8 @@ mr:
     मी <a href="/terms" target="_blank">वापराच्या अटींना</a> सहमत आहे आणि
     <a href="/privacy" target="_blank">गोपनीयता धोरण</a> आणि मी पुनरावलोकन केले आहे
     <a href="/pages/community+guidelines" target="_blank">समुदाय मार्गदर्शक तत्त्वे</a>.
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: ध्वनी अद्ययावत करणे
   upload: अपलोड करा
   user_faved_an_observation_by_you: "%{user} ला तुमचे निरीक्षण आवडले"
   user_trusts_this_project_for_none: वापरकर्त्याचा गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास नाही.
@@ -1135,10 +1205,18 @@ mr:
         ही घोषणा थांबेल अशी वेळ तुमच्या अकाऊंट टाईम झोनमध्ये
         प्रकट होत आहे. टाइम झोनमध्ये लागू होते, जेणेकरून प्रत्येकजण पाहणे बंद करेल
         त्याच वेळी, त्यांच्या स्थानिक वेळेच्या सापेक्ष नाही.
+      excludes_non_site_desc: |
+        जर आपली घोषणा एखाद्या साइटला लक्ष्य करते (आपण असल्यास डिफॉल्ट आहे
+        साइट अॅडमिन), हे सर्व साइट्सला लक्ष्य करणार्या घोषणा वगळेल
+        हे प्लेसमेंट.
       ip_countries_desc: |
         एकाधिक निवडण्यासाठी सीएमडी- किंवा शिफ्ट-क्लिक करा. "सर्व" निवडणे किंवा न करणे
         एक निवड सर्व वापरकर्त्यांना घोषणा दर्शवेल
         आयपी देश.
+      exclude_ip_countries_desc: |
+        अनेक निवडण्यासाठी सीएमडी- किंवा शिफ्ट-क्लिक करा. निवडलेले देश दाखवले जाणार नाहीत
+        ही घोषणा आहे. आयपी देश निवडल्यास, निवडलेले आयपी देश वगळा
+        पूर्वीपासून वजा केले जाईल.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         लक्षात घ्या की वापरकर्त्याने अलीकडेच तयार केलेल्या निर्मितीची तारीख
@@ -1296,6 +1374,25 @@ mr:
         data_quality_assessment_desc3_html: |
           एखाद्या iNaturalist निरीक्षणाची गुणवत्ता पातळी जैवविविधता डेटाच्या दृष्टीकोनातून त्याची अचूकता, नि:संदिग्धता, पूर्णता, समर्पकता आणि योग्यता सूचित करते. 
           काही मूल्यांकने आपोआप ठरवली जातात, तर काही iNat वापरकर्त्यांद्वारे मताधिक्याने ठरविली जातात. iNaturalist परवानाधिकृत "संशोधन श्रेणी" तील निरीक्षणे विज्ञान आणि संवर्धनासाठी त्याच्या अनेक माहितीक्षेत्रातील भागीदारांसह शेअर करते.
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          हे <strong>कम्युनिटी टॅक्सॉन आणि ऑब्झर्वेशन टॅक्सॉन मॅच</strong>
+          (त्या दुर्मिळ प्रसंगी जेव्हा निरीक्षण टॅक्सॉन अधिक असू शकते
+          समुदाय टॅक्सॉनपेक्षा विशिष्ट)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          निरीक्षण <strong>जीवाचा अचूक पुरावा सादर करत नाही किंवा
+          तमाशा</strong> (उदा. कृत्रिम बुद्धिमत्ता जोडण्यासाठी, काढण्यासाठी किंवा पुनर्स्थित करण्यासाठी वापरली गेली
+          प्रतिमा किंवा ध्वनीमधील घटक. डिनॉइझिंग, फोकस स्टॅकिंग किंवा मेकिंग
+          सेन्सर धूळ काढून टाकणे यासारख्या लहान निराकरणे सहसा ठीक असतात).
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          आपण मूळ येथे पाहू शकता <a href="%{url}">%{url}</a>. कृपया
+          जर हा आवाज आला तर कॉपीराइट उल्लंघनाचे झेंडे निराकरण न झालेले म्हणून सोडा.
+          कॉपीराइटचे उल्लंघन करणे.
     stats:
       year:
         compare_desc: |
@@ -1320,12 +1417,19 @@ mr:
           one: "%{count} प्रकाशन पहा"
           other: "सर्व %{count} प्रकाशने पहा"
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          आपण केवळ प्रजातीच्या विशेषणात थेट किरकोळ बदल करू शकता (उदा. लिंग बदल, चुकीचे शब्दलेखन). एक जोडा <a target="_blank" href="%{url}">टॅक्सॉन स्वॅप</a> जर आपल्याला नावात इतर बदल हवे असतील तर.
       show:
         frequency:
           "Plant Phenology=No Evidence of Flowering": फुलल्याचा पुरावा नाही
           "Life Stage=Egg": अंडे
           "Life Stage=Larva": अळी
           "Life Stage=Pupa": कोष
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        ते टॅग पोस्ट करण्याचा प्रयत्न करताना काहीतरी चूक झाली: %{message}
     users:
       edit:
         common_scientific_name_display_order: सामान्य / वैज्ञानिक नाव दर्शनीय क्रम
@@ -1424,6 +1528,7 @@ mr:
         exclude_donor_start_date: दाता सुरू होण्याची तारीख वगळा
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: दाता संपण्याची तारीख वगळा
+        excludes_non_site: साइट आयडी नसलेल्या या प्लेसमेंटमधील इतर घोषणा लपवा
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: अ ॅप्समधून पर्यवेक्षकांना वगळा
