@@ -264,6 +264,14 @@ sk:
   #Label for an option to show any place
   any_place: Akýkoľvek
   anyone: Ktokoľvek
+  app_owner_application_about_p2_html: |
+    Od roku 2022 vyžadujeme manuálne schvaľovanie pre používateľov, ktorí chcú vytvárať API klientov.
+    Ak chcete vytvoriť aplikácie tretích strán, musíte najprv odoslať žiadosť, aby ste sa stali
+    "vlastník aplikácie". Táto aplikácia by mala popisovať funkcie navrhovanej aplikácie
+    a ako ho plánujete používať. Ak chcete podať žiadosť, váš účet musí byť na adrese
+    najmenej 2 mesiace a musí mať aspoň 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">zlepšenie identifikácie</a> za posledný mesiac. Môžeme požiadať o následné kroky
+    otázky týkajúce sa vášho plánu a vyhradzujeme si právo odmietnuť žiadosti z akéhokoľvek dôvodu.
   apply_to_selected: Použiť pre vybrané
   apply_captive_cultivated: "Použiť zajatý / kutlivovaný"
   apply_fields: Použiť polia
@@ -298,6 +306,8 @@ sk:
   are_you_sure_you_want_to_delete_this_assessment?: Naozaj chcete odstrániť toto hodnotenie?
   are_you_sure_you_want_to_delete_this_photo?: Naozaj chcete odstrániť túto fotku?
   are_you_sure_you_want_to_delete_this_post: Naozaj chcete odstrániť tento príspevok?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Naozaj chcete tento zvuk odstrániť?
   are_you_sure_you_want_to_delete_this_taxon_change: Naozaj chcete odstrániť túto zmenu taxónu?
   are_you_sure_you_want_to_remove_all_tags: Naozaj chcete toto odstrániť všetky značky?
   are_you_sure_you_want_to_remove_curator: Ste si istý, že chcete odobrať užívateľa %{user} ako kurátora?
@@ -307,6 +317,8 @@ sk:
     Považujete tohto užívateľa za dôveryhodného? Všetky spamové značky v jeho príspevkoch budú vyriešené.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Ste si istý, že chcete odstrániť tieto %{x} taxóny?"
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ste si istý, že chcete odstrániť tento taxón zo zoznamu %{place}?"
+  artificially_generated_content: Umelo vytvorený obsah
+  artificially_generated_content_desc: Obsahuje obsah, ktorý je väčšinou alebo úplne generovaný pomocou umelej inteligencie.
   associated_observations: Súvisiace pozorovania
   associated_taxa: Súvisiace taxóny
   attention: Upozornenie
@@ -540,6 +552,7 @@ sk:
   community_id_at_species_or_lower?: Komunitný taxón na druh alebo nižšie?
   community_id_at_species_level_or_lower: Komunitný taxón na úrovni druh alebo nižšie
   community_moderation_settings: Nastavenie moderovania komunity
+  community_taxon_matches_observation_taxon: Taxón Spoločenstva sa zhoduje s taxónom pozorovania
   compare: Porovnať
   compare_with: Porovnať s
   comparing: porovnanie
@@ -572,6 +585,12 @@ sk:
     description: Krátky opis dôvodov, prečo je toto na zozname.
     place: Miesto, na ktoré je tento status obmedzený.
     url: URL stránky opisujúci tento status.
+    iucn: |
+      Ekvivalentný kód Červeného zoznamu IUCN. Toto nie je skutočné hodnotenie IUCN,
+      len kód IUCN, ktorý najlepšie zodpovedá hrozbe zverejnenia súradníc
+      vyplýva z tohto stavu. Tým sa prepíše geosúkromie, ak je "najmenšia
+      Znepokojenie" alebo nižšie, takže ak chcete zakryť pozorovania
+      taxón, nastavte to na "Takmer ohrozený" alebo vyššie.
   contact_support: Kontaktujte podporu
   contain_all_descendants?: Obsahuje tento zoznam všetky následné taxóny, ktoré se tu vyskytujú?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -672,6 +691,8 @@ sk:
     Pozorovania v projektoch. Pozorovatelia sa tiež môžu rozhodnúť zmeniť túto možnosť pre
     individuálne pozorovania.
   curator_identification: Identifikácia správcu
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Súčasný taxón Spoločenstva: %{taxon}"
   current_flags: Aktuálne značky
   custom_project_fields: Vlastné projektové polia
   custom_project_was_successfully_created: Vlastný projekt bol úspešne vytvorený.
@@ -681,6 +702,11 @@ sk:
   customize_location: Upraviť lokalitu
   darr_apply_darr: "&darr; Použiť &darr;"
   dashboard: Nástenka
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Áno! Chcel by som sa zúčastniť."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Pilotný projekt identifikačných medzier: Potrebuje identifikáciu hľadaných druhov"
   data_deficient: chýbajúce údaje
   data_quality: Kvalita údajov
   data_quality_assessment: Hodnotenie kvality údajov
@@ -752,6 +778,8 @@ sk:
   delete_photo: Zmazať fotku
   delete_project: Zmazať tento projekt
   delete_selected: Zmazať vybrané
+  #Label for a button to delete a sound file
+  delete_sound: Odstránenie zvuku
   delete_user: Zmazať používateľa
   delete_your_account: Zmazať váš účet
   deleted_synonyms: Zmazať synonymá
@@ -777,6 +805,8 @@ sk:
     failure:
       user:
         suspended: Váš účet bol pozastavený
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Token obnovenia hesla je neplatný. Použite odkaz v naposledy odoslanom e-maile s obnovením hesla, alebo <a href="%{url}">Požiadať o nový</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Kliknutím na odkaz nižšie potvrďte svoju e-mailovú adresu. Ak nepotvrdíte svoj e-mail
@@ -800,6 +830,8 @@ sk:
   doesnt_have_default_photo: nemá ešte štandardnú fotku.
   doh_something_went_wrong: Och, niečo je zle.
   doh_something_went_wrong_error: "Och, niečo sa pokazilo: %{error}"
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Darovať
   done: Hotovo
   dont_have_an_account_sign_up_html: Nemáte účet? <strong>Zaregistrujte sa.</strong>
   dont_use_double_quotes: Nikde inde nepoužívajte dvojité úvodzovky
@@ -894,6 +926,8 @@ sk:
   endemic_to_x: "Endemický na %{x}"
   eol_collection_url: "URL súboru EOL"
   error_updating_photo: "Chyba pri aktualizácii obrázku: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Chyba pri aktualizácii zvuku: %{sound_errors}"
   establishment:
     endemic: Endemický
     establishment: Vznik
@@ -930,6 +964,7 @@ sk:
   extinct: vyhynutý
   extinct_in_the_wild: Vyhynutý vo voľnej prírode
   extra_properties: Ďalšie vlastnosti
+  evidence_accurately_depicts_organism_or_scene: Dôkazy presne zobrazujú organizmus alebo scénu
   evidence_of_organism: Dôkaz o organizme
   failed_to_find_your_location: Vaša lokalita nebola nájdená.
   failed_to_repair_photo: "Oprava fotky sa nepodarila: %{errors}"
@@ -961,6 +996,10 @@ sk:
   fields_can_only_be_edited_by_the_people_who: Polia môžu upravovať iba osoby, ktoré ich vytvorili a kurátori stránok
   fields_merged: Zlúčené polia
   file: Súbor
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Formát súboru
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL adresa súboru
   file_should_be_in_the_following_format: "Súbor by mal byť v nasledujúcom formáte: názov taxónu, opis"
   fill_out_project_observation_fields: Vyplniť pole pozorovania v projekte
   fill_out_your_profile: dokončiť váš profil
@@ -1108,6 +1147,8 @@ sk:
   header_your_observations: Vaše pozorovania
   heads_up: Pozor
   heads_up_this_photo_has_been_flagged: "POZOR: táto fotka bola označená."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "POZOR: tento zvuk bol označený."
   help: Pomoc
   help_confirm_observations!: Pomôžte potvrdiť pozorovania!
   here_are_3_examples: Toto sú 3 príklady dobre zostavených údajov
@@ -2056,6 +2097,8 @@ sk:
       zone: zóna
   place_guess: hádať miesto
   place_imported: Miesto bolo importované!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Môže trvať až jeden deň, kým sa pozorovania spoja s týmto miestom.
   place_must_have_a_boundary_defined: Miesto musí mať definovanú hranicu.
   place_name: Názov miesta
   place_notes: Poznámky k miestu
@@ -2710,7 +2753,15 @@ sk:
     select_one_or_more_sounds: Vyberte jeden alebo viac zvukov
     selected_sounds: Vybrané zvuky
     sound: Zvuk
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Zvuk %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Zvuk bol odstránený
     sound_has_been_flagged: Tento zvuk bol označený.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Skrytý zvuk
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Zvuk neskrytý
     soundcloud_replied_with_an_error: SoundCloud odpovedal chybou. Skúste to prosím znovu neskôr.
     sounds: Zvuky
     your_soundcloud_account: váš účet na SoundCloud
@@ -2979,6 +3030,8 @@ sk:
   updated: Aktualizované
   updated_daily: Aktualizované denne
   updated_photo: Aktualizovaná fotka
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Aktualizovaný zvuk
   #@gender operates on %{x}
   user_added_a_x: "%{user} pridal(a) %{x}"
   #@gender operates on %{x}
@@ -3100,6 +3153,14 @@ sk:
         Čas v časovom pásme vášho účtu, kedy sa toto oznámenie zastaví
         Uvedené. Platí vo všetkých časových pásmach, takže všetci prestanú vidieť
         zároveň, nie vo vzťahu k ich miestnemu času.
+      excludes_non_site_desc: |
+        Ak je vaše oznámenie zacielené na web (čo je predvolené nastavenie, ak ste
+        správcu webu), vylúčia sa oznámenia zamerané na všetky weby v
+        toto umiestnenie.
+      exclude_ip_countries_desc: |
+        Kliknutím na CMD alebo SHIFT vyberte viaceré. Vybrané krajiny sa nezobrazia
+        oznámenie. Ak sú vybraté krajiny IP, vyberte možnosť Vylúčiť krajiny IP
+        sa odpočíta od prvého.
       observation_oauth_application_ids_desc: |
         Kliknutím so stlačeným CMD alebo SHIFT vyberte viaceré. Výber "Všetko" alebo nevytváranie
         výberom sa oznámenie zobrazí všetkým používateľom bez ohľadu na
@@ -3207,6 +3268,18 @@ sk:
           Súkromné polia_* budú obsiahnuté iba pri použití užívateľského filtra a ak ste zároveň užívateľ alebo pri použití projektového filtra, ak ste zároveň správcom projektu.
       field_descriptions:
         place_admin1_name: Názov administratívneho miesta v rámci krajiny
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          tá <strong>Zhoda taxónu Spoločenstva a taxónu pozorovania</strong>
+          (pre tie zriedkavé prípady, keď môže byť taxón pozorovania viac
+          špecifické ako taxón Spoločenstva)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Pripomienka <strong>nepredkladá presné dôkazy o existencii organizmu alebo
+          scéna</strong> (napr. umelá inteligencia bola použitá na pridanie, odstránenie alebo nahradenie
+          prvkov v obraze alebo zvuku. Odšumovanie, stohovanie zaostrenia alebo vytváranie
+          malé opravy, ako je odstránenie prachu zo snímača, sú zvyčajne v poriadku).
     projects:
       new:
         multiple_project_administrators: Viac administrátorov projektu
@@ -3218,6 +3291,14 @@ sk:
         youve_blocked: Túto osobu ste zablokovali
         youve_blocked_desc: |
           Zablokovali ste majiteľa tohto zdroja, čo vám zabraňuje s nimi komunikovať. Väčšina interaktívnych funkcií na tejto stránke bude nefunkčná.
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Originál si môžete pozrieť na <a href="%{url}">%{url}</a>. Prosím
+          Ak tento zvuk ponecháva príznaky porušenia autorských práv ako nevyriešené
+          porušovať autorské práva.
     stats:
       index:
         obs_1_day: "Pozorovania (1 deň)"
@@ -3240,12 +3321,70 @@ sk:
       edit:
         high_status_conservation_status_notice_html: |
           Pridanie statusu ochrany vyššiemu taxónu ovplyvňuje pozorovania všetkých druhov v tomto taxóne. Nepridávajte prosím statusy pre taxóny, ktoré obsahujú druhy bez statusu pretože to zakryje súradnice pozorovaní týchto druhov.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Priamo môžete vykonať len menšie zmeny v prívlastku druhu (napr. zmeny pohlavia, preklepy). Pridanie <a target="_blank" href="%{url}">výmena taxónov</a> ak potrebujete ďalšie zmeny názvu.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Upozornenie: práve ste pridali potomka uzamknutého taxónu (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Zvážte namiesto toho zlúčenie do existujúceho taxónu." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Upozornenie: rodič tohto aktívneho taxónu je neaktívny, ale je to výstup tohto <a href='/taxon_changes/%{taxon_change_id}'> návrh zmeny taxónu</a> predpokladáme, že sa čoskoro zaviažete." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Tento aktívny taxón má viac ako %{count} následné pozorovania alebo je pokrytý rámcom taxónov, takže niektoré taxonomické atribúty môžu upravovať iba zamestnanci alebo kurátori taxónov spojení s týmto rámcom taxónov.
       show:
         site_curators_disabled_wikipedia_html: |
           Kurátori stránok zakázali zobrazovanie <a href="%{url}">toto
           obsah z Wikipédie</a>. Môžete pomôcť úpravou stránky na
           Wikipédia, aby to bolo vhodné pre tento taxón, alebo označením tohto
           taxon, aby naň upozornil kurátorov stránok.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Názvy musia byť podobné pri priamej úprave, urobte výmenu taxónov pre radikálne zmeny názvu
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} nemôžeme k fotografiám pridávať značky, kým sa služba Flickr nedovie, že ste nám udelili povolenie.
+        <a href='%{url}'>Udelenie povolenia Flickru</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Pri pokuse o uverejnenie týchto značiek sa niečo pokazilo: %{message}
+    taxon_changes:
+      #state of a pending taxon change
+      pending: nerozhodnutý
+      #state of a approved taxon change
+      approved: schválený
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Hlasovanie pridané
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Hlasovanie odstránené
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Zatiaľ žiadne hlasovanie
+      #message when taxon change is committed
+      taxon_change_committed: Zmena taxónu vykonaná! Záznamy, ktoré je možné automaticky aktualizovať, sa čoskoro zmenia.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Na túto zmenu taxónu sa teraz čaká. Vyžaduje súhlas 1 kurátora, aby sa mohol zaviazať."
+        few: "Na túto zmenu taxónu sa teraz čaká. Vyžaduje si schválenie %{count} kurátorov, aby sa mohli zaviazať."
+        many: "Na túto zmenu taxónu sa teraz čaká. Vyžaduje si schválenie %{count} kurátorov, aby sa mohli zaviazať."
+        other: "Na túto zmenu taxónu sa teraz čaká. Vyžaduje si schválenie %{count} kurátorov, aby sa mohli zaviazať."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Vstupný taxón nemôže mať aktívne potomky, presunúť ich ako prvé alebo vybrať možnosť "Presunúť deti na výstup?"
+      output_taxon_rank_level_not_coarser_html: >
+        Úroveň poradia vstupného taxónu nie hrubšia ako úroveň poradia aktívnych podriadených vstupného taxónu %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Táto taxonomická zmena už bola vykonaná!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Niečo sa pokazilo pri vymazaní zmeny taxónu '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Zmena taxónu bola vymazaná.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Zmena taxónu bola úspešne aktualizovaná.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Nie sú uvedené žiadne zmeny
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Zmena taxónu bola úspešne vytvorená.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Vyžaduje súhlas 1 iného kurátora na odovzdanie"
+        few: "Vyžaduje schválenie %{count} iných kurátorov, aby sa zaviazali"
+        many: "Vyžaduje schválenie %{count} iných kurátorov, aby sa zaviazali"
+        other: "Vyžaduje schválenie %{count} iných kurátorov, aby sa zaviazali"
     users:
       edit:
         errors:
@@ -3376,6 +3515,7 @@ sk:
       announcement:
         #Whether or not the announcement can be dismissed by people who see it
         dismissible: Zamietnuť
+        excludes_non_site: Skrytie ďalších oznámení v tomto umiestnení, ktoré nemajú ID lokality
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Vylúčenie pozorovateľov z aplikácií
@@ -3433,6 +3573,31 @@ sk:
             complete:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 môže byť zmenený iba kurátorom tohto taxónu
+            name:
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Zmeny názvov nie sú povolené pre vírusy, baktérie alebo neštepené klady"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "zmeny názvu nie sú povolené pre hodnosti hrubšie ako druhy"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Zmeny názvu nie sú povolené pre hybridné vzorce"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "nemôže pridať \"x\" ako hybridný marker medzi rodom a druhom"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "musia byť binomické (rodové druhy) na kontrolu"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "rod sa nemôže zmeniť"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "neštandardný názov druhu: povolené je iba odstránenie \"x\"/\"×\" alebo pridanie \"×\""
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "špecifický prívlastok musí byť podobný (len drobný preklep/pohlavie)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "pre túto hodnosť sa vyžaduje infrašpecifický epiteton"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "pre infrašpecifické hodnosti sa môže zmeniť iba infrašpecifický epiteton"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "infrašpecifický epiteton musí byť podobný (iba drobný preklep/pohlavie)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "prvé písmeno akéhokoľvek epitetona sa nemôže zmeniť."
         taxon_change:
           attributes:
             base:
