@@ -252,6 +252,14 @@ ar:
   any_: أي
   #Label for an option to show any place
   any_place: أي
+  app_owner_application_about_p2_html: |
+    اعتبارا من عام 2022 ، نطلب موافقة يدوية للمستخدمين الراغبين في إنشاء عملاء API.
+    من أجل إنشاء تطبيقات تابعة لجهات خارجية، يجب عليك أولا إرسال طلب لتصبح
+    "مالك التطبيق". يجب أن يصف هذا التطبيق وظائف تطبيقك المقترح
+    وكيف تخطط لاستخدامه. من أجل تقديم الطلب، يجب أن يكون حسابك على
+    عمر 2 أشهر على الأقل ويجب أن يكون قد صنع 10 على الأقل <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">تحسين التعريفات</a> في الشهر الماضي. قد نطلب المتابعة
+    أسئلة حول خطتك ونحتفظ بالحق في رفض الطلبات لأي سبب من الأسباب.
   apply_to_selected: تنطبق على المختار
   apply_captive_cultivated: "تطبيق الأسير/المزروع"
   apply_fields: تطبيق الحقول
@@ -284,6 +292,8 @@ ar:
   are_you_sure_you_want_to_delete_this_assessment?: هل أنت متأكد أنك تريد حذف هذه القيمة؟
   are_you_sure_you_want_to_delete_this_photo?: هل أنت متأكد من أنك تريد حذف هذه الصورة؟
   are_you_sure_you_want_to_delete_this_post: هل أنت متأكد أنك تريد حذف هذا المنشور؟
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: هل أنت متأكد من أنك تريد حذف هذا الصوت؟
   are_you_sure_you_want_to_delete_this_taxon_change: هل تريد بالتأكيد حذف هذا التغيير في الأصنوفة؟
   are_you_sure_you_want_to_remove_all_tags: هل تريد بالتأكيد إزالة جميع العلامات؟
   are_you_sure_you_want_to_remove_curator: هل تريد بالتأكيد إزالة %{user} كأمين؟
@@ -294,6 +304,8 @@ ar:
     سيتم حل أية علامات غير مرغوب فيها على محتواه.
   are_you_sure_you_want_to_remove_these_x_taxa?: "هل تريد بالتأكيد إزالة هذه الأصناف %{x}؟"
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "هل تريد بالتأكيد إزالة هذه الأصنوفة من قائمة تحقق %{place}؟"
+  artificially_generated_content: المحتوى الذي تم إنشاؤه بشكل مصطنع
+  artificially_generated_content_desc: يحتوي على محتوى يتم إنشاؤه في الغالب أو كليا من خلال الذكاء الاصطناعي.
   associated_observations: الملاحظات ذات الصلة
   associated_taxa: الأصناف المرتبطة
   attention: انتباه
@@ -548,6 +560,7 @@ ar:
   community_id_at_species_level_or_lower: أصنوفة المجتمع على مستوى الأنواع أو أقل
   community_moderation_settings: إعدادات الإشراف على المجتمع
   community_supported_id: أصنوفة معتمد من المجتمع؟
+  community_taxon_matches_observation_taxon: يتطابق تصنيف المجتمع مع تصنيف الملاحظة
   compare: قارن
   compare_with: مقارنة مع
   comparing: مقارنة
@@ -583,6 +596,12 @@ ar:
     description: وصف موجز لماذا تم إدراج هذا.
     place: المكان الذي يتم تقييد هذه الحالة فيه.
     url: مسار لصفحة تصف هذه الحالة.
+    iucn: |
+      رمز القائمة الحمراء المكافئ للاتحاد الدولي لحفظ الطبيعة. هذا ليس التقييم الفعلي للاتحاد الدولي لحفظ الطبيعة ،
+      فقط رمز IUCN الذي يتطابق بشكل أفضل مع تهديد الإفصاح عن الإحداثيات
+      ضمنيا من هذا الوضع. سيؤدي ذلك إلى تجاوز الخصوصية الجغرافية إذا كانت "الأقل
+      القلق" أو أدناه ، لذلك إذا كنت تريد حجب الملاحظات حول هذا
+      taxon ، اضبط هذا على "قريب من التهديد" أو أعلى.
   conservation_status_geoprivacy_desc: |
     يتم تطبيق الخصوصية الجغرافية الافتراضي على جميع ملاحظات هذه الأصنوفة في هذا المكان
   contact_support: اتصل بالدعم
@@ -691,6 +710,8 @@ ar:
     ملاحظات في المشاريع. يمكن للمراقبين أيضا اختيار تغيير هذا ل
     الملاحظات الفردية.
   curator_identification: تحديد الإشراف
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "تصنيف المجتمع الحالي: %{taxon}"
   current_flags: الأعلام الحالية
   custom_project_fields: حقول المشروع المخصصة
   custom_project_was_successfully_created: تم إنشاء مشروع مخصص بنجاح.
@@ -700,6 +721,11 @@ ar:
   customize_location: تخصيص الموقع
   darr_apply_darr: "&darr; تطبيق &darr;"
   dashboard: لوحة التحكم
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "نعم! أرغب في المشاركة."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "طيار فجوات التعريف: يحتاج إلى معرف الأنواع المطلوبة"
   data_deficient: نقص البيانات
   data_quality: جودة البيانات
   data_quality_assessment: تقييم جودة البيانات
@@ -772,6 +798,8 @@ ar:
   delete_photo: حذف الصورة
   delete_project: حذف هذا المشروع
   delete_selected: احذف المحدد
+  #Label for a button to delete a sound file
+  delete_sound: حذف الصوت
   delete_taxon_and_merge_most_data_html: |
     احذف <i>%{taxon}</i> وادمج معظم بياناتها في أصنوفة أخرى، استخدم هذه الأداة <strong>إزالة الأصناف المكررة</strong>، إذا كنت تريد إزالة مرادف قديم، فالرجاء إنشاء مبادلة أصنوفة، <strong>كن حذرا!</strong> يمكن أن يكون حذف العلامات مدمرا للغاية، اطلع على <a href="%{curator_url}">دليل الإشراف</a>  لمزيد من التفاصيل.
   delete_user: حذف المستخدم
@@ -799,6 +827,8 @@ ar:
     failure:
       user:
         suspended: تم تعليق حسابك
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: الرمز المميز لإعادة تعيين كلمة المرور غير صالح. يرجى استخدام الرابط الموجود في البريد الإلكتروني لإعادة تعيين كلمة المرور التي تم إرسالها مؤخرا، أو <a href="%{url}">اطلب واحدة جديدة</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     يرجى النقر فوق الرابط أدناه لتأكيد عنوان بريدك الإلكتروني. إذا لم تؤكد بريدك الإلكتروني
@@ -827,6 +857,8 @@ ar:
   doesnt_have_default_photo: ليس لديك صورة افتراضية بعد.
   doh_something_went_wrong: أوه، حدث خطأ ما.
   doh_something_went_wrong_error: "عفوا، حدث خطأ ما: %{error}"
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: تبرّع
   done: تم
   dont_have_an_account_sign_up_html: ليس لديك حساب؟ <strong>قم بالاشتراك.</strong>
   dont_use_double_quotes: لا تستخدم علامات الاقتباس المزدوجة في أي مكان آخر
@@ -928,6 +960,8 @@ ar:
   eol: موسوعة الحياة
   eol_collection_url: "مسار مجموعة موسوعة الحياة"
   error_updating_photo: "حدث خطأ أثناء تحديث الصورة: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "خطأ في تحديث الصوت: %{sound_errors}"
   establishment:
     endemic: متوطنة
     establishment: مؤسسة
@@ -966,6 +1000,7 @@ ar:
   extinct: منقرض
   extinct_in_the_wild: منقرض في البرية
   extra_properties: خصائص إضافية
+  evidence_accurately_depicts_organism_or_scene: الأدلة تصور بدقة الكائن الحي أو المشهد
   evidence_of_organism: دليل على الكائن الحي
   facebook: فيسبوك
   failed_to_find_your_location: أخفق البحث عن موقعك.
@@ -998,6 +1033,10 @@ ar:
   fields_can_only_be_edited_by_the_people_who: لا يمكن تعديل الحقول إلا بواسطة الأشخاص الذين أنشأوها ومشرفي الموقع
   fields_merged: تم دمج الحقول
   file: ملف
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: تنسيق الملف
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: عنوان URL للملف
   file_should_be_in_the_following_format: "يجب أن يكون الملف بالتنسيق التالي: اسم الأصنوفة، الوصف"
   fill_out_project_observation_fields: املأ حقول ملاحظة المشروع
   fill_out_your_profile: أكمل ملفك الشخصي
@@ -1150,6 +1189,8 @@ ar:
   hasnt_contributed_any_observations: لم يساهم بأية ملاحظات لهذا المشروع.
   heads_up: انتباه
   heads_up_this_photo_has_been_flagged: "انتباه: تم التعليم على هذه الصورة"
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "تنبيه: تم وضع علامة على هذا الصوت."
   heads_up_this_photo_is_already_associated_with: "تنبيه: هذه الصورة مقترنة بالفعل <a target='_blank' href='%{url}'>بملاحظة أخرى</a>"
   heads_up_you_have_multiple: "تنبيه: لديك عدة علامات تصنيفية للتصنيفات المميزة، إنها مرمزة بالألوان أدناه حسب الرتبة."
   help: مساعدة
@@ -2220,6 +2261,8 @@ ar:
       zone: منطقة
   place_guess: تخمين مكان
   place_imported: تم استيراد مكان!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: قد يستغرق الأمر ما يصل إلى يوم حتى ترتبط الملاحظات بهذا المكان.
   place_must_have_a_boundary_defined: يجب أن تكون للمكان حدود محددة.
   place_name: اسم المكان
   place_notes: ملاحظات المكان
@@ -2499,6 +2542,20 @@ ar:
     zimbabwe: زيمبابوي
   places_of_interest: الأماكن ذات الأهمية
   places_merged_successfully: تم دمج الأماكن بنجاح!
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    لا يمكن أن تزيد مساحة الأماكن عن 700,000 كيلومتر مربع.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    لا يمكن أن تزيد مساحة الأماكن عن 70,000 كيلومتر مربع.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    لا يمكن أن تحتوي الأماكن على أكثر من 200,000 ملاحظة.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    لا يمكن أن تحتوي الأماكن على أكثر من 10,000 ملاحظة.
   plants: النباتات
   please_add_a_citation_for_this_change: الرجاء إضافة اقتباس لهذا التغيير.
   please_allow_a_few_weeks_for_external_sites: يُرجَى السماح لبضعة أسابيع للمواقع الخارجية بمزامنة التغييرات من هذه الملاحظة #Request that a known child ask their parents for permission to use this service
@@ -2957,7 +3014,15 @@ ar:
     select_one_or_more_sounds: حدد صوتا واحدا أو أكثر
     selected_sounds: الأصوات المحددة
     sound: صوت
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: صوت %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: تم حذف الصوت
     sound_has_been_flagged: تم تعليم هذا الصوت.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: الصوت مخفي
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: صوت غير مخفي
     soundcloud_replied_with_an_error: رد ساوند كلاود بوجود خطأ; الرجاء معاودة المحاولة في وقت لاحق.
     sounds: أصوات
     your_soundcloud_account: حساب ساوند كلاود الخاص بك
@@ -3369,6 +3434,8 @@ ar:
   updated_by: تم التحديث بواسطة
   updated_daily: يتم التحديث يوميا
   updated_photo: تم تحديث الصورة
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: صوت محدث
   upload: رفع
   upload_a_csv_file: رفع ملف CSV
   upload_a_csv_file_with_observation: |
@@ -3784,10 +3851,18 @@ ar:
         الوقت في المنطقة الزمنية لحسابك الذي سيتوقف فيه هذا الإعلان
         الظهور. ينطبق عبر المناطق الزمنية، حتى يتوقف الجميع عن الرؤية
         في نفس الوقت ، ليس بالنسبة إلى وقتهم المحلي.
+      excludes_non_site_desc: |
+        إذا كان إعلانك يستهدف موقعا إلكترونيا (وهو الإعداد الافتراضي إذا كنت
+        مسؤول الموقع) ، سيؤدي ذلك إلى استبعاد الإعلانات التي تستهدف جميع المواقع في
+        هذا التنسيب.
       ip_countries_desc: |
         CMD- أو SHIFT انقر مع الضغط على مفتاح SHIFT لتحديد متعدد. اختيار "الكل" أو عدم الصنع
         سيظهر التحديد الإعلان لجميع المستخدمين بغض النظر عن
         بلد الملكية الفكرية.
+      exclude_ip_countries_desc: |
+        CMD- أو SHIFT مع الضغط على مفتاح لتحديد متعدد. لن يتم عرض البلدان المختارة
+        الإعلان. إذا تم تحديد بلدان IP، فحدد استبعاد بلدان IP
+        سيتم طرحه من السابق.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         لاحظ أن تاريخ إنشاء أحدث إصدار للمستخدم
@@ -4285,6 +4360,17 @@ ar:
           إحداثيات هذه الملاحظة مع أمناء هذا المشروع، 
           تجب إزالة الملاحظة من المشروع.
         disagreement_count_desc: "# الأصناف المحددة التي ليست من بين أسلاف الأصنوفة"
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ال <strong>تطابق تصنيف المجتمع وتصنيف الملاحظة</strong>
+          (لتلك المناسبات النادرة التي يمكن أن يكون فيها تصنيف الملاحظة أكثر
+          محددة من تصنيف المجتمع)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          الملاحظة <strong>لا يقدم دليلا دقيقا على الكائن الحي أو
+          مشهد</strong> (على سبيل المثال ، تم استخدام الذكاء الاصطناعي لإضافة أو إزالة أو استبدال
+          في الصورة أو الصوت. تقليل التشفير أو تكديس التركيز البؤري أو الصنع
+          عادة ما تكون الإصلاحات الصغيرة مثل إزالة غبار المستشعر على ما يرام).
         identification_count_desc: '# هويات أصنوفة فردية'
         flagged_photos_desc_html: |
           تم الإبلاغ عن بعض هذه الصور بسبب محتوى غير لائق أو
@@ -4834,6 +4920,14 @@ ar:
       not_found:
         sorry_that_doesnt_exist: عذرا، هذا غير موجود!
         even_our_dedicated_search_mole_couldnt: حتى خلد البحث المخصص لدينا لا يمكنه العثور على أي شيء!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          يمكنك عرض النسخة الأصلية على <a href="%{url}">%{url}</a>. رجاءً
+          اترك علامات انتهاك حقوق الطبع والنشر دون حل إذا كان هذا الصوت كذلك
+          انتهاك حقوق الطبع والنشر.
     stats:
       index:
         active_desc: تم إنشاء معرف أو ملاحظة أو تعليق أو منشور في الثلاثين يوما الماضية
@@ -4928,6 +5022,9 @@ ar:
           الرتبة التي تكمل هذه الأصنوفة، على سبيل المثال إذا كانت هذه العائلة تحتوي على 
           كل أجناسها ولكن ليس كل أنواعها، هذا سيتم تعيينه إلى "جنس". 
           الافتراضي هو النوع.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          يمكنك فقط إجراء تغييرات طفيفة على لقب الأنواع مباشرة (مثل تغييرات الجنس والأخطاء الإملائية). أضف <a target="_blank" href="%{url}">مبادلة الأصناف</a> إذا كنت بحاجة إلى تغييرات أخرى على الاسم.
       show:
         about_names_desc: |
           <p>
@@ -5044,6 +5141,9 @@ ar:
         trending_desc: أكثر الأصناف التي لُوحِظت في الشهر الماضي
         trending_in_place_desc_html: أكثر الأصناف التي لُوحِظت في الشهر الماضي في <a href="%{url}">%{place}</a>
         wanted_desc: الأنواع في هذه الأصنوفة الذي لم تُلاحَظ حتى الآن.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        حدث خطأ ما في محاولة نشر هذه العلامات: %{message}
     taxon_changes:
       move_children_desc: |
         سيتم نقل الأطفال من المدخلات المدخلة التي هي أجناس أو خشن إلى
@@ -5110,6 +5210,32 @@ ar:
         you_must_enter_confirmation_code_in_the_form: |
           يجب عليك إدخال "%{confirmation_code}" في النموذج لحذف حسابك
       edit:
+        block_desc_blocking_someone_prevents: |
+          يمنعه حظر شخص ما من مراسلتك والتعليق على
+          الملاحظات وتحديد ملاحظاتك والتفاعل بطريقة أخرى
+          معك في %{site_name}. كما أنه يزيل ملاحظاتهم من
+          نتائج البحث وإزالة ملاحظاتك من بحثهم
+          النتائج. ومع ذلك ، فإنه لا يجعلك غير مرئي لهم. يمكنهم
+          لا يزال يجد ملاحظاتك ويعرض ملفك الشخصي ، فلا يمكنهم
+          التفاعل معك.
+        block_desc_blocking_is_for_situations: |
+          الحظر مخصص للمواقف التي لا يمكنك فيها التعايش معها
+          شخص ما ولن يتركك بمفردك ، على الرغم من بذل قصارى جهدك
+          تسوية النزاعات بطريقة حضارية. إنها ليست طريقة للاختباء من
+          الأشخاص ، لمنع تحديد الهوية من الأشخاص الذين تتحدث عن آرائهم
+          لا تثق أو لإلغاء الاشتراك في معرف المنتدى (هناك معرف آخر
+          إعداد لذلك). وبالتالي ، يعمل الحظر في كلا الاتجاهين: إذا قمت بالحظر
+          شخص ما ، لا يمكنه التفاعل معك ، ولكن لا يمكنك أيضا التفاعل
+          معهم. إذا أسأت استخدامه لمنع شخص ما من التعرف على هويتك
+          ملاحظات ، كما أنك تمنع نفسك من تحديد هويتهم
+          الملاحظات.
+        block_desc_you_can_only_block_html: |
+          يمكنك حظر ثلاثة أشخاص فقط. نعتقد أن هذا معقول
+          الرقم الذي يستوعب الأشخاص الذين يحتاجون إلى الحظر أثناء
+          منع إساءة استخدام الحظر. إذا كنت تشعر أنك بحاجة إلى حظر المزيد
+          الناس من فضلك <a href="mailto:%{help_email}">اتصل بنا</a>.
+        block_desc_there_are_two_exceptions: |
+          هناك حالتان لا يمنع فيهما الحظر التفاعل:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           إذا غيرت رأيك، فيمكنك دائما
           <a href='/users/edit'>تعديل إعداداتك</a>.
@@ -5430,6 +5556,7 @@ ar:
         exclude_donor_start_date: استبعاد تاريخ بدء المتبرع
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: استبعاد تاريخ انتهاء المتبرع
+        excludes_non_site: إخفاء رسائل الإعلام الأخرى في هذا الموضع التي لا تحتوي على معرف الموقع
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: استبعاد المراقبين من التطبيقات
