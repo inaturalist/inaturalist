@@ -13,13 +13,128 @@ vi:
   account: Tài khoản
   account_creation: Tạo tài khoản
   account_settings: Cài đặt tài khoản
+  #Label for an option to show any place
+  any_place: Bất kì
+  app_owner_application_about_p2_html: |
+    Kể từ năm 2022, chúng tôi đang yêu cầu phê duyệt thủ công cho người dùng muốn tạo ứng dụng khách API.
+    Để tạo ứng dụng của bên thứ ba, trước tiên bạn phải gửi đơn đăng ký để trở thành
+    "chủ sở hữu ứng dụng". Ứng dụng này phải mô tả chức năng của ứng dụng bạn đề xuất
+    và cách bạn định sử dụng nó. Để gửi đơn đăng ký, tài khoản của bạn phải ở
+    ít nhất 2 tháng tuổi và phải thực hiện ít nhất 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Cải thiện nhận dạng</a> trong tháng trước. Chúng tôi có thể yêu cầu theo dõi
+    Câu hỏi về chương trình của bạn và chúng tôi có quyền từ chối đơn đăng ký vì bất kỳ lý do gì.
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Bạn có chắc chắn muốn xóa âm thanh này không?
+  artificially_generated_content: Nội dung được tạo giả tạo
+  artificially_generated_content_desc: Chứa nội dung chủ yếu hoặc hoàn toàn được tạo ra thông qua trí tuệ nhân tạo.
+  community_taxon_matches_observation_taxon: Đơn vị phân loại cộng đồng phù hợp với Đơn vị phân loại quan sát
+  confirming_ids: Xác nhận ID
+  confirming_ids_description: |
+    Nếu tắt tính năng này, bạn sẽ không còn nhận được thông báo về giấy tờ tùy thân đồng ý
+    với của bạn trừ khi họ có nhận xét bổ sung.
+  conservation_status_descriptions:
+    iucn: |
+      Mã Sách đỏ IUCN tương đương. Đây không phải là đánh giá thực tế của IUCN,
+      chỉ có mã IUCN phù hợp nhất với mối đe dọa tiết lộ tọa độ
+      được ngụ ý bởi trạng thái này. Điều này sẽ ghi đè quyền riêng tư địa lý nếu nó là "Ít nhất
+      Mối quan tâm" hoặc thấp hơn, vì vậy nếu bạn muốn che khuất các quan sát về điều này
+      đơn vị phân loại, đặt thành "Gần bị đe dọa" trở lên.
+  curator_coordinate_access: Truy cập tọa độ người phụ trách
+  curator_coordinate_access_desc: |
+    Người quản lý điều phối quyền truy cập cho các dự án truyền thống phụ thuộc vào người đã thêm
+    quan sát dự án. Đây chỉ là cài đặt mặc định cho
+    quan sát trong các dự án. Người quan sát cũng có thể chọn thay đổi điều này cho
+    quan sát cá nhân.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Đơn vị phân loại cộng đồng hiện tại: %{taxon}"
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Có! Tôi muốn tham gia."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Thí điểm khoảng cách nhận dạng: Cần nhận dạng các loài bị truy nã"
+  #Label for a button to delete a sound file
+  delete_sound: Xóa âm thanh
+  devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Mã thông báo đặt lại mật khẩu không hợp lệ. Vui lòng sử dụng liên kết trong email đặt lại mật khẩu được gửi gần đây nhất hoặc <a href="%{url}">Yêu cầu một cái mới</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Vui lòng nhấp vào liên kết bên dưới để xác nhận địa chỉ email của bạn. Nếu bạn không xác nhận email của mình
     địa chỉ, bạn sẽ không thể tương tác với nội dung của người dùng khác.
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Bất đồng
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Hiển thị các quan sát có nhận dạng không đồng nhất
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Góp
+  #Title for a page to edit an announcement
+  editing_announcement_x: Chỉnh sửa thông báo %{id}
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Lỗi cập nhật âm thanh: %{sound_errors}"
+  evidence_accurately_depicts_organism_or_scene: Bằng chứng mô tả chính xác sinh vật hoặc cảnh
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Định dạng tệp
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL tệp
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "CẢNH BÁO: âm thanh này đã được gắn cờ."
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: ID Hạ chủng
   language_slash_locale: Ngôn ngữ/Địa phương
   language_slash_locale_description: Điều này đặt tùy chọn định dạng ngôn ngữ và ngày của bạn trên iNaturalist dựa trên ngôn ngữ của bạn. Các thay đổi sẽ có hiệu lực sau khi trang được làm mới.
   language_slash_type: Ngôn ngữ / Loại
+  #Adjectival phrase describing state of being logged in
+  logged_in: Đã đăng nhập
+  #Adjectival phrase describing state of being logged out
+  logged_out: Đã đăng xuất
+  #Label for a button or section that shows additional options
+  more_options: Nhiều lựa chọn hơn
+  #A user who is not a curator
+  non_curator: Không giám tuyển
+  #A user who does not admin any projects
+  non_project_admin: Quản trị viên không phải dự án
+  observation_fields_for_projects: Lĩnh vực quan sát cho các dự án
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Có thể mất đến một ngày để các quan sát được liên kết với nơi này.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Các địa điểm không được lớn hơn 700.000 km vuông.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Các địa điểm không được lớn hơn 70.000 km vuông.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Các địa điểm không được chứa hơn 200.000 quan sát.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Các địa điểm không được chứa nhiều hơn 10.000 quan sát.
+  #A user who admin's a project
+  project_admin: Quản trị viên dự án
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Chi / Chi lai
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Loài / Lai
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Phân loài / Giống / Hình thức
+  sounds:
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Âm thanh %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Âm thanh bị xóa
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Âm thanh ẩn
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Âm thanh không ẩn
   these_are_items_people_on: |
     Đây là những mục mà mọi người trên trang web đã gắn cờ để quản lý. Thư rác
      nhận xét sẽ bị xóa và những người dùng thêm thư rác sẽ bị tạm ngừng (đi
@@ -29,7 +144,46 @@ vi:
      vv, nên được xử lý bằng một nhận xét lịch sự. Người tái phạm phải được
      đã báo cáo cho quản trị viên trang web hoặc %{email}
   translated_languages: Ngôn ngữ đã dịch
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Âm thanh được cập nhật
+  user_trusts_this_project_when_added_by_any: |
+    Người dùng tin tưởng người quản lý dự án với tọa độ ẩn của các quan sát được thêm vào
+    cho dự án bởi bất kỳ ai.
+  user_trusts_this_project_when_added_by_observer: |
+    Người dùng tin tưởng người quản lý dự án với tọa độ ẩn của các quan sát được thêm vào
+    cho dự án của quan sát viên.
+  user_trusts_this_project_when_added_by_none: |
+    Người dùng không tin tưởng người quản lý dự án với tọa độ ẩn.
+  we_also_support3: |
+    Chúng tôi cũng hỗ trợ nhập ảnh từ <a href="http://flickr.com">Flickr</a>.
   views:
+    announcements:
+      locales_desc: |
+        CMD- hoặc SHIFT-nhấp để chọn nhiều. Chọn "Tất cả" hoặc không thực hiện
+        một lựa chọn sẽ hiển thị thông báo cho tất cả người dùng bất kể
+        Locale. Chọn một ngôn ngữ không có khu vực sẽ *không* nhắm mục tiêu
+        locale có vùng, ví dụ: nếu bạn chọn tiếng Anh, nó sẽ không xuất hiện
+        dành cho những người đã chọn tiếng Anh (Anh).
+      clients_desc: |
+        CMD- hoặc SHIFT-nhấp để chọn nhiều. Chọn "Tất cả" hoặc không thực hiện
+        một lựa chọn sẽ hiển thị thông báo cho tất cả người dùng bất kể
+        khách hàng.
+      end_desc: |
+        Thời gian trong múi giờ tài khoản của bạn mà thông báo này sẽ dừng lại
+        Xuất hiện. Áp dụng trên các múi giờ nên mọi người sẽ ngừng nhìn thấy
+        nó cùng một lúc, không liên quan đến giờ địa phương của họ.
+      excludes_non_site_desc: |
+        Nếu thông báo của bạn nhắm mục tiêu đến một trang web (đây là giá trị mặc định nếu bạn là
+        Quản trị viên trang web), điều này sẽ loại trừ các thông báo nhắm mục tiêu đến tất cả các trang web trong
+        vị trí này.
+      exclude_ip_countries_desc: |
+        CMD- hoặc SHIFT-nhấp để chọn nhiều. Các quốc gia được chọn sẽ không được hiển thị
+        thông báo. Nếu các quốc gia IP được chọn, hãy chọn Loại trừ các quốc gia IP
+        sẽ bị trừ khỏi cái trước.
+      observation_oauth_application_ids_desc: |
+        CMD- hoặc SHIFT-nhấp để chọn nhiều. Chọn "Tất cả" hoặc không thực hiện
+        một lựa chọn sẽ hiển thị thông báo cho tất cả người dùng bất kể
+        App.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Nhấp vào đây để gửi lại email xác nhận
       #message displayed after users trigger sending a email to confirm their email address
@@ -55,6 +209,11 @@ vi:
       tips_check_email_filters: Kiểm tra bất kỳ bộ lọc nào bạn đã thực hiện có thể xóa email của chúng tôi khỏi hộp thư đến của bạn #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Kiểm tra thư mục thư rác của bạn
       your_site_account_has_no_email: Của bạn %{site_name} không có địa chỉ email nào được liên kết với nó.
+    guides:
+      index:
+        funding2_html: |
+          Tài trợ cho việc phát triển Hướng dẫn được cung cấp bởi
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -68,6 +227,35 @@ vi:
           Bạn sẽ có thể gửi thư mới sau khi xác nhận email của mình
           địa chỉ và thêm ba quan sát có thể kiểm chứng hoặc ba nhận dạng
           cho những người khác. Hiện tại, bạn có thể đọc và trả lời tin nhắn mà người khác gửi cho bạn.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          Các <strong>Đơn vị phân loại cộng đồng và Đơn vị phân loại quan sát phù hợp</strong>
+          (đối với những dịp hiếm hoi khi Đơn vị phân loại quan sát có thể nhiều hơn
+          cụ thể hơn là Đơn vị phân loại cộng đồng)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Quan sát <strong>không đưa ra bằng chứng chính xác về sinh vật hoặc
+          cảnh</strong> (ví dụ: trí tuệ nhân tạo được sử dụng để thêm, xóa hoặc thay thế
+          trong hình ảnh hoặc âm thanh. Khử nhiễu, xếp chồng tiêu điểm hoặc tạo
+          các bản sửa lỗi nhỏ như loại bỏ bụi cảm biến thường ổn).
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Bạn có thể xem bản gốc tại <a href="%{url}">%{url}</a>. Vui lòng
+          Để cờ vi phạm bản quyền là chưa được giải quyết nếu âm thanh này không được giải quyết
+          vi phạm bản quyền.
+    taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Bạn chỉ có thể thực hiện các thay đổi nhỏ đối với biệt hiệu loài trực tiếp (ví dụ: thay đổi giới tính, sai chính tả). Thêm một <a target="_blank" href="%{url}">Hoán đổi đơn vị phân loại</a> nếu bạn cần những thay đổi khác đối với tên.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Đã xảy ra sự cố khi cố gắng đăng các thẻ đó: %{message}
   number:
     format:
       significant: false
@@ -77,6 +265,37 @@ vi:
         significant: true
         strip_insignificant_zeros: true
   activerecord:
+    attributes:
+      announcement:
+        excludes_non_site: Ẩn các thông báo khác trong vị trí quảng cáo này không có ID trang web
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Loại trừ người quan sát khỏi ứng dụng
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Bao gồm người quan sát từ ứng dụng
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Người tạo mục tiêu (để thử nghiệm)
+      user:
+        faved_project_ids: Các dự án yêu thích
     errors:
       messages:
+        must_look_like_an_email_address: phải trông giống như một địa chỉ email
         requires_privilege_interaction: phải có địa chỉ email đã được xác nhận để làm điều đó
+      models:
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Bạn chỉ có thể yêu thích 7 dự án
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: không thể bao gồm nhiều hơn 7 dự án
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: tất cả phải tồn tại
+            login:
+              domain_is_not_supported: không được hỗ trợ
