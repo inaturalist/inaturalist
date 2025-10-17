@@ -1416,8 +1416,6 @@ zh-CN:
     pilot_read_more: "浏览我们的博客以了解更多信息。"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "鉴定差距试点：需要鉴定通缉物种"
-    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "通过参与接收每日观察链接来帮助我们填补空白："
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "尚未列入计算机视觉模型"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -7646,6 +7644,8 @@ zh-CN:
         #a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           您只能直接对物种绰号进行细微的更改（例如性别更改、拼写错误）。添加一个 <a target="_blank" href="%{url}">分类单元交换</a> 如果您需要对名称进行其他更改。
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "注意：您刚刚添加了一个锁定分类单元的后代（<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>)。请考虑将其合并到现有分类单元中。" #message when you try to save edits to a taxon that has inactive parents
       show:
         about_names_desc: |
           <p>
@@ -7774,6 +7774,11 @@ zh-CN:
       #message when taxon change is moved into the pending state, count is a number (e.g. 5)
       taxon_change_pending:
         other: "此分类单元更改现在正在等待确认中。它需要获得 %{count} 名馆长的批准才能得到提交。"
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        输入分类单元不能有活动的子分类单元，请先移动它们，或选择“将子分类单元移动到输出？”选项
+      output_taxon_rank_level_not_coarser_html: >
+        输出分类单元等级不粗于输入分类单元的活动子级的等级等级 %{taxon_link}。
       #a message when someone tries to commit a taxon change that was already committed
       taxon_change_already_committed: 分类单元更改已提交！
       #an error message when trying to delete a taxon change, param is the integer id of the taxon change
