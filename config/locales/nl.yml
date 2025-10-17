@@ -1516,8 +1516,6 @@ nl:
     pilot_read_more: "Lees meer op onze blog"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Pilot met determinatielacunes: \"ID nodig\"-soorten gezocht"
-    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "Help ons hiaten op te vullen door deel te nemen en de dagelijkse link naar waarnemingen te ontvangen:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Zijn nog niet opgenomen in het Computer Vision Model"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -8303,6 +8301,10 @@ nl:
       no_changes_specified: Geen wijzigingen gespecificeerd
       #a message when a taxon change was successfully created
       taxon_change_successfully_created: Taxon Change is met succes gemaakt.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Vereist goedkeuring van 1 andere curator om zich te committeren"
+        other: "Vereist goedkeuring door %{count} Andere curatoren om te binden"
     taxon_links:
       form:
         name_with_rank_desc: |
