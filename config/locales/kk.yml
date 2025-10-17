@@ -507,6 +507,14 @@ kk:
   #Label for an option to show/include content by any user
   any_user: Кез келген
   anyone: Кез келген адам
+  app_owner_application_about_p2_html: |
+    2022 жылғы жағдай бойынша біз API клиенттерін жасағысы келетін пайдаланушыларды қолмен мақұлдауды талап етеміз.
+    Бөгде бағдарламаларды жасау үшін алдымен болу үшін өтінім беру керек
+    «бағдарлама иесі». Бұл бағдарлама ұсынылған бағдарламаның функционалдылығын сипаттауы тиіс
+    және оны қалай пайдалануды жоспарлап отырсыз. Өтінім беру үшін тіркелгіңіз болуы керек
+    2 айдан кем емес және 10-ға дейін болуы тиіс <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">сәйкестендіруді жақсарту</a> соңғы айдың 1-і күні Келесіні сұрай аламыз
+    сіздің жоспарыңызға қатысты сұрақтар және біз өтінімдерді қандай да бір себептермен төмендету құқығын өзімізде сақтап отырмыз.
   app_owner_application_fields_explanation_html: Қолданбаңызда болатын функционалдылықты және оны қалай пайдалануды жоспарлап отырғаныңызды сипаттаңыз.
   app_owner_application_success: Қолданба иесінің өтініші жіберілді
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -562,12 +570,16 @@ kk:
   are_you_sure_you_want_to_delete_this_assessment?: Осы бағалауды шынымен жойғыңыз келе ме?
   are_you_sure_you_want_to_delete_this_photo?: Бұл фотосуретті шынымен жойғыңыз келе ме?
   are_you_sure_you_want_to_delete_this_post: Осы жазбаны шынымен жойғыңыз келе ме?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Осы дыбысты өшіргіңіз келетіні рас па?
   are_you_sure_you_want_to_delete_this_taxon_change: Осы таксон өзгерісін шынымен жойғыңыз келе ме?
   are_you_sure_you_want_to_remove_all_tags: Барлық тегтерді шынымен жойғыңыз келе ме?
   are_you_sure_you_want_to_remove_from_project: '%{user} пайдаланушыны осы жобадан шынымен жойғыңыз келе ме?'
   are_you_sure_you_want_to_remove_these_x_taxa?: "Осы %{x} таксондарды шынымен жойғыңыз келе ме?"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Бұл бақылауды %{project} ішінен жойғыңыз келетініне сенімдісіз бе?
+  artificially_generated_content: Жасанды түрде жасалған мазмұн
+  artificially_generated_content_desc: Негізінен немесе толығымен жасанды интеллект арқылы жасалатын мазмұнды қамтиды.
   associated_observations: Байланысты бақылаулар
   associated_taxa: Байланысты таксондар
   attention: Назар аударыңыз
@@ -777,6 +789,7 @@ kk:
   community_id_is_precise: Қауымдастық таксоны нақты
   community_moderation_settings: Қауымдастық модерациясының баптаулары
   community_supported_id: Қоғамдастық қолдайтын таксон ба?
+  community_taxon_matches_observation_taxon: Қауымдастық таксоны бақылау таксонына сәйкес келеді
   compare: Салыстыру
   comparing: салыстыру
   comparing_list_to_list: "%{list1} және %{list2} салыстырылуда"
@@ -831,6 +844,12 @@ kk:
   conservation_status_updated: Қорғау статусы жаңартылды
   conservation_status_descriptions:
     url: Осы статусты сипаттайтын беттің URL мекенжайы.
+    iucn: |
+      Эквивалентті IUCN Қызыл тізім коды. Бұл ХТҚО-ның нақты бағасы емес,
+      координаталардың ашылу қаупіне ең жақсы сәйкес келетін ХТҚО коды
+      осы күймен түсіндіріп отыр. Бұл геопривацияны «Ең аз» болса, оның үстінен алып тастайтын болады
+      Концерн» немесе одан төмен, сондықтан осыны әшкерелегіңіз келсе
+      таксон, мұны «Қауіп төнгенге жақын» немесе одан жоғары деп белгілеп қойыңыз.
   contact_support: Қолдау қызметіне хабарласыңыз
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Контент
@@ -1008,6 +1027,8 @@ kk:
     жобаға бақылау жасау. Бұл тек әдепкі параметр
     жобалардағы бақылаулар. Бақылаушылар мұны өзгертуді де таңдай алады
     жеке бақылаулар.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Ағымдағы қауымдастық таксоны: %{taxon}"
   current_flags: Ағымдағы белгілер
   #Button to customize projects that appear in the header
   customize__projects: Баптау
@@ -1015,6 +1036,11 @@ kk:
   daily_users: Күнделікті пайдаланушылар
   danger_zone: Қауіпті аймақ
   dashboard: Бақылау тақтасы
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Иә! Мен қатысқым келеді."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Сәйкестендіру олқылықтары Ұшқыш: Идентификатор іздестіріліп жатқан түрлерді қажет етеді"
   data_deficient: Деректер жетіспейді
   data_quality: Деректер сапасы
   data_quality_assessment: Деректер сапасын бағалау
@@ -1090,6 +1116,8 @@ kk:
   delete_photo: Фотосуретті жою
   delete_project: Осы жобаны жою
   delete_selected: Таңдалғанды жою
+  #Label for a button to delete a sound file
+  delete_sound: Дыбысты өшіру
   delete_user: Пайдаланушыны жою
   delete_your_account: Аккаунтыңызды жою
   deleted_synonyms: Жойылған синонимдер
@@ -1123,6 +1151,8 @@ kk:
         Электрондық поштаңызды тексеріп, аккаунтыңызды растау үшін алынған электрондық поштадағы сілтемені басыңыз.
       user:
         suspended: Аккаунтыңыз уақытша тоқтатылды
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Ысыру құпиясөз жетоны жарамсыз. Сілтемені ең соңғы жіберілген ысыру құпиясөз электрондық поштасында пайдалануыңызды сұраймыз немесе <a href="%{url}">жаңасын сұрау</a>.
     passwords:
       updated_not_active: 'Құпия сөзіңіз сәтті өзгертілді.'
       send_paranoid_instructions: |
@@ -1269,6 +1299,8 @@ kk:
   eol: EOL
   eol_collection_url: "EOL жинағының URL мекенжайы"
   error_updating_photo: "Фотосуретті жаңарту қатесі: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Дыбысты жаңарту қатесі: %{sound_errors}"
   establishment:
     endemic: Эндемик
     introduced: Интродуцент
@@ -1306,6 +1338,7 @@ kk:
   extinct: жойылып кеткен
   extinct_in_the_wild: табиғатта жойылып кеткен
   extra_properties: Қосымша сипаттар
+  evidence_accurately_depicts_organism_or_scene: Дәлелдер организмді немесе көріністі дәл бейнелейді
   facebook: Facebook
   failed_to_save_record: "Жазба сақталмады. Әрекетті кейінірек қайталаңыз."
   failed_to_save_record_with_errors: "Жазба сақталмады: %{errors}"
@@ -1317,7 +1350,11 @@ kk:
   fields: өрістер
   fields_: Өрістер
   file: Файл
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Файл пішімі
   file_size: Файл көлемі
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Файл URL мекенжайы
   filter_by_place: Орын бойынша сүзгілеу
   filter_by_taxon: Таксон бойынша сүзгілеу
   filter_by_place_taxon_and_color: Басқару элементтерін пайдаланып орын, таксон және түс бойынша сүзгілеу.
@@ -1402,6 +1439,8 @@ kk:
   header_your_projects: Сіздің жобаларыңыз
   header_your_profile: Сіздің профиліңіз
   heads_up: Ескерту
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "Жүргізуші: Мына дыбыс естіледі."
   help: Көмек
   help_translate!: Аударуға көмектесіңіз!
   hi_user: "Сәлем %{user}"
@@ -2209,6 +2248,8 @@ kk:
       Zone: Зона
       zone: зона
   place_imported: Орын импортталады!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Бақылаулардың осы жермен байланысты болуы үшін бір тәулікке дейін уақыт кетуі мүмкін.
   place_must_have_a_boundary_defined: Орынның белгіленген шекарасы болуы керек.
   place_name: Орын атауы
   place_updated: Орын жаңартылды!
@@ -2491,6 +2532,20 @@ kk:
     Жаңа орындар iNat жүйесіндегі ең үлкен баяулау көздерінің бірі болып табылады, сондықтан <strong>жаңа орын ашпауды қарастырыңыз</strong>. Бірнеше мың бақылаудан тұратын шағын орындар әдетте жақсы болғанымен, көп бақылауды қамтитын жаңа орын жасасаңыз, iNat жылдамдығын басқалардың бәрі үшін бәсеңдететін боласыз. Міне, кейбір балама тәсілдер:
   places_warning_quota: |
     Сіз күніне тек үш орын жасай аласыз.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Орындар 700 мың шаршы километрден үлкен бола алмайды.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Орындар 70 мың шаршы километрден үлкен бола алмайды.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Орындарда 200 мыңнан астам бақылау болуы мүмкін емес.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Орындарда 10 мыңнан астам бақылау болуы мүмкін емес.
   places_warning_the_future: |
     iNat-тың қазіргі өсу қарқынын ескере отырып, біз адамдарға болашақта орындар қоса алатын шарттарды шектеуіміз керек.
   plants: өсімдіктер
@@ -3047,7 +3102,15 @@ kk:
     select_one_or_more_sounds: Бір немесе бірнеше дыбысты таңдаңыз
     selected_sounds: Таңдалған дыбыстар
     sound: Дыбыс
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Дыбыс %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Дыбыс жойылды
     sound_has_been_flagged: Бұл дыбысқа белгі қойылды.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Дыбыс жасырын
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Жасырын дыбыс
     soundcloud_replied_with_an_error: SoundCloud қате туралы жауап берді. Әрекетті кейінірек қайталаңыз.
     sounds: Дыбыстар
     your_soundcloud_account: SoundCloud аккаунтыңыз
@@ -3314,6 +3377,8 @@ kk:
   updated_by_user_on_date_html: '%{date} күні %{user} жаңартты'
   updated_daily: Күн сайын жаңартылады
   updated_photo: Жаңартылған фотосурет
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Жаңартылған дыбыс
   upload: Жүктеу
   upload_a_csv_file: CSV файлын жүктеу
   upload_new_photo: Жаңа фотосуретті жүктеу
@@ -3604,6 +3669,10 @@ kk:
         Бірнешеуді таңдау үшін CMD немесе SHIFT түймешігін басыңыз. «Барлығын» таңдау немесе жасамау
         таңдау хабарландыруды барлық пайдаланушыларға тәуелсіз көрсетеді
         IP елі.
+      exclude_ip_countries_desc: |
+        Бірнешеуін таңдау үшін CMD немесе Shift пернетақпасын басыңыз. Таңдалған елдер көрсетілмейді
+        Хабарландыру. Егер IP елдері таңдалса, IP елдерін алып тастау пәрменін таңдаңыз
+        Алғашқылардың бірі - Аллаһ Тағала Құран Кәрімде былай дейді:
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Пайдаланушының соңғы жасалған күнін ескеріңіз
@@ -3720,6 +3789,18 @@ kk:
         url: Бақылаудың URL мекенжайы
       import:
         decimal_degrees_format: dd.dddd
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          Бұл <strong>Қауымдастық таксоны мен бақылау таксонының сәйкестігі</strong>
+          (Бақылау таксонының көбірек болуы мүмкін сирек кездесетін жағдайлар үшін)
+          Коммуналдық меншік объектілеріне қарағанда (ҚР Салық кодексі)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Бақылау <strong>Дене шынықтыру пәні бойынша нақты дәлел немесе
+          Сахна</strong> (Мысалы, жасанды интеллект қосу, жою немесе ауыстыру үшін қолданылады)
+          Суреттегі немесе дыбыстық элементтер. Дыбыс шығару, фокусты жинақтау немесе жасау
+          сенсорлық шаңды алып тастау сияқты кішігірім түзетулер әдетте жақсы).
     emailer:
       photos_missing:
         subject: Кейбір фотосуреттер жөндеуді қажет етеді
@@ -3739,6 +3820,14 @@ kk:
     search:
       index:
         no_taxa_forum: Форуммен байланысыңыз
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Түпнұсқаны мына жерден көре аласыз <a href="%{url}">%{url}</a>. Өтінем
+          Авторлық құқықты бұзу жалаушаларын шешілмеген деп қалдырыңыз, егер бұл дыбыс болса
+          Авторлық құқықты бұзу.
     stats:
       index:
         avg_ttcid: Орташа TTCID
@@ -3789,6 +3878,9 @@ kk:
       edit:
         complete_desc_html: |
           "Толық" таксон iNaturalist таксонды басқару саясаттарына сәйкес келетін белгілі дәрежедегі <em>барлық</em> белгілі ұрпақ таксондарын қамтиды, олар бақыланғанына немесе бақыланбағандығына қарамастан. Қазіргі уақытта тек сайт әкімшілері таксондарды толық деп жариялай алады.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Сіз түр эпитетіне тікелей кішігірім өзгерістер енгізе аласыз (мысалы, жыныстың өзгеруі, емле қатесі). Қосу <a target="_blank" href="%{url}">Таксонды айырбастау</a> Егер сізге басқа да өзгерістер қажет болса.
       show:
         about_regional_names_desc: |
           <p>
@@ -3837,6 +3929,9 @@ kk:
           Таксон бетінде осы таксонның және оның ұрпақтарының фотосуреттері көрсетілетінін ескеріңіз. Бұл таксон үшін таңдалған фотосуреттер бірінші болып көрсетіледі. Бірінші фотосурет сайтта қолданылатын әдепкі сурет болады.
         trending_desc: Соңғы айда ең көп байқалған таксондар
         trending_in_place_desc_html: <a href="%{url}">%{place}</a> аймағында соңғы айда ең көп байқалған таксондар
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Бұл тегтерді орналастыруға тырысу кезінде бірдеңе дұрыс болмады: %{message}
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -4270,6 +4365,7 @@ kk:
         exclude_donor_start_date: Донордың басталу күнін алып тастау
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Донордың аяқталу күнін алып тастау
+        excludes_non_site: Сайт идентификаттары жоқ осы орналастырудағы басқа хабарландыруларды жасыру
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Бақылаушыларды бағдарламалардан алып тастау
