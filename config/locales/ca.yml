@@ -579,6 +579,14 @@ ca:
     Hauries de donar una informació més detallada sobre allò que vols construir.
   app_owner_application_about_p1a_html: |
     Les aplicacions d'iNaturalist permeten l'ús autenticat de l'API d'iNaturalist. Això permet fer trucades API que provoquen esdeveniments, com crear observacions o identificacions. Els casos més comuns són apps com les d'escriptori o de mòbil que inclouen funcionalitats per als seus usuaris per crear observacions d'iNaturalist. Aquest contingut s'ha de generar amb participació humana real o supervisada. Si us plau, per a més detalls podeu llegir les nostres <a href="/pages/community+guidelines" target="_blank">Directrius de la comunitat</a>, les quals prohibeixen observacions, identificacions i comentaris generades per màquines.
+  app_owner_application_about_p2_html: |
+    A partir del 2022, exigim l'aprovació manual per als usuaris que vulguin fer clients API.
+    Per crear aplicacions de tercers, primer heu d'enviar una sol·licitud per convertir-vos en
+    un "propietari de l'aplicació". Aquesta aplicació ha de descriure la funcionalitat de l'aplicació proposada
+    i com teniu previst utilitzar-lo. Per presentar una sol·licitud el teu compte ha d'estar a
+    almenys 2 mesos d'antiguitat i ha d'haver fet almenys 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Millora de les identificacions</a> en l'últim mes. Podem demanar un seguiment
+    preguntes sobre el vostre pla i ens reservem el dret de rebutjar les sol·licituds per qualsevol motiu.
   app_owner_application_inelligible: |
     Per enviar una aplicació, el vostre compte ha de tenir una antiguitat, almenys, de 2 mesos i heu d'haver fet un mínim de 10 millores d'identificacions en el darrer mes.
   app_owner_application_fields_explanation_html: Descriviu la funcionalitat que tindrà de la vostra app i com planegeu utilitzar-la.
@@ -662,6 +670,8 @@ ca:
   are_you_sure_you_want_to_delete_this_assessment?: Esteu segur que voleu eliminar aquesta valoració?
   are_you_sure_you_want_to_delete_this_photo?: Esteu segur que voleu eliminar aquesta foto?
   are_you_sure_you_want_to_delete_this_post: Esteu segur que voleu esborrar aquesta nota?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Esteu segur que voleu suprimir aquest so?
   are_you_sure_you_want_to_delete_this_taxon_change: Esteu segur que voleu esborrar aquest canvi en tàxon?
   are_you_sure_you_want_to_remove_all_tags: Esteu segur que voleu eliminar totes les etiquetes?
   are_you_sure_you_want_to_remove_curator: Esteu segur que voleu eliminar a %{user} com a supervisor?
@@ -675,6 +685,8 @@ ca:
     Esteu segur que voleu eliminar aquesta observació de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Esteu segur que voleu eliminar aquesta espècie o grup de la llista de comprovació de %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Esteu segur de voler marcar aquest usuari com a spammer?
+  artificially_generated_content: Contingut generat artificialment
+  artificially_generated_content_desc: Conté contingut generat majoritàriament o totalment a través d'intel·ligència artificial.
   associated_observations: Observacions associades
   associated_taxa: Tàxons associats
   attention: Atenció
@@ -1007,6 +1019,7 @@ ca:
   community_id_is_precise: El tàxon de la comunitat és precís
   community_moderation_settings: Configuració de la Moderació de la Comunitat
   community_supported_id: Tàxon reconegut per la comunitat?
+  community_taxon_matches_observation_taxon: El tàxon comunitari coincideix amb el tàxon d'observació
   compare: Compara
   compare_with: Compara amb
   comparing: comparant
@@ -1076,6 +1089,12 @@ ca:
     url: URL de la pàgina que descriu aquest estat.
     geoprivacy: |
       Geo-privacitat per defecte per a les observacions d’aquest tàxon. Tingueu en compte que la geo-privacitat d’una situació associada a un lloc a escala de continent, país o estat pot anul·lar una situació global o associada a un lloc de nivell superior.
+    iucn: |
+      Codi equivalent de la Llista Vermella de la UICN. Aquesta no és l'avaluació real de la UICN,
+      només el codi de la UICN que millor s'adapti a l'amenaça de la divulgació de coordenades
+      implícit en aquest estat. Això anul·larà la geoprivadesa si és "Mínim
+      Concern" o per sota, així que si voleu enfosquir les observacions d'això
+      taxon, establiu-lo a "Gairebé amenaçat" o superior.
   conservation_status_geoprivacy_desc: |
     Geoprivacitat aplicada per defecte a totes les observacions d'aquest tàxon en aquest lloc
   contact_support: Contacteu amb Suport
@@ -1393,6 +1412,8 @@ ca:
     observacions en projectes. Els observadors també poden optar per canviar-ho per
     observacions individuals.
   curator_identification: Identificació del supervisor
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Tàxon comunitari actual: %{taxon}"
   current_flags: Etiquetes actuals
   #Label for a custom boundary for an observation search
   custom_boundary: Límit personalitzat
@@ -1406,6 +1427,11 @@ ca:
   daily_users: Usuaris Diaris
   danger_zone: Zona perillosa
   dashboard: Tauler
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Sí! M'agradaria participar-hi."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Pilot de llacunes d'identificació: Necessita espècies buscades per identificació"
   data_deficient: Dades Insuficients
   data_quality: Qualitat de les dades
   data_quality_assessment: Avaluació de la qualitat de dades
@@ -1496,6 +1522,8 @@ ca:
   #Label for a button to delete a taxon range
   delete_range: Esborrar distribució
   delete_selected: Elimineu seleccionats
+  #Label for a button to delete a sound file
+  delete_sound: Suprimeix el so
   delete_taxon_and_merge_most_data_html: |
     Elimineu <i>%{taxon}</i> i combineu la majoria de les vostres dades amb un altre tàxon. Utilitzeu aquesta eina per eliminar tàxons duplicats i sinònims desactualitzats. <strong>ANEU AMB COMPTE!</strong > Eliminar tàxons podria destruir dades. Reviseu la <a href="%{curator_url}">Guia del Supervisor</a> per a més detalls.
   delete_user: Elimineu usuari
@@ -1538,6 +1566,8 @@ ca:
         Si us plau, comproveu el vostre correu electrònic i premeu sobre l'enllaç del correu electrònic que heu rebut per confirmar el vostre compte.
       user:
         suspended: El vostre compte s'ha suspès
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: El testimoni de la contrasenya de restabliment no és vàlid. Utilitzeu l'enllaç del correu electrònic de restabliment de la contrasenya enviat més recentment, o <a href="%{url}">Sol·licita'n un de nou</a>.
     sessions:
       signed_in: 'Sessió iniciada correctament.'
       signed_out: 'Sessió finalitzada correctament.'
@@ -1629,6 +1659,8 @@ ca:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONAR
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Donar
   donate_again_caps: DONEU DE NOU
   donate_again_today_caps: DONEU DE NOU, AVUI
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1766,6 +1798,8 @@ ca:
   eol: EOL
   eol_collection_url: "URL de la col·lecció EOL"
   error_updating_photo: "Error pujant la foto: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "S'ha produït un error en l'actualització del so: %{sound_errors}"
   establishment:
     endemic: Endèmica
     establishment: Establiment
@@ -1821,6 +1855,7 @@ ca:
   extinct: extint
   extinct_in_the_wild: Extingit en estat silvestre
   extra_properties: Propietats extres
+  evidence_accurately_depicts_organism_or_scene: L'evidència representa amb precisió l'organisme o l'escena
   evidence_of_organism: Evidència d'organisme
   evidence_related_to_single_subject: Evidència relacionada amb un únic individu
   facebook: Facebook
@@ -1858,7 +1893,11 @@ ca:
   fields_can_only_be_edited_by_the_people_who: Els camps només poden ser editats per les persones que els van crear i els supervisors del lloc
   fields_merged: Camps fusionats
   file: Arxiu
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Format de fitxer
   file_size: Mida del fitxer
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL del fitxer
   file_should_be_in_the_following_format: "L'arxiu hauria de tenir el següent format: nom de l'espècie o grup, descripció"
   fill_out_project_observation_fields: Ompliu els camps d'observació del projecte
   fill_out_your_profile: ompliu el perfil
@@ -2098,6 +2137,8 @@ ca:
     one: "<strong>Atenció:</strong> hi ha %{count} canvi de tàxon esborrany amb els mateixos tàxons d'entrada:"
     other: "<strong>Atenció:</strong> hi ha %{count} canvis de tàxon esborrany amb els mateixos tàxons d'entrada:"
   heads_up_this_photo_has_been_flagged: "ATENCIÓ: s’ha marcat aquesta foto."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "ATENCIÓ: aquest so ha estat marcat."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓ: aquesta foto ja està associada amb <a target='_blank' href='%{url}'>una altra observació</a>"
   heads_up_you_have_multiple: "Vigileu. Heu generat diverses etiquetes taxonòmiques per a rangs idèntics. Estan codificades a sota per colors segons el rang."
   help: Ajuda
@@ -3778,6 +3819,8 @@ ca:
       zone: zona
   place_guess: lloc suggerit
   place_imported: Lloc importat!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Les observacions poden trigar fins a un dia a associar-se amb aquest lloc.
   place_must_have_a_boundary_defined: El lloc ha de tenir límits definits.
   place_name: Nom del lloc
   place_notes: Notes del Lloc
@@ -4070,6 +4113,20 @@ ca:
     L'edició de nous límits és una de les principals causes d'alentiment d'iNat. Si podeu eviteu fer això, no afegiu, canvieu o elimineu fronteres de llocs si no és estrictament necessari.
   places_warning_quota: |
     Només pots crear tres llocs al dia
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Els llocs no poden ser més grans de 700.000 quilòmetres quadrats.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Els llocs no poden ser més grans de 70.000 quilòmetres quadrats.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Els llocs no poden contenir més de 200.000 observacions.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Els llocs no poden contenir més de 10.000 observacions.
   places_warning_the_future: |
     Per això, si és necessari, en el futur podríem restringir les condicions per les quals els usuaris poden afegir nous llocs atès el ritme de creixement d'iNat.
   plants: Plantes
@@ -4784,7 +4841,15 @@ ca:
     select_one_or_more_sounds: Selecciona un o més sons
     selected_sounds: Sons seleccionats
     sound: So
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: So %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: S'ha suprimit el so
     sound_has_been_flagged: Aquest só ha estat marcat.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: So amagat
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: So ocult
     soundcloud_replied_with_an_error: SoundCloud ha respost amb un missatge d'error. Si us plau, proveu-lo més tard.
     sounds: Sons
     your_soundcloud_account: el vostre compte de SoundCloud
@@ -5480,6 +5545,8 @@ ca:
   updated_by_user_on_date_html: Actualitzat per %{user} el %{date}
   updated_daily: Actualitzat diàriament
   updated_photo: Foto actualitzada
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: So actualitzat
   upload: Carrega
   upload_a_csv_file: Carrega un arxiu CSV
   upload_a_csv_file_with_observation: |
@@ -6060,10 +6127,18 @@ ca:
         Hora de la zona horària del compte en què s'aturarà aquest anunci
         Apareixent. S'aplica a totes les zones horàries, de manera que tothom deixarà de veure-ho
         al mateix temps, no en relació amb la seva hora local.
+      excludes_non_site_desc: |
+        Si l'anunci s'orienta a un lloc web (que és el valor predeterminat si sou un
+        Administrador del lloc), s'exclouran els anuncis orientats a tots els llocs
+        aquesta col·locació.
       ip_countries_desc: |
         CMD o MAJÚSCULES per seleccionar-ne múltiples. Seleccionar "Tots" o no fer
         Una selecció mostrarà l'anunci a tots els usuaris, independentment de
         País IP.
+      exclude_ip_countries_desc: |
+        Feu clic CMD o SHIFT per seleccionar-ne diversos. Els països seleccionats no es mostraran
+        l'anunci. Si seleccioneu els països de la propietat intel·lectual, seleccioneu Exclou els països de la propietat intel·lectual
+        es restarà de la primera.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Tingueu en compte que la data de creació de l'usuari més recent
@@ -6625,6 +6700,17 @@ ca:
         data_quality_assessment_desc3_html: |
           El grau de qualitat resumeix l'exactitud, precisió, exhaustivitat, rellevància i adequació d'una observació iNaturalist com a dada de biodiversitat. Alguns atributs es determinen automàticament, mentre que d'altres estan subjectes a la votació dels usuaris d'iNat. iNaturalist comparteix observacions autoritzades de "Grau de Recerca" amb diversos socis de dades per utilitzar-les en ciència i conservació.
         disagreement_count_desc: "# dels tàxons identificats que no estan entre els ancestres del tàxon"
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          el <strong>Coincidència de tàxons comunitaris i tàxons d'observació</strong>
+          (per a aquelles rares ocasions en què el tàxon d'observació pot ser més
+          específic que el Tàxon Comunitari)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          L'observació <strong>no presenta evidència precisa de l'organisme o
+          escena</strong> (per exemple, la intel·ligència artificial es va utilitzar per afegir, eliminar o substituir
+          elements de la imatge o del so. Eliminar el soroll, apilar el focus o fer
+          petites solucions com eliminar la pols del sensor normalment està bé).
         identification_count_desc: '# de les identificacions per a un tàxon individual'
         flagged_photos_desc_html: |
           Algunes d'aquestes fotos s'han marcat com a contingut inadequat o que infringeix copyrights. Per a més detalls, vegeu %{links}
@@ -7078,6 +7164,14 @@ ca:
       not_found:
         sorry_that_doesnt_exist: Ho sentim, no existeix!
         even_our_dedicated_search_mole_couldnt: Fins i tot amb la nostra detallada cerca no ha estat possible trobar res de res!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Podeu veure l'original a <a href="%{url}">%{url}</a>. Si us plau
+          deixar els indicadors d'infracció de drets d'autor sense resoldre si aquest so
+          infringir els drets d'autor.
     stats:
       index:
         active_desc: S'ha creat una ID, observació, comentari o article en els darrers 30 dies
@@ -7204,6 +7298,9 @@ ca:
         wikipedia_summary_desc_html: |
           Breu resum d'aquest tàxon basat a la seva <a target="_blank"
           href="%{url}">pàgina de la Viquipèdia</a>, la qual guardem indefinidament fins que és actualitzada manualment. L'actualització d'aquest sumari també actualitzar automàticament la nostra còpia del contingut de la Viquipèdia que mostrem en el lloc Web, el qual s'actualitza automàticament passada una setmana.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Només podeu fer canvis menors a l'epítet de l'espècie directament (per exemple, canvis de gènere, errors ortogràfics). Afegeix un <a target="_blank" href="%{url}">Intercanvi de tàxons</a> si necessiteu altres canvis al nom.
       show:
         about_conservation_status_desc: |
           L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.
@@ -7262,6 +7359,9 @@ ca:
         trending_desc: Tàxons més observats el darrer mes
         trending_in_place_desc_html: Tàxom més observat el darrer mes a <a href="%{url}">%{place}</a>
         wanted_desc: Espècies d'aquest taxon que encara no han estat observades
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Alguna cosa va sortir malament intentant publicar aquestes etiquetes: %{message}
     taxon_changes:
       move_children_desc: |
         Els tàxons d’entrada que són gèneres o superiors es dirigiran als tàxons de destí; les espècies, les subespècies, les varietats, etc. es canviaran amb els noms equivalents amb el nom del nou gènere o espècie.
@@ -7327,6 +7427,32 @@ ca:
           Escrigueu "%{confirmation_code}" en el formulari per eliminar el vostre compte
       edit:
         about_third_party_tracking: Sobre el seguiment per part de tercers
+        block_desc_blocking_someone_prevents: |
+          Bloquejar algú impedeix que us enviï missatges o comentaris sobre el vostre
+          observacions, identificar les vostres observacions i interactuar d'una altra manera
+          amb tu %{site_name}. També elimina les seves observacions de la vostra
+          resultats de la cerca i suprimeix les vostres observacions de la seva cerca
+          Resultats. Tanmateix, no et fa invisible per a ells. Poden
+          encara trobeu les vostres observacions i visualitzeu el vostre perfil, simplement no poden
+          interactuar amb tu.
+        block_desc_blocking_is_for_situations: |
+          El bloqueig és per a situacions en què simplement no et pots portar bé
+          algú i no et deixaran sol, malgrat els teus millors esforços per
+          resoldre disputes d'una manera civilitzada. No és una manera d'amagar-se
+          persones, per evitar identificacions de persones les opinions de les quals
+          no confiar, o per desactivar l'ID de la comunitat (n'hi ha un altre
+          configuració per a això). Per tant, el bloqueig funciona en ambdós sentits: si bloqueges
+          algú, no pot interactuar amb tu, però tu tampoc pots interactuar
+          amb ells. Si en feu un mal ús per evitar que algú identifiqui el vostre
+          observacions, també t'impedeixes d'identificar les seves
+          Observacions.
+        block_desc_you_can_only_block_html: |
+          Només podeu bloquejar tres persones. Creiem que aquest és un raonable
+          que s'adapta a les persones que necessiten bloqueig mentre
+          prevenir l'abús del bloqueig. Si creieu que necessiteu bloquejar més
+          Gent, si us plau <a href="mailto:%{help_email}">Contacta amb nosaltres</a>.
+        block_desc_there_are_two_exceptions: |
+          Hi ha dues situacions en què el bloqueig no impedeix la interacció:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si canvieu d'opinió sempre podreu <a href='/users/edit'>editar les vostres preferències</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -7743,6 +7869,7 @@ ca:
         exclude_donor_start_date: Excloure la data d'inici del donant
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Excloure la data de finalització del donant
+        excludes_non_site: Amagar altres anuncis d'aquest emplaçament que no tinguin cap identificador de lloc
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Excloure observadors de les aplicacions
