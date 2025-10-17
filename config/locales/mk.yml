@@ -334,6 +334,14 @@ mk:
   announcements: Соопштенија
   #Label for an option to show any place
   any_place: Било кој
+  app_owner_application_about_p2_html: |
+    Од 2022 година бараме рачно одобрување за корисниците кои сакаат да направат API клиенти.
+    Со цел да креирате апликации од трети лица, прво морате да поднесете апликација за да станете
+    "сопственик на апликација". Оваа апликација треба да ја опише функционалноста на предложената апликација
+    и како планирате да го користите. За да испратите апликација, вашата сметка мора да биде на
+    најмалку 2 месеци и мора да има најмалку 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">подобрување на идентификацијата</a> во последниот месец. Ние може да побараме следење
+    прашања во врска со вашиот план и ние го задржуваме правото да ги одбиеме апликациите од било која причина.
   apply_to_selected: Примени врз одбраното
   apply_captive_cultivated: "Примени во зароб. / одглед."
   apply_fields: Примени полиња
@@ -349,6 +357,10 @@ mk:
   are_you_sure_want_delete_this_range: Дали сте сигурни дека сакате да ја избришете оваа распространетост?
   are_you_sure_you_want_to_commit_this_change: Дали сте сигурни дека сакате да ја спроведете оваа промена? Ова дејство е неповратно.
   are_you_sure_you_want_to_delete_this: Дали сте сигурни дека сакате да го избришете ова?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Сигурни ли сте дека сакате да го избришете овој звук?
+  artificially_generated_content: Вештачки генерирана содржина
+  artificially_generated_content_desc: Содржи содржина која е претежно или целосно генерирана преку вештачка интелигенција.
   associated_observations: Поврзани набљудувања
   associated_taxa: Поврзани таксони
   attention: Внимание
@@ -453,6 +465,7 @@ mk:
   community: Заедница
   community_guidelines: Правила на заедницата
   community_supported_id: Препознаено од заедницата?
+  community_taxon_matches_observation_taxon: Таксонот на заедницата се совпаѓа со таксонот за набљудување
   compare_with: Спореди со
   comparing: споредба
   comparing_list_to_list: "Споредба на %{list1} со %{list2}"
@@ -475,6 +488,13 @@ mk:
   connect_to_provider: "Поврзи со %{provider}"
   connecting_flickr: "Поврзувам со Flickr..."
   conservation_status: Заштитен статус
+  conservation_status_descriptions:
+    iucn: |
+      Еквивалентен код на Црвениот список на МСЗП. Ова не е вистинската проценка на МСЗП,
+      само кодот на МСЗП кој најдобро одговара на заканата за откривање на координати
+      имплицирани од овој статус. Ова ќе ја отфрли геоприватноста ако е "Најмалку
+      Загриженост" или подолу, па ако сакате да ги прикриете набљудувањата на ова
+      таксон, поставете го на "Речиси загрозен" или погоре.
   controlled_term_labels:
     sex: Пол
     male: Машки
@@ -513,8 +533,15 @@ mk:
     набљудувањето на проектот. Ова е само стандардната поставка за
     набљудувања во проекти. Набљудувачите исто така можат да изберат да го променат ова за
     индивидуални набљудувања.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Моментален таксон на заедницата: %{taxon}"
   darr_apply_darr: "&darr; Примени &darr;"
   dashboard: Прегледник
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Да! Би сакал да учествувам."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Пилот за идентификациски празнини: Потреби за идентификација на посакувани видови"
   data_deficient: недоволно податоци
   data_quality_assessment: Оценка на квалитетот на податоците
   datatype: Податочен тип
@@ -568,6 +595,8 @@ mk:
   delete_all: Избриши ги сите
   #Button to delete the cover (or banner) image for a project
   delete_cover?: да ја избришам насловната?
+  #Label for a button to delete a sound file
+  delete_sound: Избриши звук
   deleted_synonyms: Ибришани синоними
   deleting: Бришам...
   deleting_verb: Бришење
@@ -580,6 +609,10 @@ mk:
   desription: Опис
   destroy: Уништи
   details: Подробно
+  devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Ресетирањето на лозинката е невалидно. Молиме користите линк во најновата испратена е-пошта за ресетирање на лозинка, или <a href="%{url}">Побарајте нов</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Моля, кликнете на линкот подолу за да ја потврдите вашата е-маил адреса. Ако не го потврдите својот е-маил
@@ -595,6 +628,8 @@ mk:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: ДАРУВАЈТЕ
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Донирајте
   donate_again_caps: ДАРУВАЈТЕ ПОВТОРНО
   donate_again_today_caps: ДАРУВАЈТЕ ПОВТОРНО ДЕНЕС
   dont_have_an_account_sign_up_html: Немате сметка? <strong>Зачленете се.</strong>
@@ -628,6 +663,8 @@ mk:
   #Title for a page to edit an announcement
   editing_announcement_x: Објава за уредување %{id}
   email: Е-пошта
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Грешка при ажурирање на звукот: %{sound_errors}"
   establishment:
     endemic: ендемски
     introduced: доведен
@@ -648,6 +685,7 @@ mk:
   extinct: изумрен
   extinct_in_the_wild: изумрен во дивина
   extra_properties: Дополнителни својства
+  evidence_accurately_depicts_organism_or_scene: Доказите точно го прикажуваат организмот или сцената
   Family: Семејство
   favorite_taxa: омилени таксони
   favorites: "Омилени"
@@ -657,6 +695,10 @@ mk:
   field_note: |
     <strong>Напомена:</strong> Ако сакате да направите поле, стиснете да проверите да не е веќе направено од друг, со цел да избегнете удвојувања.
   fields: полиња
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Формат на датотеката
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL на датотека
   find: Најди
   find_a_guide: Најди водич
   find_a_place: Најди место
@@ -720,6 +762,8 @@ mk:
   guide_was_successfully_updated: Водичот е успешно подновен.
   guidelines: Напатствија
   has_already_been_flagged_by: е веќе обележан од
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: овој звук е означен."
   help: Помош
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
   hex_color_eg: Хексадецимална боја, на пр. 65644F
@@ -1287,6 +1331,8 @@ mk:
       undefined: неодредено
       Zone: Подрачје
       zone: подрачје
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Може да потрае и до еден ден за набљудувањата да се поврзат со ова место.
   place_updated: Местото е подновено!
   places: Места
   places_name:
@@ -1333,6 +1379,20 @@ mk:
     virgin_islands: Девствени Острови
     west_africa: Западна Африка
   places_merged_successfully: Местата се успешно споени!
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Местата не можат да бидат поголеми од 700.000 квадратни километри.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Местата не можат да бидат поголеми од 70.000 квадратни километри.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Местата не можат да содржат повеќе од 200.000 набљудувања.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Местата не можат да содржат повеќе од 10.000 набљудувања.
   plants: растенија
   please_add_a_citation_for_this_change: Додајте навод во страницава.
   position: Положба
@@ -1526,6 +1586,14 @@ mk:
     photos_sounds: Слики / Звуци
     selected_sounds: Избрани звуци
     sound: Звук
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Звук %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Звукот е избришан
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Звукот скриен
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Звучи нескриено
     sounds: Звуци
   source: Извор
   source_: 'Извор:'
@@ -1643,6 +1711,8 @@ mk:
   updated_by: Подновено од
   updated_daily: Се подновува секојдневно
   updated_photo: Подновена слика
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Ажуриран звук
   upload: Подигни
   upload_a_csv_file: Подигни CSV
   use_this_form_to_create_a_new: |
@@ -1776,6 +1846,14 @@ mk:
         Време во временската зона на вашата сметка дека оваа најава ќе престане
         се појавува. Се применува во различни временски зони, така што сите ќе престанат да гледаат
         тоа во исто време, не во однос на нивното локално време.
+      excludes_non_site_desc: |
+        Ако вашата најава е насочена кон сајт (што е стандардно ако сте
+        Site Admin), ова ќе ги исклучи најавите кои ги таргетираат сите сајтови во
+        ова поставување.
+      exclude_ip_countries_desc: |
+        CMD- или SHIFT-кликни за да изберете повеќекратни. Избраните земји нема да бидат прикажани
+        објавувањето. Ако се избрани IP земји, изберете Исклучување на IP земји
+        ќе се одземе од првото.
       observation_oauth_application_ids_desc: |
         CMD- или SHIFT-кликни за да изберете повеќе. Избирање на "Сите" или неправење
         Изборот ќе ја покаже најавата на сите корисници, без разлика на
@@ -1836,6 +1914,19 @@ mk:
           Ќе можете да испраќате нови пораки откако ќе го потврдите својот е-маил
           адреса, и додадени три потврдливи набљудувања или три идентификации
           за други. Засега можете да читате и да одговарате на пораките кои другите луѓе ви ги праќаат.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          На <strong>Совпаѓање на таксонот на заедницата и таксонот за набљудување</strong>
+          (за оние ретки случаи кога таксонот за набљудување може да биде повеќе
+          специфичен од таксонот на заедницата)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Забелешката <strong>не претставува точни докази за организмот или
+          Сцена</strong> (на пример, вештачката интелигенција се користи за додавање, отстранување или замена
+          елементи во сликата или звукот. Деноисмент, фокусирање на подредување или правење
+          мали поправки како отстранување на прашина од сензорот обично се во ред).
     projects:
       edit:
         start_time_desc: "Почетно време на вашиот биоблиц"
@@ -1843,7 +1934,98 @@ mk:
         are_you_ready_to_duplicate: |
           Дали сте сигурни дека сакате да ја напуштите страницава за дуплирање овој проект?
         are_you_sure_you_want_to_delete: Дали сте сигурни дека сакате да го избришете овој проект?
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Можете да го видите оригиналот на <a href="%{url}">%{url}</a>. Молам
+          Остави ги знаменчињата за кршење на авторските права како нерешени ако ова звучи
+          прекршување на авторските права.
+    taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Можете директно да правите само мали промени во епитетот за видот (на пример, промени на полот, правописна грешка). Додај <a target="_blank" href="%{url}">Замена на таксони</a> ако имате потреба од други промени на името.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Heads up: само што додадохте потомок на заклучен таксон (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Ве молиме размислете за спојување на ова во постоечки таксон." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Heads up: родителот на овој активен таксон е неактивен, но тоа е излезот од ова <a href='/taxon_changes/%{taxon_change_id}'> Нацрт таксонот промена</a> Ние претпоставуваме дека ќе се обврзате наскоро." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Овој активен таксон има повеќе од %{count} низводни набљудувања или се опфатени со таксонска рамка, така што некои таксономски атрибути можат да бидат уредувани само од персоналот или кураторите на таксони поврзани со таа таксонска рамка.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Имињата мора да бидат слични кога се уредува директно, направете замена на таксони за радикални промени на имињата
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} не може да додаде тагови на вашите фотографии додека Flickr не дознае дека сте ни дале дозвола.
+        <a href='%{url}'>Дајте дозвола за Flickr</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Нешто тргна наопаку обидувајќи се да ги поставам овие тагови: %{message}
+    taxon_changes:
+      #state of a pending taxon change
+      pending: Во очекување
+      #state of a approved taxon change
+      approved: одобрено
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Гласање е додадено
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Гласањето е отстрането
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Сè уште нема гласови
+      #message when taxon change is committed
+      taxon_change_committed: Промена на таксонот е извршена! Записите кои можат автоматски да се ажурираат ќе бидат променети наскоро.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Оваа промена на таксонот сега е во тек. Потребно е одобрение од 1 куратор за да може да се обврзува."
+        other: "Оваа промена на таксонот сега е во тек. Потребно е одобрување од страна на %{count} куратори да можат да се обврзат."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Влезниот таксон не може да има активни деца, прво да ги премести или да ја избере опцијата "Премести деца на излез?"
+      output_taxon_rank_level_not_coarser_html: >
+        Ниво на ранг на излезен таксон не е погрубо од нивото на ранг на активните деца на влезниот таксон %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Оваа таксономска промена веќе беше извршена!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Нешто тргна наопаку со бришењето на промената на таксонот \"%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Промената на таксонот беше избришана.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Таксонската промена беше успешно ажурирана.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Нема наведени промени
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Промената на таксонот беше успешно создадена.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Потребно е одобрение од друг куратор за да се обврзе"
+        other: "Бара одобрение од страна %{count} други куратори да се обврзат"
     users:
+      edit:
+        block_desc_blocking_someone_prevents: |
+          Блокирањето на некој го спречува да ви поракува, коментирајќи за вашиот
+          набљудувања, идентификување на вашите набљудувања и на друг начин интеракција
+          со тебе на %{site_name}. Исто така, ги отстранува нивните забелешки од вашиот
+          резултатите од пребарувањето и ги отстранува вашите забелешки од нивното пребарување
+          резултати. Сепак, тоа не ве прави невидливи за нив. Тие можат
+          сеуште ги пронајдете вашите забелешки и го погледнете вашиот профил, тие едноставно не можат
+          да комуницираат со вас.
+        block_desc_blocking_is_for_situations: |
+          Блокирањето е за ситуации во кои едноставно не можете да се сложите со
+          некој и тие нема да ве остават на мира, и покрај вашите најдобри напори да
+          Решавање на спорови на цивилизиран начин. Тоа не е начин да се скриеш
+          луѓе, за да се спречи идентификација од луѓе чие мислење вие
+          не веруваат, или да се повлечат од идентификацијата на заедницата (има уште една
+          поставување за тоа). Така, блокирањето работи во двете насоки: ако блокирате
+          некој, тие не можат да комуницираат со вас, но вие исто така не можете да комуницирате
+          со нив. Ако го злоупотребите за да спречите некој да го идентификува вашиот
+          набљудувања, вие исто така се спречувате себеси да ги идентификувате нивните
+          набљудувања.
+        block_desc_you_can_only_block_html: |
+          Можете да блокирате само три лица. Ние сметаме дека ова е разумно
+          број кој ги приспособува луѓето на кои им е потребно блокирање додека
+          спречување на злоупотреба на блокирање. Ако чувствувате дека треба да блокирате повеќе
+          луѓе, молам <a href="mailto:%{help_email}">Контактирајте ни</a>.
+        block_desc_there_are_two_exceptions: |
+          Постојат две ситуации каде блокирањето не ја спречува интеракцијата:
       recent:
         about_recent_users: За
     welcome:
@@ -2039,6 +2221,7 @@ mk:
   activerecord:
     attributes:
       announcement:
+        excludes_non_site: Скриј други најави во овој пласман кои немаат идентификатор на сајт
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Исклучување на набљудувачите од апликациите
@@ -2128,6 +2311,33 @@ mk:
           attributes:
             base:
               only_seven_projects: Можете да сакате само 7 проекти
+        taxon:
+          attributes:
+            name:
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Промена на имињата не е дозволена за вируси, бактерии или непресадени клади"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Промена на имињата не е дозволена за рангови погруби од видовите"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Промена на имињата не е дозволена за хибридни формули"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "не може да се додаде 'x' како хибриден маркер помеѓу родот и видот"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "мора да биде биномна (род видови) за проверка"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "родот не може да се промени"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Нестандардно име на вид: дозволено е само отстранување на 'x'/'×' или додавање '×'"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "специфичен епитет мора да биде сличен (само мали печатни грешки)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "инфраспецифичен епитет потребен за овој ранг"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "само инфраспецифичниот епитет може да се промени за инфраспецифичните редови"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "инфраспецифичниот епитет мора да биде сличен (само мали печатни грешки)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "Првата буква од било кој епитет не може да се промени."
         user:
           attributes:
             faved_project_ids:
