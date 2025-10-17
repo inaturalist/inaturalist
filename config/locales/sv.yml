@@ -720,6 +720,8 @@ sv:
   are_you_sure_you_want_to_delete_this_assessment?: Är du säker på att du vill radera bedömningen?
   are_you_sure_you_want_to_delete_this_photo?: Är du säker på att du vill radera denna bild?
   are_you_sure_you_want_to_delete_this_post: Är du säker på att du vill radera detta inlägg?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Är du säker på att du vill ta bort det här ljudet?
   are_you_sure_you_want_to_delete_this_taxon_change: Är du säker på att du vill radera denna taxonändring?
   are_you_sure_you_want_to_remove_all_tags: Är du säker på att du vill ta bort alla taggningar?
   are_you_sure_you_want_to_remove_curator: Är du säker på att du vill ta bort %{user} som en förvaltare?
@@ -733,6 +735,8 @@ sv:
     Är du säker på att du vill ta bort detta fynd från %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Är du säker på att du vill ta bort detta taxon från %{place}s checklista?"
   are_you_sure_you_want_to_flag_as_spammer: Är du säker på att du vill flagga den här användaren som en spammare?
+  artificially_generated_content: Artificiellt genererat innehåll
+  artificially_generated_content_desc: Innehåller innehåll som till största delen eller helt och hållet har genererats via artificiell intelligens.
   associated_observations: Tillhörande fynd
   associated_taxa: Tillhörande taxa
   attention: Märk väl
@@ -1075,6 +1079,7 @@ sv:
   community_id_is_precise: Community-taxon är exakt
   community_moderation_settings: Inställningar för community-moderering
   community_supported_id: Taxon med stöd från communityn?
+  community_taxon_matches_observation_taxon: Gemenskapens taxon matchar observationens taxon
   compare: Jämför
   compare_with: Jämför med
   comparing: jämför
@@ -1146,6 +1151,12 @@ sv:
     url: URL till en sida som beskriver denna status.
     geoprivacy: |
       Standard koordinatsekretess för fynd av detta taxon. Notera att koordinatsekretess som är knuten till en fyndplats av kontinent-, land- eller statsnivå kan åsidosätta en status som är global eller knuten till fyndplats på högre nivå.
+    iucn: |
+      Motsvarande kod för IUCN:s rödlista. Detta är inte den faktiska IUCN-bedömningen,
+      bara den IUCN-kod som bäst matchar hotet om avslöjande av koordinater
+      underförstådd av denna status. Detta kommer att åsidosätta geointegriteten om den är "Minst
+      Oro" eller nedan, så om du vill dölja observationer av detta
+      taxon, ställ in detta på "Nära hotad" eller högre.
   conservation_status_geoprivacy_desc: |
     Standard koordinatsekretess tillämpas på alla fynd av detta taxon på denna plats
   contact_support: Kontakta support
@@ -1474,6 +1485,8 @@ sv:
   curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
   curator_coordinate_access: Åtkomst till kuratorns koordinater
   curator_identification: Förvaltarbestämning
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Nuvarande gemenskapstaxon: %{taxon}"
   current_flags: Nuvarande flaggningar
   #Label for a custom boundary for an observation search
   custom_boundary: Anpassad gräns
@@ -1487,6 +1500,11 @@ sv:
   daily_users: Dagliga användare
   danger_zone: Farozon
   dashboard: Kontrollpanel
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ja! Jag vill gärna delta."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Identifiering av luckor Pilot: Behov, ID Sökt Art,"
   data_deficient: Kunskapsbrist
   data_quality: Datakvalitet
   data_quality_assessment: Bedömning av datakvalitet
@@ -1580,6 +1598,8 @@ sv:
   #Label for a button to delete a taxon range
   delete_range: Ta bort utbredningsområde
   delete_selected: Radera valda
+  #Label for a button to delete a sound file
+  delete_sound: Ta bort ljud
   delete_taxon_and_merge_most_data_html: |
     Radera <i>%{taxon}</i> och slå ihop merparten av dess data med ett annat taxon. Använd
     det här verktyget för <strong>att ta bort dubblettaxa</strong>. Om du vill
@@ -1629,6 +1649,8 @@ sv:
         för att bekräfta ditt konto.
       user:
         suspended: Ditt konto har blivit avstängt
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Token för återställning av lösenord är ogiltig. Använd länken i det senast skickade e-postmeddelandet om återställning av lösenord, eller <a href="%{url}">Begär en ny</a>.
     sessions:
       signed_in: 'Inloggningen lyckades.'
       signed_out: 'Utloggningen lyckades.'
@@ -1729,6 +1751,8 @@ sv:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONERA
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Skänka
   donate_again_caps: DONERA IGEN
   donate_again_today_caps: DONERA IGEN IDAG
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1869,6 +1893,8 @@ sv:
   eol: EOL
   eol_collection_url: "URL för EOL-samling"
   error_updating_photo: "Fel vid uppdatering av bild: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Fel vid uppdatering av ljud: %{sound_errors}"
   establishment:
     endemic: Endemisk
     establishment: Invandringshistoria
@@ -1935,6 +1961,7 @@ sv:
   extinct: utdöd
   extinct_in_the_wild: Utdöd i vilt tillstånd
   extra_properties: Ytterligare egenskaper
+  evidence_accurately_depicts_organism_or_scene: Bevisen avbildar en organism eller scen på ett korrekt sätt
   evidence_of_organism: Belägg för organism
   evidence_related_to_single_subject: Stöd kopplat till ett enstaka område
   facebook: Facebook
@@ -1973,7 +2000,11 @@ sv:
   fields_can_only_be_edited_by_the_people_who: Fält kan endast redigeras av de som skapade dem samt webbplatsens förvaltare
   fields_merged: Fält sammanslagna
   file: Fil
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Filformat
   file_size: Filstorlek
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Filens URL
   file_should_be_in_the_following_format: "Filen ska ha följande format: taxonnamn, beskrivning"
   fill_out_project_observation_fields: Fyll i projektfyndfält
   fill_out_your_profile: slutför din profil
@@ -2236,6 +2267,8 @@ sv:
     one: "<strong>OBS!</strong> det finns %{count} annat utkast till taxonändring med samma intaxa:"
     other: "<strong>OBS!</strong> det finns %{count} andra utkast till taxonändring med samma intaxa:"
   heads_up_this_photo_has_been_flagged: "OBS: denna bild har flaggats."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: detta ljud har flaggats."
   heads_up_this_photo_is_already_associated_with: "Obs: denna bild är redan knuten till <a target='_blank' href='%{url}'>ett annat fynd</a>"
   heads_up_you_have_multiple: "Obs: Du har flera taxonomiska maskintaggningar för identiska ranger. De är färgkodade efter rang nedan."
   help: Hjälp
@@ -3979,6 +4012,8 @@ sv:
       zone: zon
   place_guess: gissning på fyndplats
   place_imported: Importerad fyndplats!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Det kan ta upp till ett dygn innan observationerna associeras med denna plats.
   place_must_have_a_boundary_defined: Fyndplatsen måste ha en definierad gräns.
   place_name: Fyndplatsnamn
   place_notes: Fyndplatsanteckningar
@@ -5053,7 +5088,15 @@ sv:
     select_one_or_more_sounds: Välj ett eller flera ljud
     selected_sounds: Valda ljud
     sound: Ljud
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Ljud %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Ljudet har tagits bort
     sound_has_been_flagged: Detta ljud har flaggats.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Ljudet är dolt
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Ljudet är inte dolt
     soundcloud_replied_with_an_error: SoundCloud svarade med ett fel. Försök igen senare.
     sounds: Ljud
     your_soundcloud_account: ditt SoundCloud-konto
@@ -5759,6 +5802,8 @@ sv:
   updated_by_user_on_date_html: Uppdaterad av %{user} den %{date}
   updated_daily: Uppdateras dagligen
   updated_photo: Uppdaterad bild
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Uppdaterat ljud
   upload: Ladda upp
   upload_a_csv_file: Ladda upp CSV-fil
   upload_a_csv_file_with_observation: |
@@ -6406,10 +6451,18 @@ sv:
         Tid i tidszonen för ditt konto då detta meddelande kommer att sluta
         visas. Gäller över tidszoner, så att alla slutar se
         det samtidigt, inte i förhållande till deras lokala tid.
+      excludes_non_site_desc: |
+        Om ditt meddelande riktar sig till en webbplats (vilket är standard om du är en
+        Webbplatsadministratör) kommer detta att utesluta meddelanden som riktar sig till alla webbplatser i
+        den här placeringen.
       ip_countries_desc: |
         CMD- eller SHIFT-klicka för att välja flera. Att välja "Alla" eller inte göra
         ett val kommer att visa meddelandet för alla användare oavsett
         IP-land.
+      exclude_ip_countries_desc: |
+        CMD- eller SHIFT-klicka för att välja flera. Valda länder kommer inte att visas
+        tillkännagivandet. Om IP-länder har valts väljer du Exkludera IP-länder
+        kommer att subtraheras från den förstnämnda.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Observera att datumet för användarens senast skapade
@@ -7309,6 +7362,11 @@ sv:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Fynd får <strong>"forskningsklass"</strong> när
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          den <strong>Gemenskapens taxon och observationstaxon matchar</strong>
+          (för de sällsynta tillfällen då observationstaxonet kan vara mer
+          som är specifika för gemenskapstaxonet)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           %{site_name} <strong>-communityn är överens om artbestämning eller
           lägre</strong>, dvs när mer än 2/3 av bestämmarna kommer överens om ett
@@ -7345,6 +7403,12 @@ sv:
           fyndet <strong>ger inte stöd för endast en sak</strong> (t.ex. fyra
           bilder på orelaterade organismer; en bild som visar på organismens
           livsmiljö är OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Iakttagelsen <strong>inte presenterar exakta bevis för organismen eller
+          scen</strong> (t.ex. användes artificiell intelligens för att lägga till, ta bort eller ersätta
+          element i bilden eller ljudet. Försvagning, fokusstapling eller framställning
+          små korrigeringar som att ta bort sensordamm är vanligtvis OK).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           fyndet behöver inte längre bestämmas <em>och</em> communityns
@@ -7870,6 +7934,14 @@ sv:
       not_found:
         sorry_that_doesnt_exist: Tyvärr, det finns inte!
         even_our_dedicated_search_mole_couldnt: Inte ens vår hängivna sökmullvad kunde hitta någonting!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Du kan se originalet på <a href="%{url}">%{url}</a>. Är du snäll
+          Lämna flaggor för upphovsrättsintrång som olösta om detta ljud inte
+          gör intrång i upphovsrätten.
     stats:
       index:
         active_desc: Skapade en bestämning, fynd, kommentar eller ett inlägg under de senaste 30 dagarna
@@ -8062,6 +8134,13 @@ sv:
         wikipedia_summary_desc_html: |
           Kort sammanfattning av detta taxon baserat på dess <a target="_blank" href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
           webbplatsen, som uppdateras automatiskt efter en vecka.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Du kan bara göra mindre ändringar av artepitetet direkt (t.ex. könsändringar, felstavning). Lägg till en <a target="_blank" href="%{url}">Byte av taxon</a> om du behöver andra ändringar av namnet.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Observera att du just har lagt till en ättling till ett låst taxon (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Överväg att slå ihop detta med ett befintligt taxon i stället." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Heads up: föräldern till detta aktiva taxon är inaktiv, men det är utdata från detta <a href='/taxon_changes/%{taxon_change_id}'> Utkast till taxonändring</a> som vi antar att du kommer att begå inom kort." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Detta aktiva taxon har mer än %{count} nedströms observationer eller omfattas av ett taxonramverk, så vissa taxonomiska attribut kan endast redigeras av personal eller taxonkuratorer som är associerade med det taxonramverket.
       show:
         about_names_desc: |
           <p>
@@ -8171,10 +8250,23 @@ sv:
         trending_desc: Mest observerade taxa senaste månaden
         trending_in_place_desc_html: Mest observerade taxa senaste månaden i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i detta taxon som ännu inte har observerats
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Namn måste vara likartade när du redigerar direkt, gör ett taxonbyte för radikala namnändringar
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} Du kan inte lägga till taggar till dina foton förrän Flickr vet att du har gett oss tillstånd.
+        <a href='%{url}'>Ge Flickr-tillstånd</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Något gick fel när jag försökte posta dessa taggar: %{message}
     taxon_changes:
       move_children_desc: |
         Barn till valt taxon som är släkten eller högre kommer att flyttas till utdata; arter, underarter, varieteter etc. kommer att bytas ut mot motsvarande
         med det nya släkt- eller artnamnet.
+      #state of a pending taxon change
+      pending: avvaktan
+      #state of a approved taxon change
+      approved: godkänd
       form:
         move_children_desc2_html: |
           Om du markerar denna ruta kommer barn till indatataxon att flyttas till
@@ -8187,6 +8279,39 @@ sv:
           <i>Dogis lupus</i> och <i>Canis lupus</i> ssp. <i>lupus</i> till <i>Dogis
           lupus</i> ssp. <i>lupus</i>. Detta kan orsaka en hel del besvär, så använd
           det med försiktighet.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Omröstning tillagd
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Omröstningen borttagen
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Inga röster än
+      #message when taxon change is committed
+      taxon_change_committed: Taxonändring genomförd! Poster som kan uppdateras automatiskt kommer snart att ändras.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Denna taxonändring är nu under behandling. Det krävs godkännande av 1 kurator för att kunna binda sig."
+        other: "Denna taxonändring är nu under behandling. Det kräver godkännande av %{count} kuratorer för att kunna förbinda sig."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Ingående taxon kan inte ha aktiva underordnade, flytta dem först, eller välj alternativet "Flytta underordnade till utdata?"
+      output_taxon_rank_level_not_coarser_html: >
+        Rangnivån för utgående taxon är inte grövre än rangnivån för aktiva underordnade till ingående skatt %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Denna taxonomiska förändring var redan genomförd!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Något gick fel när taxonändringen togs bort \"%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Taxonändringen har tagits bort.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Taxonändringen har uppdaterats.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Inga ändringar angivna
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taxon Change har skapats.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Kräver godkännande av 1 annan kurator för att begå"
+        other: "Kräver godkännande av %{count} andra kuratorer att engagera sig"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8756,6 +8881,7 @@ sv:
         exclude_donor_start_date: Exkludera givare startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exkludera givare slutdatum
+        excludes_non_site: Dölj andra anslag på den här placeringen som inte har något plats-id
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Undanta observatörer från appar
@@ -9221,6 +9347,30 @@ sv:
             name:
               bad_format: |
                 kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och ×; observera att preliminära taxa och sortnamn inte är tillåtna
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Namnändringar är inte tillåtna för virus, bakterier eller oympade klader"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Namnändringar är inte tillåtna för rangordningar som är grövre än arter"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Namnändringar är inte tillåtna för hybridformler"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "Det går inte att lägga till \"x\" som en hybridmarkör mellan släkte och art"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "måste vara binomialt (Genus art) för kontroll"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "Släktet kan inte ändras"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Icke-standardiserat artnamn: Det är endast tillåtet att ta bort \"X\"/\"×\" eller lägga till \"×\"."
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "Det specifika epitetet måste vara liknande (endast mindre stavfel/kön)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "Infraspecifikt epitet som krävs för denna rang"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "Endast det infraspecifika epitetet kan ändras för infraspecifika rang"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "Infraspecifika epitet måste vara liknande (endast mindre stavfel/kön)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "Första bokstaven i något epitet kan inte ändras."
         taxon_name:
           attributes:
             lexicon:
