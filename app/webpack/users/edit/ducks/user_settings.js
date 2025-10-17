@@ -203,6 +203,16 @@ export function handleCheckboxChange( e ) {
 
     if ( e.target.name === "prefers_no_email" ) {
       userSettings[e.target.name] = !e.target.checked;
+    } else if ( e.target.name.includes( "email_suppression_" ) ) {
+      const name = e.target.name.replace( "email_suppression_", "" );
+      if ( e.target.checked ) {
+        userSettings.email_suppression_types = ( userSettings.email_suppression_types || [] )
+          .filter( v => v !== name );
+      } else {
+        userSettings.email_suppression_types = [...new Set( [
+          ...( userSettings.email_suppression_types || [] ), name
+        ] )];
+      }
     } else {
       userSettings[e.target.name] = e.target.checked;
     }
