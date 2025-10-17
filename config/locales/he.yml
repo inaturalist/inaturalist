@@ -807,6 +807,8 @@ he:
   are_you_sure_you_want_to_delete_this_assessment?: האם ברצונך למחוק את האומדן הזה?
   are_you_sure_you_want_to_delete_this_photo?: האם ברצונך למחוק תמונה זו?
   are_you_sure_you_want_to_delete_this_post: האם ברצונך למחוק את הפוסט הזה?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: האם אתה בטוח שברצונך למחוק צליל זה?
   are_you_sure_you_want_to_delete_this_taxon_change: האם ברצונך למחוק את שינוי הטקסון הזה?
   are_you_sure_you_want_to_remove_all_tags: האם ברצונך להסיר את כל התגיות?
   are_you_sure_you_want_to_remove_curator: האם ברצונך להסיר את %{user} כאוצר?
@@ -820,6 +822,8 @@ he:
     האם ברצונך למחוק את התצפית הזאת מהפרויקט "%{project}"?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "האם ברצונך להסיר את הטקסון הזה מרשימת המינים של %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: האם ברצונך לסמן את המשתמש.ת כמפיצ.ת ספאם?
+  artificially_generated_content: תוכן שנוצר באופן מלאכותי
+  artificially_generated_content_desc: מכיל תוכן שנוצר ברובו או כולו באמצעות בינה מלאכותית.
   associated_observations: תצפיות משויכות
   associated_taxa: טקסונים משויכים
   attention: לתשומת לבך
@@ -1150,6 +1154,7 @@ he:
   community_id_is_precise: הטקסון הקהילתי הוא מדויק
   community_moderation_settings: הגדרות בקרת הקהילה
   community_supported_id: טקסון שנתמך על־ידי הקהילה?
+  community_taxon_matches_observation_taxon: טקסון קהילתי תואם טקסון תצפית
   compare: השוואה
   compare_with: השוואה עם
   comparing: השוואה
@@ -1542,6 +1547,8 @@ he:
   curator_coordinate_access_desc: |
     גישת אוצרים לקואורדינטות בפרויקטים בסיסיים תלויה בזהות המשתמש שהוסיף את התצפית לפרויקט. זוהי הגדרת ברירת המחדל עבור תצפיות בפרויקטים, אך המתצפתים יכולים גם לבחור לשנות זאת עבור תצפיות בודדות.
   curator_identification: זיהוי אוצר.ת
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "טקסון קהילתי נוכחי: %{taxon}"
   current_flags: סימונים כעת
   #Label for a custom boundary for an observation search
   custom_boundary: גבול מותאם
@@ -1700,6 +1707,8 @@ he:
   #Label for a button to delete a taxon range
   delete_range: מחיקת תפוצה
   delete_selected: מחיקת בחירה
+  #Label for a button to delete a sound file
+  delete_sound: מחיקת צליל
   delete_taxon_and_merge_most_data_html: |
     למחוק את <i>%{taxon}</i> ולאחד את רוב הנתונים שלו לתוך טקסון אחר. יש להשתמש בכלי זה עבור <strong>מחיקת טקסונים משוכפלים</strong>. אם ברצונך להוציא שם נרדף מיושן, נא ליצור החלפת טקסון. <strong>זהירות!</strong> מחיקת טקסונים יכולה להיות הרסנית ביותר. יש לעיין <a href="%{curator_url}">במדריך לאוצר.ת</a> למידע נוסף.
   delete_user: מחיקת משתמש
@@ -1977,6 +1986,8 @@ he:
   eol: EOL
   eol_collection_url: "קישור לאוסף של אינציקלופדיית החיים"
   error_updating_photo: "שגיאה בהעלאת תמונה: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "שגיאה בעדכון צליל: %{sound_errors}"
   establishment:
     endemic: אנדמי
     establishment: התבססות
@@ -2044,6 +2055,7 @@ he:
   extinct: נכחד
   extinct_in_the_wild: נכחד בבר
   extra_properties: תכונות נוספות
+  evidence_accurately_depicts_organism_or_scene: ראיות מתארות במדויק אורגניזם או סצנה
   evidence_of_organism: עדות לאורגניזם
   evidence_related_to_single_subject: ראיות הקשורות לנושא אחד
   facebook: פייסבוק
@@ -2081,7 +2093,11 @@ he:
   fields_can_only_be_edited_by_the_people_who: שדות ניתנים לעריכה רק על ידי יוצריהם או אוצרי האתר
   fields_merged: שדות אוחדו
   file: קובץ
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: פורמט קובץ
   file_size: גודל קובץ
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: כתובת URL של קובץ
   file_should_be_in_the_following_format: "הקובץ צריך להיות בפורמט הבא: שם הטקסון, תיאור"
   fill_out_project_observation_fields: יש למלא את שדות התצפית של הפרויקט
   fill_out_your_profile: השלם הגדרות פרופיל
@@ -2334,6 +2350,8 @@ he:
     many: "<strong>שימו לב!</strong> יש %{count} טיוטות שינוי טקסון אחרות עם אותם הטקסונים שהוכנסו:"
     other: "<strong>שימו לב!</strong> יש %{count} טיוטות שינוי טקסון אחרות עם אותם הטקסונים שהוכנסו:"
   heads_up_this_photo_has_been_flagged: "שימו לב: תמונה זו סומנה."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "שימו לב: הצליל הזה סומן."
   heads_up_this_photo_is_already_associated_with: "שימו לב: תצפית זו משוייכת כבר עם <a target='_blank' href='%{url}'>תצפית אחרת</a>"
   heads_up_you_have_multiple: "יש לשים לב: יש לך תגי מכונה טקסנומיים מרובים עבור דרגות זהות. הם מסודרים בצבעים לפי דרגה למטה."
   help: עזרה
@@ -5088,7 +5106,15 @@ he:
     select_one_or_more_sounds: בחירת קול אחד או יותר
     selected_sounds: קולות שנבחרו
     sound: קול
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: קול %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: הצליל נמחק
     sound_has_been_flagged: קול זה סומן.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: צליל מוסתר
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: צליל לא מוסתר
     soundcloud_replied_with_an_error: SoundCloud השיב עם שגיאה. נסו מאוחר יותר שנית.
     sounds: קולות
     your_soundcloud_account: חשבון הSoundCloud שלך
@@ -5817,6 +5843,8 @@ he:
   updated_by_user_on_date_html: עודכן על-ידי %{user} בתאריך %{date}
   updated_daily: מעודכן יומית
   updated_photo: תמונה מעודכנת
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: צליל מעודכן
   upload: העלאה
   upload_a_csv_file: העלאת קובץ CSV
   upload_a_csv_file_with_observation: |
@@ -6447,6 +6475,10 @@ he:
         אם ההודעה שלך מיועדת לאתר (שזה ברירת המחדל אם את.ה מנהל.ת אתר), אפשרות זו תסתיר הודעות שמכוונות לכל האתרים באותו מיקום.
       ip_countries_desc: |
         לחיצה עם CMD או SHIFT תאפשר לבחור מספר פריטים. בחירה ב"הכל" או אי-בחירה תציג את ההודעה לכל המשתמשים, ללא תלות במדינת ה־IP שלהם.
+      exclude_ip_countries_desc: |
+        CMD- או SHIFT תוך כדי לחיצה כדי לבחור מרובים. מדינות נבחרות לא יוצגו
+        ההכרזה. אם נבחרה מדינות IP, בחר אל תכלול מדינות IP
+        יופחת מהראשון.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         שימו לב שהתאריך שבו נוצרה התצפית האחרונה של המשתמש.ת נשמר במטמון, ולכן עשויה לחלוף כמה שעות עד שהמיקוד ייכנס לתוקף.
@@ -7283,6 +7315,11 @@ he:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: תצפיות הופכות ל<strong>"דרגת מחקר"</strong> כאשר
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ה <strong>התאמת טקסון קהילתי וטקסון תצפית</strong>
+          (לאותם מקרים נדירים שבהם טקסון התצפית יכול להיות יותר
+          ספציפי מהטקסון הקהילתי)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           קהילת %{site_name} <strong>מסכימה על זיהוי ברמת מין או נמוך יותר</strong>, כלומר כאשר יותר מ-2/3 מהמזהים מסכימים על טקסון (אם הקהילה הצביעה שהטקסון הקהילתי לא ניתן לשיפור נוסף, אז זה חוזר לזיהוי ברמת תת-משפחות או נמוך יותר).
         #Leads a list of ways an observation to revert to Casual status
@@ -7306,6 +7343,12 @@ he:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           התצפית <strong>אינה מציגה ראיות הקשורות לנושא אחד</strong> (לדוגמה, היא כוללת ארבע תמונות של אורגניזמים בלתי קשורים; תמונה המציגה את בית הגידול של נושא התצפית היא תקינה).
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          התצפית <strong>אינו מציג ראיות מדויקות לאורגניזם או
+          סצנה</strong> (לדוגמה, בינה מלאכותית שימשה להוספה, הסרה או החלפה
+          רכיבים בתמונה או בצליל. דה-נוז, ערימת מיקוד או יצירה
+          תיקונים קטנים כמו הסרת אבק חיישן זה בדרך כלל בסדר).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           התצפית כבר לא צריכה זיהוי <em>וגם</em> הטקסון הקהילתי נמצא ברמת משפחה או גבוה יותר
@@ -7783,6 +7826,14 @@ he:
       not_found:
         sorry_that_doesnt_exist: אופס, זה לא קיים.
         even_our_dedicated_search_mole_couldnt: אפילו החיפוש הייעודי שלנו לא מצא שום דבר!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          ניתן לצפות במקור בכתובת <a href="%{url}">%{url}</a>. בבקשה
+          השאר את דגלי הפרת זכויות היוצרים כלא פתורים אם הצליל הזה כן
+          הפרת זכויות יוצרים.
     stats:
       index:
         active_desc: יצר או יצרה זיהוי, תצפית, תגובה או פוסט ב-30 הימים האחרונים
@@ -7920,6 +7971,9 @@ he:
         wikipedia_summary_desc_html: |
           סיכום קצר של טקסון זה המבוסס של <a target="_blank"
           href="%{url}">עמוד הויקיפדיה</a> שלו הנמצא במטמון שלנו עד לרענון ידני. רענון סיכום זה גם מעדכן מייד את המטמון שלנו של תוכן ויקיפדיה יסודי המוצג באתר שלנו, המתעדכן אוטומטית לאחר שבוע.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          ניתן לבצע רק שינויים קלים בכינוי המין ישירות (למשל שינויי מין, שגיאות כתיב). הוסף <a target="_blank" href="%{url}">החלפת טקסון</a> אם אתה זקוק לשינויים אחרים בשם.
       show:
         about_names_desc: |
           <p>
@@ -7999,6 +8053,9 @@ he:
         trending_desc: הטקסונים הנצפים ביותר בחודש האחרון
         trending_in_place_desc_html: הטקסונים הנצפים ביותר בחודש האחרון <a href="%{url}">%{place}</a>
         wanted_desc: מינים בטקסון זה שטרם נצפו.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        משהו השתבש בניסיון לפרסם את התגיות האלה: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: האם אתה בטוח שאתה רוצה לשחזר את שינוי הטקסון הזה?
