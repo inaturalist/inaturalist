@@ -560,6 +560,14 @@ id:
   app_owner_application_about_p1a_html: |
     Aplikasi pihak ketiga iNaturalist mengizinkan penggunaan berotentikasi atas API iNaturalist. Hal ini mengizinkan Anda untuk membuat panggilan API yang melakukan hal-hal seperti membuat pengamatan atau identifikasi. Ini biasa digunakan oleh aplikasi-aplikasi desktop atau mobile yang memiliki fungsi untuk membuat pengamatan iNaturalist. Konten ini harus dibuat dengan pengawasan dan campur tangan manusia. Silakan membaca <a href="/pages/community+guidelines"
     target="_blank">Pedoman Komunitas</a> kami yang melarang pengamatan, identifikasi, dan komentar yang dibuat bot untuk detail lebih lanjut.
+  app_owner_application_about_p2_html: |
+    Mulai tahun 2022, kami memerlukan persetujuan manual bagi pengguna yang ingin membuat klien API.
+    Untuk membuat aplikasi pihak ketiga, Anda harus terlebih dahulu mengirimkan aplikasi untuk menjadi
+    "pemilik aplikasi". Aplikasi ini harus menjelaskan fungsionalitas aplikasi yang Anda usulkan
+    dan bagaimana Anda berencana menggunakannya. Untuk mengajukan aplikasi, akun Anda harus berada di
+    berusia minimal 2 bulan dan harus telah membuat setidaknya 10 bulan <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">meningkatkan identifikasi</a> dalam sebulan terakhir. Kami mungkin meminta tindak lanjut
+    pertanyaan tentang paket Anda dan kami berhak menolak aplikasi dengan alasan apa pun.
   app_owner_application_inelligible: |
     Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 identifikasi pengembang dalam sebulan terakhir.
   app_owner_application_fields_explanation_html: Jelaskan fungsi yang akan dimiliki aplikasi Anda dan bagaimana rencana Anda untuk menggunakannya.
@@ -642,6 +650,8 @@ id:
   are_you_sure_you_want_to_delete_this_assessment?: Apakah Anda yakin ingin menghapus penilaian?
   are_you_sure_you_want_to_delete_this_photo?: Apakah Anda yakin ingin menghapus foto ini?
   are_you_sure_you_want_to_delete_this_post: Apakah Anda yakin ingin menghapus postingan ini?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Apakah Anda yakin ingin menghapus suara ini?
   are_you_sure_you_want_to_delete_this_taxon_change: Apakah Anda yakin ingin menghapus perubahan takson ini?
   are_you_sure_you_want_to_remove_all_tags: Apakah Anda yakin ingin menghapus semua label?
   are_you_sure_you_want_to_remove_curator: Apakah Anda yakin ingin menghapus %{user} sebagai kurator?
@@ -1050,6 +1060,12 @@ id:
     url: URL untuk sebuah halaman yang menjelaskan status ini.
     geoprivacy: |
       Geoprivasi standar untuk pengamatan takson ini. Ingat bahwa geoprivasi dari sebuah status yang terkait dengan tempat bertingkat benua, negara, atau provinsi dapat membatalkan status yang global atau status dengan tempat yang tingkatnya lebih tinggi.
+    iucn: |
+      Kode Daftar Merah IUCN yang setara. Ini bukan penilaian IUCN yang sebenarnya,
+      hanya kode IUCN yang paling cocok dengan ancaman pengungkapan koordinat
+      tersirat dari status ini. Ini akan mengesampingkan geoprivasi jika "Paling tidak
+      Kekhawatiran" atau di bawahnya, jadi jika Anda ingin mengaburkan pengamatan tentang ini
+      takson, atur ini ke "Hampir Terancam" atau lebih tinggi.
   conservation_status_geoprivacy_desc: |
     Pengaturan geoprivasi bawaan diterapkan untuk semua pengamatan takson ini di tempat ini
   contact_support: Hubungi Bantuan
@@ -1411,12 +1427,14 @@ id:
   danger_zone: Wilayah Berbahaya
   dashboard: Dasbor
   dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ya! Saya ingin berpartisipasi."
     #state of button asking to participate in a pilot after participating
     pilot_stop: "Berhenti Berpartisipasi"
     #link to a blog post
     pilot_read_more: "Baca lebih banyak di blog kami."
-    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "Bantu kami mengisi kekosongan dengan berpartisipasi menerima tautan ke pengamatan secara harian:"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Percontohan Kesenjangan Identifikasi: Spesies yang Dicari ID Membutuhkan"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Belum disertakan di Model Penglihatan Komputer"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1553,6 +1571,8 @@ id:
   #Label for a button to delete a taxon range
   delete_range: Hapus jangkauan
   delete_selected: Hapus Yang Dipilih
+  #Label for a button to delete a sound file
+  delete_sound: Hapus suara
   delete_taxon_and_merge_most_data_html: |
     Hapus <i>%{taxon}</i> dan gabungkan sebagian besar data tersebut ke dalam takson. Gunakan
     alat ini untuk <strong>menghapus taksa yang terduplikat</strong>. Jika Anda ingin
@@ -1690,6 +1710,8 @@ id:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONASI
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Menyumbangkan
   donate_again_caps: DONASI LAGI
   donate_again_today_caps: DONASI LAGI SEKARANG
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1932,6 +1954,8 @@ id:
   fields_can_only_be_edited_by_the_people_who: Bidang hanya bisa diedit oleh penciptanya dan kurator situsnya
   fields_merged: Penggabungan bidang
   file: Berkas
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Format file
   file_size: Ukuran berkas
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL File
@@ -2059,6 +2083,9 @@ id:
   following_x_people:
     other: 'Mengikuti %{count} Orang'
   for_a_taxon: untuk takson
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Untuk informasi lebih lanjut tentang header kolom, lihat %{url}
   formatting: Format
   forgot_your_password: Lupa kata sandi Anda?
   forum: Forum
@@ -2372,6 +2399,14 @@ id:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: ID Infraspesies
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Jika Anda mematikan fitur ini, Anda tidak akan lagi menerima pemberitahuan tentang ID takson
+    di bawah tingkat spesies (seperti subspesies dan varietas) yang sesuai dengan ID
+    tingkat spesies Anda. Anda akan menerima pemberitahuan jika ID tersebut tidak sesuai dengan ID Anda
+    atau jika ID tersebut mengandung catatan tambahan.
   input_taxon: Takson Masukan
   insects: serangga
   insect_life_stage: Tahap Kehidupan Serangga
@@ -3908,6 +3943,8 @@ id:
       zone: zona
   place_guess: tebakan tempat
   place_imported: Tempat diimpor!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Mungkin diperlukan waktu hingga satu hari untuk pengamatan dikaitkan dengan tempat ini.
   place_must_have_a_boundary_defined: Tempat Harus Memiliki Batas yang Jelas.
   place_name: Nama tempat
   place_notes: Catatan Tempat
@@ -4200,6 +4237,20 @@ id:
     Mengubah batasan tempat merupakan salah satu sumber keleletan iNat. Kalau bisa dihindari, jangan menambahkan, mengganti, atau menghapus batasan tempat jika tidak benar-benar diperlukan.
   places_warning_quota: |
     Anda hanya dapat membuat tiga tempat per harinya.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Tempat tidak boleh lebih besar dari 700.000 kilometer persegi.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Tempat tidak boleh lebih besar dari 70.000 kilometer persegi.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Tempat tidak boleh berisi lebih dari 200.000 pengamatan.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Tempat tidak boleh berisi lebih dari 10.000 pengamatan.
   places_warning_the_future: |
     Setelah dipertimbangkan, kami harus membatasi kondisi di mana orang-orang dapat menambahkan tempat baru di masa yang akan datang dikarenakan tingkat pertumbuhan iNat saat ini.
   plants: tanaman
@@ -4912,6 +4963,10 @@ id:
     select_one_or_more_sounds: Pilih satu atau lebih suara
     selected_sounds: Suara terpilih
     sound: Suara
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Bunyi %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Suara dihapus
     sound_has_been_flagged: Suara ini telah ditandai.
     #Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: Suara disembunyikan
@@ -5824,6 +5879,8 @@ id:
   view_more_observations_of_x_project: "Lihat lebih banyak pengamatan dari %{project} di <nobr>%{site_name}&raquo;</nobr>"
   view_more_observations_of_x_taxon: "Lihat lebih banyak pengamatan %{taxon} di <nobr>%{site_name}&raquo;</nobr>"
   view_more_unreviewed: "Lihat lebih banyak yang belum ditinjau"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Lihat ID yang terpengaruh
   view_observation: Lihat Pengamatan
   view_observations: Lihat Pengamatan
   view_observation_flags: Lihat tanda pengamatan
@@ -6935,6 +6992,7 @@ id:
         positional_accuracy: "Keakuratan koordinat"
         private_latitude: "Lintang pribadi, diatur jika pengamatan pribadi atau dikaburkan"
         private_longitude: "Bujur pribadi, diatur jika pengamatan pribadi atau dikaburkan"
+        geoprivacy: "Apakah pengamat telah memilih untuk menyembunyikan atau menyamarkan koordinat. Lihat https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "Geoprivasi yang paling konservatif diterapkan dikarenakan status konservasi taksa dalam identifikasi ini."
         coordinates_obscured: "Apakah koordinat dikaburkan, karena geoprivasi atau takson yang terancam"
         out_of_range: Apakah pengamatan ini terletak di luar jangkauan yang diketahui dari takson ini
@@ -6945,6 +7003,7 @@ id:
           Ini adalah kolom opsional dan boleh berupa nama samaran.
         created_at: Tanggal dan waktu pengamatan telah dibuat
         updated_at: Tanggal dan waktu pengamatan terakhir diperbarui
+        quality_grade: Kelas kualitas pengamatan ini. Lihat bagian Bantuan untuk detail tentang arti hal ini. Lihat https://help.inaturalist.org/support/solutions/articles/151000169936
         license: Tanda pengenal untuk lisensi atau penafian yang pengamat pilih untuk pengamatan ini. Hak cipta dilindungi undang-undang jika kosong
         url: URL untuk pengamatan ini
         image_url: URL untuk gambar pertama terkait pengamatan ini
@@ -6955,6 +7014,11 @@ id:
         place_admin2_name: Nama tempat administratif dua tingkat di bawah tingkat negara
         positioning_method: Bagaimana koordinat ditentukan
         positioning_device: Perangkat yang digunakan untuk menentukan koordinat
+        captive_cultivated: |
+          Pengamatan dilakukan terhadap organisme yang ada pada waktu dan tempat
+          di mana ia diamati, karena manusia bermaksud untuk mengamatinya pada
+          waktu dan tempat tersebut. Untuk informasi lebih lanjut, lihat
+          https://help.inaturalist.org/support/solutions/articles/151000169932
         description: |
           Teks yang ditulis oleh pengamat yang menjelaskan pengamatan atau mencatat catatan apa pun yang relevan
         oauth_application_id: |
@@ -7845,6 +7909,11 @@ id:
           Ingat bahwa halaman takson akan menampilkan foto-foto takson ini dan turunannya. Namun, foto-foto yang terpilih untuk takson ini akan diperlihatkan pertama. Foto pertama adalah foto standar yang akan digunakan di seluruh situs.
         rare_desc: Taksa terancam yang paling sedikit diamati
         rare_in_place_desc_html: Taksa terancam yang paling sedikit diamati di <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Kurator situs telah menonaktifkan tampilan <a href="%{url}">konten
+          ini</a> dari Wikipedia. Anda dapat membantu dengan menyunting halaman di 
+          Wikipedia agar sesuai untuk takson ini, atau dengan menandai takson
+          ini untuk menarik perhatian kurator situs.
         trending_desc: Taksa yang paling banyak diamati sejak bulan lalu
         trending_in_place_desc_html: Taksa yang paling banyak diamati sejak bulan lalu di <a href="%{url}">%{place}</a>
         wanted_desc: Spesies di dalam takson ini yang belum diamati.
@@ -7854,6 +7923,9 @@ id:
       cant_tag_photos_html: |
         %{site} tidak dapat menambahkan tag ke foto-foto Anda hingga Flickr mengetahui bahwa Anda telah memberi kami izin.
         <a href='%{url}'>Berikan izin Flickr</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Ada yang salah saat mencoba memposting tag tersebut: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Apakah Anda yakin ingin memulihkan perubahan takson ini?
@@ -7998,6 +8070,48 @@ id:
           Anda harus memasukkan "%{confirmation_code}" di formulir untuk menghapus akun Anda
       edit:
         about_third_party_tracking: Tentang pelacakan pihak ketiga
+        block_desc_blocking_someone_prevents: |
+          Memblokir seseorang akan mencegah mereka mengirim pesan kepada Anda,
+          mengomentari pengamatan Anda, mengidentifikasi pengamatan Anda, dan
+          berinteraksi dengan Anda di %{site_name}. Hal ini juga akan menghapus
+          pengamatan mereka dari hasil pencarian Anda dan menghapus pengamatan
+          Anda dari hasil pencarian mereka. Namun, hal ini tidak membuat Anda
+          tidak terlihat oleh mereka. Mereka masih dapat menemukan pengamatan
+          Anda dan melihat profil Anda, tetapi mereka tidak dapat berinteraksi
+          dengan Anda.
+        block_desc_blocking_is_for_situations: |
+          Pemblokiran digunakan dalam situasi di mana Anda tidak bisa akur dengan
+          seseorang dan mereka tidak mau meninggalkan Anda sendirian, meskipun Anda telah berusaha sebaik mungkin untuk
+          menyelesaikan perselisihan secara damai. Ini bukan cara untuk bersembunyi dari
+          orang lain, mencegah identifikasi dari orang-orang yang pendapatnya Anda
+          tidak percayai, atau keluar dari ID komunitas (ada pengaturan lain
+          untuk itu). Oleh karena itu, pemblokiran berlaku dua arah: jika Anda memblokir
+          seseorang, mereka tidak dapat berinteraksi dengan Anda, tetapi Anda
+          juga tidak dapat berinteraksi dengan mereka. Jika Anda menyalahgunakan
+          fitur ini untuk mencegah seseorang mengidentifikasi pengamatan Anda,
+          Anda juga mencegah diri Anda sendiri untuk mengidentifikasi
+          pengamatan mereka.
+        block_desc_you_can_only_block_html: |
+          Anda hanya dapat memblokir tiga orang. Kami menganggap ini adalah jumlah wajar
+          yang mengakomodasi orang-orang yang perlu diblokir sambil
+          mencegah penyalahgunaan fitur pemblokiran. Jika Anda merasa perlu memblokir lebih
+          banyak orang, silakan <a href="mailto:%{help_email}">hubungi kami</a>.
+        block_desc_there_are_two_exceptions: |
+          Ada dua situasi di mana pemblokiran tidak mencegah interaksi:
+        block_desc_comments_on_taxon_flags: Komentar tentang bendera takson yang Anda buat
+        block_desc_comments_on_taxon_changes: Komentar tentang perubahan takson yang Anda buat
+        block_desc_unlike_more_personal: |
+          Berbeda dengan bentuk konten yang lebih pribadi seperti catatan pengamatan dan posting jurnal,
+          takson dibagikan oleh semua orang dan seharusnya terbuka untuk
+          diskusi oleh semua orang. Memblokir seseorang tetap akan mencegah Anda
+          mendapatkan notifikasi tentang komentar pada jenis konten ini dari
+          orang yang Anda blokir.
+        block_desc_if_harassing_html: |
+          Jika seseorang mengganggu atau menguntit Anda di %{site_name},
+          <a href="mailto:%{help_email}">silakan beritahu kami</a>. Jika
+          hal ini melanggar Ketentuan Penggunaan kami atau merupakan
+          perilaku lain yang kami anggap tidak pantas untuk situs kami, kami akan
+          melakukan penyelidikan.
         common_scientific_name_display_order: Urutan Penampilan Nama Umum / Ilmiah
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jika Anda berubah pikiran, Anda selalu dapat <a href='/users/edit'>mengubah pengaturan Anda</a>.
@@ -8436,6 +8550,7 @@ id:
         exclude_donor_start_date: Kecualikan tanggal mulai donor
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kecualikan tanggal akhir donor
+        excludes_non_site: Menyembunyikan pengumuman lain di penempatan ini yang tidak memiliki ID Situs
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Kecualikan pengamat dari aplikasi
@@ -8609,6 +8724,8 @@ id:
         photos_locked: Foto dikunci?
         rank: Peringkat
         rank_level: Tingkat kategori
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Menampilkan Wikipedia
         source_id: ID sumber
         source_identifier: ID sumber
         source_url: URL Sumber
@@ -8753,6 +8870,8 @@ id:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Hanya staf dan kurator yang bisa menyembunyikan konten
               only_staff_and_hiding_curators_can_unhide: Hanya staf dan kurator yang menyembunyikan konten bisa menampilkannya lagi
+              #Error saying that only staff can rename
+              only_staff_can_rename: Hanya staf yang dapat mengganti nama
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Hanya staf yang bisa mengatur konten menjadi privat
               staff_cannot_be_suspended: Staf tidak bisa ditangguhkan
