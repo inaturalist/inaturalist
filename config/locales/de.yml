@@ -618,6 +618,14 @@ de:
     or oversight. Please read our <a href="/pages/community+guidelines"
     target="_blank">Community Guidelines</a> prohibiting machine-generated
     observations, identifications, and comments for more details.
+  app_owner_application_about_p2_html: |
+    Ab 2022 benötigen wir eine manuelle Genehmigung für Benutzer, die API-Clients erstellen möchten.
+    Um Apps von Drittanbietern zu erstellen, müssen Sie zunächst eine Bewerbung einreichen, um
+    Ein "App-Besitzer". Diese Anwendung sollte die Funktionalität Ihrer vorgeschlagenen App beschreiben
+    und wie Sie es verwenden möchten. Um einen Antrag zu stellen, muss sich Ihr Konto bei
+    mindestens 2 Monate alt sein und mindestens 10 Monate alt sein <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Verbesserung der Identifizierung</a> im letzten Monat. Wir können um Nachverfolgung bitten
+    Fragen zu Ihrem Plan und wir behalten uns das Recht vor, Anträge aus beliebigem Grund abzulehnen.
   app_owner_application_inelligible: |
     Um eine App einzureichen, musst du seit mindestens 2 Monaten ein Benutzerkonto haben, mit dem du im letzten Monat mindestens 10 verbessernde IDs beigetragen hast.
   app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
@@ -813,6 +821,12 @@ de:
   back_to_your_profile: Zurück zu deinem Profil
   badges: Abzeichen
   base_map_copyright_openstreetmap_html: Base map © %{startTag}OpenStreetMap%{endTag}
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Basierend auf einer Stichprobe von %{percent}% dieser IDs schätzen wir, dass dies in einer <strong>%{count} unbeabsichtigten Ablehnung</strong> der IDs von %{child} resultieren wird.
+    other: |
+      Basierend auf einer Stichprobe von %{percent}% dieser IDs schätzen wir, dass dies in <strong>%{count} unbeabsichtigte Ablehnungen</strong> der IDs von %{child} resultieren wird.
   based_on_the_evidence_can_id_be_improved: |
     Kann die Community-ID anhand der vorhandenen Belege noch weiter verbessert werden?
   batch: Batch
@@ -821,6 +835,11 @@ de:
   batch_edit_taxa_for_x_html: "mehrere Taxa für %{x} auf einmal bearbeiten"
   batch_operations: Stapeloperationen
   be_the_first_to_fave_this_observation: Diese Beobachtung favorisieren
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Weil wir davon ausgehen, dass diese Änderung zu mehr als 10 unbeabsichtigten
+    Ablehnungen führen wird, <strong>empfehlen wir Ihnen auch eine Taxonänderung mit
+    %{old_parent}, wie zum Beispiel der Trennung von %{new_parent} von %{old_parent}</strong>.
   become_a_donor_caps: Unterstützer werden
   become_a_donor_today_caps: Werde heute ein Unterstützer
   before_importing_photos: vor dem Importieren von Bildern verlinken
@@ -1022,6 +1041,7 @@ de:
   community_id_is_precise: Das Community-Taxon ist auf (Unter)Art-Niveau
   community_moderation_settings: Gemeinschaftsmoderations-Einstellungen
   community_supported_id: Gemeinschafts-unterstütztes Taxon?
+  community_taxon_matches_observation_taxon: Community-Taxon stimmt mit Beobachtungstaxon überein
   compare: Vergleichen
   compare_with: Vergleiche mit
   comparing: vergleiche
@@ -1091,6 +1111,12 @@ de:
     url: URL für eine Seite, die diesen Status beschreibt.
     geoprivacy: |
       Standardgeoprivität für Beobachtungen dieses Taxons. Beachte, dass der Schutzstatus, der innerhalb eines Kontinents, Landes oder Bundeslandes besteht, die Geoprivität der darüber liegenden Kategorie überschreiben kann.
+    iucn: |
+      Entsprechender Code der Roten Liste der IUCN. Dies ist nicht die eigentliche IUCN-Bewertung,
+      genau der IUCN-Code, der am besten zur Bedrohung durch die Offenlegung von Koordinaten passt
+      durch diesen Status impliziert. Dadurch wird der Geoprivacy außer Kraft gesetzt, wenn er auf "Am geringsten"
+      Concern" oder weiter unten, wenn Sie also Beobachtungen dazu verschleiern möchten
+      Taxon, setzen Sie dies auf "Near Threatened" oder höher.
   conservation_status_geoprivacy_desc: |
     Standardmäßig Geo-Privatsphäre auf alle Beobachtungen dieses Taxons an diesem Ort angewendet
   contact_support: Support kontaktieren
@@ -1436,8 +1462,60 @@ de:
   danger_zone: GEFAHRENZONE!
   dashboard: Dashboard
   dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ja! Ich würde gerne teilnehmen."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Teilnahme beenden"
+    #link to a blog post
+    pilot_read_more: "Lesen Sie mehr in unserem Blog."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Pilotprojekt zur Identifizierung von Lücken: Bedarf bei der Identifizierung gesuchter Arten"
     #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
     gaps_id_pilot_intro: "Hilf uns, Lücken zu schließen, indem du teilnimmst, um täglich einen Link zu Beobachtungen zu erhalten:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Noch nicht im Modell für maschinelles Sehen enthalten"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Wir glauben, dass Sie sich damit identifizieren können"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Hier ist ein Link zu Beobachtungen von Arten, die noch nicht im Computer-Vision-Modell enthalten sind und von denen wir glauben, dass Sie sie identifizieren können."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Schauen Sie morgen wieder vorbei, um einen Link zu Beobachtungen von Arten zu erhalten, die noch nicht im Computer-Vision-Modell enthalten sind und von denen wir glauben, dass Sie sie identifizieren können. Ihnen werden Arten angezeigt, bei denen Sie mindestens 3 verbessernde Identifizierungen vorgenommen haben."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Wenn kein Link angezeigt wird, gibt es möglicherweise keine Beobachtungen, die diesen Kriterien entsprechen und eine ID benötigen. Es wird einmal pro Tag überprüft."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Pilotprojekt \"Beobachtungslücken\": Gesuchte Arten in der Nähe"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Morgen erhaltet ihr eine Liste von Arten, die:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "noch nicht im Computer Vision Modell enthalten sind"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Wurden in dieser Saison in der Nähe Ihrer letzten Beobachtung beobachtet"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Basieren auf einer Stichprobe von bis zu 200 Beobachtungen von bis zu 300 Arten, die Pflanzen priorisieren"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Durch die Beobachtung dieser Arten tragen Sie dazu bei, das Modell zu verbessern und Datenlücken zur Biodiversität zu schließen. Diese Liste wird aktualisiert, wenn das Modell aktualisiert wird. Sie können sich jederzeit abmelden."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Hier ist Ihre aktuelle Liste von Arten, die:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Noch nicht im Modell für maschinelles Sehen enthalten"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Beobachtet in der Nähe Ihres letzten Standorts in dieser Saison"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Indem Sie diese beobachten, tragen Sie dazu bei, die Artenerkennung zu verbessern und kritische Lücken zu schließen."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Arten durchsuchen"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Schauen Sie morgen wieder vorbei, um eine personalisierte Liste von Arten zu erhalten, die noch nicht im Computer-Vision-Modell enthalten sind, das in dieser Saison beobachtet wurde. Die personalisierte Liste verwendet den Ort Ihrer letzten Beobachtung."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Wenn Sie keinen Zusammenhang sehen, gibt es möglicherweise keine Art in Ihrer Nähe, die diesen Kriterien entspricht."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Identification Pilot: Onboarding neuer Benutzer"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Ab morgen erhalten Sie täglich bis zu 30 Beobachtungen, die Ihren Bestimmungsfähigkeiten entsprechen und Ihnen beim Onboarding neuer Benutzer helfen. Sie können sich jederzeit abmelden."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Im Folgenden finden Sie bis zu 30 Beobachtungen, die Ihren Bestimmungsfähigkeiten entsprechen."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Schauen Sie morgen wieder vorbei, um einen Link zu Beobachtungen zu erhalten, die Ihren Bestimmungsfähigkeiten entsprechen."
   data_deficient: ungenügende Datengrundlage
   data_quality: Datenqualität
   data_quality_assessment: Bewertung der Datenqualität
@@ -1668,6 +1746,8 @@ de:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: SPENDEN
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Spenden
   donate_again_caps: Spende noch einmal
   donate_again_today_caps: SPENDE JETZT
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1829,6 +1909,9 @@ de:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Genauer Rang
   except: außer
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Ausschließen
   exclude_places: Gebiete ausschließen
   exclude_projects: Projekte ausschließen
   exclude_taxa: Taxa ausschließen
@@ -5287,6 +5370,7 @@ de:
   there_were_some_problems_with_these_files: "Es gab einige Probleme mit diesen Dateien:"
   theres_something_wrong_with_taxon_framework_relationship: Hier stimmt etwas nicht - wir können die Beziehung zwischen internen und externen Taxa nicht bestimmen
   therefore_committing_additional_taxon_changes: Daher ist es nicht erforderlich, nach diesem Taxon-Tausch weitere Taxon-Änderungen vorzunehmen.
+  therefore_committing_taxon_changes: Daher ist es nicht erforderlich, nach dieser Abstammungsänderung noch Taxonänderungen vorzunehmen.
   these_are_items_people_on: |
     Das sind Dinge, die die Leute auf der Seite zur Kuration gemeldet haben. Spam-Kommentare sollten gelöscht werden und Benutzer, die Spam verbreiten, sollten gesperrt werden (gehe zu deren Profilseite und klicke unten rechts auf "Benutzer sperren", um sie am Einloggen zu hindern). Andere gemeldete Sachen sollten nur gelöscht werden, wenn sie eindeutig hasserfüllt, illegal usw. sind. Unhöflichkeit, beleidigende Sprache usw. sollten mit einem höflichen Kommentar behandelt werden. Wiederholungstäter sollten einem Seitenadministrator oder %{email} gemeldet werden.
   these_are_taxa_that: |
@@ -5571,6 +5655,8 @@ de:
     vorhandene Fotos. Dies kann einige Stunden dauern, wenn Sie viele
     Fotos.
   update_existing_sounds_with_new_license: Bestehende Sounds mit der neuen Lizenzauswahl aktualisieren
+  update_existing_sounds_with_new_license_desc: |
+    Wenn diese Option ausgewählt wird, wird die neue Lizenzauswahl auf alle bereits existierenden Audios übertragen. Das kann eine Weile dauern, wenn viele Audios hinterlegt sind.
   update_observations: Beobachtungen aktualisieren
   update_past: "Einstellungen der %{type} aktualisieren"
   update_photos: Fotos aktualisieren
@@ -6197,10 +6283,16 @@ de:
         CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
         Kunde.
+      excludes_non_site_desc: |
+        Wenn Ihre Ankündigung auf eine Website abzielt (was die Standardeinstellung ist, wenn Sie ein
+        Site-Admin), werden Ankündigungen ausgeschlossen, die auf alle Websites in
+        diese Platzierung.
       ip_countries_desc: |
         CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
         Land des geistigen Eigentums.
+      exclude_ip_countries_desc: |
+        ALT- oder UMSCHALT-Taste gedrückt halten, um mehrere auszuwählen. Ausgewählten Ländern wird die Ankündigung nicht angezeigt. Wenn IP-Länder ausgewählt sind, werden die auszuschließenden IP-Länder abgezogen.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Beachten Sie, dass das Erstellungsdatum der zuletzt erstellten Datei des Benutzers
@@ -6213,6 +6305,14 @@ de:
         CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
         Zugehörigkeit zur Website.
+      include_virtuous_tags_desc: |
+        CMD- oder SHIFT-Klick, um mehrere auszuwählen. Auswahl von "Beliebig" oder Nichtmachen
+        Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
+        ihre tugendhaften Etiketten.
+      exclude_virtuous_tags_desc: |
+        CMD- oder SHIFT-Klick, um mehrere auszuwählen. Auswahl von "Keine" oder Nichterstellung
+        Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
+        ihre tugendhaften Etiketten.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Nutzer nach Spendenverhalten ansprechen
@@ -6939,6 +7039,11 @@ de:
         dqa_help_needs_id_is_not_of_human_html: die Beobachtung <strong>kein Mensch ist</strong>
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Beobachtungen erhalten <strong>"Forschungsqualität"</strong>, wenn
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          das <strong>Community-Taxon und Beobachtungstaxon stimmen überein</strong>
+          (für die seltenen Fälle, in denen das Beobachtungstaxon
+          spezifischer als das Gemeinschaftstaxon)
         #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           die %{site_name}-<strong>Community mit der Artenbestimmung</strong> übereinstimmt, d.h. wenn mehr als 2/3 der Bestimmer einem Taxon zustimmen (wenn die Mehrheit ausgewählt hat, dass das Community-Taxon nicht weiter verbessert werden kann, erhält die Beobachtung ab Unterfamilien-Niveau 'Forschungsqualität')
@@ -7704,6 +7809,9 @@ de:
           sie manuell aktualisiert wurde. Das Aktualisieren dieser Zusammenfassung aktualisiert 
           unseren Cache für den zugrundeliegenden Wikipedia-Inhalt, den wir auf der
           Website anzeigen, die automatisch nach einer Woche aktualisiert wird.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Sie können nur geringfügige Änderungen am Artepitheton direkt vornehmen (z. B. Geschlechtsänderungen, Rechtschreibfehler). Fügen Sie ein <a target="_blank" href="%{url}">Taxon-Tausch</a> Wenn Sie weitere Änderungen am Namen benötigen.
       show:
         about_names_desc: |
           <p>
@@ -7790,8 +7898,26 @@ de:
       something_went_wrong_tags: |
         Beim Versuch, diese Tags zu posten, ist etwas schief gelaufen: %{message}
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Sind Sie sicher, dass Sie diese Taxonänderung wiederherstellen möchten?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Sind Sie sicher, dass Sie diese Taxonänderung zurückziehen möchten?
       move_children_desc: |
         Untergeordnete Taxa des Input-Taxons auf Gattungsebene oder höher werden zum Output verschoben; Arten, Unterarten, Sorten usw. werden entsprechend der neuen Gattung oder des neuen Artennamens getauscht.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Wiederherstellen
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: umlagernd
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Zurückziehen
+      #state of an abandoned taxon change
+      withdrawn: zurückgezogen
+      #state of a committed taxon change
+      committed: engagiert
+      #state of a draft taxon change
+      draft: Entwurf
+      #the status of a taxon change: draft, withdrawn or committed
+      status: Status
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7898,6 +8024,32 @@ de:
           Du musst %{confirmation_code} in das Formular eingeben, um dein Konto löschen zu können
       edit:
         about_third_party_tracking: Über das Tracking von Drittanbietern
+        block_desc_blocking_someone_prevents: |
+          Wenn Sie jemanden blockieren, hindert ihn er daran, Ihnen Nachrichten zu senden, Ihre
+          Beobachtungen, die Identifizierung Ihrer Beobachtungen und die anderweitige Interaktion
+          mit Ihnen auf %{site_name}. Es entfernt auch ihre Beobachtungen aus Ihren
+          Suchergebnisse und entfernt Ihre Beobachtungen aus ihrer Suche
+          Befund. Es macht Sie jedoch nicht unsichtbar für sie. Sie können
+          Finden Sie immer noch Ihre Beobachtungen und sehen Sie sich Ihr Profil an, sie können es einfach nicht
+          interagiere mit dir.
+        block_desc_blocking_is_for_situations: |
+          Blockieren ist für Situationen, mit denen du einfach nicht zurechtkommst
+          Jemand und sie werden dich nicht in Ruhe lassen, trotz deiner besten Bemühungen,
+          Streitigkeiten auf zivilisierte Weise beizulegen. Es ist keine Möglichkeit, sich vor
+          Menschen zu verhindern, um Identifikationen von Personen zu verhindern, deren Meinung Sie
+          nicht vertrauen oder sich von der Community-ID abmelden (es gibt eine andere
+          Einstellung dafür). Das Blockieren funktioniert also in beide Richtungen: Wenn Sie
+          Jemand, er kann nicht mit dir interagieren, aber du kannst auch nicht interagieren
+          mit ihnen. Wenn Sie es missbrauchen, um zu verhindern, dass jemand Ihre
+          Beobachtungen zu beobachten, hindern Sie sich auch daran, ihre
+          Beobachtungen.
+        block_desc_you_can_only_block_html: |
+          Sie können nur drei Personen blockieren. Wir halten das für vernünftig
+          Nummer, die die Personen aufnimmt, die gesperrt werden müssen, während
+          Verhinderung des Missbrauchs von Sperren. Wenn du das Gefühl hast, dass du mehr blockieren musst
+          Leute, bitte <a href="mailto:%{help_email}">kontaktieren Sie uns</a>.
+        block_desc_there_are_two_exceptions: |
+          Es gibt zwei Situationen, in denen das Blockieren die Interaktion nicht verhindert:
         common_scientific_name_display_order: Reihenfolge für wissenschaftliche/ Trivialnamen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wenn du deine Meinung änderst, kannst du jederzeit
@@ -8364,6 +8516,7 @@ de:
         exclude_donor_start_date: Startdatum des Spenders ausschließen
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Enddatum des Spenders ausschließen
+        excludes_non_site: Ausblenden anderer Ankündigungen in dieser Platzierung, die keine Standort-ID haben
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Ausschließen von Beobachtern mit Apps
