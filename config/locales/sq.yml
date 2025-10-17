@@ -296,6 +296,14 @@ sq:
   any_: Cilido
   #Label for an option to show any place
   any_place: Çdo
+  app_owner_application_about_p2_html: |
+    Që nga viti 2022 ne kërkojmë miratim manual për përdoruesit që dëshirojnë të bëjnë klientë API.
+    Për të krijuar aplikacione të palëve të treta, së pari duhet të paraqisni një aplikim për t'u bërë
+    një "pronar aplikacioni". Ky aplikacion duhet të përshkruajë funksionalitetin e aplikacionit tuaj të propozuar
+    dhe si planifikoni ta përdorni atë. Për të dorëzuar një aplikim, llogaria juaj duhet të jetë në
+    të paktën 2 muajsh dhe duhet të ketë bërë të paktën 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">përmirësimi i identifikimeve</a> në muajin e fundit. Ne mund të kërkojmë ndjekje
+    pyetje në lidhje me planin tuaj dhe ne rezervojmë të drejtën të refuzojmë aplikimet për çdo arsye.
   apply_to_selected: Aplikoni tek të përzgjedhurat
   apply_captive_cultivated: "Aplikoni e mbyllur / kultivuar"
   apply_fields: Aplikoni fushat
@@ -327,6 +335,8 @@ sq:
   are_you_sure_you_want_to_delete_this_assessment?: Je i sigurt që dëshiron ta fshish vlerësimin?
   are_you_sure_you_want_to_delete_this_photo?: Je i sigurt që dëshiron ta fshish këtë fotografi?
   are_you_sure_you_want_to_delete_this_post: Je i sigurt që dëshiron ta fshish këtë postim?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: A jeni i sigurt që dëshironi ta fshini këtë tingull?
   are_you_sure_you_want_to_delete_this_taxon_change: Je i sigurt që dëshiron ta fshish këtë ndryshim të taksonit?
   are_you_sure_you_want_to_remove_all_tags: Je i sigurt që dëshiron të heqësh të gjitha etiketat?
   are_you_sure_you_want_to_remove_curator: Je i sigurt se doni të hiqni %{user} si kurator?
@@ -337,6 +347,8 @@ sq:
     Çdo etiketë spam në përmbajtjen e tyre do të zgjidhet.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Je i sigurt që dëshiron ti heqësh këto %{x} taksa?"
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Je i sigurt se do ta heqësh këtë taksonë nga %{place}'s lista?"
+  artificially_generated_content: Përmbajtje e krijuar artificialisht
+  artificially_generated_content_desc: Përmban përmbajtje që gjenerohet kryesisht ose tërësisht përmes inteligjencës artificiale.
   associated_observations: Vëzhgime të lidhura
   associated_taxa: Taksa shoqëruese
   attention: Kujdes
@@ -563,6 +575,7 @@ sq:
   community_id_at_species_level_or_lower: ID e komunitetit në nivelin e specieve ose më e ulët
   community_moderation_settings: Konfigurimet e moderimit të komunitetit
   community_supported_id: ID e mbështetur nga komuniteti?
+  community_taxon_matches_observation_taxon: Taksoni i Komunitetit përputhet me Taksonin e Vëzhgimit
   compare: Krahaso
   compare_with: Krahaso me
   comparing: duke krahasuar
@@ -596,6 +609,12 @@ sq:
     description: Përshkrimi i shkurtër i arsyes se pse kjo u rendit.
     place: Vendi ku ky status është i kufizuar.
     url: URL për një faqe që përshkruan këtë status.
+    iucn: |
+      Kodi ekuivalent i Listës së Kuqe të IUCN. Ky nuk është vlerësimi aktual i IUCN,
+      vetëm kodi IUCN që përputhet më së miri me kërcënimin e zbulimit të koordinatave
+      nënkuptuar nga ky status. Kjo do të anashkalojë gjeoprivatësinë nëse është "Më e pakta
+      shqetësim" ose më poshtë, kështu që nëse doni të errësoni vëzhgimet e kësaj
+      takson, vendoseni këtë në "Afër kërcënuar" ose më lart.
   contain_all_descendants?: A përmban kjo listë të gjithë pasardhësit e këtij taxon që paraqiten këtu?
   continue: Vazhdo
   contributor_cannot_be_found: Kontribuesi nuk mund të gjendet
@@ -686,6 +705,8 @@ sq:
     vëzhgimet në projekte. Vëzhguesit gjithashtu mund të zgjedhin ta ndryshojnë këtë për
     vëzhgimet individuale.
   curator_identification: Identifikimi i kuratorit
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Taksoni aktual i komunitetit: %{taxon}"
   current_flags: Flamujt aktuale
   custom_project_fields: Fushat e Projektit me porosi
   custom_project_was_successfully_created: CustomProject u krijua me sukses.
@@ -695,6 +716,11 @@ sq:
   customize_location: Rregullo vendndodhjen
   darr_apply_darr: "&darr; apliko &darr;"
   dashboard: Paneli
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Po! Unë do të doja të merrja pjesë."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Piloti i boshllëqeve të identifikimit: Nevojitet për specie të kërkuara"
   data_deficient: të dhëna të mangëta
   data_quality: Cilësia e të dhënave
   data_quality_assessment: Vlerësimi i cilësisë së të dhënave
@@ -761,6 +787,8 @@ sq:
   delete_photo: Fshi foto
   delete_project: Fshi këtë projekt
   delete_selected: Fshi zgjedhjen
+  #Label for a button to delete a sound file
+  delete_sound: Fshini zërin
   delete_taxon_and_merge_most_data_html: |
     Fshij <i>%{taxon}</i>  dhe shkrij shumicën nga të dhënat e saj me një tjetër taxon. Përdor këtë vegël për  <strong>fshirje të taxa-ve të dyfishuara</strong>. Nëse dëshironi të hiqni një sinonim të vjetëruar, ju lutem krijoni një taxon zëvendësues.  <strong>KUJDES!</strong>Fshrija e taxa-s mund të jetë shumë destruktive. Hidhni një sy <a href="%{curator_url}">Guidës menaxhuese</a> Për më shumë detaje.
   delete_user: Fshi përdoruesin
@@ -786,6 +814,8 @@ sq:
     failure:
       user:
         suspended: Llogaria juaj është pezulluar
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Shenja e rivendosjes së fjalëkalimit është e pavlefshme. Ju lutemi përdorni lidhjen në emailin e rivendosjes së fjalëkalimit të dërguar së fundmi, ose <a href="%{url}">kërkoni një të re</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Ju lutemi kliko linkun më poshtë për të konfirmuar adresën tuaj të emailit. Nëse nuk e konfirmoni emailin tuaj
@@ -807,6 +837,8 @@ sq:
     Studioni krimbat? Jeni eksperti më i madh i klasës së karavidheve? Ju pëlqen të sodisni lulet? Plotësimi i profilit tuaj i jep personalitet dhe rrit besueshmërinë tuaj kur ndihmoni të tjerët të bëjnë identifikime.
   doesnt_have_default_photo: ende nuk ka një foto të paracaktuar.
   doh_something_went_wrong: D'oh, diçka shkoi keq.
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Dhuroni
   done: U krye
   dont_use_double_quotes: Mos përdorni citate të dyfishta askund
   #Prompt shown when you are dragging a file somewhere and should release it to
@@ -895,6 +927,8 @@ sq:
   endemic_to_x: "Endemik në %{x}"
   eol_collection_url: "EOL koleksion URL"
   error_updating_photo: "Gabim gjatë përditësimit të fotos: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Gabim në përditësimin e zërit: %{sound_errors}"
   establishment:
     endemic: endemik
     establishment: Vendosje
@@ -930,6 +964,7 @@ sq:
   extinct: i zhdukur
   extinct_in_the_wild: të zhdukur në natyrë
   extra_properties: Karakteristikat ekstra
+  evidence_accurately_depicts_organism_or_scene: Provat përshkruajnë me saktësi organizmin ose skenën
   evidence_of_organism: Dëshmia e organizmit
   failed_to_find_your_location: Dështoi në gjetjen e vendndodhjes tënde.
   failed_to_repair_photo: "Dështoi në riparimin e fotos: %{errors}"
@@ -958,6 +993,10 @@ sq:
   fields_can_only_be_edited_by_the_people_who: Fushat mund të redaktohen vetëm nga krijuesit e tyre dhe kuratorët e faqes
   fields_merged: Fushat u bashkuan
   file: Dosja
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Formati i skedarit
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL e skedarit
   file_should_be_in_the_following_format: "Skedat duhet të jenë në këtë format: emri i taxon, përshkrimi"
   fill_out_project_observation_fields: Plotëso fushat e vëzhgimit të projektit
   fill_out_your_profile: plotësoni profilin tuaj
@@ -1084,6 +1123,8 @@ sq:
   hasnt_contributed_any_observations: nuk ka kontribuar asnjë vëzhgim në këtë projekt.
   heads_up: Vërejtje
   heads_up_this_photo_has_been_flagged: "VËREJTJE: kjo fotografi është etiketuar."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: ky tingull është shënuar."
   heads_up_this_photo_is_already_associated_with: "Paralajmërim / Vini re: Kjo foto tashmë është e lidhur me <a target='_blank' href='%{url}'>një vëzhgim tjetër</a>"
   heads_up_you_have_multiple: "Paralajmërim / Vini re: Keni në dispozicion etiketa kompjuterike (machine tags) të shumta klasore për kategoritë identike. Ato janë të ndara me ngjyra këtu poshtë sipas kategorive."
   help: Ndihmë
@@ -2016,6 +2057,8 @@ sq:
       zone: zonë
   place_guess: supozimi i vendit
   place_imported: Vendi u importua!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Mund të duhet deri në një ditë që vëzhgimet të lidhen me këtë vend.
   place_must_have_a_boundary_defined: Vendi duhet patjetër të ketë të definuar kufij.
   place_name: Emri i vendit
   place_notes: Shënime mbi vendin
@@ -2494,6 +2537,14 @@ sq:
     select_one_or_more_sounds: Përzgjedhni një apo më shumë tinguj
     selected_sounds: Tingujt e përzgjedhur
     sound: Tingull
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Tingulli %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Tingulli i fshirë
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Tingulli i fshehur
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Tingulli i pafshehur
     soundcloud_replied_with_an_error: SoundCloud  u përgjigj me një gabim. Ju lutem provoni përsëri më vonë.
     sounds: Tingujt
     your_soundcloud_account: Llogaria juaj SoundCloud
@@ -2619,6 +2670,8 @@ sq:
     tingujt ekzistues. Kjo mund të zgjasë disa orë nëse keni shumë
     tingujt.
   update_your_content: Përditëso përmbajten tuaj
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Tingulli i përditësuar
   upload: Ngarko
   #@gender operates on %{x}
   user_added_a_x: "%{user} shtoi një %{x}"
@@ -2664,6 +2717,14 @@ sq:
         Koha në zonën kohore të llogarisë tuaj që ky njoftim do të ndalet
         duke u shfaqur. Zbatohet në të gjitha zonat kohore, kështu që të gjithë do të ndalojnë së shohuri
         në të njëjtën kohë, jo në lidhje me kohën e tyre lokale.
+      excludes_non_site_desc: |
+        Nëse njoftimi juaj synon një sajt (që është parazgjedhja nëse jeni një sajt
+        Site Admin), kjo do të përjashtojë njoftimet që synojnë të gjitha faqet në
+        këtë vendosje.
+      exclude_ip_countries_desc: |
+        CMD- ose SHIFT-klikoni për të zgjedhur shumë. Vendet e përzgjedhura nuk do të shfaqen
+        njoftimi. Nëse zgjidhen vendet e IP, zgjidhen Përjashtoni vendet e IP
+        do të zbritet nga e para.
       observation_oauth_application_ids_desc: |
         CMD- ose SHIFT-klikoni për të zgjedhur shumëfishtë. Zgjedhja e "Të gjithëve" ose mosbërja
         Një përzgjedhje do t'ua tregojë njoftimin të gjithë përdoruesve pavarësisht nga
@@ -2751,10 +2812,39 @@ sq:
           Ju do të jeni në gjendje të dërgoni mesazhe të reja pasi të keni konfirmuar emailin tuaj
           adresa, dhe shtoi tre vëzhgime të verifikueshme ose tre identifikime
           Për të tjerët. Tani për tani ju mund të lexoni dhe t'i përgjigjeni mesazhit që të tjerët ju dërgojnë.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Përputhja e taksonit të komunitetit dhe taksonit të vëzhgimit</strong>
+          (për ato raste të rralla kur Taksoni i Vëzhgimit mund të jetë më shumë
+          specifike se Taksoni i Komunitetit)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Vëzhgimi <strong>nuk paraqet prova të sakta të organizmit ose
+          Skena</strong> (p.sh. inteligjenca artificiale u përdor për të shtuar, hequr ose zëvendësuar
+          elemente në imazh ose zë. Denoiseing, grumbullimi i fokusit ose krijimi
+          rregullime të vogla si heqja e pluhurit të sensorit zakonisht është në rregull).
     projects:
       new:
         welcome_to_projects: Mirë se vini te Projektet!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Ju mund ta shikoni origjinalin në <a href="%{url}">%{url}</a>. Të lutem
+          Lërini flamujt e shkeljes së të drejtave të autorit si të pazgjidhura nëse ky tingull e bën
+          shkelin të drejtën e autorit.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Ju mund të bëni vetëm ndryshime të vogla në epitetin e specieve drejtpërdrejt (p.sh. ndryshime gjinie, gabime drejtshkrimore). Shtoni një <a target="_blank" href="%{url}">shkëmbimi i taksonit</a> nëse keni nevojë për ndryshime të tjera në emër.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Kujdes lart: sapo shtuat një pasardhës të një taksoni të kyçur (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Ju lutemi merrni parasysh bashkimin e kësaj në një takson ekzistues." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Kujdes: prindi i këtij taksoni aktiv është joaktiv, por është rezultati i kësaj <a href='/taxon_changes/%{taxon_change_id}'> ndryshimi i draftit të taksonit</a> që supozojmë se do të angazhoheni së shpejti." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Ky takson aktiv ka më shumë se %{count} vëzhgimet në rrjedhën e poshtme ose mbulohet nga një kornizë taksonike, kështu që disa atribute taksonomike mund të modifikohen vetëm nga stafi ose kuratorët e taksonit të lidhur me atë kornizë taksonike.
       show:
         site_curators_disabled_wikipedia_html: |
           Kuratorët e faqes kanë çaktivizuar shfaqjen <a href="%{url}">kjo
@@ -2762,6 +2852,53 @@ sq:
           Wikipedia për ta bërë atë të përshtatshme për këtë takson, ose duke e shënuar këtë
           takson për ta sjellë atë në vëmendjen e kuratorëve të faqes.
         wanted_desc: Specjet në këtë taxon nuk janë vëzhguar ende.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Emrat duhet të jenë të ngjashëm kur redaktoni drejtpërdrejt, bëni një shkëmbim taksoni për ndryshime radikale të emrave
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} nuk mund të shtoni etiketa në fotot tuaja derisa Flickr të dijë se na keni dhënë leje.
+        <a href='%{url}'>Jepni leje në Flickr</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Diçka shkoi keq duke u përpjekur të postoja ato etiketa: %{message}
+    taxon_changes:
+      #state of a pending taxon change
+      pending: në pritje
+      #state of a approved taxon change
+      approved: miratuar
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Vota e shtuar
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Vota u hoq
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Ende nuk ka vota
+      #message when taxon change is committed
+      taxon_change_committed: Ndryshimi i taksonit u angazhua! Të dhënat që mund të përditësohen automatikisht do të ndryshohen së shpejti.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Ky ndryshim taksoni tani është në pritje. Kërkon miratimin e 1 kuratorit për të qenë në gjendje të angazhohemi."
+        other: "Ky ndryshim taksoni tani është në pritje. Kërkon miratim nga %{count} kuratorët për të qenë në gjendje të angazhohen."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Taksoni i hyrjes nuk mund të ketë fëmijë aktivë, t'i lëvizë ata së pari ose të zgjedhë opsionin 'Zhvendos fëmijët në dalje?'
+      output_taxon_rank_level_not_coarser_html: >
+        Niveli i renditjes së taksonit të daljes jo më i trashë se niveli i gradës së fëmijëve aktivë të taksonit hyrës %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Ky ndryshim taksonomik ishte bërë tashmë!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Diçka shkoi keq duke fshirë ndryshimin e taksonit '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Ndryshimi i taksonit u fshi.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Taxon Change u përditësua me sukses.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Nuk specifikohen ndryshime
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taxon Change u krijua me sukses.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Kërkon miratimin e 1 kuratorit tjetër për t'u angazhuar"
+        other: "Kërkon miratim nga %{count} kuratorë të tjerë për t'u angazhuar"
     users:
       edit:
         licensing_desc_html: |
@@ -2820,6 +2957,7 @@ sq:
       announcement:
         #Whether or not the announcement can be dismissed by people who see it
         dismissible: E hedhur poshtë
+        excludes_non_site: Fsheh njoftime të tjera në këtë vendosje që nuk kanë ID të faqes
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Përjashtimi i vëzhguesve nga aplikacionet
@@ -2969,6 +3107,33 @@ sq:
                 Duhet të vëzhgohet pas %{time}
               must_be_observed_before: |
                 Duhet të vëzhgohet para %{time}
+        taxon:
+          attributes:
+            name:
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Ndryshimet e emrit nuk lejohen për viruse, baktere ose klade të pashartuara"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Ndryshimet e emrit nuk lejohen për gradat më të trashë se speciet"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Ndryshimet e emrit nuk lejohen për formulat hibride"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "nuk mund të shtojë 'x' si një shënues hibrid midis gjinisë dhe specieve"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "duhet të jetë binom (speciet e gjinisë) për kontroll"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "gjinia nuk mund të ndryshojë"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Emri i specieve jo standarde: lejohet vetëm heqja e 'x'/'×' ose shtimi i '×'"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "epiteti specifik duhet të jetë i ngjashëm (vetëm gabime të vogla shtypi/gjini)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "epiteti infraspecifik i kërkuar për këtë gradë"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "Vetëm epiteti infraspecifik mund të ndryshojë për gradat infraspecifike"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "epiteti infraspecifik duhet të jetë i ngjashëm (vetëm gabime shtypi/gjinie të vogla)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "shkronja e parë e asnjë epiteti nuk mund të ndryshojë."
         taxon_change:
           attributes:
             base:
