@@ -207,6 +207,18 @@ ta:
   any_place: ஏதாவது
   #Label for an option to show content from any project
   any_project: ஏதேனும்
+  app_owner_application_about_p2_html: |
+    2022 ஆம் ஆண்டு நிலவரப்படி, API கிளையண்டுகளை உருவாக்க விரும்பும் பயனர்களுக்கு கையேடு ஒப்புதல் தேவை.
+    மூன்றாம் தரப்பு பயன்பாடுகளை உருவாக்க, நீங்கள் முதலில் ஒரு விண்ணப்பத்தை சமர்ப்பிக்க வேண்டும்
+    ஒரு "பயன்பாட்டு உரிமையாளர்." இந்தப் பயன்பாடு உங்கள் முன்மொழியப்பட்ட பயன்பாட்டின் செயல்பாட்டை விவரிக்க வேண்டும்
+    மற்றும் நீங்கள் அதை எவ்வாறு பயன்படுத்த திட்டமிட்டுள்ளீர்கள். விண்ணப்பத்தைச் சமர்ப்பிக்க உங்கள் கணக்கு இருக்க வேண்டும்
+    குறைந்தது 2 மாதங்கள் மற்றும் குறைந்தது 10 செய்திருக்க வேண்டும் <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">அடையாளங்களை மேம்படுத்துதல்</a> கடந்த மாதத்தில். பின்தொடர்தல் கேட்கலாம்
+    உங்கள் திட்டத்தைப் பற்றிய கேள்விகள் மற்றும் எந்த காரணத்திற்காகவும் விண்ணப்பங்களை நிராகரிக்கும் உரிமை எங்களுக்கு உள்ளது.
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: இந்த ஒலியை நிச்சயமாக நீக்க விரும்புகிறீர்களா?
+  artificially_generated_content: செயற்கையாக உருவாக்கப்பட்ட உள்ளடக்கம்
+  artificially_generated_content_desc: செயற்கை நுண்ணறிவு மூலம் பெரும்பாலும் அல்லது முழுமையாக உருவாக்கப்படும் உள்ளடக்கத்தைக் கொண்டுள்ளது.
   back_to_your_observations: உங்கள் கவனிப்புக்கு திரும்புங்கள்
   be_the_first_to_fave_this_observation: இந்தக் கவனிப்பு முதலில் விரும்புபவராக இருங்கள்!
   birthday: பிறந்தநாள்
@@ -227,6 +239,7 @@ ta:
   comment_: கருத்து
   community: சமூகம்
   community_guidelines: சமூகம் வழிகாட்டுதல்கள்
+  community_taxon_matches_observation_taxon: சமூக வகைப்பாட்டு கண்காணிப்பு வகைப்பாட்டுடன் பொருந்துகிறது
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: விரிவானது?
@@ -234,6 +247,13 @@ ta:
   confirming_ids_description: |
     நீங்கள் இதை அணைத்தால், இதற்கு ஒப்புக்கொள்ளும் IDகள் பற்றி உங்களுக்கு அறிவிக்கப்படாது
     அவர்களிடம் கூடுதல் கருத்துக்கள் இல்லையென்றால் உங்களுடன்.
+  conservation_status_descriptions:
+    iucn: |
+      சமமான IUCN சிவப்பு பட்டியல் குறியீடு. இது உண்மையான ஐ.யூ.சி.என் மதிப்பீடு அல்ல.
+      ஒருங்கிணைந்த வெளிப்படுத்தலின் அச்சுறுத்தலுடன் சிறப்பாக பொருந்தக்கூடிய ஐ.யூ.சி.என் குறியீடு மட்டுமே
+      இந்த அந்தஸ்தால் உணர்த்தப்படுகிறது. இது புவிசார் தனியுரிமையை மீறும் "குறைந்தது
+      கவலை" அல்லது கீழே, எனவே இதைப் பற்றிய அவதானிப்புகளை நீங்கள் மறைக்க விரும்பினால்
+      டேக்ஸன், இதை "அருகிலுள்ள அச்சுறுத்தல்" அல்லது அதற்கு மேல் அமைக்கவும்.
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_flowers_and_fruits: ஏதாவது
@@ -270,7 +290,14 @@ ta:
     திட்டத்திற்கான அவதானிப்பு. இது இயல்புநிலை அமைப்பாகும்
     திட்டங்களில் அவதானிப்புகள். பார்வையாளர்கள் இதை மாற்றவும் தேர்வு செய்யலாம்
     தனிப்பட்ட அவதானிப்புகள்.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "தற்போதைய சமூக வகைப்பாட்டு: %{taxon}"
   dashboard: முகப்பலகம்
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "ஆம்! நான் பங்கேற்க விரும்புகிறேன்."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "அடையாள இடைவெளிகள் பைலட்: தேவை ஐடி தேவை இனங்கள்"
   date_: தேதி
   date_added: தேதி சேர்க்கப்பட்டது
   date_authorized: ஒப்புக்கொள்ளப்பட்ட தேதி
@@ -281,6 +308,8 @@ ta:
     month:
       june: ஜூன்
   date_joined: சேரும் தேதி
+  #Label for a button to delete a sound file
+  delete_sound: ஒலியை நீக்கு
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்த கீழேயுள்ள இணைப்பைக் கிளிக் செய்யவும். உங்கள் மின்னஞ்சலை உறுதிப்படுத்தவில்லை என்றால்
@@ -291,6 +320,8 @@ ta:
   disagreements: கருத்து வேறுபாடுகள்
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: உடன்படாத அடையாளங்களைக் கொண்ட அவதானிப்புகளைக் காட்டு
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: நன்கொடை
   edit_project: திட்டம் திருத்தவும்
   edit_taxa: இனங்கள் திருத்தவும்
   edit_taxon: இனம் திருத்தவும்
@@ -302,16 +333,23 @@ ta:
   editing_announcement_x: எடிட்டிங் அறிவிப்பு %{id}
   editing_project: திருத்துவது %{project}
   editors: பதிப்பாசிரியர்கள்
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "ஒலியைப் புதுப்பிப்பதில் பிழை: %{sound_errors}"
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: துல்லியமானது ரேங்க்
   exclude_taxa: இனங்கள் விலக்கு
   explore: ஆராயுங்கள்
+  evidence_accurately_depicts_organism_or_scene: சான்றுகள் உயிரினம் அல்லது காட்சியை துல்லியமாக சித்தரிக்கின்றன
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: பிடித்தவை
   favorite_taxa: பிடித்தது இனங்கள்
   favorites: "பிடித்தவை"
   #Button to show fewer places
   fewer__context_places: குறைவான
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: கோப்பு வடிவமைப்பு
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: கோப்பு URL
   forum: மன்றம்
   forum_categories:
     bug_reports: இடும்பை அறிக்கைகள்
@@ -322,6 +360,8 @@ ta:
   guide_taxon: வழிகாட்டி இனம்
   has_one_or_more_faves: ஒரு அல்லது மேற்பட்ட பிடித்தங்கள் உள்ளன
   header_your_favorites: உங்கள் பிடித்தவை
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "ஹெட்ஸ் அப்: இந்த ஒலி கொடியிடப்பட்டுள்ளது."
   help_translate!: மொழிபெயர் உதவி செய்க!
   include_places: இடங்களைச் சேர்க்கவும்
   #Title for a preference to control whether you receive notifications about
@@ -425,6 +465,8 @@ ta:
     எனது தனிப்பட்ட தகவலை United States of America க்கு மாற்றுவதற்கு நான் அங்கீகரிக்கிறேன்
   data_transfer_consent_child_label: |
     எனது குழந்தையின் தனிப்பட்ட தகவல்களை க்கு மாற்ற அனுமதிக்கிறேன் United States of America
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: இந்த இடத்துடன் அவதானிப்புகள் தொடர்புபடுத்த ஒரு நாள் வரை ஆகலாம்.
   places: இடங்கள்
   places_name:
     dominica: டொமினிக்கா
@@ -457,9 +499,17 @@ ta:
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     இடங்கள் 700,000 சதுர கிலோமீட்டருக்கு மேல் இருக்க முடியாது.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    இடங்கள் 70,000 சதுர கிலோமீட்டருக்கு மேல் இருக்கக்கூடாது.
   #user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     இடங்களில் 200,000 க்கும் மேற்பட்ட அவதானிப்புகள் இருக்க முடியாது.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    இடங்கள் 10,000 க்கும் மேற்பட்ட அவதானிப்புகளைக் கொண்டிருக்கக்கூடாது.
   #Title to a section warning a user to exercise caution
   please_be_careful!: தயவுசெய்து கவனமாக இருங்கள்!
   privacy: தனியுரிமை
@@ -511,6 +561,15 @@ ta:
   settings: அமைப்புகள்
   sign_out: வெளியேறு
   sign_up: பதிவு செய்யுங்கள்
+  sounds:
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: ஒலி %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: ஒலி நீக்கப்பட்டது
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: ஒலி மறைக்கப்பட்டுள்ளது
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: மறைக்கப்படாத ஒலி
   species_from_around_the_world: உலகம் முழுவதும் உள்ள இனங்கள்
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
@@ -532,6 +591,8 @@ ta:
   update_existing_observations_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள கவனிப்புகளைப் புதுப்பிக்கவும்
   update_existing_photos_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள புகைப்படங்களைப் புதுப்பிக்கவும்
   update_existing_sounds_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள ஒலிகளைப் புதுப்பிக்கவும்
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: புதுப்பிக்கப்பட்ட ஒலி
   upload: அப்லோடு செய்ய
   upload_a_csv_file: அப்லோடு செய்ய சசிவ் பைலை
   user_added_a_fave_html: "%{user} பிடித்தவை சேர்க்கப்பட்டது"
@@ -589,10 +650,18 @@ ta:
         இந்த அறிவிப்பு நிறுத்தப்படும் உங்கள் கணக்கு நேர மண்டலத்தின் நேரம்
         தோன்றும். நேர மண்டலங்கள் முழுவதும் பொருந்தும், எனவே அனைவரும் பார்ப்பதை நிறுத்துவார்கள்
         அதே நேரத்தில், அவர்களின் உள்ளூர் நேரத்துடன் தொடர்புடையது அல்ல.
+      excludes_non_site_desc: |
+        உங்கள் அறிவிப்பு ஒரு தளத்தை குறிவைத்தால் (நீங்கள் ஒரு என்றால் இயல்புநிலை இது
+        தள நிர்வாகம்), இது அனைத்து தளங்களையும் குறிவைக்கும் அறிவிப்புகளை விலக்கும்
+        இந்த வேலைவாய்ப்பு.
       ip_countries_desc: |
         CMD- அல்லது SHIFT-பலவற்றைத் தேர்ந்தெடுக்க கிளிக் செய்யவும். "அனைத்தையும்" தேர்ந்தெடுப்பது அல்லது உருவாக்காதது
         ஒரு தேர்வு அனைத்து பயனர்களுக்கும் அறிவிப்பைப் பொருட்படுத்தாமல் காண்பிக்கும்
         ஐபி நாடு.
+      exclude_ip_countries_desc: |
+        CMD- அல்லது SHIFT-கிளிக் செய்து பலவற்றைத் தேர்ந்தெடுக்கவும். தேர்ந்தெடுத்த நாடுகள் காண்பிக்கப்படாது
+        அறிவிப்பு. IP நாடுகள் தேர்ந்தெடுக்கப்பட்டால், ஐபி நாடுகளைத் தவிர்த்து தேர்ந்தெடுக்கவும்
+        முந்தையதிலிருந்து கழிக்கப்படும்.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         பயனரின் மிக சமீபத்தில் உருவாக்கப்பட்ட தேதி என்பதை நினைவில் கொள்க
@@ -670,6 +739,19 @@ ta:
           உங்கள் மின்னஞ்சலை உறுதிப்படுத்திய பிறகு நீங்கள் புதிய செய்திகளை அனுப்ப முடியும்
           மூன்று சரிபார்க்கக்கூடிய அவதானிப்புகள் அல்லது மூன்று அடையாளங்களைச் சேர்த்தார்
           மற்றவர்களுக்கு. இப்போதைக்கு நீங்கள் மற்றவர்கள் உங்களுக்கு அனுப்பும் செய்தியைப் படித்து பதிலளிக்கலாம்.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          தி <strong>சமூக வகைப்பாட்டு மற்றும் உற்றுநோக்கல் வகைப்பாட்டு பொருத்தம்</strong>
+          (கண்காணிப்பு வகைப்பாட்டு அதிகமாக இருக்கும் அந்த அரிதான சந்தர்ப்பங்களுக்கு)
+          சமூக வகைப்பாட்டை விட குறிப்பிட்டது)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          அவதானிப்பு <strong>உயிரினத்தின் துல்லியமான ஆதாரங்களை முன்வைக்கவில்லை அல்லது
+          காட்சி</strong> (எ.கா. செயற்கை நுண்ணறிவு சேர்க்க, அகற்ற அல்லது மாற்ற பயன்படுத்தப்பட்டது
+          படம் அல்லது ஒலியில் உள்ள கூறுகள். சத்தம் போடுதல், கவனம் செலுத்துதல் அல்லது தயாரித்தல்
+          சென்சார் தூசியை அகற்றுவது போன்ற சிறிய திருத்தங்கள் பொதுவாக சரி).
     emailer:
       photos_missing:
         subject: சில புகைப்படங்கள் பழுதுபார்க்க வேண்டும்
@@ -687,6 +769,14 @@ ta:
     shared:
       not_found:
         sorry_that_doesnt_exist: மன்னிக்கவும், அது இல்லை!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          நீங்கள் அசல் பார்க்க முடியும் <a href="%{url}">%{url}</a>. தயவு செய்து
+          இந்த ஒலி இருந்தால் பதிப்புரிமை மீறல் கொடிகளை தீர்க்கப்படாமல் விட்டுவிடுங்கள்.
+          பதிப்புரிமை மீறல்.
     stats:
       year:
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
@@ -694,6 +784,10 @@ ta:
         store_prompt: |
           நீங்கள் எங்கே போனாலும் உங்கள் iNat பெருமையைக் காட்ட விரும்புகிறீர்களா? iNat Store பார்க்கவும்!
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          நீங்கள் இனத்தின் அடைமொழியில் நேரடியாக சிறிய மாற்றங்களை மட்டுமே செய்ய முடியும் (எ.கா. பாலின மாற்றங்கள், எழுத்துப்பிழை தவறு). ஒரு சேர்க்கவும் <a target="_blank" href="%{url}">வகைப்பாட்டு இடமாற்றம்</a> உங்களுக்கு பெயரில் வேறு மாற்றங்கள் தேவைப்பட்டால்.
       show:
         frequency:
           "Alive or Dead=Alive": உயிருடன்
@@ -704,6 +798,9 @@ ta:
           "Life Stage=Teneral": உருகிய பிறகு
           "Sex=Female": பெண்
           "Sex=Male": ஆண்
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        அந்த குறிச்சொற்களை இடுகையிட முயற்சித்ததில் ஏதோ தவறு நடந்துவிட்டது: %{message}
     users:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
@@ -828,6 +925,7 @@ ta:
         exclude_donor_start_date: நன்கொடையாளர் தொடக்க தேதியை விலக்கு
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: நன்கொடையாளர் முடிவுத் தேதியை விலக்கு
+        excludes_non_site: இந்த பிளேஸ்மெண்டில் தல ஐடி இல்லாத பிற அறிவிப்புகளை மறைக்கவும்
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: பயன்பாடுகளிலிருந்து பார்வையாளர்களை விலக்கவும்
