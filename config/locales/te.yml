@@ -7,7 +7,12 @@ te:
   any_date: ఏదైనా
   #Label for an option to show any place
   any_place: ఏదైనా
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: ఈ సౌండ్ ని మీరు కచ్చితంగా డిలీట్ చేయాలని అనుకుంటున్నారా?
+  artificially_generated_content: కృత్రిమంగా రూపొందించిన కంటెంట్
+  artificially_generated_content_desc: కృత్రిమ మేధస్సు ద్వారా ఎక్కువగా లేదా పూర్తిగా జనరేట్ చేయబడ్డ కంటెంట్ ని కలిగి ఉంటుంది.
   casual_tooltip_html: '"అప్పుడప్పుడు" వీక్షణలు మీడియా, స్థానం లేదా తేదీలను కలిగి ఉండవు లేదా ఇతర కారణాల వల్ల అవి "పరిశోధన గ్రేడ్" లేదా "ID అవసరం" అవసరాలకు అనుగుణంగా లేవు. <a href="https://www.inaturalist.org/pages/help#qualitty">నాణ్యత గ్రేడ్‌ల గురించి మరింత తెలుసుకోండి</a>.'
+  community_taxon_matches_observation_taxon: కమ్యూనిటీ టాక్సాన్ అబ్జర్వేషన్ టాక్సాన్ తో జత అవుతుంది
   confirming_ids: ఐడిలను ధృవీకరించడం
   confirming_ids_description: |
     ఒకవేళ మీరు దీన్ని ఆఫ్ చేసినట్లయితే, అంగీకరించే IDల గురించి మీకు ఇకపై తెలియజేయబడదు.
@@ -18,6 +23,8 @@ te:
     ప్రాజెక్టు పరిశీలన.. ఇది కేవలం డిఫాల్ట్ సెట్టింగ్ మాత్రమే
     ప్రాజెక్టుల్లో పరిశీలనలు.. పరిశీలకులు దీని కోసం దీనిని మార్చడానికి కూడా ఎంచుకోవచ్చు
     వ్యక్తిగత పరిశీలనలు..
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "ప్రస్తుత కమ్యూనిటీ టాక్సాన్: %{taxon}"
   date_: తేదీ
   date_added: జోడించారు తేదీ
   date_authorized: అంగీకరించిన తేదీ
@@ -49,7 +56,13 @@ te:
       october: అక్టోబర్
       november: నవంబర్
       december: డిసెంబర్
+  #Label for a button to delete a sound file
+  delete_sound: ధ్వనిని తొలగించు
   delete_user: వినియోగదారుని తొలగించండి
+  devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: రీసెట్ పాస్ వర్డ్ టోకెన్ చెల్లదు. దయచేసి ఇటీవల పంపిన రీసెట్ పాస్ వర్డ్ ఇమెయిల్ లో లింక్ ఉపయోగించండి, లేదా <a href="%{url}">కొత్తదాన్ని అభ్యర్థించండి</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     మీ ఇమెయిల్ చిరునామాను ధృవీకరించడానికి దయచేసి దిగువ లింక్ క్లిక్ చేయండి. మీరు మీ ఇమెయిల్ ని ధృవీకరించకపోతే
@@ -59,8 +72,19 @@ te:
   disagreements: భిన్నాభిప్రాయాలు[మార్చు
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: విభేదించే గుర్తింపులను కలిగి ఉన్న పరిశీలనలను చూపించండి
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: బహూకరించు
   #Title for a page to edit an announcement
   editing_announcement_x: ఎడిటింగ్ ప్రకటన %{id}
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "ధ్వనిని నవీకరించడంలో దోషం: %{sound_errors}"
+  evidence_accurately_depicts_organism_or_scene: సాక్ష్యం జీవి లేదా దృశ్యాన్ని ఖచ్చితంగా వర్ణిస్తుంది
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: ఫైల్ ఫార్మాట్
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: ఫైల్ URL
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "హెడ్స్ అప్: ఈ ధ్వని ఫ్లాగ్ చేయబడింది."
   hi_user: "నమస్తే %{user}"
   identify: గుర్తించండి
   identify_observations: "వీక్షణలను గుర్తించండి"
@@ -98,10 +122,26 @@ te:
   #A user who does not admin any projects
   non_project_admin: నాన్-ప్రాజెక్ట్ అడ్మిన్
   observation_fields_for_projects: ప్రాజెక్టుల కొరకు పరిశీలనా క్షేత్రాలు
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: ఈ ప్రదేశానికి సంబంధించిన పరిశీలనలకు ఒక రోజు పట్టవచ్చు.
   places_name:
     british_indian_ocean_territory: బ్రిటిష్ ఇండియన్ ఓషన్ టెర్రిటరీ
     india: ఇండియా
     russia: రష్యా
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    ప్రదేశాలు 700,000 చదరపు కిలోమీటర్ల కంటే పెద్దవి కాకూడదు.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    ప్రదేశాలు 70,000 చదరపు కిలోమీటర్ల కంటే పెద్దవి కాకూడదు.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    ప్రదేశాలు 200,000 కంటే ఎక్కువ పరిశీలనలను కలిగి ఉండకూడదు.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    ప్రదేశాలు 10,000 కంటే ఎక్కువ పరిశీలనలను కలిగి ఉండకూడదు.
   #A user who admin's a project
   project_admin: ప్రాజెక్ట్ అడ్మిన్
   rank_levels:
@@ -114,10 +154,21 @@ te:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: ఉపజాతులు / రకాలు / రూపం
+  sounds:
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: ధ్వని %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: ధ్వని తొలగించబడింది
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: ధ్వని దాచబడింది
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: దాచబడని ధ్వని
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: సబ్ స్క్రైబ్
   the_world: మన ప్రపంచం
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: నవీకరించబడిన ధ్వని
   user_trusts_this_project_when_added_by_any: |
     పరిశీలనల యొక్క దాచిన కోఆర్డినేట్ లతో యూజర్ ప్రాజెక్ట్ క్యూరేటర్ లను విశ్వసిస్తారు
     ప్రాజెక్టుకు ఎవరైనా..
@@ -146,10 +197,18 @@ te:
         మీ ఖాతా టైమ్ జోన్ లో ఈ ప్రకటన ఆగిపోతుంది
         కనిపిస్తుంది. టైమ్ జోన్లలో వర్తిస్తుంది, కాబట్టి ప్రతి ఒక్కరూ చూడటం మానేస్తారు
         అదే సమయంలో, వారి స్థానిక కాలానికి సంబంధించినది కాదు.
+      excludes_non_site_desc: |
+        మీ ప్రకటన ఒక సైట్ ను లక్ష్యంగా చేసుకున్నట్లయితే (మీరు ఒకవేళ డిఫాల్ట్ అయితే)
+        సైట్ అడ్మిన్), ఇది అన్ని సైట్ లను లక్ష్యంగా చేసుకునే ప్రకటనలను మినహాయిస్తుంది
+        ఈ స్థానం..
       ip_countries_desc: |
         మల్టిపుల్ ఎంచుకోవడం కొరకు CMD- లేదా SHIFT-క్లిక్ చేయండి. "అన్నీ" ఎంచుకోవడం లేదా చేయకపోవడం
         ఒక ఎంపిక దీనితో సంబంధం లేకుండా వినియోగదారులందరికీ ప్రకటనను చూపుతుంది
         ఐపి దేశం.
+      exclude_ip_countries_desc: |
+        మల్టిపుల్ సెలెక్ట్ చేయడానికై CMD- లేదా షిఫ్ట్-క్లిక్ చేయండి. ఎంపిక చేయబడ్డ దేశాలు చూపించబడవు
+        ప్రకటన. ఒకవేళ IP దేశాలు ఎంచుకోబడితే, IP దేశాలను మినహాయించండి
+        మొదటి నుంచి తీసివేయబడుతుంది.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         యూజర్ ఇటీవల సృష్టించిన దాని సృష్టి తేదీ గురించి గమనించండి
@@ -222,6 +281,35 @@ te:
           మీరు మీ ఇమెయిల్ ను ధృవీకరించిన తరువాత మీరు కొత్త సందేశాలను పంపగలుగుతారు
           చిరునామా, మరియు మూడు ధృవీకరించదగిన పరిశీలనలు లేదా మూడు గుర్తింపులను జోడించింది
           ఇతరుల కోసం.. ప్రస్తుతానికి ఇతరులు మీకు పంపే సందేశాన్ని మీరు చదవవచ్చు మరియు ప్రతిస్పందించవచ్చు.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ది <strong>కమ్యూనిటీ టాక్సాన్ మరియు అబ్జర్వేషన్ టాక్సాన్ మ్యాచ్ అవుతాయి</strong>
+          (అబ్జర్వేషన్ టాక్సాన్ ఎక్కువగా ఉండే అరుదైన సందర్భాల్లో
+          కమ్యూనిటీ టాక్సాన్ కంటే నిర్దిష్టమైనది)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          పరిశీలన <strong>జీవికి సంబంధించిన ఖచ్చితమైన సాక్ష్యాలను అందించకపోవడం లేదా
+          దృశ్యం</strong> (ఉదా. జోడించడానికి, తొలగించడానికి లేదా భర్తీ చేయడానికి కృత్రిమ మేధస్సు ఉపయోగించబడింది
+          ఇమేజ్ లేదా ధ్వనిలోని మూలకాలు. డినాయిజింగ్ చేయడం, ఫోకస్ స్టాకింగ్ లేదా మేకింగ్ చేయడం
+          సెన్సార్ ధూళిని తొలగించడం వంటి చిన్న పరిష్కారాలు సాధారణంగా సరే).
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          మీరు ఒరిజినల్ ని ఇక్కడ చూడవచ్చు <a href="%{url}">%{url}</a>. దయచేసి
+          ఈ ధ్వని ఉంటే కాపీరైట్ ఉల్లంఘన ఫ్లాగ్ లను పరిష్కరించని విధంగా వదిలివేయండి
+          కాపీరైట్ ఉల్లంఘన.
+    taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          మీరు జాతి విశేషణంలో నేరుగా చిన్న మార్పులు మాత్రమే చేయవచ్చు (ఉదా. లింగ మార్పులు, స్పెల్లింగ్ తప్పు). జోడించండి <a target="_blank" href="%{url}">టాక్సాన్ మార్పిడి</a> మీకు పేరుకు ఇతర మార్పులు అవసరమైతే.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        ఆ ట్యాగ్ లను పోస్ట్ చేయడానికి ప్రయత్నించడంలో ఏదో తప్పు జరిగింది: %{message}
   number:
     format:
       significant: false
@@ -237,6 +325,7 @@ te:
         exclude_donor_start_date: దాత ప్రారంభ తేదీని మినహాయించండి
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: దాత ముగింపు తేదీని మినహాయించండి
+        excludes_non_site: సైట్ ఐడి లేని ఇతర ప్రకటనలను ఈ ప్లేస్ మెంట్ లో దాచండి
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: యాప్ ల నుంచి పరిశీలకులను మినహాయించండి
