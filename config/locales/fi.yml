@@ -1417,8 +1417,8 @@ fi:
     pilot_stop: "Lopeta osallistuminen"
     #link to a blog post
     pilot_read_more: "Lue lisää blogistamme."
-    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "Auta meitä täydentämään tietoja osallistumalla – saat päivittäin linkin havaintoihin:"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Tunnistamisaukkojen pilotti: Tarvitsee tunnistettuja etsintäkuulutettuja lajeja"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Ei vielä sisälly tietokonenäkömalliin"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1885,6 +1885,7 @@ fi:
   extinct: kuollut sukupuuttoon
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
+  evidence_accurately_depicts_organism_or_scene: Todisteet kuvaavat tarkasti organismia tai kohtausta
   evidence_of_organism: Näyttö eliöstä
   evidence_related_to_single_subject: Havainnon dokumentaatio koskee yhtä eliötä
   facebook: Facebook
@@ -5676,6 +5677,10 @@ fi:
         CMD- tai VAIHTO-napsauta valitaksesi useita. Valitsemalla "Kaikki" tai tekemättä jättäminen
         valinta näyttää ilmoituksen kaikille käyttäjille riippumatta siitä,
         IP-maa.
+      exclude_ip_countries_desc: |
+        CMD- tai VAIHTO-napsauta valitaksesi useita. Valittuja maita ei näytetä
+        ilmoitus. Jos IP-maat on valittu, valitse Jätä IP-maat pois
+        vähennetään edellisestä.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Huomaa, että käyttäjän viimeksi luodun
@@ -6136,6 +6141,12 @@ fi:
         dqa_help_research_grade_community_observation_html: |
           <strong>Yhteisön taksoni ja havaintotaksoni vastaavat toisiaan</strong>
           (niissä harvoissa tapauksissa, joissa havaintotaksoni voi olla tarkempi kuin yhteisön taksoni)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          havainto <strong>ei esitä tarkkoja todisteita organismista tai
+          kohtaus</strong> (esim. tekoälyä käytettiin lisäämään, poistamaan tai korvaamaan
+          elementtejä kuvassa tai äänessä. Kohinanpoisto, tarkennuksen pinoaminen tai tekeminen
+          pienet korjaukset, kuten anturipölyn poistaminen, ovat yleensä OK).
         flagged_photos_desc_html: |
           Osa näistä valokuvista on liputettu sopimattomiksi tai tekijänoikeusrikkomuksiksi. Lisätietoja: %{links}
         observation_flagged_notice_html: |
