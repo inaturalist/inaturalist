@@ -1490,6 +1490,8 @@ it:
     pilot_read_more: "Per saperne di più, visitate il nostro blog."
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Lacune di identificazione Pilota: Ha bisogno di identificare le specie ricercate"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Aiutaci a colmare le lacune partecipando per ricevere un link giornaliero alle osservazioni:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Non ancora incluso nel modello di visione artificiale"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -5745,6 +5747,7 @@ it:
   uploader:
     errors:
       file_too_big: Il file deve essere meno di %{megabytes} MB
+      unsupported_file_type: Tipo di file non supportato. Accettiamo JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3 e MP4 (solo audio)
     resize_tip: |
       Se i tuoi file di foto sono troppo grossi, prova a tagliarli ad un massimo di 2048 x 2048 pixel. Questo accadrà comunque a tutte le foto sul server, e sarà fatto per un caricamento più veloce.
     tooltips:
@@ -5862,6 +5865,9 @@ it:
     L'utente si fida a rivelare le coordinate nascoste a questo progetto, oscurate per qualsiasi motivo.
   user_trusts_this_project_for_taxon: |
     L'utente si fida a rivelare le coordinate nascoste a questo progetto solo se oscurate perchè appartenenti a taxa minacciati.
+  user_trusts_this_project_when_added_by_any: |
+    L'utente si fida dei curatori del progetto per le coordinate nascoste delle osservazioni aggiunte
+    al progetto da parte di chiunque.
   user_trusts_this_project_when_added_by_observer: |
     L'utente si fida dei curatori del progetto con le coordinate nascoste delle osservazioni aggiunte
     al progetto da parte dell'osservatore.
@@ -6397,6 +6403,17 @@ it:
           Gli atlanti trasmettono la distribuzione globale di un taxon. I curatori fanno
           atlanti definendo la struttura di un atlante e curando il
           taxa elencati che lo guidano.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Dividi questo luogo
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Riunisci questo luogo
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Nessuna modifica a questo atlante ancora
         #Title for a section showing recent alterations to an atlas
@@ -7934,6 +7951,10 @@ it:
         #a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           Puoi apportare direttamente solo piccole modifiche all'epiteto della specie (ad es. cambiamenti di genere, errori di ortografia). Aggiungi un <a target="_blank" href="%{url}">Scambio di taxon</a> se hai bisogno di altre modifiche al nome.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Attenzione: hai appena aggiunto un discendente di un taxon bloccato (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Si prega di considerare la possibilità di unirlo in un taxon esistente." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Attenzione: il parentale di questo taxon attivo è inattivo ma è l'output di questa <a href='/taxon_changes/%{taxon_change_id}'> bozza di modifica di taxon</a> che presumiamo attuerai a breve." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Questo taxon attivo ha più di %{count} osservazioni a valle o è coperto da un quadro taxon, quindi alcuni attributi tassonomici possono essere modificati solo dallo staff o dai curatori del taxon associati a questo quadro del taxon.
       show:
         about_names_desc: |
           <p>
@@ -8016,6 +8037,12 @@ it:
         trending_desc: Taxa più osservati nell'ultimo mese
         trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
         wanted_desc: Le specie di questo taxon che non sono ancora state osservate.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: I nomi devono essere simili quando si modifica direttamente, fare uno scambio del taxon per cambiamenti di nome radicali
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} non può aggiungere tag alle tue foto finché Flickr non saprà che ci hai dato il permesso.
+        <a href='%{url}'>Concedi l'autorizzazione Flickr</a>.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Qualcosa è andato storto cercando di pubblicare quei tag: %{message}
@@ -8036,6 +8063,10 @@ it:
       withdrawn: ritirato
       #state of a committed taxon change
       committed: impegnato
+      #state of a pending taxon change
+      pending: in sospeso
+      #state of a approved taxon change
+      approved: approvato
       #state of a draft taxon change
       draft: Bozza
       #the status of a taxon change: draft, withdrawn or committed
@@ -8052,6 +8083,39 @@ it:
           gli Scambi di Taxon, per modificare <i>Canis Lupus</i> in <i>Dogis lupus</i> e 
           <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp.
           <i>lupus</i>. Ciò può causare un gran disordine, quindi, utilizzalo con cura.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Voto aggiunto
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Voto rimosso
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Ancora nessun voto
+      #message when taxon change is committed
+      taxon_change_committed: Cambiamento del taxon attuato! I record che possono essere aggiornati automaticamente saranno cambiati presto.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Questa modifica del taxon è ora in attesa. Richiede l'approvazione da parte di 1 curatore affinchè si attui."
+        other: "Questa modifica del taxon è ora in attesa. Richiede l'approvazione da parte di %{count} curatori affinchè si attui."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Il taxon di input non può avere figli attivi, spostali prima o seleziona l'opzione 'Sposta figli nell'output?'
+      output_taxon_rank_level_not_coarser_html: >
+        Livello di rango del taxon di output non superiore al livello di rango degli elementi figlio attivi del taxon di input %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Questa modifica tassonomica è già stata attuata!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Qualcosa è andato storto cancellando la modifica del taxon '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: La modifica del taxon è stata eliminata.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Modifica del Taxon aggiornata con successo.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Nessuna modifica specificata
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Modifica del Taxon creata con successo.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Richiede l'approvazione da parte di un altro curatore per l'attuazzione"
+        other: "Richiede l'approvazione da parte di altri %{count} curatori per l'attuazzione"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8162,6 +8226,12 @@ it:
           gente, per favore <a href="mailto:%{help_email}">contattaci</a>.
         block_desc_there_are_two_exceptions: |
           Esistono due situazioni in cui il blocco non impedisce l'interazione:
+        block_desc_comments_on_taxon_flags: Commenti sui contrassegni di taxon creati da te
+        block_desc_comments_on_taxon_changes: commenti sulle modifiche del taxon create da te
+        block_desc_unlike_more_personal: |
+          A differenza di forme di contenuto più personali come osservazioni e diario i taxa sono condivisi da tutti e dovrebbero essere aperti per le discussioni da parte di tutti. Il blocco ti impedirà comunque di ricevere notifiche sui commenti su questi tipi di contenuti da parte della persona che hai bloccato.
+        block_desc_if_harassing_html: |
+          Se qualcuno ti sta molestando o ti sta bloccando su %{site_name}, <a href="mailto:%{help_email}">per favore faccelo sapere</a>. Se rappresenta una violazione dei nostri Termini di Utilizzo o rappresenta altro comportamento che riteniamo inappropriato per il nostro sito, si indagherà.
         common_scientific_name_display_order: Ordine di Visualizzazione del Nome Comune / Scientifico
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se cambi idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
@@ -8277,6 +8347,8 @@ it:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Il massimo di 3 lessici di nomi comuni è stato già aggiunto
+        this_only_applies_to_traditional_projects2: |
+          Questo si applica ai progetti tradizionali. Non puoi escludere delle osservazioni dai progetti collezione ed ombrello, che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">qui</a>.
       recent:
         about_recent_users: A proposito di
         definitions_html: <dl> <dt>Probabilmente Spam</dt> <dd> Utenti che sono probabilmente uno spammer, significa che non hanno osservazioni o identificazioni ma hanno una descrizione del profilo. </dd> <dt>Auto Spam</dt> <dd> Spammer che sono automaticamente segnati come spammer dal sistema. </dd> <dt>Spam Manulae</dt> <dd> Spammer che sono segnati manualmente come spammer dai curatori del sito. </dd> <dt>Falsi Positivi</dt> <dd> Utenti che sono stati segnati come spammer ma per cui le segnalazioni sono state risolte dai curatori del sito perché non erano veramente spammer. </dd> </dl>
@@ -8331,7 +8403,7 @@ it:
         connect_with_nature: Connettiti con la Natura
         explore_and_share: Esplora e condividi le tue osservazioni della natura.
         observations_to_date:
-          one: "Osservazioni Finora"
+          one: "Osservazione Finora"
           other: "Osservazioni Finora"
         species_observed:
           one: "Specie Osservata"
@@ -8947,6 +9019,8 @@ it:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Solo il personale e i curatori possono nascondere i contenuti
               only_staff_and_hiding_curators_can_unhide: Solo lo staff e i curatori che nascondono i contenuti possono rivelarli
+              #Error saying that only staff can rename
+              only_staff_can_rename: Solo lo staff può rinominare
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Solo il personale può impostare il contenuto come privato
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
@@ -9082,6 +9156,30 @@ it:
             name:
               bad_format: |
                 può solo contenere caratteri Latino standard, trattini, spazi, e ×; nota che taxa presunti e cultivar non sono permessi
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Modifiche del nome non consentite per virus, batteri o cladi non innestati"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "i cambiamenti di nome non sono consentiti per i ranghi più alti della specie"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "le modifiche al nome non sono consentite per le formule ibride"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "non può aggiungere 'x' come marcatore ibrido tra genere e specie"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "deve essere binomiale (genere specie) per il controllo"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "Il genere non può cambiare"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "nome di specie non standard: è consentito rimuovere solo 'x'/'×' o aggiungere '×'"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "l’epiteto specifico deve essere simile (solo per tipo e sesso inferiori)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "epiteto infraspecifico richiesto per questo rango"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "solo l'epiteto infraspecifico può cambiare per ranghi infraspecifici"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "l’epiteto infraspecifico deve essere simile (solo per tipo e sesso inferiori)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "la prima lettera di qualsiasi epiteto non può cambiare."
         taxon_change:
           attributes:
             base:
