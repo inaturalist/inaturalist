@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     services:
       postgres:
-        image: postgis/postgis:13-3.2
+        image: postgis/postgis:17-3.6-alpine
         env:
           POSTGRES_USER: inaturalist
           POSTGRES_PASSWORD: inaturalist
