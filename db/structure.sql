@@ -38,28 +38,10 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 
 --
--- Name: _final_median(numeric[]); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public._final_median(numeric[]) RETURNS numeric
-    LANGUAGE sql IMMUTABLE
-    AS $_$
-   SELECT AVG(val)
-   FROM (
-     SELECT val
-     FROM unnest($1) val
-     ORDER BY 1
-     LIMIT  2 - MOD(array_upper($1, 1), 2)
-     OFFSET CEIL(array_upper($1, 1) / 2.0) - 1
-   ) sub;
-$_$;
-
-
---
 -- Name: _final_median(anyarray); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION public._final_median(anyarray) RETURNS double precision
+CREATE FUNCTION public._final_median(anycompatiblearray) RETURNS double precision
     LANGUAGE sql IMMUTABLE
     AS $_$ 
         WITH q AS
@@ -246,21 +228,9 @@ CREATE FUNCTION public.st_aslatlontext(public.geometry) RETURNS text
 -- Name: median(anyelement); Type: AGGREGATE; Schema: public; Owner: -
 --
 
-CREATE AGGREGATE public.median(anyelement) (
+CREATE AGGREGATE public.median(anycompatible) (
     SFUNC = array_append,
-    STYPE = anyarray,
-    INITCOND = '{}',
-    FINALFUNC = public._final_median
-);
-
-
---
--- Name: median(numeric); Type: AGGREGATE; Schema: public; Owner: -
---
-
-CREATE AGGREGATE public.median(numeric) (
-    SFUNC = array_append,
-    STYPE = numeric[],
+    STYPE = anycompatiblearray,
     INITCOND = '{}',
     FINALFUNC = public._final_median
 );
