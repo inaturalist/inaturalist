@@ -269,6 +269,8 @@ es-MX:
   add_a_new_change_group: Añade un nuevo cambio en grupo
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Añadir una lista numerada
+  #Placeholder for a project autocomplete field
+  add_a_project: Añade a un proyecto
   add_a_single_observation: Añade una sola observación
   add_a_taxon: Añade una especie o grupo
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -585,6 +587,8 @@ es-MX:
   any_license: Cualquiera
   #Label for an option to show content with photos, sounds, or neither
   any_media: Cualquiera
+  #Label for an option to show any place
+  any_place: Cualquiera
   #Label for an option to show content from any project
   any_project: Cualquiera
   #Label for an option to show content with any quality grade
@@ -688,6 +692,8 @@ es-MX:
   are_you_sure_you_want_to_delete_this_assessment?: '¿Estás seguro que quieres borrar esta evaluación?'
   are_you_sure_you_want_to_delete_this_photo?: '¿Estás seguro de que quieres eliminar esta foto?'
   are_you_sure_you_want_to_delete_this_post: '¿Estás seguro que quieres borrar esta nota?'
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: '¿Estás seguro de que deseas eliminar este sonido?'
   are_you_sure_you_want_to_delete_this_taxon_change: '¿Estás seguro que quieres borrar este cambio taxón?'
   are_you_sure_you_want_to_remove_all_tags: '¿Estás seguro que deseas eliminar todas las etiquetas?'
   are_you_sure_you_want_to_remove_curator: '¿Estás seguro que deseas quitar a %{user} como curador?'
@@ -701,6 +707,8 @@ es-MX:
     ¿Estás seguro de que quieres eliminar esta observación de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Estás seguro que deseas quitar a esta especie o grupo de la lista de comprobación de %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: '¿Estás seguro de que quieres marcar a este usuario como spammer?'
+  artificially_generated_content: Contenido generado artificialmente
+  artificially_generated_content_desc: Contiene contenido que se genera en su mayor parte o en su totalidad a través de inteligencia artificial.
   associated_observations: Observaciones asociadas
   associated_taxa: Taxa asociados
   attention: Atención
@@ -732,6 +740,13 @@ es-MX:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, subido por %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Dividido
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Sin dividir
   authority_list:
     iucn_red_list: Lista Roja UICN
     natureserve: NatureServe
@@ -1038,6 +1053,7 @@ es-MX:
   community_id_is_precise: El taxón de la comunidad es preciso
   community_moderation_settings: Configuración de la moderación de la comunidad
   community_supported_id: '¿Hay una identificación apoyada por la comunidad?'
+  community_taxon_matches_observation_taxon: El taxón de la comunidad coincide con el taxón de observación
   compare: Compara
   compare_with: Compara con
   comparing: Comparando
@@ -1082,6 +1098,9 @@ es-MX:
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmada el %{date}
   confirming_ids: Identificaciones en acuerdo
+  confirming_ids_description: |
+    Si lo desactivas, ya no se te notificará de las identificaciones que concuerden
+    con el tuyo a menos que tengan comentarios adicionales.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Conectar
@@ -1107,6 +1126,10 @@ es-MX:
     url: URL que describa este estaus.
     geoprivacy: |
       Geoprivacidad predeterminada para esta especie o grupo.
+    iucn: |
+      Código equivalente de la Lista Roja de la UICN. No se trata de la evaluación real de la UICN,
+      sino del código de la UICN que mejor se ajusta a la amenaza que supone la divulgación de las coordenadas implícita en esta categoría. Esto anulará la geoconfidencialidad si es «Preocupación menor» o inferior, por lo que si desea ocultar las observaciones de este
+      taxón, establezca esta opción en «Casi amenazado» o superior.
   conservation_status_geoprivacy_desc: |
     La geoprivacidad predeterminada se aplica a todas las observaciones de este taxón en este lugar
   contact_support: Contacta a soporte
@@ -1436,18 +1459,35 @@ es-MX:
   curators_changed_for_x_html: "Curadores cambiado por %{x}"
   curators: Curadores
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
+  curator_coordinate_access: Acceso Coordenadas de Curador
+  curator_coordinate_access_desc: |
+    El acceso a coordenadas del curador para proyectos tradicionales depende de quién agregó
+    la observación al proyecto. Esta es solo la configuración predeterminada para
+    observaciones en proyectos. Los observadores también pueden optar por cambiar esto para
+    observaciones individuales.
   curator_identification: Identificación de curador
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Taxón de la comunidad actual: %{taxon}"
   current_flags: Advertencias actuales
   #Label for a custom boundary for an observation search
   custom_boundary: Límite personalizado
   custom_project_fields: Campos a la medida del proyecto
   custom_project_was_successfully_created: El proyecto personalizado fue creado exitosamente.
   custom_project_was_successfully_updated: El proyecto actualizado fue creado exitosamente.
+  #Button to customize projects that appear in the header
+  customize__projects: Personalizar
   customize_location: Personaliza la ubicación
   darr_apply_darr: "&darr; Applicar &darr;"
   daily_users: Usuarios Diarios
   danger_zone: Zona de peligro
   dashboard: Tablero
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "¡Sí! Me gustaría participar."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Dejar de participar"
+    #link to a blog post
+    pilot_read_more: "Lea más en nuestro blog."
   data_deficient: con datos deficientes
   data_quality: Calidad de datos
   data_quality_assessment: Evaluación de calidad de los datos
@@ -1525,6 +1565,8 @@ es-MX:
     Esta es la zona horaria por defecto. La zona horaria final se asignará basada en
     la ubicación de la observación cuando se guarde.
   defaults_to_your_name_or_username: Por defecto es su nombre o nombre de usuario
+  #As in the definition of a word
+  definition: Definición
   defines_a_taxon_framework_for: Define un marco de referencia del taxón para %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Define un Marco de Taxones para %{taxon} cuya fuente es %{source}
   definitions: Definiciones
@@ -1539,6 +1581,8 @@ es-MX:
   #Label for a button to delete a taxon range
   delete_range: Eliminar rango de distribución
   delete_selected: Borra seleccionado
+  #Label for a button to delete a sound file
+  delete_sound: Eliminar sonido
   delete_taxon_and_merge_most_data_html: |
     Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Utiliza esta herramienta para <strong>eliminar taxones duplicados</strong>. Si deseas eliminar un sinónimo desactualizado, por favor crea un intercambio de taxones. <strong>¡TEN CUIDADO!</strong> Eliminar taxones puede ser muy destructivo. Revisa la <a href="%{curator_url}">Guía de curadores</a> para obtener más detalles.
   delete_user: Borra este usuario
@@ -1643,6 +1687,9 @@ es-MX:
   disable_comments: Desactivar comentarios
   disable_comments_desc: Evitar que la gente agregue nuevos comentarios
   disagree_: En desacuerdo
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Desacuerdos
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Desconectar

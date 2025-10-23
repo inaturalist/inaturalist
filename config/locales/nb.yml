@@ -660,6 +660,8 @@ nb:
   are_you_sure_you_want_to_delete_this_assessment?: Er du sikker på at du vil slette vurderingen?
   are_you_sure_you_want_to_delete_this_photo?: Er du sikker på at du vil slette dette bildet?
   are_you_sure_you_want_to_delete_this_post: Er du sikker på at du vil slette dette innlegget?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Er du sikker på at du vil slette denne lyden?
   are_you_sure_you_want_to_delete_this_taxon_change: Er du sikker på at du vil slette denne taksonendringen?
   are_you_sure_you_want_to_remove_all_tags: Er du sikker på at du vil fjerne alle etiketter?
   are_you_sure_you_want_to_remove_curator: Er du sikker på at du vil fjerne %{user} som en kurator?
@@ -672,6 +674,8 @@ nb:
     Er du sikker på at du vil fjerne denne observasjonen fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne dette taksonet fra sjekklisten til %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Er du sikker på at du vil flagge denne brukeren som en spammer?
+  artificially_generated_content: Kunstig generert innhold
+  artificially_generated_content_desc: Inneholder innhold som for det meste eller i sin helhet er generert ved hjelp av kunstig intelligens.
   associated_observations: Tilknyttede observasjoner
   associated_taxa: Tilknyttede taksa
   attention: NB
@@ -992,6 +996,7 @@ nb:
   community_id_is_precise: Fellesskapets takson er nøyaktig
   community_moderation_settings: Fellesskapsmodereringsinnstillinger
   community_supported_id: Takson støttet av fellesskapet?
+  community_taxon_matches_observation_taxon: Community Taxon samsvarer med observasjonstakson
   compare: Sammenlign
   compare_with: Sammenlign med
   comparing: sammenligner
@@ -1374,6 +1379,8 @@ nb:
     observasjoner i prosjekter. Observatører kan også velge å endre dette for
     individuelle observasjoner.
   curator_identification: Kuratoridentifikasjon
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Gjeldende samfunnstakson: %{taxon}"
   current_flags: Gjeldende markeringer
   #Label for a custom boundary for an observation search
   custom_boundary: Egendefinert grense
@@ -1479,6 +1486,8 @@ nb:
   #Label for a button to delete a taxon range
   delete_range: Slett utbredelse
   delete_selected: Slett valgte
+  #Label for a button to delete a sound file
+  delete_sound: Slett lyd
   delete_taxon_and_merge_most_data_html: |
     Slett <i>%{taxon}</i> og slå sammen det meste av dens data i et annet takson. Bruk dette verktøyet for å <strong>fjerne duplikate taksa</strong>. Hvis du vil fjerne et utdatert synonym, vennligst opprett et taksonbytte. <strong>OBS!</strong> Å slette taksa kan være veldig ødeleggende. Sjekk <a href="%{curator_url}">Kuratorguiden</a> for flere detaljer.
   delete_user: Slett bruker
@@ -1521,6 +1530,8 @@ nb:
         Vennligst sjekk din e-post og klikk på lenken i e-posten som du mottok for å bekrefte kontoen din.
       user:
         suspended: Din konto har blitt suspendert
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Tokenet for tilbakestilling av passord er ugyldig. Bruk lenken i den sist sendte e-posten for tilbakestilling av passord, eller <a href="%{url}">Be om en ny</a>.
     sessions:
       signed_in: 'Pålogging vellykket.'
       signed_out: 'Avlogging vellykket.'
@@ -1612,6 +1623,8 @@ nb:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONÉR
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Donere
   donate_again_caps: BIDRA IGJEN
   donate_again_today_caps: BIDRA IGJEN I DAG
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1749,6 +1762,8 @@ nb:
   eol: EOL
   eol_collection_url: "EOL samlings-URL"
   error_updating_photo: "Feil ved oppdatering av bilde: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Feil ved oppdatering av lyd: %{sound_errors}"
   establishment:
     endemic: Endemisk
     establishment: Etablering
@@ -1811,6 +1826,7 @@ nb:
   extinct: utdødd
   extinct_in_the_wild: Utdødd i vill tilstand
   extra_properties: Ekstra egenskaper
+  evidence_accurately_depicts_organism_or_scene: Bevis viser nøyaktig organisme eller scene
   evidence_of_organism: Bevis for organisme
   evidence_related_to_single_subject: Bevis knyttet til ett enkelt subjekt
   facebook: Facebook
@@ -1848,7 +1864,11 @@ nb:
   fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres av de som har opprettet dem og sidekuratorer
   fields_merged: Felter slått sammen
   file: Fil
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Filformat
   file_size: Filstørrelse
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL-adresse til fil
   file_should_be_in_the_following_format: "Filen skal være i følgende format: taksonnavn, beskrivelse"
   fill_out_project_observation_fields: Fyll ut projektets observationsfelt
   fill_out_your_profile: fullfør din profil
@@ -2072,6 +2092,8 @@ nb:
   header_your_profile: Din profil
   heads_up: Obs
   heads_up_this_photo_has_been_flagged: "OBS: dette bildet har blitt markert."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "VÆR OPPMERKSOM: denne lyden har blitt flagget."
   heads_up_this_photo_is_already_associated_with: "Obs: dette bildet allerede knyttet til <a target='_blank' href='%{url}'>en annen observasjon</a>"
   heads_up_you_have_multiple: "Obs: Du har flere taksonomiske maskinmarkeringer for identiske ranger. De er fargekodert per rang nedenfor."
   help: Hjelp
@@ -3675,6 +3697,8 @@ nb:
       zone: sone
   place_guess: sted gjett
   place_imported: Sted importert!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Det kan ta opptil en dag før observasjoner knyttes til dette stedet.
   place_must_have_a_boundary_defined: Sted må ha en definert grense.
   place_name: Stedsnavn
   place_notes: Notater om stedet
@@ -4636,7 +4660,15 @@ nb:
     select_one_or_more_sounds: Velg en eller flere lyder
     selected_sounds: Valgte lyder
     sound: Lyd
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Lyd %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Lyd slettet
     sound_has_been_flagged: Denne lyden har blitt markert.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Lyd skjult
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Lyd skjult
     soundcloud_replied_with_an_error: SoundCloud ga tilbake en feilmelding. Vennligst prøv igjen senere.
     sounds: Lyder
     your_soundcloud_account: din SoundCloud-konto
@@ -5288,6 +5320,8 @@ nb:
   updated_by_user_on_date_html: Oppdatert av %{user} på %{date}
   updated_daily: Oppdatert daglig
   updated_photo: Oppdatert bilde
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Oppdatert lyd
   upload: Last opp
   upload_a_csv_file: Last opp csv-fil
   upload_a_csv_file_with_observation: |
@@ -5844,10 +5878,18 @@ nb:
         Tid i kontoens tidssone da denne kunngjøringen stopper
         Vises. Gjelder på tvers av tidssoner, slik at alle slutter å se
         det på samme tid, ikke i forhold til deres lokale tid.
+      excludes_non_site_desc: |
+        Hvis kunngjøringen din er rettet mot et nettsted (som er standard hvis du er en
+        Nettstedsadministrator), ekskluderer dette kunngjøringer som er målrettet mot alle nettsteder i
+        denne plasseringen.
       ip_countries_desc: |
         CMD- eller SHIFT-klikk for å velge flere. Velge "Alle" eller ikke lage
         Et utvalg vil vise kunngjøringen til alle brukere uavhengig av
         IP-land.
+      exclude_ip_countries_desc: |
+        CMD- eller SHIFT-klikk for å velge flere. Utvalgte land vises ikke
+        kunngjøringen. Hvis IP-land er valgt, velger du Ekskluder IP-land
+        vil bli trukket fra førstnevnte.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Merk at opprettelsesdatoen for brukerens sist opprettede
@@ -6480,6 +6522,11 @@ nb:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Obersvasjoner blir av <strong>"forskningskvalitet"</strong> når
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          den <strong>Samsvar mellom fellesskapstaksoner og observasjonstaksoner</strong>
+          (for de sjeldne tilfellene når observasjonstaksonet kan være mer
+          spesifikk enn Community Taxon)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           %{site_name} <strong>samfunnet er enige om en ID på artsnivå eller lavere</strong>, dvs. når 2/3 av involverte sier seg enige i et takson (hvis samfunnet har stemt for at felleskapets takson ikke lenger kan forbedres, går dette tilbake til ID av underfamilienivå eller lavere)
         #Leads a list of ways an observation to revert to Casual status
@@ -6503,6 +6550,12 @@ nb:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           observasjonen <strong>fremstiller ikke bevis knyttet til ett subjekt</strong> (f.eks. har den fire bilder av ulike organismer; et bilde som viser habitatet til observasjonens subjekt er greit)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Observasjonen <strong>ikke gir nøyaktige bevis på organismen eller
+          scene</strong> (f.eks. kunstig intelligens ble brukt til å legge til, fjerne eller erstatte
+          elementer i bildet eller lyden. Denoising, fokusstabling eller lage
+          små rettelser som å fjerne sensorstøv er vanligvis OK).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           observasjonen behøver ikke lenger en ID <em>og</em> fellesskapets takson er av familie eller høyere
@@ -6945,6 +6998,14 @@ nb:
       not_found:
         sorry_that_doesnt_exist: Beklager, det finnes ikke!
         even_our_dedicated_search_mole_couldnt: Selv vår mest dedikerte søkemuldvarp kunne ikke finne noe!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Du kan se originalen på <a href="%{url}">%{url}</a>. Vær så snill
+          La flagg for brudd på opphavsrett være uløst hvis denne lyden gjør det
+          krenke opphavsretten.
     stats:
       index:
         active_desc: Har opprettet en id, obs, kommentar, eller innlegg de foregående 30 dager
@@ -7055,6 +7116,9 @@ nb:
           Et "fullstendig" takson inneholder <em>alle</em> kjente etterkommer-taksa på en spesifisert rang som er i tråd med retningslinjene for kurstering av taksa på iNaturalist, om de har blitt observert eller ikke. Kun admins til siden kan erklære taksa som fullstendig for øyeblikket.
         complete_rank_desc_html: |
           Rang hvor dette taksonet er fullstendig, f.eks hvis denne familien inneholder alle sine slekter men ikke alle arter, settes dette til "slekt". Standardverdi er art.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Du kan bare gjøre mindre endringer i artsbetegnelsen direkte (f.eks. kjønnsendringer, feilstaving). Legg til en <a target="_blank" href="%{url}">Taksonbytte</a> hvis du trenger andre endringer i navnet.
       show:
         about_conservation_status_desc: |
           Bevaringsstatusen gir et sammendrag av risikoen for utdøing av en gruppe organismer.
@@ -7118,6 +7182,9 @@ nb:
         trending_desc: Mest-observerte taksa i den siste måneden
         trending_in_place_desc_html: Mest-observerte taksa i den siste måneden i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i dette taksonet som ikke har blitt observert ennå.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Noe gikk galt da jeg prøvde å legge ut disse taggene: %{message}
     taxon_changes:
       move_children_desc: |
         Etterkommere av input-taksonet som er slekter eller høyere blir flyttet til output'en; arter, underarter, varieteter, osv. vil bli byttet til tilsvarende taksa med det ny slekts- eller artsnavnet.
@@ -7185,6 +7252,20 @@ nb:
           Du må skrive "%{confirmation_code}" i skjemaet for å slette din konto
       edit:
         about_third_party_tracking: Om tredjepartssporing
+        block_desc_comments_on_taxon_flags: Kommentarer til taksonflagg opprettet av deg
+        block_desc_comments_on_taxon_changes: Kommentarer til taksonendringer opprettet av deg
+        block_desc_unlike_more_personal: |
+          I motsetning til mer personlige former for innhold som observasjoner og journal
+          innlegg, er taxa delt av alle og bør være åpen for
+          diskusjon av alle. Blokkering vil fortsatt hindre deg i å
+          motta varsler om kommentarer til denne typen innhold av
+          personen du blokkerte.
+        block_desc_if_harassing_html: |
+          Hvis noen trakasserer eller forfølger deg på %{site_name},
+          <a href="mailto:%{help_email}">Gi oss beskjed</a>. Hvis
+          dette representerer et brudd på våre vilkår for bruk eller representerer
+          annen oppførsel vi anser som upassende for nettstedet vårt, vil vi
+          undersøke.
         common_scientific_name_display_order: Visningsrekkefølge for populærnavn / vitenskapelig navn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Hvis du ombestemmer deg kan du alltid <a href='/users/edit'>redigere dine innstillinger</a>.
@@ -7639,6 +7720,7 @@ nb:
         exclude_donor_start_date: Ekskluder giverens startdato
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Ekskluder sluttdato for bidragsgiver
+        excludes_non_site: Skjul andre kunngjøringer i denne plasseringen som ikke har noen nettsteds-ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Ekskluder observatører fra apper

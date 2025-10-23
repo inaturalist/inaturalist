@@ -45,6 +45,16 @@ cs:
     few: '<span class="count">%{count}</span> IDENTIFIKACE'
     many: '<span class="count">%{count}</span> IDENTIFIKACÍ'
     other: '<span class="count">%{count}</span> IDENTIFIKACÍ'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFIKÁTOR'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> IDENTIFIKÁTORY'
+    #Number of people who have added identifications
+    many: '<span class="count">%{count}</span> IDENTIFIKÁTORY'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFIKÁTORY'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID vytvořeno pro ostatní'
     few: '<span class="count">%{count}</span> ID vytvořena pro ostatní'
@@ -127,6 +137,11 @@ cs:
     few: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
     many: "<span class='count'>%{count}</span> pozorování bylo zkontrolováno"
     other: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> POZOROVATEL'
+    few: '<span class="count">%{count}</span> POZOROVATELÉ'
+    many: '<span class="count">%{count}</span> POZOROVATELÉ'
+    other: '<span class="count">%{count}</span> POZOROVATELÉ'
   x_others:
     one: "%{count} další"
     few: "%{count} další"
@@ -735,6 +750,14 @@ cs:
     Musíte poskytnout podrobnější vysvětlení toho, co chcete vytvořit.
   app_owner_application_about_p1a_html: |
     Aplikace iNaturalist umožňují ověřené použití rozhraní iNaturalist API. To vám umožňuje provádět volání API, která dělají věci, jako je vytváření pozorování nebo identifikace. Obvyklé případy použití jsou aplikace, jako jsou aplikace pro stolní počítače nebo mobilní aplikace, které svým uživatelům nabízejí funkce pro vytváření pozorování iNaturalist. Tento obsah musí být generován se skutečným lidským zapojením nebo dohledem. Pro více informací si prosím přečtěte naše <a href="/pages/community+guidelines" target="_blank">Pokyny pro komunitu</a>, které zakazují strojově generovaná pozorování, identifikace a komentáře.
+  app_owner_application_about_p2_html: |
+    Od roku 2022 vyžadujeme ruční schválení pro uživatele, kteří chtějí vytvářet klienty API.
+    Abyste mohli vytvářet aplikace třetích stran, musíte nejprve odeslat žádost, abyste se stali
+    "vlastníkem aplikace". Tato aplikace by měla popisovat funkce navrhované aplikace
+    a jak jej plánujete používat. Abyste mohli podat žádost, musí být váš účet na adrese
+    ve věku nejméně 2 měsíců a musí mít za sebou alespoň 10 let <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">zlepšení identifikace</a> v posledním měsíci. Můžeme požádat o následnou kontrolu
+    otázky týkající se vašeho plánu a vyhrazujeme si právo odmítnout žádosti z jakéhokoli důvodu.
   app_owner_application_inelligible: |
     Aby bylo možné podat žádost, musí být váš účet nejméně 2 měsíce starý a
     musí za poslední měsíc zlepšit aspoň 10 identifikací.
@@ -820,6 +843,8 @@ cs:
   are_you_sure_you_want_to_delete_this_assessment?: Jste si jistí, že chcete smazat toto hodnocení?
   are_you_sure_you_want_to_delete_this_photo?: Jste si jistí, že chcete smazat tuto fotku?
   are_you_sure_you_want_to_delete_this_post: Jste si jistí, že chcete smazat tento příspěvek?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Opravdu chcete tento zvuk odstranit?
   are_you_sure_you_want_to_delete_this_taxon_change: Jste si jistí, že chcete smazat tuto změnu taxonu?
   are_you_sure_you_want_to_remove_all_tags: Jste si jistí, že chcete odstranit všechny tagy?
   are_you_sure_you_want_to_remove_curator: Jste si jistí, že chcete odstranit %{user} jako kurátora?
@@ -832,6 +857,8 @@ cs:
     Jste si jisti, že chcete odstranit toto pozorování z projektu %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Jste si jistí, že chcete odstranit tento taxon ze seznamu %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Opravdu chcete tohoto uživatele označit jako spammera?
+  artificially_generated_content: Uměle generovaný obsah
+  artificially_generated_content_desc: Obsahuje obsah, který je z větší části nebo zcela generován umělou inteligencí.
   associated_observations: Související pozorování
   associated_taxa: Související taxony
   attention: Upozornění
@@ -1176,6 +1203,7 @@ cs:
   community_id_is_precise: Komunitní taxon je přesný
   community_moderation_settings: Nastavení moderování komunity
   community_supported_id: ID podporované komunitou?
+  community_taxon_matches_observation_taxon: Taxon komunity odpovídá taxonu pozorování
   compare: Porovnat
   compare_with: Srovnat s
   comparing: srovnání
@@ -1249,6 +1277,12 @@ cs:
       geosoukromí statusu spojeného s kontinentem, zemí; nebo
       státem umístěné místo může přepsat stav globální nebo přidružený
       k vyšší úrovni.
+    iucn: |
+      Ekvivalentní kód Červeného seznamu IUCN. Nejedná se o samotné hodnocení IUCN,
+      pouze kód IUCN, který nejlépe odpovídá hrozbě prozrazení souřadnic
+      vyplývá z tohoto statusu. Tím se přepíše geosoukromí, pokud je "Nejméně
+      Obavy" nebo níže, takže pokud chcete zakrýt pozorování tohoto
+      , nastavte tuto hodnotu na "Téměř ohrožený" nebo vyšší.
   conservation_status_geoprivacy_desc: |
     Na všechna pozorování tohoto taxonu v tomto místě se použilo výchozí soukromí zeměpisné polohy
   contact_support: Kontaktovat podporu
@@ -1595,6 +1629,8 @@ cs:
     pozorování v projektech. Pozorovatelé se také mohou rozhodnout změnit tuto možnost pro
     Individuální pozorování.
   curator_identification: Identifikace kurátora
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Současný taxon společenstva: %{taxon}"
   current_flags: Aktuální označení
   #Label for a custom boundary for an observation search
   custom_boundary: Vlastní ohraničení
@@ -1608,6 +1644,55 @@ cs:
   daily_users: Denní uživatelé
   danger_zone: Nebezpečná zóna
   dashboard: Nástěnka
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ano! Rád bych se zúčastnil."
+    #link to a blog post
+    pilot_read_more: "Přečtěte si více na našem blogu."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Pilotní projekt identifikace mezer: Potřebuje ID hledaných druhů"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Zatím není zahrnuto v Modelu Počítačového Vidění"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Myslíme si, že můžete identifikovat"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Zde je odkaz na pozorování druhů, které dosud nebyly zahrnuty do Modelu Počítačového Vidění a o kterých si myslíme, že je můžete identifikovat."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Vraťte se zítra pro odkaz na pozorování druhů, které ještě nebyly zahrnuty do modelu počítačového vidění a o kterých si myslíme, že je můžete identifikovat. Zobrazí se vám druhy, u kterých jste provedli alespoň 3 zlepšující identifikace."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Pokud odkaz nevidíte, je možné, že těmto kritériím neodpovídají žádná pozorování, která by vyžadovala identifikaci. Bude to kontrolovat jednou denně."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Pilotní projekt Observation Gaps: Hledané druhy v okolí"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Zítra obdržíte seznam druhů, které:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Zatím nejsou v Modelu Počítačového Vidění"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Byly pozorovány v této sezóně poblíž vašeho posledního pozorování"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Jsou založeny na vzorku až 200 pozorování až 300 druhů s upřednostňováním rostlin"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Pozorováním těchto druhů pomůžete vylepšit model a zaplnit mezery v datech o biologické rozmanitosti. Tento seznam se aktualizuje při aktualizaci modelu. Z odběru se můžete kdykoli odhlásit."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Zde je váš aktuální seznam druhů, které jsou:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Zatím není zahrnuto v Modelu Počítačového Vidění"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Pozorováno poblíž vaší poslední polohy v této sezóně"
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Procházet druhy"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Vraťte se zítra pro personalizovaný seznam druhů, které ještě nejsou v modelu počítačového vidění a byly pozorovány v této sezóně. Personalizovaný seznam bude používat místo vašeho posledního pozorování."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Pokud odkaz nevidíte, je možné, že ve vašem okolí nejsou žádné druhy, které by odpovídaly těmto kritériím."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Pilotní identifikace: Onboarding nových uživatelů"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Od zítřka budete denně dostávat až 30 pozorování, která odpovídají vašim identifikačním dovednostem, což vám pomůže získat nové uživatele. Z odběru se můžete kdykoli odhlásit."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Níže je až 30 pozorování, která odpovídají vašim identifikačním schopnostem."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Vraťte se zítra pro odkaz na pozorování, která odpovídají vašim identifikačním schopnostem."
   data_deficient: chybějící údaje
   data_quality: Kvalita údajů
   data_quality_assessment: Hodnocení kvality údajů
@@ -1701,6 +1786,8 @@ cs:
   #Label for a button to delete a taxon range
   delete_range: Odstranit rozsah
   delete_selected: Smazat vybrané
+  #Label for a button to delete a sound file
+  delete_sound: Odstranění zvuku
   delete_taxon_and_merge_most_data_html: |
     Smazat <i>%{taxon}</i> a sloučit většinu jeho údajů s jiným taxonem. Tento nástroj použijte k <strong>odstranění zdvojených taxonů</strong>. Pokud chcete odstranit zastaralé synonymum, vytvořte prosím záměnu taxonů. <strong>POZOR!</strong> Mazáním taxonů může dojít k velkým škodám. Více informací najdete v <a href="%{curator_url}">Průvodci kurátorů</a>.
   delete_user: Smazat uživatele
@@ -1744,6 +1831,8 @@ cs:
         pro potvrzení vašeho účtu.
       user:
         suspended: Váš účet byl pozastaven
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Token pro resetování hesla je neplatný. Použijte prosím odkaz v naposledy odeslaném e-mailu pro obnovení hesla, nebo <a href="%{url}">Požádejte o nový</a>.
     sessions:
       signed_in: 'Přihlášení proběhlo úspěšně.'
       signed_out: 'Odhlášení proběhlo úspěšně.'
@@ -1835,6 +1924,8 @@ cs:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DAROVAT
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Darovat
   donate_again_caps: DARUJTE ZNOVU
   donate_again_today_caps: DARUJTE ZNOVU JEŠTĚ DNES
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1974,6 +2065,8 @@ cs:
   eol: Konec řádku (EOL)
   eol_collection_url: "URL souboru EOL"
   error_updating_photo: "Chyba při aktualizaci obrázku: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Chyba při aktualizaci zvuku: %{sound_errors}"
   establishment:
     endemic: endemický
     establishment: Vznik
@@ -2015,6 +2108,12 @@ cs:
   exclude_projects: Vyloučit projekty
   exclude_taxa: Vyloučit taxony
   exclude_users: Vyloučit uživatele
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Vyjma %{count} taxon
+    few: Vyjma %{count} taxonů
+    many: Vyjma %{count} taxonů
+    other: Vyjma %{count} taxonů
   exclusion_filters: Vylučovací filtry
   existing_flags: Existující označení
   exit_full_screen: "Ukončit celou obrazovku"
@@ -2025,6 +2124,9 @@ cs:
   export: Exportovat
   export_observations: Exportovat pozorování
   export_with_private_coordinates: Exportovat se skrytými souřadnicemi
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
+  exported_at_datetime: Exportováno v %{datetime}
   exporting: "Exportování..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -2035,6 +2137,7 @@ cs:
   extinct: vyhynulý
   extinct_in_the_wild: vyhynulý v přírodě
   extra_properties: Další vlastnosti
+  evidence_accurately_depicts_organism_or_scene: Důkazy přesně zobrazují organismus nebo scénu
   evidence_of_organism: Důkaz o organismu
   evidence_related_to_single_subject: Důkazy týkající se jediného subjektu
   facebook: Facebook
@@ -2072,7 +2175,11 @@ cs:
   fields_can_only_be_edited_by_the_people_who: Pole mohou upravovat pouze osoby, které je vytvořily, a kurátoři stránek
   fields_merged: Sloučená pole
   file: Soubor
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Formát souboru
   file_size: Velikost souboru
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Adresa URL souboru
   file_should_be_in_the_following_format: "Soubor by měl být v následujícím formátu: název taxonu, popis"
   fill_out_project_observation_fields: Vyplnit pole pozorování v projektu
   fill_out_your_profile: vyplnit váš profil
@@ -2326,6 +2433,8 @@ cs:
     many: "<strong>Upozornění:</strong> existuje %{count} dalších návrhů změn taxonů se stejnými vstupními taxony:"
     other: "<strong>Upozornění:</strong> existuje %{count} dalších návrhů změn taxonů se stejnými vstupními taxony:"
   heads_up_this_photo_has_been_flagged: "POZOR: tato fotka byla označena."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "POZOR: tento zvuk byl označen."
   heads_up_this_photo_is_already_associated_with: "Pozor: tato fotka už je spojena s <a target='_blank' href='%{url}'>jiným pozorováním</a>"
   heads_up_you_have_multiple: "Pozor: Máte několikanásobná automatické taxonomická označení pro stejné kategorie. Níže jsou jednotlivé kategorie barevně označeny."
   help: Nápověda
@@ -4071,6 +4180,8 @@ cs:
       zone: zóna
   place_guess: hádat místo
   place_imported: Místo bylo importováno!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Může trvat až jeden den, než budou pozorování spojena s tímto místem.
   place_must_have_a_boundary_defined: Místo musí mít definovanou hranici.
   place_name: Název místa
   place_notes: Poznámky k místu
@@ -5162,7 +5273,15 @@ cs:
     select_one_or_more_sounds: Vyberte jeden nebo více zvuků
     selected_sounds: Vybrané zvuky
     sound: Zvuk
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Zvuk %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Zvuk odstraněn
     sound_has_been_flagged: Tento zvuk byl označen.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Skrytý zvuk
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Zvuk nekrytý
     soundcloud_replied_with_an_error: SoundCloud odpověděl chybou. Zkuste to prosím znovu později.
     sounds: Zvuky
     your_soundcloud_account: váš účet na SoundCloud
@@ -5907,6 +6026,8 @@ cs:
   updated_by_user_on_date_html: Aktualizováno uživatelem %{user} dne %{date}
   updated_daily: Aktualizováno denně
   updated_photo: Aktualizovaná fotka
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Aktualizovaný zvuk
   upload: Nahrát
   upload_a_csv_file: Nahrát soubor CSV
   upload_a_csv_file_with_observation: |
@@ -5919,6 +6040,7 @@ cs:
   uploader:
     errors:
       file_too_big: Soubor musí být menší než %{megabytes}MB
+      unsupported_file_type: Typ souboru není podporován. Přijímáme JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3 a MP4 (pouze zvuk)
     resize_tip: |
       Pokud jsou soubory fotografií příliš velké, zkuste je oříznout na maximum 2048 x 2048 pixelů. To se stane u všech fotografií na server,aby byl upload rychlejší.
     tooltips:
@@ -6563,10 +6685,18 @@ cs:
         Čas v časovém pásmu vašeho účtu, po který bude toto oznámení ukončeno
         objevování se. Platí napříč časovými pásmy, takže všichni přestanou vidět
         ve stejnou dobu, nikoli ve vztahu k jejich místnímu času.
+      excludes_non_site_desc: |
+        Pokud vaše oznámení cílí na web (což je výchozí nastavení, pokud jste
+        Správce webu), tím vyloučíte oznámení, která cílí na všechny weby v
+        toto umístění.
       ip_countries_desc: |
         Kliknutím se stisknutou klávesou CMD nebo SHIFT vyberte více položek. Výběr "Vše" nebo nevytváření
         Po výběru se oznámení zobrazí všem uživatelům bez ohledu na to, zda
         země IP.
+      exclude_ip_countries_desc: |
+        Kliknutím se stisknutou klávesou CMD nebo SHIFT vyberte více položek. Vybrané země se nebudou zobrazovat
+        oznámení. Pokud jsou vybrány země s IP adresou, vyberte možnost Vyloučit země s IP
+        budou odečteny od prvního.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Všimněte si, že datum vytvoření naposledy vytvořeného uživatelského souboru
@@ -7476,6 +7606,11 @@ cs:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Pozorování se stanou <strong>„výzkumným stupněm“</strong> , když
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ten <strong>Shoda taxonu Společenství a taxonu pozorování</strong>
+          (pro ty vzácné příležitosti, kdy taxon pozorování může být více
+          specifický než taxon Společenství)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           %{site_name} <strong>komunita souhlasí s ID na úrovni druhu nebo
           nižším</strong>, tj. když se více než 2/3 identifikátorů dohodnou na
@@ -7509,6 +7644,12 @@ cs:
           pozorování <strong>nepředkládá důkazy týkající se jednoho
           subjektu</strong> (např. má čtyři fotografie nespřízněných organismů;
           fotografie ukazující stanoviště předmětu pozorování je OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Pozorování <strong>nepředkládá přesný důkaz o organismu nebo
+          scéna</strong> (např. umělá inteligence byla použita k přidání, odebrání nebo nahrazení
+          prvků v obraze nebo zvuku. Odšumování, vrstvení ostření nebo vytváření
+          malé opravy, jako je odstranění prachu ze senzoru, jsou obvykle v pořádku).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           pozorování již nepotřebuje ID <em>a</em> komunitní taxon je v čeledi nebo vyšší
@@ -8023,6 +8164,14 @@ cs:
       not_found:
         sorry_that_doesnt_exist: Promiňte, toto neexistuje!
         even_our_dedicated_search_mole_couldnt: Dokonce i náš vyhrazený vyhledávač nemohl najít nic!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Originál si můžete prohlédnout na adrese <a href="%{url}">%{url}</a>. Prosím
+          Ponechat příznaky porušení autorských práv jako nevyřešené, pokud tento zvuk ano
+          porušovat autorská práva.
     stats:
       index:
         active_desc: Vytvořeno ID, pozorování nebo příspěvek v předchozích 30 dnech
@@ -8218,6 +8367,9 @@ cs:
           href="%{url}">stránky na Wikipedii</a> , které máme natrvalo uložené, dokud jej někdo ručně neobnoví. Obnovení tohoto shrnutí také okamžitě aktualizuje
           naši mezipaměť obsahu Wikipedie, který zobrazujeme na
           webových stránkách, a který se po týdnu aktualizuje automaticky.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Přímo můžete provádět pouze drobné změny epiteta druhu (např. změny pohlaví, překlepy). Přidejte soubor <a target="_blank" href="%{url}">Výměna taxonu</a> , pokud potřebujete další změny názvu.
       show:
         about_names_desc: |
           <p>
@@ -8302,9 +8454,26 @@ cs:
         trending_desc: Nejvíce pozorované taxony v uplynulém měsíci
         trending_in_place_desc_html: Nejvíce pozorované taxony v uplynulém měsíci v <a href="%{url}">%{place}</a>
         wanted_desc: Druhy v tomto taxonu, které ještě nebyly pozorovány.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Něco se pokazilo při pokusu zveřejnit tyto tagy: %{message}
     taxon_changes:
       move_children_desc: |
         Děti daného taxonu, které jsou rodové nebo ještě hruběji určené, budou přesunuty; druhy, poddruhy, odrůdy atd. se změní v jejich ekvivalentu s novým názvem rodu nebo druhu.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Obnovit
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: obnovování
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Odebrat
+      #state of an abandoned taxon change
+      withdrawn: odebráno
+      #state of a committed taxon change
+      committed: odesláno
+      #state of a draft taxon change
+      draft: koncept
+      #the status of a taxon change: draft, withdrawn or committed
+      status: stav
       form:
         move_children_desc2_html: |
           Zaškrtnutím tohoto políčka přesunete potomky vstupního taxonu do výstupního taxonu pro výměnu taxonu a sloučení taxonu, když je tato změna potvrzena. Pokud se jedná o změnu rodu nebo nižšího, vytvoří se swapy taxonů pro všechny potomky se jmény, která je třeba změnit. Pokud například zaměníte čeleď Canidae za Dogidae, změní se tím rodič rodu <i>Canis</i> z Canidae na Dogidae. Pokud zaměníte rod <i>Canis</i> za rod <i>Dogis</i>, vytvoří se a provede výměna taxonu za změnu <i>Canis lupus</i> na <i>Dogis lupus</i> a <i>Canis lupus</i> ssp. <i>lupus</i> až <i>Dogis lupus</i> ssp. <i>lupus</i>. To může způsobit docela nepořádek, proto používejte opatrně.
@@ -8423,6 +8592,39 @@ cs:
           Chcete-li účet smazat, musíte do formuláře zadat %{confirmation_code}
       edit:
         about_third_party_tracking: O sledování třetí strany
+        block_desc_blocking_someone_prevents: |
+          Zablokování někoho mu zabrání v tom, aby vám posílal zprávy a komentoval vaše
+          pozorování, identifikace vašich pozorování a další interakce
+          s vámi na %{site_name}. Také to odstraní jejich pozorování z vašeho
+          a odstraní vaše pozorování z jejich vyhledávání
+          výsledky. To vás však nečiní pro ně neviditelnými. Mohou
+          stále najít vaše pozorování a zobrazit váš profil, prostě nemohou
+          komunikovat s vámi.
+        block_desc_blocking_is_for_situations: |
+          Blokování je pro situace, se kterými prostě nemůžete vycházet
+          někoho a nenechají vás na pokoji, navzdory vaší nejlepší snaze
+          Urovnávejte spory civilizovaným způsobem. Není to způsob, jak se schovat před
+          osoby, aby se zabránilo identifikaci od lidí, jejichž názory si myslíte
+          nedůvěřujete, nebo se odhlásit z ID komunity (existuje další
+          nastavení pro to). Blokování tedy funguje oběma směry: pokud blokujete
+          někoho, nemohou s vámi komunikovat, ale vy také nemůžete komunikovat
+          s nimi. Pokud jej zneužijete k tomu, abyste někomu zabránili v identifikaci vašeho
+          pozorování, zabráníte si také v identifikaci jejich
+          pozorování.
+        block_desc_you_can_only_block_html: |
+          Zablokovat můžete pouze tři osoby. Myslíme si, že je to rozumné
+          číslo, které vyhovuje lidem, kteří potřebují zablokovat
+          zamezení zneužití blokace. Pokud máte pocit, že potřebujete zablokovat více
+          lidi, prosím <a href="mailto:%{help_email}">Kontaktujte nás</a>.
+        block_desc_there_are_two_exceptions: |
+          Existují dvě situace, kdy blokování nezabrání interakci:
+        block_desc_comments_on_taxon_flags: Komentáře k Vámi vytvořeným příznakům taxonů
+        block_desc_comments_on_taxon_changes: Komentáře k Vámi vytvořeným změnám taxonů
+        block_desc_unlike_more_personal: |
+          Na rozdíl od osobnějších forem obsahu, jako jsou pozorování a deníkové příspěvky, taxony jsou sdíleny všemi a měly by být otevřeny pro diskuze všech. Blokování vám stále umožní blokovat přijímání oznámení o komentářích k tomuto druhu obsahu osobou, kterou jste zablokovali.
+        block_desc_if_harassing_html: |
+          Pokud vás někdo obtěžuje nebo stalkuje na %{site_name},
+          <a href="mailto:%{help_email}">dejte nám prosím vědět</a>. Pokud představuje porušení našich smluvních podmínek nebo představuje jiné chování, které považujeme za nevhodné pro naše webové stránky, budeme to vyšetřovat.
         common_scientific_name_display_order: Zobrazení obecných a vědeckých názvů
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jestliže změníte svůj názor, můžete kdykoli
@@ -8948,6 +9150,7 @@ cs:
         exclude_donor_start_date: Vyloučit datum zahájení dárcovství
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Vyloučit datum ukončení dárcovství
+        excludes_non_site: Skrýt další oznámení v tomto umístění, která nemají ID webu
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Vyloučení pozorovatelů z aplikací

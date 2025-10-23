@@ -536,6 +536,14 @@ eu:
     Eraiki nahi duzunaren azalpen zehatzagoa eman behar duzu.
   app_owner_application_about_p1a_html: |
     iNaturalist aplikazioei esker, iNaturalist-en APIa modu kautotuan erabil daiteke. Horri esker, API deiak egin ditzakezu, oharrak edo identifikazioak sortzeko. Ohiko erabilera-kasuak aplikazioak dira, hala nola mahaigaineko aplikazioak edo aplikazio mugikorrak, erabiltzaileek iNaturalist-en oharrak sortzeko funtzioak dituztenak. Eduki hori giza parte-hartze edo gainbegiratze errealarekin sortu behar da. Irakurri makinek xehetasun gehiago lortzeko egiten dituzten oharrak, identifikazioak eta iruzkinak debekatzen dituzten <a href="/pages/community+guidelines"target="_blank">Community Guidelines</a>
+  app_owner_application_about_p2_html: |
+    2022tik aurrera, API bezeroak sortu nahi dituzten erabiltzaileentzat eskuz onartu behar dugu.
+    Hirugarrenen aplikazioak sortzeko, lehenik eta behin eskaera bat bidali behar duzu,
+    aplikazioaren "jabe" bat. Aplikazio horrek proposatutako aplikazioaren funtzionaltasuna deskribatu behar du.
+    eta nola erabiliko duen. Eskaera bat bidaltzeko, zure kontua
+    gutxienez 2 hilabete izatea eta gutxienez 10 urte bete behar izatea. <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Identifikazioak hobetzea</a> azken hilabetean. Jarraipena eska dezakegu
+    bere planari buruzko galderak egiten ditugu, eta edozein arrazoirengatik eskaerak atzera botatzeko eskubidea gordetzen dugu.
   app_owner_application_inelligible: |
     Eskaera bat bidali ahal izateko, zure kontuak gutxienez 2 hilabeteko antzinatasuna izan behar du, eta azken hilabetean gutxienez 10 identifikazio hobetu egin beharko dituzu.
   app_owner_application_fields_explanation_html: Deskribatu zure aplikazioak izango duen funtzionalitatea eta nola erabili nahi duzun.
@@ -614,6 +622,8 @@ eu:
   are_you_sure_you_want_to_delete_this_assessment?: Ziur zaude abaluazio hau ezabatu nahi duzula?
   are_you_sure_you_want_to_delete_this_photo?: Ziur zaude argazki hau ezabatu nahi duzula?
   are_you_sure_you_want_to_delete_this_post: Ziur zaude ohar hau ezabatu nahi duzula?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Ziur zaude soinu hau ezabatu nahi duzula?
   are_you_sure_you_want_to_delete_this_taxon_change: Ziur zaude espeziean edo taldean aldaketa hau ezabatu nahi duzula?
   are_you_sure_you_want_to_remove_all_tags: Ziur zaude etiketa guztiak kendu nahi dituzula?
   are_you_sure_you_want_to_remove_curator: Ziur zaude %{user} administratzaile gisa kendu nahi duzula?
@@ -626,6 +636,8 @@ eu:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Ziur zaude behaketa hau %{project}-etik ezabatu nahi duzula?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ziur zaude espezie edo egiaztapen-zerrendako taldea %{place}-ndik ezabatu nahi duzula?"
+  artificially_generated_content: Artifizialki sortutako edukia
+  artificially_generated_content_desc: Adimen artifizialaren bidez gehienbat edo osorik sortutako edukia dauka.
   associated_observations: Lotutako oharrak
   associated_taxa: Lotutako taxonak
   attention: Erne
@@ -913,6 +925,7 @@ eu:
   community_id_is_precise: Komunitatearen taxona zehatza da
   community_moderation_settings: Komunitatearen moderaziorako ezarpenak
   community_supported_id: Komunitateak aitortutako taxoia?
+  community_taxon_matches_observation_taxon: Erkidegoko taxoia behaketa taxonarekin bat dator
   compare: Alderatu
   compare_with: 'Honekin alderatu:'
   comparing: alderatzen
@@ -969,6 +982,12 @@ eu:
       Egoera hori hala dela erabaki duen erakundea. Erabili osatze automatikoa erregistratuta dagoen agintaritza hautatzeko erakunde berri bat gehitu aurretik. Pauso hori salta dezakezu atal horretan *zu* agertzea nahi baduzu.
     place: Estatus hori zein tokitan dagoen mugatuta.
     url: Estatus hau deskribatzen duen orrialde baterako URLa.
+    iucn: |
+      ICNren Zerrenda Gorriaren kode baliokidea. Hau ez da UICNren benetako ebaluazioa,
+      dibulgazio koordinatuaren mehatxuarekin ondoen egokitzen den UICNren kodea bakarrik
+      egoera honetan inplizituki. Horrek geopribazitatea baliogabetuko du, "gutxienekoa bada
+      Hitz egin" edo beherago, beraz, honen oharrak ezkutatu nahi badituzu
+      Taxon, ezarri hori "Casi mehatxatuan" edo goragokoan.
   conservation_status_geoprivacy_desc: |
     Leku horreko egiten diren taxon horren behaketa guztiei aplikatzen zaien geopribatutasun lehenetsia
   contact_support: Jarri harremanetan laguntzarekin
@@ -1144,6 +1163,8 @@ eu:
     proiektuari behatzea. Hori da aurrez zehaztutako konfigurazioa
     Oharrak proiektuetan. Begiraleek ere hau alda dezakete
     banakako oharrak.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Gaur egungo Erkidegoko Taxonak: %{taxon}"
   custom_project_fields: Pertsonalizatutako proiektu-eremuak
   #Button to customize projects that appear in the header
   customize__projects: Pertsonalizatu
@@ -1151,6 +1172,11 @@ eu:
   daily_users: Erabiltzaileak egunero
   danger_zone: Eremu arriskutsua
   dashboard: Taula
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Bai! Parte hartu nahi nuke."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Identifikazio-arrakalen pilotua: Nahi dituen espezieak identifikatu behar ditu"
   data_deficient: Datuak ez dira nahikoak
   data_quality: Data kalitatea
   data_quality_assessment: Datuen kalitatearen ebaluazioa
@@ -1229,6 +1255,8 @@ eu:
   delete_photo: Argazkia ezabatu
   delete_project: Proiektua ezabatu
   delete_selected: Hautatutakoak ezabatu
+  #Label for a button to delete a sound file
+  delete_sound: Ezabatu soinua
   delete_user: Erabiltzailea ezabatu
   delete_your_account: Zure kontua ezabatu
   deleted_synonyms: Sinonimoak ezabatu egin dira
@@ -1250,6 +1278,10 @@ eu:
   destroy: Desegin
   details: Xehetasunak
   deviation: Desbideraketa
+  devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Pasahitza berrezartzeko tokenak ez du balio. Erabili esteka berriki bidalitako pasahitza berrezartzeko posta elektronikoan, edo <a href="%{url}">Berri bat eskatu</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Klik egin hurrengo estekan zure helbide elektronikoa baieztatzeko. Zure posta elektronikoa baieztatzen ez baduzu
@@ -1270,6 +1302,8 @@ eu:
     Nematodoak aztertzen al dituzu? Lanpernen taxonomian munduko adituena al zara? Lore politei soilik gustatzen al zaizu begiratzea? Profila osatzeak nortasuna ematen dizu eta zure sinesgarritasuna indartzen du, beste batzuei identifikazioekin laguntzen diezunean.
   doesnt_have_default_photo: oraindik ez duzu lehenetsitako argazkirik.
   doh_something_went_wrong: Zerbait ez da ondo atera.
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Dohaintza
   done: Eginda
   dont_use_double_quotes: Ez erabili komatxo bikoitzak beste inon
   #Prompt shown when you are dragging a file somewhere and should release it to
@@ -1343,6 +1377,8 @@ eu:
   endemic: Endemikoa
   endemic_to_x: "honen endemikoa: %{x}"
   error_updating_photo: "Errorea argazkia igotzean: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Errorea soinua eguneratzean: %{sound_errors}"
   establishment:
     endemic: Endemikoa
     establishment: Sailkapena
@@ -1373,6 +1409,7 @@ eu:
   extinct: iraungia
   extinct_in_the_wild: Egoera basatian desagertua
   extra_properties: Estra propietateak
+  evidence_accurately_depicts_organism_or_scene: Frogak organismoa edo eszena zehatz-mehatz irudikatzen du
   evidence_of_organism: Organismoa egotearen susmoa
   facebook: Facebook
   failed_to_find_your_location: Zure kokapena aurkitzeak huts egin du.
@@ -1400,7 +1437,11 @@ eu:
   fields_: Eremuak
   fields_merged: Eremuak bateratu dira
   file: Fitxategia
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Fitxategi-formatua
   file_size: Fitxategiaren tamaina
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Fitxategiaren URLa
   file_should_be_in_the_following_format: "Fitxategiak formatu hau izan behar luke: espeziearen edo taldearen izena,\ndeskribapena"
   fill_out_your_profile: zure profila osatu
   #The name of a computer file
@@ -1529,6 +1570,8 @@ eu:
   header_your_projects: Zure proiektuak
   header_your_profile: Zure profila
   heads_up: Abisua
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "BURUA: soinu hau markatu egin da."
   heads_up_this_photo_is_already_associated_with: "KONTUZ: argazki hau dagoeneko lotuta dago <a target=_blank' href='%{url}>beste ohar batekin</a>"
   heads_up_you_have_multiple: "Abisuak. Hainbat etiketa taxonomiko sortu dituzu maila berdin-berdinetarako. Kolorearen arabera kodetuta daude eta aurrerago mailaren arabera."
   help: Laguntza
@@ -2159,6 +2202,8 @@ eu:
       zone: eremua
   place_guess: Lekuaren estimazioa
   place_imported: Tokia inportatuta!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Oharrek egun bat beharko dute leku honekin elkartzeko.
   place_must_have_a_boundary_defined: Tokiak definitutako mugak izan behar ditu.
   place_name: Izena kokatu
   place_notes: Oharrak kokatu
@@ -2209,6 +2254,20 @@ eu:
     west_africa: Mendebaldeko Afrika
   places_of_interest: Interesguneak
   places_merged_successfully: Tokiak behar bezala konbinatu dira!
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Lekuek ezin dute 700.000 kilometro karratu baino gehiago izan.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Lekuek ezin dute 70.000 kilometro karratu baino gehiago izan.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Lekuek ezin dituzte 200.000 ohar baino gehiago jaso.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Lekuek ezin dituzte 10.000 ohar baino gehiago jaso.
   plants: landareak
   please_add_a_citation_for_this_change: Erreferentzia gehitu behar duzu aldaketa honetarako.
   please_complete_the_following_to_add_project: |
@@ -2500,6 +2559,14 @@ eu:
     select_one_or_more_sounds: Hautatu soinu bat edo gehiago
     selected_sounds: Hautatutako soinuak
     sound: Soinua
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Soinua %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Soinua ezabatu da
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Soinua ezkutatuta
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Soinua ezkutatu gabea
     sounds: Soinuak
     your_soundcloud_account: zure SoundCloud kontua
   source: Iturria
@@ -2746,6 +2813,8 @@ eu:
   updated_by: 'Honek eguneratua:'
   updated_daily: Gaur eguneratua
   updated_photo: Argazkia igota
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Soinu eguneratua
   upload: Kargatu
   upload_a_csv_file: CSV fitxategia kargatu
   upload_a_csv_file_with_observation: |
@@ -2965,10 +3034,18 @@ eu:
         Iragarki hau geldituko den kontuaren ordu-eremuan ordua
         Agertu. Ordu-eremu guztietan aplikatzen da, eta, beraz, mundu guztiak ez du ikusiko
         aldi berean, ez bere ordu lokalari dagokionez.
+      excludes_non_site_desc: |
+        Zure iragarkia leku batera orientatzen bada (hori da aurrez zehaztutako balioa, bat bazara
+        Gunearen administratzailea), horrek leku guztietara zuzentzen diren iragarkiak baztertuko ditu.
+        kokapen hori.
       ip_countries_desc: |
         CMD edo MAYUS eta klik egin hainbat aukeratzeko. "Guztiak" aukeratu edo ez egin
         Aukeraketa batek erabiltzaile guztiei erakutsiko die iragarkia, edozein dela ere
         Jabetza intelektualeko herrialdea.
+      exclude_ip_countries_desc: |
+        CMD edo Maius sakatuta klik egin hainbat hautatzeko. Hautatutako herrialdeak ez dira erakutsiko
+        iragarkia. IP herrialdeak hautatzen badira, hautatu 'Baztertu IP herrialdeak'
+        Lehenengotik kenduko da.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Kontuan izan jabetza sortzeko data
@@ -3096,6 +3173,18 @@ eu:
       copy_tip: "Behaketa berria gehitu behaketa honen data, lekua, argazkiak eta behaketa-eremuak kopiatuta."
       captive_help_html: |
         Behatu zenuen organismoa <strong>landua</strong> edo <strong>gatibu</strong> izan al da? Esate baterako, <strong>lorategi, zoologiko edo akuario</strong> batean zegoen edo beste kokapen batean zegoen <strong>gizakiek han egotera zuzendu zutelako bakarrik</strong>? Izaki bizidunei buruzko behaketa guztiak ongi etorriak dira, baina izaki horiek basatiak ez ote diren edo naturalizatu egin diren jakin nahi genuke.
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          Izenburua <strong>Community Taxon eta Observation Taxon bat</strong>
+          (Behaketa-taxoia gehiago izan daitekeen kasu bakanetan,
+          Erkidegoko Taxon baino berezia)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Behaketa <strong>Organismoaren ebidentzia zehatzik ez aurkezten edo
+          eszena</strong> (adibidez, adimen artifiziala gehitzeko, kentzeko edo ordezkatzeko erabili zen.
+          Irudiaren edo soinuaren elementuak. Zarata kentzea, fokua pilatzea edo sortzea
+          sentsoreen hautsa kentzea bezalako konponketa txikiak normalean ondo daude).
     places:
       new:
         check_list_note: "Oharra: Egiaztapen-zerrendak automatikoki desaktibatzen dira leku oso handietarako."
@@ -3160,16 +3249,31 @@ eu:
     shared:
       not_found:
         sorry_that_doesnt_exist: Sentitzen dugu, hori ez da existitzen!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Jatorrizkoa ikus dezakezu hemen <a href="%{url}">%{url}</a>. Mesedez
+          Utzi egile-eskubideen urraketen banderak konpondu gabe soinu honek egiten badu
+          Egile-eskubideak urratzen dituzte.
     stats:
       index:
         observers_desc: Egun honetan behaketa bat gehitu da
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Espeziearen epitetoan aldaketa txikiak egin ditzakezu zuzenean (adibidez, genero aldaketak, ortografia okerra). Gehitu <a target="_blank" href="%{url}">Taxon trukea</a> Izena aldatu behar izanez gero.
       show:
         site_curators_disabled_wikipedia_html: |
           Webguneko kuradoreek aurkezpena bertan desgaitu dute <a href="%{url}">hau
           Wikipediaren edukia</a>. Orria argitaratzea lagun dezakezu
           Wikipedia, taxon honetarako egokia izan dadin, edo hau markatuz
           Taxon, setioko kuradoreen arreta erakartzeko.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Zerbait gaizki atera da etiketa horiek argitaratzen: %{message}
     users:
       dashboard:
         taxon_change_desc: |
@@ -3189,6 +3293,32 @@ eu:
           proiektuari gehitutako behaketen koordenatu pribatuak eta ezkutuak ikus
           ditzakete.
       edit:
+        block_desc_blocking_someone_prevents: |
+          Norbait blokeatu, ez bidali mezurik, zure komentatuz
+          oharrak, haien oharrak identifikatzea eta beste era batera elkarreraginea
+          zurekin %{site_name}. Bere oharpenak ere ezabatu egiten ditu
+          bilaketaren emaitzak eta bilaketaren oharrak ezabatu
+          Emaitzak. Hala ere, ez zaitu ikusezin bihurtzen haientzat. Baliteke
+          oraindik ere bere oharpenak aurkitzen ditu eta bere profila ikusten du, ezin dute
+          Zurekin elkarrerareragotzea.
+        block_desc_blocking_is_for_situations: |
+          Blokeoa ondo eraman ezin dituzun egoeretarako da
+          norbait, eta ez zaituzte bakean utziko, nahiz eta ahaleginik onenak egin
+          Eztabaidak modu zibilizatuan ebaztea. Ez da ezkutatzeko modu bat
+          pertsonak, iritziak dituzten pertsonen identifikazioak saihesteko
+          ez fidatu, edo komunitatearen ITan ez parte hartzea (beste bat
+          horretarako konfigurazioa). Beraz, blokeoak bi noranzkoetan funtzionatzen du: blokeatzen baduzu
+          norbaitek ezin du zurekin interaktuatu, baina zuk ere ezin duzu elkarrerarera egin
+          haiekin. Oker erabiltzen badu norbaitek berea ez identifikatzeko
+          oharrak, zureak identifikatzea ere eragozten dizu
+          Oharrak.
+        block_desc_you_can_only_block_html: |
+          Hiru pertsona baino ezin dituzu blokeatu. Hau bat dela uste dugu
+          blokeoa behar duten pertsonei egokitzen dien kopurua, bitartean
+          Blokeoaren abusuaren prebentzioa. Gehiago blokeatu behar duzula sentitzen baduzu
+          jendea, mesedez <a href="mailto:%{help_email}">jarri gurekin harremanetan</a>.
+        block_desc_there_are_two_exceptions: |
+          Bi egoeratan blokeoak ez du interakzioa eragozten:
         errors:
           #error message when a user attempts to update their profile picture using
           #an image that has an unsupported file type
@@ -3371,6 +3501,7 @@ eu:
         exclude_donor_start_date: Emailearen hasiera-data baztertzea
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Emailearen amaiera-data baztertzea
+        excludes_non_site: Leku honetan beste iragarki batzuk ezkutatzea, ID setiorik ez badute
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Aplikazioen behatzaileak kanpoan uztea

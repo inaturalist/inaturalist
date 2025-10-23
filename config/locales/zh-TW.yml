@@ -549,6 +549,14 @@ zh-TW:
     您必須對您想要打造的應用程式提供更詳細的解釋。
   app_owner_application_about_p1a_html: |
     愛自然的app允許經過驗證的使用愛自然API。這可允許您透過API來建立觀察記錄或進行鑑定。常見的使用案例如桌面應用程式或行動裝置app，包含了可以讓它們的使用者建立觀察記錄的功能。該內容必須在真實人類的參與或監督下產生。請在我們的 <a href="/pages/community+guidelines"target="_blank">社群守則</a> 閱讀更多有關禁止機器生成觀察記錄、鑑定，與留言的詳細資訊。
+  app_owner_application_about_p2_html: |
+    自 2022 年起，我們要求希望建立 API 用戶端的使用者手動核准。
+    若要建立第三方應用程式，您必須先提交申請才能成為
+    "應用程式擁有者”。此應用程式應描述您提議的應用程式的功能
+    以及您打算如何使用它。為了提交申請，您的帳戶必須
+    至少 2 個月大，並且必須在過去一個月內至少完成 10筆 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">改進中鑑定</a> 。我們可能會要求跟進
+    對您的計劃有疑問，我們保留以任何理由拒絕申請的權利。
   app_owner_application_inelligible: |
     在提交申請前，你的帳號註冊時間需要至少2個月以上，並在過去的一個月內完成10次改進中鑑定。
   app_owner_application_fields_explanation_html: 描述您的app將具有的功能以及您計畫如何使用它。
@@ -631,6 +639,8 @@ zh-TW:
   are_you_sure_you_want_to_delete_this_assessment?: 您確定要刪除此評估？
   are_you_sure_you_want_to_delete_this_photo?: 您確定要刪除此照片？
   are_you_sure_you_want_to_delete_this_post: 您確定要刪除此發表內容？
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: 你確定要刪除這個聲音嗎？
   are_you_sure_you_want_to_delete_this_taxon_change: 你確定要刪除此物種分類更改？
   are_you_sure_you_want_to_remove_all_tags: 您確定要刪除所有標籤?
   are_you_sure_you_want_to_remove_curator: 您確定要移除 %{user} 的策展人身份嗎？
@@ -644,6 +654,8 @@ zh-TW:
     您確定要從 %{project} 中移除這筆觀察記錄嗎？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您確定要從%{place}的名錄移除此分類群？"
   are_you_sure_you_want_to_flag_as_spammer: 您確定要將此使用者標記為垃圾訊息發送者嗎？
+  artificially_generated_content: 人工生成的內容
+  artificially_generated_content_desc: 包含大部分或全部由人工智慧產生的內容。
   associated_observations: 相關觀察
   associated_taxa: 相關物種分類
   attention: 注意
@@ -959,6 +971,7 @@ zh-TW:
   community_id_is_precise: 社群鑑定出來的分類群是準確的
   community_moderation_settings: 社群管制設定
   community_supported_id: 社群支持的分類群？
+  community_taxon_matches_observation_taxon: 群落分類單元與觀察分類單元相符
   compare: 比較
   compare_with: 比較與
   comparing: 比較
@@ -1027,6 +1040,12 @@ zh-TW:
     url: 描述此狀態的頁面 URL。
     geoprivacy: |
       該分類群的觀察紀錄所預設的地理資訊隱私權。 請注意，在大陸(例如歐亞大陸)、國家或州層級設定分類群的地理資訊隱私權，會覆蓋該分類群在全球或更高階層的地理隱私狀態。
+    iucn: |
+      等效的 IUCN 紅色名錄代碼。這不是實際的 IUCN 評估，
+      只是最符合坐標披露威脅的 IUCN 代碼
+      這種狀態所暗示的。如果地理隱私是「最小」，這將覆寫地理隱私
+      關注」或以下，所以如果你想模糊對此的觀察
+      分類單元，將其設置為“近危”或更高。
   conservation_status_geoprivacy_desc: |
     預設位置隱私會套用到在此地點上的所有分類群觀察
   contact_support: 聯絡支援
@@ -1352,17 +1371,26 @@ zh-TW:
     專案中的觀察結果。觀察者還可以選擇更改此設置
     個人觀察。
   curator_identification: 策展人鑑定
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "當前社區分類單元： %{taxon}"
   current_flags: 目前標記
   #Label for a custom boundary for an observation search
   custom_boundary: 自訂邊界
   custom_project_fields: 自訂專案欄位
   custom_project_was_successfully_created: 自訂專案建立成功。
   custom_project_was_successfully_updated: 自訂專案更新成功。
+  #Button to customize projects that appear in the header
+  customize__projects: 自訂
   customize_location: 自訂位置
   darr_apply_darr: "&darr; 申請 &darr;"
   daily_users: 每日使用者
   danger_zone: 危險操作區
   dashboard: 控制面板
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "是！我想參加。"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "識別差距試點：需要 ID 通緝物種"
   data_deficient: 資料不足
   data_quality: 資料品質
   data_quality_assessment: 資料品質估計
@@ -1453,6 +1481,8 @@ zh-TW:
   #Label for a button to delete a taxon range
   delete_range: 刪除分布範圍
   delete_selected: 刪除所選
+  #Label for a button to delete a sound file
+  delete_sound: 刪除聲音
   delete_taxon_and_merge_most_data_html: |
     刪除<i>%{taxon}</i>和合併資料多數內容至其它物種分類。使用此工具在<strong>移除重複內容物種分類群</strong>上。若您想要移除過時的同種異名，請先建立一個物種分類對換。<strong>請留意！</strong>刪除物種分類群可能會造成嚴重後果，請查看<a href="%{curator_url}">策展人指南</a>來取得更多詳細資訊。
   delete_user: 刪除用戶
@@ -1495,6 +1525,8 @@ zh-TW:
         請確認您的電子郵件，並點選郵件內附帶的連結，以驗證您的帳號。
       user:
         suspended: 您的帳號已被停用
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: 重置密碼令牌無效。請使用最近發送的重置密碼電子郵件中的連結，或 <a href="%{url}">申請新的</a>.
     sessions:
       signed_in: '已成功登入。'
       signed_out: '已成功登出。'
@@ -1585,6 +1617,8 @@ zh-TW:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: 贊助
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: 捐款
   donate_again_caps: 再次捐款
   donate_again_today_caps: 今天再次捐款
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1722,6 +1756,8 @@ zh-TW:
   eol: 生命大百科
   eol_collection_url: "生命大百科收藏 URL"
   error_updating_photo: "上傳照片錯誤： %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "更新聲音時出錯： %{sound_errors}"
   establishment:
     endemic: 特有
     establishment: 確立
@@ -1783,6 +1819,7 @@ zh-TW:
   extinct: 絕種
   extinct_in_the_wild: 在野外絕種
   extra_properties: 額外屬性
+  evidence_accurately_depicts_organism_or_scene: 證據準確地描繪了有機體或場景
   evidence_of_organism: 生物證據
   evidence_related_to_single_subject: 與單一觀察對象相關的證據
   facebook: Facebook
@@ -1814,7 +1851,11 @@ zh-TW:
   fields_can_only_be_edited_by_the_people_who: 欄位僅能被創建者或網站策展人編輯
   fields_merged: 欄位已合併
   file: 檔案
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: 檔案格式
   file_size: 檔案大小
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: 檔案網址
   file_should_be_in_the_following_format: "檔案應為以下格式：物種分類、描述"
   fill_out_project_observation_fields: 填寫專案觀察欄位
   fill_out_your_profile: 完成您的個人檔案
@@ -2062,6 +2103,8 @@ zh-TW:
   heads_up_there_are_other_draft_taxon_changes_html:
     other: "<strong>注意：</strong>有 %{count} 筆與輸入分類群相同的其他分類群更改草稿："
   heads_up_this_photo_has_been_flagged: "注意：此照片已被標記。"
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "注意：此聲音已被標記。"
   heads_up_this_photo_is_already_associated_with: "注意：此照片已關聯於<a target='_blank' href='%{url}'>其它觀察</a>"
   heads_up_you_have_multiple: "注意：您有多個用於鑑定級別的分類標籤。它們的色彩代碼是依照以下作排名。"
   help: 幫助
@@ -2855,6 +2898,8 @@ zh-TW:
   must_have_quality_grades: "必須符合品質等級為：%{grades}"
   must_have_sounds: 必須要有聲音檔
   must_have_x: "必須要有 %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: 禁言
   #Mute is a noun here
   mute_removed: 禁言已移除
   muted_users: 已被禁言的使用者
@@ -3083,6 +3128,8 @@ zh-TW:
   observation_: 觀察
   observation_accuracy_experiment_research_grade_results: "研究等級結果"
   observation_accuracy_experiment_verifiable_results: "可證實的結果"
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>請不要回覆此訊息。如果您有任何問題或反饋，請發送電子郵件至 <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "觀察已添加至專案「%{project}」"
   observation_aggregation: 觀察聚集
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3220,6 +3267,8 @@ zh-TW:
   observed_on: 觀察在
   observer: 觀察者
   observers: 觀察者
+  observer_prefers_addition_to_traditional_projects_joined: |
+    觀察者只允許其他人將觀察者的觀察紀錄加入到觀察者已加入的傳統專案中。
   observer_short: 觀察者
   occurence_status_describes_how: '發生狀態描述出在指定地區裡的普遍、或稀有程度。請查看達爾文核心集<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">來了解更多有關術語的訊息</a>。'
   occurrence_status: 事件狀態
@@ -3568,6 +3617,8 @@ zh-TW:
       zone: 地區
   place_guess: 地點猜測
   place_imported: 地點已匯入！
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: 觀察紀錄可能需要一天的時間才能與這個地點相關聯。
   place_must_have_a_boundary_defined: 地點必須要含有邊界定義。
   place_name: 地名
   place_notes: 地點註釋
@@ -3859,6 +3910,20 @@ zh-TW:
     編輯地點邊界是 iNat 速度減慢的最大來源之一。除非絕對必要，如果您能避免的話，盡量不要新增、更改或是移除地點邊界。
   places_warning_quota: |
     您一天中只能建立三個地點。
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    地點不能超過 700,000 平方公里。
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    地點不能超過 70,000 平方公里。
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    地點包含的觀察紀錄不能超過 200,000 個。
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    地點包含的觀察紀錄不能超過10,000個。
   places_warning_the_future: |
     不管怎麼說，有鑑於目前 iNat 成長的速度，我們將會在未來限制大家新增地點的條件。
   plants: 植物
@@ -4551,7 +4616,15 @@ zh-TW:
     select_one_or_more_sounds: 選擇一個或更多的聲音
     selected_sounds: 已選聲音
     sound: 聲音
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: 聲音 %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: 聲音刪除
     sound_has_been_flagged: 此聲音已被標記
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: 聲音隱藏
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: 聲音未隱藏
     soundcloud_replied_with_an_error: SoundCloud 回覆時出現錯誤。請稍後再重試。
     sounds: 聲音
     your_soundcloud_account: 您的 SoundCloud 帳號
@@ -4636,6 +4709,9 @@ zh-TW:
   submit_observations:
     other: 提交 %{count} 個觀察
   submitted: 提交
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: 訂閱
   subscribe_to_a_taxon: 訂閱一個物種分類
   subscribe_to_a_place: 訂閱一個地點
   subscribe_to_comments_on_this_flag_html: "%{tag_start}訂閱%{tag_end} 此標記的評論"
@@ -5099,6 +5175,8 @@ zh-TW:
   umbrella_projects: 綜合專案
   unblock: 解除封鎖
   unclassified: 未分類
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: 了解專案
   ungrafted_taxa: 未移接的物種分類
   unhide_content: 取消隱藏內容
   unhide_desc: |
@@ -5143,6 +5221,8 @@ zh-TW:
   updated_by_user_on_date_html: 在 %{date} 由 %{user} 所更新
   updated_daily: 每日更新
   updated_photo: 已更新照片
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: 更新的聲音
   upload: 上傳
   upload_a_csv_file: 上傳 CSV 檔案
   upload_a_csv_file_with_observation: |
@@ -5661,6 +5741,14 @@ zh-TW:
         此公告將停止的時間（以您的帳戶時區為準）
         出現。跨時區應用，因此所有人都不會再看到
         它同時，而不是相對於他們的當地時間。
+      excludes_non_site_desc: |
+        如果您的公告以網站為目標（如果您是
+        Site Admin）中，這將排除定位
+        這個位置。
+      exclude_ip_countries_desc: |
+        按住 CMD 或 SHIFT 鍵並按一下以選取多個。選定的國家/地區將不會顯示
+        公告。如果選取 IP 國家/地區，請選取 [排除 IP 國家/地區]
+        將從前者中減去。
       observation_oauth_application_ids_desc: |
         按住 CMD 或 Shift 鍵按下可選擇多個。選擇 「All」 或不進行
         選擇將向所有用戶顯示公告，而不管
@@ -6207,8 +6295,19 @@ zh-TW:
           此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
         disagreement_count_desc: "# 已鑑定物種分類群不在物種分類的祖先之中"
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          這 <strong>群落分類單元和觀察分類單元匹配</strong>
+          （在極少數情況下，觀察分類單元可能更多
+          具體於社區分類單元）
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           %{site_name}<strong>社群同意鑑定到種或種以下階層</strong>，即當超過三分之二的鑑定者同意該分類群（若社群投票決定鑑定出來的分類群無法進一步改善的話，則回到亞科或更低的解析度等級）。
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          觀察 <strong>沒有提供生物體的準確證據或
+          情景</strong> （例如，人工智慧被用來新增、刪除或取代
+          圖像或聲音中的元素。去噪、焦點堆疊或製作
+          清除傳感器灰塵等小修復通常沒問題）。
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: |
           一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
@@ -6678,6 +6777,14 @@ zh-TW:
       not_found:
         sorry_that_doesnt_exist: 很抱歉，那不存在！
         even_our_dedicated_search_mole_couldnt: 甚至我們專用的搜尋鼴鼠工具也找不到任何東西！
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          您可以在以下網址查看原件： <a href="%{url}">%{url}</a>.請
+          如果此聲音確實如此，請將版權侵權標誌保留為未解決
+          侵犯版權。
     stats:
       index:
         active_desc: 代表在前 30 日所建立的鑑定、觀察、評論、或發佈文章
@@ -6810,6 +6917,9 @@ zh-TW:
           我們根據<a target="_blank" href="%{url}">維基百科頁面</a>對於此分類群的
           簡短描述之無限期快取，直到手動更新頁面。重新整理此摘要也會立即更新
           我們顯示在網站上下方的維基百科內容快取，會在一週後自動更新。
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          您只能直接對物種綽號進行微小的更改（例如性別更改、拼寫錯誤）。新增 <a target="_blank" href="%{url}">分類單元交換</a> 如果您需要對名稱進行其他更改。
       show:
         about_conservation_status_desc: |
           保育狀態總結出一群生物的滅絕風險。
@@ -6867,6 +6977,9 @@ zh-TW:
         trending_desc: 在最近一個月的最多觀察物種分類群
         trending_in_place_desc_html: 上個月在<a href="%{url}">%{place}</a>最多觀察到物種分類
         wanted_desc: 物種分類中尚未被觀察到的物種。
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        在嘗試發布這些標籤時出了問題： %{message}
     taxon_changes:
       move_children_desc: |
         子項若為屬或較粗略內容，因而移動到種、亞種、變種、等其它輸出的所輸入物種分類，將會對換至同等之新的屬、或種名稱。
@@ -7311,6 +7424,7 @@ zh-TW:
       TaxonLink: 物種分類連結
     attributes:
       announcement:
+        excludes_non_site: 隱藏此版面中沒有網站ID的其他公告
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: 從應用程式中排除觀察者

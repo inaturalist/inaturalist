@@ -668,6 +668,14 @@ sl:
   #Label for an option to show/include content by any user
   any_user: Poljubno
   anyone: Kdorkoli
+  app_owner_application_about_p2_html: |
+    Od leta 2022 zahtevamo ročno odobritev za uporabnike, ki želijo ustvariti odjemalce API.
+    Če želite ustvariti aplikacije drugih ponudnikov, morate najprej oddati prijavo, da postanete
+    »lastnik aplikacije«. Ta aplikacija mora opisovati funkcionalnost predlagane aplikacije
+    in kako ga nameravate uporabiti. Če želite oddati vlogo, mora biti vaš račun na
+    stara najmanj 2 meseca in mora imeti vsaj 10 mesecev <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">izboljšanje identifikacije</a> v zadnjem mesecu. Lahko zahtevamo nadaljnje ukrepanje
+    vprašanja o vašem načrtu in pridržujemo si pravico, da iz kakršnega koli razloga zavrnemo prijave.
   app_owner_application_inelligible: |
     Za oddajo vloge mora biti vaš račun star vsaj 2 meseca in mora imeti
     vsaj 10 izboljšanih določitev v zadnjem mesecu.
@@ -700,10 +708,14 @@ sl:
   are_you_sure_remove_relationship: Ali ste prepričani, da želite odstraniti to zvezo? S tem boste prenehali slediti tej osebi in ji preprečili dostop do skritih koordinat, če ste je prej to omogočili.
   are_you_sure_want_delete_this_name: Ali ste prepričani, da želite izbrisati to ime?
   are_you_sure_want_delete_this_range: Ali ste prepričani, da želite izbrisati ta razpon?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Ali ste prepričani, da želite izbrisati ta zvok?
   are_you_sure_you_want_to_remove_from_project: Ali ste prepričani, da želite odstraniti uporabnika %{user} iz tega projekta?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Ali ste prepričani, da želite odstraniti to opazovanje iz projekta %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ali ste prepričani, da želite odstraniti ta takson iz kontrolnega seznama za %{place}?"
+  artificially_generated_content: Umetno ustvarjena vsebina
+  artificially_generated_content_desc: Vsebuje vsebino, ki je večinoma ali v celoti ustvarjena z umetno inteligenco.
   associated_observations: Povezana opazovanja
   associated_taxa: Povezani taksoni
   attention: Pozor
@@ -979,6 +991,7 @@ sl:
   community_id_at_species_level_or_lower: Takson skupnosti na ravni vrste ali natančneje
   community_id_is_precise: Takson skupnosti je natančen
   community_supported_id: Takson podprt od skupnosti?
+  community_taxon_matches_observation_taxon: Takson Skupnosti se ujema z opazovalnim taksonom
   compare: Primerjaj
   compare_with: Primerjaj z
   comparing: primerjanje
@@ -1041,6 +1054,12 @@ sl:
   conservation_status_descriptions:
     place: Kraj na katerega je omejen ta status.
     url: URL strani, ki opisuje ta status.
+    iucn: |
+      Enakovredna koda rdečega seznama IUCN. To ni dejanska ocena IUCN,
+      samo koda IUCN, ki se najbolje ujema z grožnjo razkritja koordinat
+      ki izhaja iz tega statusa. To bo preglasilo geozasebnost, če je »najmanj
+      Zaskrbljenost" ali spodaj, torej, če želite zakriti opažanja o tem
+      takson, nastavite to na »Skoraj ogroženo« ali več.
   conservation_status_geoprivacy_desc: |
     Privzeta geo-zasebnost je bila aplicirana na vsa opazovanja tega taksona v temu kraju
   contact_support: Stik s podporo
@@ -1250,6 +1269,8 @@ sl:
     opažanja v projektih. Opazovalci lahko to spremenijo tudi za
     posamezna opažanja.
   curator_identification: Določitev kustosa
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Sedanji takson Skupnosti: %{taxon}"
   current_flags: Trenutne prijave
   #Label for a custom boundary for an observation search
   custom_boundary: Meja po meri
@@ -1263,6 +1284,11 @@ sl:
   daily_users: Dnevni uporabniki
   danger_zone: Območje nevarnosti
   dashboard: Nadzorna plošča
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Da! Rad bi sodeloval."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Pilot identifikacijskih vrzeli: Potrebe ID želenih vrst"
   data_deficient: Pomanjkljivi podatki
   data_quality: Kakovost podatkov
   data_quality_assessment: Ocena kakovosti podatkov
@@ -1354,6 +1380,8 @@ sl:
   #Label for a button to delete a taxon range
   delete_range: Izbriši razpon
   delete_selected: Izbriši izbrano
+  #Label for a button to delete a sound file
+  delete_sound: Brisanje zvoka
   delete_taxon_and_merge_most_data_html: |
     Izbriši <i>%{taxon}</i> in združi večino njegovih podatkov v drug takson.
     To orodje se uporablja za <strong>odstranjevanje podvojenih taksonov</strong>.
@@ -1401,6 +1429,8 @@ sl:
         ki ste ga prejeli za potrditev vašega računa.
       user:
         suspended: Vaš račun je bil suspendiran
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Žeton za ponastavitev gesla je neveljaven. Prosimo, uporabite povezavo v zadnjem e-poštnem sporočilu za ponastavitev gesla ali <a href="%{url}">Zahtevajte novega</a>.
     sessions:
       signed_in: 'Uspešno ste se prijavili.'
       signed_out: 'Uspešno ste se odjavili.'
@@ -1503,6 +1533,8 @@ sl:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONIRAJTE
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Darovati
   donate_again_caps: DONIRAJTE PONOVNO
   donate_again_today_caps: DONIRAJTE PONOVNO DANES
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1625,6 +1657,8 @@ sl:
   eol: EOL
   eol_collection_url: "URL zbirke EOL"
   error_updating_photo: "Napaka pri posodabljanju fotografije: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Napaka pri posodabljanju zvoka: %{sound_errors}"
   establishment:
     endemic: Endemičen
     establishment: Vzpostavitev
@@ -1681,6 +1715,7 @@ sl:
   extinct: izumrl
   extinct_in_the_wild: Izumrl v divjini
   extra_properties: Posebne lastnosti
+  evidence_accurately_depicts_organism_or_scene: Dokazi natančno prikazujejo organizem ali prizor
   evidence_of_organism: Potrditev organizma
   evidence_related_to_single_subject: Dokazi povezani z enim subjektom
   facebook: Facebook
@@ -1718,7 +1753,11 @@ sl:
   fields_can_only_be_edited_by_the_people_who: Polja lahko urejajo samo tisti, ki so jih ustvarili in kustosi
   fields_merged: Polja združena
   file: Datoteka
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Oblika zapisa datoteke
   file_size: Velikost datoteke
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL datoteke
   file_should_be_in_the_following_format: "Datoteka mora biti v naslednji obliki: ime taksona, opis"
   fill_out_project_observation_fields: Izpolni opazovalna polja projekta
   fill_out_your_profile: dopolni svoj profil
@@ -1944,6 +1983,8 @@ sl:
   header_your_profile: Vaš profil
   heads_up: Pozor!
   heads_up_this_photo_has_been_flagged: "POZOR: ta fotografija je bila označena"
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "POZOR: ta zvok je bil označen."
   heads_up_this_photo_is_already_associated_with: "Pozor: ta fotografija je že povezana z <a target='_blank' href='%{url}'>drugim opazovanjem</a>"
   help: Pomoč
   help_confirm_observations!: Pomagaj pri potrjevanju določitev!
@@ -3414,6 +3455,8 @@ sl:
       Unknown: Neznano
       unknown: neznano
   place_imported: Kraj uvožen!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Lahko traja do en dan, da se opazovanja povežejo s tem krajem.
   place_name: Ime kraja
   place_notes: Opombe kraja
   place_too_big_for_check_list: |
@@ -3702,6 +3745,20 @@ sl:
     sestavljen iz več mest. Na primer, če želite narediti projekt za
     Novo Zelandijo in Avstralijo lahko samo dodate zahteve za dve mesti
     namesto da bi naredil novega.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Kraji ne smejo biti večji od 700.000 kvadratnih kilometrov.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Kraji ne smejo biti večji od 70.000 kvadratnih kilometrov.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Mesta ne smejo vsebovati več kot 200.000 opazovanj.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Mesta ne smejo vsebovati več kot 10.000 opazovanj.
   plants: rastline
   #Title to a section warning a user to exercise caution
   please_be_careful!: Prosimo bodite previdni!
@@ -4291,7 +4348,15 @@ sl:
     select_one_or_more_sounds: Izberite enega ali več zvokov
     selected_sounds: Izbrani zvoki
     sound: Zvok
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Zvok %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Zvok je izbrisan
     sound_has_been_flagged: Ta zvok je bil označen.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Zvok skrit
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Zvok neskrit
     soundcloud_replied_with_an_error: SoundCloud je odgovoril z napako. Prosimo poskusite ponovno kasneje.
     sounds: Zvoki
     your_soundcloud_account: vaš SoundCloud račun
@@ -4769,6 +4834,8 @@ sl:
   update_subscription: Posodobi naročnino
   update_subscription_preferences: Posodobi možnosti naročnine
   update_your_content: Posodobi svoje vsebine
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Posodobljen zvok
   upload: Prenesi
   upload_a_csv_file: Naloži CSV datoteko
   upload_new_photo: Naloži novo fotografijo
@@ -5234,6 +5301,14 @@ sl:
         Čas v časovnem pasu računa, ko se bo to obvestilo ustavilo
         Pojavljajo. Velja za vse časovne pasove, tako da vsi ne bodo več videli
         hkrati ne glede na njihov lokalni čas.
+      excludes_non_site_desc: |
+        Če je vaše obvestilo namenjeno spletnemu mestu (kar je privzeto, če ste
+        Skrbnik spletnega mesta), s tem izključite obvestila, ki ciljajo na vsa spletna mesta v
+        ta umestitev.
+      exclude_ip_countries_desc: |
+        Kliknite s CMD ali SHIFT, da izberete več. Izbrane države ne bodo prikazane
+        napoved. Če so izbrane države IP, izberite Izključi države IP
+        bo odšteto od prvega.
       observation_oauth_application_ids_desc: |
         CMD- ali SHIFT-kliknite, da izberete več. Izbira »Vse« ali ne ustvarjanje
         Izbor bo obvestilo prikazal vsem uporabnikom, ne glede na
@@ -5520,6 +5595,17 @@ sl:
           Nekateri atributi so samodejno določeni, medtem ko so druge predmet
           glasovanja uporabnikov. iNaturalist deli licencirana opažanja z raziskovalno
           oceno s številnimi partnerji za uporabo v znanosti in ohranjanju narave.
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Takson Skupnosti in takson opazovanja se ujemata</strong>
+          (za tiste redke primere, ko je opazovalni takson lahko več
+          specifično od taksona Skupnosti)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Ugotovitev <strong>ne predstavlja natančnih dokazov o organizmu ali
+          Scene</strong> (npr. umetna inteligenca je bila uporabljena za dodajanje, odstranjevanje ali zamenjavo
+          elementi v sliki ali zvoku. Odstranjevanje šuma, zlaganje fokusa ali izdelava
+          majhni popravki, kot je odstranjevanje prahu senzorja, so običajno v redu).
     emailer:
       collection_project_changed_for_trusting_member:
         #Followed by link to a page showing project managers
@@ -5807,6 +5893,14 @@ sl:
       not_found:
         sorry_that_doesnt_exist: Žal, to ne obstaja!
         even_our_dedicated_search_mole_couldnt: Niti naš poseben sledni krt ni našel ničesar!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Izvirnik si lahko ogledate na <a href="%{url}">%{url}</a>. Prosim
+          Označice kršitve avtorskih pravic pustite kot nerešene, če ta zvok
+          kršijo avtorske pravice.
     stats:
       index:
         active_desc: Ustvaril določitev, opazovanje, komentar ali objavo v zadnjih 30 dneh
@@ -5893,6 +5987,14 @@ sl:
           few: "POGLEJ %{count} PUBLIKACIJE"
           other: "POGLEJ %{count} PUBLIKACIJ"
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Neposredno lahko naredite le manjše spremembe epiteta vrste (npr. spremembe spola, napačno črkovanje). Dodajanje <a target="_blank" href="%{url}">Zamenjava taksonov</a> če potrebujete druge spremembe imena.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Opozorilo: pravkar ste dodali potomca zaklenjenega taksona (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Prosimo, razmislite o združitvi tega v obstoječi takson." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Pozor: starš tega aktivnega taksona je neaktiven, vendar je rezultat tega <a href='/taxon_changes/%{taxon_change_id}'> osnutek spremembe taksona</a> za katero predvidevamo, da se boste kmalu zavezali." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Ta aktivni takson ima več kot %{count} nadaljnjih opazovanj ali je zajet v taksonskem okviru, tako da lahko nekatere taksonomske atribute ureja le osebje ali kuratorji taksonov, povezani s tem taksonskim okvirom.
       show:
         about_names_desc: |
           <p>
@@ -5972,6 +6074,57 @@ sl:
         trending_desc: Najbolj opazovani taksoni v zadnjem mesecu.
         trending_in_place_desc_html: Najbolj opazovani taksoni v zadnjem mesecu v <a href="%{url}">%{place}</a>
         wanted_desc: Vrste iz tega taksona, ki še nimajo opazovanj.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Imena morajo biti podobna pri neposrednem urejanju, naredite zamenjavo taksonov za radikalne spremembe imen
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} fotografijam ne moremo dodajati oznak, dokler Flickr ne ve, da ste nam dali dovoljenje.
+        <a href='%{url}'>Dodelitev dovoljenja za Flickr</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Nekaj je šlo narobe, ko sem poskušal objaviti te oznake: %{message}
+    taxon_changes:
+      #state of a pending taxon change
+      pending: Do
+      #state of a approved taxon change
+      approved: odobren
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Glasovanje dodano
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Glasovanje odstranjeno
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Še ni glasov
+      #message when taxon change is committed
+      taxon_change_committed: Sprememba taksona je bila storjena! Zapisi, ki jih je mogoče samodejno posodobiti, bodo kmalu spremenjeni.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Ta sprememba taksona je zdaj v teku. Za zavezo je potrebna odobritev 1 kustosa."
+        two: "Ta sprememba taksona je zdaj v teku. Potrebna je odobritev s strani %{count} kustosi, da se lahko zavežejo."
+        few: "Ta sprememba taksona je zdaj v teku. Potrebna je odobritev s strani %{count} kustosi, da se lahko zavežejo."
+        other: "Ta sprememba taksona je zdaj v teku. Potrebna je odobritev s strani %{count} kustosi, da se lahko zavežejo."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Vhodni takson ne more imeti aktivnih otrok, jih najprej premakniti ali izbrati možnosti »Premakniti otroke v izhod?«
+      output_taxon_rank_level_not_coarser_html: >
+        Raven razvrstitve izhodnega taksona ni groba od ravni razvrstitve aktivnih podrejenih oseb vhodnega taksona %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Ta taksonomska sprememba je bila že storjena!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Nekaj je šlo narobe pri brisanju spremembe taksona '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Sprememba taksona je bila izbrisana.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Sprememba taksona je bila uspešno posodobljena.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Spremembe niso določene
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Sprememba taksona je bila uspešno ustvarjena.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Za zavezo je potrebna odobritev 1 drugega kustosa"
+        two: "Zahteva odobritev s strani %{count} drugi kuratorji, ki se bodo zavezali"
+        few: "Zahteva odobritev s strani %{count} drugi kuratorji, ki se bodo zavezali"
+        other: "Zahteva odobritev s strani %{count} drugi kuratorji, ki se bodo zavezali"
     users:
       dashboard:
         taxon_change_desc: |
@@ -6448,6 +6601,7 @@ sl:
         #not confirmed their email address
         prefers_target_unconfirmed_users: Ciljni nepotrjeni uporabniki
         clients: Stranke
+        excludes_non_site: Skrivanje drugih obvestil na tej postavitvi, ki nimajo ID-ja mesta
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Izključitev opazovalcev iz aplikacij
@@ -6878,6 +7032,30 @@ sl:
               bad_format: |
                 lahko vsebuje samo latinske znake, pomišljaje, presledke in ×;
                 upoštevajte, da domnevni taksoni in kultivarji niso dovoljeni
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Spremembe imen niso dovoljene za viruse, bakterije ali necepljene klade"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Spremembe imen niso dovoljene za razrede, ki so bolj grobi od vrst"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Spremembe imen niso dovoljene za hibridne formule"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "ne more dodati \"x\" kot hibridni označevalec med rodom in vrsto"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "mora biti binomska (vrsta rodu) za preverjanje"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "rod se ne more spremeniti"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "nestandardno ime vrste: dovoljeno je samo odstraniti \"x\"/\"×\" ali dodati \"×\""
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "specifični epitet mora biti podoben (samo manjša tipkarska napaka/spol)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "infraspecifični epitet, ki je potreben za ta rang"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "za infraspecifične range se lahko spremeni samo infraspecifični epitet"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "infraspecifični epitet mora biti podoben (samo manjša tipkarska napaka/spol)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "prva črka katerega koli epiteta se ne more spremeniti."
         taxon_change:
           attributes:
             base:

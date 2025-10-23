@@ -1,4 +1,8 @@
 pt:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} modificação"
+    other: "%{count} mudanças"
   x_comments:
     one: '1 comentário'
     other: '%{count} comentários'
@@ -23,6 +27,15 @@ pt:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICAÇÃO'
     other: '<span class="count">%{count}</span> IDENTIFICAÇÕES'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFICADOR'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFICADORES'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> identificação a outros'
+    other: '<span class="count">%{count}</span> identificações a outros'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomas"
@@ -70,6 +83,9 @@ pt:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observação revista"
     other: "<span class='count'>%{count}</span> observações revistas"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVADOR'
+    other: '<span class="count">%{count}</span> OBSERVADORES'
   x_others:
     one: "1 outro"
     other: "%{count} outros"
@@ -622,6 +638,14 @@ pt:
     que incluem a funcionalidade para seus usuários criarem observações da iNaturalist. Este conteúdo deve ser gerado com envolvimento humano
     ou com supervisão. Por favor, para mais detalhes, leia as nossas <a href="/pages/community+guidelines"
     target="_blank">Diretrizes da Comunidade</a> proibindo observações, identificações e comentários gerados por máquinas.
+  app_owner_application_about_p2_html: |
+    A partir de 2022, estamos exigindo aprovação manual para usuários que desejam fazer clientes de API.
+    Para criar aplicativos de terceiros, você deve primeiro enviar um aplicativo para se tornar
+    um "proprietário de aplicativo". Esta aplicação deve descrever a funcionalidade da sua aplicação proposta
+    e como você planeja usá-lo. Para submeter uma candidatura, a sua conta deve estar em
+    Pelo menos 2 meses de idade e deve ter feito pelo menos 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">melhorar as identificações</a> no último mês. Podemos pedir acompanhamento
+    perguntas sobre o seu plano e reservamo-nos o direito de recusar candidaturas por qualquer motivo.
   app_owner_application_inelligible: |
     Para enviar uma candidatura, a sua conta deve ter pelo menos 2 meses e
     deve ter feito pelo menos 10 identificações melhoradas no mês passado.
@@ -707,6 +731,8 @@ pt:
   are_you_sure_you_want_to_delete_this_assessment?: Tem a certeza que quer eliminar esta avaliação?
   are_you_sure_you_want_to_delete_this_photo?: Tem a certeza que quer eliminar esta fotografia?
   are_you_sure_you_want_to_delete_this_post: Tem a certeza que quer eliminar esta publicação?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Tem a certeza de que pretende eliminar este som?
   are_you_sure_you_want_to_delete_this_taxon_change: Tem a certeza que quer eliminar esta alteração taxonómica?
   are_you_sure_you_want_to_remove_all_tags: Tem a certeza que quer eliminar todas as etiquetas?
   are_you_sure_you_want_to_remove_curator: Tem a certeza que quer remover %{user} como curador?
@@ -720,6 +746,8 @@ pt:
     Tem a certeza que deseja remover esta observação de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Tem a certeza que quer remover este táxon da lista de verificação de %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Tem certeza que deseja marcar este utilizador como spammer?
+  artificially_generated_content: Conteúdo gerado artificialmente
+  artificially_generated_content_desc: Contém conteúdo que é maioritariamente ou totalmente gerado através de inteligência artificial.
   associated_observations: Observações associadas
   associated_taxa: Táxons associados
   attention: Atenção
@@ -809,6 +837,14 @@ pt:
   back_to_your_profile: Voltar ao seu perfil
   badges: Emblemas
   base_map_copyright_openstreetmap_html: Mapa base ©️ %{startTag}OpenStreetMap%{endTag}
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Com base numa amostra de %{percent}% de identificações, estimamos que
+      resultará em <strong>%{count} discordância</strong> com identificações de %{child}.
+    other: |
+      Com base numa amostra de %{percent}% de identificações, estimamos que
+      resultará em <strong>%{count} discordâncias</strong> com identificações de %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Baseando na evidência, a ID da comunidade pode ainda ser confirmado ou melhorado?
   batch: Conjunto
@@ -853,6 +889,7 @@ pt:
   calendar: Calendário
   calendars_only_show_x_observations_at_time: Os calendários só mostram %{x} observações ao mesmo tempo
   cancel: Cancelar
+  cant_edit_or_delete_hidden_content: Não é possível editar ou eliminar conteúdo omitido por curadores do site
   cant_flag_an_object_that_doesnt_exist: Não pode sinalizar um objeto que não existe
   cant_merge_a_taxon_with_itself: Não é possível fundir um taxon com ele mesmo.
   captive: Cativo
@@ -989,6 +1026,7 @@ pt:
   community_id_is_precise: O táxon da comunidade é preciso
   community_moderation_settings: Definições de Moderação da Comunidade
   community_supported_id: Identificação confirmada pela comunidade?
+  community_taxon_matches_observation_taxon: Taxon da Comunidade corresponde ao Táxon de Observação
   compare: Comparar
   compare_with: Comparar com
   comparing: comparando
@@ -1040,6 +1078,12 @@ pt:
       de um status associado a um continente, país, ou
       local de nível de estado pode substituir um status que é global ou associado
       com um lugar de nível superior.
+    iucn: |
+      Código equivalente da Lista Vermelha da UICN. Esta não é a avaliação propriamente dita da UICN,
+      apenas o código da UICN que melhor corresponde à ameaça de divulgação coordenada
+      implícito por este estatuto. Isso substituirá a geoprivacidade se for "Menos
+      Preocupação" ou abaixo, portanto, se você quiser obscurecer as observações sobre isso
+      taxon, defina isso como "Quase ameaçado" ou acima.
   contain_all_descendants?: Esta checklist contém todos os representantes deste taxon que ocorrem na área?
   content_and_display: Conteúdo & Exibição
   continue: Continuar
@@ -1284,6 +1328,8 @@ pt:
     observações em projetos. Os observadores também podem optar por alterar esta opção para
     observações individuais.
   curator_identification: Identificação do Curador
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Taxon comunitário atual: %{taxon}"
   current_flags: Sinalizadores Atuais
   custom_project_fields: Personalize os campos de projeto
   #Button to customize projects that appear in the header
@@ -1291,6 +1337,11 @@ pt:
   customize_location: Personalizar a Localização
   darr_apply_darr: "&darr; Aplicar &darr;"
   danger_zone: Zona perigosa
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Sim! Gostaria de participar."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Identificação de lacunas piloto: precisa de identificação de espécies procuradas"
   data_deficient: informação insuficiente
   data_quality: Qualidade dos Dados
   data_quality_assessment: Avaliação da Qualidade dos Dados
@@ -1364,6 +1415,8 @@ pt:
   delete_photo: Eliminar fotografia
   delete_project: Eliminar este projeto
   delete_selected: Eliminar Seleccionados
+  #Label for a button to delete a sound file
+  delete_sound: Excluir som
   delete_taxon_and_merge_most_data_html: |
     Apague <i>%{taxon}</i> e inclua a maioria da sua informação noutro táxon. Utilize esta ferramenta para <strong>removendo taxa repetidos</strong>. Se quiser remover um sinónimo desactualizado, por favor crie um táxon de troca. <strong>Cuidado!</strong> Apagar taxa pode ser muito destrutivo. Verifique o
     <a href="%{curator_url}">Guia do Curador</a> para mais detalhes.
@@ -1391,6 +1444,8 @@ pt:
     failure:
       user:
         suspended: A sua conta foi suspensa
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: O token de redefinição de palavra-passe é inválido. Por favor, use o link no e-mail enviado mais recentemente, ou <a href="%{url}">solicite um novo</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Por favor, clique no link abaixo para confirmar o seu endereço de e-mail. Se não confirmar o seu e-mail
@@ -1427,6 +1482,8 @@ pt:
   doesnt_have_default_photo: ainda não tem uma foto pré-definida
   doh_something_went_wrong: Ups, algo correu mal.
   doh_something_went_wrong_error: "Ocorreu algo de errado: %{error}"
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Doações
   done: Concluído
   dont_have_an_account_sign_up_html: Ainda não tem conta? <strong>Registe-se.</strong>
   dont_use_double_quotes: Não utilize aspas em nenhum outro lugar
@@ -1532,6 +1589,8 @@ pt:
   eol: EOL
   eol_collection_url: "URL da coleção EOL"
   error_updating_photo: "Erro ao atualizar a fotografia: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Erro ao atualizar o som: %{sound_errors}"
   establishment:
     endemic: endémico
     establishment: Estabelecimento
@@ -1570,6 +1629,7 @@ pt:
   extinct: extinto
   extinct_in_the_wild: extinto na natureza
   extra_properties: Propriedades Extra
+  evidence_accurately_depicts_organism_or_scene: As evidências retratam com precisão o organismo ou a cena
   evidence_of_organism: Evidência de organismo
   failed_to_find_your_location: Falha ao procurar a sua localização.
   failed_to_repair_photo: "Não foi possível reparar a fotografia: %{errors}"
@@ -1599,6 +1659,10 @@ pt:
   fields_can_only_be_edited_by_the_people_who: Os campos só podem ser editados pelas pessoas que os criaram e os curadores do sítio
   fields_merged: Campos combinados
   file: Ficheiro
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Formato do ficheiro
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL do ficheiro
   file_should_be_in_the_following_format: "O campo deve estar no seguinte formato: nome do táxon, descrição"
   fill_out_project_observation_fields: Preencha os campos de observação do projeto
   fill_out_your_profile: preencha o seu perfil
@@ -1736,6 +1800,8 @@ pt:
   hasnt_contributed_any_observations: não contribuiu com nenhuma observação a este projeto.
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "ATENÇÃO: esta fotografia foi sinalizada."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: este som foi sinalizado."
   heads_up_this_photo_is_already_associated_with: "Atenção: esta fotografia já está associada com <a target='_blank' href='%{url}'>outra observação</a>"
   heads_up_you_have_multiple: "Aviso: Você tem múltiplas etiquetas de máquina para ordens idênticas. Elas são apresentadas por ordem com uma cor, em baixo."
   help: Ajuda
@@ -2761,6 +2827,8 @@ pt:
       Zone: Zona
       zone: zona
   place_imported: Lugar importado!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Pode demorar até um dia para que as observações sejam associadas a este local.
   place_must_have_a_boundary_defined: O Lugar deve ter um limite definido.
   place_name: Nome do lugar
   place_notes: Notas do lugar
@@ -3300,6 +3368,14 @@ pt:
     select_one_or_more_sounds: Selecionar um ou mais sons
     selected_sounds: Sons selecionados
     sound: Som
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Som %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Som suprimido
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Som escondido
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Som não escondido
     soundcloud_replied_with_an_error: O SoundCloud respondeu com um erro. Por favor tente mais tarde.
     sounds: Sons
     your_soundcloud_account: sua conta do SoundCloud
@@ -3516,6 +3592,8 @@ pt:
   updated_by: Atualizado por
   updated_daily: Atualizado diariamente
   updated_photo: Foto atualizada
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Som atualizado
   upload: Carregar
   upload_a_csv_file_with_observation: |
     Carregar um ficheiro CSV com dados observados. Se tem os seus dados numa folha de cálculo ou numa base de dados, provavelmente é a sua melhor opção.
@@ -3684,6 +3762,14 @@ pt:
         Hora no fuso horário da sua conta que este anúncio irá parar
         aparecendo. Aplica-se em fusos horários, para que todos parem de ver
         ao mesmo tempo, não em relação à sua hora local.
+      excludes_non_site_desc: |
+        Se o seu anúncio tiver como alvo um site (que é o padrão se você for um
+        Site Admin), isso excluirá anúncios direcionados a todos os sites em
+        esta colocação.
+      exclude_ip_countries_desc: |
+        CMD- ou SHIFT-clique para selecionar vários. Os países selecionados não serão mostrados
+        o anúncio. Se os países IP estiverem selecionados, selecione Excluir países IP
+        serão subtraídos do primeiro.
       observation_oauth_application_ids_desc: |
         CMD- ou SHIFT-clique para selecionar vários. Selecionar "Todos" ou não fazer
         Uma seleção mostrará o anúncio para todos os usuários, independentemente de:
@@ -3810,6 +3896,18 @@ pt:
       export:
         date_range_help: "Datas máxima e mínima observadas em formato AAAA-MM-DD, por exemplo 2015-01-17"
         created_on_help: "Data em que as observações foram criadas, não observadas, i.e. 2015-01-17, 2015-01, 2015"
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          o <strong>Taxon da Comunidade e Táxon de Observação</strong>
+          (para as raras ocasiões em que o Táxon de Observação pode ser mais
+          específicos do que o Taxon Comunitário)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          A observação <strong>não apresentar provas precisas do organismo ou
+          cena</strong> (por exemplo, a inteligência artificial foi usada para adicionar, remover ou substituir
+          elementos na imagem ou no som. Denoising, empilhamento de foco, ou fazer
+          pequenas correções, como remover a poeira do sensor geralmente é OK).
     emailer:
       collection_project_changed_for_trusting_member:
         #Followed by link to a page showing project managers
@@ -3874,6 +3972,14 @@ pt:
           com coordenadas ocultas, para que eles tenham a opção de decidir se
           ainda querem confiar no projeto, dados os novos requisitos.
         welcome_to_projects: Bem-vindo ao projeto!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Pode ver o original em <a href="%{url}">%{url}</a>. Por favor
+          deixar sinalizadores de violação de direitos autorais como não resolvidos se este som não for
+          infringir direitos de autor.
     stats:
       year:
         compare_desc: |
@@ -3916,6 +4022,13 @@ pt:
           Breve resumo deste táxon com base na sua <a target="_blank"
           href="%{url}">página da Wikipédia</a> que armazenamos indefinidamente até que
           seja atualizado manualmente. Atualizando este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Você só pode fazer pequenas alterações no epíteto da espécie diretamente (por exemplo, mudanças de gênero, erros ortográficos). Adicionar um <a target="_blank" href="%{url}">Troca de táxons</a> se precisar de outras alterações ao nome.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Cabeças para cima: você acabou de adicionar um descendente de um táxon bloqueado (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Por favor, considere fundir isso em um táxon existente." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Head-up: o pai deste táxon ativo está inativo, mas é a saída deste <a href='/taxon_changes/%{taxon_change_id}'> Projeto de alteração do táxon</a> que assumimos que se comprometerá em breve." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Este táxon ativo tem mais de %{count} observações a jusante ou é coberto por uma estrutura de táxon, de modo que alguns atributos taxonômicos só podem ser editados por funcionários ou curadores de táxons associados a essa estrutura de táxons.
       show:
         frequency:
           "Life Stage=Egg": Ovo
@@ -3933,6 +4046,53 @@ pt:
           conteúdo da Wikipédia</a>. Você pode ajudar editando a página em
           Wikipédia para torná-lo apropriado para este táxon, ou sinalizando este
           taxon para chamar a atenção dos curadores do site.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Os nomes devem ser semelhantes ao editar diretamente, fazer uma troca de táxon para mudanças radicais de nome
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} não pode adicionar tags às suas fotos até que o Flickr saiba que você nos deu permissão.
+        <a href='%{url}'>Conceder permissão ao Flickr</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Algo deu errado tentando postar essas tags: %{message}
+    taxon_changes:
+      #state of a pending taxon change
+      pending: pendente
+      #state of a approved taxon change
+      approved: Aprovado
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Votação adicionada
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Voto removido
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Ainda sem votos
+      #message when taxon change is committed
+      taxon_change_committed: Mudança de táxon comprometida! Os registos que podem ser atualizados automaticamente serão alterados em breve.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Esta alteração do táxon está agora pendente. Requer aprovação de 1 curador para poder se comprometer."
+        other: "Esta alteração do táxon está agora pendente. Requer aprovação por %{count} curadores para poder se comprometer."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        O táxon de entrada não pode ter filhos ativos, mova-os primeiro ou selecione a opção 'Mover filhos para a saída?'
+      output_taxon_rank_level_not_coarser_html: >
+        Nível de classificação do táxon de saída não mais grosseiro do que o nível de classificação dos filhos ativos do táxon de entrada %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Esta mudança taxonómica já estava comprometida!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Algo correu mal ao eliminar a mudança de táxon »%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: A alteração do táxon foi excluída.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: O Taxon Change foi atualizado com sucesso.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Nenhuma alteração especificada
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: O Taxon Change foi criado com êxito.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Requer aprovação de 1 outro curador para se comprometer"
+        other: "Requer aprovação por %{count} outros curadores a comprometer-se"
     users:
       edit:
         inaturalist_network_affiliation_desc_html: |
@@ -4130,6 +4290,7 @@ pt:
       announcement:
         #Whether or not the announcement can be dismissed by people who see it
         dismissible: Improcedente
+        excludes_non_site: Ocultar outros anúncios neste posicionamento que não tenham ID do Site
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Excluir observadores de aplicativos
@@ -4266,6 +4427,31 @@ pt:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 só pode ser alterado pelo curador deste táxon
+            name:
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "alterações de nome não permitidas para vírus, bactérias ou clados não enxertados"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Não são permitidas alterações de nome para classificações mais grosseiras do que espécies"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Não são permitidas alterações de nome para fórmulas híbridas"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "não pode adicionar «x» como marcador híbrido entre género e espécie"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "deve ser binomial (espécie do género) para verificação"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "O género não pode mudar"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "nome de espécie não normalizado: só é permitida a remoção de «x»/«×» ou o aditamento de «×»"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "epíteto específico deve ser semelhante (apenas tipo de erro de digitação menor/sexo)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "epíteto infraespecífico necessário para esta classificação"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "apenas o epíteto infraespecífico pode mudar para os escalões infraespecíficos"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "epíteto infraespecífico deve ser semelhante (apenas tipo de erro tipo/sexo menor)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "a primeira letra de qualquer epíteto não pode mudar."
         taxon_change:
           attributes:
             base:
