@@ -16,6 +16,7 @@ describe TaxaController do
       expect( response ).to be_redirect
     end
   end
+
   describe "show" do
     render_views
     let( :taxon ) { Taxon.make! }
@@ -40,6 +41,12 @@ describe TaxaController do
       expect( response.body ).to have_tag(
         "link[rel=canonical][href='#{taxon_url( taxon, host: Site.default.url )}']"
       )
+    end
+
+    it "does not raise an error if preferred_taxon_page_place_id session variable is a string" do
+      expect( INatAPIService ).to receive( "get_json" ) { {}.to_json }
+      session[:preferred_taxon_page_place_id] = "string"
+      expect { get( :show, params: { id: taxon.id } ) }.not_to raise_error
     end
   end
 

@@ -205,7 +205,7 @@ class TaxaController < ApplicationController
         @node_taxon_json = INatAPIService.get_json( api_url, options )
         return render_404 unless @node_taxon_json
 
-        @node_place_json = if place_id.blank? || place_id.zero?
+        @node_place_json = if place_id.blank? || place_id.to_i.zero?
           nil
         else
           INatAPIService.get_json( "/places/#{place_id.to_i}" )
