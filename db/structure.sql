@@ -11083,17 +11083,17 @@ CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 
 
 --
--- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_votes_on_unique_obs_fave ON public.votes USING btree (votable_type, votable_id, voter_type, voter_id) WHERE (((votable_type)::text = 'Observation'::text) AND ((voter_type)::text = 'User'::text) AND (vote_scope IS NULL) AND (vote_flag = true));
-
-
---
 -- Name: index_votes_on_votable_id_and_votable_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_votes_on_votable_id_and_votable_type_and_vote_scope ON public.votes USING btree (votable_id, votable_type, vote_scope);
+
+
+--
+-- Name: index_votes_on_votable_voter_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_votes_on_votable_voter_scope ON public.votes USING btree (votable_type, votable_id, voter_type, voter_id, vote_scope);
 
 
 --
@@ -11746,5 +11746,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250807145445'),
 ('20250826232001'),
 ('20250903221143'),
-('20250905224234');
+('20250905224234'),
+('20251010205509');
 

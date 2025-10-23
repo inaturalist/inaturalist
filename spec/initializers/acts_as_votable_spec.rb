@@ -2,6 +2,13 @@
 
 require "spec_helper"
 
+RSpec.describe ActsAsVotable::Vote, type: :model do
+  it do
+    is_expected.to validate_uniqueness_of( :vote_scope ).
+      scoped_to :votable_type, :votable_id, :voter_type, :voter_id
+  end
+end
+
 describe ActsAsVotable::Vote do
   it "associated with proper votables" do
     u = make_user_with_privilege( UserPrivilege::INTERACTION )
