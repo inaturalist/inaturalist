@@ -7321,6 +7321,10 @@ nl:
         private_place_guess: |
           Waarnemingslocatie zoals opgeschreven door de waarnemer als de locatie verborgen is
         public_positional_accuracy: Maximale horizontale positieonzekerheid in meters; Omvat onzekerheid toegevoegd door coördinaatsvervaging
+        taxon_class_name: |
+          Naam van de taxonomische klasse die het waargenomen taxon bevat
+        taxon_family_name: |
+          Naam van de taxonomische familie die het waargenomen taxon bevat
         uuid: |
           Universeel unieke identifier voor de waarneming. Zie
           https://datatracker.ietf.org/doc/html/rfc9562
