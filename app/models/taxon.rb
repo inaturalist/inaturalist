@@ -425,6 +425,7 @@ class Taxon < ApplicationRecord
     "chiton",
     "cicada",
     "creeper",
+    "colombia",
     "eos",
     "gall",
     "hong kong",
