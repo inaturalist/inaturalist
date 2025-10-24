@@ -16,6 +16,9 @@ body > [role="dialog"] .Annotations {
   tbody td {
     line-height: 22px !important;
   }
+  tbody tr:nth-child(odd) {
+    background: white;
+  }
   .dropdown {
     button {
       margin: 0px 0px 2px 12px;
