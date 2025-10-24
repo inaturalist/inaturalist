@@ -182,7 +182,7 @@ class QualityMetrics extends React.Component {
               <i className="fa fa-gavel" />
             </div>
             <div className="column">
-              { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
+              { I18n.t( "based_on_the_evidence_can_id_be_improved_2" ) }
               { currentCommunityTaxon }
               <div className="inputs">
                 <div className="yes">
