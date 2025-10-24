@@ -136,4 +136,28 @@ describe TaxonChange do
       expect( tc.status ).to eq( "committed" )
     end
   end
+
+  describe "mentions" do
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
+    let( :u ) { User.make! }
+    let( :t ) { Taxon.make! }
+
+    it "does not generate a mention update if the description was not updated after the initial action expired out" do
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
+      tct = without_delay { TaxonChange.make!( taxon: t, description: "hey @#{u.login}" ) }
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: tct ) ).to eq true
+      UpdateAction.user_viewed_updates( UpdateAction.where( notifier: tct ), u.id )
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: tct ) ).to eq false
+      # Delete from UpdateAction to simulate expiring out after 90 days
+      UpdateAction.elastic_delete_by_ids!( UpdateAction.where( notifier: tct ).map( &:id ) )
+      UpdateAction.where( notifier: tct ).delete_all
+
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        without_delay { tct.update( taxon: Taxon.make!( rank: Taxon::SPECIES ) ) }
+      end
+      expect( UpdateAction.where( notifier: tct ) ).to be_empty
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
+    end
+  end
 end

@@ -90,15 +90,14 @@ describe Comment do
   describe "mentions" do
     before { enable_has_subscribers }
     after { disable_has_subscribers }
+    let( :u ) { User.make! }
 
     it "knows what users have been mentioned" do
-      u = User.make!
       c = Comment.make!( body: "hey @#{u.login}" )
       expect( c.mentioned_users ).to eq [u]
     end
 
     it "generates mention updates" do
-      u = User.make!
       c = Comment.make!( body: "hey @#{u.login}" )
       expect( UpdateAction.where( notifier: c, notification: "mention" ).count ).to eq 1
       expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: c ) ).to eq true
@@ -131,6 +130,23 @@ describe Comment do
       expect( UpdateAction.where( notifier: c, notification: "mention" ).count ).to eq 0
       expect( UpdateAction.unviewed_by_user_from_query( u1.id, notifier: c ) ).to eq false
       expect( UpdateAction.unviewed_by_user_from_query( u2.id, notifier: c ) ).to eq false
+    end
+
+    it "does not generate a mention update if the body was not updated after the initial action expired out" do
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
+      c = without_delay { Comment.make!( body: "hey @#{u.login}" ) }
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: c ) ).to eq true
+      UpdateAction.user_viewed_updates( UpdateAction.where( notifier: c ), u.id )
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: c ) ).to eq false
+      # Delete from UpdateAction to simulate expiring out after 90 days
+      UpdateAction.elastic_delete_by_ids!( UpdateAction.where( notifier: c ).map( &:id ) )
+      UpdateAction.where( notifier: c ).delete_all
+
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        without_delay { c.update( parent: Observation.make! ) }
+      end
+      expect( UpdateAction.where( notifier: c ) ).to be_empty
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
     end
   end
 

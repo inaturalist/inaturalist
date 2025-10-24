@@ -949,18 +949,35 @@ describe Identification do
   describe "mentions" do
     before { enable_has_subscribers }
     after { disable_has_subscribers }
+    let( :u ) { User.make! }
 
     it "knows what users have been mentioned" do
-      u = User.make!
       i = Identification.make!( body: "hey @#{u.login}" )
       expect( i.mentioned_users ).to eq [u]
     end
 
     it "generates mention updates" do
-      u = User.make!
       expect( UpdateAction.unviewed_by_user_from_query( u.id, notification: "mention" ) ).to eq false
       Identification.make!( body: "hey @#{u.login}" )
       expect( UpdateAction.unviewed_by_user_from_query( u.id, notification: "mention" ) ).to eq true
+    end
+
+    # GitHub Issue 3923
+    it "does not generate a mention update if the body was not updated after the initial action expired out" do
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
+      idnt = without_delay { Identification.make!( body: "hey @#{u.login}", taxon: Taxon.make!( rank: Taxon::GENUS ) ) }
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: idnt ) ).to eq true
+      UpdateAction.user_viewed_updates( UpdateAction.where( notifier: idnt ), u.id )
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: idnt ) ).to eq false
+      # Delete from UpdateAction to simulate expiring out after 90 days
+      UpdateAction.elastic_delete_by_ids!( UpdateAction.where( notifier: idnt ).map( &:id ) )
+      UpdateAction.where( notifier: idnt ).delete_all
+
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        without_delay { idnt.update( taxon: Taxon.make!( rank: Taxon::SPECIES ) ) }
+      end
+      expect( UpdateAction.where( notifier: idnt ) ).to be_empty
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
     end
   end
 

@@ -154,17 +154,15 @@ describe Post do
   end
 
   describe "mentions" do
+    let( :u ) { User.make! }
+    let( :project ) { Project.make! }
     it "knows what users have been mentioned" do
-      u = User.make!
-      project = Project.make!
       p = Post.make!( body: "hey @#{u.login}", parent: project )
       expect( p.mentioned_users ).to eq [u]
     end
 
     describe "mention updates" do
       it "generate for published posts" do
-        u = User.make!
-        project = Project.make!
         expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
         p = Post.make!( body: "hey @#{u.login}", parent: project )
         expect( p ).to be_published
@@ -203,8 +201,6 @@ describe Post do
       end
 
       it "do not generate for drafts" do
-        u = User.make!
-        project = Project.make!
         expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
         p = Post.make!( :draft, body: "hey @#{u.login}", parent: project )
         expect( p ).not_to be_published
@@ -212,8 +208,6 @@ describe Post do
       end
 
       it "generate for drafts when they're published" do
-        u = User.make!
-        project = Project.make!
         expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
         p = Post.make!( :draft, body: "hey @#{u.login}", parent: project )
         expect( p ).not_to be_published
@@ -221,6 +215,23 @@ describe Post do
         p.update( published_at: Time.now )
         expect( p ).to be_published
         expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: p ) ).to eq true
+      end
+
+      it "does not generate a mention update if the body was not updated after the initial action expired out" do
+        expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
+        p = without_delay { Post.make!( body: "hey @#{u.login}", parent: project ) }
+        expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: p ) ).to eq true
+        UpdateAction.user_viewed_updates( UpdateAction.where( notifier: p ), u.id )
+        expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: p ) ).to eq false
+        # Delete from UpdateAction to simulate expiring out after 90 days
+        UpdateAction.elastic_delete_by_ids!( UpdateAction.where( notifier: p ).map( &:id ) )
+        UpdateAction.where( notifier: p ).delete_all
+
+        after_delayed_job_finishes( ignore_run_at: true ) do
+          without_delay { p.update( title: "A Title" ) }
+        end
+        expect( UpdateAction.where( notifier: p ) ).to be_empty
+        expect( UpdateAction.unviewed_by_user_from_query( u.id, {} ) ).to eq false
       end
     end
   end
