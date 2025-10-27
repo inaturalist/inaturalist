@@ -378,6 +378,7 @@ export function fetchTaxon( taxon, options = { params: { } } ) {
         observations_count: true,
         complete_rank: true,
         flag_counts: "all",
+        listed_taxa_count: true,
         default_photo: {
           url: true
         },
@@ -408,6 +409,62 @@ export function fetchTaxon( taxon, options = { params: { } } ) {
             url: true
           },
           taxon: CORE_TAXON_FIELDS
+        },
+        conservation_status: {
+          iucn: true,
+          status: true,
+          description: true,
+          url: true,
+          authority: true,
+          geoprivacy: true,
+          user: {
+            login: true
+          },
+          place: {
+            display_name: true
+          }
+        },
+        conservation_statuses: {
+          iucn: true,
+          status: true,
+          description: true,
+          url: true,
+          authority: true,
+          geoprivacy: true,
+          taxon_id: true,
+          taxon_name: true,
+          user: {
+            login: true
+          },
+          place: {
+            id: true,
+            admin_level: true,
+            name: true,
+            display_name: true
+          }
+        },
+        establishment_means: {
+          id: true,
+          establishment_means: true,
+          place: {
+            id: true,
+            name: true,
+            display_name: true
+          }
+        },
+        listed_taxa: {
+          id: true,
+          establishment_means: true,
+          place: {
+            id: true,
+            admin_level: true,
+            name: true,
+            display_name: true
+          },
+          list: {
+            id: true,
+            title: true
+          }
         }
       };
     }
