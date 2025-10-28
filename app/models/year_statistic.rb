@@ -1583,9 +1583,16 @@ class YearStatistic < ApplicationRecord
       puts "[#{Time.now}] monthly_supporters, year: #{year}, options: #{options}"
     end
     users = User.limit( 30 ).
-      where( "donorbox_plan_type = 'monthly'" ).
-      where( "donorbox_plan_status = 'active'" ).
-      where( "donorbox_plan_started_at IS NOT NULL" ).
+      where( "
+        (
+          donorbox_plan_type = 'monthly'
+          AND donorbox_plan_status = 'active'
+          AND donorbox_plan_started_at IS NOT NULL
+        ) OR (
+          fundraiseup_plan_frequency = 'monthly'
+          AND fundraiseup_plan_status = 'active'
+          AND fundraiseup_plan_started_at IS NOT NULL
+        )" ).
       joins( :stored_preferences ).
       where( "preferences.name = 'monthly_supporter_badge' AND preferences.value = 't'" ).
       order( Arel.sql( "RANDOM()" ) )
