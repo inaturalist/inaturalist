@@ -140,6 +140,7 @@ class ComputerVisionEvalApp extends Component {
               <button
                 type="button"
                 title={I18n.t( `all_taxa.${t.label}` )}
+                label={I18n.t( `all_taxa.${t.label}` )}
                 className={`iconic-taxon-icon ${selected ? "selected" : ""}`}
                 key={`iconic-taxon-${_.toLower( t.name )}`}
                 disabled={this.props.votingEnabled}
@@ -225,9 +226,11 @@ class ComputerVisionEvalApp extends Component {
                   id="search_term"
                   type="text"
                   placeholder={I18n.t(
-                    "views.nls_demo.for_example_query", {
+                    "views.nls_demo.for_example_query",
+                    {
                       query_in_english: "A yellow bug with black spots"
-                  } )}
+                    }
+                  )}
                   disabled={this.props.votingEnabled}
                   autoComplete="off"
                   onKeyDown={e => {
@@ -403,6 +406,7 @@ class ComputerVisionEvalApp extends Component {
               }
               onClick={( ) => this.props.previousPage( { scrollTop: options.scrollTop } )}
               title={I18n.t( "previous_page" )}
+              label={I18n.t( "previous_page" )}
             >
               <i className="fa fa-long-arrow-left" />
             </button>
@@ -416,6 +420,7 @@ class ComputerVisionEvalApp extends Component {
               }
               onClick={( ) => this.props.nextPage( { scrollTop: options.scrollTop } )}
               title={I18n.t( "next_page" )}
+              label={I18n.t( "next_page" )}
             >
               <i className="fa fa-long-arrow-right" />
             </button>

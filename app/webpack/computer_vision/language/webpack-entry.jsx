@@ -16,10 +16,10 @@ import sharedStore from "../../shared/shared_store";
 
 moment.locale( I18n.locale );
 
-sharedStore.injectReducers( {
+sharedStore.injectReducers({
   languageDemo: languageDemoReducer,
   confirmModal: confirmModalReducer
-} );
+});
 
 const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
 const defaultApiUrl = element && element.getAttribute( "content" );
