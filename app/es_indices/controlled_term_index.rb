@@ -48,8 +48,8 @@ class ControlledTerm < ApplicationRecord
     end
   end
 
-  def as_indexed_json(options={})
-    return { } unless active?
+  def as_indexed_json( options = {} )
+    return {} unless active?
 
     preload_for_elastic_index unless options[:is_value]
     fields_to_remove = ["user_id", "active", "created_at", "updated_at"]
@@ -62,7 +62,7 @@ class ControlledTerm < ApplicationRecord
       "blocking"
     end
     # splatten out the array with *
-    json = attributes.except(*fields_to_remove)
+    json = attributes.except( *fields_to_remove )
     unless values.empty?
       json[:values] = values.select( &:active ).map {| v | v.as_indexed_json( is_value: true ) }
     end

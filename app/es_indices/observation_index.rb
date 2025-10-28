@@ -1236,10 +1236,10 @@ class Observation < ApplicationRecord
 
   private
 
-  def add_taxon_statuses( json, taxon )
+  def add_taxon_statuses( json, target_taxon )
     # taxa can be globally threatened, but need context for the rest
     if json[:place_ids].empty?
-      json[:taxon][:threatened] = taxon.threatened?
+      json[:taxon][:threatened] = target_taxon.threatened?
       json[:taxon][:introduced] = false
       json[:taxon][:native] = false
       json[:taxon][:endemic] = false
@@ -1248,9 +1248,9 @@ class Observation < ApplicationRecord
     places = indexed_private_places ||
       Place.where( id: json[:place_ids] ).select( :id, :ancestry ).to_a
     preloaded = taxon_introduced.yesish? || taxon_introduced.noish?
-    json[:taxon][:threatened] = taxon.threatened?( place: places )
+    json[:taxon][:threatened] = target_taxon.threatened?( place: places )
     json[:taxon][:introduced] = preloaded ? taxon_introduced :
-      taxon.establishment_means_in_place?( ListedTaxon::INTRODUCED_EQUIVALENTS, places, closest: true )
+      target_taxon.establishment_means_in_place?( ListedTaxon::INTRODUCED_EQUIVALENTS, places, closest: true )
     # if the taxon is introduced it cannot be native or endemic
     if json[:taxon][:introduced]
       json[:taxon][:native] = false
@@ -1258,9 +1258,9 @@ class Observation < ApplicationRecord
       return
     end
     json[:taxon][:native] = preloaded ? taxon_native :
-      taxon.establishment_means_in_place?( ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true )
+      target_taxon.establishment_means_in_place?( ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true )
     json[:taxon][:endemic] = preloaded ? taxon_endemic :
-      taxon.establishment_means_in_place?( "endemic", places )
-    taxon.listed_taxa_with_establishment_means.reset
+      target_taxon.establishment_means_in_place?( "endemic", places )
+    target_taxon.listed_taxa_with_establishment_means.reset
   end
 end
