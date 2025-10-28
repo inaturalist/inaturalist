@@ -564,7 +564,7 @@ class Observation < ApplicationRecord
         closest.values_at( *ListedTaxon::INTRODUCED_EQUIVALENTS ).compact.any? )
       o.taxon_native = !!( closest &&
         closest.values_at( *ListedTaxon::NATIVE_EQUIVALENTS ).compact.any? )
-      o.taxon_endemic = o.indexed_private_place_ids.intersect?( taxon_endemic_place_ids[o.taxon.id] ).any?
+      o.taxon_endemic = o.indexed_private_place_ids.intersect?( taxon_endemic_place_ids[o.taxon.id] )
     end
   end
 
