@@ -194,6 +194,7 @@ export function score( obsCard ) {
         dispatch( setAPIResponse( r ) );
         dispatch( setFilteredTaxa( ) );
       } ).catch( e => {
+        // eslint-disable-next-line no-console
         console.log( ["Error fetching vision response for photo", e] );
       } );
   };

@@ -14,7 +14,27 @@
   },
   "ignorePatterns": [
     "*-webpack.js",
-    "*-webpack-*.js"
+    "*-webpack-*.js",
+    "*min.js",
+    "**/i18n/translations*",
+    "**/ie7-js/",
+    "**/jquery/",
+    "**/leaflet*/",
+    "**/shramov-leaflet-plugins/",
+    "app/javascripts/webpack",
+    "cocoon.js",
+    "detectIncognito.min.js",
+    "geoRssOverlay.js",
+    "iso8601.js",
+    "jquery.textcomplete.js",
+    "jrails.js",
+    "leaflet.js",
+    "markerGroup.js",
+    "modernizr.js",
+    "rails.js",
+    "torque.full.uncompressed.js",
+    "wax.g.js",
+    "ym4r-gm.js"
   ],
   "rules": {
     "arrow-parens": [2, "as-needed"],
