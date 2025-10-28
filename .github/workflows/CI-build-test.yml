@@ -95,3 +95,6 @@ jobs:
 
     - name: Run restricted rubocop
       run: bundle exec rubocop ./app/controllers/users ./app/controllers/admin ./app/es_indices
+
+    - name: Run restricted eslint
+      run: npm run eslint app/webpack/computer_vision/language

@@ -7646,7 +7646,11 @@ en:
         relevant to your search &quot;%{searched_term}&quot;. Please mark each image as
         relevant %{thumbs_up_icon} if it matches your search and not relevant %{thumbs_down_icon}
         if it doesn't. When you are finished, please click submit.
-      # text for a button where a user can mark images as relevnt to their search term
+      # text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Mark as relevant
+      # text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Mark as not relevant
+      # text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Mark remaining as relevant
       # text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Mark remaining as not relevant

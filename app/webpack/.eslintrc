@@ -68,5 +68,8 @@
     "react/no-find-dom-node": 0,
     "react/destructuring-assignment": 0,
     "default-param-last": 0
-  }
+  },
+  "overrides": [{
+    "files": ["*.js", "*.jsx"]
+  }]
 }
