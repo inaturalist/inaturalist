@@ -5,7 +5,7 @@ import { setConfirmModalState } from "../../../shared/ducks/confirm_modal";
 
 const RESET_STATE = "language_demo/RESET_STATE";
 const SET_ATTRIBUTES = "language_demo/SET_ATTRIBUTES";
-const UPDATE_STATE="language_demo/UPDATE_STATE";
+const UPDATE_STATE = "language_demo/UPDATE_STATE";
 
 const MAX_PAGES = 5;
 
