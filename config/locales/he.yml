@@ -1571,6 +1571,8 @@ he:
     pilot_read_more: "קראו עוד בבלוג שלנו."
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "פיילוט פערי זיהוי: מינים חסרי זיהוי – מבוקשים"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "עזרו לנו להשלים פערים על ידי השתתפות בקבלת קישור יומי לתצפיות:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "עדיין לא נכלל במודל הראייה הממוחשבת"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -7974,6 +7976,10 @@ he:
         #a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           ניתן לבצע רק שינויים קלים בכינוי המין ישירות (למשל שינויי מין, שגיאות כתיב). הוסף <a target="_blank" href="%{url}">החלפת טקסון</a> אם אתה זקוק לשינויים אחרים בשם.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "שימו לב: זה עתה הוספת צאצא של טקסון נעול (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). נא לשקול למזג את זה לתוך טקסון קיים במקום." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " שימו לב: האב של הטקסון הפעיל הזה אינו פעיל אבל הוא הפלט של זה <a href='/taxon_changes/%{taxon_change_id}'> טיוטת שינוי טקסון</a> שאנחנו מניחים שתאשר.י בקרוב." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: לטקסון פעיל זה יש יותר מ־%{count} תצפיות בטקסונים תחתיו בעץ הטקסונומי, או שהוא מכוסה במסגרת טקסון; לכן חלק מהמאפיינים הטקסונומיים ניתנים לעריכה רק על-ידי אנשי צוות או אוצרי טקסונים המשויכים לאותה מסגרת טקסון.
       show:
         about_names_desc: |
           <p>
@@ -8053,6 +8059,12 @@ he:
         trending_desc: הטקסונים הנצפים ביותר בחודש האחרון
         trending_in_place_desc_html: הטקסונים הנצפים ביותר בחודש האחרון <a href="%{url}">%{place}</a>
         wanted_desc: מינים בטקסון זה שטרם נצפו.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: השמות חייבים להיות דומים בעת עריכה ישירה, יש לבצע החלפת טקסון במקרים של שינויי שם קיצוניים
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} לא יכול להוסיף תגיות לתמונות שלך עד שפליקר יודע שנתת לנו רשות.
+        <a href='%{url}'>הענקת הרשאה לפליקר</a>.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         משהו השתבש בניסיון לפרסם את התגיות האלה: %{message}
@@ -8073,6 +8085,10 @@ he:
       withdrawn: בוטל
       #state of a committed taxon change
       committed: בוצע
+      #state of a pending taxon change
+      pending: בהמתנה
+      #state of a approved taxon change
+      approved: מאושר
       #state of a draft taxon change
       draft: טיוטה
       #the status of a taxon change: draft, withdrawn or committed
@@ -8080,6 +8096,43 @@ he:
       form:
         move_children_desc2_html: |
           סימון תיבה זו יעביר את הצאצאים של טקסון הקלט אל טקסון הפלט בשביל החלפות ואיחודי טקסונים במעמד אישור השינוי. אם שינוי זה הוא ברמת סוג או יותר נמוך, הוא יצור החלפות טקסון עבור כל הצאצאים שיש להם שמות שצריכים שינוי. למשל, אם תחליפ.י את המשפחה "Canidae" ב-"Dogidae", זה ישנה את ההורה של הסוג <i>Canis</i> מ-"Canidae" ל-"Dogidae". אם תחליפ.י את הסוג <i>Canis</i> בסוג <i>Dogis</i>, זה יצור ויאשר החלפות טקסון לשינוי <i>Canis lupus</i> אל <i>Dogis lupus</i> ו-<i>Canis lupus</i> ssp. <i>lupus</i> ל-<i>Dogis lupus</i> ssp.<i>lupus</i>. זה עלול ליצור בלגן, לכן יש לפעול בזהירות.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: ההצבעה נוספה
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: ההצבעה הוסרה
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: עדיין אין הצבעות
+      #message when taxon change is committed
+      taxon_change_committed: שינוי הטקסון אושר! רשומות הניתנות לעדכון אוטומטי ישתנו בקרוב.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "שינוי טקסון זה ממתין כעת. הוא דורש אישור של אוצר.ת 1 כדי להתבצע."
+        two: "שינוי טקסון זה ממתין כעת. זה דורש אישור של שני אוצרים כדי להתבצע."
+        many: "שינוי טקסון זה ממתין כעת. זה דורש אישור של %{count} אוצרים כדי להתבצע."
+        other: "שינוי טקסון זה ממתין כעת. זה דורש אישור של %{count} אוצרים כדי להתבצע."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        לטקסון הקלט לא יכולים להיות תתי-טקסונים פעילים; יש להעבירם תחילה, או לבחור באפשרות 'להעביר את תתי-הטקסונים לפלט?'
+      output_taxon_rank_level_not_coarser_html: >
+        דרגת הטקסון בפלט אינה רחבה מדרגת התתי-טקסונים הפעילים של טקסון הקלט %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: השינוי הטקסונומי הזה כבר בוצע!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "משהו השתבש במחיקת שינוי הטקסון '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: שם הטקסון נמחק.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: שינוי הטקסון עודכן בהצלחה.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: לא צוינו שינויים
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: שינוי הטקסון נוצר בהצלחה.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "דורש אישור של אוצר.ת 1 נוספ.ת כדי להתבצע"
+        two: "דורשת אישור מאת 2 אוצרים.ות נוספים.ות כדי להתבצע."
+        many: "דורשת אישור מאת %{count} אוצרים.ות נוספים.ות כדי להתבצע."
+        other: "דורשת אישור מאת %{count} אוצרים.ות נוספים.ות כדי להתבצע."
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -9183,6 +9236,24 @@ he:
             name:
               bad_format: |
                 יכול להכיל רק תווים לטיניים סטנדרטיים, מקפים רווחים ו-×. לידיעתך טקסונים משוערים וזנים אינם תקינים
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "שינויי שמות אסורים עבור וירוסים, חיידקים או ענפים שאינם משובצים בעץ (ungrafted clades)"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "שינוי שמות אסור לדרגות רחבות יותר ממינים"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "שינויי שמות אינם מותרים עבור נוסחאות היברידיות"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "לא ניתן להוסיף 'X' כסמן היברידי בין סוג למין"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "חייב להיות בינומי (סוג מין) לבדיקה"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "הסוג אינו יכול להשתנות"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "שם מין לא סטנדרטי: מותר להסיר רק 'x'/'×' או להוסיף '×'"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "שם המין חייב להיות דומה (טעות הקלדה קטנה/התאמת מין דקדוקי בלבד)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "האות הראשונה של כל כינוי אינה יכולה להשתנות."
         taxon_change:
           attributes:
             base:
