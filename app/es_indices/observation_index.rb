@@ -8,19 +8,23 @@ class Observation < ApplicationRecord
 
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
-  scope :load_for_index, -> { includes(
-    { user: [ :flags, :stored_preferences ] }, :confirmed_reviews, :flags,
-    :observation_links, :quality_metrics, :observation_geo_score,
-    :votes_for, :stored_preferences, :tags,
-    { annotations: :votes_for },
-    { photos: :flags },
-    { sounds: :user },
-    { identifications: [ :stored_preferences, :taxon, :moderator_actions ] }, :project_observations,
-    { taxon: [ :conservation_statuses ] },
-    { observation_field_values: :observation_field },
-    { comments: [ { user: :flags }, :flags, :moderator_actions ] } ) }
+  scope :load_for_index, lambda {
+    includes(
+      { user: [:flags, :stored_preferences] }, :confirmed_reviews, :flags,
+      :observation_links, :quality_metrics, :observation_geo_score,
+      :votes_for, :stored_preferences, :tags,
+      { annotations: :votes_for },
+      { photos: :flags },
+      { sounds: :user },
+      { identifications: [:stored_preferences, :taxon, :moderator_actions] }, :project_observations,
+      { taxon: [:conservation_statuses] },
+      { observation_field_values: :observation_field },
+      { comments: [{ user: :flags }, :flags, :moderator_actions] }
+    )
+  }
+
   settings index: { number_of_shards: Rails.env.production? ? 12 : 4, analysis: ElasticModel::ANALYSIS } do
-    mappings(dynamic: true) do
+    mappings( dynamic: true ) do
       indexes :annotations, type: :nested do
         indexes :concatenated_attr_val, type: "keyword"
         indexes :controlled_attribute_id, type: "short" do
@@ -131,7 +135,6 @@ class Observation < ApplicationRecord
       indexes :id, type: "integer" do
         indexes :keyword, type: "keyword"
       end
-      indexes :id_please, type: "boolean"
       indexes :ident_taxon_ids, type: "integer" do
         indexes :keyword, type: "keyword"
       end
@@ -181,8 +184,6 @@ class Observation < ApplicationRecord
         indexes :updater_id, type: "integer"
         indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
       end
-      # TODO Remove out_of_range from the index
-      indexes :out_of_range, type: "boolean"
       indexes :outlinks do
         indexes :source, type: "keyword"
         indexes :url, type: "keyword"
@@ -318,38 +319,40 @@ class Observation < ApplicationRecord
   # type for each new field. That mapping is only used for recreating the index,
   # though, so you should also update the actual index as well (see
   # 20151030205931_add_mappings_to_observations_index.rb for an example)
-  def as_indexed_json(options={})
+  def as_indexed_json( options = {} )
     preload_for_elastic_index unless options[:no_details]
     # some timezones are invalid
-    created = created_at.in_time_zone(timezone_object || "UTC")
+    created = created_at.in_time_zone( timezone_object || "UTC" )
     t = taxon
     json = {
       id: id,
       site_id: site_id,
       created_at: created,
-      created_at_details: ElasticModel.date_details(created),
+      created_at_details: ElasticModel.date_details( created ),
       observed_on: datetime.blank? ? nil : datetime.to_date,
-      observed_on_details: ElasticModel.date_details(datetime),
+      observed_on_details: ElasticModel.date_details( datetime ),
       time_observed_at: time_observed_at_in_zone,
-      place_ids: (indexed_place_ids || public_places.map(&:id)).compact.uniq,
+      place_ids: ( indexed_place_ids || public_places.map( &:id ) ).compact.uniq,
       quality_grade: quality_grade,
-      taxon: t ? t.as_indexed_json(for_observation: true,
+      taxon: t&.as_indexed_json(
+        for_observation: true,
         no_details: options[:no_details],
-        for_identification: options[:for_identification]) : nil
+        for_identification: options[:for_identification]
+      )
     }
 
     current_ids = identifications.select( &:current? ).reject( &:hidden? )
     if options[:no_details]
-      json.merge!({
+      json.merge!( {
         user_id: user.id
-      })
+      } )
     else
-      json.merge!({
+      json.merge!( {
         uuid: uuid,
-        user: user ? user.as_indexed_json(no_details: true).merge( site_id: user.site_id ) : nil,
+        user: user&.as_indexed_json( no_details: true )&.merge( site_id: user.site_id ),
         captive: captive,
         created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
-        updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
+        updated_at: updated_at.in_time_zone( timezone_object || "UTC" ),
         observed_time_zone: timezone_object.blank? ? nil : timezone_object.tzinfo.name,
         time_zone_offset: timezone_offset,
         uri: uri,
@@ -359,7 +362,7 @@ class Observation < ApplicationRecord
         place_guess: place_guess.blank? ? nil : place_guess,
         private_place_guess: private_place_guess.blank? ? nil : private_place_guess,
         observed_on_string: observed_on_string,
-        license_code: license ? license.downcase : nil,
+        license_code: license&.downcase,
         geoprivacy: geoprivacy,
         taxon_geoprivacy: taxon_geoprivacy,
         map_scale: map_scale,
@@ -371,37 +374,37 @@ class Observation < ApplicationRecord
         # that actually throws off the sorting when what we really want to do is
         # sort by faves. We're not losing anything performance-wise by loading
         # the votes since we're doing that in the `votes` attribute anyway
-        cached_votes_total: votes_for.select{|v| v.vote_scope.blank?}.size,
+        cached_votes_total: votes_for.select {| v | v.vote_scope.blank? }.size,
         num_identification_agreements: num_identification_agreements,
         num_identification_disagreements: num_identification_disagreements,
         identifications_most_agree:
-          (num_identification_agreements > num_identification_disagreements),
+          ( num_identification_agreements > num_identification_disagreements ),
         identifications_some_agree:
-          (num_identification_agreements > 0),
+          ( num_identification_agreements > 0 ),
         identifications_most_disagree:
-          (num_identification_agreements < num_identification_disagreements),
-        place_ids: (indexed_place_ids || public_places.map(&:id)).compact.uniq,
-        private_place_ids: (indexed_private_place_ids || places.map(&:id)).compact.uniq,
-        project_ids: project_observations.map{ |po| po[:project_id] }.compact.uniq,
+          ( num_identification_agreements < num_identification_disagreements ),
+        place_ids: ( indexed_place_ids || public_places.map( &:id ) ).compact.uniq,
+        private_place_ids: ( indexed_private_place_ids || places.map( &:id ) ).compact.uniq,
+        project_ids: project_observations.map {| po | po[:project_id] }.compact.uniq,
         project_ids_with_curator_id: project_observations.
-          select{ |po| !po.curator_identification_id.nil? }.map(&:project_id).compact.uniq,
+          reject {| po | po.curator_identification_id.nil? }.map( &:project_id ).compact.uniq,
         project_ids_without_curator_id: project_observations.
-          select{ |po| po.curator_identification_id.nil? }.map(&:project_id).compact.uniq,
-        reviewed_by: confirmed_reviews.map(&:user_id),
-        tags: tags.map(&:name).compact.uniq,
-        ofvs: observation_field_values.uniq.map(&:as_indexed_json),
+          select {| po | po.curator_identification_id.nil? }.map( &:project_id ).compact.uniq,
+        reviewed_by: confirmed_reviews.map( &:user_id ),
+        tags: tags.map( &:name ).compact.uniq,
+        ofvs: observation_field_values.uniq.map( &:as_indexed_json ),
         annotations: annotations.reject( &:term_taxon_mismatch? ).map( &:as_indexed_json ),
-        photos_count: photos.any? ? photos.select{|p|
-          p.flags.detect{|f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?}.blank?
-        }.length : nil,
+        photos_count: photos.any? ? photos.select do | p |
+          p.flags.detect {| f | f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved? }.blank?
+        end.length : nil,
         sounds_count: sounds.any? ? sounds.length : nil,
-        photo_licenses: photos.map(&:index_license_code).compact.uniq,
-        sound_licenses: sounds.map(&:index_license_code).compact.uniq,
-        sounds: sounds.map(&:as_indexed_json),
-        identifier_user_ids: current_ids.map(&:user_id),
-        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids rescue []}.flatten.uniq,
-        non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
-        identification_categories: current_ids.map(&:category).uniq,
+        photo_licenses: photos.map( &:index_license_code ).compact.uniq,
+        sound_licenses: sounds.map( &:index_license_code ).compact.uniq,
+        sounds: sounds.map( &:as_indexed_json ),
+        identifier_user_ids: current_ids.map( &:user_id ),
+        ident_taxon_ids: current_ids.map {| i | i.taxon.self_and_ancestor_ids rescue [] }.flatten.uniq,
+        non_owner_identifier_user_ids: current_ids.map( &:user_id ) - [user_id],
+        identification_categories: current_ids.map( &:category ).uniq,
         # Number of current disagreeing idents that disagreed with a taxon
         # that is among (or an ancestor of) one of the taxa in other current
         # idents
@@ -421,140 +424,147 @@ class Observation < ApplicationRecord
         obscured: coordinates_obscured? || geoprivacy_obscured?,
         positional_accuracy: positional_accuracy,
         public_positional_accuracy: public_positional_accuracy,
-        location: (latitude && longitude) ?
-          ElasticModel.point_latlon(latitude, longitude) : nil,
-        private_location: (private_latitude && private_longitude) ?
-          ElasticModel.point_latlon(private_latitude, private_longitude) : nil,
-        geojson: (latitude && longitude) ?
-          ElasticModel.point_geojson(latitude, longitude) : nil,
-        private_geojson: (private_latitude && private_longitude) ?
-          ElasticModel.point_geojson(private_latitude, private_longitude) : nil,
-        votes: votes_for.map(&:as_indexed_json),
-        outlinks: observation_links.map(&:as_indexed_json),
+        location: ( latitude && longitude ) ?
+          ElasticModel.point_latlon( latitude, longitude ) : nil,
+        private_location: ( private_latitude && private_longitude ) ?
+          ElasticModel.point_latlon( private_latitude, private_longitude ) : nil,
+        geojson: ( latitude && longitude ) ?
+          ElasticModel.point_geojson( latitude, longitude ) : nil,
+        private_geojson: ( private_latitude && private_longitude ) ?
+          ElasticModel.point_geojson( private_latitude, private_longitude ) : nil,
+        votes: votes_for.map( &:as_indexed_json ),
+        outlinks: observation_links.map( &:as_indexed_json ),
         owners_identification_from_vision: owners_identification_from_vision,
-        preferences: preferences.map{ |p| { name: p[0], value: p[1] } },
-        flags: flags.map(&:as_indexed_json),
-        quality_metrics: quality_metrics.map(&:as_indexed_json),
+        preferences: preferences.map {| p | { name: p[0], value: p[1] } },
+        flags: flags.map( &:as_indexed_json ),
+        quality_metrics: quality_metrics.map( &:as_indexed_json ),
         spam: known_spam? || owned_by_spammer?,
         geo_score: observation_geo_score&.geo_score
-      })
+      } )
 
-      add_taxon_statuses(json, t) if t && json[:taxon]
+      add_taxon_statuses( json, t ) if t && json[:taxon]
     end
     json
   end
 
   # to quickly fetch observation place_ids when bulk indexing
-  def self.prepare_batch_for_index(observations, options = {})
+  def self.prepare_batch_for_index( observations, options = {} )
     # make sure we default all caches to empty arrays
     # this prevents future lookups for instances with no results
-    observations.each{ |o|
-      o.indexed_place_ids ||= [ ]
-      o.indexed_private_place_ids ||= [ ]
-      o.indexed_private_places ||= [ ]
+    observations.each do | o |
+      o.indexed_place_ids ||= []
+      o.indexed_private_place_ids ||= []
+      o.indexed_private_places ||= []
       o.taxon_introduced ||= false
       o.taxon_native ||= false
       o.taxon_endemic ||= false
-    }
-    batch_ids_string = observations.map(&:id).join(",")
+    end
+    batch_ids_string = observations.map( &:id ).join( "," )
     return if batch_ids_string.blank?
+
     # fetch all place_ids store them in `indexed_place_ids`
     if options.blank? || options[:places]
-      observation_private_place_ids = { }
-      connection.execute("
+      observation_private_place_ids = {}
+      connection.execute( "
         SELECT observation_id, place_id
         FROM observations_places
-        WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
+        WHERE observation_id IN (#{batch_ids_string})" ).to_a.each do | r |
         observation_private_place_ids[r["observation_id"]] ||= []
         observation_private_place_ids[r["observation_id"]] << r["place_id"]
       end
-      observations.each do |o|
+      observations.each do | o |
         if observation_private_place_ids[o.id]
           o.indexed_private_place_ids = observation_private_place_ids[o.id]
         end
       end
-      private_place_ids = observations.map(&:indexed_private_place_ids).flatten.uniq.compact
-      private_places_by_id = Hash[ Place.where(id: private_place_ids).map{ |p| [ p.id, p ] } ]
+      private_place_ids = observations.map( &:indexed_private_place_ids ).flatten.uniq.compact
+      private_places_by_id = Place.where( id: private_place_ids ).to_h {| p | [p.id, p] }
       always_indexed_place_levels = [
         Place::COUNTRY_LEVEL,
         Place::STATE_LEVEL,
         Place::COUNTY_LEVEL
       ]
-      observations.each do |o|
-        unless o.indexed_private_place_ids.blank?
-          o.indexed_private_places = private_places_by_id.values_at(*o.indexed_private_place_ids).compact.select do |p|
-            always_indexed_place_levels.include?( p.admin_level ) ||
+      observations.each do | o |
+        next if o.indexed_private_place_ids.blank?
+
+        o.indexed_private_places = private_places_by_id.values_at( *o.indexed_private_place_ids ).
+          compact.select do | p |
+          always_indexed_place_levels.include?( p.admin_level ) ||
             Observation.places_without_obscuration_protection.include?( p.id ) ||
             p.bbox_privately_contains_observation?( o )
-          end
-          o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
-          unless o.latitude.blank? || o.geoprivacy == Observation::PRIVATE || o.taxon_geoprivacy == Observation::PRIVATE
-            o.indexed_place_ids = o.indexed_private_places.select {|p|
-              always_indexed_place_levels.include?( p.admin_level ) ||
-              Observation.places_without_obscuration_protection.include?( p.id ) ||
-              p.bbox_publicly_contains_observation?( o )
-            }.map(&:id)
-          end
         end
+        o.indexed_private_place_ids = o.indexed_private_places.map( &:id )
+
+        next if o.latitude.blank? || o.geoprivacy == Observation::PRIVATE || o.taxon_geoprivacy == Observation::PRIVATE
+
+        o.indexed_place_ids = o.indexed_private_places.select do | p |
+          always_indexed_place_levels.include?( p.admin_level ) ||
+            Observation.places_without_obscuration_protection.include?( p.id ) ||
+            p.bbox_publicly_contains_observation?( o )
+        end.map( &:id )
       end
     end
 
-    if options.blank?
-      taxon_establishment_places = { }
-      taxon_ids = observations.map(&:taxon_id).compact.uniq
-      uniq_obs_place_ids = observations.map{ |o|o.indexed_private_places.map(&:path_ids) }.flatten.compact.uniq.join(',')
-      return if uniq_obs_place_ids.empty? || taxon_ids.empty?
-      Observation.connection.execute("
-        SELECT taxon_id, establishment_means, place_id
-        FROM listed_taxa
-        WHERE taxon_id IN (#{ taxon_ids.join(',') })
-        AND place_id IN (#{ uniq_obs_place_ids })
-        AND establishment_means IS NOT NULL").to_a.each do |r|
-        taxon_establishment_places[r["taxon_id"]] ||= {}
-        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] ||= []
-        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] << r["place_id"]
-      end
-      place_ids = taxon_establishment_places.values.map(&:values).flatten.uniq.map(&:to_i)
-      return if place_ids.empty?
-      places = {}
-      Place.connection.execute("
-        SELECT id, bbox_area
-        FROM places WHERE id IN (#{ place_ids.join(',') })").to_a.each do |r|
-        places[r["id"]] = {
-          id: r["id"],
-          bbox_area: r["bbox_area"].to_f
-        }
-      end
-      taxon_places = { }
-      taxon_endemic_place_ids = { }
-      taxon_establishment_places.each do |taxon_id, means_places|
-        taxon_places[taxon_id] ||= { }
-        taxon_endemic_place_ids[taxon_id] ||= []
-        means_places.each do |means,place_ids|
-          taxon_establishment_places[taxon_id][means] ||= []
-          # keep a hash of all places for each taxon
-          place_ids.each do |place_id|
-            taxon_places[taxon_id][place_id] ||= places[place_id].dup
-            taxon_places[taxon_id][place_id] ||= { }
-            taxon_places[taxon_id][place_id][means] = true
-          end
-          if means == "endemic"
-            taxon_endemic_place_ids[taxon_id] += place_ids
-          end
+    return unless options.blank?
+
+    taxon_establishment_places = {}
+    taxon_ids = observations.map( &:taxon_id ).compact.uniq
+    uniq_obs_place_ids = observations.map do | o |
+      o.indexed_private_places.map( &:path_ids )
+    end.flatten.compact.uniq.join( "," )
+    return if uniq_obs_place_ids.empty? || taxon_ids.empty?
+
+    Observation.connection.execute( "
+      SELECT taxon_id, establishment_means, place_id
+      FROM listed_taxa
+      WHERE taxon_id IN (#{taxon_ids.join( ',' )})
+      AND place_id IN (#{uniq_obs_place_ids})
+      AND establishment_means IS NOT NULL" ).to_a.each do | r |
+      taxon_establishment_places[r["taxon_id"]] ||= {}
+      taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] ||= []
+      taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] << r["place_id"]
+    end
+    place_ids = taxon_establishment_places.values.map( &:values ).flatten.uniq.map( &:to_i )
+    return if place_ids.empty?
+
+    places = {}
+    Place.connection.execute( "
+      SELECT id, bbox_area
+      FROM places WHERE id IN (#{place_ids.join( ',' )})" ).to_a.each do | r |
+      places[r["id"]] = {
+        id: r["id"],
+        bbox_area: r["bbox_area"].to_f
+      }
+    end
+    taxon_places = {}
+    taxon_endemic_place_ids = {}
+    taxon_establishment_places.each do | taxon_id, means_places |
+      taxon_places[taxon_id] ||= {}
+      taxon_endemic_place_ids[taxon_id] ||= []
+      means_places.each do | means, means_place_ids |
+        taxon_establishment_places[taxon_id][means] ||= []
+        # keep a hash of all places for each taxon
+        means_place_ids.each do | place_id |
+          taxon_places[taxon_id][place_id] ||= places[place_id].dup
+          taxon_places[taxon_id][place_id] ||= {}
+          taxon_places[taxon_id][place_id][means] = true
+        end
+        if means == "endemic"
+          taxon_endemic_place_ids[taxon_id] += means_place_ids
         end
       end
-      observations.each do |o|
-        if o.taxon && taxon_places[o.taxon.id]
-          closest = taxon_places[o.taxon.id].
-            slice(*o.indexed_private_places.map(&:path_ids).flatten.compact.uniq).
-            values.sort_by{ |p| p[:bbox_area] || 0 }.first
-          o.taxon_introduced = !!(closest &&
-            closest.values_at(*ListedTaxon::INTRODUCED_EQUIVALENTS).compact.any?)
-          o.taxon_native = !!(closest &&
-            closest.values_at(*ListedTaxon::NATIVE_EQUIVALENTS).compact.any?)
-          o.taxon_endemic = (o.indexed_private_place_ids & taxon_endemic_place_ids[o.taxon.id]).any?
-        end
-      end
+    end
+    observations.each do | o |
+      next unless o.taxon && taxon_places[o.taxon.id]
+
+      closest = taxon_places[o.taxon.id].
+        slice( *o.indexed_private_places.map( &:path_ids ).flatten.compact.uniq ).
+        values.sort_by {| p | p[:bbox_area] || 0 }.first
+      o.taxon_introduced = !!( closest &&
+        closest.values_at( *ListedTaxon::INTRODUCED_EQUIVALENTS ).compact.any? )
+      o.taxon_native = !!( closest &&
+        closest.values_at( *ListedTaxon::NATIVE_EQUIVALENTS ).compact.any? )
+      o.taxon_endemic = o.indexed_private_place_ids.intersect?( taxon_endemic_place_ids[o.taxon.id] ).any?
     end
   end
 
@@ -575,33 +585,35 @@ class Observation < ApplicationRecord
         }
       }
     ]
-    search_result = Taxon.elastic_search(filters: filters, source: [:id], size: 2000 )
-    return search_result.results.results.map( &:id ).map( &:to_i )
+    search_result = Taxon.elastic_search( filters: filters, source: [:id], size: 2000 )
+    search_result.results.results.map( &:id ).map( &:to_i )
   end
 
-  def self.params_to_elastic_query(params, options = {})
+  def self.params_to_elastic_query( params, options = {} )
     current_user = options[:current_user] || params[:viewer]
-    p = params[:_query_params_set] ? params : query_params(params)
+    p = params[:_query_params_set] ? params : query_params( params )
     # one of the param initializing steps saw an impossible condition
     return nil if p[:empty_set]
-    p = site_search_params(options[:site], p)
-    search_filters = [ ]
-    inverse_filters = [ ]
-    extra_preloads = [ ]
+
+    p = site_search_params( options[:site], p )
+    search_filters = []
+    inverse_filters = []
+    extra_preloads = []
     q = p[:q] unless p[:q].blank?
-    search_on = p[:search_on] if Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
+    search_on = p[:search_on] if Observation::FIELDS_TO_SEARCH_ON.include?( p[:search_on] )
     if q
-      if search_on === "names"
+      case search_on
+      when "names"
         search_taxa = true
         searched_taxa = matching_taxon_ids( q )
-      elsif search_on === "tags"
-        fields = [ :tags ]
-      elsif search_on === "description"
-        fields = [ :description ]
-      elsif search_on === "place"
-        fields = [ :place_guess ]
+      when "tags"
+        fields = [:tags]
+      when "description"
+        fields = [:description]
+      when "place"
+        fields = [:place_guess]
       else
-        fields = [ :tags, :description, :place_guess ]
+        fields = [:tags, :description, :place_guess]
         search_taxa = true
         searched_taxa = matching_taxon_ids( q )
       end
@@ -628,14 +640,17 @@ class Observation < ApplicationRecord
     end
     if p[:user]
       search_filters << { term: {
-        "user.id.keyword" => ElasticModel.id_or_object(p[:user]) } }
+        "user.id.keyword" => ElasticModel.id_or_object( p[:user] )
+      } }
     elsif p[:user_id]
       search_filters << { terms: {
-        "user.id.keyword" => [ p[:user_id] ].flatten.map{ |u| ElasticModel.id_or_object(u) } } }
+        "user.id.keyword" => [p[:user_id]].flatten.map {| u | ElasticModel.id_or_object( u ) }
+      } }
     end
 
     # params to search based on value
-    [ { http_param: :rank, es_field: "taxon.rank" },
+    [
+      { http_param: :rank, es_field: "taxon.rank" },
       { http_param: :observed_on_day, es_field: "observed_on_details.day" },
       { http_param: :observed_on_week, es_field: "observed_on_details.week" },
       { http_param: :observed_on_month, es_field: "observed_on_details.month" },
@@ -646,33 +661,34 @@ class Observation < ApplicationRecord
       { http_param: :week, es_field: "observed_on_details.week" },
       { http_param: :site_id, es_field: "site_id.keyword" },
       { http_param: :id, es_field: "id" }
-    ].each do |filter|
-      unless p[ filter[:http_param] ].blank? || p[ filter[:http_param] ] == "any"
-        search_filters << { terms: { filter[:es_field] =>
-          [ p[ filter[:http_param] ] ].flatten.map{ |v|
-            ElasticModel.id_or_object(v) } } }
-      end
+    ].each do | filter |
+      next if p[filter[:http_param]].blank? || p[filter[:http_param]] == "any"
+
+      search_filters << { terms: { filter[:es_field] =>
+        [p[filter[:http_param]]].flatten.map do | v |
+          ElasticModel.id_or_object( v )
+        end } }
     end
 
     # Place searches require special handling if the user is asking for their
     # own observations
-    params_user_ids = [p[:user_id]].flatten.map(&:to_i)
+    params_user_ids = [p[:user_id]].flatten.map( &:to_i )
     unless p[:place_id].blank? || p[:place_id] == "any"
       place_id = p[:place_id].is_a?( String ) ? p[:place_id].split( "," ) : p[:place_id]
-      if p[:viewer] && params_user_ids.size == 1 && p[:viewer].id == params_user_ids[0]
-        search_filters << { terms: { "private_place_ids.keyword" => [place_id].flatten.map{ |v|
-          ElasticModel.id_or_object(v)
-        } } }
+      search_filters << if p[:viewer] && params_user_ids.size == 1 && p[:viewer].id == params_user_ids[0]
+        { terms: { "private_place_ids.keyword" => [place_id].flatten.map do | v |
+          ElasticModel.id_or_object( v )
+        end } }
       else
-        search_filters << { terms: { "place_ids.keyword" => [place_id].flatten.map{ |v|
-          ElasticModel.id_or_object(v)
-        } } }
+        { terms: { "place_ids.keyword" => [place_id].flatten.map do | v |
+          ElasticModel.id_or_object( v )
+        end } }
       end
     end
 
     unless p[:not_in_place].blank?
       place_ids = [p[:not_in_place]].flatten.map {| v | ElasticModel.id_or_object( v ) }
-      inverse_filters << if ( params_user_ids.size == 1 && p[:viewer]&.id == params_user_ids[0] )
+      inverse_filters << if params_user_ids.size == 1 && p[:viewer]&.id == params_user_ids[0]
         { terms: { "private_place_ids.keyword" => place_ids } }
       else
         { terms: { "place_ids.keyword" => place_ids } }
@@ -680,53 +696,55 @@ class Observation < ApplicationRecord
     end
 
     # params that can be true / false / any
-    [ { http_param: :introduced, es_field: "taxon.introduced" },
+    [
+      { http_param: :introduced, es_field: "taxon.introduced" },
       { http_param: :threatened, es_field: "taxon.threatened" },
       { http_param: :native, es_field: "taxon.native" },
       { http_param: :endemic, es_field: "taxon.endemic" },
-      # TODO remove id_please when we remove it from the ES index
-      { http_param: :id_please, es_field: "id_please" },
-      # TODO remove out_of_range when we remove it from the ES index
-      { http_param: :out_of_range, es_field: "out_of_range" },
       { http_param: :mappable, es_field: "mappable" },
       { http_param: :captive, es_field: "captive" },
       { http_param: :spam, es_field: "spam" }
-    ].each do |filter|
-      if p[ filter[:http_param] ].yesish?
+    ].each do | filter |
+      if p[filter[:http_param]].yesish?
         search_filters << { term: { filter[:es_field] => true } }
-      elsif p[ filter[:http_param] ].noish?
+      elsif p[filter[:http_param]].noish?
         search_filters << { term: { filter[:es_field] => false } }
       end
     end
 
     # params that can check for presence of something
-    [ { http_param: :with_photos, es_field: "photos_count" },
+    [
+      { http_param: :with_photos, es_field: "photos_count" },
       { http_param: :with_sounds, es_field: "sounds_count" },
       { http_param: :with_geo, es_field: "geojson" },
-      { http_param: :identified, es_field: "taxon" },
-    ].each do |filter|
+      { http_param: :identified, es_field: "taxon" }
+    ].each do | filter |
       f = { exists: { field: filter[:es_field] } }
-      if p[ filter[:http_param] ].yesish?
+      if p[filter[:http_param]].yesish?
         search_filters << f
-      elsif p[ filter[:http_param] ].noish?
+      elsif p[filter[:http_param]].noish?
         inverse_filters << f
       end
     end
     if p[:verifiable].yesish?
       search_filters << { terms: {
-        quality_grade: [ "research", "needs_id" ] } }
+        quality_grade: ["research", "needs_id"]
+      } }
     elsif p[:verifiable].noish?
       search_filters << { not: { terms: {
-        quality_grade: [ "research", "needs_id" ] } } }
+        quality_grade: ["research", "needs_id"]
+      } } }
     end
     # include the taxon plus all of its descendants.
     # Every taxon has its own ID in ancestor_ids
     if p[:observations_taxon]
       search_filters << { term: {
-        "taxon.ancestor_ids.keyword" => ElasticModel.id_or_object(p[:observations_taxon]) } }
+        "taxon.ancestor_ids.keyword" => ElasticModel.id_or_object( p[:observations_taxon] )
+      } }
     elsif p[:observations_taxon_ids]
       search_filters << { terms: {
-        "taxon.ancestor_ids.keyword" => p[:observations_taxon_ids] } }
+        "taxon.ancestor_ids.keyword" => p[:observations_taxon_ids]
+      } }
     end
     if p[:without_observations_taxon]
       inverse_filters << {
@@ -741,16 +759,17 @@ class Observation < ApplicationRecord
         }
       }
     end
-    if p[:license] == "any"
+    case p[:license]
+    when "any"
       search_filters << { exists: { field: "license_code" } }
-    elsif p[:license] == "none"
+    when "none"
       inverse_filters << { exists: { field: "license_code" } }
-    elsif p[:license].is_a?( String )
+    when String
       search_filters << { terms: { license_code:
-        [ p[:license].to_s.split( "," ) ].flatten.compact.map{ |l| l.downcase } } }
-    elsif p[:license].is_a?( Array )
+        [p[:license].to_s.split( "," )].flatten.compact.map( &:downcase ) } }
+    when Array
       search_filters << { terms: { license_code:
-        [ p[:license] ].flatten.compact.map{ |l| l.downcase } } }
+        [p[:license]].flatten.compact.map( &:downcase ) } }
     end
     if p[:photo_license] == "any"
       search_filters << { exists: { field: "photo_licenses" } }
@@ -758,9 +777,9 @@ class Observation < ApplicationRecord
       inverse_filters << { exists: { field: "photo_licenses" } }
     elsif p[:photo_license]
       licenses = if p[:photo_license].is_a?( String )
-        [ p[:photo_license].to_s.split( "," ) ].flatten.compact.map{ |l| l.downcase }
+        [p[:photo_license].to_s.split( "," )].flatten.compact.map( &:downcase )
       else
-        [ p[:photo_license] ].flatten.compact.map{ |l| l.downcase }
+        [p[:photo_license]].flatten.compact.map( &:downcase )
       end
       search_filters << { terms: { "photo_licenses" => licenses } }
     end
@@ -769,58 +788,63 @@ class Observation < ApplicationRecord
     elsif p[:sound_license] == "none"
       inverse_filters << { exists: { field: "sound_licenses" } }
     elsif p[:sound_license]
-      licenses = [ p[:sound_license] ].flatten.map{ |l| l.downcase }
+      licenses = [p[:sound_license]].flatten.map( &:downcase )
       search_filters << { terms: { "sound_licenses" => licenses } }
     end
-    if d = Observation.split_date(p[:created_on], utc: true)
-      [ :day, :month, :year ].each do |part|
+    if ( d = Observation.split_date( p[:created_on], utc: true ) )
+      [:day, :month, :year].each do | part |
         if d[part] && d[part] != 0
-          search_filters << { term: { "created_at_details.#{ part }" => d[part] } }
+          search_filters << { term: { "created_at_details.#{part}" => d[part] } }
         end
       end
     end
     if p[:projects].blank? && !p[:project].blank?
-      p[:projects] = [ p[:project] ]
+      p[:projects] = [p[:project]]
     end
     p[:projects] = [p[:projects]].flatten if p[:projects]
-    extra = p[:extra].to_s.split(",")
-    if !p[:projects].blank?
-      project_ids = p[:projects].map{ |proj| ElasticModel.id_or_object(proj) }
+    extra = p[:extra].to_s.split( "," )
+    if p[:projects].blank?
+      if params[:pcid].yesish?
+        search_filters << { exists: {
+          field: "project_ids_with_curator_id"
+        } }
+      elsif params[:pcid].noish?
+        search_filters << { exists: {
+          field: "project_ids_without_curator_id"
+        } }
+      end
+    else
+      project_ids = p[:projects].map {| proj | ElasticModel.id_or_object( proj ) }
       search_filters << { terms: { project_ids: project_ids } }
       extra_preloads << :projects
       # since we have projects, check the `pcid` param
       if params[:pcid].yesish?
         search_filters << { terms: {
-          project_ids_with_curator_id: project_ids } }
+          project_ids_with_curator_id: project_ids
+        } }
       elsif params[:pcid].noish?
         search_filters << { terms: {
-          project_ids_without_curator_id: project_ids } }
-      end
-    else
-      if params[:pcid].yesish?
-        search_filters << { exists: {
-          field: "project_ids_with_curator_id" } }
-      elsif params[:pcid].noish?
-        search_filters << { exists: {
-          field: "project_ids_without_curator_id" } }
+          project_ids_without_curator_id: project_ids
+        } }
       end
     end
     if p[:not_in_project]
       inverse_filters << { term: { "project_ids.keyword":
-        ElasticModel.id_or_object(p[:not_in_project]) } }
+        ElasticModel.id_or_object( p[:not_in_project] ) } }
     end
 
-    extra_preloads << { identifications: [:user, :taxon] } if extra.include?("identifications")
-    extra_preloads << { observation_photos: :photo } if extra.include?("observation_photos")
-    extra_preloads << { observation_field_values: :observation_field } if extra.include?("fields")
+    extra_preloads << { identifications: [:user, :taxon] } if extra.include?( "identifications" )
+    extra_preloads << { observation_photos: :photo } if extra.include?( "observation_photos" )
+    extra_preloads << { observation_field_values: :observation_field } if extra.include?( "fields" )
     unless p[:hrank].blank? && p[:lrank].blank?
       search_filters << { range: { "taxon.rank_level" => {
         gte: Taxon::RANK_LEVELS[p[:lrank]] || 0,
-        lte: Taxon::RANK_LEVELS[p[:hrank]] || 100 } } }
+        lte: Taxon::RANK_LEVELS[p[:hrank]] || 100
+      } } }
     end
     if p[:quality_grade] && p[:quality_grade] != "any"
       search_filters << { terms: { quality_grade:
-        p[:quality_grade].to_s.split(",") & Observation::QUALITY_GRADES } }
+        p[:quality_grade].to_s.split( "," ) & Observation::QUALITY_GRADES } }
     end
     case p[:identifications]
     when "most_agree"
@@ -834,32 +858,35 @@ class Observation < ApplicationRecord
     unless p[:nelat].blank? && p[:nelng].blank? && p[:swlat].blank? && p[:swlng].blank?
       search_filters << { envelope: { geojson: {
         nelat: p[:nelat], nelng: p[:nelng], swlat: p[:swlat], swlng: p[:swlng],
-        user: current_user } } }
+        user: current_user
+      } } }
     end
     if p[:lat] && p[:lng]
       search_filters << { geo_distance: {
         distance: "#{p[:radius] || 10}km",
         location: {
-          lat: p[:lat], lon: p[:lng] } } }
+          lat: p[:lat], lon: p[:lng]
+        }
+      } }
     end
-    if p[:iconic_taxa_instances] && p[:iconic_taxa_instances].size > 0
+    if p[:iconic_taxa_instances] && !p[:iconic_taxa_instances].empty?
       # iconic_taxa will be an array which might contain a nil value
       known_taxa = p[:iconic_taxa_instances].compact
       # if it is smaller after compact, then it contained nil and
       # we will need to do a different kind of Elasticsearch query
-      allows_unknown = (known_taxa.size < p[:iconic_taxa_instances].size)
-      if allows_unknown
+      allows_unknown = ( known_taxa.size < p[:iconic_taxa_instances].size )
+      search_filters << if allows_unknown
         # to allow iconic_taxon_id to be nil, I think the best way
         # is a "should" boolean filter, which allows anyof a set of
         # valid terms as well as missing terms (null)
-        search_filters << { bool: { should: [
-          { terms: { "taxon.iconic_taxon_id" => known_taxa.map(&:id) } },
+        { bool: { should: [
+          { terms: { "taxon.iconic_taxon_id" => known_taxa.map( &:id ) } },
           { bool: { must_not: { exists: { field: "taxon.iconic_taxon_id" } } } }
-        ]}}
+        ] } }
       else
         # if we don't want to include null values, a terms filter is simpler
-        search_filters << { terms: { "taxon.iconic_taxon_id" =>
-          p[:iconic_taxa_instances].map{ |t| ElasticModel.id_or_object(t) } } }
+        { terms: { "taxon.iconic_taxon_id" =>
+          p[:iconic_taxa_instances].map {| t | ElasticModel.id_or_object( t ) } } }
       end
     end
 
@@ -873,43 +900,46 @@ class Observation < ApplicationRecord
 
     if p[:d1] || p[:d2]
       p[:d1] = p[:d1].to_s
-      d1 = DateTime.parse(p[:d1]) rescue DateTime.parse("1800-01-01")
+      d1 = DateTime.parse( p[:d1] ) rescue DateTime.parse( "1800-01-01" )
       p[:d2] = p[:d2].to_s
-      d2 = DateTime.parse(p[:d2]) rescue Time.now
+      d2 = DateTime.parse( p[:d2] ) rescue Time.now
       # d2 = Time.now if d2 && d2 > Time.now # not sure why we need to prevent queries into the future
-      query_by_date = (
-        (!p[:d1].blank? && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
-        (!p[:d2].blank? && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
+      query_by_date =
+        ( !p[:d1].blank? && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/ ) ||
+        ( !p[:d2].blank? && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/ )
       date_filter = { "observed_on_details.date": {
-        gte: d1.strftime("%F"),
-        lte: d2.strftime("%F") }}
+        gte: d1.strftime( "%F" ),
+        lte: d2.strftime( "%F" )
+      } }
       if query_by_date
         search_filters << { range: date_filter }
       else
         time_filter = { time_observed_at: {
-          gte: d1.strftime("%FT%T%:z"),
-          lte: d2.strftime("%FT%T%:z") } }
+          gte: d1.strftime( "%FT%T%:z" ),
+          lte: d2.strftime( "%FT%T%:z" )
+        } }
         search_filters << { bool: { should: [
-          { bool: { must: [ { range: time_filter }, { exists: { field: "time_observed_at" } } ] } },
+          { bool: { must: [{ range: time_filter }, { exists: { field: "time_observed_at" } }] } },
           { bool: {
             must: { range: date_filter },
-            must_not: { exists: { field: "time_observed_at" } } } }
+            must_not: { exists: { field: "time_observed_at" } }
+          } }
         ] } }
       end
     end
 
     if p[:created_d1] || p[:created_d2]
-      created_d1 = DateTime.parse(p[:created_d1]) rescue DateTime.parse("1800-01-01")
-      created_d2 = DateTime.parse(p[:created_d2]) rescue Time.now
+      created_d1 = DateTime.parse( p[:created_d1] ) rescue DateTime.parse( "1800-01-01" )
+      created_d2 = DateTime.parse( p[:created_d2] ) rescue Time.now
       if p[:created_d2] && created_d2.to_s =~ /00:00:00/ && p[:created_d2] !~ /00:00:00/
         # if you provide a date like 2018-02-01, the DateTime will be Thu, 01
         # Feb 2018 00:00:00 +0000, so to perform an inclusive search you want
         # another day
-        created_d2 = created_d2 + 1.day
+        created_d2 += 1.day
       end
       search_filters << {
         range: {
-          "created_at": {
+          created_at: {
             gte: created_d1.strftime( "%FT%T%:z" ),
             lte: created_d2.strftime( "%FT%T%:z" )
           }
@@ -920,27 +950,29 @@ class Observation < ApplicationRecord
     if p[:h1] && p[:h2]
       p[:h1] = p[:h1].to_i % 24
       p[:h2] = p[:h2].to_i % 24
-      if p[:h1] > p[:h2]
-        search_filters << { bool: { should: [
+      search_filters << if p[:h1] > p[:h2]
+        { bool: { should: [
           { range: { "observed_on_details.hour" => { gte: p[:h1] } } },
           { range: { "observed_on_details.hour" => { lte: p[:h2] } } }
         ] } }
       else
-        search_filters << { range: { "observed_on_details.hour" => {
-          gte: p[:h1], lte: p[:h2] } } }
+        { range: { "observed_on_details.hour" => {
+          gte: p[:h1], lte: p[:h2]
+        } } }
       end
     end
     if p[:m1] && p[:m2]
       p[:m1] = p[:m1].to_i % 12
       p[:m2] = p[:m2].to_i % 12
-      if p[:m1] > p[:m2]
-        search_filters << { bool: { should: [
+      search_filters << if p[:m1] > p[:m2]
+        { bool: { should: [
           { range: { "observed_on_details.month" => { gte: p[:m1] } } },
           { range: { "observed_on_details.month" => { lte: p[:m2] } } }
         ] } }
       else
-        search_filters << { range: { "observed_on_details.month" => {
-          gte: p[:m1], lte: p[:m2] } } }
+        { range: { "observed_on_details.month" => {
+          gte: p[:m1], lte: p[:m2]
+        } } }
       end
     end
     unless p[:updated_since].blank?
@@ -948,16 +980,17 @@ class Observation < ApplicationRecord
       # as spaces, so if you want a plus, we either have to handle it like this
       # or you use %2B
       if p[:updated_since].is_a?( String )
-        p[:updated_since] = p[:updated_since].gsub( /\s(\d+\:\d+)$/, "+\\1" )
+        p[:updated_since] = p[:updated_since].gsub( /\s(\d+:\d+)$/, "+\\1" )
       end
-      timestamp = Chronic.parse(p[:updated_since])
+      timestamp = Chronic.parse( p[:updated_since] )
       # there is an expectation in a spec that when updated_since is
       # invalid, the search will fail to return any results
       return nil if timestamp.blank?
-      if p[:aggregation_user_ids].blank?
-        search_filters << { range: { updated_at: { gte: timestamp } } }
+
+      search_filters << if p[:aggregation_user_ids].blank?
+        { range: { updated_at: { gte: timestamp } } }
       else
-        search_filters << { bool: { should: [
+        { bool: { should: [
           { range: { updated_at: { gte: timestamp } } },
           { terms: { "user.id.keyword" => p[:aggregation_user_ids] } }
         ] } }
@@ -993,34 +1026,32 @@ class Observation < ApplicationRecord
       inverse_filters << nested_query
     end
 
-    if p[:ofv_params]
-      p[:ofv_params].each do |k,v|
-        # use a nested query to search within a single nested
-        # object and not across all nested objects
-        nested_query = {
-          nested: {
-            path: "ofvs",
-            query: {
-              bool: {
-                must: [
-                  {
-                    match: {
-                      # If the field doesn't exist, we want to return no
-                      # results, not all results
-                      "ofvs.name_ci" => v[:observation_field]&.name || v[:normalized_name]
-                    }
+    p[:ofv_params]&.each_value do | v |
+      # use a nested query to search within a single nested
+      # object and not across all nested objects
+      nested_query = {
+        nested: {
+          path: "ofvs",
+          query: {
+            bool: {
+              must: [
+                {
+                  match: {
+                    # If the field doesn't exist, we want to return no
+                    # results, not all results
+                    "ofvs.name_ci" => v[:observation_field]&.name || v[:normalized_name]
                   }
-                ]
-              }
+                }
+              ]
             }
           }
         }
-        unless v[:value].blank?
-          nested_query[:nested][:query][:bool][:must] <<
-            { match: { "ofvs.value_ci" => v[:value] } }
-        end
-        search_filters << nested_query
+      }
+      unless v[:value].blank?
+        nested_query[:nested][:query][:bool][:must] <<
+          { match: { "ofvs.value_ci" => v[:value] } }
       end
+      search_filters << nested_query
     end
 
     if p[:ofv_datatype]
@@ -1055,21 +1086,22 @@ class Observation < ApplicationRecord
 
     # conservation status
     unless p[:cs].blank?
-      values = [ p[:cs] ].flatten.map(&:downcase)
-      search_filters << conservation_condition(:status, values, p)
+      values = [p[:cs]].flatten.map( &:downcase )
+      search_filters << conservation_condition( :status, values, p )
     end
     # IUCN conservation status
     unless p[:csi].blank?
-      iucn_equivs = [ p[:csi] ].flatten.map{ |v|
-        Taxon::IUCN_CODE_VALUES[v.upcase] }.compact.uniq
+      iucn_equivs = [p[:csi]].flatten.map do | v |
+        Taxon::IUCN_CODE_VALUES[v.upcase]
+      end.compact.uniq
       unless iucn_equivs.blank?
-        search_filters << conservation_condition(:iucn, iucn_equivs, p)
+        search_filters << conservation_condition( :iucn, iucn_equivs, p )
       end
     end
     # conservation status authority
     unless p[:csa].blank?
-      values = [ p[:csa] ].flatten.map(&:downcase)
-      search_filters << conservation_condition(:authority, values, p)
+      values = [p[:csa]].flatten.map( &:downcase )
+      search_filters << conservation_condition( :authority, values, p )
     end
     if p[:acc_above].to_i > 0
       search_filters << { range: { positional_accuracy: { gt: p[:acc_above].to_i } } }
@@ -1104,7 +1136,7 @@ class Observation < ApplicationRecord
       }
     end
     # sort defaults to created at descending
-    sort_order = (p[:order] || "desc").downcase.to_sym
+    sort_order = ( p[:order] || "desc" ).downcase.to_sym
     sort = case p[:order_by]
     when "observed_on"
       { observed_on: sort_order, time_observed_at: sort_order }
@@ -1120,19 +1152,19 @@ class Observation < ApplicationRecord
       { created_at: sort_order }
     end
 
-    [:geoprivacy, :taxon_geoprivacy].each do |geoprivacy_type|
-      unless p[geoprivacy_type].blank? || p[geoprivacy_type] == "any"
-        case p[geoprivacy_type]
-        when Observation::OPEN
-          search_filters << { bool: { should: [
-            { term: { geoprivacy_type => "open" } },
-            { bool: { must_not: { exists: { field: geoprivacy_type } } } }
-          ]}}
-        when "obscured_private"
-          search_filters << { terms: { geoprivacy_type => Observation::GEOPRIVACIES } }
-        else
-          search_filters << { term: { geoprivacy_type => p[geoprivacy_type] } }
-        end
+    [:geoprivacy, :taxon_geoprivacy].each do | geoprivacy_type |
+      next if p[geoprivacy_type].blank? || p[geoprivacy_type] == "any"
+
+      search_filters << case p[geoprivacy_type]
+      when Observation::OPEN
+        { bool: { should: [
+          { term: { geoprivacy_type => "open" } },
+          { bool: { must_not: { exists: { field: geoprivacy_type } } } }
+        ] } }
+      when "obscured_private"
+        { terms: { geoprivacy_type => Observation::GEOPRIVACIES } }
+      else
+        { term: { geoprivacy_type => p[geoprivacy_type] } }
       end
     end
 
@@ -1158,7 +1190,7 @@ class Observation < ApplicationRecord
       not_ids = [p[:not_id]].flatten.
         map {| id | id.to_s.split( "," ).map( &:to_i ) }.
         flatten.compact
-      if not_ids.size.positive?
+      unless not_ids.empty?
         inverse_filters << { terms: { id: not_ids } }
       end
     end
@@ -1172,17 +1204,15 @@ class Observation < ApplicationRecord
       track_total_hits: !!p[:track_total_hits] }
   end
 
-  private
-
-  def self.conservation_condition(es_field, values, params)
-    filters = [ { terms: { "taxon.statuses.#{ es_field }" => values } } ]
-    inverse_filters = [ ]
+  def self.conservation_condition( es_field, values, params )
+    filters = [{ terms: { "taxon.statuses.#{es_field}" => values } }]
+    inverse_filters = []
     if params[:place_id]
       # if a place condition is specified, return all results
       # from the place(s) specified, or where place is NULL
       filters << { bool: { should: [
         { terms: { "taxon.statuses.place_id" =>
-          [ params[:place_id] ].flatten.map{ |v| ElasticModel.id_or_object(v) } } },
+          [params[:place_id]].flatten.map {| v | ElasticModel.id_or_object( v ) } } },
         { bool: { must_not: { exists: { field: "taxon.statuses.place_id" } } } }
       ] } }
     else
@@ -1202,22 +1232,25 @@ class Observation < ApplicationRecord
       }
     }
   end
+  private_class_method :conservation_condition
 
-  def add_taxon_statuses(json, t)
+  private
+
+  def add_taxon_statuses( json, taxon )
     # taxa can be globally threatened, but need context for the rest
     if json[:place_ids].empty?
-      json[:taxon][:threatened] = t.threatened?
+      json[:taxon][:threatened] = taxon.threatened?
       json[:taxon][:introduced] = false
       json[:taxon][:native] = false
       json[:taxon][:endemic] = false
       return
     end
     places = indexed_private_places ||
-      Place.where(id: json[:place_ids]).select(:id, :ancestry).to_a
+      Place.where( id: json[:place_ids] ).select( :id, :ancestry ).to_a
     preloaded = taxon_introduced.yesish? || taxon_introduced.noish?
-    json[:taxon][:threatened] = t.threatened?(place: places)
+    json[:taxon][:threatened] = taxon.threatened?( place: places )
     json[:taxon][:introduced] = preloaded ? taxon_introduced :
-      t.establishment_means_in_place?(ListedTaxon::INTRODUCED_EQUIVALENTS, places, closest: true)
+      taxon.establishment_means_in_place?( ListedTaxon::INTRODUCED_EQUIVALENTS, places, closest: true )
     # if the taxon is introduced it cannot be native or endemic
     if json[:taxon][:introduced]
       json[:taxon][:native] = false
@@ -1225,10 +1258,9 @@ class Observation < ApplicationRecord
       return
     end
     json[:taxon][:native] = preloaded ? taxon_native :
-      t.establishment_means_in_place?(ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
+      taxon.establishment_means_in_place?( ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true )
     json[:taxon][:endemic] = preloaded ? taxon_endemic :
-      t.establishment_means_in_place?("endemic", places)
-    t.listed_taxa_with_establishment_means.reset
+      taxon.establishment_means_in_place?( "endemic", places )
+    taxon.listed_taxa_with_establishment_means.reset
   end
-
 end
