@@ -6889,7 +6889,11 @@ it:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: Aiutaci a migliorare
-      to_help_us_improve: Per aiutarci a migliorare questo modello vorremmo sapere quale delle immagini in questa pagina sono rilevanti per la tua ricerca &quot;%{searched_term}&quot;. Per favore contrassegna ogni immagine come %{thumbs_up_icon} pertinente se corrisponde alla tua ricerca e non pertinente %{thumbs_down_icon} se non lo fa. Quando hai finito, fai clic su Invia. #text for a button where a user can mark images as relevnt to their search term
+      to_help_us_improve: Per aiutarci a migliorare questo modello vorremmo sapere quale delle immagini in questa pagina sono rilevanti per la tua ricerca &quot;%{searched_term}&quot;. Per favore contrassegna ogni immagine come %{thumbs_up_icon} pertinente se corrisponde alla tua ricerca e non pertinente %{thumbs_down_icon} se non lo fa. Quando hai finito, fai clic su Invia. #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Contrassegna come pertinente
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Contrassegna come non pertinente
+      #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Segna rimanenti come rilevanti
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Segna rimanenti come non rilevanti
