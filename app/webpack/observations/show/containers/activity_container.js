@@ -3,7 +3,8 @@ import Activity from "../components/activity";
 import {
   addComment, confirmDeleteComment, editComment,
   addID, withdrawID, confirmDeleteID, editID, restoreID,
-  review, unreview
+  review, unreview, voteIdentification, unvoteIdentification,
+  nominateIdentification, unnominateIdentification
 } from "../ducks/observation";
 import { setFlaggingModalState } from "../ducks/flagging_modal";
 import { createFlag, deleteFlag } from "../ducks/flags";
@@ -18,6 +19,7 @@ import { trustUser, untrustUser, setConfig } from "../../../shared/ducks/config"
 import { showModeratorActionForm } from "../../../shared/ducks/moderator_actions";
 import { updateEditorContent } from "../../shared/ducks/text_editors";
 import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
+import { setNominateOnSubmit } from "../ducks/comment_id_panel";
 
 function mapStateToProps( state ) {
   const observation = Object.assign( {}, state.observation, {
@@ -26,7 +28,8 @@ function mapStateToProps( state ) {
   return {
     observation,
     config: state.config,
-    content: state.textEditor.activity
+    content: state.textEditor.activity,
+    nominate: state.commentIDPanel.nominate
   };
 }
 
@@ -69,7 +72,16 @@ function mapDispatchToProps( dispatch ) {
     updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( editor, content ) ),
     performOrOpenConfirmationModal: ( method, options = { } ) => (
       dispatch( performOrOpenConfirmationModal( method, options ) )
-    )
+    ),
+    nominateIdentification: id => dispatch(
+      nominateIdentification( id )
+    ),
+    unnominateIdentification: id => dispatch(
+      unnominateIdentification( id )
+    ),
+    voteIdentification: ( id, vote ) => { dispatch( voteIdentification( id, vote ) ); },
+    unvoteIdentification: id => { dispatch( unvoteIdentification( id ) ); },
+    setNominateOnSubmit: nominate => { dispatch( setNominateOnSubmit( nominate ) ); }
   };
 }
 

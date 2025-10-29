@@ -10,6 +10,7 @@
 @import "../shared/taxonomic_branch";
 @import "../shared/full_screen_modal";
 @import "../shared/flash_message";
+@import "../users/user_popover";
 
 #app {
   min-height: 600px;
@@ -955,6 +956,9 @@ $nav-btn-dim: 40px;
 }
 
 .IdentificationsTab {
+  .btn-group.identification-categories {
+    margin-bottom: 10px;
+  }
   .search {
     margin-bottom: 40px;
     select.form-control {
@@ -963,11 +967,24 @@ $nav-btn-dim: 40px;
         width: 80px;
       }
     }
+    .search-input {
+      position: relative;
+      .searchclear {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        padding-left: 5px;
+        color: #ddd;
+        background: inherit;
+        z-index: 3;
+      }
+    }
   }
   .annotation-search {
     margin-top: 10px;
-    button + button {
-      margin-left: 5px;
+    button {
+      margin-right: 3px;
+      margin-bottom: 3px;
     }
   }
   .TaxonMap {
@@ -1009,43 +1026,85 @@ $nav-btn-dim: 40px;
     }
     .panel {
       margin-bottom: 0px;
-      time {
-        float: right;
-        a {
-          color: inherit;
+    }
+    .panel-heading {
+      .menu {
+        border-inline-start: 1px solid #DDD;
+        .dropdown.btn-group button {
+          margin-bottom: 2px;
+          margin-inline-start: 12px;
+          padding: 0;
+          border: none !important;
+          background: none !important;
+          box-shadow: none !important;
         }
       }
     }
     .panel-body {
       display: flex;
       .body {
-        flex: 1
+        flex: 1;
+        .id_body .content {
+          padding-left: 0px;
+        }
       }
       .votes {
         align-content: center;
-        width: 40px;
+        width: 65px;
         text-align: right;
         .fa-thumbs-up,
-        .fa-thumbs-o-up {
+        .fa-thumbs-o-up,
+        .fa-thumbs-down,
+        .fa-thumbs-o-down {
           font-size: 18px;
           color: #BBBBBB;
+          margin-right: 3px;
         }
         .vote-count {
           margin-left: 3px;
+        }
+        & button:nth-of-type(2) {
+          margin-left: 10px;
         }
       }
     }
     .panel-heading, .panel-footer {
       padding: 8px 15px;
     }
+    .panel-title, .panel-footer {
+      font-size: 14px;
+      display: flex;
+      align-items: flex-start;
+      a {
+        color: inherit;
+      }
+      .title-text, .footer-text {
+        flex: 2;
+        margin-inline-end: 20px;
+      }
+      .time {
+        margin-inline-end: 12px;
+        color: #999999;
+      }
+    }
     .panel-footer {
       background: none;
+      .time {
+        margin-inline-end: 0px;
+      }
     }
-    .panel-title {
-      font-size: 14px;
-    }
-    .annotations {
+    .annotations-conversation {
       padding-top: 8px;
+      display: flex;
+      align-items: center;
+      .annotations {
+        flex-grow: 1,
+      }
+      .conversation {
+        a {
+          text-decoration: underline;
+        }
+      }
     }
     .btn-sm {
       border-radius: 3px;

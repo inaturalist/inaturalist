@@ -1,3 +1,4 @@
+import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { paramsForSearch } from "../reducers/search_params_reducer";
 
@@ -34,6 +35,11 @@ function fetchObservationsStats( force = false ) {
       ttl: -1,
       ...paramsForSearch( s.searchParams.params )
     };
+    _.each( apiParams, ( v, k ) => {
+      if ( ( _.isNull( v ) || v === "" || v === "any" ) && !_.startsWith( k, "field:" ) ) {
+        delete apiParams[k];
+      }
+    } );
     const reviewedParams = {
       ...apiParams,
       reviewed: true,

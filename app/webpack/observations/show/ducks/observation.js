@@ -26,7 +26,11 @@ import {
   joinProject as sharedJoinProject,
   addObservationFieldValue as sharedAddObservationFieldValue,
   updateObservationFieldValue as sharedUpdateObservationFieldValue,
-  removeObservationFieldValue as sharedRemoveObservationFieldValue
+  removeObservationFieldValue as sharedRemoveObservationFieldValue,
+  nominateIdentification as sharedNominateIdentification,
+  unnominateIdentification as sharedUnnominateIdentification,
+  voteIdentification as sharedVoteIdentification,
+  unvoteIdentification as sharedUnvoteIdentification
 } from "../../shared/ducks/observation";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
@@ -158,7 +162,8 @@ const FIELDS = {
     updated_at: true,
     user: { ...USER_FIELDS, id: true },
     uuid: true,
-    vision: true
+    vision: true,
+    exemplar_identification: "all"
   },
   identifications_most_agree: true,
   // TODO refactor to rely on geojson instead of lat and lon
@@ -596,7 +601,7 @@ export function callAPI( method, payload, options = { } ) {
     if ( !options.callback ) {
       opts.actionTime = getActionTime( );
     }
-    method( payload ).then( ( ) => {
+    method( payload, options ).then( ( ) => {
       dispatch( afterAPICall( opts ) );
     } ).catch( e => {
       opts.error = e;
@@ -816,7 +821,8 @@ export function doAddID( taxon, confirmForm, options = { } ) {
         taxon_id: taxon.id,
         body: options.body,
         vision: !!taxon.isVisionResult,
-        disagreement: options.disagreement
+        disagreement: options.disagreement,
+        nominate: options.nominate
       }
     };
     dispatch( callAPI( inatjs.identifications.create, payload ) );
@@ -831,8 +837,8 @@ export function addID( taxon, options = { } ) {
     let observationTaxon = o.taxon;
     if (
       o.preferences.prefers_community_taxon === false
-      || (o.user.preferences.prefers_community_taxa === false 
-      && o.preferences.prefers_community_taxon === null)
+      || ( o.user.preferences.prefers_community_taxa === false
+      && o.preferences.prefers_community_taxon === null )
     ) {
       observationTaxon = o.community_taxon || o.taxon;
     }
@@ -1459,5 +1465,70 @@ export function fetchTaxonIdentifiers( ) {
     dispatch( fetchIdentifiers( {
       taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10
     } ) );
+  };
+}
+
+export function nominateIdentification( id ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    dispatch( sharedNominateIdentification(
+      observation,
+      id,
+      null,
+      ( ) => {
+        dispatch( fetchObservation(
+          observation.uuid
+        ) );
+      }
+    ) );
+  };
+}
+
+export function unnominateIdentification( id ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    dispatch( sharedUnnominateIdentification(
+      observation,
+      id,
+      null,
+      ( ) => {
+        dispatch( fetchObservation(
+          observation.uuid
+        ) );
+      }
+    ) );
+  };
+}
+
+export function voteIdentification( id, voteValue ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    dispatch( sharedVoteIdentification(
+      observation,
+      id,
+      voteValue,
+      null,
+      ( ) => {
+        dispatch( fetchObservation(
+          observation.uuid
+        ) );
+      }
+    ) );
+  };
+}
+
+export function unvoteIdentification( id ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    dispatch( sharedUnvoteIdentification(
+      observation,
+      id,
+      null,
+      ( ) => {
+        dispatch( fetchObservation(
+          observation.uuid
+        ) );
+      }
+    ) );
   };
 }

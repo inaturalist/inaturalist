@@ -3424,7 +3424,11 @@ class Observation < ApplicationRecord
 
   def reindex_identifications
     return true if skip_indexing || skip_identification_indexing
+
     Identification.elastic_index!( ids: identification_ids )
+    ExemplarIdentification.elastic_index!(
+      ids: ExemplarIdentification.where( identification_id: identification_ids ).pluck( :id )
+    )
   end
 
   # The intent here is to keep the observations_count in the Places index

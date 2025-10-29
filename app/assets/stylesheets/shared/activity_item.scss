@@ -230,6 +230,7 @@ body > [role="dialog"] .ActivityItem {
     }
   }
   .panel-footer {
+    display: flex;
     background-color: white;
     a {
       font-weight: bold;
@@ -237,6 +238,13 @@ body > [role="dialog"] .ActivityItem {
     }
     .SplitTaxon {
       display: inline;
+    }
+    .footer-text {
+        flex: 2;
+        margin-inline-end: 20px;
+    }
+    .time {
+      margin-inline-end: 0px;
     }
   }
   .icon {
@@ -268,8 +276,29 @@ body > [role="dialog"] .ActivityItem {
       margin-left: 0px;
     }
   }
-  .id_body {
+  .id-body-wrapper {
     margin-top: 15px;
+    display: flex;
+  }
+  .id_body {
+    flex-grow: 1;
+  }
+  .votes {
+    margin-left: 8px;
+    align-content: center;
+    text-align: right;
+    white-space: nowrap;
+    .fa-thumbs-up,
+    .fa-thumbs-o-up,
+    .fa-thumbs-down,
+    .fa-thumbs-o-down {
+      font-size: 18px;
+      color: #BBBBBB;
+      margin-right: 5px;
+    }
+    & button:nth-of-type(2) {
+      margin-left: 10px;
+    }
   }
 }
 
@@ -292,7 +321,6 @@ body > [role="dialog"] .ActivityItem.withdrawn {
     text-decoration: line-through;
   }
   .panel-body {
-    background-color: #f8f8f8;
     .taxon-image,
     .taxon .sciname,
     .taxon .comname {
@@ -305,6 +333,9 @@ body > [role="dialog"] .ActivityItem.withdrawn {
         text-decoration: line-through;
       }
     }
+  }
+  .panel-body, .panel-footer {
+    background-color: #f8f8f8;
   }
 }
 

@@ -19,6 +19,8 @@ class Identification < ApplicationRecord
   belongs_to :taxon_change
   belongs_to :previous_observation_taxon, class_name: "Taxon"
   has_many :project_observations, foreign_key: :curator_identification_id, dependent: :nullify
+  has_one :exemplar_identification, dependent: :destroy
+
   validates_presence_of :observation, :user
   validates_presence_of :taxon,
     message: "for an ID must be something we recognize"
@@ -29,7 +31,8 @@ class Identification < ApplicationRecord
   # NOTE: order is important here. set_previous_observation_taxon should
   # happen before update_other_identifications
   before_save :set_previous_observation_taxon,
-    :update_other_identifications
+    :update_other_identifications,
+    :delete_exemplar_if_withdrawn
 
   before_create :set_disagreement
   after_create :update_observation_if_test_env,
@@ -45,7 +48,7 @@ class Identification < ApplicationRecord
     :update_observation,
     :update_obs_stats,
     :update_user_counter_cache,
-    :index_taxon_identification,
+    :index_exemplar,
     unless: proc {| i | i.observation.destroyed? }
 
   # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
@@ -64,14 +67,8 @@ class Identification < ApplicationRecord
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
 
-  acts_as_votable
-  # acts_as_votable automatically includes `has_subscribers` but
-  # we don't want people to subscribe to identifications. Without this,
-  # voting on annotations would invoke auto-subscription to the votable
-  SUBSCRIBABLE = false
-
   attr_accessor :skip_observation, :html, :captive_flag, :skip_set_previous_observation_taxon, :skip_set_disagreement,
-    :bulk_delete, :wait_for_obs_index_refresh
+    :bulk_delete, :wait_for_obs_index_refresh, :nominate
 
   preference :vision, :boolean, default: false
 
@@ -202,6 +199,13 @@ class Identification < ApplicationRecord
     end
     scope.update_all( current: false )
     true
+  end
+
+  def delete_exemplar_if_withdrawn
+    return unless will_save_change_to_current? && !current? && exemplar_identification
+
+    self.wait_for_index_refresh = true
+    unnominate
   end
 
   def set_previous_observation_taxon
@@ -393,10 +397,14 @@ class Identification < ApplicationRecord
     true
   end
 
-  def index_taxon_identification
-    TaxonIdentification.elastic_index!( ids: [id], wait_for_index_refresh: true )
+  def index_exemplar
+    return unless exemplar_identification
+
+    ExemplarIdentification.elastic_index!(
+      ids: [exemplar_identification.id],
+      wait_for_index_refresh: wait_for_index_refresh
+    )
   end
-  alias :votable_callback :index_taxon_identification
 
   def set_last_identification_as_current
     last_current = observation.identifications.current.by( user_id ).order( "id ASC" ).last
@@ -591,6 +599,44 @@ class Identification < ApplicationRecord
 
   def taxon_rank
     taxon.try( :rank )
+  end
+
+  def nominate_as_exemplar_by( nominating_user )
+    return unless nominating_user.is_a?( User )
+
+    if exemplar_identification
+      return if exemplar_identification.nominated_by_user
+
+      exemplar_identification.update(
+        nominated_by_user: nominating_user,
+        nominated_at: Time.now,
+        wait_for_index_refresh: wait_for_index_refresh
+      )
+      return
+    end
+
+    create_exemplar_identification(
+      identification: self,
+      nominated_by_user: nominating_user,
+      nominated_at: Time.now,
+      wait_for_index_refresh: wait_for_index_refresh
+    )
+  end
+
+  def unnominate
+    return unless exemplar_identification
+
+    exemplar_identification.wait_for_index_refresh = wait_for_index_refresh
+    if body&.strip&.blank?
+      exemplar_identification.destroy
+      return
+    end
+
+    ActsAsVotable::Vote.where( votable: exemplar_identification ).destroy_all
+    exemplar_identification.update(
+      nominated_by_user: nil,
+      nominated_at: nil
+    )
   end
 
   # Static ##################################################################

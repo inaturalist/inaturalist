@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import IdentificationsTab from "../components/identifications_tab";
 import {
   setIdentificationsQuery,
+  nominateIdentification,
+  unnominateIdentification,
   voteIdentification,
   unvoteIdentification
 } from "../../shared/ducks/taxon";
@@ -64,6 +66,12 @@ function mapDispatchToProps( dispatch ) {
   return {
     setIdentificationsQuery: parameters => dispatch( setIdentificationsQuery( parameters ) ),
     updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+    nominateIdentification: ( id, exemplarID ) => dispatch(
+      nominateIdentification( id, exemplarID )
+    ),
+    unnominateIdentification: ( id, exemplarID ) => dispatch(
+      unnominateIdentification( id, exemplarID )
+    ),
     voteIdentification: ( id, vote ) => { dispatch( voteIdentification( id, vote ) ); },
     unvoteIdentification: id => { dispatch( unvoteIdentification( id ) ); }
   };

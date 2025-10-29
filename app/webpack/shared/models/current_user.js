@@ -12,7 +12,7 @@ const CurrentUser = class CurrentUser {
   }
 
   loggedIn( ) {
-    return !_.isEmpty( this.id );
+    return _.isNumber( this.id );
   }
 
   isAdmin( ) {
@@ -35,6 +35,28 @@ const CurrentUser = class CurrentUser {
       return false;
     }
     return this.privileges.includes( privilege );
+  }
+
+  canNominateIdentification( identification ) {
+    if (
+      !identification.current
+      || identification.hidden
+      || !this.loggedIn
+      || _.isEmpty( _.trim( identification.body ) )
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+  canUnnominateIdentification( identification ) {
+    if (
+      !this.loggedIn
+      || !identification.exemplar_identification?.nominated_by_user
+    ) {
+      return false;
+    }
+    return true;
   }
 };
 

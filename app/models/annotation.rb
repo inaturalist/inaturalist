@@ -202,8 +202,13 @@ class Annotation < ApplicationRecord
 
   def index_observation
     if resource.is_a?( Observation ) && !skip_indexing && !bulk_delete
-      Observation.elastic_index!( ids: [resource.id],
-        wait_for_index_refresh: wait_for_obs_index_refresh )
+      Observation.elastic_index!(
+        ids: [resource.id],
+        wait_for_index_refresh: wait_for_obs_index_refresh
+      )
+      ExemplarIdentification.elastic_index!(
+        ids: ExemplarIdentification.where( identification_id: resource.identification_ids ).pluck( :id )
+      )
     end
     true
   end

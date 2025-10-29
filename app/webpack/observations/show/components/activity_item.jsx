@@ -21,6 +21,7 @@ import { urlForTaxon } from "../../../taxa/shared/util";
 import TextEditor from "../../../shared/components/text_editor";
 import HiddenContentMessageContainer from "../../../shared/containers/hidden_content_message_container";
 import HiddenActivityItem from "./hidden_activity_item";
+import UsersPopover from "./users_popover";
 
 class ActivityItem extends React.Component {
   constructor( props ) {
@@ -149,6 +150,89 @@ class ActivityItem extends React.Component {
     );
   }
 
+  identificationHasNomination( ) {
+    const {
+      item
+    } = this.props;
+    return ( item.exemplar_identification && item.exemplar_identification.nominated_by_user );
+  }
+
+  identificationVotes( ) {
+    const {
+      item,
+      config,
+      voteIdentification,
+      unvoteIdentification
+    } = this.props;
+    if ( !this.identificationHasNomination( ) ) {
+      return null;
+    }
+
+    const votesFor = [];
+    const votesAgainst = [];
+    let userVotedFor;
+    let userVotedAgainst;
+    _.each( item.exemplar_identification.votes, v => {
+      if ( v.vote_flag === true ) {
+        votesFor.push( v );
+      } else if ( v.vote_flag === false ) {
+        votesAgainst.push( v );
+      }
+      if ( v.user?.id === config.currentUser.id ) {
+        userVotedFor = ( v.vote_flag === true );
+        userVotedAgainst = ( v.vote_flag === false );
+      }
+    } );
+    const voteAction = () => (
+      userVotedFor
+        ? unvoteIdentification( item.exemplar_identification.id )
+        : voteIdentification( item.exemplar_identification.id )
+    );
+    const unvoteAction = () => (
+      userVotedAgainst
+        ? unvoteIdentification( item.exemplar_identification.id )
+        : voteIdentification( item.exemplar_identification.id, "bad" )
+    );
+    const agreeClass = userVotedFor ? "fa-thumbs-up" : "fa-thumbs-o-up";
+    const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
+    return (
+      <div className="votes">
+        <button
+          type="button"
+          className="btn btn-nostyle"
+          onClick={voteAction}
+          aria-label={I18n.t( "agree_" )}
+          title={I18n.t( "agree_" )}
+        >
+          <i className={`fa ${agreeClass}`} />
+        </button>
+        { !_.isEmpty( votesFor ) && (
+          <UsersPopover
+            users={_.map( votesFor, "user" )}
+            keyPrefix={`votes-against-${item.uuid}`}
+            contents={( <span>{votesFor.length === 0 ? null : votesFor.length}</span> )}
+          />
+        ) }
+        <button
+          type="button"
+          onClick={unvoteAction}
+          className="btn btn-nostyle"
+          aria-label={I18n.t( "disagree_" )}
+          title={I18n.t( "disagree_" )}
+        >
+          <i className={`fa ${disagreeClass}`} />
+        </button>
+        { !_.isEmpty( votesAgainst ) && (
+          <UsersPopover
+            users={_.map( votesAgainst, "user" )}
+            keyPrefix={`votes-against-${item.uuid}`}
+            contents={( <span>{votesAgainst.length === 0 ? null : votesAgainst.length}</span> )}
+          />
+        ) }
+      </div>
+    );
+  }
+
   render( ) {
     const {
       observation,
@@ -174,7 +258,9 @@ class ActivityItem extends React.Component {
       hideContent,
       unhideContent,
       withdrawID,
-      performOrOpenConfirmationModal
+      performOrOpenConfirmationModal,
+      nominateIdentification,
+      unnominateIdentification
     } = this.props;
     const { editing } = this.state;
 
@@ -307,7 +393,7 @@ class ActivityItem extends React.Component {
       let idBody;
       if ( editing ) {
         idBody = this.editItemForm( );
-      } else if ( item.body && item.body.length > 0 ) {
+      } else if ( item.body && _.trim( item.body ).length > 0 ) {
         idBody = <UserText text={item.body} className="id_body" />;
       }
       contents = (
@@ -332,7 +418,12 @@ class ActivityItem extends React.Component {
               showMemberGroup
             />
           </div>
-          { idBody }
+          {!_.isEmpty( idBody ) && (
+            <div className="id-body-wrapper">
+              { idBody }
+              { config.testFeature === "altvotes" || editing || this.identificationVotes( ) }
+            </div>
+          )}
         </div>
       );
     } else if ( !item.hidden || canSeeHidden ) {
@@ -540,6 +631,25 @@ class ActivityItem extends React.Component {
         />
       );
     }
+    if ( this.identificationHasNomination( ) ) {
+      footer = (
+        <>
+          <span className="footer-text">
+            <b>{item.exemplar_identification.nominated_by_user.login}</b>
+            &nbsp;marked this as an ID tip
+          </span>
+          { config.testFeature === "altvotes" ? this.identificationVotes( ) : (
+            <time
+              className="time"
+              dateTime={item.exemplar_identification.nominated_at}
+              title={moment( item.exemplar_identification.nominated_at ).format( I18n.t( "momentjs.datetime_with_zone" ) )}
+            >
+              {moment.parseZone( item.exemplar_identification.nominated_at ).fromNow( )}
+            </time>
+          ) }
+        </>
+      );
+    }
     const elementID = this.isID ? `activity_identification_${item.uuid}` : `activity_comment_${item.uuid}`;
     const itemURL = this.isID ? `/identifications/${item.uuid}` : `/comments/${item.uuid}`;
     let time = (
@@ -595,6 +705,8 @@ class ActivityItem extends React.Component {
         hideContent={hideContent}
         unhideContent={unhideContent}
         performOrOpenConfirmationModal={performOrOpenConfirmationModal}
+        nominateIdentification={nominateIdentification}
+        unnominateIdentification={unnominateIdentification}
       />
     );
     return (
@@ -658,7 +770,11 @@ ActivityItem.propTypes = {
   trustUser: PropTypes.func,
   unhideContent: PropTypes.func,
   untrustUser: PropTypes.func,
-  withdrawID: PropTypes.func
+  withdrawID: PropTypes.func,
+  nominateIdentification: PropTypes.func,
+  unnominateIdentification: PropTypes.func,
+  voteIdentification: PropTypes.func,
+  unvoteIdentification: PropTypes.func
 };
 
 export default ActivityItem;

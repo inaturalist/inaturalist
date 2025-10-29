@@ -62,7 +62,7 @@ function callAPI(
   return dispatch => {
     const opts = { ...options };
     opts.actionTime = getActionTime( );
-    method( payload ).then( ( ) => {
+    method( payload, opts ).then( ( ) => {
       dispatch( afterAPICall( observation, fetchObservation, opts ) );
     } ).catch( e => {
       opts.error = e;
@@ -309,5 +309,63 @@ export function removeObservationFieldValue(
       fetchObservation,
       { callback }
     ) );
+  };
+}
+
+export function nominateIdentification( observation, id, setAttributes, fetchObservation ) {
+  return dispatch => {
+    const payload = { id };
+    dispatch(
+      callAPI(
+        observation,
+        inatjs.identifications.nominate,
+        payload,
+        fetchObservation,
+        { same_origin: true }
+      )
+    );
+  };
+}
+
+export function unnominateIdentification( observation, id, setAttributes, fetchObservation ) {
+  return dispatch => {
+    const payload = { id };
+    dispatch(
+      callAPI(
+        observation,
+        inatjs.identifications.unnominate,
+        payload,
+        fetchObservation,
+        { same_origin: true }
+      )
+    );
+  };
+}
+
+export function voteIdentification( observation, id, voteValue, setAttributes, fetchObservation ) {
+  return dispatch => {
+    const payload = { id, vote: voteValue };
+    dispatch(
+      callAPI(
+        observation,
+        inatjs.identifications.vote,
+        payload,
+        fetchObservation
+      )
+    );
+  };
+}
+
+export function unvoteIdentification( observation, id, setAttributes, fetchObservation ) {
+  return dispatch => {
+    const payload = { id };
+    dispatch(
+      callAPI(
+        observation,
+        inatjs.identifications.unvote,
+        payload,
+        fetchObservation
+      )
+    );
   };
 }

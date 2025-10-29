@@ -849,6 +849,19 @@ body > [role="dialog"] .ObservationModal {
     .TaxonAutocomplete > .form-group {
       margin-bottom: 10px;
     }
+    .nomination {
+      margin-top: 6px;
+      display: flex;
+      align-items: flex-start;
+      input:disabled+label {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+      .identificationNomination {
+        display: inline;
+        font-size: 12px;
+      }
+    }
   }
 
   .TextEditor {

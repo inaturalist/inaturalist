@@ -54,7 +54,7 @@ export default function reducer( state = { counts: {} }, action ) {
       delete newState.recent;
       delete newState.similar;
       delete newState.identifications;
-      delete newState.identificationsQuery;
+      newState.identificationsQuery = { upvoted: "true" };
       delete newState.species;
       delete newState.taxonChange;
       delete newState.trending;
@@ -660,19 +660,20 @@ export function fetchIdentifications( ) {
     const params = {
       direct_taxon_id: taxon.id
     };
-    const queryParams = state.taxon?.identificationsQuery || {};
-    if ( queryParams.q ) {
-      params.q = queryParams.q;
-    }
-    if ( queryParams.term_value_id ) {
-      params.term_value_id = queryParams.term_value_id;
-    }
-    if ( queryParams.order_by ) {
-      params.order_by = queryParams.order_by;
-    }
-    if ( queryParams.order ) {
-      params.order = queryParams.order;
-    }
+    const queryParams = state.taxon?.identificationsQuery || { upvoted: "true" };
+    _.each( [
+      "q",
+      "term_value_id",
+      "upvoted",
+      "downvoted",
+      "nominated",
+      "order_by",
+      "order"
+    ], param => {
+      if ( queryParams[param] ) {
+        params[param] = queryParams[param];
+      }
+    } );
     params.fields = "all";
     inatjs.taxon_identifications.search( params ).then(
       response => {
@@ -683,15 +684,50 @@ export function fetchIdentifications( ) {
   };
 }
 
+export function reloadTaxonIdentification( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const identifications = _.cloneDeep( state.taxon.identifications );
+    inatjs.taxon_identifications.search( { id, fields: "all" } ).then(
+      response => {
+        const updatedIdentifications = _.map( identifications.results, identification => (
+          ( identification.id === id ) ? response.results[0] : identification
+        ) );
+        identifications.results = updatedIdentifications;
+        dispatch( setIdentifications( identifications ) );
+      },
+      error => console.log( "[DEBUG] error: ", error )
+    );
+  };
+}
+
+export function nominateIdentification( id, exemplarID ) {
+  return ( dispatch, getState ) => {
+    inatjs.identifications.nominate( { id }, { same_origin: true } ).then( ( ) => {
+      dispatch( reloadTaxonIdentification( exemplarID ) );
+    } );
+  };
+}
+
+export function unnominateIdentification( id, exemplarID ) {
+  return ( dispatch, getState ) => {
+    inatjs.identifications.unnominate( { id }, { same_origin: true } ).then( ( ) => {
+      dispatch( reloadTaxonIdentification( exemplarID ) );
+    } );
+  };
+}
+
 export function voteIdentification( id, voteValue ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const identifications = _.cloneDeep( state.taxon.identifications );
     const newIdentifications = _.map( identifications.results, identification => (
-      ( identification.uuid === id )
+      ( identification.id === id )
         ? {
           ...identification,
-          votes: ( identification.votes || [] ).concat( [{
+          votes: _.filter( identification.votes || [], v => (
+            !( v.user.id === state.config.currentUser.id )
+          ) ).concat( [{
             vote_flag: ( voteValue !== "bad" ),
             user: state.config.currentUser,
             api_status: "saving"
@@ -701,7 +737,9 @@ export function voteIdentification( id, voteValue ) {
     ) );
     identifications.results = newIdentifications;
     dispatch( setIdentifications( identifications ) );
-    inatjs.identifications.vote( { id, vote: voteValue } );
+    inatjs.identifications.vote( { id, vote: voteValue } ).then( ( ) => {
+      dispatch( reloadTaxonIdentification( id ) );
+    } );
   };
 }
 
@@ -710,7 +748,7 @@ export function unvoteIdentification( id ) {
     const state = getState( );
     const identifications = _.cloneDeep( state.taxon.identifications );
     const newIdentifications = _.map( identifications.results, identification => (
-      ( identification.uuid === id )
+      ( identification.id === id )
         ? {
           ...identification,
           votes: _.filter( identification.votes, v => (
@@ -721,9 +759,12 @@ export function unvoteIdentification( id ) {
     ) );
     identifications.results = newIdentifications;
     dispatch( setIdentifications( identifications ) );
-    inatjs.identifications.unvote( { id } );
+    inatjs.identifications.unvote( { id } ).then( ( ) => {
+      dispatch( reloadTaxonIdentification( id ) );
+    } );
   };
 }
+
 export function setIdentificationsQuery( parameters ) {
   return dispatch => {
     dispatch( {

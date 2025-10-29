@@ -548,6 +548,10 @@ Rails.application.routes.draw do
 
   resources :identifications, constraints: { id: id_param_pattern } do
     resources :flags
+    member do
+      post :nominate
+      delete :unnominate
+    end
   end
   get "identifications/bold" => "identifications#bold"
   post "identifications/agree" => "identifications#agree"

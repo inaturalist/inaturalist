@@ -49,16 +49,23 @@ class Activity extends React.Component {
   }
 
   postIdentification( ) {
-    const { addID, content, updateEditorContent } = this.props;
+    const {
+      addID,
+      content,
+      updateEditorContent,
+      nominate,
+      setNominateOnSubmit
+    } = this.props;
     const input = $( ".id_tab input[name='taxon_name']" );
     const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
     if ( selectedTaxon ) {
-      addID( selectedTaxon, { body: content } );
+      addID( selectedTaxon, { body: content, nominate } );
       input.trigger( "resetSelection" );
       input.val( "" );
       input.data( "uiAutocomplete" ).selectedItem = null;
 
       updateEditorContent( "activity", "" );
+      setNominateOnSubmit( false );
     }
   }
 
@@ -201,7 +208,9 @@ Activity.propTypes = {
   untrustUser: PropTypes.func,
   updateEditorContent: PropTypes.func,
   showHidden: PropTypes.func,
-  performOrOpenConfirmationModal: PropTypes.func
+  performOrOpenConfirmationModal: PropTypes.func,
+  setNominateOnSubmit: PropTypes.func,
+  nominate: PropTypes.bool
 };
 
 export default Activity;

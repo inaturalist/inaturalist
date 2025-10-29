@@ -1,15 +1,19 @@
+# frozen_string_literal: true
+
 class IdentificationsController < ApplicationController
-  before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_action :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
-  before_action :load_user_by_login, :only => [:by_login]
-  load_only = [ :show, :edit, :update, :destroy ]
+  before_action :doorkeeper_authorize!, only: [
+    :create, :update, :destroy, :nominate, :unnominate
+  ], if: -> { authenticate_with_oauth? }
+  before_action :authenticate_user!, except: [:by_login], unless: -> { authenticated_with_oauth? }
+  before_action :load_user_by_login, only: [:by_login]
+  load_only = [:show, :edit, :update, :destroy, :nominate, :unnominate]
   before_action :load_record, only: load_only
-  blocks_spam :only => load_only, :instance => :identification
+  blocks_spam only: load_only, instance: :identification
   check_spam only: [:create, :update], instance: :identification
-  before_action :require_owner, :only => [:edit, :update, :destroy]
-  cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
-  caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
-    c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
+  before_action :require_owner, only: [:edit, :update, :destroy]
+  cache_sweeper :comment_sweeper, only: [:create, :update, :destroy, :agree]
+  caches_action :bold, expires_in: 6.hours, cache_path: proc {| c |
+    c.params.merge( sequence: Digest::MD5.hexdigest( c.params[:sequence] ) )
   }
   prepend_around_action :enable_replica, only: [:by_login]
 
@@ -190,6 +194,9 @@ class IdentificationsController < ApplicationController
         raise e unless e =~ /index_identifications_on_current/
         duplicate_key_violation = true
       end
+      if @identification.nominate
+        @identification.nominate_as_exemplar_by( current_user )
+      end
       if @identification.valid? && duplicate_key_violation == false
         format.html do
           flash[:notice] = t(:identification_saved)
@@ -368,9 +375,31 @@ class IdentificationsController < ApplicationController
       format.xml { render :xml => xml }
     end
   end
-  
+
+  def nominate
+    @identification.wait_for_index_refresh = true
+    @identification.nominate_as_exemplar_by( current_user )
+    respond_to do | format |
+      format.html do
+        redirect_to @record
+      end
+      format.json { head :no_content }
+    end
+  end
+
+  def unnominate
+    @identification.wait_for_index_refresh = true
+    @identification.unnominate
+    respond_to do | format |
+      format.html do
+        redirect_to @record
+      end
+      format.json { head :no_content }
+    end
+  end
+
   private
-  
+
   def agree_respond_to_html
     flash[:notice] = t(:identification_saved)
     if params[:return_to]

@@ -481,6 +481,7 @@ a.UserImage,
   .identification {
     .edit-comment-id {
       padding-top: 1em;
+      flex-grow: 1;
     }
   }
   .comment_id_panel {
@@ -517,6 +518,15 @@ a.UserImage,
       }
       .form-group {
         margin-bottom: 0px;
+      }
+      .nomination {
+        margin-top: 6px;
+        display: flex;
+        align-items: flex-start;
+        input:disabled + label {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
       }
       .ui-autocomplete {
         .ac-label {
@@ -1033,6 +1043,10 @@ time {
   .ac-select-thumb i {
     vertical-align: auto;
     line-height: 31px;
+  }
+  .identificationNomination {
+    display: inline;
+    font-size: 12px;
   }
 }
 
