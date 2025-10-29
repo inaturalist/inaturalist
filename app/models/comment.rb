@@ -37,7 +37,16 @@ class Comment < ApplicationRecord
     on: :save,
     delay: false,
     notification: "mention",
-    if: lambda( &:prefers_receive_mentions? )
+    if: lambda( &:prefers_receive_mentions? ),
+    unless: lambda {| comment |
+      # body hasn't changed, so mentions haven't changed
+      return true unless comment.previous_changes[:body]
+
+      # body has changed, but neither version mentioned users
+      comment.previous_changes[:body].map do | d |
+        d ? d.mentioned_users.any? : false
+      end.none?
+    }
   auto_subscribes :user, to: :parent
   blockable_by proc {| comment |
     should_bypass_block = comment.parent.is_a?( TaxonChange ) ||
