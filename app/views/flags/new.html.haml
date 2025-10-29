@@ -1,7 +1,5 @@
 - content_for :title do
   = @title = "#{t :new_flag_for} #{@object.to_plain_s}"
-- content_for :extracss do
-  = stylesheet_link_tag "flags/new"
 - content_for :extrajs do
   :javascript
     $( function ( ) {

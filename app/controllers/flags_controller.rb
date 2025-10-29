@@ -30,7 +30,7 @@ class FlagsController < ApplicationController
           paginate( page: params[:page] )
 
         respond_to do | format |
-          format.html { render layout: "bootstrap" }
+          format.html
         end
         return
       end
@@ -126,7 +126,7 @@ class FlagsController < ApplicationController
     @object = @object.becomes(Sound) if @object.is_a?(Sound)
     user_viewed_updates_for( @flag ) if logged_in?
     respond_to do |format|
-      format.html { render layout: "bootstrap" }
+      format.html
     end
   end
 
