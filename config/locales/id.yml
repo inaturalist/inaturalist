@@ -730,7 +730,6 @@ id:
   back_to_all_species: Kembali ke Semua Spesies
   back_to_editing_observation: Kembali ke mengubah observasi
   back_to_friends: Kembali ke teman
-  back_to_flags_html: "&laquo; Kembali ke tanda"
   back_to_lists: "Kembali ke daftar %{name}"
   back_to_observation: Kembali ke pengamatan
   back_to_observation_fields: Kembali ke bidang pengamatan
@@ -2007,6 +2006,8 @@ id:
   flag_deleted: Tanda dihapus
   flag_description: Tandai konten ini untuk memberi tahu kurator bahwa ada sesuatu yang salah dengan konten tersebut.
   flag_comment_description: Tambahkan komentar opsional kepada tanda ini untuk menjelaskan alasan Anda menambahkannya dan sediakan tautan sebagai bukti pendukung.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Bendera yang menyertakan sumber lebih mungkin diselesaikan dengan cepat oleh kurator sukarelawan kami.
   flag_for_check_list_title_html: |
     Tanda untuk Daftar Centang: %{title}
   flag_for_comment_id_html: Tanda untuk <a href="%{url}">Komentar %{id}</a>
@@ -2040,7 +2041,7 @@ id:
   flag_marked_as_unresolved_html: '<span class="meta">Tanda ditandai sebagai</span> <strong>belum selesai</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Benda
-  flag_reason: "&ldquo;Saya menandai %{record} ini karena"
+  flag_reason2: "Saya menandai %{record} ini karena"
   flag_resolution: Penyelesaian
   flag_saved: Tanda Tersimpan
   flag_saved_thanks_html: Tanda tersimpan. Terima kasih! <a href="%{url}" class="readmore">Lihat tanda</a>
