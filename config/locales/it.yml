@@ -794,7 +794,6 @@ it:
   back_to_all_species: Torna a Tutte le Specie
   back_to_editing_observation: Torna alla modifica dell'osservazione
   back_to_friends: Torna agli amici
-  back_to_flags_html: "&laquo; Torna ai contrassegni"
   back_to_lists: "Torna alle liste di %{name}"
   back_to_observation: Torna all'osservazione
   back_to_observation_fields: Torna ai campi dell'osservazione
@@ -2063,6 +2062,8 @@ it:
   flag_deleted: Contrassegno eliminato
   flag_description: Contrassegna il contenuto per segnalare ai curatori che c'è qualcosa che non va al riguardo.
   flag_comment_description: Aggiungi un commento facoltativo a questo flag che spieghi ulteriormente perché lo stai aggiungendo e fornisca link per supportarlo.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: I contrassegni che citano una fonte hanno maggiori probabilità di essere risolte rapidamente dai nostri curatori volontari.
   flag_for_check_list_title_html: |
     Contrassegno per la Checklist: %{title}
   flag_for_comment_id_html: Contrassegno per il <a href="%{url}">Commento %{id}</a>
@@ -2096,7 +2097,6 @@ it:
   flag_marked_as_unresolved_html: '<span class="meta">Contrassegno segnato come</span> <strong>irrisolto.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Oggetto
-  flag_reason: "&ldquo;Sto contrassegnando questo %{record} perché"
   flag_resolution: Risoluzione
   flag_saved: Contrassegno salvato
   flag_saved_thanks_html: Contrassegno salvato. Grazie! <a href="%{url}" class="readmore">Visualizza contrassegno</a>
