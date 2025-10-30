@@ -1492,11 +1492,17 @@ export function showNewObservation( observation, options = { } ) {
   };
 }
 
-export function fetchTaxonIdentifiers( ) {
+export function fetchTaxonIdentifiers( options = {} ) {
   return ( dispatch, getState ) => {
     const { observation } = getState( );
     if ( !( observation.taxon && observation.taxon.rank_level <= 50 ) ) {
       dispatch( setIdentifiers( [] ) );
+      return;
+    }
+    if ( options && options.placeId ) {
+      dispatch( fetchIdentifiers( {
+        place_id: options.placeId, taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10
+      } ) );
       return;
     }
     dispatch( fetchIdentifiers( {
