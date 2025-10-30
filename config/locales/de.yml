@@ -792,7 +792,6 @@ de:
   back_to_all_species: Zurück zu Alle Arten
   back_to_editing_observation: Zurück zur Bearbeitung der Beobachtung
   back_to_friends: Zurück zu den Freunden
-  back_to_flags_html: "&laquo; Zurück zu den Meldungen"
   back_to_lists: "Zurück zu den %{name}-Listen"
   back_to_observation: Zurück zur Beobachtung
   back_to_observation_fields: Zurück zu den Beobachtungsfeldern
@@ -2029,6 +2028,8 @@ de:
   flag_deleted: Meldung gelöscht
   flag_description: Melde diesen Inhalt, um Kuratoren wissen zu lassen, dass etwas nicht stimmt (Begründung am besten auf englisch verfassen).
   flag_comment_description: Erläutere in einem optionalen Kommentar den Sachverhalt näher und füge ggf. einen unterstützenden Link hinzu.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Meldungen, die eine Quelle zitieren, werden mit größerer Wahrscheinlichkeit schnell von unseren freiwilligen Kuratoren gelöst.
   flag_for_check_list_title_html: |
     Meldung für die Checkliste: %{title}
   flag_for_comment_id_html: Meldung dieses <a href="%{url}">Kommentars %{id}</a>
@@ -2062,7 +2063,7 @@ de:
   flag_marked_as_unresolved_html: '<span class="meta">Meldung gekennzeichnet als</span> <strong>"ungeklärt".</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Gegenstand der Meldung
-  flag_reason: "&ldquo;I'm flagging this %{record} because"
+  flag_reason2: "Ich melde %{record} weil"
   flag_resolution: Lösung
   flag_saved: Meldung abgegeben.
   flag_saved_thanks_html: Meldung gespeichert. Danke! <a href="%{url}" class="readmore">Meldung ansehen</a>
