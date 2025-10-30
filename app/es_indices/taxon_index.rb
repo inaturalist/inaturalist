@@ -8,21 +8,26 @@ class Taxon < ApplicationRecord
   # used to cache place_ids when bulk indexing
   attr_accessor :indexed_place_ids
 
-  scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
-    :taxon_framework, :flags,
-    :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
-    { conservation_statuses: :place },
-    { taxon_names: :place_taxon_names },
-    { taxon_photos: { photo: [
-      :user,
-      :flags,
-      :file_extension,
-      :file_prefix,
-      :moderator_actions
-    ] } },
-    { listed_taxa_with_means_or_statuses: :place }) }
+  scope :load_for_index, lambda {
+    includes(
+      :colors, :taxon_descriptions, :atlas,
+      :taxon_framework, :flags,
+      :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
+      { conservation_statuses: :place },
+      { taxon_names: :place_taxon_names },
+      { taxon_photos: { photo: [
+        :user,
+        :flags,
+        :file_extension,
+        :file_prefix,
+        :moderator_actions
+      ] } },
+      { listed_taxa_with_means_or_statuses: :place }
+    )
+  }
+
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
-    mappings(dynamic: true) do
+    mappings( dynamic: true ) do
       indexes :ancestor_ids, type: "integer" do
         indexes :keyword, type: "keyword"
       end
@@ -161,19 +166,20 @@ class Taxon < ApplicationRecord
     end
   end
 
-  def as_indexed_json(options={})
-    if indexed_place_ids.nil? && !options[:for_observation] && !options[:no_details]
-      # make sure taxon names are up-to-date
-      taxon_names.reload if taxon_names.count != taxon_names.length
+  def as_indexed_json( options = {} )
+    # make sure taxon names are up-to-date
+    if indexed_place_ids.nil? && !options[:for_observation] && !options[:no_details] &&
+        taxon_names.count != taxon_names.length
+      taxon_names.reload
     end
     json = {
       id: id,
       rank: rank,
       rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
-      ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
+      ancestor_ids: ( ( ancestry ? ancestry.split( "/" ).map( &:to_i ) : [] ) << id ),
       is_active: is_active,
-      min_species_taxon_id: (rank_level && rank_level < RANK_LEVELS["species"]) ?
+      min_species_taxon_id: ( rank_level && rank_level < RANK_LEVELS["species"] ) ?
         parent_id : id
     }
     # min_species_* below means don't consider any ranks more specific than species.
@@ -184,38 +190,39 @@ class Taxon < ApplicationRecord
     # indexing originating from Identifications
     if options[:for_identification]
       if Taxon::LIFE
-        json[:ancestor_ids].delete(Taxon::LIFE.id)
+        json[:ancestor_ids].delete( Taxon::LIFE.id )
       end
-      json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
-        json[:ancestor_ids][0...-1].join(",") : json[:ancestor_ids].join(",")
+      json[:min_species_ancestry] = ( rank_level && rank_level < RANK_LEVELS["species"] ) ?
+        json[:ancestor_ids][0...-1].join( "," ) : json[:ancestor_ids].join( "," )
     else
       json[:name] = name
       json[:parent_id] = parent_id
-      json[:ancestry] = json[:ancestor_ids].join(",")
-      json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
-        json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
+      json[:ancestry] = json[:ancestor_ids].join( "," )
+      json[:min_species_ancestry] = ( rank_level && rank_level < RANK_LEVELS["species"] ) ?
+        json[:ancestor_ids][0...-1].join( "," ) : json[:ancestry]
     end
     # indexing originating Observations, not via another model
     unless options[:no_details]
       unless options[:for_observation]
         json[:names] = taxon_names.
-          sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
-          map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
+          sort_by {| tn | [tn.is_valid? ? 0 : 1, tn.position, tn.id] }.
+          map {| tn | tn.as_indexed_json( autocomplete: !options[:for_observation] ) }
       end
-      json[:statuses] = conservation_statuses.map(&:as_indexed_json)
-      json[:extinct] = conservation_statuses.select{|cs| cs.place_id.blank? && cs.iucn == Taxon::IUCN_EXTINCT }.size > 0
+      json[:statuses] = conservation_statuses.map( &:as_indexed_json )
+      json[:extinct] = conservation_statuses.any? do | cs |
+        cs.place_id.blank? && cs.iucn == Taxon::IUCN_EXTINCT
+      end
     end
     # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]
-      flag_counts = Hash[flags.group_by{ |t| t.resolved }.map{ |k,v| [k, v.length] }]
-      json.merge!({
+      flag_counts = flags.group_by( &:resolved ).transform_values( &:length )
+      json.merge!( {
         created_at: created_at,
-        default_photo: default_photo ?
-          default_photo.as_indexed_json(
-            sizes: [:square, :medium],
-            attribution_name: true
-          ) : nil,
-        colors: colors.map(&:as_indexed_json),
+        default_photo: default_photo&.as_indexed_json(
+          sizes: [:square, :medium],
+          attribution_name: true
+        ),
+        colors: colors.map( &:as_indexed_json ),
         ancestry: ancestry,
         taxon_changes_count: taxon_changes_count,
         taxon_schemes_count: taxon_schemes_count,
@@ -226,11 +233,11 @@ class Taxon < ApplicationRecord
           resolved: flag_counts[true] || 0,
           unresolved: flag_counts[false] || 0
         },
-        current_synonymous_taxon_ids: is_active? ? nil : current_synonymous_taxa.map(&:id),
+        current_synonymous_taxon_ids: is_active? ? nil : current_synonymous_taxa.map( &:id ),
         # see prepare_for_index. Basicaly indexed_place_ids may be set
         # when using Taxon.elasticindex! to bulk import
-        place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
-        listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
+        place_ids: ( indexed_place_ids || listed_taxa.map( &:place_id ) ).compact.uniq,
+        listed_taxa: listed_taxa_with_means_or_statuses.map( &:as_indexed_json ),
         taxon_photos: taxon_photos.reject do | tp |
           tp.photo.blank? || tp.photo.flagged? || tp.photo.hidden?
         end.map do | tp |
@@ -238,9 +245,9 @@ class Taxon < ApplicationRecord
         end,
         atlas_id: atlas.try( :id ),
         complete_species_count: complete_species_count,
-        wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil
-      })
-      if taxon_framework = get_complete_taxon_framework_for_internode_or_root
+        wikipedia_url: en_wikipedia_description&.url
+      } )
+      if ( taxon_framework = get_complete_taxon_framework_for_internode_or_root )
         json[:complete_rank] = Taxon::RANK_FOR_RANK_LEVEL[taxon_framework.rank_level]
       end
     end
@@ -250,22 +257,21 @@ class Taxon < ApplicationRecord
   # This custom prepare_for_index is used to preload place_ids
   # using a SQL call to avoid loading all the listed_taxa
   # into AR objects. This saves a lot of time when bulk indexing
-  def self.prepare_batch_for_index(taxa)
+  def self.prepare_batch_for_index( taxa )
     # make sure we default all caches to empty arrays
     # this prevents future lookups for instances with no results
-    taxa.each{ |t| t.indexed_place_ids ||= [ ] }
-    taxa_by_id = Hash[ taxa.map{ |t| [ t.id, t ] } ]
-    batch_ids_string = taxa_by_id.keys.join(",")
+    taxa.each {| t | t.indexed_place_ids ||= [] }
+    taxa_by_id = taxa.to_h {| t | [t.id, t] }
+    batch_ids_string = taxa_by_id.keys.join( "," )
     # fetch all place_ids store them in `indexed_place_ids`
-    connection.execute("
+    connection.execute( "
       SELECT taxon_id, place_id
       FROM listed_taxa lt
       JOIN places p ON (lt.place_id = p.id)
-      WHERE lt.taxon_id IN (#{ batch_ids_string })").to_a.each do |r|
-      if t = taxa_by_id[ r["taxon_id"].to_i ]
+      WHERE lt.taxon_id IN (#{batch_ids_string})" ).to_a.each do | r |
+      if ( t = taxa_by_id[r["taxon_id"].to_i] )
         t.indexed_place_ids << r["place_id"].to_i
       end
     end
   end
-
 end

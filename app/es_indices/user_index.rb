@@ -3,7 +3,11 @@
 class User < ApplicationRecord
   acts_as_elastic_model
 
-  scope :load_for_index, -> { includes( :roles, :flags, :provider_authorizations ) }
+  scope :load_for_index, lambda {
+    includes(
+      :roles, :flags, :provider_authorizations
+    )
+  }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings( dynamic: true ) do

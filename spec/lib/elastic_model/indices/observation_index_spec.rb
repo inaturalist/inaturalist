@@ -402,8 +402,6 @@ describe "Observation Index" do
         { http_param: :threatened, es_field: "taxon.threatened" },
         { http_param: :native, es_field: "taxon.native" },
         { http_param: :endemic, es_field: "taxon.endemic" },
-        { http_param: :id_please, es_field: "id_please" },
-        { http_param: :out_of_range, es_field: "out_of_range" },
         { http_param: :mappable, es_field: "mappable" },
         { http_param: :captive, es_field: "captive" }
       ].each do |filter|

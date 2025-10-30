@@ -3,10 +3,14 @@
 class ControlledTerm < ApplicationRecord
   acts_as_elastic_model
 
-  scope :load_for_index, -> { includes({ values: [ :values, :labels, :controlled_term_taxa ] }, :labels, :controlled_term_taxa, :attrs) }
+  scope :load_for_index, lambda {
+    includes( {
+      values: [:values, :labels, :controlled_term_taxa]
+    }, :labels, :controlled_term_taxa, :attrs )
+  }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
-    mappings(dynamic: true) do
+    mappings( dynamic: true ) do
       indexes :blocking, type: "boolean"
       indexes :excepted_taxon_ids, type: "integer"
       indexes :id, type: "integer" do
@@ -44,24 +48,25 @@ class ControlledTerm < ApplicationRecord
     end
   end
 
-  def as_indexed_json(options={})
-    return { } unless active?
+  def as_indexed_json( options = {} )
+    return {} unless active?
+
     preload_for_elastic_index unless options[:is_value]
-    fields_to_remove = [ "user_id", "active", "created_at", "updated_at"]
+    fields_to_remove = ["user_id", "active", "created_at", "updated_at"]
     if options[:is_value]
       fields_to_remove << "is_value"
     end
-    if is_value?
-      fields_to_remove << "multivalued"
+    fields_to_remove << if is_value?
+      "multivalued"
     else
-      fields_to_remove << "blocking"
+      "blocking"
     end
     # splatten out the array with *
-    json = self.attributes.except(*fields_to_remove)
-    if values.length > 0
-      json[:values] = values.select(&:active).map{ |v| v.as_indexed_json(is_value: true) }
+    json = attributes.except( *fields_to_remove )
+    unless values.empty?
+      json[:values] = values.select( &:active ).map {| v | v.as_indexed_json( is_value: true ) }
     end
-    json[:labels] = labels.map{ |l|
+    json[:labels] = labels.map do | l |
       l.attributes.except(
         "controlled_term_id",
         "user_id",
@@ -72,8 +77,8 @@ class ControlledTerm < ApplicationRecord
         "created_at",
         "updated_at"
       )
-    }
-    controlled_term_taxa.each do |ctt|
+    end
+    controlled_term_taxa.each do | ctt |
       if ctt.exception
         json[:excepted_taxon_ids] ||= []
         json[:excepted_taxon_ids] << ctt.taxon_id unless json[:excepted_taxon_ids].include?( ctt.taxon_id )
@@ -84,6 +89,4 @@ class ControlledTerm < ApplicationRecord
     end
     json
   end
-
-
 end
