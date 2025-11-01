@@ -31,7 +31,7 @@ const UmbrellaOverviewTab = props => {
       <PhotoModalContainer />
       <LazyLoad
         debounce={false}
-        height={90}
+        height={240}
         offset={100}
         onContentVisible={fetchPosts}
       >
