@@ -2029,6 +2029,8 @@ tr:
   flag_deleted: İşaret silindi
   flag_description: Küratörlere bir sorun olduğunu bildirmek için bu içeriği işaretle.
   flag_comment_description: Bu işareti, neden eklediğinizi açıklayan ve destekleyici kanıtlara bağlantılar sağlayan isteğe bağlı bir yorum ekleyin.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Bir kaynağa atıfta bulunan işaretlerin gönüllü küratörlerimiz tarafından hızlı bir şekilde çözülme olasılığı daha yüksektir.
   flag_for_check_list_title_html: |
     Kontrol Listesi için İşaretle: %{title}
   flag_for_comment_id_html: <a href="%{url}">Yorum %{id}</a> için işaretle
@@ -2062,6 +2064,7 @@ tr:
   flag_marked_as_unresolved_html: '<span class="meta">İşaret</span> <strong>çözümlenmemiş</strong> olarak işaretlendi.'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Obje
+  flag_reason2: "Bunu (%{record}) işaretliyorum çünkü:"
   flag_resolution: Çözüm
   flag_saved: İşaret Kaydedildi
   flag_saved_thanks_html: İşaret kaydedildi. Teşekkürler! <a href="%{url}" class="readmore">İşareti görüntüle</a>
@@ -6748,6 +6751,9 @@ tr:
       #to keep it under 20 characters
       help_us_improve: Geliştirmemize yardımcı olun
       to_help_us_improve: 'Bu modeli geliştirmemize yardımcı olmak için, lütfen bu sayfadaki görsellerden aramanla ilgili olanları belirt: "%{searched_term}". Aramanla uyuyorsa her görseli ilişkili olarak %{thumbs_up_icon}, uyumuyorsa ilişkisiz olarak %{thumbs_down_icon} işaretle. İşlemi tamamladığında lütfen gönder butonuna tıkla.' #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: İlgili olarak işaretle
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: İlişkisiz olarak işaretle
       #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Kalanları ilişkili olarak işaretle
       #text for a button where a user can mark images as not relevant to their search term
