@@ -1915,6 +1915,10 @@ de:
   exclude_projects: Projekte ausschließen
   exclude_taxa: Taxa ausschließen
   exclude_users: Benutzer ausschließen
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: '%{count} Taxon ausgeschlossen'
+    other: '%{count} Taxa ausgeschlossen'
   exclusion_filters: Ausschluss-Filter
   existing_flags: Vorhandene Meldungen
   exit_full_screen: "Vollbild beenden"
