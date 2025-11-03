@@ -1495,6 +1495,22 @@ es-MX:
     gaps_id_pilot_condition_1: "Aún no incluido en el modelo de Computer Vision"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
     gaps_id_pilot_condition_2: "Creemos que puedes identificar"
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Si no ve un enlace, es posible que no haya ninguna observación que coincida con estos criterios que necesite ID. Lo comprobará una vez al día."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Piloto de lagunas de observación: especies cercanas deseadas"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Mañana, recibirás una lista de especies que:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Aún no están en el Modelo de Visión por Computador"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Han sido observadas esta temporada cerca de tu última observación"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Son impulsadas por una muestra de hasta 200 observaciones de hasta 300 especies que priorizan las plantas"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Al observar estas especies, ayudarás a mejorar el modelo y a llenar las lagunas de datos sobre biodiversidad. Esta lista se actualizará cuando se actualicen los modelos. Puede optar por no hacerlo en cualquier momento."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Aquí está su lista actual de especies que son:"
   data_deficient: con datos deficientes
   data_quality: Calidad de datos
   data_quality_assessment: Evaluación de calidad de los datos
