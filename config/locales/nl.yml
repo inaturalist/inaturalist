@@ -2097,6 +2097,8 @@ nl:
   flag_deleted: Melding verwijderd
   flag_description: Meld deze inhoud zodat de curatoren weten dat er iets mis mee is.
   flag_comment_description: Voeg een optionele opmerking toe aan deze markering die verder verklaart waarom je deze toevoegt en die links geeft naar het bewijsmateriaal.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Vlaggen die een bron vermelden, worden waarschijnlijk sneller opgelost door onze vrijwillige curatoren.
   flag_for_check_list_title_html: |
     Melding voor checklist: %{title}
   flag_for_comment_id_html: Melding voor <a href="%{url}">reactie %{id}</a>
@@ -7078,6 +7080,9 @@ nl:
       #to keep it under 20 characters
       help_us_improve: Geef ons tips
       to_help_us_improve: Om ons te helpen dit model te verbeteren willen we graag weten welke van de afbeeldingen op deze pagina relevant zijn voor je zoekopdracht &quot;%{searched_term}&quot;. Markeer elke afbeelding als relevant %{thumbs_up_icon} als deze overeenkomt met je zoekopdracht en met %{thumbs_down_icon} als deze niet relevant is. Klik op verzenden wanneer je klaar bent. #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Markeren als relevant
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Markeren als niet relevant
       #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Markeer resterende als relevant
       #text for a button where a user can mark images as not relevant to their search term
