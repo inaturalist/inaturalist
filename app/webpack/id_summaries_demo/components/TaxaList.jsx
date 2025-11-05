@@ -33,7 +33,17 @@ const TaxaList = ( {
       if ( b === fallbackGroupLabel ) return -1;
       return a.localeCompare( b );
     } );
-    return labels.map( label => ( { label, taxa: byGroup[label] } ) );
+    return labels.map( label => ( {
+      label,
+      taxa: byGroup[label]
+        .slice()
+        .sort( ( a, b ) => {
+          const nameA = ( a?.name || "" ).trim().toLocaleLowerCase();
+          const nameB = ( b?.name || "" ).trim().toLocaleLowerCase();
+          if ( nameA === nameB ) return 0;
+          return nameA.localeCompare( nameB );
+        } )
+    } ) );
   }, [list, fallbackGroupLabel] );
 
   const renderGroup = group => (
