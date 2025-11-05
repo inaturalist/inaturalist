@@ -441,6 +441,10 @@ body {
   }
 
   /* Species image */
+  .fg-species-image-link {
+    display: inline-block;
+    max-width: 100%;
+  }
   .fg-species-image {
     display: block;
     max-height: 420px;

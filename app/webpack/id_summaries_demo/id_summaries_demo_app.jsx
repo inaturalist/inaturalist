@@ -92,6 +92,9 @@ class IdSummariesDemoApp extends Component {
         taxonGroup: item?.taxon_group || null,
         runGeneratedAt: item?.run_generated_at || null,
         taxonPhotoId: item?.taxon_photo_id,
+        taxonPhotoObservationId: item?.taxon_photo_observation_id
+          || item?.taxon_photo?.observation_id
+          || null,
         photoSquareUrl: this.photoUrlFromId( item?.taxon_photo_id, "square" ),
         photoMediumUrl: this.photoUrlFromId( item?.taxon_photo_id, "medium" ),
         tips: rawTips.map( normalizeTip )
@@ -178,6 +181,7 @@ class IdSummariesDemoApp extends Component {
       "taxon_name",
       "taxon_common_name",
       "taxon_photo_id",
+      "taxon_photo_observation_id",
       "run_generated_at",
       "id_summaries",
       "id_summaries.id",

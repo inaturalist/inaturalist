@@ -16,6 +16,7 @@ const TAXON_SUMMARY_FIELDS = [
   "taxon_name",
   "taxon_common_name",
   "taxon_photo_id",
+  "taxon_photo_observation_id",
   "taxon_group",
   "run_generated_at",
   "id_summaries",
@@ -92,6 +93,9 @@ export const fetchTaxa = ( { active = true, page = 1, per_page = 200 } = {} ) =>
       taxonGroup: r?.taxon_group || null,
       runGeneratedAt: r?.run_generated_at || null,
       taxonPhotoId: r?.taxon_photo_id,
+      taxonPhotoObservationId: r?.taxon_photo_observation_id
+        || r?.taxon_photo?.observation_id
+        || null,
       photoSquareUrl: photoUrlFromId( r?.taxon_photo_id, "square" ),
       photoMediumUrl: photoUrlFromId( r?.taxon_photo_id, "medium" ),
       tips: Array.isArray( r?.id_summaries ) ? r.id_summaries.map( normalizeTip ) : []

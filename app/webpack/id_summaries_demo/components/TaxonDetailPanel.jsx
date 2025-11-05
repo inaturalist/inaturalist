@@ -36,6 +36,9 @@ const TaxonDetailPanel = ( {
     : null;
   const commonName = species?.commonName || null;
   const scientificName = species?.name || "";
+  const observationLink = species?.taxonPhotoObservationId && species?.taxonPhotoId
+    ? `/observations/${species.taxonPhotoObservationId}?photo_id=${species.taxonPhotoId}`
+    : null;
 
   if ( !species ) {
     return (
@@ -80,7 +83,23 @@ const TaxonDetailPanel = ( {
         ) : null}
 
         {imageUrl ? (
-          <img src={imageUrl} alt={species.name} className="fg-species-image" />
+          observationLink ? (
+            <a
+              href={observationLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fg-species-image-link"
+              aria-label={
+                species?.name
+                  ? `View observation for ${species.name}`
+                  : "View observation"
+              }
+            >
+              <img src={imageUrl} alt={species.name} className="fg-species-image" />
+            </a>
+          ) : (
+            <img src={imageUrl} alt={species.name} className="fg-species-image" />
+          )
         ) : (
           <div className="fg-subtle">
             {I18n.t( "id_summaries.demo.taxon_detail.no_image" )}
