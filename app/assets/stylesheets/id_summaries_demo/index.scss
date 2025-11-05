@@ -78,11 +78,18 @@
   text-rendering: optimizeLegibility;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   background: #eff0f0;
-  overflow-y: scroll;
+  min-height: 100%;
+  overflow: hidden;
   scrollbar-gutter: stable both-edges;
+  margin: 0;
 }
 
 .navbar-header {
@@ -111,9 +118,27 @@ body {
 /* ===== ID Summaries Demo (extracted from JSX) ===== */
 
 .fg-app.bootstrap {
+  min-height: 100dvh;
+  max-height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  > *:not(.container) {
+    flex: 0 0 auto;
+  }
+
+  > .container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
   @media (min-width: 1200px) {
     .container {
-      width: 1270px;
+      width: 1300px;
     }
   }
   /* Info band under navbar */
@@ -133,31 +158,52 @@ body {
   /* Three-column layout */
   .fg-layout {
     display: grid;
-    grid-template-columns: 328px minmax(0, 635px) 275px;
+    grid-template-columns: 338px minmax(0, 625px) 275px;
+    grid-template-rows: minmax(0, 1fr);
     gap: 32px;
-    min-height: 800px;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
     padding: 0 0 24px 0;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: flex-start;
+    overflow: hidden;
   }
 
   /* Sidebar */
   .fg-sidebar {
     width: 100%;
-    background: transparent;
-    padding: 0;
-    overflow-y: auto;
-    box-sizing: border-box;
-  }
-  .fg-sidebar-panel {
     background: #f7f9fb;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-sizing: border-box;
     border-radius: 28px;
-    padding: 40px 20px 34px;
     border: 1px solid rgba(203, 213, 225, 0.8);
     box-shadow: 0 12px 24px rgba(15, 23, 42, 0.04);
-    min-height: 560px;
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+  }
+  .fg-sidebar-panel {
+    box-sizing: border-box;
+    padding: 10px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.7) transparent;
+  }
+  .fg-sidebar-panel::-webkit-scrollbar {
+    width: 10px;
   }
 
   /* Main panel */
@@ -168,11 +214,36 @@ body {
     display: flex;
     flex-direction: column;
     gap: 28px;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
   }
   .fg-main-content {
     display: flex;
     flex-direction: column;
     gap: 28px;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 16px;
+    padding-left: 8px;
+    box-sizing: border-box;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.7) transparent;
+  }
+  .fg-main-content::-webkit-scrollbar {
+    width: 10px;
+  }
+  .fg-main-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .fg-main-content::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.65);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
   }
   .fg-main-top-card {
     padding: 0;
@@ -749,11 +820,45 @@ body {
 }
 
 @media (max-width: 1100px) {
+  body {
+    overflow-y: auto;
+  }
+  .fg-app.bootstrap {
+    min-height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+  .fg-app.bootstrap > .container {
+    flex: none;
+    min-height: auto;
+    overflow: visible;
+  }
   .fg-layout {
     grid-template-columns: 1fr;
+    height: auto;
+    max-height: none;
+    flex: none;
+    overflow: visible;
+  }
+  .fg-sidebar {
+    min-height: auto;
+    flex: none;
+  }
+  .fg-sidebar-panel {
+    min-height: auto;
+    overflow: visible;
+    padding-right: 20px;
   }
   .fg-main {
     grid-column: 1;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+  .fg-main-content {
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
   }
   .fg-summary-header-grid,
   .fg-summary-list,
