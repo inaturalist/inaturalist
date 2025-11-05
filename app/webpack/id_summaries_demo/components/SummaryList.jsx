@@ -351,6 +351,7 @@ const SummaryList = ( {
                     pendingMetrics={summaryPending}
                     loading={metricsLoading && summariesMissingMetrics.length > 0}
                     message={feedbackMessage}
+                    showExplainer={index === 0}
                   />
                 ) : null}
               </div>

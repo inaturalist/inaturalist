@@ -10,7 +10,8 @@ const SummaryFeedback = ( {
   canVote = false,
   pendingMetrics = {},
   loading = false,
-  message = null
+  message = null,
+  showExplainer = true
 } ) => (
   <div className="fg-feedback-card">
     {loading ? (
@@ -18,9 +19,13 @@ const SummaryFeedback = ( {
         {I18n.t( "id_summaries.demo.summary_feedback.loading" )}
       </div>
     ) : null}
-    <p className="fg-feedback-explainer">
-      {I18n.t( "id_summaries.demo.summary_feedback.explainer" )}
-    </p>
+    {showExplainer ? (
+      <p className="fg-feedback-explainer">
+        {I18n.t( "id_summaries.demo.summary_feedback.explainer" )}
+      </p>
+    ) : (
+      <div className="fg-feedback-explainer fg-feedback-explainer--spacer" aria-hidden="true" />
+    )}
     {message ? <div className="fg-feedback-note">{message}</div> : null}
     <ul className="fg-feedback-options">
       {options.map( option => {
@@ -106,5 +111,10 @@ SummaryFeedback.propTypes = {
   canVote: PropTypes.bool,
   pendingMetrics: PropTypes.objectOf( PropTypes.bool ),
   loading: PropTypes.bool,
-  message: PropTypes.string
+  message: PropTypes.string,
+  showExplainer: PropTypes.bool
+};
+
+SummaryFeedback.defaultProps = {
+  showExplainer: true
 };
