@@ -13,15 +13,6 @@ const SummaryItem = ( { summary, referenceUsers } ) => {
     [summary]
   );
 
-  const SparklesIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path
-        d="M12 3l1.2 3.8L17 8l-3.8 1.2L12 13l-1.2-3.8L7 8l3.8-1.2L12 3zM6 13l0.9 2.7L10 17l-3.1 1.3L6 21l-0.9-2.7L2 17l3.1-1.3L6 13zm12 0l0.9 2.7L22 17l-3.1 1.3L18 21l-0.9-2.7L14 17l3.1-1.3L18 13z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-
   const ChevronIcon = ( { isOpen } ) => (
     <svg
       width="14"
@@ -96,9 +87,7 @@ const SummaryItem = ( { summary, referenceUsers } ) => {
     <div className="fg-summary-card">
       <div className="fg-summary-header">
         <span className="fg-summary-label" title={labelTitle}>
-          <span className="fg-summary-label-icon">
-            <SparklesIcon />
-          </span>
+          <span className="fg-summary-label-icon" aria-hidden="true" />
           <span>{labelText}</span>
         </span>
       </div>

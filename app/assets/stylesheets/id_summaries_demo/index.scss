@@ -494,8 +494,11 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #78a800;
     width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background: image-url("icon-aisparkle.svg") center center no-repeat;
+    background-size: 14px 14px;
   }
   .fg-summary-text {
     font-size: 16px;
