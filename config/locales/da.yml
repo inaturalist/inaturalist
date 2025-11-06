@@ -637,13 +637,13 @@ da:
     eller tilsyn. For yderligere detaljer, læs venligst vores <a href="/pages/community+guidelines"
     target="_blank">Fællesskabsretningslinjer</a>, som forbyder maskingenererede observationer, identifikationer og kommentarer.
   app_owner_application_about_p2_html: |
-    Fra og med 2022 kræver vi manuel godkendelse af brugere, som ønsker at kode API-klienter.
-    For at kode tredjeparts-apps, skal der først indsendes en ansøgning for at blive
-    en "app-ejer. Denne ansøgning skal beskrive funktionaliteten i den foreslåede app,
-    samt hvordan den planlægges brugt. For at kunne indsende en ansøgning skal din konto være
-    mindst 2 måneder gammel og skal have foretaget mindst 10 <a href="/pages/help#identification"
-    target="_blank">forbedrende identifikationer</a> den seneste måned. Vi kan stille opfølgende
-    spørgsmål om din plan og forbeholder os retten til at afvise ansøgninger uanset årsag.
+    Fra 2022 kræver vi manuel godkendelse for brugere, som ønsker at oprette API-klienter.
+    For at oprette tredjeparts-apps skal man først indsende en ansøgning for at blive
+    en "app-ejer". Ansøgning skal beskrive funktionaliteten af den foreslåede app,
+    samt hvordan den planlægges brugt. For at indsende en ansøgning skal brugerkontoen være
+    mindst 2 måneder gammel og skal have foretaget mindst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">forbedrende identifikationer</a> den seneste måned. Vi kan have opfølgende
+    spørgsmål om brugerens plan, og vi forbeholder os retten til at afvise ansøgninger uanset årsag.
   app_owner_application_inelligible: |
     For at kunne indsende en ansøgning skal din konto være mindst 2 måneder gammel og skal
     have foretaget mindst 10 forbedrende identifikationer den seneste måned.
@@ -1162,7 +1162,10 @@ da:
       et højere niveau.
     iucn: |
       Ækvivalent IUCN Red List-kode. Dette er ikke den faktiske IUCN-vurdering,
-      blot den bedst matchende IUCN-kode ift. truslen om koordinatafsløring indikeret af denne status. Dette vil tilsidesætte geofortrolighed, hvis den er "Mindste bekymring" eller derunder, så ønsker du at sløre observationer af denne takson, indstil da denne til "Næsten truet" eller derover.
+      blot den IUCN-kode, der bedst matcher truslen om koordinatafsløring
+      indikeret af denne status. Geofortrolighed tilsidesættes, hvis den er "Mindst
+      bekymring" eller derunder, så vil man skjule observationer af denne
+      takson, skal denne som minimum indstilles til "Næsten truet".
   conservation_status_geoprivacy_desc: |
     Standard lokalitetsbeskyttelse anvendt på alle observationer af dette takson på dette sted
   contact_support: Kontakt support
@@ -1516,6 +1519,61 @@ da:
   daily_users: Daglige brugere
   danger_zone: Farezone
   dashboard: Betjeningspanel
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ja! Jeg vil gerne deltage."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Stop deltagelse"
+    #link to a blog post
+    pilot_read_more: "Læs mere på vores blog"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Identifikationshuller-pilotprojekt: Behøver ID ønskede arter"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Hjælp os med at udfylde huller ved at deltage for at modtage dagligt link til observationer:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Endnu ikke inkluderet i Computer Vision Model"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Vi tror, du kan identificere"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Her er et link til observationer af arter, som endnu ikke er inkluderet i Computer Vision Model, som vi tror, du kan identificere."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Tjek tilbage i morgen for et link til observationer af arter, som endnu ikke er inkluderet i Computer Vision Model, som vi tror, du kan identificere. Man vil få vist arter, hvor man har foretaget mindst 3 forbedrende identifikationer."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Ses ikke noget link, er der muligvis ingen observationer matchende disse kriterier, som kræver ID. Tjek udføres én gang dagligt."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Observationshuller-pilotprojekt: Ønskede arter i nærheden"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "I morgen fremsendes en liste over arter, som:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Findes endnu ikke i Computer Vision Model"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Har været observeret i denne sæson nær din seneste observation"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Er drevet af en prøve på op til 200 observationer af op til 300 arter med planter som prioritet"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Ved at observere disse arter, assisterer man med at forbedre modellen og udfylde biodiversitetsdatahuller. Denne liste opdateres, når modellen opdateres. Man kan til enhver tid fravælge den."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Her er din nuværende liste over arter, som er:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Endnu ikke inkluderet i Computer Vision Model"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Observeret nær din seneste placering i denne sæson"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Ved at observere disse, assisterer man med at forbedre artsgenkendelsen og udfylde kritiske huller."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Gennemse arter"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Tjek tilbage i morgen for en personlig liste over arter, som endnu ikke er i Computer Vision Model, observeret i denne sæson. Den personlige liste vil bruge placeringen af din seneste observation."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Ses intet link, er der muligvis ingen arter, som matcher disse kriterier i din nærhed."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Identifikation-pilotprojekt: Onboarding af nye brugere"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Start i morgen, modtag op til 30 observationer dagligt matchende ens egne identifikationsfærdigheder, hvilket hjælpe med onboarding af nye brugere. Dette kan når som helst fravælges."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Nedenfor er op til 30 observationer matchende ens egne identifikationsfærdigheder."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Tjek tilbage i morgen for et link til observationer, matchende ens egne identifikationsfærdigheder."
   data_deficient: Mangelfuld data
   data_quality: Datakvalitet
   data_quality_assessment: Vurdering af datakvalitet
@@ -1653,6 +1711,8 @@ da:
         Tjek din e-mail og klik på linket i den modtagne e-mail for at bekræfte din konto.
       user:
         suspended: Din konto er suspenderet
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Tokenet til nulstilling af adgangskode er ugyldigt. Brug linket i den senest sendte e-mail til adgangskodenulstilling, eller <a href="%{url}">anmod om et nyt</a>.
     sessions:
       signed_in: 'Du er nu logget ind.'
       signed_out: 'Du er nu logget ud.'
@@ -4001,6 +4061,8 @@ da:
       zone: zone
   place_guess: sted gæt
   place_imported: Sted importeret!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Det kan tage op til en dag at associere observationer med dette sted.
   place_must_have_a_boundary_defined: Sted skal have et defineret omrids.
   place_name: Sted navn
   place_notes: Sted bemærkninger
@@ -4305,6 +4367,20 @@ da:
     Hvis du kan undgå det, så undlad at tilføje, ændre eller fjerne stedgrænser, medmindre det er absolut nødvendigt.
   places_warning_quota: |
     Kun tre steder kan oprettes dagligt.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Steder må ikke overstige 700.000 kvadratkilometer.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Steder må ikke overstige 70.000 kvadratkilometer.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Steder må ikke indeholde flere end 200.000 observationer.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Steder må ikke indeholde flere end 10.000 observationer.
   places_warning_the_future: |
     For hvad det er værd, så bliver vi, grundet iNat's nuværende vækstrate, fremadrettet nødt til at begrænse de betingelser, under hvilke folk kan tilføje steder.
   plants: planter
@@ -6483,9 +6559,17 @@ da:
         Tid i kontoens tidszone, hvor denne meddelelse ophører med at
         vises. Anvendes på tværs af tidszoner, så alle ophører med at se
         den på samme tid, ikke i forhold til deres lokale tid.
+      excludes_non_site_desc: |
+        Er meddelelsen er rettet mod et websted (hvilket er standard, hvis man er
+        webstedsadministrator), vil dette udelukke meddelelser målrettet alle
+        websteder på denne placering.
       ip_countries_desc: |
         CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
         intet valg, vises bekendtgørelsen til alle brugere uanset IP-land.
+      exclude_ip_countries_desc: |
+        CMD- eller SKIFT-klik for at vælge flere. Valgte lande får ikke vist
+        bekendtgørelsen. Er IP-lande valgt, vil valgte Undtag IP-lande
+        blive fratrukket førstnævnte.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Bemærk, at oprettelsesdatoen for brugerens senest oprettede
@@ -8453,9 +8537,27 @@ da:
         trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Sikker på, at takson-ændringen skal gendannes?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Sikker på, at takson-ændringen skal tilbagetrækkes?
       move_children_desc: |
         Underordner af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
         ækvivalenter med den nye slægt eller artsnavn.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Gendan
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: gendanner
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Tilbagetræk
+      #state of an abandoned taxon change
+      withdrawn: tilbagetrukket
+      #state of a committed taxon change
+      committed: gemt
+      #state of a draft taxon change
+      draft: udkast
+      #the status of a taxon change: draft, withdrawn or committed
+      status: status
       form:
         move_children_desc2_html: |
           Markering dette afkrydsningsfelt flytter underordnede til input taksonet til
@@ -8600,20 +8702,6 @@ da:
           Du skal indtaste "%{confirmation_code}" i formularen, for at slette din konto
       edit:
         about_third_party_tracking: Om tredjepartssporing
-        blocking_desc_html: |
-          <p>
-          Blokeres nogen, forhindres vedkommende i at sende dig beskeder, kommentere på dine observationer, identificere dine observationer og i det hele taget at interagere med dig på %{site_name}. Det fjerner også vedkommendes observationer fra dine søgeresultater og fjerner dine observationer fra vedkommendes søgeresultater. Det gør dig dog ikke usynlig for dem. De kan stadig finde dine observationer og se din profil, de kan blot ikke interagere med dig.
-          </p>
-          <p>
-          Blokering er til situationer, hvor du blot ikke kan enes med nogen, der bare ikke vil lade dig være, trods dine forsøg at løse tvister på en civiliseret måde. Det er ikke en måde, at skjule sig fra andre personer eller at forhindre identifikationer fra personer, hvis mening man ikke stoler på eller for at fravælge fællesskabs-ID'et (der er en anden indstilling til dét). Blokering virker således begge veje: Blokerer du nogen, så kan vedkommende ikke interagere med dig, men du kan heller ikke interagere med vedkommende. Misbruger du blokering til at forhindre nogen i at identificere dine observationer, forhindrer du også dig selv i at identificere deres observationer.
-          </p>
-          <p>
-          Du kan kun blokere tre personer. Vi mener, at dette er et rimeligt antal, der tilgodeser personer med behov for blokering, men samtidig forhindrer misbrug af blokering. Ved behov for blokering af flere personer, så <a href="mailto:%{help_email}">kontakt os</a>.
-          </p>
-          <p>
-          Chikanerer eller stalker nogen dig på %{site_name},
-          <a href="mailto:%{help_email}">så lad os vide det</a>. Udgør dette en overtrædelse af vores Vilkår for brug eller anden adfærd, som vi anser for upassende på vores websted, vil vi undersøge sagen.
-          </p>
         common_scientific_name_display_order: Visningsrækkefølge for Almindeligt/Videnskabeligt navn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Hvis du skifter mening, kan du altid
@@ -9113,6 +9201,7 @@ da:
         exclude_donor_start_date: Undtag donationsstartdato
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Undtag donationsslutdato
+        excludes_non_site: Skjul andre meddelelser uden Websteds-ID på denne placering
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Undtag observatører fra apps

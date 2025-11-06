@@ -1,0 +1,186 @@
+<%- content_for( :title ) do -%>
+  <%= @title = t( "sounds.sound_by_id_attribution", id: @sound.id, attribution: @sound.attribution ) %>
+<%- end -%>
+<%- content_for( :extracss ) do -%>
+  <%= stylesheet_link_tag "sounds/show" %>
+<%- end -%>
+<%- content_for( :extrajs ) do -%>
+  <%= javascript_include_tag "media/show" %>
+<%- end -%>
+<%-
+  sound_hidden = @sound.hidden?
+  last_moderator_action = @sound.moderator_actions.last
+  direct_sound_url = if @sound.is_a?( SoundcloudSound ) 
+    @sound.native_page_url 
+  else 
+    @sound.file.url
+  end
+-%>
+<h2><%= @title %></h2>
+
+<% unless @flags.blank? -%>
+  <div class="notice box">
+    <h3><%=t :heads_up_this_sound_has_been_flagged %></h3>
+    <%= render :partial => "flags/flag", :collection => @flags %>
+    <% if logged_in? && current_user.is_curator? -%>
+      <h4 class="upstacked"><%=t :curators %></h4>
+      <p class="ui">
+        <%=t "views.sounds.show.view_original_html", :url => direct_sound_url %>
+      </p>
+    <% end -%>
+  </div>
+<% end -%>
+
+<table>
+  <tr>
+    <td class="mediacell">
+      <% if sound_hidden -%>
+        <h3 class="content-hidden">
+          <span
+            data-content="<%= render( partial: "moderator_actions/popover", locals: { item: @sound.becomes( Sound ) } ).to_str %>"
+            data-placement="top"
+            data-toggle="popover"
+          >
+            <i class="fa fa-eye-slash content-hidden" ></i>
+            <%= t :content_hidden %>
+          </span>
+        </h3>
+      <% elsif @sound.is_a?(SoundcloudSound) -%>
+        <%- iframe_src= "https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F
+          #{@sound.native_sound_id}&show_artwork=false&secret_token=#{@sound.secret_token}" -%>
+        <div class="sound" data-sound-class="soundcloud_sound">
+          <iframe
+            title="Soundcloud"
+            scrolling="no"
+            frameBorder="no"
+            src="<%= iframe_src %>" />
+        </div>
+      <% else -%>
+        <div class="sound" data-sound-class="local_sound">
+          <audio controls preload="none" controlsList="nodownload">
+            <source src=<%= direct_sound_url %> type=<%= @sound.file_content_type %> />
+          </audio>
+        </div>
+      <% end -%>
+    </td>
+    
+    <td style="width: 100%">
+      <table width="100%">
+        <tr>
+          <th><%=t :attribution %></th>
+          <td width="100%">
+            <%= rights @sound, rel: "license" %>
+            <% if @sound.editable_by?(current_user) -%>
+              <span class="button">
+                <%= link_to_function t(:edit_license), "$('#editlicense').dialog({modal:true, width:'auto', title: I18n.t('edit_license')})" %>
+              </span>
+              <div id="editlicense" class="dialog" style="display:none">
+                <div class="column span-18 verticalmiddle licensechoices">
+                  <p class="ui description">
+                    <%= t(:licensing_your_content_gives_others_legal, :site_name => @site.preferred_site_name_short) %>
+                    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+                    (GBIF).
+                  </p>
+                  <%= render :partial => "shared/license_form" %>
+                </div>
+              </div>
+            <% end -%>
+          </td>
+        </tr>
+        <% if @sound.user -%>
+          <tr>
+            <th class="nobr"><%=t :uploaded_by %></th>
+            <td>
+              <%= link_to user_image(@sound.user), person_url(@sound.user) %>
+              <%= link_to_user @sound.user %>
+            </td>
+          </tr>
+        <% end -%>
+        <% unless @observations.blank? -%>
+          <tr>
+            <th><%=t :associated_observations %></th>
+            <td class="mini observations">
+              <%= render :partial => "observations/cached_component", :collection => @observations %>
+            </td>
+          </tr>
+        <% end -%>
+        <% if is_me?(@sound.user) && @sound.file_file_name.to_s !~ /^open-uri/ -%>
+          <tr>
+            <th><%=t :filename %></th>
+            <td><%= @sound.file_file_name %></td>
+          </tr>
+        <% end %>
+        <% unless @sound.file_content_type.blank? -%>
+          <tr>
+            <th><%=t :file_format %></th>
+            <td><%= @sound.file_content_type %></td>
+          </tr>
+        <% end %>
+        <% unless sound_hidden && !@sound.hidden_content_viewable_by?( current_user ) -%>
+          <tr>
+            <th><%=t :file_url %></th>
+            <% if sound_hidden -%>
+              <td>
+                <a href="" class="hidden-media-link" data-moderator-action-id=<%= last_moderator_action.id %>>
+                  <%= direct_sound_url %>
+                </a>
+              </td>
+            <% else -%>
+              <td><%= link_to direct_sound_url, direct_sound_url %></td>
+            <% end %>
+          </tr>
+        <% end %>
+        <% unless @sound.file_file_size.blank? -%>
+          <%-   
+            file_size_in_kb = @sound.file_file_size / 1000.to_f.round
+            file_size_in_mb = @sound.file_file_size / 1000000.to_f.round
+            file_size_str = if file_size_in_kb < 1500 
+              "#{file_size_in_kb} KB" 
+            else 
+              "#{file_size_in_kb} MB"
+            end 
+          -%>
+          <tr>
+            <th><%=t :file_size %></th>
+            <td><%= file_size_str %></td>
+          </tr>
+        <% end %>
+        <% if is_me?(@sound.user) -%>
+          <tr>
+            <th><%= t(:actions).capitalize %></th>
+            <td>
+              <%= link_to t(:delete_sound), @sound.becomes(Sound), :method => :delete,
+                :data => {
+                  :confirm => t(:are_you_sure_you_want_to_delete_this_sound?),
+                  :loading_click => t(:deleting)
+                },
+                :class => "delete button" %>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+      
+      <% if @sound.flagged? %>
+        <div id="flaggings_heads_up" class="description">
+          <%=t :heads_up_this_sound_has_been_flagged %>
+          <%= link_to t(:view_flags), sound_flags_path(@sound) %>
+          <% if logged_in? && current_user&.privileged_with?( UserPrivilege::INTERACTION ) %>
+            |
+            <%= link_to t(:add_another_flag), new_sound_flag_path(@sound),
+                        :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
+          <% end %>
+        </div>
+      <% elsif logged_in? && current_user&.privileged_with?( UserPrivilege::INTERACTION ) %>
+        <p class="description ui">
+          <%= link_to t(:flag_this_sound), new_sound_flag_path(@sound), :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
+        </p>
+      <% end %>
+
+      <% if ( @sound.hidden? && @sound.unhideable_by?( current_user ) ) || ( !@sound.hidden? && @sound.hideable_by?( current_user ) ) %>
+        <p class="description ui">
+          <%= link_to @sound.hidden? ? t( :unhide_content ) : t( :hide_content ), hide_sound_path( @sound ), rel: "nofollow" %>
+        </p>
+      <% end %>
+    </td>
+  </tr>
+</table>

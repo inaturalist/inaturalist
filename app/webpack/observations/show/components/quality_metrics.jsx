@@ -3,6 +3,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import UsersPopover from "./users_popover";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { inatreact } from "../../../shared/util";
 
 class QualityMetrics extends React.Component {
   constructor( ) {
@@ -145,33 +147,58 @@ class QualityMetrics extends React.Component {
         />
       )
       : null;
+    const currentUser = config?.currentUser;
+    const currentCommunityTaxon = observation.communityTaxon
+      ? (
+        <>
+          <br />
+          <span className="current-community-taxon">
+            {
+              inatreact.t( "current_community_id", {
+                taxon: <SplitTaxon
+                  taxon={observation.communityTaxon}
+                  user={currentUser}
+                />
+              } )
+            }
+          </span>
+        </>
+      )
+      : null;
     return (
       <tr className={`improve${needsIDVoteDisabled ? " disabled" : ""}`}>
         <td className="metric_title" colSpan={3}>
-          <i className="fa fa-gavel" />
-          { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
-          <div className="inputs">
-            <div className="yes">
-              { checkboxYes }
-              <label
-                htmlFor="improveYes"
-                className={needsIDInfo.mostAgree ? "bold" : ""}
-              >
-                { I18n.t( "yes" ) }
-              </label>
-              { " " }
-              { votesForCount }
+          <div className="grid-container">
+            <div className="column">
+              <i className="fa fa-gavel" />
             </div>
-            <div className="no">
-              { checkboxNo }
-              <label
-                htmlFor="improveNo"
-                className={needsIDInfo.mostDisagree ? "bold" : ""}
-              >
-                { I18n.t( "no_its_as_good_as_it_can_be" ) }
-              </label>
-              { " " }
-              { votesAgainstCount }
+            <div className="column">
+              { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
+              { currentCommunityTaxon }
+              <div className="inputs">
+                <div className="yes">
+                  { checkboxYes }
+                  <label
+                    htmlFor="improveYes"
+                    className={needsIDInfo.mostAgree ? "bold" : ""}
+                  >
+                    { I18n.t( "yes" ) }
+                  </label>
+                  { " " }
+                  { votesForCount }
+                </div>
+                <div className="no">
+                  { checkboxNo }
+                  <label
+                    htmlFor="improveNo"
+                    className={needsIDInfo.mostDisagree ? "bold" : ""}
+                  >
+                    { I18n.t( "no_its_as_good_as_it_can_be" ) }
+                  </label>
+                  { " " }
+                  { votesAgainstCount }
+                </div>
+              </div>
             </div>
           </div>
         </td>
@@ -278,8 +305,8 @@ class QualityMetrics extends React.Component {
       && observation.communityTaxon.rank_level <= 10
     );
     const communityTaxonAtLeastSubfamily = (
-      observation.taxon
-      && observation.taxon.rank_level < 30
+      observation.communityTaxon
+      && observation.communityTaxon.rank_level < 30
     );
     let locationSpecified = false;
     if ( observation.geojson ) {
@@ -310,6 +337,10 @@ class QualityMetrics extends React.Component {
     const subjectVoteDisabled = mediaCount < 2 && !this.metricHasVotes( "subject" );
     const subjectCells = this.voteCellsForMetric( "subject", {
       disableVoting: subjectVoteDisabled
+    } );
+    const accurateVoteDisabled = !hasMedia && !this.metricHasVotes( "accurate" );
+    const accurateCells = this.voteCellsForMetric( "accurate", {
+      disableVoting: accurateVoteDisabled
     } );
     const needsIDInfo = this.infoForMetric( "needs_id" );
     const rankText = needsIDInfo.mostDisagree
@@ -422,6 +453,14 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ subjectCells.agreeCell }</td>
               <td className="disagree">{ subjectCells.disagreeCell }</td>
             </tr>
+            <tr className={accurateCells.loading || accurateVoteDisabled ? "disabled" : ""}>
+              <td className="metric_title">
+                <i className="fa icon-icn-dna-check" />
+                { I18n.t( "evidence_accurately_depicts_organism_or_scene" ) }
+              </td>
+              <td className="agree">{ accurateCells.agreeCell }</td>
+              <td className="disagree">{ accurateCells.disagreeCell }</td>
+            </tr>
             <tr>
               <td className="metric_title">
                 <i className="fa fa-leaf" />
@@ -429,6 +468,14 @@ class QualityMetrics extends React.Component {
               </td>
               <td className="agree">{ rankPassed ? checkIcon : null }</td>
               <td className="disagree">{ rankPassed ? null : xIcon }</td>
+            </tr>
+            <tr>
+              <td className="metric_title">
+                <i className="fa fa-arrows-h" />
+                { I18n.t( "community_taxon_matches_observation_taxon" ) }
+              </td>
+              <td className="agree">{ observation.communityTaxon?.id === observation.taxon?.id ? checkIcon : null }</td>
+              <td className="disagree">{ observation.communityTaxon?.id === observation.taxon?.id ? null : xIcon }</td>
             </tr>
             { this.needsIDRow( ) }
           </tbody>

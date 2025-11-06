@@ -18,7 +18,7 @@ opts = Optimist.options do
 end
 
 if !CONFIG.virtuous || !CONFIG.virtuous.token
-  raise "Donorbox email an API key haven't been added to config"
+  raise "Virtuous token hasn't been added to config"
 end
 
 if opts.log_task_name
@@ -35,7 +35,8 @@ potential_errors = [
   RestClient::ServiceUnavailable,
   RestClient::GatewayTimeout,
   RestClient::TooManyRequests,
-  RestClient::InternalServerError
+  RestClient::InternalServerError,
+  RestClient::BadGateway
 ]
 
 tag_users = UserVirtuousTag::POSSIBLE_TAGS.to_h {| k | [k, []] }
@@ -105,7 +106,7 @@ end
 
 user_tags_created = 0
 tag_users.each do | tag, user_ids |
-  user_ids.each do | user_id |
+  user_ids.uniq.each do | user_id |
     next if UserVirtuousTag.where( user_id: user_id, virtuous_tag: tag ).exists?
 
     puts "Creating new UserVirtuousTag => { user_id: #{user_id}, virtuous_tag: #{tag} }"

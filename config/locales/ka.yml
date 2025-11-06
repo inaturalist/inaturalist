@@ -37,6 +37,20 @@ ka:
   #A user who does not admin any projects
   non_project_admin: არაპროექტის ადმინისტრატორი
   observation_fields_for_projects: დაკვირვების სფეროები პროექტებისთვის
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    ადგილები არ შეიძლება იყოს 700,000 კვადრატულ კილომეტრზე მეტი.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    ადგილები არ შეიძლება იყოს 70,000 კვადრატულ კილომეტრზე მეტი.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    ადგილები არ შეიძლება შეიცავდეს 200,000-ზე მეტ დაკვირვებას.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    ადგილები არ შეიძლება შეიცავდეს 10,000-ზე მეტ დაკვირვებას.
   #A user who admin's a project
   project_admin: პროექტის ადმინისტრატორი
   rank_levels:

@@ -93,6 +93,9 @@ class ResultsList extends Component {
           {_.round( result.normalized_combined_score, 3 )}
         </div>
         <div className="score">
+          {_.round( result.raster_geo_score, 3 )}
+        </div>
+        <div className="score">
           {_.round( result.geo_score, 3 )}
         </div>
         <div className="score">
@@ -116,6 +119,9 @@ class ResultsList extends Component {
             </div>
             <div className="score">
               Geo
+            </div>
+            <div className="score">
+              H3Geo
             </div>
             <div className="score">
               Threshold

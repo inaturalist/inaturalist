@@ -1,5 +1,5 @@
 class ListedTaxaController < ApplicationController
-  before_action :authenticate_user!, :except => [:show]
+  before_action :authenticate_user!
   before_action :load_listed_taxon, :except => [:index, :create, :refresh_observationcounts]
 
   SHOW_PARTIALS = %w(guide batch_edit_row)

@@ -118,3 +118,29 @@ describe ListedTaxaController, "destroy" do
     ).first ).not_to be_blank
   end
 end
+
+describe ListedTaxaController, "show" do
+  let( :listed_taxon ) { ListedTaxon.make! }
+
+  describe "with authentication" do
+    let( :user ) { User.make! }
+    before do
+      sign_in user
+    end
+    it "renders the show page" do
+      get :show, params: { id: listed_taxon.id }
+      expect( response.response_code ).to eq 200
+      expect( assigns( :listed_taxon ) ).to eq listed_taxon
+    end
+  end
+
+  describe "without authentication" do
+    before { controller.request.host = URI.parse( Site.default.url ).host }
+    it "redirects non-logged-in users to the login page" do
+      get :show, params: { id: listed_taxon.id }
+      expect( response.response_code ).to eq 302
+      expect( response ).to be_redirect
+      expect( response ).to redirect_to( new_user_session_url )
+    end
+  end
+end

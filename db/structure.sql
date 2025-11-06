@@ -415,7 +415,8 @@ CREATE TABLE public.announcements (
     target_creator boolean DEFAULT false,
     excludes_non_site boolean DEFAULT false,
     include_virtuous_tags text[] DEFAULT '{}'::text[],
-    exclude_virtuous_tags text[] DEFAULT '{}'::text[]
+    exclude_virtuous_tags text[] DEFAULT '{}'::text[],
+    exclude_ip_countries character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -4892,7 +4893,8 @@ CREATE TABLE public.taxon_changes (
     committed_on date,
     change_group character varying(255),
     committer_id integer,
-    move_children boolean DEFAULT false
+    move_children boolean DEFAULT false,
+    status character varying DEFAULT 'draft'::character varying NOT NULL
 );
 
 
@@ -5629,7 +5631,8 @@ CREATE TABLE public.user_parents (
     child_name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    donorbox_donor_id integer
+    donorbox_donor_id integer,
+    virtuous_donor_contact_id integer
 );
 
 
@@ -5860,7 +5863,12 @@ CREATE TABLE public.users (
     unconfirmed_email character varying,
     annotated_observations_count integer DEFAULT 0,
     icon_path_version smallint DEFAULT 0 NOT NULL,
-    canonical_email character varying(100)
+    canonical_email character varying(100),
+    virtuous_donor_contact_id integer,
+    fundraiseup_plan_frequency character varying,
+    fundraiseup_plan_status character varying,
+    fundraiseup_plan_started_at date
+
 );
 
 
@@ -9465,6 +9473,13 @@ CREATE INDEX index_observation_field_values_on_observation_field_id ON public.ob
 
 
 --
+-- Name: index_observation_field_values_on_observation_field_id_and_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_field_values_on_observation_field_id_and_id ON public.observation_field_values USING btree (observation_field_id, id);
+
+
+--
 -- Name: index_observation_field_values_on_observation_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11068,17 +11083,17 @@ CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 
 
 --
--- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_votes_on_unique_obs_fave ON public.votes USING btree (votable_type, votable_id, voter_type, voter_id) WHERE (((votable_type)::text = 'Observation'::text) AND ((voter_type)::text = 'User'::text) AND (vote_scope IS NULL) AND (vote_flag = true));
-
-
---
 -- Name: index_votes_on_votable_id_and_votable_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_votes_on_votable_id_and_votable_type_and_vote_scope ON public.votes USING btree (votable_id, votable_type, vote_scope);
+
+
+--
+-- Name: index_votes_on_votable_voter_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_votes_on_votable_voter_scope ON public.votes USING btree (votable_type, votable_id, voter_type, voter_id, vote_scope);
 
 
 --
@@ -11725,6 +11740,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250702141918'),
 ('20250722154500'),
 ('20250729144230'),
-('20250729180530');
-
+('20250729180530'),
+('20250730163800'),
+('20250730210202'),
+('20250807145445'),
+('20250826232001'),
+('20250903221143'),
+('20250905224234'),
+('20251010205509');
 

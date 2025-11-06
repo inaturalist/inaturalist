@@ -618,14 +618,6 @@ de:
     or oversight. Please read our <a href="/pages/community+guidelines"
     target="_blank">Community Guidelines</a> prohibiting machine-generated
     observations, identifications, and comments for more details.
-  app_owner_application_about_p2_html: |
-    As of 2022 we are requiring manual approval for users wishing to make API clients.
-    In order to create third-party apps, you must first submit an application to become
-    an "app owner." This application should describe the functionality of your proposed app
-    and how you plan to use it. In order to submit an application your account must be at
-    least 2 months old and must have made at least 10 <a href="/pages/help#identification"
-    target="_blank">improving identifications</a> in the last month. We may ask follow-up
-    questions about your plan and we reserve the right to turn down applications for any reason.
   app_owner_application_inelligible: |
     Um eine App einzureichen, musst du seit mindestens 2 Monaten ein Benutzerkonto haben, mit dem du im letzten Monat mindestens 10 verbessernde IDs beigetragen hast.
   app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
@@ -1095,12 +1087,6 @@ de:
     url: URL für eine Seite, die diesen Status beschreibt.
     geoprivacy: |
       Standardgeoprivität für Beobachtungen dieses Taxons. Beachte, dass der Schutzstatus, der innerhalb eines Kontinents, Landes oder Bundeslandes besteht, die Geoprivität der darüber liegenden Kategorie überschreiben kann.
-    iucn: |
-      Äquivalenter IUCN-Code der Roten Liste. Dies ist nicht die tatsächliche IUCN-Bewertung,
-      nur der IUCN-Code, der am besten mit der Bedrohung der Offenlegung der Koordinaten
-      übereinstimmt, die durch diesen Status impliziert wird. Dies wird die Geoprivität überschreiben, wenn es "Mindestens
-      Bedenken" oder darunter ist, Wenn Sie also Beobachtungen dieses
-      Taxons verschleiern möchten, setzen Sie dies auf "Near Threatened" oder höher.
   conservation_status_geoprivacy_desc: |
     Standardmäßig Geo-Privatsphäre auf alle Beobachtungen dieses Taxons an diesem Ort angewendet
   contact_support: Support kontaktieren
@@ -1578,6 +1564,8 @@ de:
         um dein Konto zu bestätigen.
       user:
         suspended: Dein Benutzerkonto wurde gesperrt
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Das Token zum Zurücksetzen des Kennworts ist ungültig. Bitte verwende den Link in der zuletzt gesendeten E-Mail zum Zurücksetzen des Passworts, oder <a href="%{url}">fordere ein Neues an</a>.
     sessions:
       signed_in: 'Erfolgreich angemeldet.'
       signed_out: 'Erfolgreich abgemeldet.'
@@ -3817,6 +3805,8 @@ de:
       zone: Zone
   place_guess: Ort erraten
   place_imported: Gebiet importiert!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Es kann bis zu einem Tag dauern, bis Beobachtungen für dieses neu erstellte Gebiet angezeigt werden
   place_must_have_a_boundary_defined: Das Gebiet muss eine Grenze definiert haben.
   place_name: Gebiets-Name
   place_notes: Gebiets-Notizen
@@ -4117,6 +4107,20 @@ de:
     Wenn du es vermeiden kannst, füge keine Grenzen hinzu, ändere oder entferne sie nicht - außer es ist unbedingt notwendig.
   places_warning_quota: |
     Du kannst nur drei Orte pro Tag erstellen.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Gebiete dürfen nicht größer als 700.000 Quadratkilometer sein.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Gebiete dürfen nicht größer als 70.000 Quadratkilometer sein.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Gebiete dürfen nicht mehr als 200.000 Beobachtungen enthalten.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Gebiete dürfen nicht mehr als 10.000 Beobachtungen enthalten.
   places_warning_the_future: |
     Nebenbei bemerkt, unter Berücksichtigung der aktuellen Wachstumsrate von iNat werden wir wohl die Befugnisse einschränken müssen, mit denen Benutzer in Zukunft Gebiete hinzufügen können.
   plants: Pflanzen
@@ -7849,19 +7853,6 @@ de:
           Du musst %{confirmation_code} in das Formular eingeben, um dein Konto löschen zu können
       edit:
         about_third_party_tracking: Über das Tracking von Drittanbietern
-        blocking_desc_html: |
-          <p>
-          Das Blockieren von Personen hindert sie daran, dir Nachrichten zu senden, deine Beobachtungen zu kommentieren, deine Beobachtungen zu identifizieren und anderweitig mit dir auf %{site_name} zu interagieren. Es entfernt auch deren Beobachtungen aus deinen Suchergebnissen und deine Beobachtungen aus ihren Suchergebnissen. Es macht dich jedoch nicht unsichtbar für sie. Sie können immer noch deine Beobachtungen finden und dein Profil ansehen, sie können einfach nicht mit dir interagieren.
-          </p>
-          <p>
-          Blockieren ist für Situationen, in denen man einfach nicht mit jemandem zurechtkommt und man nicht in Ruhe gelassen wird, trotz aller Bemühungen, Streitigkeiten auf zivilisierte Weise beizulegen. Es ist keine Möglichkeit, sich vor Leuten zu verstecken, um Identifikationen von Leuten zu verhindern, deren Meinung man nicht traut, oder sich aus der Community-ID auszutreten (es gibt eine eigene Einstellung dafür). Das Blockieren funktioniert also in beide Richtungen: Wenn du jemanden blockierst, kann er nicht mit dir interagieren, aber du kannst auch nicht mit der Person interagieren. Wenn Sie es missbrauchen, um jemanden daran zu hindern, Ihre Beobachtungen zu identifizieren, dann hindern Sie sich auch daran, ihre Beobachtungen zu identifizieren.
-          </p>
-          <p>
-          Du kannst nur drei Personen blockieren. Wir denken, dass dies eine vernünftige Zahl ist, die den Leuten entgegenkommt, die jemanden blockieren müssen, und gleichzeitig den Missbrauch der Blockierungs-Funktion verhindert. Wenn du glaubst, dass du mehr Leute blockieren musst, bitte <a href="mailto:%{help_email}">kontaktiere uns</a>.
-          </p>
-          <p>
-          Wenn dich jemand auf %{site_name} belästigt oder verfolgt, <a href="mailto:%{help_email}">bitte lass es uns wissen</a>. Wenn dies einen Verstoß gegen unsere Nutzungsbedingungen darstellt oder die andere Verhaltensweisen, die wir für unangemessen halten, werden wir dem nachgehen.
-          </p>
         common_scientific_name_display_order: Reihenfolge für wissenschaftliche/ Trivialnamen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wenn du deine Meinung änderst, kannst du jederzeit

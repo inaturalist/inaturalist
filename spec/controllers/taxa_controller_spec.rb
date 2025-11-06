@@ -16,6 +16,7 @@ describe TaxaController do
       expect( response ).to be_redirect
     end
   end
+
   describe "show" do
     render_views
     let( :taxon ) { Taxon.make! }
@@ -40,6 +41,12 @@ describe TaxaController do
       expect( response.body ).to have_tag(
         "link[rel=canonical][href='#{taxon_url( taxon, host: Site.default.url )}']"
       )
+    end
+
+    it "does not raise an error if preferred_taxon_page_place_id session variable is a string" do
+      expect( INatAPIService ).to receive( "get_json" ) { {}.to_json }
+      session[:preferred_taxon_page_place_id] = "string"
+      expect { get( :show, params: { id: taxon.id } ) }.not_to raise_error
     end
   end
 
@@ -283,6 +290,13 @@ describe TaxaController do
       t = Taxon.make!
       get :search, params: { q: t.name, per_page: "foo" }
       expect( response ).to be_successful
+    end
+    it "does not raise an exception when faceted_iconic_taxa is empty" do
+      t = Taxon.make!
+      get :search, params: { iconic_taxa: t.id }
+      expect( response ).to be_successful
+      expect( assigns( :iconic_taxa ) ).not_to be_empty
+      expect( assigns( :faceted_iconic_taxa ) ).to be_nil
     end
   end
 

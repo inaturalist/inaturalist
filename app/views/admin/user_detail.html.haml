@@ -256,6 +256,9 @@
                       %th Donorbox donation?
                       %td= up.donorbox_donor_id ? "yes" : "no"
                     %tr
+                      %th Virtuous donation?
+                      %td= up.virtuous_donor_contact_id ? "yes" : "no"
+                    %tr
                       %th Actions
                       %td
                         = button_to t(:delete), up, method: :delete, data: { confirm: t(:are_you_sure_no_undo) }, class: "btn btn-sm btn-danger"
@@ -284,6 +287,9 @@
                       %tr
                         %th Donorbox donation?
                         %td= up.donorbox_donor_id ? "yes" : "no"
+                      %tr
+                        %th Virtuous donation?
+                        %td= up.virtuous_donor_contact_id ? "yes" : "no"
             - else
               No children
     .col-xs-3

@@ -31,6 +31,12 @@
       :label => t(:copyright_infringement, :default => "copyright infringement").downcase,
       :label_after => true, 
       :description => t(:copyright_infringement_desc)
+  - if @object.is_a?( Photo ) || @object.is_a?( Sound )
+    = f.radio_button :flag, Flag::ARTIFICIALLY_GENERATED_CONTENT, 
+      :id => "flag_#{Flag::ARTIFICIALLY_GENERATED_CONTENT.underscore}",
+      :label => t( :artificially_generated_content, default: "artificially_generated_content" ).downcase,
+      :label_after => true, 
+      :description => t( :artificially_generated_content_desc )
   = f.radio_button :flag, "other",
     :label => t(:other),
     :label_after => true, 

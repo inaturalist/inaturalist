@@ -20,6 +20,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   NEEDS_ID_PILOT_VERSION = "Needs ID Pilot"
   NEEDS_ID_PILOT_POST_TITLE = "Identification Pilot to Onboard New Users"
+  GAPS_ID_PILOT_VERSION = "Gaps Identification Pilot"
+  GAPS_OBS_PILOT_VERSION = "Gaps Observation Pilot"
+  GAPS_OBS_PILOT_POST_TITLE = "Based in Canada? Help us observe and identify species gaps in the Computer Vision Model!"
+  GAPS_ID_PILOT_POST_TITLE = "Based in Canada? Help us observe and identify species gaps in the Computer Vision Model!"
 
   def generate_sample_if_requested
     generate_sample if generate_sample_now
@@ -51,7 +55,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   def fetch_top_iders( window: nil, taxon_id: nil, size: nil, place_id: nil )
     params = { d1: window, taxon_id: taxon_id, place_id: place_id }.compact
     result = INatAPIService.get( "/observations/identifiers", params )
-    iders = result&.results&.to_h {| r | [r["user_id"], r["count"]] } || {}
+    iders = result&.results.to_h {| r | [r["user_id"], r["count"]] } || {}
     iders = iders.first( size ).to_h if size
     iders
   end
@@ -113,9 +117,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
       window: window,
       not_own_observation: not_own_observation
     )
-    sorted_frequency_hash = ids_data.map {| i | [i["key"], i["doc_count"]] }.to_h
+    sorted_frequency_hash = ids_data.to_h {| i | [i["key"], i["doc_count"]] }
     keepers = User.where( "id IN (?) AND last_active > ?", sorted_frequency_hash.keys, 1.year.ago ).pluck( :id )
-    filtered_sorted_frequency_hash = sorted_frequency_hash.select {| k, _ | keepers.include?( k ) }
+    filtered_sorted_frequency_hash = sorted_frequency_hash.slice( *keepers )
     filtered_sorted_frequency_hash.
       select {| _, v | v >= improving_id_threshold }.keys.first( validator_redundancy_factor * 2 )
   end
@@ -194,7 +198,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   def associate_observations_with_identifiers( observation_ids_grouped_by_taxon, identifiers_by_taxon, top_iders )
     validator_candidates = identifiers_by_taxon.values.flatten.uniq
     observation_ids = observation_ids_grouped_by_taxon.values.flatten.uniq
-    observer_hash = Observation.find( observation_ids ).map {| o | [o.id, o.user_id] }.to_h
+    observer_hash = Observation.find( observation_ids ).to_h {| o | [o.id, o.user_id] }
     user_blocks = UserBlock.
       where( blocked_user_id: validator_candidates ).
       group( :blocked_user_id ).
@@ -214,7 +218,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         top_ider_candidates.concat( sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
           reject {| user_id | top_ider_candidates.include? user_id } )
         top_ider_candidates = top_ider_candidates.reject do | user_id |
-          user_blocks[user_id] && ( user_blocks[user_id].include? observer_hash[obs_id] )
+          user_blocks[user_id]&.include?( observer_hash[obs_id] )
         end
         if top_ider_candidates.length > validator_redundancy_factor
           observation_identifications = observation_identifications_hash[obs_id] || []
@@ -245,7 +249,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   )
     validator_candidates = identifiers_by_taxon_and_place.values.flatten.uniq
     observation_ids = observation_ids_grouped_by_taxon_and_place.values.flatten.uniq
-    observer_hash = Observation.find( observation_ids ).map {| o | [o.id, o.user_id] }.to_h
+    observer_hash = Observation.find( observation_ids ).to_h {| o | [o.id, o.user_id] }
     user_blocks = UserBlock.
       where( blocked_user_id: validator_candidates ).
       group( :blocked_user_id ).
@@ -267,7 +271,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         top_ider_candidates.concat( sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
           reject {| user_id | top_ider_candidates.include? user_id } )
         top_ider_candidates = top_ider_candidates.reject do | user_id |
-          user_blocks[user_id] && ( user_blocks[user_id].include? observer_hash[obs_id] )
+          user_blocks[user_id]&.include?( observer_hash[obs_id] )
         end
         if top_ider_candidates.length > validator_redundancy_factor
           observation_identifications = observation_identifications_hash[obs_id] || []
@@ -504,7 +508,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     puts "Fetching continent groupings"
     continents = Place.where( admin_level: Place::CONTINENT_LEVEL ).map( &:id )
     continent_obs = get_continent_obs( o, continents )
-    continent_key = Place.find( continents ).map {| a | [a.id, a.name] }.to_h
+    continent_key = Place.find( continents ).to_h {| a | [a.id, a.name] }
 
     puts "Loading taxonomy"
     taxonomy_parser = TaxonomyParser.new
@@ -528,7 +532,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     taxonomy_parser = nil
 
     puts "Fetching DQA"
-    iconic_taxon_key = Taxon::ICONIC_TAXA.map {| t | [t.id, t.name] }.to_h
+    iconic_taxon_key = Taxon::ICONIC_TAXA.to_h {| t | [t.id, t.name] }
     no_media = Observation.includes( :photos, :sounds ).
       where( id: o ).
       where( photos: { id: nil }, sounds: { id: nil } ).pluck( :id )
@@ -832,7 +836,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_stats_for_single_bar( key: "quality_grade", value: "research", raw: false, subset: nil )
-    value_condition = value == "none" ? "#{key} IS NULL" : "#{key} = ?"
+    value_condition = ( value == "none" ) ? "#{key} IS NULL" : "#{key} = ?"
 
     value_condition = [subset, value_condition].compact.join( " AND " ) unless key == "quality_grade"
 
@@ -877,7 +881,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def get_precision_stats_for_single_bar( key: "quality_grade", value: "research", raw: false, subset: nil )
-    value_condition = value == "none" ? "#{key} IS NULL" : "#{key} = ?"
+    value_condition = ( value == "none" ) ? "#{key} IS NULL" : "#{key} = ?"
 
     value_condition = [subset, value_condition].compact.join( " AND " ) unless key == "quality_grade"
 
@@ -1057,20 +1061,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
     )
     return unless validator
 
+    return if ( validator&.validation_count || 0 ).zero?
+
     obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
     return if obs_ids.blank?
 
-    params = {
+    {
       reviewed: "false",
       quality_grade: "needs_id",
       place_id: "any",
       id: obs_ids.join( "," )
     }
-    return if INatAPIService.observations(
-      params.merge( per_page: 0, viewer_id: user.id )
-    ).total_results.zero?
-
-    params
   end
 
   def self.top_identifiers
@@ -1078,5 +1079,325 @@ class ObservationAccuracyExperiment < ApplicationRecord
       User.where( "identifications_count > 25000 AND identifications_count < 50000 AND last_active > ?", 1.month.ago ).
         pluck( :id )
     end
+  end
+
+  def self.get_modeled_taxa
+    modeled_taxon_ids = []
+    CSV.foreach( CONFIG&.model_taxonomy, headers: :first_row, col_sep: ",", quote_char: "|" ) do | row |
+      next if row[3].nil? || row[2].nil? || row[2].to_i > 10
+
+      modeled_taxon_ids << row[1].to_i
+    end
+
+    modeled_taxon_ids
+  end
+
+  # Gaps Obs Pilot Methods
+  def self.gaps_obs_pilot
+    ObservationAccuracyExperiment.find_by( version: GAPS_OBS_PILOT_VERSION )
+  end
+
+  def self.gaps_obs_pilot_params_for_user( user )
+    return unless gaps_obs_pilot && user
+
+    observer = gaps_obs_pilot.observation_accuracy_validators.find_by(
+      user_id: user.id
+    )
+    return unless observer
+
+    return if ( observer&.validation_count || 0 ).zero?
+
+    obs_ids = observer.observation_accuracy_samples.pluck( :observation_id )
+    return if obs_ids.blank?
+
+    {
+      place_id: "any",
+      id: obs_ids.join( "," ),
+      view: "species"
+    }
+  end
+
+  def self.gaps_obs_pilot_post
+    Post.where(
+      title: GAPS_OBS_PILOT_POST_TITLE,
+      parent_type: "Site"
+    ).where.not( published_at: nil ).first
+  end
+
+  def self.user_eligible_for_gaps_obs_pilot?( user )
+    return false if !gaps_obs_pilot || user.nil? || user.prefers_gaps_obs_pilot == false
+    return true if user.prefers_gaps_obs_pilot == true || user.is_admin?
+    return false if user.observations_count < 1000
+
+    user.site.try( :name ) == "iNaturalist Canada"
+  end
+
+  def self.get_observer_location( user_id )
+    observations = INatAPIService.
+      observations( user_id: user_id, order_by: "observed_on", per_page: 1, verifiable: true, obscuration: none )
+    return nil unless observations
+
+    last_observation = observations["results"][0]
+    return nil unless last_observation
+
+    return nil unless last_observation["geojson"]
+
+    last_observation["geojson"]["coordinates"]
+  end
+
+  def self.get_nearby_gaps( lat, lng, month, radius, modeled_taxon_ids )
+    params = { month: month, lat: lat, lng: lng, radius: radius, verifiable: true, rank: "species" }
+    response = INatAPIService.get( "/observations/taxonomy", params )
+
+    raw = response["results"].select {| r | r["rank"] == "species" }
+    candidate_ids = raw.map {| r | r["id"] }.select( &:even? ) - modeled_taxon_ids
+    allowed_counts = Taxon.where( id: candidate_ids ).where( "observations_count <= ?", 200 ).
+      pluck( :id, :observations_count ).to_h
+    filtered = raw.select {| r | allowed_counts.key?( r["id"] ) }
+
+    sorted = filtered.sort_by do | r |
+      group_key = ( r["iconic_taxon_name"] == "Plantae" ) ? 0 : 1
+      [group_key, -( allowed_counts[r["id"]] || 0 )]
+    end
+    sorted.map {| r | r["id"] }
+  end
+
+  def self.process_observers( gaps_obs_pilot, new_model )
+    modeled_taxon_ids = get_modeled_taxa
+    active_observers = Preference.where(
+      "owner_type = 'User' AND name = 'gaps_obs_pilot' AND value = 't'"
+    ).pluck( :owner_id )
+    ObservationAccuracyValidator.where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).
+      where( "user_id NOT IN (?)", active_observers ).destroy_all
+
+    if new_model
+      ObservationAccuracySample.where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).destroy_all
+      missing_validator_user_ids = active_observers
+    else
+      ObservationAccuracySample.where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).
+        left_outer_joins( :observation_accuracy_validators ).
+        where( observation_accuracy_validators: { id: nil } ).destroy_all
+
+      existing = ObservationAccuracyValidator.
+        where( observation_accuracy_experiment_id: gaps_obs_pilot.id, user_id: active_observers ).
+        distinct.pluck( :user_id )
+      missing_validator_user_ids = active_observers - existing
+    end
+
+    missing_validator_user_ids.each do | user_id |
+      observer = ObservationAccuracyValidator.
+        where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).
+        where( user_id: user_id ).first
+      unless observer
+        observer = ObservationAccuracyValidator.new(
+          observation_accuracy_experiment_id: gaps_obs_pilot.id,
+          user_id: user_id
+        )
+        observer.save!
+      end
+
+      lng, lat = get_observer_location( user_id )
+      if lat.nil?
+        observer.validation_count = 0
+        observer.save!
+
+        next
+      end
+
+      month = Time.now.month
+      radius = 50
+      nearby_gap_taxon_ids = get_nearby_gaps( lat, lng, month, radius, modeled_taxon_ids )
+
+      observations = INatAPIService.observations(
+        month: month,
+        lat: lat,
+        lng: lng,
+        radius: radius,
+        taxon_ids: nearby_gap_taxon_ids.first( 300 ),
+        per_page: 200
+      )
+      if observations.nil?
+        observer.validation_count = 0
+        observer.save!
+
+        next
+      end
+
+      obs_ids = observations["results"].map {| a | a["id"] }
+      obs_ids.each do | obs_id |
+        sample = ObservationAccuracySample.
+          where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).
+          where( observation_id: obs_id ).first
+        next if sample
+
+        sample = ObservationAccuracySample.new(
+          observation_accuracy_experiment_id: gaps_obs_pilot.id,
+          observation_id: obs_id
+        )
+        sample.save!
+      end
+
+      samples = ObservationAccuracySample.
+        where( observation_accuracy_experiment_id: gaps_obs_pilot.id ).
+        where( "observation_id IN (?)", obs_ids )
+      observer.observation_accuracy_samples << samples
+
+      params = {
+        place_id: "any",
+        id: obs_ids.join( "," ),
+        view: "species"
+      }
+      validation_count = INatAPIService.observations(
+        params.merge( per_page: 0, viewer_id: user_id )
+      ).total_results
+      observer.validation_count = validation_count
+      observer.save!
+    end
+  end
+
+  def self.process_gaps_obs( new_model )
+    puts "processing gaps obs..."
+    gaps_obs_pilot = ObservationAccuracyExperiment.find_by( version: GAPS_OBS_PILOT_VERSION )
+    gaps_obs_pilot ||= ObservationAccuracyExperiment.create(
+      version: GAPS_OBS_PILOT_VERSION
+    )
+    process_observers( gaps_obs_pilot, new_model )
+  end
+
+  # Gaps ID Pilot Methods
+  def self.gaps_id_pilot
+    ObservationAccuracyExperiment.find_by( version: GAPS_ID_PILOT_VERSION )
+  end
+
+  def self.gaps_id_pilot_params_for_user( user )
+    return unless gaps_id_pilot && user
+
+    identifier = gaps_id_pilot.observation_accuracy_validators.find_by(
+      user_id: user.id
+    )
+    return unless identifier
+
+    return if ( identifier&.validation_count || 0 ).zero?
+
+    obs_ids = identifier.observation_accuracy_samples.pluck( :observation_id )
+    return if obs_ids.blank?
+
+    {
+      reviewed: "false",
+      quality_grade: "needs_id",
+      place_id: "any",
+      id: obs_ids.join( "," )
+    }
+  end
+
+  def self.gaps_id_pilot_post
+    Post.where(
+      title: GAPS_ID_PILOT_POST_TITLE,
+      parent_type: "Site"
+    ).where.not( published_at: nil ).first
+  end
+
+  def self.user_eligible_for_gaps_id_pilot?( user )
+    return false if !gaps_id_pilot || user.nil? || user.prefers_gaps_id_pilot == false
+    return true if user.prefers_gaps_id_pilot == true || user.is_admin?
+    return false if user.identifications_count < 10_000
+
+    user.site.try( :name ) == "iNaturalist Canada"
+  end
+
+  def self.process_iders( gaps_id_pilot )
+    modeled_taxon_ids = get_modeled_taxa
+    participating_identifier_ids = Preference.where(
+      "owner_type = 'User' AND name = 'gaps_id_pilot' AND value = 't'"
+    ).pluck( :owner_id )
+    ObservationAccuracyValidator.where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
+      where( "user_id NOT IN (?)", participating_identifier_ids ).destroy_all
+    ObservationAccuracySample.where( observation_accuracy_experiment_id: gaps_id_pilot.id ).destroy_all
+    country_place_ids = Place.where( admin_level: Place::COUNTRY_LEVEL ).pluck( :id )
+
+    participating_identifier_ids.each do | user_id |
+      identifier = ObservationAccuracyValidator.
+        where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
+        where( user_id: user_id ).first
+      unless identifier
+        identifier = ObservationAccuracyValidator.new(
+          observation_accuracy_experiment_id: gaps_id_pilot.id,
+          user_id: user_id
+        )
+        identifier.save!
+      end
+
+      improving_id_matches = CohortLifecycle.get_improving_identifiers( user_id, country_place_ids )
+      unmodeled_taxon_ids = improving_id_matches.keys.select( &:even? ) - modeled_taxon_ids
+      if unmodeled_taxon_ids.count.zero?
+        identifier.validation_count = 0
+        identifier.save!
+        next
+
+      end
+
+      target_taxon_ids = Taxon.where( id: unmodeled_taxon_ids ).
+        where( "observations_count < 300" ).pluck( :id )
+      if target_taxon_ids.count.zero?
+        identifier.validation_count = 0
+        identifier.save!
+        next
+
+      end
+
+      target_place_ids = improving_id_matches.values.flatten.uniq
+      observations = INatAPIService.observations(
+        taxon_ids: target_taxon_ids.shuffle.take( 200 ),
+        quality_grade: "needs_id",
+        without_user_id: user_id,
+        per_page: 200,
+        place_id: target_place_ids
+      )
+      obs_ids = observations["results"].map {| a | a["id"] }
+      if obs_ids.count.zero?
+        identifier.validation_count = 0
+        identifier.save!
+        next
+
+      end
+      obs_ids.each do | obs_id |
+        sample = ObservationAccuracySample.
+          where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
+          where( observation_id: obs_id ).first
+        next if sample
+
+        sample = ObservationAccuracySample.new(
+          observation_accuracy_experiment_id: gaps_id_pilot.id,
+          observation_id: obs_id
+        )
+        sample.save!
+      end
+
+      samples = ObservationAccuracySample.
+        where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
+        where( "observation_id IN (?)", obs_ids )
+      identifier.observation_accuracy_samples << samples
+
+      params = {
+        reviewed: "false",
+        quality_grade: "needs_id",
+        place_id: "any",
+        id: obs_ids.join( "," )
+      }
+      validation_count = INatAPIService.observations(
+        params.merge( per_page: 0, viewer_id: user_id )
+      ).total_results
+      identifier.validation_count = validation_count
+      identifier.save!
+    end
+  end
+
+  def self.process_gaps_id
+    puts "processing gaps id..."
+    gaps_id_pilot = ObservationAccuracyExperiment.find_by( version: GAPS_ID_PILOT_VERSION )
+    gaps_id_pilot ||= ObservationAccuracyExperiment.create(
+      version: GAPS_ID_PILOT_VERSION
+    )
+    process_iders( gaps_id_pilot )
   end
 end

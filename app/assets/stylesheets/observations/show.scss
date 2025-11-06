@@ -1765,6 +1765,10 @@ time {
   }
 }
 
+.LicensingModal.modal .license_field label img {
+  padding-right: 5px;
+}
+
 .CommunityIDModal.no-taxon.modal {
   .modal-dialog {
     .modal-content {
@@ -2170,6 +2174,10 @@ time {
       }
     }
   }
+}
+
+.bootstrap .TestGroupToggle.alert {
+  margin-top: 25px;
 }
 
 @media (max-width: 768px) {

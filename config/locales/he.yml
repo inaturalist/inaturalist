@@ -441,9 +441,9 @@ he:
   add_flowers_and_fruits_flowers_annotation: 'הוספת תווית: "פרחים ופירות: פרחים"'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'הוספת תווית: "פרחים ופירות: פירות וזרעים"'
   add_flowers_and_fruits_no_flower_or_fruits: 'הוספת תווית: "פרחים ופירות: אין פרחים או פירות"'
-  add_leaves_breaking_leaf_buds: 'הוספת תווית: "עלים: ניצני עלים נשברים"'
+  add_leaves_breaking_leaf_buds: 'הוספת תווית: "עלים: ניצני עלים"'
   add_leaves_green_leaves: 'הוספת תווית: "עלים: עלים ירוקים"'
-  add_leaves_colored_leaves: 'הוספת תווית: "עלים: עלים צבעוניים"'
+  add_leaves_colored_leaves: 'הוספת תווית: "עלים: עלי שלכת"'
   add_leaves_no_live_leaves: 'הוספת תווית: "עלים: אין עלים חיים"'
   add_life_stage_adult_annotation: 'הוספת תווית "שלב חיים: בוגר"'
   add_life_stage_teneral_annotation: 'הוספת תווית "שלב חיים: לאחר השלה"'
@@ -723,7 +723,7 @@ he:
   app_owner_application_about_p1a_html: |
     אפליקציית iNaturalist מאפשרת שימוש מאומת ב-API של iNaturalist. זה מאפשר לך לבצע בקשות API המבצעות פעולות כגון יצירת תצפיות או זיהויים. מקרי שימוש טיפוסיים הם אפליקציות כמו בשולחן העבודה או בטלפון הנייד הכוללות פונקציונאליות עבור משתמשיהן ליצור תצפיות iNaturalist. תוכן זה חייב להיווצר במעורבות או בהנחייה אנושית אמיתית. למידע נוסף נא לקרוא את <a href="/pages/community+guidelines" target="_blank">כללי הקהילה</a> שלנו האוסרים על ייצור תצפיות, זיהויים ותגובות באמצעות מכונה.
   app_owner_application_about_p2_html: |
-    נכון ל-2022 אנו דורשות אישור ידני מיוזרים שברצונם ליצור כלי API. על מנת ליצור אפליקציות צד-שלישי, עליך להגיש קודם בקשת מועמדות להפוך ל"בעל.ת אפליקציה". בקשה זו צריכה לתאר את הפונקציונאליות של האפליקציה המוצעת שלך וכיצד את.ה מתכננ.ת להשתמש בה. על מנת להגיש בקשה החשבון שלך חייב להיות בן חודשיים לפחות ועליך לבצע לפחות 10 <a href="/pages/help#identification"
+    נכון ל-2022 אנו דורשות אישור ידני מיוזרים שברצונם ליצור כלי API. על מנת ליצור אפליקציות צד-שלישי, עליך להגיש קודם בקשת מועמדות להפוך ל"בעל.ת אפליקציה". בקשה זו צריכה לתאר את הפונקציונאליות של האפליקציה המוצעת שלך וכיצד את.ה מתכננ.ת להשתמש בה. על מנת להגיש בקשה החשבון שלך חייב להיות בן חודשיים לפחות ועליך לבצע לפחות 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">זיהויים משפרים</a> בחודש האחרון. יתכן ונשאל שאלות עוקבות אודות התכנית שלך ואנו שומרות זכות לדחות בקשות מכל סיבה.
   app_owner_application_inelligible: |
     כדי להגיש מועמדות, החשבון שלך חייב להיות בן חודשיים לפחות ובעל לפחות 10 זיהויים משפרים בחודש האחרון.
@@ -1273,9 +1273,9 @@ he:
     flowers: פרחים
     fruits_or_seeds: פירות או זרעים
     leaves: עלים
-    breaking_leaf_buds: ניצני עלים נשברים
+    breaking_leaf_buds: ניצני עלים
     green_leaves: עלים ירוקים
-    colored_leaves: עלים צבעוניים
+    colored_leaves: עלי שלכת
     no_live_leaves: אין עלים חיים
     life_stage: שלב חיים
     adult: בוגר
@@ -1336,7 +1336,7 @@ he:
     breaking_leaf_buds: לפחות ניצן אחד עם עלה או מחט חדש ראשון שטרם נפתחו לחלוטין
     green_leaves: לפחות עלה או מחט ירוק אחד (או אדמדם אם זה צבעו הבריא הטבעי)
     colored_leaves: לפחות עלה או מחט אחד בעל צבע של סוף עונה או בצורת
-    no_live_leaves: אין ניצני עלים מתפרצים או עלים או מחטים ירוקים או צבועים שנראים לעין
+    no_live_leaves: אין ניצני עלים, עלים ירוקים או עלי שלכת או מחטים הנראים לעין
     gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
     male: ממצאים מעידים על כך שיצורים רבים מסוגלים לייצר זרע לשימוש ברבייה מינית
     molt: נשל או שלד חיצוני
@@ -1555,6 +1555,61 @@ he:
   daily_users: משתמשות ומשתמשים יומיים
   danger_zone: אזור סכנה
   dashboard: אזור אישי
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "כן! אני רוצה להשתתף."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "הפסקת השתתפות"
+    #link to a blog post
+    pilot_read_more: "קראו עוד בבלוג שלנו."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "פיילוט פערי זיהוי: מינים חסרי זיהוי – מבוקשים"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "עזרו לנו להשלים את הפערים על ידי השתתפות וקבלת קישור יומי לתצפיות:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "עדיין לא נכלל במודל הראייה הממוחשבת"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "לדעתנו את.ה יכול.ה לזהות"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "הנה קישור לתצפיות של מינים שעדיין לא נכללו במודל הראייה הממוחשבת שלדעתנו תוכל.י לזהות."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "נא לבדוק שוב מחר עבור קישור לתצפיות על מינים שעדיין לא נכללו במודל הראייה הממוחשבת שאנו חושבים שאת.ה יכול.ה לזהות. יוצגו לך מינים שבהם ביצעת לפחות 3 זיהויים משפרים."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "אם אינך רואה קישור, ייתכן שלא יהיו תצפיות התואמות את הקריטריונים הללו שזקוקים לזיהוי. הוא יבדוק פעם ביום."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "פיילוט פערי תצפית: מינים מבוקשים בקרבת מקום"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "מחר, תקבל רשימה של מינים אשר:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "עדיין לא נמצאים במודל הראייה הממוחשבת"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "נצפו בעונה זו בסמוך לתצפית האחרונה שלך"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "מונעים על ידי מדגם של עד 200 תצפיות של עד 300 מינים המתעדפים צמחים"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "באמצעות תצפיות על המינים אלה, תעזרו לשפר את המודל ולמלא פערים בנתוני המגוון הביולוגי. רשימה זו תתעדכן כאשר המודל יתעדכן. ניתן לבטל את ההצטרפות בכל עת."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "הנה הרשימה הנוכחית של המינים שהם:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "עדיין לא נכלל במודל הראייה הממוחשבת"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "נצפו ליד המיקום האחרון שלך בעונה זו"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "באמצעות תצפיות עליהם, תעזרו לשפר את זיהוי המינים ולמלא פערים קריטיים."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "עיון במינים"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "נא לבדוק שוב מחר לרשימה מותאמת אישית של מינים שעדיין לא נמצאים במודל הראייה הממוחשבת, שנצפו העונה. הרשימה המותאמת אישית תשתמש במיקום של התצפית האחרונה שלך."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "אם אינך רואה קישור, ייתכן שאין מינים התואמים לקריטריונים אלה בקרבתך."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "פיילוט זיהוי: קליטת משתמשים חדשים"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "החל ממחר, תקבל.י עד 30 תצפיות מדי יום התואמות את כישורי הזיהוי שלך, ועוזרות לקלוט משתמשים חדשים. ניתן לבטל את ההצטרפות בכל עת."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "להלן מופיעות עד 30 תצפיות התואמות את כישורי הזיהוי שלך."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "נא לבדוק שוב מחר לקבלת קישור לתצפיות התואמות את כישורי הזיהוי שלך."
   data_deficient: מיעוט נתונים
   data_quality: איכות נתונים
   data_quality_assessment: הערכת איכות הנתונים
@@ -1689,6 +1744,8 @@ he:
         נא לבדוק את הדוא"ל שלך וללחוץ על הקישור במייל שקיבלת כדי לאשר את חשבונך.
       user:
         suspended: חשבונך הושהה
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: האסימון לאיפוס הסיסמה אינו תקף. אנא השתמשו בקישור שבהודעת האיפוס האחרונה שנשלחה אליכם, או <a href="%{url}">בקשו קישור חדש</a>.
     sessions:
       signed_in: 'ההתחברות בוצעה בהצלחה.'
       signed_out: 'היציאה בוצעה בהצלחה.'
@@ -1781,6 +1838,8 @@ he:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: לתרומה
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: לתרומה
   donate_again_caps: לתרומה נוספת
   donate_again_today_caps: לתרומה נוספת עכשיו
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -3982,6 +4041,8 @@ he:
       zone: אזור
   place_guess: ניחוש מקום
   place_imported: מיקום יובא!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: יכול לעבור עד יום שלם עד שהתצפיות יקושרו למקום זה.
   place_must_have_a_boundary_defined: למקום חייבת להיות הגדרת גבול
   place_name: שם המקום
   place_notes: הערות אודות המקום
@@ -4274,6 +4335,20 @@ he:
     עריכת גבולות של מקומות היא אחד המקורות הגדולים ביותר להאטות ב-iNaturalist. אם באפשרותך להימנע מזה, נא לא להוסיף, לשנות או להסיר גבולות של מקומות אלא אם זה הכרחי בהחלט.
   places_warning_quota: |
     באפשרותך ליצור רק שלושה מקומות ביום.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    מקומות לא יכולים להיות גדולים מ-700,000 קמ"ר.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    מקומות לא יכולים להיות גדולים מ-70,000 קמ"ר.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    מקומות אינם יכולים להכיל יותר מ-200,000 תצפיות.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    מקומות אינם יכולים להכיל יותר מ-10,000 תצפיות.
   places_warning_the_future: |
     אם זה שווה משהו, נצטרך להגביל את התנאים להוספת מקומות בעתיד, בהינתן קצב הצמיחה הנוכחי של iNaturalist.
   plants: צמחים
@@ -6370,6 +6445,8 @@ he:
         השעה באזור הזמן של החשבון שלך שבה הודעה זו תפסיק
         להופיע. חל על פני אזורי זמן שונים, כך שכולם יפסיקו לראות
         אותו באותו הזמן, לא ביחס לזמן המקומי שלהם.
+      excludes_non_site_desc: |
+        אם ההודעה שלך מיועדת לאתר (שזה ברירת המחדל אם את.ה מנהל.ת אתר), אפשרות זו תסתיר הודעות שמכוונות לכל האתרים באותו מיקום.
       ip_countries_desc: |
         לחיצה עם CMD או SHIFT תאפשר לבחור מספר פריטים. בחירה ב"הכל" או אי-בחירה תציג את ההודעה לכל המשתמשים, ללא תלות במדינת ה־IP שלהם.
       #Note about how the announcement last observation date property works
@@ -6383,6 +6460,10 @@ he:
         השעה באזור הזמן של החשבון שלך שבה הודעה זו תתחיל
         להופיע. חל על פני אזורי זמן שונים, כך שכולם יתחילו לראות
         אותו באותו הזמן, לא ביחס לזמן המקומי שלהם.
+      include_virtuous_tags_desc: |
+        לחצ.י עם CMD או SHIFT כדי לבחור מספר אפשרויות. בחירת "כלשהו" או אי־בחירה תציג את ההודעה לכל המשתמשים ללא קשר לתגיות ה־Virtuous שלהם.
+      exclude_virtuous_tags_desc: |
+        לחצ.י עם CMD או SHIFT כדי לבחור מספר אפשרויות. בחירת "אף אחד" או אי־בחירה תציג את ההודעה לכל המשתמשים ללא קשר לתגיות ה־Virtuous שלהם.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: מיקוד משתמשים לפי התנהגות תרומה
@@ -7891,9 +7972,9 @@ he:
           "Flowers and Fruits=Flowers": פרחים
           "Flowers and Fruits=Fruits or Seeds": פירות או זרעים
           "Flowers and Fruits=No Flowers or Fruits": ללא פרחים או פירות
-          "Leaves=Breaking Leaf Buds": ניצני עלים נשברים
+          "Leaves=Breaking Leaf Buds": ניצני עלים
           "Leaves=Green Leaves": עלים ירוקים
-          "Leaves=Colored Leaves": עלים צבעוניים
+          "Leaves=Colored Leaves": עלי שלכת
           "Leaves=No Live Leaves": אין עלים חיים
           "Life Stage=Egg": ביצה
           "Life Stage=Larva": זחל
@@ -7921,8 +8002,26 @@ he:
         trending_in_place_desc_html: הטקסונים הנצפים ביותר בחודש האחרון <a href="%{url}">%{place}</a>
         wanted_desc: מינים בטקסון זה שטרם נצפו.
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: האם אתה בטוח שאתה רוצה לשחזר את שינוי הטקסון הזה?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: האם אתה בטוח שאתה רוצה לבטל את שינוי הטקסון הזה?
       move_children_desc: |
         צאצאים של טקסון הקלט שהם בדרגת סוג או מעליה יועברו לקלט; מינים, תת-מינים, זנים, וכו' יוחלפו לאקוויבלנטים עם שם הסוג או המין החדש.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: שחזור
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: משחזר
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: ביטול
+      #state of an abandoned taxon change
+      withdrawn: בוטל
+      #state of a committed taxon change
+      committed: בוצע
+      #state of a draft taxon change
+      draft: טיוטה
+      #the status of a taxon change: draft, withdrawn or committed
+      status: סטטוס
       form:
         move_children_desc2_html: |
           סימון תיבה זו יעביר את הצאצאים של טקסון הקלט אל טקסון הפלט בשביל החלפות ואיחודי טקסונים במעמד אישור השינוי. אם שינוי זה הוא ברמת סוג או יותר נמוך, הוא יצור החלפות טקסון עבור כל הצאצאים שיש להם שמות שצריכים שינוי. למשל, אם תחליפ.י את המשפחה "Canidae" ב-"Dogidae", זה ישנה את ההורה של הסוג <i>Canis</i> מ-"Canidae" ל-"Dogidae". אם תחליפ.י את הסוג <i>Canis</i> בסוג <i>Dogis</i>, זה יצור ויאשר החלפות טקסון לשינוי <i>Canis lupus</i> אל <i>Dogis lupus</i> ו-<i>Canis lupus</i> ssp. <i>lupus</i> ל-<i>Dogis lupus</i> ssp.<i>lupus</i>. זה עלול ליצור בלגן, לכן יש לפעול בזהירות.
@@ -8027,19 +8126,24 @@ he:
           חובה להזין %{confirmation_code} בטופס על מנת למחוק את החשבון שלך
       edit:
         about_third_party_tracking: אודות איסוף מידע עליך על ידי צד שלישי
-        blocking_desc_html: |
-          <p>
-          חסימת משתמש מונעת ממנו לשלוח לך הודעות, להגיב על תצפיות שלך, לזהות תצפיות שלך, וכל אינטרקציה אחרת איתך ב%{site_name}. זה גם מסיר את התצפיות שלו מתוצאות החיפוש שלך ומסיר את התצפיות שלך מתוצאות החיפוש שלו. עם זאת, זה לא הופך אותך לבלתי-נראה עבורו. הם יכולים עדיין למצוא את התצפיות שלך ולצפות בפרופיל שלך, הם רק לא יכולים לתקשר איתך.
-          </p>
-          <p>
-          חסימה מיועדת למצבים בהם את.ה פשוט לא מצליח.ה להסתדר עם מישהו או מישהי והם לא מוכנים להניח לך, על אף מיטב נסיונותיך ליישב מחלוקות בצורה מנומסת. זו אינה דרך להסתתר מא.נשים, למנוע זיהויים מא.נשים שאת לא סומכת על שיקול דעתם, או להמנע מזיהוי קהילתי (יש הגדרה ייעודית בשביל זה). כך, חסימה פועלת לשני הכיוונים: אם אתה חוסם מישהי, היא לא יכולה לתקשר איתך, אבל גם אתה לא יכול לתקשר איתה. אם תנצל חסימה לרעה כדי למנוע זיהויים של מישהי על התצפיות שלך, אתה גם מונע מעצמך לזהות את התצפיות שלה.
-          </p>
-          <p>
-          ניתן לחסום עד 3 א.נשים בלבד. אנו חושבות שזה מספר סביר שנותן מענה עבור הא.נשים שדורשים חסימה מחד, ומאידך מונע ניצול לרעה של חסימות. אם יש לך צורך לחסום יותר א.נשים, נא <a href="mailto:%{help_email}">ליצור עמנו קשר</a>.
-          </p>
-          <p>
-          אם מישהו מטריד אותך ב%{site_name}, <a href="mailto:%{help_email}"> נא ליידע אותנו</a>. אם זה נחשב הפרה של תנאי השימוש שלנו או התנהגות אחרת שלא הולמת את אתרנו, נבצע חקירה.
-          </p>
+        block_desc_blocking_someone_prevents: |
+          חסימת משתמש.ת מונעת מהם לשלוח לך הודעות, להגיב על התצפיות שלך, לזהות את התצפיות שלך, או ליצור איתך אינטראקציה אחרת ב־%{site_name}. החסימה גם מסירה את התצפיות שלהם מתוצאות החיפוש שלך ומסירה את התצפיות שלך מתוצאות החיפוש שלהם. עם זאת, היא לא הופכת אותך לבלתי נראה. הם עדיין יכולים למצוא את התצפיות שלך ולצפות בפרופיל שלך, רק לא ליצור איתך אינטראקציה.
+        block_desc_blocking_is_for_situations: |
+          חסימה מיועדת למצבים שבהם את.ה פשוט לא מצליח.ה להסתדר עם מישהו והוא לא מפסיק להפריע לך, למרות המאמצים שלך לפתור מחלוקות בצורה תרבותית. חסימה אינה מיועדת להסתתר מאנשים, למנוע זיהויים מאנשים שאת.ה לא סומכ.ת על דעתם, או לבטל את זיהוי הקהילה (יש לכך הגדרה אחרת). לכן, חסימה פועלת לשני הכיוונים: אם את.ה חוסמ.ת מישהו, הוא לא יכול ליצור איתך אינטראקציה, וגם את.ה לא יכול.ה ליצור איתו אינטראקציה. אם את.ה משתמש.ת בחסימה כדי למנוע ממישהו לזהות את התצפיות שלך, את.ה גם מונע.ת מעצמך לזהות את התצפיות שלהם.
+        block_desc_you_can_only_block_html: |
+          ניתן לחסום עד שלושה אנשים בלבד. אנחנו חושבים שזה מספר סביר שמאפשר חסימה במקרים הדרושים תוך מניעת שימוש לרעה. אם את.ה מרגיש.ה שאת.ה צריכ.ה לחסום יותר, נא <a href="mailto:%{help_email}">ליצור איתנו קשר</a>.
+        block_desc_there_are_two_exceptions: |
+          ישנם שני מצבים שבהם חסימה אינה מונעת אינטראקציה:
+        block_desc_comments_on_taxon_flags: הערות על סימוני טקסון שנוצרו על ידך
+        block_desc_comments_on_taxon_changes: הערות על שינויי טקסון שנוצרו על ידך
+        block_desc_unlike_more_personal: |
+          בניגוד לתכנים אישיים יותר כמו תצפיות או פוסטים ביומן, טקסונים הם משותפים לכולם ולכן עליהם להיות פתוחים לדיון על ידי כולם. חסימה עדיין תמנע ממך לקבל התראות על תגובות לתכנים מסוג זה מהמשתמש.ת שחסמת.
+        block_desc_if_harassing_html: |
+          אם מישהו מטריד אותך או עוקב אחריך באתר %{site_name},
+          <a href="mailto:%{help_email}">בבקשה הודיע.י לנו.</a>. אם
+          זה מהווה הפרה של תנאי השימוש שלנו או 
+          התנהגות אחרת שנראית לנו בלתי הולמת לאתר שלנו, אנו
+          נבצע תחקור.
         common_scientific_name_display_order: סדר הצגת שם עממי / מדעי
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           במידה ותתחרט.י תמיד אפשר <a href='/users/edit'>לערוך את ההגדרות שלך</a>.
@@ -8542,6 +8646,7 @@ he:
         exclude_donor_start_date: תאריך תחילת תרומה שיש להחריג
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: תאריך סיום תרומה שיש להחריג
+        excludes_non_site: הסתר הודעות אחרות במיקום זה שאין להן מזהה אתר
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: להחריג מתצפתים מאפליקציות

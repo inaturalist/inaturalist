@@ -203,6 +203,8 @@ th:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: เพิ่มรายการสัญลักษณ์แสดงหัวข้อย่อย
   add_a_comment: เพิ่มข้อเสนอแนะ
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: เพิ่มสถานะการอนุรักษ์
   add_a_field: เพิ่มข้อมูลเสริม
   add_a_flag: เพิ่มการรายงาน
   #Tool tip for a button that adds a link to a text area
@@ -212,6 +214,8 @@ th:
   add_a_new_change_group: เพิ่มการเปลี่ยนแปลงกลุ่ม
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: เพิ่มรายการลำดับเลข
+  #Placeholder for a project autocomplete field
+  add_a_project: เพิ่มโครงการ
   add_a_single_observation: เพิ่มการสังเกตอันเดียว
   add_a_taxon: เพิ่มอันดับอนุกรมวิธาน
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -226,6 +230,7 @@ th:
     sex: เพิ่มหมายเหตุสำหรับ "เพศ"
     plant_phenology: เพิ่มหมายเหตุสำหรับ "ชีพลักษณ์ของพืช"
     flowers_and_fruits: เพิ่มหมายเหตุสำหรับ "การออกดอกและผล"
+    leaves: เพิ่มหมายเหตุสำหรับ "ใบ"
     life_stage: เพิ่มหมายเหตุสำหรับ "ระยะการเจริญ"
     evidence_of_presence: เพิ่มหมายเหตุสำหรับ "หลักฐานที่พบ"
   add_another_flag: เพิ่มอีกรายงาน
@@ -283,9 +288,12 @@ th:
   add_plant_phenology_fruiting_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดผล"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): ไม่มีหลักฐานของการเกิดดอก"'
   add_flowers_and_fruits_flower_buds_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: แตกตาดอก"'
+  add_flowers_and_fruits_flowers_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: ออกดอก"'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: ออกผลหรือเมล็ด"'
   add_flowers_and_fruits_no_flower_or_fruits: 'เพิ่มหมายเหตุ "การออกดอกและผล: ไม่ออกดอกหรือผล"'
   add_leaves_breaking_leaf_buds: 'เพิ่มหมายเหตุ "ใบ: แตกใบอ่อน"'
+  add_leaves_green_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบเขียว"'
+  add_leaves_colored_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบเปลี่ยนสี"'
   add_life_stage_adult_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวเต็มวัย"'
   add_life_stage_teneral_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: หลังลอกคราบ"'
   add_life_stage_subimago_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวรองตัวเต็มวัย"'
@@ -782,8 +790,7 @@ th:
   confirm_your_info: ยืนยันข้อมูลของคุณ
   confirming_ids: ยืนยันการจำแนก
   confirming_ids_description: |
-    หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเกี่ยวกับรหัสที่ตกลง
-    กับคุณเว้นแต่พวกเขาจะมีข้อสังเกตเพิ่มเติม
+    หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีผู้เห็นด้วยกับการจำแนกของคุณ หากไม่มีหมายเหตุเพิ่มเติม
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: เชื่อมต่อ
@@ -1411,6 +1418,7 @@ th:
   in_place_x: ใน %{place}
   #As in a reason to flag something
   inappropriate: ไม่เหมาะสม
+  inaturalist_network_affiliation: การสังกัดเครือข่าย iNaturalist
   #Label for messages you've received
   inbox: กล่องข้อความ
   include_places: รวมสถานที่นี้
@@ -1430,7 +1438,12 @@ th:
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
-  infraspecies_ids: รหัสอินฟราสปีชีส์
+  infraspecies_ids: การจำแนกระดับต่ำกว่าชนิด
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีผู้จำแนกในระดับต่ำกว่าชนิดที่คุณเคยจำแนกไว้โดยไม่ขัดแย้งกับคุณ (เช่น ชนิดย่อย พันธุ์) แต่จะได้รับการแจ้งเตือนหากมีผู้ไม่เห็นด้วยกับการจำแนกของคุณหรือมีหมายเหตุเพิ่มเติม
   insects: แมลง
   insect_life_stage: ระยะการเจริญของแมลง
   instagram: อินสตาแกรม
@@ -1678,6 +1691,7 @@ th:
   longitude_value: "ลองจิจูด: %{longitude}"
   look_up_name: "ค้นหาชื่อ"
   looks_like_no_species_in_guide: ดูเหมือนว่ายังไม่มีรายชื่อชนิดในคู่มือของคุณ
+  lookup: ค้นหา
   low: ตํ่า
   #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
   #subspecies or variety
@@ -1927,6 +1941,7 @@ th:
   note: หมายเหตุ
   notes: คำอธิบาย
   notifications: การแจ้งเตือน
+  notify_me_of_mentions: แจ้งเตือนเมื่อมีคนพูดถึง (เช่น @ชื่อผู้ใช้งาน)
   notify_me_of_mentions_description: "หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีคนพูดถึงคุณใน %{site_name}"
   number_of_observations: จำนวนการสังเกต
   number_of_observers_value: "จำนวนผู้สังเกต: %{number}"
@@ -2030,6 +2045,7 @@ th:
   #Button label to offset the date/time of observations by a set number of hours
   offset_time_verb: ปรับ
   old_observation_form: ฟอร์มการสังเกตแบบเก่า (เลิกใช้)
+  ok: "ตกลง"
   onboarding:
     following_panel_title: ติดตามผู้คน หน่วยอนุกรมวิธาน และสถานที่
   one_of_your_lists: "รายการของคุณ"
@@ -2110,6 +2126,10 @@ th:
     medium: กลาง
     large: ใหญ่
   photos_updated: รูปที่อัปเดตแล้ว
+  pi_consent_label: |
+    ฉันยินยอมให้ iNaturalist จัดเก็บและประมวลผลข้อมูลส่วนบุคคลบางประเภทเพื่อใช้ในการจัดการบัญชีของฉัน
+  data_transfer_consent_label: |
+    ฉันยินยอมให้เปิดเผยข้อมูลส่วนบุคคลไปยังสหรัฐอเมริกา
   place: สถานที่
   place_geo:
     geo_planet_place_types:
@@ -2302,6 +2322,7 @@ th:
     description: รายการชนิดสำหรับ %{owner_name}
   project_curators_added_some_of_your_observations_html: |
     ผู้ดูแลเพิ่มการสังเกตของคุณไปที่โครงการ <a href="%{url}">%{project}</a>
+  project_members: "สมาชิกของ %{project}"
   project_members_only: สมาชิกโครงการเท่านั้น
   project_requirements: ข้อกำหนดโครงการ
   project_rules: กฎของโครงการ
@@ -2328,7 +2349,7 @@ th:
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
-    genus: สกุล / สกุลไฮบริด
+    genus: สกุล / สกุลผสม
     #Label when displaying species level, which is the same for species and
     #hybrid
     species: ชนิด / พันธุ์ผสม
@@ -2665,6 +2686,10 @@ th:
   site_stats: สถิติการใช้งาน
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
     iNaturalist จะซ่อนพิกัดสิ่งมีชีวิตบางชนิดโดยอัตโนมัติเพื่อป้องกันการโดนรบกวน การเก็บสะสม หรือการล่าสัตว์ ถ้าพิกัดการสังเกตถูกซ่อนเพื่อการอนุรักษ์ iNaturalist จะแชร์พิกัดจริงของทุกการสังเกตจากประเทศนั้น ๆ ให้กับสมาชิกเครือข่าย
+  sites_network_inaturalist_network_collection: |
+    เครือข่าย iNaturalist คือกลุ่มของเว็บไซต์ท้องถิ่นที่เชื่อมต่ออย่างสมบูรณ์กับชุมชน iNaturalist ทั่วโลก เว็บไซต์ในเครือข่ายเหล่านี้ได้รับการสนับสนุนจากสถาบันท้องถิ่นที่ได้ลงนามข้อตกลงกับ iNaturalist เพื่อส่งเสริมการใช้งานในระดับท้องถิ่นและเป็นประโยชน์ต่อความหลากหลายทางชีวภาพในพื้นที่นั้น ๆ โดยเครือข่ายสามารถเข้าถึงพิกัดจริงจากประเทศของตนซึ่งถูกปกปิดจากสาธารณะโดยอัตโนมัติเพื่อปกป้องชนิดพันธุ์ที่ถูกคุกคาม
+  sites_network_your_username: |
+    ชื่อผู้ใช้และรหัสผ่านของคุณสามารถใช้ได้กับทุกเว็บไซต์ที่เป็นส่วนหนึ่งของเครือข่าย iNaturalist หากคุณเลือกที่จะสังกัดกับเว็บไซต์เครือข่ายใด สถาบันท้องถิ่นที่ดูแลเว็บไซต์นั้น ๆ จะสามารถเข้าถึงที่อยู่อีเมลของคุณ (เพื่อวัตถุประสงค์ในการสื่อสารเกี่ยวกับกิจกรรมของเว็บไซต์เท่านั้น) และยังเข้าถึงพิกัดจริงของการสังเกตที่ถูกพรางหรือซ่อนของคุณได้ด้วย
   some_observations_are_missing_media_or_identifications: |
     บางการสังเกตไม่มีสื่อหรือการจำแนก
   some_observations_are_missing_media_or_identifications_desc: |
@@ -2829,6 +2854,7 @@ th:
   thanks_from_all_of_us_here_at: ขอบคุณพวกเราทุกคนใน
   that_project_doesnt_exist: "ไม่มีโครงการนั้น"
   that_role_doesnt_exist: ไม่มีบทบาทนั้น
+  that_was_the_last_observation_matching_the_current_filters: นี่เป็นการสังเกตสุดท้ายที่ตรงกับตัวกรองปัจจุบัน
   the_admin_is_the_person_who: |
     แอดมินเป็นผู้สร้างโครงการ สามารถทำได้ทุกอย่างเช่นเดียวกับผู้จัดการและผู้ดูแล รวมถึงการลบโครงการ
   the_below_items_are_needed_to_achieve: |
@@ -3018,6 +3044,8 @@ th:
   unknown_rank: '(ลำดับที่ไม่รู้จัก)'
   #Text for a button to stop following updates on an observation
   unfollow_observation: เลิกติดตามการสังเกต
+  #Text for a button to stop following updates from a user
+  unfollow_user: เลิกติดตามผู้ใช้นี้
   unpublish: เลิกเผยแพร่
   unreview_all: เลิกทบทวนทั้งหมด
   unsubscribe: เลิกติดตาม
@@ -3077,6 +3105,7 @@ th:
   user_added_an_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
   user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
+  user_disagrees_with_previous_finer_identifications: "%{user} ไม่เห็นด้วยกับการจำแนกก่อนหน้าที่เจาะจงกว่า"
   user_faved_an_observation_by_you: "%{user} ชอบการสังเกตของคุณ"
   user_faved_this_observation: "%{user} ชอบการสังเกตนี้"
   user_flagged_as_a_non_spammer_html: "%{user} ถูกทำเครื่องหมายว่าไม่ใช่ผู้ส่งสแปม"
@@ -3195,6 +3224,7 @@ th:
   whats_this?: นี่คืออะไร?
   when_did_you_see_it?: คุณเห็นเมื่อไหร่?
   where_were_you?: คุณอยู่ที่ไหน?
+  which_projects_can_add_your_observations?: อนุญาตให้ผู้อื่นเพิ่มการสังเกตของคุณเข้าโครงการแบบดั้งเดิมใดบ้าง?
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: เปลี่ยนแปลงชื่อเพราะเหตุใด? (ไม่บังคับ)
   why_are_you_making_this_change_cite_source_required: โปรดอธิบายเหตุผลที่เปลี่ยนแปลงชื่อ และหากเป็นไปได้ควรอ้างอิงแหล่งที่มาด้วย (จำเป็น)
@@ -3373,6 +3403,8 @@ th:
       your_site_account_has_no_email: ของคุณ %{site_name} บัญชีไม่มีที่อยู่อีเมลที่เชื่อมโยง
     guides:
       index:
+        deprecated_banner: |
+          โปรดทราบว่า ตั้งแต่เดือนมกราคม 2019 เป็นต้นไป ฟีเจอร์คู่มือสำรวจนี้จะไม่มีการพัฒนาเพิ่มเติมแล้ว โดยจะคงไว้ในสภาพเดิมและไม่มีการลบฟีเจอร์นี้ออกไป
         funding2_html: |
           เงินทุนสําหรับการพัฒนา Guides จัดทําโดย
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
@@ -3500,6 +3532,7 @@ th:
         trust_help_notification2: |-
           อย่างไรก็ตาม ทุกครั้งที่คุณเปลี่ยนแปลงเกณฑ์การสังเกตของโครงการ จะมีการแจ้งเตือนให้สมาชิกที่ไว้วางใจคุณทราบ เพื่อให้พวกเขาพิจารณาว่าจะยังคงไว้วางใจคุณต่อไปหรือไม่ตามเกณฑ์ใหม่ และสิทธิ์การเข้าถึงพิกัดที่ถูกซ่อนของคุณจะถูกระงับเป็นเวลา 1 สัปดาห์หลังจากเปลี่ยนแปลงเกณฑ์เพื่อให้สมาชิกมีเวลาตัดสินใจ
       new:
+        are_you_sure_you_want_to_delete: แน่ใจหรือไม่ว่าต้องการลบโครงการนี้?
         can_be_included_in_multiple: รวมเข้าไปในโครงการครอบคลุมหลายโครงการได้
         check_the_box_to_include_member_observations: |
           ทำเครื่องหมายในช่องด้านล่างเพื่อรวมเฉพาะการสังเกตของผู้ที่เข้าร่วมโครงการแล้ว
@@ -3547,7 +3580,7 @@ th:
         specify_project_filters: |
           กำหนดตัวกรองสำหรับการสังเกตที่จะรวมไว้ในโครงการของคุณ โดยเลือกได้หลายชนิด (หรือหน่วยอนุกรมวิธาน) สถานที่ วันที่ หรือเกณฑ์อื่น ๆ สำหรับการสังเกตที่จะรวมเข้าโครงการโดยอัตโนมัติ
         start_and_end_times_for_bioblitzes: กำหนดวัน/เวลาเริ่มต้นและสิ้นสุดได้ (สำหรับกิจกรรม bioblitz)
-        traditional_projects_cannot_be_copied: คัดลอกโครงการรูปแบบเดิมไม่ได้
+        traditional_projects_cannot_be_copied: คัดลอกโครงการแบบดั้งเดิมไม่ได้
         unique_url_for_outreach: มี URL ของแต่ละโครงการสำหรับการเผยแพร่
         users_can_follow_your_project: ผู้ใช้ติดตามอัปเดตโพสต์วารสารจากโครงการของคุณได้
         use_this_link_to_create_html: |
@@ -3662,6 +3695,16 @@ th:
           unannotated: ไม่มีหมายเหตุ
     users:
       edit:
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">เครือข่าย iNaturalist</a> คือกลุ่มของเว็บไซต์ท้องถิ่นที่เชื่อมต่ออย่างสมบูรณ์กับชุมชน iNaturalist ทั่วโลก เว็บไซต์ในเครือข่ายเหล่านี้ได้รับการสนับสนุนจากสถาบันท้องถิ่นที่ได้ลงนามข้อตกลงกับ iNaturalist เพื่อส่งเสริมการใช้งานในระดับท้องถิ่นและเป็นประโยชน์ต่อความหลากหลายทางชีวภาพในพื้นที่นั้น ๆ โดยเครือข่ายสามารถเข้าถึงพิกัดจริงจากประเทศของตนซึ่งถูกปกปิดจากสาธารณะโดยอัตโนมัติเพื่อปกป้องชนิดพันธุ์ที่ถูกคุกคาม
+          </p>
+          <p>
+          ชื่อผู้ใช้และรหัสผ่านของคุณสามารถใช้ได้กับทุกเว็บไซต์ที่เป็นส่วนหนึ่งของเครือข่าย iNaturalist หากคุณเลือกที่จะสังกัดกับเว็บไซต์เครือข่ายใด สถาบันท้องถิ่นที่ดูแลเว็บไซต์นั้น ๆ จะสามารถเข้าถึงที่อยู่อีเมลของคุณ (เพื่อวัตถุประสงค์ในการสื่อสารเกี่ยวกับกิจกรรมของเว็บไซต์เท่านั้น) และยังเข้าถึงพิกัดจริงของการสังเกตที่ถูกพรางหรือซ่อนของคุณได้ด้วย
+          </p>
+          <p>
+          หมายเหตุ: โปรดอย่าลองเปลี่ยนสังกัดโดยไม่มีเหตุอันควร หากคุณมีการสังเกตมากกว่า 1000 ครั้งแล้ว
+          </p>
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: ความคิดเห็น
         #Checkbox label for user preference about what to receive in the daily email update
@@ -3686,6 +3729,7 @@ th:
         notification_preferences_taxon_or_place_observations: การสังเกตของหน่วยอนุกรมวิธานจากสถานที่ที่ฉันติดตาม
         project_addition_preferences:
           none: "คุณเท่านั้นที่เพิ่มการสังเกตเข้าโครงการได้"
+        prefers_no_tracking_label: ไม่อนุญาตให้เก็บข้อมูลความเสถียรและการใช้งานผ่านบริการจากภายนอก
         same_day_geoprivacy_protection: การป้องกันการเปิดเผยพิกัดภายในวันเดียวกัน
       show:
         favorites_list_prompt_html: |
@@ -3963,6 +4007,7 @@ th:
       user:
         faved_project_ids: โครงการที่ชื่นชอบ
         name: ชื่อ
+        time_zone: เขตเวลา
         search_place_id: ค้นหาสถานที่
     errors:
       messages:

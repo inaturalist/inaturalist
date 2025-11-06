@@ -148,6 +148,8 @@ base: &base
             default: 1234
     help_email: help@inaturalist.org
 
+    model_taxonomy: taxonomy.csv
+
 development:
     <<: *base
 

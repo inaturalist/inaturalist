@@ -1,8 +1,9 @@
 - unless flags.blank?
   %h3= t :existing_flags
-  %ul
+  %ul.list-unstyled
     - if flags.empty?
-      %li.quiet.description= t :no_flags
+      %li.text-muted= t :no_flags
     - for flag in flags
       %li
         = render partial: "flag", object: flag
+        &nbsp;

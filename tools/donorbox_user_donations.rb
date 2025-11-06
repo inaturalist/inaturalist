@@ -56,7 +56,7 @@ loop do
     next unless donation["donor"]
     next if donation["donor"]["email"].blank?
 
-    user = User.find_by_email( donation["donor"]["email"] )
+    user = User.find_by_email( donation["donor"]["email"].downcase )
     next unless user
     next if UserDonation.where( user: user, donated_at: donation["donation_date"] ).exists?
 

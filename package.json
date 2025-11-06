@@ -4,7 +4,8 @@
   "description": "iNaturalist npm package for managing node dependencies.",
   "scripts": {
     "webpack": "webpack --config config/webpack.config.js",
-    "webpack-watch": "NODE_ENV=development webpack watch --config config/webpack.config.js --mode=development"
+    "webpack-watch": "NODE_ENV=development webpack watch --config config/webpack.config.js --mode=development",
+    "eslint": "./node_modules/.bin/eslint"
   },
   "dependencies": {
     "@formatjs/intl-locale": "^2.4.19",
@@ -14,7 +15,7 @@
     "@types/react": "^16.4.18",
     "acorn": ">=6.4.1",
     "acorn-to-esprima": "^2.0.8",
-    "billboard.js": "^3.7.4",
+    "billboard.js": "^3.15.1",
     "bower": "^1.8.14",
     "chroma-js": "^2.4.2",
     "color-convert": "^1.9.3",
@@ -32,11 +33,11 @@
     "heic-to": "^1.1.11",
     "html-truncate": "^1.2.1",
     "immutability-helper": "^2.8.1",
-    "inaturalistjs": "github:inaturalist/inaturalistjs#c4bc405ca516f0a531266afbf3c95d90583b1253",
+    "inaturalistjs": "github:inaturalist/inaturalistjs#e69dc6dc1645406bdfb95a1b49b778a3aca218cf",
     "jquery": ">=3.5.0",
     "json-loader": "^0.5.4",
     "kind-of": ">=6.0.3",
-    "linkifyjs": "^2.1.8",
+    "linkify-html": "^4.3.2",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "lodash.assign": "^3.2.0",
@@ -49,7 +50,7 @@
     "moment-timezone": "^0.5.35",
     "mousetrap": "^1.6.2",
     "onscreen": "^1.2.0",
-    "piexifjs": "^1.0.4",
+    "exifreader": "^4.32.0",
     "prop-types": "^15.6.2",
     "ramda": "^0.20.1",
     "rc-pagination": "^1.17.3",

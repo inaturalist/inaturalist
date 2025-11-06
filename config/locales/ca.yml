@@ -579,9 +579,6 @@ ca:
     Hauries de donar una informació més detallada sobre allò que vols construir.
   app_owner_application_about_p1a_html: |
     Les aplicacions d'iNaturalist permeten l'ús autenticat de l'API d'iNaturalist. Això permet fer trucades API que provoquen esdeveniments, com crear observacions o identificacions. Els casos més comuns són apps com les d'escriptori o de mòbil que inclouen funcionalitats per als seus usuaris per crear observacions d'iNaturalist. Aquest contingut s'ha de generar amb participació humana real o supervisada. Si us plau, per a més detalls podeu llegir les nostres <a href="/pages/community+guidelines" target="_blank">Directrius de la comunitat</a>, les quals prohibeixen observacions, identificacions i comentaris generades per màquines.
-  app_owner_application_about_p2_html: |
-    Des del 2022, estem requerint l'aprovació manual als usuaris que vulguin crear clients API.
-    Per crear aplicacions de tercers, primer heu d'enviar una sol·licitud per convertir-vos en "propietari de l'aplicació". Aquesta aplicació hauria de descriure la funcionalitat de l'aplicació proposada i com penseu utilitzar-la. Per enviar una sol·licitud, el vostre compte ha de tenir, com a mínim, 2 mesos d'antiguitat i haver realitzat almenys 10 <a href="/pages/help#identification" target="_blank">identificacions de millora</a> durant el darrer mes. Podem fer preguntes de seguiment sobre el vostre pla i ens reservem el dret de rebutjar les sol·licituds per qualsevol motiu.
   app_owner_application_inelligible: |
     Per enviar una aplicació, el vostre compte ha de tenir una antiguitat, almenys, de 2 mesos i heu d'haver fet un mínim de 10 millores d'identificacions en el darrer mes.
   app_owner_application_fields_explanation_html: Descriviu la funcionalitat que tindrà de la vostra app i com planegeu utilitzar-la.
@@ -1079,8 +1076,6 @@ ca:
     url: URL de la pàgina que descriu aquest estat.
     geoprivacy: |
       Geo-privacitat per defecte per a les observacions d’aquest tàxon. Tingueu en compte que la geo-privacitat d’una situació associada a un lloc a escala de continent, país o estat pot anul·lar una situació global o associada a un lloc de nivell superior.
-    iucn: |
-      Equivalent del codi de la Llista Vermella (IUCN). Aquesta no és la classificació real de l'IUCN, únicament és el codi de l'IUCN que s'ajusta millor a la revelació de les coordenades que millor s'ajusta al seu estat d'amenaça. Aquest sobreescriu la geoprivacitat si és "Menys Preocupant" o inferior: així que si has volgut ocultar les observacions d'aquest taxó, marca'l com a "Gairebé amenaçat" o superior.
   conservation_status_geoprivacy_desc: |
     Geoprivacitat aplicada per defecte a totes les observacions d'aquest tàxon en aquest lloc
   contact_support: Contacteu amb Suport
@@ -7332,18 +7327,6 @@ ca:
           Escrigueu "%{confirmation_code}" en el formulari per eliminar el vostre compte
       edit:
         about_third_party_tracking: Sobre el seguiment per part de tercers
-        blocking_desc_html: |
-          <p>
-          Bloquejar algú impedeix que us enviï missatges i comenti les vostres observacions, identificar-les, i interaccionar amb tu a %{site_name}. També elimina les observacions dels vostres resultats de cerca i les vostres observacions de les seves cerques. Tanmateix, això no us fa invisible a ell. Encara podrà trobar les vostres observacions i veure el vostre perfil, només que no podrà interaccionar.
-          </p>
-          <p>
-          El bloqueig és per a situacions en què no pots suportar algú i aquest no et deixa de molestar, malgrat els teus millors esforços per resoldre les disputes d'una forma civilitzada. No és una manera d'amagar-se de la gent, d'evitar identificacions de persones en les opinions de les quals no confieu, ni de desactivar l'identificador de la comunitat (hi ha altres configuracions per fer-ho). Per tant, el bloqueig funciona de les dues maneres: si bloqueges algú, ell no pot interactuar amb tu, però tampoc podràs interactuar amb ell. Si en feu un mal ús per evitar que algú identifiqui les vostres observacions, també us impediu identificar les seves observacions.
-          </p>
-          <p>
-          Només podeu bloquejar un màxim de tres persones. Pensem que és un número raonable adequat per aquells que necessiten bloquejar algú evitant l'abús del bloqueig. Si creieu que necessiteu bloquejar més persones, si us plau <a href="mailto:%{help_email}">contacteu amb nosaltres</a>.
-          </p>
-          <p>Si algú us està assetjant a %{site_name}, <a href="mailto:%{help_email}">digueu-nos-ho</a>. Si suposa una violació de les Condicions d'Ús o representa un comportament que pugui ser inapropiat al nostre lloc, ho investigarem.
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si canvieu d'opinió sempre podreu <a href='/users/edit'>editar les vostres preferències</a>.
         inaturalist_network_affiliation_desc_html: |

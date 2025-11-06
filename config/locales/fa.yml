@@ -118,6 +118,16 @@ fa:
   #A user who does not admin any projects
   non_project_admin: مدیر غیر پروژه
   observation_fields_for_projects: زمینه های مشاهده برای پروژه ها
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    مکان ها نمی توانند بزرگتر از 700000 کیلومتر مربع باشند.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    مکان ها نمی توانند بزرگتر از 70000 کیلومتر مربع باشند.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    مکان ها نمی توانند بیش از 200000 مشاهده داشته باشند.
   #A user who admin's a project
   project_admin: مدیر پروژه
   rank_levels:

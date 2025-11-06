@@ -598,7 +598,6 @@ class UsersController < ApplicationController
         if params[:notifications]
           redirect_to generic_edit_user_url( anchor: "notifications" )
         else
-          @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
           render :edit2, layout: "bootstrap"
         end
       end
@@ -717,15 +716,15 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def curation
     if params[:id].blank?
-      @users = User.paginate(page: params[:page]).order(id: :desc)
-      @comment_counts_by_user_id = Comment.where(user_id: @users).group(:user_id).count
+      @users = User.paginate( page: params[:page] ).order( id: :desc )
+      @comment_counts_by_user_id = Comment.where( user_id: @users ).group( :user_id ).count
     else
-      @display_user = User.find_by_id(params[:id].to_i)
-      @display_user ||= User.find_by_login(params[:id])
-      @display_user ||= User.find_by_email(params[:id]) unless params[:id].blank?
+      @display_user = User.find_by_id( params[:id].to_i )
+      @display_user ||= User.find_by_login( params[:id] )
+      @display_user ||= User.find_by_email( params[:id].downcase ) unless params[:id].blank?
       @display_user ||= User.where( "email ILIKE ?", "%#{params[:id]}%" ).first
       @display_user ||= User.elastic_paginate( query: {
         bool: {
@@ -736,12 +735,12 @@ class UsersController < ApplicationController
         }
       } ).first
       if @display_user.blank?
-        flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
+        flash[:error] = t( :couldnt_find_a_user_matching_x_param, id: params[:id] )
       else
         @observations = Observation.page_of_results( user_id: @display_user.id )
       end
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html { render layout: "bootstrap" }
     end
   end
@@ -1093,41 +1092,39 @@ class UsersController < ApplicationController
     if friendship.errors.any? && !error_msg
       error_msg = friendship.errors.full_messages.to_sentence
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         flash[:error] = error_msg
         flash[:notice] = notice_msg
-        redirect_back_or_default(person_by_login_path(:login => current_user.login))
+        redirect_back_or_default( person_by_login_path( login: current_user.login ) )
       end
-      format.json do
-        render status: :unprocessable_entity,
-          json: { error: error_msg || notice_msg, friendship: friendship }
-      end
+      format.json { render json: { msg: error_msg || notice_msg, friendship: friendship } }
     end
   end
-  
+
   def remove_friend
-    error_msg, notice_msg = [nil, nil]
-    if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
-      notice_msg = t(:you_are_no_longer_following_x, :friend => friendship.friend.login)
+    error_msg = nil
+    notice_msg = nil
+    if ( friendship = current_user.friendships.find_by_friend_id( params[:remove_friend_id] ) )
+      notice_msg = t( :you_are_no_longer_following_x, friend: friendship.friend.login )
       if friendship.trust?
         friendship.update( following: false )
       else
         friendship.destroy
       end
     else
-      error_msg = t(:you_arent_following_that_person)
+      error_msg = t( :you_arent_following_that_person )
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         flash[:error] = error_msg
         flash[:notice] = notice_msg
-        redirect_back_or_default(person_by_login_path(:login => current_user.login))
+        redirect_back_or_default( person_by_login_path( login: current_user.login ) )
       end
-      format.json { render :json => {:msg => error_msg || notice_msg, :friendship => friendship} }
+      format.json { render json: { msg: error_msg || notice_msg, friendship: friendship } }
     end
   end
-  
+
   def update_password
     if params[:password].blank? || params[:password_confirmation].blank?
       flash[:error] = t(:you_must_specify_and_confirm_a_new_password)

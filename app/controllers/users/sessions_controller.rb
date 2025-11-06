@@ -43,19 +43,23 @@ class Users::SessionsController < Devise::SessionsController
     unless @site.legacy_rest_auth_key
       return false
     end
+
     login = params[:login]
     password = params[:password]
     if params[:user]
       login ||= params[:user][:email] || params[:user][:login]
       password ||= params[:user][:password]
     end
-    user = User.find_by_login(login)
-    user ||= User.find_by_email(login) unless login.blank?
+    user = User.find_by_login( login )
+    user ||= User.find_by_email( login.downcase ) unless login.blank?
     return false unless user
+
     pepper = @site.legacy_rest_auth_key
     stretches = 10
-    digest = Devise::Encryptable::Encryptors::RestfulAuthenticationSha1.digest(password, stretches, user.password_salt, pepper)
-    if Devise.secure_compare(digest, user.encrypted_password)
+    digest = Devise::Encryptable::Encryptors::RestfulAuthenticationSha1.digest(
+      password, stretches, user.password_salt, pepper
+    )
+    if Devise.secure_compare( digest, user.encrypted_password )
       @legacy_authentication_successful = true
       user
     else

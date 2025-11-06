@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import htmlTruncate from "html-truncate";
-import linkifyHtml from "linkifyjs/html";
+import linkifyHtml from "linkify-html";
 import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
 

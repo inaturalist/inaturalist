@@ -735,8 +735,6 @@ cs:
     Musíte poskytnout podrobnější vysvětlení toho, co chcete vytvořit.
   app_owner_application_about_p1a_html: |
     Aplikace iNaturalist umožňují ověřené použití rozhraní iNaturalist API. To vám umožňuje provádět volání API, která dělají věci, jako je vytváření pozorování nebo identifikace. Obvyklé případy použití jsou aplikace, jako jsou aplikace pro stolní počítače nebo mobilní aplikace, které svým uživatelům nabízejí funkce pro vytváření pozorování iNaturalist. Tento obsah musí být generován se skutečným lidským zapojením nebo dohledem. Pro více informací si prosím přečtěte naše <a href="/pages/community+guidelines" target="_blank">Pokyny pro komunitu</a>, které zakazují strojově generovaná pozorování, identifikace a komentáře.
-  app_owner_application_about_p2_html: |
-    Od roku 2022 vyžadujeme ruční schválení pro uživatele, kteří chtějí vytvářet API klienty. Chcete-li vytvářet aplikace třetích stran, musíte nejprve odeslat žádost, abyste se stali „vlastníkem aplikace“. Tato žádost by měla popisovat funkce navrhované aplikace a způsob, jakým ji plánujete používat. Abyste mohli odeslat žádost, váš účet musí být alespoň 2 měsíce starý a musí mít za poslední měsíc alespoň 10 <a href="/pages/help#identification" target="_blank">zlepšujících identifikací</a> . Můžeme klást doplňující otázky týkající se vašeho plánu a vyhrazujeme si právo odmítnout žádosti z jakéhokoli důvodu.
   app_owner_application_inelligible: |
     Aby bylo možné podat žádost, musí být váš účet nejméně 2 měsíce starý a
     musí za poslední měsíc zlepšit aspoň 10 identifikací.
@@ -1251,8 +1249,6 @@ cs:
       geosoukromí statusu spojeného s kontinentem, zemí; nebo
       státem umístěné místo může přepsat stav globální nebo přidružený
       k vyšší úrovni.
-    iucn: |
-      Ekvivalentní kód Červeného seznamu IUCN. Nejedná se o skutečné hodnocení IUCN, pouze o kód IUCN, který nejlépe odpovídá hrozbě odhalení koordinace, kterou tento stav implikuje. Tento kód bude mít přednost před geoprvkem, pokud je to "Nejmenší obavy" nebo nižší, takže pokud chcete zastínit pozorování tohoto taxonu, nastavte jej na "Téměř ohrožený" nebo vyšší.
   conservation_status_geoprivacy_desc: |
     Na všechna pozorování tohoto taxonu v tomto místě se použilo výchozí soukromí zeměpisné polohy
   contact_support: Kontaktovat podporu
@@ -4380,6 +4376,20 @@ cs:
     Pokud se tomu můžete vyhnout, nepřidávejte, neměňte ani neodstraňujte hranice míst, pokud to není naprosto nezbytné.
   places_warning_quota: |
     Můžete vytvořit pouze tři místa denně.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Místa nemohou být větší než 700 000 kilometrů čtverečních.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Místa nemohou být větší než 70 000 kilometrů čtverečních.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Místa nemohou obsahovat více než 200 000 pozorování.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Místa nemohou obsahovat více než 10 000 pozorování.
   places_warning_the_future: |
     Možná se Vás to netýká, ale vzhledem k současné míře růstu iNat budeme muset omezit podmínky, za nichž lidé mohou přidávat nová místa.
   plants: rostliny
@@ -8413,20 +8423,6 @@ cs:
           Chcete-li účet smazat, musíte do formuláře zadat %{confirmation_code}
       edit:
         about_third_party_tracking: O sledování třetí strany
-        blocking_desc_html: |
-          <p>
-          Zablokování někoho zabrání tomu, aby vám posílal zprávy, komentoval vaše pozorování, identifikoval vaše pozorování a jinak s vámi interagoval na %{site_name}. Také odebere jejich pozorování z vašich výsledků vyhledávání a vaše pozorování z jejich výsledků vyhledávání. Nečiní vás to však pro ně neviditelnými. Stále mohou najít vaše postřehy a zobrazit váš profil, jen s vámi nemohou komunikovat.
-          </p>
-          <p>
-          Blokování je pro situace, kdy si s někým jen tak nerozumíte a nenechají vás na pokoji, i když se snažíte spory urovnat civilizovaně. Není to způsob, jak se skrýt před lidmi, zabránit identifikaci před lidmi, jejichž názorům nedůvěřujete, nebo se odhlásit z ID komunity (na to existuje jiné nastavení). Blokování tedy funguje oběma způsoby: pokud někoho zablokujete, nemůže s vámi komunikovat, ale ani vy s ním. Pokud jej zneužijete k tomu, abyste někomu zabránili identifikovat vaše pozorování, zabráníte také sobě identifikovat jeho pozorování.
-          </p>
-          <p>
-          Můžete zablokovat pouze tři osoby. Myslíme si, že je to rozumné číslo, které vyhovuje lidem, kteří potřebují blokování, a zároveň zabraňuje zneužití blokování. Pokud máte pocit, že potřebujete zablokovat více lidí, <a href="mailto:%{help_email}">kontaktujte nás</a>.
-          </p>
-          <p>
-          Pokud vás někdo na %{site_name} obtěžuje nebo pronásleduje, <a href="mailto:%{help_email}">dejte nám prosím vědět</a>. Pokud to představuje porušení našich Podmínek použití nebo jiné chování, které považujeme za nevhodné pro naše stránky, uděláme to
-          vyšetřovat.
-          </p>
         common_scientific_name_display_order: Zobrazení obecných a vědeckých názvů
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jestliže změníte svůj názor, můžete kdykoli

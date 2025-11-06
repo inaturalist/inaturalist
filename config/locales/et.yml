@@ -570,8 +570,6 @@ et:
     Pead lisame detailsema kirjelduse sellest, mida ehitada soovid.
   app_owner_application_about_p1a_html: |
     iNaturalisti rakenduste kaudu on tuvstatud kasutajatel ligipääs iNaturalist rakendusliidesele. Seeläbi saad teha liidesele päringuid, mis võimaldavad näiteks luua vaatluseid või määratlusi. Enamasti kasutavad seda mobiili- või arvutirakendused, mis võimaldavad oma kasutaja(te)l luua iNaturalisti vaatluseid. Sellises sisuloomes peavad inimesed reaalselt osalema või seda vähemalt kontrollima. Palun loe meie <a href="/pages/community+guidelines" target="_blank">kogukonna reegleid</a>, mis keelavad masin-loodud vaatlused, määratlused ja kommentaarid.
-  app_owner_application_about_p2_html: |
-    Aastast 2022 kinnitame ükshaaval kõik kasutajad, kes soovivad luua kasutajaliidese kliente. Kui soovid luua enda rakendust, pead esmalt esitama taotluse "rakenduse omaniku" staatuse saamiseks. Avaldus peaks kirjeldama loodava rakenduse tööpõhimõtet ning seda, kuidas kavatsed rakendust kasutada. Avalduse esitamiseks peab sinu konto olema vähemalt kaks kuud vana ning selle kaudu peab olema tehtud viimase kuu jooksul vähemalt 10 <a href="/pages/help#identification" target="_blank">täiendavat määratlust</a>. Võime küsida sinu plaani kohta täpsustusi ning jätame õiguse taotlus ükskõik millisel põhjusel tagasi lükata.
   app_owner_application_inelligible: |
     Avalduse esitamiseks peab sinu konto olema vähemalt kaks kuud vana ning selle kaudu peab olema tehtud viimase kuu jooksul vähemalt 10 täiendavat määratlust.
   app_owner_application_fields_explanation_html: Kirjelda oma rakenduse tööpõhimõtet ning seda, kuidas kavatsed seda kasutada.
@@ -1052,8 +1050,6 @@ et:
     url: Staatust kirjeldava lehe URL.
     geoprivacy: |
       Selle taksoni vaikimisi geoprivaatsus. Pane tähele, et kontinendi riigi või osariigiga seotud staatus võib globaalse või kõrgema tasema kohaga seotud geoprivaatsuse ümber muuta.
-    iucn: |
-      IUCN Punase Nimekirja koodi vaste. Tegu pole reaalse IUCNi hinnanguga, vaid lihtsalt IUCN-koodiga, mis vastab kõige paremini antud staatusega sobiva koordinaatide avalikustamisprintsiibile. See muudab geoprivaatsuse sätteid vaid siis, kui väärtus on allpool kategooriat "Vähim muresid". Kui soovid selle taksoni vaatluseid varjata, määra selle väärtuseks vähemalt "Peaaegu ohustatud".
   conservation_status_geoprivacy_desc: |
     Vaikimisi geoprivaatsus, mis määratakse kõigile antud kohas tehtud selle taksoni vaatlustele.
   contact_support: Klienditugi
@@ -3597,6 +3593,20 @@ et:
     Vaata esmalt <a href="/search?source[]=places">olemasolevaid kohti</a>, et veenduda, et saa mõnda neist ei korda. Meil on juba kõigi kontinentide ja riikidega seotud kohad ning ka paljude muude poliitiliste piirkondadega seotud paigad.
   places_warning_please_keep_in_mind: |
     Pea palun meeles järgnevaid piiranguid:
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Kohad ei tohi olla suuremad kui 700 000 ruutkilomeetrit.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Kohad ei tohi olla suuremad kui 70 000 ruutkilomeetrit.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Kohad ei tohi sisaldada rohkem kui 200 000 vaatlust.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Kohad ei tohi sisaldada rohkem kui 10 000 vaatlust.
   plants: taimed
   play_first_sound: Mängi esimest heli
   please_add_a_citation_for_this_change: Palun lisa selle muudatuse juurde viide.

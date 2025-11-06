@@ -628,7 +628,7 @@ nl:
     target="_blank">Gemeenschapsrichtlijnen</a> voor meer informatie waarin machine-gegenereerde waarnemingen, determinaties en opmerkingen worden verboden.
   app_owner_application_about_p2_html: |
     Vanaf 2022 is handmatige goedkeuring vereist voor gebruikers die API-clients willen maken.
-    Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken. Om een aanvraag in te kunnen dienen moet jouw account minimaal 2 maanden oud zijn en minimaal 10 <a href="/pages/help#identification"
+    Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken. Om een aanvraag in te kunnen dienen moet jouw account minimaal 2 maanden oud zijn en minimaal 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">improving identifications</a> hebben gemaakt in de afgelopen maand. We kunnen follow-up vragen
     vragen over jouw plan en we behouden ons het recht voor om aanvragen om welke reden dan ook af te wijzen.
   app_owner_application_inelligible: |
@@ -1145,7 +1145,11 @@ nl:
       plaats op staatsniveau een status kan overschrijven die globaal is of geassocieerd is
       met een gebied op een hoger niveau.
     iucn: |
-      Equivalent van de IUCN Rode Lijst code. Dit is niet de huidige IUCN-beoordeling maar de IUCN-code die het beste overeenkomt met de dreiging van het openbaar maken van de coördinaten door deze status. Dit zal de geoprivacy overschrijven als het Niet bedreigd (veilig) is of lager. Dus als je waarnemingen van dit taxon wilt vervagen, stel deze in op "Gevoelig" of hoger.
+      Equivalente IUCN Rode Lijst-code. Dit is niet de daadwerkelijke IUCN-beoordeling,
+      alleen de IUCN-code die het beste past bij de dreiging bij de openbaarmaking van de coordinaten
+      geïmpliceerd door deze status. Dit overschrijft de geoprivacy als deze "Minst
+      Concern" is of lager, dus als je waarnemingen hiervan wilt vervagen van dit 
+      taxon, stel dit dan in op "Bijna bedreigd" of hoger.
   conservation_status_geoprivacy_desc: |
     Default geoprivacy toegepast op alle waarnemingen van dit taxon uit dit gebied
   contact_support: Neem contact op met support
@@ -1496,6 +1500,61 @@ nl:
   daily_users: Dagelijkse gebruikers
   danger_zone: Gevaarlijke zone
   dashboard: Dashboard
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ja! Ik wil graag meedoen."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Stoppen met deelname"
+    #link to a blog post
+    pilot_read_more: "Lees meer op onze blog"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Pilot met determinatielacunes: \"ID nodig\"-soorten gezocht"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Help ons hiaten op te vullen door deel te nemen door de de dagelijkse link naar waarnemingen te ontvangen:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Zijn nog niet opgenomen in het Computer Vision Model"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Wij denken dat je kan determineren"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Hier is een link naar waarnemingen van soorten die nog niet zijn opgenomen in het Computer Vision Model die jij volgens ons kunt determineren."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Kom morgen terug voor een link naar waarnemingen van soorten die nog niet zijn opgenomen in het Computer Vision Model en waarvan we denken dat jij ze kunt determineren. Je krijgt soorten te zien waarvan je ten minste 3 verbeterende determinaties hebt gemaakt."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Als je geen link ziet, zijn er mogelijk geen waarnemingen die aan de criteria voldoen met de status ''ID nodig''. Dit wordt eenmaal per dag gecontroleerd."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Waarneming Witte Gebieden: \"ID nodig\"-soorten gezocht"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Morgen ontvang je een lijst met soorten die:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Zijn nog niet opgenomen in het Computer Vision Model"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Zijn dit seizoen waargenomen in de buurt van je laatste waarneming"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Wordt gedreven door een steekproef van maximaal 200 waarnemingen van maximaal 300 soorten die prioriteit geven aan planten"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Door deze soorten waar te nemen help je het model te verbeteren en lacunes in de biodiversiteitsgegevens op te vullen. Deze lijst wordt bijgewerkt wanneer het model wordt bijgewerkt. U kunt zich op elk gewenst moment afmelden."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Hier is je huidige lijst van soorten:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Nog niet opgenomen in het Computer Vision Model"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Dit seizoen nabij jouw laatste locatie waargenomen"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Door deze waar te nemen, help je met het verbeteren van de herkenning van soorten en het vullen van kritieke hiaten."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Blader door soorten"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Kom morgen terug voor een gepersonaliseerde lijst van soorten die nog niet in het Computer Vision Model zijn opgenomen, in dit seizoen waargenomen. De gepersonaliseerde lijst gebruikt de locatie van je meest recente waarneming."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Als je geen link ziet, zijn er mogelijk geen soorten die aan deze criteria voldoen."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Determinatie Pilot: Onboarding Nieuwe Gebruikers"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Vanaf morgen ontvang je dagelijks tot 30 waarnemingen die overeenkomen met je determinatievaardigheden, door nieuwe gebruikers aan boord te helpen. Je kunt je op elk moment afmelden."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Hieronder staan tot 30 waarnemingen die overeenkomen met jouw determinatievaardigheden."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Kom morgen terug voor een link naar waarnemingen die overeenkomen met jouw determinatievaardigheden."
   data_deficient: Gegevens Tekort
   data_quality: Gegevenskwaliteit
   data_quality_assessment: Beoordeling van Gegevenskwaliteit
@@ -1631,6 +1690,8 @@ nl:
         om jouw account te bevestigen.
       user:
         suspended: Je account is opgeschort
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Het token voor het opnieuw instellen van het wachtwoord is ongeldig. Gebruik de link in de meest recent verzonden e-mail voor het opnieuw instellen van het wachtwoord, of <a href="%{url}">vraag een nieuwe aan</a>.
     sessions:
       signed_in: 'Succesvol ingelogd.'
       signed_out: 'Succesvol uitgelogd.'
@@ -1704,6 +1765,8 @@ nl:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Meningsverschillen
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Toon waarnemingen met afwijkende determinaties
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Ontkoppelen
@@ -1728,6 +1791,8 @@ nl:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONEREN
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Schenken
   donate_again_caps: DONEER OPNIEUW
   donate_again_today_caps: DONEER VANDAAG OPNIEUW
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -2269,7 +2334,7 @@ nl:
   #Message displayed on an observation detail page when the observation is
   #not licensed. "It" refers to the observation.
   however_not_licensed: |
-    Het is echter geen licentie voor hergebruik en zal niet worden gedeeld met datarepositories die de licentiekeuzes respecteren.
+    Het heeft echter geen licentie voor hergebruik en zal niet worden gedeeld met datarepositories die de licentiekeuzes respecteren.
   #Message displayed on an observation detail page when the observation is
   #not licensed and the page is being viewed by the person who made the
   #observation. "You" is the person that made the observation.
@@ -2811,7 +2876,7 @@ nl:
   location_is_accurate: Locatie klopt
   location_is_exact: locatie is nauwkeurig
   location_is_public: Locatie is openbaar
-  location_is_obscured: Locatie is verborgen
+  location_is_obscured: Locatie is vervaagd
   location_is_private: Locatie is privé
   location_specified: Locatie opgegeven
   locked_taxa_will_not_allow_new: Taxa die op slot zijn gezet staan niet toe dat er nieuwe onderliggende taxa aan worden toegevoegd. Als je Reptilia op slot zet en iemand probeert <i>Zootoca carniolica</i> te importeren van een externe naamaanbieder, dan wordt het nieuwe taxon aangemaakt, maar kan het niet worden geclassificeerd als een reptiel. Wanneer dit gebeurt, moeten de nieuw toegevoegde taxa worden gemeld aan de curator. Dit zou eigenlijk alleen voor taxa moeten worden gebruikt waarvan we denken dat we alle onderliggende taxa al hebben. Curatoren kunnen dit omzeilen door taxa rechtstreeks te bewerken en ouder-ID's in te voeren, maar overweeg alsjeblieft nieuwe taxa samen te voegen met bestaande.
@@ -3336,7 +3401,7 @@ nl:
   obs: Waarnemingen
   obs_cid_d: Wrn CID'd
   obs_id_d: Wrn ID'd
-  obscured: Verborgen
+  obscured: Vervaagd
   obscured_or_private: vervaagd of verborgen
   obscured_description: |
     Openbare coördinaten worden weergegeven als een willekeurig punt in de 0.2 graden lat/lon cel die de werkelijke coördinaten omvat.
@@ -3987,6 +4052,8 @@ nl:
       zone: zone
   place_guess: plaats raden
   place_imported: Gebied geïmporteerd!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Het kan tot een dag duren voordat waarnemingen bij een nieuw gebied worden getoond.
   place_must_have_a_boundary_defined: Gebied moet een grens gedefinieerd hebben.
   place_name: Gebiedsnaam
   place_notes: Gebied-notities
@@ -4287,6 +4354,20 @@ nl:
     Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
   places_warning_quota: |
     Je kunt slechts drie gebieden per dag maken.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Gebieden mogen niet groter zijn dan 700.000 vierkante kilometer.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Gebieden mogen niet groter zijn dan 70.000 vierkante kilometer.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Gebieden mogen niet meer dan 200.000 waarnemingen bevatten.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Gebieden mogen niet meer dan 10.000 waarnemingen bevatten.
   places_warning_the_future: |
     Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
     mensen in de toekomst gebieden kunnen toevoegen.
@@ -6307,7 +6388,7 @@ nl:
   you_cannot_delete_taxa_involved_in_taxon_changes: Je kunt geen taxa verwijderen die onderdeel zijn van taxonwijzigingen of die taxa bevatten die onderdeel zijn van taxonwijzigingen
   you_curate_a_project_that_contains_this_observation: Je stelt een project samen dat deze waarneming bevat
   you_curate_a_project_that_contains_this_observation_desc: |
-    Je kunt verborgen coördinaten zien wanneer je een project beheert dat een waarneming bevat en de waarnemer daarvan er voor heeft gekozen om de coördinaten met curatoren van dat project te delen.
+    Je kunt vervaagde coördinaten zien wanneer je een project beheert dat een waarneming bevat en de waarnemer daarvan er voor heeft gekozen om de coördinaten met curatoren van dat project te delen.
   you_didnt_select_any_observations: Je selecteerde geen waarnemingen.
   you_didnt_select_any_photos_to_tag: U hebt geen te labelen foto's geselecteerd.
   you_dont_have_permission_to_do_that: Je hebt hiervoor geen rechten.
@@ -6407,10 +6488,33 @@ nl:
         Tijd in de tijdzone van uw account waarop deze aankondiging stopt
         Verschijnen. Geldt voor meerdere tijdzones, zodat iedereen niet meer te zien is
         het tegelijkertijd, niet ten opzichte van hun lokale tijd.
+      excludes_non_site_desc: |
+        Als jouw aankondiging gericht is op een site (wat standaard is als je een
+        sitebeheerder bent), dan sluit dit aankondigingen uit die op alle sites in
+        gericht zijn.
+      ip_countries_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
+        een selectie toont de aankondiging aan alle gebruikers, ongeacht het IP van het land.
+        klant.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Merk op dat de aanmaakdatum van de meest recent aangemaakte
+        waarneming is gecached, dus kan het enkele uren duren voordat het van kracht wordt
       observation_oauth_application_ids_desc: |
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
         Een selectie toont de aankondiging aan alle gebruikers, ongeacht
         app.
+      site_ids_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
+        een selectie toont de aankondiging aan alle gebruikers, ongeacht ongeacht
+        site affiliatie.
+      start_desc: |
+        Tijd in de tijdzone van jouw account waarna deze aankondiging zal verschijnen.
+        Geldt voor meerdere tijdzones, zodat iedereen het op dezelfde tijd zal zien, niet ten opzichte van hun lokale tijd.
+      include_virtuous_tags_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Alle" selecteren of het niet maken van een selectie toont de aankondiging aan alle gebruikers, ongeacht hun Virtuous labels.
+      exclude_virtuous_tags_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. "Geen" selecteren of het niet maken van een selectie toont de aankondiging aan alle gebruikers, ongeacht hun Virtuous labels.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Target gebruikers op basis van donatiegedrag
@@ -6432,6 +6536,17 @@ nl:
           Atlassen geven de wereldwijde verspreiding van een taxon weer. Curatoren maken
           atlassen door de structuur van een atlas te definiëren en de
           vermelde taxa die het aandrijven.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Klap dit gebied uit
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Klap dit gebied in
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Nog geen wijzigingen in deze atlas
         #Title for a section showing recent alterations to an atlas
@@ -7106,22 +7221,29 @@ nl:
           </li>
           </ul>
       field_descriptions:
+        id: Unieke, sequentiële identifier voor de waarneming
         species_guess: |
           Gewone tekstnaam van het waargenomen taxon; kan door de waarnemer worden ingesteld
           tijdens het maken van een waarneming, maar kan worden vervangen door canonieke,
           locale namen wanneer het taxon verandert
+        scientific_name: "Wetenschappelijke naam van het waargenomen taxon volgens iNaturalist"
         common_name: "Lokale of vernacular name van het waargenomen taxon volgens iNaturalist"
         iconic_taxon_name: Hogere taxonomische categorie voor het waargenomen taxon
+        taxon_id: Unieke, sequentiële identifier voor het waargenomen taxon
         id_please: Of de waarnemer determinatie-hulp heeft gevraagd of niet
+        num_identification_agreements: Aantal determinaties geassocieerd met taxa die overeenkomen met of zijn opgenomen in het taxon van de determinatie van de waarnemer
+        num_identification_disagreements: Aantal determinaties geassocieerd met taxa die niet overeenkomen met of niet zijn opgenomen in het taxon van de determinatie van de waarnemer
         observed_on_string: Datum/tijd zoals door de waarnemer ingegeven
         observed_on: Genormaliseerde datum van de waarneming
         time_observed_at: Genormaliseerde datumtijd van de waarneming
         time_zone: Tijdzone van de waarneming
         place_guess: Localiteitsbeschrijving zoals ingevoerd door de waarnemer
         latitude: Openbaar zichtbare breedtegraad vanaf de waarneminglocatie
+        longitude: Openbaar zichtbare breedtegraad van de waarneminglocatie
         positional_accuracy: "Precisie coördinaten (jaja, nauwkeurigheid != precisie, namen zijn ongelukkig gekozen)"
         private_latitude: "Privé-breedtegraad, instellen als privé-waarneming of vervaagd"
-        private_longitude: "Privé-lengtegraad, instellen als waarneming privé of onzichtbaar is"
+        private_longitude: "Privé-lengtegraad, instellen als waarneming privé of vervaagd is"
+        geoprivacy: "Of de waarnemer er al dan niet voor heeft gekozen om de coördinaten te vervagen of te verbergen. Bekijk https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "Meest conservatieve geoprivacy toegepast als gevolg van de behoudsstatus van taxa in de huidige determinatie."
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
@@ -7140,6 +7262,9 @@ nl:
           coördinaten omvat, indien bekend
         private_place_guess: |
           Waarnemingslocatie zoals opgeschreven door de waarnemer als de locatie verborgen is
+        uuid: |
+          Universeel unieke identifier voor de waarneming. Zie
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Markeer alle waarnemingen op de pagina als nagekeken"
         you_reviewed_message: "Je hebt %{reviewed} van de %{pageTotal} waarnemingen op deze pagina nagekeken van de %{total} overeenkomende waarnemingen."
@@ -8027,10 +8152,28 @@ nl:
         trending_in_place_desc_html: Meest waargenomen taxa gedurende de laatste maand uit <a href="%{url}">%{place}</a>
         wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Weet je zeker dat je deze taxonwijziging wilt herstellen?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Weet je zeker dat je deze taxonwijziging wilt intrekken?
       move_children_desc: |
         Kinderen van het input-taxon die genera of grover zijn, worden verplaatst naar 
         het resultaat; soorten, ondersoorten, variëteiten, etc. worden ingeruild voor
         equivalenten met de nieuwe genus- of soortnaam.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Herstel
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: Aan het herstellen ...
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Intrekken
+      #state of an abandoned taxon change
+      withdrawn: Ingetrokken
+      #state of a committed taxon change
+      committed: bevestigd
+      #state of a draft taxon change
+      draft: concept
+      #the status of a taxon change: draft, withdrawn or committed
+      status: status
       form:
         move_children_desc2_html: |
           Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor Taxonwissels en Taxonsamenvoegingen wanneer deze wijziging is bevestigd. Als dit een verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met namen die gewijzigd moeten worden. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er
@@ -8071,6 +8214,12 @@ nl:
           Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende gebieden opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende gebieden conflicterende namen hebben.
     terminology:
       index:
+        exports_can_also_contain_observation_field_values_html: |
+          Exporten kunnen ook kolommen met waarnemingsveldwaarden bevatten. De
+          definities hiervan vind je op 
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          of voeg de kolomnaam (met de kolom) toe aan
+          <code>%{terminology_url}</code> (e. . <a href="%{term_url}">%{term_url}</a>.
         inaturalist_employs_a_variety_of_terms: |
           iNaturalist gebruikt verschillende unieke termen om verschillende
           aspecten van de service te beschrijven. Hier hebben we geprobeerd enkele ervan
@@ -8087,7 +8236,7 @@ nl:
           Vraag je je af waarom je nu administrator bent voor dit project? Ofwel heeft de vorige eigenaar je aangewezen als de nieuwe administrator, of diegene heeft zijn of haar account verwijderd en %{site_name} heeft jou aangewezen omdat je een projectbeheerder of sitecurator bent. Als je de projectadministrator niet wilt zijn, neem dan contact op met <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
           Vergeet niet dat projectcuratoren de privé en vervaagde
-          coördinaten kunnen zien van waarnemingen die u toevoegt aan dit project.
+          coördinaten kunnen zien van waarnemingen die je toevoegt aan dit project.
       delete:
         by_deleting_your_account_you_will_remove: |
           Door je account te verwijderen, verwijder je
@@ -8129,19 +8278,41 @@ nl:
           Je moet de "%{confirmation_code}" in het formulier invoeren om je account te verwijderen
       edit:
         about_third_party_tracking: Over het volgen door derden
-        blocking_desc_html: |
-          <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien of reageren op jouw waarnemingen, je waarnemingen determineren of andere interacties met je hebben op %{site_name}. Het verwijdert ook hun waarnemingen uit je zoekresultaten en verwijdert jouw waarnemingen uit hun zoekresultaten. Het maakt je echter niet onzichtbaar voor ze. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met je aangaan.
-          </p>
-          <p>
-            Blokkeren is voor situaties waar je gewoon niet kunt opschieten met iemand en ze je niet met rust laten, ondanks je inspanningen om geschillen op een beschaafde manier regelen. Het is geen manier om je te verbergen voor mensen, om determinaties te voorkomen van mensen van wie je de mening niet vertrouwt, of niet voor het gemeenschaps-ID kiest (daar is een andere instelling voor). Blokkeren werkt dus in beide richtingen: als je iemand blokkeert, kunnen ze geen interactie met je hebben, maar je kunt ook geen interactie hebben met hen. Als je het misbruikt om te voorkomen dat iemand je waarnemingen determineert, voorkomt je ook dat je diegenes waarnemingen kan determineren.
-          </p>
-          <p>
-            Je kunt maar drie mensen blokkeren. We denken dat dit een redelijk aantal is dat geschikt is voor de mensen die blokkering nodig hebben. Dit is om misbruik van blokkering te voorkomen. Als je vindt dat je meer mensen moet kunnen blokkeren <a href="mailto:%{help_email}">neem dan contact met ons op</a>.
-          </p>
-          <p>
-            Als iemand je lastigvalt of stalkt op %{site_name}, <a href="mailto:%{help_email}">laat het ons weten</a>. Als
-            het een schending van onze gebruiksvoorwaarden is of ander gedrag dat we ongepast achten voor onze site, zullen we onderzoek doen.
-          </p>
+        block_desc_blocking_someone_prevents: |
+          Als je iemand blokkeert, kan deze persoon je geen berichten sturen of reageren op je
+          waarnemingen, of het determineren van jouw waarnemingen en andere interacties met jou op %{site_name}. Het verwijdert ook hun waarnemingen uit jouw 
+          zoekresultaten en verwijdert jouw waarnemingen uit hun zoekopdracht
+          resultaten. Het maakt je echter niet onzichtbaar voor hen. Ze kunnen
+          nog steeds je waarnemingen en je profiel bekijken, ze kunnen alleen niet meer met jou
+          communiceren.
+        block_desc_blocking_is_for_situations: |
+          Blokkeren is voor situaties waarin je gewoon niet samen tot een oplossing kan komen met
+          iemand en ze kunnen je niet met rust laten. Ondanks je beste inspanningen om
+          geschillen op een beschaafde manier te beslechten. Het is geen manier om
+          mensen te verbergen, om determinaties te voorkomen van mensen wier mening je
+          niet vertrouwt, of afmelden voor de community ID (hier is een instelling voor). Het blokkeren werkt dus op beide manieren: als je
+          iemand blokkeert, kunnen ze niet met je communiceren, maar je kan ook niet met hen 
+          communiceren. Als je het misbruikt om te voorkomen dat iemand je
+          waarnemingen determineert, voorkomt je ook dat je hun
+          waarnemingen kan determineren.
+        block_desc_you_can_only_block_html: |
+          Je kunt maar drie personen blokkeren. Wij denken dat dit een redelijk aantal is dat rekening houdt met mensen die moeten worden geblokkeerd terwijl misbruik van blokkeringen wordt voorkomen. Als het gevoel hebt dat je meer mensen moet kunnen blokkeren, please <a href="mailto:%{help_email}">contact us</a>.
+        block_desc_there_are_two_exceptions: |
+          Er zijn twee situaties waarin blokkeren interactie niet verhindert:
+        block_desc_comments_on_taxon_flags: Opmerkingen over taxonmeldingen die door jou zijn gemaakt
+        block_desc_comments_on_taxon_changes: Reacties op taxonwijzigingen gemaakt door jou
+        block_desc_unlike_more_personal: |
+          In tegenstelling tot meer persoonlijke vormen van inhoud zoals waarnemingen en dagboek-
+          berichten, worden taxa gedeeld door iedereen en moeten daarom open zijn voor
+          discussie door iedereen. Blokkeren voorkomt nog steeds dat je
+          meldingen ontvangt over reacties op dit soort inhoud door
+          degene die je hebt geblokkeerd.
+        block_desc_if_harassing_html: |
+          Als iemand je lastigvalt of stalkt op %{site_name},
+          <a href="mailto:%{help_email}">neem dan contact met ons op</a>. Als
+          dit een schending van onze Gebruiksvoorwaarden vormt of
+          ander gedrag dat wij ongepast achten voor onze site, zullen wij het verder
+          onderzoeken.
         common_scientific_name_display_order: Weergavevolgorde van lokale/wetenschappelijke namen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Als je van gedachten verandert, kun je dat altijd via 
@@ -8151,7 +8322,7 @@ nl:
           Het <a href="%{url}" target="_blank">iNaturalist Network</a> is een verzameling van gelokaliseerde websites verbonden met de wereldwijde iNaturalist gemeenschap. Netwerksites worden ondersteund door lokale instellingen die een overeenkomst met iNaturalist hebben gesloten om lokaal gebruik te bevorderen en de lokale biodiversiteit ten goede te komen. Ze hebben toegang tot de echte coördinaten uit hun eigen land die automatisch worden verborgen om bedreigde soorten te beschermen.
           </p>
           <p>
-          Je gebruikersnaam en wachtwoord werken op alle sites die deel uitmaken van het iNaturalist Network. Als je ervoor kiest om lid te worden van een lokale netwerksite zal de lokale instelling die de site exploiteert ook toegang hebben tot je e-mailadres (voor communicatie over je site-activiteiten) en toegang tot de echte coördinaten voor waarnemingen die openbaar verduisterd of privé zijn.
+          Je gebruikersnaam en wachtwoord werken op alle sites die deel uitmaken van het iNaturalist Network. Als je ervoor kiest om lid te worden van een lokale netwerksite zal de lokale instelling die de site exploiteert ook toegang hebben tot je e-mailadres (voor communicatie over je site-activiteiten) en toegang tot de echte coördinaten voor waarnemingen die openbaar vervaagd of privé zijn.
           </p>
           <p>
           Let op: Ga alsjeblieft niet experimenteel lid worden van een lokale netwerksite als je meer dan 1000 waarnemingen hebt.
@@ -8622,6 +8793,7 @@ nl:
         exclude_donor_start_date: Uitsluiten donor met startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Uitsluiten donor met einddatum
+        excludes_non_site: Verberg andere mededelingen in deze plaatsing zonder Site ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Waarnemers uitsluiten van apps
@@ -8654,6 +8826,8 @@ nl:
         target_logged_in: Target alleen aangemelde gebruikers
         #Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: Vroegste aanmeldingsdatum gebruiker
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Laatste aanmeldingsdatum van gebruiker
       assessment:
         description: Beschrijving
       assessment_section:

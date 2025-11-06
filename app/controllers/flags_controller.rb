@@ -5,6 +5,7 @@ class FlagsController < ApplicationController
   before_action :model_required, except: [:index, :update, :show, :on, :destroy]
   before_action :load_flag, only: [:show, :destroy, :update]
   before_action :check_update_permissions, only: [:update]
+  layout "bootstrap"
 
   requires_privilege :interaction, only: [:new]
 
@@ -29,7 +30,7 @@ class FlagsController < ApplicationController
           paginate( page: params[:page] )
 
         respond_to do | format |
-          format.html { render layout: "bootstrap" }
+          format.html
         end
         return
       end
@@ -125,7 +126,7 @@ class FlagsController < ApplicationController
     @object = @object.becomes(Sound) if @object.is_a?(Sound)
     user_viewed_updates_for( @flag ) if logged_in?
     respond_to do |format|
-      format.html { render layout: "bootstrap" }
+      format.html
     end
   end
 
@@ -133,6 +134,7 @@ class FlagsController < ApplicationController
     @flag = Flag.new(params[:flag])
     @object = find_object
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
+    @object = @object.becomes( Sound ) if @object.is_a?( Sound )
     @flag.flaggable ||= @object
     @flags = @object.flags.where(resolved: false).includes(:user)
     if PARTIALS.include?(params[:partial])
@@ -180,6 +182,8 @@ class FlagsController < ApplicationController
           redirect_to messages_path
         elsif @object.is_a?(Photo)
           redirect_to @object.becomes(Photo)
+        elsif @object.is_a?( Sound )
+          redirect_to @object.becomes( Sound )
         else
           redirect_to @object
         end

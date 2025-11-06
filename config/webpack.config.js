@@ -127,7 +127,7 @@ const config = {
     "user-text": {
       import: [
         "html-truncate",
-        "linkifyjs/html",
+        "linkify-html",
         "sanitize-html",
         "markdown-it"
       ],

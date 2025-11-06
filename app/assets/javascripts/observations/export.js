@@ -114,6 +114,10 @@ $(document).ready(function() {
   } );
   $( "#filters input[name=without_taxon_name]" ).taxonAutocomplete( {
     idEl: $( "#without_taxon_id" ),
+    // when without_taxon_id contains multiple values (e.g. contains a comma),
+    // do not use the taxon autocomplete initial lookup which will want to
+    // replace the selection with a single taxon, overriding the multiple values
+    skipInitialLookup: _.includes( $( "#filters :input[name=without_taxon_id]" ).val( ), "," ),
     afterSelect: function( ) {
       filtersToQuery( );
       reloadPreview( );

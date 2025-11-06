@@ -114,6 +114,8 @@ class User < ApplicationRecord
   preference :lifelist_tree_mode, :string
   preference :taxon_photos_query, :string
   preference :needs_id_pilot, :boolean, default: nil
+  preference :gaps_id_pilot, :boolean, default: nil
+  preference :gaps_obs_pilot, :boolean, default: nil
   preference :identify_map_zoom_level, :integer
   preference :suggestions_source, :string
   preference :suggestions_sort, :string
@@ -485,7 +487,10 @@ class User < ApplicationRecord
   end
 
   def child_without_permission?
-    child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+    child? && UserParent.where(
+      "user_id = ? AND donorbox_donor_id IS NULL AND virtuous_donor_contact_id IS NULL",
+      id
+    ).exists?
   end
 
   EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
@@ -968,7 +973,7 @@ class User < ApplicationRecord
     email = auth_info["info"].try( :[], "email" )
     email ||= auth_info["extra"].try( :[], "user_hash" ).try( :[], "email" )
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
-    if !email.blank? && ( u = User.find_by_email( email ) )
+    if !email.blank? && ( u = User.find_by_email( email.downcase ) )
       u.add_provider_auth( auth_info )
       return u
     end
@@ -998,6 +1003,7 @@ class User < ApplicationRecord
     if oauth_application.try( :trusted? )
       u.oauth_application_id = oauth_application.id
     end
+    u.wait_for_index_refresh = true
     user_saved = begin
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
@@ -1737,18 +1743,33 @@ class User < ApplicationRecord
   end
 
   def donor?
-    donorbox_donor_id.to_i.positive?
+    donorbox_donor_id.to_i.positive? || virtuous_donor_contact_id.to_i.positive?
   end
 
   def monthly_donor?
-    donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
+    donor? && (
+      (
+        donorbox_plan_status == "active" &&
+        donorbox_plan_type == "monthly"
+      ) || (
+        fundraiseup_plan_status == "active" &&
+        fundraiseup_plan_frequency == "monthly"
+      )
+    )
   end
 
   def display_donor_since
     return nil unless prefers_monthly_supporter_badge?
-    donorbox_plan_status == "active" &&
+
+    (
+      donorbox_plan_status == "active" &&
       donorbox_plan_type == "monthly" &&
       donorbox_plan_started_at
+    ) || (
+      fundraiseup_plan_status == "active" &&
+      fundraiseup_plan_frequency == "monthly" &&
+      fundraiseup_plan_started_at
+    )
   end
 
   # given an array of taxa, return the taxa and ancestors that were not observed

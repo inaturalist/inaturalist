@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
   get "/giving", to: redirect( "/pages/giving", status: 302 )
   get "/ted", to: redirect( "/pages/ted", status: 302 )
+  get "/gifts", to: redirect( "https://giving.inaturalist.org/page/FUNATVAYGEH", status: 302 )
+  get "/supportersurvey", to: redirect( "https://docs.google.com/forms/d/12mSK_93McY60oWaCaWpjBib495PaMSByRpVl1ichCIY/", status: 302 )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
@@ -193,6 +195,7 @@ Rails.application.routes.draw do
     end
     member do
       put :dismiss
+      get :duplicate
     end
   end
   get "/users/dashboard" => "users#dashboard", :as => :dashboard
@@ -263,10 +266,13 @@ Rails.application.routes.draw do
   resources :observation_photos, only: [:show, :create, :update, :destroy]
   resources :observation_sounds, only: [:show, :create, :update, :destroy]
   resources :soundcloud_sounds, only: [:index]
-  resources :sounds, only: [:show, :local_sound_fields, :create] do
+  resources :sounds, only: [:show, :create, :update, :destroy, :local_sound_fields] do
     resources :flags
     collection do
       get :local_sound_fields
+    end
+    member do
+      get :hide
     end
   end
   resources :observations, constraints: { id: id_param_pattern } do
@@ -694,6 +700,9 @@ Rails.application.routes.draw do
     end
     put :commit
     get :commit_for_user
+    put :withdraw, on: :member
+    put :restore,  on: :member
+    post :like, on: :member
     put "commit_record/:type/:record_id/to/:taxon_id" => "taxon_changes#commit_records", as: :commit_record
     put "commit_records/:type/(to/:taxon_id)" => "taxon_changes#commit_records", as: :commit_records
     post :analyze_ids

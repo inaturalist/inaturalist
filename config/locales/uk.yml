@@ -1071,8 +1071,11 @@ uk:
     place: Місце, на яке поширюється цей статус.
     url: Веб-адреса сторінки, де описано цей статус.
     iucn: |
-      Еквівалентний код Червоного Списку МСОП. Це не є дійсною оцінкою МСОП, це тільки код МСОП, який найкраще відповідає загрозі при розкритті координат, яку передбачає цей статус. Якщо статус "Найменша осторога" (LC), або нижче, він матиме перевагу над конфіденційністю геоданих, так що, якщо ви хочете розмити спостереження цього
-      таксону, встановіть статус "Майже під загрозою" (NT) або вище.
+      Еквівалентний код Червоного списку МСОП. Це не фактична оцінка МСОП,
+      саме той код МСОП, який найкраще відповідає загрозі розголошення координат
+      мається на увазі цей статус. Це перевизначить геоприватність, якщо вона є «Найменшою
+      Занепокоєння» або нижче, тому якщо ви хочете приховати спостереження за цим
+      taxon, встановіть для цього параметра значення "Near Threatened" або вище.
   conservation_status_geoprivacy_desc: |
     Налаштування приватності місцеперебування за промовчанням застосовано до всіх спостережень цього таксону в цьому місці
   contact_support: Звернутися до служби підтримки
@@ -3588,6 +3591,20 @@ uk:
     є конче необхідно.
   places_warning_quota: |
     Можна створювати лише три місця на день.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Місця не можуть бути більшими за 700 000 квадратних кілометрів.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Площа місць не може перевищувати 70 000 квадратних кілометрів.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Місця не можуть містити більше 200 000 спостережень.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Місця не можуть містити більше 10 000 спостережень.
   places_warning_the_future: |
     Як вже на то пішло, якщо темп зростання iNat буде таким і надалі, в майбутньому нам доведеться обмежити умови, за яких люди матимуть змогу додавати місця.
   plants: рослини

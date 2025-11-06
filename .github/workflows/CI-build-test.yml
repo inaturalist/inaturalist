@@ -92,3 +92,6 @@ jobs:
         TRAVIS: true
         TRAVIS_CI: true
         CI: true
+
+    - name: Run restricted eslint
+      run: npm run eslint app/webpack/computer_vision/language

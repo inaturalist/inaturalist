@@ -15,6 +15,7 @@
     site_ids
     excludes_non_site
     ip_countries
+    exclude_ip_countries
     dismissible
     dismissals_count
     impressions_count
@@ -53,6 +54,7 @@
     .table td {
       width: 100%;
     }
+    .btn-spacer-left { margin-left: 6px; }
 - content_for :extrajs do
   :javascript
     window.addEventListener( "DOMContentLoaded", function( ) {
@@ -66,7 +68,10 @@
     .col-xs-12
       %span.breadcrumbs
         = link_to t(:back), announcements_path, class: "back crumb"
-      = link_to edit_announcement_path(@announcement), class: "btn btn-primary pull-right" do
+      = link_to duplicate_announcement_path( @announcement ), class: "btn btn-default pull-right btn-spacer-left" do
+        %i.fa.fa-copy
+        = t :duplicate_verb
+      = link_to edit_announcement_path( @announcement ), class: "btn btn-primary pull-right" do
         %i.fa.fa-pencil
         = t :edit
       %h2=t :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id
@@ -80,7 +85,7 @@
                   %th{ title: attr_name }=attr_name
                   %td
                     - val = @announcement.send( a )
-                    - if a == "ip_countries"
+                    - if a == "ip_countries" || a == "exclude_ip_countries"
                       = val.map { | code | Place::COUNTRIES_BY_NAME.values.detect { | country | country[:code] == code }.try(:[], :name) }.sort.join( ", " )
                     - elsif a == "locales"
                       = val.map { | locale | I18n.t( "locales.#{locale}" ) }.sort.join( ", " )

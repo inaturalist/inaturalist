@@ -322,7 +322,10 @@ module ObservationSearch
       end
 
       unless p[:without_taxon_id].blank?
-        p[:without_observations_taxon] = Taxon.find_by_id( p[:without_taxon_id].to_i )
+        withouth_taxon_ids = p[:without_taxon_id].split( "," )
+        if withouth_taxon_ids.size == 1
+          p[:without_observations_taxon] = Taxon.find_by_id( p[:without_taxon_id].to_i )
+        end
       end
 
       if p[:has]

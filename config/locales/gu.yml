@@ -83,6 +83,12 @@ gu:
   #A user who does not admin any projects
   non_project_admin: બિન-પ્રોજેક્ટ સંચાલક
   observation_fields_for_projects: પ્રોજેક્ટો માટે નિરીક્ષણ ક્ષેત્રો
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    7,00,000 ચોરસ કિલોમીટરથી મોટા સ્થળો ન હોઈ શકે.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    સ્થળોએ 200,000થી વધુ અવલોકનો ન હોઈ શકે.
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: પ્રોફાઇલ ચિત્ર ફાઇલ પ્રકાર

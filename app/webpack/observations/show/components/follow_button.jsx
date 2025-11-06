@@ -7,25 +7,29 @@ const FollowButton = ( {
   btnClassName,
   config,
   fetchSubscriptions,
+  fetchRelationships,
   followUser,
   observation,
   subscribe,
   subscriptions,
   subscriptionsLoaded,
+  relationships,
   unfollowUser
 } ) => {
   const followStatus = ( subscription, unfollowText ) => {
-    if ( subscription ) {
-      return subscription.api_status
-        ? <div className="loading_spinner" />
-        : (
-          <span className="unfollow">
-            { unfollowText }
-          </span>
-        );
+    if ( !subscription ) {
+      return null;
     }
-    return null;
+
+    return subscription.api_status
+      ? <div className="loading_spinner" />
+      : (
+        <span className="unfollow">
+          { unfollowText }
+        </span>
+      );
   };
+
   let dropdownMenu;
   if ( subscriptionsLoaded ) {
     const loggedIn = config && config.currentUser;
@@ -36,6 +40,9 @@ const FollowButton = ( {
       if ( s.resource_type === "User" ) { userSubscription = s; }
       if ( s.resource_type === "Observation" ) { observationSubscription = s; }
     } );
+    if ( !userSubscription && !_.isEmpty( relationships ) ) {
+      userSubscription = relationships[0];
+    }
     const followUserPending = userSubscription && userSubscription.api_status;
     const followObservationPending = observationSubscription && observationSubscription.api_status;
     let followUserAction;
@@ -104,6 +111,7 @@ const FollowButton = ( {
           onToggle={show => {
             if ( show && !subscriptionsLoaded ) {
               fetchSubscriptions( { observation } );
+              fetchRelationships( { observation } );
             }
           }}
         >
@@ -121,12 +129,14 @@ FollowButton.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
   subscriptions: PropTypes.array,
+  relationships: PropTypes.array,
   followUser: PropTypes.func,
   unfollowUser: PropTypes.func,
   subscribe: PropTypes.func,
   btnClassName: PropTypes.string,
   subscriptionsLoaded: PropTypes.bool,
-  fetchSubscriptions: PropTypes.func
+  fetchSubscriptions: PropTypes.func,
+  fetchRelationships: PropTypes.func
 };
 
 FollowButton.defaultProps = {

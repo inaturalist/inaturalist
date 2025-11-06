@@ -115,11 +115,23 @@ describe UsersController, "dashboard" do
         expect( response.body ).to include a.body
       end
 
-      it "should exclude monthly supporters" do
+      it "should exclude donorbox monthly supporters" do
         user = create :user,
           donorbox_donor_id: 1,
           donorbox_plan_status: "active",
           donorbox_plan_type: "monthly"
+        expect( user ).to be_monthly_donor
+        sign_in user
+        a = create :announcement, target_logged_in: Announcement::YES, prefers_exclude_monthly_supporters: true
+        get :dashboard
+        expect( response.body ).not_to include a.body
+      end
+
+      it "should exclude fundraiseup monthly supporters" do
+        user = create :user,
+          virtuous_donor_contact_id: 1,
+          fundraiseup_plan_status: "active",
+          fundraiseup_plan_frequency: "monthly"
         expect( user ).to be_monthly_donor
         sign_in user
         a = create :announcement, target_logged_in: Announcement::YES, prefers_exclude_monthly_supporters: true

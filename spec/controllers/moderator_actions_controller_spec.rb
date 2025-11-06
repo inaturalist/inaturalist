@@ -6,7 +6,7 @@ describe ModeratorActionsController do
   let( :generic_reason ) { Faker::Lorem.sentence }
 
   describe "create" do
-    it "creates moderator actions" do
+    it "creates moderator actions for photo with json format" do
       user = make_admin
       sign_in user
       photo = Photo.make!
@@ -26,69 +26,79 @@ describe ModeratorActionsController do
       expect( json["private"] ).to eq true
       expect( json["user_id"] ).to eq user.id
     end
+
+    it "creates moderator actions for sound with html format" do
+      user = make_admin
+      sign_in user
+      sound = Sound.make!
+      post :create, format: :html, params: { moderator_action: {
+        resource_type: "Sound",
+        resource_id: sound.id,
+        reason: generic_reason,
+        action: ModeratorAction::UNHIDE,
+        private: false
+      } }
+      expect( ModeratorAction.where( "resource_id = #{sound.id}" ).count ).to eq( 1 )
+      expect( response ).to redirect_to( sound )
+    end
   end
 
-  describe "resource_url" do
-    let( :admin ) { make_admin }
-    let( :photo ) { LocalPhoto.make! }
-    let( :presigned_url ) { "https://#{Faker::Internet.domain_name}/image.png" }
-    let( :moderator_action ) do
+  shared_examples_for "resource_url" do
+    let( :non_private_moderator_action ) do
       ModeratorAction.make!(
-        resource: photo,
+        resource: media,
         action: ModeratorAction::HIDE,
         reason: generic_reason
       )
     end
-    before do
-      allow_any_instance_of( LocalPhoto ).to receive( :presigned_url ).and_return( presigned_url )
+    let( :private_moderator_action ) do
+      ModeratorAction.make!(
+        resource: media,
+        action: ModeratorAction::HIDE,
+        reason: generic_reason,
+        private: true,
+        user: admin
+      )
     end
 
-    it "allows admins to generate URLs for hidden media" do
-      sign_in admin
-      get :resource_url, format: :json, params: { id: moderator_action.id }
-      expect( response ).to be_successful
-      json = JSON.parse( response.body )
-      expect( json["resource_url"] ).to eq presigned_url
-    end
-
-    it "allows curators to generate URLs for hidden media" do
-      sign_in make_curator
-      get :resource_url, format: :json, params: { id: moderator_action.id }
-      expect( response ).to be_successful
-      json = JSON.parse( response.body )
-      expect( json["resource_url"] ).to eq presigned_url
-    end
-
-    it "does not allow regular users to generate URLs for hidden media" do
-      sign_in User.make!
-      get :resource_url, format: :json, params: { id: moderator_action.id }
-      expect( response ).not_to be_successful
-      json = JSON.parse( response.body )
-      expect( json["error"] ).to eq I18n.t( :only_curators_can_access_that_page )
-    end
-
-    describe "private media" do
-      let( :moderator_action ) do
-        ModeratorAction.make!(
-          resource: photo,
-          action: ModeratorAction::HIDE,
-          reason: generic_reason,
-          private: true,
-          user: admin
-        )
-      end
-
-      it "allows admins to generate URLs for private media" do
-        sign_in make_admin
-        get :resource_url, format: :json, params: { id: moderator_action.id }
+    describe "with a public moderator action" do
+      it "allows admins to generate URLs for hidden media" do
+        sign_in admin
+        get :resource_url, format: :json, params: { id: non_private_moderator_action.id }
         expect( response ).to be_successful
         json = JSON.parse( response.body )
-        expect( json["resource_url"] ).to eq presigned_url
+        expect( json["resource_url"] ).to eq resource_url
+      end
+
+      it "allows curators to generate URLs for hidden media" do
+        sign_in make_curator
+        get :resource_url, format: :json, params: { id: non_private_moderator_action.id }
+        expect( response ).to be_successful
+        json = JSON.parse( response.body )
+        expect( json["resource_url"] ).to eq resource_url
+      end
+
+      it "does not allow regular users to generate URLs for hidden media" do
+        sign_in User.make!
+        get :resource_url, format: :json, params: { id: non_private_moderator_action.id }
+        expect( response ).not_to be_successful
+        json = JSON.parse( response.body )
+        expect( json["error"] ).to eq I18n.t( :only_curators_can_access_that_page )
+      end
+    end
+
+    describe "with a private moderator action" do
+      it "allows admins to generate URLs for private media" do
+        sign_in make_admin
+        get :resource_url, format: :json, params: { id: private_moderator_action.id }
+        expect( response ).to be_successful
+        json = JSON.parse( response.body )
+        expect( json["resource_url"] ).to eq resource_url
       end
 
       it "does not allow curators to generate URLs for private media" do
         sign_in make_curator
-        get :resource_url, format: :json, params: { id: moderator_action.id }
+        get :resource_url, format: :json, params: { id: private_moderator_action.id }
         expect( response ).not_to be_successful
         json = JSON.parse( response.body )
         expect( json["error"] ).to eq I18n.t( :only_administrators_may_access_that_page )
@@ -96,11 +106,41 @@ describe ModeratorActionsController do
 
       it "does not allow regular users to generate URLs for private media" do
         sign_in User.make!
-        get :resource_url, format: :json, params: { id: moderator_action.id }
+        get :resource_url, format: :json, params: { id: private_moderator_action.id }
         expect( response ).not_to be_successful
         json = JSON.parse( response.body )
         expect( json["error"] ).to eq I18n.t( :only_administrators_may_access_that_page )
       end
     end
+  end
+
+  describe "resource_url for photo" do
+    let( :admin ) { make_admin }
+    let( :media ) { LocalPhoto.make! }
+    let( :resource_url ) { "https://#{Faker::Internet.domain_name}/image.png" }
+    before do
+      allow_any_instance_of( LocalPhoto ).to receive( :presigned_url ).and_return( resource_url )
+    end
+
+    include_examples "resource_url"
+  end
+
+  describe "resource_url for LocalSound" do
+    let( :admin ) { make_admin }
+    let( :media ) { LocalSound.make! }
+    let( :resource_url ) { "https://#{Faker::Internet.domain_name}/sound1.wav" }
+    before do
+      allow_any_instance_of( LocalSound ).to receive( :presigned_url ).and_return( resource_url )
+    end
+
+    include_examples "resource_url"
+  end
+
+  describe "resource_url for SoundcloudSound" do
+    let( :admin ) { make_admin }
+    let( :resource_url ) { "https://#{Faker::Internet.domain_name}/sound2.mp3" }
+    let( :media ) { SoundcloudSound.make!( native_page_url: resource_url ) }
+
+    include_examples "resource_url"
   end
 end

@@ -33,9 +33,7 @@
     }
   }
   tr.improve {
-    background: $light-grey;
     .inputs {
-      margin-inline-start: 35px;
       margin-top: 5px;
       .yes, .no {
         display: inline-block;
@@ -51,6 +49,18 @@
         }
       }
     }
+    div.grid-container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+    .current-community-taxon {
+      .SplitTaxon > span {
+        color: #333;
+      }
+    }
+  }
+  tbody tr:nth-child(even) {
+    background: $light-grey;
   }
   h3 {
     margin-top: 30px;

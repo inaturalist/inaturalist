@@ -3494,6 +3494,7 @@ sr:
     hybrid: Hibrid
     #Singular
     subspecies: Podvrsta
+    variety: Varijetet
     form: Forma
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: agregatno stanje
@@ -3553,6 +3554,10 @@ sr:
   ranks_lowercase_hybrid: hibrid
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
   ranks_lowercase_subspecies: podvrsta
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varijetet
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: forma
   ranges: Opsezi
   ray_finned_fishes: zrakoperke
   re_order_photos: "Presloži fotografije &raquo;"
@@ -3864,6 +3869,7 @@ sr:
   some_agree: neki se slažu
   some_observations_are_missing_media_or_identifications: |
     Neke opservacije nemaju medije ili identifikacije
+  some_observations_failed_to_be_added: Neke opservacije nisu dodate u projekte
   some_observations_failed_to_save: Neke opservacije nisu sačuvane
   some_of_those_photos_couldnt_be_saved: "Neke fotografije nisu mogle biti sačuvane: %{error}"
   some_other_reason: Neki drugi razlog (objasni ispod).

@@ -46,9 +46,7 @@ import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
-import TestGroupToggle from "../../../shared/components/test_group_toggle";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
-import FlashMessage from "./flash_message";
 import AssessmentLazyLoad from "./assessment_lazy_load";
 
 moment.updateLocale( "en", {
@@ -244,15 +242,6 @@ class App extends React.Component {
 
     return (
       <div id="ObservationShow">
-        { config && config.testingApiV2 && (
-          <FlashMessage
-            key="testing_apiv2"
-            title="Testing API V2"
-            message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/v2-feedback/21215"
-            type="warning"
-            html
-          />
-        ) }
         <FlashMessagesContainer
           item={observation}
           manageFlagsPath={`/observations/${observation.id}/flags`}
@@ -334,7 +323,9 @@ class App extends React.Component {
                       </MenuItem>
                     </SplitButton>
                   </Col>
-                ) : config?.currentUserCanInteractWithResource( observation ) && ( <FollowButtonContainer /> ) }
+                ) : config?.currentUserCanInteractWithResource( observation ) && (
+                  <FollowButtonContainer />
+                ) }
             </Row>
             <Row>
               <Col xs={12}>
@@ -448,7 +439,7 @@ class App extends React.Component {
           <AssessmentContainer innerWrapper={AssessmentLazyLoad} />
         </div>
         { ( !observation.obscured || observation.private_geojson ) && (
-          <LazyLoad debounce={false} height={515} offset={500}>
+          <LazyLoad debounce={false} offset={500}>
             <div className="more_from">
               <Grid>
                 <Row>
@@ -479,33 +470,11 @@ class App extends React.Component {
         <ProjectFieldsModalContainer />
         <ObservationModalContainer />
         <ModeratorActionModalContainer />
-        {
-          config && config.currentUser
-          && (
-            config.currentUser.roles.indexOf( "curator" ) >= 0
-            || config.currentUser.roles.indexOf( "admin" ) >= 0
-            || config.currentUser.sites_admined.length > 0
-          )
-          && (
-            <div className="container upstacked">
-              <div className="row">
-                <div className="cols-xs-12">
-                  <TestGroupToggle
-                    group="apiv2"
-                    joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
-                    joinedStatus="Joined API V2 test"
-                    user={config.currentUser}
-                  />
-                </div>
-              </div>
-            </div>
-          )
-        }
         <RtlTestGroupToggle config={config} />
       </div>
     );
   }
-};
+}
 
 App.propTypes = {
   config: PropTypes.object,

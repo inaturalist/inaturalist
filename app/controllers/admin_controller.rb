@@ -46,7 +46,7 @@ class AdminController < ApplicationController
   def user_detail
     @display_user = User.find_by_id( params[:id].to_i )
     @display_user ||= User.find_by_login( params[:id] )
-    @display_user ||= User.find_by_email( params[:id] ) unless params[:id].blank?
+    @display_user ||= User.find_by_email( params[:id].downcase ) unless params[:id].blank?
     if @display_user
       @observations = Observation.page_of_results( user_id: @display_user.id )
       geoip_response = INatAPIService.geoip_lookup( { ip: @display_user.last_ip } )
@@ -255,7 +255,7 @@ class AdminController < ApplicationController
     user_id = params[:id] || params[:user_id]
     @display_user = User.find_by_id( user_id )
     @display_user ||= User.find_by_login( user_id )
-    @display_user ||= User.find_by_email( user_id ) unless user_id.blank?
+    @display_user ||= User.find_by_email( user_id.downcase ) unless user_id.blank?
     unless @display_user
       flash[:error] = "User #{user_id} doesn't exist"
       redirect_back_or_default( action: "index" )

@@ -119,6 +119,7 @@ class Announcement < ApplicationRecord
       clients
       locales
       ip_countries
+      exclude_ip_countries
       include_observation_oauth_application_ids
       exclude_observation_oauth_application_ids
       include_virtuous_tags
@@ -128,6 +129,16 @@ class Announcement < ApplicationRecord
       send( "#{attr}=", ( send( attr ) || [] ).reject( &:blank? ).compact )
     end
     nil
+  end
+
+  def visible_in_country?( country )
+    includes = ip_countries || []
+    excludes = exclude_ip_countries || []
+    if includes.present?
+      ( includes - excludes ).include?( country )
+    else
+      !excludes.include?( country )
+    end
   end
 
   def clean_target_group
@@ -388,7 +399,14 @@ class Announcement < ApplicationRecord
 
     if options[:ip]
       geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
-      announcements = announcements.select {| a | a.ip_countries.blank? || a.ip_countries.include?( geoip_country ) }
+
+      announcements =
+        if geoip_country.present?
+          announcements.select {| a | a.visible_in_country?( geoip_country ) }
+        else
+          # No country detected: only show announcements that are not country-targeted
+          announcements.select {| a | a.ip_countries.blank? }
+        end
     end
 
     # Remove non-site announcements if some announcements target sites
@@ -433,5 +451,19 @@ class Announcement < ApplicationRecord
     options[:methods].uniq!
     options[:only].uniq!
     super( options )
+  end
+
+  def duplicate_as_user( duplicate_user )
+    announcement = deep_dup
+
+    # Don’t carry over dismissals; set creator to specified user
+    announcement.dismiss_user_ids = []
+    announcement.user = duplicate_user
+
+    # Copy site associations and preferences
+    announcement.sites = sites
+    announcement.stored_preferences = stored_preferences
+
+    announcement
   end
 end
