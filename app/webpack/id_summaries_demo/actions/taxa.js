@@ -19,9 +19,11 @@ const TAXON_SUMMARY_FIELDS = [
   "taxon_photo_observation_id",
   "taxon_group",
   "run_generated_at",
+  "run_name",
   "id_summaries",
   "id_summaries.id",
   "id_summaries.summary",
+  "id_summaries.photo_tip",
   "id_summaries.score",
   "id_summaries.visual_key_group",
   "id_summaries.references.url",
@@ -36,19 +38,31 @@ const TAXON_SUMMARY_FIELDS = [
   "id_summaries.references.updated_at"
 ].join( "," );
 
-export const fetchTaxa = ( { active = true, page = 1, per_page = 200 } = {} ) => async dispatch => {
+export const fetchTaxa = ( {
+  active,
+  run_name,
+  page = 1,
+  per_page = 200
+} = {} ) => async dispatch => {
   dispatch( { type: TAXA_FETCH_REQUEST } );
   try {
     const taxonIdSummariesAPI = inatjs?.taxon_id_summaries;
     if ( !taxonIdSummariesAPI || typeof taxonIdSummariesAPI.search !== "function" ) {
       throw new Error( "inatjs.taxon_id_summaries.search unavailable" );
     }
-    const resp = await taxonIdSummariesAPI.search(
-      {
-        active, page, per_page, fields: TAXON_SUMMARY_FIELDS
-      },
-      { useAuth: true }
-    );
+    const params = {
+      page,
+      per_page,
+      fields: TAXON_SUMMARY_FIELDS
+    };
+    if ( typeof active === "boolean" ) {
+      params.active = active;
+    }
+    if ( run_name ) {
+      params.run_name = run_name;
+      params.run_name_exact = true;
+    }
+    const resp = await taxonIdSummariesAPI.search( params, { useAuth: true } );
     const {
       results = [], total_results, page: p, per_page: pp
     } = resp || {};
@@ -57,6 +71,7 @@ export const fetchTaxa = ( { active = true, page = 1, per_page = 200 } = {} ) =>
       id: tip?.id,
       text: tip?.content || tip?.tip || tip?.summary || "",
       group: tip?.key_visual_trait_group || tip?.group || tip?.visual_key_group || null,
+      photoTip: tip?.photo_tip || tip?.photoTip || null,
       score: Number.isFinite( tip?.score )
         ? tip.score
         : Number.isFinite( tip?.global_score )
@@ -92,6 +107,7 @@ export const fetchTaxa = ( { active = true, page = 1, per_page = 200 } = {} ) =>
       commonName: r?.taxon_common_name?.name || r?.taxon_common_name || null,
       taxonGroup: r?.taxon_group || null,
       runGeneratedAt: r?.run_generated_at || null,
+      runName: r?.run_name || null,
       taxonPhotoId: r?.taxon_photo_id,
       taxonPhotoObservationId: r?.taxon_photo_observation_id
         || r?.taxon_photo?.observation_id

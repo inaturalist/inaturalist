@@ -15,15 +15,29 @@ class IdSummariesDemoApp extends Component {
       loading: false,
       error: null,
       tipVotes: {},
-      referenceUsers: {}
+      referenceUsers: {},
+      activeOnly: true,
+      selectedRunName: null,
+      runNames: [],
+      runNamesLoading: false,
+      showPhotoTips: false
     };
 
     this.reset = this.reset.bind( this );
     this.handleSpeciesClick = this.handleSpeciesClick.bind( this );
     this.handleVote = this.handleVote.bind( this );
     this.fetchReferenceUsers = this.fetchReferenceUsers.bind( this );
+    this.handleActiveToggle = this.handleActiveToggle.bind( this );
+    this.handleRunNameChange = this.handleRunNameChange.bind( this );
+    this.handlePhotoTipsToggle = this.handlePhotoTipsToggle.bind( this );
+    this.fetchRunNames = this.fetchRunNames.bind( this );
+    this.renderFilters = this.renderFilters.bind( this );
 
     this.pendingUserFetches = new Set();
+  }
+
+  componentDidMount() {
+    this.fetchRunNames();
   }
 
   photoUrlFromId( photoId, size = "square" ) {
@@ -43,11 +57,72 @@ class IdSummariesDemoApp extends Component {
     }, {} );
   }
 
+  fetchRunNames( page = 1, accumulator = new Set() ) {
+    const taxonIdSummariesAPI = inatjs?.taxon_id_summaries;
+    if ( !taxonIdSummariesAPI || typeof taxonIdSummariesAPI.search !== "function" ) {
+      return;
+    }
+    if ( page === 1 ) {
+      this.setState( { runNamesLoading: true } );
+    }
+    taxonIdSummariesAPI.search(
+      {
+        page,
+        per_page: 200,
+        fields: "run_name",
+        order_by: "run_generated_at",
+        order: "desc"
+      },
+      { useAuth: true }
+    )
+      .then( response => {
+        const results = Array.isArray( response?.results ) ? response.results : [];
+        results.forEach( item => {
+          const runName = typeof item?.run_name === "string" ? item.run_name.trim() : "";
+          if ( runName ) {
+            accumulator.add( runName );
+          }
+        } );
+        const totalResults = Number.isFinite( response?.total_results )
+          ? response.total_results
+          : results.length;
+        const perPage = Number.isFinite( response?.per_page ) ? response.per_page : 200;
+        const totalPages = perPage > 0 ? Math.ceil( totalResults / perPage ) : 1;
+        if ( page < totalPages ) {
+          this.fetchRunNames( page + 1, accumulator );
+          return;
+        }
+        const runNames = Array.from( accumulator ).sort( ( a, b ) => a.localeCompare( b ) );
+        this.setState( prev => {
+          let selectedRunName = prev.selectedRunName;
+          if ( !selectedRunName && runNames.length ) {
+            [selectedRunName] = runNames;
+          } else if ( selectedRunName && !runNames.includes( selectedRunName ) ) {
+            selectedRunName = runNames[0] || null;
+          }
+          return {
+            runNames,
+            runNamesLoading: false,
+            selectedRunName
+          };
+        } );
+      } )
+      .catch( error => {
+        // eslint-disable-next-line no-console
+        console.warn( "Failed to load run names", error );
+        this.setState( {
+          runNames: [],
+          runNamesLoading: false
+        } );
+      } );
+  }
+
   normalizeIncomingData( data ) {
     const normalizeTip = ( t = {} ) => ( {
       id: t?.id,
       text: t?.content || t?.tip || t?.summary || "",
       group: t?.key_visual_trait_group || t?.group || t?.visual_key_group || null,
+      photoTip: t?.photo_tip || t?.photoTip || null,
       score: Number.isFinite( t?.score )
         ? t.score
         : Number.isFinite( t?.global_score )
@@ -182,10 +257,12 @@ class IdSummariesDemoApp extends Component {
       "taxon_common_name",
       "taxon_photo_id",
       "taxon_photo_observation_id",
+      "uuid",
       "run_generated_at",
       "id_summaries",
       "id_summaries.id",
       "id_summaries.summary",
+      "id_summaries.photo_tip",
       "id_summaries.score",
       "id_summaries.visual_key_group",
       "id_summaries.references.url",
@@ -286,11 +363,106 @@ class IdSummariesDemoApp extends Component {
     } );
   }
 
+  handleActiveToggle( event ) {
+    const nextActive = event.target.checked;
+    this.setState( prev => {
+      let nextRunName = prev.selectedRunName;
+      if ( !nextActive && !nextRunName && prev.runNames.length ) {
+        [nextRunName] = prev.runNames;
+      }
+      return {
+        activeOnly: nextActive,
+        selectedRunName: nextRunName,
+        selectedSpecies: null,
+        speciesImage: null,
+        error: null
+      };
+    } );
+  }
+
+  handleRunNameChange( event ) {
+    const value = event.target.value;
+    this.setState( {
+      selectedRunName: value || null,
+      selectedSpecies: null,
+      speciesImage: null,
+      error: null
+    } );
+  }
+
+  handlePhotoTipsToggle( event ) {
+    const nextValue = event.target.checked;
+    this.setState( { showPhotoTips: nextValue } );
+  }
+
+  renderFilters( inline = false ) {
+    const {
+      activeOnly,
+      selectedRunName,
+      runNames,
+      runNamesLoading,
+      showPhotoTips,
+      selectedSpecies
+    } = this.state;
+    const hasPhotoTips = Array.isArray( selectedSpecies?.tips )
+      && selectedSpecies.tips.some( tip => typeof tip?.photoTip === "string" && tip.photoTip.trim().length > 0 );
+    const photoTipsTargetId = hasPhotoTips && selectedSpecies
+      ? `photo-tips-${selectedSpecies.id || selectedSpecies.uuid}`
+      : undefined;
+
+    return (
+      <div className={`fg-controls${inline ? " fg-controls-inline" : ""}`}>
+        <div className="fg-filter-bar">
+          <label className="fg-filter-checkbox">
+            <input
+              type="checkbox"
+              checked={activeOnly}
+              onChange={this.handleActiveToggle}
+            />
+            <span>{I18n.t( "id_summaries.demo.filters.active_only" )}</span>
+          </label>
+          <div className="fg-run-controls">
+            <label className="fg-filter-select">
+              <span>{I18n.t( "id_summaries.demo.filters.run_label" )}</span>
+              <select
+                value={selectedRunName || ""}
+                onChange={this.handleRunNameChange}
+                disabled={activeOnly || runNamesLoading || runNames.length === 0}
+              >
+                {!selectedRunName ? (
+                  <option value="" disabled>
+                    {runNamesLoading
+                      ? I18n.t( "id_summaries.demo.filters.run_loading" )
+                      : I18n.t( "id_summaries.demo.filters.run_placeholder" )}
+                  </option>
+                ) : null}
+                {runNames.map( name => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ) )}
+              </select>
+            </label>
+            <label className="fg-filter-checkbox fg-photo-tip-checkbox">
+              <input
+                type="checkbox"
+                checked={showPhotoTips}
+                onChange={this.handlePhotoTipsToggle}
+                aria-controls={photoTipsTargetId}
+              />
+              <span>{I18n.t( "id_summaries.demo.taxon_detail.photo_tips_toggle" )}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   header() {
     return (
       <nav className="navbar navbar-default">
-        <div className="container">
-          <div className="navbar-header">
+        <div className="container fg-header">
+          <div className="navbar-header fg-header-brand">
             <div className="logo">
               <a href="/" className="navbar-brand" title={SITE.name} alt={SITE.name}>
                 <img alt="Site Logo" src="https://static.inaturalist.org/sites/1-logo.svg" />
@@ -307,6 +479,9 @@ class IdSummariesDemoApp extends Component {
                 {I18n.t( "id_summaries.demo.app.header_link" )}
               </a>
             </div>
+          </div>
+          <div className="fg-header-filters">
+            {this.renderFilters( true )}
           </div>
         </div>
       </nav>
@@ -336,7 +511,10 @@ class IdSummariesDemoApp extends Component {
       loading,
       error,
       tipVotes,
-      referenceUsers
+      referenceUsers,
+      activeOnly,
+      selectedRunName,
+      showPhotoTips
     } = this.state;
     const votesForSelected = selectedSpecies ? tipVotes?.[selectedSpecies.id] : {};
 
@@ -349,6 +527,8 @@ class IdSummariesDemoApp extends Component {
           <div className="fg-layout">
             <div className="fg-sidebar">
               <TaxaListContainer
+                activeOnly={activeOnly}
+                runName={selectedRunName}
                 selectedId={selectedSpecies?.id}
                 images={speciesImages}
                 onTileClick={this.handleSpeciesClick}
@@ -371,6 +551,7 @@ class IdSummariesDemoApp extends Component {
                 tipVotes={votesForSelected}
                 referenceUsers={referenceUsers}
                 onVote={this.handleVote}
+                showPhotoTips={showPhotoTips}
               />
             </div>
           </div>

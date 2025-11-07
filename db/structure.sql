@@ -2297,7 +2297,8 @@ CREATE TABLE public.id_summaries (
     visual_key_group character varying,
     score double precision,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    photo_tip character varying
 );
 
 
@@ -6080,7 +6081,6 @@ CREATE TABLE public.users (
     fundraiseup_plan_frequency character varying,
     fundraiseup_plan_status character varying,
     fundraiseup_plan_started_at date
-
 );
 
 
@@ -12093,5 +12093,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250905224234'),
 ('20251010205509'),
 ('20251014130528'),
-('20251014130547');
+('20251014130547'),
+('20251014130548');
+
 

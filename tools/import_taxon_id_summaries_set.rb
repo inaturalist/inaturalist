@@ -24,6 +24,7 @@
 #         "visual_trait_group": "Coloration",
 #         "global_score": 7.33,
 #         "summary": "...",
+#         "photo_tip": "...",
 #         "references": [
 #           { "uuid": "...", "source": "...", "user_id": 123, "comment": "...", "url": "..." }
 #         ]
@@ -165,6 +166,7 @@ payloads.each_with_index do | payload, index |
       visual_key_group = item["visual_trait_group"]
       score            = item["global_score"]
       summary_text     = item["summary"]
+      photo_tip        = item["photo_tip"]
 
       if visual_key_group.to_s.strip == "" || summary_text.to_s.strip == ""
         raise ArgumentError, "Item missing visual_trait_group or summary for taxon_id=#{taxon_id}"
@@ -176,6 +178,7 @@ payloads.each_with_index do | payload, index |
         summary: summary_text
       )
       id_summary.score = score
+      id_summary.photo_tip = photo_tip
 
       if id_summary.changed?
         id_summary.save!

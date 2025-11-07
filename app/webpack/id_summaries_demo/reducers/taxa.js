@@ -16,7 +16,12 @@ const initial = {
 export default function taxa( state = initial, action ) {
   switch ( action.type ) {
     case TAXA_FETCH_REQUEST:
-      return { ...state, loading: true, error: null };
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        list: []
+      };
     case TAXA_FETCH_SUCCESS:
       return {
         ...state,

@@ -3,7 +3,27 @@
 import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 
-const SummaryItem = ( { summary, referenceUsers } ) => {
+const PhotoTipIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M9.2 5l1.1-1.8c.2-.3.5-.4.8-.4h2.8c.3 0 .6.2.8.4L15.8 5H19a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h4.2zm2.8 4a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const SummaryItem = ( {
+  summary,
+  referenceUsers,
+  speciesId,
+  index
+} ) => {
   const [showReferences, setShowReferences] = useState( false );
 
   const references = useMemo(
@@ -76,23 +96,117 @@ const SummaryItem = ( { summary, referenceUsers } ) => {
     if ( looksLikeHtml ) return body;
     return body.replace( /\n/g, "<br />" );
   };
+  const buildVisualLink = part => {
+    if ( !speciesId || !part ) return null;
+    const query = encodeURIComponent( part ).replace( /%20/g, "+" );
+    return `https://www.inaturalist.org/vision_language_demo?q=${query}&taxon_id=${speciesId}`;
+  };
+  const renderSummaryText = () => {
+    const text = summary?.text;
+    if ( !text ) return null;
+    const regex = /<visual\s+part=["']([^"']+)["']\s*>([\s\S]*?)<\/visual>/gi;
+    const fragments = [];
+    let lastIndex = 0;
+    let match;
+    let keyIndex = 0;
+    while ( ( match = regex.exec( text ) ) ) {
+      const [wholeMatch, part, content] = match;
+      const start = match.index;
+      if ( start > lastIndex ) {
+        fragments.push(
+          <React.Fragment key={`text-${keyIndex}`}>
+            {text.substring( lastIndex, start )}
+          </React.Fragment>
+        );
+        keyIndex += 1;
+      }
+      const link = buildVisualLink( part );
+      if ( link ) {
+        fragments.push(
+          <a
+            key={`visual-${keyIndex}`}
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {content}
+          </a>
+        );
+      } else {
+        fragments.push(
+          <React.Fragment key={`visual-text-${keyIndex}`}>
+            {content}
+          </React.Fragment>
+        );
+      }
+      keyIndex += 1;
+      lastIndex = start + wholeMatch.length;
+    }
+    if ( fragments.length === 0 ) return text;
+    if ( lastIndex < text.length ) {
+      fragments.push(
+        <React.Fragment key={`text-${keyIndex}`}>
+          {text.substring( lastIndex )}
+        </React.Fragment>
+      );
+    }
+    return fragments;
+  };
 
   const fallbackLabel = I18n.t( "id_summaries.demo.summary_item.default_label" );
   const labelText = summary?.group ? summary.group.toUpperCase() : fallbackLabel;
   const labelTitle = summary?.group
     ? summary.group
     : I18n.t( "id_summaries.demo.summary_item.default_title" );
+  const photoTip = typeof summary?.photoTip === "string"
+    ? summary.photoTip.trim()
+    : "";
+  const hasPhotoTip = photoTip.length > 0;
+  const photoTipLabel = I18n.t( "id_summaries.demo.summary_item.photo_tip_label" );
+  const photoTipAria = I18n.t( "id_summaries.demo.summary_item.photo_tip_aria", {
+    tip: photoTip
+  } );
+  const summaryId = summary?.id;
+  const tooltipId = useMemo( () => {
+    if ( !hasPhotoTip ) return null;
+    const baseId = summaryId || index || 0;
+    const safeBase = String( baseId ).replace( /[^a-zA-Z0-9_-]/g, "-" );
+    const safeSpecies = speciesId
+      ? String( speciesId ).replace( /[^a-zA-Z0-9_-]/g, "-" )
+      : "species";
+    return `photo-tip-${safeSpecies}-${safeBase}`;
+  }, [hasPhotoTip, summaryId, index, speciesId] );
 
   return (
     <div className="fg-summary-card">
       <div className="fg-summary-header">
         <span className="fg-summary-label" title={labelTitle}>
           <span className="fg-summary-label-icon" aria-hidden="true" />
-          <span>{labelText}</span>
+          <span className="fg-summary-label-text">{labelText}</span>
+          {hasPhotoTip ? (
+            <span
+              className="fg-summary-photo-tip"
+              tabIndex="0"
+              aria-label={photoTipAria}
+              aria-describedby={tooltipId || undefined}
+            >
+              <span className="fg-summary-photo-tip-icon" aria-hidden="true">
+                <PhotoTipIcon />
+              </span>
+              <span className="fg-summary-photo-tip-text">{photoTipLabel}</span>
+              <span
+                id={tooltipId || undefined}
+                className="fg-summary-photo-tip-tooltip"
+                role="tooltip"
+              >
+                {photoTip}
+              </span>
+            </span>
+          ) : null}
         </span>
       </div>
 
-      <p className="fg-summary-text">{summary?.text}</p>
+      <p className="fg-summary-text">{renderSummaryText()}</p>
       <p className="fg-summary-disclaimer">{disclaimer}</p>
 
       {references.length ? (
@@ -194,6 +308,7 @@ SummaryItem.propTypes = {
     id: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
     group: PropTypes.string,
     text: PropTypes.string,
+    photoTip: PropTypes.string,
     sources: PropTypes.arrayOf( PropTypes.shape( {
       url: PropTypes.string,
       comment_uuid: PropTypes.string,
@@ -209,5 +324,7 @@ SummaryItem.propTypes = {
     login: PropTypes.string,
     name: PropTypes.string,
     icon: PropTypes.string
-  } ) )
+  } ) ),
+  speciesId: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
+  index: PropTypes.number
 };

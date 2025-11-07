@@ -368,6 +368,7 @@ export default SummaryList;
 const summaryShape = PropTypes.shape( {
   id: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
   text: PropTypes.string,
+  photoTip: PropTypes.string,
   group: PropTypes.string,
   score: PropTypes.number,
   sources: PropTypes.arrayOf( PropTypes.shape( {

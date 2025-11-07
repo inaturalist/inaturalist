@@ -6,14 +6,44 @@ import TaxaList from "../components/TaxaList";
 
 class TaxaListContainer extends Component {
   componentDidMount() {
-    this.props.fetchTaxa( { active: true } );
+    this.fetchWithFilters();
   }
 
   componentDidUpdate( prev ) {
-    const { list, onLoaded } = this.props;
+    const {
+      list,
+      onLoaded,
+      activeOnly,
+      runName
+    } = this.props;
+    if (
+      prev.activeOnly !== activeOnly
+      || prev.runName !== runName
+    ) {
+      this.fetchWithFilters();
+    }
     if ( prev.list !== list && typeof onLoaded === "function" && list.length ) {
       onLoaded( list );
     }
+  }
+
+  fetchWithFilters() {
+    const {
+      fetchTaxa,
+      activeOnly,
+      runName,
+      perPage
+    } = this.props;
+    const params = { per_page: perPage };
+    if ( activeOnly ) {
+      params.active = true;
+    } else {
+      if ( !runName ) {
+        return;
+      }
+      params.run_name = runName;
+    }
+    fetchTaxa( params );
   }
 
   render() {
@@ -46,7 +76,16 @@ TaxaListContainer.propTypes = {
   selectedId: PropTypes.number,
   onTileClick: PropTypes.func,
   onLoaded: PropTypes.func,
-  fetchTaxa: PropTypes.func.isRequired
+  fetchTaxa: PropTypes.func.isRequired,
+  activeOnly: PropTypes.bool,
+  runName: PropTypes.string,
+  perPage: PropTypes.number
+};
+
+TaxaListContainer.defaultProps = {
+  activeOnly: true,
+  runName: null,
+  perPage: 200
 };
 
 const mapState = state => ( {
