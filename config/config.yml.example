@@ -12,6 +12,13 @@ base: &base
       - Hawaii
       - Alaska
 
+    id_summaries_demo:
+        # Users listed here can access the ID Summary Demo even if they are not admins.
+        # Administrators always retain access.
+        allowed_user_ids:
+            - 1
+            - 2
+
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af
