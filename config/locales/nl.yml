@@ -2132,6 +2132,7 @@ nl:
   flag_marked_as_unresolved_html: '<span class="meta">Melding gemarkeerd als</span> <strong>onopgelost.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Object
+  flag_reason2: "Ik markeer dit %{record} omdat"
   flag_resolution: Oplossing
   flag_saved: Melding opgeslagen
   flag_saved_thanks_html: Melding opgeslagen. Bedankt! <a href="%{url}" class="readmore">Melding bekijken</a>
@@ -7329,6 +7330,46 @@ nl:
           Naam van de taxonomische klasse die het waargenomen taxon bevat
         taxon_family_name: |
           Naam van de taxonomische familie die het waargenomen taxon bevat
+        taxon_form_name: |
+          Naam van de taxonomische vorm die het waargenomen taxon bevat
+        taxon_genus_name: |
+          Naam van het taxonomische genus met het waargenomen taxon
+        taxon_genushybrid_name: |
+          Naam van het taxonomische hybride geslacht dat het waargenomen taxon bevat
+        taxon_hybrid_name: |
+          Naam van de taxonomische hybride die het waargenomen taxon bevat
+        taxon_kingdom_name: |
+          Naam van het taxonomische rijk dat het waargenomen taxon bevat
+        taxon_order_name: |
+          Naam van de taxonomische orde die het waargenomen taxon bevat
+        taxon_phylum_name: |
+          Naam van de taxonomische stam die het waargenomen taxon bevat
+        taxon_species_name: |
+          Naam van de taxonomische soort die het waargenomen taxon bevat
+        taxon_subclass_name: |
+          Naam van de taxonomische onderklasse die het waargenomen taxon bevat
+        taxon_subfamily_name: |
+          Naam van de taxonomische onderfamilie die het waargenomen taxon bevat
+        taxon_suborder_name: |
+          Naam van de taxonomische onderorde die het waargenomen taxon bevat
+        taxon_subphylum_name: |
+          Naam van het taxonomische onderstam dat het waargenomen taxon bevat
+        taxon_subspecies_name: |
+          Naam van de taxonomische ondersoort die het waargenomen taxon bevat
+        taxon_subtribe_name: |
+          Naam van de taxonomische ondertak die het waargenomen taxon bevat
+        taxon_superclass_name: |
+          Naam van de taxonomische superklasse die het waargenomen taxon bevat
+        taxon_superfamily_name: |
+          Naam van de taxonomische superfamilie die het waargenomen taxon bevat
+        taxon_superorder_name: |
+          Naam van de taxonomische superorde die het waargenomen taxon bevat
+        taxon_supertribe_name: |
+          Naam van de taxonomische supertak die het waargenomen taxon bevat
+        taxon_tribe_name: |
+          Naam van de taxonomische tak die het waargenomen taxon bevat
+        taxon_variety_name: |
+          Naam van de taxonomische variëteit die het waargenomen taxon bevat
         uuid: |
           Universeel unieke identifier voor de waarneming. Zie
           https://datatracker.ietf.org/doc/html/rfc9562
