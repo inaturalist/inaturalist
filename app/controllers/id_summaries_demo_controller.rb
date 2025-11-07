@@ -24,6 +24,6 @@ class IdSummariesDemoController < ApplicationController
       format.json { render status: :forbidden, json: { error: message } }
       format.js { render status: :forbidden, plain: message }
     end
-    throw :abort
+    false
   end
 end
