@@ -12,7 +12,8 @@ const TaxonDetailPanel = ( {
   tipVotes,
   referenceUsers,
   onVote,
-  showPhotoTips
+  showPhotoTips,
+  photoAttribution
 } ) => {
   const speciesIdentifier = species?.id || species?.uuid || null;
   const photoTips = useMemo( () => {
@@ -142,6 +143,9 @@ const TaxonDetailPanel = ( {
           <div className="fg-species-image-column">
             <div className="fg-species-image-wrapper">
               {imageContent}
+              {photoAttribution ? (
+                <p className="fg-photo-attribution">{photoAttribution}</p>
+              ) : null}
             </div>
           </div>
           {photoTips.length && showPhotoTips ? (
@@ -213,7 +217,8 @@ TaxonDetailPanel.propTypes = {
     icon: PropTypes.string
   } ) ),
   onVote: PropTypes.func,
-  showPhotoTips: PropTypes.bool
+  showPhotoTips: PropTypes.bool,
+  photoAttribution: PropTypes.string
 };
 
 export default TaxonDetailPanel;

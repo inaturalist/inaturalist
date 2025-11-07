@@ -610,6 +610,13 @@ body {
     flex-direction: column;
     gap: 16px;
   }
+  .fg-photo-attribution {
+    margin: 0;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.4;
+    word-break: break-word;
+  }
   .fg-species-image-placeholder {
     display: flex;
     align-items: center;

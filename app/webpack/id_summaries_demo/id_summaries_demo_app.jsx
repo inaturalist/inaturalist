@@ -167,6 +167,7 @@ class IdSummariesDemoApp extends Component {
         taxonGroup: item?.taxon_group || null,
         runGeneratedAt: item?.run_generated_at || null,
         taxonPhotoId: item?.taxon_photo_id,
+        taxonPhotoAttribution: item?.taxon_photo_attribution || null,
         taxonPhotoObservationId: item?.taxon_photo_observation_id
           || item?.taxon_photo?.observation_id
           || null,
@@ -256,6 +257,7 @@ class IdSummariesDemoApp extends Component {
       "taxon_name",
       "taxon_common_name",
       "taxon_photo_id",
+      "taxon_photo_attribution",
       "taxon_photo_observation_id",
       "uuid",
       "run_generated_at",
@@ -517,6 +519,7 @@ class IdSummariesDemoApp extends Component {
       showPhotoTips
     } = this.state;
     const votesForSelected = selectedSpecies ? tipVotes?.[selectedSpecies.id] : {};
+    const selectedPhotoAttribution = selectedSpecies?.taxonPhotoAttribution || null;
 
     return (
       <div className="bootstrap fg-app">
@@ -552,6 +555,7 @@ class IdSummariesDemoApp extends Component {
                 referenceUsers={referenceUsers}
                 onVote={this.handleVote}
                 showPhotoTips={showPhotoTips}
+                photoAttribution={selectedPhotoAttribution}
               />
             </div>
           </div>
