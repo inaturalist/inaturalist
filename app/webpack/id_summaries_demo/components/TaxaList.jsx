@@ -71,6 +71,8 @@ const TaxaList = ( {
     const labels = Object.keys( byGroup ).sort( ( a, b ) => {
       if ( a === OTHER_GROUP_KEY ) return 1;
       if ( b === OTHER_GROUP_KEY ) return -1;
+      const countDiff = ( byGroup[b]?.length || 0 ) - ( byGroup[a]?.length || 0 );
+      if ( countDiff !== 0 ) return countDiff;
       const labelA = translateGroupName( a );
       const labelB = translateGroupName( b );
       return labelA.localeCompare( labelB );
