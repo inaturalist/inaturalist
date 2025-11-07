@@ -450,7 +450,7 @@ class IdSummariesDemoApp extends Component {
                 onChange={this.handlePhotoTipsToggle}
                 aria-controls={photoTipsTargetId}
               />
-              <span>{I18n.t( "id_summaries.demo.taxon_detail.photo_tips_toggle" )}</span>
+              <span>{I18n.t( "id_summaries.demo.filters.photo_tips_toggle" )}</span>
             </label>
           </div>
         </div>
