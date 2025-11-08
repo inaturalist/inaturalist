@@ -315,7 +315,7 @@ zh-CN:
   add_plant_phenology_no_evidence_of_flowering_annotation: '添加“植物物候学：没有开花迹象”的注释'
   add_flowers_and_fruits_flower_buds_annotation: '添加“开花和挂果：花芽”注释'
   add_flowers_and_fruits_flowers_annotation: '添加“开花和挂果：开花”注释'
-  add_flowers_and_fruits_fruits_and_seeds_annotation: '添加“开花和挂果：果实或种子”注释'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: '添加“开花和挂果：结实”注释'
   add_flowers_and_fruits_no_flower_or_fruits: '添加“开花和挂果：无花无果”注释'
   add_leaves_breaking_leaf_buds: '添加“叶片：叶芽萌发”注释'
   add_leaves_green_leaves: '添加“叶片：绿叶”注释'
@@ -1117,7 +1117,7 @@ zh-CN:
     no_flowers_or_fruits: 无花无果
     flower_buds: 花芽
     flowers: 开花
-    fruits_or_seeds: 果实或种子
+    fruits_or_seeds: 结实
     leaves: 叶片
     breaking_leaf_buds: 叶芽萌发
     green_leaves: 绿叶
@@ -1415,6 +1415,8 @@ zh-CN:
     pilot_read_more: "浏览我们的博客以了解更多信息。"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "鉴定差距试点：需要鉴定通缉物种"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "通过参与接收每日观察链接来帮助我们填补空白："
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "尚未列入计算机视觉模型"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1983,6 +1985,8 @@ zh-CN:
   flag_deleted: 标记已删除
   flag_description: 标记此内容以让馆长知道它有些东西是错误的。
   flag_comment_description: 向这个标记添加一个可选的注释，进一步解释你为什么要添加它，并提供支持证据的链接。
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: 有引用来源的标记更有可能由我们的志愿者馆长快速解决。
   flag_for_check_list_title_html: |
     标记检查列表： %{title}
   flag_for_comment_id_html: 标记此 <a href="%{url}">评论 %{id}</a>
@@ -2016,6 +2020,7 @@ zh-CN:
   flag_marked_as_unresolved_html: '<span class="meta">标记为</span><strong>未解决。</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: 项目
+  flag_reason2: "我正在标记这个 %{record} ，原因是"
   flag_resolution: 解决
   flag_saved: 标记已保存。
   flag_saved_thanks_html: 标记已储存，谢谢！<a href="%{url}" class="readmore">检查标记</a>
@@ -6677,6 +6682,9 @@ zh-CN:
       #to keep it under 20 characters
       help_us_improve: 帮助我们改进
       to_help_us_improve: 为了帮助我们改进此模型，我们希望知道此页面上的哪些图像与您搜索的“%{searched_term}”相关。如果某幅图像与您的搜索相匹配，请将其标记为相关 %{thumbs_up_icon}，如果不匹配，请将其标记为不相关 %{thumbs_down_icon}。完成后，请单击提交。 #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: 标记为相关
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: 标记为不相关
       #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: 标记剩余为相关
       #text for a button where a user can mark images as not relevant to their search term
@@ -7693,7 +7701,7 @@ zh-CN:
           "Plant Phenology=No Evidence of Flowering": 没有开花迹象
           "Flowers and Fruits=Flower Buds": 花芽
           "Flowers and Fruits=Flowers": 开花
-          "Flowers and Fruits=Fruits or Seeds": 果实或种子
+          "Flowers and Fruits=Fruits or Seeds": 结实
           "Flowers and Fruits=No Flowers or Fruits": 无花无果
           "Leaves=Breaking Leaf Buds": 叶芽萌发
           "Leaves=Green Leaves": 绿叶
