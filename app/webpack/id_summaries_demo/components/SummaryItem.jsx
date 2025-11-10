@@ -123,25 +123,31 @@ const SummaryItem = ( {
         );
         keyIndex += 1;
       }
-      const link = buildVisualLink( part );
-      if ( link ) {
-        fragments.push(
-          <a
-            key={`visual-${keyIndex}`}
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {content}
-          </a>
-        );
-      } else {
-        fragments.push(
-          <React.Fragment key={`visual-text-${keyIndex}`}>
-            {content}
-          </React.Fragment>
-        );
-      }
+      // Temporarily render the <visual> content without linking to the vision demo.
+      fragments.push(
+        <React.Fragment key={`visual-text-${keyIndex}`}>
+          {content}
+        </React.Fragment>
+      );
+      // const link = buildVisualLink( part );
+      // if ( link ) {
+      //   fragments.push(
+      //     <a
+      //       key={`visual-${keyIndex}`}
+      //       href={link}
+      //       target="_blank"
+      //       rel="noopener noreferrer"
+      //     >
+      //       {content}
+      //     </a>
+      //   );
+      // } else {
+      //   fragments.push(
+      //     <React.Fragment key={`visual-text-${keyIndex}`}>
+      //       {content}
+      //     </React.Fragment>
+      //   );
+      // }
       keyIndex += 1;
       lastIndex = start + wholeMatch.length;
     }

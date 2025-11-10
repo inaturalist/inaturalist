@@ -143,7 +143,9 @@ const TaxonDetailPanel = ( {
         <div className="fg-species-hero">
           <div className="fg-species-image-column">
             <div className="fg-species-image-wrapper">
-              {imageContent}
+              <div className="fg-species-image-frame">
+                {imageContent}
+              </div>
               {photoAttribution ? (
                 <p className="fg-photo-attribution">{photoAttribution}</p>
               ) : null}

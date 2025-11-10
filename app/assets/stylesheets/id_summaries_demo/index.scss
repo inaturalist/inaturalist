@@ -581,18 +581,44 @@ body {
   }
 
   /* Species image */
+  .fg-species-image-wrapper {
+    --fg-species-max-width: min(100%, 520px);
+    --fg-species-max-height: min(70vh, 420px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .fg-species-image-frame {
+    width: var(--fg-species-max-width);
+    max-width: var(--fg-species-max-width);
+    max-height: var(--fg-species-max-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    background: #0f172a;
+    overflow: hidden;
+  }
   .fg-species-image-link {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     max-width: 100%;
+    border-radius: inherit;
   }
   .fg-species-image {
     display: block;
-    max-width: 500px;
-    max-height: 400px;
     width: auto;
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    max-width: 100%;
+    max-height: var(--fg-species-max-height);
+    object-fit: contain;
+    border-radius: 0;
+    box-shadow: none;
   }
   .fg-species-hero {
     display: flex;
@@ -605,11 +631,6 @@ body {
     min-width: 300px;
     max-width: 100%;
   }
-  .fg-species-image-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
   .fg-photo-attribution {
     margin: 0;
     font-size: 14px;
@@ -621,9 +642,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 240px;
+    width: 100%;
+    min-height: clamp(220px, var(--fg-species-max-height), 420px);
     background: #f1f5f9;
-    border-radius: 10px;
+    border-radius: inherit;
     color: #64748b;
     font-size: 16px;
     text-align: center;
