@@ -7475,12 +7475,12 @@ it:
       formatting_simple_help: "Collega automaticamente URL e inserisci interruzioni di riga."
     projects:
       project_type: Tipo di progetto
-      collection: Collezione
+      collection: Raccolta
       umbrella: Ombrello
       tracks_multiple_projects: traccia più progetti
       projects_included: Progetti inclusi
       collection_and_umbrellas_do_not_support: |
-        I Progetti Collezione ed Ombrello attualmente non supportano l'accesso alle coordinate nascoste.
+        I Progetti Raccolta ed Ombrello attualmente non supportano l'accesso alle coordinate nascoste.
       curator_coordinate_access_desc_html: |
         Ricorda, <strong>i curatori del progetto possono aggiungere qualsiasi tua osservazione al loro progetto</strong> a meno che tu non abbia deselezionato tale opzione nelle <a href="/users/edit">impostazioni dell'account</a>. Spunta la casella solo se ti fidi dei curatori e se vuoi consentire loro di vedere le coordinate nascoste di tutte le tue osservazioni che possono essere aggiunte al progetto. Se non glielo vuoi consentire, puoi lo stesso permettergli l'accesso alle coordinate nascoste di una osservazione ma devi farlo osservazione-per-osservazione.
       confirm_leave:
@@ -7607,7 +7607,7 @@ it:
         a_project_allows_you_to_gather: |
           Un progetto collezione ti permette di raccogliere e visualizzare osservazioni utilizzando lo strumento ricerca di iNaturalist. Tutto ciò che soddisfa i requisiti del progetto sarà incluso automaticamente.
         an_umbrella_project_can_be_used_to: |
-          Un progetto Ombrello può essere usato per confrontare le statistiche tra due o più progetti tradizionali o progetti Collezione. Gli altri progetti devono già esistere prima di poterli aggiungere ad un progetto Ombrello. Puoi includerne a centinaia. I progetti Ombrello non possono contenere altri progetti Ombrello.
+          Un progetto Ombrello può essere usato per confrontare le statistiche tra due o più progetti tradizionali o progetti Raccolta. Gli altri progetti devono già esistere prima di poterli aggiungere ad un progetto Ombrello. Puoi includerne a centinaia. I progetti Ombrello non possono contenere altri progetti Ombrello.
         are_you_ready_to_duplicate: |
           Sei pronto a lasciare questa pagina per duplicare il progetto? Nota che l'icona del progetto e il banner non saranno duplicati e sarà necessario ricaricarli nel progetto duplicato.
         are_you_sure_you_want_to_delete: Sei sicuro di voler eliminare questo progetto?
@@ -7616,8 +7616,8 @@ it:
           Seleziona la casella qui sotto per includere solo le osservazioni degli utenti che si sono uniti a questo progetto.
           Utilizza il filtro Escludi Utenti di sopra per escludere le osservazioni di utenti specifici, compresi il proprietario del progetto e gli amministratori.
         click_through_to_individual_projects: Navigazione tra i singoli progetti
-        collection_projects: Progetti Collezione
-        collection_project_features: "Caratteristiche del Progetto collezione:"
+        collection_projects: Progetti Raccolta
+        collection_project_features: "Caratteristiche del Progetto raccolta:"
         contain_entire_image_without_cropping: Contiene un'intera immagine senza ritaglio
         custom_banner_icon_and_project_description: Banner personalizzato, icona, e descrizione del progetto
         data_visualizations: Visualizzazione dei dati
@@ -7689,7 +7689,7 @@ it:
           Usa <a href="%{url}">questo link</a>, invece, per creare un progetto tradizionale.
         visual_comparison_of_data_among: Confronto visivo dei dati tra i progetti sotto l'ombrello
         we_have_redesigned_projects: |
-          I progetti sono stati ideati per includere tutte le osservazioni che soddisfano i criteri di luogo, taxon, utente, qualità del dato e periodo che decidi tu. Puoi scegliere tra due tipi principali: Progetti Collezione e Progetti Ombrello, che condividono le seguenti caratteristiche:
+          I progetti sono stati ideati per includere tutte le osservazioni che soddisfano i criteri di luogo, taxa, utente, qualità del dato e periodo che decidi tu. Puoi scegliere tra due tipi principali: Progetti Raccolta e Progetti Ombrello, che condividono le seguenti caratteristiche:
         welcome_to_projects: Benvenuti nei progetti
         you_can_learn_more2_html: |
           Puoi saperne di più sulla gestione dei progetti
@@ -8353,7 +8353,7 @@ it:
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Il massimo di 3 lessici di nomi comuni è stato già aggiunto
         this_only_applies_to_traditional_projects2: |
-          Questo si applica ai progetti tradizionali. Non puoi escludere delle osservazioni dai progetti collezione ed ombrello, che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">qui</a>.
+          Questo si applica ai progetti tradizionali. Non puoi escludere delle osservazioni dai progetti raccolta ed ombrello, che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">qui</a>.
       recent:
         about_recent_users: A proposito di
         definitions_html: <dl> <dt>Probabilmente Spam</dt> <dd> Utenti che sono probabilmente uno spammer, significa che non hanno osservazioni o identificazioni ma hanno una descrizione del profilo. </dd> <dt>Auto Spam</dt> <dd> Spammer che sono automaticamente segnati come spammer dal sistema. </dd> <dt>Spam Manulae</dt> <dd> Spammer che sono segnati manualmente come spammer dai curatori del sito. </dd> <dt>Falsi Positivi</dt> <dd> Utenti che sono stati segnati come spammer ma per cui le segnalazioni sono state risolte dai curatori del sito perché non erano veramente spammer. </dd> </dl>
@@ -9117,7 +9117,7 @@ it:
               #basically saved searches so you don't have to add anything to
               #them
               collection_and_umbrella_projects_do_not_allow_direct_submission: |
-                i progetti collezione ed ombrello non permettono l'aggiunta diretta
+                i progetti raccolta ed ombrello non permettono l'aggiunta diretta
             user_id:
               must_be_curator: deve essere un curatore di questo progetto
             observation_id:
