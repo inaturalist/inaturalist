@@ -10993,6 +10993,11 @@ en:
       references: "Backed up by references"
       distinct: "Distinct from other summaries"
       clear: "Short, colloquial, and clearly written"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Comment is relevant to the summary"
+      true: "Comment is a true statement"
+      matches_taxon: "Comment is referring to %{taxon}"
   id_summaries:
     demo:
       app:
@@ -11037,6 +11042,17 @@ en:
         user_fallback: "iNaturalist user"
         reference_commented: "commented"
         view_comment: "View comment"
+        view_reference_feedback: "View Feedback on Reference"
+      reference_feedback:
+        loading: "Loading reference feedback..."
+        sign_in_required: "Sign in to vote on reference feedback."
+        unavailable: "Reference feedback is unavailable right now."
+        service_unavailable: "Reference feedback service is unavailable right now."
+        submit_failed: "Failed to submit reference feedback."
+        sign_in_tooltip: "Sign in to vote on this reference"
+        submitting_tooltip: "Submitting feedback..."
+        aria_helpful: "%{label}: helpful"
+        aria_not_helpful: "%{label}: not helpful"
       taxon_detail:
         select_species: "Select a species to view ID Summaries."
         last_updated: "Last updated"

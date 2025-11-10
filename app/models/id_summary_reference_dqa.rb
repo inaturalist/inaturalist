@@ -9,8 +9,9 @@ class IdSummaryReferenceDqa < ApplicationRecord
     "metric2" => :metric2
   }.freeze
   PUBLIC_METRIC_QUESTIONS = {
-    "metric3" => :metric3,
-    "metric4" => :metric4
+    "relevant" => :relevant_to_summary?,
+    "true" => :true_statement?,
+    "matches_taxon" => :refers_to_taxon?
   }.freeze
   STAFF_METRICS = STAFF_METRIC_QUESTIONS.keys
   STAFF_METRICS.each do | metric |

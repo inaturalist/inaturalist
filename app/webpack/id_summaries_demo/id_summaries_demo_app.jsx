@@ -130,6 +130,7 @@ class IdSummariesDemoApp extends Component {
           : null,
       sources: Array.isArray( t?.sources )
         ? t.sources.map( s => ( {
+          id: s?.id,
           url: s?.url,
           comment_uuid: s?.comment_uuid,
           user_id: s?.user_id,
@@ -140,6 +141,7 @@ class IdSummariesDemoApp extends Component {
         } ) )
         : Array.isArray( t?.references )
           ? t.references.map( r => ( {
+            id: r?.id,
             url: r?.url,
             comment_uuid: r?.comment_uuid,
             user_id: r?.user_id,
@@ -272,6 +274,7 @@ class IdSummariesDemoApp extends Component {
       "id_summaries.references.user_id",
       "id_summaries.references.body",
       "id_summaries.references.reference_content",
+      "id_summaries.references.id",
       "id_summaries.references.reference_source",
       "id_summaries.references.reference_uuid",
       "id_summaries.references.reference_date",

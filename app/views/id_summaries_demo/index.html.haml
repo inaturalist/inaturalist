@@ -9,10 +9,12 @@
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.public_node_api_url || CONFIG.node_api_url }
   = csrf_meta_tag
   - public_metrics = IdSummaryDqa::PUBLIC_METRICS.index_with { |metric| { label: I18n.t( "id_summary_dqa.public_metrics.#{metric}", default: metric.humanize ) } }
+  - reference_public_metrics = IdSummaryReferenceDqa::PUBLIC_METRICS.index_with { |metric| { label: I18n.t( "id_summary_reference_dqa.public_metrics.#{metric}", default: metric.humanize ) } }
   - taxon_group_labels = I18n.t( "id_summaries.demo.taxa_list.group_labels", default: {} )
   :javascript
     var BLOG_URL= "#{ Site.default.blog_url }";
     window.ID_SUMMARY_PUBLIC_METRICS = #{public_metrics.to_json.html_safe};
+    window.ID_SUMMARY_REFERENCE_METRICS = #{reference_public_metrics.to_json.html_safe};
     window.ID_SUMMARY_GROUP_LABELS = #{taxon_group_labels.to_json.html_safe};
 #app
 - content_for :delayed_js do

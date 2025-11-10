@@ -36,6 +36,7 @@ const ChevronIcon = ( { isOpen } ) => (
 const SummaryList = ( {
   speciesId,
   speciesUuid,
+  speciesLabel,
   summaries = [],
   isLoading,
   tipVotes = {},
@@ -334,6 +335,8 @@ const SummaryList = ( {
               <div className="fg-summary-entry">
                 <SummaryItem
                   speciesId={speciesId}
+                  speciesUuid={speciesUuid}
+                  speciesLabel={speciesLabel}
                   summary={summary}
                   index={index}
                   currentVote={tipVotes?.[index] || 0}
@@ -385,6 +388,7 @@ const summaryShape = PropTypes.shape( {
 SummaryList.propTypes = {
   speciesId: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
   speciesUuid: PropTypes.string,
+  speciesLabel: PropTypes.string,
   summaries: PropTypes.arrayOf( summaryShape ),
   isLoading: PropTypes.bool,
   tipVotes: PropTypes.objectOf( PropTypes.number ),

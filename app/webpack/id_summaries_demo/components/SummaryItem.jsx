@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
+import ReferenceFeedback from "./ReferenceFeedback";
 
 const PhotoTipIcon = () => (
   <svg
@@ -22,6 +23,8 @@ const SummaryItem = ( {
   summary,
   referenceUsers,
   speciesId,
+  speciesUuid,
+  speciesLabel,
   index
 } ) => {
   const [showReferences, setShowReferences] = useState( false );
@@ -277,8 +280,13 @@ const SummaryItem = ( {
                           />
                         ) : null}
                       </div>
-                      {link ? (
-                        <div className="fg-reference-link-row">
+                      <ReferenceFeedback
+                        reference={ref}
+                        summaryId={summary?.id}
+                        speciesUuid={speciesUuid}
+                        speciesLabel={speciesLabel}
+                      >
+                        {link ? (
                           <a
                             href={link}
                             className="fg-reference-link"
@@ -287,8 +295,8 @@ const SummaryItem = ( {
                           >
                             {I18n.t( "id_summaries.demo.summary_item.view_comment" )}
                           </a>
-                        </div>
-                      ) : null}
+                        ) : null}
+                      </ReferenceFeedback>
                     </div>
                   </li>
                 );
@@ -326,5 +334,7 @@ SummaryItem.propTypes = {
     icon: PropTypes.string
   } ) ),
   speciesId: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
+  speciesUuid: PropTypes.string,
+  speciesLabel: PropTypes.string,
   index: PropTypes.number
 };

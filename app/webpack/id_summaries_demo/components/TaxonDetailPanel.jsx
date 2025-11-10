@@ -58,6 +58,7 @@ const TaxonDetailPanel = ( {
     : null;
   const commonName = species?.commonName || null;
   const scientificName = species?.name || "";
+  const speciesLabel = commonName || scientificName || "";
   const observationLink = species?.taxonPhotoObservationId && species?.taxonPhotoId
     ? `/observations/${species.taxonPhotoObservationId}?photo_id=${species.taxonPhotoId}`
     : null;
@@ -174,6 +175,7 @@ const TaxonDetailPanel = ( {
         <SummaryList
           speciesId={species.id}
           speciesUuid={species.uuid}
+          speciesLabel={speciesLabel}
           summaries={species.tips || []}
           isLoading={isSummaryLoading}
           tipVotes={tipVotes}

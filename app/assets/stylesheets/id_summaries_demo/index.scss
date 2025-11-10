@@ -943,8 +943,25 @@ body {
   .fg-reference-body a { color: #2e78b8; text-decoration: underline; }
   .fg-reference-link-row {
     display: flex;
-    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 24px;
     padding: 0 6px;
+    flex-wrap: wrap;
+  }
+  .fg-reference-link-row .fg-reference-feedback-column {
+    flex: 0 0 360px;
+    width: 360px;
+    max-width: calc(100% - 120px);
+    min-width: 260px;
+  }
+  .fg-reference-link-row:not(.is-open) .fg-reference-feedback-column {
+    flex: 0 0 360px;
+  }
+  .fg-reference-link-column {
+    margin-left: auto;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
   }
   .fg-reference-link {
     font-size: 13px;
@@ -955,6 +972,45 @@ body {
   .fg-reference-link:hover,
   .fg-reference-link:focus {
     text-decoration: underline;
+  }
+  .fg-reference-feedback-toggle {
+    font-size: 13px;
+    color: #2e78b8;
+    font-weight: 600;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .fg-reference-feedback-toggle:focus,
+  .fg-reference-feedback-toggle:hover {
+    text-decoration: underline;
+  }
+  .fg-reference-feedback-toggle[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .fg-reference-feedback-toggle-icon {
+    display: inline-flex;
+    transition: transform .2s ease;
+  }
+  .fg-reference-feedback-panel {
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+  .fg-reference-feedback-status,
+  .fg-reference-feedback-note {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 8px;
+  }
+  .fg-reference-feedback-error {
+    margin-bottom: 8px;
   }
 
   .fg-feedback-card {
@@ -979,7 +1035,14 @@ body {
   .fg-feedback-option-label {
     color: #2e78b8;
     padding-right: 12px;
-    flex: 1;
+    flex: 1 1 240px;
+    white-space: normal;
+    line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .fg-reference-link-row .fg-feedback-option-label {
+    max-width: 260px;
   }
   .fg-feedback-option-votes {
     display: inline-flex;
