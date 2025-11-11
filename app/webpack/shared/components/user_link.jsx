@@ -10,7 +10,8 @@ const UserLink = ( {
   target,
   uniqueKey,
   user,
-  useName
+  useName,
+  href
 } ) => {
   if ( !user ) { return null; }
   let displayName = user.login;
@@ -21,7 +22,7 @@ const UserLink = ( {
     <span className="userlink">
       <a
         className={className}
-        href={`/people/${user.login || user.id}`}
+        href={href || `/people/${user.login || user.id}`}
         rel={target === "_blank" ? "noopener noreferrer" : null}
         target={target}
         title={displayName}
@@ -39,6 +40,7 @@ UserLink.propTypes = {
   noInativersary: PropTypes.bool,
   target: PropTypes.string,
   uniqueKey: PropTypes.string,
+  href: PropTypes.string,
   useName: PropTypes.bool,
   user: PropTypes.object
 };

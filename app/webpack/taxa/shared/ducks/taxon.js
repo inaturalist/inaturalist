@@ -54,7 +54,10 @@ export default function reducer( state = { counts: {} }, action ) {
       delete newState.recent;
       delete newState.similar;
       delete newState.identifications;
-      newState.identificationsQuery = { upvoted: "true" };
+      newState.identificationsQuery = {
+        upvoted: "true",
+        sortKey: "votesDesc"
+      };
       delete newState.species;
       delete newState.taxonChange;
       delete newState.trending;
@@ -676,6 +679,10 @@ export function fetchWanted( ) {
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    if ( state.taxon.similar ) {
+      return;
+    }
+
     const { testingApiV2 } = state.config;
     const { taxon } = state.taxon;
     const endpoint = inatjs.identifications.similar_species;
@@ -710,14 +717,33 @@ export function fetchSimilar( ) {
   };
 }
 
-export function fetchIdentifications( ) {
+export function setIdentificationsQuery( parameters ) {
+  return dispatch => {
+    dispatch( {
+      type: SET_IDENTIFICATIONS_QUERY,
+      parameters
+    } );
+    // eslint-disable-next-line no-use-before-define
+    dispatch( fetchIdentifications( ) );
+  };
+}
+
+export function fetchIdentifications( options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const { taxon } = state.taxon;
     const params = {
       direct_taxon_id: taxon.id
     };
-    const queryParams = state.taxon?.identificationsQuery || { upvoted: "true" };
+    if ( options.initialLoad && state.taxon.identifications ) {
+      return;
+    }
+    dispatch( setIdentifications( {
+      ...state.taxon.identifications,
+      loading: true
+    } ) );
+
+    const queryParams = state.taxon.identificationsQuery;
     _.each( [
       "q",
       "term_value_id",
@@ -731,9 +757,28 @@ export function fetchIdentifications( ) {
         params[param] = queryParams[param];
       }
     } );
+    params.include_category_counts = "true";
+    params.include_category_controlled_terms = "true";
     params.fields = "all";
     inatjs.taxon_identifications.search( params ).then(
       response => {
+        if ( options.initialLoad
+          && _.isEmpty( response.results )
+          && response.category_counts.not_nominated > 0
+        ) {
+          dispatch( setIdentificationsQuery( {
+            ...state.taxon?.identificationsQuery,
+            upvoted: null,
+            downvoted: null,
+            nominated: "false",
+            q: null,
+            term_value_id: null,
+            order_by: "created_at",
+            order: "desc",
+            sortKey: "newest"
+          } ) );
+          return;
+        }
         dispatch( setIdentifications( response ) );
       },
       error => console.log( "[DEBUG] error: ", error )
@@ -819,16 +864,6 @@ export function unvoteIdentification( id ) {
     inatjs.identifications.unvote( { id } ).then( ( ) => {
       dispatch( reloadTaxonIdentification( id ) );
     } );
-  };
-}
-
-export function setIdentificationsQuery( parameters ) {
-  return dispatch => {
-    dispatch( {
-      type: SET_IDENTIFICATIONS_QUERY,
-      parameters
-    } );
-    dispatch( fetchIdentifications( ) );
   };
 }
 

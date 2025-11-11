@@ -11,6 +11,7 @@
 @import "../shared/full_screen_modal";
 @import "../shared/flash_message";
 @import "../users/user_popover";
+@import "./shared/loading_spinner";
 
 #app {
   min-height: 600px;
@@ -963,6 +964,22 @@ $nav-btn-dim: 40px;
 }
 
 .IdentificationsTab {
+  .loading {
+    text-align: center;
+    .loading_spinner {
+      margin-top: 20px;
+      width: 40px;
+      height: 40px;
+      border: 7px solid #DDD;
+      border-top: 7px solid #74ac00;
+    }
+  }
+  .search-container {
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
   .btn-group.identification-categories {
     margin-bottom: 10px;
   }
@@ -985,6 +1002,10 @@ $nav-btn-dim: 40px;
         background: inherit;
         z-index: 3;
       }
+    }
+    select[name="sort"] {
+      margin-left: 10px;
+      min-width: 195px;
     }
   }
   .annotation-search {
@@ -1093,6 +1114,10 @@ $nav-btn-dim: 40px;
         margin-inline-end: 12px;
         color: #999999;
       }
+      .userlink a {
+        font-weight: 600;
+        color: black;
+      }
     }
     .panel-footer {
       background: none;
@@ -1108,17 +1133,15 @@ $nav-btn-dim: 40px;
         flex-grow: 1,
       }
       .conversation {
+        white-space: nowrap;
         a {
           text-decoration: underline;
         }
       }
     }
     .btn-sm {
-      border-radius: 3px;
-      padding: 3px 8px;
-    }
-    .btn-sm + .btn-sm {
-      margin-left: 8px;
+      margin-right: 3px;
+      margin-bottom: 3px;
     }
   }
 }

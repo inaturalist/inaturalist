@@ -63,7 +63,7 @@ export function fetchTaxonAssociates( t ) {
         dispatch( fetchSimilar( ) );
         break;
       case "identifications":
-        dispatch( fetchIdentifications( ) );
+        dispatch( fetchIdentifications( { initialLoad: true } ) );
         break;
       default:
         // it's cool, you probably have what you need

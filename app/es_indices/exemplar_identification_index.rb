@@ -108,39 +108,43 @@ class ExemplarIdentification < ApplicationRecord
         user: {
           id: identification.user_id
         },
-        observation: {
-          id: identification.observation.id,
-          discussion_count: identification.observation.comments.size +
-            + identification.observation.identifications.reject do | identification |
-              identification.body&.strip&.blank?
-            end.size,
-          taxon: {
-            id: identification.observation.taxon.id,
-            ancestor_ids: ( (
-              identification.observation.taxon.ancestry ?
-                identification.observation.taxon.ancestry.split( "/" ).map( &:to_i ) : []
-            ) << identification.observation.taxon.id )
-          },
-          annotations: identification.observation.annotations.
-            reject( &:term_taxon_mismatch? ).map do | annotation |
-              {
-                uuid: annotation.uuid,
-                concatenated_attr_val: [
-                  annotation.controlled_attribute_id,
-                  annotation.controlled_value_id
-                ].join( "|" ),
-                controlled_attribute_id: annotation.controlled_attribute_id,
-                controlled_value_id: annotation.controlled_value_id
-              }
-            end
-        },
-        taxon: {
-          id: identification.taxon.id,
-          ancestor_ids: ( (
-            identification.taxon.ancestry ?
-              identification.taxon.ancestry.split( "/" ).map( &:to_i ) : []
-          ) << id )
-        }
+        observation: if identification.observation
+                       {
+                         id: identification.observation.id,
+                         discussion_count: identification.observation.comments.size +
+                           + identification.observation.identifications.filter do | identification |
+                             !identification.body&.strip.blank?
+                           end.size,
+                         taxon: {
+                           id: identification.observation.taxon&.id,
+                           ancestor_ids: ( (
+                             identification.observation.taxon&.ancestry ?
+                               identification.observation.taxon.ancestry.split( "/" ).map( &:to_i ) : []
+                           ) << identification.observation.taxon&.id ).compact
+                         },
+                         annotations: identification.observation.annotations.
+                           reject( &:term_taxon_mismatch? ).map do | annotation |
+                             {
+                               uuid: annotation.uuid,
+                               concatenated_attr_val: [
+                                 annotation.controlled_attribute_id,
+                                 annotation.controlled_value_id
+                               ].join( "|" ),
+                               controlled_attribute_id: annotation.controlled_attribute_id,
+                               controlled_value_id: annotation.controlled_value_id
+                             }
+                           end
+                       }
+        end,
+        taxon: if identification.taxon
+                 {
+                   id: identification.taxon.id,
+                   ancestor_ids: ( (
+                     identification.taxon.ancestry ?
+                       identification.taxon.ancestry.split( "/" ).map( &:to_i ) : []
+                   ) << id )
+                 }
+        end
       }
     }
   end

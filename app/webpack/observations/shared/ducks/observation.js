@@ -59,8 +59,17 @@ function callAPI(
   fetchObservation,
   options = { }
 ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
     const opts = { ...options };
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    const originalApiUrl = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
+    if ( !testingApiV2 && options.useApiV2 ) {
+      inatjs.setConfig( {
+        apiURL: originalApiUrl.replace( "/v1", "/v2" ),
+        writeApiURL: originalApiUrl.replace( "/v1", "/v2" )
+      } );
+    }
     opts.actionTime = getActionTime( );
     method( payload, opts ).then( ( ) => {
       dispatch( afterAPICall( observation, fetchObservation, opts ) );
@@ -68,6 +77,12 @@ function callAPI(
       opts.error = e;
       dispatch( afterAPICall( observation, fetchObservation, opts ) );
     } );
+    if ( !testingApiV2 && options.useApiV2 ) {
+      inatjs.setConfig( {
+        apiURL: originalApiUrl,
+        writeApiURL: originalApiUrl
+      } );
+    }
   };
 }
 
@@ -350,7 +365,8 @@ export function voteIdentification( observation, id, voteValue, setAttributes, f
         observation,
         inatjs.identifications.vote,
         payload,
-        fetchObservation
+        fetchObservation,
+        { useApiV2: true }
       )
     );
   };
@@ -364,7 +380,8 @@ export function unvoteIdentification( observation, id, setAttributes, fetchObser
         observation,
         inatjs.identifications.unvote,
         payload,
-        fetchObservation
+        fetchObservation,
+        { useApiV2: true }
       )
     );
   };
