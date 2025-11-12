@@ -20,6 +20,10 @@ const config = {
       import: "./computer_vision/language/webpack-entry",
       dependOn: ["react-main"]
     },
+    "id-summaries-demo": {
+      import: "./id_summaries_demo/webpack-entry",
+      dependOn: ["react-main"]
+    },
     "geo-model-explain": {
       import: "./geo_model/explain/webpack-entry",
       dependOn: ["react-main"]

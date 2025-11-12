@@ -42,6 +42,9 @@ Rails.application.routes.draw do
   get "/gifts", to: redirect( "https://giving.inaturalist.org/page/FUNATVAYGEH", status: 302 )
   get "/supportersurvey", to: redirect( "https://docs.google.com/forms/d/12mSK_93McY60oWaCaWpjBib495PaMSByRpVl1ichCIY/", status: 302 )
 
+  get "/id_summaries_dashboard", to: "id_summaries_dashboard#index", as: :id_summaries_dashboard
+  get "/id_summaries_demo", to: "id_summaries_demo#index"
+
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
   resources :controlled_term_values, only: [:create, :destroy]
