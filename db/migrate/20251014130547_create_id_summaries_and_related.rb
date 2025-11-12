@@ -6,6 +6,7 @@ class CreateIdSummariesAndRelated < ActiveRecord::Migration[6.1]
       t.integer    :taxon_id_summary_id
       t.text       :summary
       t.string     :visual_key_group
+      t.string     :photo_tip
       t.float      :score
       t.timestamps
     end
