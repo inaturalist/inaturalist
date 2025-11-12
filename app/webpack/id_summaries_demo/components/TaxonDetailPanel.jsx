@@ -13,7 +13,8 @@ const TaxonDetailPanel = ( {
   referenceUsers,
   onVote,
   showPhotoTips,
-  photoAttribution
+  photoAttribution,
+  adminExtrasVisible
 } ) => {
   const speciesIdentifier = species?.id || species?.uuid || null;
   const photoTips = useMemo( () => {
@@ -128,7 +129,7 @@ const TaxonDetailPanel = ( {
                 {formattedRunDate}
               </div>
             ) : null}
-            {species?.uuid ? (
+            {species?.uuid && adminExtrasVisible ? (
               <div style={uuidStyle}>
                 <code>{species.uuid}</code>
               </div>
@@ -222,7 +223,8 @@ TaxonDetailPanel.propTypes = {
   } ) ),
   onVote: PropTypes.func,
   showPhotoTips: PropTypes.bool,
-  photoAttribution: PropTypes.string
+  photoAttribution: PropTypes.string,
+  adminExtrasVisible: PropTypes.bool
 };
 
 export default TaxonDetailPanel;

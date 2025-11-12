@@ -1,4 +1,4 @@
-/* global I18n, SITE */
+/* global I18n, SITE, CURRENT_USER */
 
 import React, { Component } from "react";
 import inatjs from "inaturalistjs";
@@ -22,6 +22,9 @@ class IdSummariesDemoApp extends Component {
       runNamesLoading: false,
       showPhotoTips: false
     };
+    this.currentUserIsAdmin = IdSummariesDemoApp.userIsAdmin();
+    this.adminExtrasEnabled = this.currentUserIsAdmin
+      && IdSummariesDemoApp.adminExtrasRequested();
 
     this.reset = this.reset.bind( this );
     this.handleSpeciesClick = this.handleSpeciesClick.bind( this );
@@ -34,6 +37,30 @@ class IdSummariesDemoApp extends Component {
     this.renderFilters = this.renderFilters.bind( this );
 
     this.pendingUserFetches = new Set();
+  }
+
+  static userIsAdmin() {
+    if ( typeof CURRENT_USER === "undefined" || !CURRENT_USER ) {
+      return false;
+    }
+    const { roles } = CURRENT_USER;
+    return Array.isArray( roles ) && roles.includes( "admin" );
+  }
+
+  static adminExtrasRequested() {
+    if ( typeof window === "undefined" || !window.location ) {
+      return false;
+    }
+    try {
+      const params = new URLSearchParams( window.location.search || "" );
+      const rawValue = params.get( "admin_mode" );
+      if ( !rawValue ) {
+        return false;
+      }
+      return ["1", "true", "yes", "on"].includes( rawValue.toLowerCase() );
+    } catch ( error ) {
+      return false;
+    }
   }
 
   componentDidMount() {
@@ -401,6 +428,9 @@ class IdSummariesDemoApp extends Component {
   }
 
   renderFilters( inline = false ) {
+    if ( !this.adminExtrasEnabled ) {
+      return null;
+    }
     const {
       activeOnly,
       selectedRunName,
@@ -475,7 +505,7 @@ class IdSummariesDemoApp extends Component {
             </div>
             <div className="title">
               <a
-                href="/field_guide"
+                href="/id_summaries_demo"
                 onClick={e => {
                   e.preventDefault();
                   this.reset();
@@ -486,7 +516,7 @@ class IdSummariesDemoApp extends Component {
             </div>
           </div>
           <div className="fg-header-filters">
-            {this.renderFilters( true )}
+            {this.adminExtrasEnabled ? this.renderFilters( true ) : null}
           </div>
         </div>
       </nav>
@@ -559,6 +589,7 @@ class IdSummariesDemoApp extends Component {
                 onVote={this.handleVote}
                 showPhotoTips={showPhotoTips}
                 photoAttribution={selectedPhotoAttribution}
+                adminExtrasVisible={this.adminExtrasEnabled}
               />
             </div>
           </div>
