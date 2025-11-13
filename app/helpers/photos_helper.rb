@@ -3,7 +3,7 @@
 module PhotosHelper
   REJECTED_TAGS = ( ExifMetadata::REJECTED_TAGS + %i[dc dimensions] ).freeze
 
-  def metadata_table_rows(photo )
+  def metadata_table_rows( photo )
     return unless photo.metadata.present?
 
     metadata = visible_metadata photo: photo, with_coords: coords_visible?( photo )
@@ -15,10 +15,10 @@ module PhotosHelper
   private
 
   def transform_metadata( metadata )
-    metadata.map do | k, v |
-      new_key = k.to_s.humanize.gsub /Gps/, "GPS"
+    metadata.to_h do | k, v |
+      new_key = k.to_s.humanize.gsub( "Gps", "GPS" )
       new_val = if k.to_s =~ /gps/i
-        v.is_a?( EXIFR::TIFF::Degrees ) || v.is_a?( Rational ) ? v.to_f : v
+        ( v.is_a?( EXIFR::TIFF::Degrees ) || v.is_a?( Rational ) ) ? v.to_f : v
       else
         case v
         when EXIFR::TIFF::Orientation then v.to_i
@@ -27,7 +27,7 @@ module PhotosHelper
         end
       end
       [new_key, new_val]
-    end.to_h
+    end
   end
 
   def visible_metadata( photo:, with_coords: )
