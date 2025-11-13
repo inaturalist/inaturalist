@@ -5,14 +5,17 @@ class Identification < ApplicationRecord
 
   DEFAULT_ES_BATCH_SIZE = 500
 
-  scope :load_for_index, -> { includes( :taxon, :flags,
-    :stored_preferences, :taxon_change, :moderator_actions,
-    { observation: [:taxon, { user: :flags }, { identifications: :moderator_actions }] },
-    { user: :flags } )
+  scope :load_for_index, lambda {
+    includes(
+      :taxon, :flags,
+      :stored_preferences, :taxon_change, :moderator_actions,
+      { observation: [:taxon, { user: :flags }, { identifications: :moderator_actions }] },
+      { user: :flags }
+    )
   }
 
   settings index: { number_of_shards: Rails.env.production? ? 12 : 4, analysis: ElasticModel::ANALYSIS } do
-    mappings(dynamic: true) do
+    mappings( dynamic: true ) do
       indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :category, type: "keyword"
       indexes :created_at, type: "date"
@@ -148,18 +151,18 @@ class Identification < ApplicationRecord
     end
   end
 
-  def as_indexed_json(options={})
+  def as_indexed_json( options = {} )
     json = {
       id: id,
       uuid: uuid,
-      user: user ? user.as_indexed_json(no_details: true) : nil,
+      user: user&.as_indexed_json( no_details: true ),
       created_at: created_at,
-      created_at_details: ElasticModel.date_details(created_at),
+      created_at_details: ElasticModel.date_details( created_at ),
       body: body,
       category: category,
       current: current,
-      flags: flags.map(&:as_indexed_json),
-      own_observation: observation ? (user_id == observation.user_id) : false,
+      flags: flags.map( &:as_indexed_json ),
+      own_observation: observation ? ( user_id == observation.user_id ) : false,
       taxon_change: taxon_change ? {
         id: taxon_change.id,
         type: taxon_change.type
@@ -172,19 +175,19 @@ class Identification < ApplicationRecord
       hidden: hidden?
     }
     if observation && taxon && !options[:no_details]
-      json.merge!({
-        current_taxon: (taxon_id == observation.taxon_id),
-        taxon: taxon.as_indexed_json(no_details: true, for_identification: true),
-        observation: observation.as_indexed_json(no_details: true, for_identification: true),
-        moderator_actions: moderator_actions.map(&:as_indexed_json)
-      })
+      json.merge!( {
+        current_taxon: ( taxon_id == observation.taxon_id ),
+        taxon: taxon.as_indexed_json( no_details: true, for_identification: true ),
+        observation: observation.as_indexed_json( no_details: true, for_identification: true ),
+        moderator_actions: moderator_actions.map( &:as_indexed_json )
+      } )
     end
     json
   end
 
-  def self.prepare_batch_for_index(identifications)
-    obs = identifications.map(&:observation).compact
+  def self.prepare_batch_for_index( identifications )
+    obs = identifications.map( &:observation ).compact
     # bulk load the IDs' observations' places
-    Observation.prepare_batch_for_index(obs, { places: true })
+    Observation.prepare_batch_for_index( obs, { places: true } )
   end
 end
