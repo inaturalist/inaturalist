@@ -9283,6 +9283,68 @@ id:
         Protozoa: Protozoa
         Mollusca: Moluska
         Chromista: Kromista
+  id_summary_dqa:
+    public_metrics:
+      true: "Pernyataan benar"
+      identification: "Berguna untuk identifikasi"
+      references: "Didukung oleh referensi"
+      distinct: "Berbeda dari ringkasan lainnya"
+      clear: "Singkat, menggunakan bahasa sehari-hari, serta ditulis dengan jelas"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Komentar relevan dengan ringkasan"
+      true: "Komentar merupakan pernyataan yang benar"
+      matches_taxon: "Komentar mengacu pada %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "Demo Ringkasan ID"
+        info_line_one: "Demo ini mengeksplorasi penggunaan AI untuk meringkas komentar-komentar di iNaturalist dengan tujuan belajar cara mengidentifikasi"
+        info_line_two: "spesies dengan lebih mudah untuk diakses oleh semua orang."
+        blog_link_text: "Pelajari lebih lanjut di blog kami"
+        missing_identifier: "Tanda pengenal ringkasan takson tidak ada"
+        service_unavailable: "Detail ringkasan ID untuk sementara tidak tersedia."
+        no_summary_data: "Tidak ada data ringkasan yang ditemukan untuk takson tersebut."
+        load_failed: "Gagal memuat ringkasan takson"
+      filters:
+        active_only: "Tampilkan ringkasan aktif saja"
+        run_label: "Nama eksekusi"
+        run_placeholder: "Pilih eksekusi"
+        run_loading: "Memuat eksekusi..."
+        photo_tips_toggle: "Tampilkan tips gambar"
+      summary_list:
+        loading: "Memuat Ringkasan ID..."
+        empty: "Belum ada Ringkasan ID yang tersedia untuk spesies ini."
+        refreshing: "Menyegarkan ringkasan..."
+        heading: "Ringkasan ID"
+        feedback_toggle: "Umpan Balik Ringkasan ID"
+        feedback_unavailable: "Umpan balik tidak tersedia untuk ringkasan ini."
+        sign_in_required: "Masuk untuk memberikan suara pada umpan balik ringkasan ID."
+        service_unavailable: "Layanan umpan balik tidak tersedia saat ini."
+        submit_failed: "Gagal mengirimkan umpan balik."
+      summary_feedback:
+        loading: "Memuat umpan balik..."
+        explainer: "Umpan balik Anda akan digunakan untuk membantu menyempurnakan ringkasan ID di masa yang akan datang"
+        sign_in_tooltip: "Masuk untuk memberikan suara pada ringkasan ini"
+        submitting_tooltip: "Mengirimkan umpan balik..."
+        aria_helpful: "%{label}: membantu"
+        aria_not_helpful: "%{label}: tidak membantu"
+      summary_item:
+        disclaimer: "Ringkasan dari komentar-komentar pengguna iNaturalist ini dihasilkan oleh AI dan mungkin salah. Anda dapat membantu kami menyempurnakan ringkasan ini dengan memberikan umpan balik."
+        default_label: "RINGKASAN"
+        default_title: "Ringkasan"
+        photo_tip_label: "TIP GAMBAR"
+        photo_tip_aria: "Tip Gambar: %{tip}"
+        references_toggle: "Referensi Komentar Pengguna iNaturalist"
+        user_fallback: "Pengguna iNaturalist"
+        reference_commented: "dikomentari"
+        view_comment: "Lihat komentar"
+        view_reference_feedback: "Lihat Umpan Balik tentang Referensi"
+      reference_feedback:
+        loading: "Memuat umpan balik referensi..."
+        sign_in_required: "Masuk untuk memberikan suara pada umpan balik referensi."
+        unavailable: "Umpan balik referensi tidak tersedia saat ini."
+        service_unavailable: "Layanan umpan balik referensi tidak tersedia saat ini."
   #Title of a section warning the user about something
   warning_title: Peringatan
   wikimedia: Wikimedia
