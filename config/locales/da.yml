@@ -10087,6 +10087,96 @@ da:
         Protozoa: Protozoer (Protozoa)
         Mollusca: Bløddyr (Mollusca)
         Chromista: Chromista ("planteagtige")
+  id_summary_dqa:
+    public_metrics:
+      true: "Sandt udsagn"
+      identification: "Nyttig til identifikation"
+      references: "Understøttet af referencer"
+      distinct: "Forskellig fra andre oversigter"
+      clear: "Kort, dagligdags og klart skrevet"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Kommentar er relevant for oversigten"
+      true: "Kommentar er et sandt udsagn"
+      matches_taxon: "Kommentar henviser til %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "ID-oversigtsdemo"
+        info_line_one: "Denne demo udforsker brugen af AI til at opsummere kommentarer på iNaturalist med det formål at lære at identificere"
+        info_line_two: "arter, der er mere tilgængelige for alle."
+        blog_link_text: "Læs mere på vores blog"
+        missing_identifier: "Manglende takson oversigtsidentifikator"
+        service_unavailable: "ID-oversigtsoplysninger midlertidigt utilgængelige."
+        no_summary_data: "Ingen oversigtsdata fundet for denne takson."
+        load_failed: "Indlæsning af taksonoversigt mislykkedes"
+      filters:
+        active_only: "Vis kun aktive oversigter"
+        run_label: "Eksekveringsnavn"
+        run_placeholder: "Vælg en eksekvering"
+        run_loading: "Indlæser eksekveringer..."
+        photo_tips_toggle: "Vis fototips"
+      summary_list:
+        loading: "Indlæser ID-oversigter..."
+        empty: "Ingen ID-oversigter for denne art."
+        refreshing: "Opdaterer oversigter..."
+        heading: "ID-oversigter"
+        feedback_toggle: "ID-oversigtsfeedback"
+        feedback_unavailable: "Feedback utilgængelig for denne oversigt."
+        sign_in_required: "Log ind for at stemme på ID-oversigtsfeedback."
+        service_unavailable: "Feedbacktjeneste er p.t. utilgængelig."
+        submit_failed: "Mislykkedes at indsende feedback."
+      summary_feedback:
+        loading: "Indlæser feedback..."
+        explainer: "Aktuel feedback vil blive brugt til at forbedre fremtidige ID-oversigter"
+        sign_in_tooltip: "Log ind for at stemme på denne oversigt"
+        submitting_tooltip: "Indsender feedback..."
+        aria_helpful: "%{label}: Nyttig"
+        aria_not_helpful: "%{label}: Ikke nyttig"
+      summary_item:
+        disclaimer: "Denne oversigt over iNaturalist-brugerkommentarer er AI-genereret og kan være forkert. Hjælp os gerne med at forbedre denne oversigt ved at indsende feedback."
+        default_label: "OVERSIGT"
+        default_title: "Oversigt"
+        photo_tip_label: "FOTOTIP"
+        photo_tip_aria: "Fototip: %{tip}"
+        references_toggle: "iNaturalist Brugerkommentarreferencer"
+        user_fallback: "iNaturalist-bruger"
+        reference_commented: "kommenteret"
+        view_comment: "Se kommentar"
+        view_reference_feedback: "Se feedback på reference"
+      reference_feedback:
+        loading: "Indlæser referencefeedback..."
+        sign_in_required: "Log ind for at stemme på referencefeedback."
+        unavailable: "Referencefeedback er p.t. tilgængelig."
+        service_unavailable: "Referencefeedbacktjeneste er p.t. tilgængelig."
+        submit_failed: "Mislykkedes at indsende referencefeedback."
+        sign_in_tooltip: "Log ind for at stemme på denne reference"
+        submitting_tooltip: "Indsender feedback..."
+        aria_helpful: "%{label}: Nyttig"
+        aria_not_helpful: "%{label}: Ikke nyttig"
+      taxon_detail:
+        select_species: "Vælg en art for at få vist ID-oversigter."
+        last_updated: "Seneste opdateret"
+        no_image: "Intet billede tilgængeligt"
+        photo_tips_heading: "Fototips"
+        summary_uuid: "Takson ID-oversigt UUID"
+      taxa_list:
+        group_labels:
+          animalia: "Andre dyr"
+          actinopterygii: "Strålefinnede fisk"
+          aves: "Fugle"
+          reptilia: "Krybdyr"
+          amphibia: "Padder"
+          mammalia: "Pattedyr"
+          arachnida: "Spindlere"
+          insecta: "Insekter"
+          plantae: "Planter"
+          fungi: "Svampe"
+          protozoa: "Protozoer"
+          mollusca: "Bløddyr"
+          chromista: "Kromister"
+        other_group: "Anden"
+        empty: "Ingen arter tilgængelige."
   #Title of a section warning the user about something
   warning_title: Advarsel
   wikimedia: Wikimedia
