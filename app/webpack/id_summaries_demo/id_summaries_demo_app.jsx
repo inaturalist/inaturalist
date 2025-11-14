@@ -4,6 +4,11 @@ import React, { Component } from "react";
 import inatjs from "inaturalistjs";
 import TaxaListContainer from "./containers/TaxaListContainer";
 import TaxonDetailPanel from "./components/TaxonDetailPanel";
+import {
+  determineDefaultSpecies,
+  loadGroupLabels,
+  getFallbackGroupLabel
+} from "./utils/taxaGrouping";
 
 class IdSummariesDemoApp extends Component {
   constructor( props ) {
@@ -37,6 +42,10 @@ class IdSummariesDemoApp extends Component {
     this.renderFilters = this.renderFilters.bind( this );
 
     this.pendingUserFetches = new Set();
+    this.groupingOptions = {
+      groupLabels: loadGroupLabels(),
+      fallbackGroupLabel: getFallbackGroupLabel()
+    };
   }
 
   static userIsAdmin() {
@@ -574,6 +583,10 @@ class IdSummariesDemoApp extends Component {
                     this.setState( prev => ( {
                       speciesImages: { ...prev.speciesImages, ...mapped }
                     } ) );
+                  }
+                  const defaultSpecies = determineDefaultSpecies( list, this.groupingOptions );
+                  if ( defaultSpecies && !this.state.selectedSpecies ) {
+                    this.handleSpeciesClick( defaultSpecies );
                   }
                 }}
               />

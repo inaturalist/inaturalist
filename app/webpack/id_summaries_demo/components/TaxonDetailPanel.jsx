@@ -4,6 +4,18 @@ import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import SummaryList from "./SummaryList";
 
+const formatCommonName = name => {
+  if ( !name ) {
+    return name;
+  }
+  const windowObject = typeof window !== "undefined" ? window : null;
+  const titleCaseFn = windowObject?.iNatModels?.Taxon?.titleCaseName;
+  if ( typeof titleCaseFn === "function" ) {
+    return titleCaseFn( name );
+  }
+  return name;
+};
+
 const TaxonDetailPanel = ( {
   species,
   imageUrl,
@@ -57,7 +69,10 @@ const TaxonDetailPanel = ( {
       year: "2-digit"
     } )
     : null;
-  const commonName = species?.commonName || null;
+  const commonName = useMemo(
+    () => formatCommonName( species?.commonName ),
+    [species?.commonName]
+  ) || null;
   const scientificName = species?.name || "";
   const speciesLabel = commonName || scientificName || "";
   const observationLink = species?.taxonPhotoObservationId && species?.taxonPhotoId

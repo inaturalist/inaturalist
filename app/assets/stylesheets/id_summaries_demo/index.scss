@@ -780,7 +780,8 @@ body {
   .fg-summary-photo-tip-tooltip {
     position: absolute;
     left: 50%;
-    bottom: calc(100% + 10px);
+    bottom: 100%;
+    margin-bottom: 10px;
     transform: translate(-50%, 4px);
     min-width: 220px;
     max-width: 320px;

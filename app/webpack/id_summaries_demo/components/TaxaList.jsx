@@ -2,6 +2,11 @@
 
 import React, { useMemo } from "react";
 import PropTypes from "prop-types";
+import {
+  loadGroupLabels,
+  getFallbackGroupLabel,
+  groupTaxaForDisplay
+} from "../utils/taxaGrouping";
 
 const photoUrlFromId = ( photoId, size = "square" ) => {
   const id = Number( photoId );
@@ -17,78 +22,12 @@ const TaxaList = ( {
   error,
   onTileClick
 } ) => {
-  const fallbackGroupLabel = I18n.t( "id_summaries.demo.taxa_list.other_group" );
-  const OTHER_GROUP_KEY = "__other__";
-  const normalizeGroupKey = value => {
-    if ( !value ) return "";
-    return value
-      .trim()
-      .toLowerCase()
-      .replace( /[^a-z0-9]+/g, "_" )
-      .replace( /^_+|_+$/g, "" );
-  };
-  const groupLabels = useMemo( () => {
-    const raw =
-      ( typeof window !== "undefined" && window.ID_SUMMARY_GROUP_LABELS )
-        || (
-          I18n?.translations
-          && I18n.locale
-          && I18n.translations[I18n.locale]
-          && I18n.translations[I18n.locale]?.id_summaries
-          && I18n.translations[I18n.locale].id_summaries?.demo
-          && I18n.translations[I18n.locale].id_summaries.demo?.taxa_list
-          && I18n.translations[I18n.locale].id_summaries.demo.taxa_list?.group_labels
-        )
-        || {};
-    if ( raw && typeof raw === "object" ) {
-      return { ...raw };
-    }
-    return {};
-  }, [] );
-  const translateGroupName = groupName => {
-    if ( !groupName || groupName.trim().length === 0 ) return fallbackGroupLabel;
-    const trimmed = groupName.trim();
-    const normalized = normalizeGroupKey( trimmed );
-    if ( normalized && Object.prototype.hasOwnProperty.call( groupLabels, normalized ) ) {
-      return groupLabels[normalized];
-    }
-    if ( Object.prototype.hasOwnProperty.call( groupLabels, trimmed ) ) {
-      return groupLabels[trimmed];
-    }
-    const translationBase = "id_summaries.demo.taxa_list.group_labels";
-    return I18n.t( `${translationBase}.${normalized || trimmed}`, { defaultValue: trimmed } );
-  };
-  const groupedTaxa = useMemo( () => {
-    if ( !Array.isArray( list ) || list.length === 0 ) return [];
-    const byGroup = list.reduce( ( acc, species ) => {
-      const key = species?.taxonGroup && species.taxonGroup.trim().length > 0
-        ? species.taxonGroup.trim()
-        : OTHER_GROUP_KEY;
-      if ( !acc[key] ) acc[key] = [];
-      acc[key].push( species );
-      return acc;
-    }, {} );
-    const labels = Object.keys( byGroup ).sort( ( a, b ) => {
-      if ( a === OTHER_GROUP_KEY ) return 1;
-      if ( b === OTHER_GROUP_KEY ) return -1;
-      const countDiff = ( byGroup[b]?.length || 0 ) - ( byGroup[a]?.length || 0 );
-      if ( countDiff !== 0 ) return countDiff;
-      const labelA = translateGroupName( a );
-      const labelB = translateGroupName( b );
-      return labelA.localeCompare( labelB );
-    } );
-    return labels.map( label => ( {
-      label: label === OTHER_GROUP_KEY ? fallbackGroupLabel : translateGroupName( label ),
-      taxa: byGroup[label]
-        .slice()
-        .sort( ( a, b ) => {
-          const nameA = ( a?.name || "" ).trim().toLocaleLowerCase();
-          const nameB = ( b?.name || "" ).trim().toLocaleLowerCase();
-          if ( nameA === nameB ) return 0;
-          return nameA.localeCompare( nameB );
-        } )
-    } ) );
-  }, [list, fallbackGroupLabel] );
+  const groupLabels = useMemo( () => loadGroupLabels(), [] );
+  const fallbackGroupLabel = useMemo( () => getFallbackGroupLabel(), [] );
+  const groupedTaxa = useMemo(
+    () => groupTaxaForDisplay( list, { groupLabels, fallbackGroupLabel } ),
+    [list, groupLabels, fallbackGroupLabel]
+  );
 
   const renderGroup = group => (
     <section key={group.label} className="fg-thumb-group">
