@@ -9713,6 +9713,20 @@ nl:
         Protozoa: Protozoa
         Mollusca: Weekdieren
         Chromista: Chromista
+  id_summary_dqa:
+    public_metrics:
+      references: "Gestaafd door referenties"
+      distinct: "Onderscheiden van andere samenvattingen"
+      clear: "Kort, informeel en duidelijk geschreven"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Commentaar is relevant voor de samenvatting"
+      true: "Commentaar is een ware uitspraak"
+      matches_taxon: "Commentaar verwijst naar %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "ID Samenvatting Demo"
   #Title of a section warning the user about something
   warning_title: Waarschuwing
   wikimedia: Wikimedia
