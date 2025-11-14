@@ -341,18 +341,6 @@ const ReferenceFeedback = ( {
             <span className="fg-reference-feedback-toggle-text">
               {I18n.t( "id_summaries.demo.summary_item.view_reference_feedback" )}
             </span>
-            <span className="fg-reference-feedback-toggle-icon" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 24 24">
-                <path
-                  d="M6 9l6 6 6-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
           </button>
         ) : null}
         {isOpen ? renderFeedbackPanel() : null}
