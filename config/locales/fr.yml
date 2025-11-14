@@ -1505,6 +1505,34 @@ fr:
     gaps_id_pilot_condition_1: "Pas encore inclus dans le Modèle de Vision par Ordinateur."
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
     gaps_id_pilot_condition_2: "Nous pensons que vous pouvez identifier"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Voici un lien vers les observations d'espèces qui ne sont pas encore incluses dans le Modèle de vision par ordinateur que nous pensons que vous pourriez identifier."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Revenez demain pour recevoir un lien vers les observations d'espèces qui ne sont pas encore incluses dans le Modèle de vision par ordinateur que nous pensons que vous pourriez identifier. Il vous sera montré des espèces pour lesquelles vous avez fait au moins 3 identifications d'amélioration."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Si vous ne voyez pas de lien, il est possible que vous n'ayez pas fait d'observation correspondant à ces critères ayant Besoin d'ID. Cela les vérifiera une fois par jour."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Pilote de Lacunes d'Observations : Espèces Recherchées à Proximité"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Demain, vous recevrez une liste d'espèces qui :"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Ne sont pas encore dans le Modèle de vision par ordinateur"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Ont été observées cette saison proche de votre dernière observation"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Sont conduits par un échantillon de 200 observations de jusqu'à 300 espèces en priorité de plantes."
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "En observant ces espèces, vous aiderez à améliorer le modèle et combler les lacunes dans les données sur la biodiversité. Cette liste sera mise à jour en même temps que le Modèle. Vous pouvez vous retirer à tout moment."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Voici votre liste actuelle d'espèces qui sont :"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Pas encore inclus dans le Modèle de vision par ordinateur."
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Observé près de votre dernier emplacement cette saison"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "En observant celles-ci, vous aidez à l'amélioration de la reconnaissance des espèces et comblez des lacunes critiques."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Parcourir les espèces"
   data_deficient: Données insuffisantes
   data_quality: Qualité des données
   data_quality_assessment: Évaluation de la qualité des données
@@ -8259,9 +8287,37 @@ fr:
     taxon_changes:
       move_children_desc: |
         Les enfants du taxon saisi qui sont des genres ou plus gros seront déplacés dans la sortie ; les espèces, sous-espèces, variétés, etc. seront changées dans leur équivalent avec le nouveau nom de genre ou d’espèce.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Restaurer
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: en restauration
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Retirer
+      #state of an abandoned taxon change
+      withdrawn: retirée
+      #state of a committed taxon change
+      committed: validée
+      #state of a pending taxon change
+      pending: en attente
+      #state of a approved taxon change
+      approved: approuvée
+      #state of a draft taxon change
+      draft: brouillon
+      #the status of a taxon change: draft, withdrawn or committed
+      status: statut
       form:
         move_children_desc2_html: |
           Cocher cette case déplacera les enfants du taxon d'entrée vers le taxon cible pour les Échanges de Taxons et les Fusions de Taxons lorsque cette modification est validée. Si cela concerne un changement au niveau d'un genre ou inférieur, cela créera des Échanges de Taxons pour tous les descendants dont les noms doivent être modifiés. Par exemple, si vous échangez la famille Canidae par Dogidae, cela changera le parent du genre <i>Canis</i> de Canidae à Dogidae. Si vous échangez le genre <i>Canis</i> par le genre <i>Dogis</i>, cela créera et validera des échanges de taxons pour changer <i>Canis lupus</i> en <i>Dogis lupus</i> et <i>Canis lupus</i> ssp. <i>lupus</i> en <i>Dogis lupus</i> ssp. <i>lupus</i>. Cela peut créer beaucoup de confusion, alors utilisez-le avec précaution.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Vote ajouté
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Vote retiré
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Aucun vote pour le moment
+      #a message when a taxon change was deleted
+      taxon_change_deleted: La modification de taxon a été supprimée.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Le modification de taxon a été mis à jour avec succès.
     taxon_links:
       form:
         name_with_rank_desc: |
