@@ -7266,6 +7266,68 @@ hu:
         Protozoa: Protozoa
         Mollusca: Puhatestűek
         Chromista: Színesmoszatok
+  id_summary_dqa:
+    public_metrics:
+      true: "Igaz állítás"
+      identification: "Hasznos az azonosításhoz"
+      references: "Referenciákkal alátámasztva"
+      distinct: "Különbözik a többi összefoglalótól"
+      clear: "Rövid, köznyelvi és érthető"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "A megjegyzés kapcsolódik az összefoglalóhoz"
+      true: "A megjegyzés igaz állítás"
+      matches_taxon: "A megjegyzés %{taxon} taxonra vonatkozik"
+  id_summaries:
+    demo:
+      app:
+        header_link: "Azonosítási összefoglaló bemutató"
+        info_line_one: "Ez a bemutató a mesterséges intelligencia használatát vizsgálja az iNaturalist felhasználói megjegyzések összefoglalására azzal a céllal, hogy megtanuljon azonosítani"
+        info_line_two: "mindenki számára hozzáférhetőbb fajok."
+        blog_link_text: "További információk a blogunkon"
+        missing_identifier: "Hiányzó taxonösszefoglaló azonosító"
+        service_unavailable: "Az azonosítási összefoglaló részletei átmenetileg nem érhetők el."
+        no_summary_data: "Nem található összefoglaló adat az adott taxonhoz."
+        load_failed: "Nem sikerült betölteni a taxon összefoglalót"
+      filters:
+        active_only: "Csak aktív összefoglalók megjelenítése"
+        run_label: "Futtatás neve"
+        run_placeholder: "Futtatás kiválasztása"
+        run_loading: "Futtatások betöltése..."
+        photo_tips_toggle: "Fotótippek megjelenítése"
+      summary_list:
+        loading: "Azonosítási összefoglalók betöltése..."
+        empty: "Ehhez a fajhoz nem állnak rendelkezésre azonosítási összefoglalók."
+        refreshing: "Az összefoglalók frissítése..."
+        heading: "Azonosítási összefoglalók"
+        feedback_toggle: "Visszajelzés az azonosítási összefoglalóról"
+        feedback_unavailable: "Ehhez az összefoglalóhoz nem érhető el visszajelzés."
+        sign_in_required: "Jelentkezz be, és szavazz az azonosítási összefoglaló visszajelzéséről."
+        service_unavailable: "A visszajelzési szolgáltatás jelenleg nem érhető el."
+        submit_failed: "Nem sikerült visszajelzést küldeni."
+      summary_feedback:
+        loading: "Visszajelzés betöltése..."
+        explainer: "Visszajelzéseidet a jövőben az azonosítási összefoglalók javítására használjuk fel"
+        sign_in_tooltip: "Jelentkezz be, hogy szavazhass erről az összefoglalóról"
+        submitting_tooltip: "Visszajelzés küldése..."
+        aria_helpful: "%{label}: hasznos"
+        aria_not_helpful: "%{label}: nem hasznos"
+      summary_item:
+        disclaimer: "Az iNaturalist felhasználói megjegyzéseinek ezt az összefoglalóját az AI hozta létre, és elképzelhető, hogy hibás. Visszajelzéssel segíthetsz nekünk az összefoglaló javításában."
+        default_label: "ÖSSZEFOGLALÓ"
+        default_title: "Összefoglaló"
+        photo_tip_label: "FOTÓ TIPP"
+        photo_tip_aria: "Fotó tipp: %{tip}"
+        references_toggle: "iNaturalist felhasználói megjegyzés-hivatkozások"
+        user_fallback: "iNaturalist felhasználó"
+        reference_commented: "hozzászólással"
+        view_comment: "Hozzászólás megtekintése"
+        view_reference_feedback: "Visszajelzés megtekintése a referenciáról"
+      reference_feedback:
+        loading: "Referencia visszajelzés betöltése..."
+        sign_in_required: "Jelentkezz be és szavazz a referenciákkal kapcsolatos visszajelzésekről."
+        unavailable: "A referencia visszajelzés jelenleg nem érhető el."
+        service_unavailable: "A referencia-visszajelzési szolgáltatás jelenleg nem érhető el."
   #Title of a section warning the user about something
   warning_title: Figyelem
   wikimedia: Wikimedia
