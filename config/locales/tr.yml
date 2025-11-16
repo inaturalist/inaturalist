@@ -9260,6 +9260,96 @@ tr:
         Protozoa: Protozoa
         Mollusca: Yumuşakçalar
         Chromista: Kromistalar
+  id_summary_dqa:
+    public_metrics:
+      true: "Doğru ifade"
+      identification: "Tanımlama için kullanışlıdır"
+      references: "Kaynaklarla desteklenmiş"
+      distinct: "Diğer özetlerden farklı"
+      clear: "Kısa, günlük dilde ve açıkça yazılmış"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Yorum özetle ilgilidir"
+      true: "Yorum doğru bir ifadedir"
+      matches_taxon: "Yorum %{taxon} taksonuyla ilgilidir"
+  id_summaries:
+    demo:
+      app:
+        header_link: "Tanımlama Özet Demosu"
+        info_line_one: "Bu demo, iNaturalist'teki yorumları özetlemek için yapay zeka kullanımını araştırıyor ve hedef, tanımlamayı öğrenmek"
+        info_line_two: "türler herkes için daha erişilebilir."
+        blog_link_text: "Blogumuzda daha çok bilgi edinin"
+        missing_identifier: "Eksik takson özeti tanımlayıcısı"
+        service_unavailable: "Tanımlama özeti bilgileri geçici olarak kullanılamıyor."
+        no_summary_data: "Bu takson için özet veri bulunamadı."
+        load_failed: "Takson özeti yüklenemedi"
+      filters:
+        active_only: "Sadece aktif özetleri göster"
+        run_label: "Çalıştırma adı"
+        run_placeholder: "Bir çalıştırma seç"
+        run_loading: "Çalıştırmalar yükleniyor"
+        photo_tips_toggle: "Fotoğraf ipuçlarını göster"
+      summary_list:
+        loading: "Tanımlama Özetleri Yükleniyor..."
+        empty: "Bu tür için tanımlama özeti mevcut değildir."
+        refreshing: "Özetler yenileniyor..."
+        heading: "Tanımlama Özetleri"
+        feedback_toggle: "Tanımlama Özet Geri Bildirimi"
+        feedback_unavailable: "Bu özet için geri bildirim mevcut değildir."
+        sign_in_required: "Tanımlama özeti geri bildirimine oy vermek için giriş yapın."
+        service_unavailable: "Geri bildirim hizmeti şu anda kullanılamıyor."
+        submit_failed: "Geri bildirim gönderilemedi."
+      summary_feedback:
+        loading: "Geri bildirim yükleniyor..."
+        explainer: "Geri bildiriminiz gelecekte tanımlama özetlerini geliştirmek için kullanılacaktır"
+        sign_in_tooltip: "Bu özete oy vermek için giriş yapın"
+        submitting_tooltip: "Geri bildirim gönderiliyor..."
+        aria_helpful: "%{label}: yararlı"
+        aria_not_helpful: "%{label}: yararlı değil"
+      summary_item:
+        disclaimer: "Bu iNaturalist kullanıcı yorumlarının özeti yapay zeka tarafından oluşturulmuş ve yanlış olabilir. Bu özeti iyileştirmemize, geri bildirim vererek yardımcı olabilirsiniz."
+        default_label: "ÖZET"
+        default_title: "Özet"
+        photo_tip_label: "FOTOĞRAF İPUCU"
+        photo_tip_aria: "Fotoğraf İpucu: %{tip}"
+        references_toggle: "iNaturalist Kullanıcı Yorum Kaynakları"
+        user_fallback: "iNaturalist kullanıcısı"
+        reference_commented: "yorum yapıldı"
+        view_comment: "Yorumu görüntüle"
+        view_reference_feedback: "Kaynağa Gelen Geri Bildirimleri Görüntüle"
+      reference_feedback:
+        loading: "Kaynak geri bildirimleri yükleniyor…"
+        sign_in_required: "Kaynak geri bildirimlerine oy vermek için giriş yapın."
+        unavailable: "Kaynak geri bildirimi şu anda kullanılamıyor."
+        service_unavailable: "Kaynak geri bildirimi hizmeti şu anda kullanılamıyor."
+        submit_failed: "Kaynak geri bildirimi gönderilemedi."
+        sign_in_tooltip: "Bu kaynağa oy vermek için oturum açın"
+        submitting_tooltip: "Geri bildirim gönderiliyor..."
+        aria_helpful: "%{label}: yararlı"
+        aria_not_helpful: "%{label}: yararlı değil"
+      taxon_detail:
+        select_species: "Tanımlama Özetlerini görüntülemek için bir tür seçin."
+        last_updated: "Son güncelleme"
+        no_image: "Görüntü yok"
+        photo_tips_heading: "Fotoğraf İpuçları"
+        summary_uuid: "Takson Tanımlama Özet UUID"
+      taxa_list:
+        group_labels:
+          animalia: "Diğer hayvanlar"
+          actinopterygii: "Işın yüzgeçli balıklar"
+          aves: "Kuşlar"
+          reptilia: "Sürüngenler"
+          amphibia: "Yüzergezerler"
+          mammalia: "Memeliler"
+          arachnida: "Örümceğimsiler"
+          insecta: "Böcekler"
+          plantae: "Bitkiler"
+          fungi: "Mantarlar"
+          protozoa: "Protozoa"
+          mollusca: "Yumuşakçalar"
+          chromista: "Chromistalar"
+        other_group: "Diğer"
+        empty: "Tür mevcut değil."
   #Title of a section warning the user about something
   warning_title: Uyarı
   wikimedia: Wikimedia
