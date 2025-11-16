@@ -9715,6 +9715,8 @@ nl:
         Chromista: Chromista
   id_summary_dqa:
     public_metrics:
+      true: "Ware bewering"
+      identification: "Handig voor determinatie"
       references: "Gestaafd door referenties"
       distinct: "Onderscheiden van andere samenvattingen"
       clear: "Kort, informeel en duidelijk geschreven"
@@ -9727,6 +9729,48 @@ nl:
     demo:
       app:
         header_link: "ID Samenvatting Demo"
+        info_line_one: "Deze demo onderzoekt het gebruik van AI om opmerkingen over iNaturalist samen te vatten met als doel te helpen bij het determineren"
+        info_line_two: "soorten toegankelijker voor iedereen."
+        blog_link_text: "Lees meer op onze blog"
+        missing_identifier: "Ontbrekende overzicht van de determinatie van dit taxon"
+        service_unavailable: "De gegevens van het ID-overzicht zijn tijdelijk niet beschikbaar."
+        no_summary_data: "Er zijn geen samenvattende gegevens gevonden voor dat taxon."
+        load_failed: "Kan taxonoverzicht niet laden"
+      filters:
+        active_only: "Alleen actieve samenvattingen weergeven"
+        run_label: "Naam van de run"
+        run_placeholder: "Selecteer een run"
+        run_loading: "Laad runs..."
+        photo_tips_toggle: "Toon fototips"
+      summary_list:
+        loading: "Samenvattingen van ID-kaarten laden..."
+        empty: "Er zijn geen ID-overzichten beschikbaar voor deze soort."
+      summary_item:
+        photo_tip_aria: "Foto Tip: %{tip}"
+        user_fallback: "iNaturalist gebruiker"
+        reference_commented: "gereageerd"
+        view_comment: "Opmerking bekijken"
+        view_reference_feedback: "Feedback op referentie bekijken"
+      reference_feedback:
+        loading: "Referentiefeedback wordt geladen..."
+        sign_in_required: "Meld je aan om te stemmen op feedback over referenties."
+        unavailable: "Referentiefeedback is momenteel niet beschikbaar."
+        service_unavailable: "Referentie feedback service is momenteel niet beschikbaar."
+      taxa_list:
+        group_labels:
+          aves: "Vogels"
+          reptilia: "Reptielen"
+          amphibia: "Amfibieën"
+          mammalia: "Zoogdieren"
+          arachnida: "Spinachtigen"
+          insecta: "Insecten"
+          plantae: "Vaatplanten en mossen"
+          fungi: "Schimmels"
+          protozoa: "Protozoa"
+          mollusca: "Weekdieren"
+          chromista: "Chromisten"
+        other_group: "Overig"
+        empty: "Geen soorten beschikbaar."
   #Title of a section warning the user about something
   warning_title: Waarschuwing
   wikimedia: Wikimedia
