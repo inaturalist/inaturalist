@@ -119,7 +119,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
           default: ""
         )
         # Make sure sortable translations appear first
-        [( t_a == "" ? 1 : 0 ), t_a] <=> [( t_b == "" ? 1 : 0 ), t_b]
+        [( ( t_a == "" ) ? 1 : 0 ), t_a] <=> [( ( t_b == "" ) ? 1 : 0 ), t_b]
       end
     else
       lexicons.sort_by do | lexicon |
@@ -157,7 +157,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     select( method, lexicon_options, options, html_options )
   end
 
-  def form_field( field, field_content = nil, options = {}, &block )
+  def form_field( field, field_content = nil, options = {}, & )
     options = field_content if block_given?
     options ||= {}
     label_after = options.delete( :label_after )
@@ -182,7 +182,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     end
 
     description = content_tag( :div, options[:description], class: "description" ) if options[:description]
-    content = "#{content}#{block_given? ? @template.capture( &block ) : field_content}"
+    content = "#{content}#{block_given? ? @template.capture( & ) : field_content}"
 
     datalist = nil
     if options[:datalist]

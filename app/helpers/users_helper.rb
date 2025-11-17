@@ -1,5 +1,6 @@
-module UsersHelper
+# frozen_string_literal: true
 
+module UsersHelper
   #
   # Link to user's page ('users/1')
   #
@@ -21,18 +22,19 @@ module UsersHelper
   #    (link_to_user user, :class => 'fn n', :title_method => :login, :content_method => :name) +
   #          ': ' + (content_tag :span, user.email, :class => 'email')
   #   end
-  #   # => <span class="vcard"><a href="/users/3" title="barmy" class="fn n">Cyril Fotheringay-Phipps</a>: <span class="email">barmy@blandings.com</span></span>
+  #   # => <span class="vcard"><a href="/users/3" title="barmy" class="fn n">Cyril Fotheringay-Phipps</a>:
+  # <span class="email">barmy@blandings.com</span></span>
   #
   #   link_to_user @user, :content_text => 'Your user page'
   #   # => <a href="/users/3" title="barmy">Your user page</a>
   #
-  def link_to_user( user, options = { missing: t( :deleted_user ) }, &block )
+  def link_to_user( user, options = { missing: t( :deleted_user ) }, & )
     return options[:missing] unless user
 
     url = options.delete( :url ) || person_url( user.login )
     options.reverse_merge! content_method: :login, title_method: :login
     if block_given?
-      content_text = capture( &block )
+      content_text = capture( & )
     else
       content_text = options.delete( :content_text )
       content_text ||= user.send( options.delete( :content_method ) )
@@ -47,14 +49,15 @@ module UsersHelper
 
   # Below here, added for iNaturalist
 
-  def friend_link(user, potential_friend)
-    case !user.friends.include?(potential_friend)
+  def friend_link( user, potential_friend )
+    case !user.friends.include?( potential_friend )
     when true
       if user != potential_friend
-        link_to "Add #{potential_friend.login} as a contact?", :controller => 'user', :action => 'add_friend', :id => potential_friend.id
+        link_to "Add #{potential_friend.login} as a contact?", controller: "user",
+          action: "add_friend", id: potential_friend.id
       end
     when false # user is already a contact
-      "%s is one of your contacts." % potential_friend.login
+      "#{potential_friend.login} is one of your contacts."
     end
   end
 
@@ -80,7 +83,8 @@ module UsersHelper
         noun: t( noun, default: noun ), object_phrase: user.login )
       case noun.underscore.downcase
       when "identifications"
-        t( :users_identifications, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
+        t( :users_identifications, user: user.login, vow_or_con: user.login[0].downcase,
+          default: default_second_person )
       when "lists"
         t( :users_lists, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
       when "journal"
@@ -95,10 +99,10 @@ module UsersHelper
     end
   end
 
-  def you_or_login(user, options = {})
-    capitalize_it = options.delete(:capitalize)
-    if respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user == user
-      capitalize_it ? t(:you_) : t(:you)
+  def you_or_login( user, options = {} )
+    capitalize_it = options.delete( :capitalize )
+    if respond_to?( :user_signed_in? ) && logged_in? && respond_to?( :current_user ) && current_user == user
+      capitalize_it ? t( :you_ ) : t( :you )
     else
       user.login
     end

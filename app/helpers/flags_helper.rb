@@ -29,7 +29,7 @@ module FlagsHelper
         end
         if flag.flaggable_parent
           txt = t :bold_label_colon_value_html,
-            label: t(:parent),
+            label: t( :parent ),
             value: link_to( flag.flaggable_parent.to_plain_s, flag.flaggable_parent )
           concat content_tag :div, "[#{txt}]".html_safe
         end
@@ -120,7 +120,7 @@ module FlagsHelper
   private
 
   def editable?( flaggable )
-    flaggable.respond_to?( :editable_by? ) && flaggable.editable_by?( current_user ) \
-      && defined? "edit_#{flaggable.class.name.underscore}_path"
+    flaggable.respond_to?( :editable_by? ) && flaggable.editable_by?( current_user ) &&
+      respond_to?( "edit_#{flaggable.class.name.underscore}_path" )
   end
 end

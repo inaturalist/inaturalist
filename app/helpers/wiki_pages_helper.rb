@@ -16,7 +16,7 @@ module WikiPagesHelper
       html = "<ul class='leftmenu'>"
       page_titles.each do | page_title |
         page_title.strip!
-        link_class = @page && @page.title.downcase == page_title.downcase ? "active" : nil
+        link_class = ( @page && @page.title.downcase == page_title.downcase ) ? "active" : nil
         html += content_tag :li do
           page = WikiPage.find_by_title( page_title )
           if page&.title != page_title
@@ -40,7 +40,7 @@ module WikiPagesHelper
     page_titles = navtxt[/nav(.*?)\}/, 1].split( "," )
     page_titles.each do | page_title |
       page_title.strip!
-      link_class = @page && @page.title.downcase == page_title.downcase ? "active" : nil
+      link_class = ( @page && @page.title.downcase == page_title.downcase ) ? "active" : nil
       html += content_tag :li do
         page = WikiPage.find_by_title( page_title )
         if page&.title != page_title
@@ -75,10 +75,10 @@ module WikiPagesHelper
           </a>
         HTML
       else
-        "<a target=\"_blank\" href=\"#{attachment.wiki_page_attachment.url( :original )}\" rel=\"noopener noreferrer\">#{t :view}</a>"
+        "<a target=\"_blank\" href=\"#{attachment.wiki_page_attachment.url( :original )}\" " \
+          "rel=\"noopener noreferrer\">#{t :view}</a>"
       end
-      html += image_and_content( img.html_safe, image_size: 100,
-          class: "stacked wiki_page_attachment" ) do
+      html += image_and_content( img.html_safe, image_size: 100, class: "stacked wiki_page_attachment" ) do
         s = link_to(
           wt( "Remove" ),
           wiki_remove_page_attachment_path( attachment.id ),
