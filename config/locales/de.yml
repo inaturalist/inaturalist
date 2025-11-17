@@ -9188,6 +9188,67 @@ de:
         Protozoa: Protozoen
         Mollusca: Mollusken
         Chromista: Chromista
+  id_summary_dqa:
+    public_metrics:
+      true: "Wahre Aussage"
+      identification: "Hilfreich für die Bestimmung"
+      references: "Gestützt durch Referenzen"
+      distinct: "Unterscheidet sich von anderen Zusammenfassungen"
+      clear: "Kurz, umgangssprachlich und klar geschrieben"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Der Kommentar ist für die Zusammenfassung relevant"
+      true: "Kommentar ist eine wahre Aussage"
+      matches_taxon: "Kommentar bezieht sich auf %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "ID-Zusammenfassung Demo"
+        info_line_one: "Diese Demo untersucht den Einsatz von KI zum Zusammenfassen von Kommentaren auf iNaturalist mit dem Ziel, zu lernen,"
+        info_line_two: "Arten für jedermann zugänglicher zu machen."
+        blog_link_text: "Erfahre mehr in unserem Blog"
+        missing_identifier: "Fehlende Kennung der Taxon-Zusammenfassung"
+        service_unavailable: "Details zur ID-Zusammenfassung sind vorübergehend nicht verfügbar."
+        no_summary_data: "Für dieses Taxon wurden keine zusammenfassenden Daten gefunden."
+      summary_item:
+        photo_tip_aria: "Foto-Tipp: %{tip}"
+        references_toggle: "Referenzen von iNaturalist-Benutzerkommentaren"
+        user_fallback: "iNaturalist-Nutzer"
+        reference_commented: "kommentiert"
+        view_comment: "Kommentar ansehen"
+        view_reference_feedback: "Feedback zur Referenz anzeigen"
+      reference_feedback:
+        loading: "Referenz-Feedback wird geladen..."
+        sign_in_required: "Melde dich an, um das Referenzfeedback zu bewerten."
+        unavailable: "Referenz-Feedback ist momentan nicht verfügbar."
+        service_unavailable: "Der Referenz-Feedback-Service ist derzeit nicht verfügbar."
+        submit_failed: "Fehler beim Senden von Referenz-Feedback."
+        sign_in_tooltip: "Melde dich an, um diese Referenz zu bewerten"
+        aria_helpful: "%{label}: hilfreich"
+        aria_not_helpful: "%{label}: nicht hilfreich"
+      taxon_detail:
+        select_species: "Wähle eine Art aus, um ID-Zusammenfassungen anzuzeigen."
+        last_updated: "Zuletzt aktualisiert"
+        no_image: "Kein Bild verfügbar"
+        photo_tips_heading: "Foto-Tipps"
+        summary_uuid: "UUID der Taxon-ID-Zusammenfassung"
+      taxa_list:
+        group_labels:
+          animalia: "Andere Tiere"
+          actinopterygii: "Strahlenflosser"
+          aves: "Vögel"
+          reptilia: "Reptilien"
+          amphibia: "Amphibien"
+          mammalia: "Säugetiere"
+          arachnida: "Spinnentiere"
+          insecta: "Insekten"
+          plantae: "Pflanzen"
+          fungi: "Pilze"
+          protozoa: "Protozoen"
+          mollusca: "Weichtiere"
+          chromista: "Chromisten"
+        other_group: "Andere"
+        empty: "Keine Arten verfügbar."
   #Title of a section warning the user about something
   warning_title: Warnung
   wikimedia: Wikimedia
