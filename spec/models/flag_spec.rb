@@ -326,4 +326,53 @@ describe Flag do
       expect( flag.flaggable_content_viewable_by?( nil ) ).to be false
     end
   end
+
+  describe "notifies_subscribers_of_self" do
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
+
+    it "does not notify the resolving user about flag resolution" do
+      taxon = Taxon.make!
+      flag = Flag.make!( flaggable: taxon )
+      flag_comment = Comment.make!( parent: flag )
+      curator = make_curator
+      curator_flag_comment = Comment.make!( user: curator, parent: flag )
+      expect( flag.subscribers ).to include( flag_comment.user )
+      expect( flag.subscribers ).to include( curator_flag_comment.user )
+
+      UpdateAction.destroy_all
+      expect( UpdateAction.unviewed_by_user_from_query( flag_comment.user, notifier: flag ) ).to eq false
+      expect( UpdateAction.unviewed_by_user_from_query( curator, notifier: flag ) ).to eq false
+
+      without_delay do
+        flag.update( resolver: curator, comment: "resolved", resolved: true )
+      end
+      expect( UpdateAction.unviewed_by_user_from_query( flag_comment.user, notifier: flag ) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query( curator, notifier: flag ) ).to eq false
+    end
+
+    it "does notify the resolving user about flag unresolution" do
+      taxon = Taxon.make!
+      flag = Flag.make!( flaggable: taxon )
+      flag_comment = Comment.make!( parent: flag )
+      curator = make_curator
+      curator_flag_comment = Comment.make!( user: curator, parent: flag )
+      expect( flag.subscribers ).to include( flag_comment.user )
+      expect( flag.subscribers ).to include( curator_flag_comment.user )
+
+      without_delay do
+        flag.update( resolver: curator, comment: "resolved", resolved: true )
+      end
+
+      UpdateAction.destroy_all
+      expect( UpdateAction.unviewed_by_user_from_query( flag_comment.user, notifier: flag ) ).to eq false
+      expect( UpdateAction.unviewed_by_user_from_query( curator, notifier: flag ) ).to eq false
+
+      without_delay do
+        flag.update( resolver: nil, comment: "unresolved", resolved: false )
+      end
+      expect( UpdateAction.unviewed_by_user_from_query( flag_comment.user, notifier: flag ) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query( curator, notifier: flag ) ).to eq true
+    end
+  end
 end
