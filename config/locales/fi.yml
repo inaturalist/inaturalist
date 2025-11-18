@@ -7745,6 +7745,52 @@ fi:
         taxon_swap: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  id_summary_dqa:
+    public_metrics:
+      distinct: "Eroaa muista yhteenvedoista"
+  id_summaries:
+    demo:
+      summary_list:
+        sign_in_required: "Kirjaudu sisään ja äänestä tunnistusyhteenvetopalautetta"
+        service_unavailable: "Palautepalvelu ei ole tällä hetkellä käytettävissä."
+        submit_failed: "Palautteen lähettäminen epäonnistui."
+      summary_feedback:
+        loading: "Ladataan palautetta..."
+        explainer: "Palautettasi käytetään tunnistusyhteenvetojen parantamiseen tulevaisuudessa"
+        submitting_tooltip: "Palautetta lähetetään..."
+        aria_helpful: "%{label}: hyödyllinen"
+        aria_not_helpful: "%{label}: ei hyödyllinen"
+      summary_item:
+        disclaimer: "Tämä yhteenveto iNaturalist-käyttäjien kommenteista on tekoälyn luoma ja voi olla virheellinen. Voit auttaa meitä parantamaan tätä yhteenvetoa antamalla palautetta."
+        default_label: "YHTEENVETO"
+        default_title: "Yhteenveto"
+        user_fallback: "iNaturalist-käyttäjä"
+        reference_commented: "kommentoitu"
+        view_comment: "Katso kommentti"
+      reference_feedback:
+        submitting_tooltip: "Palautetta lähetetään..."
+        aria_helpful: "%{label}: hyödyllinen"
+        aria_not_helpful: "%{label}: ei hyödyllinen"
+      taxon_detail:
+        select_species: "Valitse laji nähdäksesi tunnistusyhteenvedot."
+        last_updated: "Viimeksi päivitetty"
+        no_image: "Ei kuvaa saatavilla"
+        photo_tips_heading: "Kuvavinkit"
+      taxa_list:
+        group_labels:
+          animalia: "Muut eläimet"
+          actinopterygii: "Viuhkaeväiset"
+          aves: "Linnut"
+          reptilia: "Matelijat"
+          amphibia: "Sammakkoeläimet"
+          mammalia: "Nisäkkäät"
+          arachnida: "Hämähäkkieläimet"
+          insecta: "Hyönteiset"
+          plantae: "Kasvit"
+          fungi: "Sienet"
+          mollusca: "Nilviäiset"
+        other_group: "Muut"
+        empty: "Ei lajeja saatavilla."
   #Title of a section warning the user about something
   warning_title: Varoitus
   wikimedia: Wikimedia
