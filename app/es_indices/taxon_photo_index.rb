@@ -101,8 +101,8 @@ class TaxonPhoto < ApplicationRecord
       # and the same photo and version, no need to reindex
       next unless indexed_doc
       next if indexed_doc["embedding"].blank?
-      next unless indexed_doc["ancestor_ids"] &&
-        indexed_doc["ancestor_ids"].sort == taxon_photo&.taxon&.self_and_ancestor_ids&.sort
+      next unless indexed_doc["ancestor_ids"] && taxon_photo&.taxon &&
+        indexed_doc["ancestor_ids"].sort == taxon_photo.taxon.self_and_ancestor_ids&.sort
       next unless indexed_doc["photo_id"] == taxon_photo.photo_id
       next unless (
         indexed_doc["photo_file_updated_at"].blank? && taxon_photo.photo&.file_updated_at.blank?

@@ -9,6 +9,7 @@ class UserVirtuousTag < ApplicationRecord
     MajorDonorProspect
     Foundation
     FoundationProspect
+    FRU\ donors\ temporary
     Ambassador
   ).freeze
 end

@@ -1,0 +1,131 @@
+<%# frozen_string_literal: true %>
+<div class="container" style="max-width: 1100px; margin: 2rem auto;">
+  <h1 style="margin-bottom: 1rem;">ID Summaries – Import Check</h1>
+
+  <%= form_with url: id_summaries_dashboard_path, method: :get, local: true, html: { style: "display:flex; gap:.75rem; flex-wrap:wrap; align-items:flex-end; margin-bottom:1rem;" } do %>
+    <div>
+      <label>Taxon ID</label><br>
+      <%= number_field_tag :taxon_id, @filters[:taxon_id], min: 1, style: "width: 10rem;" %>
+    </div>
+    <div>
+      <label>Query</label><br>
+      <%= text_field_tag :q, @filters[:q], placeholder: "taxon name / run name / description", style: "width: 18rem;" %>
+    </div>
+    <div style="display:flex; align-items:center; gap:.4rem; margin-top:1.4rem;">
+      <%= check_box_tag :active_only, "1", @filters[:active_only] %>
+      <label for="active_only" style="margin:0;">Active only</label>
+    </div>
+    <div>
+      <label>Limit</label><br>
+      <%= number_field_tag :limit, @filters[:limit], min: 1, max: 200, style: "width: 6rem;" %>
+    </div>
+    <div>
+      <label>Offset</label><br>
+      <%= number_field_tag :offset, @filters[:offset], min: 0, step: 1, style: "width: 6rem;" %>
+    </div>
+    <div>
+      <%= submit_tag "Apply", class: "btn btn-primary", style: "margin-top:1.35rem;" %>
+      <%= link_to "Reset", id_summaries_dashboard_path, class: "btn", style: "margin-top:1.35rem; margin-left:.5rem;" %>
+    </div>
+  <% end %>
+
+  <p style="color:#666; margin-bottom:.75rem;">
+    <strong><%= @total %></strong> TaxonIdSummaries total –
+    showing <strong><%= [@filters[:limit], @total - @filters[:offset]].min %></strong>
+    starting at offset <%= @filters[:offset] %>.
+  </p>
+
+  <% if @taxon_summaries.blank? %>
+    <div class="alert alert-info">No results.</div>
+  <% end %>
+
+  <% @taxon_summaries.each do |ts| %>
+    <div style="border:1px solid #ddd; border-radius:8px; padding:1rem; margin-bottom:1rem;">
+      <div style="display:flex; justify-content:space-between; gap:1rem;">
+        <div>
+          <div style="font-weight:600;">
+            TaxonIdSummary #<%= ts.id %>
+            <% if ts.active %><span class="badge" style="background:#2e7d32; color:white; margin-left:.4rem;">active</span><% end %>
+          </div>
+          <div style="color:#555;">
+            taxon_id=<%= ts.taxon_id %>,
+            taxon_name="<%= h ts.taxon_name %>"
+          </div>
+          <div style="color:#777;">
+            run_name="<%= h ts.run_name %>",
+            run_generated_at=<%= ts.run_generated_at || "—" %>
+          </div>
+          <div style="color:#999;">uuid=<%= ts.uuid %></div>
+        </div>
+        <div style="text-align:right; color:#777;">
+          <div>created_at: <%= ts.created_at %></div>
+          <div>updated_at: <%= ts.updated_at %></div>
+        </div>
+      </div>
+
+      <% id_summs = ts.id_summaries.sort_by { |s| [s.visual_key_group.to_s, -(s.score || 0.0)] } %>
+      <div style="margin-top:.75rem;">
+        <table class="table" style="width:100%; border-collapse:collapse;">
+          <thead>
+            <tr style="text-align:left; border-bottom:1px solid #eee;">
+              <th style="padding:.5rem;">#</th>
+              <th style="padding:.5rem;">visual_key_group</th>
+              <th style="padding:.5rem;">score</th>
+              <th style="padding:.5rem;">summary (truncated)</th>
+              <th style="padding:.5rem;">refs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% id_summs.each_with_index do |s, idx| %>
+              <tr style="border-top:1px solid #f3f3f3;">
+                <td style="padding:.5rem; white-space:nowrap;"><%= idx + 1 %></td>
+                <td style="padding:.5rem;"><code><%= h s.visual_key_group %></code></td>
+                <td style="padding:.5rem;"><%= s.score %></td>
+                <td style="padding:.5rem;"><%= truncate(s.summary.to_s, length: 180) %></td>
+                <td style="padding:.5rem;">
+                  <% refs = s.id_summary_references %>
+                  <% if refs.any? %>
+                    <details>
+                      <summary><%= refs.size %></summary>
+                      <ul style="margin:.4rem 0 0 1rem;">
+                        <% refs.first(5).each do |r| %>
+                          <li style="margin-bottom:.25rem;">
+                            <span style="color:#555;"><%= r.reference_source %></span>
+                            <% if r.reference_date.present? %>
+                              <span style="color:#888; margin-left:.35rem;">
+                                <%= r.reference_date %>
+                              </span>
+                            <% end %>
+                            <% if r.user_id %><span style="color:#999;"> / user <%= r.user_id %></span><% end %>:
+                            <%= truncate(r.reference_content.to_s, length: 120) %>
+                          </li>
+                        <% end %>
+                        <% if refs.size > 5 %>
+                          <li style="color:#999;">… and <%= refs.size - 5 %> more</li>
+                        <% end %>
+                      </ul>
+                    </details>
+                  <% else %>
+                    0
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+
+  <%# Lightweight pager %>
+  <% if (@filters[:offset] + @filters[:limit]) < @total || @filters[:offset] > 0 %>
+    <div style="display:flex; gap:.5rem; justify-content:flex-end;">
+      <% prev_offset = [@filters[:offset] - @filters[:limit], 0].max %>
+      <% next_offset = @filters[:offset] + @filters[:limit] %>
+      <%# Preserve current filters in pager links %>
+      <% link_params = params.permit(:taxon_id, :q, :active_only, :limit).to_h.symbolize_keys %>
+      <%= link_to "« Prev", id_summaries_dashboard_path(link_params.merge(offset: prev_offset)), class: "btn", disabled: @filters[:offset] <= 0 %>
+      <%= link_to "Next »", id_summaries_dashboard_path(link_params.merge(offset: next_offset)), class: "btn", disabled: next_offset >= @total %>
+    </div>
+  <% end %>
+</div>
