@@ -132,18 +132,24 @@ class Taxon < ApplicationRecord
   validates_uniqueness_of :name, scope: %i[ancestry is_active],
     unless: lambda {
       # If a complex, allow duplicate sibling name for species...
-      ancestry.blank? || !is_active || complex?
+      # Skip validation only if currently provisional AND not changing to non-provisional
+      skip_for_provisional = provisional && ( !will_save_change_to_provisional? || new_record? )
+      skip_for_provisional || ancestry.blank? || !is_active || complex?
     },
     message: "already used as a child of this taxon's parent"
   validates_uniqueness_of :name, scope: %i[ancestry is_active rank],
-    if: -> { complex? }, # ... but do not allow duplicate sibling complex name
+    if: lambda {
+      complex? && !( provisional && ( !will_save_change_to_provisional? || new_record? ) )
+    }, # ... but do not allow duplicate sibling complex name
     message: "already used as a child complex of this taxon's parent"
   validates :name,
     format: { with: TaxonName::SCIENTIFIC_NAME_FORMAT, message: :bad_format },
-    if: proc {| t | t.new_record? || t.name_changed? }
+    unless: proc {| t | t.provisional && ( !t.will_save_change_to_provisional? || t.new_record? ) },
+    if: proc {| t | t.new_record? || t.name_changed? || t.will_save_change_to_provisional? }
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
+  validate :provisional_only_for_fungi
   validate :graftable_relative_to_taxon_framework_coverage
   validate :user_can_edit_attributes, on: :update
   validate :graftable_destination_relative_to_taxon_framework_coverage
@@ -156,8 +162,11 @@ class Taxon < ApplicationRecord
   validate :cannot_edit_parent_during_content_freeze
   validate :restrict_name_changes_by_rank,
     on: :update,
-    # bypass name restrictions only used in specs
-    unless: -> { validation_context == :bypass_name_restrictions }
+    # bypass name restrictions only used in specs or for provisional taxa
+    # (including when transitioning from provisional to non-provisional)
+    unless: lambda {
+      validation_context == :bypass_name_restrictions || provisional || will_save_change_to_provisional?
+    }
 
   has_subscribers to: {
     observations: { notification: "new_observations", include_owner: false }
@@ -1121,6 +1130,23 @@ class Taxon < ApplicationRecord
     return unless ancestor_ids.include?( id )
 
     errors.add( :base, "can't be its own ancestor" )
+  end
+
+  def provisional_only_for_fungi
+    return unless provisional
+    return if new_record? && provisional_was.nil? # allow for new records
+    return unless provisional && ( new_record? || will_save_change_to_provisional? )
+
+    # Find the Fungi taxon
+    fungi_taxon = Taxon.find_by( name: "Fungi" )
+    return unless fungi_taxon # if Fungi doesn't exist, allow provisional (edge case)
+
+    # Check if this taxon is Fungi itself or descends from Fungi
+    is_fungi_or_descendant = ( id == fungi_taxon.id ) || ancestor_ids.include?( fungi_taxon.id )
+
+    return if is_fungi_or_descendant
+
+    errors.add( :provisional, "can only be set to true for taxa that are grafted to or descend from Fungi" )
   end
 
   def rank_level_for_taxon_and_parent_must_not_be_nil
