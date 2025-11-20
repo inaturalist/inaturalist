@@ -1013,9 +1013,15 @@ class Taxon < ApplicationRecord
 
   def set_photo_from_observations
     return true if photos.count.positive?
-    return unless ( obs = observations.has_quality_grade( Observation::RESEARCH_GRADE ).first )
 
-    photo = obs.observation_photos.sort_by {| op | op.position || op.id }.first.try( :photo )
+    first_research_grade_observation_with_photos = observations.limit( 1000 ).sort_by( &:id ).detect do | o |
+      o.quality_grade == Observation::RESEARCH_GRADE && o.observation_photos.any?
+    end
+    return unless first_research_grade_observation_with_photos
+
+    photo = first_research_grade_observation_with_photos.observation_photos.sort_by do | op |
+      op.position || op.id
+    end.first.try( :photo )
     return unless photo
 
     photos << photo
