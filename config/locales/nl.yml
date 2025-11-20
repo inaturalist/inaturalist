@@ -9745,6 +9745,10 @@ nl:
       summary_list:
         loading: "Samenvattingen van ID-kaarten laden..."
         empty: "Er zijn geen ID-overzichten beschikbaar voor deze soort."
+        refreshing: "Samenvattingen verversen..."
+        heading: "ID-samenvattingen"
+        feedback_toggle: "Feedback in de ID-samenvatting"
+        feedback_unavailable: "Feedback is niet beschikbaar voor deze samenvatting."
       summary_item:
         photo_tip_aria: "Foto Tip: %{tip}"
         user_fallback: "iNaturalist gebruiker"
@@ -9756,8 +9760,13 @@ nl:
         sign_in_required: "Meld je aan om te stemmen op feedback over referenties."
         unavailable: "Referentiefeedback is momenteel niet beschikbaar."
         service_unavailable: "Referentie feedback service is momenteel niet beschikbaar."
+      taxon_detail:
+        photo_tips_heading: "Fototips"
+        summary_uuid: "Taxon-ID samenvatting UUID"
       taxa_list:
         group_labels:
+          animalia: "Andere dieren"
+          actinopterygii: "Straalvinnigen"
           aves: "Vogels"
           reptilia: "Reptielen"
           amphibia: "Amfibieën"
