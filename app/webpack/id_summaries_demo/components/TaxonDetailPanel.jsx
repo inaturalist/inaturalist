@@ -3,6 +3,7 @@
 import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import SummaryList from "./SummaryList";
+import { LANGUAGE_LABELS } from "../constants/languages";
 
 const formatCommonName = name => {
   if ( !name ) {
@@ -78,6 +79,9 @@ const TaxonDetailPanel = ( {
   const observationLink = species?.taxonPhotoObservationId && species?.taxonPhotoId
     ? `/observations/${species.taxonPhotoObservationId}?photo_id=${species.taxonPhotoId}`
     : null;
+  const languageLabel = species?.language
+    ? LANGUAGE_LABELS[species.language] || species.language.toUpperCase()
+    : null;
 
   let imageContent = null;
   if ( imageUrl ) {
@@ -142,6 +146,11 @@ const TaxonDetailPanel = ( {
                 {I18n.t( "id_summaries.demo.taxon_detail.last_updated" )}
                 {" "}
                 {formattedRunDate}
+              </div>
+            ) : null}
+            {languageLabel ? (
+              <div className="fg-language-pill">
+                {languageLabel}
               </div>
             ) : null}
             {species?.uuid && adminExtrasVisible ? (

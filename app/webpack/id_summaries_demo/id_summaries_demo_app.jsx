@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import inatjs from "inaturalistjs";
 import TaxaListContainer from "./containers/TaxaListContainer";
 import TaxonDetailPanel from "./components/TaxonDetailPanel";
+import { LANGUAGE_OPTIONS } from "./constants/languages";
 import {
   determineDefaultSpecies,
   loadGroupLabels,
@@ -25,7 +26,8 @@ class IdSummariesDemoApp extends Component {
       selectedRunName: null,
       runNames: [],
       runNamesLoading: false,
-      showPhotoTips: false
+      showPhotoTips: false,
+      selectedLanguage: LANGUAGE_OPTIONS[0]?.value || "en"
     };
     this.currentUserIsAdmin = IdSummariesDemoApp.userIsAdmin();
     this.adminExtrasEnabled = this.currentUserIsAdmin
@@ -40,6 +42,8 @@ class IdSummariesDemoApp extends Component {
     this.handlePhotoTipsToggle = this.handlePhotoTipsToggle.bind( this );
     this.fetchRunNames = this.fetchRunNames.bind( this );
     this.renderFilters = this.renderFilters.bind( this );
+    this.handleLanguageChange = this.handleLanguageChange.bind( this );
+    this.renderLanguagePicker = this.renderLanguagePicker.bind( this );
 
     this.pendingUserFetches = new Set();
     this.groupingOptions = {
@@ -73,7 +77,7 @@ class IdSummariesDemoApp extends Component {
   }
 
   componentDidMount() {
-    this.fetchRunNames();
+    this.fetchRunNames( 1, new Set(), this.state.selectedLanguage );
   }
 
   photoUrlFromId( photoId, size = "square" ) {
@@ -93,7 +97,8 @@ class IdSummariesDemoApp extends Component {
     }, {} );
   }
 
-  fetchRunNames( page = 1, accumulator = new Set() ) {
+  fetchRunNames( page = 1, accumulator = new Set(), language = this.state.selectedLanguage ) {
+    const targetLanguage = language || this.state.selectedLanguage;
     const taxonIdSummariesAPI = inatjs?.taxon_id_summaries;
     if ( !taxonIdSummariesAPI || typeof taxonIdSummariesAPI.search !== "function" ) {
       return;
@@ -101,14 +106,18 @@ class IdSummariesDemoApp extends Component {
     if ( page === 1 ) {
       this.setState( { runNamesLoading: true } );
     }
+    const searchParams = {
+      page,
+      per_page: 200,
+      fields: "run_name",
+      order_by: "run_generated_at",
+      order: "desc"
+    };
+    if ( targetLanguage ) {
+      searchParams.language = targetLanguage;
+    }
     taxonIdSummariesAPI.search(
-      {
-        page,
-        per_page: 200,
-        fields: "run_name",
-        order_by: "run_generated_at",
-        order: "desc"
-      },
+      searchParams,
       { useAuth: true }
     )
       .then( response => {
@@ -125,10 +134,13 @@ class IdSummariesDemoApp extends Component {
         const perPage = Number.isFinite( response?.per_page ) ? response.per_page : 200;
         const totalPages = perPage > 0 ? Math.ceil( totalResults / perPage ) : 1;
         if ( page < totalPages ) {
-          this.fetchRunNames( page + 1, accumulator );
+          this.fetchRunNames( page + 1, accumulator, targetLanguage );
           return;
         }
         const runNames = Array.from( accumulator ).sort( ( a, b ) => a.localeCompare( b ) );
+        if ( this.state.selectedLanguage !== targetLanguage ) {
+          return;
+        }
         this.setState( prev => {
           let selectedRunName = prev.selectedRunName;
           if ( !selectedRunName && runNames.length ) {
@@ -146,10 +158,12 @@ class IdSummariesDemoApp extends Component {
       .catch( error => {
         // eslint-disable-next-line no-console
         console.warn( "Failed to load run names", error );
-        this.setState( {
-          runNames: [],
-          runNamesLoading: false
-        } );
+        if ( this.state.selectedLanguage === targetLanguage ) {
+          this.setState( {
+            runNames: [],
+            runNamesLoading: false
+          } );
+        }
       } );
   }
 
@@ -202,8 +216,9 @@ class IdSummariesDemoApp extends Component {
         uuid: item?.uuid,
         name: item?.taxon_name || item?.name,
         commonName: item?.taxon_common_name?.name || item?.taxon_common_name || null,
-        taxonGroup: item?.taxon_group || null,
-        runGeneratedAt: item?.run_generated_at || null,
+      taxonGroup: item?.taxon_group || null,
+      language: item?.language || null,
+      runGeneratedAt: item?.run_generated_at || null,
         taxonPhotoId: item?.taxon_photo_id,
         taxonPhotoAttribution: item?.taxon_photo_attribution || null,
         taxonPhotoObservationId: item?.taxon_photo_observation_id
@@ -297,6 +312,7 @@ class IdSummariesDemoApp extends Component {
       "taxon_photo_id",
       "taxon_photo_attribution",
       "taxon_photo_observation_id",
+      "language",
       "uuid",
       "run_generated_at",
       "id_summaries",
@@ -436,6 +452,39 @@ class IdSummariesDemoApp extends Component {
     this.setState( { showPhotoTips: nextValue } );
   }
 
+  handleLanguageChange( event ) {
+    const nextLanguage = event?.target?.value;
+    if ( !nextLanguage || nextLanguage === this.state.selectedLanguage ) {
+      return;
+    }
+    this.setState( {
+      selectedLanguage: nextLanguage,
+      selectedSpecies: null,
+      speciesImage: null,
+      error: null
+    }, () => {
+      this.fetchRunNames( 1, new Set(), nextLanguage );
+    } );
+  }
+
+  renderLanguagePicker() {
+    const { selectedLanguage } = this.state;
+    return (
+      <div className="fg-language-picker">
+        <label className="fg-filter-select">
+          <span>{I18n.t( "id_summaries.demo.filters.language_label" )}</span>
+          <select value={selectedLanguage} onChange={this.handleLanguageChange}>
+            {LANGUAGE_OPTIONS.map( option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ) )}
+          </select>
+        </label>
+      </div>
+    );
+  }
+
   renderFilters( inline = false ) {
     if ( !this.adminExtrasEnabled ) {
       return null;
@@ -525,6 +574,7 @@ class IdSummariesDemoApp extends Component {
             </div>
           </div>
           <div className="fg-header-filters">
+            {this.renderLanguagePicker()}
             {this.adminExtrasEnabled ? this.renderFilters( true ) : null}
           </div>
         </div>
@@ -558,7 +608,8 @@ class IdSummariesDemoApp extends Component {
       referenceUsers,
       activeOnly,
       selectedRunName,
-      showPhotoTips
+      showPhotoTips,
+      selectedLanguage
     } = this.state;
     const votesForSelected = selectedSpecies ? tipVotes?.[selectedSpecies.id] : {};
     const selectedPhotoAttribution = selectedSpecies?.taxonPhotoAttribution || null;
@@ -574,6 +625,7 @@ class IdSummariesDemoApp extends Component {
               <TaxaListContainer
                 activeOnly={activeOnly}
                 runName={selectedRunName}
+                language={selectedLanguage}
                 selectedId={selectedSpecies?.id}
                 images={speciesImages}
                 onTileClick={this.handleSpeciesClick}
