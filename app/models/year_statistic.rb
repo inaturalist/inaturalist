@@ -920,6 +920,11 @@ class YearStatistic < ApplicationRecord
       puts "[#{Time.now}] publications, year: #{year}, options: #{options}"
     end
 
+    # TODO: Restore Altmetric API calls when an API key is available
+    # hard-coding some publication scores for 2025. The Altmetric API we were using previously
+    # has just recently required an API key. We have not yet been granted API key access, so
+    # these scores were manually compiled to generate a reasonable list of highly scored
+    # publications for 2025
     known_doi_scores = {
       "10.1038/s41586-025-09351-x" => 200,
       "10.1038/s44358-025-00068-3" => 135,
