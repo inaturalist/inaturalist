@@ -262,6 +262,12 @@ $tip-opacity: 1;
     .btn-share {
       margin-bottom: 20px;
     }
+    .btn.inactive {
+      cursor: default;
+      &:active {
+        outline: none;
+      }
+    }
 
     #sharing {
       h2 { margin-bottom: 20px; }

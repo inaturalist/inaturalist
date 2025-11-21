@@ -920,6 +920,19 @@ class YearStatistic < ApplicationRecord
       puts "[#{Time.now}] publications, year: #{year}, options: #{options}"
     end
 
+    known_doi_scores = {
+      "10.1038/s41586-025-09351-x" => 200,
+      "10.1038/s44358-025-00068-3" => 135,
+      "10.3897/aiep.55.151390" => 94,
+      "10.1371/journal.pone.0326507" => 40,
+      "10.3897/neobiota.99.145703" => 21,
+      "10.1007/s10531-025-03121-x" => 14,
+      "10.3390/insects16080790" => 12,
+      "10.1007/s42991-025-00516-9" => 10,
+      "10.1002/ece3.71926" => 8,
+      "10.1007/s44415-025-00029-w" => 7
+    }
+
     gbif_endpoint = "https://api.gbif.org/v1/literature/search"
     gbif_params = {
       # iNat RG Observations dataset identifier on GBIF We don't publish site-
@@ -927,7 +940,7 @@ class YearStatistic < ApplicationRecord
       gbifDatasetKey: "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
       literatureType: "journal",
       year: year,
-      limit: 50
+      limit: 100
     }
     gbif_api_url = "#{gbif_endpoint}?#{gbif_params.to_query}"
     gbif_web_url = "https://www.gbif.org/resource/search?contentType=literature&#{gbif_params.to_query}"
@@ -935,19 +948,6 @@ class YearStatistic < ApplicationRecord
 
     new_results = []
     response["results"].each do | result |
-      altmetric_score = nil
-
-      if ( doi = result.dig( "identifiers", "doi" ) )
-        url = "https://api.altmetric.com/v1/doi/#{doi}"
-        begin
-          am_response = RestClient.get( url )
-          altmetric_score = JSON.parse( am_response )["score"]
-        rescue RestClient::NotFound => e
-          Rails.logger.debug "[DEBUG] Request failed for #{url}: #{e}"
-        end
-        sleep( 1 )
-      end
-
       new_result = result.slice(
         "title",
         "authors",
@@ -959,8 +959,6 @@ class YearStatistic < ApplicationRecord
         "identifiers"
       )
 
-      new_result["altmetric_score"] = altmetric_score
-
       gbif_dois = result["tags"].select do | tag |
         tag.start_with?( "gbifDOI:" )
       end
@@ -971,11 +969,15 @@ class YearStatistic < ApplicationRecord
         new_result["authors"] = []
       end
 
+      if result["identifiers"] && result["identifiers"]["doi"]
+        new_result["publication_score"] = known_doi_scores[result["identifiers"]["doi"]]
+      end
+
       new_results << new_result
     end
 
     {
-      results: new_results.sort_by {| result | result["altmetric_score"].to_f * -1 }[0..5],
+      results: new_results.sort_by {| result | result["publication_score"].to_f * -1 }[0..5],
       url: gbif_web_url,
       count: response["count"]
     }
@@ -1664,6 +1666,10 @@ class YearStatistic < ApplicationRecord
               jtklein
               meru20
               sylvain-morin
+              abbeycampbell
+              angielt
+              kvangork
+              sepeterson
             ).include?( pull["user"]["login"] ) &&
             ( merge_date = Date.parse( pull["merged_at"] ) ) &&
             merge_date.year == year
