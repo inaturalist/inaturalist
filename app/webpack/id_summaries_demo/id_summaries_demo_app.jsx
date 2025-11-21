@@ -32,6 +32,8 @@ class IdSummariesDemoApp extends Component {
     this.currentUserIsAdmin = IdSummariesDemoApp.userIsAdmin();
     this.adminExtrasEnabled = this.currentUserIsAdmin
       && IdSummariesDemoApp.adminExtrasRequested();
+    this.hashSelectedTaxonId = IdSummariesDemoApp.taxonIdFromHash();
+    this.latestLoadedTaxa = [];
 
     this.reset = this.reset.bind( this );
     this.handleSpeciesClick = this.handleSpeciesClick.bind( this );
@@ -44,6 +46,9 @@ class IdSummariesDemoApp extends Component {
     this.renderFilters = this.renderFilters.bind( this );
     this.handleLanguageChange = this.handleLanguageChange.bind( this );
     this.renderLanguagePicker = this.renderLanguagePicker.bind( this );
+    this.handleHashChange = this.handleHashChange.bind( this );
+    this.trySelectSpeciesFromHash = this.trySelectSpeciesFromHash.bind( this );
+    this.updateLocationHash = this.updateLocationHash.bind( this );
 
     this.pendingUserFetches = new Set();
     this.groupingOptions = {
@@ -58,6 +63,25 @@ class IdSummariesDemoApp extends Component {
     }
     const { roles } = CURRENT_USER;
     return Array.isArray( roles ) && roles.includes( "admin" );
+  }
+
+  static taxonIdFromHash( hashString ) {
+    if ( typeof window === "undefined" || !window.location ) {
+      return null;
+    }
+    const hash = typeof hashString === "string"
+      ? hashString
+      : window.location.hash || "";
+    const cleaned = hash.trim();
+    if ( !cleaned || cleaned.length < 2 ) {
+      return null;
+    }
+    const match = cleaned.match( /#(\d+)/ );
+    if ( !match ) {
+      return null;
+    }
+    const taxonId = Number.parseInt( match[1], 10 );
+    return Number.isFinite( taxonId ) && taxonId > 0 ? taxonId : null;
   }
 
   static adminExtrasRequested() {
@@ -78,6 +102,16 @@ class IdSummariesDemoApp extends Component {
 
   componentDidMount() {
     this.fetchRunNames( 1, new Set(), this.state.selectedLanguage );
+    if ( typeof window !== "undefined" && window.addEventListener ) {
+      window.addEventListener( "hashchange", this.handleHashChange );
+    }
+    this.trySelectSpeciesFromHash();
+  }
+
+  componentWillUnmount() {
+    if ( typeof window !== "undefined" && window.removeEventListener ) {
+      window.removeEventListener( "hashchange", this.handleHashChange );
+    }
   }
 
   photoUrlFromId( photoId, size = "square" ) {
@@ -280,7 +314,52 @@ class IdSummariesDemoApp extends Component {
     } );
   }
 
+  handleHashChange() {
+    const nextTaxonId = IdSummariesDemoApp.taxonIdFromHash();
+    if ( nextTaxonId === this.state.selectedSpecies?.id ) {
+      this.hashSelectedTaxonId = null;
+      return;
+    }
+    this.hashSelectedTaxonId = nextTaxonId || null;
+    if ( nextTaxonId ) {
+      this.trySelectSpeciesFromHash();
+    }
+  }
+
+  trySelectSpeciesFromHash( list ) {
+    const taxaList = Array.isArray( list ) ? list : this.latestLoadedTaxa;
+    const targetId = this.hashSelectedTaxonId;
+    if ( !targetId || !Array.isArray( taxaList ) || !taxaList.length ) {
+      return false;
+    }
+    const match = taxaList.find( species => species?.id === targetId );
+    if ( match ) {
+      this.handleSpeciesClick( match );
+      this.hashSelectedTaxonId = null;
+      return true;
+    }
+    return false;
+  }
+
+  updateLocationHash( taxonId = null ) {
+    if ( typeof window === "undefined" || !window.location ) {
+      return;
+    }
+    const { pathname = "", search = "", hash = "" } = window.location;
+    const desiredHash = taxonId ? `#${taxonId}` : "";
+    if ( hash === desiredHash ) return;
+    const nextUrl = `${pathname}${search}${desiredHash}`;
+    if ( window.history && typeof window.history.replaceState === "function" ) {
+      window.history.replaceState( window.history.state, "", nextUrl );
+    } else if ( taxonId ) {
+      window.location.hash = desiredHash;
+    } else {
+      window.location.hash = "";
+    }
+  }
+
   handleSpeciesClick( species ) {
+    this.updateLocationHash( species?.id || null );
     this.setState( prev => {
       const squareUrl = species?.photoSquareUrl || this.photoUrlFromId( species?.taxonPhotoId, "square" );
       const mediumUrl = species?.photoMediumUrl || this.photoUrlFromId( species?.taxonPhotoId, "medium" );
@@ -403,6 +482,7 @@ class IdSummariesDemoApp extends Component {
   }
 
   reset() {
+    this.updateLocationHash( null );
     this.setState( {
       selectedSpecies: null,
       speciesImage: null,
@@ -630,11 +710,16 @@ class IdSummariesDemoApp extends Component {
                 images={speciesImages}
                 onTileClick={this.handleSpeciesClick}
                 onLoaded={list => {
+                  this.latestLoadedTaxa = list;
                   const mapped = this.buildSpeciesImageMap( list );
                   if ( Object.keys( mapped ).length ) {
                     this.setState( prev => ( {
                       speciesImages: { ...prev.speciesImages, ...mapped }
                     } ) );
+                  }
+                  const hashSelected = this.trySelectSpeciesFromHash( list );
+                  if ( hashSelected ) {
+                    return;
                   }
                   const defaultSpecies = determineDefaultSpecies( list, this.groupingOptions );
                   if ( defaultSpecies && !this.state.selectedSpecies ) {
