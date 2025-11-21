@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import ReferenceFeedback from "./ReferenceFeedback";
+import UserText from "../../shared/components/user_text";
 
 const PhotoTipIcon = () => (
   <svg
@@ -92,12 +93,6 @@ const SummaryItem = ( {
     }
     if ( ref?.url ) return ref.url;
     return null;
-  };
-  const formatReferenceBody = body => {
-    if ( !body ) return "";
-    const looksLikeHtml = /<\s*[a-z][^>]*>/i.test( body );
-    if ( looksLikeHtml ) return body;
-    return body.replace( /\n/g, "<br />" );
   };
   const buildVisualLink = part => {
     if ( !speciesId || !part ) return null;
@@ -280,9 +275,9 @@ const SummaryItem = ( {
                           </div>
                         </div>
                         {ref?.body ? (
-                          <div
+                          <UserText
+                            text={ref.body}
                             className="fg-reference-body"
-                            dangerouslySetInnerHTML={{ __html: formatReferenceBody( ref.body ) }}
                           />
                         ) : null}
                       </div>
