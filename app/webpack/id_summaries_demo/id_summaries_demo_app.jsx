@@ -32,7 +32,9 @@ class IdSummariesDemoApp extends Component {
     this.currentUserIsAdmin = IdSummariesDemoApp.userIsAdmin();
     this.adminExtrasEnabled = this.currentUserIsAdmin
       && IdSummariesDemoApp.adminExtrasRequested();
-    this.hashSelectedTaxonId = IdSummariesDemoApp.taxonIdFromHash();
+    const hashTarget = IdSummariesDemoApp.hashTargetFromLocation();
+    this.hashSelectedTaxonId = hashTarget?.id || null;
+    this.hashSelectedTaxonSlug = hashTarget?.slug || null;
     this.latestLoadedTaxa = [];
 
     this.reset = this.reset.bind( this );
@@ -65,23 +67,51 @@ class IdSummariesDemoApp extends Component {
     return Array.isArray( roles ) && roles.includes( "admin" );
   }
 
-  static taxonIdFromHash( hashString ) {
-    if ( typeof window === "undefined" || !window.location ) {
-      return null;
+  static slugifyTaxonName( name ) {
+    if ( typeof name !== "string" ) return null;
+    const normalized = name.normalize ? name.normalize( "NFD" ) : name;
+    const withoutMarks = normalized.replace( /[\u0300-\u036f]/g, "" );
+    const slug = withoutMarks
+      .toLowerCase()
+      .replace( /[^a-z0-9]+/g, "-" )
+      .replace( /-{2,}/g, "-" )
+      .replace( /^-+|-+$/g, "" );
+    return slug || null;
+  }
+
+  static hashTargetFromLocation( hashString ) {
+    if ( typeof window === "undefined" && typeof hashString !== "string" ) {
+      return { slug: null, id: null };
     }
     const hash = typeof hashString === "string"
       ? hashString
-      : window.location.hash || "";
+      : window.location?.hash || "";
     const cleaned = hash.trim();
     if ( !cleaned || cleaned.length < 2 ) {
-      return null;
+      return { slug: null, id: null };
     }
-    const match = cleaned.match( /#(\d+)/ );
-    if ( !match ) {
-      return null;
+    const withoutHash = cleaned.replace( /^#/, "" );
+    let decoded = withoutHash;
+    try {
+      decoded = decodeURIComponent( withoutHash );
+    } catch ( e ) {
+      decoded = withoutHash;
     }
-    const taxonId = Number.parseInt( match[1], 10 );
-    return Number.isFinite( taxonId ) && taxonId > 0 ? taxonId : null;
+    const value = decoded.trim();
+    if ( !value ) {
+      return { slug: null, id: null };
+    }
+    if ( /^\d+$/.test( value ) ) {
+      const taxonId = Number.parseInt( value, 10 );
+      return {
+        slug: null,
+        id: Number.isFinite( taxonId ) && taxonId > 0 ? taxonId : null
+      };
+    }
+    return {
+      slug: IdSummariesDemoApp.slugifyTaxonName( value ),
+      id: null
+    };
   }
 
   static adminExtrasRequested() {
@@ -315,51 +345,79 @@ class IdSummariesDemoApp extends Component {
   }
 
   handleHashChange() {
-    const nextTaxonId = IdSummariesDemoApp.taxonIdFromHash();
-    if ( nextTaxonId === this.state.selectedSpecies?.id ) {
+    const { slug, id } = IdSummariesDemoApp.hashTargetFromLocation();
+    const currentSlug = IdSummariesDemoApp.slugifyTaxonName( this.state.selectedSpecies?.name );
+    const currentId = this.state.selectedSpecies?.id || null;
+    if ( slug && slug === currentSlug ) {
+      this.hashSelectedTaxonSlug = null;
       this.hashSelectedTaxonId = null;
       return;
     }
-    this.hashSelectedTaxonId = nextTaxonId || null;
-    if ( nextTaxonId ) {
+    if ( !slug && id && currentId === id ) {
+      this.hashSelectedTaxonSlug = null;
+      this.hashSelectedTaxonId = null;
+      return;
+    }
+    this.hashSelectedTaxonSlug = slug || null;
+    this.hashSelectedTaxonId = !slug && id ? id : null;
+    if ( slug || id ) {
       this.trySelectSpeciesFromHash();
     }
   }
 
   trySelectSpeciesFromHash( list ) {
     const taxaList = Array.isArray( list ) ? list : this.latestLoadedTaxa;
+    const targetSlug = this.hashSelectedTaxonSlug;
     const targetId = this.hashSelectedTaxonId;
-    if ( !targetId || !Array.isArray( taxaList ) || !taxaList.length ) {
+    if (
+      ( !targetSlug && !targetId )
+      || !Array.isArray( taxaList )
+      || !taxaList.length
+    ) {
       return false;
     }
-    const match = taxaList.find( species => species?.id === targetId );
-    if ( match ) {
-      this.handleSpeciesClick( match );
-      this.hashSelectedTaxonId = null;
-      return true;
+    if ( targetSlug ) {
+      const slugMatch = taxaList.find( species => (
+        IdSummariesDemoApp.slugifyTaxonName( species?.name ) === targetSlug
+      ) );
+      if ( slugMatch ) {
+        this.handleSpeciesClick( slugMatch );
+        this.hashSelectedTaxonSlug = null;
+        this.hashSelectedTaxonId = null;
+        return true;
+      }
+    }
+    if ( targetId ) {
+      const idMatch = taxaList.find( species => species?.id === targetId );
+      if ( idMatch ) {
+        this.handleSpeciesClick( idMatch );
+        this.hashSelectedTaxonSlug = null;
+        this.hashSelectedTaxonId = null;
+        return true;
+      }
     }
     return false;
   }
 
-  updateLocationHash( taxonId = null ) {
+  updateLocationHash( species = null ) {
     if ( typeof window === "undefined" || !window.location ) {
       return;
     }
     const { pathname = "", search = "", hash = "" } = window.location;
-    const desiredHash = taxonId ? `#${taxonId}` : "";
+    const targetSlug = IdSummariesDemoApp.slugifyTaxonName( species?.name );
+    const identifier = targetSlug || ( species?.id ? String( species.id ) : "" );
+    const desiredHash = identifier ? `#${identifier}` : "";
     if ( hash === desiredHash ) return;
     const nextUrl = `${pathname}${search}${desiredHash}`;
     if ( window.history && typeof window.history.replaceState === "function" ) {
       window.history.replaceState( window.history.state, "", nextUrl );
-    } else if ( taxonId ) {
-      window.location.hash = desiredHash;
     } else {
-      window.location.hash = "";
+      window.location.hash = desiredHash;
     }
   }
 
   handleSpeciesClick( species ) {
-    this.updateLocationHash( species?.id || null );
+    this.updateLocationHash( species || null );
     this.setState( prev => {
       const squareUrl = species?.photoSquareUrl || this.photoUrlFromId( species?.taxonPhotoId, "square" );
       const mediumUrl = species?.photoMediumUrl || this.photoUrlFromId( species?.taxonPhotoId, "medium" );
@@ -483,6 +541,8 @@ class IdSummariesDemoApp extends Component {
 
   reset() {
     this.updateLocationHash( null );
+    this.hashSelectedTaxonSlug = null;
+    this.hashSelectedTaxonId = null;
     this.setState( {
       selectedSpecies: null,
       speciesImage: null,
