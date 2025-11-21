@@ -693,8 +693,8 @@ class IdSummariesDemoApp extends Component {
 
   header() {
     return (
-      <nav className="navbar navbar-default">
-        <div className="container fg-header">
+      <header className="fg-site-header">
+        <div className="fg-site-header-inner fg-header">
           <div className="navbar-header fg-header-brand">
             <div className="logo">
               <a href="/" className="navbar-brand" title={SITE.name} alt={SITE.name}>
@@ -718,7 +718,7 @@ class IdSummariesDemoApp extends Component {
             {this.adminExtrasEnabled ? this.renderFilters( true ) : null}
           </div>
         </div>
-      </nav>
+      </header>
     );
   }
 
