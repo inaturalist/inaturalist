@@ -6,7 +6,7 @@ import SettingsItem from "./settings_item";
 import ToggleSwitchContainer from "../containers/toggle_switch_container";
 
 const Notifications = ( { userSettings } ) => (
-  <div className="row">
+  <div className="row Notifications">
     <div className="col-xs-12 col-md-10">
       <SettingsItem>
         <h4>{I18n.t( "inaturalist_activity_notifications", { site_name: SITE.name } )}</h4>
@@ -106,6 +106,148 @@ const Notifications = ( { userSettings } ) => (
           />
         </div>
       </SettingsItem>
+
+      <div className="admin stacked">
+        <SettingsItem>
+          <h4>{I18n.t( "email_notifications" )}</h4>
+          <div className="row">
+            <div className="col-sm-9">
+              <label>{I18n.t( "messages" )}</label>
+              <p className="text-muted">{I18n.t( "prefers_message_email_notification_desc" )}</p>
+            </div>
+            <ToggleSwitchContainer
+              name="prefers_message_email_notification"
+              checked={userSettings.prefers_message_email_notification}
+            />
+          </div>
+          <div className="row">
+            <div className="col-sm-9">
+              <label>{I18n.t( "activity" )}</label>
+              <p className="text-muted">{I18n.t( "email_suppression_activity_desc" )}</p>
+            </div>
+            <ToggleSwitchContainer
+              name="email_suppression_activity"
+              checked={!userSettings.email_suppression_types?.includes( "activity" )}
+            />
+          </div>
+          <div className={userSettings.email_suppression_types?.includes( "activity" ) ? "collapse" : null}>
+            <fieldset>
+              <legend>Types</legend>
+              <div className="row>">
+                <div className="col-sm-6">
+                  <CheckboxRowContainer
+                    name="prefers_comment_email_notification"
+                    label={I18n.t( "views.users.edit.notification_preferences_comments" )}
+                  />
+                  <CheckboxRowContainer
+                    name="prefers_identification_email_notification"
+                    label={I18n.t( "views.users.edit.notification_preferences_identifications" )}
+                  />
+                  <CheckboxRowContainer
+                    name="prefers_mention_email_notification"
+                    label={I18n.t( "views.users.edit.notification_preferences_mentions" )}
+                  />
+                  <CheckboxRowContainer
+                    name="prefers_user_observation_email_notification"
+                    label={I18n.t( "views.users.edit.notification_preferences_user_observations" )}
+                  />
+                  <CheckboxRowContainer
+                    name="prefers_taxon_or_place_observation_email_notification"
+                    label={I18n.t( "views.users.edit.notification_preferences_taxon_or_place_observations" )}
+                  />
+                </div>
+                <div className="col-sm-6">
+                  <CheckboxRowContainer
+                    name="prefers_project_journal_post_email_notification"
+                    label={I18n.t( "views.users.edit.notification_preferences_project_journal_posts" )}
+                  />
+                  <CheckboxRowContainer
+                    name="prefers_project_added_your_observation_email_notification"
+                    label={I18n.t( "views.users.edit.notification_preferences_project_added_your_observations" )}
+                  />
+                  <CheckboxRowContainer
+                    name="prefers_project_curator_change_email_notification"
+                    label={I18n.t( "views.users.edit.notification_preferences_project_curator_changes" )}
+                  />
+                  <CheckboxRowContainer
+                    name="prefers_taxon_change_email_notification"
+                    label={I18n.t( "views.users.edit.notification_preferences_taxon_changes" )}
+                  />
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </SettingsItem>
+        <SettingsItem>
+          <h4>{ I18n.t( "occasional_emails" ) }</h4>
+          <div className="row">
+            <div className="col-sm-9">
+              <label>{ I18n.t( "news" ) }</label>
+              <p className="text-muted">{ I18n.t( "occasional_emails_news_desc" ) }</p>
+            </div>
+            <ToggleSwitchContainer
+              name="email_suppression_news_from_inaturalist"
+              checked={!userSettings.email_suppression_types?.includes( "news_from_inaturalist" )}
+            />
+          </div>
+          <div className="row">
+            <div className="col-sm-9">
+              <label>{ I18n.t( "donations" ) }</label>
+              <p className="text-muted">{ I18n.t( "occasional_emails_donations_desc" ) }</p>
+            </div>
+            <ToggleSwitchContainer
+              name="email_suppression_donation_emails"
+              checked={!userSettings.email_suppression_types?.includes( "donation_emails" )}
+            />
+          </div>
+          <div className="row">
+            <div className="col-sm-9">
+              <label>{ I18n.t( "feedback" ) }</label>
+              <p className="text-muted">{ I18n.t( "occasional_emails_feedback_desc" ) }</p>
+            </div>
+            <ToggleSwitchContainer
+              name="email_suppression_feedback"
+              checked={!userSettings.email_suppression_types?.includes( "feedback" )}
+            />
+          </div>
+        </SettingsItem>
+        {/*
+          <SettingsItem>
+            <h4>Bonus Emails</h4>
+            <code>These don't work yet, FYI</code>
+            <div className="row">
+              <div className="col-sm-9">
+                <label>Monthly Newsletter</label>
+                <p className="text-muted">
+                  Monthly updates about what people have been doing on iNat and with iNat data.
+                </p>
+              </div>
+              <ToggleSwitchContainer
+                name="email_suppression_monthly_newsletter"
+                checked={
+                  userSettings.prefers_monthly_newsletter
+                  && !userSettings.email_suppression_types?.includes( "monthly_newsletter" )
+                }
+              />
+            </div>
+            <div className="row">
+              <div className="col-sm-9">
+                <label>Phenology Newsletter</label>
+                <p className="text-muted">
+                  Learn about... phenology? IDK what this is really about.
+                </p>
+              </div>
+              <ToggleSwitchContainer
+                name="email_suppression_phenology_newsletter"
+                checked={
+                  userSettings.prefers_phenology_newsletter
+                  && !userSettings.email_suppression_types?.includes( "phenology_newsletter" )
+                }
+              />
+            </div>
+          </SettingsItem>
+        */}
+      </div>
     </div>
   </div>
 );

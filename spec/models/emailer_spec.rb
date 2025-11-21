@@ -205,3 +205,12 @@ describe Emailer, "bulk_observation_error" do
     expect( mail.body ).to match( /failed to process/ )
   end
 end
+
+describe Emailer, "custom_email" do
+  it "raises an error if asm_group_id not provided" do
+    user = create :user
+    expect do
+      Emailer.custom_email( user, "what is up", "this is up", nil ).deliver_now
+    end.to raise_error( Emailer::NoAsmGroupIdError )
+  end
+end
