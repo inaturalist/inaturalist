@@ -46,10 +46,10 @@ const TaxonomicBranch = ( {
         const shouldLinkToTaxon = !isTaxon;
         const isComplete = isTaxon && taxon.complete_rank
           && taxon.rank_level > RANK_LEVELS[taxon.complete_rank];
-        const isHidable = isDescendant && ( t.rank === "hybrid" || t.rank === "genushybrid" || !t.is_active || t.extinct );
+        const isHidable = isDescendant && ( t.rank === "hybrid" || t.rank === "genushybrid" || !t.is_active || t.extinct || t.provisional );
         const numChildren = ( t.children || [] ).length;
         const numHidableChildren = _.filter( t.children || [], c => (
-          c.rank === "genushybrid" || c.rank === "hybrid" || !c.is_active || c.extinct
+          c.rank === "genushybrid" || c.rank === "hybrid" || !c.is_active || c.extinct || c.provisional
         ) ).length;
         if ( isTaxon ) {
           className += "current";
