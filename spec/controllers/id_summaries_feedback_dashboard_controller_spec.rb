@@ -3,7 +3,9 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe IdSummariesFeedbackDashboardController do
   describe "GET index" do
     let(:admin) { make_admin }
-    let(:voter) { User.make! }
+    let(:voter_positive) { User.make! }
+    let(:voter_negative) { User.make! }
+    let(:voter_identification) { User.make! }
     let!(:taxon_summary) do
       TaxonIdSummary.create!(
         uuid: SecureRandom.uuid,
@@ -23,9 +25,9 @@ describe IdSummariesFeedbackDashboardController do
     end
 
     before do
-      IdSummaryDqa.create!( id_summary: id_summary, user: voter, metric: IdSummaryDqa::TRUE, agree: true )
-      IdSummaryDqa.create!( id_summary: id_summary, user: voter, metric: IdSummaryDqa::TRUE, agree: false )
-      IdSummaryDqa.create!( id_summary: id_summary, user: voter, metric: IdSummaryDqa::IDENTIFICATION, agree: true )
+      IdSummaryDqa.create!( id_summary: id_summary, user: voter_positive, metric: IdSummaryDqa::TRUE, agree: true )
+      IdSummaryDqa.create!( id_summary: id_summary, user: voter_negative, metric: IdSummaryDqa::TRUE, agree: false )
+      IdSummaryDqa.create!( id_summary: id_summary, user: voter_identification, metric: IdSummaryDqa::IDENTIFICATION, agree: true )
     end
 
     it "aggregates feedback counts for each metric" do
