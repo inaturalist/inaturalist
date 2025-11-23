@@ -27,7 +27,10 @@ const TaxonDetailPanel = ( {
   onVote,
   showPhotoTips,
   photoAttribution,
-  adminExtrasVisible
+  adminExtrasVisible,
+  onSummaryShare,
+  highlightedSummaryUuid,
+  highlightedSummaryRevision
 } ) => {
   const speciesIdentifier = species?.id || species?.uuid || null;
   const photoTips = useMemo( () => {
@@ -208,6 +211,9 @@ const TaxonDetailPanel = ( {
           tipVotes={tipVotes}
           referenceUsers={referenceUsers}
           onVote={onVote}
+          onShareSummary={onSummaryShare}
+          highlightSummaryUuid={highlightedSummaryUuid}
+          highlightSummaryRevision={highlightedSummaryRevision}
         />
       </section>
     </div>
@@ -248,7 +254,10 @@ TaxonDetailPanel.propTypes = {
   onVote: PropTypes.func,
   showPhotoTips: PropTypes.bool,
   photoAttribution: PropTypes.string,
-  adminExtrasVisible: PropTypes.bool
+  adminExtrasVisible: PropTypes.bool,
+  onSummaryShare: PropTypes.func,
+  highlightedSummaryUuid: PropTypes.string,
+  highlightedSummaryRevision: PropTypes.number
 };
 
 export default TaxonDetailPanel;

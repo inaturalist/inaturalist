@@ -748,6 +748,23 @@ body {
     gap: 16px;
     margin-bottom: 14px;
   }
+  .fg-summary-share {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: #607d8b;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .2s ease, background-color .2s ease;
+  }
+  .fg-summary-share:hover {
+    color: #1f2937;
+    background: rgba(96, 125, 139, 0.1);
+  }
   .fg-summary-label {
     display: inline-flex;
     align-items: center;

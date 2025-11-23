@@ -14,6 +14,10 @@ import {
 class IdSummariesDemoApp extends Component {
   constructor( props ) {
     super( props );
+    const hashTarget = IdSummariesDemoApp.hashTargetFromLocation();
+    const initialLanguage = IdSummariesDemoApp.isSupportedLanguage( hashTarget?.language )
+      ? hashTarget.language
+      : LANGUAGE_OPTIONS[0]?.value || "en";
     this.state = {
       selectedSpecies: null,
       speciesImages: {},
@@ -27,18 +31,25 @@ class IdSummariesDemoApp extends Component {
       runNames: [],
       runNamesLoading: false,
       showPhotoTips: false,
-      selectedLanguage: LANGUAGE_OPTIONS[0]?.value || "en"
+      selectedLanguage: initialLanguage,
+      highlightedSummaryUuid: hashTarget?.summaryUuid || null,
+      highlightedSummaryRevision: hashTarget?.summaryUuid ? 1 : 0
     };
     this.currentUserIsAdmin = IdSummariesDemoApp.userIsAdmin();
     this.adminExtrasEnabled = this.currentUserIsAdmin
       && IdSummariesDemoApp.adminExtrasRequested();
-    const hashTarget = IdSummariesDemoApp.hashTargetFromLocation();
-    this.hashSelectedTaxonId = hashTarget?.id || null;
-    this.hashSelectedTaxonSlug = hashTarget?.slug || null;
+    this.currentSelectionTarget = {
+      slug: hashTarget?.slug || null,
+      id: hashTarget?.id || null,
+      language: hashTarget?.language || initialLanguage,
+      summaryUuid: hashTarget?.summaryUuid || null
+    };
     this.latestLoadedTaxa = [];
+    this.latestLoadedLanguage = initialLanguage;
 
     this.reset = this.reset.bind( this );
-    this.handleSpeciesClick = this.handleSpeciesClick.bind( this );
+    this.handleSpeciesSelection = this.handleSpeciesSelection.bind( this );
+    this.loadSpeciesDetails = this.loadSpeciesDetails.bind( this );
     this.handleVote = this.handleVote.bind( this );
     this.fetchReferenceUsers = this.fetchReferenceUsers.bind( this );
     this.handleActiveToggle = this.handleActiveToggle.bind( this );
@@ -48,9 +59,14 @@ class IdSummariesDemoApp extends Component {
     this.renderFilters = this.renderFilters.bind( this );
     this.handleLanguageChange = this.handleLanguageChange.bind( this );
     this.renderLanguagePicker = this.renderLanguagePicker.bind( this );
+    this.setLanguage = this.setLanguage.bind( this );
     this.handleHashChange = this.handleHashChange.bind( this );
-    this.trySelectSpeciesFromHash = this.trySelectSpeciesFromHash.bind( this );
+    this.updateSelectionTarget = this.updateSelectionTarget.bind( this );
+    this.processSelectionTarget = this.processSelectionTarget.bind( this );
+    this.trySelectSpeciesByTarget = this.trySelectSpeciesByTarget.bind( this );
     this.updateLocationHash = this.updateLocationHash.bind( this );
+    this.handleSummaryShare = this.handleSummaryShare.bind( this );
+    this.setHighlightedSummary = this.setHighlightedSummary.bind( this );
 
     this.pendingUserFetches = new Set();
     this.groupingOptions = {
@@ -79,16 +95,21 @@ class IdSummariesDemoApp extends Component {
     return slug || null;
   }
 
+  static isSupportedLanguage( language ) {
+    if ( typeof language !== "string" || !language ) return false;
+    return LANGUAGE_OPTIONS.some( option => option.value === language );
+  }
+
   static hashTargetFromLocation( hashString ) {
     if ( typeof window === "undefined" && typeof hashString !== "string" ) {
-      return { slug: null, id: null };
+      return { slug: null, id: null, language: null, summaryUuid: null };
     }
     const hash = typeof hashString === "string"
       ? hashString
       : window.location?.hash || "";
     const cleaned = hash.trim();
     if ( !cleaned || cleaned.length < 2 ) {
-      return { slug: null, id: null };
+      return { slug: null, id: null, language: null, summaryUuid: null };
     }
     const withoutHash = cleaned.replace( /^#/, "" );
     let decoded = withoutHash;
@@ -99,18 +120,56 @@ class IdSummariesDemoApp extends Component {
     }
     const value = decoded.trim();
     if ( !value ) {
-      return { slug: null, id: null };
+      return { slug: null, id: null, language: null, summaryUuid: null };
     }
-    if ( /^\d+$/.test( value ) ) {
-      const taxonId = Number.parseInt( value, 10 );
+    const parts = value.split( "-" ).filter( part => part && part.length );
+    if ( parts.length === 0 ) {
+      return { slug: null, id: null, language: null, summaryUuid: null };
+    }
+    let summaryUuid = null;
+    let language = null;
+    let identifierTokens = [...parts];
+
+    const possibleSummary = identifierTokens[identifierTokens.length - 1];
+    if ( possibleSummary && /^\d+$/.test( possibleSummary ) && identifierTokens.length >= 3 ) {
+      summaryUuid = possibleSummary;
+      identifierTokens = identifierTokens.slice( 0, -1 );
+    }
+
+    const possibleLanguage = identifierTokens[identifierTokens.length - 1];
+    if ( possibleLanguage && IdSummariesDemoApp.isSupportedLanguage( possibleLanguage ) ) {
+      language = possibleLanguage;
+      identifierTokens = identifierTokens.slice( 0, -1 );
+    }
+
+    const identifierPart = identifierTokens.join( "-" );
+    if ( !identifierPart ) {
+      return { slug: null, id: null, language, summaryUuid };
+    }
+    const taxonMatch = identifierPart.match(/^taxon-(\d+)$/);
+    if ( taxonMatch ) {
+      const taxonId = Number.parseInt( taxonMatch[1], 10 );
       return {
         slug: null,
-        id: Number.isFinite( taxonId ) && taxonId > 0 ? taxonId : null
+        id: Number.isFinite( taxonId ) && taxonId > 0 ? taxonId : null,
+        language,
+        summaryUuid
+      };
+    }
+    if ( /^\d+$/.test( identifierPart ) ) {
+      const taxonId = Number.parseInt( identifierPart, 10 );
+      return {
+        slug: null,
+        id: Number.isFinite( taxonId ) && taxonId > 0 ? taxonId : null,
+        language,
+        summaryUuid
       };
     }
     return {
-      slug: IdSummariesDemoApp.slugifyTaxonName( value ),
-      id: null
+      slug: IdSummariesDemoApp.slugifyTaxonName( identifierPart ),
+      id: null,
+      language,
+      summaryUuid
     };
   }
 
@@ -135,7 +194,7 @@ class IdSummariesDemoApp extends Component {
     if ( typeof window !== "undefined" && window.addEventListener ) {
       window.addEventListener( "hashchange", this.handleHashChange );
     }
-    this.trySelectSpeciesFromHash();
+    this.processSelectionTarget();
   }
 
   componentWillUnmount() {
@@ -234,6 +293,7 @@ class IdSummariesDemoApp extends Component {
   normalizeIncomingData( data ) {
     const normalizeTip = ( t = {} ) => ( {
       id: t?.id,
+      uuid: t?.uuid || null,
       text: t?.content || t?.tip || t?.summary || "",
       group: t?.key_visual_trait_group || t?.group || t?.visual_key_group || null,
       photoTip: t?.photo_tip || t?.photoTip || null,
@@ -344,69 +404,169 @@ class IdSummariesDemoApp extends Component {
     } );
   }
 
+  setHighlightedSummary( summaryUuid ) {
+    const normalized = summaryUuid || null;
+    this.setState( prev => {
+      if ( normalized === prev.highlightedSummaryUuid ) {
+        if ( normalized ) {
+          return { highlightedSummaryRevision: prev.highlightedSummaryRevision + 1 };
+        }
+        return null;
+      }
+      return {
+        highlightedSummaryUuid: normalized,
+        highlightedSummaryRevision: normalized
+          ? prev.highlightedSummaryRevision + 1
+          : prev.highlightedSummaryRevision
+      };
+    } );
+  }
+
   handleHashChange() {
-    const { slug, id } = IdSummariesDemoApp.hashTargetFromLocation();
-    const currentSlug = IdSummariesDemoApp.slugifyTaxonName( this.state.selectedSpecies?.name );
-    const currentId = this.state.selectedSpecies?.id || null;
-    if ( slug && slug === currentSlug ) {
-      this.hashSelectedTaxonSlug = null;
-      this.hashSelectedTaxonId = null;
-      return;
-    }
-    if ( !slug && id && currentId === id ) {
-      this.hashSelectedTaxonSlug = null;
-      this.hashSelectedTaxonId = null;
-      return;
-    }
-    this.hashSelectedTaxonSlug = slug || null;
-    this.hashSelectedTaxonId = !slug && id ? id : null;
-    if ( slug || id ) {
-      this.trySelectSpeciesFromHash();
+    const hashTarget = IdSummariesDemoApp.hashTargetFromLocation();
+    this.updateSelectionTarget( {
+      slug: hashTarget?.slug || null,
+      id: hashTarget?.id || null,
+      language: hashTarget?.language || this.state.selectedLanguage,
+      summaryUuid: hashTarget?.summaryUuid || null
+    } );
+    this.processSelectionTarget();
+  }
+
+  updateSelectionTarget( target = {}, options = {} ) {
+    const normalized = {
+      slug: Object.prototype.hasOwnProperty.call( target, "slug" )
+        ? target.slug
+        : this.currentSelectionTarget?.slug || null,
+      id: Object.prototype.hasOwnProperty.call( target, "id" )
+        ? target.id
+        : this.currentSelectionTarget?.id || null,
+      language: target.language
+        || this.currentSelectionTarget?.language
+        || this.state.selectedLanguage,
+      summaryUuid: Object.prototype.hasOwnProperty.call( target, "summaryUuid" )
+        ? target.summaryUuid
+        : this.currentSelectionTarget?.summaryUuid || null
+    };
+    this.currentSelectionTarget = normalized;
+    if ( options.updateHash ) {
+      const syntheticSpecies = options.species
+        || this.state.selectedSpecies
+        || ( normalized.slug
+          ? { name: normalized.slug }
+          : normalized.id
+            ? { id: normalized.id }
+            : null );
+      this.updateLocationHash(
+        syntheticSpecies,
+        {
+          language: normalized.language,
+          summaryUuid: normalized.summaryUuid
+        }
+      );
     }
   }
 
-  trySelectSpeciesFromHash( list ) {
-    const taxaList = Array.isArray( list ) ? list : this.latestLoadedTaxa;
-    const targetSlug = this.hashSelectedTaxonSlug;
-    const targetId = this.hashSelectedTaxonId;
+  processSelectionTarget( options = {} ) {
+    const target = this.currentSelectionTarget;
+    if ( !target ) {
+      return false;
+    }
+    const desiredLanguage = target.language || this.state.selectedLanguage;
+    if ( desiredLanguage && desiredLanguage !== this.state.selectedLanguage ) {
+      this.setLanguage( desiredLanguage, {
+        preserveHighlight: !!target.summaryUuid,
+        onLanguageApplied: () => {
+          this.processSelectionTarget( options );
+        }
+      } );
+      return false;
+    }
+    this.setHighlightedSummary( target.summaryUuid || null );
+    const forceSpecies = options.forceSpecies || null;
+    const selectionOptions = {
+      preserveSummaryHash: !!target.summaryUuid,
+      languageOverride: desiredLanguage
+    };
+    if ( forceSpecies ) {
+      this.loadSpeciesDetails( forceSpecies, selectionOptions );
+      return true;
+    }
+    if ( !target.slug && !target.id ) {
+      return false;
+    }
+    return this.trySelectSpeciesByTarget( target, selectionOptions );
+  }
+
+  trySelectSpeciesByTarget( target, options = {}, list = this.latestLoadedTaxa ) {
+    const taxaList = Array.isArray( list ) ? list : [];
     if (
-      ( !targetSlug && !targetId )
-      || !Array.isArray( taxaList )
-      || !taxaList.length
+      !taxaList.length
+      || this.latestLoadedLanguage !== this.state.selectedLanguage
     ) {
       return false;
     }
-    if ( targetSlug ) {
-      const slugMatch = taxaList.find( species => (
-        IdSummariesDemoApp.slugifyTaxonName( species?.name ) === targetSlug
+    let match = null;
+    if ( target.slug ) {
+      const normalizedSlug = IdSummariesDemoApp.slugifyTaxonName( target.slug );
+      match = taxaList.find( species => (
+        IdSummariesDemoApp.slugifyTaxonName( species?.name ) === normalizedSlug
       ) );
-      if ( slugMatch ) {
-        this.handleSpeciesClick( slugMatch );
-        this.hashSelectedTaxonSlug = null;
-        this.hashSelectedTaxonId = null;
-        return true;
-      }
     }
-    if ( targetId ) {
-      const idMatch = taxaList.find( species => species?.id === targetId );
-      if ( idMatch ) {
-        this.handleSpeciesClick( idMatch );
-        this.hashSelectedTaxonSlug = null;
-        this.hashSelectedTaxonId = null;
-        return true;
-      }
+    if ( !match && target.id ) {
+      match = taxaList.find( species => species?.id === target.id );
     }
-    return false;
+    if ( !match ) {
+      return false;
+    }
+    this.loadSpeciesDetails( match, options );
+    return true;
   }
 
-  updateLocationHash( species = null ) {
+  handleSpeciesSelection( species, options = {} ) {
+    if ( !species ) {
+      return;
+    }
+    const languageOverride = options.languageOverride || this.state.selectedLanguage;
+    const slug = IdSummariesDemoApp.slugifyTaxonName( species?.name );
+    this.updateSelectionTarget(
+      {
+        slug,
+        id: species?.id || null,
+        language: languageOverride,
+        summaryUuid: options.preserveSummaryHash
+          ? this.currentSelectionTarget?.summaryUuid
+          : null
+      },
+      {
+        updateHash: !options.skipHashUpdate,
+        species
+      }
+    );
+    this.processSelectionTarget( {
+      forceSpecies: species,
+      forceLanguage: languageOverride
+    } );
+  }
+
+  updateLocationHash( species = null, options = {} ) {
     if ( typeof window === "undefined" || !window.location ) {
       return;
     }
     const { pathname = "", search = "", hash = "" } = window.location;
-    const targetSlug = IdSummariesDemoApp.slugifyTaxonName( species?.name );
+    const targetSlug = species ? IdSummariesDemoApp.slugifyTaxonName( species?.name ) : null;
     const identifier = targetSlug || ( species?.id ? String( species.id ) : "" );
-    const desiredHash = identifier ? `#${identifier}` : "";
+    const requestedLanguage = Object.prototype.hasOwnProperty.call( options, "language" )
+      ? options.language
+      : this.state.selectedLanguage;
+    const languagePart = requestedLanguage || "";
+    const summaryUuid = Object.prototype.hasOwnProperty.call( options, "summaryUuid" )
+      ? options.summaryUuid
+      : null;
+    const base = identifier && languagePart ? `${identifier}-${languagePart}` : "";
+    const desiredHash = base
+      ? `#${summaryUuid ? `${base}-${summaryUuid}` : base}`
+      : "";
     if ( hash === desiredHash ) return;
     const nextUrl = `${pathname}${search}${desiredHash}`;
     if ( window.history && typeof window.history.replaceState === "function" ) {
@@ -416,8 +576,12 @@ class IdSummariesDemoApp extends Component {
     }
   }
 
-  handleSpeciesClick( species ) {
-    this.updateLocationHash( species || null );
+  loadSpeciesDetails( species, options = {} ) {
+    const preserveSummaryHash = !!options.preserveSummaryHash;
+    const languageOverride = options.languageOverride;
+    const languageForFetch = languageOverride || this.state.selectedLanguage;
+    const highlightTarget = preserveSummaryHash ? this.currentSelectionTarget?.summaryUuid : null;
+    const shouldForceHighlightAfterFetch = !!highlightTarget;
     this.setState( prev => {
       const squareUrl = species?.photoSquareUrl || this.photoUrlFromId( species?.taxonPhotoId, "square" );
       const mediumUrl = species?.photoMediumUrl || this.photoUrlFromId( species?.taxonPhotoId, "medium" );
@@ -430,7 +594,11 @@ class IdSummariesDemoApp extends Component {
         speciesImages: updatedImages,
         speciesImage: mediumUrl || squareUrl || cachedImage || null,
         loading: true,
-        error: null
+        error: null,
+        highlightedSummaryUuid: highlightTarget,
+        highlightedSummaryRevision: highlightTarget
+          ? prev.highlightedSummaryRevision + 1
+          : prev.highlightedSummaryRevision
       };
     } );
     this.fetchReferenceUsers( species );
@@ -479,7 +647,7 @@ class IdSummariesDemoApp extends Component {
       } );
       return;
     }
-    taxonIdSummariesAPI.fetch( species.uuid, { fields: summaryFields } )
+    taxonIdSummariesAPI.fetch( species.uuid, { fields: summaryFields, language: languageForFetch } )
       .then( response => {
         const result = response?.results?.[0];
         if ( !result ) {
@@ -513,6 +681,11 @@ class IdSummariesDemoApp extends Component {
           };
         }, () => {
           this.fetchReferenceUsers( normalizedSpecies );
+          if ( shouldForceHighlightAfterFetch && this.state.highlightedSummaryUuid ) {
+            this.setState( prev => ( {
+              highlightedSummaryRevision: prev.highlightedSummaryRevision + 1
+            } ) );
+          }
         } );
       } )
       .catch( error => {
@@ -541,13 +714,18 @@ class IdSummariesDemoApp extends Component {
 
   reset() {
     this.updateLocationHash( null );
-    this.hashSelectedTaxonSlug = null;
-    this.hashSelectedTaxonId = null;
+    this.currentSelectionTarget = {
+      slug: null,
+      id: null,
+      language: this.state.selectedLanguage,
+      summaryUuid: null
+    };
     this.setState( {
       selectedSpecies: null,
       speciesImage: null,
       loading: false,
-      error: null
+      error: null,
+      highlightedSummaryUuid: null
     } );
   }
 
@@ -558,6 +736,23 @@ class IdSummariesDemoApp extends Component {
       const speciesVotes = { ...( prev.tipVotes[speciesId] || {} ), [tipIndex]: nextValue };
       return { tipVotes: { ...prev.tipVotes, [speciesId]: speciesVotes } };
     } );
+  }
+
+  handleSummaryShare( summaryId ) {
+    if ( !summaryId || !this.state.selectedSpecies ) {
+      return;
+    }
+    const anchorValue = String( summaryId );
+    this.updateSelectionTarget(
+      {
+        summaryUuid: anchorValue
+      },
+      {
+        updateHash: true,
+        species: this.state.selectedSpecies
+      }
+    );
+    this.setHighlightedSummary( anchorValue );
   }
 
   handleActiveToggle( event ) {
@@ -592,19 +787,64 @@ class IdSummariesDemoApp extends Component {
     this.setState( { showPhotoTips: nextValue } );
   }
 
+  setLanguage( nextLanguage, options = {} ) {
+    const { onLanguageApplied = null, preserveHighlight = false } = options;
+    if ( !nextLanguage || nextLanguage === this.state.selectedLanguage ) {
+      if ( typeof onLanguageApplied === "function" ) {
+        onLanguageApplied();
+      }
+      return;
+    }
+    this.setState( prev => {
+      const nextHighlightedUuid = preserveHighlight
+        ? prev.highlightedSummaryUuid
+        : null;
+      const nextHighlightRevision = preserveHighlight && nextHighlightedUuid
+        ? prev.highlightedSummaryRevision + 1
+        : prev.highlightedSummaryRevision;
+      return {
+        selectedLanguage: nextLanguage,
+        highlightedSummaryUuid: nextHighlightedUuid,
+        highlightedSummaryRevision: nextHighlightRevision,
+        error: null,
+        loading: true,
+        selectedSpecies: null,
+        speciesImage: null
+      };
+    }, () => {
+      this.fetchRunNames( 1, new Set(), nextLanguage );
+      if ( typeof onLanguageApplied === "function" ) {
+        onLanguageApplied();
+      }
+    } );
+  }
+
   handleLanguageChange( event ) {
     const nextLanguage = event?.target?.value;
     if ( !nextLanguage || nextLanguage === this.state.selectedLanguage ) {
       return;
     }
-    this.setState( {
-      selectedLanguage: nextLanguage,
-      selectedSpecies: null,
-      speciesImage: null,
-      error: null
-    }, () => {
-      this.fetchRunNames( 1, new Set(), nextLanguage );
-    } );
+    const slug = this.state.selectedSpecies
+      ? IdSummariesDemoApp.slugifyTaxonName( this.state.selectedSpecies?.name )
+      : this.currentSelectionTarget?.slug || null;
+    const id = !slug
+      ? this.state.selectedSpecies?.id
+        || this.currentSelectionTarget?.id
+        || null
+      : null;
+    this.updateSelectionTarget(
+      {
+        slug,
+        id,
+        language: nextLanguage,
+        summaryUuid: null
+      },
+      {
+        updateHash: true,
+        species: this.state.selectedSpecies
+      }
+    );
+    this.processSelectionTarget();
   }
 
   renderLanguagePicker() {
@@ -749,7 +989,9 @@ class IdSummariesDemoApp extends Component {
       activeOnly,
       selectedRunName,
       showPhotoTips,
-      selectedLanguage
+      selectedLanguage,
+      highlightedSummaryUuid,
+      highlightedSummaryRevision
     } = this.state;
     const votesForSelected = selectedSpecies ? tipVotes?.[selectedSpecies.id] : {};
     const selectedPhotoAttribution = selectedSpecies?.taxonPhotoAttribution || null;
@@ -768,8 +1010,9 @@ class IdSummariesDemoApp extends Component {
                 language={selectedLanguage}
                 selectedId={selectedSpecies?.id}
                 images={speciesImages}
-                onTileClick={this.handleSpeciesClick}
+                onTileClick={this.handleSpeciesSelection}
                 onLoaded={list => {
+                  this.latestLoadedLanguage = this.state.selectedLanguage;
                   this.latestLoadedTaxa = list;
                   const mapped = this.buildSpeciesImageMap( list );
                   if ( Object.keys( mapped ).length ) {
@@ -777,13 +1020,16 @@ class IdSummariesDemoApp extends Component {
                       speciesImages: { ...prev.speciesImages, ...mapped }
                     } ) );
                   }
-                  const hashSelected = this.trySelectSpeciesFromHash( list );
-                  if ( hashSelected ) {
+                  const handledSelection = this.processSelectionTarget();
+                  if ( handledSelection ) {
                     return;
                   }
                   const defaultSpecies = determineDefaultSpecies( list, this.groupingOptions );
-                  if ( defaultSpecies && !this.state.selectedSpecies ) {
-                    this.handleSpeciesClick( defaultSpecies );
+                  const hasExplicitTarget = !!(
+                    this.currentSelectionTarget?.slug || this.currentSelectionTarget?.id
+                  );
+                  if ( defaultSpecies && !this.state.selectedSpecies && !hasExplicitTarget ) {
+                    this.handleSpeciesSelection( defaultSpecies );
                   }
                 }}
               />
@@ -800,6 +1046,9 @@ class IdSummariesDemoApp extends Component {
                 showPhotoTips={showPhotoTips}
                 photoAttribution={selectedPhotoAttribution}
                 adminExtrasVisible={this.adminExtrasEnabled}
+                onSummaryShare={this.handleSummaryShare}
+                highlightedSummaryUuid={highlightedSummaryUuid}
+                highlightedSummaryRevision={highlightedSummaryRevision}
               />
             </div>
           </div>
