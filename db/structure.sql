@@ -5214,7 +5214,8 @@ CREATE TABLE public.taxon_id_summaries (
     run_generated_at timestamp without time zone,
     run_description text,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    language character varying DEFAULT 'en'::character varying NOT NULL
 );
 
 
@@ -8679,7 +8680,7 @@ CREATE UNIQUE INDEX idx_summary_flags_one_per_summary ON public.taxon_id_summary
 -- Name: idx_taxon_id_summaries_active_per_taxon; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX idx_taxon_id_summaries_active_per_taxon ON public.taxon_id_summaries USING btree (taxon_id) WHERE (active = true);
+CREATE UNIQUE INDEX idx_taxon_id_summaries_active_per_taxon ON public.taxon_id_summaries USING btree (taxon_id, language) WHERE (active = true);
 
 
 --
@@ -12093,6 +12094,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250905224234'),
 ('20251010205509'),
 ('20251014130528'),
-('20251014130547');
+('20251014130547'),
+('20251014130548'),
+('20251119130558');
 
 

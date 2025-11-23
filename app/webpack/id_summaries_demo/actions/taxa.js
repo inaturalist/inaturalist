@@ -18,6 +18,7 @@ const TAXON_SUMMARY_FIELDS = [
   "taxon_photo_id",
   "taxon_photo_observation_id",
   "taxon_group",
+  "language",
   "run_generated_at",
   "run_name",
   "id_summaries",
@@ -41,6 +42,7 @@ const TAXON_SUMMARY_FIELDS = [
 export const fetchTaxa = ( {
   active,
   run_name,
+  language,
   page = 1,
   per_page = 200
 } = {} ) => async dispatch => {
@@ -61,6 +63,9 @@ export const fetchTaxa = ( {
     if ( run_name ) {
       params.run_name = run_name;
       params.run_name_exact = true;
+    }
+    if ( language ) {
+      params.language = language;
     }
     const resp = await taxonIdSummariesAPI.search( params, { useAuth: true } );
     const {
@@ -106,6 +111,7 @@ export const fetchTaxa = ( {
       name: r?.taxon_name,
       commonName: r?.taxon_common_name?.name || r?.taxon_common_name || null,
       taxonGroup: r?.taxon_group || null,
+      language: r?.language || null,
       runGeneratedAt: r?.run_generated_at || null,
       runName: r?.run_name || null,
       taxonPhotoId: r?.taxon_photo_id,

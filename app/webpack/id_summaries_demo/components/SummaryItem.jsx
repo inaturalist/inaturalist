@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import ReferenceFeedback from "./ReferenceFeedback";
+import UserText from "../../shared/components/user_text";
 
 const PhotoTipIcon = () => (
   <svg
@@ -25,7 +26,8 @@ const SummaryItem = ( {
   speciesId,
   speciesUuid,
   speciesLabel,
-  index
+  index,
+  onShareSummary
 } ) => {
   const [showReferences, setShowReferences] = useState( false );
 
@@ -92,12 +94,6 @@ const SummaryItem = ( {
     }
     if ( ref?.url ) return ref.url;
     return null;
-  };
-  const formatReferenceBody = body => {
-    if ( !body ) return "";
-    const looksLikeHtml = /<\s*[a-z][^>]*>/i.test( body );
-    if ( looksLikeHtml ) return body;
-    return body.replace( /\n/g, "<br />" );
   };
   const buildVisualLink = part => {
     if ( !speciesId || !part ) return null;
@@ -186,8 +182,11 @@ const SummaryItem = ( {
     return `photo-tip-${safeSpecies}-${safeBase}`;
   }, [hasPhotoTip, summaryId, index, speciesId] );
 
+  const summaryAnchorValue = summary?.uuid || summary?.id;
+  const summaryAnchorId = summaryAnchorValue ? `summary-${summaryAnchorValue}` : undefined;
+
   return (
-    <div className="fg-summary-card">
+    <div className="fg-summary-card" id={summaryAnchorId}>
       <div className="fg-summary-header">
         <span className="fg-summary-label" title={labelTitle}>
           <span className="fg-summary-label-icon" aria-hidden="true" />
@@ -213,6 +212,16 @@ const SummaryItem = ( {
             </span>
           ) : null}
         </span>
+        {summaryAnchorValue && typeof onShareSummary === "function" ? (
+          <button
+            type="button"
+            className="fg-summary-share"
+            aria-label={I18n.t( "id_summaries.demo.summary_item.copy_link" )}
+            onClick={() => onShareSummary( summaryAnchorValue )}
+          >
+            <i className="fa fa-link" aria-hidden="true" />
+          </button>
+        ) : null}
       </div>
 
       <p className="fg-summary-text">{renderSummaryText()}</p>
@@ -280,9 +289,9 @@ const SummaryItem = ( {
                           </div>
                         </div>
                         {ref?.body ? (
-                          <div
+                          <UserText
+                            text={ref.body}
                             className="fg-reference-body"
-                            dangerouslySetInnerHTML={{ __html: formatReferenceBody( ref.body ) }}
                           />
                         ) : null}
                       </div>
@@ -320,6 +329,7 @@ export default SummaryItem;
 SummaryItem.propTypes = {
   summary: PropTypes.shape( {
     id: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
+    uuid: PropTypes.string,
     group: PropTypes.string,
     text: PropTypes.string,
     photoTip: PropTypes.string,
@@ -342,5 +352,6 @@ SummaryItem.propTypes = {
   speciesId: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
   speciesUuid: PropTypes.string,
   speciesLabel: PropTypes.string,
-  index: PropTypes.number
+  index: PropTypes.number,
+  onShareSummary: PropTypes.func
 };

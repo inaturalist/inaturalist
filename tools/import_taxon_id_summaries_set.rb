@@ -57,6 +57,7 @@ OPTS = Optimist.options do
   opt :run_desc,         "Default run description", type: :string
   opt :active,           "Mark each new TaxonIdSummary as active (can be overridden per payload via 'active')",
     type: :boolean, default: false
+  opt :language,         "Default language ISO code (e.g., en, es, fr, de)", type: :string, default: "en"
 end
 
 def parse_time!( value, context: )
@@ -76,6 +77,8 @@ if OPTS[:run_generated_at]
 end
 default_run_desc = OPTS[:run_desc]
 default_active = OPTS[:active]
+default_language = OPTS[:language].to_s.strip
+default_language = "en" if default_language.blank?
 
 payloads = JSON.parse( File.read( file_path ) )
 unless payloads.is_a?( Array )
@@ -90,10 +93,12 @@ overall_stats = {
   references_updated: 0
 }
 
-def deactivate_existing_active_runs!( taxon_id )
+def deactivate_existing_active_runs!( taxon_id, language )
   return 0 unless taxon_id
 
-  TaxonIdSummary.where( taxon_id: taxon_id, active: true ).update_all( active: false )
+  scope = TaxonIdSummary.where( taxon_id: taxon_id, active: true )
+  scope = scope.where( language: language ) if language.present?
+  scope.update_all( active: false )
 end
 
 payloads.each_with_index do | payload, index |
@@ -126,6 +131,10 @@ payloads.each_with_index do | payload, index |
     default_active
   end
 
+  language_value = payload["language"] || payload["locale"] || default_language
+  language = language_value.to_s.strip
+  language = default_language if language.blank?
+
   unless run_name
     raise ArgumentError, "Missing run_name for taxon_id=#{taxon_id} (provide in JSON payload or via --run-name)"
   end
@@ -134,9 +143,9 @@ payloads.each_with_index do | payload, index |
 
   ActiveRecord::Base.transaction do
     if make_active
-      deactivated = deactivate_existing_active_runs!( taxon_id )
+      deactivated = deactivate_existing_active_runs!( taxon_id, language )
       if deactivated.positive?
-        puts "Deactivated #{deactivated} existing active TaxonIdSummaries for taxon_id=#{taxon_id}"
+        puts "Deactivated #{deactivated} existing active TaxonIdSummaries for taxon_id=#{taxon_id} language=#{language}"
       end
     end
 
@@ -149,7 +158,8 @@ payloads.each_with_index do | payload, index |
       taxon_group: taxon_group,
       run_name: run_name,
       run_generated_at: run_generated_at,
-      run_description: run_description
+      run_description: run_description,
+      language: language
     )
 
     puts(

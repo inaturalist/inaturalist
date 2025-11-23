@@ -19,6 +19,7 @@ class TaxaListContainer extends Component {
     if (
       prev.activeOnly !== activeOnly
       || prev.runName !== runName
+      || prev.language !== this.props.language
     ) {
       this.fetchWithFilters();
     }
@@ -32,9 +33,13 @@ class TaxaListContainer extends Component {
       fetchTaxa,
       activeOnly,
       runName,
-      perPage
+      perPage,
+      language
     } = this.props;
     const params = { per_page: perPage };
+    if ( language ) {
+      params.language = language;
+    }
     if ( activeOnly ) {
       params.active = true;
     } else {
@@ -79,13 +84,15 @@ TaxaListContainer.propTypes = {
   fetchTaxa: PropTypes.func.isRequired,
   activeOnly: PropTypes.bool,
   runName: PropTypes.string,
-  perPage: PropTypes.number
+  perPage: PropTypes.number,
+  language: PropTypes.string
 };
 
 TaxaListContainer.defaultProps = {
   activeOnly: true,
   runName: null,
-  perPage: 200
+  perPage: 200,
+  language: "en"
 };
 
 const mapState = state => ( {
