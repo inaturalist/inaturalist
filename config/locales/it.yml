@@ -7605,7 +7605,7 @@ it:
           La partecipazione a questo progetto è solo-su-invito. Se vuoi unirti, per favore contatta uno dei curatori qui sotto e richiedi un invito.
       new:
         a_project_allows_you_to_gather: |
-          Un progetto collezione ti permette di raccogliere e visualizzare osservazioni utilizzando lo strumento ricerca di iNaturalist. Tutto ciò che soddisfa i requisiti del progetto sarà incluso automaticamente.
+          Un progetto raccolta ti permette di raccogliere e visualizzare osservazioni utilizzando lo strumento ricerca di iNaturalist. Tutto ciò che soddisfa i requisiti del progetto sarà incluso automaticamente.
         an_umbrella_project_can_be_used_to: |
           Un progetto Ombrello può essere usato per confrontare le statistiche tra due o più progetti tradizionali o progetti Raccolta. Gli altri progetti devono già esistere prima di poterli aggiungere ad un progetto Ombrello. Puoi includerne a centinaia. I progetti Ombrello non possono contenere altri progetti Ombrello.
         are_you_ready_to_duplicate: |
@@ -9447,7 +9447,7 @@ it:
     demo:
       app:
         header_link: "Demo Riepilogo ID"
-        info_line_one: "Questa demo esplora l'uso dell'intelligenza artificiale per riassumere i commenti su iNaturalist con l'obiettivo di imparare a identificare"
+        info_line_one: "Questa demo esplora l'uso dell'IA per riassumere i commenti su iNaturalist con l'obiettivo di imparare ad identificare"
         info_line_two: "specie più accessibili a tutti."
         blog_link_text: "Scopri di più sul nostro blog"
         missing_identifier: "Identificatore di riepilogo del taxon mancante"
@@ -9456,9 +9456,11 @@ it:
         load_failed: "Impossibile caricare il riepilogo del taxon"
       filters:
         active_only: "Mostra solo i riepiloghi attivi"
+        run_label: "Nome dell'esecuzione"
         run_placeholder: "Seleziona un'esecuzione"
         run_loading: "Caricamento esecuzioni..."
         photo_tips_toggle: "Mostra suggerimenti per le foto"
+        language_label: "Lingua"
       summary_list:
         loading: "Caricamento dei riepiloghi delle ID..."
         empty: "Non sono disponibili riepiloghi ID per questa specie."
@@ -9474,12 +9476,13 @@ it:
         explainer: "Il tuo feedback verrà utilizzato per aiutare a migliorare i riepiloghi delle ID in futuro"
         sign_in_tooltip: "Accedi per votare su questo riepilogo"
         submitting_tooltip: "Invio di feedback..."
-        aria_helpful: "%{label}:servizievole"
+        aria_helpful: "%{label}: utile"
         aria_not_helpful: "%{label}: non utile"
       summary_item:
         disclaimer: "Questo riepilogo dei commenti degli utenti di iNaturalist è stato generato dall'intelligenza artificiale e potrebbe non essere corretto. Puoi aiutarci a migliorare questo riepilogo fornendo un feedback."
         default_label: "SOMMARIO"
         default_title: "Sommario"
+        copy_link: "Copia il link a questo riassunto"
         photo_tip_label: "SUGGERIMENTO FOTO"
         photo_tip_aria: "Suggerimento Foto: %{tip}"
         references_toggle: "Riferimenti al Commento dell'Utente iNaturalist"
