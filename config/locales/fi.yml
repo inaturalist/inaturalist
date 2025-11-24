@@ -7750,6 +7750,8 @@ fi:
       distinct: "Eroaa muista yhteenvedoista"
   id_summaries:
     demo:
+      filters:
+        language_label: "Kieli"
       summary_list:
         sign_in_required: "Kirjaudu sisään ja äänestä tunnistusyhteenvetopalautetta"
         service_unavailable: "Palautepalvelu ei ole tällä hetkellä käytettävissä."
@@ -7764,6 +7766,7 @@ fi:
         disclaimer: "Tämä yhteenveto iNaturalist-käyttäjien kommenteista on tekoälyn luoma ja voi olla virheellinen. Voit auttaa meitä parantamaan tätä yhteenvetoa antamalla palautetta."
         default_label: "YHTEENVETO"
         default_title: "Yhteenveto"
+        copy_link: "Kopioi linkki tähän yhteenvetoon"
         user_fallback: "iNaturalist-käyttäjä"
         reference_commented: "kommentoitu"
         view_comment: "Katso kommentti"
