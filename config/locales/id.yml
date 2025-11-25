@@ -9347,6 +9347,34 @@ id:
         sign_in_required: "Masuk untuk memberikan suara pada umpan balik referensi."
         unavailable: "Umpan balik referensi tidak tersedia saat ini."
         service_unavailable: "Layanan umpan balik referensi tidak tersedia saat ini."
+        submit_failed: "Gagal mengirimkan umpan balik referensi."
+        sign_in_tooltip: "Masuk untuk memberikan suara pada referensi ini"
+        submitting_tooltip: "Mengirimkan umpan balik..."
+        aria_helpful: "%{label}: membantu"
+        aria_not_helpful: "%{label}: tidak membantu"
+      taxon_detail:
+        select_species: "Pilih spesies untuk melihat Ringkasan ID."
+        last_updated: "Terakhir diperbarui"
+        no_image: "Tidak ada gambar yang tersedia"
+        photo_tips_heading: "Tips Gambar"
+        summary_uuid: "UUID Ringkasan ID Takson"
+      taxa_list:
+        group_labels:
+          animalia: "Hewan lain"
+          actinopterygii: "Ikan bersirip pari"
+          aves: "Burung"
+          reptilia: "Reptil"
+          amphibia: "Amfibi"
+          mammalia: "Mamalia"
+          arachnida: "Arakhnida"
+          insecta: "Serangga"
+          plantae: "Tanaman"
+          fungi: "Jamur"
+          protozoa: "Protozoa"
+          mollusca: "Moluska"
+          chromista: "Kromist"
+        other_group: "Lain-lain"
+        empty: "Tidak ada spesies yang tersedia."
   #Title of a section warning the user about something
   warning_title: Peringatan
   wikimedia: Wikimedia
