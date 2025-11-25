@@ -1346,9 +1346,13 @@ bg:
   doh_something_went_wrong_error: "Опа, нещо се обърка: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: ДАРЕТЕ
+  donate: ДАРИ
   #Imperative verb; link to a page where a user can donate money to iNaturalist
-  donate_: Даря
+  donate_: Дари
+  donate_again_caps: ДАРИ ОТНОВО
+  donate_again_today_caps: ДАРИ ОТНОВО ДНЕС
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Дари за iNaturalist
   done: Готово
   dont_have_an_account_sign_up_html: Нямате акаунт? <strong>Регистрирайте се.</strong>
   dont_use_double_quotes: Не използвайте двойни кавички за нищо друго
@@ -4725,12 +4729,84 @@ bg:
             Ако е така, моля прочетете нашето <a href="%{url}">Ръководство за учители</a> за съвети как да използвате %{site_name} с ученици и студенти.
     donate:
       donate_short_desc: "Дарете и покажете своята подкрепа!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Можеш да <u>удвоиш</u> или <u>утроиш</u> своето дарение! Благодарение на
+        Фондация Гордън и Бети Мур, всички месечни, тримесечни и
+        годишни повтарящи се дарения се утрояват, а еднократните дарения се
+        удвояват до 31 декември 2023 г.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist е една от най-големите общности в света, посветени на
+        биоразнообразието. Благодарим, че си част от това!
+        </p>
+        <p class="lead">
+        Ако вярваш в способността на тази глобална общност от природолюбители 
+        да споделя знания и да създава незаменими данни за биоразнообразието, 
+        моля, обмислете еднократно или повтарящо се дарение, или
+        разгледайте <a href="https://www.inaturalist.org/pages/giving">други
+        начини за даряване</a>.
+        </p>
+        <p class="lead">
+        Твоето дарение е от съществено значение за растящата общност на iNaturalist – от
+        подобряване на технологията ни за точно разпознаване на видовете и
+        въвеждане на нови функции до поддържане на нашите сървъри и персонал.
+        </p>
+        <p class="text-muted">
+        iNaturalist е независима 501(c)(3), освободена от данъци, нестопанска организация, базирана в Съединените американски щати (Данъчен номер: 92-1296468).
+        </p>
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist е една от най-големите общности в света посветени на изследването на биоразнообразието. Благодарим ти, че си част от нея!</strong>
+        </p>
+        <p class="lead">
+        Ако вярваш в способността на тази глобална общност от природолюбители да споделя знания и да генерира незаменими данни за биоразнообразието – моля, обмисли възможността да станеш еднократен или редовен дарител или разгледай<a
+        href="https://www.inaturalist.org/pages/giving">други начини за даряване</a>.
+        </p>
+        <p class="lead">
+        Твоите дарения помагат за поддръжката на разрастващата се общност на iNaturalist, за развиването на компютърното зрение, разработването на нови функции и поддържането на нашите сървъри и персонал.
+        </p>
+        <p class="text-muted">
+        iNaturalist е независима 501(c)(3), освободена от данъци, нестопанска организация, базирана в Съединените американски щати (Данъчен номер: 92-1296468).
+        </p>
       post_donate_social_media_text: Подкрепям iNaturalist, защото...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станете Ежемесечен поддръжник на iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: СТАНЕТЕ ЕЖЕМЕСЕЧЕН ПОДДРЪЖНИК НА INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Можеш да <u>утроиш</u> своето дарение! Благодарение на
+          Фондация Гордън и Бети Мур, всички дарения на Ежемесечни поддръжници се утрояват до 31 декември 2023 г.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist е една от най-големите общности в света посветени на изследването на биоразнообразието. Благодарим, че си част от нея!
+          </p>
+          <p class="lead">
+          Ако обичаш iNaturalist, моля обмисли да станеш Ежемесечен поддръжник. Редовните дарения помагат на iNaturalist да продължи да развива инфраструктурата и персонала, като предоставят предсказуеми приходи. И твоето месечно дарение има тройна сила! Можеш да включиш показването на статуса Ежемесечен поддръжник на профила си.
+          </p>
+          <p class="lead">
+          Вашите благотворителни дарения помагат за поддръжката на iNaturalist, докато общността му нараства – от развитието на компютърното зрение и въвеждането на нови функции до поддържането на нашите сървъри и персонал. Можеш също да направиш <a href="%{donate_url}">еднократно дарение</a> и да разгледаш <a href="https://www.inaturalist.org/pages/giving">други начини за даряване</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist е независима 501(c)(3), освободена от данъци, нестопанска организация, базирана в Съединените американски щати (Данъчен номер: 92-1296468).
+          </p>
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist е една от най-големите общности в света посветени на изследването на биоразнообразието. Благодарим, че си част от нея!</strong>
+          </p>
+          <p class="lead">
+          Искаме iNaturalist да остане безплатен за използване, но далеч не е безплатен за поддръжка. Ако харесваш iNaturalist, моля обмисли възможността да станеш Ежемесечен поддръжник. Редовните дарения помагат на iNaturalist да продължи развитието на своята инфраструктура и персонал, като осигурява предсказуем доход. Можеш също да включиш показването на статуса Ежемесечен поддръжник на профила си.
+          </p>
+          <p class="lead">
+          Твоите благотворителни дарения помагат за поддръжката iNaturalist, чиято общност непрекъснато нараства - от развитието на компютърното зрение и разработването на нови функции до обезпечаването на сървърите и екипа. Ако предпочиташ да дадеш еднократно дарение, моля <a href="%{donate_url}">щракни тук</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist е независима 501(c)(3), освободена от данъци, нестопанска организация, базирана в Съединените американски щати (Данъчен номер: 92-1296468).
+          </p>
         thank_you_for_being_a_monthly_supporter: Благодарим Ви, че сте ежемесечен поддръжник!
         thank_you_for_being_a_monthly_supporter_caps: БЛАГОДАРИМ ВИ, ЧЕ СТЕ ЕЖЕМЕСЕЧЕН ПОДДРЪЖНИК!
+      temporarily_unavailable: |
+        Благодарим ти за интереса за подкрепа на iNaturalist! Даряването на iNaturalist е временно недостъпно, докато обновяваме системата си за дарения. Моля, проверете отново по-късно.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Кликнете тук, за да изпратите отново имейл за потвърждение
       #message displayed after users trigger sending a email to confirm their email address
@@ -5704,17 +5780,17 @@ bg:
         #announcement should be shown on
         site_ids: ID на сайтове
         #Start of a date range that the viewer must not have donated in to see the announcement
-        exclude_donor_start_date: Изключване на началната дата на дарителя
+        exclude_donor_start_date: Начална дата на недаряване
         #End of a date range that the viewer must not have donated in to see the announcement
-        exclude_donor_end_date: Изключване на крайната дата на донора
+        exclude_donor_end_date: Крайна дата на недаряване
         excludes_non_site: Скриване на други съобщения в това разположение, които нямат ИД на сайта
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Изключване на наблюдатели от приложения
         #start of a date range that the viewer must have donated in to see the announcement
-        include_donor_start_date: Включете началната дата на донора
+        include_donor_start_date: Начална дата за включване на дарител
         #End of a date range that the viewer must have donated in to see the announcement
-        include_donor_end_date: Включете крайната дата на донора
+        include_donor_end_date: Крайна дата за включване на дарител
         #iNat client applications that the user must have made an observation
         #with to see the announcement
         include_observation_oauth_application_ids: Включване на наблюдатели от приложения
