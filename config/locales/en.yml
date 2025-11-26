@@ -11078,6 +11078,73 @@ en:
           chromista: "Chromists"
         other_group: "Other"
         empty: "No species available."
+  id_summaries_welcome:
+    title: "ID Summaries: Surfacing Expertise to Scale Nature Noticing"
+    p1: |
+      Nature is essential, but it is slipping away. Current estimates suggest that 5% of all species will be extinct by 2100, and more extreme climate scenarios could lead to losses of roughly a third of all species. 
+      
+      In the last year, iNat users have observed more than 300,000 taxa, and the resulting crowdsourced biodiversity database of more than represents over 500,000, or 23% all of known organisms. 
+      
+      By putting the tools of collection and curation on anyone’s smartphone, and using AI to support human exploration of the natural world.iNaturalist is rapidly scaling and democratizing participation in a fundamental understanding of our natural world. 
+    p2: |
+      As the iNaturalist community grows, 88% of its community members contribute observations, but only 12% add a primary or confirming label (identification). By surfacing the expertise found in comments attached to identifications, the iNaturalist ID Summaries serves as a powerful resource to develop the next generation of taxonomic expertise and to accelerate the pace of biodiversity science and conservation powered by iNaturalist.
+    p3: |
+      This lightweight welcome page keeps the focus on the message.
+      Continue through the rest of the demo to explore live examples, or adapt this text to guide partners through a custom experience tailored to your organization.
+    stats:
+      observe: "make observations and contribute to biodiversity data."
+      ai: "select AI-suggested identifications."
+      verify: "actively verify and refine identifications."
+    demo:
+      image_url: "https://static.inaturalist.org/wiki_page_attachments/4782-original.png"
+      description: |
+        With support from the Google Generative AI Accelerator for Nonprofits, iNaturalist [1-2 sentences about technical methods], building on a legacy of technological innovation for nature. 
+        
+        To learn more about supporting the next phase of building identification expertise on INaturalist, please contact us.
+    integration:
+      title: Integration to the iNaturalist Platform
+      text: |        
+        In the coming months, the summaries will be embedded in the iNaturalist platform to help observers choose from the computer vision identification suggestions with confidence and take photos that make confirmation identifications simpler. This should increase the rate at which observers add an identification to their images, using iNaturalist’s computer vision tools. 
+      image_url: "https://static.inaturalist.org/wiki_page_attachments/4858-original.png"
+    integration2:
+      text: |
+        Additional applications could embed links to a vision learning tool to use the language in the summarized identification tip to find images from iNaturalist that help showcase that characteristic.  
+      image_url: "https://static.inaturalist.org/wiki_page_attachments/4859-original.png"
+    legacy:
+      title: iNaturalist’s Legacy of Technology for Nature
+      text: |
+        Since its founding in 2008, iNaturalist has been a leader in using technology to protect nature, offering one of the first nature apps for mobile phones. In 2017, iNaturalist launched its lauded computer vision model, which offers a crowdsourced species identification system. 
+
+        More recent innovations leverage species occurrence data to crowdsource range maps. 
+      image_url: "https://static.inaturalist.org/wiki_page_attachments/4860-original.png"
+    carousel:
+      title: Why is Identification So Important?
+      slides:
+        first:
+          text: |
+            In 2024, iNaturalist data was used for publication of 1,128 scientific studies. iNaturalist data serves as an open source infrastructure for biodiversity science and conservation. Observations are considered research-grade when ⅔ of identifiers agree on a taxon, so increasing the number of photographs uploaded that have identifications attached helps propel data from casual to research grade. 
+
+            Historically, people have learned natural history through in-person field excursions, formal coursework in universities, and via repeated practice with dichotomous keys and other tools. iNauralist has accelerated the practice of natural history and the spread of its skills and knowledge by connecting people around the world through the act of commenting on each other’s observations in service of creating identifications. 
+        second:
+          image_url: "https://static.inaturalist.org/wiki_page_attachments/4862-original.png"
+          text: |
+            Even and Zacharty Dankowicz both starting using iNaturalist as children, while on a family vacation to Florida.
+        third:
+          image_url: "https://static.inaturalist.org/wiki_page_attachments/4861-original.png"
+          text: |
+            Even now works at the Harvard Museum of Comparative Zoology and has published a guide to fly identification. Zach is a biology student and volunteers at the Smithsonian Museum of Natural History. Both were leading fly identifiers before they graduated high school. 
+    form:
+      text: |
+        As we race against climate change and approach a mass extinction, it is critical that we move faster to understand and save nature. Using AI and internally-created computer vision tools, iNaturalist served 4.7 million users per month in 2024. About 40% of that activity was within the United States.
+
+        iNaturalist must radically scale up, reaching 100 million users by 2030. iNat will strategically engage users in the places with the most species remaining to be observed - largely in the global south - by enhancing a global network of conservation partners and the tools iNaturalist offers them. This constituency will rally for and help implement the goal of protecting 30% of the world’s land by 2030. 
+      
+        For more information or to help iNaturalist realize this bold vision, please contact us
+      form_name: "Name"
+      form_email: "Email"
+      form_phone: "Phone"
+      form_institution: "Institution (optional)"
+      submit: "Submit"
   # Title of a section warning the user about something
   warning_title: Warning
   wikimedia: Wikimedia

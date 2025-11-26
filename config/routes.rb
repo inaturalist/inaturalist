@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get "/id_summaries_dashboard", to: "id_summaries_dashboard#index", as: :id_summaries_dashboard
   get "/id_summaries_feedback_dashboard", to: "id_summaries_feedback_dashboard#index", as: :id_summaries_feedback_dashboard
   get "/id_summaries_demo", to: "id_summaries_demo#index"
+  get "/id_summaries_demo_welcome", to: "id_summaries_demo_welcome#index", as: :id_summaries_demo_welcome
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]

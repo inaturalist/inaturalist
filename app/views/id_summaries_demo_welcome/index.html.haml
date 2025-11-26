@@ -1,0 +1,125 @@
+- content_for :title do
+  = t( "id_summaries_welcome.title" )
+- content_for :extracss do
+  = stylesheet_link_tag( @welcome_stylesheet || "welcome" )
+
+#IdSummariesDemoWelcome
+  .welcome-section.intro
+    .section-container
+      %h1= t( "id_summaries_welcome.title" )
+      .body-text
+        = simple_format( t( "id_summaries_welcome.p1" ) )
+  .welcome-section.split1
+    .section-container
+      .split1-left
+        .body-text
+          = simple_format( t( "id_summaries_welcome.p2" ) )
+      .split1-right
+        .stat-row
+          .stat-info
+            .stat-percent 88%
+            .stat-text= t( "id_summaries_welcome.stats.observe" )
+          .stat-visual
+            %i.stat-icon.fa.fa-leaf
+            .stat-bar
+              .stat-bar-fill{style: "width: 88%"}
+        .stat-row
+          .stat-info
+            .stat-percent 10%
+            .stat-text= t( "id_summaries_welcome.stats.ai" )
+          .stat-visual
+            %i.stat-icon.fa.fa-check-circle
+            .stat-bar
+              .stat-bar-fill{style: "width: 35%"}
+        .stat-row
+          .stat-info
+            .stat-percent 2%
+            .stat-text= t( "id_summaries_welcome.stats.verify" )
+          .stat-visual
+            %i.stat-icon.fa.fa-check-circle
+            .stat-bar
+              .stat-bar-fill{style: "width: 12%"}
+  .welcome-section.demo
+    .section-container
+      .demo-visual
+        = image_tag t( "id_summaries_welcome.demo.image_url" ), alt: ""
+      .body-text
+        = simple_format( t( "id_summaries_welcome.demo.description" ) )
+  .welcome-section.split2
+    .section-container
+      .split2-left
+        %h2= t( "id_summaries_welcome.integration.title" )
+        .body-text
+          = simple_format( t( "id_summaries_welcome.integration.text" ) )
+      .split2-right
+        = image_tag t( "id_summaries_welcome.integration.image_url" ), alt: ""
+  .welcome-section.split2
+    .section-container
+      .split2-left
+        .body-text
+          = simple_format( t( "id_summaries_welcome.integration2.text" ) )
+      .split2-right
+        = image_tag t( "id_summaries_welcome.integration2.image_url" ), alt: ""
+  .welcome-section.split3
+    .section-container
+      .split3-left
+        = image_tag t( "id_summaries_welcome.legacy.image_url" ), alt: ""
+      .split3-right
+        %h2= t( "id_summaries_welcome.legacy.title" )
+        .body-text
+          = simple_format( t( "id_summaries_welcome.legacy.text" ) )
+  .welcome-section.why
+    .row
+      .col-xs-12
+        %h1= t( "id_summaries_welcome.carousel.title" )
+        .container.container-fixed
+          .row
+            .col-xs-12
+              #why-carousel.carousel.slide{ data: { ride: :carousel, interval: 7000 } }
+                %ol.carousel-indicators
+                  - carousel_slides = [:first, :second, :third]
+                  - carousel_slides.each_with_index do |key, i|
+                    %li{ data: { target: "#why-carousel", slide_to: i }, class: (i.zero? ? "active" : nil) }
+                .carousel-inner{ role: "listbox" }
+                  - carousel_slides.each_with_index do |key, i|
+                    - slide = t( "id_summaries_welcome.carousel.slides.#{key}" ).with_indifferent_access
+                    - has_image = slide[:image_url].present?
+                    .item{ class: (i.zero? ? "active" : nil) }
+                      .row
+                        .col-xs-12
+                          - if has_image
+                            .panel-image
+                              - if slide[:url].present?
+                                %a{ href: slide[:url] }
+                                  %img.img-responsive{ src: slide[:image_url], alt: slide[:title] || slide[:text].to_s.truncate(80) }
+                              - else
+                                %img.img-responsive{ src: slide[:image_url], alt: slide[:title] || slide[:text].to_s.truncate(80) }
+                          .panel-text
+                            - if slide[:title].present?
+                              %h3= slide[:title]
+                            = simple_format( slide[:text] )
+                %a.left.carousel-control{ href: "#why-carousel", role: "button", data: { slide: "prev" } }
+                  %span.fa.fa-chevron-left{"aria-hidden" => "true"}
+                  %span.sr-only= t(:previous_page_short)
+                %a.right.carousel-control{ href: "#why-carousel", role: "button", data: { slide: "next" } }
+                  %span.fa.fa-chevron-right{"aria-hidden" => "true"}
+                  %span.sr-only= t(:next_page_short)
+  .welcome-section.form
+    .section-container
+      .body-text
+        = simple_format( t( "id_summaries_welcome.form.text" ) )
+      = form_tag "#", class: "demo-form" do
+        .form-group
+          %label{ for: "demo_name" }= t( "id_summaries_welcome.form.form_name" )
+          = text_field_tag :demo_name, nil, class: "form-control"
+        .form-group
+          %label{ for: "demo_email" }= t( "id_summaries_welcome.form.form_email" )
+          = email_field_tag :demo_email, nil, class: "form-control"
+        .form-group
+          %label{ for: "demo_phone" }= t( "id_summaries_welcome.form.form_phone" )
+          = telephone_field_tag :demo_phone, nil, class: "form-control"
+        .form-group
+          %label{ for: "demo_institution" }= t( "id_summaries_welcome.form.form_institution" )
+          = text_field_tag :demo_institution, nil, class: "form-control"
+        = submit_tag t( "id_summaries_welcome.form.submit" ), class: "btn btn-primary"
+      
