@@ -62,9 +62,8 @@ const DonateContent2022 = ( {
             {
               forMonthlyDonor
                 ? (
-                  <a
-                    href={`/monthly-supporters?utm_campaign=${year}-year-in-review&utm_content=button&utm_term=thank-you-for-being-a-monthly-supporter`}
-                    className="btn btn-lg btn-primary btn-bordered"
+                  <div
+                    className="btn btn-lg btn-primary btn-bordered inactive"
                   >
                     {
                       I18n.t(
@@ -76,7 +75,7 @@ const DonateContent2022 = ( {
                         }
                       )
                     }
-                  </a>
+                  </div>
                 )
                 : (
                   <a

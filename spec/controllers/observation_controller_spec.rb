@@ -761,3 +761,18 @@ describe ObservationsController, "new_bulk_csv" do
     expect( Observation.by( user ).count ).to eq 1
   end
 end
+
+describe ObservationsController, "identify" do
+  describe "check_interaction_privilege" do
+    let( :user ) { User.make! }
+    before do
+      sign_in user
+    end
+
+    it "grants users interaction privilege if they earned it but have not yet been granted" do
+      expect( user.privileged_with?( UserPrivilege::INTERACTION ) ).to be false
+      get :identify
+      expect( user.privileged_with?( UserPrivilege::INTERACTION ) ).to be true
+    end
+  end
+end

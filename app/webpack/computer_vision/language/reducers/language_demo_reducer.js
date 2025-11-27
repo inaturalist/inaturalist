@@ -193,7 +193,7 @@ export function languageSearch( searchTerm, searchTaxon, params = { }, options =
         searchResponse: response,
         votes: { }
       } ) );
-    } ).catch( e => {
+    } ).catch( ( ) => {
       dispatch( setAttributes( {
         searchStatus: null,
         searchedTerm: null,

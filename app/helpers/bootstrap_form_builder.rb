@@ -15,7 +15,7 @@ class BootstrapFormBuilder < DefaultFormBuilder
     )
   end
 
-  def form_field( field, field_content = nil, options = {}, &block )
+  def form_field( field, field_content = nil, options = {}, & )
     options = field_content if block_given?
     options ||= {}
     label_after = options.delete( :label_after )
@@ -25,7 +25,7 @@ class BootstrapFormBuilder < DefaultFormBuilder
     content = ""
     label_content = ""
     description = content_tag( :p, options[:description], class: "help-block" ) if options[:description]
-    content = "#{content}#{block_given? ? @template.capture( &block ) : field_content}"
+    content = "#{content}#{block_given? ? @template.capture( & ) : field_content}"
 
     datalist = nil
     if options[:datalist]
@@ -84,16 +84,16 @@ class BootstrapFormBuilder < DefaultFormBuilder
     end
   end
 
-  def select( method, choices = nil, options = {}, html_options = {}, &block )
+  def select( method, choices = nil, options = {}, html_options = {}, & )
     unless options[:skip_builder]
       html_options[:class] = [html_options[:class], "form-control"].join( " " )
     end
-    super( method, choices, options, html_options, &block )
+    super
   end
 
   def check_radio_field( field, field_content = nil, options = {}, wrapper_options = {}, description = nil )
     css_classes = wrapper_options[:class].to_s.split.reject {| klass | klass == "form-group" }
-    css_classes << ( options[:field_name] == "check_box" ? "checkbox" : "radio" )
+    css_classes << ( ( options[:field_name] == "check_box" ) ? "checkbox" : "radio" )
     wrapper_options[:class] = css_classes.join( " " )
     label_content = if options[:label] == false
       nil
@@ -108,7 +108,7 @@ class BootstrapFormBuilder < DefaultFormBuilder
       label_content += content_tag( :span, " *", class: "required" )
     end
     label_class = if options[:inline]
-      field == "check_box" ? "checkbox-inline" : "radio-inline"
+      ( field == "check_box" ) ? "checkbox-inline" : "radio-inline"
     end
     content = @template.content_tag( :label, [field_content, label_content].join( " " ).html_safe, class: label_class )
     if !options[:description_tip] && !description.blank?

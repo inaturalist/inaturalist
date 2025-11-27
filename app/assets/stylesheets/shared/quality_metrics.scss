@@ -33,9 +33,7 @@
     }
   }
   tr.improve {
-    background: $light-grey;
     .inputs {
-      margin-inline-start: 35px;
       margin-top: 5px;
       .yes, .no {
         display: inline-block;
@@ -51,6 +49,22 @@
         }
       }
     }
+    div.grid-container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+    .current-community-taxon {
+      .SplitTaxon > span {
+        color: #333;
+      }
+    }
+  }
+  tbody tr:nth-child(even) {
+    background: $light-grey;
+  }
+  // have to specify both because the identify modal has a light-gray background by default
+  tbody tr:nth-child(odd) {
+    background: white;
   }
   h3 {
     margin-top: 30px;

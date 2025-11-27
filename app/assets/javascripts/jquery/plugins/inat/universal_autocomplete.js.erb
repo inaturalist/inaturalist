@@ -266,7 +266,7 @@ $.fn.universalAutocomplete = function( options ) {
         // In Safari and Firefox this has the unpleasant effect of opening a
         // blank window *and* focusing on that window. In Chrome it opens a tab
         // in the background like you'd expect. Not sure how to get around this.
-        window.open( "https://google.com", "_blank", "noopener,noreferrer" );
+        window.open( url, "_blank", "noopener,noreferrer" );
       } else {
         window.location = url;
       }

@@ -2287,6 +2287,146 @@ ALTER SEQUENCE public.guides_id_seq OWNED BY public.guides.id;
 
 
 --
+-- Name: id_summaries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.id_summaries (
+    id bigint NOT NULL,
+    taxon_id_summary_id integer,
+    summary text,
+    visual_key_group character varying,
+    score double precision,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    photo_tip character varying
+);
+
+
+--
+-- Name: id_summaries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.id_summaries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: id_summaries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.id_summaries_id_seq OWNED BY public.id_summaries.id;
+
+
+--
+-- Name: id_summary_dqas; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.id_summary_dqas (
+    id bigint NOT NULL,
+    id_summary_id integer,
+    user_id integer,
+    metric character varying,
+    agree boolean DEFAULT true,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: id_summary_dqas_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.id_summary_dqas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: id_summary_dqas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.id_summary_dqas_id_seq OWNED BY public.id_summary_dqas.id;
+
+
+--
+-- Name: id_summary_reference_dqas; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.id_summary_reference_dqas (
+    id bigint NOT NULL,
+    id_summary_reference_id integer,
+    user_id integer,
+    metric character varying,
+    agree boolean DEFAULT true,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: id_summary_reference_dqas_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.id_summary_reference_dqas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: id_summary_reference_dqas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.id_summary_reference_dqas_id_seq OWNED BY public.id_summary_reference_dqas.id;
+
+
+--
+-- Name: id_summary_references; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.id_summary_references (
+    id bigint NOT NULL,
+    id_summary_id integer,
+    reference_uuid character varying,
+    reference_source character varying,
+    reference_date date,
+    reference_content text,
+    user_id integer,
+    user_login character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: id_summary_references_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.id_summary_references_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: id_summary_references_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.id_summary_references_id_seq OWNED BY public.id_summary_references.id;
+
+
+--
 -- Name: identifications; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5058,6 +5198,80 @@ ALTER SEQUENCE public.taxon_frameworks_id_seq OWNED BY public.taxon_frameworks.i
 
 
 --
+-- Name: taxon_id_summaries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.taxon_id_summaries (
+    id bigint NOT NULL,
+    uuid character varying,
+    active boolean DEFAULT false,
+    taxon_id integer,
+    taxon_name character varying,
+    taxon_common_name character varying,
+    taxon_photo_id integer,
+    taxon_group character varying,
+    run_name character varying,
+    run_generated_at timestamp without time zone,
+    run_description text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    language character varying DEFAULT 'en'::character varying NOT NULL
+);
+
+
+--
+-- Name: taxon_id_summaries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.taxon_id_summaries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxon_id_summaries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.taxon_id_summaries_id_seq OWNED BY public.taxon_id_summaries.id;
+
+
+--
+-- Name: taxon_id_summary_flags; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.taxon_id_summary_flags (
+    id bigint NOT NULL,
+    taxon_id_summary_id bigint NOT NULL,
+    user_id integer NOT NULL,
+    comment text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: taxon_id_summary_flags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.taxon_id_summary_flags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxon_id_summary_flags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.taxon_id_summary_flags_id_seq OWNED BY public.taxon_id_summary_flags.id;
+
+
+--
 -- Name: taxon_links; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5868,7 +6082,6 @@ CREATE TABLE public.users (
     fundraiseup_plan_frequency character varying,
     fundraiseup_plan_status character varying,
     fundraiseup_plan_started_at date
-
 );
 
 
@@ -6488,6 +6701,34 @@ ALTER TABLE ONLY public.guides ALTER COLUMN id SET DEFAULT nextval('public.guide
 
 
 --
+-- Name: id_summaries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.id_summaries ALTER COLUMN id SET DEFAULT nextval('public.id_summaries_id_seq'::regclass);
+
+
+--
+-- Name: id_summary_dqas id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.id_summary_dqas ALTER COLUMN id SET DEFAULT nextval('public.id_summary_dqas_id_seq'::regclass);
+
+
+--
+-- Name: id_summary_reference_dqas id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.id_summary_reference_dqas ALTER COLUMN id SET DEFAULT nextval('public.id_summary_reference_dqas_id_seq'::regclass);
+
+
+--
+-- Name: id_summary_references id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.id_summary_references ALTER COLUMN id SET DEFAULT nextval('public.id_summary_references_id_seq'::regclass);
+
+
+--
 -- Name: identifications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6947,6 +7188,20 @@ ALTER TABLE ONLY public.taxon_framework_relationships ALTER COLUMN id SET DEFAUL
 --
 
 ALTER TABLE ONLY public.taxon_frameworks ALTER COLUMN id SET DEFAULT nextval('public.taxon_frameworks_id_seq'::regclass);
+
+
+--
+-- Name: taxon_id_summaries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_id_summaries ALTER COLUMN id SET DEFAULT nextval('public.taxon_id_summaries_id_seq'::regclass);
+
+
+--
+-- Name: taxon_id_summary_flags id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_id_summary_flags ALTER COLUMN id SET DEFAULT nextval('public.taxon_id_summary_flags_id_seq'::regclass);
 
 
 --
@@ -7586,6 +7841,38 @@ ALTER TABLE ONLY public.guides
 
 
 --
+-- Name: id_summaries id_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.id_summaries
+    ADD CONSTRAINT id_summaries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: id_summary_dqas id_summary_dqas_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.id_summary_dqas
+    ADD CONSTRAINT id_summary_dqas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: id_summary_reference_dqas id_summary_reference_dqas_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.id_summary_reference_dqas
+    ADD CONSTRAINT id_summary_reference_dqas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: id_summary_references id_summary_references_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.id_summary_references
+    ADD CONSTRAINT id_summary_references_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: identifications identifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8122,6 +8409,22 @@ ALTER TABLE ONLY public.taxon_frameworks
 
 
 --
+-- Name: taxon_id_summaries taxon_id_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_id_summaries
+    ADD CONSTRAINT taxon_id_summaries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taxon_id_summary_flags taxon_id_summary_flags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_id_summary_flags
+    ADD CONSTRAINT taxon_id_summary_flags_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: taxon_links taxon_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8364,6 +8667,20 @@ CREATE INDEX auditable_index ON public.audits USING btree (auditable_type, audit
 --
 
 CREATE INDEX fk_flags_user ON public.flags USING btree (user_id);
+
+
+--
+-- Name: idx_summary_flags_one_per_summary; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_summary_flags_one_per_summary ON public.taxon_id_summary_flags USING btree (taxon_id_summary_id);
+
+
+--
+-- Name: idx_taxon_id_summaries_active_per_taxon; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_taxon_id_summaries_active_per_taxon ON public.taxon_id_summaries USING btree (taxon_id, language) WHERE (active = true);
 
 
 --
@@ -9113,6 +9430,34 @@ CREATE INDEX index_guides_on_taxon_id ON public.guides USING btree (taxon_id);
 --
 
 CREATE INDEX index_guides_on_user_id ON public.guides USING btree (user_id);
+
+
+--
+-- Name: index_id_summaries_on_taxon_id_summary_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_id_summaries_on_taxon_id_summary_id ON public.id_summaries USING btree (taxon_id_summary_id);
+
+
+--
+-- Name: index_id_summary_dqas_on_id_summary_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_id_summary_dqas_on_id_summary_id ON public.id_summary_dqas USING btree (id_summary_id);
+
+
+--
+-- Name: index_id_summary_reference_dqas_on_id_summary_reference_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_id_summary_reference_dqas_on_id_summary_reference_id ON public.id_summary_reference_dqas USING btree (id_summary_reference_id);
+
+
+--
+-- Name: index_id_summary_references_on_id_summary_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_id_summary_references_on_id_summary_id ON public.id_summary_references USING btree (id_summary_id);
 
 
 --
@@ -11083,17 +11428,17 @@ CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 
 
 --
--- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_votes_on_unique_obs_fave ON public.votes USING btree (votable_type, votable_id, voter_type, voter_id) WHERE (((votable_type)::text = 'Observation'::text) AND ((voter_type)::text = 'User'::text) AND (vote_scope IS NULL) AND (vote_flag = true));
-
-
---
 -- Name: index_votes_on_votable_id_and_votable_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_votes_on_votable_id_and_votable_type_and_vote_scope ON public.votes USING btree (votable_id, votable_type, vote_scope);
+
+
+--
+-- Name: index_votes_on_votable_voter_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_votes_on_votable_voter_scope ON public.votes USING btree (votable_type, votable_id, voter_type, voter_id, vote_scope);
 
 
 --
@@ -11746,5 +12091,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250807145445'),
 ('20250826232001'),
 ('20250903221143'),
-('20250905224234');
+('20250905224234'),
+('20251010205509'),
+('20251014130528'),
+('20251014130547'),
+('20251014130548'),
+('20251119130558');
+
 

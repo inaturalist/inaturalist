@@ -75,6 +75,8 @@ class Observation extends React.Component {
           onClick={() => {
             voteOnPhoto( photoID, true );
           }}
+          title={I18n.t( "views.nls_demo.mark_as_relevant" )}
+          label={I18n.t( "views.nls_demo.mark_as_relevant" )}
         >
           <i className="fa fa-thumbs-up" />
         </button>
@@ -84,6 +86,8 @@ class Observation extends React.Component {
           onClick={() => {
             voteOnPhoto( photoID, false );
           }}
+          title={I18n.t( "views.nls_demo.mark_as_not_relevant" )}
+          label={I18n.t( "views.nls_demo.mark_as_not_relevant" )}
         >
           <i className="fa fa-thumbs-down" />
         </button>

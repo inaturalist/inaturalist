@@ -142,10 +142,14 @@ describe TaxonMerge, "commit" do
 
     describe "should make swaps for all children when merging a" do
       it "genus" do
-        @input_ancestor.update( rank: Taxon::FAMILY, rank_level: Taxon::FAMILY_LEVEL )
-        @input_taxon1.update( rank: Taxon::GENUS, name: "Hyla" )
-        @input_taxon2.update( rank: Taxon::GENUS, name: "Rana" )
-        @output_taxon.update( rank: Taxon::GENUS, name: "Pseudacris" )
+        @input_ancestor.assign_attributes( rank: Taxon::FAMILY, rank_level: Taxon::FAMILY_LEVEL )
+        @input_ancestor.save!( context: :bypass_name_restrictions )
+        @input_taxon1.assign_attributes( rank: Taxon::GENUS, name: "Hyla" )
+        @input_taxon1.save!( context: :bypass_name_restrictions )
+        @input_taxon2.assign_attributes( rank: Taxon::GENUS, name: "Rana" )
+        @input_taxon2.save!( context: :bypass_name_restrictions )
+        @output_taxon.assign_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
+        @output_taxon.save!( context: :bypass_name_restrictions )
         child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::SPECIES, name: "Hyla regilla" )
         child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::SPECIES, name: "Rana clamitans" )
         [@merge, @input_taxon1, @output_taxon, child1, child2].each(&:reload)
@@ -163,9 +167,12 @@ describe TaxonMerge, "commit" do
         expect( child_swap2.output_taxon.parent ).to eq @output_taxon
       end
       it "species" do
-        @input_taxon1.update( rank: Taxon::SPECIES, name: "Hyla regilla" )
-        @input_taxon2.update( rank: Taxon::SPECIES, name: "Rana clamitans" )
-        @output_taxon.update( rank: Taxon::SPECIES, name: "Pseudacris regilla" )
+        @input_taxon1.assign_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
+        @input_taxon1.save!( context: :bypass_name_restrictions )
+        @input_taxon2.assign_attributes( rank: Taxon::SPECIES, name: "Rana clamitans" )
+        @input_taxon2.save!( context: :bypass_name_restrictions )
+        @output_taxon.assign_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla" )
+        @output_taxon.save!( context: :bypass_name_restrictions )
         child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SPECIES_LEVEL )
         child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::SUBSPECIES, name: "Rana clamitans foo", rank_level: Taxon::SPECIES_LEVEL )
         [@merge, @input_taxon1, @output_taxon, child1, child2].each(&:reload)
@@ -186,23 +193,31 @@ describe TaxonMerge, "commit" do
     end
 
     it "should not make swaps for children if they are included in the merge" do
-      @input_taxon1.update( rank: Taxon::SPECIES, name: "Hyla regilla" )
-      @input_taxon2.update( rank: Taxon::SUBSPECIES, name: "Hyla regilla regilla", parent: @input_taxon1 )
-      @output_taxon.update( rank: Taxon::SPECIES, name: "Pseudacris regilla" )
-      [@input_taxon1, @output_taxon].each(&:reload)
+      @input_taxon1.assign_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
+      @input_taxon1.save!( context: :bypass_name_restrictions )
+      @input_taxon2.assign_attributes( rank: Taxon::SUBSPECIES, name: "Hyla regilla regilla", parent: @input_taxon1 )
+      @input_taxon2.save!( context: :bypass_name_restrictions )
+      @output_taxon.assign_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla" )
+      @output_taxon.save!( context: :bypass_name_restrictions )
+      [@input_taxon1, @output_taxon].each( &:reload )
       without_delay { @merge.commit }
-      [@input_taxon1, @input_taxon2, @output_taxon].each(&:reload)
+      [@input_taxon1, @input_taxon2, @output_taxon].each( &:reload )
       expect( @input_taxon2.parent ).to eq @input_taxon1
       expect( @input_taxon2.taxon_change_taxa.size ).to eq 1
       expect( @input_taxon2.taxon_change_taxa.first.taxon_change ).to eq @merge
     end
 
     it "should move a child if a swap would make a new taxon with the same name" do
-      @input_ancestor.update( rank: Taxon::FAMILY, name: "Hylidae" )
-      @input_taxon1.update( rank: Taxon::GENUS, name: "Acris" )
-      @input_taxon2.update( rank: Taxon::GENUS, name: "Pseudacris" )
-      @input_taxon3.update( rank: Taxon::GENUS, name: "Hyla" )
-      @output_taxon.update( rank: Taxon::GENUS, name: "Acris", is_active: false )
+      @input_ancestor.assign_attributes( rank: Taxon::FAMILY, name: "Hylidae" )
+      @input_ancestor.save!( context: :bypass_name_restrictions )
+      @input_taxon1.assign_attributes( rank: Taxon::GENUS, name: "Acris" )
+      @input_taxon1.save!( context: :bypass_name_restrictions )
+      @input_taxon2.assign_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
+      @input_taxon2.save!( context: :bypass_name_restrictions )
+      @input_taxon3.assign_attributes( rank: Taxon::GENUS, name: "Hyla" )
+      @input_taxon3.save!( context: :bypass_name_restrictions )
+      @output_taxon.assign_attributes( rank: Taxon::GENUS, name: "Acris", is_active: false )
+      @output_taxon.save!( context: :bypass_name_restrictions )
       child = Taxon.make!( parent: @input_taxon1, rank: Taxon::SPECIES, name: "Acris blanchardii" )
       @merge.reload
       @merge.commit

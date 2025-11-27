@@ -1,5 +1,5 @@
 import _ from "lodash";
-import piexif from "piexifjs";
+import ExifReader from "exifreader";
 import moment from "moment-timezone";
 import util, { parsableDatetimeFormat } from "./util";
 
@@ -55,67 +55,57 @@ const DroppedFile = class DroppedFile {
     const metadata = { };
     return new Promise( resolve => {
       reader.onloadend = e => {
-        const exif = { };
-        // read EXIF into an object
-        let exifObj;
-        try {
-          exifObj = piexif.load( e.target.result );
-        } catch ( err ) {
-          return resolve( metadata );
-        }
-        _.each( exifObj, ( tags, ifd ) => {
-          if ( ifd === "thumbnail" ) { return; }
-          _.each( tags, ( value, tag ) => {
-            exif[piexif.TAGS[ifd][tag].name] = value;
-          } );
-        } );
-        // check that object for metadata we care about
-        if ( exif.ImageDescription ) {
-          const desc = _.trim( exif.ImageDescription.replace( /\u0000/g, "" ) );
-          if ( BRANDED_DESCRIPTIONS.indexOf( desc ) < 0 ) {
-            metadata.description = desc;
+        ExifReader.load( e.target.result ).then( exif => {
+          if ( exif?.ImageDescription?.description ) {
+            // eslint-disable-next-line no-control-regex
+            const desc = _.trim( exif.ImageDescription.description.replace( /\u0000/g, "" ) );
+            if ( BRANDED_DESCRIPTIONS.indexOf( desc ) < 0 ) {
+              metadata.description = desc;
+            }
           }
-        }
-        if ( exif.GPSLatitude && exif.GPSLatitude.length === 3 ) {
-          metadata.latitude = util.gpsCoordConvert( exif.GPSLatitude );
-          if ( _.lowerCase( exif.GPSLatitudeRef ) === "s" ) {
-            metadata.latitude *= -1;
+          if ( exif.GPSLatitude?.value && exif.GPSLatitude.value.length === 3 ) {
+            metadata.latitude = util.gpsCoordConvert( exif.GPSLatitude.value );
+            if ( _.lowerCase( exif.GPSLatitudeRef?.value ) === "s" ) {
+              metadata.latitude *= -1;
+            }
           }
-        }
-        if ( exif.GPSLongitude && exif.GPSLongitude.length === 3 ) {
-          metadata.longitude = util.gpsCoordConvert( exif.GPSLongitude );
-          if ( _.lowerCase( exif.GPSLongitudeRef ) === "w" ) {
-            metadata.longitude *= -1;
+          if ( exif.GPSLongitude?.value && exif.GPSLongitude.value.length === 3 ) {
+            metadata.longitude = util.gpsCoordConvert( exif.GPSLongitude.value );
+            if ( _.lowerCase( exif.GPSLongitudeRef?.value ) === "w" ) {
+              metadata.longitude *= -1;
+            }
           }
-        }
-        if ( exif.GPSHPositioningError && exif.GPSHPositioningError.length === 2 ) {
-          metadata.accuracy = _.round(
-            exif.GPSHPositioningError[0] / exif.GPSHPositioningError[1]
-          );
-        }
-        if ( exif.DateTimeOriginal || exif.DateTimeDigitized ) {
-          // reformat YYYY:MM:DD into YYYY/MM/DD for moment
-          const dt = ( exif.DateTimeOriginal || exif.DateTimeDigitized )
-            .replace( /(\d{4}):(\d{2}):(\d{2})/, "$1/$2/$3" );
-          const momentDate = moment( dt );
-          if ( momentDate.isValid( ) ) {
-            metadata.date = momentDate.format( parsableDatetimeFormat( ) );
-            metadata.selected_date = metadata.date;
+          if ( exif.GPSHPositioningError?.value && exif.GPSHPositioningError.value.length === 2 ) {
+            metadata.accuracy = _.round(
+              exif.GPSHPositioningError.value[0] / exif.GPSHPositioningError.value[1]
+            );
           }
-        }
-        if ( Math.abs( metadata.latitude ) > 90 || Math.abs( metadata.longitude ) > 180 ) {
-          metadata.latitude = null;
-          metadata.longitude = null;
-        }
-        // reverse geocode lat/lngs to get place name
-        if ( metadata.latitude && metadata.longitude ) {
-          util.reverseGeocode( metadata.latitude, metadata.longitude ).then( location => {
-            if ( location ) { metadata.locality_notes = location; }
+          if ( exif.DateTimeOriginal?.description || exif.DateTimeDigitized?.description ) {
+            // reformat YYYY:MM:DD into YYYY/MM/DD for moment
+            const dt = ( exif.DateTimeOriginal?.description || exif.DateTimeDigitized.description )
+              .replace( /(\d{4}):(\d{2}):(\d{2})/, "$1-$2-$3" );
+            const momentDate = moment( dt );
+            if ( momentDate.isValid( ) ) {
+              metadata.date = momentDate.format( parsableDatetimeFormat( ) );
+              metadata.selected_date = metadata.date;
+            }
+          }
+          if ( Math.abs( metadata.latitude ) > 90 || Math.abs( metadata.longitude ) > 180 ) {
+            metadata.latitude = null;
+            metadata.longitude = null;
+          }
+          // reverse geocode lat/lngs to get place name
+          if ( metadata.latitude && metadata.longitude ) {
+            util.reverseGeocode( metadata.latitude, metadata.longitude ).then( location => {
+              if ( location ) { metadata.locality_notes = location; }
+              resolve( metadata );
+            } );
+          } else {
             resolve( metadata );
-          } );
-        } else {
+          }
+        } ).catch( ( ) => {
           resolve( metadata );
-        }
+        } );
       };
       reader.readAsDataURL( this.file );
     } );

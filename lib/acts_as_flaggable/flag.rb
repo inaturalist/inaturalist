@@ -11,10 +11,12 @@ class Flag < ApplicationRecord
   SPAM = "spam"
   INAPPROPRIATE = "inappropriate"
   COPYRIGHT_INFRINGEMENT = "copyright infringement"
+  ARTIFICIALLY_GENERATED_CONTENT = "artificially generated content"
   FLAGS = [
     SPAM,
     INAPPROPRIATE,
-    COPYRIGHT_INFRINGEMENT
+    COPYRIGHT_INFRINGEMENT,
+    ARTIFICIALLY_GENERATED_CONTENT
   ].freeze
   TYPES = %w(CheckList Comment Guide GuideSection Identification List Message Observation Photo Place Post Project Sound
              Taxon User).freeze
@@ -30,6 +32,15 @@ class Flag < ApplicationRecord
     include_owner: true,
     include_notifier: true,
     on: :update,
+    if: lambda {| flag, _, subscription |
+      # this is meant to address a problem where the flag resolver was getting notified they
+      # they resolved a flag, and users shouldn't be notified of their own actions. This isn't
+      # perfect though, as this affects all `update` notifications. But, resolved flags are almost
+      # never updated, and even less so for reasons worth notifying
+      return false if flag.resolver == subscription.user
+
+      true
+    },
     unless: proc {| flag |
       # existing flag whose comment has been changed
       flag.saved_change_to_id || !flag.saved_change_to_comment

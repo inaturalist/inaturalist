@@ -123,6 +123,11 @@ $(document).ready(function() {
       reloadPreview( );
     }
   } );
+  $( "input[type='checkbox']" ).on( "change", function ( e ) {
+    var element = $( e.target );
+    var name = element.attr( "name" );
+    $( "input[type='checkbox'][name='" + name + "']" ).prop( "checked", element.prop( "checked" ) );
+  } );
 } );
 
 window.startFlowTask = function ( flowTask ) {

@@ -21,6 +21,7 @@ const OTHER_OBSERVATION_FIELDS = {
   id: true,
   latitude: true,
   obscured: true,
+  private_geojson: true,
   photos: {
     id: true,
     uuid: true,

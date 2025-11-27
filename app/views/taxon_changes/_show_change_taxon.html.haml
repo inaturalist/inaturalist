@@ -8,6 +8,8 @@
 .taxon_change
   - unless hide_buttons
     .pull-right.inline.buttonrow
+      - if taxon_change.status_approved? || taxon_change.status_pending?
+        = render :partial => 'taxon_changes/vote_panel', :locals => {:taxon_change => taxon_change}
       - if taxon_change.committed?
         - if taxon_change.automatable? && current_user&.prefers_automatic_taxonomic_changes?
           = link_to t(:view_your_affected_ids), identifications_path( user_id: current_user.id, taxon_change_id: taxon_change.id ), :class => "btn btn-default"
@@ -15,14 +17,16 @@
           = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-default"
       - if taxon_change.editable_by?(current_user)
         = link_to t(:edit), edit_taxon_change_path(taxon_change), :class => "btn btn-default"
-        - if show_commit_button && taxon_change.status_draft? && taxon_change.committable_by?( current_user )
-          = link_to t(:commit), taxon_change_commit_path(taxon_change),    |
-            :data => {                                                     |
-              :confirm => confirm_msg, |
-              :loading_click => t(:committing)                             |
-            },                                                             |
-            :method => :put,                                               |
-            :class => "btn btn-primary"
+        - if show_commit_button && taxon_change.committable_by?( current_user )
+          - if taxon_change.status_pending?
+            = button_tag t( "views.taxon_changes.pending" ),
+              class: "btn btn-primary",
+              disabled: true
+          - elsif taxon_change.status_draft? || taxon_change.status_approved?
+            = link_to t( :commit ), taxon_change_commit_path( taxon_change ),
+              data: { confirm: confirm_msg, loading_click: t( :committing ) },
+              method: :put,
+              class: "btn btn-primary"
       - if show_commit_button && taxon_change.status_withdrawn?
         = link_to t("views.taxon_changes.restore"),
           restore_taxon_change_path(taxon_change),
@@ -37,9 +41,13 @@
         - if taxon_change.status_committed?
           = t(:committed_on, date: l(taxon_change.committed_on))
         - elsif taxon_change.status_withdrawn?
-          = t("views.taxon_changes.withdrawn")
+          = t( "views.taxon_changes.withdrawn" )
+        - elsif taxon_change.status_pending?
+          = t( "views.taxon_changes.pending" )
+        - elsif taxon_change.status_approved?
+          = t( "views.taxon_changes.approved" )
         - else
-          = t(:draft_)
+          = t( :draft_ )
   .meta.ui.stacked
     - unless taxon_change.description.blank?
       .meta.stacked.ui

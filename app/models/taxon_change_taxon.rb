@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TaxonChangeTaxon < ApplicationRecord
-  belongs_to :taxon_change, inverse_of: :taxon_change_taxa
+  belongs_to :taxon_change, inverse_of: :taxon_change_taxa, touch: true
   belongs_to :taxon, inverse_of: :taxon_change_taxa
 
   validates_presence_of :taxon
@@ -11,7 +13,7 @@ class TaxonChangeTaxon < ApplicationRecord
   def index_taxon
     # unless draft?
     t = taxon || Taxon.find_by_id( taxon_id )
-    t.delay( priority: USER_INTEGRITY_PRIORITY ).elastic_index! if t
+    t&.delay( priority: USER_INTEGRITY_PRIORITY )&.elastic_index!
     true
   end
 end

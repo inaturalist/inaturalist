@@ -113,6 +113,13 @@ class Assessment extends React.Component {
                           } )
                         }}
                       />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_research_grade_community_observation_html", {
+                            site_name: SITE.short_name
+                          } )
+                        }}
+                      />
                     </ul>
                     <p
                       dangerouslySetInnerHTML={{
@@ -148,6 +155,11 @@ class Assessment extends React.Component {
                       <li
                         dangerouslySetInnerHTML={{
                           __html: I18n.t( "views.observations.show.dqa_help_casual_not_one_subject_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_not_accurate_evidence_html" )
                         }}
                       />
                       <li
