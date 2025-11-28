@@ -46,11 +46,16 @@ Stats.loadChartsFromJSON = function ( json ) {
   Stats.loadActiveUsers( json );
   Stats.loadRecentUsers( json );
   Stats.loadDailyUsers( json );
-  Stats.loadIdentifications( json );
   Stats.loadObservations( json );
   Stats.loadIdentifications( json );
+  Stats.loadIdentificationRatiosPerActiveUsers30( json );
+  Stats.loadObservationRatiosPerActiveUsers30( json );
+  Stats.loadIdentificationRatiosPerActiveUsers7( json );
+  Stats.loadObservationRatiosPerActiveUsers7( json );
   Stats.loadCumulativeIdentifications( json );
   Stats.loadObservationsUnkown( json );
+  Stats.loadObservationsTotalUnkownRatio( json );
+  Stats.loadIdentificationsTotalOthersRatio( json );
   Stats.loadCumulativeUsers( json );
   Stats.loadCumulativePlatforms( json );
   Stats.loadProjects( json );
@@ -79,6 +84,106 @@ Stats.loadIdentifications = function ( json ) {
           stat.data.identifications.today || 0,
           stat.data.identifications.last_7_days_for_others || 0,
           stat.data.identifications.today_for_others || 0
+        ];
+      } )
+    } );
+  } );
+};
+
+Stats.loadIdentificationRatiosPerActiveUsers30 = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      element_id: "identification-ratios-per-active-users-30",
+      chartType: "AnnotationChart",
+      numberFormats: "#,###.##",
+      series: [
+        { label: "identifications today" },
+        { label: "identifications today for others" },
+        { label: "identifications last 7 days" },
+        { label: "identifications last 7 days for others" }
+      ],
+      data: _.map( json, function ( stat ) {
+        return [
+          Stats.dateForStat( stat ),
+          ( stat.data.identifications.today - stat.data.identifications.today_for_others ) / stat.data.users.active,
+          stat.data.identifications.today_for_others / stat.data.users.active,
+          ( stat.data.identifications.last_7_days - stat.data.identifications.last_7_days_for_others ) / stat.data.users.active,
+          stat.data.identifications.last_7_days_for_others / stat.data.users.active
+        ];
+      } )
+    } );
+  } );
+};
+
+Stats.loadIdentificationRatiosPerActiveUsers7 = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      element_id: "identification-ratios-per-active-users-7",
+      chartType: "AnnotationChart",
+      numberFormats: "#,###.##",
+      series: [
+        { label: "identifications today" },
+        { label: "identifications today for others" },
+        { label: "identifications last 7 days" },
+        { label: "identifications last 7 days for others" }
+      ],
+      data: _.map( json, function ( stat ) {
+        return [
+          Stats.dateForStat( stat ),
+          ( stat.data.identifications.today - stat.data.identifications.today_for_others ) / stat.data.users.active_7days,
+          stat.data.identifications.today_for_others / stat.data.users.active_7days,
+          ( stat.data.identifications.last_7_days - stat.data.identifications.last_7_days_for_others ) / stat.data.users.active_7days,
+          stat.data.identifications.last_7_days_for_others / stat.data.users.active_7days
+        ];
+      } )
+    } );
+  } );
+};
+
+Stats.loadObservationRatiosPerActiveUsers30 = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      element_id: "observation-ratios-per-active-users-30",
+      chartType: "AnnotationChart",
+      numberFormats: "#,###.##",
+      series: [
+        { label: "observations today" },
+        { label: "observations last 7 days" },
+        { label: "observations last 30 days" },
+        { label: "observations last 30 days unkown" }
+      ],
+      data: _.map( json, function ( stat ) {
+        return [
+          Stats.dateForStat( stat ),
+          stat.data.observations.today / stat.data.users.active,
+          stat.data.observations.last_7_days / stat.data.users.active,
+          stat.data.observations.last_30_days / stat.data.users.active,
+          stat.data.observations.last_30_days_not_identified / stat.data.users.active
+        ];
+      } )
+    } );
+  } );
+};
+
+Stats.loadObservationRatiosPerActiveUsers7 = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      element_id: "observation-ratios-per-active-users-7",
+      chartType: "AnnotationChart",
+      numberFormats: "#,###.##",
+      series: [
+        { label: "observations today" },
+        { label: "observations last 7 days" },
+        { label: "observations last 30 days" },
+        { label: "observations last 30 days unkown" }
+      ],
+      data: _.map( json, function ( stat ) {
+        return [
+          Stats.dateForStat( stat ),
+          stat.data.observations.today / stat.data.users.active_7days,
+          stat.data.observations.last_7_days / stat.data.users.active_7days,
+          stat.data.observations.last_30_days / stat.data.users.active_7days,
+          stat.data.observations.last_30_days_not_identified / stat.data.users.active_7days
         ];
       } )
     } );
@@ -295,6 +400,7 @@ Stats.loadTodayIdentifiedByOthers = function ( json ) {
       chartOptions: {
         legend: { position: "none" }
       },
+      chartType: "LineChart",
       element_id: "today-identified-by-others",
       series: [{ label: I18n.t( "total" ) }],
       data: _.map( json, function ( stat ) {
@@ -336,6 +442,7 @@ Stats.loadTodayIdentifiedByOthersByIconicTaxon = function ( json ) {
       chartOptions: {
         legend: { position: "right" }
       },
+      chartType: "LineChart",
       series: _.map( iconicIDs, function ( key ) {
         return {
           label: Stats.iconicTaxonLabel( key )
@@ -375,6 +482,27 @@ Stats.loadCumulativeIdentifications = function ( json ) {
   } );
 };
 
+Stats.loadIdentificationsTotalOthersRatio = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      chartOptions: {
+        legend: { position: "bottom" }
+      },
+      chartType: "LineChart",
+      element_id: "identifications-total-others-ratio",
+      series: [
+        { label: I18n.t( "views.stats.index.identifications_total_others_ratio_desc" ) }
+      ],
+      data: _.map( json, function ( stat ) {
+        return [
+          Stats.dateForStat( stat ),
+          stat.data.identifications.count_for_others / stat.data.identifications.count
+        ];
+      } )
+    } );
+  } );
+};
+
 Stats.loadObservationsUnkown = function ( json ) {
   google.charts.setOnLoadCallback( function ( ) {
     Stats.simpleChart( {
@@ -387,6 +515,27 @@ Stats.loadObservationsUnkown = function ( json ) {
         return [
           Stats.dateForStat( stat ),
           stat.data.observations.last_30_days_not_identified
+        ];
+      } )
+    } );
+  } );
+};
+
+Stats.loadObservationsTotalUnkownRatio = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      chartOptions: {
+        legend: { position: "bottom" }
+      },
+      chartType: "LineChart",
+      element_id: "observations-total-unkown-ratio",
+      series: [
+        { label: I18n.t( "views.stats.index.observations_total_unkown_ratio_desc" ) }
+      ],
+      data: _.map( json, function ( stat ) {
+        return [
+          Stats.dateForStat( stat ),
+          stat.data.observations.last_30_days_not_identified / stat.data.observations.last_30_days
         ];
       } )
     } );
@@ -544,7 +693,8 @@ Stats.simpleChart = function ( opts ) {
   }
   var chartOptions = options.chartOptions || { };
   var data = new google.visualization.DataTable( );
-  if ( options.chartType === google.visualization.AreaChart ) {
+  if ( options.chartType === google.visualization.AreaChart ||
+    options.chartType === google.visualization.LineChart ) {
     data.addColumn( "date", "Date" );
     chartOptions.vAxis = { minValue: 0 };
     chartOptions.height = 300;
@@ -561,9 +711,13 @@ Stats.simpleChart = function ( opts ) {
     data.addColumn( "date", "Date" );
     chartOptions.min = 0;
     chartOptions.zoomStartTime = new Date( Stats.monthAgoDate( ) );
+    chartOptions.numberFormats = opts.numberFormats || "#,###";
   }
   _.each( options.series, function ( s ) {
-    data.addColumn( "number", s.label );
+    data.addColumn( {
+      type: "number",
+      label: s.label
+    } );
   } );
   data.addRows( options.data );
   var chart = new options.chartType( document.getElementById( options.element_id ) );
