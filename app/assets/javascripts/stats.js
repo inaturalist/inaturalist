@@ -362,7 +362,7 @@ Stats.loadCumulativeIdentifications = function ( json ) {
       element_id: "cumulative-identifications",
       series: [
         { label: I18n.t( "total" ) },
-        { label: I18n.t( "for_others" ) }
+        { label: I18n.t( "views.stats.index.for_others" ) }
       ],
       data: _.map( json, function ( stat ) {
         return [
