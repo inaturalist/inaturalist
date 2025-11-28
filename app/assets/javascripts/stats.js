@@ -46,12 +46,43 @@ Stats.loadChartsFromJSON = function ( json ) {
   Stats.loadActiveUsers( json );
   Stats.loadRecentUsers( json );
   Stats.loadDailyUsers( json );
+  Stats.loadIdentifications( json );
   Stats.loadObservations( json );
+  Stats.loadIdentifications( json );
+  Stats.loadCumulativeIdentifications( json );
+  Stats.loadObservationsUnkown( json );
   Stats.loadCumulativeUsers( json );
   Stats.loadCumulativePlatforms( json );
   Stats.loadProjects( json );
   Stats.loadRanks( json );
   Stats.loadRanksPie( json );
+  Stats.loadTodayIdentifiedByOthers( json );
+  Stats.loadTodayIdentifiedByOthersByIconicTaxon( json );
+};
+
+Stats.loadIdentifications = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      element_id: "identifications",
+      chartType: "AnnotationChart",
+      series: [
+        { label: I18n.t( "views.stats.index.ids_last_7_days" ) },
+        { label: I18n.t( "views.stats.index.ids_today" ) },
+        { label: I18n.t( "views.stats.index.ids_last_7_days_for_others" ) },
+        { label: I18n.t( "views.stats.index.ids_today_for_others" ) }
+      ],
+      data: _.map( json, function ( stat ) {
+        stat.data.identifications = stat.data.identifications || {};
+        return [
+          Stats.dateForStat( stat ),
+          stat.data.identifications.last_7_days || 0,
+          stat.data.identifications.today || 0,
+          stat.data.identifications.last_7_days_for_others || 0,
+          stat.data.identifications.today_for_others || 0
+        ];
+      } )
+    } );
+  } );
 };
 
 Stats.loadObsSpark = function ( json ) {
@@ -253,6 +284,110 @@ Stats.loadProjects = function ( json ) {
       series: [{ label: I18n.t( "total" ) }],
       data: _.map( json, function ( stat ) {
         return [Stats.dateForStat( stat ), stat.data.projects.count];
+      } )
+    } );
+  } );
+};
+
+Stats.loadTodayIdentifiedByOthers = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      chartOptions: {
+        legend: { position: "none" }
+      },
+      element_id: "today-identified-by-others",
+      series: [{ label: I18n.t( "total" ) }],
+      data: _.map( json, function ( stat ) {
+        return [
+          Stats.dateForStat( stat ),
+          stat.data.observations.today_identified_by_others
+        ];
+      } )
+    } );
+  } );
+};
+
+Stats.iconicTaxonLabel = function ( iconicTaxonID ) {
+  var labelID = parseInt( iconicTaxonID, 10 );
+  if ( window.inaturalist && inaturalist.ICONIC_TAXA && inaturalist.ICONIC_TAXA[labelID] ) {
+    return inaturalist.ICONIC_TAXA[labelID].name;
+  }
+  return I18n.t( "unknown" );
+};
+
+Stats.loadTodayIdentifiedByOthersByIconicTaxon = function ( json ) {
+  var iconicKey = "today_identified_by_others_by_iconic_taxon";
+  var iconicIDs = _.chain( json ).
+    map( function ( stat ) {
+      return _.keys( stat.data.observations[iconicKey] || {} );
+    } ).
+    flatten( ).
+    uniq( ).
+    sortBy( function ( key ) {
+      return Stats.iconicTaxonLabel( key );
+    } ).
+    value( );
+  if ( _.isEmpty( iconicIDs ) ) {
+    return;
+  }
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      element_id: "today-identified-by-others-iconic",
+      chartOptions: {
+        legend: { position: "right" }
+      },
+      series: _.map( iconicIDs, function ( key ) {
+        return {
+          label: Stats.iconicTaxonLabel( key )
+        };
+      } ),
+      data: _.map( json, function ( stat ) {
+        var values = _.map( iconicIDs, function ( key ) {
+          var counts = stat.data.observations[iconicKey] || {};
+          return counts[key] || 0;
+        } );
+        values.unshift( Stats.dateForStat( stat ) );
+        return values;
+      } )
+    } );
+  } );
+};
+
+Stats.loadCumulativeIdentifications = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      chartOptions: {
+        legend: { position: "bottom" }
+      },
+      element_id: "cumulative-identifications",
+      series: [
+        { label: I18n.t( "total" ) },
+        { label: I18n.t( "for_others" ) }
+      ],
+      data: _.map( json, function ( stat ) {
+        return [
+          Stats.dateForStat( stat ),
+          stat.data.identifications.count,
+          stat.data.identifications.count_for_others
+        ];
+      } )
+    } );
+  } );
+};
+
+Stats.loadObservationsUnkown = function ( json ) {
+  google.charts.setOnLoadCallback( function ( ) {
+    Stats.simpleChart( {
+      chartOptions: {
+        legend: { position: "none" }
+      },
+      element_id: "observations-unkown",
+      series: [{ label: I18n.t( "total" ) }],
+      data: _.map( json, function ( stat ) {
+        return [
+          Stats.dateForStat( stat ),
+          stat.data.observations.last_30_days_not_identified
+        ];
       } )
     } );
   } );

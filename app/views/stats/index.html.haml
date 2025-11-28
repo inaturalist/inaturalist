@@ -117,6 +117,23 @@
         %dt=t :identifiers
         %dd=t "views.stats.index.identifiers_desc"
   .row
+    .col-md-12
+      %h3=t :identifications
+      #identifications.stacked.vis
+        .loading.status=t :loading
+    .col-md-6
+      %dl.meta
+        %dt=t "views.stats.index.ids_last_7_days"
+        %dd=t "views.stats.index.ids_last_7_days_desc"
+        %dt=t "views.stats.index.ids_today"
+        %dd=t "views.stats.index.ids_today_desc"
+    .col-md-6
+      %dl.meta
+        %dt=t "views.stats.index.ids_last_7_days_for_others"
+        %dd=t "views.stats.index.ids_last_7_days_for_others_desc"
+        %dt=t "views.stats.index.ids_today_for_others"
+        %dd=t "views.stats.index.ids_today_for_others_desc"
+  .row
     .col-md-6
       %h3=t :observations
       #observations.stacked.vis
@@ -124,6 +141,24 @@
     .col-md-6
       %h3=t :observations_by_app
       #cumulative-platforms.stacked.vis
+        .loading.status=t :loading
+  .row
+    .col-md-6
+      %h3=t "views.stats.index.today_identified_by_others"
+      #today-identified-by-others.stacked.vis
+        .loading.status=t :loading
+    .col-md-6
+      %h3=t "views.stats.index.today_identified_by_others_by_iconic_taxon"
+      #today-identified-by-others-iconic.stacked.vis
+        .loading.status=t :loading
+  .row
+    .col-md-6
+      %h3=t "views.stats.index.observations_unknown"
+      #observations-unkown.stacked.vis
+        .loading.status=t :loading
+    .col-md-6
+      %h3=t :identifications
+      #cumulative-identifications.stacked.vis
         .loading.status=t :loading
   .row
     .col-md-6
