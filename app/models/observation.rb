@@ -3542,4 +3542,33 @@ class Observation < ApplicationRecord
       unique_hash: { "Observation::elastic_index": id }
     ).elastic_index!( ids: [id] )
   end
+
+  def dqa_stats_as_indexed_json
+    dqa_stats = {}
+    quality_metrics.group_by( &:metric ).each do | metric, metrics |
+      metric_votes_for = metrics.filter( &:agree ).size
+      metric_votes_against = metrics.size - metric_votes_for
+      metric_votes_tally = metric_votes_for - metric_votes_against
+      dqa_stats[metric] = {
+        vote_score: metric_votes_tally,
+        pass: metric_votes_tally > 0,
+        fail: metric_votes_tally < 0
+      }
+    end
+    needs_id_votes = votes_for.select {| v | v.vote_scope == "needs_id" }
+    if needs_id_votes.any?
+      needs_id_votes_for = needs_id_votes.filter( &:vote_flag ).size
+      needs_id_votes_against = needs_id_votes.size - needs_id_votes_for
+      needs_id_votes_tally = needs_id_votes_for - needs_id_votes_against
+      dqa_stats["needs_id"] = {
+        vote_score: needs_id_votes_tally,
+        pass: needs_id_votes_tally > 0,
+        fail: needs_id_votes_tally < 0
+      }
+    end
+
+    dqa_stats.map do | metric, stats |
+      stats.merge( { metric: metric } )
+    end
+  end
 end
