@@ -156,6 +156,7 @@ class QualityMetrics extends React.Component {
             {
               inatreact.t( "current_community_id", {
                 taxon: <SplitTaxon
+                  key="current_community_taxon"
                   taxon={observation.communityTaxon}
                   user={currentUser}
                 />
