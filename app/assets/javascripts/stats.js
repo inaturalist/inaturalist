@@ -388,7 +388,7 @@ Stats.loadObservationsUnkown = function ( json ) {
       data: _.map( json, function ( stat ) {
         return [
           Stats.dateForStat( stat ),
-          stat.data.observations.last_30_days_not_identified
+          stat.data.observations.created_30_days_not_identified
         ];
       } )
     } );
@@ -409,7 +409,7 @@ Stats.loadObservationsTotalUnkownRatio = function ( json ) {
       data: _.map( json, function ( stat ) {
         return [
           Stats.dateForStat( stat ),
-          stat.data.observations.last_30_days_not_identified / stat.data.observations.last_30_days
+          stat.data.observations.created_30_days_not_identified / stat.data.observations.created_30_days
         ];
       } )
     } );

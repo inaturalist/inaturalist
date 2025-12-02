@@ -116,29 +116,27 @@ class SiteStatistic < ApplicationRecord
         }
       ]
     ).total_entries
-    last_30_days = Observation.elastic_search(
+    created_30_days = Observation.elastic_search(
       size: 0,
       track_total_hits: true,
       filters: [
         {
           range: {
             created_at: {
-              gte: at_time - 30.days,
-              lte: at_time
+              lte: at_time - 30.days
             }
           }
         }
       ]
     ).total_entries
-    last_30_days_not_identified = Observation.elastic_search(
+    created_30_days_not_identified = Observation.elastic_search(
       size: 0,
       track_total_hits: true,
       filters: [
         {
           range: {
             created_at: {
-              gte: at_time - 30.days,
-              lte: at_time
+              lte: at_time - 30.days
             }
           }
         },
@@ -298,8 +296,8 @@ class SiteStatistic < ApplicationRecord
       today: today,
       # identified: Observation.where("taxon_id IS NOT NULL AND created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
       identified: identified,
-      last_30_days: last_30_days,
-      last_30_days_not_identified: last_30_days_not_identified,
+      created_30_days: created_30_days,
+      created_30_days_not_identified: created_30_days_not_identified,
       today_identified_by_others: today_identified_by_others,
       today_identified_by_others_by_iconic_taxon: today_identified_by_others_by_iconic_taxon,
       # community_identified: Observation.where("community_taxon_id IS NOT NULL AND created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
