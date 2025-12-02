@@ -8948,7 +8948,7 @@ en:
         today_identified_by_others_by_iconic_taxon: Observations Identified By Others (1 day)
         observations_unknown: Observations Unknown After 30 Days
         observations_total_unkown_ratio: Observations Unknown Ratio (30 days)
-        observations_total_unkown_ratio_desc: Ratio of all observations to unknown observations
+        observations_total_unkown_ratio_desc: Ratio of unknown observations to all observations 
         for_others: For others
         ids_last_7_days: Identifications (7 days)
         ids_last_7_days_desc: Identifications created during the previous 7 days
@@ -8958,8 +8958,6 @@ en:
         ids_last_7_days_for_others_desc: Identifications added to other peoples' observations during the previous 7 days
         ids_today_for_others: Identifications for others (1 day)
         ids_today_for_others_desc: Identifications added to other peoples' observations on a single day
-        identifications_total_others_ratio: Identifications Ratio (daily)
-        identifications_total_others_ratio_desc: Ratio of all identifications to identifications for others
         time_to_id_desc: Time to ID (hours, 1 week moving window)
         TTCID: TTCID
         TTCID_desc: Time to receive an identification from someone else that matches the community taxon.

@@ -1,10 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.expand_path( "../../config/environment", __FILE__ )
-
-days_to_generate = ( ENV["DAYS"] || 30 ).to_i
-raise "DAYS must be > 0" if days_to_generate <= 0
-
+days_to_generate = 365
 target_date = Time.now.utc.end_of_day
 
 days_to_generate.times do

@@ -409,6 +409,7 @@ Stats.loadObservationsTotalUnkownRatio = function ( json ) {
       data: _.map( json, function ( stat ) {
         return [
           Stats.dateForStat( stat ),
+          // eslint-disable-next-line max-len
           stat.data.observations.created_30_days_not_identified / stat.data.observations.created_30_days
         ];
       } )
