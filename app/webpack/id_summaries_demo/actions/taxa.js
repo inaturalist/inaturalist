@@ -34,6 +34,7 @@ const TAXON_SUMMARY_FIELDS = [
   "id_summaries.references.reference_content",
   "id_summaries.references.reference_source",
   "id_summaries.references.reference_uuid",
+  "id_summaries.references.reference_observation_id",
   "id_summaries.references.reference_date",
   "id_summaries.references.created_at",
   "id_summaries.references.updated_at"
@@ -88,6 +89,7 @@ export const fetchTaxa = ( {
           comment_uuid: source?.comment_uuid,
           user_id: source?.user_id,
           body: source?.body,
+          reference_observation_id: source?.reference_observation_id,
           created_at: source?.reference_date || source?.created_at || source?.updated_at || null,
           reference_source: source?.reference_source || source?.source || null,
           reference_uuid: source?.reference_uuid || source?.comment_uuid || null
@@ -98,6 +100,7 @@ export const fetchTaxa = ( {
             comment_uuid: ref?.comment_uuid,
             user_id: ref?.user_id,
             body: ref?.body || ref?.reference_content,
+            reference_observation_id: ref?.reference_observation_id,
             created_at: ref?.reference_date || ref?.created_at || ref?.reference_created_at || ref?.updated_at || null,
             reference_source: ref?.reference_source || ref?.source || null,
             reference_uuid: ref?.reference_uuid || ref?.comment_uuid || null

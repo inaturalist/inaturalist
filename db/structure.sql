@@ -2403,7 +2403,8 @@ CREATE TABLE public.id_summary_references (
     user_id integer,
     user_login character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    reference_observation_id integer
 );
 
 
@@ -12096,6 +12097,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251014130528'),
 ('20251014130547'),
 ('20251014130548'),
-('20251119130558');
+('20251014130558'),
+('20251202224705');
 
 
