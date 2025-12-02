@@ -1001,12 +1001,6 @@ body {
     font-size: inherit;
     color: inherit;
   }
-  .fg-reference-card-chevron svg {
-    transform: rotate(180deg);
-  }
-  .fg-summary-references.is-open .fg-reference-card-chevron svg {
-    transform: rotate(0deg);
-  }
   .fg-reference-body {
     font-size: 14px;
     line-height: 1.6;

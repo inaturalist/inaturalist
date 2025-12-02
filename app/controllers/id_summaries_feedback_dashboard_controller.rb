@@ -96,6 +96,35 @@ class IdSummariesFeedbackDashboardController < ApplicationController
     end.compact
   end
 
+  def delete_voter_votes
+    user_id = params[:user_id].to_i
+    source = params[:source] == "reference" ? "reference" : "summary"
+    if user_id <= 0
+      message = "Missing or invalid user_id"
+      respond_to do |format|
+        format.html do
+          flash[:error] = message
+          redirect_back_or_default( id_summaries_feedback_dashboard_path( tab: "voters" ) )
+        end
+        format.json { render status: :unprocessable_entity, json: { error: message } }
+      end
+      return
+    end
+
+    scope = source == "reference" ? IdSummaryReferenceDqa : IdSummaryDqa
+    deleted = scope.where( user_id: user_id ).delete_all
+
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Deleted #{deleted} #{source} vote(s) for user ##{user_id}"
+        redirect_back_or_default(
+          id_summaries_feedback_dashboard_path( tab: "voters", voter_feedback_source: source )
+        )
+      end
+      format.json { render json: { deleted: deleted, source: source, user_id: user_id } }
+    end
+  end
+
   private
 
   def aggregated_feedback_scope( scope )
