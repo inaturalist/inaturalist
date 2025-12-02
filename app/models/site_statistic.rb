@@ -403,29 +403,6 @@ class SiteStatistic < ApplicationRecord
         }
       ]
     ).total_entries
-    last_30_days = Identification.elastic_search(
-      size: 0,
-      track_total_hits: true,
-      filters: [
-        {
-          range: {
-            created_at: {
-              gte: at_time - 30.days,
-              lte: at_time
-            }
-          }
-        },
-        {
-          bool: {
-            must_not: {
-              exists: {
-                field: "taxon_change.id"
-              }
-            }
-          }
-        }
-      ]
-    ).total_entries
     today_for_others = Identification.elastic_search(
       size: 0,
       track_total_hits: true,
@@ -478,41 +455,13 @@ class SiteStatistic < ApplicationRecord
         }
       ]
     ).total_entries
-    last_30_days_for_others = Identification.elastic_search(
-      size: 0,
-      track_total_hits: true,
-      filters: [
-        {
-          range: {
-            created_at: {
-              gte: at_time - 30.days,
-              lte: at_time
-            }
-          }
-        },
-        {
-          term: { own_observation: false }
-        },
-        {
-          bool: {
-            must_not: {
-              exists: {
-                field: "taxon_change.id"
-              }
-            }
-          }
-        }
-      ]
-    ).total_entries
     {
       count: count,
       count_for_others: count_for_others,
       today: today,
-      last_7_days: last_7_days,
-      last_30_days: last_30_days,
       today_for_others: today_for_others,
-      last_7_days_for_others: last_7_days_for_others,
-      last_30_days_for_others: last_30_days_for_others
+      last_7_days: last_7_days,
+      last_7_days_for_others: last_7_days_for_others
     }
   end
 
@@ -620,64 +569,6 @@ class SiteStatistic < ApplicationRecord
       where(created_at: (at_time - 30.days)..at_time).
       collect{ |i| i.user_id }
     active = (active_from_observations + active_from_identifications + active_from_comments + active_from_posts).uniq.count
-    active_from_observations_7days = Observation.elastic_search(
-      size: 0,
-      filters: [
-        {
-          range: {
-            created_at: {
-              gte: at_time - 7.days,
-              lte: at_time
-            }
-          }
-        }
-      ],
-      aggregate: {
-        user_id: {
-          terms: { field: "user.id", size: 10000000 }
-        }
-      }
-    ).response.aggregations.user_id.
-      buckets.map { |b| 
-          b["key"]
-        }
-    active_from_identifications_7days = Identification.elastic_search(
-      size: 0,
-      filters: [
-        {
-          range: {
-            created_at: {
-              gte: at_time - 7.days,
-              lte: at_time
-            }
-          }
-        },
-        {
-          bool: {
-            must_not: {
-              exists: {
-                field: "taxon_change.id"
-              }
-            }
-          }
-        }
-      ],
-      aggregate: {
-        user_id: {
-          terms: { field: "user.id", size: 10000000 }
-        }
-      }
-    ).response.aggregations.user_id.
-      buckets.map { |b| 
-          b["key"]
-        }
-    active_from_comments_7days = Comment.select("DISTINCT(user_id)").
-      where(created_at: (at_time - 7.days)..at_time).
-      collect{ |i| i.user_id }
-    active_from_posts_7days = Post.select("DISTINCT(user_id)").
-      where(created_at: (at_time - 7.days)..at_time).
-      collect{ |i| i.user_id }
-    active_7days = (active_from_observations_7days + active_from_identifications_7days + active_from_comments_7days + active_from_posts_7days).uniq.count
     last_7_days = User.elastic_search(
       size: 0,
       track_total_hits: true,
@@ -806,6 +697,8 @@ class SiteStatistic < ApplicationRecord
       curators: curators,
       admins: admins,
       active: active,
+      active_from_observations: active_from_observations.uniq.count,
+      active_from_identifications: active_from_identifications.uniq.count,
       last_7_days: last_7_days,
       today: today,
       identifiers: identifiers,
