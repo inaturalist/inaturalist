@@ -146,10 +146,11 @@ class Taxon < ApplicationRecord
     format: { with: TaxonName::SCIENTIFIC_NAME_FORMAT, message: :bad_format },
     unless: proc {| t | t.provisional && ( !t.will_save_change_to_provisional? || t.new_record? ) },
     if: proc {| t | t.new_record? || t.name_changed? || t.will_save_change_to_provisional? }
+  validate :provisional_name_format
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
-  validate :provisional_only_for_fungi
+  validate :provisional_only_for_cortinariaceae
   validate :graftable_relative_to_taxon_framework_coverage
   validate :user_can_edit_attributes, on: :update
   validate :graftable_destination_relative_to_taxon_framework_coverage
@@ -741,6 +742,9 @@ class Taxon < ApplicationRecord
   end
 
   def remove_rank_from_name
+    # Skip rank removal for provisional taxa as they need "sp." in their name
+    return true if provisional
+
     self.name = Taxon.remove_rank_from_name( name )
     true
   end
@@ -1132,21 +1136,40 @@ class Taxon < ApplicationRecord
     errors.add( :base, "can't be its own ancestor" )
   end
 
-  def provisional_only_for_fungi
+  def provisional_only_for_cortinariaceae
     return unless provisional
     return if new_record? && provisional_was.nil? # allow for new records
-    return unless provisional && ( new_record? || will_save_change_to_provisional? )
+    return unless new_record? || will_save_change_to_provisional?
 
-    # Find the Fungi taxon
-    fungi_taxon = Taxon.find_by( name: "Fungi" )
-    return unless fungi_taxon # if Fungi doesn't exist, allow provisional (edge case)
+    # Find the Cortinariaceae taxon (ID 48705)
+    cortinariaceae_taxon_id = 48_705
+    cortinariaceae = Taxon.find_by( id: cortinariaceae_taxon_id )
+    return unless cortinariaceae # if Cortinariaceae doesn't exist, allow provisional (edge case)
 
-    # Check if this taxon is Fungi itself or descends from Fungi
-    is_fungi_or_descendant = ( id == fungi_taxon.id ) || ancestor_ids.include?( fungi_taxon.id )
+    # Check if this taxon descends from Cortinariaceae
+    is_cortinariaceae_descendant = ancestor_ids.include?( cortinariaceae_taxon_id )
 
-    return if is_fungi_or_descendant
+    return if is_cortinariaceae_descendant
 
-    errors.add( :provisional, "can only be set to true for taxa that are grafted to or descend from Fungi" )
+    errors.add( :provisional, "can only be set to true for taxa that descend from Cortinariaceae" )
+  end
+
+  def provisional_name_format
+    return unless provisional
+    return if name.blank?
+
+    # Format: Genus sp. 'epithet-phrase'
+    # Example: Aureonarius sp. 'callisteus-infucatus'
+    # Genus can contain letters or hyphens, epithet can contain letters, numbers, or hyphens
+    provisional_format = /\A[A-Z][a-z-]+\s+sp\.\s+'[a-z0-9-]+'\z/
+
+    return if name.match?( provisional_format )
+
+    errors.add(
+      :name,
+      "must be formatted as 'Genus sp. 'epithet'' for provisional taxa " \
+        "(e.g., Aureonarius sp. 'callisteus-infucatus')"
+    )
   end
 
   def rank_level_for_taxon_and_parent_must_not_be_nil
@@ -2355,6 +2378,12 @@ class Taxon < ApplicationRecord
     return RANK_EQUIVALENTS[rank] if RANK_EQUIVALENTS[rank]
 
     rank
+  end
+
+  def self.user_can_edit_provisional_taxa?( user )
+    return false unless user
+
+    user.is_admin?
   end
 
   def self.remove_rank_from_name( name )

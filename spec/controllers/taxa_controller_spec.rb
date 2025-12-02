@@ -468,4 +468,49 @@ describe TaxaController do
       expect( response ).to be_successful
     end
   end
+
+  describe "provisional" do
+    let( :cortinariaceae ) { Taxon.make!( id: 48_705, name: "Cortinariaceae", rank: Taxon::FAMILY ) }
+    let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
+
+    it "should not be updateable by curators" do
+      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: false )
+      curator = make_curator
+      sign_in curator
+      expect( t.provisional ).to be( false )
+      put :update, params: { id: t.id, taxon: { provisional: true } }
+      t.reload
+      expect( t.provisional ).to be( false )
+    end
+
+    it "should be updateable by admins" do
+      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: false )
+      admin = make_admin
+      sign_in admin
+      expect( t.provisional ).to be( false )
+      put :update, params: { id: t.id, taxon: { provisional: true } }
+      t.reload
+      expect( t.provisional ).to be( true )
+    end
+
+    it "should not allow curators to set provisional to false on existing provisional taxon" do
+      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: true )
+      curator = make_curator
+      sign_in curator
+      expect( t.provisional ).to be( true )
+      put :update, params: { id: t.id, taxon: { provisional: false } }
+      t.reload
+      expect( t.provisional ).to be( true )
+    end
+
+    it "should allow admins to set provisional to false on existing provisional taxon" do
+      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: true )
+      admin = make_admin
+      sign_in admin
+      expect( t.provisional ).to be( true )
+      put :update, params: { id: t.id, taxon: { provisional: false, name: "Cortinarius validus" } }
+      t.reload
+      expect( t.provisional ).to be( false )
+    end
+  end
 end

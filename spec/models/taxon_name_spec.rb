@@ -426,3 +426,152 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name( t.taxon_names, place: place, lexicon: "japanese" ) ).to be_blank
   end
 end
+
+describe TaxonName, "provisional taxa scientific name validation" do
+  let( :cortinariaceae ) { Taxon.make!( id: 48_705, name: "Cortinariaceae", rank: Taxon::FAMILY ) }
+  let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
+  let( :provisional_taxon ) do
+    Taxon.make!(
+      name: "Cortinarius sp. 'test'",
+      rank: Taxon::SPECIES,
+      parent: cortinarius,
+      provisional: true
+    )
+  end
+
+  it "accepts valid provisional scientific name format" do
+    tn = TaxonName.new(
+      taxon: provisional_taxon,
+      name: "Cortinarius sp. 'callisteus-infucatus'",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn ).to be_valid
+  end
+
+  it "accepts provisional names with hyphens in genus" do
+    parent = Taxon.make!( name: "Hypo-genus", rank: Taxon::GENUS, parent: cortinariaceae )
+    prov_taxon = Taxon.make!(
+      name: "Hypo-genus sp. 'test'",
+      rank: Taxon::SPECIES,
+      parent: parent,
+      provisional: true
+    )
+    tn = TaxonName.new(
+      taxon: prov_taxon,
+      name: "Hypo-genus sp. 'test'",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn ).to be_valid
+  end
+
+  it "accepts provisional names with numbers in epithet" do
+    tn = TaxonName.new(
+      taxon: provisional_taxon,
+      name: "Cortinarius sp. 'test123'",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn ).to be_valid
+  end
+
+  it "rejects provisional taxon names missing 'sp.'" do
+    tn = TaxonName.new(
+      taxon: provisional_taxon,
+      name: "Cortinarius 'callisteus'",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn ).not_to be_valid
+    expect( tn.errors[:name] ).to include(
+      match( /must be formatted as 'Genus sp\. 'epithet''/ )
+    )
+  end
+
+  it "rejects provisional names with lowercase genus" do
+    tn = TaxonName.new(
+      taxon: provisional_taxon,
+      name: "cortinarius sp. 'test'",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn ).not_to be_valid
+    expect( tn.errors[:name] ).to include(
+      match( /must be formatted as 'Genus sp\. 'epithet''/ )
+    )
+  end
+
+  it "rejects provisional names without single quotes around epithet" do
+    tn = TaxonName.new(
+      taxon: provisional_taxon,
+      name: "Cortinarius sp. callisteus",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn ).not_to be_valid
+    expect( tn.errors[:name] ).to include(
+      match( /must be formatted as 'Genus sp\. 'epithet''/ )
+    )
+  end
+
+  it "rejects provisional names with invalid characters in epithet" do
+    tn = TaxonName.new(
+      taxon: provisional_taxon,
+      name: "Cortinarius sp. 'test_invalid'",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn ).not_to be_valid
+    expect( tn.errors[:name] ).to include(
+      match( /must be formatted as 'Genus sp\. 'epithet''/ )
+    )
+  end
+
+  it "rejects non-provisional taxon with provisional name format" do
+    regular_taxon = Taxon.make!(
+      name: "Cortinarius validus",
+      rank: Taxon::SPECIES,
+      parent: cortinarius,
+      provisional: false
+    )
+    tn = TaxonName.new(
+      taxon: regular_taxon,
+      name: "Cortinarius sp. 'invalid'",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn ).not_to be_valid
+  end
+
+  it "allows non-provisional taxon with normal scientific name" do
+    regular_taxon = Taxon.make!(
+      name: "Cortinarius validus",
+      rank: Taxon::SPECIES,
+      parent: cortinarius,
+      provisional: false
+    )
+    tn = TaxonName.new(
+      taxon: regular_taxon,
+      name: "Cortinarius validus",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn ).to be_valid
+  end
+
+  it "preserves 'sp.' in provisional taxon names during save" do
+    tn = TaxonName.create!(
+      taxon: provisional_taxon,
+      name: "Cortinarius sp. 'test123'",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn.reload.name ).to eq( "Cortinarius sp. 'test123'" )
+  end
+
+  it "removes rank from non-provisional scientific names" do
+    regular_taxon = Taxon.make!(
+      name: "Cortinarius testus",
+      rank: Taxon::SPECIES,
+      parent: cortinarius,
+      provisional: false
+    )
+    tn = TaxonName.create!(
+      taxon: regular_taxon,
+      name: "Cortinarius species testus",
+      lexicon: TaxonName::SCIENTIFIC_NAMES
+    )
+    expect( tn.reload.name ).to eq( "Cortinarius testus" )
+  end
+end

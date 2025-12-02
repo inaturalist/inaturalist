@@ -23,17 +23,18 @@ class TaxonName < ApplicationRecord
   validate :no_forbidden_lexicons
   validates_format_of :lexicon, with: %r{\A[^/,]+\z},
     message: :should_not_contain_commas_or_slashes,
-    if: proc {| tn | tn.lexicon_changed? }
+    if: :lexicon_changed?
   validate :species_common_name_cannot_match_taxon_name
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: proc {| tn | tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: proc {| tn | tn.lexicon.present? }
   validate :user_submitted_names_need_notes
+  validate :provisional_scientific_name_format
   SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/
   validates :name,
     format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
     unless: proc {| tn |
-      tn.taxon&.provisional && ( !tn.taxon&.will_save_change_to_provisional? || tn.new_record? )
+      tn.taxon&.provisional
     },
     if: proc {| tn |
       scientific_name = tn.lexicon == SCIENTIFIC_NAMES
@@ -230,6 +231,8 @@ class TaxonName < ApplicationRecord
 
   def remove_rank_from_name
     return unless lexicon == LEXICONS[:SCIENTIFIC_NAMES]
+    # Skip rank removal for provisional taxa as they need "sp." in their name
+    return true if taxon&.provisional
 
     self.name = Taxon.remove_rank_from_name( name )
     true
@@ -391,9 +394,29 @@ class TaxonName < ApplicationRecord
   end
 
   def valid_scientific_name_must_match_taxon_name
-    return unless is_valid? && is_scientific_names? && taxon && name != taxon.name && !taxon.provisional
+    return unless is_valid? && is_scientific_names? && taxon && name != taxon.name
 
     errors.add( :name, :must_match_the_taxon_if_valid )
+  end
+
+  def provisional_scientific_name_format
+    return unless is_scientific_names? && taxon&.provisional
+    return if name.blank?
+
+    # Only validate on change or new record
+    return unless name_changed? || new_record? || taxon&.will_save_change_to_provisional?
+
+    # Format: Genus sp. 'epithet-phrase'
+    # Genus can contain letters or hyphens, epithet can contain letters, numbers, or hyphens
+    provisional_format = /\A[A-Z][a-z-]+\s+sp\.\s+'[a-z0-9-]+'\z/
+
+    return if name.match?( provisional_format )
+
+    errors.add(
+      :name,
+      "must be formatted as 'Genus sp. 'epithet'' for provisional taxa " \
+        "(e.g., Aureonarius sp. 'callisteus-infucatus')"
+    )
   end
 
   def no_forbidden_lexicons
@@ -508,9 +531,10 @@ class TaxonName < ApplicationRecord
 
   def self.all_lexicons
     Rails.cache.fetch( "TaxonName::all_lexicons", expires_in: 1.hour ) do
-      TaxonName.where( "lexicon IS NOT NULL" ).distinct.pluck( :lexicon ).map do | l |
+      result = TaxonName.where( "lexicon IS NOT NULL" ).distinct.pluck( :lexicon ).map do | l |
         [l.parameterize, l]
-      end.sort.to_h.filter {| k, _v | !k.blank? }
+      end
+      result.sort.to_h.filter {| k, _v | !k.blank? }
     end
   end
 
