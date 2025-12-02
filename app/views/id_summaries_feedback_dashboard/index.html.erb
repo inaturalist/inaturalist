@@ -1,6 +1,6 @@
 <%# frozen_string_literal: true %>
 <div class="container" style="width: 1150px; margin: 2rem auto;">
-  <h1 style="margin-bottom: 1rem;">ID Summary Feedback Dashboard</h1>
+  <h1 style="margin-bottom: 1rem;">ID Summaries Feedback Dashboard</h1>
 
   <%= form_with url: id_summaries_feedback_dashboard_path, method: :get, local: true,
     html: { style: "display:flex; gap:.75rem; flex-wrap:wrap; align-items:flex-end; margin-bottom:1rem;" } do %>
@@ -90,7 +90,7 @@
         <table class="table js-sortable-table" style="min-width:1150px; border-collapse:collapse;">
           <thead>
           <tr style="border-bottom:1px solid #e0e0e0; text-align:left;">
-            <th rowspan="2" style="padding:.5rem; min-width:320px;">ID Summary</th>
+            <th rowspan="2" style="padding:.5rem; min-width:320px;">ID Summaries</th>
             <th colspan="2" style="padding:.5rem; text-align:center;">Global</th>
               <% short_labels = {
                 "clear" => "Short",
