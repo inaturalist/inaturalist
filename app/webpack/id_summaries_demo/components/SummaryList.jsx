@@ -412,6 +412,7 @@ const summaryShape = PropTypes.shape( {
     comment_uuid: PropTypes.string,
     user_id: PropTypes.number,
     body: PropTypes.string,
+    reference_observation_id: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
     reference_uuid: PropTypes.string,
     reference_source: PropTypes.string,
     created_at: PropTypes.oneOfType( [PropTypes.string, PropTypes.instanceOf( Date )] )
