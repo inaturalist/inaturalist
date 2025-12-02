@@ -309,6 +309,7 @@ class IdSummariesDemoApp extends Component {
           comment_uuid: s?.comment_uuid,
           user_id: s?.user_id,
           body: s?.body,
+          reference_observation_id: s?.reference_observation_id,
           created_at: s?.reference_date || s?.created_at || s?.updated_at || null,
           reference_source: s?.reference_source || s?.source || null,
           reference_uuid: s?.reference_uuid || s?.comment_uuid || null
@@ -320,6 +321,7 @@ class IdSummariesDemoApp extends Component {
             comment_uuid: r?.comment_uuid,
             user_id: r?.user_id,
             body: r?.body || r?.reference_content,
+            reference_observation_id: r?.reference_observation_id,
             created_at: r?.reference_date || r?.created_at || r?.reference_created_at || r?.updated_at || null,
             reference_source: r?.reference_source || r?.source || null,
             reference_uuid: r?.reference_uuid || r?.comment_uuid || null
@@ -634,6 +636,7 @@ class IdSummariesDemoApp extends Component {
       "id_summaries.references.id",
       "id_summaries.references.reference_source",
       "id_summaries.references.reference_uuid",
+      "id_summaries.references.reference_observation_id",
       "id_summaries.references.reference_date",
       "id_summaries.references.created_at",
       "id_summaries.references.updated_at"

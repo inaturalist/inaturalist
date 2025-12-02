@@ -86,6 +86,18 @@ const SummaryItem = ( {
   const getUser = userId => referenceUsers?.[userId] || null;
   const buildReferenceLink = ref => {
     if ( !ref ) return null;
+
+    // Use observation anchors when we have the observation id
+    if ( ref?.reference_observation_id && ref?.reference_uuid ) {
+      if ( ref.reference_source === "identification" ) {
+        return `/observations/${ref.reference_observation_id}#identification-${ref.reference_uuid}`;
+      }
+      if ( ref.reference_source === "observation" ) {
+        return `/observations/${ref.reference_observation_id}#comment-${ref.reference_uuid}`;
+      }
+    }
+
+    // Fallback to legacy links
     if ( ref?.reference_source === "identification" && ref?.reference_uuid ) {
       return `/identifications/${ref.reference_uuid}`;
     }
@@ -328,6 +340,7 @@ SummaryItem.propTypes = {
       body: PropTypes.string,
       reference_uuid: PropTypes.string,
       reference_source: PropTypes.string,
+      reference_observation_id: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
       created_at: PropTypes.oneOfType( [PropTypes.string, PropTypes.instanceOf( Date )] )
     } ) )
   } ),
