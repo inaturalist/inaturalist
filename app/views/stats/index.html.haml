@@ -134,26 +134,6 @@
         %dt=t "views.stats.index.ids_today_for_others"
         %dd=t "views.stats.index.ids_today_for_others_desc"
   .row
-    .col-md-12
-      %h3= "Identification Ratios (active 30 days)"
-      #identification-ratios-per-active-users-30.stacked.vis
-        .loading.status=t :loading
-  .row
-    .col-md-12
-      %h3= "Identification Ratios (active 7 days)"
-      #identification-ratios-per-active-users-7.stacked.vis
-        .loading.status=t :loading
-  .row
-    .col-md-12
-      %h3= "Observation Ratios (active 30 days)"
-      #observation-ratios-per-active-users-30.stacked.vis
-        .loading.status=t :loading
-  .row
-    .col-md-12
-      %h3= "Observation Ratios (active 7 days)"
-      #observation-ratios-per-active-users-7.stacked.vis
-        .loading.status=t :loading
-  .row
     .col-md-6
       %h3=t :observations
       #observations.stacked.vis
@@ -175,10 +155,6 @@
     .col-md-6
       %h3=t :identifications
       #cumulative-identifications.stacked.vis
-        .loading.status=t :loading
-    .col-md-6
-      %h3=t "views.stats.index.identifications_total_others_ratio"
-      #identifications-total-others-ratio.stacked.vis
         .loading.status=t :loading
   .row
     .col-md-6

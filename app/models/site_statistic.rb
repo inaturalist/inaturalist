@@ -697,8 +697,6 @@ class SiteStatistic < ApplicationRecord
       curators: curators,
       admins: admins,
       active: active,
-      active_from_observations: active_from_observations.uniq.count,
-      active_from_identifications: active_from_identifications.uniq.count,
       last_7_days: last_7_days,
       today: today,
       identifiers: identifiers,
