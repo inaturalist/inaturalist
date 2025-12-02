@@ -274,18 +274,6 @@ const SummaryItem = ( {
                             {timestamp ? (
                               <span className="fg-reference-timestamp">{timestamp}</span>
                             ) : null}
-                            <span className="fg-reference-card-chevron" aria-hidden="true">
-                              <svg width="12" height="12" viewBox="0 0 24 24">
-                                <path
-                                  d="M6 9l6 6 6-6"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-                            </span>
                           </div>
                         </div>
                         {ref?.body ? (
