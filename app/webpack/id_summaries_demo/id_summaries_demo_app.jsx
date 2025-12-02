@@ -970,7 +970,7 @@ class IdSummariesDemoApp extends Component {
           <br />
           {I18n.t( "id_summaries.demo.app.info_line_two" )}
           {" "}
-          <a href="/blog">{I18n.t( "id_summaries.demo.app.blog_link_text" )}</a>
+          <a href="/blog/120580">{I18n.t( "id_summaries.demo.app.blog_link_text" )}</a>
           .
         </p>
       </div>
