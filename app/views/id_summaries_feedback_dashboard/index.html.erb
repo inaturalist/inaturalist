@@ -338,6 +338,7 @@
               <th style="padding:.5rem; cursor:pointer;" data-sort-key="total_votes" data-sort-type="number">Total votes</th>
               <th style="padding:.5rem; cursor:pointer;" data-sort-key="positive_votes" data-sort-type="number">Positive</th>
               <th style="padding:.5rem; cursor:pointer;" data-sort-key="negative_votes" data-sort-type="number">Negative</th>
+              <th style="padding:.5rem;">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -345,7 +346,7 @@
               <tr style="border-top:1px solid #f3f3f3;" data-search-text="<%= [voter["user_login"], voter["user_id"]].compact.join(' ') %>">
                 <td style="padding:.5rem;" data-sort-key="user">
                   <% if voter["user_login"].present? %>
-                    <%= voter["user_login"] %>
+                    <%= link_to voter["user_login"], "/admin/users/#{voter["user_login"]}" %>
                   <% else %>
                     User #<%= voter["user_id"] %>
                   <% end %>
@@ -358,6 +359,16 @@
                 </td>
                 <td style="padding:.5rem; color:#c62828; font-weight:600;" data-sort-key="negative_votes">
                   <%= number_with_delimiter( voter["negative_votes"].to_i ) %>
+                </td>
+                <td style="padding:.5rem;">
+                  <%= button_to "Delete all votes",
+                    delete_id_summaries_dashboard_voter_votes_path(
+                      user_id: voter["user_id"],
+                      source: @filters[:voter_feedback_source]
+                    ),
+                    method: :post,
+                    class: "btn btn-danger btn-xs",
+                    data: { confirm: "Delete all #{@filters[:voter_feedback_source]} votes from this user? This cannot be undone." } %>
                 </td>
               </tr>
             <% end %>
