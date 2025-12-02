@@ -14,43 +14,6 @@ days_to_generate.times do
   end
 
   # Observations:
-  created_30_days = Observation.elastic_search(
-    size: 0,
-    track_total_hits: true,
-    filters: [
-      {
-        range: {
-          created_at: {
-            lte: at_time - 30.days
-          }
-        }
-      }
-    ]
-  ).total_entries
-
-  created_30_days_not_identified = Observation.elastic_search(
-    size: 0,
-    track_total_hits: true,
-    filters: [
-      {
-        range: {
-          created_at: {
-            lte: at_time - 30.days
-          }
-        }
-      },
-      {
-        bool: {
-          must_not: {
-            exists: {
-              field: "taxon"
-            }
-          }
-        }
-      }
-    ]
-  ).total_entries
-
   today_identified_by_others = Identification.elastic_search(
     size: 0,
     track_total_hits: true,
@@ -214,8 +177,6 @@ days_to_generate.times do
   data = stat.data || {}
 
   obs_data = data["observations"] || {}
-  obs_data["created_30_days"] = created_30_days
-  obs_data["created_30_days_not_identified"] = created_30_days_not_identified
   obs_data["today_identified_by_others"] = today_identified_by_others
   obs_data["today_identified_by_others_by_iconic_taxon"] = today_identified_by_others_by_iconic_taxon
   data["observations"] = obs_data
