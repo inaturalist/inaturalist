@@ -24,7 +24,7 @@ describe IdSummariesDemoController, "index" do
     it "denies non-admin users for HTML requests" do
       sign_in user
       get :index, params: { admin_mode: true }
-      expect( response ).to redirect_to( root_url )
+      expect( response ).to redirect_to( id_summaries_demo_path( admin_mode: true ) )
       expect( flash[:error] ).to eq message
     end
 
