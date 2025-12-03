@@ -9204,12 +9204,14 @@ de:
     demo:
       app:
         header_link: "ID-Zusammenfassung Demo"
-        info_line_one: "Diese Demo untersucht den Einsatz von KI zum Zusammenfassen von Kommentaren auf iNaturalist mit dem Ziel, zu lernen,"
-        info_line_two: "Arten für jedermann zugänglicher zu machen."
+        info_line_one: "Diese Demo untersucht den Einsatz von KI zum Zusammenfassen von Kommentaren auf iNaturalist mit dem Ziel,"
+        info_line_two: "den Fundus an Bestimmungshilfen zugänglicher zu machen."
         blog_link_text: "Erfahre mehr in unserem Blog"
         missing_identifier: "Fehlende Kennung der Taxon-Zusammenfassung"
         service_unavailable: "Details zur ID-Zusammenfassung sind vorübergehend nicht verfügbar."
         no_summary_data: "Für dieses Taxon wurden keine zusammenfassenden Daten gefunden."
+      summary_list:
+        feedback_toggle: "Feedback zu ID-Zusammenfassungen"
       summary_item:
         photo_tip_aria: "Foto-Tipp: %{tip}"
         references_toggle: "Referenzen von iNaturalist-Benutzerkommentaren"
