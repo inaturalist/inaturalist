@@ -10,6 +10,7 @@ function mapStateToProps( state ) {
     taxonSchemesCount: state.taxon.counts.taxonSchemesCount,
     names: state.taxon.names,
     allChildrenShown: state.config.allChildrenShown,
+    provisionalChildrenShown: state.config.provisionalChildrenShown,
     currentUser: state.config.currentUser
   };
 }
@@ -17,7 +18,8 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     showNewTaxon: ( taxon, options ) => dispatch( showNewTaxon( taxon, options ) ),
-    toggleAllChildrenShown: ( ) => dispatch( toggleConfig( "allChildrenShown" ) )
+    toggleAllChildrenShown: ( ) => dispatch( toggleConfig( "allChildrenShown" ) ),
+    toggleProvisionalChildrenShown: ( ) => dispatch( toggleConfig( "provisionalChildrenShown" ) )
   };
 }
 

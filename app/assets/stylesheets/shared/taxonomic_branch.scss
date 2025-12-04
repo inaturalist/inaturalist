@@ -124,6 +124,15 @@
   .complete.all-shown .hidable {
     display: block;
   }
+  // Hide provisional taxa by default
+  li.provisional {
+    display: none;
+    opacity: 0.5;
+  }
+  // Show provisional taxa when parent has show-provisional class
+  .current.show-provisional .provisional {
+    display: block;
+  }
 }
 
 [dir="rtl"] .TaxonomicBranch{

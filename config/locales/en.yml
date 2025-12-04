@@ -2206,6 +2206,8 @@ en:
   external_taxon_including_children: External taxon (including children)
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
+  # Label for provisional taxa in taxonomy displays
+  provisional_taxon: provisional
   extra_properties: Extra Properties
   evidence_accurately_depicts_organism_or_scene: Evidence accurately depicts organism or scene
   evidence_of_organism: Evidence of organism
@@ -2551,6 +2553,8 @@ en:
   # Label for a checkbox to remove observations from search results where the
   # observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Hide observations with private locations
+  # Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Hide Provisional Taxa
   # Label for a button to hide the running total of an accumulation chart
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
@@ -5301,6 +5305,8 @@ en:
   show_running_total: Show Running Total
   show_taxa_from_both: (show taxa from both lists)
   show_taxa_from_everywhere: "Show taxa from everywhere"
+  # Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Show provisional taxa
   show_taxa_from_place: "Show taxa from %{place}"
   show_total_counts: Show total counts
   show_uncountable_species: Show uncountable species

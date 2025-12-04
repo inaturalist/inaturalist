@@ -10,6 +10,8 @@ const TaxonomicBranch = ( {
   taxon,
   allChildrenShown,
   toggleAllChildrenShown,
+  provisionalChildrenShown,
+  toggleProvisionalChildrenShown,
   currentUser,
   chooseTaxon,
   noHideable,
@@ -46,11 +48,14 @@ const TaxonomicBranch = ( {
         const shouldLinkToTaxon = !isTaxon;
         const isComplete = isTaxon && taxon.complete_rank
           && taxon.rank_level > RANK_LEVELS[taxon.complete_rank];
-        const isHidable = isDescendant && ( t.rank === "hybrid" || t.rank === "genushybrid" || !t.is_active || t.extinct || t.provisional );
+        const isProvisional = isDescendant && t.provisional;
+        const isOtherHidable = isDescendant && ( t.rank === "hybrid" || t.rank === "genushybrid" || !t.is_active || t.extinct );
+        const isHidable = isProvisional || isOtherHidable;
         const numChildren = ( t.children || [] ).length;
         const numHidableChildren = _.filter( t.children || [], c => (
-          c.rank === "genushybrid" || c.rank === "hybrid" || !c.is_active || c.extinct || c.provisional
+          c.rank === "genushybrid" || c.rank === "hybrid" || !c.is_active || c.extinct
         ) ).length;
+        const numProvisionalChildren = _.filter( t.children || [], c => c.provisional ).length;
         if ( isTaxon ) {
           className += "current";
         }
@@ -60,11 +65,17 @@ const TaxonomicBranch = ( {
         if ( isComplete ) {
           className += " complete";
         }
-        if ( isHidable ) {
+        if ( isProvisional ) {
+          className += " provisional";
+        }
+        if ( isOtherHidable ) {
           className += " hidable";
         }
         if ( numChildren <= 1 || allChildrenShown ) {
           className += " all-shown";
+        }
+        if ( isTaxon && provisionalChildrenShown ) {
+          className += " show-provisional";
         }
         if ( tabular ) {
           className += " tabular";
@@ -147,6 +158,22 @@ const TaxonomicBranch = ( {
                     ) }
                   </div>
                 ) : null }
+                { isTaxon && !noHideable && numChildren > 1 && numProvisionalChildren > 0 ? (
+                  <span>
+                    { " " }
+                    <button
+                      type="button"
+                      className="btn btn-nostyle linky"
+                      onClick={e => {
+                        e.preventDefault( );
+                        toggleProvisionalChildrenShown( );
+                        return false;
+                      }}
+                    >
+                      { provisionalChildrenShown ? I18n.t( "hide_provisional_taxa" ) : I18n.t( "show_provisional_taxa" ) }
+                    </button>
+                  </span>
+                ) : null }
               </div>
               { tabular && isTaxon && numChildren > 0 ? (
                 <div style={{ whiteSpace: "nowrap" }}>
@@ -181,6 +208,8 @@ TaxonomicBranch.propTypes = {
   taxon: PropTypes.object,
   allChildrenShown: PropTypes.bool,
   toggleAllChildrenShown: PropTypes.func,
+  provisionalChildrenShown: PropTypes.bool,
+  toggleProvisionalChildrenShown: PropTypes.func,
   currentUser: PropTypes.object,
   chooseTaxon: PropTypes.func,
   noHideable: PropTypes.bool,
