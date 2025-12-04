@@ -474,21 +474,21 @@ describe TaxaController do
     let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
 
     it "should not be updateable by curators" do
-      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: false )
+      t = Taxon.make!( name: "Cortinarius testus", rank: Taxon::SPECIES, parent: cortinarius, provisional: false )
       curator = make_curator
       sign_in curator
       expect( t.provisional ).to be( false )
-      put :update, params: { id: t.id, taxon: { provisional: true } }
+      put :update, params: { id: t.id, taxon: { provisional: true, name: "Cortinarius sp. 'test'" } }
       t.reload
       expect( t.provisional ).to be( false )
     end
 
     it "should be updateable by admins" do
-      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: false )
+      t = Taxon.make!( name: "Cortinarius testus", rank: Taxon::SPECIES, parent: cortinarius, provisional: false )
       admin = make_admin
       sign_in admin
       expect( t.provisional ).to be( false )
-      put :update, params: { id: t.id, taxon: { provisional: true } }
+      put :update, params: { id: t.id, taxon: { provisional: true, name: "Cortinarius sp. 'test'" } }
       t.reload
       expect( t.provisional ).to be( true )
     end

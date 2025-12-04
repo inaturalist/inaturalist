@@ -144,7 +144,7 @@ class Taxon < ApplicationRecord
     message: "already used as a child complex of this taxon's parent"
   validates :name,
     format: { with: TaxonName::SCIENTIFIC_NAME_FORMAT, message: :bad_format },
-    unless: proc {| t | t.provisional && ( !t.will_save_change_to_provisional? || t.new_record? ) },
+    unless: :provisional,
     if: proc {| t | t.new_record? || t.name_changed? || t.will_save_change_to_provisional? }
   validate :provisional_name_format
   validate :taxon_cant_be_its_own_ancestor
@@ -1138,7 +1138,7 @@ class Taxon < ApplicationRecord
 
   def provisional_only_for_cortinariaceae
     return unless provisional
-    return if new_record? && provisional_was.nil? # allow for new records
+    # Only validate if provisional flag is being set/changed
     return unless new_record? || will_save_change_to_provisional?
 
     # Find the Cortinariaceae taxon (ID 48705)
@@ -1147,7 +1147,13 @@ class Taxon < ApplicationRecord
     return unless cortinariaceae # if Cortinariaceae doesn't exist, allow provisional (edge case)
 
     # Check if this taxon descends from Cortinariaceae
-    is_cortinariaceae_descendant = ancestor_ids.include?( cortinariaceae_taxon_id )
+    # For new records, build the ancestry chain from parent
+    is_cortinariaceae_descendant = if new_record? && parent
+      parent.ancestor_ids.include?( cortinariaceae_taxon_id ) ||
+        parent.id == cortinariaceae_taxon_id
+    else
+      ancestor_ids.include?( cortinariaceae_taxon_id )
+    end
 
     return if is_cortinariaceae_descendant
 
@@ -1159,16 +1165,16 @@ class Taxon < ApplicationRecord
     return if name.blank?
 
     # Format: Genus sp. 'epithet-phrase'
-    # Example: Aureonarius sp. 'callisteus-infucatus'
-    # Genus can contain letters or hyphens, epithet can contain letters, numbers, or hyphens
-    provisional_format = /\A[A-Z][a-z-]+\s+sp\.\s+'[a-z0-9-]+'\z/
+    # Example: Aureonarius sp. 'callisteus-infucatus' or Calonarius sp. 'AK01'
+    # Genus can contain letters or hyphens, epithet can contain letters (upper/lower), numbers, or hyphens
+    provisional_format = /\A[A-Z][a-z-]+\s+sp\.\s+'[A-Za-z0-9-]+'\z/
 
     return if name.match?( provisional_format )
 
     errors.add(
       :name,
       "must be formatted as 'Genus sp. 'epithet'' for provisional taxa " \
-        "(e.g., Aureonarius sp. 'callisteus-infucatus')"
+        "(e.g., Aureonarius sp. 'callisteus-infucatus' or Calonarius sp. 'AK01')"
     )
   end
 

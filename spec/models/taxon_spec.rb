@@ -2267,6 +2267,8 @@ describe Taxon, "provisional taxa name validation" do
     end
 
     it "rejects provisional taxa not descended from Cortinariaceae" do
+      # Ensure Cortinariaceae exists for the validation to run
+      cortinariaceae
       other_parent = Taxon.make!( name: "Agaricus", rank: Taxon::GENUS )
       taxon = Taxon.new(
         name: "Agaricus sp. 'test'",

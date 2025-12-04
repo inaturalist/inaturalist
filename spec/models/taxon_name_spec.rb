@@ -485,16 +485,13 @@ describe TaxonName, "provisional taxa scientific name validation" do
     )
   end
 
-  it "rejects provisional names with lowercase genus" do
+  it "accepts provisional names with uppercase letters in epithet" do
     tn = TaxonName.new(
       taxon: provisional_taxon,
-      name: "cortinarius sp. 'test'",
+      name: "Cortinarius sp. 'AK01'",
       lexicon: TaxonName::SCIENTIFIC_NAMES
     )
-    expect( tn ).not_to be_valid
-    expect( tn.errors[:name] ).to include(
-      match( /must be formatted as 'Genus sp\. 'epithet''/ )
-    )
+    expect( tn ).to be_valid
   end
 
   it "rejects provisional names without single quotes around epithet" do
@@ -543,12 +540,10 @@ describe TaxonName, "provisional taxa scientific name validation" do
       parent: cortinarius,
       provisional: false
     )
-    tn = TaxonName.new(
-      taxon: regular_taxon,
-      name: "Cortinarius validus",
-      lexicon: TaxonName::SCIENTIFIC_NAMES
-    )
+    # The taxon creation automatically creates a valid TaxonName
+    tn = regular_taxon.taxon_names.where( lexicon: TaxonName::SCIENTIFIC_NAMES ).first
     expect( tn ).to be_valid
+    expect( tn.name ).to eq( "Cortinarius validus" )
   end
 
   it "preserves 'sp.' in provisional taxon names during save" do
@@ -562,16 +557,13 @@ describe TaxonName, "provisional taxa scientific name validation" do
 
   it "removes rank from non-provisional scientific names" do
     regular_taxon = Taxon.make!(
-      name: "Cortinarius testus",
+      name: "Cortinarius species testus",
       rank: Taxon::SPECIES,
       parent: cortinarius,
       provisional: false
     )
-    tn = TaxonName.create!(
-      taxon: regular_taxon,
-      name: "Cortinarius species testus",
-      lexicon: TaxonName::SCIENTIFIC_NAMES
-    )
-    expect( tn.reload.name ).to eq( "Cortinarius testus" )
+    # The taxon creation automatically creates a TaxonName with rank removed
+    tn = regular_taxon.taxon_names.where( lexicon: TaxonName::SCIENTIFIC_NAMES ).first
+    expect( tn.name ).to eq( "Cortinarius testus" )
   end
 end

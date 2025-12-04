@@ -407,15 +407,15 @@ class TaxonName < ApplicationRecord
     return unless name_changed? || new_record? || taxon&.will_save_change_to_provisional?
 
     # Format: Genus sp. 'epithet-phrase'
-    # Genus can contain letters or hyphens, epithet can contain letters, numbers, or hyphens
-    provisional_format = /\A[A-Z][a-z-]+\s+sp\.\s+'[a-z0-9-]+'\z/
+    # Genus can contain letters or hyphens, epithet can contain letters (upper/lower), numbers, or hyphens
+    provisional_format = /\A[A-Z][a-z-]+\s+sp\.\s+'[A-Za-z0-9-]+'\z/
 
     return if name.match?( provisional_format )
 
     errors.add(
       :name,
       "must be formatted as 'Genus sp. 'epithet'' for provisional taxa " \
-        "(e.g., Aureonarius sp. 'callisteus-infucatus')"
+        "(e.g., Aureonarius sp. 'callisteus-infucatus' or Calonarius sp. 'AK01')"
     )
   end
 
