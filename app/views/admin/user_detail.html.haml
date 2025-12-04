@@ -234,6 +234,17 @@
                       %code= privilege
                       privilege
         %tr
+          %th Recent Donations
+          %td
+            - if @display_user.user_donations.any?
+              %ul
+                - for donation in @display_user.user_donations.order( donated_at: :desc ).limit( 12 )
+                  %li
+                    = donation.donated_at.utc.to_date
+            - else
+              No recent donations
+
+        %tr
           %th Parent
           %td
             - if up = @display_user.user_parent
