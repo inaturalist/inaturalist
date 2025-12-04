@@ -6451,8 +6451,6 @@ tr:
         flaggable_content: İşaretlenebilir İçerik
         flaggable_content_desc: |
           İşaretlenebilir içerik, işaretin oluşturulduğu sırada işaretlenen nesnenin birincil metin niteliğidir. Bunu yalnızca küratörler ve personel görebilir. Mesajlar için bunu yalnızca personel görebilir.
-        flags_that_should_not_be_resolved_desc_html: |
-          Lütfen <code>gereksiz konu</code> ve <code>telif hakkı ihlali</code> işaretlerini yalnızca içerik gereksiz değilse ya da bir telif hakkı ihlali değilse çözün.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -9275,6 +9273,9 @@ tr:
   id_summaries:
     demo:
       app:
+        header_link: "Tanımlama Özetleri Demosu"
+        info_line_one: "Bu demo, iNaturalist’teki yorumları özetlemek için YZ kullanımını,"
+        info_line_two: "tanımlama uzmanlığını daha erişilebilir hâle getirmek amacıyla araştırır."
         blog_link_text: "Blogumuzda daha çok bilgi edinin"
         missing_identifier: "Eksik takson özeti tanımlayıcısı"
         service_unavailable: "Tanımlama özeti bilgileri geçici olarak kullanılamıyor."
@@ -9292,6 +9293,7 @@ tr:
         empty: "Bu tür için tanımlama özeti mevcut değildir."
         refreshing: "Özetler yenileniyor..."
         heading: "Tanımlama Özetleri"
+        feedback_toggle: "Tanımlama Özetleri Geri Bildirimi"
         feedback_unavailable: "Bu özet için geri bildirim mevcut değildir."
         sign_in_required: "Tanımlama özeti geri bildirimine oy vermek için giriş yapın."
         service_unavailable: "Geri bildirim hizmeti şu anda kullanılamıyor."
