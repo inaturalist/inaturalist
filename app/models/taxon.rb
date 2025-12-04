@@ -785,6 +785,14 @@ class Taxon < ApplicationRecord
   def self.capitalize_scientific_name( name, rank )
     return name.capitalize if rank.blank?
 
+    # Check if this is a provisional name format (Genus sp. 'epithet')
+    # Preserve case within single quotes for provisional taxa
+    if name =~ /\A([A-Za-z][a-z-]*)\s+sp\.\s+'([A-Za-z0-9-]+)'\z/i
+      genus = Regexp.last_match( 1 )
+      epithet = Regexp.last_match( 2 )
+      return "#{genus.capitalize} sp. '#{epithet}'"
+    end
+
     if [GENUS, GENUSHYBRID, SPECIES, HYBRID].include?( rank ) && name =~ /^(x|×)\s+?(.+)/
       _full_name, x, genus_name = name.match( /^(x|×)\s+?(.+)/ ).to_a
       "#{x} #{genus_name.capitalize}"
