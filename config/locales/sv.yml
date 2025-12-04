@@ -6676,8 +6676,6 @@ sv:
         flaggable_content: Flaggat innehåll
         flaggable_content_desc: |
           Det innehåll som kan flaggas är det primära textattributet för det flaggade objektet när flaggan skapades. Endast förvaltare och personal kan se detta. Endast personal kan se detta för meddelanden.
-        flags_that_should_not_be_resolved_desc_html: |
-          Vänligen fixa endast <code>spam-</code> och <code>upphovsrättsintrångs</code>flaggor om innehållet faktiskt inte är spam eller verkligen inte ett intrång på upphovsrätten.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
