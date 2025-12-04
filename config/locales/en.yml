@@ -7250,10 +7250,11 @@ en:
           The flaggable content is the primary text attribute of the flagged
           object at the time the flag was created. Only curators and staff can
           see this. Only staff can see this for messages.
-        flags_that_should_not_be_resolved_desc_html: |
-          Please resolve <code>spam</code> and <code>copyright
-          infringement</code> flags only if the content is not spam or not an
-          infringement of copyright, respectively.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Please resolve <code>spam</code>, <code>copyright
+          infringement</code>, and <code>artificially generated content</code>
+          flags only if the content is not spam, not an infringement of
+          copyright, or not artificially generated, respectively.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
