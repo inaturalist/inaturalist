@@ -6739,8 +6739,6 @@ nl:
         flaggable_content: Te markeren inhoud
         flaggable_content_desc: |
           De inhoud die gemeld kan worden is het primaire tekst-attribuut van het gemelde object op het moment dat de melding werd gemaakt. Aleen curatoren en medewerkers kunnen dit zien. Bij berichten kunnen alleen medewerkers dit zien.
-        flags_that_should_not_be_resolved_desc_html: |
-          Verwijder de meldingen over <code>spam</code> en <code>schending van auteursrechten</code> alleen als de inhoud geen spam is of geen auteursrechten schendt.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
