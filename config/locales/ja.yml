@@ -5960,11 +5960,6 @@ ja:
       tips_check_email_filters: 受信トレイからメールを削除する可能性のあるフィルターがないか確認してください #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: スパムフォルダを確認する
       your_site_account_has_no_email: あなたの %{site_name} アカウントにはメールアドレスが関連付けられていません。
-    flags:
-      show:
-        flags_that_should_not_be_resolved_desc_html: |
-          <code>スパム</code> および <code>著作権侵害</code> フラグは、コンテンツがスパムでないか、
-          著作権侵害ではない場合にのみフラグを解決してください。コンテンツがスパムか著作権侵害に該当する場合は、フラグをそのまま残してください。
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
