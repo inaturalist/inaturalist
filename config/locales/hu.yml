@@ -5550,6 +5550,8 @@ hu:
         #also be translated as "Flagged Content" since the existence of a
         #flag implies that the content was flagged.
         flaggable_content: Bejelentett tartalom
+        flags_that_should_not_be_resolved_desc2_html: |
+          Kérjük, hogy hogy csak akkor jelöld megoldottként a <code>spammel</code>, <code>szerzőijog-sértéssel</code> és <code>mesterségesen generált tartalommal</code> kapcsolatos bejelentést, ha a tartalom nem spam, ha nem valósít meg szerzőijog-sértést, vagy ha nem mesterségesen generált.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
