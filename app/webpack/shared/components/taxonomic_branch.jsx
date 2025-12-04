@@ -160,7 +160,7 @@ const TaxonomicBranch = ( {
                 ) : null }
                 { isTaxon && !noHideable && numChildren > 1 && numProvisionalChildren > 0 ? (
                   <span>
-                    { " " }
+                    <span className="text-muted">&bull;</span>
                     <button
                       type="button"
                       className="btn btn-nostyle linky"
