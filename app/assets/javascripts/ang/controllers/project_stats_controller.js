@@ -63,7 +63,7 @@ application.controller( "ProjectStatsController", ["ObservationsFactory", "share
           return t;
         } );
       } );
-      // overselecting top identifiers to give a greater chance that the top observers
+      // overselecting top observers to give a greater chance that the top observers
       // of species are also in the result set. Querying for top species observers
       // directly is no longer possible due to memory constraints on species count sorts
       ObservationsFactory.observers( _.extend( {}, statsParams, { per_page: 500 } ) )
