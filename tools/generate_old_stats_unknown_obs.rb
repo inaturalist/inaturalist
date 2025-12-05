@@ -49,7 +49,8 @@ days_to_generate.times do
     aggs: {
       distinct_observations: {
         cardinality: {
-          field: "observation.id"
+          field: "observation.id",
+          precision_threshold: 40_000
         }
       }
     }
