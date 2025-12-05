@@ -6278,6 +6278,7 @@ it:
   you_faved_this: L'hai aggiunta ai preferiti!
   you_have_left_x_project: "Hai abbandonato il progetto %{project}"
   you_have_not_confirmed_your_email_address: Non hai ancora confermato il tuo indirizzo email!
+  you_havent_joined_any_projects: Non ti sei unito a nessun progetto
   you_havent_linked_your_inaturalist_google_account: "Non hai ancora collegato il tuo account %{site_name} a quello di Google"
   you_joined_this_project: Ti sei unito al progetto!
   you_must_be_a_member_of_this_project_to_do_that: Deve essere un membro del progetto per poterlo fare
@@ -6581,6 +6582,10 @@ it:
         flaggable_content: Contenuto Flaggabile
         flaggable_content_desc: |
           Il contenuto contrassegnabile è il l'attributo di testo principale dell'oggetto contrassegnato nel momento in cui il contrassegno è stato creato. Solo i curatori e lo staff lo possono vedere. Solo lo staff lo può vedere per i messaggi.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Per favore, risolvi contrassegni di <code>spam</code>, <code>violazioni del diritto d’autore
+          </code>e <code>contenuti generati artificialmente</code> solo se, rispettivamente, il contenuto non è spam, non è una violazione di
+          copyright, o non è generato artificialmente.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
