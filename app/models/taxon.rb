@@ -151,6 +151,7 @@ class Taxon < ApplicationRecord
   validate :can_only_be_featured_if_photos
   validate :validate_locked
   validate :provisional_only_for_cortinariaceae
+  validate :provisional_name_unique_within_parent
   validate :graftable_relative_to_taxon_framework_coverage
   validate :user_can_edit_attributes, on: :update
   validate :graftable_destination_relative_to_taxon_framework_coverage
@@ -1168,6 +1169,27 @@ class Taxon < ApplicationRecord
     return if is_cortinariaceae_descendant
 
     errors.add( :provisional, "can only be set to true for taxa that descend from Cortinariaceae" )
+  end
+
+  def provisional_name_unique_within_parent
+    return unless provisional
+    return if name.blank? || parent.blank?
+    # Only validate on create or if name/ancestry is changing
+    return unless new_record? || will_save_change_to_name? || will_save_change_to_ancestry?
+
+    # Find siblings (children of the same parent) with provisional = true
+    siblings = parent.children.where( provisional: true ).where.not( id: id )
+
+    # Check for case-insensitive name match
+    existing = siblings.find {| sibling | sibling.name.casecmp?( name ) }
+
+    return unless existing
+
+    errors.add(
+      :name,
+      "must be unique (case-insensitive) among provisional taxa with the same parent. " \
+        "A provisional taxon named '#{existing.name}' already exists under this parent."
+    )
   end
 
   def provisional_name_format
