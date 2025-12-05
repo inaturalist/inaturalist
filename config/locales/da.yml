@@ -6496,6 +6496,7 @@ da:
   you_faved_this: Du gjorde denne til favorit!
   you_have_left_x_project: "Du har forladt %{project}"
   you_have_not_confirmed_your_email_address: Du har ikke bekræftet din e-mailadresse!
+  you_havent_joined_any_projects: Du er ikke tilmeldt noget projekt
   you_havent_linked_your_inaturalist_google_account: "Du har ikke tilknyttet din %{site_name} konto og din Google konto endnu"
   you_joined_this_project: Du blev medlem af dette projekt!
   you_must_be_a_member_of_this_project_to_do_that: Du skal være medlem af dette projekt for at gøre det
@@ -6816,6 +6817,9 @@ da:
           Det flagbare indhold er den primære tekstattribut for det objekts, der blev markeret
           på det tidspunkt, hvor flaget blev oprettet. Kun kuratorer og medarbejdere kan
           se dette. Kun medarbejdere kan se dette for beskeder.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Læs venligst kun flag for <code>spam</code>, <code>ophavsretsovertrædelse</code>og <code>kunstigt genereret indhold</code>,
+          sårremt indholdet ikke er hhv. spam, ophavsretskrænkelse eller kunstigt genereret.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
