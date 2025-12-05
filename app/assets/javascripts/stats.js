@@ -49,8 +49,8 @@ Stats.loadChartsFromJSON = function ( json ) {
   Stats.loadObservations( json );
   Stats.loadIdentifications( json );
   Stats.loadCumulativeIdentifications( json );
-  Stats.loadObservationsUnkown( json );
-  Stats.loadObservationsTotalUnkownRatio( json );
+  Stats.loadObservationsUnknown( json );
+  Stats.loadObservationsTotalUnknownRatio( json );
   Stats.loadCumulativeUsers( json );
   Stats.loadCumulativePlatforms( json );
   Stats.loadProjects( json );
@@ -377,13 +377,13 @@ Stats.loadCumulativeIdentifications = function ( json ) {
   } );
 };
 
-Stats.loadObservationsUnkown = function ( json ) {
+Stats.loadObservationsUnknown = function ( json ) {
   google.charts.setOnLoadCallback( function ( ) {
     Stats.simpleChart( {
       chartOptions: {
         legend: { position: "none" }
       },
-      element_id: "observations-unkown",
+      element_id: "observations-unknown",
       series: [{ label: I18n.t( "total" ) }],
       data: _.map( json, function ( stat ) {
         return [
@@ -395,16 +395,16 @@ Stats.loadObservationsUnkown = function ( json ) {
   } );
 };
 
-Stats.loadObservationsTotalUnkownRatio = function ( json ) {
+Stats.loadObservationsTotalUnknownRatio = function ( json ) {
   google.charts.setOnLoadCallback( function ( ) {
     Stats.simpleChart( {
       chartOptions: {
         legend: { position: "bottom" }
       },
       chartType: "LineChart",
-      element_id: "observations-total-unkown-ratio",
+      element_id: "observations-total-unknown-ratio",
       series: [
-        { label: I18n.t( "views.stats.index.observations_total_unkown_ratio_desc" ) }
+        { label: I18n.t( "views.stats.index.observations_total_unknown_ratio_desc" ) }
       ],
       data: _.map( json, function ( stat ) {
         return [
