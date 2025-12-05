@@ -531,7 +531,7 @@ class YearStatistic < ApplicationRecord
     es_params = YearStatistic.identifications_es_base_params( year )
     es_params[:filters] << { terms: { "user.id" => [user.id] } }
     es_params[:aggregate] = {
-      users_helped: { terms: { field: "observation.user_id", size: 40_000 } }
+      users_helped: { terms: { field: "observation.user_id", size: 80_000 } }
     }
     buckets = Identification.
       elastic_search( es_params ).
@@ -556,7 +556,7 @@ class YearStatistic < ApplicationRecord
     es_params = YearStatistic.identifications_es_base_params( year )
     es_params[:filters] << { terms: { "observation.user_id" => [user.id] } }
     es_params[:aggregate] = {
-      users_helped: { terms: { field: "user.id", size: 40_000 } }
+      users_helped: { terms: { field: "user.id", size: 80_000 } }
     }
     buckets = Identification.
       elastic_search( es_params ).
