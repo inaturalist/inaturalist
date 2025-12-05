@@ -8945,6 +8945,20 @@ en:
         recent_w_7_obs_desc: Signed up in prev 7 days and added >= 7 obs
         # label for chart legend, linking to more information on the Seek app
         seek_desc_html: Created via <a href="%{url}">Seek</a>
+        today_identified_by_others: Observations Identified By Others (1 day)
+        today_identified_by_others_by_iconic_taxon: Observations Identified By Others (1 day)
+        observations_unknown: Observations Unknown After 30 Days
+        observations_total_unknown_ratio: Observations Unknown Ratio (30 days)
+        observations_total_unknown_ratio_desc: Ratio of unknown observations to all observations 
+        for_others: For others
+        ids_last_7_days: Identifications (7 days)
+        ids_last_7_days_desc: Identifications created during the previous 7 days
+        ids_today: Identifications (1 day)
+        ids_today_desc: Identifications created on a single day
+        ids_last_7_days_for_others: Identifications for others (7 days)
+        ids_last_7_days_for_others_desc: Identifications added to other peoples' observations during the previous 7 days
+        ids_today_for_others: Identifications for others (1 day)
+        ids_today_for_others_desc: Identifications added to other peoples' observations on a single day
         time_to_id_desc: Time to ID (hours, 1 week moving window)
         TTCID: TTCID
         TTCID_desc: Time to receive an identification from someone else that matches the community taxon.
