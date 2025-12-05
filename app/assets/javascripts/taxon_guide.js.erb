@@ -286,6 +286,9 @@ var TaxonGuide = {
         }
       })
       $(this).click(function() {
+        if ( _.isEmpty( CURRENT_USER ) ) {
+          return;
+        }
         var dialog = $('#'+dialogId)
         $(dialog).dialog('open')
         if ($(dialog).html() == '') {
