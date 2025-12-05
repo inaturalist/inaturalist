@@ -35,7 +35,16 @@ class TaxonChange < ApplicationRecord
     on: :save,
     delay: false,
     notification: "mention",
-    if: lambda( &:prefers_receive_mentions? )
+    if: lambda( &:prefers_receive_mentions? ),
+    unless: lambda {| tct |
+      # description hasn't changed, so mentions haven't changed
+      return true unless tct.previous_changes[:description]
+
+      # description has changed, but neither version mentioned users
+      tct.previous_changes[:description].map do | d |
+        d ? d.mentioned_users.any? : false
+      end.none?
+    }
 
   TAXON_CHANGE_TAXA_JOINS = [
     "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id"
