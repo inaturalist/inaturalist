@@ -63,7 +63,10 @@ application.controller( "ProjectStatsController", ["ObservationsFactory", "share
           return t;
         } );
       } );
-      ObservationsFactory.observers( _.extend( {}, statsParams, { per_page: 200 } ) )
+      // overselecting top identifiers to give a greater chance that the top observers
+      // of species are also in the result set. Querying for top species observers
+      // directly is no longer possible due to memory constraints on species count sorts
+      ObservationsFactory.observers( _.extend( {}, statsParams, { per_page: 500 } ) )
         .then( function ( response ) {
           $scope.observersCount = response.data.total_results;
           $scope.observers = _.map( response.data.results.slice( 0, 5 ), function ( r ) {
