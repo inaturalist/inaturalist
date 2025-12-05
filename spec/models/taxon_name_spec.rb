@@ -456,12 +456,10 @@ describe TaxonName, "provisional taxa scientific name validation" do
       parent: parent,
       provisional: true
     )
-    tn = TaxonName.new(
-      taxon: prov_taxon,
-      name: "Hypo-genus sp. 'test'",
-      lexicon: TaxonName::SCIENTIFIC_NAMES
-    )
+    # The taxon creation automatically creates a TaxonName
+    tn = prov_taxon.taxon_names.where( lexicon: TaxonName::SCIENTIFIC_NAMES ).first
     expect( tn ).to be_valid
+    expect( tn.name ).to eq( "Hypo-genus sp. 'test'" )
   end
 
   it "accepts provisional names with numbers in epithet" do
