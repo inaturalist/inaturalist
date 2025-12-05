@@ -829,6 +829,8 @@ class Taxon < ApplicationRecord
     end
     tn.lexicon = TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
     tn.is_valid = true
+    # Set taxon association before validation so provisional check works
+    tn.taxon = self
 
     if !tn.valid? && !tn.errors[:source_identifier].blank?
       tn.source_identifier = nil
