@@ -6429,6 +6429,7 @@ nl:
   you_faved_this: Je hebt dit opgeslagen als favoriet!
   you_have_left_x_project: "Je hebt %{project} verlaten"
   you_have_not_confirmed_your_email_address: Je hebt je e-mailadres nog niet bevestigd!
+  you_havent_joined_any_projects: Je neemt niet deel aan enig project
   you_havent_linked_your_inaturalist_google_account: "Je hebt je %{site_name}-account nog niet aan je Google-account gekoppeld."
   you_joined_this_project: Je bent lid geworden van dit project!
   you_must_be_a_member_of_this_project_to_do_that: Je moet lid zijn van dit project om dat te kunnen doen
@@ -6739,6 +6740,9 @@ nl:
         flaggable_content: Te markeren inhoud
         flaggable_content_desc: |
           De inhoud die gemeld kan worden is het primaire tekst-attribuut van het gemelde object op het moment dat de melding werd gemaakt. Aleen curatoren en medewerkers kunnen dit zien. Bij berichten kunnen alleen medewerkers dit zien.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Los alsjeblieft de <code>spam</code>, <code>auteursrecht
+          inbreuk</code>en <code>kunstmatig gegenereerde inhoud</code> meldingen alleen op als de inhoud geen spam is, geen inbreuk op auteursrecht maakt of niet kunstmatig gegenereerd is.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
