@@ -3,6 +3,10 @@ sw:
   add_a_project: Ongeza mradi
   #Label for an option to show any place
   any_place: Yoyote
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Je, una uhakika unataka kufuta sauti hii?
+  artificially_generated_content: Maudhui yanayozalishwa kwa bandia
+  artificially_generated_content_desc: Ina yaliyomo ambayo huzalishwa zaidi au kabisa kupitia akili ya bandia.
   #Adjective describing when a place in an atlas was "exploded," i.e. divided
   #into its constituent places
   atlas_alteration_action_exploded: Lililipuka
@@ -10,6 +14,7 @@ sw:
   #constituent places were removed and now the atlas just contains this
   #place
   atlas_alteration_action_unexploded: Haijalipuka
+  community_taxon_matches_observation_taxon: Taxon ya Jumuiya inalingana na Taxon ya Uchunguzi
   confirming_ids: Kuthibitisha vitambulisho
   confirming_ids_description: |
     Ukizima hii, hutaarifiwa tena kuhusu vitambulisho vinavyokubali
@@ -20,8 +25,16 @@ sw:
     uchunguzi wa mradi. Huu ni mpangilio chaguo-msingi wa
     uchunguzi katika miradi. Waangalizi wanaweza pia kuchagua kubadilisha hii kwa
     uchunguzi wa mtu binafsi.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Ushuru wa sasa wa Jumuiya: %{taxon}"
   #Button to customize projects that appear in the header
   customize__projects: Geuza kukufaa
+  #Label for a button to delete a sound file
+  delete_sound: Futa sauti
+  devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Ishara ya kuweka upya nenosiri ni batili. Tafadhali tumia kiunga katika barua pepe ya nenosiri iliyotumwa hivi karibuni, au <a href="%{url}">Omba mpya</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Tafadhali bonyeza kiungo hapa chini ili kuthibitisha anwani yako ya barua pepe. Kama huna email yako
@@ -31,14 +44,25 @@ sw:
   disagreements: Kutokubaliana
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Onyesha uchunguzi ambao una vitambulisho visivyokubaliana
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Kuchangia
   #Title for a page to edit an announcement
   editing_announcement_x: Tangazo la kuhariri %{id}
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Hitilafu ya kusasisha sauti: %{sound_errors}"
+  evidence_accurately_depicts_organism_or_scene: Ushahidi unaonyesha kwa usahihi kiumbe au eneo
   #Header for a section showing the user's favorite projects
   favorite_projects: Miradi inayopendwa
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Chagua hadi miradi saba inayoonekana kama viungo kwenye kichwa. Sasishi
     itaonekana baada ya kuonyesha upya ukurasa.
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Umbizo la faili
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL ya faili
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "VICHWA JUU: sauti hii imewekwa alamishwa."
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist ilisasisha kitambulisho kilichopendekezwa na %{user}
   #Title for a preference to control whether you receive notifications about
@@ -83,6 +107,22 @@ sw:
   #A user who does not admin any projects
   non_project_admin: Msimamizi asiye wa mradi
   observation_fields_for_projects: Sehemu za Uchunguzi kwa Miradi
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Inaweza kuchukua hadi siku moja kwa uchunguzi kuhusishwa na mahali hapa.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Maeneo hayawezi kuwa makubwa kuliko kilomita za mraba 700,000.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Maeneo hayawezi kuwa makubwa kuliko kilomita za mraba 70,000.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Maeneo hayawezi kuwa na uchunguzi zaidi ya 200,000.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Maeneo hayawezi kuwa na uchunguzi zaidi ya 10,000.
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Aina ya faili ya Picha ya Wasifu
@@ -98,6 +138,15 @@ sw:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: Aina ndogo / Aina / Fomu
+  sounds:
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Sauti %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Sauti imefutwa
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Sauti imefichwa
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Sauti haijafichwa
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Kujiunga
@@ -113,6 +162,8 @@ sw:
     Kuchagua chaguo hili kutatumia chaguo lako jipya la leseni kwa wote wako
     sauti zilizopo. Hii inaweza kuchukua masaa machache ikiwa una mengi
     Sauti.
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Sauti iliyosasishwa
   user_trusts_this_project_when_added_by_any: |
     Mtumiaji anaamini wasimamizi wa mradi na kuratibu zilizofichwa za uchunguzi zilizoongezwa
     kwa mradi na mtu yeyote.
@@ -141,10 +192,18 @@ sw:
         Wakati katika eneo la saa za akaunti yako kwamba tangazo hili litasimama
         Kuonekana. Inatumika katika maeneo ya saa, kwa hivyo kila mtu ataacha kuona
         wakati huo huo, sio kuhusiana na wakati wao wa ndani.
+      excludes_non_site_desc: |
+        Ikiwa tangazo lako linalenga tovuti (ambayo ni chaguo-msingi ikiwa wewe ni
+        Msimamizi wa Tovuti), hii itaondoa matangazo ambayo yanalenga tovuti zote katika
+        uwekaji huu.
       ip_countries_desc: |
         CMD- au SHIFT-bonyeza ili kuchagua nyingi. Kuchagua "Zote" au kutofanya
         Uteuzi utaonyesha tangazo kwa watumiaji wote bila kujali
         Nchi ya IP.
+      exclude_ip_countries_desc: |
+        CMD- au SHIFT-bonyeza ili kuchagua nyingi. Nchi zilizochaguliwa hazitaonyeshwa
+        tangazo. Ikiwa nchi za IP zimechaguliwa, kuchaguliwa Ondoa nchi za IP
+        itaondolewa kutoka kwa ile ya zamani.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Kumbuka kuwa tarehe ya uundaji wa mtumiaji iliyoundwa hivi karibuni
@@ -257,15 +316,57 @@ sw:
           Utaweza kutuma ujumbe mpya baada ya kuthibitisha barua pepe yako
           anwani, na kuongeza uchunguzi wa kuthibitishwa tatu au vitambulisho vitatu
           kwa wengine. Kwa sasa unaweza kusoma na kujibu ujumbe ambao watu wengine wanakutumia.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          Sehemu ya <strong>Mechi ya Taxon ya Jumuiya na Uchunguzi wa Taxon</strong>
+          (kwa hafla hizo nadra wakati Taxon ya Uchunguzi inaweza kuwa zaidi
+          maalum kuliko Taxon ya Jamii)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Uchunguzi <strong>haitoi ushahidi sahihi wa kiumbe au
+          Eneo</strong> (k.m. akili ya bandia ilitumiwa kuongeza, kuondoa, au kubadilisha
+          vipengele katika picha au sauti. Denoising, kuzingatia stacking, au kutengeneza
+          Marekebisho madogo kama vile kuondoa vumbi la sensorer kawaida ni sawa).
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Unaweza kutazama asili kwa <a href="%{url}">%{url}</a>. Tafadhali
+          Acha bendera za ukiukaji wa hakimiliki kuwa hazijatatuliwa ikiwa sauti hii itafanya hivyo
+          kukiuka hakimiliki.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Unaweza tu kufanya mabadiliko madogo kwa epithet ya spishi moja kwa moja (kwa mfano, mabadiliko ya kijinsia, tahajia mbaya). Ongeza a <a target="_blank" href="%{url}">Ubadilishaji wa taxon</a> ikiwa unahitaji mabadiliko mengine kwa jina.
       show:
         site_curators_disabled_wikipedia_html: |
           Wasimamizi wa tovuti wamelemaza maonyesho <a href="%{url}">Hii
           yaliyomo kutoka Wikipedia</a>. Unaweza kusaidia kwa kuhariri ukurasa kwenye
           Wikipedia kuifanya ifae kwa ushuru huu, au kwa kuashiria hii
           taxon kuileta kwa wasimamizi wa tovuti.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Kuna kitu kilienda vibaya kujaribu kuchapisha vitambulisho hivyo: %{message}
     users:
       edit:
+        block_desc_comments_on_taxon_flags: Maoni juu ya bendera za taxon zilizoundwa na wewe
+        block_desc_comments_on_taxon_changes: Maoni juu ya mabadiliko ya taxon yaliyoundwa na wewe
+        block_desc_unlike_more_personal: |
+          Tofauti na aina za kibinafsi za yaliyomo kama uchunguzi na jarida
+          machapisho, taxa zinashirikiwa na kila mtu na zinapaswa kuwa wazi kwa
+          majadiliano na kila mtu. Kuzuia bado kutakuzuia kutoka
+          kupokea arifa kuhusu maoni kuhusu aina hizi za maudhui na
+          mtu uliyemzuia.
+        block_desc_if_harassing_html: |
+          Ikiwa mtu anakunyanyasa au kukunyemelea %{site_name},
+          <a href="mailto:%{help_email}">Tafadhali tujulishe</a>. Kama
+          hii inawakilisha ukiukaji wa Masharti yetu ya Matumizi au inawakilisha
+          Tabia nyingine tunayoona haifai kwa tovuti yetu, tutafanya
+          Kuchunguza.
         errors:
           #error message when a user attempts to update their profile picture using
           #an image that has an unsupported file type
@@ -298,6 +399,7 @@ sw:
         exclude_donor_start_date: Ondoa tarehe ya kuanza kwa wafadhili
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Ondoa tarehe ya mwisho ya wafadhili
+        excludes_non_site: Ficha matangazo mengine katika uwekaji huu ambayo hayana Kitambulisho cha Tovuti
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Kuwatenga waangalizi kutoka kwa programu

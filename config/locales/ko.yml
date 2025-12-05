@@ -369,6 +369,14 @@ ko:
   any_: 모두
   #Label for an option to show any place
   any_place: 어떤
+  app_owner_application_about_p2_html: |
+    2022년부터 API 클라이언트를 만들고자 하는 사용자에게는 수동 승인이 필요합니다.
+    타사 앱을 만들려면 먼저 신청서를 제출해야 합니다.
+    "앱 소유자". 이 응용 프로그램은 제안된 앱의 기능을 설명해야 합니다
+    그리고 그것을 어떻게 사용할 계획인지. 신청서를 제출하려면 계정이
+    생후 2개월 이상이고 최소 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">식별 개선</a> 지난 달에. 후속 조치를 요청할 수 있습니다
+    귀하의 계획에 대한 질문은 어떤 이유로든 신청을 거절할 권리가 있습니다.
   apply_to_selected: 선택에 적용
   apply_captive_cultivated: "포획됨 / 사육됨 적용"
   apply_fields: 필드 적용
@@ -399,6 +407,8 @@ ko:
   are_you_sure_you_want_to_delete_this_assessment?: 이 평가를 삭제하겠습니까?
   are_you_sure_you_want_to_delete_this_photo?: 이 사진을 삭제하겠습니까?
   are_you_sure_you_want_to_delete_this_post: 이 게시물을 삭제하겠습니까?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: 이 소리를 삭제하시겠습니까?
   are_you_sure_you_want_to_delete_this_taxon_change: 분류군 변동사항을 저장하겠습니까?
   are_you_sure_you_want_to_remove_all_tags: 모든 태그를 삭제하시겠습니까?
   are_you_sure_you_want_to_remove_curator: 정말 %{user}님의 큐레이터 권한을 삭제하시겠습니까?
@@ -409,6 +419,8 @@ ko:
     이 사용자의 콘텐츠의 스팸 플래그가 해결됩니다.
   are_you_sure_you_want_to_remove_these_x_taxa?: "%{x}개의 분류군을 삭제하겠습니까?"
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "이 분류군을 %{place}의 체크리스트에서 제거하겠습니까?"
+  artificially_generated_content: 인위적으로 생성된 콘텐츠
+  artificially_generated_content_desc: 대부분 또는 전체가 인공 지능을 통해 생성된 콘텐츠를 포함합니다.
   associated_observations: 관련된 관찰
   associated_taxa: 관련된 분류군
   attention: 주의
@@ -625,6 +637,7 @@ ko:
   community_id_heading: 공동체 ID
   community_id_at_species_or_lower?: 종 단위 이하의 커뮤니티 동정
   community_id_at_species_level_or_lower: 종 단위 이하의 커뮤니티 동정
+  community_taxon_matches_observation_taxon: Community Taxon이 Observation Taxon과 일치합니다.
   compare: 비교하기
   compare_with: '다음과 비교:'
   comparing: 비교 중
@@ -653,6 +666,12 @@ ko:
     description: 목록에 포함된 이유를 명시
     place: 보존 상태 제한지역
     url: 보전 상태를 설명하는 페이지의 URL
+    iucn: |
+      동등한 IUCN 적색 목록 코드. 이것은 실제 IUCN 평가가 아닙니다.
+      좌표 공개의 위협에 가장 잘 맞는 IUCN 코드만 있으면 됩니다
+      이 상태에 의해 암시됩니다. 이렇게 하면 지리적 개인 정보 보호가 "최소
+      우려" 이하이므로 이에 대한 관찰을 모호하게 하고 싶다면
+      분류군을 "Near Threatened" 이상으로 설정합니다.
   contact_support: 연락 지원
   contain_all_descendants?: 이 체크리스트가 여기 존재하는 하위 분류군을 모두 포함하고 있나요?
   continue: 계속
@@ -788,6 +807,8 @@ ko:
   curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트에서 수정된 좌표와 관찰에서 숨겨진 위치의 원래 좌표를 볼 수 있습니다.
   curator_coordinate_access: 큐레이터 좌표 접근
   curator_identification: 큐레이터 확인
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "현재 커뮤니티 분류군: %{taxon}"
   current_flags: 현재 플래그
   custom_project_fields: 자체지정한 프로젝트 필드
   custom_project_was_successfully_created: 자체지정 프로젝트가 성공적으로 생성되었습니다.
@@ -796,6 +817,11 @@ ko:
   customize__projects: 사용자 지정
   darr_apply_darr: "&darr; 적용 &darr;"
   dashboard: 대시보드
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "예! 참가하고 싶습니다."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "식별 격차 파일럿: ID 수배 종 필요"
   data_deficient: 정보부족(DD)
   data_quality: 데이터 품질
   data_quality_assessment: 데이터 품질 평가
@@ -866,6 +892,8 @@ ko:
   delete_photo: 사진을 삭제하시겠습니까?
   delete_project: 이 프로젝트를 제거하시겠습니까?
   delete_selected: 선택한 것을 삭제
+  #Label for a button to delete a sound file
+  delete_sound: 소리 삭제
   delete_taxon_and_merge_most_data_html: |
     <i>%{taxon}</i> 삭제하고 그것의 대부분의 데이터를 다른 분류군 안으로 병합합니다. <strong>중복되는 분류군을 제거</strong>하기 위해 이 도구를 사용합니다. 오래된 동의어를 제거하고자 한다면, 분류군 교환을 만드시기 바랍니다. <strong>조심합니다!</strong> 분류군을 삭제하는 것은 매우 파괴적일 수 있습니다. 자세한 사항은 <a href="%{curator_url}">큐레이터 안내서</a>를 확인합니다.
   delete_user: 사용자 삭제
@@ -891,6 +919,8 @@ ko:
     failure:
       user:
         suspended: 당신의 계정은 일시 중지되었습니다.
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: 암호 재설정 토큰이 유효하지 않습니다. 가장 최근에 보낸 비밀번호 재설정 이메일의 링크를 사용하거나 <a href="%{url}">새 항목 요청</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     아래 링크를 클릭하여 이메일 주소를 확인하십시오. 이메일을 확인하지 않은 경우
@@ -917,6 +947,8 @@ ko:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: 기부하기
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: 기부
   done: 완료
   dont_have_an_account_sign_up_html: 계정이 없으십니까? <strong>가입하세요.</strong>
   dont_use_double_quotes: 따옴표를 사용하지 마세요.
@@ -998,6 +1030,8 @@ ko:
   endemic_to_x: "%{x}의 토착종"
   eol_collection_url: "EOL 모음 URL"
   error_updating_photo: "사진 업데이트 오류: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "소리 업데이트 오류: %{sound_errors}"
   establishment:
     endemic: 고유종
     establishment: 상태
@@ -1036,6 +1070,7 @@ ko:
   extinct: 절멸(EX)
   extinct_in_the_wild: 야생절멸(EW)
   extra_properties: 추가 특징들
+  evidence_accurately_depicts_organism_or_scene: 증거는 유기체나 장면을 정확하게 묘사합니다.
   facebook: 페이스북
   failed_to_find_your_location: 당신의 위치를 찾는데 실패하였습니다.
   failed_to_repair_photo: "사진을 수리하는데 실패했습니다. %{errors}"
@@ -1063,6 +1098,10 @@ ko:
   fields_can_only_be_edited_by_the_people_who: 필드는 만든이와 사이트 큐레이터만 편집할 수 있습니다.
   fields_merged: 필드 병합
   file: 파일
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: 파일 형식
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: 파일 URL
   file_should_be_in_the_following_format: "파일은 다음의 형식을 따라야 합니다: 분류군 이름, 설명"
   fill_out_project_observation_fields: 프로젝트 관찰 필드를 기입하십시오
   fill_out_your_profile: 프로파일을 완성하십시오
@@ -1102,7 +1141,6 @@ ko:
   flag_description: 큐레이터들이 이 자료의 문제점을 알 수 있도록 플래그를 다세요.
   flag_for_curation: 큐레이션 대상으로 플래그
   flag_it!: 플래그!
-  flag_reason: "&ldquo; %{record}를 플래그하는 이유는"
   flag_saved: 플래그 저장됨
   flag_this_observation: 이 관찰에 플래그를 달기
   flag_this_photo: 이 사진 플래그
@@ -1193,6 +1231,8 @@ ko:
   header_your_profile: 나의 프로필
   heads_up: 주의
   heads_up_this_photo_has_been_flagged: "주의: 이 사진은 플래그되었습니다."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "주의: 이 소리에 플래그가 지정되었습니다."
   heads_up_this_photo_is_already_associated_with: "주의: 이 사진은 이미 <a target='_blank' href='%{url}'>다른 관찰</a>와 연결되어 있습니다."
   heads_up_you_have_multiple: "주의: 당신은 동일한 랭크들에 대해 다수의 분류학상의 기작 태그가 달려 있습니다. 랭크에 따라 아래에 색으로 구분되어있습니다."
   help: 도움말
@@ -1908,6 +1948,8 @@ ko:
       town: 읍·면·동
       Unknown: 알 수 없음
       unknown: 알 수 없음
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: 관측이 이 장소와 연관되는 데 최대 하루가 걸릴 수 있습니다.
   place_name: 지역 이름
   place_notes: 메모 위치
   place_updated: 지역 업데이트됨!
@@ -2425,7 +2467,15 @@ ko:
     photos_sounds: 사진 / 음원
     request_timed_out: SoundCloud로의 요청이 타임아웃되었습니다. 나중에 다시 시도 해주세요.
     select_one_or_more_sounds: 하나 이상의 음원을 선택하세요
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: 소리 %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: 소리 삭제
     sound_has_been_flagged: 이 소리는 플래그되었습니다.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: 숨겨진 소리
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: 숨겨지지 않은 사운드
     your_soundcloud_account: SoundCloud 계정
   source_wikipedia: "출처: 위키백과"
   spam: 스팸
@@ -2535,6 +2585,8 @@ ko:
   update_subscription_preferences: 구독 환경 설정 업데이트
   updated: 갱신됨
   updated_daily: 매일 갱신
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: 업데이트된 사운드
   upload: 올리기
   upload_a_csv_file: CSV 파일 올리기
   upload_photo: 사진 올리기
@@ -2699,10 +2751,18 @@ ko:
         계정 시간대에서 이 공지가 중지되는 시간
         나타나는. 여러 시간대에 걸쳐 적용되므로 모든 사람이 더 이상 볼 수 없습니다.
         동시에 현지 시간과 관련이 없습니다.
+      excludes_non_site_desc: |
+        공지 사항이 사이트를 대상으로 하는 경우(기본값입니다.
+        Site Admin)에 있는 모든 사이트를 대상으로 하는 공지 사항이 제외됩니다.
+        이 배치.
       ip_countries_desc: |
         Cmd 키 또는 Shift 키를 누른 상태에서 여러 항목을 선택합니다. "모두"를 선택하거나 만들지 않음
         선택 항목은 다음에 관계없이 모든 사용자에게 공지 사항을 표시합니다.
         IP 국가.
+      exclude_ip_countries_desc: |
+        CMD를 누르거나 Shift를 누른 채 클릭하여 여러 개를 선택합니다. 일부 국가는 표시되지 않습니다.
+        발표. IP 국가를 선택한 경우 IP 국가 제외를 선택합니다.
+        전자에서 뺍니다.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         사용자가 가장 최근에 만든 생성 날짜입니다.
@@ -2870,6 +2930,17 @@ ko:
         you_reviewed_message: "검색된 %{total}개의 관찰 중, 이 페이지에서 %{pageTotal}개의 관찰 중에서 %{reviewed}개를 검토했습니다."
         unreview_all_tooltip: "페이지 내 모든 관찰자 검토상태 삭제하기"
       show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          이 <strong>Community Taxon 및 Observation Taxon 일치</strong>
+          (관찰 분류군이 더 많을 수 있는 드문 경우를 위해,
+          커뮤니티 분류군보다 구체적)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          관찰 <strong>유기체의 정확한 증거를 제시하지 않거나
+          장면</strong> (예: 인공 지능을 사용하여 추가, 제거 또는 교체했습니다.
+          이미지 또는 사운드의 요소. 노이즈 제거, 초점 스태킹 또는 만들기
+          센서 먼지 제거와 같은 작은 수정은 일반적으로 괜찮습니다).
         flagged_photos_desc_html: |
           이러한 사진 중 일부가 부적절한 내용 또는 저작권 침해로
           플래그되어 있습니다. 자세한 내용은 %{links}을(를) 보십시오
@@ -2926,6 +2997,14 @@ ko:
           이 자원의 소유자를 차단했기 때문에 이들과 통신하는 것은
           불가능합니다. 이 문서의 상호작용 기능들 대부분은 동작하지
           않습니다.
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          원본은 다음에서 볼 수 있습니다. <a href="%{url}">%{url}</a>. 부탁해요
+          이 소리가 나면 저작권 침해 플래그를 해결되지 않은 상태로 둡니다.
+          저작권을 침해합니다.
     stats:
       index:
         avg_ttcid: 평균 TTCID
@@ -2934,6 +3013,14 @@ ko:
       year:
         include_usa: 미국 포함
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          종 별명을 직접 사소한 변경만 할 수 있습니다(예: 성별 변경, 철자 오류). 추가 <a target="_blank" href="%{url}">분류군 스왑</a> 이름에 다른 변경이 필요한 경우.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "주의: 방금 잠긴 분류군의 후손을 추가했습니다(<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). 대신 이것을 기존 분류군에 병합하는 것을 고려하십시오." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " 주의: 이 활성 분류군의 부모는 비활성 상태이지만 이 분류군의 출력입니다. <a href='/taxon_changes/%{taxon_change_id}'> 분류군 변경 초안</a> 우리는 당신이 곧 커밋할 것이라고 가정합니다." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: 이 활성 분류군은 %{count} 다운스트림 관찰 또는 분류군 프레임워크에 의해 다루어지므로 일부 분류학적 속성은 해당 분류군 프레임워크와 관련된 직원 또는 분류군 큐레이터만 편집할 수 있습니다.
       show:
         frequency:
           research: 연구 자료 등급
@@ -2945,8 +3032,79 @@ ko:
           위키피디아의 콘텐츠</a>. 에서 페이지를 편집하여 도움을 줄 수 있습니다.
           Wikipedia를 사용하여 이 분류군에 적합하게 만들거나 이것을 표시하여
           Taxon을 사용하여 사이트 큐레이터의 관심을 끌 수 있습니다.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: 직접 편집할 때 이름은 유사해야 하며, 급진적인 이름 변경을 위해 분류군을 교체하십시오.
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} Flickr가 귀하가 권한을 부여했다는 것을 알 때까지 사진에 태그를 추가할 수 없습니다.
+        <a href='%{url}'>Flickr 권한 부여</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        해당 태그를 게시하는 데 문제가 발생했습니다. %{message}
+    taxon_changes:
+      #state of a pending taxon change
+      pending: 보류 중인
+      #state of a approved taxon change
+      approved: 승인
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: 투표가 추가되었습니다.
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: 투표가 제거되었습니다.
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: 아직 투표가 없습니다
+      #message when taxon change is committed
+      taxon_change_committed: 분류군 변경 투고! 자동 업데이트할 수 있는 기록은 곧 변경될 예정입니다.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        other: "이 분류군 변경은 현재 보류 중입니다. 승인이 필요합니다. %{count} 큐레이터가 커밋할 수 있도록 합니다."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        입력 분류군은 활성 자식을 가질 수 없거나, 먼저 이동하거나, '출력으로 자식을 이동하시겠습니까?' 옵션을 선택할 수 없습니다.
+      output_taxon_rank_level_not_coarser_html: >
+        출력 분류군 순위 수준은 입력 분류군의 활성 자식의 순위 수준보다 거칠지 않습니다. %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: 이 분류학적 변경은 이미 약속되었습니다!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "분류군 변경을 삭제하는 데 문제가 발생했습니다.%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: 분류군 변경이 삭제되었습니다.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: 분류군 변경이 성공적으로 업데이트되었습니다.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: 변경 사항이 지정되지 않음
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: 분류군 변경이 생성되었습니다.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        other: "승인 필요 %{count} 다른 큐레이터가 투입"
     users:
       edit:
+        block_desc_blocking_someone_prevents: |
+          누군가를 차단하면 그 사람이 당신에게 메시지를 보내거나 당신의 댓글을 달 수 없습니다.
+          관찰, 관찰 식별 및 기타 상호 작용
+          당신과 함께 %{site_name}. 또한 귀하의 관찰 내용을 제거합니다.
+          검색 결과를 검색하고 검색에서 관측 정보를 제거합니다.
+          결과. 그러나 그것이 그들에게 당신을 보이지 않게 만드는 것은 아닙니다. 그들은 할 수 있습니다
+          여전히 관찰 내용을 찾고 프로필을 볼 수 있지만 할 수 없습니다
+          당신과 상호 작용하십시오.
+        block_desc_blocking_is_for_situations: |
+          차단은 사이좋게 지낼 수 없는 상황을 위한 것입니다
+          누군가와 그들은 당신이 최선의 노력을 기울임에도 불구하고 당신을 혼자 두지 않을 것입니다.
+          문명화된 방식으로 분쟁을 해결합니다. 숨는 방법이 아닙니다.
+          귀하의 의견을 가진 사람들로부터 식별을 방지하기 위해
+          신뢰하지 않거나 커뮤니티 ID를 거부합니다(다른
+          설정을 위한 설정). 따라서 차단은 두 가지 방식으로 작동합니다.
+          누군가, 그들은 당신과 상호 작용할 수 없지만 당신도 상호 작용할 수 없습니다
+          그들과 함께. 다른 사람이 귀하의 신원을 식별하지 못하도록 오용하는 경우
+          관찰을 하면 자신이 관찰을 식별하는 것도 방지됩니다.
+          관찰.
+        block_desc_you_can_only_block_html: |
+          세 사람만 차단할 수 있습니다. 우리는 이것이 합리적이라고 생각합니다.
+          차단이 필요한 사람들을 수용하는 번호
+          차단의 남용을 방지합니다. 더 차단해야 한다고 생각되면
+          사람들, 제발 <a href="mailto:%{help_email}">문의</a>.
+        block_desc_there_are_two_exceptions: |
+          차단이 상호 작용을 방지하지 않는 두 가지 상황이 있습니다.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           마음이 바뀌면 언제든지
           <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
@@ -3113,6 +3271,7 @@ ko:
         exclude_donor_start_date: 기부자 시작일 제외
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: 기부자 종료일 제외
+        excludes_non_site: 이 게재위치에서 사이트 ID가 없는 다른 공지사항을 숨깁니다.
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: 앱에서 참관인 제외
@@ -3228,6 +3387,33 @@ ko:
               #Error message when a user uploads a KML that has a polygon
               #where all the points are the same.
               polygon_with_no_area: 영역이 없는 폴리곤이 있습니다(모든 포인트가 동일함).
+        taxon:
+          attributes:
+            name:
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "바이러스, 박테리아 또는 접목되지 않은 계통군에 대한 이름 변경은 허용되지 않습니다."
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "종보다 거친 등급에 대해서는 이름 변경이 허용되지 않습니다"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "하이브리드 수식의 경우 이름 변경이 허용되지 않습니다."
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "속과 종 사이의 잡종 마커로 'x'를 추가할 수 없습니다."
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "확인을 위해 이항(속 종)이어야 합니다."
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "속은 바뀔 수 없습니다"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "비표준 종 이름: 'x'/'×' 제거 또는 '×' 추가만 허용됩니다."
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "특정 별명은 유사해야 합니다(사소한 오타/성별만 해당)."
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "이 등급에 필요한 종하 별명"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "종하 등급에 대해서는 종하 별명만 변경될 수 있습니다"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "종하 별명은 유사해야 합니다(경미한 오타/성별만 해당)."
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "별명의 첫 글자는 변경할 수 없습니다."
         taxon_change:
           attributes:
             base:
