@@ -6182,6 +6182,7 @@ tr:
   you_faved_this: Bunu favoriye ekledin!
   you_have_left_x_project: "%{project} projesinden ayrıldın"
   you_have_not_confirmed_your_email_address: E-posta adresini doğrulamadın!
+  you_havent_joined_any_projects: Henüz hiçbir projeye katılmadın.
   you_havent_linked_your_inaturalist_google_account: "%{site_name} hesabını ve Google hesabını henüz bağlamadın"
   you_joined_this_project: Bu projeye katıldın!
   you_must_be_a_member_of_this_project_to_do_that: Bunu yapmak için bu projenin bir üyesi olmalısın
@@ -6451,6 +6452,8 @@ tr:
         flaggable_content: İşaretlenebilir İçerik
         flaggable_content_desc: |
           İşaretlenebilir içerik, işaretin oluşturulduğu sırada işaretlenen nesnenin birincil metin niteliğidir. Bunu yalnızca küratörler ve personel görebilir. Mesajlar için bunu yalnızca personel görebilir.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Lütfen <code>gereksiz</code>, <code>telif hakkı ihlali</code> ve <code>yapay olarak üretilmiş içerik</code> uyarılarını, içerik sırasıyla gereksiz değilse, telif hakkını ihlal etmiyorsa veya yapay olarak üretilmiş değilse kaldırın.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
