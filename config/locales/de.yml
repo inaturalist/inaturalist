@@ -6211,7 +6211,7 @@ de:
   you_faved_this: Du hast dies favorisiert!
   you_have_left_x_project: "Du hast %{project} verlassen"
   you_have_not_confirmed_your_email_address: Du hast deine E-Mail-Adresse noch nicht bestätigt!
-  you_havent_joined_any_projects: Sie sind nicht an Projekten beteiligt
+  you_havent_joined_any_projects: Du bist noch keinen Projekten beigetreten
   you_havent_linked_your_inaturalist_google_account: "Du hast Deine Konten bei %{site_name} und Google noch nicht verknüpft"
   you_joined_this_project: Du bist diesem Projekt beigetreten!
   you_must_be_a_member_of_this_project_to_do_that: Du musst ein Mitglied dieses Projektes sein, um das tun zu können
@@ -6500,6 +6500,8 @@ de:
         flaggable_content: Gemeldeter Inhalt
         flaggable_content_desc: |
           Der gemeldete Inhalt ist das primäre Textattribut des gemeldeten Objekts zum Zeitpunkt der Erstellung der Meldung. Nur Kuratoren und Admins können dies sehen. Nur Admins können dies bei Nachrichten sehen.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Bitte Meldungen, die <code>Spam</code>, <code>Urheberrechtsverletzungen</code> und <code>künstlich generierte Inhalte</code> betreffen, nur dann auflösen, wenn der Inhalt kein Spam, keine Verletzung des Urheberrechts oder nicht künstlich generiert ist.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -7679,6 +7681,20 @@ de:
         recent_w_7_obs_desc: In den letzten 7 Tagen registriert und mindestens 7 Beobachtungen hinzugefügt
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Erstellt via <a href="%{url}">Seek</a>
+        today_identified_by_others: Von anderen identifizierte Beobachtungen (1 Tag)
+        today_identified_by_others_by_iconic_taxon: Von anderen identifizierte Beobachtungen (1 Tag)
+        observations_unknown: Unbekannte Beobachtungen nach 30 Tagen
+        observations_total_unknown_ratio: Verhältnis unbekannter Beobachtungen (30 Tage)
+        observations_total_unknown_ratio_desc: Verhältnis der unbekannten Beobachtungen zu allen Beobachtungen
+        for_others: Für andere
+        ids_last_7_days: Bestimmungen (7 Tage)
+        ids_last_7_days_desc: Bestimmungen, die in den vorangegangenen 7 Tagen erstellt wurden
+        ids_today: Bestimmungen (1 Tag)
+        ids_today_desc: Bestimmungen, die an einem einzigen Tag erstellt wurden
+        ids_last_7_days_for_others: Bestimmungen für andere (7 Tage)
+        ids_last_7_days_for_others_desc: Bestimmungen zu Beobachtungen anderer Personen in den vorangegangenen 7 Tagen hinzugefügt
+        ids_today_for_others: Bestimmungen für andere (1 Tag)
+        ids_today_for_others_desc: Bestimmungen zu Beobachtungen anderer Menschen an einem einzigen Tag hinzugefügt
         time_to_id_desc: Zeitdauer bis zur Bestimmung (in Stunden, 1 Woche gleitender Wert)
         TTCID: TTCID
         TTCID_desc: Zeit, eine Bestimmung von jemandem zu erhalten, der mit dem Community-Taxon übereinstimmt.
@@ -9209,9 +9225,12 @@ de:
         missing_identifier: "Fehlende Kennung der Taxon-Zusammenfassung"
         service_unavailable: "Details zur ID-Zusammenfassung sind vorübergehend nicht verfügbar."
         no_summary_data: "Für dieses Taxon wurden keine zusammenfassenden Daten gefunden."
+      filters:
+        language_label: "Sprache"
       summary_list:
         feedback_toggle: "Feedback zu ID-Zusammenfassungen"
       summary_item:
+        copy_link: "Link zu dieser Zusammenfassung kopieren"
         photo_tip_aria: "Foto-Tipp: %{tip}"
         references_toggle: "Referenzen von iNaturalist-Benutzerkommentaren"
         user_fallback: "iNaturalist-Nutzer"
