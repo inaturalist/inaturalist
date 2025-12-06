@@ -1534,6 +1534,8 @@ da:
     pilot_read_more: "Læs mere på vores blog"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Identifikationshuller-pilotprojekt: Behøver ID ønskede arter"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Hjælp os med at udfylde huller ved at deltage for at modtage et dagligt link til observationer:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Endnu ikke inkluderet i Computer Vision Model"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -2114,6 +2116,8 @@ da:
   flag_deleted: Markering slettet.
   flag_description: Markér dette indhold så kuratorer ved at der er noget galt med det.
   flag_comment_description: Tilføj en valgfri kommentar til dette flag, der yderligere forklarer, hvorfor du tilføjer det samt giver links til understøttende beviser.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Flag, som citerer en kilde, er mere tilbøjelige til at blive løst hurtigt af vores frivillige kuratorer.
   flag_for_check_list_title_html: |
     Markér til Tjekliste: %{title}
   flag_for_comment_id_html: Markér til <a href="%{url}">Kommentar %{id}</a>
@@ -7193,6 +7197,9 @@ da:
       #to keep it under 20 characters
       help_us_improve: Hjælp os med at blive bedre
       to_help_us_improve: For at hjælpe os med at forbedre denne model vil vi gerne vide, hvilke af billederne på denne side, som er relevante for søgningen &quot;%{searched_term}&quot;. Markér venligst hvert billede som relevant %{thumbs_up_icon}, hvis det matcher søgningen, og som ikke relevant %{thumbs_down_icon}, hvis det ikke gør det. Når man er færdig, klik dernæst på Indsend. #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Markér som relevant
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Markér som ikke relevant
       #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Markér resterende som relevant
       #text for a button where a user can mark images as not relevant to their search term
@@ -8268,6 +8275,20 @@ da:
         recent_w_7_obs_desc: Tilmeldte sig i de seneste 7 dage og tilføjede >= 7 obs
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Oprettet via <a href="%{url}">Seek</a>
+        today_identified_by_others: Observationer identificeret af andre (1 dag)
+        today_identified_by_others_by_iconic_taxon: Observationer identificeret af andre (1 dag)
+        observations_unknown: Observationer ukendte efter 30 dage
+        observations_total_unknown_ratio: Observations-ukendt forhold (30 dage)
+        observations_total_unknown_ratio_desc: Forholdet mellem ukendte observationer og alle observationer
+        for_others: For andre
+        ids_last_7_days: Identifikationer (7 dage)
+        ids_last_7_days_desc: Identifikationer oprettet i løbet af de foregående 7 dage
+        ids_today: Identifikationer (1 dag)
+        ids_today_desc: Identifikationer oprettet på én enkelt dag
+        ids_last_7_days_for_others: Identifikationer for andre (7 dage)
+        ids_last_7_days_for_others_desc: Identifikationer tilføjet andres observationer i løbet af de foregående 7 dage
+        ids_today_for_others: Identifikationer for andre (1 dag)
+        ids_today_for_others_desc: Identifikationer tilføjet andres observationer på én enkelt dag
         time_to_id_desc: Tid til ID (timer, 1 løbende uge)
         TTCID: TTCID
         TTCID_desc: Tid til modtagelse af identifikation fra andre, som matcher fællesskabs taksonen
