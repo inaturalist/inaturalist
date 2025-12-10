@@ -659,7 +659,7 @@ namespace :inaturalist do
   end
 
   desc "Prune ApiEndpointCaches"
-  task prune_api_endpoint_cached: :environment do
+  task prune_api_endpoint_caches: :environment do
     ApiEndpointCache.includes( :api_endpoint ).
       select( :id, :api_endpoint_id, :request_began_at, :request_completed_at ).
       find_in_batches( batch_size: 10_000 ) do | batch |
