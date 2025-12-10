@@ -417,11 +417,13 @@ class Taxon < ApplicationRecord
   PROBLEM_NAMES = [
     "aba",
     "america",
+    "area",
     "asa",
     "bee hive",
     "canon",
     "caterpillar",
     "caterpillars",
+    "chile",
     "chiton",
     "cicada",
     "creeper",
