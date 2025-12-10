@@ -8014,6 +8014,20 @@ nl:
         recent_w_7_obs_desc: Aangemeld in de afgelopen 7 dagen en >=7 wrn toegevoegd
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Gemaakt met <a href="%{url}">Seek</a>
+        today_identified_by_others: Waarnemingen gedetermineerd door anderen (1 dag)
+        today_identified_by_others_by_iconic_taxon: Waarnemingen gedetermineerd door anderen (1 dag)
+        observations_unknown: Waarnemingen onbekend na 30 dagen
+        observations_total_unknown_ratio: Waarnemingen Onbekende Ratio (30 dagen)
+        observations_total_unknown_ratio_desc: Verhouding van onbekende waarnemingen tot alle waarnemingen
+        for_others: Voor anderen
+        ids_last_7_days: Determinaties (7 dagen)
+        ids_last_7_days_desc: Determinaties gemaakt in de voorgaande 7 dagen
+        ids_today: Determinaties (1 dag)
+        ids_today_desc: Determinaties gemaakt op één dag
+        ids_last_7_days_for_others: Determinaties voor anderen (7 dagen)
+        ids_last_7_days_for_others_desc: Determinaties die in de afgelopen 7 dagen aan de waarnemingen van andere mensen zijn toegevoegd
+        ids_today_for_others: Determinaties voor anderen (1 dag)
+        ids_today_for_others_desc: Determinaties toegevoegd aan de waarnemingen van andere mensen op één dag
         time_to_id_desc: Tijd tot ID (uren, meeschuivend tijdsbestek van 1 week)
         TTCID: TTCID
         TTCID_desc: Tijd om een determinatie van iemand anders te ontvangen die overeenkomt met het gemeenschapstaxon.
@@ -9741,6 +9755,7 @@ nl:
         run_placeholder: "Selecteer een run"
         run_loading: "Laad runs..."
         photo_tips_toggle: "Toon fototips"
+        language_label: "Taal"
       summary_list:
         loading: "Samenvattingen van ID-kaarten laden..."
         empty: "Er zijn geen ID-overzichten beschikbaar voor deze soort."
