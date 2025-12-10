@@ -774,5 +774,13 @@ describe ObservationsController, "identify" do
       get :identify
       expect( user.privileged_with?( UserPrivilege::INTERACTION ) ).to be true
     end
+
+    it "sets user hide webinar banner preference if they have 100 or more improving IDs" do
+      expect( Identification ).to receive( :elastic_search ).
+        and_return( WillPaginate::Collection.new( 1, 30, 100 ) )
+      expect( user.prefers_hide_identify_webinar_banner ).to be_nil
+      user.set_webinar_banner_default_preference
+      expect( user.prefers_hide_identify_webinar_banner ).to be true
+    end
   end
 end

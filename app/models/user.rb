@@ -116,6 +116,7 @@ class User < ApplicationRecord
   preference :needs_id_pilot, :boolean, default: nil
   preference :gaps_id_pilot, :boolean, default: nil
   preference :gaps_obs_pilot, :boolean, default: nil
+  preference :hide_identify_webinar_banner, :boolean, default: nil
   preference :identify_map_zoom_level, :integer
   preference :suggestions_source, :string
   preference :suggestions_sort, :string
@@ -1950,5 +1951,24 @@ class User < ApplicationRecord
       fave.position = position
       fave.save!
     end
+  end
+
+  def set_webinar_banner_default_preference
+    return unless prefers_hide_identify_webinar_banner.nil?
+
+    count_improving_ids = Identification.elastic_search(
+      size: 0,
+      track_total_hits: false,
+      filters: [
+        { term: { current: true } },
+        { term: { "user.id" => id } },
+        { term: { category: "improving" } },
+        { term: { own_observation: false } }
+      ],
+      source: ["id"]
+    ).total_entries
+    return unless count_improving_ids >= 100
+
+    update( prefers_hide_identify_webinar_banner: true )
   end
 end
