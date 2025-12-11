@@ -164,10 +164,9 @@ class Taxon < ApplicationRecord
   validate :cannot_edit_parent_during_content_freeze
   validate :restrict_name_changes_by_rank,
     on: :update,
-    # bypass name restrictions only used in specs or for provisional taxa
-    # (including when transitioning from provisional to non-provisional)
+    # bypass name restrictions only used in specs
     unless: lambda {
-      validation_context == :bypass_name_restrictions || provisional || will_save_change_to_provisional?
+      validation_context == :bypass_name_restrictions
     }
 
   has_subscribers to: {
@@ -2891,6 +2890,12 @@ class Taxon < ApplicationRecord
     end
 
     old_name, new_name = name_change
+
+    # Normalize provisional names to regular binomial format for validation
+    # "Genus sp. 'epithet'" becomes "Genus epithet"
+    old_name = old_name.gsub( /sp\.\s+'([^']+)'/, '\1' ) if old_name.match?( TaxonName::PROVISIONAL_NAME_FORMAT )
+    new_name = new_name.gsub( /sp\.\s+'([^']+)'/, '\1' ) if new_name.match?( TaxonName::PROVISIONAL_NAME_FORMAT )
+
     old_marker = Taxon.hybrid_marker_kind( old_name )
     new_marker = Taxon.hybrid_marker_kind( new_name )
 
