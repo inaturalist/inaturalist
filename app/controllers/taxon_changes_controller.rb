@@ -18,6 +18,7 @@ class TaxonChangesController < ApplicationController
     # NEW: status param for 3-state enum; keep old @committed for legacy URLs/UI
     @status    = filter_params[:status].presence
     @committed = filter_params[:committed]
+    @voted = filter_params[:voted]
     @types = filter_params[:types]
     @types ||= %w(split merge swap stage drop).map {| t | ( filter_params[t] == "1" ) ? t : nil }
     @types.delete_if( &:blank? )
@@ -61,6 +62,17 @@ class TaxonChangesController < ApplicationController
     scope = scope.source( @source ) if @source
     scope = scope.taxon_scheme( @taxon_scheme ) if @taxon_scheme
     scope = scope.by( @user ) if @user
+    # Filter by voted status
+    if logged_in? && @voted.present?
+      if @voted == "yes"
+        scope = scope.joins( :votes_for ).where( votes: { voter_id: current_user.id, voter_type: "User" } )
+      elsif @voted == "no"
+        voted_taxon_change_ids = TaxonChange.joins( :votes_for ).
+          where( votes: { voter_id: current_user.id, voter_type: "User" } ).select( :id )
+        scope = scope.where.not( id: voted_taxon_change_ids )
+      end
+      # "any" means no filter applied
+    end
 
     @taxon_changes = scope.page( params[:page] ).
       select( "DISTINCT ON (taxon_changes.id) taxon_changes.*" ).
@@ -117,6 +129,24 @@ class TaxonChangesController < ApplicationController
         try( :observose_warning_branch? )
       @observose_taxon_warning_threshold = Taxon::NUM_OBSERVATIONS_TRIGGERING_WARNING
     end
+
+    # Fetch top curator identifiers for pending taxon changes
+    if @taxon_change.status_pending? && @taxon_change.input_taxa.present?
+      @curator_identifiers_by_taxon_change_id = {}
+      input_taxon = @taxon_change.input_taxa.first
+      begin
+        response = INatAPIService.get( "/observations/identifiers", taxon_id: input_taxon.id, per_page: 100 )
+        if response && response["results"]
+          curator_identifiers = response["results"].select do | result |
+            result["user"] && result["user"]["roles"] && result["user"]["roles"].include?( "curator" )
+          end
+          @curator_identifiers_by_taxon_change_id[@taxon_change.id] = curator_identifiers.first( 6 )
+        end
+      rescue StandardError => e
+        Rails.logger.error "[ERROR] Failed to fetch curator identifiers for taxon #{input_taxon.id}: #{e.message}"
+      end
+    end
+
     respond_to( &:html )
   end
 
@@ -480,7 +510,7 @@ class TaxonChangesController < ApplicationController
     @taxon_change.reload
 
     respond_to do | format |
-      format.html { redirect_to @taxon_change }
+      format.html { redirect_back_or_default( @taxon_change ) }
     end
   end
 
