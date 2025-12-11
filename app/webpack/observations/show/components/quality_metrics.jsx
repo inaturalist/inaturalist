@@ -110,8 +110,8 @@ class QualityMetrics extends React.Component {
         />
       );
     const observerOptedOutOfCommunityTaxon = (
-      ( !observation.user.prefers_community_taxa && observation.prefers_community_taxon === null )
-      || observation.prefers_community_taxon === false
+      ( !observation.user.preferences.prefers_community_taxa && observation.preferences.prefers_community_taxon === null )
+      || observation.preferences.prefers_community_taxon === false
     );
     const needsIDVoteDisabled = (
       !observation.communityTaxon
