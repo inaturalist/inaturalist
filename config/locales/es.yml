@@ -5884,7 +5884,7 @@ es:
   user_muted: Usuario silenciado
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
-  user_said_comment_html: <span class="meta"> dijo, </span> "%{comment}"
+  user_said_comment_html: <span class="meta">%{user} dijo, </span> "%{comment}"
   user_suggested_an_id: "%{user} sugirió una identificación"
   user_trusts_this_project_for_none: El usuario no confía de esta proyecto con coordenadas ocultas.
   user_trusts_this_project_for_any: |
