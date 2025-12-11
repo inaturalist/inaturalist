@@ -72,6 +72,17 @@
           = t :group
           \:
         = link_to taxon_change.change_group, taxon_changes_path(:change_group => taxon_change.change_group)
+      - if taxon_change.status_pending? && defined?(@curator_identifiers_by_taxon_change_id) && @curator_identifiers_by_taxon_change_id[taxon_change.id].present?
+        .pull-right
+          %label
+            = succeed ":" do
+              = t(:curators_with_most_ids_of_the_input_taxon)
+          - @curator_identifiers_by_taxon_change_id[taxon_change.id].each_with_index do |identifier, index|
+            - user_login = identifier['user']['login']
+            - user_id = identifier['user']['id']
+            = link_to user_login, person_path(user_id)
+            - if index < @curator_identifiers_by_taxon_change_id[taxon_change.id].length - 1
+              = ", "
     - if ( taxon_change.is_a?( TaxonSwap ) || taxon_change.is_a?( TaxonMerge ) ) && taxon_change.move_children?
       .move_children
         %label=t :move_input_children_to_output?
