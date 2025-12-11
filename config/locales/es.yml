@@ -5858,7 +5858,7 @@ es:
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_stage_affecting_taxon2: "%{user} ha cometido una activación de taxón afectando a %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa2: "%{user} ha cometido un intercambio de taxón afectando a %{taxon}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} ha cometido un intercambio de taxón afectando a %{taxa}"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
   user_faved_an_observation_by_you: "%{user} marcó como favorita una observación tuya"
