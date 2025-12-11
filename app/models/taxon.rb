@@ -744,10 +744,9 @@ class Taxon < ApplicationRecord
 
   def remove_rank_from_name
     # Skip rank removal for provisional taxa as they need "sp." in their name
-    return true if provisional
+    return if provisional
 
     self.name = Taxon.remove_rank_from_name( name )
-    true
   end
 
   #
@@ -1152,18 +1151,20 @@ class Taxon < ApplicationRecord
     # Only validate if provisional flag is being set/changed
     return unless new_record? || will_save_change_to_provisional?
 
-    # Find the Cortinariaceae taxon (ID 48705)
-    cortinariaceae_taxon_id = 48_705
-    cortinariaceae = Taxon.find_by( id: cortinariaceae_taxon_id )
-    return unless cortinariaceae # if Cortinariaceae doesn't exist, allow provisional (edge case)
+    # Find the Cortinariaceae taxon dynamically
+    cortinariaceae = Taxon.where( name: "Cortinariaceae", iconic_taxon: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ).first
+    unless cortinariaceae
+      errors.add( :provisional, "can only be set to true for taxa that descend from Cortinariaceae" )
+      return
+    end
 
     # Check if this taxon descends from Cortinariaceae
     # For new records, build the ancestry chain from parent
     is_cortinariaceae_descendant = if new_record? && parent
-      parent.ancestor_ids.include?( cortinariaceae_taxon_id ) ||
-        parent.id == cortinariaceae_taxon_id
+      parent.ancestor_ids.include?( cortinariaceae.id ) ||
+        parent.id == cortinariaceae.id
     else
-      ancestor_ids.include?( cortinariaceae_taxon_id )
+      ancestor_ids.include?( cortinariaceae.id )
     end
 
     return if is_cortinariaceae_descendant
@@ -1196,12 +1197,7 @@ class Taxon < ApplicationRecord
     return unless provisional
     return if name.blank?
 
-    # Format: Genus sp. 'epithet-phrase'
-    # Example: Aureonarius sp. 'callisteus-infucatus' or Calonarius sp. 'AK01'
-    # Genus can contain letters or hyphens, epithet can contain letters (upper/lower), numbers, or hyphens
-    provisional_format = /\A[A-Z][a-z-]+\s+sp\.\s+'[A-Za-z0-9-]+'\z/
-
-    return if name.match?( provisional_format )
+    return if name.match?( TaxonName::PROVISIONAL_NAME_FORMAT )
 
     errors.add(
       :name,

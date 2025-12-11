@@ -31,6 +31,10 @@ class TaxonName < ApplicationRecord
   validate :user_submitted_names_need_notes
   validate :provisional_scientific_name_format
   SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/
+  # Format: Genus sp. 'epithet-phrase'
+  # Example: Aureonarius sp. 'callisteus-infucatus' or Calonarius sp. 'AK01'
+  # Genus can contain letters or hyphens, epithet can contain letters (upper/lower), numbers, or hyphens
+  PROVISIONAL_NAME_FORMAT = /\A[A-Z][a-z-]+\s+sp\.\s+'[A-Za-z0-9-]+'\z/
   validates :name,
     format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
     unless: proc {| tn |
@@ -406,11 +410,7 @@ class TaxonName < ApplicationRecord
     # Only validate on change or new record
     return unless name_changed? || new_record? || taxon&.will_save_change_to_provisional?
 
-    # Format: Genus sp. 'epithet-phrase'
-    # Genus can contain letters or hyphens, epithet can contain letters (upper/lower), numbers, or hyphens
-    provisional_format = /\A[A-Z][a-z-]+\s+sp\.\s+'[A-Za-z0-9-]+'\z/
-
-    return if name.match?( provisional_format )
+    return if name.match?( PROVISIONAL_NAME_FORMAT )
 
     errors.add(
       :name,
