@@ -58,6 +58,8 @@ class TaxonSwap < TaxonChange
 
   def commit
     super
+    return if status_pending? || status_draft?
+    
     # duplicate photos
     input_taxon.taxon_photos.sort_by( &:id ).each do | taxon_photo |
       begin
