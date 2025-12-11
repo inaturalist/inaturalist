@@ -65,6 +65,7 @@ class Taxon < ApplicationRecord
         indexes :url, type: "keyword", index: false
       end
       indexes :extinct, type: "boolean"
+      indexes :provisional, type: "boolean"
       indexes :flag_counts do
         indexes :resolved, type: "short", index: false
         indexes :unresolved, type: "short", index: false
@@ -212,6 +213,7 @@ class Taxon < ApplicationRecord
       json[:extinct] = conservation_statuses.any? do | cs |
         cs.place_id.blank? && cs.iucn == Taxon::IUCN_EXTINCT
       end
+      json[:provisional] = provisional
     end
     # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]

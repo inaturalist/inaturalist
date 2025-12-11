@@ -17,6 +17,8 @@ const TaxonomyTab = ( {
   showNewTaxon,
   allChildrenShown,
   toggleAllChildrenShown,
+  provisionalChildrenShown,
+  toggleProvisionalChildrenShown,
   currentUser
 } ) => {
   const viewerIsCurator = currentUser && currentUser.roles && (
@@ -53,6 +55,8 @@ const TaxonomyTab = ( {
                 chooseTaxon={t => showNewTaxon( t, { skipScrollTop: true } )}
                 toggleAllChildrenShown={toggleAllChildrenShown}
                 allChildrenShown={allChildrenShown}
+                provisionalChildrenShown={provisionalChildrenShown}
+                toggleProvisionalChildrenShown={toggleProvisionalChildrenShown}
                 currentUser={currentUser}
                 tabular
               />
@@ -231,6 +235,8 @@ TaxonomyTab.propTypes = {
   showNewTaxon: PropTypes.func,
   allChildrenShown: PropTypes.bool,
   toggleAllChildrenShown: PropTypes.func,
+  provisionalChildrenShown: PropTypes.bool,
+  toggleProvisionalChildrenShown: PropTypes.func,
   currentUser: PropTypes.object
 };
 
@@ -238,7 +244,8 @@ TaxonomyTab.defaultProps = {
   names: [],
   taxonChangesCount: 0,
   taxonSchemesCount: 0,
-  allChildrenShown: false
+  allChildrenShown: false,
+  provisionalChildrenShown: false
 };
 
 export default TaxonomyTab;
