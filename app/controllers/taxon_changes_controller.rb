@@ -140,7 +140,7 @@ class TaxonChangesController < ApplicationController
           curator_identifiers = response["results"].select do | result |
             result["user"] && result["user"]["roles"] && result["user"]["roles"].include?( "curator" )
           end
-          @curator_identifiers_by_taxon_change_id[@taxon_change.id] = curator_identifiers.first( 5 )
+          @curator_identifiers_by_taxon_change_id[@taxon_change.id] = curator_identifiers.first( 6 )
         end
       rescue StandardError => e
         Rails.logger.error "[ERROR] Failed to fetch curator identifiers for taxon #{input_taxon.id}: #{e.message}"

@@ -219,7 +219,7 @@ class TaxonChange < ApplicationRecord
     return false if is_a?( TaxonDrop ) || is_a?( TaxonStage )
 
     single_input_taxon = is_a?( TaxonMerge ) ? input_taxa.first : input_taxon
-    return false if single_input_taxon.nil? || single_input_taxon.iconic_taxon_id.nil?
+    return false if single_input_taxon.nil?
 
     plantae_iconic_taxon = Taxon::ICONIC_TAXA_BY_NAME["Plantae"]
     return false unless plantae_iconic_taxon
@@ -230,8 +230,11 @@ class TaxonChange < ApplicationRecord
       iconic_taxon_id: plantae_iconic_taxon.id
     ).first
 
-    plant_id = tracheophyta&.id || plantae_iconic_taxon.id
-    single_input_taxon.iconic_taxon_id == plant_id
+    return false unless tracheophyta
+
+    # Check if the input taxon descends from Tracheophyta
+    single_input_taxon.ancestor_ids.include?( tracheophyta.id ) ||
+      single_input_taxon.id == tracheophyta.id
   end
 
   # Override in subclasses
