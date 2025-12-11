@@ -1501,6 +1501,8 @@ fr:
     pilot_read_more: "En savoir plus sur notre blog."
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Projet pilote sur les lacunes en matière d’identification : Besoins Identification des espèces recherchées"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Aidez-nous à combler les lacunes en participant pour recevoir un lien quotidien vers les observations :"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Pas encore inclus dans le Modèle de Vision par Ordinateur."
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -2063,6 +2065,8 @@ fr:
   flag_deleted: Indicateur supprimé
   flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
   flag_comment_description: Ajoutez un commentaire facultatif à cet indication pour expliquer plus en détail pourquoi vous l'ajoutez et pour fournir des liens vers des données qui étayent votre point de vue.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Les drapeaux qui citent une source ont plus de chances d’être résolus rapidement par nos conservateurs bénévoles.
   flag_for_check_list_title_html: |
     Signalement de la check-list : %{title}
   flag_for_comment_id_html: Signaler pour <a href="%{url}">Commentaire %{id}</a>
@@ -6932,6 +6936,9 @@ fr:
       #to keep it under 20 characters
       help_us_improve: Aidez-nous à améliorer
       to_help_us_improve: Pour nous aider à améliorer ce modèle, nous aimerions savoir quelles images de cette page sont pertinentes pour votre recherche &quot;%{searched_term}&quot;. Veuillez marquer chaque image comme étant pertinente %{thumbs_up_icon} si elle correspond à votre recherche et non pertinente %{thumbs_down_icon} si elle ne l'est pas. Lorsque vous avez terminé, veuillez cliquer sur Envoyer. #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Marquer comme pertinent
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Marquer comme non pertinent
       #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Marquer le reste comme pertinent
       #text for a button where a user can mark images as not relevant to their search term
@@ -8012,6 +8019,16 @@ fr:
         recent_w_7_obs_desc: Inscrit pendant les sept derniers jours et ayant ajouté au moins sept observations
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Créé avec <a href="%{url}">Seek</a>
+        observations_unknown: Observations inconnues après 30 jours
+        observations_total_unknown_ratio: Ratio d’observations inconnu (30 jours)
+        observations_total_unknown_ratio_desc: Rapport des observations inconnues par rapport à toutes les observations
+        for_others: Pour d’autres
+        ids_last_7_days: Identifications (7 jours)
+        ids_last_7_days_desc: Identifications réalisées au cours des 7 jours précédents
+        ids_today: Identifications (1 jour)
+        ids_today_desc: Identifications réalisées en une seule journée
+        ids_last_7_days_for_others: Identifications pour d’autres (7 jours)
+        ids_today_for_others: Identifications pour les autres (1 jour)
         time_to_id_desc: Délai d'identification (en heures, fenêtre d’une semaine glissante)
         TTCID: TTCID
         TTCID_desc: Temps nécessaire à recevoir une identification de quelqu'un d'autre vérifiant le taxon communautaire.
@@ -9697,6 +9714,31 @@ fr:
         Protozoa: Protozoaires
         Mollusca: Mollusques
         Chromista: Chromistes
+  id_summary_dqa:
+    public_metrics:
+      true: "Déclaration véridique"
+      identification: "Utile pour l’identification"
+      references: "Étayé par des références"
+      distinct: "Distinct des autres résumés"
+      clear: "Court, familier et clairement écrit"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Le commentaire est pertinent pour le résumé"
+      true: "Le commentaire est une déclaration vraie"
+      matches_taxon: "Le commentaire fait référence à %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "Démo des résumés de l’ID"
+        blog_link_text: "En savoir plus sur notre blog"
+        service_unavailable: "Les détails du récapitulatif de l’ID sont temporairement indisponibles."
+        no_summary_data: "Aucune donnée sommaire n’a été trouvée pour ce taxon."
+      filters:
+        active_only: "Afficher uniquement les résumés actifs"
+        run_placeholder: "Sélectionner une série"
+        run_loading: "Chargement..."
+        photo_tips_toggle: "Afficher les conseils photo"
+        language_label: "Langue"
   #Title of a section warning the user about something
   warning_title: Avertissement
   wikimedia: Wikimédia
