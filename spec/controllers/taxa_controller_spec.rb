@@ -470,7 +470,9 @@ describe TaxaController do
   end
 
   describe "provisional" do
-    let( :cortinariaceae ) { Taxon.make!( id: 48_705, name: "Cortinariaceae", rank: Taxon::FAMILY ) }
+    before { load_test_taxa( iconic: true ) }
+    let( :fungi ) { Taxon::ICONIC_TAXA_BY_NAME["Fungi"] }
+    let( :cortinariaceae ) { Taxon.make!( name: "Cortinariaceae", rank: Taxon::FAMILY, parent: fungi ) }
     let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
 
     it "should not be updateable by curators" do
