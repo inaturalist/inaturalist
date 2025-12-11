@@ -1321,6 +1321,7 @@ class UsersController < ApplicationController
       :prefers_taxon_change_email_notification,
       :prefers_taxon_or_place_observation_email_notification,
       :prefers_user_observation_email_notification,
+      :prefers_hide_identify_webinar_banner,
       :search_place_id,
       :site_id,
       :test_groups,

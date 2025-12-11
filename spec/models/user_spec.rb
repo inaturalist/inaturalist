@@ -2033,6 +2033,34 @@ describe User do
     end
   end
 
+  describe "set_webinar_banner_default_preference" do
+    let( :user ) { User.make! }
+
+    it "sets hide banner preference to true if user has 100 or more improving IDs" do
+      expect( Identification ).to receive( :elastic_search ).
+        and_return( WillPaginate::Collection.new( 1, 30, 100 ) )
+      expect( user.prefers_hide_identify_webinar_banner ).to be_nil
+      user.set_webinar_banner_default_preference
+      expect( user.prefers_hide_identify_webinar_banner ).to be true
+    end
+
+    it "does not set hide banner preference if user has less than 100 improving IDs" do
+      expect( Identification ).to receive( :elastic_search ).
+        and_return( WillPaginate::Collection.new( 1, 30, 99 ) )
+      expect( user.prefers_hide_identify_webinar_banner ).to be_nil
+      user.set_webinar_banner_default_preference
+      expect( user.prefers_hide_identify_webinar_banner ).to be_nil
+    end
+
+    it "does not query if the hide banner preference is already set" do
+      expect( Identification ).not_to receive( :elastic_search )
+      user.update( prefers_hide_identify_webinar_banner: true )
+      expect( user.prefers_hide_identify_webinar_banner ).to be true
+      user.set_webinar_banner_default_preference
+      expect( user.prefers_hide_identify_webinar_banner ).to be true
+    end
+  end
+
   protected
 
   def create_user( options = {} )

@@ -23,6 +23,7 @@
       CURRENT_USER.preferred_identify_map_zoom_level = #{logged_in? && current_user.preferred_identify_map_zoom_level ? current_user.preferred_identify_map_zoom_level : "null"};
       CURRENT_USER.preferred_suggestions_source = #{logged_in? && current_user.preferred_suggestions_source ? current_user.preferred_suggestions_source.inspect.html_safe : "null"};
       CURRENT_USER.preferred_suggestions_sort = #{logged_in? && current_user.preferred_suggestions_sort ? current_user.preferred_suggestions_sort.inspect.html_safe : "null"};
+      CURRENT_USER.prefers_hide_identify_webinar_banner = #{( logged_in? && current_user.prefers_hide_identify_webinar_banner ) || "false" };
       CURRENT_USER.privileges = [#{UserPrivilege::INTERACTION.inspect.html_safe if current_user&.privileged_with?( UserPrivilege::INTERACTION )}];
     }
     var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
