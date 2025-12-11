@@ -18,6 +18,7 @@ const TAXON_SUMMARY_FIELDS = [
   "taxon_photo_id",
   "taxon_photo_observation_id",
   "taxon_group",
+  "language",
   "run_generated_at",
   "run_name",
   "id_summaries",
@@ -33,6 +34,7 @@ const TAXON_SUMMARY_FIELDS = [
   "id_summaries.references.reference_content",
   "id_summaries.references.reference_source",
   "id_summaries.references.reference_uuid",
+  "id_summaries.references.reference_observation_id",
   "id_summaries.references.reference_date",
   "id_summaries.references.created_at",
   "id_summaries.references.updated_at"
@@ -41,6 +43,7 @@ const TAXON_SUMMARY_FIELDS = [
 export const fetchTaxa = ( {
   active,
   run_name,
+  language,
   page = 1,
   per_page = 200
 } = {} ) => async dispatch => {
@@ -61,6 +64,9 @@ export const fetchTaxa = ( {
     if ( run_name ) {
       params.run_name = run_name;
       params.run_name_exact = true;
+    }
+    if ( language ) {
+      params.language = language;
     }
     const resp = await taxonIdSummariesAPI.search( params, { useAuth: true } );
     const {
@@ -83,6 +89,7 @@ export const fetchTaxa = ( {
           comment_uuid: source?.comment_uuid,
           user_id: source?.user_id,
           body: source?.body,
+          reference_observation_id: source?.reference_observation_id,
           created_at: source?.reference_date || source?.created_at || source?.updated_at || null,
           reference_source: source?.reference_source || source?.source || null,
           reference_uuid: source?.reference_uuid || source?.comment_uuid || null
@@ -93,6 +100,7 @@ export const fetchTaxa = ( {
             comment_uuid: ref?.comment_uuid,
             user_id: ref?.user_id,
             body: ref?.body || ref?.reference_content,
+            reference_observation_id: ref?.reference_observation_id,
             created_at: ref?.reference_date || ref?.created_at || ref?.reference_created_at || ref?.updated_at || null,
             reference_source: ref?.reference_source || ref?.source || null,
             reference_uuid: ref?.reference_uuid || ref?.comment_uuid || null
@@ -106,6 +114,7 @@ export const fetchTaxa = ( {
       name: r?.taxon_name,
       commonName: r?.taxon_common_name?.name || r?.taxon_common_name || null,
       taxonGroup: r?.taxon_group || null,
+      language: r?.language || null,
       runGeneratedAt: r?.run_generated_at || null,
       runName: r?.run_name || null,
       taxonPhotoId: r?.taxon_photo_id,

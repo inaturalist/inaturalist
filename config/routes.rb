@@ -43,6 +43,10 @@ Rails.application.routes.draw do
   get "/supportersurvey", to: redirect( "https://docs.google.com/forms/d/12mSK_93McY60oWaCaWpjBib495PaMSByRpVl1ichCIY/", status: 302 )
 
   get "/id_summaries_dashboard", to: "id_summaries_dashboard#index", as: :id_summaries_dashboard
+  get "/id_summaries_feedback_dashboard", to: "id_summaries_feedback_dashboard#index", as: :id_summaries_feedback_dashboard
+  post "/id_summaries_feedback_dashboard/delete_voter_votes",
+    to: "id_summaries_feedback_dashboard#delete_voter_votes",
+    as: :delete_id_summaries_dashboard_voter_votes
   get "/id_summaries_demo", to: "id_summaries_demo#index"
 
   resources :controlled_terms

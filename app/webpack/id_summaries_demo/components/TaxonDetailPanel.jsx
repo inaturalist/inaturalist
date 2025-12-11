@@ -3,6 +3,7 @@
 import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import SummaryList from "./SummaryList";
+import { LANGUAGE_LABELS } from "../constants/languages";
 
 const formatCommonName = name => {
   if ( !name ) {
@@ -26,7 +27,10 @@ const TaxonDetailPanel = ( {
   onVote,
   showPhotoTips,
   photoAttribution,
-  adminExtrasVisible
+  adminExtrasVisible,
+  onSummaryShare,
+  highlightedSummaryUuid,
+  highlightedSummaryRevision
 } ) => {
   const speciesIdentifier = species?.id || species?.uuid || null;
   const photoTips = useMemo( () => {
@@ -77,6 +81,9 @@ const TaxonDetailPanel = ( {
   const speciesLabel = commonName || scientificName || "";
   const observationLink = species?.taxonPhotoObservationId && species?.taxonPhotoId
     ? `/observations/${species.taxonPhotoObservationId}?photo_id=${species.taxonPhotoId}`
+    : null;
+  const languageLabel = species?.language
+    ? LANGUAGE_LABELS[species.language] || species.language.toUpperCase()
     : null;
 
   let imageContent = null;
@@ -144,6 +151,11 @@ const TaxonDetailPanel = ( {
                 {formattedRunDate}
               </div>
             ) : null}
+            {languageLabel ? (
+              <div className="fg-language-pill">
+                {languageLabel}
+              </div>
+            ) : null}
             {species?.uuid && adminExtrasVisible ? (
               <div style={uuidStyle}>
                 <code>{species.uuid}</code>
@@ -199,6 +211,9 @@ const TaxonDetailPanel = ( {
           tipVotes={tipVotes}
           referenceUsers={referenceUsers}
           onVote={onVote}
+          onShareSummary={onSummaryShare}
+          highlightSummaryUuid={highlightedSummaryUuid}
+          highlightSummaryRevision={highlightedSummaryRevision}
         />
       </section>
     </div>
@@ -239,7 +254,10 @@ TaxonDetailPanel.propTypes = {
   onVote: PropTypes.func,
   showPhotoTips: PropTypes.bool,
   photoAttribution: PropTypes.string,
-  adminExtrasVisible: PropTypes.bool
+  adminExtrasVisible: PropTypes.bool,
+  onSummaryShare: PropTypes.func,
+  highlightedSummaryUuid: PropTypes.string,
+  highlightedSummaryRevision: PropTypes.number
 };
 
 export default TaxonDetailPanel;

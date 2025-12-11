@@ -149,7 +149,7 @@ describe User, "associations" do
 end
 
 describe User, "validations" do
-  it { is_expected.to validate_exclusion_of( :login ).in_array %w(password new edit create update delete destroy) }
+  it { is_expected.to validate_exclusion_of( :login ).in_array User::EXCLUDED_LOGINS }
   it { is_expected.to validate_exclusion_of( :password ).in_array %w(password) }
   it { is_expected.to validate_length_of( :login ).is_at_least( User::MIN_LOGIN_SIZE ).is_at_most User::MAX_LOGIN_SIZE }
   it { is_expected.to validate_length_of( :name ).is_at_most( 100 ).allow_blank }

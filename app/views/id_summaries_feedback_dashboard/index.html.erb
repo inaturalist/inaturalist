@@ -1,0 +1,584 @@
+<%# frozen_string_literal: true %>
+<div class="container" style="width: 1150px; margin: 2rem auto;">
+  <h1 style="margin-bottom: 1rem;">ID Summaries Feedback Dashboard</h1>
+
+  <%= form_with url: id_summaries_feedback_dashboard_path, method: :get, local: true,
+    html: { style: "display:flex; gap:.75rem; flex-wrap:wrap; align-items:flex-end; margin-bottom:1rem;" } do %>
+    <%= hidden_field_tag :tab, @active_tab %>
+    <div>
+      <label>Run name</label><br>
+      <%= text_field_tag :run_name, @filters[:run_name], placeholder: "partial match", style: "width: 16rem;" %>
+    </div>
+    <div>
+      <label>Language</label><br>
+      <%= select_tag :language,
+        options_for_select(@language_options, @language_form_value),
+        style: "width: 10rem;" %>
+    </div>
+    <div>
+      <label>Status</label><br>
+      <%= select_tag :active_state,
+        options_for_select([
+          ["All", "all"],
+          ["Active only", "active"],
+          ["Inactive only", "inactive"]
+        ], @filters[:active_state]),
+        style: "width: 10rem;" %>
+    </div>
+    <div>
+      <label>Limit</label><br>
+      <%= number_field_tag :limit, @filters[:limit], min: 1, max: 500, style: "width: 6rem;" %>
+    </div>
+    <div>
+      <label>Offset</label><br>
+      <%= number_field_tag :offset, @filters[:offset], min: 0, step: 1, style: "width: 6rem;" %>
+    </div>
+    <div>
+      <label>User ID</label><br>
+      <%= number_field_tag :user_id, @filters[:user_id], min: 1, style: "width: 8rem;" %>
+    </div>
+    <div>
+      <label>User login</label><br>
+      <%= text_field_tag :user_login, @filters[:user_login], placeholder: "partial match", style: "width: 12rem;" %>
+    </div>
+    <div style="<%= @active_tab == "voters" ? "" : "display:none;" %>">
+      <label>Voter dataset</label><br>
+      <%= select_tag :voter_feedback_source,
+        options_for_select([["Summary feedback", "summary"], ["Reference feedback", "reference"]], @filters[:voter_feedback_source]),
+        style: "width: 16rem;" %>
+    </div>
+    <div style="<%= @active_tab == "taxa" ? "" : "display:none;" %>">
+      <label>Taxa dataset</label><br>
+      <%= select_tag :taxa_feedback_source,
+        options_for_select([["Summary feedback", "summary"], ["Reference feedback", "reference"]], @filters[:taxa_feedback_source]),
+        style: "width: 16rem;" %>
+    </div>
+    <div>
+      <%= submit_tag "Apply", class: "btn btn-primary", style: "margin-top:1.35rem;" %>
+      <%= link_to "Reset", id_summaries_feedback_dashboard_path, class: "btn", style: "margin-top:1.35rem; margin-left:.5rem;" %>
+    </div>
+  <% end %>
+
+  <% permitted_params = params.permit(:run_name, :language, :active_state, :limit, :offset, :user_id, :user_login, :voter_feedback_source, :taxa_feedback_source) %>
+  <% demo_link_for = lambda do |taxon_name, taxon_id, language, summary_anchor = nil|
+       slug = taxon_name.to_s.parameterize
+       slug = "taxon-#{taxon_id}" if slug.blank? && taxon_id.present?
+       lang = language.present? ? language : "en"
+       next nil if slug.blank?
+       base = "#{slug}-#{lang}"
+       hash_value = summary_anchor.present? ? "#{base}-#{summary_anchor}" : base
+       "#{id_summaries_demo_path}##{hash_value}"
+     end %>
+  <div style="margin-bottom:1.5rem; border:1px solid #cfd8dc; border-radius:6px; padding:.5rem; display:flex; flex-wrap:wrap; gap:.5rem;">
+    <% { "summaries" => "Summaries", "references" => "References", "voters" => "Voters", "taxa" => "Taxa" }.each do |tab, label| %>
+      <% css_class = "btn #{tab == @active_tab ? 'btn-primary' : ''}" %>
+      <%= link_to label,
+        id_summaries_feedback_dashboard_path(permitted_params.merge(tab: tab)),
+        class: css_class %>
+    <% end %>
+  </div>
+
+  <% if @active_tab == "summaries" %>
+    <p style="color:#555; margin-bottom:1rem;">
+      Showing <strong><%= @taxon_feedback_count %></strong> of <strong><%= @summary_total_summaries %></strong> ID summaries.
+      Filtered feedback rows: <strong><%= number_with_delimiter( @summary_total_votes ) %></strong>.
+    </p>
+    <% if @taxon_feedback_count.zero? %>
+      <div class="alert alert-info">No feedback found for the selected filters.</div>
+    <% else %>
+      <div style="overflow-x:auto; margin-bottom:2rem;">
+        <table class="table js-sortable-table" style="min-width:1150px; border-collapse:collapse;">
+          <thead>
+          <tr style="border-bottom:1px solid #e0e0e0; text-align:left;">
+            <th rowspan="2" style="padding:.5rem; min-width:320px;">ID Summaries</th>
+            <th colspan="2" style="padding:.5rem; text-align:center;">Global</th>
+              <% short_labels = {
+                "clear" => "Short",
+                "identification" => "Useful",
+                "true" => "True",
+                "references" => "Backed up",
+                "distinct" => "Distinct"
+              } %>
+              <% @metrics.each do |metric| %>
+                <% metric_label = @metric_labels[metric] %>
+                <% short_label = short_labels[metric] || metric_label.split(/\s+/).map(&:first).join.upcase %>
+                <th colspan="2" style="padding:.5rem; text-align:center;">
+                  <abbr title="<%= metric_label %>" style="border-bottom:1px dotted #999; text-decoration:none; cursor:help;">
+                    <%= short_label %>
+                  </abbr>
+                </th>
+              <% end %>
+            </tr>
+            <tr style="border-bottom:1px solid #e0e0e0; text-align:left;">
+              <th style="padding:.35rem; cursor:pointer;" data-sort-key="positive_total" data-sort-type="number" aria-label="Positive feedback">
+                <span aria-hidden="true" class="fa fa-thumbs-o-up"></span>
+              </th>
+              <th style="padding:.35rem; cursor:pointer;" data-sort-key="negative_total" data-sort-type="number" aria-label="Negative feedback">
+                <span aria-hidden="true" class="fa fa-thumbs-o-down"></span>
+              </th>
+              <% @metrics.each do |metric| %>
+                <% metric_label = @metric_labels[metric] %>
+                <th
+                  style="padding:.35rem; cursor:pointer;"
+                  data-sort-key="<%= "#{metric}_positive" %>"
+                  data-sort-type="number"
+                  aria-label="Positive <%= metric_label %>"
+                  title="Positive <%= metric_label %>"
+                >
+                  <span aria-hidden="true" class="fa fa-thumbs-o-up"></span>
+                </th>
+                <th
+                  style="padding:.35rem; cursor:pointer;"
+                  data-sort-key="<%= "#{metric}_negative" %>"
+                  data-sort-type="number"
+                  aria-label="Negative <%= metric_label %>"
+                  title="Negative <%= metric_label %>"
+                >
+                  <span aria-hidden="true" class="fa fa-thumbs-o-down"></span>
+                </th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @taxon_feedback.each do |row| %>
+              <tr style="border-top:1px solid #f3f3f3; vertical-align:top;">
+                <td style="padding:.75rem;">
+                  <div style="font-weight:600;">
+                    ID Summary #<%= row["id_summary_id"] %>
+                    <% if row["visual_key_group"].present? %>
+                      <span class="badge" style="background:#78909c; color:white; margin-left:.35rem;"><%= row["visual_key_group"] %></span>
+                    <% end %>
+                    <% if row["id_summary_score"] %>
+                      <span style="color:#666; margin-left:.35rem;">score: <%= row["id_summary_score"] %></span>
+                    <% end %>
+                  </div>
+                  <div style="color:#555;">
+                    <%= truncate( row["id_summary_text"].to_s, length: 220 ) %>
+                  </div>
+                  <div style="color:#777; margin-top:.35rem;">
+                    TaxonIdSummary #<%= row["taxon_summary_id"] %> –
+                    taxon_id=<%= row["taxon_id"] %>
+                    <% if row["taxon_name"].present? %>
+                      – <%= h row["taxon_name"] %>
+                    <% end %>
+                  </div>
+                  <% if row["taxon_common_name"].present? %>
+                    <div style="color:#777;">common: <%= h row["taxon_common_name"] %></div>
+                  <% end %>
+                  <div style="color:#777;">run: <%= h( row["run_name"] || "—" ) %>, language: <%= row["language"] || "—" %></div>
+                  <% if row["run_generated_at"].present? %>
+                    <div style="color:#999;">generated: <%= row["run_generated_at"] %></div>
+                  <% end %>
+                  <div style="color:#bbb; font-size:.85em;">updated: <%= row["updated_at"] %></div>
+                  <% summary_demo_link = demo_link_for.call( row["taxon_name"], row["taxon_id"], row["language"], row["id_summary_id"] ) %>
+                  <% if summary_demo_link %>
+                    <div style="margin-top:.35rem;">
+                      <a href="<%= summary_demo_link %>" target="_blank" rel="noopener">Open in demo</a>
+                    </div>
+                  <% end %>
+                </td>
+                <td style="padding:.75rem; font-weight:600; color:#2e7d32; white-space:nowrap;" data-sort-key="positive_total">
+                  <span aria-hidden="true" class="fa fa-thumbs-o-up" style="margin-right:.35rem;"></span>
+                  <%= number_with_delimiter( row["positive_total"].to_i ) %>
+                </td>
+                <td style="padding:.75rem; font-weight:600; color:#c62828; white-space:nowrap;" data-sort-key="negative_total">
+                  <span aria-hidden="true" class="fa fa-thumbs-o-down" style="margin-right:.35rem;"></span>
+                  <%= number_with_delimiter( row["negative_total"].to_i ) %>
+                </td>
+                <% @metrics.each do |metric| %>
+                  <% pos = row["#{metric}_positive"].to_i %>
+                  <% neg = row["#{metric}_negative"].to_i %>
+                  <td style="padding:.75rem; color:#2e7d32; font-weight:600; white-space:nowrap;" data-sort-key="<%= "#{metric}_positive" %>">
+                    <span aria-hidden="true" class="fa fa-thumbs-o-up" style="margin-right:.35rem;"></span>
+                    <%= number_with_delimiter( pos ) %>
+                  </td>
+                  <td style="padding:.75rem; color:#c62828; font-weight:600; white-space:nowrap;" data-sort-key="<%= "#{metric}_negative" %>">
+                    <span aria-hidden="true" class="fa fa-thumbs-o-down" style="margin-right:.35rem;"></span>
+                    <%= number_with_delimiter( neg ) %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  <% elsif @active_tab == "references" %>
+    <p style="color:#555; margin-bottom:1rem;">
+      Showing <strong><%= @reference_feedback_count %></strong> of <strong><%= @reference_total_references %></strong> references.
+      Reference feedback rows: <strong><%= number_with_delimiter( @reference_total_votes ) %></strong>.
+    </p>
+    <% if @reference_feedback_count.zero? %>
+      <div class="alert alert-info">No reference feedback found for the selected filters.</div>
+    <% else %>
+      <div style="overflow-x:auto; margin-bottom:2rem;">
+        <table class="table js-sortable-table" style="min-width:1150px; border-collapse:collapse;">
+          <thead>
+            <tr style="border-bottom:1px solid #e0e0e0; text-align:left;">
+              <th rowspan="2" style="padding:.5rem; min-width:250px;">Taxon / Run</th>
+              <th colspan="2" style="padding:.5rem; text-align:center;">Global</th>
+              <% reference_short_labels = {
+                "relevant" => "Relevant",
+                "true" => "True",
+                "matches_taxon" => "Matches"
+              } %>
+              <% @reference_metrics.each do |metric| %>
+                <% metric_label = @reference_metric_labels[metric] %>
+                <th colspan="2" style="padding:.5rem; text-align:center;">
+                  <abbr title="<%= metric_label %>" style="border-bottom:1px dotted #999; text-decoration:none; cursor:help;">
+                    <%= reference_short_labels[metric] || metric_label %>
+                  </abbr>
+                </th>
+              <% end %>
+            </tr>
+            <tr style="border-bottom:1px solid #e0e0e0; text-align:left;">
+              <th style="padding:.35rem; cursor:pointer;" data-sort-key="reference_positive_total" data-sort-type="number">
+                <span aria-hidden="true" class="fa fa-thumbs-o-up"></span>
+              </th>
+              <th style="padding:.35rem; cursor:pointer;" data-sort-key="reference_negative_total" data-sort-type="number">
+                <span aria-hidden="true" class="fa fa-thumbs-o-down"></span>
+              </th>
+              <% @reference_metrics.each do |metric| %>
+                <% metric_label = @reference_metric_labels[metric] %>
+                <th
+                  style="padding:.35rem; cursor:pointer;"
+                  data-sort-key="<%= "reference_#{metric}_positive" %>"
+                  data-sort-type="number"
+                  aria-label="Positive <%= metric_label %>"
+                  title="Positive <%= metric_label %>"
+                >
+                  <span aria-hidden="true" class="fa fa-thumbs-o-up"></span>
+                </th>
+                <th
+                  style="padding:.35rem; cursor:pointer;"
+                  data-sort-key="<%= "reference_#{metric}_negative" %>"
+                  data-sort-type="number"
+                  aria-label="Negative <%= metric_label %>"
+                  title="Negative <%= metric_label %>"
+                >
+                  <span aria-hidden="true" class="fa fa-thumbs-o-down"></span>
+                </th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reference_feedback.each do |row| %>
+              <tr style="border-top:1px solid #f3f3f3; vertical-align:top;">
+                <td style="padding:.75rem;">
+                  <div style="font-weight:600;">
+                    Reference #<%= row["reference_id"] %>
+                    <% if row["reference_source"] %>
+                      <span style="color:#777; margin-left:.35rem;"><%= row["reference_source"] %></span>
+                    <% end %>
+                  </div>
+                  <div style="color:#555;">
+                    <% if row["reference_user_login"].present? %>
+                      by <strong><%= row["reference_user_login"] %></strong>
+                    <% elsif row["reference_user_id"].present? %>
+                      by user #<%= row["reference_user_id"] %>
+                    <% end %>
+                    <% if row["reference_date"].present? %>
+                      <span style="margin-left:.35rem;"><%= row["reference_date"] %></span>
+                    <% end %>
+                  </div>
+                  <div style="color:#777;">
+                    <%= truncate( row["reference_content"].to_s, length: 140 ) %>
+                  </div>
+                  <div style="color:#555; margin-top:.5rem;">
+                    TaxonIdSummary #<%= row["taxon_summary_id"] %> –
+                    taxon_id=<%= row["taxon_id"] %>
+                    <% if row["taxon_name"].present? %>
+                      – <%= h row["taxon_name"] %>
+                    <% end %>
+                  </div>
+                  <div style="color:#777;">run: <%= h( row["run_name"] || "—" ) %>, language: <%= row["language"] || "—" %></div>
+                  <% reference_demo_link = demo_link_for.call( row["taxon_name"], row["taxon_id"], row["language"], row["reference_summary_id"] ) %>
+                  <% if reference_demo_link %>
+                    <div style="margin-top:.35rem;">
+                      <a href="<%= reference_demo_link %>" target="_blank" rel="noopener">Open in demo</a>
+                    </div>
+                  <% end %>
+                </td>
+                <td style="padding:.75rem; font-weight:600; color:#2e7d32; white-space:nowrap;" data-sort-key="reference_positive_total">
+                  <span aria-hidden="true" class="fa fa-thumbs-o-up" style="margin-right:.35rem;"></span>
+                  <%= number_with_delimiter( row["reference_positive_total"].to_i ) %>
+                </td>
+                <td style="padding:.75rem; font-weight:600; color:#c62828; white-space:nowrap;" data-sort-key="reference_negative_total">
+                  <span aria-hidden="true" class="fa fa-thumbs-o-down" style="margin-right:.35rem;"></span>
+                  <%= number_with_delimiter( row["reference_negative_total"].to_i ) %>
+                </td>
+                <% @reference_metrics.each do |metric| %>
+                  <td style="padding:.75rem; color:#2e7d32; font-weight:600; white-space:nowrap;" data-sort-key="<%= "reference_#{metric}_positive" %>">
+                    <span aria-hidden="true" class="fa fa-thumbs-o-up" style="margin-right:.35rem;"></span>
+                    <%= number_with_delimiter( row["reference_#{metric}_positive"].to_i ) %>
+                  </td>
+                  <td style="padding:.75rem; color:#c62828; font-weight:600; white-space:nowrap;" data-sort-key="<%= "reference_#{metric}_negative" %>">
+                    <span aria-hidden="true" class="fa fa-thumbs-o-down" style="margin-right:.35rem;"></span>
+                    <%= number_with_delimiter( row["reference_#{metric}_negative"].to_i ) %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  <% elsif @active_tab == "voters" %>
+    <p style="color:#666; margin-bottom:1rem;">
+      Showing voters for <strong><%= @filters[:voter_feedback_source] == "reference" ? "reference" : "summary" %></strong> feedback. Use the main user filters above to narrow the dataset; click headers to sort.
+    </p>
+    <% if @voters.blank? %>
+      <div class="alert alert-info">No voters found for the selected filters.</div>
+    <% else %>
+      <div style="overflow-x:auto;">
+        <table class="table js-sortable-table" id="top-voters-table" style="border-collapse:collapse;">
+          <thead>
+            <tr style="border-bottom:1px solid #e0e0e0; text-align:left;">
+              <th style="padding:.5rem; cursor:pointer;" data-sort-key="user" data-sort-type="string">User</th>
+              <th style="padding:.5rem; cursor:pointer;" data-sort-key="total_votes" data-sort-type="number">Total votes</th>
+              <th style="padding:.5rem; cursor:pointer;" data-sort-key="positive_votes" data-sort-type="number">Positive</th>
+              <th style="padding:.5rem; cursor:pointer;" data-sort-key="negative_votes" data-sort-type="number">Negative</th>
+              <th style="padding:.5rem;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @voters.each do |voter| %>
+              <tr style="border-top:1px solid #f3f3f3;" data-search-text="<%= [voter["user_login"], voter["user_id"]].compact.join(' ') %>">
+                <td style="padding:.5rem;" data-sort-key="user">
+                  <% if voter["user_login"].present? %>
+                    <%= link_to voter["user_login"], "/admin/users/#{voter["user_login"]}" %>
+                  <% else %>
+                    User #<%= voter["user_id"] %>
+                  <% end %>
+                </td>
+                <td style="padding:.5rem; font-weight:600;" data-sort-key="total_votes">
+                  <%= number_with_delimiter( voter["total_votes"].to_i ) %>
+                </td>
+                <td style="padding:.5rem; color:#2e7d32; font-weight:600;" data-sort-key="positive_votes">
+                  <%= number_with_delimiter( voter["positive_votes"].to_i ) %>
+                </td>
+                <td style="padding:.5rem; color:#c62828; font-weight:600;" data-sort-key="negative_votes">
+                  <%= number_with_delimiter( voter["negative_votes"].to_i ) %>
+                </td>
+                <td style="padding:.5rem;">
+                  <%= button_to "Delete all votes",
+                    delete_id_summaries_dashboard_voter_votes_path(
+                      user_id: voter["user_id"],
+                      source: @filters[:voter_feedback_source]
+                    ),
+                    method: :post,
+                    class: "btn btn-danger btn-xs",
+                    data: { confirm: "Delete all #{@filters[:voter_feedback_source]} votes from this user? This cannot be undone." } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  <% elsif @active_tab == "taxa" %>
+    <p style="color:#666; margin-bottom:1rem;">
+      Aggregated by taxon for <strong><%= @filters[:taxa_feedback_source] == "reference" ? "reference" : "summary" %></strong> feedback.
+    </p>
+    <% if @taxa_feedback.blank? %>
+      <div class="alert alert-info">No taxa found for the selected filters.</div>
+    <% else %>
+      <div style="overflow-x:auto;">
+        <table class="table js-sortable-table" style="min-width:1150px; border-collapse:collapse;">
+          <thead>
+            <tr style="border-bottom:1px solid #e0e0e0; text-align:left;">
+              <th rowspan="2" style="padding:.5rem; min-width:320px;">Taxon / Run</th>
+              <th rowspan="2" style="padding:.5rem;">ID summaries</th>
+              <th colspan="2" style="padding:.5rem; text-align:center;">Global</th>
+              <% taxa_short_labels = {
+                "clear" => "Short",
+                "identification" => "Useful",
+                "true" => "True",
+                "references" => "Backed up",
+                "distinct" => "Distinct",
+                "relevant" => "Relevant",
+                "matches_taxon" => "Matches"
+              } %>
+              <% @taxa_metrics.each do |metric| %>
+                <% label = (@taxa_metric_labels[metric] || metric.titleize) %>
+                <th colspan="2" style="padding:.5rem; text-align:center;">
+                  <abbr title="<%= label %>" style="border-bottom:1px dotted #999; text-decoration:none; cursor:help;">
+                    <%= taxa_short_labels[metric] || label %>
+                  </abbr>
+                </th>
+              <% end %>
+            </tr>
+            <tr style="border-bottom:1px solid #e0e0e0; text-align:left;">
+              <th style="padding:.35rem; cursor:pointer;" data-sort-key="positive_total" data-sort-type="number">
+                <span aria-hidden="true" class="fa fa-thumbs-o-up"></span>
+              </th>
+              <th style="padding:.35rem; cursor:pointer;" data-sort-key="negative_total" data-sort-type="number">
+                <span aria-hidden="true" class="fa fa-thumbs-o-down"></span>
+              </th>
+              <% @taxa_metrics.each do |metric| %>
+                <% label = (@taxa_metric_labels[metric] || metric.titleize) %>
+                <th style="padding:.35rem; cursor:pointer;" data-sort-key="<%= "#{metric}_positive" %>" data-sort-type="number" title="Positive <%= label %>">
+                  <span aria-hidden="true" class="fa fa-thumbs-o-up"></span>
+                </th>
+                <th style="padding:.35rem; cursor:pointer;" data-sort-key="<%= "#{metric}_negative" %>" data-sort-type="number" title="Negative <%= label %>">
+                  <span aria-hidden="true" class="fa fa-thumbs-o-down"></span>
+                </th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @taxa_feedback.each do |row| %>
+              <tr style="border-top:1px solid #f3f3f3; vertical-align:top;">
+                <td style="padding:.75rem;">
+                  <div style="font-weight:600;">
+                    TaxonIdSummary #<%= row["taxon_summary_id"] %>
+                    <% if row["active"] %>
+                      <span class="badge" style="background:#2e7d32; color:white; margin-left:.35rem;">active</span>
+                    <% else %>
+                      <span class="badge" style="background:#888; color:white; margin-left:.35rem;">inactive</span>
+                    <% end %>
+                  </div>
+                  <div style="color:#555;">
+                    taxon_id=<%= row["taxon_id"] %>
+                    <% if row["taxon_name"].present? %>
+                      – <%= h row["taxon_name"] %>
+                    <% end %>
+                  </div>
+                <% if row["taxon_common_name"].present? %>
+                  <div style="color:#777;"><%= row["taxon_common_name"] %></div>
+                <% end %>
+                <div style="color:#777;">run: <%= h( row["run_name"] || "—" ) %>, language: <%= row["language"] || "—" %></div>
+                <% taxa_demo_link = demo_link_for.call( row["taxon_name"], row["taxon_id"], row["language"] ) %>
+                <% if taxa_demo_link %>
+                  <div style="margin-top:.35rem;">
+                    <a href="<%= taxa_demo_link %>" target="_blank" rel="noopener">Open in demo</a>
+                  </div>
+                <% end %>
+              </td>
+                <td style="padding:.75rem;" data-sort-key="id_summaries_count"><%= row["id_summaries_count"] %></td>
+                <td style="padding:.75rem; font-weight:600; color:#2e7d32;" data-sort-key="positive_total">
+                  <span aria-hidden="true" class="fa fa-thumbs-o-up" style="margin-right:.35rem;"></span>
+                  <%= number_with_delimiter( row["positive_total"].to_i ) %>
+                </td>
+                <td style="padding:.75rem; font-weight:600; color:#c62828;" data-sort-key="negative_total">
+                  <span aria-hidden="true" class="fa fa-thumbs-o-down" style="margin-right:.35rem;"></span>
+                  <%= number_with_delimiter( row["negative_total"].to_i ) %>
+                </td>
+                <% @taxa_metrics.each do |metric| %>
+                  <td style="padding:.75rem; color:#2e7d32; font-weight:600;" data-sort-key="<%= "#{metric}_positive" %>">
+                    <span aria-hidden="true" class="fa fa-thumbs-o-up" style="margin-right:.35rem;"></span>
+                    <%= number_with_delimiter( row["#{metric}_positive"].to_i ) %>
+                  </td>
+                  <td style="padding:.75rem; color:#c62828; font-weight:600;" data-sort-key="<%= "#{metric}_negative" %>">
+                    <span aria-hidden="true" class="fa fa-thumbs-o-down" style="margin-right:.35rem;"></span>
+                    <%= number_with_delimiter( row["#{metric}_negative"].to_i ) %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const initSortableTable = table => {
+      const tbody = table.querySelector("tbody");
+      if ( !tbody ) return;
+      const rows = Array.from( tbody.querySelectorAll("tr") );
+      const headers = table.querySelectorAll("th[data-sort-key]");
+      const searchSelector = table.dataset.searchInput;
+      const searchInput = searchSelector ? document.querySelector( searchSelector ) : null;
+
+      const getRowValue = (row, key, type) => {
+        const cell = row.querySelector(`[data-sort-key="${key}"]`);
+        if ( !cell ) return "";
+        if ( type === "number" ) {
+          const numeric = cell.textContent.replace(/[^0-9.-]/g, "");
+          return parseFloat( numeric ) || 0;
+        }
+        return (cell.textContent || "").toLowerCase();
+      };
+
+      const applySearch = () => {
+        if ( !searchInput ) return;
+        const term = searchInput.value.toLowerCase().trim();
+        rows.forEach( row => {
+          if ( !term ) {
+            row.style.display = "";
+            return;
+          }
+          const haystack = ((row.dataset.searchText || "") + " " + row.textContent.toLowerCase());
+          row.style.display = haystack.includes( term ) ? "" : "none";
+        } );
+      };
+
+      if ( searchInput ) {
+        searchInput.addEventListener( "input", applySearch );
+      }
+
+      const updateSortIndicators = (activeHeader, direction) => {
+        headers.forEach( h => {
+          h.classList.toggle( "is-sorted", h === activeHeader );
+          const icon = h.querySelector( ".fa" );
+          if ( icon ) {
+            if ( h === activeHeader ) {
+              if ( icon.classList.contains( "fa-thumbs-o-up" ) ) {
+                icon.style.color = "#2e7d32";
+              } else if ( icon.classList.contains( "fa-thumbs-o-down" ) ) {
+                icon.style.color = "#c62828";
+              }
+            } else {
+              icon.style.color = "";
+            }
+          }
+          const arrow = h.querySelector( ".js-sort-arrow" );
+          if ( arrow ) arrow.remove();
+        } );
+        if ( activeHeader ) {
+          const arrow = document.createElement( "span" );
+          arrow.className = "js-sort-arrow";
+          arrow.textContent = direction === "asc" ? " ↑" : " ↓";
+          activeHeader.appendChild( arrow );
+        }
+      };
+
+      headers.forEach( header => {
+        header.addEventListener( "click", () => {
+          const key = header.dataset.sortKey;
+          const type = header.dataset.sortType || "string";
+          const nextDir = header.dataset.sortDir === "asc" ? "desc" : "asc";
+          headers.forEach( h => {
+            h.removeAttribute( "data-active-sort" );
+            h.removeAttribute( "data-sort-dir" );
+          } );
+          header.dataset.sortDir = nextDir;
+          header.dataset.activeSort = "true";
+          updateSortIndicators( header, nextDir );
+          const sorted = rows.slice().sort( (a, b) => {
+            const aVal = getRowValue( a, key, type );
+            const bVal = getRowValue( b, key, type );
+            if ( aVal < bVal ) return nextDir === "asc" ? -1 : 1;
+            if ( aVal > bVal ) return nextDir === "asc" ? 1 : -1;
+            return 0;
+          } );
+          sorted.forEach( row => tbody.appendChild( row ) );
+          applySearch();
+        } );
+      } );
+
+      if ( headers.length > 0 ) {
+        headers[0].dataset.sortDir = "desc";
+        headers[0].dataset.activeSort = "true";
+        updateSortIndicators( headers[0], "desc" );
+      }
+
+      applySearch();
+    };
+
+    document.querySelectorAll(".js-sortable-table").forEach( initSortableTable );
+  } );
+</script>

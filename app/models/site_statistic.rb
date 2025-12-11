@@ -116,6 +116,118 @@ class SiteStatistic < ApplicationRecord
         }
       ]
     ).total_entries
+    created_30_days = Observation.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              lte: at_time - 30.days
+            }
+          }
+        }
+      ]
+    ).total_entries
+    created_30_days_not_identified = Observation.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              lte: at_time - 30.days
+            }
+          }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon"
+              }
+            }
+          }
+        }
+      ]
+    ).total_entries
+    today_identified_by_others = Identification.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 1.days,
+              lte: at_time
+            }
+          }
+        },
+        {
+          term: { own_observation: false }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
+          }
+        }
+      ],
+      aggs: {
+        distinct_observations: {
+          cardinality: {
+            field: "observation.id"
+          }
+        }
+      }
+    ).aggregations.distinct_observations.value
+    today_identified_by_others_by_iconic_taxon = {}
+    Identification.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 1.days,
+              lte: at_time
+            }
+          }
+        },
+        {
+          term: { own_observation: false }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
+          }
+        }
+      ],
+      aggs: {
+        iconic_taxa: {
+          terms: {
+            field: "taxon.iconic_taxon_id",
+            size: 50
+          },
+          aggs: {
+            distinct_observations: {
+              cardinality: {
+                field: "observation.id"
+              }
+            }
+          }
+        }
+      }
+    ).aggregations.iconic_taxa.buckets.each do | bucket |
+      today_identified_by_others_by_iconic_taxon[bucket["key"]] = bucket["distinct_observations"]["value"]
+    end
     community_identified = Observation.elastic_search(
       size: 0,
       track_total_hits: true,
@@ -184,6 +296,10 @@ class SiteStatistic < ApplicationRecord
       today: today,
       # identified: Observation.where("taxon_id IS NOT NULL AND created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
       identified: identified,
+      created_30_days: created_30_days,
+      created_30_days_not_identified: created_30_days_not_identified,
+      today_identified_by_others: today_identified_by_others,
+      today_identified_by_others_by_iconic_taxon: today_identified_by_others_by_iconic_taxon,
       # community_identified: Observation.where("community_taxon_id IS NOT NULL AND created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
       community_identified: community_identified,
       community_identified_to_genus: community_identified_to_genus
@@ -199,6 +315,54 @@ class SiteStatistic < ApplicationRecord
         {
           range: {
             created_at: {
+              lte: at_time
+            }
+          }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
+          }
+        }
+      ]
+    ).total_entries
+    count_for_others = Identification.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              lte: at_time
+            }
+          }
+        },
+        {
+          term: { own_observation: false }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
+          }
+        }
+      ]
+    ).total_entries
+    today = Identification.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 1.days,
               lte: at_time
             }
           }
@@ -237,7 +401,7 @@ class SiteStatistic < ApplicationRecord
         }
       ]
     ).total_entries
-    today = Identification.elastic_search(
+    today_for_others = Identification.elastic_search(
       size: 0,
       track_total_hits: true,
       filters: [
@@ -248,6 +412,35 @@ class SiteStatistic < ApplicationRecord
               lte: at_time
             }
           }
+        },
+        {
+          term: { own_observation: false }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
+          }
+        }
+      ]
+    ).total_entries
+    last_7_days_for_others = Identification.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 7.days,
+              lte: at_time
+            }
+          }
+        },
+        {
+          term: { own_observation: false }
         },
         {
           bool: {
@@ -262,8 +455,11 @@ class SiteStatistic < ApplicationRecord
     ).total_entries
     {
       count: count,
+      count_for_others: count_for_others,
+      today: today,
+      today_for_others: today_for_others,
       last_7_days: last_7_days,
-      today: today
+      last_7_days_for_others: last_7_days_for_others
     }
   end
 

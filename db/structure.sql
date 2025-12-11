@@ -38,28 +38,10 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 
 --
--- Name: _final_median(numeric[]); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public._final_median(numeric[]) RETURNS numeric
-    LANGUAGE sql IMMUTABLE
-    AS $_$
-   SELECT AVG(val)
-   FROM (
-     SELECT val
-     FROM unnest($1) val
-     ORDER BY 1
-     LIMIT  2 - MOD(array_upper($1, 1), 2)
-     OFFSET CEIL(array_upper($1, 1) / 2.0) - 1
-   ) sub;
-$_$;
-
-
---
 -- Name: _final_median(anyarray); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION public._final_median(anyarray) RETURNS double precision
+CREATE FUNCTION public._final_median(anycompatiblearray) RETURNS double precision
     LANGUAGE sql IMMUTABLE
     AS $_$ 
         WITH q AS
@@ -246,21 +228,9 @@ CREATE FUNCTION public.st_aslatlontext(public.geometry) RETURNS text
 -- Name: median(anyelement); Type: AGGREGATE; Schema: public; Owner: -
 --
 
-CREATE AGGREGATE public.median(anyelement) (
+CREATE AGGREGATE public.median(anycompatible) (
     SFUNC = array_append,
-    STYPE = anyarray,
-    INITCOND = '{}',
-    FINALFUNC = public._final_median
-);
-
-
---
--- Name: median(numeric); Type: AGGREGATE; Schema: public; Owner: -
---
-
-CREATE AGGREGATE public.median(numeric) (
-    SFUNC = array_append,
-    STYPE = numeric[],
+    STYPE = anycompatiblearray,
     INITCOND = '{}',
     FINALFUNC = public._final_median
 );
@@ -2403,7 +2373,8 @@ CREATE TABLE public.id_summary_references (
     user_id integer,
     user_login character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    reference_observation_id integer
 );
 
 
@@ -5215,7 +5186,8 @@ CREATE TABLE public.taxon_id_summaries (
     run_generated_at timestamp without time zone,
     run_description text,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    language character varying DEFAULT 'en'::character varying NOT NULL
 );
 
 
@@ -8680,7 +8652,7 @@ CREATE UNIQUE INDEX idx_summary_flags_one_per_summary ON public.taxon_id_summary
 -- Name: idx_taxon_id_summaries_active_per_taxon; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX idx_taxon_id_summaries_active_per_taxon ON public.taxon_id_summaries USING btree (taxon_id) WHERE (active = true);
+CREATE UNIQUE INDEX idx_taxon_id_summaries_active_per_taxon ON public.taxon_id_summaries USING btree (taxon_id, language) WHERE (active = true);
 
 
 --
@@ -12095,6 +12067,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251010205509'),
 ('20251014130528'),
 ('20251014130547'),
-('20251119043443');
+('20251119043443'),
+('20251119130558'),
+('20251202224705');
 
 

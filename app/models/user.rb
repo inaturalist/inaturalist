@@ -348,7 +348,23 @@ class User < ApplicationRecord
   validates_length_of :login, within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of :login
   validates_format_of :login, with: login_regex, message: :must_begin_with_a_letter
-  validates_exclusion_of :login, in: %w(password new edit create update delete destroy)
+  EXCLUDED_LOGINS = %w(
+    any
+    create
+    delete
+    destroy
+    edit
+    inaturaliststaff
+    inaturalist_staff
+    inaturalistadmin
+    inaturalist_admin
+    inaturalisthelp
+    inaturalist_help
+    new
+    password
+    update
+  ).freeze
+  validates_exclusion_of :login, in: EXCLUDED_LOGINS
   validate :login_must_not_contain_reserved_words
 
   validates_exclusion_of :password, in: %w(password)

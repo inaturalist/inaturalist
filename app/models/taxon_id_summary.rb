@@ -6,6 +6,7 @@ class TaxonIdSummary < ApplicationRecord
 
   validates :taxon_id, presence: true
   validates :taxon_name, presence: true
+  validates :language, presence: true
   validate :single_active_run
 
   scope :active, -> { where( active: true ) }
@@ -15,8 +16,10 @@ class TaxonIdSummary < ApplicationRecord
   def single_active_run
     return unless active?
     return unless taxon_id.present?
-    return unless TaxonIdSummary.where( taxon_id: taxon_id, active: true ).where.not( id: id ).exists?
+    scope = TaxonIdSummary.where( taxon_id: taxon_id, active: true )
+    scope = scope.where( language: language ) if language.present?
+    return unless scope.where.not( id: id ).exists?
 
-    errors.add( :active, "only one active taxon_id_summary is allowed" )
+    errors.add( :active, "only one active taxon_id_summary is allowed per language" )
   end
 end

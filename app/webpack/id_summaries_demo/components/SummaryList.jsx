@@ -41,7 +41,10 @@ const SummaryList = ( {
   isLoading,
   tipVotes = {},
   onVote,
-  referenceUsers = {}
+  referenceUsers = {},
+  onShareSummary = null,
+  highlightSummaryUuid = null,
+  highlightSummaryRevision = 0
 } ) => {
   const [feedbackOpen, setFeedbackOpen] = useState( false );
   const [metricsBySummary, setMetricsBySummary] = useState( {} );
@@ -72,6 +75,33 @@ const SummaryList = ( {
       summary?.id && !metricsBySummary[summary.id]
     ) );
   }, [sortedSummaries, metricsBySummary] );
+
+  useEffect( () => {
+    if ( !highlightSummaryUuid || typeof document === "undefined" ) return undefined;
+    if ( typeof window === "undefined" ) return undefined;
+    if ( isLoading ) return undefined;
+    let timeoutId;
+    let attempts = 0;
+    const maxAttempts = 30;
+    const retryDelay = 200;
+    const scrollToHighlight = () => {
+      const node = document.getElementById( `summary-${highlightSummaryUuid}` );
+      if ( node ) {
+        node.scrollIntoView( { behavior: "smooth", block: "start" } );
+        return;
+      }
+      attempts += 1;
+      if ( attempts <= maxAttempts ) {
+        timeoutId = window.setTimeout( scrollToHighlight, retryDelay );
+      }
+    };
+    scrollToHighlight();
+    return () => {
+      if ( timeoutId ) {
+        window.clearTimeout( timeoutId );
+      }
+    };
+  }, [highlightSummaryUuid, sortedSummaries, highlightSummaryRevision, isLoading] );
 
   useEffect( ( ) => {
     let cancelled = false;
@@ -330,6 +360,7 @@ const SummaryList = ( {
               ? I18n.t( "id_summaries.demo.summary_list.feedback_unavailable" )
               : null;
           const summaryKey = `${speciesId || "species"}-summary-${index}`;
+          const summaryAnchorValue = summary?.uuid || summary?.id;
           return (
             <React.Fragment key={summaryKey}>
               <div className="fg-summary-entry">
@@ -342,6 +373,7 @@ const SummaryList = ( {
                   currentVote={tipVotes?.[index] || 0}
                   onVote={onVote}
                   referenceUsers={referenceUsers}
+                  onShareSummary={onShareSummary}
                 />
               </div>
               <div className="fg-feedback-entry">
@@ -370,6 +402,7 @@ export default SummaryList;
 
 const summaryShape = PropTypes.shape( {
   id: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
+  uuid: PropTypes.string,
   text: PropTypes.string,
   photoTip: PropTypes.string,
   group: PropTypes.string,
@@ -379,6 +412,7 @@ const summaryShape = PropTypes.shape( {
     comment_uuid: PropTypes.string,
     user_id: PropTypes.number,
     body: PropTypes.string,
+    reference_observation_id: PropTypes.oneOfType( [PropTypes.number, PropTypes.string] ),
     reference_uuid: PropTypes.string,
     reference_source: PropTypes.string,
     created_at: PropTypes.oneOfType( [PropTypes.string, PropTypes.instanceOf( Date )] )
@@ -398,5 +432,8 @@ SummaryList.propTypes = {
     login: PropTypes.string,
     name: PropTypes.string,
     icon: PropTypes.string
-  } ) )
+  } ) ),
+  onShareSummary: PropTypes.func,
+  highlightSummaryUuid: PropTypes.string,
+  highlightSummaryRevision: PropTypes.number
 };

@@ -8,7 +8,7 @@
   .col-xs-12.col-md-8
     - if @projects.blank?
       .row
-        = is_me? ? t( :you_havent_joined_any_project ) : t( :user_hasnt_joined_any_projects, user: @login )
+        = is_me? ? t( :you_havent_joined_any_projects ) : t( :user_hasnt_joined_any_projects, user: @login )
     - else
       - @project_users.in_groups_of( 2 ) do |project_user_pair|
         .row

@@ -92,6 +92,26 @@ body {
   margin: 0;
 }
 
+.fg-site-header {
+  width: 100%;
+  background: #f3f4f6;
+  border-bottom: 1px solid #d1d5db;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.fg-site-header-inner {
+  width: 100%;
+  max-width: 1300px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
 .navbar-header {
   .logo {
     display: inline;
@@ -200,6 +220,7 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 16px;
   }
 
   .fg-header-filters .fg-filter-bar {
@@ -217,6 +238,10 @@ body {
   .fg-header-filters .fg-filter-select span,
   .fg-header-filters .fg-filter-checkbox span {
     white-space: nowrap;
+  }
+  .fg-language-picker {
+    display: flex;
+    align-items: center;
   }
   @media (max-width: 900px) {
     .fg-header-filters .fg-filter-bar {
@@ -293,6 +318,16 @@ body {
     color: #9ca3af;
     border-color: #e2e8f0;
     box-shadow: none;
+  }
+  .fg-language-pill {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f172a;
+    background: #e0f2fe;
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 
   /* Three-column layout */
@@ -713,6 +748,23 @@ body {
     gap: 16px;
     margin-bottom: 14px;
   }
+  .fg-summary-share {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: #607d8b;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .2s ease, background-color .2s ease;
+  }
+  .fg-summary-share:hover {
+    color: #1f2937;
+    background: rgba(96, 125, 139, 0.1);
+  }
   .fg-summary-label {
     display: inline-flex;
     align-items: center;
@@ -948,12 +1000,6 @@ body {
   .fg-reference-timestamp {
     font-size: inherit;
     color: inherit;
-  }
-  .fg-reference-card-chevron svg {
-    transform: rotate(180deg);
-  }
-  .fg-summary-references.is-open .fg-reference-card-chevron svg {
-    transform: rotate(0deg);
   }
   .fg-reference-body {
     font-size: 14px;
