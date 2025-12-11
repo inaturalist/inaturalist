@@ -221,12 +221,12 @@ class TaxonChangesController < ApplicationController
     if ( @taxon_change.respond_to?( :status_committed? ) && @taxon_change.status_committed? ) ||
         @taxon_change.committed?
       flash[:notice] = t( "views.taxon_changes.taxon_change_committed" )
+      redirect_back_or_default( taxon_changes_path )
     else
       threshold = TaxonChange::VOTE_APPROVAL_THRESHOLD
       flash[:notice] = t( "views.taxon_changes.taxon_change_pending", count: threshold )
+      redirect_to @taxon_change
     end
-
-    redirect_back_or_default( taxon_changes_path )
   rescue StandardError => e
     flash[:error] = e.message
     redirect_back_or_default @taxon_change
