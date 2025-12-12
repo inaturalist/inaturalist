@@ -847,8 +847,9 @@ da:
     other: |
       Baseret på en stikprøve på %{percent}% af disse ID'er, anslås det, at dette vil
       resultere i <strong>%{count} utilsigtede uenigheder</strong> med ID'er på %{child}.
-  based_on_the_evidence_can_id_be_improved: |
-    På baggrund af ovenstående, kan fællesskabs ID'et stadig bekræftes eller forbedres?
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Baseret på beviserne, kan fællesskabstaksonen forbedres?
   batch: Bundt
   batch_edit: Multi redigere
   #Where x is the title of a list of taxa
@@ -1378,6 +1379,7 @@ da:
   curating: Kuraterer
   curation: Kuratering
   curator: Kurator
+  curators_with_most_ids_of_the_input_taxon: "Kuratorer med flest ID'er for inputtaksonen"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist-webstedskuratorer er betroede frivillige med mulighed for at
