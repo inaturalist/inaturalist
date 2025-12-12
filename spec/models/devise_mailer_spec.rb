@@ -20,7 +20,7 @@ describe DeviseMailer, "confirmation_instructions" do
 
     before do
       expect( suppression.email ).to eq user.email
-      allow( RestClient ).to receive( :delete )
+      allow( SendgridService ).to receive( :delete_bounce_suppression )
       mail = DeviseMailer.confirmation_instructions( user, user.confirmation_token )
       expect( mail ).not_to be_blank
     end
@@ -36,7 +36,7 @@ describe DeviseMailer, "confirmation_instructions" do
       end
 
       it "should try to delete a bounce suppression on Sendgrid" do
-        expect( RestClient ).to have_received( :delete )
+        expect( SendgridService ).to have_received( :delete_bounce_suppression )
       end
     end
 
@@ -54,7 +54,7 @@ describe DeviseMailer, "confirmation_instructions" do
       end
 
       it "should not try delete to delete a bounce suppression on Sendgrid" do
-        expect( RestClient ).not_to have_received( :delete )
+        expect( SendgridService ).not_to have_received( :delete_bounce_suppression )
       end
     end
   end

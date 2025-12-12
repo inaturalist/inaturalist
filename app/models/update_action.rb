@@ -110,6 +110,7 @@ class UpdateAction < ApplicationRecord
     User.preload_associations(user, :stored_preferences)
     return if user.prefers_no_email
     return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
+    return if user.email_suppressed_in_group?( EmailSuppression::ACTIVITY )
     return unless user.active? # email verified
     updates = UpdateAction.elastic_paginate(
       filters: [

@@ -672,3 +672,15 @@ body>div>[role="dialog"] .modal-body {
     }
   }
 }
+
+.Notifications {
+  fieldset {
+    padding: revert;
+    border: revert;
+    legend {
+      padding: revert;
+      border: revert;
+      width: revert;
+    }
+  }
+}

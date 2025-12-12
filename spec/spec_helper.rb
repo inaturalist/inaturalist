@@ -213,6 +213,17 @@ class FlickrCache
   end
 end
 
+# Override a common network request
+class SendgridService
+  class << self
+    def asm_group_ids
+      EmailSuppression::GROUP_TYPES.each_with_object( {} ) do | group_name, memo |
+        memo[group_name] = memo.size
+      end
+    end
+  end
+end
+
 # Change Paperclip storage from S3 to Filesystem for testing
 LocalPhoto.attachment_definitions[:file].tap do | d |
   if d.nil?

@@ -1996,6 +1996,9 @@ en:
   donate_again_today_caps: DONATE AGAIN TODAY
   # Title for pages and sections that encourage people to donate to iNaturalist
   donate_to_inaturalist: Donate to iNaturalist
+  # Title for a section or describing donations or a preference related to
+  # donations
+  donations: Donations
   done: Done
   dont_have_an_account_sign_up_html: Don't have an account? <strong>Sign up.</strong>
   dont_use_double_quotes: Don't use double quotes anywhere else
@@ -2116,6 +2119,8 @@ en:
     to access your account.
   email_copyright2: "&copy; %{year} iNaturalist, all rights reserved"
   email_notifications: Email Notifications
+  email_suppression_activity_desc: |
+    Receive an email every day summarizing activity you're following.
   embed: 'Embed'
   embed_place_widget: Embed place widget
   embed_this_assessment: Embed this assessment
@@ -3517,6 +3522,9 @@ en:
   newly_added_species: Newly Added Species
   newly_observed_species: Newly Observed Species
   newly_observed_species_in_year: "Newly Added Species In %{year}"
+  # Title for a section describing new information about something, e.g. a
+  # preference for receiving a news email from iNat
+  news: News
   next: Next
   next_date_short: Next
   next_observation: Next Observation
@@ -3928,6 +3936,18 @@ en:
     Observer does not allow other people to add their observations to
     traditional projects.
   observer_short: Observer
+  # Title for section in Account Settings for controlling whether to receive
+  # emails from iNat not directly related to your use of iNat
+  occasional_emails: Occasional Emails
+  # Description of the News emails in the Occasional Emails section of Account
+  # Settings
+  occasional_emails_news_desc: News about the organization and the platform.
+  occasional_emails_donations_desc: |
+    iNat is free to use, but it costs money to run, so sometimes we might ask
+    you to pitch in a few bucks.
+  occasional_emails_feedback_desc: |
+    We love hearing from you, so we might ask for your opinion on specific
+    topics.
   occurence_status_describes_how: Occurrence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
   occurrence_status_descriptions:
@@ -4716,6 +4736,8 @@ en:
   potential_disagreement: Potential Disagreement
   powered_by: Powered by
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
+  prefers_message_email_notification_desc: |
+    Receive emails for each direct message you receive.
   present: present
   press: Press
   preview: Preview
@@ -10800,6 +10822,7 @@ en:
               must_begin_with_a_letter: |
                 must begin with a letter, contain no spaces, and use only
                 letters, numbers, dashes, and underscores
+            email:
               domain_is_not_supported: domain is not supported
         user_block:
           attributes:
