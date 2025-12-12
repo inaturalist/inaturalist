@@ -132,7 +132,16 @@ class Identification < ApplicationRecord
     on: :save,
     delay: false,
     notification: "mention",
-    if: lambda( &:prefers_receive_mentions? )
+    if: lambda( &:prefers_receive_mentions? ),
+    unless: lambda {| identification |
+      # body hasn't changed, so mentions haven't changed
+      return true unless identification.previous_changes[:body]
+
+      # body has changed, but neither version mentioned users
+      identification.previous_changes[:body].map do | d |
+        d ? d.mentioned_users.any? : false
+      end.none?
+    }
 
   earns_privilege UserPrivilege::SPEECH
   earns_privilege UserPrivilege::COORDINATE_ACCESS
