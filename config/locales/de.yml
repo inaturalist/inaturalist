@@ -826,8 +826,9 @@ de:
       Basierend auf einer Stichprobe von %{percent}% dieser IDs schätzen wir, dass dies in einer <strong>%{count} unbeabsichtigten Ablehnung</strong> der IDs von %{child} resultieren wird.
     other: |
       Basierend auf einer Stichprobe von %{percent}% dieser IDs schätzen wir, dass dies in <strong>%{count} unbeabsichtigte Ablehnungen</strong> der IDs von %{child} resultieren wird.
-  based_on_the_evidence_can_id_be_improved: |
-    Kann die Community-ID anhand der vorhandenen Belege noch weiter verbessert werden?
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Kann das Community-Taxon anhand vorhandener Belege verbessert werden?
   batch: Batch
   batch_edit: Stapelbearbeitung
   #Where x is the title of a list of taxa
@@ -1324,6 +1325,7 @@ de:
   curating: Kuratierung
   curation: Kuration
   curator: Kurator
+  curators_with_most_ids_of_the_input_taxon: "Kuratoren mit den meisten IDs des Input-Taxons"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist-Kuratoren sind vertrauenswürdige Freiwillige, die die Berechtigung haben,
