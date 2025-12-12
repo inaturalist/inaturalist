@@ -762,8 +762,9 @@ id:
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
       Berdasarkan sampel %{percent}% dari total ID, kami memperkirakan bahwa hal ini akan menghasilkan <strong>%{count} pertentangan yang tidak disengaja</strong> dengan ID %{child}.
-  based_on_the_evidence_can_id_be_improved: |
-    Berdasarkan bukti yang ada, dapatkah Takson Komunitasnya dikonfirmasi atau ditingkatkan?
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Berdasarkan bukti yang ada, dapatkah Takson Komunitas ditingkatkan?
   batch: Jamak
   batch_edit: Perubahan sekaligus
   #Where x is the title of a list of taxa
@@ -1277,6 +1278,7 @@ id:
   curating: Mengkurasi
   curation: Kurasi
   curator: Kurator
+  curators_with_most_ids_of_the_input_taxon: "Kurator dengan ID takson input terbanyak"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     Situs kurator iNaturalist adalah sukarelawan terpercaya yang memiliki kemampuan untuk
