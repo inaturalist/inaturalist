@@ -830,8 +830,9 @@ it:
     other: |
       Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
       risulterà in <strong>%{count} disaccordi involontari</strong> con ID di %{child}.
-  based_on_the_evidence_can_id_be_improved: |
-    Basandosi sull'evidenza, il taxon della comunità può essere ancora confermato o migliorato?
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Sulla base delle prove, il Taxon della Comunità può essere migliorato?
   batch: Gruppo
   batch_edit: Modifica in gruppo
   #Where x is the title of a list of taxa
@@ -1343,6 +1344,7 @@ it:
   curating: Amministrazione in corso
   curation: Amministrazione
   curator: Curatore
+  curators_with_most_ids_of_the_input_taxon: "Curatori con la maggior parte delle ID del taxon d'input"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     I curatori del sito iNaturalist sono volontari di fiducia che hanno la capacità di modificare la tassonomia di iNaturalist e alcuni contenuti utente. I curatori del sito sono parte integrante di iNaturalist, in quanto mantengono la nostra tassonomia aggiornata e le conversazioni su iNaturalist appropriate e civili. Di seguito una descrizione di cosa significa essere un curatore. Per favore leggilo e se desideri diventare un curatore, esamina attentamente la <a href="/pages/curator+guide" target="_blank">Guida</a> e compila il formulario a questa pagina.
