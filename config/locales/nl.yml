@@ -832,6 +832,9 @@ nl:
     other: |
       Gebaseerd op een steekproef van %{percent}% van deze ID's schatten we dat dit
       zal resulteren in <strong>%{count} onbedoelde tegenspraken</strong> met IDs van %{child}.
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Kan, op basis van het bewijs, het Gemeenschapstaxon worden verbeterd?
   batch: Batch
   batch_edit: Bewerk in batch
   #Where x is the title of a list of taxa
@@ -1363,6 +1366,7 @@ nl:
   curating: Aan het opvolgen
   curation: Beoordeling
   curator: Curator
+  curators_with_most_ids_of_the_input_taxon: "Curatoren met de meeste ID's van het invoertaxon"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist sitecuratoren zijn vertrouwde vrijwilligers die de mogelijkheid hebben om iNaturalist's taxonomie te bewerken en de gebruikersinhoud te modereren. Sitecuratoren zijn essentieel voor iNaturalist, omdat ze onze taxonomie up-to-date houden en de omgang op iNaturalist passend en beleefd. Hieronder staat wat het inhoudt om een curator te zijn. Lees het alsjevlieft, en als jij een curator wilt zijn, lees dan de <a href="/pages/curator+guide" target="_blank">Curator Guide</a> zorgvuldig door en vul dan het aanmeldingsformulier op deze pagina in.
