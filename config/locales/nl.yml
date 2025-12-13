@@ -715,6 +715,8 @@ nl:
   are_you_sure_you_want_to_delete_this_assessment?: Weet je zeker dat je deze beoordeling wilt verwijderen?
   are_you_sure_you_want_to_delete_this_photo?: Weet je zeker dat je deze foto wilt verwijderen?
   are_you_sure_you_want_to_delete_this_post: Weet je zeker dat je dit bericht wilt verwijderen?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Weet je zeker dat je dit geluid wilt verwijderen?
   are_you_sure_you_want_to_delete_this_taxon_change: Weet je zeker dat je deze taxonverandering wilt verwijderen?
   are_you_sure_you_want_to_remove_all_tags: Weet je zeker dat je alle tags wilt verwijderen?
   are_you_sure_you_want_to_remove_curator: Weet je zeker dat je %{user} wilt verwijderen als curator?
@@ -727,6 +729,8 @@ nl:
     Weet je zeker dat je deze waarneming uit %{project} wilt verwijderen?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Weet je zeker dat je dit taxon wilt verwijderen uit de checklist voor %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Weet je zeker dat je deze gebruiker wilt markeren als een spammer?
+  artificially_generated_content: Kunstmatig Gegenereerde Inhoud
+  artificially_generated_content_desc: Bevat inhoud die grotendeels of volledig is gegenereerd door kunstmatige intelligentie.
   associated_observations: Bijhorende waarnemingen
   associated_taxa: Bijhorende taxa
   attention: Opgelet
@@ -792,7 +796,6 @@ nl:
   back_to_all_species: Terug naar Alle Soorten
   back_to_editing_observation: Terug naar waarneming bewerken
   back_to_friends: Terug naar vrienden
-  back_to_flags_html: "&laquo; Terug naar meldingen"
   back_to_lists: "Terug naar %{name} lijsten"
   back_to_observation: Terug naar waarneming
   back_to_observation_fields: Terug naar waarnemingsvelden
@@ -829,8 +832,9 @@ nl:
     other: |
       Gebaseerd op een steekproef van %{percent}% van deze ID's schatten we dat dit
       zal resulteren in <strong>%{count} onbedoelde tegenspraken</strong> met IDs van %{child}.
-  based_on_the_evidence_can_id_be_improved: |
-    Gebaseerd op het bewijs, kan het gemeenschapstaxon nog steeds bevestigd of verbeterd worden?
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Kan, op basis van het bewijs, het Gemeenschapstaxon worden verbeterd?
   batch: Batch
   batch_edit: Bewerk in batch
   #Where x is the title of a list of taxa
@@ -1069,6 +1073,7 @@ nl:
   community_id_is_precise: Gemeenschapstaxon is precies
   community_moderation_settings: Instellingen voor gemeenschapsmoderatie
   community_supported_id: Gemeenschapondersteunde Taxon?
+  community_taxon_matches_observation_taxon: Gemeenschapstaxon komt overeen met het Waargenomen taxon
   compare: Vergelijken
   compare_with: Vergelijk met
   comparing: vergelijken
@@ -1361,6 +1366,7 @@ nl:
   curating: Aan het opvolgen
   curation: Beoordeling
   curator: Curator
+  curators_with_most_ids_of_the_input_taxon: "Curatoren met de meeste ID's van het invoertaxon"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist sitecuratoren zijn vertrouwde vrijwilligers die de mogelijkheid hebben om iNaturalist's taxonomie te bewerken en de gebruikersinhoud te modereren. Sitecuratoren zijn essentieel voor iNaturalist, omdat ze onze taxonomie up-to-date houden en de omgang op iNaturalist passend en beleefd. Hieronder staat wat het inhoudt om een curator te zijn. Lees het alsjevlieft, en als jij een curator wilt zijn, lees dan de <a href="/pages/curator+guide" target="_blank">Curator Guide</a> zorgvuldig door en vul dan het aanmeldingsformulier op deze pagina in.
@@ -1487,6 +1493,8 @@ nl:
     waarnemingen in projecten. Waarnemers kunnen ook kiezen om dit voor
     individuele waarnemingen te veranderen.
   curator_identification: Curatordeterminatie
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Huidig gemeenschapstaxon: %{taxon}"
   current_flags: Huidige meldingen
   #Label for a custom boundary for an observation search
   custom_boundary: Grens naar Eigen Wens
@@ -1510,7 +1518,7 @@ nl:
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Pilot met determinatielacunes: \"ID nodig\"-soorten gezocht"
     #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "Help ons hiaten op te vullen door deel te nemen door de de dagelijkse link naar waarnemingen te ontvangen:"
+    gaps_id_pilot_intro: "Help ons hiaten op te vullen door deel te nemen en de dagelijkse link naar waarnemingen te ontvangen:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Zijn nog niet opgenomen in het Computer Vision Model"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1647,6 +1655,8 @@ nl:
   #Label for a button to delete a taxon range
   delete_range: Verspreiding verwijderen
   delete_selected: Verwijder geselecteerde items
+  #Label for a button to delete a sound file
+  delete_sound: Geluid verwijderen
   delete_taxon_and_merge_most_data_html: |
     Verwijder <i>%{taxon}</i> en voeg het grootste deel van de gegevens samen met een ander taxon. Gebruik deze tool voor <strong>het verwijderen van dubbele taxa</strong>. Maak een taxonwissel aan als je een verouderd synoniem wilt verwijderen. <strong>KIJK UIT!</strong> Het verwijderen van taxa kan erg destructief zijn! Bekijk de <a href="%{curator_url}">richtlijn voor curatoren</a> voor meer details.
   delete_user: Gebruiker verwijderen
@@ -1933,6 +1943,8 @@ nl:
   eol: EOL
   eol_collection_url: "EOL verzameling URL"
   error_updating_photo: "Fout bij bijwerken foto: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Fout bij het bijwerken van geluid: %{sound_errors}"
   establishment:
     endemic: Endemisch
     establishment: Vestiging
@@ -1998,6 +2010,7 @@ nl:
   extinct: uitgestorven
   extinct_in_the_wild: Uitgestorven in het Wild
   extra_properties: Extra eigenschappen
+  evidence_accurately_depicts_organism_or_scene: Bewijs geeft het organisme of de scène nauwkeurig weer
   evidence_of_organism: Bewijs van organisme
   evidence_related_to_single_subject: Er is een taxon dat aanwezig is in al het bewijs
   facebook: Facebook
@@ -2035,7 +2048,11 @@ nl:
   fields_can_only_be_edited_by_the_people_who: Velden kunnen enkel aangepast worden door de personen die ze aangemaakt hebben of door curatoren
   fields_merged: Velden samengevoegd
   file: Bestand
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Bestandsformaat
   file_size: Bestandsgrootte
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL van bestand
   file_should_be_in_the_following_format: "Het bestand moet in het volgende format zijn: taxonnaam, beschrijving"
   fill_out_project_observation_fields: Vul de waarnemingsvelden in voor dit project
   fill_out_your_profile: voltooi je profiel
@@ -2082,6 +2099,8 @@ nl:
   flag_deleted: Melding verwijderd
   flag_description: Meld deze inhoud zodat de curatoren weten dat er iets mis mee is.
   flag_comment_description: Voeg een optionele opmerking toe aan deze markering die verder verklaart waarom je deze toevoegt en die links geeft naar het bewijsmateriaal.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Vlaggen die een bron vermelden, worden waarschijnlijk sneller opgelost door onze vrijwillige curatoren.
   flag_for_check_list_title_html: |
     Melding voor checklist: %{title}
   flag_for_comment_id_html: Melding voor <a href="%{url}">reactie %{id}</a>
@@ -2115,7 +2134,7 @@ nl:
   flag_marked_as_unresolved_html: '<span class="meta">Melding gemarkeerd als</span> <strong>onopgelost.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Object
-  flag_reason: "&ldquo;Ik meld @gender{n:dit|deze} %{record} omdat"
+  flag_reason2: "Ik markeer dit %{record} omdat"
   flag_resolution: Oplossing
   flag_saved: Melding opgeslagen
   flag_saved_thanks_html: Melding opgeslagen. Bedankt! <a href="%{url}" class="readmore">Melding bekijken</a>
@@ -2292,6 +2311,8 @@ nl:
     one: "<strong>Let op:</strong> er is %{count} andere voorlopige taxonwijziging met dezelfde inputtaxa:"
     other: "<strong>Let op:</strong> er zijn %{count} andere voorlopige taxonwijzigingen met dezelfde inputtaxa:"
   heads_up_this_photo_has_been_flagged: "OPGELET: deze foto is gemeld."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "LET OP: dit geluid is gemeld."
   heads_up_this_photo_is_already_associated_with: "Opgelet: deze foto is al gelinkt aan een <a target='_blank' href='%{url}'>andere waarneming</a>"
   heads_up_you_have_multiple: "Let op: je hebt meerdere taxonomische machine-tags voor identieke niveaus. Ze zijn hieronder gekleurd per niveau."
   help: Help
@@ -5133,7 +5154,15 @@ nl:
     select_one_or_more_sounds: Selecteer één of meerdere geluiden
     selected_sounds: Geselecteerde geluiden
     sound: Geluid
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Geluid %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Geluid verwijderd
     sound_has_been_flagged: Dit geluid is gemeld.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Geluid verborgen
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Geluid hoorbaar gemaakt
     soundcloud_replied_with_an_error: SoundCloud geeft een foutmelding. Probeer het later opnieuw.
     sounds: Geluiden
     your_soundcloud_account: je SoundCloud-account
@@ -5846,6 +5875,8 @@ nl:
   updated_by_user_on_date_html: Bijgewerkt door %{user} op %{date}
   updated_daily: Dagelijks bijgewerkt
   updated_photo: Bijgewerkte foto
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Bijgewerkt geluid
   upload: Uploaden
   upload_a_csv_file: Upload CSV-bestand
   upload_a_csv_file_with_observation: |
@@ -6400,6 +6431,7 @@ nl:
   you_faved_this: Je hebt dit opgeslagen als favoriet!
   you_have_left_x_project: "Je hebt %{project} verlaten"
   you_have_not_confirmed_your_email_address: Je hebt je e-mailadres nog niet bevestigd!
+  you_havent_joined_any_projects: Je neemt niet deel aan enig project
   you_havent_linked_your_inaturalist_google_account: "Je hebt je %{site_name}-account nog niet aan je Google-account gekoppeld."
   you_joined_this_project: Je bent lid geworden van dit project!
   you_must_be_a_member_of_this_project_to_do_that: Je moet lid zijn van dit project om dat te kunnen doen
@@ -6496,6 +6528,8 @@ nl:
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
         een selectie toont de aankondiging aan alle gebruikers, ongeacht het IP van het land.
         klant.
+      exclude_ip_countries_desc: |
+        CMD- of SHIFT-klik om er meerdere te selecteren. Geselecteerde landen krijgen de de aankondiging niet te zien. Als IP-landen zijn geselecteerd, worden geselecteerde ´Uitgesloten IP-landen' uitgesloten van de eerste.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Merk op dat de aanmaakdatum van de meest recent aangemaakte
@@ -6708,8 +6742,9 @@ nl:
         flaggable_content: Te markeren inhoud
         flaggable_content_desc: |
           De inhoud die gemeld kan worden is het primaire tekst-attribuut van het gemelde object op het moment dat de melding werd gemaakt. Aleen curatoren en medewerkers kunnen dit zien. Bij berichten kunnen alleen medewerkers dit zien.
-        flags_that_should_not_be_resolved_desc_html: |
-          Verwijder de meldingen over <code>spam</code> en <code>schending van auteursrechten</code> alleen als de inhoud geen spam is of geen auteursrechten schendt.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Los alsjeblieft de <code>spam</code>, <code>auteursrecht
+          inbreuk</code>en <code>kunstmatig gegenereerde inhoud</code> meldingen alleen op als de inhoud geen spam is, geen inbreuk op auteursrecht maakt of niet kunstmatig gegenereerd is.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -7049,7 +7084,11 @@ nl:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: Geef ons tips
-      to_help_us_improve: Om ons te helpen dit model te verbeteren willen we graag weten welke van de afbeeldingen op deze pagina relevant zijn voor je zoekopdracht &quot;%{searched_term}&quot;. Markeer elke afbeelding als relevant %{thumbs_up_icon} als deze overeenkomt met je zoekopdracht en met %{thumbs_down_icon} als deze niet relevant is. Klik op verzenden wanneer je klaar bent. #text for a button where a user can mark images as relevnt to their search term
+      to_help_us_improve: Om ons te helpen dit model te verbeteren willen we graag weten welke van de afbeeldingen op deze pagina relevant zijn voor je zoekopdracht &quot;%{searched_term}&quot;. Markeer elke afbeelding als relevant %{thumbs_up_icon} als deze overeenkomt met je zoekopdracht en met %{thumbs_down_icon} als deze niet relevant is. Klik op verzenden wanneer je klaar bent. #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Markeren als relevant
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Markeren als niet relevant
+      #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Markeer resterende als relevant
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Markeer resterende als niet relevant
@@ -7247,21 +7286,94 @@ nl:
         taxon_geoprivacy: "Meest conservatieve geoprivacy toegepast als gevolg van de behoudsstatus van taxa in de huidige determinatie."
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
+        user_id: Unieke, sequentiële identifier voor de waarnemer
+        user_login: Handvat/gebruikersnaam van de waarnemer, d.w.z. een korte, unieke, alfanumerieke identificatiecode voor een gebruiker
+        user_name: |
+          Naam van de waarnemer, meestal gebruikt voor naamsvermelding op de site.
+          Dit is een optioneel veld en kan een pseudoniem zijn.
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
         quality_grade: Kwaliteitsgraad van deze waarneming. Zie de Help-sectie voor meer informatie over wat dit betekent. Zie https://help.inaturalist.org/support/solutions/articles/151000169936
         license: Identificatie voor de licentie of ontheffing die de waarnemer voor deze waarneming heeft gekozen. Alle rechten voorbehouden indien blanco
         url: URL voor de waarneming
+        image_url: URL voor de eerste foto die is gekoppeld aan de waarneming
+        sound_url: |
+          URL voor het eerste geluid dat is gekoppeld aan de waarneming. Merk op dat deze
+          alleen aanwezig is voor directe uploads, geen geluiden die worden gehost op diensten van derden
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
         place_admin2_name: Naam van de administratieve plaats twee rangen onder het landniveau
         positioning_method: Manier waarop de coördinaten bepaald werden
         positioning_device: Toestel gebruikt om coördinaten te bepalen
+        captive_cultivated: |
+          Waarneming is van een organisme dat bestond op de tijd en plaats dat het
+          werd waargenomen omdat mensen dat het toen en daar waarnamen. Voor
+          meer, zie
+          https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Tekst geschreven door de waarnemer die de waarneming of opname beschrijft of alle andere opmerkingen die relevant lijken
+        oauth_application_id: |
+          Sequentiële identificatie voor de applicatie die de
+          waarneming heeft gecreëerd. Voor meer informatie over de applicatie voeg deze dan
+          toe aan https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          De naam van het derde niveau administratieve gebied dat de
+          waarnemingscoördinaten bevat (bijvoorbeeld een gemeente)
+        place_country_name: |
+          De naam van de gemeente die de coördinaten van deze waarneming bevat
+        place_state_name: |
+          De naam van het tweede-niveau-administratieve gebied dat de
+          waarnemingscoördinaten bevat (bijvoorbeeld een provincie)
         place_town_name: |
           De naam van de stad of plaats die de waarneming
           coördinaten omvat, indien bekend
         private_place_guess: |
           Waarnemingslocatie zoals opgeschreven door de waarnemer als de locatie verborgen is
+        public_positional_accuracy: Maximale horizontale positieonzekerheid in meters; Omvat onzekerheid toegevoegd door coördinaatsvervaging
+        taxon_class_name: |
+          Naam van de taxonomische klasse die het waargenomen taxon bevat
+        taxon_family_name: |
+          Naam van de taxonomische familie die het waargenomen taxon bevat
+        taxon_form_name: |
+          Naam van de taxonomische vorm die het waargenomen taxon bevat
+        taxon_genus_name: |
+          Naam van het taxonomische genus met het waargenomen taxon
+        taxon_genushybrid_name: |
+          Naam van het taxonomische hybride geslacht dat het waargenomen taxon bevat
+        taxon_hybrid_name: |
+          Naam van de taxonomische hybride die het waargenomen taxon bevat
+        taxon_kingdom_name: |
+          Naam van het taxonomische rijk dat het waargenomen taxon bevat
+        taxon_order_name: |
+          Naam van de taxonomische orde die het waargenomen taxon bevat
+        taxon_phylum_name: |
+          Naam van de taxonomische stam die het waargenomen taxon bevat
+        taxon_species_name: |
+          Naam van de taxonomische soort die het waargenomen taxon bevat
+        taxon_subclass_name: |
+          Naam van de taxonomische onderklasse die het waargenomen taxon bevat
+        taxon_subfamily_name: |
+          Naam van de taxonomische onderfamilie die het waargenomen taxon bevat
+        taxon_suborder_name: |
+          Naam van de taxonomische onderorde die het waargenomen taxon bevat
+        taxon_subphylum_name: |
+          Naam van het taxonomische onderstam dat het waargenomen taxon bevat
+        taxon_subspecies_name: |
+          Naam van de taxonomische ondersoort die het waargenomen taxon bevat
+        taxon_subtribe_name: |
+          Naam van de taxonomische ondertak die het waargenomen taxon bevat
+        taxon_superclass_name: |
+          Naam van de taxonomische superklasse die het waargenomen taxon bevat
+        taxon_superfamily_name: |
+          Naam van de taxonomische superfamilie die het waargenomen taxon bevat
+        taxon_superorder_name: |
+          Naam van de taxonomische superorde die het waargenomen taxon bevat
+        taxon_supertribe_name: |
+          Naam van de taxonomische supertak die het waargenomen taxon bevat
+        taxon_tribe_name: |
+          Naam van de taxonomische tak die het waargenomen taxon bevat
+        taxon_variety_name: |
+          Naam van de taxonomische variëteit die het waargenomen taxon bevat
         uuid: |
           Universeel unieke identifier voor de waarneming. Zie
           https://datatracker.ietf.org/doc/html/rfc9562
@@ -7327,6 +7439,11 @@ nl:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> wanneer
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          de <strong>Gemeenschapstaxon en observatietaxon komen overeen</strong>
+          (voor die zeldzame gevallen waarin het observatietaxon meer kan zijn
+          specifiek dan het Community Taxon)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           de %{site_name} <strong> gemeenschap akkoord gaat met een ID op soortniveau of lager 
           </strong>, bijvoorbeeld wanneer meer dan 2/3 van de experts akkoord gaat met het taxon
@@ -7357,6 +7474,11 @@ nl:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           de waarneming <strong>toont geen bewijs voor één organisme op alle foto's</strong> (bijvoorbeeld het heeft vier foto's van niet-verwante organismen; een foto met de leefomgeving van het organisme in de waarneming is OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          De waarneming <strong>levert geen nauwkeurig bewijs van het organisme of
+          scene</strong> (Kunstmatige intelligentie werd bijvoorbeeld gebruikt om elementen toe te voegen, te verwijderen of te vervangen
+           in beeld of geluid. Ruisonderdrukking, focus stacking of het uitvoeren van kleine reparaties zoals het verwijderen van sensorstof is meestal OK).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           de waarneming heeft niet langer een ID <em>en</em> het GemeenschapsTaxon is een familie of hoger taxon
@@ -7856,6 +7978,13 @@ nl:
       not_found:
         sorry_that_doesnt_exist: Sorry, deze bestaat niet!
         even_our_dedicated_search_mole_couldnt: Zelfs onze toegewijde zoekmol kon niets vinden!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          U kunt het origineel bekijken op <a href="%{url}">%{url}</a>. Laat inbreuken op het auteursrecht als onopgelost staan als dit geluid een 
+          inbreuk maakt op het auteursrecht.
     stats:
       index:
         active_desc: Heeft in de afgelopen 30 dagen een determinatie, waarneming, reactie of bericht gemaakt
@@ -7887,6 +8016,20 @@ nl:
         recent_w_7_obs_desc: Aangemeld in de afgelopen 7 dagen en >=7 wrn toegevoegd
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Gemaakt met <a href="%{url}">Seek</a>
+        today_identified_by_others: Waarnemingen gedetermineerd door anderen (1 dag)
+        today_identified_by_others_by_iconic_taxon: Waarnemingen gedetermineerd door anderen (1 dag)
+        observations_unknown: Waarnemingen onbekend na 30 dagen
+        observations_total_unknown_ratio: Waarnemingen Onbekende Ratio (30 dagen)
+        observations_total_unknown_ratio_desc: Verhouding van onbekende waarnemingen tot alle waarnemingen
+        for_others: Voor anderen
+        ids_last_7_days: Determinaties (7 dagen)
+        ids_last_7_days_desc: Determinaties gemaakt in de voorgaande 7 dagen
+        ids_today: Determinaties (1 dag)
+        ids_today_desc: Determinaties gemaakt op één dag
+        ids_last_7_days_for_others: Determinaties voor anderen (7 dagen)
+        ids_last_7_days_for_others_desc: Determinaties die in de afgelopen 7 dagen aan de waarnemingen van andere mensen zijn toegevoegd
+        ids_today_for_others: Determinaties voor anderen (1 dag)
+        ids_today_for_others_desc: Determinaties toegevoegd aan de waarnemingen van andere mensen op één dag
         time_to_id_desc: Tijd tot ID (uren, meeschuivend tijdsbestek van 1 week)
         TTCID: TTCID
         TTCID_desc: Tijd om een determinatie van iemand anders te ontvangen die overeenkomt met het gemeenschapstaxon.
@@ -8040,6 +8183,13 @@ nl:
           handmatig wordt vernieuwd. Verversen van deze samenvatting update onmiddellijk
           onze cache van de onderliggende Wikipedia-inhoud die we laten zien op de
           website, die automatisch verversd wordt na een week.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Je kunt alleen kleine wijzigingen rechtstreeks in de soortaanduiding aanbrengen (bijv. geslachtsveranderingen, spelfout)en. Voer een <a target="_blank" href="%{url}">Taxonwissel</a> uit als je andere wijzigingen in de naam nodig hebt.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Let op: je hebt zojuist een afstammeling van een gesloten taxon toegevoegd (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Overweeg om dit in plaats daarvan samen te voegen met een bestaand taxon." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Let op: de ouder van dit actieve taxon is inactief, maar het is de output van dit <a href='/taxon_changes/%{taxon_change_id}'> Ontwerp taxon verandering</a> waarvan we aannemen dat u zich binnenkort zult vastleggen." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Dit actieve taxon heeft meer dan %{count} gekoppelde waarnemingen of wordt gedekt door een taxonraamwerk, dus sommige taxonomische attributen kunnen alleen worden bewerkt door medewerkers of taxoncuratoren die aan dat taxonraamwerk zijn gekoppeld.
       show:
         about_names_desc: |
           <p>
@@ -8151,6 +8301,15 @@ nl:
         trending_desc: Meest waargenomen taxa gedurende de laatste maand
         trending_in_place_desc_html: Meest waargenomen taxa gedurende de laatste maand uit <a href="%{url}">%{place}</a>
         wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Namen moeten vergelijkbaar zijn bij directe bewerking, maak een taxonwissel voor radicale naamsveranderingen
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} kan geen tags aan jouw foto's toevoegen totdat Flickr weet dat jij ons toestemming hebt gegeven.
+        <a href='%{url}'>Flickr toestemming verlenen</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Er ging iets mis bij het plaatsen van die tags: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Weet je zeker dat je deze taxonwijziging wilt herstellen?
@@ -8170,6 +8329,10 @@ nl:
       withdrawn: Ingetrokken
       #state of a committed taxon change
       committed: bevestigd
+      #state of a pending taxon change
+      pending: in behandeling
+      #state of a approved taxon change
+      approved: goedgekeurd
       #state of a draft taxon change
       draft: concept
       #the status of a taxon change: draft, withdrawn or committed
@@ -8178,6 +8341,39 @@ nl:
         move_children_desc2_html: |
           Als je dit selectievak aanvinkt, worden de kinderen van het invoertaxon verplaatst naar het output taxon voor Taxonwissels en Taxonsamenvoegingen wanneer deze wijziging is bevestigd. Als dit een verandering naar een genus of lager is, zal het Taxonwissels voor alle afstammelingen creëren met namen die gewijzigd moeten worden. Als je bijvoorbeeld de familie Canidae wisselt naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae naar Dogidae. Als je het geslacht <i>Canis</i> wisselt voor het geslacht <i>Dogis</i>, worden er
           taxonwissels gemaakt en vastgelegd om <i>Canis lupus</i> te wijzigen in <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> in <i>Dogis lupus</i> ssp. <i>lupus</i>. Dit kan een behoorlijke rotzooi veroorzaken, dus gebruik het voorzichtig.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Stem toegevoegd
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Stem verwijderd
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Nog geen stemmen
+      #message when taxon change is committed
+      taxon_change_committed: Taxonverandering bevestigd! Records die automatisch kunnen worden bijgewerkt, worden binnenkort gewijzigd.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Deze taxonwijziging is nu in behandeling. Het vereist goedkeuring van 1 curator om te kunnen bevestigen."
+        other: "Deze taxonwijziging is nu in behandeling. Het vereist goedkeuring door %{count} curatoren om zich te kunnen binden."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Invoertaxon kan geen actieve onderliggende elementen hebben, verplaats ze eerst, of selecteer de optie 'Kinderen naar uitvoer verplaatsen?'
+      output_taxon_rank_level_not_coarser_html: >
+        Output taxon rangniveau niet grover dan rangniveau van actieve kinderen van inputtaxon %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Deze taxonomische wijziging was al vastgelegd!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Er is iets misgegaan bij het verwijderen van de taxonwijziging '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Taxonwijziging is verwijderd.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Taxonwijziging is met succes bijgewerkt.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Geen wijzigingen gespecificeerd
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taxon Change is met succes gemaakt.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Vereist goedkeuring van 1 andere curator om zich te committeren"
+        other: "Vereist goedkeuring door %{count} Andere curatoren om te binden"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -9262,6 +9458,30 @@ nl:
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Naamswijzigingen zijn niet toegestaan voor virussen, bacteriën of niet-geënte clades"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Naamswijzigingen zijn niet toegestaan voor rangen die ruimer zijn dan soorten"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Naamswijzigingen zijn niet toegestaan voor hybride formules"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "kan 'x' niet toevoegen als een hybride marker tussen geslacht en soort"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "moet binomiaal zijn (geslachtsoorten) voor controle"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "geslacht kan niet veranderen"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Niet-standaard soortnaam: alleen het verwijderen van 'X'/'×' of het toevoegen van '×' is toegestaan"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "Het specifieke epitheton moet vergelijkbaar zijn (alleen kleine typefout/geslacht)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "infraspecifiek epitheton vereist voor deze rang"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "Alleen het infraspecifieke epitheton kan veranderen voor infraspecifieke rangen"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "Infraspecifiek epitheton moet vergelijkbaar zijn (alleen kleine typefout/geslacht)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "De eerste letter van een epitheton kan niet veranderen."
         taxon_change:
           attributes:
             base:
@@ -9511,6 +9731,73 @@ nl:
         Protozoa: Protozoa
         Mollusca: Weekdieren
         Chromista: Chromista
+  id_summary_dqa:
+    public_metrics:
+      true: "Ware bewering"
+      identification: "Handig voor determinatie"
+      references: "Gestaafd door referenties"
+      distinct: "Onderscheiden van andere samenvattingen"
+      clear: "Kort, informeel en duidelijk geschreven"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Commentaar is relevant voor de samenvatting"
+      true: "Commentaar is een ware uitspraak"
+      matches_taxon: "Commentaar verwijst naar %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        blog_link_text: "Lees meer op onze blog"
+        missing_identifier: "Ontbrekende overzicht van de determinatie van dit taxon"
+        service_unavailable: "De gegevens van het ID-overzicht zijn tijdelijk niet beschikbaar."
+        no_summary_data: "Er zijn geen samenvattende gegevens gevonden voor dat taxon."
+        load_failed: "Kan taxonoverzicht niet laden"
+      filters:
+        active_only: "Alleen actieve samenvattingen weergeven"
+        run_label: "Naam van de run"
+        run_placeholder: "Selecteer een run"
+        run_loading: "Laad runs..."
+        photo_tips_toggle: "Toon fototips"
+        language_label: "Taal"
+      summary_list:
+        loading: "Samenvattingen van ID-kaarten laden..."
+        empty: "Er zijn geen ID-overzichten beschikbaar voor deze soort."
+        refreshing: "Samenvattingen verversen..."
+        heading: "ID-samenvattingen"
+        feedback_unavailable: "Feedback is niet beschikbaar voor deze samenvatting."
+      summary_feedback:
+        loading: "Feedback laden..."
+        explainer: "Uw feedback wordt gebruikt om ID-overzichten in de toekomst te verbeteren"
+      summary_item:
+        photo_tip_aria: "Foto Tip: %{tip}"
+        user_fallback: "iNaturalist gebruiker"
+        reference_commented: "gereageerd"
+        view_comment: "Opmerking bekijken"
+        view_reference_feedback: "Feedback op referentie bekijken"
+      reference_feedback:
+        loading: "Referentiefeedback wordt geladen..."
+        sign_in_required: "Meld je aan om te stemmen op feedback over referenties."
+        unavailable: "Referentiefeedback is momenteel niet beschikbaar."
+        service_unavailable: "Referentie feedback service is momenteel niet beschikbaar."
+      taxon_detail:
+        photo_tips_heading: "Fototips"
+        summary_uuid: "Taxon-ID samenvatting UUID"
+      taxa_list:
+        group_labels:
+          animalia: "Andere dieren"
+          actinopterygii: "Straalvinnigen"
+          aves: "Vogels"
+          reptilia: "Reptielen"
+          amphibia: "Amfibieën"
+          mammalia: "Zoogdieren"
+          arachnida: "Spinachtigen"
+          insecta: "Insecten"
+          plantae: "Vaatplanten en mossen"
+          fungi: "Schimmels"
+          protozoa: "Protozoa"
+          mollusca: "Weekdieren"
+          chromista: "Chromisten"
+        other_group: "Overig"
+        empty: "Geen soorten beschikbaar."
   #Title of a section warning the user about something
   warning_title: Waarschuwing
   wikimedia: Wikimedia

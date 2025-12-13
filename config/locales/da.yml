@@ -729,6 +729,8 @@ da:
   are_you_sure_you_want_to_delete_this_assessment?: Er du sikker på at du vil slette vurderingen?
   are_you_sure_you_want_to_delete_this_photo?: Er du sikker på, at du vil slette dette foto?
   are_you_sure_you_want_to_delete_this_post: Er du sikker på, at du vil slette dette indlæg?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Sikker på, at denne lyd skal slettes?
   are_you_sure_you_want_to_delete_this_taxon_change: Er du sikker på at du vil slette den her ændring i takson?
   are_you_sure_you_want_to_remove_all_tags: Er du sikker på, at du ønsker at fjerne alle tags?
   are_you_sure_you_want_to_remove_curator: Er du sikker på at du vil fjerne %{user} som kurator?
@@ -742,6 +744,8 @@ da:
     Sikker på, at du vil fjerne denne observation fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne denne takson %{place}'s tjekliste?"
   are_you_sure_you_want_to_flag_as_spammer: Sikker på, at denne bruger skal markeres som spammer?
+  artificially_generated_content: Kunstigt genereret indhold
+  artificially_generated_content_desc: Har indhold, der for det meste eller helt er genereret via kunstig intelligens.
   associated_observations: Tilknyttede observationer
   associated_taxa: Tilknyttede taksa
   attention: Bemærk
@@ -807,7 +811,6 @@ da:
   back_to_all_species: Tilbage til Alle arter
   back_to_editing_observation: Tilbage til redigering af observation
   back_to_friends: Tilbage til venner
-  back_to_flags_html: "&laquo;Tilbage til markeringer"
   back_to_lists: "Tilbage til %{name} lister"
   back_to_observation: Tilbage til observation
   back_to_observation_fields: Tilbage til observationsfelter
@@ -844,8 +847,9 @@ da:
     other: |
       Baseret på en stikprøve på %{percent}% af disse ID'er, anslås det, at dette vil
       resultere i <strong>%{count} utilsigtede uenigheder</strong> med ID'er på %{child}.
-  based_on_the_evidence_can_id_be_improved: |
-    På baggrund af ovenstående, kan fællesskabs ID'et stadig bekræftes eller forbedres?
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Baseret på beviserne, kan fællesskabstaksonen forbedres?
   batch: Bundt
   batch_edit: Multi redigere
   #Where x is the title of a list of taxa
@@ -1082,6 +1086,7 @@ da:
   community_id_is_precise: Fællesskabstakson er præcis
   community_moderation_settings: Fællesskabs indstillinger
   community_supported_id: Fællesskabs understøttet ID?
+  community_taxon_matches_observation_taxon: Fællesskabstakson matcher Observationstakson
   compare: Sammenlign
   compare_with: Sammenlign med
   comparing: sammenligner
@@ -1374,6 +1379,7 @@ da:
   curating: Kuraterer
   curation: Kuratering
   curator: Kurator
+  curators_with_most_ids_of_the_input_taxon: "Kuratorer med flest ID'er for inputtaksonen"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist-webstedskuratorer er betroede frivillige med mulighed for at
@@ -1506,6 +1512,8 @@ da:
     observationer i projekter. Observatører kan også vælge at ændre dette for
     individuelle observationer.
   curator_identification: Kurator identifikation
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Aktuel Fællesskabstakson: %{taxon}"
   current_flags: Aktuelle markeringer
   #Label for a custom boundary for an observation search
   custom_boundary: Tilpasset grænse
@@ -1529,7 +1537,7 @@ da:
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Identifikationshuller-pilotprojekt: Behøver ID ønskede arter"
     #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "Hjælp os med at udfylde huller ved at deltage for at modtage dagligt link til observationer:"
+    gaps_id_pilot_intro: "Hjælp os med at udfylde huller ved at deltage for at modtage et dagligt link til observationer:"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Endnu ikke inkluderet i Computer Vision Model"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1667,6 +1675,8 @@ da:
   #Label for a button to delete a taxon range
   delete_range: Slet udbredelse
   delete_selected: Slet valgte
+  #Label for a button to delete a sound file
+  delete_sound: Slet lyd
   delete_taxon_and_merge_most_data_html: |
     Slet <i> %{taxon} </i> og sammenlæg det meste af dets data i en anden takson. Brug dette værktøj til <strong> at fjerne dubletter </strong>. Hvis du vil
     fjerne et forældet synonym, så vær venlig at oprette et takson skifte. <strong> VÆR FORSIGTIG! </strong> Sletning af taksa kan være meget ødelæggende. Tjek 
@@ -1951,6 +1961,8 @@ da:
   eol: EOL
   eol_collection_url: "EOL samling´s URL"
   error_updating_photo: "Fejl ved opdatering af billede:%{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Fejl under opdatering af lyd: %{sound_errors}"
   establishment:
     endemic: endemisk
     establishment: Oprindelse
@@ -2017,6 +2029,7 @@ da:
   extinct: uddød
   extinct_in_the_wild: Uddøde i naturen
   extra_properties: Ekstra egenskaber
+  evidence_accurately_depicts_organism_or_scene: Beviser afbilder præcist organisme eller scene
   evidence_of_organism: Bevis for organisme
   evidence_related_to_single_subject: Bevis relateret til ét enkelt emne
   facebook: Facebook
@@ -2054,7 +2067,11 @@ da:
   fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres af de personer, der har oprettet dem og side-kuratorer
   fields_merged: Felterne blev lagt sammen
   file: Fil
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Filformat
   file_size: Filstørrelse
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Fil-URL
   file_should_be_in_the_following_format: "Filen skal være i følgende format: taksonnavn, beskrivelse"
   fill_out_project_observation_fields: Udfyld projekt observationsfelter
   fill_out_your_profile: udfyld din profil
@@ -2101,6 +2118,8 @@ da:
   flag_deleted: Markering slettet.
   flag_description: Markér dette indhold så kuratorer ved at der er noget galt med det.
   flag_comment_description: Tilføj en valgfri kommentar til dette flag, der yderligere forklarer, hvorfor du tilføjer det samt giver links til understøttende beviser.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Flag, som citerer en kilde, er mere tilbøjelige til at blive løst hurtigt af vores frivillige kuratorer.
   flag_for_check_list_title_html: |
     Markér til Tjekliste: %{title}
   flag_for_comment_id_html: Markér til <a href="%{url}">Kommentar %{id}</a>
@@ -2134,7 +2153,6 @@ da:
   flag_marked_as_unresolved_html: '<span class="meta">Flagmarkeret som</span> <strong>uløst.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
-  flag_reason: "&ldquo;Jeg markerer denne %{record} fordi"
   flag_resolution: Opløsning
   flag_saved: Markering gemt
   flag_saved_thanks_html: Markering gemt. Tak! <a href="%{url}" class="readmore">Vis markering</a>
@@ -2316,6 +2334,8 @@ da:
     one: "<strong>Bemærk:</strong> Der er %{count} anden taksonændringsudkast med samme input-taksa:"
     other: "<strong>Bemærk:</strong> Der er %{count} andre taksonændringsudkast med samme input-taksa:"
   heads_up_this_photo_has_been_flagged: "BEMÆRK: dette foto er blevet markeret."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "BEMÆRK: Denne lyd er blevet markeret."
   heads_up_this_photo_is_already_associated_with: "BEMÆRK: Dette billede er allerede forbundet med <a target='_blank' href='%{url}'> en anden observation</a>"
   heads_up_you_have_multiple: "Bemærk: Du har flere taksonomiske maskintags for identiske rangeringer. De er farvekodet nedenfor efter rang."
   help: Hjælp
@@ -5174,7 +5194,15 @@ da:
     select_one_or_more_sounds: Vælg en eller flere lyde
     selected_sounds: Valgte lyde
     sound: Lyd
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Lyd %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Lyd slettet
     sound_has_been_flagged: Denne lyd er blevet markeret.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Lyd skjult
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Lyd gjort tilgængelig
     soundcloud_replied_with_an_error: SoundCloud svarede med en fejl. Prøv igen senere.
     sounds: Lyde
     your_soundcloud_account: din SoundCloud konto
@@ -5903,6 +5931,8 @@ da:
   updated_by_user_on_date_html: Opdateret af %{user} d. %{date}
   updated_daily: Opdateres dagligt
   updated_photo: Opdateret foto
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Opdateret lyd
   upload: Upload
   upload_a_csv_file: Upload CSV fil
   upload_a_csv_file_with_observation: |
@@ -6472,6 +6502,7 @@ da:
   you_faved_this: Du gjorde denne til favorit!
   you_have_left_x_project: "Du har forladt %{project}"
   you_have_not_confirmed_your_email_address: Du har ikke bekræftet din e-mailadresse!
+  you_havent_joined_any_projects: Du er ikke tilmeldt noget projekt
   you_havent_linked_your_inaturalist_google_account: "Du har ikke tilknyttet din %{site_name} konto og din Google konto endnu"
   you_joined_this_project: Du blev medlem af dette projekt!
   you_must_be_a_member_of_this_project_to_do_that: Du skal være medlem af dette projekt for at gøre det
@@ -6585,6 +6616,14 @@ da:
         Tid i kontoens tidszone, hvor denne meddelelse påbegyndes
         vist. Anvendes på tværs af tidszoner, så alle begynder at se
         den på samme tid, ikke i forhold til deres lokale tid.
+      include_virtuous_tags_desc: |
+        CMD- eller SHIFT-klik for multivalg. Valg af "Enhver" eller intet
+        valg vil vise meddelelsen til alle brugere uanset
+        deres Virtuous tags.
+      exclude_virtuous_tags_desc: |
+        CMD- eller SHIFT-klik for multivalg. Valg af "Ingen" eller intet
+        valg vil vise meddelelsen til alle brugere uanset
+        deres Virtuous tags.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Målbrugere efter donationsadfærd
@@ -6784,10 +6823,9 @@ da:
           Det flagbare indhold er den primære tekstattribut for det objekts, der blev markeret
           på det tidspunkt, hvor flaget blev oprettet. Kun kuratorer og medarbejdere kan
           se dette. Kun medarbejdere kan se dette for beskeder.
-        flags_that_should_not_be_resolved_desc_html: |
-          Løs venligst <code>spam</code> og <code>krænkelse af ophavsret</code>
-          markér kun hvis indholdet ikke er spam eller ikke er en krænkelse af
-          ophavsret.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Læs venligst kun flag for <code>spam</code>, <code>ophavsretsovertrædelse</code>og <code>kunstigt genereret indhold</code>,
+          sårremt indholdet ikke er hhv. spam, ophavsretskrænkelse eller kunstigt genereret.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -7160,7 +7198,11 @@ da:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: Hjælp os med at blive bedre
-      to_help_us_improve: For at hjælpe os med at forbedre denne model vil vi gerne vide, hvilke af billederne på denne side, som er relevante for søgningen &quot;%{searched_term}&quot;. Markér venligst hvert billede som relevant %{thumbs_up_icon}, hvis det matcher søgningen, og som ikke relevant %{thumbs_down_icon}, hvis det ikke gør det. Når man er færdig, klik dernæst på Indsend. #text for a button where a user can mark images as relevnt to their search term
+      to_help_us_improve: For at hjælpe os med at forbedre denne model vil vi gerne vide, hvilke af billederne på denne side, som er relevante for søgningen &quot;%{searched_term}&quot;. Markér venligst hvert billede som relevant %{thumbs_up_icon}, hvis det matcher søgningen, og som ikke relevant %{thumbs_down_icon}, hvis det ikke gør det. Når man er færdig, klik dernæst på Indsend. #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Markér som relevant
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Markér som ikke relevant
+      #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Markér resterende som relevant
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Markér resterende som ikke relevant
@@ -7536,6 +7578,11 @@ da:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Observationer opnår <strong>"forskningskvalitet/-klasse"</strong>, når
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Matchet mellem Fællesskabstakson og Observationstakson</strong>
+          (i de sjældne tilfælde, hvor Observationstakson kan være mere
+          specifik end Fællesskabstakson)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           %{site_name}-<strong>fællesskabet er enige om artsniveau-ID eller
           lavere</strong>, dvs. når flere end 2/3 af identifikatorer er enige om en
@@ -7572,6 +7619,12 @@ da:
           observationen <strong>ikke præsenterer bevis relateret til ét
           emne</strong> (f.eks. har den fire fotos af ikke-beslægtede organismer;
           dog er et foto, der viser emnets levested OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          observationen <strong>præsenterer ikke præcise beviser for organismen eller
+          scenen</strong> (f.eks. kunstig intelligens er brugt til at tilføje/fjerne/erstatte
+          elementer i billedet eller lyden. Støjreduktion, fokus-stacking eller 
+          smårettelser, såsom at fjerne støv fra sensor, er normalt OK).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           observationen behøver ikke længere en ID <em>og</em>
@@ -8185,6 +8238,14 @@ da:
       not_found:
         sorry_that_doesnt_exist: Beklager, det eksisterer ikke!
         even_our_dedicated_search_mole_couldnt: Selv vores dedikerede søgemuldvarp kunne ikke finde noget!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Originaludgaven kan ses på <a href="%{url}">%{url}</a>. Lad venligst
+          ophavsretskrænkelsesmarkeringer være uløste, såfremt denne lyd reelt
+          krænker ophavsretten.
     stats:
       index:
         active_desc: Oprettede et ID, en obs, en kommentar eller et indlæg i de forgangne 30 dage
@@ -8216,6 +8277,20 @@ da:
         recent_w_7_obs_desc: Tilmeldte sig i de seneste 7 dage og tilføjede >= 7 obs
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Oprettet via <a href="%{url}">Seek</a>
+        today_identified_by_others: Observationer identificeret af andre (1 dag)
+        today_identified_by_others_by_iconic_taxon: Observationer identificeret af andre (1 dag)
+        observations_unknown: Observationer ukendte efter 30 dage
+        observations_total_unknown_ratio: Observations-ukendt forhold (30 dage)
+        observations_total_unknown_ratio_desc: Forholdet mellem ukendte observationer og alle observationer
+        for_others: For andre
+        ids_last_7_days: Identifikationer (7 dage)
+        ids_last_7_days_desc: Identifikationer oprettet i løbet af de foregående 7 dage
+        ids_today: Identifikationer (1 dag)
+        ids_today_desc: Identifikationer oprettet på én enkelt dag
+        ids_last_7_days_for_others: Identifikationer for andre (7 dage)
+        ids_last_7_days_for_others_desc: Identifikationer tilføjet andres observationer i løbet af de foregående 7 dage
+        ids_today_for_others: Identifikationer for andre (1 dag)
+        ids_today_for_others_desc: Identifikationer tilføjet andres observationer på én enkelt dag
         time_to_id_desc: Tid til ID (timer, 1 løbende uge)
         TTCID: TTCID
         TTCID_desc: Tid til modtagelse af identifikation fra andre, som matcher fællesskabs taksonen
@@ -8423,6 +8498,13 @@ da:
           href="%{url}">Wikipedia-side</a>, der caches på ubestemt tid indtil
           manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
           hvilket automatisk opfriskes efter én uge.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Kun mindre ændringer i artsbetegnelsen kan foretages direkte (f.eks. kønsændringer, stavefejl). Tilføj en <a target="_blank" href="%{url}">taksonombytning</a> ved behov for andre navneændringer.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Bemærk: Du har netop tilføjet en efterkommer af en låst takson (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Overvej venligst at flette denne med en eksisterende takson i stedet." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Bemærk: Forælderen til denne aktive takson er inaktiv, men det er outputtet af denne <a href='/taxon_changes/%{taxon_change_id}'> taksons udkastsændring</a>, som vi antager, at du snarest vil angive." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Denne aktive takson har flere end %{count} downstream-observationer eller er omfattet af en taksonramme, hvorfor visse taksonomiske attributter kan kun redigeres af personale eller taksonkuratorer tilknyttet denne taksonramme.
       show:
         about_names_desc: |
           <p>
@@ -8536,6 +8618,15 @@ da:
         trending_desc: Mest observerede taksa i den sidste måned
         trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Navne skal være ens, når der redigeres direkte, foretager en taksonombytning til radikale navneændringer
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} kan ikke føje tags til de aktuelle fotos, før Flickr ved, at man har givet os tilladelse.
+        <a href='%{url}'>Tildel Flickr-tilladelse</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Noget gik galt i forsøget på at poste disse tags: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
       are_you_sure_you_want_to_restore_this_taxon_change: Sikker på, at takson-ændringen skal gendannes?
@@ -8554,6 +8645,10 @@ da:
       withdrawn: tilbagetrukket
       #state of a committed taxon change
       committed: gemt
+      #state of a pending taxon change
+      pending: Afventer
+      #state of a approved taxon change
+      approved: godkendt
       #state of a draft taxon change
       draft: udkast
       #the status of a taxon change: draft, withdrawn or committed
@@ -8569,6 +8664,39 @@ da:
           Flyttes slægten <i>Canis</i> til slægten <i>Dogis</i>, udløses og udføres en Taksonombytning fra <i>Canis lupus</i> til <i>Dogis lupus</i> og
           <i>Canis lupus</i> ssp. <i>lupus</i> til <i>Dogis lupus</i> ssp.
           <i>lupus</i>. Dette kan medføre et værre rod, så brug muligheden med omtanke.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Stemme tilføjet
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Stemme fjernet
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Endnu ingen stemmer
+      #message when taxon change is committed
+      taxon_change_committed: Taksonændring indsendt! Poster, som kan opdateres automatisk, ændres snarest.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Denne taksonændring er nu afventende. Den kræver godkendelse af 1 kurator for at kunne indsendes."
+        other: "Denne taksonændring er nu afventende. Den kræver godkendelse af %{count} kuratorer for at kunne indsendes."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Input-takson kan ikke have aktive afkom. Flyt dem først, eller vælg valgmuligheden 'Flyt afkom til output?'
+      output_taxon_rank_level_not_coarser_html: >
+        Output-taksonrangniveau ikke grovere end rangniveau for aktive afkom af input-taksonen %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Denne taksonomiske ændring er allerede indsendt!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Noget gik galt under sletningen af taksonnavnet '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Taksonændring er slettet
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Taksonændring er nu opdateret.
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Ingen ændringer angivet
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taksonændring er nu oprettet.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Kræver godkendelse af yderligere 1 kurator for indsendelse"
+        other: "Kræver godkendelse af yderligere %{count} kuratorer for indsendelse"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8702,6 +8830,43 @@ da:
           Du skal indtaste "%{confirmation_code}" i formularen, for at slette din konto
       edit:
         about_third_party_tracking: Om tredjepartssporing
+        block_desc_blocking_someone_prevents: |
+          Blokering af nogen forhindrer, at man kan modtage beskeder, kommentarer til
+          og identifikationer af ens observationer og på anden måde interagere
+          med vedkommende på %{site_name}. Det fjerner også gensideige observationer
+          fra begges søgeresultater. Man bliver dog ikke usynlig for vedkommnde, der stadig
+          vil kunne finde ens observationer og se ens profil, men uden mulighed for
+          nogen interaktion.
+        block_desc_blocking_is_for_situations: |
+          Blokering er til situationer, hvor man bare ikke kan enes med
+          nogen, og hvor de vil ikke lade dig være, på trods af dine bedste
+          bestræbelser på at bilægge tvister på en civiliseret måde. Det er ikke en
+          måde at gemme sig for folk, at forhindre identifikationer fra personer, hvis
+          meninger man ikke har tillid til, eller at fravælge fællesskabs-ID'et (der er
+          en anden indstilling til det). Blokering fungerer således begge veje: Blokeres
+          nogen, kan de ikke interagere med dig, og du kan heller ikke interagere
+          med dem. Misbruger man det til at forhindre nogen i at identificere ens
+          observationer, forhindres man også selv i at identificere deres observationer.
+        block_desc_you_can_only_block_html: |
+          Man kan kun blokere tre personer. Vi synes, det er et rimeligt
+          antal, der rummer de personer, som behøver blokering, og
+          samtidig forhindre blokeringsmisbrug. Ved et ønske om at blokere
+          flere folk, <a href="mailto:%{help_email}">kontakt os</a> venligst.
+        block_desc_there_are_two_exceptions: |
+          Der er to situationer, hvor blokering ikke forhindrer interaktion:
+        block_desc_comments_on_taxon_flags: kommentarer til taksonmarkeringer oprettet af dig
+        block_desc_comments_on_taxon_changes: kommentarer til taksonændringer oprettet af dig
+        block_desc_unlike_more_personal: |
+          Modsat mere personlige former for indhold, såsom observationer og
+          journalindlæg, deles taksaer af alle og bør være åbne for debat for alle.
+          Blokering vil stadig forhindre, at man modtager notifikationer om kommentarer
+          til denne type indhold fra den person, man har blokeret.
+        block_desc_if_harassing_html: |
+          Chikaneres eller stalkes man af nogen på %{site_name},
+          <a href="mailto:%{help_email}">så giv os besked</a>. Hvis
+          dette udgør en overtrædelse af vores brugsbetingelser eller udgør
+          anden adfærd, som vi anser for upassende for vores websted, vil vi
+          undersøge sagen.
         common_scientific_name_display_order: Visningsrækkefølge for Almindeligt/Videnskabeligt navn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Hvis du skifter mening, kan du altid
@@ -9671,6 +9836,30 @@ da:
               bad_format: |
                 kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
                 ×; Bemærk, at formodede taksa og sorter ikke er tilladt
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "navneændringer ikke tilladt for vira, bakterier eller upodede clader"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "navneændringer er ikke tilladt for rang grovere end arter"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "navneændringer er ikke tilladt for hybridformler"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "kan ikke tilføje 'x' som hybridmarkør mellem slægt og art"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "skal være binomial (slægtsart) som kontrol"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "slægt kan ikke ændres"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "ikke-standard artsnavn: Kun fjernelse af 'x'/'×' eller tilføjelse af '×' er tilladt"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "specifik betegnelse skal være ens (kun mindre stavefejl/køn)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "infraspecific betegnelse krævet for denne rang"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "kun infraspecifik betegnelse kan ændres ifm. infraspecifikke rang"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "infraspecifik betegnelse skal være ens (kun mindre stavefejl/køn)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "første bogstav i en hvilket som helst betegnelse kan ikke ændres."
         taxon_change:
           attributes:
             base:
@@ -9921,6 +10110,98 @@ da:
         Protozoa: Protozoer (Protozoa)
         Mollusca: Bløddyr (Mollusca)
         Chromista: Chromista ("planteagtige")
+  id_summary_dqa:
+    public_metrics:
+      true: "Sandt udsagn"
+      identification: "Nyttig til identifikation"
+      references: "Understøttet af referencer"
+      distinct: "Forskellig fra andre oversigter"
+      clear: "Kort, dagligdags og klart skrevet"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Kommentar er relevant for oversigten"
+      true: "Kommentar er et sandt udsagn"
+      matches_taxon: "Kommentar henviser til %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "ID-resuméer Demo"
+        info_line_one: "Denne demo udforsker brugen af AI til at opsummere kommentarer på iNaturalist med det formål at"
+        info_line_two: "at gøre identifikationsekspertise mere tilgængelig."
+        blog_link_text: "Læs mere på vores blog"
+        missing_identifier: "Manglende takson oversigtsidentifikator"
+        service_unavailable: "ID-oversigtsoplysninger midlertidigt utilgængelige."
+        no_summary_data: "Ingen oversigtsdata fundet for denne takson."
+        load_failed: "Indlæsning af taksonoversigt mislykkedes"
+      filters:
+        active_only: "Vis kun aktive oversigter"
+        run_label: "Eksekveringsnavn"
+        run_placeholder: "Vælg en eksekvering"
+        run_loading: "Indlæser eksekveringer..."
+        photo_tips_toggle: "Vis fototips"
+        language_label: "Sprog"
+      summary_list:
+        loading: "Indlæser ID-oversigter..."
+        empty: "Ingen ID-oversigter for denne art."
+        refreshing: "Opdaterer oversigter..."
+        heading: "ID-oversigter"
+        feedback_toggle: "ID-resuméer Feedback"
+        feedback_unavailable: "Feedback utilgængelig for denne oversigt."
+        sign_in_required: "Log ind for at stemme på ID-oversigtsfeedback."
+        service_unavailable: "Feedbacktjeneste er p.t. utilgængelig."
+        submit_failed: "Mislykkedes at indsende feedback."
+      summary_feedback:
+        loading: "Indlæser feedback..."
+        explainer: "Aktuel feedback vil blive brugt til at forbedre fremtidige ID-oversigter"
+        sign_in_tooltip: "Log ind for at stemme på denne oversigt"
+        submitting_tooltip: "Indsender feedback..."
+        aria_helpful: "%{label}: Nyttig"
+        aria_not_helpful: "%{label}: Ikke nyttig"
+      summary_item:
+        disclaimer: "Denne oversigt over iNaturalist-brugerkommentarer er AI-genereret og kan være forkert. Hjælp os gerne med at forbedre denne oversigt ved at indsende feedback."
+        default_label: "OVERSIGT"
+        default_title: "Oversigt"
+        copy_link: "Kopiér link til dette resumé"
+        photo_tip_label: "FOTOTIP"
+        photo_tip_aria: "Fototip: %{tip}"
+        references_toggle: "iNaturalist Brugerkommentarreferencer"
+        user_fallback: "iNaturalist-bruger"
+        reference_commented: "kommenteret"
+        view_comment: "Se kommentar"
+        view_reference_feedback: "Se feedback på reference"
+      reference_feedback:
+        loading: "Indlæser referencefeedback..."
+        sign_in_required: "Log ind for at stemme på referencefeedback."
+        unavailable: "Referencefeedback er p.t. tilgængelig."
+        service_unavailable: "Referencefeedbacktjeneste er p.t. tilgængelig."
+        submit_failed: "Mislykkedes at indsende referencefeedback."
+        sign_in_tooltip: "Log ind for at stemme på denne reference"
+        submitting_tooltip: "Indsender feedback..."
+        aria_helpful: "%{label}: Nyttig"
+        aria_not_helpful: "%{label}: Ikke nyttig"
+      taxon_detail:
+        select_species: "Vælg en art for at få vist ID-oversigter."
+        last_updated: "Seneste opdateret"
+        no_image: "Intet billede tilgængeligt"
+        photo_tips_heading: "Fototips"
+        summary_uuid: "Takson ID-oversigt UUID"
+      taxa_list:
+        group_labels:
+          animalia: "Andre dyr"
+          actinopterygii: "Strålefinnede fisk"
+          aves: "Fugle"
+          reptilia: "Krybdyr"
+          amphibia: "Padder"
+          mammalia: "Pattedyr"
+          arachnida: "Spindlere"
+          insecta: "Insekter"
+          plantae: "Planter"
+          fungi: "Svampe"
+          protozoa: "Protozoer"
+          mollusca: "Bløddyr"
+          chromista: "Kromister"
+        other_group: "Anden"
+        empty: "Ingen arter tilgængelige."
   #Title of a section warning the user about something
   warning_title: Advarsel
   wikimedia: Wikimedia

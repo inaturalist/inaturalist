@@ -364,6 +364,8 @@ th:
   admin_s: กลุ่มแอดมิน
   admin_only: แอดมินเท่านั้น
   admin_tools: เครื่องมือสำหรับแอดมิน
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: องค์กรในเครือข่าย
   agree_: เห็นด้วย
   agree?: เห็นด้วย
   agree_with_current_taxon: เห็นด้วยกับอันดับอนุกรมวิธานปัจจุบัน
@@ -469,6 +471,7 @@ th:
   allowed_html: HTML ที่ใช้ได้
   allowed_occurrence_status_values: ค่าสถานะการปรากฏที่ใช้ได้
   allowed_values: ค่าที่ใช้ได้
+  almost_there_: ใกล้เสร็จแล้ว...
   alphabetical: ตามตัวอักษร
   alphabetical_order: เรียงตามลำดับอักษร
   already_have_an_account_log_in_html: มีบัญชีผู้ใช้แล้ว? <strong>ล็อก อิน</strong>
@@ -515,6 +518,14 @@ th:
   #Label for an option to show/include content by any user
   any_user: ไม่ระบุ
   anyone: ใครก็ได้
+  app_owner_application_about_p2_html: |
+    ในปี 2022 เราต้องการการอนุมัติด้วยตนเองสําหรับผู้ใช้ที่ต้องการสร้างไคลเอนต์ API
+    ในการสร้างแอปของบุคคลที่สาม คุณต้องส่งใบสมัครก่อนเพื่อเป็น
+    "เจ้าของแอป" แอปพลิเคชันนี้ควรอธิบายการทํางานของแอปที่คุณเสนอ
+    และวิธีที่คุณวางแผนที่จะใช้งาน ในการส่งใบสมัครบัญชีของคุณต้องอยู่ที่
+    อายุอย่างน้อย 2 เดือน และต้องมีอายุอย่างน้อย 10 ปี <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">การปรับปรุงการระบุตัวตน</a> ในเดือนที่แล้ว เราอาจขอติดตามผล
+    คําถามเกี่ยวกับแผนของคุณและเราขอสงวนสิทธิ์ในการปฏิเสธใบสมัครไม่ว่าด้วยเหตุผลใดก็ตาม
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: แอปพลิเคชัน
@@ -587,6 +598,8 @@ th:
   are_you_sure_you_want_to_delete_this_assessment?: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
   are_you_sure_you_want_to_delete_this_photo?: แน่ใจหรือไม่ว่าต้องการลบรูปนี้?
   are_you_sure_you_want_to_delete_this_post: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: คุณแน่ใจหรือไม่ว่าต้องการลบเสียงนี้?
   are_you_sure_you_want_to_delete_this_taxon_change: แน่ใจหรือไม่ว่าต้องการลบการเปลี่ยนหน่วยอนุกรมวิธานนี้?
   are_you_sure_you_want_to_remove_all_tags: แน่ใจหรือไม่ว่าจะนำแท็กทั้งหมดออก
   are_you_sure_you_want_to_remove_curator: แน่ใจหรือไม่ว่าต้องการลบ %{user} ออกจากการเป็นผู้ดูแล?
@@ -596,6 +609,8 @@ th:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     แน่ใจหรือไม่ว่าต้องการลบการสังเกตนี้ออกจาก %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "แน่ใจหรือไม่ว่าต้องการนำหน่วยอนุกรมวิธานนี้ออกจากรายการตรวจสอบของ %{place}?"
+  artificially_generated_content: เนื้อหาที่สร้างขึ้นโดยปลอม
+  artificially_generated_content_desc: มีเนื้อหาที่สร้างขึ้นส่วนใหญ่หรือทั้งหมดผ่านปัญญาประดิษฐ์
   associated_observations: การสังเกตที่เกี่ยวข้อง
   attention: โปรดทราบ
   you_sure_delete_list: แน่ใจหรือไม่ว่าต้องการลบรายการนี้?
@@ -631,7 +646,6 @@ th:
   back_to_all_species: กลับไปที่ชนิดทั้งหมด
   back_to_editing_observation: กลับไปแก้ไขการสังเกต
   back_to_friends: กลับไปที่เพื่อน
-  back_to_flags_html: "&laquo; กลับไปที่รายงาน"
   back_to_lists: "กลับไปที่รายการ %{name}"
   back_to_observation: กลับไปที่การสังเกต
   back_to_observation_fields: กลับไปที่ข้อมูลเสริมการสังเกต
@@ -658,8 +672,6 @@ th:
   back_to_your_observations: กลับไปที่การสังเกตของคุณ
   back_to_your_profile: กลับไปที่โปรไฟล์ของคุณ
   badges: รางวัล
-  based_on_the_evidence_can_id_be_improved: |
-    จากหลักฐาน หน่วยฯ ที่เสนอโดยชุมชนยังยืนยันหรือจำแนกย่อยได้อีกหรือไม่?
   batch_edit: แก้ไขหลายรายการ
   be_the_first_to_fave_this_observation: ชอบการสังเกตนี้เป็นคนแรก!
   bg_color: สีพื้นหลัง
@@ -749,6 +761,7 @@ th:
   clear: ล้าง
   clear_filters: ล้างตัวกรอง
   clear_search: ล้างการค้นหา
+  close: ปิด
   colors: สี
   combine: รวม
   comma_separated_please: แยกแต่ละแท็ก, ด้วย comma
@@ -771,6 +784,7 @@ th:
   community_id_at_species_level_or_lower: เป็นหน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า
   community_id_is_precise: หน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันและจำแนกได้แม่นยำ
   community_supported_id: หน่วยอนุกรมวิธานที่ชุมชนสนับสนุน?
+  community_taxon_matches_observation_taxon: หน่วยฯ ที่ชุมชนเห็นพ้องกันตรงกันกับหน่วยฯ ของการสังเกต
   compare: เปรียบเทียบ
   compare_with: เปรียบเทียบกับ
   comparing: เปรียบเทียบ
@@ -796,6 +810,13 @@ th:
   connect: เชื่อมต่อ
   connect_to_provider: "เชื่อมต่อกับ %{provider}"
   conservation_status: สถานะการอนุรักษ์
+  conservation_status_descriptions:
+    iucn: |
+      รหัส IUCN Red List ที่เทียบเท่า นี่ไม่ใช่การประเมิน IUCN ที่แท้จริง
+      เพียงรหัส IUCN ที่ตรงกับภัยคุกคามของการเปิดเผยพิกัดมากที่สุด
+      โดยนัยโดยสถานะนี้ สิ่งนี้จะแทนที่ความเป็นส่วนตัวทางภูมิศาสตร์หากเป็น "น้อยที่สุด
+      ความกังวล" หรือต่ํากว่า ดังนั้นหากคุณต้องการปิดบังการสังเกตนี้
+      อนุกรมวิธานตั้งค่าเป็น "ใกล้คุกคาม" หรือสูงกว่า
   conservation_status_geoprivacy_desc: |
     การเปิดเผยพิกัดเริ่มต้นที่ใช้กับการสังเกตทั้งหมดของหน่วยอนุกรมวิธานนี้ในสถานที่นี้
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -969,6 +990,8 @@ th:
     การสังเกตในโครงการ ผู้สังเกตการณ์ยังสามารถเลือกที่จะเปลี่ยนสิ่งนี้สําหรับ
     การสังเกตส่วนบุคคล
   curator_identification: การจำแนกโดย Curator
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "อนุกรมวิธานชุมชนปัจจุบัน: %{taxon}"
   custom_project_was_successfully_created: เพิ่มการปรับแต่งโครงการแล้ว
   custom_project_was_successfully_updated: อัปเดตการปรับแต่งโครงการแล้ว
   #Button to customize projects that appear in the header
@@ -977,6 +1000,11 @@ th:
   daily_users: ผู้ใช้งานรายวัน
   danger_zone: พิจารณาให้ดีก่อนเลือก
   dashboard: หน้ารวม
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "ใช่! ฉันต้องการเข้าร่วม"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "การนําร่องช่องว่างการระบุ: ต้องการ ID สายพันธุ์ที่ต้องการ"
   data_deficient: ข้อมูลไม่เพียงพอ
   data_quality: คุณภาพข้อมูล
   data_quality_assessment: การประเมินคุณภาพข้อมูล
@@ -1052,6 +1080,8 @@ th:
   delete_icon?: ลบไอคอน?
   delete_photo: ลบรูป
   delete_project: ลบโครงการนี้
+  #Label for a button to delete a sound file
+  delete_sound: ลบเสียง
   delete_user: ลบผู้ใช้
   delete_your_account: ลบบัญชีของคุณ
   deleted_synonyms: ชื่อพ้องที่ลบไป
@@ -1069,6 +1099,9 @@ th:
   destroy: ทำลาย
   details: รายละเอียด
   devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: โทเค็นรหัสผ่านรีเซ็ตไม่ถูกต้อง โปรดใช้ลิงก์ในอีเมลรีเซ็ตรหัสผ่านที่ส่งล่าสุด หรือ <a href="%{url}">ขอใหม่</a>.
     sessions:
       signed_out: 'ออกจากระบบเรียบร้อยแล้ว'
     registrations:
@@ -1097,6 +1130,8 @@ th:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: บริจาค
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: บริจาค
   donate_again_caps: บริจาคอีกครั้ง
   donate_again_today_caps: บริจาคอีกครั้งในวันนี้
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1121,6 +1156,7 @@ th:
   edit: แก้ไข
   edit_a_batch_of_observations: แก้ไขหลายการสังเกต
   edit_account_settings_and_profile: "แก้ไขการตั้งค่าบัญชี &amp; โปรไฟล์"
+  edit_comment: แก้ไขความคิดเห็น
   edit_license: แก้ไขสัญญาอนุญาต
   edit_multiple_locations: แก้ไขหลายตำแหน่ง
   edit_multiple_species: แก้ไขหลายชนิด
@@ -1170,6 +1206,8 @@ th:
   endemic: เฉพาะถิ่น
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "ข้อผิดพลาดในการอัปเดตเสียง: %{sound_errors}"
   establishment:
     endemic: ประจำถิ่นเดียว
     establishment: การตั้งถิ่นฐาน
@@ -1209,6 +1247,7 @@ th:
   exporting: "กำลังส่งออก..."
   extinct: สูญพันธุ์
   extinct_in_the_wild: สูญพันธุ์ในธรรมชาติ
+  evidence_accurately_depicts_organism_or_scene: หลักฐานแสดงให้เห็นสิ่งมีชีวิตหรือฉากได้อย่างถูกต้อง
   evidence_of_organism: มีหลักฐานของสิ่งมีชีวิต
   evidence_related_to_single_subject: หลักฐานแสดงถึงสิ่งมีชีวิตเพียงชนิดเดียว
   facebook: เฟซบุ๊ก
@@ -1222,6 +1261,10 @@ th:
   fields: ข้อมูลเสริม
   fields_: ข้อมูลเสริม
   fields_merged: ข้อมูลเสริมถูกรวม
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: รูปแบบไฟล์
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL ของไฟล์
   file_should_be_in_the_following_format: "ควรจัดเรียงไฟล์ตามรูปแบบนี้: ชื่อหน่วยอนุกรมวิธาน, คำอธิบาย"
   #The name of a computer file
   filename: ชื่อไฟล์
@@ -1265,7 +1308,6 @@ th:
   flag_it!: รายงานเลย!
   #Label for the object that was flagged, e.g. a table header
   flag_object: สิ่งที่รายงาน
-  flag_reason: "&ldquo;ฉันรายงาน%{record}นี้เพราะว่า"
   flag_resolution: การแก้ปัญหา
   flag_saved: บันทึกรายงานแล้ว
   flag_saved_thanks_html: บันทึกรายงานแล้ว ขอบคุณ! <a href="%{url}" class="readmore">ดูรายงาน</a>
@@ -1355,6 +1397,8 @@ th:
   header_your_identifications: การจำแนกของคุณ
   header_your_projects: โครงการของคุณ
   header_your_profile: โปรไฟล์ของคุณ
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: เสียงนี้ถูกตั้งค่าสถานะแล้ว"
   help: ช่วยเหลือ
   help_confirm_observations!: ช่วยยืนยันการสังเกต!
   help_translate!: ช่วยแปล!
@@ -1836,6 +1880,7 @@ th:
   must_be_not_observed_in_place: ต้องไม่พบใน %{place}
   must_be_observed_in_place: ต้องพบใน %{place}
   must_have_sounds: ต้องมีเสียง
+  muting_description: การปิดการแจ้งเตือนผู้ใช้จะกันไม่ให้คุณได้รับการแจ้งเตือนที่มาจากกิจกรรมของผู้ใช้คนนั้น รวมถึงการพูดถึงโดยใช้ "@" ข้อความ และความคิดเห็นในการสังเกตของคุณ
   n_ago: "%{n} ที่แล้ว"
   n_people_disagrees: "มี %{amount} คนไม่เห็นด้วย"
   n_person_disagrees: "มี %{amount} คนไม่เห็นด้วย"
@@ -2048,6 +2093,7 @@ th:
   ok: "ตกลง"
   onboarding:
     following_panel_title: ติดตามผู้คน หน่วยอนุกรมวิธาน และสถานที่
+    comments_panel_title: คุณอยากรู้ไหมว่าคนอื่น ๆ พูดคุยเรื่องอะไรกันบ้างบน %{site_name}?
   one_of_your_lists: "รายการของคุณ"
   only_administrators_may_access_that_page: แอดมินเท่านั้นที่เข้าถึงหน้านั้นได้
   only_an_admin_can_remove_project_users: แอดมินเท่านั้นที่ลบผู้ใช้โครงการได้
@@ -2168,6 +2214,8 @@ th:
       Unknown: ไม่ทราบ
       unknown: ไม่ทราบ
   place_imported: นำเข้าสถานที่แล้ว!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: อาจใช้เวลาถึงหนึ่งวันในการสังเกตที่เกี่ยวข้องกับสถานที่แห่งนี้
   place_must_have_a_boundary_defined: ต้องมีการกำหนดขอบเขตสถานที่
   place_name: ชื่อสถานที่
   place_notes: หมายเหตุสถานที่
@@ -2273,6 +2321,20 @@ th:
     zambia: แซมเบีย
   places_of_interest: สถานที่บนหน้าจอ
   places_merged_successfully: รวมสถานที่สำเร็จแล้ว!
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    สถานที่ต้องมีขนาดใหญ่กว่า 700,000 ตารางกิโลเมตร
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    สถานที่ต้องไม่เกิน 70,000 ตารางกิโลเมตร
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    สถานที่ต้องไม่เกิน 200,000 ข้อสังเกต
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    สถานที่ต้องไม่มีการสังเกตการณ์มากกว่า 10,000 รายการ
   #Title to a section warning a user to exercise caution
   please_be_careful!: โปรดระวัง!
   please_confirm_your_inat_username: "โปรดยืนยันชื่อผู้ใช้ %{site_name} ของคุณ"
@@ -2714,7 +2776,15 @@ th:
     select_one_or_more_sounds: เลือกอย่างน้อยหนึ่งเสียง
     selected_sounds: เสียงที่ถูกเลือก
     sound: เสียง
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: เสียง %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: ลบเสียง
     sound_has_been_flagged: เสียงนี้ถูกรายงาน
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: เสียงที่ซ่อนอยู่
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: เสียงไม่ซ่อน
     sounds: เสียง
     your_soundcloud_account: บัญชี SoundCloud ของคุณ
   source: ที่มา
@@ -3036,6 +3106,7 @@ th:
   type_species_name: "พิมพ์ชื่อชนิด"
   uicn_red_list_status: "สถานะบัญชีแดง IUCN:"
   umbrella_projects: โครงการครอบคลุม
+  unable_to_save_comment: เราไม่สามารถบันทึกความคิดเห็นของคุณได้
   unclassified: ไม่ถูกจัดจำแนก
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: การใช้งานโครงการ
@@ -3062,6 +3133,8 @@ th:
   updated_by_user_on_date_html: อัปเดตโดย %{user} เมื่อ %{date}
   updated_daily: อัปเดตรายวัน
   updated_photo: รูปที่อัปเดต
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: อัปเดตเสียง
   upload: อัปโหลด
   upload_a_csv_file: อัปโหลดไฟล์ CSV
   upload_a_csv_file_with_observation: |
@@ -3341,10 +3414,18 @@ th:
         คลิกค้างไว้แล้วคลิก CMD- หรือ SHIFT เพื่อเลือกหลายรายการ การเลือก "ทั้งหมด" หรือไม่ทํา
         การเลือกจะแสดงประกาศต่อผู้ใช้ทุกคนโดยไม่คํานึงถึง
         ลูกค้า
+      excludes_non_site_desc: |
+        หากประกาศกําหนดเป้าหมายไปยังเว็บไซต์ (ซึ่งเป็นค่าเริ่มต้นหากคุณเป็น
+        ผู้ดูแลเว็บไซต์) ซึ่งจะไม่รวมประกาศที่กําหนดเป้าหมายไปยังเว็บไซต์ทั้งหมดใน
+        ตําแหน่งนี้
       ip_countries_desc: |
         คลิกค้างไว้แล้วคลิก CMD- หรือ SHIFT เพื่อเลือกหลายรายการ การเลือก "ทั้งหมด" หรือไม่ทํา
         การเลือกจะแสดงประกาศต่อผู้ใช้ทุกคนโดยไม่คํานึงถึง
         ประเทศ IP
+      exclude_ip_countries_desc: |
+        คลิก CMD หรือ SHIFT เพื่อเลือกหลายรายการ บางประเทศจะไม่แสดง
+        การประกาศ หากเลือกประเทศ IP ให้เลือกยกเว้นประเทศ IP
+        จะถูกลบออกจากอดีต
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         โปรดทราบว่าวันที่สร้างของผู้ใช้ที่สร้างล่าสุด
@@ -3499,6 +3580,17 @@ th:
         data_quality_assessment_desc3_html: |
           ระดับคุณภาพเป็นการสรุปภาพรวมความแม่นยำ ความเที่ยงตรง ความสมบูรณ์ ความเกี่ยวข้อง และความเหมาะสมของการสังเกตใน iNaturalist ให้เป็นข้อมูลความหลากหลายทางชีวภาพ คุณสมบัติบางรายการจะถูกกำหนดโดยอัตโนมัติ ในขณะที่รายการอื่น ๆ จะขึ้นอยู่กับการโหวตโดยผู้ใช้งาน นอกจากนี้ iNaturalist จะแบ่งปันการสังเกต "ระดับงานวิจัย" ให้แก่พาร์ตเนอร์ทางข้อมูลจำนวนมากเพื่อใช้ในงานวิทยาศาสตร์และการอนุรักษ์ต่อไป
         disagreement_count_desc: "จำนวนหน่วยอนุกรมวิธานที่ได้รับการจำแนกและไม่เป็นสมาชิกของหน่วยฯ ที่เหนือกว่า"
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          พื้นที่ <strong>อนุกรมวิธานชุมชนและอนุกรมวิธานสังเกตการณ์ตรงกัน</strong>
+          (สําหรับโอกาสที่หายากที่อนุกรมวิธานสังเกตการณ์สามารถมีได้มากกว่า
+          เฉพาะกว่าอนุกรมวิธานชุมชน)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          การสังเกต <strong>ไม่แสดงหลักฐานที่ถูกต้องของสิ่งมีชีวิตหรือ
+          ฉาก</strong> (เช่น ปัญญาประดิษฐ์ถูกใช้เพื่อเพิ่ม ลบ หรือแทนที่
+          องค์ประกอบในภาพหรือเสียง การลดเสียงรบกวน การซ้อนโฟกัส หรือการสร้าง
+          การแก้ไขเล็กๆ น้อยๆ เช่น การกําจัดฝุ่นเซ็นเซอร์มักจะใช้ได้)
         identification_count_desc: 'จำนวนการจำแนกของแต่ละหน่วยอนุกรมวิธาน'
         flagged_photos_desc_html: |
           บางรูปถูกรายงานว่ามีเนื้อหาไม่เหมาะสมหรือมีการละเมิดลิขสิทธิ์ ดูรายละเอียดเพิ่มเติมที่ %{links}
@@ -3606,6 +3698,14 @@ th:
     shared:
       spam:
         this_has_been_flagged_as_spam: การสังเกตนี้ถูกรายงานว่าเป็นสแปม
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          สามารถดูต้นฉบับได้ที่ <a href="%{url}">%{url}</a>. กรุณา
+          ปล่อยให้ค่าสถานะการละเมิดลิขสิทธิ์เป็นยังไม่ได้รับการแก้ไขหากเสียงนี้ไม่ได้รับการแก้ไข
+          ละเมิดลิขสิทธิ์
     stats:
       index:
         new_users_desc: ลงทะเบียนวันนี้
@@ -3655,6 +3755,10 @@ th:
         translators_desc_for_site: |
           รู้หรือไม่ว่า %{site_name} มีผู้แปลภาษาไม่น้อยกว่า %{x_people} คน? นี่คือเหล่านักแปลที่ยอดเยี่ยมที่ได้เพิ่มคำแปลในปีนี้พร้อมกับจำนวนคำที่พวกเขาแปลใน%{website_link_tag}เว็บไซต์%{link_tag_end} ในแอป iNaturalist ของ %{iphone_link_tag}iPhone%{link_tag_end} และ %{android_link_tag}Android%{link_tag_end} และใน %{seek_link_tag}Seek%{link_tag_end} คุณสามารถดูรายชื่อผู้แปลทั้งหมดสำหรับทุกภาษา รวมถึงผู้แปลในปีก่อน ๆ และผู้แปลจาก Translatewiki ใน%{view_all_web_link_tag}เว็บไซต์%{link_tag_end}และ %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories ของเรา
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          คุณสามารถเปลี่ยนแปลงฉายาสายพันธุ์ได้โดยตรงเท่านั้น (เช่น การเปลี่ยนเพศ การสะกดผิด) เพิ่ม <a target="_blank" href="%{url}">การแลกเปลี่ยนอนุกรมวิธาน</a> หากคุณต้องการเปลี่ยนชื่ออื่น ๆ
       show:
         about_regional_names_desc: |
           <p>
@@ -3693,6 +3797,9 @@ th:
           "Life Stage=Subimago": ตัวรองตัวเต็มวัย
           "Life Stage=Teneral": หลังลอกคราบ
           unannotated: ไม่มีหมายเหตุ
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        มีบางอย่างผิดพลาดในการพยายามโพสต์แท็กเหล่านั้น: %{message}
     users:
       edit:
         inaturalist_network_affiliation_desc_html: |
@@ -3911,6 +4018,7 @@ th:
         exclude_donor_start_date: ยกเว้นวันที่เริ่มต้นของผู้บริจาค
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: ยกเว้นวันที่สิ้นสุดของผู้บริจาค
+        excludes_non_site: ซ่อนประกาศอื่นๆ ในตําแหน่งการจัดวางนี้ที่ไม่มีรหัสเว็บไซต์
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: ยกเว้นผู้สังเกตการณ์จากแอป

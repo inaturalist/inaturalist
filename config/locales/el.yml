@@ -500,6 +500,14 @@ el:
   #Label for an option to show/include content by any user
   any_user: Οποιοσδήποτε
   anyone: οποιοσδήποτε
+  app_owner_application_about_p2_html: |
+    Από το 2022 απαιτούμε μη αυτόματη έγκριση για χρήστες που επιθυμούν να κάνουν πελάτες API.
+    Για να δημιουργήσετε εφαρμογές τρίτων, πρέπει πρώτα να υποβάλετε μια αίτηση για να γίνετε
+    Ένας "κάτοχος εφαρμογής". Αυτή η εφαρμογή θα πρέπει να περιγράφει τη λειτουργικότητα της προτεινόμενης εφαρμογής σας
+    και πώς σκοπεύετε να το χρησιμοποιήσετε. Για να υποβάλετε αίτηση ο λογαριασμός σας πρέπει να βρίσκεται στη διεύθυνση
+    τουλάχιστον 2 μηνών και πρέπει να έχει κάνει τουλάχιστον 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">βελτίωση των ταυτοποιήσεων</a> τον τελευταίο μήνα. Μπορούμε να ζητήσουμε συνέχεια
+    ερωτήσεις σχετικά με το σχέδιό σας και διατηρούμε το δικαίωμα να απορρίψουμε αιτήσεις για οποιονδήποτε λόγο.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Εφαρμογή
@@ -573,6 +581,8 @@ el:
   are_you_sure_you_want_to_delete_this_assessment?: Είστε σίγουροι ότι θέλετε να διαγράψετε την αποτίμηση;
   are_you_sure_you_want_to_delete_this_photo?: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν τη φωτογραφία;
   are_you_sure_you_want_to_delete_this_post: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την ανάρτηση;
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτόν τον ήχο;
   are_you_sure_you_want_to_delete_this_taxon_change: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την αλλαγή taxon;
   are_you_sure_you_want_to_remove_all_tags: Είστε βέβαιοι ότι θέλετε να αφαιρέσετε όλες τις ετικέτες;
   are_you_sure_you_want_to_remove_curator: Είστε βέβαιοι ότι θέλετε να απομακρύνετε τον/την %{user} από επιμελητή;
@@ -585,6 +595,8 @@ el:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτήν την παρατήρηση από το %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Είστε σίγουροι ότι θέλετε να αφαιρέσετε αυτό το taxon από τη λίστα ελέγχου του %{place};"
+  artificially_generated_content: Τεχνητά παραγόμενο περιεχόμενο
+  artificially_generated_content_desc: Περιέχει περιεχόμενο που δημιουργείται κυρίως ή εξ ολοκλήρου μέσω τεχνητής νοημοσύνης.
   associated_observations: Συνδεδεμένες παρατηρήσεις
   associated_taxa: Συνδεδεμένα taxa
   attention: Προσοχή
@@ -634,7 +646,6 @@ el:
   back_to_all_species: Πίσω σε όλα τα είδη
   back_to_editing_observation: Επιστροφή στην επεξεργασία παρατήρησης
   back_to_friends: Επιστροφή στους φίλους
-  back_to_flags_html: "&laquo; Επιστροφή στις αναφορές"
   back_to_lists: "Επιστροφή στους καταλόγους %{name}"
   back_to_observation: Επιστροφή στη παρατήρηση
   back_to_observation_fields: Επιστροφή στα πεδία παρατήρησης
@@ -659,8 +670,6 @@ el:
   back_to_your_observations: Επιστροφή στις παρατηρήσεις σας
   back_to_your_profile: Επιστροφή στο προφίλ σας
   badges: Σήματα
-  based_on_the_evidence_can_id_be_improved: |
-    Βάσει των στοιχείων, μπορεί η Κοινοτική Ταξινομική Μονάδα να επιβεβαιωθεί ή να βελτιωθεί περαιτέρω;
   batch: Παρτίδα
   batch_edit: Μαζική επεξεργασία
   #Where x is the title of a list of taxa
@@ -851,6 +860,7 @@ el:
   community_id_is_precise: Η κοινοτική ταξινομική μονάδα είναι ορθή
   community_moderation_settings: Διαχείριση Ρυθμίσεων Κοινότητας
   community_supported_id: Υποστηριζόμενο από την Κοινότητα ID;
+  community_taxon_matches_observation_taxon: Το Community Taxon ταιριάζει με το Observation Taxon
   compare: Σύγκριση
   compare_with: Σύγκριση με
   comparing: συγκρίνοντας
@@ -898,6 +908,12 @@ el:
       Οργανισμός που δήλωσε αυτή την κατάσταση.Παρακαλούμε χρησιμοποιήστε την αυτόματη συμπλήρωση για να επιλέξτε μια υπάρχουσα αρχή πριν προσθέσετε μια καινούρια. Μπορείτε να προσπεράσετε αυτό το βήμα αν *εσείς* επιθυμείτε να καταχωρηθείτε ως αρχή.
     place: Μέρος στο οποίο αυτή η κατάσταση είναι περιορισμένη.
     url: URL ιστοσελίδας που περιγράφει αυτή την κατάσταση
+    iucn: |
+      Ισοδύναμος κωδικός κόκκινης λίστας IUCN. Αυτή δεν είναι η πραγματική αξιολόγηση της IUCN,
+      μόνο τον κωδικό IUCN που ταιριάζει καλύτερα με την απειλή της αποκάλυψης συντεταγμένων
+      υπονοείται από αυτό το καθεστώς. Αυτό θα παρακάμψει το geoprivacy εάν είναι "Τουλάχιστον
+      Ανησυχία" ή παρακάτω, οπότε αν θέλετε να αποκρύψετε τις παρατηρήσεις αυτού
+      ταξινομική, ορίστε την σε "Σχεδόν απειλούμενη" ή παραπάνω.
   conservation_status_geoprivacy_desc: |
     Προεπιλεγμένο γεωαπόρρητο εφαρμόζεται σε όλες τις παρατηρήσεις από αυτή τη ταξινομική βαθμίδα σε αυτό το μέρος
   contact_support: Επικοινωνήστε με την Υποστήριξη
@@ -1137,6 +1153,8 @@ el:
     παρατηρήσεις σε έργα. Οι παρατηρητές μπορούν επίσης να επιλέξουν να το αλλάξουν αυτό για
     μεμονωμένες παρατηρήσεις.
   curator_identification: Ταυτοποίηση Επιμελητή
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Τρέχουσα κοινοτική ταξινόμηση: %{taxon}"
   current_flags: Τρέχουσες αναφορές
   custom_project_fields: Προσαρμοσμένα στο Πρότζεκτ πεδία
   custom_project_was_successfully_created: Οι τροποποιήσεις της εργασίας προστέθηκαν
@@ -1148,6 +1166,11 @@ el:
   daily_users: Χρήστες ανά ημέρα
   danger_zone: Ζώνη Κίνδυνου
   dashboard: Αρχικό πάνελ
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ναι! Θα ήθελα να συμμετάσχω."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Πιλότος κενών αναγνώρισης: Ανάγκες ζητούμενο είδος ταυτότητας"
   data_deficient: Ελλιπή δεδομένα
   data_quality: Ποιότητα δεδομένων
   data_quality_assessment: Αποτίμηση ποιότητας δεδομένων
@@ -1232,6 +1255,8 @@ el:
   delete_photo: Διαγραφή φωτογραφίας
   delete_project: Διαγραφή αυτού του πρότζεκτ
   delete_selected: Διαγραφή επιλεγμένων
+  #Label for a button to delete a sound file
+  delete_sound: Διαγραφή ήχου
   delete_taxon_and_merge_most_data_html: |
     Διαγράψτε <i>%{taxon}</i> και συγχωνεύστε τα περισσότερα από τα δεδομένα του σε μία άλλη ταξινομική βαθμίδα. Χρησιμοποιήστε αυτό το εργαλείο για να <strong> αφαιρείτε διπλότυπα taxon</strong>. Αν θέλετε να αφαιρέσετε ένα παρωχημένο συνώνυμο, παρακαλούμε να κάνετε μια ανταλλαγή ταξινομικής βαθμίδας. <strong>ΠΡΟΣΟΧΗ!</strong> Η διαγραφή δεδομένων μπορεί να είναι πάρα πολύ καταστροφική. Δείτε τον <a href="%{curator_url}">Οδηγό Επιμελητή</a> για περισσότερες πληροφορίες.
   delete_user: Διαγραφή Χρήστη
@@ -1263,6 +1288,8 @@ el:
       invalid_token: 'Μη έγκυρο διακριτικό ταυτοποίησης.'
       user:
         suspended: Ο λογαριασμός σας έχει ανασταλεί
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Το διακριτικό επαναφοράς κωδικού πρόσβασης δεν είναι έγκυρο. Χρησιμοποιήστε τον σύνδεσμο στο πιο πρόσφατα απεσταλμένο email επαναφοράς κωδικού πρόσβασης ή <a href="%{url}">Ζητήστε ένα νέο</a>.
     sessions:
       signed_in: 'Επιτυχής σύνδεση.'
       signed_out: 'Επιτυχής αποσύνδεση.'
@@ -1335,6 +1362,8 @@ el:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: Δωρεά
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Δωρίζω
   done: Έγινε
   dont_have_an_account_sign_up_html: Δεν έχετε λογαριασμό; <strong>Εγγραφή.</strong>
   dont_use_double_quotes: Μήν χρησιμοποιείτε εισαγωγικά οπουδήποτε αλλού
@@ -1447,6 +1476,8 @@ el:
   eol: EOL
   eol_collection_url: "EOL συλλογή URL"
   error_updating_photo: "Σφάλμα στην ενημέρωση της φωτογραφίας: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Σφάλμα κατά την ενημέρωση του ήχου: %{sound_errors}"
   establishment:
     endemic: Ενδημικό
     establishment: Τοποθεσία
@@ -1494,6 +1525,7 @@ el:
   extinct: εξαφανισμένο
   extinct_in_the_wild: εξαφανισμένο στη φύση
   extra_properties: Πρόσθετες ιδιότητες
+  evidence_accurately_depicts_organism_or_scene: Τα στοιχεία απεικονίζουν με ακρίβεια οργανισμό ή σκηνή
   evidence_of_organism: Ένδειξη ύπαρξης οργανισμού
   facebook: Facebook
   failed_to_find_your_location: Η εύρεση της τοποθεσίας σας απέτυχε.
@@ -1528,7 +1560,11 @@ el:
   fields_can_only_be_edited_by_the_people_who: Τα πεδία μπορούν να αναθεωρηθούν μόνον από τους δημιουργούς τους και από τους επιμελητές του ιστοτόπου
   fields_merged: Τα πεδία συγχωνεύτηκαν
   file: Αρχείο
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Μορφή αρχείου
   file_size: Μέγεθος αρχείου
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL αρχείου
   file_should_be_in_the_following_format: "Το αρχείο πρέπει να έχει την ακόλουθη μορφή: ονομασία taxon, περιγραφή"
   fill_out_project_observation_fields: Συμπληρώστε τα χωρία παρατηρήσεων της εργασίας
   fill_out_your_profile: ολοκλήρωση του προφίλ σας
@@ -1598,7 +1634,6 @@ el:
   flag_marked_as_resolved_html: '<span class="meta">Αναφορά σημειώθηκε ως</span> <strong> επιλυμένη.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Αντικείμενο
-  flag_reason: "&ldquo;Αναφέρω αυτό %{record} διότι"
   flag_resolution: Επίλυση
   flag_saved: Η αναφορά αποθηκεύτηκε.
   flag_saved_thanks_html: Αναφορά αποθηκεύτηκε. Ευχαριστούμε! <a href="%{url}" class="readmore">Δείτε αναφορά</a>
@@ -1729,6 +1764,8 @@ el:
   header_your_profile: Το Προφίλ σας
   heads_up: Προσοχή!
   heads_up_this_photo_has_been_flagged: "ΠΡΟΣΟΧΗ: αυτή η φωτογραφία έχει αναφερθεί."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "ΠΡΟΣΟΧΗ: αυτός ο ήχος έχει επισημανθεί."
   heads_up_this_photo_is_already_associated_with: "Προσοχή: αυτή η φωτογραφία ήδη συνδέεται με <a target='_blank' href='%{url}'> από μία άλλη παρατήρηση</a>"
   heads_up_you_have_multiple: "Προσοχή: Έχετε πολλαπλές ταξινομικές μηχανικές ετικέτες για πανομοιότυπες κατατάξεις. Είναι κωδικοποιημένα με βάση τα χρώματα ανάλογα με την κατάταξή τους."
   help: Βοήθεια
@@ -2985,6 +3022,8 @@ el:
       zone: ζώνη
   place_guess: επισκέπτες μέρους
   place_imported: Η τοποθεσία εισήχθη!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Μπορεί να χρειαστεί έως και μία ημέρα για να συσχετιστούν οι παρατηρήσεις με αυτό το μέρος.
   place_must_have_a_boundary_defined: Ο τόπος πρέπει να έχει προσδιορισμένα σύνορα.
   place_name: Ονομασία τοποθεσίας
   place_notes: Σημειώσεις σχετικά με την τοποθεσία
@@ -3280,6 +3319,20 @@ el:
     Η επεξεργασία των ορίων μιας περιοχής είναι μία από τις μεγαλύτερες πηγές επιβράδυνσης στο iNat.
     Εάν μπορείτε να το αποφύγετε, μην προσθέτετε, αλλάξετε ή αφαιρέσετε τα όρια περιοχών εκτός αν
     είναι απολύτως απαραίτητο.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Οι θέσεις δεν μπορούν να είναι μεγαλύτερες από 700.000 τετραγωνικά χιλιόμετρα.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Οι θέσεις δεν μπορούν να είναι μεγαλύτερες από 70.000 τετραγωνικά χιλιόμετρα.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Τα μέρη δεν μπορούν να περιέχουν περισσότερες από 200.000 παρατηρήσεις.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Τα μέρη δεν μπορούν να περιέχουν περισσότερες από 10.000 παρατηρήσεις.
   places_warning_the_future: |
     Αξίζει να σημειωθεί ότι θα πρέπει να περιορίσουμε τις προϋποθέσεις υπό τις οποίες
     οι άνθρωποι μπορούν να προσθέσουν περιοχές στο μέλλον δεδομένου του τρέχοντος ρυθμού ανάπτυξης iNat.
@@ -3815,7 +3868,15 @@ el:
     select_one_or_more_sounds: Επιλέξτε ένα ή περισσότερους ήχους
     selected_sounds: Επιλεγμένοι ήχοι
     sound: Ήχος
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Ήχος %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Ο ήχος διαγράφηκε
     sound_has_been_flagged: Αυτός ο λογαριασμός έχει αναφερθεί.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Κρυφός ήχος
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Ήχος χωρίς απόκρυψη
     soundcloud_replied_with_an_error: Το SoundCloud απάντησε με σφάλμα. Παρακαλούμε προσπαθήστε πάλι αργότερα.
     sounds: Ήχοι
     your_soundcloud_account: ο λογαριασμός σας στο SoundCloud
@@ -4302,6 +4363,8 @@ el:
   updated_by_user_on_date_html: Ενημερώθηκε από τον/την %{user} στις %{date}
   updated_daily: Ενημερώνεται καθημερινά
   updated_photo: Ενημερωμένη φωτογραφία
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Ενημερωμένος ήχος
   upload: Ανέβασμα
   upload_a_csv_file: Φόρτωμα αρχείου CSV
   upload_a_csv_file_with_observation: |
@@ -4738,6 +4801,7 @@ el:
   you_dont_have_permission_to_edit_those_photos: Δεν έχετε την άδεια να επεξεργαστείτε εκείνες τις φωτογραφίες
   you_faved_this: Αγαπημένο!
   you_have_left_x_project: "Φύγατε από το %{project}"
+  you_havent_joined_any_projects: Δεν έχετε συμμετάσχει σε κανένα πρότζεκτ
   you_havent_linked_your_inaturalist_google_account: "Δεν έχετε συνδέσει το λογαριασμό σας στο%{site_name} και τον λογαριασμό σας στο Google ακόμη"
   you_joined_this_project: Γίνατε μέλος του πρότζεκτ!
   you_must_be_a_member_of_this_project_to_do_that: Πρέπει να είστε μέλος αυτού του πρότζεκτ για να το κάνετε αυτό
@@ -4816,10 +4880,18 @@ el:
         Ώρα στη ζώνη ώρας του λογαριασμού σας που θα σταματήσει αυτή η ανακοίνωση
         Εμφανίζονται. Ισχύει σε όλες τις ζώνες ώρας, επομένως όλοι θα σταματήσουν να βλέπουν
         ταυτόχρονα, όχι σε σχέση με την τοπική τους ώρα.
+      excludes_non_site_desc: |
+        Αν η ανακοίνωσή σας στοχεύει έναν ιστότοπο (που είναι η προεπιλογή αν είστε
+        Site Admin), αυτό θα εξαιρεί ανακοινώσεις που στοχεύουν όλους τους ιστότοπους στο
+        αυτή την τοποθέτηση.
       ip_countries_desc: |
         CMD- ή SHIFT-κλικ για να επιλέξετε πολλά. Επιλέγοντας "Όλα" ή μη κάνοντας
         Μια επιλογή θα εμφανίσει την ανακοίνωση σε όλους τους χρήστες, ανεξάρτητα από
         Χώρα IP.
+      exclude_ip_countries_desc: |
+        CMD- ή SHIFT-κλικ για να επιλέξετε πολλά. Οι επιλεγμένες χώρες δεν θα εμφανίζονται
+        την ανακοίνωση. Εάν έχουν επιλεγεί χώρες IP, επιλέξτε Εξαίρεση χωρών IP
+        θα αφαιρεθεί από το πρώτο.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Σημειώστε ότι η ημερομηνία δημιουργίας του χρήστη που δημιουργήθηκε πιο πρόσφατα
@@ -4945,8 +5017,6 @@ el:
           Το επισημασμένο περιεχόμενο είναι το κύριο χαρακτηριστικό κειμένου του επισημασμένου αντικειμένου 
           τη στιγμή που έγινε η επισήμανση. Μόνο οι επιμελητές και το προσωπικό μπορούν
           να δουν αυτό. Μόνο το προσωπικό μπορεί να το δει αυτό για μηνύματα.
-        flags_that_should_not_be_resolved_desc_html: |
-          Παρακαλούμε επιλύστε αναφορές <code>σπαμ</code> και <code>παραβίασης δικαιωμάτων δημιουργού</code> μόνο αν το περιεχόμενο δεν είναι σπαμ ή παραβίαση δικαιωμάτων, αντίστοιχα.
     guides:
       index:
         deprecated_banner: |
@@ -5358,6 +5428,17 @@ el:
         curator_coordinate_access_disabled_desc_html: |
           Αυτό το πρότζεκτ δεν επιτρέπει παρατηρήσεις με συντεταγμένες που οι επιμελητές του πρότζεκτ δεν μπορούν να δουν. Αν δε θέλετε να μοιραστείτε τις συντεταγμένες των παρατηρήσεων σας με τους επιμελητές του πρότζεκτ, πρέπει να αφαιρέσετε τις παρατηρήσεις σας από το πρότζεκτ.
         disagreement_count_desc: "# των ταυτοποιημένων ταξινομικών μονάδων που δεν είναι μεταξύ των προγόνων μιας ταξινομικής μονάδας"
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ο <strong>Αντιστοίχιση Community Taxon και Observation Taxon</strong>
+          (για τις σπάνιες περιπτώσεις στις οποίες η ταξινομική βαθμίδα παρατήρησης μπορεί να
+          ειδική από την κοινοτική ταξινομική μονάδα)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Η παρατήρηση <strong>δεν παρουσιάζει ακριβή στοιχεία για τον οργανισμό ή
+          σκηνή</strong> (π.χ. η τεχνητή νοημοσύνη χρησιμοποιήθηκε για την προσθήκη, αφαίρεση ή αντικατάσταση
+          στοιχεία στην εικόνα ή τον ήχο. Αφαίρεση θορύβου, στοίβαξη εστίασης ή δημιουργία
+          μικρές διορθώσεις όπως η αφαίρεση της σκόνης του αισθητήρα είναι συνήθως εντάξει).
         identification_count_desc: '# ταυτοποιήσεων για μια μεμονωμένη ταξινομική βαθμίδα'
         flagged_photos_desc_html: |
           Ορισμένες από αυτές τις φωτογραφίες έχουν επισημανθεί με "σημαία" για τη χρήση ακατάλληλου περιεχομένου ή παραβιάσεις πνευματικών δικαιωμάτων. Για λεπτομέρειες δείτε %{links}
@@ -5810,6 +5891,14 @@ el:
       not_found:
         sorry_that_doesnt_exist: Λυπούμαστε, αυτό δεν υπάρχει!
         even_our_dedicated_search_mole_couldnt: Ακόμα και ο ειδικός μας κατάσκοπος αναζήτησης δεν μπόρεσε να βρει τίποτα!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Μπορείτε να δείτε το πρωτότυπο στο <a href="%{url}">%{url}</a>. Παρακαλώ
+          Αφήστε τις επισημάνσεις παραβίασης πνευματικών δικαιωμάτων ως ανεπίλυτες, εάν αυτός ο ήχος
+          παραβιάζουν τα δικαιώματα πνευματικής ιδιοκτησίας.
     stats:
       index:
         active_desc: Δημιουργήθηκε ένα ID, παρατήρηση, σχόλιο ή ανάρτηση μέσα στις προηγούμενες 30 ημέρες
@@ -5942,6 +6031,9 @@ el:
           href="%{url}">σελίδα της Wikipedia</a> την οποία αποθηκεύουμε επ' αόριστον μέχρι να ανανεωθεί
           χειροκίνητα. Με την ανανέωση αυτής της περίληψης επίσης ενημερώνεται αμέσως η μνήμη 
           cache μας για το περιεχόμενο της Wikipedia που παρουσιάζουμε στην ιστοσελίδα μας, το οποίο ανανεώνεται αυτόματα μετά από μια εβδομάδα.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Μπορείτε να κάνετε μόνο μικρές αλλαγές στο επίθετο του είδους απευθείας (π.χ. αλλαγές φύλου, ορθογραφικά λάθη). Προσθέστε ένα <a target="_blank" href="%{url}">Ανταλλαγή ταξινομικών κατηγοριών</a> εάν χρειάζεστε άλλες αλλαγές στο όνομα.
       show:
         about_conservation_status_desc: |
           Το στάτους προστασίας συνοψίζει το ρίσκο εξαφάνισης για μια ομάδα οργανισμών.
@@ -6010,6 +6102,9 @@ el:
         trending_desc: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα
         trending_in_place_desc_html: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα σε <a href="%{url}">%{place}</a>
         wanted_desc: Είδη σε αυτό το taxon που δεν έχουν παρατηρηθεί ακόμα.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Κάτι πήγε στραβά προσπαθώντας να δημοσιεύσετε αυτές τις ετικέτες: %{message}
     taxon_changes:
       move_children_desc: |
         Οι απόγονοι της εισακτέας ταξινομικής μονάδας που είναι γένη ή πιο γενικευμένα θα μετακινηθούν στην εξακτέα ταξινομική μοναδα. Είδος, υποείδος, ποικιλίες κ.λπ. θα τροποποιούνται σε
@@ -6084,6 +6179,32 @@ el:
           Πρέπει να εισαγάγετε "%{confirmation_code}" στη φόρμα για να σβήσετε τον λογαριασμό σας
       edit:
         about_third_party_tracking: Σχετικά με την παρακολούθηση τρίτων
+        block_desc_blocking_someone_prevents: |
+          Ο αποκλεισμός κάποιου τον εμποδίζει να σας στείλει μηνύματα, σχολιάζοντας το δικό σας
+          παρατηρήσεις, προσδιορίζοντας τις παρατηρήσεις σας και αλληλεπιδρώντας με άλλο τρόπο
+          μαζί σας στο %{site_name}. Αφαιρεί επίσης τις παρατηρήσεις τους από το δικό σας
+          αποτελέσματα αναζήτησης και καταργεί τις παρατηρήσεις σας από την αναζήτησή τους
+          Αποτελέσματα. Ωστόσο, δεν σας κάνει αόρατους σε αυτούς. Μπορούν
+          εξακολουθούν να βρίσκουν τις παρατηρήσεις σας και να βλέπουν το προφίλ σας, απλά δεν μπορούν
+          αλληλεπιδρούν μαζί σας.
+        block_desc_blocking_is_for_situations: |
+          Ο αποκλεισμός είναι για καταστάσεις όπου απλά δεν μπορείτε να τα πάτε καλά
+          κάποιον και δεν θα σας αφήσει μόνους, παρά τις καλύτερες προσπάθειές σας να
+          να επιλύουν τις διαφορές με πολιτισμένο τρόπο. Δεν είναι τρόπος να κρυφτείς
+          ανθρώπους, για να αποτρέψετε ταυτοποιήσεις από άτομα των οποίων οι απόψεις σας
+          να μην εμπιστεύεστε ή να εξαιρεθείτε από το αναγνωριστικό κοινότητας (υπάρχει ένα άλλο
+          ρύθμιση για αυτό). Έτσι, ο αποκλεισμός λειτουργεί αμφίδρομα: εάν μπλοκάρετε
+          κάποιος, δεν μπορεί να αλληλεπιδράσει μαζί σας, αλλά δεν μπορείτε επίσης να αλληλεπιδράσετε
+          μαζί τους. Εάν κάνετε κατάχρηση για να εμποδίσετε κάποιον να αναγνωρίσει το δικό σας
+          παρατηρήσεις, εμποδίζετε επίσης τον εαυτό σας να προσδιορίσει τους
+          Παρατηρήσεις.
+        block_desc_you_can_only_block_html: |
+          Μπορείτε να αποκλείσετε μόνο τρία άτομα. Πιστεύουμε ότι αυτό είναι λογικό
+          αριθμός που φιλοξενεί τα άτομα που χρειάζονται αποκλεισμό ενώ
+          πρόληψη της κατάχρησης του αποκλεισμού. Εάν αισθάνεστε ότι πρέπει να αποκλείσετε περισσότερα
+          άνθρωποι, παρακαλώ <a href="mailto:%{help_email}">Επικοινωνήστε μαζί μας</a>.
+        block_desc_there_are_two_exceptions: |
+          Υπάρχουν δύο περιπτώσεις όπου ο αποκλεισμός δεν εμποδίζει την αλληλεπίδραση:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Αν αλλάξετε γνώμη μπορείτε πάντα <a href='/users/edit'>να επεξεργαστείτε τις ρυθμίσεις σας</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -6515,6 +6636,7 @@ el:
         exclude_donor_start_date: Αποκλεισμός ημερομηνίας έναρξης δότη
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Εξαίρεση ημερομηνίας λήξης δότη
+        excludes_non_site: Απόκρυψη άλλων ανακοινώσεων σε αυτήν την τοποθέτηση που δεν έχουν αναγνωριστικό τοποθεσίας
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Εξαίρεση παρατηρητών από εφαρμογές

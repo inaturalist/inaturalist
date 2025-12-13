@@ -702,6 +702,8 @@ fi:
   are_you_sure_you_want_to_delete_this_assessment?: Haluatko varmasti poistaa tämän arvioinnin?
   are_you_sure_you_want_to_delete_this_photo?: Haluatko varmasti poistaa tämän kuvan?
   are_you_sure_you_want_to_delete_this_post: Haluatko varmasti poistaa tämän kirjoituksen?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Oletko varma, että haluat poistaa tämän äänen?
   are_you_sure_you_want_to_delete_this_taxon_change: Haluatko varmasti poistaa tämän taksonimuutoksen?
   are_you_sure_you_want_to_remove_all_tags: Haluatko varmasti poistaa kaikki tunnisteet?
   are_you_sure_you_want_to_remove_curator: Haluatko varmasti poistaa käyttäjältä %{user} kuraattorin oikeudet?
@@ -715,6 +717,8 @@ fi:
     Oletko varma että haluat poistaa tämän havainnon projektista %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Haluatko varmasti poistaa tämän taksonin paikan %{place} lajiluettelosta?"
   are_you_sure_you_want_to_flag_as_spammer: Oletko varma, että haluat merkitä tämän käyttäjän roskapostaajaksi?
+  artificially_generated_content: Tekoälyllä tuotettu sisältö
+  artificially_generated_content_desc: Sisältö on pääosin tai kokonaan tuotettu tekoälyn avulla.
   associated_observations: Liittyvät havainnot
   associated_taxa: Liittyvät taksonit
   attention: Huom
@@ -769,7 +773,6 @@ fi:
   back_to_all_species: Takaisin kaikkiin lajeihin
   back_to_editing_observation: Takaisin muokkaamaan havaintoa
   back_to_friends: Takaisin ystäviin
-  back_to_flags_html: "&laquo; Takaisin lippuihin"
   back_to_lists: "Takaisin käyttäjän %{name} listoihin"
   back_to_observation: Takaisin havaintoon
   back_to_observation_fields: Takaisin havaintokenttiin
@@ -798,8 +801,6 @@ fi:
   back_to_your_profile: Takaisin profiiliisi
   badges: Merkit
   base_map_copyright_openstreetmap_html: Pohjakartta © %{startTag}OpenStreetMap%{endTag}
-  based_on_the_evidence_can_id_be_improved: |
-    Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen näyttöön?
   batch: Erä
   batch_edit: Erän muokkaus
   #Where x is the title of a list of taxa
@@ -1007,6 +1008,7 @@ fi:
   community_id_is_precise: Yhteisön taksoni on tarkka
   community_moderation_settings: Yhteisön moderointiasetukset
   community_supported_id: Yhteisö-tuettu taksoni?
+  community_taxon_matches_observation_taxon: Yhteisön taksoni vastaa havaintotaksonia
   compare: Vertaa
   compare_with: Vertaa
   comparing: verrataan
@@ -1390,6 +1392,8 @@ fi:
   curator_coordinate_access_desc: |
     Kuraattorin koordinoima pääsy perinteisiin hankkeisiin riippuu siitä, kuka on lisännyt havainnon hankkeeseen. Tämä on vain oletusasetus hankkeissa oleville havainnoille. Havainnoitsijat voivat myös muuttaa tätä asetusta yksittäisten havaintojen osalta.
   curator_identification: Kuraattorin tunnistus
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Nykyinen yhteisön taksoni: %{taxon}"
   current_flags: Nykyiset liput
   #Label for a custom boundary for an observation search
   custom_boundary: Valinnainen rajaus
@@ -1410,8 +1414,8 @@ fi:
     pilot_stop: "Lopeta osallistuminen"
     #link to a blog post
     pilot_read_more: "Lue lisää blogistamme."
-    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
-    gaps_id_pilot_intro: "Auta meitä täyttämään aukot osallistumalla ja saat päivittäin linkin havaintoihin:"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Tunnistamisaukkojen pilotti: Tarvitsee tunnistettuja etsintäkuulutettuja lajeja"
     #description of a pilot explaining the instructions, the first condition for observations to be included in the list
     gaps_id_pilot_condition_1: "Ei vielä sisälly tietokonenäkömalliin"
     #description of a pilot explaining the instructions, the second condition for observations to be included in the list
@@ -1538,6 +1542,8 @@ fi:
   #Label for a button to delete a taxon range
   delete_range: Poista alue
   delete_selected: Poista valitut
+  #Label for a button to delete a sound file
+  delete_sound: Poista ääni
   delete_taxon_and_merge_most_data_html: |
     Poista taksoni %{taxon} ja yhdistä valtaosa sen tiedoista toiseen taksoniin. Käytä tätä työkalua <strong>poistaaksesi kaksinkertaiset taksonit</strong>. Jos haluat poistaa vanhentuneen synonyymin, ole ystävällinen ja luo taksonin vaihto. <strong>OLE VAROVAINEN!</strong> Taksoneiden poisto voi olla erittäin tuhoisaa. Tarkista <a href="%{curator_url}">Kuraattorioppaasta</a> lisätietoja.
   delete_user: Poista käyttäjä
@@ -1815,6 +1821,8 @@ fi:
   eol: EOL
   eol_collection_url: "EOL-kokoelman URL-osoite"
   error_updating_photo: "Virhe %{photo_errors} päivitettäessä kuvaa"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Virhe äänen päivittämisessä: %{sound_errors}"
   establishment:
     endemic: Endeeminen
     establishment: Vakiintuneisuus
@@ -1874,6 +1882,7 @@ fi:
   extinct: kuollut sukupuuttoon
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
+  evidence_accurately_depicts_organism_or_scene: Todisteet kuvaavat tarkasti organismia tai kohtausta
   evidence_of_organism: Näyttö eliöstä
   evidence_related_to_single_subject: Havainnon dokumentaatio koskee yhtä eliötä
   facebook: Facebook
@@ -1911,7 +1920,11 @@ fi:
   fields_can_only_be_edited_by_the_people_who: Kenttiä voivat muokata vain henkilöt, jotka ovat luoneet ne ja sivuston kuraattorit
   fields_merged: Kentät yhdistetään
   file: Tiedosto
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Tiedostomuoto
   file_size: Tiedostokoko
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Tiedoston URL-osoite
   file_should_be_in_the_following_format: "Tiedoston pitäisi olla seuraavassa muodossa: taksonin nimi, kuvaus"
   fill_out_project_observation_fields: Täytä projektin havaintokentät
   fill_out_your_profile: täydennä profiilisi
@@ -1989,7 +2002,6 @@ fi:
   flag_marked_as_resolved_html: '<span class="meta">Lippu merkitty</span> <strong>ratkaistuksi.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Kohde
-  flag_reason: "&ldquo;Liputan tämän: %{record}, koska"
   flag_resolution: Ratkaisu
   flag_saved: Lippu tallennettu
   flag_saved_thanks_html: Lippu tallennettu. Kiitos! <a href="%{url}" class="readmore">Katso lippua</a>
@@ -2135,6 +2147,8 @@ fi:
   header_your_profile: Oma profiili
   heads_up: Huomio
   heads_up_this_photo_has_been_flagged: "Tämä kuva on liputettu."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HUOM: tämä ääni on liputettu."
   heads_up_this_photo_is_already_associated_with: "Huomio: tämä kuva on jo yhdistetty <a target='_blank' href='%{url}'>toisen havainnon</a> kanssa"
   help: Apua
   help_confirm_observations!: Auta vahvistamaan havaintoja!
@@ -4554,7 +4568,15 @@ fi:
     select_one_or_more_sounds: Valitse yksi tai useampia ääniä
     selected_sounds: Valitut äänet
     sound: Ääni
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Ääni %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Ääni poistettu
     sound_has_been_flagged: Tämä ääni on merkitty.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Ääni piilotettu
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Ääni näkyvissä
     sounds: Äänet
     your_soundcloud_account: oma SoundCloud-tili
   source: Lähde
@@ -5135,6 +5157,8 @@ fi:
   updated_by_user_on_date_html: Päivittänyt %{user} %{date}
   updated_daily: Päivitetään joka päivä
   updated_photo: Päivitetty kuva
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Päivitetty ääni
   upload: Lisää havaintoja
   upload_a_csv_file: Lataa CSV-tiedosto
   upload_new_photo: Lataa uusi kuva
@@ -5571,6 +5595,7 @@ fi:
   you_faved_this: Merkitsit tämän suosikiksi!
   you_have_left_x_project: "Olet lähtenyt projektista %{project}"
   you_have_not_confirmed_your_email_address: Et ole vahvistanut sähköpostiosoitettasi!
+  you_havent_joined_any_projects: Et ole liittynyt mihinkään projektiin
   you_havent_linked_your_inaturalist_google_account: "Et ole vielä linkittänyt %{site_name}-tiliäsi ja Google-tiliäsi"
   you_joined_this_project: Liityit tähän projektiin!
   you_must_be_a_member_of_this_project_to_do_that: Sinun täytyy olla tämän projektin jäsen tehdäksesi tuon
@@ -5649,6 +5674,10 @@ fi:
         CMD- tai VAIHTO-napsauta valitaksesi useita. Valitsemalla "Kaikki" tai tekemättä jättäminen
         valinta näyttää ilmoituksen kaikille käyttäjille riippumatta siitä,
         IP-maa.
+      exclude_ip_countries_desc: |
+        CMD- tai VAIHTO-napsauta valitaksesi useita. Valittuja maita ei näytetä
+        ilmoitus. Jos IP-maat on valittu, valitse Jätä IP-maat pois
+        vähennetään edellisestä.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Huomaa, että käyttäjän viimeksi luodun
@@ -5769,8 +5798,6 @@ fi:
       show:
         flaggable_content_desc: |
           Huomautus (liputus) voi liittyä vain liputetun kohteen luontiaikaiseen alkuperäiseen sisältöön. Vain kuraattorit ja ylläpitäjät voivat nähdä näitä tietoja. Vain ylläpitäjät näkevät viestejä koskevat huomautukset.
-        flags_that_should_not_be_resolved_desc_html: |
-          Merkitse <code>spam</code> ja <code>tekijänoikeusloukkaus</code> -liput ratkaistuiksi ainoastaan jos olet todennut, että kyse ei todella ole spammista tai tekijänoikeusloukkauksesta.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -5956,7 +5983,8 @@ fi:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: Auta meitä parantamaan
-      to_help_us_improve: Auttaaksemme meitä parantamaan tätä mallia haluaisimme tietää, mitkä tämän sivun kuvista liittyvät hakuusi &quot;%{searched_term}&quot;. Merkitse jokainen kuva osuviksi %{thumbs_up_icon}, jos se vastaa hakuasi, ja ei osuviksi %{thumbs_down_icon}, jos se ei vastaa. Kun olet valmis, napsauta Lähetä. #text for a button where a user can mark images as relevnt to their search term
+      to_help_us_improve: Auttaaksemme meitä parantamaan tätä mallia haluaisimme tietää, mitkä tämän sivun kuvista liittyvät hakuusi &quot;%{searched_term}&quot;. Merkitse jokainen kuva osuviksi %{thumbs_up_icon}, jos se vastaa hakuasi, ja ei osuviksi %{thumbs_down_icon}, jos se ei vastaa. Kun olet valmis, napsauta Lähetä. #text for a button where a user can mark images as relevant to their search term
+      #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Merkitse jäljellä olevat osuviksi
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Merkitse jäljellä olevat ei-osuviksi
@@ -6105,6 +6133,16 @@ fi:
           </p>
         curator_coordinate_access_disabled_desc_html: |
           Tähän projektiin ei voi tallentaa havaintoja, joiden koordinaatit eivät näy kuraattoreille. Jos et halua jakaa havainnon koordinaatteja projektin kuraattoreiden kanssa, sinun täytyy poistaa havaintosi projektista.
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Yhteisön taksoni ja havaintotaksoni vastaavat toisiaan</strong>
+          (niissä harvoissa tapauksissa, joissa havaintotaksoni voi olla tarkempi kuin yhteisön taksoni)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          havainto <strong>ei esitä tarkkoja todisteita organismista tai
+          kohtaus</strong> (esim. tekoälyä käytettiin lisäämään, poistamaan tai korvaamaan
+          elementtejä kuvassa tai äänessä. Kohinanpoisto, tarkennuksen pinoaminen tai tekeminen
+          pienet korjaukset, kuten anturipölyn poistaminen, ovat yleensä OK).
         flagged_photos_desc_html: |
           Osa näistä valokuvista on liputettu sopimattomiksi tai tekijänoikeusrikkomuksiksi. Lisätietoja: %{links}
         observation_flagged_notice_html: |
@@ -6525,6 +6563,13 @@ fi:
       not_found:
         sorry_that_doesnt_exist: Anteeksi, sitä ei ole olemassa!
         even_our_dedicated_search_mole_couldnt: Edes hakukontiaisemme ei löytänyt mitään!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Voit katsoa alkuperäisen osoitteessa <a href="%{url}">%{url}</a>.
+          Jätä tekijänoikeusrikkomusliput ratkaisemattomiksi, jos tämä ääni rikkoo tekijänoikeuksia.
     stats:
       index:
         active_desc: Loi tunnistuksen, havainnon, kommentin tai viestin edeltävänä 30 päivänä
@@ -6637,6 +6682,10 @@ fi:
         translators_prompt: |
           Jos haluat auttaa käännöstyössä, %{link_tag}lue lisää miten%{link_tag_end}.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Voit tehdä vain pieniä muutoksia lajin epiteettiin suoraan (esim. sukupuolen muutokset, kirjoitusvirheet). Lisää <a target="_blank" href="%{url}">taksonin vaihto</a> jos tarvitset muita muutoksia nimeen.
       show:
         about_names_desc: |
           <p>
@@ -6709,6 +6758,14 @@ fi:
         trending_desc: Eniten havaitut taksonit viime kuussa
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
         wanted_desc: Tähän taksoniin kuuluvat lajit, joita ei ole vielä havaittu.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Jokin meni pieleen näitä tunnisteita lähettäessä: %{message}
+    taxon_changes:
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Taksonimuutos poistettu.
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Taksonimuutos onnistui
     taxon_names:
       taxon:
         about_html: |
@@ -7511,6 +7568,9 @@ fi:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 voi muuttaa vain tämän taksonin kuraattori
+            name:
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "suku ei voi muuttua"
         taxon_change:
           attributes:
             base:
@@ -7682,6 +7742,55 @@ fi:
         taxon_swap: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  id_summary_dqa:
+    public_metrics:
+      distinct: "Eroaa muista yhteenvedoista"
+  id_summaries:
+    demo:
+      filters:
+        language_label: "Kieli"
+      summary_list:
+        sign_in_required: "Kirjaudu sisään ja äänestä tunnistusyhteenvetopalautetta"
+        service_unavailable: "Palautepalvelu ei ole tällä hetkellä käytettävissä."
+        submit_failed: "Palautteen lähettäminen epäonnistui."
+      summary_feedback:
+        loading: "Ladataan palautetta..."
+        explainer: "Palautettasi käytetään tunnistusyhteenvetojen parantamiseen tulevaisuudessa"
+        submitting_tooltip: "Palautetta lähetetään..."
+        aria_helpful: "%{label}: hyödyllinen"
+        aria_not_helpful: "%{label}: ei hyödyllinen"
+      summary_item:
+        disclaimer: "Tämä yhteenveto iNaturalist-käyttäjien kommenteista on tekoälyn luoma ja voi olla virheellinen. Voit auttaa meitä parantamaan tätä yhteenvetoa antamalla palautetta."
+        default_label: "YHTEENVETO"
+        default_title: "Yhteenveto"
+        copy_link: "Kopioi linkki tähän yhteenvetoon"
+        user_fallback: "iNaturalist-käyttäjä"
+        reference_commented: "kommentoitu"
+        view_comment: "Katso kommentti"
+      reference_feedback:
+        submitting_tooltip: "Palautetta lähetetään..."
+        aria_helpful: "%{label}: hyödyllinen"
+        aria_not_helpful: "%{label}: ei hyödyllinen"
+      taxon_detail:
+        select_species: "Valitse laji nähdäksesi tunnistusyhteenvedot."
+        last_updated: "Viimeksi päivitetty"
+        no_image: "Ei kuvaa saatavilla"
+        photo_tips_heading: "Kuvavinkit"
+      taxa_list:
+        group_labels:
+          animalia: "Muut eläimet"
+          actinopterygii: "Viuhkaeväiset"
+          aves: "Linnut"
+          reptilia: "Matelijat"
+          amphibia: "Sammakkoeläimet"
+          mammalia: "Nisäkkäät"
+          arachnida: "Hämähäkkieläimet"
+          insecta: "Hyönteiset"
+          plantae: "Kasvit"
+          fungi: "Sienet"
+          mollusca: "Nilviäiset"
+        other_group: "Muut"
+        empty: "Ei lajeja saatavilla."
   #Title of a section warning the user about something
   warning_title: Varoitus
   wikimedia: Wikimedia

@@ -646,6 +646,8 @@ hu:
   are_you_sure_you_want_to_delete_this_assessment?: Biztosan törlöd ezt az értékelést?
   are_you_sure_you_want_to_delete_this_photo?: Biztos, hogy törlöd ezt a képet?
   are_you_sure_you_want_to_delete_this_post: Biztos, hogy törlöd ezt a cikket?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Biztos, hogy törlöd ezt a hangot?
   are_you_sure_you_want_to_delete_this_taxon_change: Biztosan törlöd ezt a taxonváltoztatást?
   are_you_sure_you_want_to_remove_all_tags: Biztosan törlöd az összes címkét?
   are_you_sure_you_want_to_remove_curator: Biztosan törlöd %{user} felhasználót mint kurátort?
@@ -659,6 +661,8 @@ hu:
     Biztosan eltávolítod ezt a megfigyelést %{project} projektből?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Biztosan törlöd ezt a taxont %{place} listájáról?"
   are_you_sure_you_want_to_flag_as_spammer: Biztosan megjelölöd ezt a fálhasználót spammerként?
+  artificially_generated_content: Mesterségesen generált tartalom
+  artificially_generated_content_desc: Olyan anyagot tartalmaz, amelyet többnyire vagy teljes egészében mesterséges intelligencia generált.
   associated_observations: Kapcsolódó megfigyelések
   associated_taxa: Társított taxonok
   attention: Figyelem
@@ -723,7 +727,6 @@ hu:
   back_to_all_species: 'Vissza ide: Minden faj'
   back_to_editing_observation: Vissza a megfigyelés szerkesztéséhez
   back_to_friends: Vissza a barátokhoz
-  back_to_flags_html: "&laquo; Vissza a bejelentésekhez"
   back_to_lists: "Vissza %{name} listáihoz"
   back_to_observation: Vissza a megfigyeléshez
   back_to_observation_fields: Vissza az adatmezőkhöz
@@ -752,8 +755,6 @@ hu:
   back_to_your_profile: Vissza a profilodhoz
   badges: Jelvények
   base_map_copyright_openstreetmap_html: Alaptérkép © %{startTag}OpenStreetMap%{endTag}
-  based_on_the_evidence_can_id_be_improved: |
-    A bizonyíték alapján lehet még javítani a közösségi taxonon?
   batch: Köteg
   batch_edit: Tömeges szerkesztés
   #Where x is the title of a list of taxa
@@ -1258,6 +1259,8 @@ hu:
     megfigyelések a projektekben. A megfigyelők dönthetnek úgy is, hogy ezt megváltoztatják
     egyéni megfigyelések.
   curator_identification: Kurátor meghatározása
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Jelenlegi közösségi taxon: %{taxon}"
   current_flags: Jelenlegi jelölések
   #Label for a custom boundary for an observation search
   custom_boundary: Tetszőleges határolókeret
@@ -1414,6 +1417,8 @@ hu:
   #Label for a button to delete a taxon range
   delete_range: Intervallum törlése
   delete_selected: Kijelöltek törlése
+  #Label for a button to delete a sound file
+  delete_sound: Hang törlése
   delete_user: Felhasználó törlése
   delete_your_account: Saját fiók törlése
   deleted_synonyms: Törölt szinonimák
@@ -1674,6 +1679,8 @@ hu:
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   error_updating_photo: "Hiba a fotó frissítésekor: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Hiba a hang feltöltésénél: %{sound_errors}"
   establishment:
     endemic: Endemikus
     establishment: Honosság
@@ -1728,6 +1735,7 @@ hu:
   external_applications: Külső alkalmazások
   extinct: kihalt
   extinct_in_the_wild: Vadon kihalt
+  evidence_accurately_depicts_organism_or_scene: A bizonyíték pontosan ábrázolják az élőlényt vagy a környezetét
   evidence_of_organism: Bizonyíték az organizmusra
   evidence_related_to_single_subject: A bizonyíték egyetlen organizmusra utal
   facebook: Facebook
@@ -1762,7 +1770,11 @@ hu:
   fields_: Adatmezők
   fields_merged: Adatmezők egyesítve
   file: Fájl
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Fájlformátum
   file_size: Fájlméret
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Fájl URL
   fill_out_project_observation_fields: A projekt adatmezőinek kitöltése
   fill_out_your_profile: profilod kitöltése
   #The name of a computer file
@@ -1805,6 +1817,8 @@ hu:
   flag_deleted: Bejelentés törölve
   flag_description: A tartalom bejelentésével értesíted a kurátorokat a problémáról.
   flag_comment_description: Megjegyzés hozzáadása az okokról és a bizonyítékról (opcionális).
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: A forrást idéző bejelentéseket gyorsabban oldják meg önkéntes kurátoraink.
   flag_for_check_list_title_html: |
     Lista bejelentése: %{title}
   flag_for_comment_id_html: <a href="%{url}">%{id} hozzászólás</a> bejelentése
@@ -1836,7 +1850,7 @@ hu:
   flag_marked_as_unresolved_html: '<span class="meta">A bejelentés</span><strong>megoldatlanként</strong> megjelölve.'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objektum
-  flag_reason: "&ldquo;Bejelentem ezt a %{record}t, mert"
+  flag_reason2: "Azért jelentem be e %{record}t, mert"
   flag_resolution: Megoldás
   flag_saved: Bejelölés elmentve
   flag_saved_thanks_html: Bejelentés elmentve. Köszönjük! <a href="%{url}" class="readmore">Bejelentések megtekintése</a>
@@ -1928,6 +1942,7 @@ hu:
   give_monthly_caps: ADAKOZZ HAVONTA
   #Prompt to donate money once
   give_now_caps: ADOMÁNYOZZ MOST
+  global_names: Globális nevek
   globally: Globális
   go: Mehet
   go_back: Vissza
@@ -1977,6 +1992,8 @@ hu:
   heads_up_automatable_draft_split_notice_html: |
     <strong>Figyelem!</strong> Ennek a változtatásnak az élesítésével a meghatározások a céltaxonok térképei alapján újra azonosításra kerülnek. Ha egy vagy több céltaxon nem rendelkezik térképpel, vagy ha a térképek átfedést mutatnak az adott meghatározásnál, a meghatározások lecserélődnek a legközelebbi közös felmenő taxonnal (%{taxon}).
   heads_up_this_photo_has_been_flagged: "FIGYELEM: ez a fotó meg volt jelölve"
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "FIGYELEM: ez a hang meg van jelölve"
   heads_up_this_photo_is_already_associated_with: "Figyelem: az a fotó már társítva van <a target='_blank' href='%{url}'>egy másik megfigyeléssel</a>"
   help: Súgó
   help_confirm_observations!: Segíts a megfigyeléseket megerősíteni!
@@ -2056,7 +2073,7 @@ hu:
   inaturalist_is_an_independent_nonprofit: |
     Az iNaturalist egy független 501(c)(3), adómentes, nonprofit szervezet, amely az Amerikai Egyesült Államokban található (adóazonosító szám: 92-1296468).
   #Title of identification that was automatically added by a taxon change
-  inaturalist_updated_the_id_suggested_by_user: Az iNaturalist frissítette %{user} által javasolt azonosítót
+  inaturalist_updated_the_id_suggested_by_user: Az iNaturalist frissítette %{user} azonosítását
   computer_vision_suggestion: Gépi képfelismerés javaslata
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
@@ -2068,6 +2085,7 @@ hu:
   if_this_is_a_scientific_name: Ha ez tudományos név, jelenleg elfogadott?
   if_your_project_is: Ha a projekt egy bizonyos helyről szól, add meg a koordinátákat a térképre kattintva vagy írd be azokat kézzel.
   ignore_and_continue: Figyelmen kívül hagyod és folytatod
+  ignore_times: Idő figyelmen kívül hagyása
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Veszélyeztetett
   import: Importálás
@@ -4355,7 +4373,15 @@ hu:
     select_one_or_more_sounds: Hang(ok) kiválasztása
     selected_sounds: Kiválasztott hangok
     sound: Hang
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Hang %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Hang törölve
     sound_has_been_flagged: Ezt a hangot megjelölték.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Hang elrejtve
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Hang elrejtése visszavonva
     soundcloud_replied_with_an_error: A SoundCloud hibát jelzett vissza. Kérünk próbáld meg később.
     sounds: Hangok
     your_soundcloud_account: a SoundCloud fiókod
@@ -4886,6 +4912,9 @@ hu:
   update_search: Keresés frissítése
   update_subscription: Feliratkozás frissítése
   update_subscription_preferences: Feliratkozási beállítások frissítése
+  update_x_selected_taxa:
+    one: "A kiválasztott taxon frissitése"
+    other: "%{count} kiválasztott taxon frissítése"
   update_your_content: Megfigyeléseid módosítása
   update_with_site_content: "Frissítsd %{site_name} tartalmával"
   updated: Frissítve
@@ -4893,6 +4922,8 @@ hu:
   updated_by_user_on_date_html: 'Frissítette %{user} ekkor: %{date}'
   updated_daily: Naponta frissítve
   updated_photo: Fotó frissítve
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Hang frissítve
   upload: Feltöltés
   upload_a_csv_file: CSV-fájl feltöltése
   upload_a_csv_file_with_observation: |
@@ -5331,6 +5362,7 @@ hu:
   you_faved_this: A kedvenced!
   you_have_left_x_project: "Kiléptél %{project} projektből"
   you_have_not_confirmed_your_email_address: Még nem erősítetted az email címedet.
+  you_havent_joined_any_projects: Még nem csatlakoztál semmilyen projekthez
   you_havent_linked_your_inaturalist_google_account: "Még nem csatlakoztattad %{site_name} fiókodat és a Google fiókodat"
   you_joined_this_project: Csatlakoztál ehhez a projekthez!
   you_must_be_a_member_of_this_project_to_do_that: Ehhez projektagnak kellene lenned
@@ -5517,6 +5549,8 @@ hu:
         #also be translated as "Flagged Content" since the existence of a
         #flag implies that the content was flagged.
         flaggable_content: Bejelentett tartalom
+        flags_that_should_not_be_resolved_desc2_html: |
+          Kérjük, hogy hogy csak akkor jelöld megoldottként a <code>spammel</code>, <code>szerzőijog-sértéssel</code> és <code>mesterségesen generált tartalommal</code> kapcsolatos bejelentést, ha a tartalom nem spam, ha nem valósít meg szerzőijog-sértést, vagy ha nem mesterségesen generált.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -5695,7 +5729,8 @@ hu:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: Visszajelzés küldése
-      to_help_us_improve: 'A model javításához visszajelzésre van szükségünk arról, hogy az oldalon található képek közül melyek relevánsak ehhez a kereséshez: &quot;%{searched_term}&quot;. Kérjük, hogy a kereséshez kapcsolód képeket jelöld relevánsként %{thumbs_up_icon}, a nem kapcsolódó képeket pedig jelöld irrelevánsként %{thumbs_down_icon}. Ha kész vagy, kattints a Küldés gombra.' #text for a button where a user can mark images as relevnt to their search term
+      to_help_us_improve: 'A model javításához visszajelzésre van szükségünk arról, hogy az oldalon található képek közül melyek relevánsak ehhez a kereséshez: &quot;%{searched_term}&quot;. Kérjük, hogy a kereséshez kapcsolód képeket jelöld relevánsként %{thumbs_up_icon}, a nem kapcsolódó képeket pedig jelöld irrelevánsként %{thumbs_down_icon}. Ha kész vagy, kattints a Küldés gombra.' #text for a button where a user can mark images as relevant to their search term
+      #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: A többi megjelölése relevánsként
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: A többi megjelölése nemrelevánsként
@@ -5901,6 +5936,11 @@ hu:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_recent_html: |
           a megfigyelés <strong>nem szolgál időszerű (legfeljebb ~100 éves) bizonyítékként</strong>, pl. fosszíliák. A következők elfogadhatók: nyomok, ürülék, száraz levelek.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          a megfigyelés <strong>nem szolág pontos bizonyítékként az élőlényre vagy
+          a környezetére</strong> (pl. mesterséges intelligenciát használtak bizonyos
+          részek hozzáadására, cseréjére vay eltávolítására a képen vagy a hangon. Zajtalanítás, fókuszhalmozás vagy az olyan apró javítások, mint az érzékelőhibák eltávolítása, általában rendben vannak).
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
           Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
@@ -6096,6 +6136,12 @@ hu:
       not_found:
         sorry_that_doesnt_exist: A túróba, ez nem létezik!
         even_our_dedicated_search_mole_couldnt: Még a keresővakondunk sem túrt fel semmit.
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Az eredetit itt tekintheted meg: <a href="%{url}">%{url}</a>. Ha szerzői jogsértést gyanítasz, kérjük, a szerzői jogok megsértésével kapcsolatos bejelentést hagyd megoldatlanként.
     stats:
       index:
         active_desc: Meghatárott, megfigyelt, hozzászólt vagy posztolt az elmúlt 30 napban
@@ -6127,6 +6173,20 @@ hu:
         recent_w_7_obs_desc: Az utóbbi hét nap alatt regisztrált és 7+ megfigyelése van
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Létrehozva a <a href="%{url}">Seek</a> segítségével
+        today_identified_by_others: Mások által azonosított megfigyelések (1 nap)
+        today_identified_by_others_by_iconic_taxon: Mások által azonosított megfigyelések (1 nap)
+        observations_unknown: 30 nap után ismeretlen megfigyelések
+        observations_total_unknown_ratio: Ismeretlen megfigyelések aránya (30 nap)
+        observations_total_unknown_ratio_desc: Az ismeretlen megfigyelések aránya az összes megfigyeléshez képest
+        for_others: Mások számára
+        ids_last_7_days: Azonosítások (7 nap)
+        ids_last_7_days_desc: Az előző 7 napban tett azonosítások
+        ids_today: Azonosítások (1 nap)
+        ids_today_desc: Egy nap alatt tett megfigyelések
+        ids_last_7_days_for_others: Azonosítások mások számára (7 nap)
+        ids_last_7_days_for_others_desc: Az előző 7 napban mások megfigyeléseihez hozzáadott azonosítások
+        ids_today_for_others: Azonosítások mások számára (1 nap)
+        ids_today_for_others_desc: Egy napon mások megfigyeléseihez hozzáadott azonosítások
         time_to_id_desc: Azonosításhoz szükséges idő (órában, 1 hetes mozgó ablak)
         TTCID: Közösségi azonosítási idő (TTCID)
         TTCID_desc: Azonosításhoz szükséges idő valaki mástól, ami egyezik a közösségi taxonnal.
@@ -6301,6 +6361,10 @@ hu:
       withdrawn: visszavonva
       #state of a committed taxon change
       committed: végrehajtva
+      #state of a pending taxon change
+      pending: függőben
+      #state of a approved taxon change
+      approved: jóváhagyott
       #state of a draft taxon change
       draft: piszkozat
       #the status of a taxon change: draft, withdrawn or committed
@@ -6309,6 +6373,12 @@ hu:
         move_children_desc2_html: |
           E négyzet bejelölésével a bementi taxon minden gyermeke áthelyeződik a kimeneti taxon alá Taxoncsere és Taxonegyesítés esetén, amikor ez a művelet végrehajtódik. Ha ez a változás nemzetség szintjén vagy azalatt történik, akkor Taxoncserét hoz létre minden olyan leszármazottra, amelyek neve változásra szorul. Például ha felcseréled a Canidae családot Dogidae-ra, akkor ez megváltoztatja a <i>Canis</i> nemzetség szülőjét Canidae-ról Dogidae-ra. Ha felcseréled a <i>Canis</i> nemzetséget a <i>Dogis</i> nemzetségre, ez létrehoz és végrehajt Taxoncseréket és megváltoztatja a <i>Canis lupus</i>t <i>Dogis lupus</i>ra és a <i>Canis lupus</i> ssp. <i>lupus</i>t <i>Dogis lupus</i> ssp.
           <i>lupus</i>ra. Ez jó nagy felfordulást okozhat, úgyhogy óvatosan használd.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Szavazat hozzáadva
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Szavazat eltávolítva
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Még nincsenek szavazatok
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -7104,6 +7174,9 @@ hu:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 csak e taxon kurátora változtathatja meg
+            name:
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "a nemzetség nem módosítható"
         taxon_change:
           attributes:
             base:
@@ -7208,6 +7281,70 @@ hu:
         Protozoa: Protozoa
         Mollusca: Puhatestűek
         Chromista: Színesmoszatok
+  id_summary_dqa:
+    public_metrics:
+      true: "Igaz állítás"
+      identification: "Hasznos az azonosításhoz"
+      references: "Referenciákkal alátámasztva"
+      distinct: "Különbözik a többi összefoglalótól"
+      clear: "Rövid, köznyelvi és érthető"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "A megjegyzés kapcsolódik az összefoglalóhoz"
+      true: "A megjegyzés igaz állítás"
+      matches_taxon: "A megjegyzés %{taxon} taxonra vonatkozik"
+  id_summaries:
+    demo:
+      app:
+        header_link: "Azonosítási összefoglaló bemutató"
+        info_line_one: "Ez a bemutató a mesterséges intelligencia használatát vizsgálja az iNaturalist felhasználói megjegyzések összefoglalására azzal a céllal, hogy"
+        info_line_two: "az azonosítással kapcsolatos tapasztalatok mindenki számára elérhetővé váljanak."
+        blog_link_text: "További információk a blogunkon"
+        missing_identifier: "Hiányzó taxonösszefoglaló azonosító"
+        service_unavailable: "Az azonosítási összefoglaló részletei átmenetileg nem érhetők el."
+        no_summary_data: "Nem található összefoglaló adat az adott taxonhoz."
+        load_failed: "Nem sikerült betölteni a taxon összefoglalót"
+      filters:
+        active_only: "Csak aktív összefoglalók megjelenítése"
+        run_label: "Futtatás neve"
+        run_placeholder: "Futtatás kiválasztása"
+        run_loading: "Futtatások betöltése..."
+        photo_tips_toggle: "Fotótippek megjelenítése"
+        language_label: "Nyelv"
+      summary_list:
+        loading: "Azonosítási összefoglalók betöltése..."
+        empty: "Ehhez a fajhoz nem állnak rendelkezésre azonosítási összefoglalók."
+        refreshing: "Az összefoglalók frissítése..."
+        heading: "Azonosítási összefoglalók"
+        feedback_toggle: "Visszajelzés az azonosítási összefoglalókról"
+        feedback_unavailable: "Ehhez az összefoglalóhoz nem érhető el visszajelzés."
+        sign_in_required: "Jelentkezz be, és szavazz az azonosítási összefoglaló visszajelzéséről."
+        service_unavailable: "A visszajelzési szolgáltatás jelenleg nem érhető el."
+        submit_failed: "Nem sikerült visszajelzést küldeni."
+      summary_feedback:
+        loading: "Visszajelzés betöltése..."
+        explainer: "Visszajelzéseidet a jövőben az azonosítási összefoglalók javítására használjuk fel"
+        sign_in_tooltip: "Jelentkezz be, hogy szavazhass erről az összefoglalóról"
+        submitting_tooltip: "Visszajelzés küldése..."
+        aria_helpful: "%{label}: hasznos"
+        aria_not_helpful: "%{label}: nem hasznos"
+      summary_item:
+        disclaimer: "Az iNaturalist felhasználói megjegyzéseinek ezt az összefoglalóját az AI hozta létre, és elképzelhető, hogy hibás. Visszajelzéssel segíthetsz nekünk az összefoglaló javításában."
+        default_label: "ÖSSZEFOGLALÓ"
+        default_title: "Összefoglaló"
+        copy_link: "Az összefoglaló linkjének másolása"
+        photo_tip_label: "FOTÓ TIPP"
+        photo_tip_aria: "Fotó tipp: %{tip}"
+        references_toggle: "iNaturalist felhasználói megjegyzés-hivatkozások"
+        user_fallback: "iNaturalist felhasználó"
+        reference_commented: "hozzászólással"
+        view_comment: "Hozzászólás megtekintése"
+        view_reference_feedback: "Visszajelzés megtekintése a referenciáról"
+      reference_feedback:
+        loading: "Referencia visszajelzés betöltése..."
+        sign_in_required: "Jelentkezz be és szavazz a referenciákkal kapcsolatos visszajelzésekről."
+        unavailable: "A referencia visszajelzés jelenleg nem érhető el."
+        service_unavailable: "A referencia-visszajelzési szolgáltatás jelenleg nem érhető el."
   #Title of a section warning the user about something
   warning_title: Figyelem
   wikimedia: Wikimedia

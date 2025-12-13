@@ -663,6 +663,8 @@ sr:
   are_you_sure_you_want_to_delete_this_assessment?: Da li sigurno želiš da izbrišeš ovu procenu?
   are_you_sure_you_want_to_delete_this_photo?: Da li sigurno želiš da izbrišeš ovu fotografiju?
   are_you_sure_you_want_to_delete_this_post: Da li sigurno želiš da izbrišeš ovu objavu?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Da li ste sigurni da želite da izbrišete ovaj zvuk?
   are_you_sure_you_want_to_delete_this_taxon_change: Da li sigurno želiš da izbrišeš ovu promenu taksona?
   are_you_sure_you_want_to_remove_all_tags: Da li sigurno želiš da ukloniš sve oznake?
   are_you_sure_you_want_to_remove_curator: Da li sigurno želiš da ukloniš %{user} iz kustosa?
@@ -671,6 +673,8 @@ sr:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Da li sigurno želiš da ukloniš ovu opservaciju iz %{project}?
   are_you_sure_you_want_to_flag_as_spammer: Da li sigurno želiš da prijaviš ovog korisnika kao spamera?
+  artificially_generated_content: Veštački generisan sadržaj
+  artificially_generated_content_desc: Sadrži sadržaj koji je uglavnom ili u potpunosti generisan putem veštačke inteligencije.
   associated_observations: Povezane opservacije
   associated_taxa: Povezani taksoni
   attention: Pažnja
@@ -723,7 +727,6 @@ sr:
   back_to_all_species: Nazad na sve vrste
   back_to_editing_observation: Nazad na uređivanje opservacije
   back_to_friends: Nazad na prijatelje
-  back_to_flags_html: "&laquo; Nazad na prijave"
   back_to_lists: "Nazad na %{name} liste"
   back_to_observation: Nazad na opservacije
   back_to_observation_fields: Nazad na opservaciona polja
@@ -749,8 +752,6 @@ sr:
   back_to_your_observations: Nazad na opservacije
   back_to_your_profile: Nazad na tvoj profil
   badges: Bedževi
-  based_on_the_evidence_can_id_be_improved: |
-    Na osnovu priloženih dokaza, može li se takson zajednice potvrditi ili unaprediti?
   batch_edit: Zbirno uređivanje
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Zbirno uređivanje za %{x}"
@@ -917,6 +918,7 @@ sr:
   community_id_is_precise: Takson zajednice je precizan
   community_moderation_settings: Podešavanja doprinosa zajednice
   community_supported_id: Takson podržala zajednica?
+  community_taxon_matches_observation_taxon: Takson zajednice odgovara taksonu posmatranja
   compare: Uporedi
   compare_with: Uporedi sa
   comparing: upoređivanje
@@ -1198,6 +1200,8 @@ sr:
     zapažanja u projektima. Posmatrači takođe mogu da izaberu da promene ovo za
     pojedinačna zapažanja.
   curator_identification: Identifikacija kustosa
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Trenutni takson zajednice: %{taxon}"
   current_flags: Trenutne prijave
   #Label for a custom boundary for an observation search
   custom_boundary: Posebna granica
@@ -1208,6 +1212,55 @@ sr:
   daily_users: Korisnika dnevno
   danger_zone: Opasna zona
   dashboard: Kontrolna tabla
+  dashboard_pilots:
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Prestanite da učestvujete"
+    #link to a blog post
+    pilot_read_more: "Pročitajte više na našem blogu."
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Još nije uključen u model računarskog vida"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Mislimo da možete da identifikujete"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Evo linka na zapažanja vrsta koje još nisu uključene u model računarskog vida za koji mislimo da možete identifikovati."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Vratite se sutra za link na zapažanja vrsta koje još nisu uključene u model računarskog vida za koji mislimo da možete da identifikujete. Biće vam prikazane vrste u kojima ste napravili najmanje 3 poboljšanja identifikacije."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Ako ne vidite vezu, možda neće biti nikakvih zapažanja koja odgovaraju ovim kriterijumima koji trebaju ID. Proveravaće se jednom dnevno."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Posmatranje praznine Pilot: U blizini Vanted Species"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Sutra ćete dobiti listu vrsta koje:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Još uvek nisu u modelu računarskog vida"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Ove sezone su primećeni u blizini vašeg poslednjeg zapažanja"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Su vođeni uzorkom do 200 posmatranja do 300 vrsta koje daju prioritet biljkama"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Posmatrajući ove vrste, pomoći ćete u poboljšanju modela i popuniti praznine u podacima o biodiverzitetu. Ova lista će se ažurirati kada se model ažurira. Možete se odjaviti u bilo kom trenutku."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Evo vaše trenutne liste vrsta koje su:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Još nije uključen u model računarskog vida"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Posmatrano u blizini vaše poslednje lokacije ove sezone"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Posmatrajući ih, pomažete u poboljšanju prepoznavanja vrsta i popunjavanju kritičnih praznina."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Pregledaj vrste"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Vratite se sutra za personalizovanu listu vrsta koje još nisu u modelu kompjuterskog vida, posmatrane ove sezone. Personalizovana lista će koristiti lokaciju vašeg najnovijeg posmatranja."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Ako ne vidite vezu, možda ne postoji nijedna vrsta koja odgovara ovim kriterijumima u vašoj blizini."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Identifikacija Pilot: Uključivanje novih korisnika"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Počevši od sutra, primajte do 30 zapažanja dnevno koja odgovaraju vašim veštinama identifikacije, pomažući u uključivanju novih korisnika. Možete se odjaviti u bilo kom trenutku."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Ispod su do 30 zapažanja koja odgovaraju vašim veštinama identifikacije."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Vratite se sutra za link do zapažanja koja odgovaraju vašim veštinama identifikacije."
   data_deficient: Nedovoljno podataka
   data_quality: Kvalitet podataka
   data_quality_assessment: Procena kvaliteta podataka
@@ -1290,6 +1343,8 @@ sr:
   #Label for a button to delete a taxon range
   delete_range: Izbriši rasprostranjenost
   delete_selected: Izbriši označeno
+  #Label for a button to delete a sound file
+  delete_sound: Izbriši zvuk
   delete_user: Izbriši korisnika
   delete_your_account: Izbriši nalog
   deleted_synonyms: Izbriši sinonime
@@ -1328,6 +1383,8 @@ sr:
         Proveri svoj imejl i klikni na link u imejlu koji si dobio da potvrdiš svoj nalog.
       user:
         suspended: Tvoj nalog je suspendovan
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Token za resetovanje lozinke je nevažeći. Molimo Vas da koristite link u poslednjoj e-pošti za resetovanje lozinke, ili <a href="%{url}">Zahtev za novi</a>.
     sessions:
       signed_in: 'Prijavljivanje uspešno.'
       signed_out: 'Odjavljivanje uspešno.'
@@ -1407,6 +1464,8 @@ sr:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONIRAJ
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Donira
   donate_again_caps: OPET DONIRAJ
   donate_again_today_caps: DONIRAJ OPET DANAS
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1510,6 +1569,8 @@ sr:
   endemic_to_x: "Endemski u %{x}"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Greška ažuriranje zvuka: %{sound_errors}"
   establishment:
     endemic: Endemski
     introduced: Invazivna
@@ -1558,6 +1619,7 @@ sr:
     Eksterne aplikacije su softverske aplikacije trećih strana kojima će iNaturalist imati pristup u tvoje ime. Generalno, one mogu da koriste tvoj nalog na isti način kao i ti, tako da budi pažljiv kojim aplikacijama odobravaš dozvolu.
   extinct: izumro
   extinct_in_the_wild: Izumro u divljini
+  evidence_accurately_depicts_organism_or_scene: Dokazi tačno prikazuju organizam ili scenu
   evidence_of_organism: Dokaz prisustva organizma
   evidence_related_to_single_subject: Dokaz se odnosi na jedan organizam
   facebook: Facebook
@@ -1583,7 +1645,11 @@ sr:
   fields: polja
   fields_: Polja
   file: Fajl
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Format datoteke
   file_size: Veličina fajla
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL datoteke
   file_should_be_in_the_following_format: "Fahl treba biti u sledećem formatu: naziv taksona, opis"
   fill_out_your_profile: popuni tvoj profil
   #The name of a computer file
@@ -1646,7 +1712,6 @@ sr:
   flag_marked_as_resolved_html: '<span class="meta">Prijava označena kao</span> <strong>rešena.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekat
-  flag_reason: "&ldquo;Prijavljujem %{record} zato što"
   flag_resolution: Razrešenje
   flag_saved: Prijava sačuvana
   flag_saved_thanks_html: Prijava sačuvana. Hvala! <a href="%{url}" class="readmore">Pogledaj prijavu</a>
@@ -1762,6 +1827,8 @@ sr:
   header_your_projects: Tvoji projekti
   header_your_profile: Tvoj profil
   heads_up_this_photo_has_been_flagged: "PAŽNJA: fotografija je prijavljena."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "GLAVE GORE: ovaj zvuk je označen."
   heads_up_this_photo_is_already_associated_with: "Napomena: ova fotografija je već deo <a target='_blank' href='%{url}'>druge opservacije</a>"
   help: Pomoć
   help_confirm_observations!: Pomozi u potvrđivanju opservacija!
@@ -3028,6 +3095,8 @@ sr:
       Zone: Zona
       zone: zona
   place_imported: Mesto uvezeno!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Može potrajati i do jednog dana da se zapažanja povežu sa ovim mestom.
   place_name: Naziv mesta
   place_notes: Beleške o mestu
   place_updated: Mesto ažurirano!
@@ -3307,6 +3376,20 @@ sr:
     Imaj u vidu sledeća ograničenja:
   places_warning_quota: |
     Možeš kreirati samo 3 mesta dnevno.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Mesta ne mogu biti veća od 700.000 kvadratnih kilometara.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Mesta ne mogu biti veća od 70.000 kvadratnih kilometara.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Mesta ne mogu da sadrže više od 200.000 posmatranja.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Mesta ne mogu da sadrže više od 10.000 zapažanja.
   plants: biljke
   please_ask_your_parents_for_permission: Molimo pitaj roditelje za dozvolu
   #Title to a section warning a user to exercise caution
@@ -3899,6 +3982,14 @@ sr:
     select_one_or_more_sounds: Izaberi jedan ili više zvukova
     selected_sounds: Izaberi zvukove
     sound: Zvuk
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Zvuk %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Zvuk izbrisan
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Zvuk skriven
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Zvuk neskriven
     soundcloud_replied_with_an_error: SoundCloud je vratio grešku. Pokušaj opet kasnije.
     sounds: Zvukovi
     your_soundcloud_account: tvoj SoundCloud nalog
@@ -4384,6 +4475,8 @@ sr:
   updated_by_user_on_date_html: Ažurirao/la %{user} datuma %{date}
   updated_daily: Dnevno ažuriranje
   updated_photo: Ažuriraj fotografiju
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Ažurirani zvuk
   upload: Otpremi
   upload_a_csv_file: Otpremi CSV fajl
   upload_new_photo: Otpremi novu fotografiju
@@ -4884,10 +4977,18 @@ sr:
         Vreme u vremenskoj zoni vašeg naloga da će ova najava prestati
         Pojavljivanje. Primenjuje se u svim vremenskim zonama, tako da će svi prestati da vide
         to u isto vreme, ne u odnosu na njihovo lokalno vreme.
+      excludes_non_site_desc: |
+        Ako vaša najava cilja na sajt (što je podrazumevano ako ste
+        Site Admin), ovo će isključiti najave koje ciljaju sve sajtove u
+        ovaj plasman.
       ip_countries_desc: |
         CMD- ili SHIFT-kliknite da biste izabrali više. Izbor "Sve" ili ne pravljenje
         Izbor će prikazati najavu svim korisnicima, bez obzira na
         IP zemlja.
+      exclude_ip_countries_desc: |
+        CMD- ili SHIFT-kliknite da biste izabrali više. Odabrane zemlje neće biti prikazane
+        najava. Ako su izabrane IP zemlje, izabran Isključi IP zemlje
+        će se oduzeti od prvog.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Imajte na umu da je datum kreiranja korisnika poslednji kreiran
@@ -4905,6 +5006,14 @@ sr:
         Vreme u vremenskoj zoni vašeg naloga da će ovo saopštenje početi
         Pojavljivanje. Primenjuje se u svim vremenskim zonama, tako da će svi početi da vide
         to u isto vreme, ne u odnosu na njihovo lokalno vreme.
+      include_virtuous_tags_desc: |
+        CMD- ili SHIFT-kliknite da biste izabrali više. Izbor "Bilo koji" ili ne pravljenje
+        Izbor će prikazati najavu svim korisnicima, bez obzira na
+        njihove čestite oznake.
+      exclude_virtuous_tags_desc: |
+        CMD- ili SHIFT-kliknite da biste izabrali više. Izbor "Ništa" ili ne pravljenje
+        Izbor će prikazati najavu svim korisnicima, bez obzira na
+        njihove čestite oznake.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Ciljajte korisnike ponašanjem donacija
@@ -5171,6 +5280,7 @@ sr:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: Pomozi nam da unapredimo
+      #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Označi ostatak kao važno
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Označi ostatak kao nevažno
@@ -5306,6 +5416,11 @@ sr:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Opservacije postaju <strong>"istraživački nivo"</strong> kada
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          sadržina <strong>Takson zajednice i takson posmatranja meč</strong>
+          (za one retke prilike kada takson posmatranja može biti više
+          specifičan od taksona Zajednice)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           %{site_name} <strong>zajednica se slaže oko ID-ja na nivou vrste ili ispod</strong>, tj. kada se više od 2/3 identifikatora slaže oko taksona (ako je zajednica glasala da takson zajednice ne može biti unapređen, vraća se na ID nivoa potporodice ili ispod)
         #Leads a list of ways an observation to revert to Casual status
@@ -5329,6 +5444,12 @@ sr:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           opservacija <strong>ne pruža dokaz prisustva jedne jedinke</strong> (npr. ima četiri fotografije drugih nepovezanih organizama; fotografija koja prikazuje stanište jedinke koja je predmet opservacije je u redu)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Zapažanje <strong>ne predstavlja tačne dokaze o organizmu ili
+          Scenu</strong> (npr. veštačka inteligencija je korišćena za dodavanje, uklanjanje ili zamenu
+          elementi u slici ili zvuku. Denoising, fokus slaganje, ili pravljenje
+          male ispravke kao što su uklanjanje senzorske prašine je obično u redu).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           opservaciji nije više potreban ID <em>i</em> takson zajednice je na nivou porodice ili iznad
@@ -5541,6 +5662,14 @@ sr:
         this_has_been_flagged_as_spam: Ovo je označeno kao nepoželjan sadržaj
       not_found:
         sorry_that_doesnt_exist: Ups, to ne postoji!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Original možete pogledati na <a href="%{url}">%{url}</a>. Molim vas
+          Ostavite zastave kršenja autorskih prava kao nerešene ako ovaj zvuk ne
+          krše autorska prava.
     stats:
       index:
         active_desc: Dodao/la ID, opservaciju, komentar ili objavu u prethodnih 30 dana
@@ -5667,6 +5796,9 @@ sr:
       edit:
         high_status_conservation_status_notice_html: |
           Dodavanje statusa ugroženosti višem nivou taksona utiče na opservacije svih vrsta unutar tog taksona. Molimo te da ne dodaješ statuse taksonima koji sadrže vrste koje nemaju status ugroženosti jer će tako koordinate opservacija tih vrsta biti nepotrebno skrivene.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Možete samo da napravite manje izmene epiteta vrste direktno (npr. promene pola, pravopisne greške). Dodajte <a target="_blank" href="%{url}">Razmena taksona</a> ako su vam potrebne druge izmene imena.
       show:
         about_names_desc: |
           <p>
@@ -5733,6 +5865,28 @@ sr:
         trending_desc: Takson sa najviše opservacija u prethodnom mesecu
         trending_in_place_desc_html: Takson sa najviše opservacija u prethodnom mesecu u <a href="%{url}">%{place}</a>
         wanted_desc: Vrste u ovom taksonu još nisu zabeležene.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Nešto je pošlo naopako pokušavajući da postavite te oznake: %{message}
+    taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Da li ste sigurni da želite da vratite ovu promenu taksona?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Da li ste sigurni da želite da povučete ovu promenu taksona?
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Vratite
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: Vraćanje
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Povuče
+      #state of an abandoned taxon change
+      withdrawn: Povuиena
+      #state of a committed taxon change
+      committed: Poиinio
+      #state of a draft taxon change
+      draft: Nacrt
+      #the status of a taxon change: draft, withdrawn or committed
+      status: Status
     taxon_names:
       form:
         places_help_html: |
@@ -5760,6 +5914,20 @@ sr:
           Unesi "%{confirmation_code}" da bi izbrisao/la tvoj nalog
       edit:
         about_third_party_tracking: O praćenju trećih strana
+        block_desc_comments_on_taxon_flags: Komentari na Takson zastave koje ste kreirali
+        block_desc_comments_on_taxon_changes: 'Vikipedija: Takson promene kreirane od strane vas'
+        block_desc_unlike_more_personal: |
+          Za razliku od više ličnih oblika sadržaja, kao što su zapažanja i časopis
+          poruke, taksoni dele svi i treba da budu otvoreni za
+          diskusija od strane svih. Blokiranje će vas i dalje sprečiti
+          Primanje obaveštenja o komentarima na ovu vrstu sadržaja od strane
+          osoba koju ste blokirali.
+        block_desc_if_harassing_html: |
+          Ako vas neko uznemirava ili uhodi na %{site_name},
+          <a href="mailto:%{help_email}">Molimo vas da nas obavestite</a>. Ako
+          ovo predstavlja kršenje naših Uslova korišćenja ili predstavlja
+          drugo ponašanje smatramo neprikladnim za naš sajt, mi ćemo
+          Istraћimo.
         common_scientific_name_display_order: Redosled prikaza narodnog / naučnog naziva
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ako se predomisliš, uvek možeš <a href='/users/edit'>izmeniti podešavanja</a>.
@@ -6165,6 +6333,7 @@ sr:
         exclude_donor_start_date: Isključite datum početka donatora
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Isključite datum završetka donatora
+        excludes_non_site: Sakrij druge najave u ovom položaju koje nemaju ID sajta
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Isključite posmatrače iz aplikacija

@@ -18,6 +18,8 @@ ja:
     other: '%{count} 同定'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> 件の同定'
+  x_ids_made_for_others_html:
+    other: '<span class="count">%{count}</span> 他者のために作られた同定'
   x_languages:
     other: "%{count} 言語"
   #Count of number of taxa that represent the first addition to a life list
@@ -535,6 +537,14 @@ ja:
 
     詳細については、自動生成された観察記録、同定、コメントを禁止する<a href="/pages/community+guidelines"
     target="_blank">コミュニティガイドライン</a> を参照してください。
+  app_owner_application_about_p2_html: |
+    2022年現在、APIクライアントの作成を希望するユーザーには手動承認を義務付けています。
+    サードパーティ製アプリを作成するには、まず申請書を提出して
+    「アプリ所有者」。このアプリケーションは、提案されたアプリの機能を記述する必要があります
+    そしてそれをどのように使用する予定ですか。申請書を提出するには、アカウントが
+    生後2か月以上で、少なくとも10歳未満を作っている必要があります <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">識別の改善</a> 先月。フォローをお願いする場合がございます
+    プランに関するご質問があり、理由の如何を問わず申請を拒否する権利を留保します。
   app_owner_application_inelligible: |
     キュレーター申請を行うためには、アカウント作成時から2か月以上が経過していることと、先月に少なくとも10個の改善IDを追加している必要があります。
   app_owner_application_fields_explanation_html: あなたのアプリか持つ機能とその使用方法を説明してください。
@@ -617,6 +627,8 @@ ja:
   are_you_sure_you_want_to_delete_this_assessment?: この評定を削除して本当によろしいですか？
   are_you_sure_you_want_to_delete_this_photo?: この写真を本当に削除してよろしいですか？
   are_you_sure_you_want_to_delete_this_post: この投稿を削除して本当によろしいですか？
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: この音を削除してもよろしいですか?
   are_you_sure_you_want_to_delete_this_taxon_change: この分類群変更を削除して本当によろしいですか？
   are_you_sure_you_want_to_remove_all_tags: すべてのタグを外して本当によろしいですか？
   are_you_sure_you_want_to_remove_curator: '%{user}さんからキュレーター管理の権限を取消しても本当によろしいですか？'
@@ -629,6 +641,8 @@ ja:
     %{project} からこの観測記録を削除して本当によろしいですか？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "%{place}のチェックリストからこの分類群を削除して本当によろしいですか？"
   are_you_sure_you_want_to_flag_as_spammer: このユーザーにスパムメールのフラグを立ててもよろしいですか？
+  artificially_generated_content: 人工的に生成されたコンテンツ
+  artificially_generated_content_desc: ほとんどまたは完全に人工知能によって生成されたコンテンツが含まれています。
   associated_observations: 関連している観測記録
   associated_taxa: 関連する分類群
   attention: 注意
@@ -692,7 +706,6 @@ ja:
   back_to_all_species: すべての種に戻る
   back_to_editing_observation: 観測記録の編集に戻る
   back_to_friends: 友人に戻る
-  back_to_flags_html: "&laquo; フラグに戻る"
   back_to_lists: "%{name}リストに戻る"
   back_to_observation: 観測記録に戻る
   back_to_observation_fields: 観測記録フィールドに戻る
@@ -725,8 +738,6 @@ ja:
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
       この %{percent} %のサンプルに基づき、%{child} の観察記録で<strong>意図しない不一致が %{count} 件</strong>発生すると試算されます。
-  based_on_the_evidence_can_id_be_improved: |
-    証拠に基づいてコミュニティ分類群を確定しますか、改善しますか？
   batch: 一括
   batch_edit: 一括編集
   #Where x is the title of a list of taxa
@@ -948,6 +959,7 @@ ja:
   community_id_is_precise: コミュニティ分類群は正確である
   community_moderation_settings: コミュニティモデレーション設定
   community_supported_id: コミュニティが支持する分類ですか？
+  community_taxon_matches_observation_taxon: コミュニティ分類群が観測分類群に一致する
   compare: 比較
   compare_with: 次と比較する：
   comparing: 比較しています
@@ -1018,6 +1030,12 @@ ja:
     url: 保全状況を明記するウェブページのURL
     geoprivacy: |
       この分類群のデフォルトの位置情報公開状況。大陸、国、または県/州単位などで個別に設定されている位置情報公開状況は、より大きい場所を指定して追加されている位置情報公開状況または場所を指定せず（対象:世界）追加されている位置情報公開状況よりも優先されます。
+    iucn: |
+      同等のIUCNレッドリストコード。これは実際のIUCN評価ではありません。
+      座標開示の脅威に最も一致するIUCNコードだけです
+      このステータスが暗示しています。これは、ジオプライバシーが「最小」の場合にオーバーライドされます。
+      懸念」以下なので、これの観察を曖昧にしたい場合は
+      分類群に設定する場合は、これを「準絶滅危惧種」以上に設定します。
   conservation_status_geoprivacy_desc: |
     この場所でのこの分類群のすべての観察記録に適用されるデフォルトの位置情報公開状況
   contact_support: サポートへのお問い合わせ
@@ -1337,6 +1355,8 @@ ja:
   curators_can_remove_observations_from: キュレーターはプロジェクトから観察を削除でき、同定結果をプロジェクト固有の表示画面に示すことができます。キュレーターはこのプロジェクト上で個人の不明瞭な投稿の真の座標を閲覧することもできます。
   curator_coordinate_access: キュレーターコーディネートアクセス
   curator_identification: キューレータによるID
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "現在のコミュニティ分類群: %{taxon}"
   current_flags: 現在のフラグ
   #Label for a custom boundary for an observation search
   custom_boundary: カスタムの境界線
@@ -1350,6 +1370,11 @@ ja:
   daily_users: 日ごとの利用者
   danger_zone: 危険
   dashboard: ダッシュボード
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "はい！参加したいです。"
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "識別ギャップパイロット:IDが必要な種を指名手配"
   data_deficient: データ不足
   data_quality: データ品質
   data_quality_assessment: データ品質評価
@@ -1442,6 +1467,8 @@ ja:
   #Label for a button to delete a taxon range
   delete_range: 分布域を削除
   delete_selected: 選択された項目を削除
+  #Label for a button to delete a sound file
+  delete_sound: サウンドを削除する
   delete_taxon_and_merge_most_data_html: |
     <i>%{taxon}</i>を削除し、そのデータの大部分を別の分類群にマージします。このツールは<strong>重複した分類群の削除</strong>に使用します。シノニムを削除したい場合は、タクソンスワップを作成してください。<strong>注意してください！</strong>分類群の削除は非常に破壊的です。詳細は<a href="%{curator_url}">キュレーターガイド</a>をご覧ください。
   delete_user: ユーザー削除
@@ -1484,6 +1511,8 @@ ja:
         当サイトからのメールのリンクをクリックしてアカウントを認証してください。
       user:
         suspended: あなたのアカウントは使用停止されました。
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: リセットされたパスワード トークンが無効です。最近送信されたパスワードリセットメールのリンクを使用してください。 <a href="%{url}">新しいものをリクエストします</a>.
     sessions:
       signed_in: '正常にログインしました。'
       signed_out: '正常にログアウトしました。'
@@ -1579,6 +1608,8 @@ ja:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: 寄付
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: 寄付する
   donate_again_caps: 再寄付する
   donate_again_today_caps: 今日再度寄付する
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1711,6 +1742,8 @@ ja:
   eol: EOL
   eol_collection_url: "EOLコレクションURL"
   error_updating_photo: "写真更新にエラーが発生しました：%{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "サウンドの更新エラー: %{sound_errors}"
   establishment:
     endemic: 固有種
     establishment: 定着
@@ -1765,6 +1798,7 @@ ja:
   extinct: 絶滅
   extinct_in_the_wild: 野生絶滅
   extra_properties: その他のプロパティー
+  evidence_accurately_depicts_organism_or_scene: 生物やシーンを正確に描写する証拠
   evidence_of_organism: 生物の証拠
   evidence_related_to_single_subject: 全く無関連な画像が混じっていないこと（例：ドバトの観察記録内に理由もなくルリビタキの画像が混じっている）※複数画像が含まれる観察記録でのみ有効
   facebook: Facebook
@@ -1802,7 +1836,11 @@ ja:
   fields_can_only_be_edited_by_the_people_who: フィールド設定を変更できるのは、作成者及びサイトキュレーター管理者のみです。
   fields_merged: フィールドが統合されました
   file: ファイル
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: ファイル形式
   file_size: ファイルサイズ
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: ファイルURL
   file_should_be_in_the_following_format: "ファイルは次のフォーマットでなければなりません: taxon name, description"
   fill_out_project_observation_fields: プロジェクトの観察フィールドを入力してください
   fill_out_your_profile: あなたのプロフィールを完成しましょう
@@ -1881,7 +1919,6 @@ ja:
   flag_marked_as_resolved_html: '<strong>解決済み</strong><span class="meta">としてマークされたフラグ</span>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: 対象
-  flag_reason: "&ldquo; 私がこの %{record} にフラグを立てるのは、"
   flag_resolution: 解決策
   flag_saved: フラグが保存されました
   flag_saved_thanks_html: フラグを保存しました。ありがとう! <a href="%{url}" class="readmore">フラグを見る</a>
@@ -2042,6 +2079,8 @@ ja:
   heads_up_there_are_other_draft_taxon_changes_html:
     other: "<strong>警告：</strong>同じ入力分類群による他の分類群変更の草案が %{count} 件あります："
   heads_up_this_photo_has_been_flagged: "お知らせ：この写真はフラグ付けられました"
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "注意:この音にはフラグが立てられています。"
   heads_up_this_photo_is_already_associated_with: "注意: この写真は既に<a target='_blank' href='%{url}'>別の観察記録</a>と関連づけられている。"
   help: ヘルプ
   help_confirm_observations!: 観測を記録しましょう！
@@ -3606,6 +3645,8 @@ ja:
       zone: ゾーン
   place_guess: 場所の推測
   place_imported: 場所がインポートされました！
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: 観測がこの場所に関連付けられるまでには、最大で 1 日かかる場合があります。
   place_must_have_a_boundary_defined: 境界を指定しなければなりません
   place_name: 地名
   place_notes: 場所メモ
@@ -3896,6 +3937,20 @@ ja:
     場所の境界線の編集は、iNatの速度低下の最大の原因のひとつです。避けられるのであれば、絶対に必要でない限り、場所の境界線を追加したり、変更したり、削除したりしないでください。
   places_warning_quota: |
     1日に作成できる場所は3か所までです。
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    場所は 700,000 平方キロメートルを超えることはできません。
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    場所は 70,000 平方キロメートルを超えることはできません。
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    場所には 200,000 を超える観測値を含めることはできません。
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    場所には 10,000 件を超える観測値を含めることはできません。
   plants: 植物
   play_first_sound: 最初の音声を再生する
   please_add_a_citation_for_this_change: この変更の参考文献を記入してください
@@ -4571,7 +4626,15 @@ ja:
     select_one_or_more_sounds: 音声データを選択（複数可）
     selected_sounds: 選択された音声データ
     sound: 音声
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: 音 %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: 音が削除されました
     sound_has_been_flagged: このサウンドにはフラグが設定されています。
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: 音の隠し
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: 音が隠されていない
     soundcloud_replied_with_an_error: SoundCloudからエラーが報告されました。しばらくしてから再度お試しください。
     sounds: 音声
     your_soundcloud_account: あなたのSoundCloudアカウント
@@ -5161,6 +5224,8 @@ ja:
   updated_by_user_on_date_html: 作成者:%{user}さん 作成日:%{date}
   updated_daily: 毎日更新されています
   updated_photo: 写真が更新されました
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: 更新されたサウンド
   upload: アップロード
   upload_a_csv_file: CSVファイルをアップロード
   upload_new_photo: 写真をアップロード
@@ -5702,10 +5767,18 @@ ja:
         アカウントのタイムゾーンでこのお知らせが停止する時間
         表示。タイムゾーンを超えて適用されるため、誰もが見なくなります
         それは同時に、彼らの現地時間に対して相対的ではありません。
+      excludes_non_site_desc: |
+        アナウンスがサイトを対象としている場合 (これは、
+        サイト管理者) の場合、すべてのサイトを対象とするアナウンスメントは除外されます。
+        この配置。
       ip_countries_desc: |
         CMD キーまたは Shift キーを押しながらクリックすると、複数を選択できます。「すべて」を選択するか、作らないか
         選択すると、次の条件に関係なく、すべてのユーザーにアナウンスが表示されます
         IP の国。
+      exclude_ip_countries_desc: |
+        CMDまたはShiftキーを押しながらクリックして複数選択します。一部の国は表示されません
+        発表。IP の国が選択されている場合は、[IP の国を除外する]
+        前者から差し引かれます。
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         ユーザーの最後に作成された作成日に注意してください
@@ -5885,11 +5958,6 @@ ja:
       tips_check_email_filters: 受信トレイからメールを削除する可能性のあるフィルターがないか確認してください #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: スパムフォルダを確認する
       your_site_account_has_no_email: あなたの %{site_name} アカウントにはメールアドレスが関連付けられていません。
-    flags:
-      show:
-        flags_that_should_not_be_resolved_desc_html: |
-          <code>スパム</code> および <code>著作権侵害</code> フラグは、コンテンツがスパムでないか、
-          著作権侵害ではない場合にのみフラグを解決してください。コンテンツがスパムか著作権侵害に該当する場合は、フラグをそのまま残してください。
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -6089,7 +6157,8 @@ ja:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: 改善にご協力ください
-      to_help_us_improve: このモデルの改良のため、このページに掲載されている画像のうち、どの画像が検索 &quot;%{searched_term}&quot; に関連しているかを教えてください。検索に一致する画像には関連 %{thumbs_up_icon} 、一致しない画像には無関係 %{thumbs_down_icon} を付けてください。入力が終わりましたら、送信をクリックしてください。 #text for a button where a user can mark images as relevnt to their search term
+      to_help_us_improve: このモデルの改良のため、このページに掲載されている画像のうち、どの画像が検索 &quot;%{searched_term}&quot; に関連しているかを教えてください。検索に一致する画像には関連 %{thumbs_up_icon} 、一致しない画像には無関係 %{thumbs_down_icon} を付けてください。入力が終わりましたら、送信をクリックしてください。 #text for a button where a user can mark images as relevant to their search term
+      #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: 関連するものとしてマーク
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: 無関係のものとしてマーク
@@ -6196,6 +6265,17 @@ ja:
           このプロジェクトでは、プロジェクトのキュレーターが見ることのできない座標を持つ観測記録を許可していません。このプロジェクトのキュレーターとこの観測記録の座標を共有したくない場合は、プロジェクトからこの観測記録を削除してください。
         data_quality_assessment_desc3_html: |
           品質グレードは、iNaturalistの観測データの正確性、精度、完全性、関連性、生物多様性データとしての適切性を要約したものです。いくつかの属性は自動的に決定されますが、他の属性はiNatユーザーによる投票の対象となります。iNaturalistは、科学と保全に使用するために、ライセンスを受けた「研究グレード」の観測データを多くのデータパートナーと共有しています。
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ザ <strong>コミュニティ分類群と観察分類群の一致</strong>
+          (観察分類群がもっと
+          コミュニティ分類群よりも具体的)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          観察 <strong>生物の正確な証拠を提示しない、または
+          シーン</strong> (例:人工知能を使用して追加、削除、または置換
+          画像またはサウンドの要素。ノイズ除去、フォーカススタッキング、または作成
+          センサーのほこりを取り除くなどの小さな修正は通常問題ありません)。
         identification_count_desc: '単一の分類群に対する同定の件数'
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
         observation_flagged_notice_html: |
@@ -6526,6 +6606,14 @@ ja:
       not_found:
         sorry_that_doesnt_exist: 申し訳ありません。それは存在しません。
         even_our_dedicated_search_mole_couldnt: サイトの検索専門モグラでも見つけることができませんでした！
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          原文は <a href="%{url}">%{url}</a>.お願いします
+          このサウンドが起こる場合は、著作権侵害フラグを未解決のままにして
+          著作権を侵害する。
     stats:
       index:
         active_desc: 過去30日以内にID作成、観察記録、コメントあるいは投稿をした
@@ -6603,6 +6691,10 @@ ja:
         view_all_publications_count_caps2:
           other: "%{count} 件の出版物を表示"
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          種の形容詞に直接小さな変更を加えることしかできません(性別の変更、スペルミスなど)。を追加します <a target="_blank" href="%{url}">分類群のスワップ</a> 名前に他の変更が必要な場合。
       show:
         about_names_desc: |
           <p>
@@ -6655,6 +6747,9 @@ ja:
           ウィキペディアのコンテンツ</a>.あなたは上のページを編集することで助けることができます
           ウィキペディアは、この分類群に適切になるようにするか、これにフラグを立てることによって
           分類群は、サイトのキュレーターの注意を引くために。
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        これらのタグを投稿しようとして何か問題が発生しました。 %{message}
     taxon_changes:
       form:
         move_children_desc2_html: |
@@ -6685,6 +6780,32 @@ ja:
           アカウントを削除するには、フォームに%{confirmation_code}を入力する必要があります。
       edit:
         about_third_party_tracking: サードパーティのトラッキングについて
+        block_desc_blocking_someone_prevents: |
+          誰かをブロックすると、その人はあなたにメッセージを送ったり、あなたのコメントをしたりできなくなります。
+          観測、観測の特定、その他の対話
+          あなたと一緒に %{site_name}.また、あなたの観察結果も削除されます。
+          検索結果を検索し、検索から観測値を削除します
+          業績。ただし、それは彼らからあなたを見えなくするわけではありません。彼らはできる
+          それでもあなたの観察結果を見つけたり、プロフィールを表示したりすることはできません
+          あなたと対話します。
+        block_desc_blocking_is_for_situations: |
+          ブロッキングは、どうしても仲良くできない状況のためのものです
+          あなたが最善を尽くしたにもかかわらず、彼らはあなたを放っておかないでしょう
+          文明的な方法で紛争を解決します。それは隠れる方法ではありません
+          あなたの意見を持つ人々からの識別を防ぐため
+          信頼しないか、コミュニティ ID をオプトアウトするか (別の
+          そのための設定)。したがって、ブロックは双方向に機能します。ブロックした場合
+          誰か、彼らはあなたと交流することはできませんが、あなたも交流することはできません
+          彼らと一緒に。誰かがあなたの身元を特定できないように悪用した場合
+          観察結果を観察すると、自分の観察を識別することもできなくなります
+          観測。
+        block_desc_you_can_only_block_html: |
+          3人しかブロックできません。これは妥当なものだと思います
+          ブロックが必要な人に対応している番号
+          ブロッキングの悪用を防止します。さらにブロックする必要があると思われる場合
+          人々、お願いします <a href="mailto:%{help_email}">お 問い合わせ</a>.
+        block_desc_there_are_two_exceptions: |
+          ブロックしても対話が妨げられない状況は 2 つあります。
         common_scientific_name_display_order: 一般名 / 学名の表示順
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           考えが変わっても、いつでも
@@ -7023,6 +7144,7 @@ ja:
         exclude_donor_start_date: 寄付者の開始日を除外する
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: 寄付者の終了日を除外する
+        excludes_non_site: この配置でサイト ID がない他のお知らせを非表示にする
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: アプリからオブザーバーを除外する

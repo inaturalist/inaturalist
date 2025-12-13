@@ -530,6 +530,14 @@ gl:
   anyone: Calquera
   app_owner_application_explanation_required: |
     Debes proporcionar unha explicación máis detallada do que queres construír.
+  app_owner_application_about_p2_html: |
+    A partir de 2022 requirimos a aprobación manual para os usuarios que desexen crear clientes API.
+    Para crear aplicacións de terceiros, primeiro debes presentar unha solicitude para converterte en
+    "Propietario da aplicación". Esta aplicación debe describir a funcionalidade da aplicación proposta
+    E como planeas utilizalo. Para presentar unha solicitude a túa conta debe estar en
+    Ter polo menos 2 meses de idade e ter feito polo menos 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Mellora da identificación</a> no último mes. Podemos pedir seguimento
+    Preguntas sobre o seu plan e reservámonos o dereito de rexeitar as solicitudes por calquera motivo.
   app_owner_application_fields_explanation_html: Describe a funcionalidade que terá a túa app e como pensas usala.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -610,6 +618,8 @@ gl:
   are_you_sure_you_want_to_delete_this_assessment?: '¿Seguro que queres eliminar esta avaliación?'
   are_you_sure_you_want_to_delete_this_photo?: Estás seguro de que queres eliminar esta foto?
   are_you_sure_you_want_to_delete_this_post: '¿Estás seguro de que queres borrar esta nota?'
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Estás seguro de que queres borrar este son?
   are_you_sure_you_want_to_delete_this_taxon_change: '¿Estás seguro de que queres borrar este cambio na especie ou grupo?'
   are_you_sure_you_want_to_remove_all_tags: '¿Seguro que queres eliminar tódalas etiquetas?'
   are_you_sure_you_want_to_remove_curator: '¿Estás seguro de que desexas quitar a %{user} como administrador?'
@@ -621,6 +631,8 @@ gl:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     ¿Seguro que queres eliminar esta observación de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Estás seguro de que desexas eliminar a esta especie ou grupo da lista de comprobación de %{place}?"
+  artificially_generated_content: Contido xerado artificialmente
+  artificially_generated_content_desc: Contén contido xerado principalmente ou totalmente a través de intelixencia artificial.
   associated_observations: Observacións asociadas
   associated_taxa: Taxóns asociados
   attention: Atencón
@@ -664,7 +676,6 @@ gl:
   back_to_all_species: Volver a todas as especies
   back_to_editing_observation: Volver a modificar a observación
   back_to_friends: Volver a amigos
-  back_to_flags_html: "&laquo; Volver a marcas"
   back_to_lists: "Volver ás listas de %{name}'s"
   back_to_observation: Volver á observación
   back_to_observation_fields: Volver aos campos de observación
@@ -692,8 +703,6 @@ gl:
   back_to_your_observations: Volver ás túas observacións
   back_to_your_profile: Volver ao teu perfil
   badges: Insignias
-  based_on_the_evidence_can_id_be_improved: |
-    Baseándose na evidencia, ¿o Taxon da Comunidade pode ser aínda confirmado ou mellorado?
   batch: Grupo
   batch_edit: Modificar grupo
   #Where x is the title of a list of taxa
@@ -901,6 +910,7 @@ gl:
   community_id_is_precise: O Taxon de Comunidade é preciso
   community_moderation_settings: Configuración da Moderación da Comunidade
   community_supported_id: Identificador recoñecido pola Comunidade?
+  community_taxon_matches_observation_taxon: O taxon comunitario coincide co taxon de observación
   compare: Comparar
   compare_with: Comparar con
   comparing: Comparando
@@ -957,6 +967,12 @@ gl:
       Organización que declarou este estadio. Por favor, usa o útil autocompletar para escoller unha autoridade existente antes de engadir unha nova. Podes saltar isto se *ti* queres ser listado como a autoridade.
     place: Ubicación na que se restrinxe este estadio.
     url: URL para a páxina que describe este estadio.
+    iucn: |
+      Código equivalente da Lista Vermella da IUCN. Esta non é a avaliación da IUCN,
+      só o código da IUCN que mellor se axusta á ameaza da divulgación de coordenadas
+      implicado por este estado. Isto superará a xeoprivacidade se é "mínima
+      Preocupación" ou abaixo, así que se queres escurecer as observacións disto
+      taxon, poñer isto en "Case ameazado" ou superior.
   conservation_status_geoprivacy_desc: |
     Xeoprivacidade predeterminada aplicada a tódalas observacións deste taxon neste lugar
   contact_support: Contacta ó Soporte
@@ -1225,6 +1241,8 @@ gl:
     Observacións en proxectos. Os observadores tamén poden optar por cambiar isto para
     Observacións individuais.
   curator_identification: Identificación do conservador
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Taxon comunitario actual: %{taxon}"
   current_flags: Marcas actuais
   custom_project_fields: Campos de proxecto personalizados
   custom_project_was_successfully_created: As personalizacións do proxecto foron engadidas
@@ -1234,6 +1252,11 @@ gl:
   daily_users: Usuarios Diarios
   danger_zone: Zona de Perigo
   dashboard: Taboleiro
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Si! Gustaríame participar."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Piloto de lagoas de identificación: necesita identificación de especies buscadas"
   data_deficient: datos insuficientes
   data_quality: Calidade dos Dados
   data_quality_assessment: Avaliación da calidade de datos
@@ -1319,6 +1342,8 @@ gl:
   delete_photo: Eliminar foto
   delete_project: Eliminar este proxecto
   delete_selected: Eliminar seleccionados
+  #Label for a button to delete a sound file
+  delete_sound: Borrar o son
   delete_user: Eliminar usuario
   delete_your_account: Eliminar a túa conta
   deleted_synonyms: Sinónimos eliminados
@@ -1354,6 +1379,8 @@ gl:
       invalid_token: 'Autenticación inválida'
       user:
         suspended: A túa conta foi suspensa
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: O token de restablecer o contrasinal non é válido. Por favor, use a ligazón no correo electrónico de restablecer o contrasinal enviado máis recentemente, ou <a href="%{url}">Solicita unha nova</a>.
     sessions:
       signed_in: 'Iniciouse a sesión correctamente.'
       signed_out: 'Pechouse a sesión correctamente.'
@@ -1426,6 +1453,8 @@ gl:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DOA
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Doar
   donate_again_caps: DOA DE NOVO
   donate_again_today_caps: DOA DE NOVO HOXE
   done: Feito
@@ -1540,6 +1569,8 @@ gl:
   eol: Enciclopedia da Vida (EOL)
   eol_collection_url: "URL da Colección EOL"
   error_updating_photo: "Erro ao subir a foto: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Aconteceu un erro ao actualizar o son: %{sound_errors}"
   establishment:
     endemic: Endémica
     establishment: Clasificación
@@ -1589,6 +1620,7 @@ gl:
   extinct: Extinto
   extinct_in_the_wild: Extinguido en estado silvestre
   extra_properties: Propiedades extra
+  evidence_accurately_depicts_organism_or_scene: As evidencias representan con precisión o organismo ou a escena
   evidence_of_organism: Evidencia dun organismo
   facebook: Facebook
   failed_to_find_your_location: Non se puido atopar a túa ubicación.
@@ -1617,7 +1649,11 @@ gl:
   fields_can_only_be_edited_by_the_people_who: Os campos só poden ser editados pola xente que os creou e os conservadores do sítio
   fields_merged: Campos combinados
   file: Ficheiro
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Formato de ficheiro
   file_size: Tamaño do ficheiro
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL do ficheiro
   file_should_be_in_the_following_format: "O arquivo debería ter o seguinte formato: Nome da especie ou grupo, descrición"
   fill_out_project_observation_fields: Enche os campos de observación do proxecto
   fill_out_your_profile: completar o teu perfil
@@ -1689,7 +1725,6 @@ gl:
   flag_marked_as_resolved_html: '<span class=meta>Marcar marcado como</span> <strong>resolto.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Obxecto
-  flag_reason: "“ Estou a marcar este %{record} por esta razón:"
   flag_resolution: Resolución
   flag_saved: Advertencia gardada.
   flag_saved_thanks_html: Marca gardada. Grazas!<a href="%{url}" class="readmore">Ver marca</a>
@@ -1819,6 +1854,8 @@ gl:
   header_your_profile: O Teu Perfil
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto foi marcada"
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "CABEZAS: Este son foi sinalado."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto xa está asociada con <a target='_blank' href='%{url}'>outra observación</a>"
   heads_up_you_have_multiple: "Avisos. Xeraches varias etiquetas taxonómicas para rangos idénticos. Están codificadas por cor máis adiante segundo o rango."
   help: Axuda
@@ -3116,6 +3153,8 @@ gl:
       zone: Zona
   place_guess: Estimación de lugar
   place_imported: '¡Lugar importado!'
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Pode tardar ata un día en que as observacións estean asociadas a este lugar.
   place_must_have_a_boundary_defined: O lugar debe ter límites definidos.
   place_name: Colocar nome
   place_notes: Colocar notas
@@ -3407,6 +3446,20 @@ gl:
     A edición das demarcacións dos lugares é una das principais causas de desaceleracón en iNat. Se o puderes evitar, non engadas, mudes ou elimines as fronteiras dos lugares se non é estritamente necesario.
   places_warning_quota: |
     Só podes crear tres lugares por día.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Os lugares non poden superar os 700.000 quilómetros cadrados.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Os lugares non poderán superar os 70.000 quilómetros cadrados.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Os lugares non poden conter máis de 200.000 observacións.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Os lugares non poden conter máis de 10.000 observacións.
   places_warning_the_future: |
     Polo que vale, teremos que restrinxir as condicións para poder engadir lugares no futuro, dado a actual taxa de crecemento de iNat.
   plants: Plantas
@@ -4018,7 +4071,15 @@ gl:
     select_one_or_more_sounds: Selecciona un ou máis sons
     selected_sounds: Sons seleccionados
     sound: Son
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Son %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Son borrado
     sound_has_been_flagged: Este son foi marcado.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Son oculto
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Son sen ocultar
     soundcloud_replied_with_an_error: SoundCloud respondeu cun erro. Por favor, téntao logo de novo.
     sounds: Sons
     your_soundcloud_account: a túa conta de SoundCloud
@@ -4499,6 +4560,8 @@ gl:
   updated_by_user_on_date_html: Actualizado por %{user} no %{date}
   updated_daily: Actualizado o día de hoxe
   updated_photo: Foto subida
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Son actualizado
   upload: Cargar
   upload_a_csv_file: Carga un arquivo CSV
   upload_a_csv_file_with_observation: |
@@ -4885,6 +4948,7 @@ gl:
   you_dont_have_permission_to_edit_those_photos: Non tes permisos para editar esas fotos.
   you_faved_this: '¡Engadíchelo a favoritos!'
   you_have_left_x_project: "Abandonaches o proxecto %{project}."
+  you_havent_joined_any_projects: Non te uniches a ningún proxecto
   you_havent_linked_your_inaturalist_google_account: "Aínda non vinculaches a túa conta de %{site_name} á túa conta de Google."
   you_joined_this_project: '¡Unícheste a este proxecto!'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un membro do proxecto para poder facer iso.
@@ -4962,6 +5026,14 @@ gl:
         Hora no fuso horario da túa conta en que se detén este anuncio
         aparecendo. Aplícase en todos os fusos horarios, polo que todo o mundo deixará de ver
         Ao mesmo tempo, non en relación á hora local.
+      excludes_non_site_desc: |
+        Se o teu anuncio está dirixido a un sitio web (que é o predeterminado se es un
+        Administrador do sitio), isto excluirá os anuncios que se dirixan a todos os sitios de
+        esta colocación.
+      exclude_ip_countries_desc: |
+        CMD ou Maiúsculas prema premer para seleccionar múltiples. Os países seleccionados non se mostrarán
+        O anuncio. Se se seleccionan países IP, seleccione Excluír países IP
+        Será subtraído do anterior.
       observation_oauth_application_ids_desc: |
         CMD ou MAIUSCULA prema para seleccionar múltiples. Seleccionar "todos" ou non facer
         Unha selección mostrará o anuncio a todos os usuarios, independentemente de
@@ -5024,8 +5096,6 @@ gl:
       show:
         flaggable_content_desc: |
           O contido marcable é o atributo de texto primario do obxecto marcado no momento en que a marca foi creada. Só os conservadores e traballadores poden ver isto. Só os traballadores poden ver isto para mensaxes.
-        flags_that_should_not_be_resolved_desc_html: |
-          Por favor, resolve as marcas de <code>spam</code> e <code>violación de dereitos de autor</code> soamente se o contido non é correo lixo ou unha violación de dereitos de autor respectivamente.
     guides:
       index:
         deprecated_banner: |
@@ -5426,6 +5496,17 @@ gl:
         curator_coordinate_access_disabled_desc_html: |
           Este proxecto non permite observacións con coordenadas que os conservadores non poidan ver. Se non queres compartit as coordenadas desta observación cós conservadores do proxecto, debes quitar a observación do proxecto.
         disagreement_count_desc: "Nº de taxons identificados que non están entre os ancestros dun taxon"
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          O <strong>Taxon comunitario e taxon de observación coinciden</strong>
+          (para aquelas raras ocasións nas que o taxon de observación pode ser máis
+          específico que o taxon comunitario)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          A observación <strong>Non presenta evidencias exactas do organismo nin
+          escena</strong> (Por exemplo, a intelixencia artificial foi utilizada para engadir, eliminar ou substituír
+          elementos da imaxe ou do son. Denoisesing, enfoque apilando ou facendo
+          pequenas correccións como eliminar o po do sensor adoitan estar ben).
         identification_count_desc: 'Nº de identificacións para un taxon individual'
         flagged_photos_desc_html: |
           Algunhas destas fotos foron marcadas por contidos inapropiados ou violacións de dereitos de autor. Para ver detalles preme %{links}
@@ -5863,6 +5944,14 @@ gl:
       not_found:
         sorry_that_doesnt_exist: Desculpa, ¡iso non existe!
         even_our_dedicated_search_mole_couldnt: '¡Incluso a nosa dedicada toupa de busca non puido atopar nada!'
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Podedes ver o orixinal en <a href="%{url}">%{url}</a>. Por favor
+          deixar as bandeiras de infracción de dereitos de autor como sen resolver se este son
+          Infrinxir os dereitos de autor.
     stats:
       index:
         active_desc: Identificaron, observaron, comentaron ou publicaron nos 30 días anteriores
@@ -5976,6 +6065,9 @@ gl:
         wikipedia_summary_desc_html: |
           Breve resumo deste taxon baseado na sua <a target="_blank"
           href="%{url}">páxina da Wikipedia</a>, que almacenamos indefinidamente ata que se actualice manualmente. A actualización este resumo tamén recarga imediatamente o noso caché do contido da Wikipedia subxacente que mostramos no site, e que é actualizado automaticamente logo dunha semana.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Só podes facer pequenos cambios no epíteto da especie directamente (por exemplo, cambios de xénero, erros ortográficos). Engadir un <a target="_blank" href="%{url}">Intercambio de taxons</a> Se precisas outros cambios no nome.
       show:
         about_conservation_status_desc: |
           O estado de conservación resume o risco de extinción para un grupo de organismos.
@@ -6026,6 +6118,9 @@ gl:
         trending_desc: Taxons máis observados no último mes
         trending_in_place_desc_html: Especies máis observadas no último mes en <a href="%{url}">%{place}</a>
         wanted_desc: Especies neste taxon que non se observaron aínda.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Algo fallou ao intentar publicar esas etiquetas: %{message}
     taxon_changes:
       move_children_desc: |
         Os descendentes do taxon de entrada que sexan xénero ou superior serán movidos ós resultados; especies, subespecies, variedades, etc. cambiaranse por equivalentes có novo nome xenérico ou específico.
@@ -6463,6 +6558,7 @@ gl:
       TaxonLink: Vínculo do Taxon
     attributes:
       announcement:
+        excludes_non_site: Acochar outros anuncios nesta colocación que non teñan ID do sitio
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Excluír os observadores das aplicacións

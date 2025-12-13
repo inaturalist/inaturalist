@@ -676,6 +676,8 @@ lv:
   are_you_sure_you_want_to_delete_this_assessment?: Vai tiešām vēlies dzēst novērtējumu?
   are_you_sure_you_want_to_delete_this_photo?: Vai tiešām vēlies dzēst fotogrāfiju?
   are_you_sure_you_want_to_delete_this_post: Vai tiešām vēlies dzēst ierakstu?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Vai tiešām vēlaties izdzēst šo skaņu?
   are_you_sure_you_want_to_delete_this_taxon_change: Vai tiešām vēlies dzēst izmaiņas taksonā?
   are_you_sure_you_want_to_remove_all_tags: Vai tiešām vēlies noņemt visus tagus?
   are_you_sure_you_want_to_remove_curator: Vai tiešām vēlies atņemt lietotājam %{user} pārziņa lomu?
@@ -688,6 +690,8 @@ lv:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Vai tiešām vēlies vairs neiekļaut šo novērojumu %{project} projektā?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Vai tiešām vēlies izņemt šo taksonu no %{place} kontrollapas?"
+  artificially_generated_content: Mākslīgi radīts saturs
+  artificially_generated_content_desc: Satur saturu, kas lielākoties vai pilnībā tiek ģenerēts, izmantojot mākslīgo intelektu.
   associated_observations: Saistītie novērojumi
   associated_taxa: Saistītie taksoni
   attention: Uzmanību!
@@ -741,7 +745,6 @@ lv:
   back_to_all_species: Atpakaļ uz visām sugām
   back_to_editing_observation: Atpakaļ pie novērojuma labošanas
   back_to_friends: Atpakaļ uz draugu sadaļu
-  back_to_flags_html: "&laquo; Atpakaļ uz karodziņiem"
   back_to_lists: "Atpakaļ uz %{name} sarakstiem"
   back_to_observation: Atpakaļ pie novērojuma
   back_to_observation_fields: Atpakaļ uz novērojuma laukiem
@@ -777,8 +780,6 @@ lv:
       Balstoties uz šo identifikāciju %{percent}% piemēru, esam aprēķinājuši, ka var rasties <strong>%{count} netīšs ID nesaderības gadījums</strong> ar %{child} ID.
     other: |
       Balstoties uz šo identifikāciju %{percent}% piemēru, esam aprēķinājuši, ka var rasties <strong>%{count} neparedzētas domstarpības</strong> ar %{child} ID.
-  based_on_the_evidence_can_id_be_improved: |
-    Vai, balstoties uz sniegtajiem pierādījumiem, kopienas piedāvāto taksonu var vēl uzlabot?
   batch: Vairākus reizē
   batch_edit: Rediģēt vairākus reizē
   #Where x is the title of a list of taxa
@@ -998,6 +999,7 @@ lv:
   community_id_is_precise: Kopienas taksons ir precīzs
   community_moderation_settings: Kopienas pārvaldības iestatījumi
   community_supported_id: Vai taksonu atbalsta kopiena?
+  community_taxon_matches_observation_taxon: Kopienas taksons atbilst novērošanas taksonam
   compare: Salīdzināt
   compare_with: Salīdzināt ar
   comparing: salīdzina
@@ -1331,6 +1333,8 @@ lv:
     novērojumi projektos. Novērotāji var arī izvēlēties to mainīt
     individuāli novērojumi.
   curator_identification: Pārziņa identifikācija
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Pašreizējais Kopienas taksons: %{taxon}"
   current_flags: Pašreizējie karodziņi
   custom_project_fields: Pielāgojamie projekta lauki
   custom_project_was_successfully_created: Iespējota projekta pielāgošana
@@ -1340,6 +1344,55 @@ lv:
   daily_users: Vienas dienas lietotāju skaits
   danger_zone: Pievērst īpašu uzmanību
   dashboard: Informācijas panelis
+  dashboard_pilots:
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Pārtrauciet dalību"
+    #link to a blog post
+    pilot_read_more: "Lasiet vairāk mūsu emuārā."
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Vēl nav iekļauts datorredzes modelī"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Mēs domājam, ka jūs varat identificēt"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Šeit ir saite uz to sugu novērojumiem, kas vēl nav iekļautas datorredzes modelī, un mēs domājam, ka jūs varat identificēt."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Pārbaudiet rīt, lai iegūtu saiti uz to sugu novērojumiem, kas vēl nav iekļautas datorredzes modelī, kuru, mūsuprāt, varat identificēt. Jums tiks parādītas sugas, kurās esat veicis vismaz 3 uzlabojumus."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Ja neredzat saiti, iespējams, nav novērojumu, kas atbilst šiem kritērijiem, kuriem nepieciešams ID. Tas pārbaudīs vienu reizi dienā."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Novērošanas nepilnību pilotprojekts: tuvumā meklētās sugas"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Rīt jūs saņemsiet sarakstu ar sugām, kas:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Vēl nav datorredzes modelī"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Ir novērots šajā sezonā netālu no jūsu pēdējā novērojuma"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Tiek vadīti ar līdz 200 novērojumiem līdz pat 300 sugām, piešķirot prioritāti augiem"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Novērojot šīs sugas, jūs palīdzēsiet uzlabot modeli un aizpildīt bioloģiskās daudzveidības datu trūkumus. Šis saraksts tiks atjaunināts, kad modelis tiks atjaunināts. Jūs varat atteikties jebkurā laikā."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Šeit ir jūsu pašreizējais sugu saraksts, kas ir:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Vēl nav iekļauts datorredzes modelī"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Novērots netālu no jūsu pēdējās atrašanās vietas šajā sezonā"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Novērojot tos, jūs palīdzat uzlabot sugu atpazīšanu un aizpildīt kritiskās nepilnības."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Pārlūkot sugas"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Pārbaudiet rīt, lai iegūtu personalizētu sarakstu ar sugām, kas vēl nav iekļautas datorredzes modelī, kas novērots šajā sezonā. Personalizētajā sarakstā tiks izmantota jūsu pēdējā novērojuma atrašanās vieta."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Ja neredzat saiti, iespējams, jūsu tuvumā nav nevienas sugas, kas atbilst šiem kritērijiem."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Identifikācijas pilotprojekts: jaunu lietotāju pievienošana"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Sākot ar rītdienu, katru dienu saņemiet līdz 30 novērojumiem, kas atbilst jūsu identifikācijas prasmēm, palīdzot piesaistīt jaunus lietotājus. Jūs varat atteikties jebkurā laikā."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Zemāk ir līdz 30 novērojumiem, kas atbilst jūsu identifikācijas prasmēm."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Pārbaudiet rīt, lai iegūtu saiti uz novērojumiem, kas atbilst jūsu identifikācijas prasmēm."
   data_deficient: Nepietiek datu
   data_quality: Datu kvalitāte
   data_quality_assessment: Datu kvalitātes novērtējums
@@ -1430,6 +1483,8 @@ lv:
   #Label for a button to delete a taxon range
   delete_range: Dzēst apgabalu
   delete_selected: Dzēst atlasīto
+  #Label for a button to delete a sound file
+  delete_sound: Dzēst skaņu
   delete_taxon_and_merge_most_data_html: |
     Izdzēs <i>%{taxon}</i> un apvieno lielāko daļu taksona datu ar cita taksona datiem. Izmanto šo rīku, lai <strong>dzēstu taksonu dublikātus</strong>. Ja vēlies dzēst novecojušu sinonīmu, lūdzu, veic taksonu maiņu. <strong>ESI UZMANĪGS!</strong> Taksonu dzēšana var iznīcināt ļoti daudz datu. Iepazīsties ar
     <a href="%{curator_url}">Pārziņu rokasgrāmatu</a>, lai iegūtu vairāk informācijas.
@@ -1468,6 +1523,8 @@ lv:
       invalid_token: 'Nederīgs autentifikācijas marķieris'
       user:
         suspended: Tavs konts ir uz laiku bloķēts
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Paroles marķiera atiestatīšana nav derīga. Lūdzu, izmantojiet saiti pēdējā nosūtītajā paroles atiestatīšanas e-pastā vai <a href="%{url}">pieprasīt jaunu</a>.
     sessions:
       signed_in: 'Pierakstīšanās notika veiksmīgi.'
       signed_out: 'Izrakstīšanās notika veiksmīgi.'
@@ -1540,6 +1597,8 @@ lv:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: ZIEDOT
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Ziedot
   donate_again_caps: ZIEDOT VĒL
   donate_again_today_caps: ZIEDOT VĒL ŠODIEN
   done: Gatavs
@@ -1662,6 +1721,8 @@ lv:
   eol: EOL
   eol_collection_url: "EOL kolekcijas URL"
   error_updating_photo: "Fotoattēla atjaunošanas laikā radās kļūda: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Kļūda, atjauninot skaņu: %{sound_errors}"
   establishment:
     endemic: Endēmisks
     establishment: Izplatība
@@ -1713,6 +1774,7 @@ lv:
   extinct: izmiris
   extinct_in_the_wild: Izmiris savvaļā
   extra_properties: Papildu informācija
+  evidence_accurately_depicts_organism_or_scene: Pierādījumi precīzi attēlo organismu vai ainu
   evidence_of_organism: Ar organisma novērojumu pierādījumiem
   facebook: Facebook
   failed_to_find_your_location: Neizdevās sameklēt tavu atrašanās vietu.
@@ -1741,7 +1803,11 @@ lv:
   fields_can_only_be_edited_by_the_people_who: Laukus var rediģēt tikai to autori vai vietnes pārziņi
   fields_merged: Lauku sapludināšana
   file: Fails
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Faila formāts
   file_size: Faila lielums
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Faila URL
   file_should_be_in_the_following_format: "Failam jābūt aprakstītam šādi: taksona nosaukums, apraksts"
   fill_out_project_observation_fields: Aizpildi projekta novērojumu laukus
   fill_out_your_profile: aizpildi savu profilu
@@ -1817,7 +1883,6 @@ lv:
   flag_marked_as_resolved_html: '<span class="meta">Karodziņa ziņojumam</span> <strong>atrasts risinājums.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekts
-  flag_reason: "&ldquo;Pievienoju šim %{record} karodziņu, jo"
   flag_resolution: Risinājums
   flag_saved: Karodziņš saglabāts
   flag_saved_thanks_html: Karodziņš saglabāts. Paldies! <a href="%{url}" class="readmore">Skatīt karodziņu</a>
@@ -1968,6 +2033,8 @@ lv:
     one: "<strong>Uzmanību:</strong> iesāktas %{count} citas taksonu izmaiņas ar tiem pašiem ievades taksoniem:"
     other: "<strong>Uzmanību:</strong> iesāktas %{count} citas taksonu izmaiņas ar tiem pašiem ievades taksoniem:"
   heads_up_this_photo_has_been_flagged: "UZMANĪBU! Fotogrāfijai pievienots karodziņš."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: šī skaņa ir atzīmēta."
   heads_up_this_photo_is_already_associated_with: "Uzmanību! Fotogrāfija ir saistīta ar <a target='_blank' href='%{url}'>citu novērojumu</a>."
   heads_up_you_have_multiple: "Uzmanību! Vairāki atšķirīgi taksonomiskie tagi pievienoti identiskām taksonu klasifikācijām. Tos var atšķirt pēc krāsas."
   help: Palīdzība
@@ -3364,6 +3431,8 @@ lv:
       zone: apgabals
   place_guess: vietas minējums
   place_imported: Vieta ir importēta.
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Var paiet līdz pat dienai, līdz novērojumi tiks saistīti ar šo vietu.
   place_must_have_a_boundary_defined: Vietai jābūt noteiktai robežai.
   place_name: Vietas nosaukums
   place_notes: Pieraksti par vietu
@@ -4339,7 +4408,15 @@ lv:
     select_one_or_more_sounds: Atlasīt vienu vai vairākus audiofailus
     selected_sounds: Atlasītie audiofaili
     sound: Audiofails
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Skaņa %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Skaņa izdzēsta
     sound_has_been_flagged: Šim audiofailam pievienots karodziņš.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Skaņa slēpta
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Skaņa neslēpta
     soundcloud_replied_with_an_error: SoundCloud atbildēja ar kļūdu. Lūdzi, pamēģini vēlreiz nedaudz vēlāk.
     sounds: Audiofaili
     your_soundcloud_account: tavs SoundCloud konts
@@ -4996,6 +5073,8 @@ lv:
   updated_by_user_on_date_html: '%{date} labojis lietotājs %{user}'
   updated_daily: Atjaunināts katru dienu
   updated_photo: Atjaunināta fotogrāfija
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Atjaunināta skaņa
   upload: Augšupielādēt
   upload_a_csv_file: Augšupielādēt CSV failu
   upload_a_csv_file_with_observation: |
@@ -5514,10 +5593,18 @@ lv:
         Laiks jūsu konta laika joslā, kad šis paziņojums tiks pārtraukts
         Parādās. Tiek piemērots dažādās laika joslās, tāpēc visi vairs neredzēs
         tajā pašā laikā, nevis attiecībā pret vietējo laiku.
+      excludes_non_site_desc: |
+        Ja jūsu paziņojums ir atlasīts vietnei (kas ir noklusējuma, ja esat
+        Vietnes administrators), tādējādi tiks izslēgti paziņojumi, kas ir paredzēti visām vietnēm
+        šis izvietojums.
       ip_countries_desc: |
         CMD vai SHIFT noklikšķiniet, lai atlasītu vairākus. Izvēloties "Visi" vai neveicot
         Atlase parādīs paziņojumu visiem lietotājiem neatkarīgi no tā, kā
         IP valsts.
+      exclude_ip_countries_desc: |
+        CMD vai SHIFT noklikšķiniet, lai atlasītu vairākus. Atlasītās valstis netiks rādītas
+        paziņojums. Ja ir atlasītas IP valstis, atlasiet Izslēgt IP valstis
+        tiks atņemts no pirmā.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Ņemiet vērā, ka lietotāja pēdējā izveidotā izveides datums
@@ -5535,6 +5622,14 @@ lv:
         Laiks jūsu konta laika joslā, kad sāksies šis paziņojums
         Parādās. Tiek piemērots dažādās laika joslās, tāpēc ikviens sāks redzēt
         tajā pašā laikā, nevis attiecībā pret vietējo laiku.
+      include_virtuous_tags_desc: |
+        CMD vai SHIFT noklikšķiniet, lai atlasītu vairākus. Atlasot "Jebkurš" vai neveicot
+        Atlase parādīs paziņojumu visiem lietotājiem neatkarīgi no
+        viņu tikumīgās atzīmes.
+      exclude_virtuous_tags_desc: |
+        CMD vai SHIFT noklikšķiniet, lai atlasītu vairākus. Atlasot "Nav" vai neveicot
+        Atlase parādīs paziņojumu visiem lietotājiem neatkarīgi no
+        viņu tikumīgās atzīmes.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Lietotāju mērķauditorija pēc ziedojumu uzvedības
@@ -5602,8 +5697,6 @@ lv:
       show:
         flaggable_content_desc: |
           Saturs ar karodziņu ir galvenais teksta avots objektam ar karodziņu. Tikai pārziņi un darbinieki var to redzēt. Tikai darbiniekiem ir pieeja ziņām par karodziņiem.
-        flags_that_should_not_be_resolved_desc_html: |
-          Lūdzu, mēģini atrisināt ar karodziņiem atzīmētos<code>mēstuļu</code> un <code>autortiesību pārkāpumus</code> tikai tad, ja tās patiesībā nav mēstules vai autortiesību pārkāpumi.
     guides:
       index:
         deprecated_banner: |
@@ -6014,6 +6107,17 @@ lv:
         curator_coordinate_access_disabled_desc_html: |
           Projektā nav atļauts pievienot novērojumus ar koordinātām, kas nav pieejamas projekta pārziņiem. Ja nevēlies sniegt pārziņiem piekļuvi pie savu novērojumu koordinātām, tev nāksies viņus no šī projekta izslēgt.
         disagreement_count_desc: "Identificēto taksonu skaits, kas nav daļa no taksona priekštečiem"
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          Par <strong>Kopienas taksona un novērošanas taksona atbilstība</strong>
+          (tiem retiem gadījumiem, kad novērošanas taksons var būt vairāk
+          specifisks nekā Kopienas taksons)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Novērojums <strong>nesniedz precīzus pierādījumus par organismu vai
+          Ainas</strong> (piemēram, mākslīgais intelekts tika izmantots, lai pievienotu, noņemtu vai aizstātu
+          elementus attēlā vai skaņā. Trokšņa samazināšana, fokusa sakārtošana vai veidošana
+          nelieli labojumi, piemēram, sensora putekļu noņemšana, parasti ir OK).
         identification_count_desc: 'Individuāla taksona identifikāciju skaits'
         flagged_photos_desc_html: |
           Dažām fotogrāfijām pievienots nepieņemama satura vai autortiesību pārkāpuma karodziņš. Vairāk informācijas: %{links}
@@ -6448,6 +6552,14 @@ lv:
       not_found:
         sorry_that_doesnt_exist: Atvaino, vienums vairs neeksistē.
         even_our_dedicated_search_mole_couldnt: Pat mūsu īpaši meklēšanai paredzētais kurmis neko neatrada.
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Oriģinālu varat apskatīt vietnē <a href="%{url}">%{url}</a>. Lūdzu
+          atstāt autortiesību pārkāpumu karodziņus kā neatrisinātus, ja šī skaņa ir neatrisināta
+          pārkāpj autortiesības.
     stats:
       index:
         active_desc: Pievienoja ID, novērojumu, komentāru vai ierakstu pēdējo 30 dienu laikā
@@ -6566,6 +6678,9 @@ lv:
         wikipedia_summary_desc_html: |
           Īss taksona apraksts, atsaucoties uz <a target="_blank"
           href="%{url}">Vikipēdijas lapu</a>. Glabājam to kešatmiņā līdz tas tiek manuāli pārlādēts. Pārlādējot aprakstu, tiek atjaunota arī Vikipēdijas satura kešatmiņa, kas tiek pārlādēta automātiski reizi nedēļā.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Jūs varat veikt tikai nelielas izmaiņas sugas epitetā tieši (piemēram, dzimuma maiņa, pareizrakstības kļūda). Pievienot <a target="_blank" href="%{url}">Taksona mijmaiņa</a> ja jums ir nepieciešamas citas nosaukuma izmaiņas.
       show:
         about_conservation_status_desc: |
           Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
@@ -6616,9 +6731,30 @@ lv:
         trending_desc: Pēdējā mēnesī visnovērotākie taksoni
         trending_in_place_desc_html: Pēdējā mēnesī visnovērotākie taksoni no <a href="%{url}">%{place}</a>
         wanted_desc: Taksona sugas vēk nav nekad novērotas.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Kaut kas nogāja greizi, mēģinot ievietot šos tagus: %{message}
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Vai esat pārliecināts, ka vēlaties atjaunot šīs taksona izmaiņas?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Vai esat pārliecināts, ka vēlaties atsaukt šīs taksona izmaiņas?
       move_children_desc: |
         Ievades taksona apakšgrupas, kas ir ģints vai vispārējāka līmeņa, tiks pārvietotas uz izvades sadaļu. Sugas, apakšsugas, šķirnes u.c. tiks samainītas ar tās ekvivalentiem, pievienojot jaunās ģints vai sugas nosaukumu.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Atjaunot
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: Atjaunošana
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Atsaukt
+      #state of an abandoned taxon change
+      withdrawn: Atsaukt
+      #state of a committed taxon change
+      committed: Izdarīts
+      #state of a draft taxon change
+      draft: Projektu
+      #the status of a taxon change: draft, withdrawn or committed
+      status: Statusu
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7090,6 +7226,7 @@ lv:
         exclude_donor_start_date: Izslēgt ziedotāja sākuma datumu
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Izslēgt ziedotāju beigu datumu
+        excludes_non_site: Paslēpt citus paziņojumus šajā izvietojumā, kuriem nav vietnes ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Novērotāju izslēgšana no lietotnēm

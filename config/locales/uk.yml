@@ -658,6 +658,14 @@ uk:
   anyone: Будь-хто
   app_owner_application_explanation_required: |
     Ви повинні надати детальніше пояснення того, що ви хочете побудувати.
+  app_owner_application_about_p2_html: |
+    З 2022 року ми вимагаємо ручного затвердження для користувачів, які бажають зробити API клієнтами.
+    Для того, щоб створити сторонні додатки, необхідно спочатку подати заявку на те, щоб стати
+    «Власник програми». Ця програма повинна описувати функціонал запропонованого вами додатка
+    і як ви плануєте його використовувати. Для того, щоб подати заявку, ваш обліковий запис повинен бути на
+    віком не менше 2 місяців і повинно бути не менше 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Удосконалення ідентифікації</a> за останній місяць. Ми можемо попросити про подальші дії
+    Питання щодо вашого плану, і ми залишаємо за собою право відхилити заявки з будь-якої причини.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Додаток
@@ -733,6 +741,8 @@ uk:
   are_you_sure_you_want_to_delete_this_assessment?: Ви дійсно хочете видалити цю оцінку?
   are_you_sure_you_want_to_delete_this_photo?: Ви дійсно хочете видалити це фото?
   are_you_sure_you_want_to_delete_this_post: Ви дійсно бажаєте видалити цей допис?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Ви впевнені, що хочете видалити цей звук?
   are_you_sure_you_want_to_delete_this_taxon_change: Ви дійсно хочете видалити цю зміну таксона?
   are_you_sure_you_want_to_remove_all_tags: Ви дійсно хочете видалити усі позначки?
   are_you_sure_you_want_to_remove_curator: Ви дійсно хочете видалити %{user} зі списку кураторів?
@@ -745,6 +755,8 @@ uk:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Ви впевнені, що хочете видалити це спостереження з цього проєкта: %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ви дійсно хочете видалити цей таксон з таксономічного списка такого місця: %{place}?"
+  artificially_generated_content: Штучно згенерований контент
+  artificially_generated_content_desc: Містить контент, який частково або повністю згенерований за допомогою штучного інтелекту.
   associated_observations: Пов'язані спостереження
   associated_taxa: Пов'язані таксони
   attention: Увага
@@ -794,7 +806,6 @@ uk:
   back_to_all_species: Назад до всіх видів
   back_to_editing_observation: Назад до редагування спостереження
   back_to_friends: Назад до друзів
-  back_to_flags_html: "&laquo; Назад до прапорців"
   back_to_lists: "Назад до списків %{name}"
   back_to_observation: Назад до спостереження
   back_to_observation_fields: Назад до полів спостереження
@@ -820,14 +831,13 @@ uk:
   back_to_your_observations: Назад до ваших спостережень
   back_to_your_profile: Назад до вашого профілю
   badges: Значки
-  based_on_the_evidence_can_id_be_improved: |
-    Чи можна підтвердити або покращити таксон, визначений спільнотою, на базі наявних даних?
   batch: Пакетно
   batch_edit: Пакетне редагування
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Пакетне редагування таксонів: %{x}"
   batch_operations: Пакетні операції
   be_the_first_to_fave_this_observation: Стань першим, хто уподобає це спостереження!
+  become_a_donor_caps: СТАТИ ДОНОРОМ
   before_importing_photos: перед імпортом фото
   bg_color: Колір тла
   bio: Біографія
@@ -835,6 +845,7 @@ uk:
   bioblitz: Біобліц
   birds: птахи
   birthday: День народження
+  block: Блокування
   block_removed: Блокування знято
   blocked_users: Заблоковані користувачі
   blog_widget: Віджет у блозі
@@ -1016,6 +1027,7 @@ uk:
   community_id_is_precise: Визначення спільноти є точним
   community_moderation_settings: Налаштування модерації спільнотою
   community_supported_id: Таксон, що підтримується спільнотою?
+  community_taxon_matches_observation_taxon: Таксон спільноти збігається з таксоном спостереження
   compare: Порівняти
   compare_with: Порівняти з
   comparing: порівняння
@@ -1146,6 +1158,8 @@ uk:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Линяння
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Волосся
   controlled_term_definitions:
     alive: Організм живий і не проявляє ознак неминучої смерті
     bone: |
@@ -1178,6 +1192,8 @@ uk:
   copy_and_paste_the_following_code_to: Скопіюйте та вставте наступний код, щоб розмістити цю оцінку на іншій веб-сторінці.
   copy_and_paste_this_into_your_own_html: Скопіюйте та вставте це у свій власний HTML.
   copy_guide_taxon_to: Скопіювати посібник з таксону до...
+  copy_to_clipboard: Копіювати в буфер обміну
+  copied!: Скопійовано!
   copyright:
     some_rights_reserved: Деякі права захищені.
     some_rights_reserved_by: "(c) %{name}, деякі права захищені (%{license_short})"
@@ -1343,6 +1359,8 @@ uk:
   curators_can_remove_observations_from: Куратори можуть вилучати спостереження з проєкту, а також ті їхні визначення, що відображаються разом із спостереженнями під час перегляду проєкту. Куратори також можуть бачити справжні координати для тих спостережень проєкту, які були приховані налаштуваннями приватності місцезнаходження.
   curator_coordinate_access: Куратор координат доступу
   curator_identification: Визначення куратора
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Поточний таксон спільноти: %{taxon}"
   current_flags: Поточні прапорці
   custom_project_fields: Користувальницькі поля проєкту
   custom_project_was_successfully_created: Налаштування проєкту додано
@@ -1354,6 +1372,59 @@ uk:
   daily_users: Користувачі за добу
   danger_zone: Зона ризику
   dashboard: Панель керування
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Так! Я хочу взяти участь."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Припинити участь"
+    #link to a blog post
+    pilot_read_more: "Детальніше читайте в нашому блозі."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Пілот з виявлення прогалин: потребує посвідчення розшукуваних видів"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Ще не включено в модель комп'ютерного зору"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Ми думаємо, що ви можете визначити"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Ось посилання на спостереження за видами, які ще не включені в модель комп'ютерного зору, які, на нашу думку, ви можете ідентифікувати."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Завтра перевірте посилання на спостереження за видами, які ще не включені в модель комп'ютерного зору, які, на нашу думку, ви можете ідентифікувати. Вам будуть показані види, на яких ви зробили принаймні 3 поліпшені ідентифікації."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Якщо ви не бачите посилання, можливо, немає спостережень, які відповідають цим критеріям, які потребують ідентифікатора. Він буде перевірятися один раз на день."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Пілот спостереження за прогалинами: розшукувані види поблизу"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Завтра ви отримаєте список видів, які:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "ще не входять до моделі комп'ютерного зору"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Спостерігалися в цьому сезоні недалеко від вашого останнього спостереження"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Ґрунтуються на вибірці до 200 спостережень до 300 видів рослин, що надають перевагу рослинам"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Спостерігаючи за цими видами, ви допоможете вдосконалити модель і заповнити прогалини в даних про біорізноманіття. Цей список оновиться, коли оновиться модель. Ви можете відмовитися в будь-який час."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Ось ваш поточний список видів, які:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Ще не включено в модель комп'ютерного зору"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Спостерігали неподалік від вашого останнього місця розташування в цьому сезоні"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Дотримуючись їх, ви допомагаєте покращити розпізнавання видів і заповнити критичні прогалини."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Переглянути види"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Загляньте завтра, щоб отримати персоналізований список видів, яких ще немає в моделі комп'ютерного зору, яка спостерігалася цього сезону. У персоналізованому списку буде використано місце вашого останнього спостереження."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Якщо ви не бачите посилання, можливо, поруч із вами немає видів, які відповідають цим критеріям."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Ідентифікаційний пілот: адаптація нових користувачів"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Починаючи з завтрашнього дня, щодня отримуйте до 30 спостережень, які відповідають вашим навичкам ідентифікації та допомагають адаптувати нових користувачів. Ви можете відмовитися в будь-який час."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Нижче наведено до 30 спостережень, які відповідають вашим навичкам ідентифікації."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Завтра перевірте посилання на спостереження, які відповідають вашим навичкам ідентифікації."
   data_deficient: Відомостей недостатньо
   data_quality: Якість даних
   data_quality_assessment: Оцінка якості даних
@@ -1439,6 +1510,8 @@ uk:
   delete_photo: Видалити фото
   delete_project: Видалити цей проєкт
   delete_selected: Видалити обране
+  #Label for a button to delete a sound file
+  delete_sound: Видалити звук
   delete_taxon_and_merge_most_data_html: |
     Видалити <i>%{taxon}</i> та влити більшість його даних у інший таксон.Використовуйте цей інструмент для <strong>видалення дублюючих таксонів</strong>. Якщо ви бажаєте видалити застарілий синонім, будь ласка, використовуйте заміну таксона. <strong>БУДЬТЕ УВАЖНІ!</strong> Видалення таксонів може істотно зашкодити. Звіртеся з <a href="%{curator_url}">Посібником куратора</a> для отримання додаткових відомостей.
   delete_user: Видалити користувача
@@ -1471,6 +1544,8 @@ uk:
       invalid_token: 'Недійсний код автентифікації.'
       user:
         suspended: Ваш обліковий запис було призупинено
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Токен скидання пароля недійсний. Будь ласка, скористайтеся посиланням в останньому надісланому електронному листі для скидання пароля, або <a href="%{url}">Запросити новий</a>.
     sessions:
       signed_in: 'Ви успішно увійшли в систему.'
       signed_out: 'Ви успішно вийшли з системи.'
@@ -1543,6 +1618,8 @@ uk:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: ВНЕСОК
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Пожертвувати
   done: Надіслати
   dont_have_an_account_sign_up_html: Не маєте облікового запису? <strong>Зареєструйтесь.</strong>
   dont_use_double_quotes: Не використовуйте подвійні лапки
@@ -1658,6 +1735,8 @@ uk:
   eol: EOL
   eol_collection_url: "URL-адреса колекції EOL"
   error_updating_photo: "Помилка при оновленні фото: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Помилка оновлення звуку: %{sound_errors}"
   establishment:
     endemic: Ендемік
     establishment: Шляхи виникнення
@@ -1707,6 +1786,7 @@ uk:
   extinct: Вимерлий
   extinct_in_the_wild: Вимерлий у природі
   extra_properties: Додаткові властивості
+  evidence_accurately_depicts_organism_or_scene: Докази точно зображують організм або сцену
   evidence_of_organism: Свідчення існування організму
   facebook: Facebook
   failed_to_find_your_location: Не вдалося визначити ваше розташування.
@@ -1742,7 +1822,11 @@ uk:
   fields_can_only_be_edited_by_the_people_who: Поля можуть редагувати тільки ті люди, які їх створили, та куратори сайту
   fields_merged: Поля злиті
   file: Файл
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Формат файлу
   file_size: Розмір файлу
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL-адреса файлу
   file_should_be_in_the_following_format: "Файл повинен бути в наступному форматі: назва таксону, опис"
   fill_out_project_observation_fields: Заповніть поля спостереження у проєкті
   fill_out_your_profile: заповніть ваш профіль
@@ -1814,7 +1898,6 @@ uk:
   flag_marked_as_resolved_html: '<span class="meta">Прапорець позначено як (проблему) </span> <strong>вирішено.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Об’єкт
-  flag_reason: "&ldquo;Я позначаю цей %{record} тому, що"
   flag_resolution: Рішення
   flag_saved: Прапорець збережено
   flag_saved_thanks_html: Прапорець збережено. Дякуємо! <a href="%{url}" class="readmore">Переглянути прапорець</a>
@@ -1951,6 +2034,8 @@ uk:
   header_your_profile: Ваш профіль
   heads_up: Увага
   heads_up_this_photo_has_been_flagged: "УВАГА: це фото було позначено прапорцем."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: цей звук був позначений."
   heads_up_this_photo_is_already_associated_with: "Увага: це фото вже пов'язане з <a target='_blank' href='%{url}'>іншим спостереженням</a>"
   heads_up_you_have_multiple: "Увага: ви маєте декілька таксономічних автоматично сгенерованих тегів для ідентичних рангів. Вони позначені кольором нижче, відповідно до рангу."
   help: Допомога
@@ -3301,6 +3386,8 @@ uk:
       zone: зона
   place_guess: припущення місця
   place_imported: Місце імпортовано!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Може знадобитися до доби, щоб спостереження були пов'язані з цим місцем.
   place_must_have_a_boundary_defined: Місце повинне мати визначені межі.
   place_name: Назва місця
   place_notes: Примітки до місця
@@ -4246,7 +4333,15 @@ uk:
     select_one_or_more_sounds: Обрати один або декілька звукозаписів
     selected_sounds: Обрані звукозаписи
     sound: Звукозапис
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Звук %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Звук видалено
     sound_has_been_flagged: Цей звукозапис був відмічений прапорцем
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Звук прихований
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Звук неприхований
     soundcloud_replied_with_an_error: Помилка запиту до SoundCloud. Будь ласка, спробуйте пізніше.
     sounds: Звукозаписи
     your_soundcloud_account: ваш обліковий запис SoundCloud
@@ -4783,6 +4878,8 @@ uk:
   updated_by_user_on_date_html: Оновлено %{user} %{date}
   updated_daily: Оновлюється щодня
   updated_photo: Оновлено фото
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Оновлений звук
   upload: Додати
   upload_a_csv_file: Додати CSV файл
   upload_a_csv_file_with_observation: |
@@ -5179,6 +5276,7 @@ uk:
   you_dont_have_permission_to_edit_those_photos: Ви не маєте дозволу редагувати ці фото.
   you_faved_this: Ви це уподобали!
   you_have_left_x_project: "Ви залишили %{project}"
+  you_havent_joined_any_projects: Ви ще не долучилися до жодних проєктів
   you_havent_linked_your_inaturalist_google_account: "Ви не прив'язали свій обліковий запис %{site_name} до вашого облікового запису Google"
   you_joined_this_project: Ви долучилися до цього проєкту!
   you_must_be_a_member_of_this_project_to_do_that: Ви маєте бути членом цього проєкту для того, щоб зробити це
@@ -5260,10 +5358,26 @@ uk:
         Час у часовому поясі вашого облікового запису, коли це оголошення буде зупинено
         З'являються. Застосовується в різних часових поясах, тому всі користувачі перестануть бачити
         це в той же час, а не по відношенню до їх місцевого часу.
+      excludes_non_site_desc: |
+        Якщо ваше оголошення націлено на сайт (за умовчанням, якщо ви
+        Site Admin), це виключить оголошення, націлені на всі сайти в
+        це розміщення.
+      exclude_ip_countries_desc: |
+        Натисніть, утримуючи клавіші CMD або SHIFT, щоб вибрати кілька. Вибрані країни не відображатимуться
+        Про це повідомляється. Якщо вибрано країни IP, виберіть Виключити країни IP
+        буде відніматися від першого.
       observation_oauth_application_ids_desc: |
         Натисніть, утримуючи клавіші CMD або SHIFT, щоб вибрати кілька. Вибір "Всі" або не внесення
         Вибраний варіант покаже оголошення всім користувачам, незалежно від
         додаток.
+      include_virtuous_tags_desc: |
+        Натисніть, утримуючи клавіші CMD або SHIFT, щоб вибрати кілька. Вибір "Будь-який" або не внесення
+        Вибраний варіант покаже оголошення всім користувачам, незалежно від
+        їх Доброчесні теги.
+      exclude_virtuous_tags_desc: |
+        Натисніть, утримуючи клавіші CMD або SHIFT, щоб вибрати кілька. Вибір "Немає" або не внесення
+        Вибраний варіант покаже оголошення всім користувачам, незалежно від
+        їх Доброчесні теги.
     atlases:
       show:
         #Title for section describing atlases
@@ -5360,9 +5474,6 @@ uk:
       show:
         flaggable_content_desc: |
           Позначений прапорцем вміст є первинним текстовим атрибутом позначеного об'єкта у момент створення позначки. Лише куратори та співробітники можуть його бачити. Лише співробітники можуть бачити його для повідомлень.
-        flags_that_should_not_be_resolved_desc_html: |
-          Будь ласка, розв'язуйте лише проблеми, позначені прапорцями <code>спам</code> та <code>порушення авторських прав</code>, якщо вміст не є спамом або не є
-          порушення авторського права, відповідно.
     guides:
       index:
         deprecated_banner: |
@@ -5826,6 +5937,17 @@ uk:
           координатами ваших спостережень з кураторами цього проєкту,
           ви маєте видалити їх з проєкту.
         disagreement_count_desc: "Кількість визначених таксонів, що лежать поза межами батьківського таксону"
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          Об'єкт <strong>Таксон спільноти та таксон спостереження збігаються</strong>
+          (для тих рідкісних випадків, коли таксон спостереження може бути більше
+          конкретний, ніж Таксон Спільноти)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Спостереження <strong>не представляє точних ознак існування організму або
+          Сцени</strong> (наприклад, штучний інтелект використовувався для додавання, видалення або заміни
+          елементи в зображенні або звуку. Знешумлення, накопичення фокусу або створення
+          невеликі виправлення на кшталт видалення пилу з сенсора зазвичай в порядку).
         identification_count_desc: 'Кількість визначень для окремого таксону'
         flagged_photos_desc_html: |
           Деякі з цих фотографій були позначені як такі, що несуть невідповідний зміст або
@@ -6300,6 +6422,14 @@ uk:
       not_found:
         sorry_that_doesnt_exist: На жаль, цього не існує!
         even_our_dedicated_search_mole_couldnt: Навіть наш спеціальний пошуковий агент нічого не знайшов!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Оригінал можна переглянути за посиланням <a href="%{url}">%{url}</a>. Будь ласка
+          залишати позначки порушення авторських прав як невирішені, якщо цей звук
+          порушувати авторські права.
     stats:
       index:
         active_desc: Створювали ID, спостереження, коментар або допис за останні 30 днів
@@ -6453,6 +6583,9 @@ uk:
           Короткий опис цього таксону на основі його <a target="_blank"
           href="%{url}">сторінки у Вікіпедії</a> , яку ми зберігаємо необмежений час до оновлення вручну. Оновлення цієї сторінки миттєво оновить наш кеш базового вмісту Вікіпедії, який ми показуємо на
           сайті і який автоматично оновлюється щотижня.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Ви можете вносити лише незначні зміни безпосередньо в епітет виду (наприклад, зміна статі, орфографічна помилка). Додайте <a target="_blank" href="%{url}">Своп таксонів</a> якщо вам потрібні інші зміни до назви.
       show:
         about_conservation_status_desc: |
           Охоронний статус підсумовує риск зникнення певної групи організмів.
@@ -6516,9 +6649,30 @@ uk:
         trending_desc: Найчастіше спостережені таксони за останній місяць
         trending_in_place_desc_html: 'Найчастіше спостережені таксони за останній місяць у такому місці: <a href="%{url}">%{place}</a>'
         wanted_desc: Види цього таксону, яких ще не спостерігали.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Щось пішло не так, намагаючись опублікувати ці теги: %{message}
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Ви впевнені, що хочете відновити цю зміну таксона?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Ви впевнені, що хочете відкликати цю зміну таксона?
       move_children_desc: |
         Нащадків вхідного таксону на рівні роду або вище буде перенесено до оновленого таксону; види, підвиди, різновиди, тощо будуть замінені на еквіваленти з новою родовою або видовою назвою.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Відновити
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: Відновлення
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Зняти
+      #state of an abandoned taxon change
+      withdrawn: Зняті
+      #state of a committed taxon change
+      committed: Зобов'язується
+      #state of a draft taxon change
+      draft: проект
+      #the status of a taxon change: draft, withdrawn or committed
+      status: статус
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7036,6 +7190,7 @@ uk:
       announcement:
         #Whether or not the announcement can be dismissed by people who see it
         dismissible: Звільнено
+        excludes_non_site: Приховуйте в цьому місці розташування інші оголошення, які не мають ідентифікатора сайту
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Як виключити спостерігачів із додатків
