@@ -668,7 +668,7 @@ namespace :inaturalist do
 
       batch.each do | api_endpoint_cache |
         next unless api_endpoint_cache.request_began_at
-        next if api_endpoint_cache.request_began_at > 7.day.ago
+        next if api_endpoint_cache.request_began_at > 7.days.ago
 
         if api_endpoint_cache.request_completed_at.nil?
           next unless api_endpoint_cache.request_began_at < 12.hours.ago
