@@ -815,6 +815,9 @@ tr:
       Bu tanımlamaların %%{percent} oranındaki örneklemine dayanarak, bunun %{child} tanımlamalarıyla <strong>%{count} istenmeyen anlaşmazlığa</strong> yol açacağını düşünüyoruz.
     other: |
       Bu tanımlamaların %%{percent} oranındaki örneklemine dayanarak, bunun %{child} tanımlamalarıyla <strong>%{count} istenmeyen anlaşmazlığa</strong> yol açacağını düşünüyoruz.
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Kanıtlara dayanarak, Topluluk Taksonu geliştirilebilir mi?
   batch: Toplu
   batch_edit: Toplu düzenle
   #Where x is the title of a list of taxa
@@ -1316,6 +1319,7 @@ tr:
   curating: Düzenleme
   curation: Düzenleme
   curator: Küratör
+  curators_with_most_ids_of_the_input_taxon: "Girdi taksonunun en çok tanımlamasına sahip küratörler"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist site küratörleri; iNaturalist'deki taksonomiyi yapan, kullanıcı içeriklerini düzenleyen ve denetleyen güvenilir gönüllülerdir. Site küratörleri, bir yandan taksonomiyi güncel tutarken diğer yandan iNaturalist'in uygun ve medeni şekilde işlemesinde etkin rol oynadıklarından dolayı iNaturalist'in vazgeçilmez parçasıdır. Aşağıda küratör olmanın ne demek olduğunu anlatan bir açıklama bulunuyor. Lütfen incele, eğer küratör olmak istersen <a href="/pages/curator+guide" target="_blank">Küratör Kılavuzu</a>nu baştan sona dikkatle gözden geçir ve sayfadaki başvuru formunu doldur.
@@ -7012,6 +7016,9 @@ tr:
         uuid: |
           Gözlem için evrensel benzersiz belirteç. Bkz: https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Bu sayfayı nasıl kullanacağınızı öğrenin ve iNaturalist'te tanımlamalara katkıda bulunun!
         review_all_tooltip: "Sayfadaki tüm gözlemleri incelendi olarak işaretle"
         you_reviewed_message: "Bu sayfadaki %{total} eşleşen gözlemden %{pageTotal} gözlemin %{reviewed} tanesini inceledin."
         unreview_all_tooltip: "Sayfadaki tüm gözlemler için incelendi durumunu kaldır"
