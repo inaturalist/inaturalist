@@ -17,6 +17,11 @@ hi:
     other: "<span class='count'>%{count}</span> शिकायत समाधान"
   #Label for an option to show any place
   any_place: कोई
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: क्या आप वाकई इस ध्वनि को हटाना चाहते हैं?
+  artificially_generated_content: कृत्रिम रूप से उत्पन्न सामग्री
+  artificially_generated_content_desc: इसमें ऐसी सामग्री शामिल है जो ज्यादातर या पूरी तरह से कृत्रिम बुद्धिमत्ता के माध्यम से उत्पन्न होती है।
+  community_taxon_matches_observation_taxon: सामुदायिक टैक्सोन अवलोकन टैक्सोन से मेल खाता है
   confirming_ids: आईडी की पुष्टि करना
   confirming_ids_description: |
     अगर आप इसे बंद कर देते हैं, तो आपको सहमति देने वाली आईडी के बारे में सूचित नहीं किया जाएगा
@@ -27,6 +32,14 @@ hi:
     परियोजना के लिए अवलोकन। यह सिर्फ के लिए डिफ़ॉल्ट सेटिंग है
     परियोजनाओं में अवलोकन। पर्यवेक्षक इसके लिए इसे बदलना भी चुन सकते हैं
     व्यक्तिगत अवलोकन।
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "वर्तमान सामुदायिक टैक्सोन: %{taxon}"
+  #Label for a button to delete a sound file
+  delete_sound: ध्वनि हटाएं
+  devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: रीसेट पासवर्ड टोकन अमान्य है। कृपया सबसे हाल ही में भेजे गए रीसेट पासवर्ड ईमेल में लिंक का उपयोग करें, या <a href="%{url}">एक नया अनुरोध करें</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     कृपया अपने ईमेल पते की पुष्टि करने के लिए नीचे दिए गए लिंक पर क्लिक करें। यदि आप अपने ईमेल की पुष्टि नहीं करते हैं
@@ -36,8 +49,19 @@ hi:
   disagreements: असहमति
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: उन टिप्पणियों को दिखाएं जिनकी असहमत पहचान है
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: दान करना
   #Title for a page to edit an announcement
   editing_announcement_x: संपादन घोषणा %{id}
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "ध्वनि अद्यतन करने में त्रुटि: %{sound_errors}"
+  evidence_accurately_depicts_organism_or_scene: साक्ष्य जीव या दृश्य को सटीक रूप से दर्शाते हैं
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: फ़ाइल स्वरूप
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: फ़ाइल URL
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "हेड्स अप: इस ध्वनि को ध्वजांकित किया गया है।"
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
@@ -56,12 +80,22 @@ hi:
   #A user who does not admin any projects
   non_project_admin: गैर-परियोजना व्यवस्थापक
   observation_fields_for_projects: परियोजनाओं के लिए अवलोकन क्षेत्र
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: इस जगह से जुड़े होने में एक दिन तक का समय लग सकता है।
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     स्थान 700,000 वर्ग किलोमीटर से बड़े नहीं हो सकते।
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    स्थान 70,000 वर्ग किलोमीटर से बड़े नहीं हो सकते।
   #user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     स्थानों में 200,000 से अधिक अवलोकन नहीं हो सकते।
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    स्थानों में 10,000 से अधिक अवलोकन नहीं हो सकते।
   #A user who admin's a project
   project_admin: प्रोजेक्ट व्यवस्थापक
   rank_levels:
@@ -74,9 +108,20 @@ hi:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: उप-प्रजाति / विविधता / रूप
+  sounds:
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: ध्वनि %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: ध्वनि हटा दी गई
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: छिपी हुई ध्वनि
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: ध्वनि छिपा हुआ
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: सदस्यता लें
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: अद्यतन ध्वनि
   user_trusts_this_project_when_added_by_any: |
     उपयोगकर्ता जोड़े गए टिप्पणियों के छिपे निर्देशांक के साथ प्रोजेक्ट क्यूरेटर पर भरोसा करता है
     किसी के द्वारा परियोजना के लिए।
@@ -103,10 +148,18 @@ hi:
         आपके खाते के समय क्षेत्र में यह घोषणा रुकने का समय
         दिखने। समय क्षेत्रों में लागू होता है, इसलिए हर कोई देखना बंद कर देगा
         यह एक ही समय में, उनके स्थानीय समय के सापेक्ष नहीं है।
+      excludes_non_site_desc: |
+        अगर आपकी घोषणा किसी साइट को लक्षित करती है (जो डिफ़ॉल्ट है यदि आप
+        साइट व्यवस्थापक), यह उन घोषणाओं को बाहर कर देगा जो सभी साइटों को लक्षित करती हैं
+        यह प्लेसमेंट।
       ip_countries_desc: |
         एकाधिक का चयन करने के लिए CMD- या SHIFT-क्लिक करें. "सभी" का चयन करना या नहीं बनाना
         एक चयन सभी उपयोगकर्ताओं को घोषणा दिखाएगा, भले ही
         आईपी देश।
+      exclude_ip_countries_desc: |
+        CMD- या SHIFT-क्लिक करें एकाधिक का चयन करने के लिए। चयनित देशों को नहीं दिखाया जाएगा
+        घोषणा। यदि IP देशों का चयन किया जाता है, तो चयनित IP देशों को बाहर निकालें
+        पूर्व से घटाया जाएगा।
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         ध्यान दें कि उपयोगकर्ता के सबसे हाल ही में बनाए गए निर्माण की तारीख
@@ -179,6 +232,35 @@ hi:
           अपना ईमेल कन्फ़र्म करने के बाद आप नए संदेश भेज पाएँगे
           पता, और तीन सत्यापन योग्य टिप्पणियों या तीन पहचानों को जोड़ा
           दूसरों के लिए। अभी के लिए, आप अन्य लोगों द्वारा आपको भेजे गए संदेश को पढ़ सकते हैं और उनका उत्तर दे सकते हैं.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          वही <strong>सामुदायिक टैक्सोन और अवलोकन टैक्सोन मैच</strong>
+          (उन दुर्लभ अवसरों के लिए जब अवलोकन टैक्सोन अधिक हो सकता है
+          सामुदायिक टैक्सोन से विशिष्ट)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          अवलोकन <strong>जीव का सटीक प्रमाण प्रस्तुत नहीं करता है या
+          दृश्य</strong> (उदाहरण के लिए कृत्रिम बुद्धिमत्ता का उपयोग जोड़ने, हटाने या बदलने के लिए किया गया था
+          छवि या ध्वनि में तत्व। शोर करना, स्टैकिंग पर ध्यान केंद्रित करना या बनाना
+          सेंसर की धूल को हटाने जैसे छोटे सुधार आमतौर पर ठीक होते हैं)।
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          आप मूल को यहां देख सकते हैं <a href="%{url}">%{url}</a>. कृपया
+          कॉपीराइट उल्लंघन झंडे को अनसुलझे के रूप में छोड़ दें यदि यह ध्वनि करती है
+          कॉपीराइट का उल्लंघन।
+    taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          आप केवल प्रजातियों के विशेषण में सीधे मामूली बदलाव कर सकते हैं (उदाहरण के लिए लिंग परिवर्तन, गलत वर्तनी)। एक जोड़ें <a target="_blank" href="%{url}">टैक्सोन स्वैप</a> यदि आपको नाम में अन्य परिवर्तनों की आवश्यकता है।
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        उन टैग को पोस्ट करने की कोशिश में कुछ गलत हो गया: %{message}
   number:
     format:
       significant: false
@@ -194,6 +276,7 @@ hi:
         exclude_donor_start_date: दाता शुरू होने की तारीख बहिष्कृत करें
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: दान देने वालों की खत्म होने की तारीख शामिल न करें
+        excludes_non_site: इस प्लेसमेंट में ऐसी अन्य घोषणाएँ छुपाएँ जिनमें कोई साइट ID नहीं है
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: पर्यवेक्षकों को ऐप्लिकेशन से बाहर करें

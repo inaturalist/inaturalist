@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TaxonRangesHelper
   def iucn_relationship_text( taxon_range_iucn_relationship )
     case taxon_range_iucn_relationship
@@ -12,46 +14,40 @@ module TaxonRangesHelper
     end
   end
 
-  def taxon_range_file_display_name( tr )
-    if tr.range_file_size.is_a? Numeric
-      filesize = "(#{ tr.range_file_size / 1000.to_f.round } KB)"
-    else
-      filesize = nil
+  def taxon_range_file_display_name( taxon_range )
+    filesize = if taxon_range.range_file_size.is_a? Numeric
+      "(#{taxon_range.range_file_size / 1000.to_f.round} KB)"
     end
-    if tr.range_file_name
-      filename = tr.range_file_name
+    filename = taxon_range.range_file_name || t( :range_file )
+    display_name = if filesize
+      [filename, filesize].join( " " )
     else
-      filename = t( :range_file )
+      filename
     end
-    if filesize
-      display_name = [filename, filesize].join(" ")
+    if taxon_range.range.url
+      link_to display_name, taxon_range.range.url
     else
-      display_name = filename
-    end
-    if tr.range.url
-      return link_to display_name, tr.range.url
-    else
-      return display_name
+      display_name
     end
   end
 
   def taxon_range_creator( taxon_range )
     if taxon_range.user_id == 0
-      return "iNat"
+      "iNat"
     elsif taxon_range.user
       link_to( taxon_range.user.login, taxon_range.user )
     else
-      return t( :deleted_user )
+      t( :deleted_user )
     end
   end
 
   def taxon_range_updater( taxon_range )
     if taxon_range.updater_id == 0
-      return "iNat"
+      "iNat"
     elsif taxon_range.updater
       link_to( taxon_range.updater.login, taxon_range.updater )
     else
-      return t( :deleted_user )
+      t( :deleted_user )
     end
   end
 end

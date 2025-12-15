@@ -216,20 +216,25 @@ class TaxonChange < ApplicationRecord
   class RankLevelError < StandardError; end
 
   def requires_approval?
-    if is_a?( TaxonDrop ) || is_a?( TaxonStage )
-      return false
-    end
+    return false if is_a?( TaxonDrop ) || is_a?( TaxonStage )
 
     single_input_taxon = is_a?( TaxonMerge ) ? input_taxa.first : input_taxon
-    plant_id = Taxon::ICONIC_TAXA_BY_NAME["Plantae"]&.id
-    if single_input_taxon.nil? || single_input_taxon.iconic_taxon_id.nil?
-      return false
-    end
-    if single_input_taxon.iconic_taxon_id == plant_id
-      return true
-    end
+    return false if single_input_taxon.nil?
 
-    false
+    plantae_iconic_taxon = Taxon::ICONIC_TAXA_BY_NAME["Plantae"]
+    return false unless plantae_iconic_taxon
+
+    tracheophyta = Taxon.where(
+      name: "Tracheophyta",
+      rank: "phylum",
+      iconic_taxon_id: plantae_iconic_taxon.id
+    ).first
+
+    return false unless tracheophyta
+
+    # Check if the input taxon descends from Tracheophyta
+    single_input_taxon.ancestor_ids.include?( tracheophyta.id ) ||
+      single_input_taxon.id == tracheophyta.id
   end
 
   # Override in subclasses

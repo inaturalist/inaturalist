@@ -570,6 +570,14 @@ et:
     Pead lisame detailsema kirjelduse sellest, mida ehitada soovid.
   app_owner_application_about_p1a_html: |
     iNaturalisti rakenduste kaudu on tuvstatud kasutajatel ligipääs iNaturalist rakendusliidesele. Seeläbi saad teha liidesele päringuid, mis võimaldavad näiteks luua vaatluseid või määratlusi. Enamasti kasutavad seda mobiili- või arvutirakendused, mis võimaldavad oma kasutaja(te)l luua iNaturalisti vaatluseid. Sellises sisuloomes peavad inimesed reaalselt osalema või seda vähemalt kontrollima. Palun loe meie <a href="/pages/community+guidelines" target="_blank">kogukonna reegleid</a>, mis keelavad masin-loodud vaatlused, määratlused ja kommentaarid.
+  app_owner_application_about_p2_html: |
+    Alates 2022. aastast nõuame API kliente teha soovivatele kasutajatele käsitsi kinnitust.
+    Kolmanda osapoole rakenduste loomiseks peate esmalt esitama taotluse
+    "Rakenduse omanik". See rakendus peaks kirjeldama teie pakutud rakenduse funktsioone
+    ja kuidas kavatsete seda kasutada. Taotluse esitamiseks peab teie konto olema aadressil
+    vähemalt 2 kuud vana ja peab olema teinud vähemalt 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">identifitseerimise parandamine</a> viimase kuu jooksul. Võime küsida järelmeetmeid
+    küsimusi teie plaani kohta ja jätame endale õiguse taotlused mis tahes põhjusel tagasi lükata.
   app_owner_application_inelligible: |
     Avalduse esitamiseks peab sinu konto olema vähemalt kaks kuud vana ning selle kaudu peab olema tehtud viimase kuu jooksul vähemalt 10 täiendavat määratlust.
   app_owner_application_fields_explanation_html: Kirjelda oma rakenduse tööpõhimõtet ning seda, kuidas kavatsed seda kasutada.
@@ -652,6 +660,8 @@ et:
   are_you_sure_you_want_to_delete_this_assessment?: Oled sa kindel, et soovid seda hinangut kustutada?
   are_you_sure_you_want_to_delete_this_photo?: Oled sa kindel, et soovid seda fotot kustutada?
   are_you_sure_you_want_to_delete_this_post: Oled sa kindel, et soovid seda postitust kustutada?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Kas olete kindel, et soovite selle heli kustutada?
   are_you_sure_you_want_to_delete_this_taxon_change: Oled sa kindel, et soovid seda taksonimuudatust kustutada?
   are_you_sure_you_want_to_remove_all_tags: Oled sa kindel, et soovid eemaldada kõik märksõnad?
   are_you_sure_you_want_to_remove_curator: Oled sa kindel, et soovid kasutajalt %{user} võtta ära kuraatori õigused?
@@ -664,6 +674,8 @@ et:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Oled sa kindel, et soovid selle vaatluse eemaldada projektist %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Oled sa kindel, et soovid eemaldada selle taksoni koha %{place} kontrollnimekirjast?"
+  artificially_generated_content: Kunstlikult loodud sisu
+  artificially_generated_content_desc: Sisaldab sisu, mis on enamasti või täielikult loodud tehisintellekti abil.
   associated_observations: Seotud vaatlused
   associated_taxa: Seotud taksonid
   attention: Tähelepanu
@@ -720,7 +732,6 @@ et:
   back_to_all_species: Tagasi kõigi liikide juurde
   back_to_editing_observation: Tagasi vaatlust muutma
   back_to_friends: Tagasi sõprade juurde
-  back_to_flags_html: "&laquo; Tagasi märkuste juurde"
   back_to_lists: "Tagasi kasutaja %{name} nimekirjadesse"
   back_to_observation: Tagasi vaatluse juurde
   back_to_observation_fields: Tagasi vaatluse väljade juurde
@@ -755,8 +766,6 @@ et:
       Nende määratluste valimi põhjal (%{percent}%) arvame, et selle muutuse tulemusena tekiks alamtaksoni %{child} määratluste hulgas <strong>%{count} tahtmatu erimeelsus</strong>.
     other: |
       Nende määratluste valimi põhjal (%{percent}%) arvame, et selle muutuse tulemusena tekiks alamtaksoni %{child} määratluste hulgas <strong>%{count} tahtmatut erimeelsust</strong>.
-  based_on_the_evidence_can_id_be_improved: |
-    Kas vastavalt tõenditele saab kogukondliku määratluse kinnitada või seda parandada?
   batch: Komplekt
   batch_edit: Muuda komplektina
   #Where x is the title of a list of taxa
@@ -984,6 +993,7 @@ et:
   community_id_is_precise: Kogukondlikult määratud takson on täpne
   community_moderation_settings: Kogukonna modereerimissätted
   community_supported_id: Kogukonna toel määramine?
+  community_taxon_matches_observation_taxon: Ühenduse takson vastab vaatlustaksonile
   compare: Võrdle
   compare_with: Võrdle
   comparing: võrdlen
@@ -1050,6 +1060,12 @@ et:
     url: Staatust kirjeldava lehe URL.
     geoprivacy: |
       Selle taksoni vaikimisi geoprivaatsus. Pane tähele, et kontinendi riigi või osariigiga seotud staatus võib globaalse või kõrgema tasema kohaga seotud geoprivaatsuse ümber muuta.
+    iucn: |
+      Samaväärne IUCNi punase raamatu kood. See ei ole tegelik IUCNi hinnang,
+      ainult IUCNi kood, mis vastab kõige paremini koordinaatide avalikustamise ohule
+      see staatus eeldab. See alistab geoprivaatsuse, kui see on "Vähim
+      Mure" või allpool, nii et kui soovite selle kohta tähelepanekuid varjata
+      takson, määrake selle väärtuseks "Peaaegu ohustatud" või kõrgem.
   conservation_status_geoprivacy_desc: |
     Vaikimisi geoprivaatsus, mis määratakse kõigile antud kohas tehtud selle taksoni vaatlustele.
   contact_support: Klienditugi
@@ -1344,6 +1360,8 @@ et:
     tähelepanekud projektides. Vaatlejad võivad seda ka muuta
     individuaalsed tähelepanekud.
   curator_identification: Kuraatoritunnus
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Praegune ühenduse takson: %{taxon}"
   current_flags: Praegused märkused
   #Label for a custom boundary for an observation search
   custom_boundary: Erikujuline piirjoon
@@ -1355,6 +1373,11 @@ et:
   daily_users: Kasutajaid päevas
   danger_zone: Ohtlikud valikud
   dashboard: Töölaud
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Jah! Tahaksin osaleda."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Tuvastamislünkade piloot: vajab ID-d otsitavaid liike"
   data_deficient: Puudulikud andmed
   data_quality: Andmete kvaliteet
   data_quality_assessment: Andmete kvaliteedihinnang
@@ -1445,6 +1468,8 @@ et:
   #Label for a button to delete a taxon range
   delete_range: Kustuta vahemik
   delete_selected: Kustuta valitud
+  #Label for a button to delete a sound file
+  delete_sound: Heli kustutamine
   delete_taxon_and_merge_most_data_html: |
     Kustuta takson <i>%{taxon}</i> ja liida enamus selle andmeid mõne teise taksoniga. Kasuta seda tööriista <strong>topelt taksonite</strong> eemaldamiseks. Kui soovid eemaldada vananenud sünonüümi, algata taksonite vahetus <strong>OLE ETTEVAATLIK!</strong> Taksonite kustutamine võib olla väga suurte tagajärgedega. Loe lisainfoks <a href="%{curator_url}">Kuraatorite juhist</a>.
   delete_user: Kustuta kasutaja
@@ -1487,6 +1512,8 @@ et:
         Palun kontrolli oma e-posti ja vajuta oma konto kinnitamiseks saadud kirjas olevale lingile.
       user:
         suspended: Sinu konto on deaktiveeritud
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Parooli lähtestamise luba on kehtetu. Palun kasutage linki viimati saadetud parooli lähtestamise e-kirjas või <a href="%{url}">Taotlege uut</a>.
     sessions:
       signed_in: 'Sisenemine õnnestus.'
       signed_out: 'Välja logimine õnnestus.'
@@ -1579,6 +1606,8 @@ et:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: ANNETA
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Annetada
   donate_again_caps: ANNETA UUESTI
   donate_again_today_caps: ANNETA JUBA TÄNA UUESTI
   done: Lisa
@@ -1709,6 +1738,8 @@ et:
   eol: EOL
   eol_collection_url: "EOL-i kollektsiooni URL"
   error_updating_photo: "Foto uuendamine ebaõnnestus: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Viga heli värskendamisel: %{sound_errors}"
   establishment:
     endemic: Endeemiline
     establishment: Asutus
@@ -1764,6 +1795,7 @@ et:
   extinct: väljasurnud
   extinct_in_the_wild: Looduses väljasurnud
   extra_properties: Lisaomadused
+  evidence_accurately_depicts_organism_or_scene: Tõendid kujutavad täpselt organismi või stseeni
   evidence_of_organism: Tõendid organismi kohta
   facebook: Facebook
   failed_to_find_your_location: Sinu asukohta ei leitu.
@@ -1795,7 +1827,11 @@ et:
   fields_can_only_be_edited_by_the_people_who: Välju saavad muuta ainult need loonud kasutajad ja lehe kuraatorid
   fields_merged: Väljad ühendatud
   file: Fail
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Failivorming
   file_size: Faili suurus
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Faili URL
   file_should_be_in_the_following_format: "Fail peaks olema formaadis: taksoni nimi, kirjeldus"
   fill_out_project_observation_fields: Täida projekti vaatlusväljad
   fill_out_your_profile: täida oma profiil
@@ -1873,7 +1909,6 @@ et:
   flag_marked_as_resolved_html: '<span class="meta">Märkus</span> <strong>on lahendatud.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
-  flag_reason: "&ldquo;Lisan märkuse objektile %{record}, sest"
   flag_resolution: Otsus
   flag_saved: Märkus salvestatud
   flag_saved_thanks_html: Märkus salvestatud. Täname! <a href="%{url}" class="readmore">Vaata märkust</a>
@@ -2025,6 +2060,8 @@ et:
     one: "<strong>Pane tähele:</strong> kavandamisel on %{count} taksonimuudatus, mis kasutab samu sisendtaksoneid:"
     other: "<strong>Pane tähele:</strong> kavandamisel on %{count} taksonimuudatust, mis kasutavad samu sisendtaksoneid:"
   heads_up_this_photo_has_been_flagged: "PANE TÄHELE: see foto on varustatud märkusega."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: see heli on märgistatud."
   heads_up_this_photo_is_already_associated_with: "Pane tähele: see foto on juba seotud <a target='_blank' href='%{url}'>teise vaatlusega</a>"
   heads_up_you_have_multiple: "Pane tähele: Sul vastab mitu taksonoomilist masin-märksõna identsetele kategooriatele. Allpool on nad tasemete kaupa värviga eristatud."
   help: Abi
@@ -3390,6 +3427,8 @@ et:
       zone: tsoon
   place_guess: oletatud koht
   place_imported: Koht imporditud!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Vaatluste seostamiseks selle kohaga võib kuluda kuni päev.
   place_must_have_a_boundary_defined: Kohal peab olema paikapandud piir.
   place_name: Kohanimi
   place_notes: Koha märkused
@@ -4128,7 +4167,15 @@ et:
     select_one_or_more_sounds: Vali üks või enam heli
     selected_sounds: Vali helid
     sound: Heli
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Heli %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Heli kustutatud
     sound_has_been_flagged: Sellele helile on lisatud märkus.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Heli peidetud
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Heli varjamata
     soundcloud_replied_with_an_error: SoundCloud saatis veateate. Palun proovi hiljem uuesti.
     sounds: Helid
     your_soundcloud_account: oma SoundCloud konto
@@ -4586,6 +4633,8 @@ et:
   updated_by: Täiendanud
   updated_daily: Uuendatakse iga päev
   updated_photo: Uus foto
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Uuendatud heli
   upload: Lae üles
   upload_a_csv_file: Lae CSV-fail üles
   upload_a_csv_file_with_observation: |
@@ -4972,6 +5021,7 @@ et:
   you_faved_this: Määrasid lemmikuks!
   you_have_left_x_project: "Lahkusid projektist %{project}"
   you_have_not_confirmed_your_email_address: Sa ei ole enda e-posti aadressit kinnitanud!
+  you_havent_joined_any_projects: Sa pole liitunud ühegi projektiga
   you_havent_linked_your_inaturalist_google_account: "Sa ei ole oma lehe %{site_name} kontot ja Google kontot veel ühendanud"
   you_joined_this_project: Ühinesid projektiga!
   you_must_be_a_member_of_this_project_to_do_that: Pead selleks olema antud projekti liige
@@ -5052,10 +5102,18 @@ et:
         Kellaaeg teie konto ajavööndis, mille jooksul see teade peatatakse
         Ilmumist. Kehtib ajavööndite lõikes, nii et kõik ei näe enam
         seda samal ajal, mitte nende kohaliku aja suhtes.
+      excludes_non_site_desc: |
+        Kui teie teadaanne sihib saiti (mis on vaikimisi, kui olete
+        Saidi administraator), välistab see teadaanded, mis sihivad kõiki saite
+        see paigutus.
       ip_countries_desc: |
         CMD- või SHIFT-klõpsake mitme valimiseks. "Kõik" valimine või mitte tegemine
         valik näitab teadaannet kõigile kasutajatele, olenemata sellest, kas
         IP riik.
+      exclude_ip_countries_desc: |
+        CMD- või SHIFT-klõpsake mitme valimiseks. Valitud riike ei kuvata
+        teadaanne. Kui valitud on IP-riigid, valige Välista IP-riigid
+        lahutatakse esimesest.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Pange tähele, et kasutaja viimati loodud
@@ -5139,10 +5197,6 @@ et:
       tips_check_email_filters: Kontrollige, kas olete teinud filtreid, mis võivad meie e-kirjad teie postkastist eemaldada #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Rämpsposti kausta kontrollimine
       your_site_account_has_no_email: Sinu %{site_name} kontoga pole seotud e-posti aadressi.
-    flags:
-      show:
-        flags_that_should_not_be_resolved_desc_html: |
-          Palun märgi <code>rämpspost</code> ja <code>autoriõiguste rikkumine</code> märkused lahendatuks vaid siis, kui sisu pole rämpspost või ei sisalda autoriõiguste rikkumist.
     guides:
       index:
         funding2_html: |
@@ -5391,6 +5445,17 @@ et:
         data_quality_assessment_desc3_html: |
           Kvaliteedihinnang võtab kokku iNaturalisti vaatluste selguse, täpsuse, täielikkuse, olulise ja sobivuse bioloogilist mitmekesisust kajastavate andmetena. Mõningaid omadusi määratakse automaatselt, kuid teiste puhul hääletavad iNati kasutajad. iNaturalist jagab "Teaduskõlbulikke" vaatluseid erinevate andmepartneritega teadustöös ja keskkonnahoius kasutamiseks.
         disagreement_count_desc: "Taksoni alamtaksonite seas mitte olevate määratluste hulk"
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Ühenduse takson ja vaatlustakson vastavad</strong>
+          (neil harvadel juhtudel, kui vaatlustakson võib olla rohkem
+          spetsiifiline kui ühenduse takson)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Tähelepanek <strong>ei esita täpseid tõendeid organismi või
+          Stseen</strong> (nt tehisintellekti kasutati lisamiseks, eemaldamiseks või asendamiseks
+          elemendid pildis või helis. Müra vähendamine, fookuse virnastamine või tegemine
+          väikesed parandused, nagu anduri tolmu eemaldamine, on tavaliselt OK).
         identification_count_desc: 'Selle konkreetse taksoni määratluste hulk'
         flagged_photos_desc_html: |
           Mõnedele neist fotodest on lisatud märge ebasobiva sisu või autoriõiguste rikkumise kohta. Loe täpsemalt: %{links}
@@ -5691,6 +5756,14 @@ et:
       not_found:
         sorry_that_doesnt_exist: Vabandust, seda ei eksisteeri!
         even_our_dedicated_search_mole_couldnt: Ka meie pühendunud otsingumootor ei suutnud midagi leida!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Originaaliga saate tutvuda aadressil <a href="%{url}">%{url}</a>. Palun
+          Jätke autoriõiguste rikkumise lipud lahendamata, kui see heli seda teeb
+          rikkuda autoriõigusi.
     stats:
       index:
         active_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari või postituse
@@ -5782,6 +5855,9 @@ et:
           "Täielik" takson sisaldab <em>kõiki</em> selle teadaolevaid alamtaksoneid, mis vastavad iNaturalisti taksonite kureerimise reeglitele hoolimata sellest, kas neid on vaadeldud või mitte. Praegusel hetkel saavad ainult administraatorid määrata mõne taksoni täielikuks.
         complete_rank_desc_html: |
           Tase milleni see takson on täielik. Kui see sugukond sisaldab kõiki perekondi, kuid mitte kõiki liike, märgitaks siia "perekond". Vaikimisi valik on liik.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Liigiepiteedi otseses osas saab teha ainult väiksemaid muudatusi (nt soomuutused, õigekirjaviga). Lisage <a target="_blank" href="%{url}">taksonite vahetus</a> kui vajate nimes muid muudatusi.
       show:
         about_conservation_status_desc: |
           Kaitsestaatus võtab kokku organismidegrupi hävimisohu.
@@ -5822,6 +5898,9 @@ et:
         trending_desc: Viimased kuu jooksul enimvaadeldud taksonid
         trending_in_place_desc_html: Viimased kuu jooksul enimvaadeldud taksonid kohas <a href="%{url}">%{place}</a>
         wanted_desc: Selle taksoni liigid, mida pole veel vaadeldud.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Nende siltide postitamisel läks midagi valesti: %{message}
     taxon_changes:
       move_children_desc: |
         Sisendtaksoni alamtaksonid, mis on perekonnad või sellest kõrgemal tasemel, liigutatakse väljundi alla; liigid, alamliigid, teisendid, jne vahetatakse uue perekonna või liigi nimetusele vastavateks nimetusteks.
@@ -6177,6 +6256,7 @@ et:
         exclude_donor_start_date: Doonori väljajätmise alguskuupäev
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Doonori lõppkuupäeva väljajätmine
+        excludes_non_site: Peida sellel paigutusel olevad muud teadaanded, millel pole saidi ID-d
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Vaatlejate välistamine rakendustest

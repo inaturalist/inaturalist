@@ -150,6 +150,14 @@ af:
   animals: Diere
   #Label for an option to show any place
   any_place: Enige
+  app_owner_application_about_p2_html: |
+    Vanaf 2022 vereis ons handmatige goedkeuring vir gebruikers wat API-kliënte wil maak.
+    Om derdeparty-toepassings te skep, moet jy eers 'n aansoek indien om te word
+    'n "app-eienaar." Hierdie toepassing moet die funksionaliteit van jou voorgestelde toepassing beskryf
+    en hoe jy beplan om dit te gebruik. Om 'n aansoek in te dien, moet u rekening by
+    minstens 2 maande oud en moet ten minste 10 gemaak het <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Verbetering van identifikasies</a> in die laaste maand. Ons kan opvolg vra
+    vrae oor jou plan en ons behou die reg voor om aansoeke om enige rede van die hand te wys.
   app_owner_application_inelligible: |
     Om 'n aansoek in te dien moet jou rekening minstens 2 maande oud wees en minstens 10 verbeterende identifiserings gemaak het in die afgelope maand.
   appropriate?: Van toepassing?
@@ -163,11 +171,15 @@ af:
   are_you_sure_want_delete_this_name: Is jy seker jy wil hierdie naam uitvee?
   are_you_sure_you_want_to_delete_this: Is jy seker jy wil hierdie uitvee?
   are_you_sure_you_want_to_delete_this_photo?: Is jy seker jy wil hierdie foto uitvee?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Wil u definitief hierdie klank uitvee?
   are_you_sure_you_want_to_remove_from_project: Is jy seker jy wil %{user} van hierdie projek verwyder?
   are_you_sure_you_want_to_remove_manager: Is jy seker jy wil %{user} as bestuurder verwyder?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Is jy seker jy wil hierdie %{x} taksa verwyder?"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Is jy seker jy wil hierdie waarneming vanaf %{project} verwyder?
+  artificially_generated_content: Kunsmatig gegenereerde inhoud
+  artificially_generated_content_desc: Bevat inhoud wat meestal of geheel en al deur kunsmatige intelligensie gegenereer word.
   attention: Let op
   you_sure_delete_list: Is jy seker jy wil hierdie lys uitvee?
   assessment: assessering
@@ -258,6 +270,7 @@ af:
   community_id_at_species_or_lower?: Gemeenskap takson op spesievlak of laer?
   community_id_at_species_level_or_lower: Gemeenskap takson op spesievlak of laer
   community_id_is_precise: Gemeenskap takson is presies
+  community_taxon_matches_observation_taxon: Gemeenskapstakson stem ooreen met waarnemingstakson
   compare: Vergelyk
   compare_with: Vergelyk met
   comparing: besig om te vergelyk
@@ -278,6 +291,13 @@ af:
     met joune, tensy hulle bykomende opmerkings het.
   conservation_status_deleted: Bewaringstatus uitgevee
   conservation_status_updated: Bewaringstatus opgedateer
+  conservation_status_descriptions:
+    iucn: |
+      Ekwivalente IUCN Rooi Lys kode. Dit is nie die werklike IUCN-assessering nie,
+      net die IUCN-kode wat die beste ooreenstem met die bedreiging van koördinaatopenbaarmaking
+      geïmpliseer deur hierdie status. Dit sal die geoprivaatheid ignoreer as dit "Minste
+      Bekommernis" of hieronder, so as jy waarnemings hiervan wil verberg
+      takson, stel dit op "Naby bedreig" of hoër.
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Inhoud
   content_hidden: Inhoud weggesteek
@@ -353,9 +373,16 @@ af:
     die waarneming van die projek. Hierdie is net die verstekinstelling vir
     waarnemings in projekte. Waarnemers kan ook kies om dit te verander vir
     individuele waarnemings.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Huidige gemeenskapstakson: %{taxon}"
   #Button to customize projects that appear in the header
   customize__projects: Pasmaak
   dashboard: Paneelbord
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ja! Ek wil graag deelneem."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Identifikasiegapingsloods: Benodig ID gesoekte spesies"
   date_: Datum
   date_format:
     month:
@@ -388,8 +415,14 @@ af:
   #Default option
   default_: Verstek
   definitions: Definisies
+  #Label for a button to delete a sound file
+  delete_sound: Skrap klank
   description: Beskrywing
   desription: Beskrywing
+  devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Die herstelwagwoordbewys is ongeldig. Gebruik asb. die skakel in die mees onlangs gestuurde e-pos met die terugstel van wagwoord, of <a href="%{url}">Versoek 'n nuwe een</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Klik asseblief op die skakel hieronder om jou e-posadres te bevestig. As jy nie jou e-pos bevestig nie
@@ -400,6 +433,8 @@ af:
   disagreements: Meningsverskille
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Wys waarnemings wat nie saamstem nie
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Skenk
   edit_observations: Redigeer waarnemings
   #Title for a page to edit an announcement
   editing_announcement_x: Redigeer tans aankondiging %{id}
@@ -407,7 +442,10 @@ af:
   email_notifications: E-poskennisgewings
   end: Einde
   endemic: Endemies
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Fout met opdatering van klank: %{sound_errors}"
   explore: Verken
+  evidence_accurately_depicts_organism_or_scene: Bewyse beeld organisme of toneel akkuraat uit
   facebook: Facebook
   Family: Familie
   #Header for a section showing the user's favorite projects
@@ -417,6 +455,10 @@ af:
     Kies tot sewe projekte wat as skakels in die opskrif verskyn. Bywerkings
     sal verskyn nadat die bladsy verfris is.
   favorites: "Gunstelinge"
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Lêerformaat
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Lêer URL
   filter: Filter
   find: Vind
   #Adjective, as in a fluid layout of images
@@ -432,6 +474,8 @@ af:
   grid: Rooster
   group: Groep
   guides: Gidse
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UP: hierdie geluid is gemerk."
   help: Help
   help_translate!: Help met Vertaling!
   high: Hoog
@@ -703,6 +747,8 @@ af:
       time_zone: tydsone
       Town: Dorp
       town: dorp
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Dit kan tot 'n dag neem voordat waarnemings met hierdie plek geassosieer word.
   places: Plekke
   places_name:
     albania: Albanië
@@ -816,6 +862,14 @@ af:
   some_rights_reserved: sommige regte voorbehou
   sounds:
     sound: Klank
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Klank %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Klank geskrap
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Klink weggesteek
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Klank nie weggesteek nie
     sounds: Klanke
   source: Bron
   source_: 'Bron:'
@@ -865,6 +919,8 @@ af:
     Deur hierdie opsie te kies, sal jou nuwe lisensiekeuse op al jou toegepas word
     bestaande klanke. Dit kan 'n paar uur neem as jy baie het
     Klanke.
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Opgedateerde klank
   upload: Oplaai
   user: Gebruiker
   user_blocked: Gebruiker geblokkeer
@@ -920,10 +976,18 @@ af:
         Tyd in jou rekening tydsone wat hierdie aankondiging sal stop
         Verskyn. Is van toepassing oor tydsones, sodat almal sal ophou sien
         dit terselfdertyd, nie relatief tot hul plaaslike tyd nie.
+      excludes_non_site_desc: |
+        As jou aankondiging op 'n webwerf gerig is (wat die verstek is as jy 'n
+        Site Admin), sal dit aankondigings uitsluit wat op alle werwe in
+        hierdie plasing.
       ip_countries_desc: |
         CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
         'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
         IP-land.
+      exclude_ip_countries_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Geselekteerde lande sal nie gewys word nie
+        die aankondiging. As IP-lande gekies is, kies Sluit IP-lande uit
+        sal van eersgenoemde afgetrek word.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Let daarop dat die skeppingsdatum van die gebruiker se mees onlangse geskep
@@ -1045,14 +1109,38 @@ af:
     observations:
       community_id:
         score: Telling
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          Die <strong>Gemeenskapstakson- en waarnemingstaksonwedstryd</strong>
+          (vir die seldsame geleenthede wanneer die waarnemingstakson meer kan wees
+          spesifiek as die Gemeenskapstakson)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Die waarneming <strong>bied nie akkurate bewyse van die organisme of
+          Toneel</strong> (bv. kunsmatige intelligensie is gebruik om by te voeg, te verwyder of te vervang
+          elemente in die beeld of klank. Ontnou, fokus stapel of maak
+          klein oplossings soos die verwydering van sensorstof is gewoonlik OK).
     projects:
       edit:
         submission_models:
           any: enigiemand
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          U kan die oorspronklike sien by <a href="%{url}">%{url}</a>. Asseblief
+          Laat kopieregskendingsvlaggies as onopgelos as hierdie klank dit wel doen
+          inbreuk maak op kopiereg.
     stats:
       year:
         translators_title: Vertalers
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          U kan slegs geringe veranderinge direk aan die spesiebynaam aanbring (bv. geslagsveranderinge, spelfoute). Voeg 'n <a target="_blank" href="%{url}">Takson-ruil</a> as u ander veranderinge aan die naam benodig.
       show:
         frequency:
           verifiable: Verifieerbaar
@@ -1069,8 +1157,37 @@ af:
           inhoud van Wikipedia</a>. Jy kan help deur die bladsy te wysig op
           Wikipedia om dit geskik te maak vir hierdie takson, of deur dit te merk
           takson om dit onder die aandag van terreinkurators te bring.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Iets het verkeerd geloop om die etikette te plaas: %{message}
     users:
       edit:
+        block_desc_blocking_someone_prevents: |
+          Deur iemand te blokkeer, verhoed hulle om vir jou boodskappe te stuur en kommentaar te lewer op jou
+          waarnemings, die identifisering van u waarnemings en andersins interaksie
+          saam met jou aan %{site_name}. Dit verwyder ook hul waarnemings uit jou
+          soekresultate en verwyder jou waarnemings uit hul soektog
+          Resultate. Dit maak jou egter nie vir hulle onsigbaar nie. Hulle kan
+          steeds jou waarnemings vind en jou profiel bekyk, hulle kan net nie
+          interaksie met jou.
+        block_desc_blocking_is_for_situations: |
+          Blokkering is vir situasies waar jy net nie oor die weg kan kom nie
+          iemand en hulle sal jou nie alleen los nie, ten spyte van jou beste pogings om
+          geskille op 'n beskaafde wyse besleg. Dit is nie 'n manier om weg te kruip nie
+          mense, om identifikasies te voorkom van mense wie se opinies jy
+          moenie vertrou nie, of om die gemeenskaps-ID te onttrek (daar is nog een
+          instelling daarvoor). Dus werk blokkering beide kante: as jy blokkeer
+          iemand, hulle kan nie met jou kommunikeer nie, maar jy kan ook nie interaksie hê nie
+          saam met hulle. As jy dit misbruik om te verhoed dat iemand jou identifiseer
+          waarnemings, verhoed jy ook dat jy hul
+          Waarnemings.
+        block_desc_you_can_only_block_html: |
+          Jy kan net drie mense blokkeer. Ons dink dit is 'n redelike
+          nommer wat die mense akkommodeer wat geblokkeer moet word terwyl
+          voorkoming van misbruik van blokkering. As jy voel jy moet meer blokkeer
+          mense, asseblief <a href="mailto:%{help_email}">Kontak Ons</a>.
+        block_desc_there_are_two_exceptions: |
+          Daar is twee situasies waar blokkering nie interaksie voorkom nie:
         errors:
           #error message when a user attempts to update their profile picture using
           #an image that has an unsupported file type
@@ -1185,6 +1302,7 @@ af:
         exclude_donor_start_date: Sluit skenker se begindatum uit
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Sluit skenker se einddatum uit
+        excludes_non_site: Versteek ander aankondigings in hierdie plasing wat geen werf-ID het nie
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Sluit waarnemers van programme uit

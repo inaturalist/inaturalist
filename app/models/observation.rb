@@ -1933,10 +1933,15 @@ class Observation < ApplicationRecord
   end
 
   def set_community_taxon(options = {})
+    old_community_taxon_id = community_taxon_id
     community_taxon = get_community_taxon(options)
     self.community_taxon = community_taxon
     if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
       self.species_guess = ( community_taxon.common_name( user: user ).try( :name ) || community_taxon.name )
+    end
+    # Reset needs_id votes when community_taxon changes
+    if community_taxon_id_changed? && old_community_taxon_id != community_taxon_id
+      reset_needs_id_votes
     end
     true
   end
@@ -3350,6 +3355,14 @@ class Observation < ApplicationRecord
     quality_grade == CASUAL
   end
 
+  def reset_needs_id_votes
+    ActsAsVotable::Vote.where(
+      votable_type: "Observation",
+      votable_id: id,
+      vote_scope: "needs_id"
+    ).delete_all
+  end
+
   def flagged_with(flag, options)
     quality_grade_will_change!
     save
@@ -3545,5 +3558,34 @@ class Observation < ApplicationRecord
       priority: INTEGRITY_PRIORITY,
       unique_hash: { "Observation::elastic_index": id }
     ).elastic_index!( ids: [id] )
+  end
+
+  def dqa_stats_as_indexed_json
+    dqa_stats = {}
+    quality_metrics.group_by( &:metric ).each do | metric, metrics |
+      metric_votes_for = metrics.filter( &:agree ).size
+      metric_votes_against = metrics.size - metric_votes_for
+      metric_votes_tally = metric_votes_for - metric_votes_against
+      dqa_stats[metric] = {
+        vote_score: metric_votes_tally,
+        pass: metric_votes_tally > 0,
+        fail: metric_votes_tally < 0
+      }
+    end
+    needs_id_votes = votes_for.select {| v | v.vote_scope == "needs_id" }
+    if needs_id_votes.any?
+      needs_id_votes_for = needs_id_votes.filter( &:vote_flag ).size
+      needs_id_votes_against = needs_id_votes.size - needs_id_votes_for
+      needs_id_votes_tally = needs_id_votes_for - needs_id_votes_against
+      dqa_stats["needs_id"] = {
+        vote_score: needs_id_votes_tally,
+        pass: needs_id_votes_tally > 0,
+        fail: needs_id_votes_tally < 0
+      }
+    end
+
+    dqa_stats.map do | metric, stats |
+      stats.merge( { metric: metric } )
+    end
   end
 end

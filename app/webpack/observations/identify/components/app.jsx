@@ -12,6 +12,7 @@ import FlaggingModalContainer from "../containers/flagging_modal_container";
 import DisagreementAlertContainer from "../containers/disagreement_alert_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 import FlashMessage from "../../show/components/flash_message";
+import WebinarBannerContainer from "../containers/webinar_banner_container";
 import ConfirmModalContainer from "../../../shared/containers/confirm_modal_container";
 import ProjectFieldsModalContainer from "../containers/project_fields_modal_container";
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
@@ -27,6 +28,7 @@ const App = ( { sideBarHidden, setSideBarHidden, config } ) => (
         html
       />
     ) }
+    <WebinarBannerContainer />
     <Grid fluid>
       <Row>
         <Col xs={12}>

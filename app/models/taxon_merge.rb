@@ -34,6 +34,8 @@ class TaxonMerge < TaxonChange
 
   def commit
     super
+    return if status_pending? || status_draft?
+    
     input_taxa.each do |input_taxon|
       #duplicate photos
       input_taxon.taxon_photos.sort_by(&:id).each do |taxon_photo|

@@ -3,10 +3,10 @@
     = title
     %span.small.meta.ui
       = surround "(",")" do
-        = link_to_function t(:all), "$('##{table_id} :checkbox').prop('checked', true)"
+        = link_to_function t(:all), "$('##{table_id} :checkbox').prop('checked', true).trigger( 'change' )"
         %span.meta
           |
-        = link_to_function t(:none), "$('##{table_id} :checkbox').prop('checked', false)"
+        = link_to_function t(:none), "$('##{table_id} :checkbox').prop('checked', false).trigger( 'change' )"
   %table{ id: table_id }
     - for grp in observation_fields.in_groups_of( 4 )
       %tr

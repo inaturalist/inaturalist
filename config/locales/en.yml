@@ -944,8 +944,9 @@ en:
     other: |
       Based on a sample of %{percent}% of these IDs, we estimate that this will
       result in <strong>%{count} unintended disagreements</strong> with IDs of %{child}.
-  based_on_the_evidence_can_id_be_improved: |
-    Based on the evidence, can the Community Taxon still be confirmed or improved?
+  # A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Based on the evidence, can the Community Taxon be improved?
   batch: Batch
   batch_edit: Batch edit
   # Where x is the title of a list of taxa
@@ -1498,6 +1499,7 @@ en:
   curating: Curating
   curation: Curation
   curator: Curator
+  curators_with_most_ids_of_the_input_taxon: "Curators with most IDs of the input taxon"
   # A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist site curators are trusted volunteers who have the ability to
@@ -6875,6 +6877,7 @@ en:
   you_faved_this: You faved this!
   you_have_left_x_project: "You have left %{project}"
   you_have_not_confirmed_your_email_address: You have not confirmed your email address!
+  you_havent_joined_any_projects: You haven't joined any projects
   you_havent_linked_your_inaturalist_google_account: "You haven't linked your %{site_name} account and your Google account yet"
   you_joined_this_project: You joined this project!
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
@@ -7250,10 +7253,11 @@ en:
           The flaggable content is the primary text attribute of the flagged
           object at the time the flag was created. Only curators and staff can
           see this. Only staff can see this for messages.
-        flags_that_should_not_be_resolved_desc_html: |
-          Please resolve <code>spam</code> and <code>copyright
-          infringement</code> flags only if the content is not spam or not an
-          infringement of copyright, respectively.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Please resolve <code>spam</code>, <code>copyright
+          infringement</code>, and <code>artificially generated content</code>
+          flags only if the content is not spam, not an infringement of
+          copyright, or not artificially generated, respectively.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -8028,6 +8032,9 @@ en:
           Universally unique identifier for the observation. See
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        # message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Learn how to use this page and contribute identifications on iNaturalist!
         review_all_tooltip: "Mark all observations on the page as reviewed"
         you_reviewed_message: "You reviewed %{reviewed} of %{pageTotal} observations on this page out of %{total} matching observations."
         unreview_all_tooltip: "Remove reviewed status for all observations on the page"
@@ -8944,6 +8951,20 @@ en:
         recent_w_7_obs_desc: Signed up in prev 7 days and added >= 7 obs
         # label for chart legend, linking to more information on the Seek app
         seek_desc_html: Created via <a href="%{url}">Seek</a>
+        today_identified_by_others: Observations Identified By Others (1 day)
+        today_identified_by_others_by_iconic_taxon: Observations Identified By Others (1 day)
+        observations_unknown: Observations Unknown After 30 Days
+        observations_total_unknown_ratio: Observations Unknown Ratio (30 days)
+        observations_total_unknown_ratio_desc: Ratio of unknown observations to all observations 
+        for_others: For others
+        ids_last_7_days: Identifications (7 days)
+        ids_last_7_days_desc: Identifications created during the previous 7 days
+        ids_today: Identifications (1 day)
+        ids_today_desc: Identifications created on a single day
+        ids_last_7_days_for_others: Identifications for others (7 days)
+        ids_last_7_days_for_others_desc: Identifications added to other peoples' observations during the previous 7 days
+        ids_today_for_others: Identifications for others (1 day)
+        ids_today_for_others_desc: Identifications added to other peoples' observations on a single day
         time_to_id_desc: Time to ID (hours, 1 week moving window)
         TTCID: TTCID
         TTCID_desc: Time to receive an identification from someone else that matches the community taxon.
@@ -10986,6 +11007,98 @@ en:
         Protozoa: Protozoa
         Mollusca: Mollusca
         Chromista: Chromista
+  id_summary_dqa:
+    public_metrics:
+      true: "True statement"
+      identification: "Useful for identification"
+      references: "Backed up by references"
+      distinct: "Distinct from other summaries"
+      clear: "Short, colloquial, and clearly written"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Comment is relevant to the summary"
+      true: "Comment is a true statement"
+      matches_taxon: "Comment is referring to %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "ID Summaries Demo"
+        info_line_one: "This demo explores the use of AI to summarize comments on iNaturalist toward the goal of"
+        info_line_two: "making identification expertise more accessible."
+        blog_link_text: "Learn more on our blog"
+        missing_identifier: "Missing taxon summary identifier"
+        service_unavailable: "ID summary details are temporarily unavailable."
+        no_summary_data: "No summary data found for that taxon."
+        load_failed: "Failed to load taxon summary"
+      filters:
+        active_only: "Show active summaries only"
+        run_label: "Run name"
+        run_placeholder: "Select a run"
+        run_loading: "Loading runs..."
+        photo_tips_toggle: "Show photo tips"
+        language_label: "Language"
+      summary_list:
+        loading: "Loading ID Summaries..."
+        empty: "No ID Summaries available for this species."
+        refreshing: "Refreshing summaries..."
+        heading: "ID Summaries"
+        feedback_toggle: "ID Summaries Feedback"
+        feedback_unavailable: "Feedback is unavailable for this summary."
+        sign_in_required: "Sign in to vote on ID summary feedback."
+        service_unavailable: "Feedback service is unavailable right now."
+        submit_failed: "Failed to submit feedback."
+      summary_feedback:
+        loading: "Loading feedback..."
+        explainer: "Your feedback will be used to help improve ID summaries in the future"
+        sign_in_tooltip: "Sign in to vote on this summary"
+        submitting_tooltip: "Submitting feedback..."
+        aria_helpful: "%{label}: helpful"
+        aria_not_helpful: "%{label}: not helpful"
+      summary_item:
+        disclaimer: "This summary of iNaturalist user comments was generated by AI and may be incorrect. You can help us improve this summary by providing feedback."
+        default_label: "SUMMARY"
+        default_title: "Summary"
+        copy_link: "Copy link to this summary"
+        photo_tip_label: "PHOTO TIP"
+        photo_tip_aria: "Photo Tip: %{tip}"
+        references_toggle: "iNaturalist User Comment References"
+        user_fallback: "iNaturalist user"
+        reference_commented: "commented"
+        view_comment: "View comment"
+        view_reference_feedback: "View Feedback on Reference"
+      reference_feedback:
+        loading: "Loading reference feedback..."
+        sign_in_required: "Sign in to vote on reference feedback."
+        unavailable: "Reference feedback is unavailable right now."
+        service_unavailable: "Reference feedback service is unavailable right now."
+        submit_failed: "Failed to submit reference feedback."
+        sign_in_tooltip: "Sign in to vote on this reference"
+        submitting_tooltip: "Submitting feedback..."
+        aria_helpful: "%{label}: helpful"
+        aria_not_helpful: "%{label}: not helpful"
+      taxon_detail:
+        select_species: "Select a species to view ID Summaries."
+        last_updated: "Last updated"
+        no_image: "No image available"
+        photo_tips_heading: "Photo Tips"
+        summary_uuid: "Taxon ID Summary UUID"
+      taxa_list:
+        group_labels:
+          animalia: "Other animals"
+          actinopterygii: "Ray-finned fishes"
+          aves: "Birds"
+          reptilia: "Reptiles"
+          amphibia: "Amphibians"
+          mammalia: "Mammals"
+          arachnida: "Arachnids"
+          insecta: "Insects"
+          plantae: "Plants"
+          fungi: "Fungi"
+          protozoa: "Protozoa"
+          mollusca: "Mollusks"
+          chromista: "Chromists"
+        other_group: "Other"
+        empty: "No species available."
   # Title of a section warning the user about something
   warning_title: Warning
   wikimedia: Wikimedia

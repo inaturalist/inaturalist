@@ -761,3 +761,27 @@ describe ObservationsController, "new_bulk_csv" do
     expect( Observation.by( user ).count ).to eq 1
   end
 end
+
+describe ObservationsController, "identify" do
+  describe "check_interaction_privilege" do
+    let( :user ) { User.make! }
+    before do
+      sign_in user
+    end
+
+    it "grants users interaction privilege if they earned it but have not yet been granted" do
+      expect( user.privileged_with?( UserPrivilege::INTERACTION ) ).to be false
+      get :identify
+      expect( user.privileged_with?( UserPrivilege::INTERACTION ) ).to be true
+    end
+
+    it "sets user hide webinar banner preference if they have 100 or more improving IDs" do
+      expect( Identification ).to receive( :elastic_search ).
+        and_return( WillPaginate::Collection.new( 1, 30, 100 ) )
+      expect( user.prefers_hide_identify_webinar_banner ).to be_nil
+      get :identify
+      user.reload
+      expect( user.prefers_hide_identify_webinar_banner ).to be true
+    end
+  end
+end

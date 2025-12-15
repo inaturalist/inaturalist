@@ -294,6 +294,44 @@ describe "Observation Index" do
     end
   end
 
+  describe "dqa_stats" do
+    let( :observation ) do
+      Observation.make!( latitude: 3.0, longitude: 4.0, observed_on_string: 1.week.ago )
+    end
+
+    it "adds dqa_stats" do
+      QualityMetric::METRICS.each do | metric |
+        2.times { QualityMetric.make!( metric: metric, observation: observation, agree: true ) }
+        observation.reload
+        expect( observation.as_indexed_json[:dqa_stats] ).to eq [{
+          metric: metric,
+          pass: true,
+          fail: false,
+          vote_score: 2
+        }]
+
+        2.times { QualityMetric.make!( metric: metric, observation: observation, agree: false ) }
+        observation.reload
+        expect( observation.as_indexed_json[:dqa_stats] ).to eq [{
+          metric: metric,
+          pass: false,
+          fail: false,
+          vote_score: 0
+        }]
+
+        2.times { QualityMetric.make!( metric: metric, observation: observation, agree: false ) }
+        observation.reload
+        expect( observation.as_indexed_json[:dqa_stats] ).to eq [{
+          metric: metric,
+          pass: false,
+          fail: true,
+          vote_score: -2
+        }]
+        observation.quality_metrics.delete_all
+      end
+    end
+  end
+
   describe "params_to_elastic_query" do
     it "filters by project rules" do
       project = Project.make!
@@ -402,8 +440,6 @@ describe "Observation Index" do
         { http_param: :threatened, es_field: "taxon.threatened" },
         { http_param: :native, es_field: "taxon.native" },
         { http_param: :endemic, es_field: "taxon.endemic" },
-        { http_param: :id_please, es_field: "id_please" },
-        { http_param: :out_of_range, es_field: "out_of_range" },
         { http_param: :mappable, es_field: "mappable" },
         { http_param: :captive, es_field: "captive" }
       ].each do |filter|

@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     services:
       postgres:
-        image: postgis/postgis:13-3.2
+        image: postgis/postgis:17-3.6-alpine
         env:
           POSTGRES_USER: inaturalist
           POSTGRES_PASSWORD: inaturalist
@@ -92,6 +92,9 @@ jobs:
         TRAVIS: true
         TRAVIS_CI: true
         CI: true
+
+    - name: Run restricted rubocop
+      run: bundle exec rubocop ./app/controllers/users ./app/controllers/admin ./app/es_indices
 
     - name: Run restricted eslint
       run: npm run eslint app/webpack/computer_vision/language

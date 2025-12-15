@@ -238,6 +238,7 @@ const FIELDS = {
   public_positional_accuracy: true,
   quality_grade: true,
   reviewed_by: true,
+  species_guess: true,
   sounds: {
     file_url: true,
     file_content_type: true,

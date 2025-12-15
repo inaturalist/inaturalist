@@ -116,6 +116,7 @@ class User < ApplicationRecord
   preference :needs_id_pilot, :boolean, default: nil
   preference :gaps_id_pilot, :boolean, default: nil
   preference :gaps_obs_pilot, :boolean, default: nil
+  preference :hide_identify_webinar_banner, :boolean, default: nil
   preference :identify_map_zoom_level, :integer
   preference :suggestions_source, :string
   preference :suggestions_sort, :string
@@ -348,7 +349,23 @@ class User < ApplicationRecord
   validates_length_of :login, within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of :login
   validates_format_of :login, with: login_regex, message: :must_begin_with_a_letter
-  validates_exclusion_of :login, in: %w(password new edit create update delete destroy)
+  EXCLUDED_LOGINS = %w(
+    any
+    create
+    delete
+    destroy
+    edit
+    inaturaliststaff
+    inaturalist_staff
+    inaturalistadmin
+    inaturalist_admin
+    inaturalisthelp
+    inaturalist_help
+    new
+    password
+    update
+  ).freeze
+  validates_exclusion_of :login, in: EXCLUDED_LOGINS
   validate :login_must_not_contain_reserved_words
 
   validates_exclusion_of :password, in: %w(password)
@@ -1950,5 +1967,24 @@ class User < ApplicationRecord
       fave.position = position
       fave.save!
     end
+  end
+
+  def set_webinar_banner_default_preference
+    return unless prefers_hide_identify_webinar_banner.nil?
+
+    count_improving_ids = Identification.elastic_search(
+      size: 0,
+      track_total_hits: false,
+      filters: [
+        { term: { current: true } },
+        { term: { "user.id" => id } },
+        { term: { category: "improving" } },
+        { term: { own_observation: false } }
+      ],
+      source: ["id"]
+    ).total_entries
+    return unless count_improving_ids >= 100
+
+    update( prefers_hide_identify_webinar_banner: true )
   end
 end

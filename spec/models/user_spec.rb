@@ -149,7 +149,7 @@ describe User, "associations" do
 end
 
 describe User, "validations" do
-  it { is_expected.to validate_exclusion_of( :login ).in_array %w(password new edit create update delete destroy) }
+  it { is_expected.to validate_exclusion_of( :login ).in_array User::EXCLUDED_LOGINS }
   it { is_expected.to validate_exclusion_of( :password ).in_array %w(password) }
   it { is_expected.to validate_length_of( :login ).is_at_least( User::MIN_LOGIN_SIZE ).is_at_most User::MAX_LOGIN_SIZE }
   it { is_expected.to validate_length_of( :name ).is_at_most( 100 ).allow_blank }
@@ -2030,6 +2030,34 @@ describe User do
       expect( user.project_faves.detect {| pf | pf.project_id == project1.id }.position ).to eq 2
       expect( user.project_faves.detect {| pf | pf.project_id == project2.id }.position ).to eq 1
       expect( user.project_faves.detect {| pf | pf.project_id == project3.id }.position ).to eq 0
+    end
+  end
+
+  describe "set_webinar_banner_default_preference" do
+    let( :user ) { User.make! }
+
+    it "sets hide banner preference to true if user has 100 or more improving IDs" do
+      expect( Identification ).to receive( :elastic_search ).
+        and_return( WillPaginate::Collection.new( 1, 30, 100 ) )
+      expect( user.prefers_hide_identify_webinar_banner ).to be_nil
+      user.set_webinar_banner_default_preference
+      expect( user.prefers_hide_identify_webinar_banner ).to be true
+    end
+
+    it "does not set hide banner preference if user has less than 100 improving IDs" do
+      expect( Identification ).to receive( :elastic_search ).
+        and_return( WillPaginate::Collection.new( 1, 30, 99 ) )
+      expect( user.prefers_hide_identify_webinar_banner ).to be_nil
+      user.set_webinar_banner_default_preference
+      expect( user.prefers_hide_identify_webinar_banner ).to be_nil
+    end
+
+    it "does not query if the hide banner preference is already set" do
+      expect( Identification ).not_to receive( :elastic_search )
+      user.update( prefers_hide_identify_webinar_banner: true )
+      expect( user.prefers_hide_identify_webinar_banner ).to be true
+      user.set_webinar_banner_default_preference
+      expect( user.prefers_hide_identify_webinar_banner ).to be true
     end
   end
 

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.gbif.org/v1/literature/search?gbifDatasetKey=50c9509d-22c7-4a22-a47d-8c48425ef4a7&limit=50&literatureType=journal&year=2022
+    uri: https://api.gbif.org/v1/literature/search?gbifDatasetKey=50c9509d-22c7-4a22-a47d-8c48425ef4a7&limit=100&literatureType=journal&year=2022
     body:
       encoding: US-ASCII
       string: ''

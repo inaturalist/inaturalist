@@ -433,6 +433,8 @@ lb:
   are_you_sure_you_want_to_delete_this: Sidd Dir sécher datt Dir dëst läsche wëllt?
   are_you_sure_you_want_to_delete_this_photo?: Sidd Dir sécher datt Dir dës Foto läsche wëllt?
   are_you_sure_you_want_to_delete_this_post: Sidd Dir sécher datt Dir dës Matdeelung läsche wëllt?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Sidd Dir sécher datt Dir dës Tounopnam läsche wëllt?
   are_you_sure_you_want_to_remove_from_project: Sidd Dir sécher datt Dir %{user} vun dësem Projet erofhuele wëllt?
   associated_observations: Associéiert Observatiounen
   attention: Opgepasst
@@ -727,6 +729,9 @@ lb:
   current_flags: Aktuell Markéierungen
   daily_users: Alldeeglech Benotzer
   dashboard: Dashboard
+  dashboard_pilots:
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Net méi matmaachen"
   data_quality: Datequalitéit
   datatype: Datentyp
   date_: Datum
@@ -784,6 +789,8 @@ lb:
   delete_project: Dëse Projet läschen
   #Label for a button to delete a taxon range
   delete_range: Verbreedungsgebiett läschen
+  #Label for a button to delete a sound file
+  delete_sound: Tounopnam läschen
   delete_user: Benotzer läschen
   delete_your_account: Äre Benotzerkont läschen
   deleted_synonyms: Geläscht Synonymmer
@@ -889,6 +896,8 @@ lb:
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   error_updating_photo: "Feeler beim Aktualiséiere vun der Foto: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Feeler beim Aktualiséiere vun der Tounopnam: %{sound_errors}"
   establishment:
     endemic: endemesch
     introduced: Ageféieren
@@ -926,6 +935,10 @@ lb:
   fields: Felder
   fields_: Felder
   file: Fichier
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Dateiformat
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Datei-URL
   fill_out_project_observation_fields: d'Projekt-Observatiounsfelder ausfëllen
   fill_out_your_profile: completéiert Äre Profil
   #The name of a computer file
@@ -2352,6 +2365,12 @@ lb:
     no_photos_sounds: Keng Fotoen oder Sounds
     photos_sounds: Fotoen / Sounds
     sound: Sound
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Tounopnam geläscht
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Tounopnam verstoppt
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Tounopnam net méi verstoppt
     sounds: Sounds
   source: Quell
   source_: 'Quell:'
@@ -2504,6 +2523,8 @@ lb:
   updated: Aktualiséiert
   updated_by: Aktualiséiert vum
   updated_photo: Aktualiséiert Foto
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Tounopnam aktualiséiert
   upload: Eroplueden
   upload_a_csv_file: CSV-Fichier eroplueden
   upload_photo: Foto eroplueden
@@ -2931,6 +2952,9 @@ lb:
           "Sex=Female": Weiblech
           "Sex=Male": Männlech
           unannotated: Keng Notiz
+    taxon_changes:
+      #the status of a taxon change: draft, withdrawn or committed
+      status: Status
     users:
       delete:
         type_confirmation_code: Antippen %{confirmation_code}

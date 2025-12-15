@@ -36,9 +36,9 @@
       %h2= @title
   .row
     .col-xs-12
-      - if [Flag::SPAM, Flag::COPYRIGHT_INFRINGEMENT].include?( @flag.flag )
+      - if [Flag::SPAM, Flag::COPYRIGHT_INFRINGEMENT, Flag::ARTIFICIALLY_GENERATED_CONTENT].include?( @flag.flag )
         .alert.alert-warning
-          =t "views.flags.show.flags_that_should_not_be_resolved_desc_html"
+          =t "views.flags.show.flags_that_should_not_be_resolved_desc2_html"
       %table.table
         %thead
           %tr

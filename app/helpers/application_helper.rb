@@ -23,7 +23,7 @@ module ApplicationHelper
 
     # Print window pages
     first.upto( last ) do | page |
-      html << ( current_page == page && !link_to_current_page ? page : yield( page ) )
+      html << ( ( current_page == page && !link_to_current_page ) ? page : yield( page ) )
     end
 
     # Print end page if anchors are enabled
@@ -104,7 +104,7 @@ module ApplicationHelper
           datatype: "json",
           id: dom_id( potential_friend, "friend_link" ),
           class: "btn btn-primary btn-xs friend_link",
-          style: existing_relat && existing_relat.following? ? "display:none" : ""
+          style: ( existing_relat && existing_relat.following? ) ? "display:none" : ""
         )
       )
       unfriend_link = link_to(
@@ -117,7 +117,7 @@ module ApplicationHelper
           method: :put,
           id: dom_id( potential_friend, "unfriend_link" ),
           class: "btn btn-primary btn-xs unfriend_link",
-          style: existing_relat && existing_relat.following? ? "" : "display:none"
+          style: ( existing_relat && existing_relat.following? ) ? "" : "display:none"
         )
       )
     end
@@ -189,7 +189,7 @@ module ApplicationHelper
       options
   end
 
-  def link_to_toggle_box( txt, options = {}, &block )
+  def link_to_toggle_box( txt, options = {}, & )
     options[:class] ||= ""
     options[:class] += " togglelink"
     options[:role] = "button"
@@ -199,11 +199,11 @@ module ApplicationHelper
       options[:class] += " open"
     end
     link = link_to_function( txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options )
-    hidden = content_tag( :div, capture( &block ), style: is_open ? nil : "display:none", class: "togglebox" )
+    hidden = content_tag( :div, capture( & ), style: is_open ? nil : "display:none", class: "togglebox" )
     content_tag :div, link + hidden, container_options
   end
 
-  def link_to_toggle_menu( link_text, options = {}, &block )
+  def link_to_toggle_menu( link_text, options = {}, & )
     menu_id = options[:menu_id]
     menu_id ||= options[:id].parameterize if options[:id]
     menu_id ||= link_text.parameterize
@@ -213,15 +213,15 @@ module ApplicationHelper
     wrapper_options[:class] += " toggle_menu"
     wrapper_options[:class] += " button_toggle_menu" if options[:class]&.split&.include?( "button" )
     html = link_to_toggle( link_text, "##{menu_id}", options )
-    html += content_tag( :div, capture( &block ), id: menu_id, class: "menu", style: "display: none" )
+    html += content_tag( :div, capture( & ), id: menu_id, class: "menu", style: "display: none" )
     concat content_tag( :div, html, wrapper_options )
   end
 
-  def link_to_dialog( title, options = {}, &block )
+  def link_to_dialog( title, options = {}, & )
     options[:title] ||= title
     options[:modal] ||= true
     id = title.gsub( /\W/, "" ).underscore
-    dialog = content_tag( :div, capture( &block ), class: "dialog", style: "display:none", id: "#{id}_dialog" )
+    dialog = content_tag( :div, capture( & ), class: "dialog", style: "display:none", id: "#{id}_dialog" )
     link_options = options.delete( :link ) || {}
     link = link_to_function( title, "$('##{id}_dialog').dialog(#{options.to_json})", link_options )
     dialog + link
@@ -236,7 +236,7 @@ module ApplicationHelper
     if ( without = new_params.delete( :without ) )
       without = [without] unless without.is_a?( Array )
       without.map!( &:to_s )
-      new_params = new_params.reject {| k, _v | without.include?( k ) }
+      new_params = new_params.except( *without )
     end
     url_for( new_params )
   end
@@ -375,10 +375,10 @@ module ApplicationHelper
     @markdown.render( new_text )
   end
 
-  def render_in_format( format, *args )
+  def render_in_format( format, * )
     old_formats = formats
     self.formats = [format]
-    html = render( *args )
+    html = render( * )
     self.formats = old_formats
     html
   end
@@ -427,9 +427,9 @@ module ApplicationHelper
         return content_tag :div,
           " ",
           class: css_class,
-          style: "width: #{max_width}px;" \
-            " height: #{max_width}px; #{style};" \
-            " background-image: url(#{user.icon.url( size_2x )}), url(#{user.icon.url( size )});"
+          style: "width: #{max_width}px; " \
+            "height: #{max_width}px; #{style}; " \
+            "background-image: url(#{user.icon.url( size_2x )}), url(#{user.icon.url( size )});"
       end
 
       options[:srcset] = "#{user.icon.url( size )} 1x, #{user.icon.url( size_2x )} 2x"
@@ -448,9 +448,9 @@ module ApplicationHelper
     image_tag( url, options.merge( style: style ) )
   end
 
-  def image_and_content( image, options = {}, &block )
+  def image_and_content( image, options = {}, & )
     image_size = options.delete( :image_size ) || 48
-    content = capture( &block )
+    content = capture( & )
     image_wrapper = content_tag(
       :div,
       image,
@@ -464,10 +464,10 @@ module ApplicationHelper
   end
 
   # remove unecessary whitespace btwn divs
-  def compact( *args, &block )
+  def compact( *args, & )
     content = args[0] if args[0].is_a?( String )
     options = args.last.is_a?( Hash ) ? args.last : {}
-    content = capture( &block ) if block_given?
+    content = capture( & ) if block_given?
     content ||= ""
     if options[:all_tags]
       content.gsub!( />[\n\s]+</m, "><" )
@@ -493,7 +493,7 @@ module ApplicationHelper
   end
 
   def image_url( source, options = {} )
-    abs_path = source =~ %r{^/} ? source : whitelisted_asset_path( source, options ).to_s
+    abs_path = ( source =~ %r{^/} ) ? source : whitelisted_asset_path( source, options ).to_s
     return abs_path if abs_path =~ /\Ahttp/
 
     the_root_url = defined?( root_url ) ? root_url : UrlHelper.root_url
@@ -501,7 +501,7 @@ module ApplicationHelper
   end
 
   def whitelisted_asset_path( source, options )
-    return "/assets/#{source}" if source !~ /^http/ && source =~ /#{NonStupidDigestAssets.whitelist.join( "|" )}/
+    return "/assets/#{source}" if source !~ /^http/ && source =~ /#{NonStupidDigestAssets.whitelist.join( '|' )}/
 
     asset_path( source, options )
   end
@@ -563,14 +563,14 @@ module ApplicationHelper
     end
   end
 
-  def helptip_for( id, options = {}, &block )
+  def helptip_for( id, options = {}, & )
     tip_id = "#{id}_tip"
     html = content_tag( :span, "", class: "#{options[:class]} #{tip_id}_target helptip", rel: "##{tip_id}" )
-    html += content_tag( :div, capture( &block ), id: tip_id, style: "display:none" )
+    html += content_tag( :div, capture( & ), id: tip_id, style: "display:none" )
     concat html
   end
 
-  def helptip( text, options = {}, &block )
+  def helptip( text, options = {}, & )
     tip_id = "tip_#{serial_id}"
     html = content_tag(
       :span,
@@ -578,11 +578,11 @@ module ApplicationHelper
       class: "#{options[:class]} #{tip_id}_target helptip helptiptext",
       rel: "##{tip_id}"
     )
-    html += content_tag( :div, capture( &block ), id: tip_id, style: "display:none" )
+    html += content_tag( :div, capture( & ), id: tip_id, style: "display:none" )
     html
   end
 
-  def popover( text, options = {}, &block )
+  def popover( text, options = {}, & )
     tip_id = "tip_#{serial_id}"
     options[:class] = "#{options[:class]} #{tip_id}_target"
     options[:data] ||= {}
@@ -592,7 +592,7 @@ module ApplicationHelper
     options[:data][:popover][:style][:classes] ||= ""
     options[:data][:popover][:style][:classes] += " popovertip"
     html = content_tag( :button, text, options )
-    html += content_tag( :div, capture( &block ), id: tip_id, style: "display:none" )
+    html += content_tag( :div, capture( & ), id: tip_id, style: "display:none" )
     html
   end
 
@@ -620,8 +620,8 @@ module ApplicationHelper
     content_tag( :div, html.html_safe, class: "monthgraph graph" )
   end
 
-  def catch_and_release( &block )
-    concat capture( &block ) if block_given?
+  def catch_and_release( & )
+    concat capture( & ) if block_given?
   end
 
   def citation_for( record )
@@ -658,7 +658,7 @@ module ApplicationHelper
     end
   end
 
-  def link_to( *args, &block )
+  def link_to( *args, & )
     if block_given?
       super
     else
@@ -769,9 +769,8 @@ module ApplicationHelper
   def append_place_layers( map_tag_attrs, options = {} )
     return unless options[:place_layers]
 
-    place_layer_attrs = []
-    options[:place_layers].each do | layer |
-      place_layer_attrs << layer.merge( {
+    place_layer_attrs = options[:place_layers].map do | layer |
+      layer.merge( {
         place: layer[:place].as_json( only: [:id, :name] )
       } )
     end
@@ -1214,7 +1213,7 @@ module ApplicationHelper
         partial: "shared/taxon",
         object: resource,
         locals: {
-          link_url: ( options[:skip_links] == true ? nil : url_for_resource_with_host( resource ) )
+          link_url: ( ( options[:skip_links] == true ) ? nil : url_for_resource_with_host( resource ) )
         }
       )
       t( :new_observations_of_x_html, x: name )
@@ -1286,7 +1285,7 @@ module ApplicationHelper
         x: localized_notifier_class_name,
         gender: notifier.class.name.parameterize.downcase
       }
-      key += localized_notifier_class_name =~ /^[aeiou]/i ? "an" : "a"
+      key += ( localized_notifier_class_name =~ /^[aeiou]/i ) ? "an" : "a"
       key += "_x_to"
     elsif update.notification == "mention" && notifier_user
       key = "mentioned_you_in"
@@ -1362,7 +1361,7 @@ module ApplicationHelper
     end
   end
 
-  def cite( citation = nil, options = {}, &block )
+  def cite( citation = nil, options = {}, & )
     @_citations ||= []
     if citation.is_a?( Hash )
       options = citation
@@ -1370,7 +1369,7 @@ module ApplicationHelper
     end
     cite_tag = options[:tag] || :sup
     if citation.blank? && block_given?
-      citation = capture( &block )
+      citation = capture( & )
     end
     citations = [citation].flatten
     links = citations.map do | c |
@@ -1487,7 +1486,9 @@ module ApplicationHelper
   end
 
   def locale_from_request
-    request.env["HTTP_ACCEPT_LANGUAGE"]&.scan( /[a-z]{2}-[A-Z]{2}/ )&.first&.downcase
+    return nil unless request.env["HTTP_ACCEPT_LANGUAGE"]
+
+    request.env["HTTP_ACCEPT_LANGUAGE"].scan( /[a-z]{2}-[A-Z]{2}/ )&.first&.downcase
   end
 
   # Specifies the region parameter for the Google API
@@ -1607,7 +1608,7 @@ module ApplicationHelper
     end
   end
 
-  def feature_test( test, options = {}, &block )
+  def feature_test( test, options = {}, & )
     options[:audience] ||= []
     test_enabled = params[:test] && params[:test] == test.to_s
     user_authorized = true
@@ -1616,7 +1617,7 @@ module ApplicationHelper
     user_authorized = logged_in? if options[:audience].include?( :users )
     if test_enabled && user_authorized
       @feature_test = test
-      content_tag( :span, capture( &block ), class: "feature_test" )
+      content_tag( :span, capture( & ), class: "feature_test" )
     else
       ""
     end
@@ -1637,8 +1638,8 @@ module ApplicationHelper
     text.html_safe? ? result.html_safe : result
   end
 
-  def has_t?( *args )
-    I18n.has_t?( *args )
+  def has_t?( * )
+    I18n.has_t?( * )
   end
 
   def hyperlink_mentions( text, for_markdown: false )
@@ -1748,7 +1749,7 @@ module ApplicationHelper
       content,
       url_for_params( {
         order_by: header,
-        order: @order == "desc" ? "asc" : "desc"
+        order: ( @order == "desc" ) ? "asc" : "desc"
       }.merge( options[:url_options] || {} ) ),
       options
     )
@@ -1767,7 +1768,7 @@ module ApplicationHelper
   def translate_with_consistent_case( key, options = {} )
     lower_requested = options.delete( :case ) != "upper"
     translation = I18n.t( key, **options )
-    en = I18n.t( key, **options.merge( locale: "en" ) )
+    en = I18n.t( key, **options, locale: "en" )
     default_is_lower = en == en.downcase
     lower_requested_and_default_is_lower = lower_requested && default_is_lower
     upper_requested_and_default_is_upper = !lower_requested && !default_is_lower

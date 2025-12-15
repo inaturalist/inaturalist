@@ -75,6 +75,8 @@ class ObservationsController < ApplicationController
     :import_photos, :import_sounds, :new_from_list]
   before_action :photo_identities_required, :only => [:import_photos]
   before_action :load_prefs, :only => [:index, :project, :by_login]
+  before_action :check_interaction_privilege, only: [:identify]
+  before_action :check_webinar_banner_preference, only: [:identify]
 
   prepend_around_action :enable_replica, only: [
     :index, :by_login, :show, :taxon_summary, :identify, :viewed_updates
@@ -2392,6 +2394,18 @@ class ObservationsController < ApplicationController
       @observation = uuid_scope.first
     end
     handle_missing_observation unless @observation
+  end
+
+  def check_interaction_privilege
+    return unless logged_in?
+
+    UserPrivilege.check( current_user.id, UserPrivilege::INTERACTION )
+  end
+
+  def check_webinar_banner_preference
+    return unless logged_in?
+
+    current_user.set_webinar_banner_default_preference
   end
 
   def search_taxon

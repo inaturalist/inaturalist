@@ -109,8 +109,17 @@ class QualityMetrics extends React.Component {
           contents={<span>{`(${needsIDInfo.votersAgainst.length})`}</span>}
         />
       );
-    const needsIDVoteDisabled = !observation.communityTaxon
-      && !this.metricHasVotes( "needs_id" );
+    const observerOptedOutOfCommunityTaxon = (
+      ( !observation.user.preferences.prefers_community_taxa && observation.preferences.prefers_community_taxon === null )
+      || observation.preferences.prefers_community_taxon === false
+    );
+    const needsIDVoteDisabled = (
+      !observation.communityTaxon
+      || (
+        observation.communityTaxon?.id !== observation.taxon?.id
+        && !observerOptedOutOfCommunityTaxon
+      )
+    ) && !this.metricHasVotes( "needs_id" );
     const checkboxYes = userCanInteract
       ? (
         <input
@@ -156,6 +165,7 @@ class QualityMetrics extends React.Component {
             {
               inatreact.t( "current_community_id", {
                 taxon: <SplitTaxon
+                  key="current_community_taxon"
                   taxon={observation.communityTaxon}
                   user={currentUser}
                 />
@@ -173,7 +183,7 @@ class QualityMetrics extends React.Component {
               <i className="fa fa-gavel" />
             </div>
             <div className="column">
-              { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
+              { I18n.t( "based_on_the_evidence_can_id_be_improved_2" ) }
               { currentCommunityTaxon }
               <div className="inputs">
                 <div className="yes">

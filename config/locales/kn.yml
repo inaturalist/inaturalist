@@ -581,6 +581,8 @@ kn:
   are_you_sure_you_want_to_delete_this_assessment?: ಈ ಮೌಲ್ಯಮಾಪನವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_you_want_to_delete_this_photo?: ಈ ಚಿತ್ರವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_you_want_to_delete_this_post: ಈ ಪೋಸ್ಟ್ ಅನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: ಈ ಧ್ವನಿಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ?
   are_you_sure_you_want_to_delete_this_taxon_change: ಈ ಜೀವಿವರ್ಗದ ಬದಲಾವಣೆಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_you_want_to_remove_all_tags: ಎಲ್ಲ ಟ್ಯಾಗ್ ಗಳನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_you_want_to_remove_curator: ನೀವು %{user} ಅವರನ್ನು ಮೇಲ್ವಿಚಾರಕರಂತೆ ತೆಗೆದುಹಾಕಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
@@ -591,6 +593,8 @@ kn:
     %{project} ಪ್ರಾಯೋಜನೆಯಿಂದ ಈ ವೀಕ್ಷಣೆಯನ್ನು ತೆಗೆದುಹಾಕಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "ಈ ಜೀವಿವರ್ಗವನ್ನು %{place} ನ ತಾಳೆಪಟ್ಟಿಯಿಂದ ತೆಗೆದುಹಾಕಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
   are_you_sure_you_want_to_flag_as_spammer: ನಿಮಗೆ ಖಚಿತವೆ ನೀವು ಈ ಬಳಕೆದಾರನನ್ನು ಸ್ಪ್ಯಾಮರ್ ಎಂದು ಫ್ಲಾಗ್ ಮಾಡಲು ಇಚ್ಛಿಸುತ್ತೀರಾ?
+  artificially_generated_content: ಕೃತಕವಾಗಿ ರಚಿಸಿದ ವಿಷಯ
+  artificially_generated_content_desc: ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆಯ ಮೂಲಕ ಹೆಚ್ಚಾಗಿ ಅಥವಾ ಸಂಪೂರ್ಣವಾಗಿ ಉತ್ಪತ್ತಿಯಾಗುವ ವಿಷಯವನ್ನು ಒಳಗೊಂಡಿದೆ.
   associated_observations: ಸಹಭಾಗಿ ವೀಕ್ಷಣೆಗಳು
   associated_taxa: ಸಂಬಂಧಿತ ಜೀವಿವರ್ಗಗಳು
   attention: ಗಮನಿಸಿ
@@ -668,8 +672,6 @@ kn:
   back_to_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳಿಗೆ ಹಿಂದಿರುಗಿ
   back_to_your_profile: ನಿಮ್ಮ ಪರಿಚಯಕ್ಕೆ ಹಿಂದಿರುಗಿ
   badges: ಬ್ಯಾಡ್ಜ್‌‍ಗಳು
-  based_on_the_evidence_can_id_be_improved: |
-    ಕುರುಹುಗಳ ಆಧಾರದ ಮೇಲೆ ಸಮುದಾಯದ ಜೀವಿವರ್ಗ ಇನ್ನೂ ನಿರ್ಧಾರವಾಗಬೇಕಾಗಿದೆಯೇ ಅಥವಾ ಸುಧಾರಿಸಬೇಕಾಗಿದೆಯೇ?
   batch: ಬ್ಯಾಚ್
   batch_edit: ಬ್ಯಾಚ್ ಸಂಪಾದನೆ
   #Where x is the title of a list of taxa
@@ -838,6 +840,7 @@ kn:
   community_id_is_precise: ಸಮುದಾಯದ ಜೀವಿವರ್ಗ ನಿಖರವಾಗಿದೆ
   community_moderation_settings: ಸಮುದಾಯ ಮಾಡರೇಶನ್ ಸಂಯೋಜನೆಗಳು
   community_supported_id: ಸಮುದಾಯ-ಬೆಂಬಲಿತ ಜೀವಿವರ್ಗವೇ?
+  community_taxon_matches_observation_taxon: ಸಮುದಾಯ ಟ್ಯಾಕ್ಸಾನ್ ವೀಕ್ಷಣಾ ಟ್ಯಾಕ್ಸಾನ್ ಗೆ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ
   compare: ಹೋಲಿಸಿ
   compare_with: ಇದರೊಂದಿಗೆ ಹೋಲಿಸಿ
   comparing: ಹೋಲಿಸಲಾಗುತ್ತಿದೆ
@@ -1122,6 +1125,8 @@ kn:
     ಯೋಜನೆಗಳಲ್ಲಿ ಅವಲೋಕನಗಳು. ವೀಕ್ಷಕರು ಇದನ್ನು ಬದಲಾಯಿಸಲು ಸಹ ಆಯ್ಕೆ ಮಾಡಬಹುದು
     ವೈಯಕ್ತಿಕ ಅವಲೋಕನಗಳು.
   curator_identification: ಮೇಲ್ವಿಚಾರಕರ ಗುರುತಿಸುವಿಕೆಗಳು
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "ಪ್ರಸ್ತುತ ಸಮುದಾಯ ಟ್ಯಾಕ್ಸಾನ್: %{taxon}"
   custom_project_fields: ಒಗ್ಗಿಸಿದ ಪ್ರಾಯೋಜನೆ ಆವರಣಗಳು
   custom_project_was_successfully_created: ಪ್ರಾಯೋಜನೆಯ ಒಗ್ಗಿಸುವಿಕೆಗಳನ್ನು ಸೇರಿಸಲಾಗಿದೆ
   custom_project_was_successfully_updated: ಪ್ರಾಯೋಜನೆಯ ಒಗ್ಗಿಸುವಿಕೆಗಳನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ
@@ -1217,6 +1222,8 @@ kn:
   #Label for a button to delete a taxon range
   delete_range: ವ್ಯಾಪ್ತಿಯನ್ನು ಅಳಿಸಿ
   delete_selected: ಆರಿಸಿದುದನ್ನು ಅಳಿಸಿ
+  #Label for a button to delete a sound file
+  delete_sound: ಧ್ವನಿಯನ್ನು ಅಳಿಸಿ
   delete_taxon_and_merge_most_data_html: |
     <i>%{taxon}</i> ಅನ್ನು ಅಳಿಸಿ ಮತ್ತು ಅದರ ಸಾಧ್ಯವಿರುವ ಎಲ್ಲಾ ದತ್ತಾಂಶಗಳನ್ನು ಇನ್ನೊಂದು ಜೀವಿವರ್ಗದಲ್ಲಿ ವಿಲೀನಗೊಳಿಸಿ. ಈ ಉಪಕರಣವನ್ನು <strong>ನಕಲಿ ಜೀವಿವರ್ಗವನ್ನು ತೆಗೆದುಹಾಕಲು</strong> ಬಳಸಿ. ನೀವು ಹಳತಾಗಿರುವ ಸಮಾನಾರ್ಥಕ ಪದವೊಂದನ್ನು ತೆಗೆದುಹಾಕಲು ಬಯಸಿದಲ್ಲಿ ದಯವಿಟ್ಟು ಜೀವಿವರ್ಗದ ಬದಲಿಕೆಯನ್ನು ರಚಿಸಿ. <strong>ಎಚ್ಚರದಿಂದಿರಿ!</strong> ಜೀವಿವರ್ಗಗಳ ಅಳಿಸುವಿಕೆ ಅತ್ಯಂತ ಹಾನಿಕಾರಕವಾಗಬಹುದು. ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ <a href="%{curator_url}">ಮೇಲ್ವಿಚಾರಕರ ಕೈಪಿಡಿ</a> ಯನ್ನು ಗಮನಿಸಿ.
   delete_user: ಬಳಕೆದಾರರನ್ನು ಅಳಿಸಿ
@@ -1256,6 +1263,8 @@ kn:
       invalid_token: 'ಅಸಿಂಧುವಾದ ಧೃಢೀಕರಣದ ಟೋಕನ್.'
       user:
         suspended: ನಿಮ್ಮ ಖಾತೆಯನ್ನು ತಡೆಹಿಡಿಯಲಾಗಿದೆ
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: ಪಾಸ್ ವರ್ಡ್ ಮರುಹೊಂದಿಕೆ ಟೋಕನ್ ಅಮಾನ್ಯವಾಗಿದೆ. ದಯವಿಟ್ಟು ಇತ್ತೀಚೆಗೆ ಕಳುಹಿಸಿದ ಪಾಸ್ ವರ್ಡ್ ಮರುಹೊಂದಿಕೆ ಇಮೇಲ್ ನಲ್ಲಿ ಲಿಂಕ್ ಬಳಸಿ, ಅಥವಾ <a href="%{url}">ಹೊಸದನ್ನು ವಿನಂತಿಸಿ</a>.
     sessions:
       signed_in: 'ಯಶಸ್ವಿಯಾಗಿ ಸೈನ್ ಇನ್ ಆಗಲಾಗಿದೆ.'
       signed_out: 'ಯಶಸ್ವಿಯಾಗಿ ಸೈನ್ ಔಟ್ ಆಗಲಾಗಿದೆ.'
@@ -1328,6 +1337,8 @@ kn:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: ದೇಣಿಗೆ ನೀಡಿ
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: ದಾನ ಮಾಡಿ
   donate_again_today_caps: ಇಂದು ಮತ್ತೊಮ್ಮೆ ದೇಣಿಗೆ ನೀಡಿ
   #Title for pages and sections that encourage people to donate to iNaturalist
   donate_to_inaturalist: iNaturalist ಗೆ ದೇಣಿಗೆ ನೀಡಿ
@@ -1439,6 +1450,8 @@ kn:
   eol: EOL
   eol_collection_url: "EOL ಸಂಗ್ರಹ URL"
   error_updating_photo: "ಚಿತ್ರ ನವೀಕರಣದಲ್ಲಿ ದೋಷ: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "ಧ್ವನಿ ನವೀಕರಣದಲ್ಲಿ ದೋಷ: %{sound_errors}"
   establishment:
     endemic: ಸ್ಥಳೀಯ
     establishment: ನೆಲೆ
@@ -1484,6 +1497,7 @@ kn:
   extinct: ಅಳಿದುಹೋದ
   extinct_in_the_wild: ಕಾಡಿನಲ್ಲಿ ಅಳಿದಿರುವ
   extra_properties: ಹೆಚ್ಚುವರಿ ಗುಣವಿಶೇಷಗಳು
+  evidence_accurately_depicts_organism_or_scene: ಪುರಾವೆಗಳು ಜೀವಿ ಅಥವಾ ದೃಶ್ಯವನ್ನು ನಿಖರವಾಗಿ ಚಿತ್ರಿಸುತ್ತವೆ
   evidence_of_organism: ಜೀವಿಯ ಕುರುಹು
   facebook: ಫೇಸ್‍‌ಬುಕ್
   failed_to_find_your_location: ನಿಮ್ಮ ಸ್ಥಳ ಪತ್ತೆ ಮಾಡಲಾಗಲಿಲ್ಲ
@@ -1518,7 +1532,11 @@ kn:
   fields_can_only_be_edited_by_the_people_who: ಆವರಣಗಳನ್ನು ಅವನ್ನು ರಚಿಸಿದವರು ಅಥವಾ ತಾಣದ ಮೇಲ್ವಿಚಾರಕರು ಮಾತ್ರವೇ ಸಂಪಾದಿಸಬಹುದು
   fields_merged: ವಿಲೀನವಾದ ಆವರಣಗಳು
   file: ಕಡತ
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: ಫೈಲ್ ಸ್ವರೂಪ
   file_size: ಕಡತದ ಗಾತ್ರ
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: ಫೈಲ್ URL
   file_should_be_in_the_following_format: "ಕಡತವು ಈ ಕೆಳಗಿನ ಮಾದರಿಯಲ್ಲಿರಬೇಕು: ಜೀವಿವರ್ಗದ ಹೆಸರು, ವಿವರಣೆ"
   fill_out_project_observation_fields: ಪ್ರಾಯೋಜನೆ ವೀಕ್ಷಣೆಯ ಆವರಣಗಳನ್ನು ತುಂಬಿರಿ
   fill_out_your_profile: ನಿಮ್ಮ ಪರಿಚಯವನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ
@@ -1659,6 +1677,8 @@ kn:
   header_your_projects: ನಿಮ್ಮ ಪ್ರಾಯೋಜನೆಗಳು
   header_your_profile: ನಿಮ್ಮ ಪರಿಚಯ
   heads_up: ಮುನ್ನೋಟ
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "ಹೆಡ್ಸ್ ಅಪ್: ಈ ಶಬ್ದವನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಾಡಲಾಗಿದೆ."
   heads_up_this_photo_is_already_associated_with: "ಮುನ್ಸೂಚನೆ: ಈ ಚಿತ್ರವು ಈಗಾಗಲೇ<a target='_blank' href='%{url}'>ಮತ್ತೊಂದು ವೀಕ್ಷಣೆ</a>ಯೊಂದಿಗೆ ಜೊತೆಯಾಗಿದೆ."
   help: ಸಹಾಯ
   help_confirm_observations!: ವೀಕ್ಷಣೆಗಳನ್ನು ಗುರುತಿಸಲು ಸಹಾಯಮಾಡಿ!
@@ -2987,6 +3007,8 @@ kn:
       zone: ವಲಯ
   place_guess: ಸ್ಥಳದ ಊಹೆ
   place_imported: ಸ್ಥಳವನ್ನು ಆಮದುಮಾಡಲಾಗಿದೆ!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: ಈ ಸ್ಥಳದೊಂದಿಗೆ ಅವಲೋಕನಗಳು ಸಂಬಂಧ ಹೊಂದಲು ಒಂದು ದಿನ ತೆಗೆದುಕೊಳ್ಳಬಹುದು.
   place_must_have_a_boundary_defined: ಸ್ಥಳಕ್ಕೆ ಗಡಿರೇಖೆಯೊಂದು ನಿರ್ಧಾರವಾಗಿರಬೇಕು.
   place_name: ಸ್ಥಳದ ಹೆಸರು
   place_notes: ಸ್ಥಳದ ಟಿಪ್ಪಣಿಗಳು
@@ -3269,6 +3291,20 @@ kn:
     iNat ನ ನಿಧಾನಗತಿಗೆ ಸ್ಥಳದ ಗಡಿರೇಖೆಗಳ ಸಂಪಾದನೆಗಳು ಬಹು ದೊಡ್ಡ ಕೊಡುಗೆನೀಡುತ್ತವೆ. ನೀವು ಅದನ್ನು ನಿವಾರಿಸಬೇಕಿದ್ದಲ್ಲಿ, ಅತ್ಯಗತ್ಯವಿದ್ದಲ್ಲಿ ಮಾತ್ರ ಸ್ಥಳದ ಗಡಿರೇಖೆಗಳನ್ನು ಸೇರಿಸಿ, ಬದಲಿಸಿ ಅಥವಾ ತೆಗೆದುಹಾಕಿ.
   places_warning_quota: |
     ನೀವು ಪ್ರತಿದಿನಕ್ಕೆ ಮೂರು ಸ್ಥಳಗಳನ್ನು ಮಾತ್ರ ರಚಿಸಬಹುದು.
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    ಸ್ಥಳಗಳು 700,000 ಚದರ ಕಿಲೋಮೀಟರ್ ಗಿಂತ ದೊಡ್ಡದಾಗಿರಬಾರದು.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    ಸ್ಥಳಗಳು 70,000 ಚದರ ಕಿಲೋಮೀಟರ್ ಗಿಂತ ದೊಡ್ಡದಾಗಿರಬಾರದು.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    ಸ್ಥಳಗಳು 200,000 ಕ್ಕಿಂತ ಹೆಚ್ಚು ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಲು ಸಾಧ್ಯವಿಲ್ಲ.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    ಸ್ಥಳಗಳು 10,000 ಕ್ಕಿಂತ ಹೆಚ್ಚು ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಲು ಸಾಧ್ಯವಿಲ್ಲ.
   plants: ಸಸ್ಯಗಳು
   please_add_a_citation_for_this_change: ದಯವಿಟ್ಟು ಈ ಬದಲಾವಣೆಗೆ ಒಂದು ಉಲ್ಲೇಖವನ್ನು ಸೇರಿಸಿ.
   please_allow_a_few_weeks_for_external_sites: ಈ ವೀಕ್ಷಣೆಗಳ ಬದಲಾವಣೆಗಳನ್ನು ಬಾಹ್ಯ ತಾಣಗಳು ಸಿಂಕ್ ಮಾಡಲು ದಯವಿಟ್ಟು ಕೆಲವು ವಾರಗಳ ಸಮಯ ನೀಡಿ #Request that a known child ask their parents for permission to use this service
@@ -3899,6 +3935,14 @@ kn:
     select_one_or_more_sounds: ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಧ್ವನಿಗಳನ್ನು ಆರಿಸಿ
     selected_sounds: ಆಯ್ಕೆಮಾಡಿದ ಧ್ವನಿಗಳು
     sound: ಧ್ವನಿ
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: ಧ್ವನಿ %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: ಧ್ವನಿ ಅಳಿಸಲಾಗಿದೆ
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: ಧ್ವನಿ ಅಡಗಿದೆ
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: ಗುಪ್ತವಾಗಿಲ್ಲದ ಧ್ವನಿ
     soundcloud_replied_with_an_error: ಸೌಂಡ್‍ಕ್ಲೌಡ್ ನಿಂದ ದೋಷದ ಪ್ರತ್ಯುತ್ತರ. ದಯವಿಟ್ಟು ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.
     sounds: ಧ್ವನಿಗಳು
     your_soundcloud_account: ನಿಮ್ಮ ಸೌಂಡ್‍ಕ್ಲೌಡ್ ಖಾತೆ
@@ -4460,6 +4504,8 @@ kn:
   updated_by_user_on_date_html: '%{date} ರಂದು %{user} ಮೂಲಕ ನವೀಕರಿಸಲಾಗಿದೆ'
   updated_daily: ಪ್ರತಿದಿನ ನವೀಕರಿಸಲಾಗಿದೆ
   updated_photo: ನವೀಕರಿಸಿದ ಚಿತ್ರ
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: ನವೀಕರಿಸಿದ ಧ್ವನಿ
   upload: ಅಪ್ಲೋಡ್ ಮಾಡಿ
   upload_a_csv_file: CSV ಕಡತ ಅಪ್ಲೋಡ್ ಮಾಡಿ
   upload_a_csv_file_with_observation: |
@@ -4913,10 +4959,18 @@ kn:
         ನಿಮ್ಮ ಖಾತೆಯ ಸಮಯ ವಲಯದಲ್ಲಿ ಈ ಪ್ರಕಟಣೆ ನಿಲ್ಲುವ ಸಮಯ
         ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತಿದೆ. ಸಮಯ ವಲಯಗಳಾದ್ಯಂತ ಅನ್ವಯಿಸುತ್ತದೆ, ಆದ್ದರಿಂದ ಎಲ್ಲರೂ ನೋಡುವುದನ್ನು ನಿಲ್ಲಿಸುತ್ತಾರೆ
         ಅದೇ ಸಮಯದಲ್ಲಿ, ಅವರ ಸ್ಥಳೀಯ ಸಮಯಕ್ಕೆ ಸಂಬಂಧಿಸಿಲ್ಲ.
+      excludes_non_site_desc: |
+        ನಿಮ್ಮ ಪ್ರಕಟಣೆಯು ಸೈಟ್ ಅನ್ನು ಗುರಿಯಾಗಿಸಿಕೊಂಡರೆ (ನೀವು ಡೀಫಾಲ್ಟ್ ಆಗಿದ್ದರೆ ಅದು ಡೀಫಾಲ್ಟ್ ಆಗಿರುತ್ತದೆ)
+        ಸೈಟ್ ನಿರ್ವಹಣೆ), ಇದು ಎಲ್ಲಾ ಸೈಟ್ ಗಳನ್ನು ಗುರಿಯಾಗಿಸುವ ಪ್ರಕಟಣೆಗಳನ್ನು ಹೊರಗಿಡುತ್ತದೆ
+        ಈ ಸ್ಥಾನ.
       ip_countries_desc: |
         ಬಹುಸಂಖ್ಯೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಲು CMD- ಅಥವಾ SHIFT-ಕ್ಲಿಕ್ ಮಾಡಿ. "ಎಲ್ಲವನ್ನೂ" ಆಯ್ಕೆ ಮಾಡುವುದು ಅಥವಾ ಮಾಡದಿರುವುದು
         ಆಯ್ಕೆಯು ಈ ಕೆಳಗಿನವುಗಳನ್ನು ಲೆಕ್ಕಿಸದೆ ಎಲ್ಲಾ ಬಳಕೆದಾರರಿಗೆ ಪ್ರಕಟಣೆಯನ್ನು ತೋರಿಸುತ್ತದೆ
         IP ದೇಶ.
+      exclude_ip_countries_desc: |
+        ಬಹುವನ್ನು ಆಯ್ಕೆ ಮಾಡಲು CMD- ಅಥವಾ SHIFT-ಕ್ಲಿಕ್ ಮಾಡಿ. ಆಯ್ಕೆಮಾಡಿದ ದೇಶಗಳನ್ನು ತೋರಿಸಲಾಗುವುದಿಲ್ಲ
+        ಪ್ರಕಟಣೆ. IP ದೇಶಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿದರೆ, IP ದೇಶಗಳನ್ನು ಹೊರತುಪಡಿಸಿ ಆಯ್ಕೆ ಮಾಡಿ
+        ಹಿಂದಿನದರಿಂದ ಕಳೆಯಲಾಗುತ್ತದೆ.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         ಬಳಕೆದಾರರು ಇತ್ತೀಚೆಗೆ ರಚಿಸಿದ ರಚನೆಯ ದಿನಾಂಕವನ್ನು ಗಮನಿಸಿ
@@ -5260,6 +5314,17 @@ kn:
       show:
         allow_curator_coordinate_access_desc_html: |
           ಈ ವೀಕ್ಷಣೆಗೆ ಮರೆಮಾಡಿದ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಕರು ನೋಡಲು ಅನುಮತಿಸಿ
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ದಿ <strong>ಸಮುದಾಯ ಟ್ಯಾಕ್ಸಾನ್ ಮತ್ತು ವೀಕ್ಷಣಾ ಟ್ಯಾಕ್ಸಾನ್ ಹೊಂದಾಣಿಕೆ</strong>
+          (ವೀಕ್ಷಣಾ ಟ್ಯಾಕ್ಸಾನ್ ಹೆಚ್ಚು ಇರಬಹುದಾದ ಆ ಅಪರೂಪದ ಸಂದರ್ಭಗಳಿಗೆ
+          ಸಮುದಾಯ ಟ್ಯಾಕ್ಸಾನ್ ಗಿಂತ ನಿರ್ದಿಷ್ಟ)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          ಅವಲೋಕನ <strong>ಜೀವಿಯ ನಿಖರವಾದ ಪುರಾವೆಗಳನ್ನು ಪ್ರಸ್ತುತಪಡಿಸುವುದಿಲ್ಲ ಅಥವಾ
+          ದೃಶ್ಯ</strong> (ಉದಾ: ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆಯನ್ನು ಸೇರಿಸಲು, ತೆಗೆದುಹಾಕಲು ಅಥವಾ ಬದಲಾಯಿಸಲು ಬಳಸಲಾಯಿತು
+          ಚಿತ್ರ ಅಥವಾ ಧ್ವನಿಯಲ್ಲಿನ ಅಂಶಗಳು. ಗದ್ದಲ ಮಾಡುವುದು, ಫೋಕಸ್ ಸ್ಟ್ಯಾಕಿಂಗ್, ಅಥವಾ ಮಾಡುವುದು
+          ಸಂವೇದಕ ಧೂಳನ್ನು ತೆಗೆದುಹಾಕುವಂತಹ ಸಣ್ಣ ಪರಿಹಾರಗಳು ಸಾಮಾನ್ಯವಾಗಿ ಸರಿ).
         flagged_photos_desc_html: |
           ಇಲ್ಲಿನ ಕೆಲವು ಚಿತ್ರಗಳನ್ನು ಅನುಚಿತ ವಿಷಯ ಅಥವಾ ಹಕ್ಕುಸ್ವಾಮ್ಯದ ಉಲ್ಲಂಘನೆಯಂತೆ ಗುರುತಿಸಲಾಗಿದೆ. ಹೆಚ್ಚಿನ ವಿವರಗಳಿಗೆ %{links} ನೋಡಿ
     emailer:
@@ -5479,6 +5544,14 @@ kn:
       not_found:
         sorry_that_doesnt_exist: ಕ್ಷಮಿಸಿ, ಅದು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ!
         even_our_dedicated_search_mole_couldnt: ನಮ್ಮ ಪ್ರೀತಿಯ ಶೋಧಕರ ಕಪ್ಪೆ ಸಹ ಏನೂ ಪತ್ತೆಹಚ್ಚಲಿಲ್ಲ!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          ನೀವು ಮೂಲವನ್ನು ಇಲ್ಲಿ ವೀಕ್ಷಿಸಬಹುದು <a href="%{url}">%{url}</a>. ದಯವಿಟ್ಟು
+          ಈ ಧ್ವನಿ ಮಾಡಿದರೆ ಹಕ್ಕುಸ್ವಾಮ್ಯ ಉಲ್ಲಂಘನೆ ಧ್ವಜಗಳನ್ನು ಬಗೆಹರಿಯದೆ ಬಿಡಿ
+          ಹಕ್ಕುಸ್ವಾಮ್ಯವನ್ನು ಉಲ್ಲಂಘಿಸುತ್ತದೆ.
     stats:
       index:
         active_desc: ಕಳೆದ 30 ದಿನಗಳಲ್ಲಿ ID, ವೀಕ್ಷಣೆ, ಅಭಿಪ್ರಾಯ ಅಥವಾ ಪೋಸ್ಟ್ ಒಂದನ್ನು ರಚಿಸಿದವರು
@@ -5577,6 +5650,9 @@ kn:
       edit:
         complete_rank_desc_html: |
           ಈ ಜೀವಿವರ್ಗ ಸಂಪೂರ್ಣವಾಗಲಿರುವ ಶ್ರೇಣಿ, ಉದಾ. ಈ ಕುಟುಂಬ ಅದರ ಎಲ್ಲಾ ಕುಲಗಳನ್ನು ಒಳಗೊಂಡಿದ್ದು ಆದರೆ ಅದರ ಎಲ್ಲಾ ಪ್ರಭೇದಗಳನ್ನು ಒಳಗೊಳ್ಳದೇ ಇರದಿದ್ದಲ್ಲಿ, ಇದನ್ನು "ಕುಲ" ವೆಂದು ಪರಿಗಣಿಸಲಾಗುವುದು. ಪ್ರಭೇದವು ನಿಯೋಜಿತವಾಗಿರುತ್ತದೆ.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          ನೀವು ಪ್ರಭೇದಗಳ ವಿಶೇಷಣಕ್ಕೆ ನೇರವಾಗಿ ಸಣ್ಣ ಬದಲಾವಣೆಗಳನ್ನು ಮಾತ್ರ ಮಾಡಬಹುದು (ಉದಾ. ಲಿಂಗ ಬದಲಾವಣೆಗಳು, ತಪ್ಪು ಕಾಗುಣಿತ). ಒಂದು ಸೇರಿಸು <a target="_blank" href="%{url}">ಟ್ಯಾಕ್ಸಾನ್ ಸ್ವಾಪ್</a> ನಿಮಗೆ ಹೆಸರಿಗೆ ಇತರ ಬದಲಾವಣೆಗಳು ಬೇಕಾದರೆ.
       show:
         about_conservation_status_desc: |
           ಸಂರಕ್ಷಣಾ ಸ್ಥಿತಿಯು ಜೀವಿಗಳ ಒಂದು ಗುಂಪಿನ ವಿನಾಶದ ಅಪಾಯವನ್ನು ಸಂಕ್ಷಿಪ್ತವಾಗಿ ವಿವರಿಸುತ್ತದೆ.
@@ -5618,6 +5694,9 @@ kn:
         trending_desc: ಹಿಂದಿನ ತಿಂಗಳಿನಲ್ಲಿ ಅತಿಹೆಚ್ಚು ವೀಕ್ಷಿಸಿದ ಜೀವಿವರ್ಗಗಳು
         trending_in_place_desc_html: <a href="%{url}">%{place}</a> ನಲ್ಲಿ ಹಿಂದಿನ ತಿಂಗಳಿನಲ್ಲಿ ಅತಿಹೆಚ್ಚು ವೀಕ್ಷಿಸಿದ ಜೀವಿವರ್ಗಗಳು
         wanted_desc: ಈ ಜೀವಿವರ್ಗದಲ್ಲಿ ಇನ್ನೂ ವೀಕ್ಷಿಸಲಾಗದೇ ಉಳಿದಿರುವ ಪ್ರಭೇದಗಳು.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        ಆ ಟ್ಯಾಗ್ ಗಳನ್ನು ಪೋಸ್ಟ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಏನೋ ತಪ್ಪಾಗಿದೆ: %{message}
     users:
       dashboard:
         your_content_will_be_updated: ಈ ಜೀವಿವರ್ಗಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ನಿಮ್ಮ ವಸ್ತುವಿಷಯಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಣಗೊಳ್ಳುತ್ತವೆ.
@@ -5644,6 +5723,20 @@ kn:
         you_must_enter_confirmation_code_in_the_form: |
           ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನೀವು ಫಾರಮ್ಮಿನಲ್ಲಿ "%{confirmation_code}" ಅನ್ನು ನಮೂದು ಮಾಡಲೇಬೇಕು.
       edit:
+        block_desc_comments_on_taxon_flags: ನೀವು ರಚಿಸಿದ ಟ್ಯಾಕ್ಸಾನ್ ಧ್ವಜಗಳ ಬಗ್ಗೆ ಕಾಮೆಂಟ್ ಗಳು
+        block_desc_comments_on_taxon_changes: ನೀವು ರಚಿಸಿದ ಟ್ಯಾಕ್ಸಾನ್ ಬದಲಾವಣೆಗಳ ಬಗ್ಗೆ ಕಾಮೆಂಟ್ ಗಳು
+        block_desc_unlike_more_personal: |
+          ಅವಲೋಕನಗಳು ಮತ್ತು ನಿಯತಕಾಲಿಕದಂತಹ ವಿಷಯದ ಹೆಚ್ಚು ವೈಯಕ್ತಿಕ ರೂಪಗಳಿಗಿಂತ ಭಿನ್ನವಾಗಿ
+          ಪೋಸ್ಟ್ ಗಳು, ಟ್ಯಾಕ್ಸಾವನ್ನು ಎಲ್ಲರೂ ಹಂಚಿಕೊಳ್ಳುತ್ತಾರೆ ಮತ್ತು ಇದಕ್ಕಾಗಿ ಮುಕ್ತವಾಗಿರಬೇಕು
+          ಎಲ್ಲರಿಂದಲೂ ಚರ್ಚೆ. ನಿರ್ಬಂಧಿಸುವುದು ಇನ್ನೂ ನಿಮ್ಮನ್ನು ತಡೆಯುತ್ತದೆ
+          ಈ ರೀತಿಯ ವಿಷಯದ ಬಗ್ಗೆ ಕಾಮೆಂಟ್ ಗಳ ಬಗ್ಗೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಲಾಗುತ್ತಿದೆ
+          ನೀವು ನಿರ್ಬಂಧಿಸಿದ ವ್ಯಕ್ತಿ.
+        block_desc_if_harassing_html: |
+          ಯಾರಾದರೂ ನಿಮಗೆ ಕಿರುಕುಳ ನೀಡುತ್ತಿದ್ದರೆ ಅಥವಾ ಹಿಂಬಾಲಿಸುತ್ತಿದ್ದರೆ %{site_name},
+          <a href="mailto:%{help_email}">ದಯವಿಟ್ಟು ನಮಗೆ ತಿಳಿಸಿ</a>. ಇದ್ದರೆ
+          ಇದು ನಮ್ಮ ಬಳಕೆಯ ನಿಯಮಗಳ ಉಲ್ಲಂಘನೆಯನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ ಅಥವಾ ಪ್ರತಿನಿಧಿಸುತ್ತದೆ
+          ನಮ್ಮ ಸೈಟ್ ಗೆ ಸೂಕ್ತವಲ್ಲ ಎಂದು ನಾವು ಭಾವಿಸುವ ಇತರ ನಡವಳಿಕೆ, ನಾವು ಮಾಡುತ್ತೇವೆ
+          ತನಿಖೆ ಮಾಡಿ.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           ನೀವು ಮನಸ್ಸು ಬದಲಿಸಿದಲ್ಲಿ ನೀವು ಯಾವಾಗ ಬೇಕಾದರೂ <a href='/users/edit'>ನಿಮ್ಮ ಸಂಯೋಜನೆಗಳನ್ನು ಸಂಪಾದಿಸಿ</a>.
         errors:
@@ -6008,6 +6101,7 @@ kn:
         exclude_donor_start_date: ದಾನಿ ಪ್ರಾರಂಭ ದಿನಾಂಕವನ್ನು ಹೊರಗಿಡಿ
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: ದಾನಿಗಳ ಮುಕ್ತಾಯ ದಿನಾಂಕವನ್ನು ಹೊರಗಿಡಿ
+        excludes_non_site: ಸೈಟ್ ID ಇಲ್ಲದ ಇತರ ಪ್ರಕಟಣೆಗಳನ್ನು ಈ ಪ್ಲೇಸ್ ಮೆಂಟ್ ನಲ್ಲಿ ಮರೆಮಾಡಿ
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: ಅಪ್ಲಿಕೇಶನ್ ಗಳಿಂದ ವೀಕ್ಷಕರನ್ನು ಹೊರಗಿಡಿ

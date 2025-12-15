@@ -657,4 +657,43 @@ namespace :inaturalist do
       where( "failed_at IS NULL" ).
       update( locked_by: nil, locked_at: nil )
   end
+
+  desc "Prune ApiEndpointCaches"
+  task prune_api_endpoint_caches: :environment do
+    ApiEndpointCache.includes( :api_endpoint ).
+      select( :id, :api_endpoint_id, :request_began_at, :request_completed_at ).
+      find_in_batches( batch_size: 10_000 ) do | batch |
+      puts "Processing batching starting at ID: #{batch.first.id}"
+      ids_to_delete = []
+
+      batch.each do | api_endpoint_cache |
+        next unless api_endpoint_cache.request_began_at
+        next if api_endpoint_cache.request_began_at > 7.days.ago
+
+        if api_endpoint_cache.request_completed_at.nil?
+          next unless api_endpoint_cache.request_began_at < 12.hours.ago
+
+          # remove anything that appears to be stuck or experienced some uncaught
+          # failure, at least 12 hours after the request started
+          ids_to_delete << api_endpoint_cache.id
+        elsif api_endpoint_cache&.api_endpoint&.cache_hours
+          if api_endpoint_cache.request_completed_at < (
+            Time.now - api_endpoint_cache.api_endpoint.cache_hours.hours - 60.days
+          )
+            # remove anything more than 60 days older than its cache time.
+            # Caches older than their cache time are not inherently bad, it just
+            # indicates we have not attempted to request them recently, therefore
+            # they may not be needed anymore and can be cleaned up
+            ids_to_delete << api_endpoint_cache.id
+          end
+        end
+      end
+
+      next if ids_to_delete.empty?
+
+      puts "Deleting #{ids_to_delete.size} ApiEndpointCaches"
+      ApiEndpointCache.where( id: ids_to_delete ).delete_all
+    end
+    nil
+  end
 end
