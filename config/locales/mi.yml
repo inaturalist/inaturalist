@@ -190,6 +190,10 @@ mi:
   any_user: Katoa
   appropriate?: He tika?
   arachnids: pūngāwerewere
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: E tika ana kia mukua tēnei oro?
+  artificially_generated_content: Ihirangi i Hangaia Noatia
+  artificially_generated_content_desc: Kei roto ko ngā ihirangi e hangaia ana te nuinga, te katoa rānei mā te mōhiohio horihori.
   asc: Piki
   ascending: Whakapiki
   #Noun form, as in a property of something. Generally used to describe the
@@ -272,6 +276,7 @@ mi:
   community: Hapori
   community_guidelines: Aratohu hapori
   community_id_heading: Rōpū o te Hapori
+  community_taxon_matches_observation_taxon: E ōrite ana te Tāke Hapori ki te Tāke Kitenga
   compare: Ine
   configure: Whirihora
   confirm: Whakaū
@@ -364,6 +369,8 @@ mi:
     te kitenga ki te kaupapa. Koinei anake te tautuhinga taunoa mō
     ngā kitenga i roto i ngā kaupapa. Ka taea hoki e ngā kaitirotiro te kōwhiri ki te huri i tēnei mō
     ngā kitenga takitahi.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Tāke Hapori o Nāianei: %{taxon}"
   dashboard: Paemana
   date_: Rā
   date_added: Rā tapiritia
@@ -422,6 +429,8 @@ mi:
   delete_all: Mukua katoa
   delete_photo: Mukua whakaahua
   delete_project: Mukua te kohinga tēnei
+  #Label for a button to delete a sound file
+  delete_sound: Mukua te oro
   delete_user: Mukua kaiwhakamahi
   delete_your_account: Mukua tōu pūkete
   deleting: E muku ana...
@@ -430,6 +439,9 @@ mi:
   descending: Whakaheke
   details: Taipitopito
   devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: He muhu te maimai kupuhipa tautuhi anō. Whakamahia koa te hono i roto i te īmēra kupuhipa tautuhi anō kātahi anō ka tukua, rānei <a href="%{url}">tonoa he mea hou</a>.
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -518,6 +530,8 @@ mi:
   endangered: Mōrearea
   endemic: Taketake
   endemic_to_x: "Taketake ki %{x}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Kua hapa te whakahōu oro: %{sound_errors}"
   establishment:
     endemic: Taketake
   everyone: tātou
@@ -528,6 +542,7 @@ mi:
   export_observations: Kawe atu ngā mauhanga
   exporting: "E kawe atu ana..."
   extinct: korehāhā
+  evidence_accurately_depicts_organism_or_scene: E whakaatu tika ana ngā whakaaturanga i te rauropi, i te tirohanga rānei
   facebook: Pukamata
   'false': 'Teka'
   Family: Whānau
@@ -536,7 +551,11 @@ mi:
   fields: āpure
   fields_: Āpure
   file: Kōnae
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Hōputu kōnae
   file_size: Rahi kōnae
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL Kōnae
   #The name of a computer file
   filename: Ingoa kōnae
   filter: Tātari
@@ -614,6 +633,8 @@ mi:
   header_your_identifications: Āu tautuhi
   header_your_projects: Āu kohinga
   header_your_profile: Tāu kīwhaiaro
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "HEADS UPOKO AKE: kua karaina tēnei oro."
   help: Āwhina
   help_translate!: Āwhina e whakareo!
   here_are_our_top_suggestions: Ānei ngā marohi ki runga
@@ -968,6 +989,8 @@ mi:
       time_zone: rohe wā
       Town: Tāone
       town: tāone
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Tērā pea ka pau te rā kia pāhonotia ngā kitenga ki tēnei wāhi.
   places: Wāhi
   places_name:
     afghanistan: Āwhekenetāna
@@ -1119,6 +1142,20 @@ mi:
     vietnam: Witināma
     zambia: Tāmipia
     zimbabwe: Timuwawe
+  #user-facing guidance that new places cannot be too large
+  places_warning_area: |
+    Kāore e taea e ngā wāhi te nui ake i te 700,000 kiromita tapawhā.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    Kāore e taea e ngā wāhi te nui ake i te 70,000 kiromita tapawhā.
+  #user-facing guidance that new places cannot contain too many observations
+  places_warning_observation_count: |
+    Kāore e taea e ngā wāhi te neke atu i te 200,000 ngā kitenga.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    Kāore e taea e ngā wāhi te neke atu i te 10,000 ngā kitenga.
   plants: tipu
   play_first_sound: Pureingia te oro tuatahi
   #Title to a section warning a user to exercise caution
@@ -1342,6 +1379,14 @@ mi:
     no_photos_sounds: E kore ngā whakaahua, oro rānei
     photos_sounds: Whakaahua/Oro
     sound: Oro
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Oro %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Kua mukua te oro
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Oro hunaia
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Oro hunakore
     sounds: Oro
   source: Te pū
   source_: 'Te pū:'
@@ -1440,6 +1485,8 @@ mi:
   updated: I whakahou
   updated_by: I whakahou nā
   updated_daily: I whakahou ai i rā
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Oro kua whakahōutia
   upload: Tukuatu
   uploader:
     tooltips:
@@ -1597,10 +1644,18 @@ mi:
         Wā i tō rohe wā pūkete ka tū ai tēnei pānui
         e puta ana. Ka pā puta noa i ngā rohe wā, kia mutu ai te kite a te katoa
         i te wā kotahi, ehara i te mea e pā ana ki tō rātou wā paetata.
+      excludes_non_site_desc: |
+        Mēnā e ūnga ana tō pānui i tētahi pae (koia te taunoa mēnā he
+        Kaiwhakahaere Pae), ka aukatia e tēnei ngā pānuitanga e ūnga ana i ngā pae katoa i roto i
+        tēnei whakanohonga.
       ip_countries_desc: |
         CMD-pāwhiri-PANUKU rānei hei tīpako i ngā taumaha. Tīpako ana i te "Katoa", kāore rānei e hanga
         Ka whakaaturia e tētahi tīpakonga te pānuitanga ki ngā kaiwhakamahi katoa ahakoa
         Whenua IP.
+      exclude_ip_countries_desc: |
+        CMD-pāwhiri-PANUKU rānei hei tīpako i ngā taumaha. Kāore e whakaaturia ngā whenua kua tīpakohia
+        te pānuitanga. Ki te tīpakohia ngā whenua IP, tīpakohia te Waiho ngā whenua IP
+        ka tangohia mai i te mea o mua.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Kia mahara ko te rā waihanga o te mea i waihangatia e te kaiwhakamahi i mua tata nei
@@ -1717,6 +1772,18 @@ mi:
         vertical: Poutū
       field_descriptions:
         time_zone: Rohe wā o te mauhanga
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          Te <strong>Ōrite te Tāke Hapori me te Tāke Kitenga</strong>
+          (mō ērā wā āhua kore nei ka nui ake te Tāke Kitenga
+          tauwhāiti i te Tāke Hapori)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          te kitenga <strong>kāore i te whakaatu i ngā whakaaturanga tika o te rauropi,
+          tirohanga</strong> (hei tauira, i whakamahia te mōhiohio horihori hei tāpiri, hei tango, hei whakakapi rānei
+          ngā huānga i roto i te atahanga, oro rānei. Te whakakore i te turituri, te tāpae arotahi, te hanga rānei
+          ko ngā whakatika iti pēnei i te tango puehu pūoko e pai ana).
     emailer:
       parental_consent:
         subject: Kei te hiahia tāu tamaiti i whakamahi iNaturalist
@@ -1729,6 +1796,14 @@ mi:
         project_name: Ingoa kohinga
       project_user_curator_coordinate_access_labels:
         none: Kao.
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Ka taea e koe te tiro i te mea taketake ki <a href="%{url}">%{url}</a>. Tēnā koa
+          waiho ngā kara takahi manatārua kia kore e whakatauria mēnā ka puta tēnei oro
+          takahi manatārua.
     stats:
       year:
         new_species_per_year: Momo hou/Tau
@@ -1739,6 +1814,10 @@ mi:
         species_per_year_by_date_added: Nā rā tapiritia
         translators_title: Kaiwhakareo
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Ka taea anake e koe te whakarerekē i ngā huringa iti ki te ingoa momo (hei tauira, ngā huringa ira tangata, te takikupu hē). Tāpiritia he <a target="_blank" href="%{url}">whakawhiti tāke</a> mēnā e hiahia ana koe ki ētahi atu huringa ki te ingoa.
       show:
         charts_caps: TŪTOHI
         frequency:
@@ -1753,6 +1832,9 @@ mi:
           "Life Stage=Pupa": Tūngoungou
           "Sex=Female": Uwha
           "Sex=Male": Tourawhi
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        I puta he raru i te ngana ki te whakairi i aua tūtohu: %{message}
     users:
       delete:
         type_confirmation_code: Patopatohia %{confirmation_code}
@@ -1897,6 +1979,7 @@ mi:
         exclude_donor_start_date: Waihotia te rā tīmata o te kaituku
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Waihotia te rā mutunga o te kaituku
+        excludes_non_site: Hunaia ētahi atu pānuitanga i tēnei whakanohonga kāore he ID Pae
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Aukati i ngā kaimātakitaki mai i ngā taupānga

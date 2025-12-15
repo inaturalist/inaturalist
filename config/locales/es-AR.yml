@@ -740,7 +740,6 @@ es-AR:
   back_to_all_species: Volver a todas las especies
   back_to_editing_observation: Volver a editar la observación
   back_to_friends: Volver a amigos
-  back_to_flags_html: "&laquo; Volver a las marcas"
   back_to_lists: "Volver a las listas de %{name}"
   back_to_observation: Volver a la observación
   back_to_observation_fields: Volver a los campos de observación
@@ -768,8 +767,6 @@ es-AR:
   back_to_your_observations: Regresa a tus observaciones
   back_to_your_profile: Regresa a tu perfil
   badges: Insignias
-  based_on_the_evidence_can_id_be_improved: |
-    Basándose en las evidencias, ¿la ID de la comunidad puede ser confirmada o mejorada?
   batch: Grupo
   batch_edit: Editar por lotes
   #Where x is the title of a list of taxa
@@ -1913,7 +1910,6 @@ es-AR:
   flag_marked_as_resolved_html: '<span class="meta">Marca señalada como</span> <strong>resuelta.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objeto
-  flag_reason: "&ldquo; Estoy marcando este %{record} porque"
   flag_resolution: Resolución
   flag_saved: Advertencia guardada
   flag_saved_thanks_html: Marca guardada. ¡Gracias! <a href="%{url}" class="readmore">Ver marca</a>
@@ -5876,6 +5872,7 @@ es-AR:
   you_faved_this: '¡Has marcado esto como favorito!'
   you_have_left_x_project: "Has abandonado al proyecto %{project}"
   you_have_not_confirmed_your_email_address: '¡No has confirmado tu dirección de correo electrónico!'
+  you_havent_joined_any_projects: No te uniste a ningún proyecto
   you_havent_linked_your_inaturalist_google_account: "Aún no has enlazado tus cuentas de %{site_name} y de Google"
   you_joined_this_project: '¡Te uniste a este proyecto!'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un miembro del proyecto para poder hacer eso.
@@ -5957,11 +5954,6 @@ es-AR:
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértase en un Patrocinador Mensual de Naturalista.
-    flags:
-      show:
-        flags_that_should_not_be_resolved_desc_html: |
-          Por favor resolver marcas de <code>basura</code> y <code>contravenciones de derechos de autor</code> solamente si el contenido no es basura o no es una
-          contravención de los derechos de autor, respectivamente.
     guides:
       index:
         deprecated_banner: |

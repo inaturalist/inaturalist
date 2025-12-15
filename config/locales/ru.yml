@@ -744,6 +744,14 @@ ru:
   app_owner_application_about_p1a_html: |
     Приложения iNaturalist дают возможность аутентифицированного использования API iNaturalist. Это позволяет вам выполнять вызовы API, для выполнения таких действий, как создание наблюдений или идентификаций. Обычными вариантами использования являются настольные приложения или мобильные приложения, которые включают в себя функции создания наблюдений iNaturalist для своих пользователей. Этот контент должен создаваться при реальном человеческом участии или надзоре. Пожалуйста, для получения более подробной информации ознакомьтесь с нашими <a href="/pages/community+guidelines"
     target="_blank">Рекомендациями сообщества</a>, которые запрещают машинную генерацию наблюдений, идентификаций и комментариев .
+  app_owner_application_about_p2_html: |
+    С 2022 года мы требуем ручного подтверждения для пользователей, желающих создать API-клиентов.
+    Чтобы создавать сторонние приложения, вы должны сначала подать заявку, чтобы стать
+    «Владелец приложения». Это приложение должно описывать функциональность предлагаемого вами приложения
+    и как вы планируете его использовать. Для того, чтобы подать заявку, Ваш счет должен быть по адресу
+    возраст не менее 2 месяцев и должен быть не менее 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Улучшение идентификации</a> в прошлом месяце. Мы можем попросить о последующих действиях
+    вопросов о вашем плане, и мы оставляем за собой право отклонить заявку по любой причине.
   app_owner_application_inelligible: |
     Для подачи заявки ваш аккаунт должен быть создан не менее 2 месяцев назад, и за последний месяц должно быть сделано не менее 10 улучшающих идентификаций.
   app_owner_application_fields_explanation_html: Опишите функциональность вашего приложения и то, как вы планируете его использовать.
@@ -827,6 +835,8 @@ ru:
   are_you_sure_you_want_to_delete_this_assessment?: Вы уверены, что хотите удалить оценку?
   are_you_sure_you_want_to_delete_this_photo?: Вы уверены, что хотите удалить эту фотографию?
   are_you_sure_you_want_to_delete_this_post: Вы уверены, что хотите удалить это сообщение?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Вы уверены, что хотите удалить это аудио?
   are_you_sure_you_want_to_delete_this_taxon_change: Вы уверены, что хотите удалить это изменение таксона?
   are_you_sure_you_want_to_remove_all_tags: Вы уверены, что хотите удалить все теги?
   are_you_sure_you_want_to_remove_curator: Вы уверены, что хотите удалить %{user} из списка кураторов?
@@ -840,6 +850,8 @@ ru:
     Вы уверены что хотите удалить это наблюдение из %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Вы уверены что хотите удалить этот таксон из контрольного списка %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Вы уверены, что хотите отметить этого пользователя как спамера?
+  artificially_generated_content: Искусственно созданный контент
+  artificially_generated_content_desc: Содержит контент, который в основном или полностью создается с помощью искусственного интеллекта.
   associated_observations: Связанные наблюдения
   associated_taxa: Связанные таксоны
   attention: Внимание
@@ -903,7 +915,6 @@ ru:
   back_to_all_species: Назад ко Всем Видам
   back_to_editing_observation: Вернуться к редактированию наблюдения
   back_to_friends: Назад к друзьям
-  back_to_flags_html: "&laquo; Назад к флагам"
   back_to_lists: "Назад к спискам %{name}"
   back_to_observation: Назад к наблюдению
   back_to_observation_fields: Назад к полям наблюдения
@@ -946,8 +957,6 @@ ru:
     other: |
       Основываясь на примере %{percent}% от этих идентификаторов, мы полагаем, что это
       приведет к <strong>%{count} непредусмотренным разногласиям</strong> с идентификаторами %{child}.
-  based_on_the_evidence_can_id_be_improved: |
-    Основываясь на свидетельствах, можно ли подтвердить или улучшить таксон сообщества?
   batch: Пакетная загрузка
   batch_edit: Пакетное редактирование
   #Where x is the title of a list of taxa
@@ -1173,6 +1182,7 @@ ru:
   community_id_is_precise: Таксон сообщества является точным
   community_moderation_settings: Настройки модерации сообщества
   community_supported_id: Таксон, поддержанный сообществом?
+  community_taxon_matches_observation_taxon: Таксон сообщества совпадает с таксоном наблюдения
   compare: Сравнить
   compare_with: Сравнить с
   comparing: сравнение
@@ -1245,6 +1255,12 @@ ru:
     url: URL страницы с описанием этого статуса.
     geoprivacy: |
       Значение по умолчанию приватности местоположения для наблюдений этого таксона
+    iucn: |
+      Эквивалентный код Красного списка МСОП. Это не фактическая оценка МСОП,
+      только тот код МСОП, который лучше всего соответствует угрозе раскрытия координат
+      Это подразумевается под этим статусом. Это переопределит геоконфиденциальность, если она имеет значение "Least
+      Озабоченность" или ниже, так что если вы хотите скрыть наблюдения за этим
+      taxon, установите значение "Near Threatened" или выше.
   conservation_status_geoprivacy_desc: |
     Настройки по умолчанию приватности местоположения применены ко всем наблюдениям таксона в этом месте
   contact_support: Обратитесь в службу поддержки
@@ -1298,6 +1314,7 @@ ru:
     flowers: Цветы
     fruits_or_seeds: Плоды или Семена
     leaves: Листья
+    breaking_leaf_buds: Распускающиеся листовые почки
     green_leaves: Зелёные листья
     colored_leaves: Окрашенные листья
     no_live_leaves: Отсутствие листьев
@@ -1569,6 +1586,8 @@ ru:
   curator_coordinate_access_desc: |
     Доступ куратора к координатам для традиционных проектов зависит от того, кто добавил наблюдение к проектам. Это просто настройка по умолчанию для наблюдения в проектах. Наблюдатели также могут изменить это значение для отдельных наблюдений.
   curator_identification: Идентификация, сделанная куратором
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Текущий таксон сообщества: %{taxon}"
   current_flags: Текущие флаги
   #Label for a custom boundary for an observation search
   custom_boundary: Произвольная граница
@@ -1582,6 +1601,59 @@ ru:
   daily_users: Пользователей за сутки
   danger_zone: Осторожно, зона риска
   dashboard: Панель мониторинга
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Да! Я хотел бы принять участие."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Прекратить участие"
+    #link to a blog post
+    pilot_read_more: "Подробнее в нашем блоге."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Пилотный проект по устранению пробелов в идентификации: требуется идентификация разыскиваемых видов"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Пока не включено в модель компьютерного видения"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Думаем, вы сможете идентифицировать"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Вот ссылка на наблюдения видов, которые еще не включены в компьютерного видения, которые, как мы считаем, вы можете определить."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Зайдите завтра, чтобы получить ссылку на наблюдения за видами, еще не включенными в модель компьютерного видения, которые, как мы думаем, вы можете идентифицировать. Вам представят виды, где вы сделали как минимум 3 улучшающие идентификации."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Если вы не видите ссылку, возможно, нет наблюдений, соответствующих этим критериям, которые требуется идентифицировать. Проверка будет выполняться раз в день."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Пилотный проект «Пробелы в наблюдениях»: виды, которые могут быть рядом"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Завтра вы получите список видов, которые:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Еще не включены в модель компьютерного видения"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Наблюдались в этом сезоне недалеко от вашего последнего наблюдения"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Основаны на выборке из 200 наблюдений за 300 приоритетными видами растений"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Наблюдая эти виды, вы поможете улучшить модель и добавить данные о биоразнообразии. Этот список будет обновляться по мере обновления модели. Вы можете отказаться от обновления в любое время."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Вот текущий список видов:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Пока не включено в модель компьютерного видения"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Наблюдалось вблизи вашего последнего местоположения в этом сезоне"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Наблюдая эти виды, вы помогаете улучшить распознавание видов и добавить недостающие важные данные."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Обзор видов"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Загляните завтра, чтобы увидеть персонализированный список видов, ещё не зарегистрированных в модели компьютерного видения, наблюдавшихся в этом сезоне. В персонализированном списке будет использовано место вашего последнего наблюдения."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Если вы не видите ссылку, возможно, рядом с вами нет видов, соответствующих этим критериям."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Пилотный проект идентификации: привлечение новых пользователей"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Начиная с завтрашнего дня, получайте до 30 наблюдений ежедневно, соответствующих вашим навыкам идентификации, это поможет вам интегрировать новых пользователей. Вы можете отказаться от рассылки в любое время."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Ниже приведено до 30 наблюдений, соответствующих вашим навыкам идентификации."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Проверьте завтра, пришла ли ссылка на наблюдения, соответствующие вашим навыкам идентификации."
   data_deficient: нехватка данных
   data_quality: Качество данных
   data_quality_assessment: Оценка качества данных
@@ -1674,6 +1746,8 @@ ru:
   #Label for a button to delete a taxon range
   delete_range: Удалить ареал
   delete_selected: Удалить Выбранное
+  #Label for a button to delete a sound file
+  delete_sound: Удалить аудио
   delete_taxon_and_merge_most_data_html: |
     Удалить <i>%{taxon}</i> и объединить большинство его данных с другим таксоном. Использовать этот инструмент для <strong>удаления задвоенности таксонов</strong>. Если вы хотите удалить устаревший синоним, пожалуйста, создайте таксон для замены. <strong>БУДЬТЕ ОСТОРОЖНЫ!</strong> Удаление таксонов может быть очень деструктивной операцией. Сверьтесь с <a href="%{curator_url}">Руководством для куратора</a> для более подробной информации.
   delete_user: Удалить пользователя
@@ -1716,6 +1790,8 @@ ru:
         Пожалуйста, проверьте свою электронную почту и нажмите на ссылку в письме, которое вы получили для подтверждения учетной записи.
       user:
         suspended: Ваш аккаунт был приостановлен
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: Токен сброса пароля недействителен. Пожалуйста, воспользуйтесь ссылкой в последнем отправленном электронном письме для сброса пароля, или <a href="%{url}">Запросите новый</a>.
     sessions:
       signed_in: 'Вход успешно выполнен'
       signed_out: 'Вы вышли из системы.'
@@ -1808,6 +1884,8 @@ ru:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: Поддержать
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Внести пожертвование
   donate_again_caps: ВНЕСИТЕ ПОЖЕРТВОВАНИЕ СНОВА
   donate_again_today_caps: ВНЕСИТЕ ПОЖЕРТВОВАНИЕ СНОВА СЕГОДНЯ
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1949,6 +2027,8 @@ ru:
   eol: EOL
   eol_collection_url: "Ссылка на коллекцию EOL"
   error_updating_photo: "Ошибка обновления фото: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Ошибка обновления аудио: %{sound_errors}"
   establishment:
     endemic: Эндемичный
     establishment: Возникновение
@@ -2016,6 +2096,7 @@ ru:
   extinct: вымерший
   extinct_in_the_wild: Вымершие в дикой природе
   extra_properties: Дополнительные свойства
+  evidence_accurately_depicts_organism_or_scene: Улики точно изображают организм или сцену
   evidence_of_organism: Свидетельство существования организма
   evidence_related_to_single_subject: Свидетельство, связанное с отдельным объектом
   facebook: Facebook
@@ -2052,7 +2133,11 @@ ru:
   fields_can_only_be_edited_by_the_people_who: Поля могут редактироваться только людьми, которые их создали, и кураторами сайтов
   fields_merged: Поля объединены
   file: Файл
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Формат файла
   file_size: Размер файла
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL-адрес файла
   file_should_be_in_the_following_format: "Файл должен иметь следующий формат: наименование таксона, описание"
   fill_out_project_observation_fields: Заполнить поля наблюдения проекта
   fill_out_your_profile: заполните ваш профиль
@@ -2132,7 +2217,6 @@ ru:
   flag_marked_as_unresolved_html: '<span class="meta">Флаг помечен как</span> <strong>неразрешённый.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Объект
-  flag_reason: "&ldquo;Я пометил эту %{record}, потому что"
   flag_resolution: Разрешение
   flag_saved: Флаг сохранён
   flag_saved_thanks_html: Флаг сохранён. Спасибо! <a href="%{url}" class="readmore">Посмотреть флаг</a>
@@ -2308,6 +2392,8 @@ ru:
     many: "<strong>Внимание:</strong> существует %{count} других проектов изменения таксона с теми же входными таксонами:"
     other: "<strong>Внимание:</strong> существует %{count} других проектов изменения таксона с теми же входными таксонами:"
   heads_up_this_photo_has_been_flagged: "ПРЕДУПРЕЖДЕНИЕ: это фото было помечено флагом."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "ВНИМАНИЕ: этот звук был отмечен."
   heads_up_this_photo_is_already_associated_with: "Внимание: это фото уже связано с <a target='_blank' href='%{url}'>другим наблюдением</a>"
   heads_up_you_have_multiple: "Внимание: у вас множество машинных таксономических тегов для идентичных классов. Ниже они кодируются цветом в зависимости от класса."
   help: Справка
@@ -2497,6 +2583,10 @@ ru:
   inaturalist_applications: "Приложения iNaturalist"
   inaturalist_places: "%{site_name} Места"
   info: Информация
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Идентификации подвидов
   #Description of preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
@@ -4022,6 +4112,8 @@ ru:
       zone: зона
   place_guess: приблизительное определение места
   place_imported: Место импортировано!
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: Для того, чтобы наблюдения были связаны с этим местом, может потребоваться до суток.
   place_must_have_a_boundary_defined: Место должно иметь заданную границу.
   place_name: Название места
   place_notes: Примечания для места
@@ -5081,7 +5173,15 @@ ru:
     select_one_or_more_sounds: Выберите один или несколько звуков
     selected_sounds: Выбранные звуки
     sound: Звук
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Звук %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Звук удален
     sound_has_been_flagged: Это аудио было отмечено флажком
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Звук скрыт
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Звук нескрываемый
     soundcloud_replied_with_an_error: Ответ от SoundCloud выдал ошибку. Пожалуйста, повторите попытку позже.
     sounds: Звуки
     your_soundcloud_account: ваш аккаунт SoundCloud
@@ -5808,6 +5908,8 @@ ru:
   updated_by_user_on_date_html: Обновлено %{user} %{date}
   updated_daily: Обновляется ежедневно
   updated_photo: Обновлённые фото
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Обновленный звук
   upload: Загрузить
   upload_a_csv_file: Загрузить файл CSV
   upload_a_csv_file_with_observation: |
@@ -6041,6 +6143,8 @@ ru:
   view_more_observations_of_x_project: "Посмотреть дополнительные наблюдения из %{project} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Посмотреть ещё наблюдения %{taxon} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Посмотреть ещё непроверенные"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Посмотреть затронутые идентификации
   view_observation: Посмотреть наблюдение
   view_observations: Посмотреть наблюдения
   view_observation_flags: Посмотреть флаги наблюдения
@@ -6355,6 +6459,7 @@ ru:
   you_faved_this: Вы добавили это к фаворитам!
   you_have_left_x_project: "Вы покинули %{project}"
   you_have_not_confirmed_your_email_address: Вы не подтвердили свой адрес электронной почты!
+  you_havent_joined_any_projects: Вы не присоединились ни к каким проектам
   you_havent_linked_your_inaturalist_google_account: "Вы ещё не связали свою учётную запись %{site_name} с вашим аккаунтом Google"
   you_joined_this_project: Вы присоединились к этому проекту!
   you_must_be_a_member_of_this_project_to_do_that: Для того, чтобы сделать это, вы должны быть участником этого проекта
@@ -6438,9 +6543,13 @@ ru:
         Время в часовом поясе вашего аккаунта, когда это объявление перестанет
         показываться. Применяется к часовым поясам, поэтому все перестанут видеть его
         в одно и то же время, а не относительно их местного времени.
+      excludes_non_site_desc: |
+        Если ваше объявление нацелено на создание сайта (что является стандартным вариантом, если вы являетесь администратором сайта), будут исключены объявления, предназначенные для всех сайтов в данном размещении.
       ip_countries_desc: |
         Нажмите CMD- или SHIFT-клик для выбора нескольких. Выбор всех или отсутствие выбора приведет к показу объявления всем пользователям, независимо от
         страны IP.
+      exclude_ip_countries_desc: |
+        Для множественного выбора, удерживая клавиши CMD или SHIFT. Выбранные страны не будут отображаться. Если выбраны страны IP, выберите Исключить страны IP и они будут исключены из предыдущего списка.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Обратите внимание, что дата создания последнего созданного пользователем наблюдения кэшируется, поэтому для вступления в силу таргетинга может потребоваться несколько часов
@@ -6452,6 +6561,10 @@ ru:
         Нажмите CMD- или SHIFT-клик для выбора нескольких. Выбор всех или отсутствие выбора приведет к показу объявления всем пользователям, независимо от принадлежности к сайту.
       start_desc: |
         Время в часовом поясе вашего аккаунта, когда это объявление начнет появляться. Применяется во всех часовых поясах, поэтому все начнут видеть его в одно и то же время, а не в их местное время.
+      include_virtuous_tags_desc: |
+        Чтобы выбрать несколько, нажмите клавишу CMD или SHIFT. Если выбрать «Любой» или не выбирать, объявление будет показано всем пользователям, независимо от их тегов
+      exclude_virtuous_tags_desc: |
+        Чтобы выбрать несколько, нажмите клавишу CMD или SHIFT. Если выбрать «Любой» или не выбирать, объявление будет показано всем пользователям, независимо от их тегов
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Целевые пользователи по размеру пожертвований
@@ -6637,9 +6750,6 @@ ru:
         flaggable_content: Помечаемый контент
         flaggable_content_desc: |
           Помечаемый флагом контент является основным текстовым атрибутом помеченного объекта во время создания флага. Его видят только кураторы и сотрудники. Только сотрудники могут видеть это для создания сообщений.
-        flags_that_should_not_be_resolved_desc_html: |
-          Пожалуйста, снимайте флаги <code>spam</code> и <code>copyright
-          infringement</code>, только если содержимое не является спамом или нарушением авторских прав, соответственно.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -6952,7 +7062,8 @@ ru:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: Помогите нам улучшить качество
-      to_help_us_improve: Чтобы помочь нам улучшить эту модель, мы хотели бы знать, какие изображения на этой странице соответствуют вашему запросу &quot;%{searched_term}&quot;. Пожалуйста, отметьте каждое изображение как соответствующее %{thumbs_up_icon}, если оно соответствует вашему запросу, и как не соответствующее %{thumbs_down_icon}, если нет. Когда вы закончите, нажмите «Отправить». #text for a button where a user can mark images as relevnt to their search term
+      to_help_us_improve: Чтобы помочь нам улучшить эту модель, мы хотели бы знать, какие изображения на этой странице соответствуют вашему запросу &quot;%{searched_term}&quot;. Пожалуйста, отметьте каждое изображение как соответствующее %{thumbs_up_icon}, если оно соответствует вашему запросу, и как не соответствующее %{thumbs_down_icon}, если нет. Когда вы закончите, нажмите «Отправить». #text for a button where a user can mark images as relevant to their search term
+      #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Отметьте оставшиеся как соответствующие
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Отметьте оставшиеся как не соответствующие
@@ -7292,6 +7403,11 @@ ru:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Наблюдение достигает уровня <strong>"исследовательский"</strong> когда
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          <strong>Таксон сообщества и таксон наблюдения совпадают</strong>
+          (для тех редких случаев, когда таксон наблюдения может быть более
+          более специфичным, чем таксон cообщества)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           <strong>сообщество сайта %{site_name} соглашается на идентификатор на уровне вида или ниже</strong>, т. е. когда более 2/3 экспертов соглашаются на таксон (если сообщество проголосовало за то, что таксон сообщества больше не может быть улучшен, он возвращается к идентификатору на уровне подсемейства или ниже)
         #Leads a list of ways an observation to revert to Casual status
@@ -7318,6 +7434,12 @@ ru:
         dqa_help_casual_not_one_subject_html: |
           наблюдение <strong>не представляет доказательств, относящихся к одному и тому же 
           субъекту</strong> (например, оно имеет четыре фотографии неродственных организмов; фотография, показывающая среду обитания субъекта наблюдения, допустима)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Наблюдение <strong>не предоставляет точных данных о микроорганизме или
+          сцена</strong> (например, искусственный интеллект использовался для добавления, удаления или замены
+          элементы в изображении или звуке. Шумоподавление, фокус-стекинг или создание
+          небольшие исправления, такие как удаление пыли с сенсора, обычно нормально).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           наблюдению больше не требуется идентификация <em>и</em> таксон сообщества установлен на уровне Семейство или выше
@@ -7806,6 +7928,14 @@ ru:
       not_found:
         sorry_that_doesnt_exist: Извините, это не существует!
         even_our_dedicated_search_mole_couldnt: Даже наш специальный поисковый крот ничего не смог найти!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          С оригиналом можно ознакомиться по ссылке <a href="%{url}">%{url}</a>. Пожалуйста
+          Оставьте пометки о нарушении авторских прав неустраненными, если этот звук работает
+          нарушают авторские права.
     stats:
       index:
         active_desc: Добавляли идентификации, наблюдения, комментарии или сообщения в журнале в предыдущие 30 дней
@@ -7974,6 +8104,13 @@ ru:
         wikipedia_summary_desc_html: |
           Краткое описание этого таксона основано на его <a target="_blank"
           href="%{url}">странице Википедии</a> , которую мы кэшируем неопределенно долго, пока не обновим вручную. Обновление этого описания приводит к немедленному обновлению нашего кэша базового контента Википедии, который автоматически обновляется еженедельно и показывается на веб-сайте.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Вы можете вносить напрямую лишь незначительные изменения в видовой эпитет (например, изменение пола, орфографические ошибки). Добавьте <a target="_blank" href="%{url}">Замена таксонов</a> если вам нужны другие изменения в названии.
+        #message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Внимание: вы только что добавили потомка заблокированного таксона (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Пожалуйста, рассмотрите возможность объединения его с существующим таксоном." #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Внимание: родитель этого активного таксона неактивен, но это результат этого <a href='/taxon_changes/%{taxon_change_id}'> проекта изменения таксона</a> Мы предполагаем, что вы сделаете это в ближайшее время." #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: Этот активный таксон имеет более чем %{count} последующих наблюдений или охватывается структурой таксонов, поэтому некоторые таксономические атрибуты могут редактироваться только сотрудниками или кураторами таксонов, связанными с этой структурой таксонов.
       show:
         about_names_desc: |
           <p>
@@ -8075,13 +8212,81 @@ ru:
         trending_desc: Наиболее наблюдаемые таксоны за последний месяц
         trending_in_place_desc_html: Наиболее наблюдаемые таксоны за последний месяц в <a href="%{url}">%{place}</a>
         wanted_desc: Виды этого таксона пока не наблюдались.
+      #an error when someone tried to edit the name of a taxon too radically
+      name_must_be_similar: Названия при непосредственном редактировании должны быть аналогичны, для радикальной смены названия произведите замену таксона.
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} не может добавить теги к вашим фотографиям, пока Flickr не знает, что вы дали нам разрешение.
+        <a href='%{url}'>Grant Flickr разрешение</a>.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Что-то пошло не так, когда Flickr попытался добавить эти теги: %{message}
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Вы уверены, что хотите восстановить это изменение таксона?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Вы уверены, что хотите отозвать это изменение таксона?
       move_children_desc: |
         Потомки входного таксона, которые являются общими или более грубыми, будут перемещены на выход; виды, подвиды, разновидности и т. д. будут заменены на эквиваленты с новым названием рода или вида.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Восстановить
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: восстановление
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Отозвать
+      #state of an abandoned taxon change
+      withdrawn: отозвано
+      #state of a committed taxon change
+      committed: Подтверждено
+      #state of a pending taxon change
+      pending: состояние ожидания
+      #state of a approved taxon change
+      approved: одобренный
+      #state of a draft taxon change
+      draft: черновик
+      #the status of a taxon change: draft, withdrawn or committed
+      status: статус
       form:
         move_children_desc2_html: |
           Установка этой отметки переместит дочерние элементы входного таксона в выходной таксон при операциях замен и слияний таксонов, как только это изменение будет зафиксировано. Если это изменение произойдёт на уровне рода или ниже, это приведёт к замене таксонов для всех потомков с именами, которые необходимо изменить. Например, если вы замените семейство Canidae на Dogidae, это изменит родителя рода.
           <i>Canis</i> от Canidae до Dogidae. Если вы замените род <i>Canis</i> на род <i>Dogis</i>, он создаст и зафиксирует замену таксонов, чтобы изменить <i>Canis lupus</i> на <i>Dogis lupus</i> и <i>Canis lupus</i> ssp. <i>lupus</i> на <i>Dogis lupus</i> ssp. <i>lupus</i>. Это может привести к изрядному беспорядку, поэтому используйте с осторожностью.
+      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      vote_added: Голос добавлен
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: Голос удален
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: Голосов пока нет
+      #message when taxon change is committed
+      taxon_change_committed: Изменение таксона подтверждено! Записи, которые могут обновляться автоматически, будут изменены в ближайшее время.
+      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      taxon_change_pending:
+        one: "Это изменение таксона в настоящее время находится на рассмотрении. Для подтверждения требуется одобрение 1 куратора."
+        few: "Это изменение таксона в настоящее время находится на рассмотрении. Он требует одобрения %{count} кураторов, которые должны подтвердить данную операцию."
+        many: "Это изменение таксона в настоящее время находится на рассмотрении. Он требует одобрения %{count} кураторов для утверждения"
+        other: "Это изменение таксона в настоящее время находится на рассмотрении. Он требует одобрения %{count} кураторы, чтобы иметь возможность брать на себя обязательства."
+      #message when someone tries to commit a taxon change with active children
+      input_taxon_cannot_have_active_children: |
+        Входной таксон не может иметь активных дочерних элементов, переместите их сначала или выберите опцию «Переместить дочерние элементы на выход»
+      output_taxon_rank_level_not_coarser_html: >
+        Ранговый уровень выходного таксона не грубее, чем ранговый уровень активных потомков входного таксона %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Это таксономическое изменение уже утверждено!
+      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      something_whent_wrong: "Что-то пошло не так при удалении изменения таксона '%{id}'!"
+      #a message when a taxon change was deleted
+      taxon_change_deleted: Изменение таксона было удалено.
+      #a message when a taxon change was successfully updated
+      taxon_change_successfully_update: Изменение таксона была успешно обновлено..
+      #an error message when trying to modify/create a taxon change that can be found
+      no_changes_specified: Изменения не заданы
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Изменение таксона было совершено успешно.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Для подтверждения изменения таксона требуется подтверждение 1 куратора."
+        few: "Требуется одобрение %{count} других кураторов для подтверждения."
+        many: "Требуется одобрение %{count} других кураторов для подтверждения."
+        other: "Требуется одобрение %{count} других кураторов для подтверждения"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8677,6 +8882,7 @@ ru:
         exclude_donor_start_date: Исключить дату начала донорства
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Исключить дату окончания донорства
+        excludes_non_site: Скрыть другие объявления в этом месте размещения, у которых нет идентификации сайта
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Исключение наблюдателей из приложений
@@ -9158,6 +9364,30 @@ ru:
             name:
               bad_format: |
                 может содержать только стандартные латинские символы, дефисы, пробелы и ×; обратите внимание, что предполагаемые таксоны и сорта не допускаются
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "Изменение названия не допускается для вирусов, бактерий или непривитых клад"
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Изменение названия не допускается для рангов крупнее видов"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Для гибридных формул изменения имен не допускаются"
+              #Error message trying to add an x as a hybrid sign
+              add_ascii_x_disallowed: "Не допускается добавление 'x' в качестве маркера гибрида между родом и видом"
+              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              must_be_binomial: "должен быть биномиальным для проверки (задан род )"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "род менять нельзя"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Нестандартное название вида: разрешено только удаление 'x'/'×' или добавление '×'"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "Конкретный эпитет должен быть похожим (незначительное изменение/только пол)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "Для этого ранга требуется инфравидовой эпитет"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "Для инфравидовых рангов может меняться только инфравидовой эпитет"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "Инфравидовой эпитет должен быть похожим (незначительное изменение /только пол)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "Первая буква любого эпитета не может изменяться."
         taxon_change:
           attributes:
             base:
