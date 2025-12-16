@@ -2139,3 +2139,186 @@ describe Taxon, "sync_scientific_taxon_names_for_name_change" do
     )
   end
 end
+
+describe Taxon, "provisional taxa name validation" do
+  elastic_models( Observation, Taxon )
+
+  before( :all ) do
+    load_test_taxa
+  end
+
+  let( :cortinariaceae ) { Taxon.make!( id: 48_705, name: "Cortinariaceae", rank: Taxon::FAMILY ) }
+  let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
+
+  describe "name format validation" do
+    it "accepts valid provisional taxon name format" do
+      taxon = Taxon.new(
+        name: "Cortinarius sp. 'callisteus-infucatus'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon ).to be_valid
+    end
+
+    it "accepts provisional names with hyphens in genus" do
+      parent = Taxon.make!( name: "Hypo-genus", rank: Taxon::GENUS, parent: cortinariaceae )
+      taxon = Taxon.new(
+        name: "Hypo-genus sp. 'test'",
+        rank: Taxon::SPECIES,
+        parent: parent,
+        provisional: true
+      )
+      expect( taxon ).to be_valid
+    end
+
+    it "accepts provisional names with numbers in epithet" do
+      taxon = Taxon.new(
+        name: "Cortinarius sp. 'test123'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon ).to be_valid
+    end
+
+    it "rejects provisional names missing 'sp.'" do
+      taxon = Taxon.new(
+        name: "Cortinarius 'callisteus'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon ).not_to be_valid
+      expect( taxon.errors[:name] ).to include(
+        match( /must be formatted as 'Genus sp\. 'epithet''/ )
+      )
+    end
+
+    it "rejects provisional names with lowercase genus" do
+      taxon = Taxon.new(
+        name: "cortinarius sp. 'test'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon ).not_to be_valid
+      expect( taxon.errors[:name] ).to include(
+        match( /must be formatted as 'Genus sp\. 'epithet''/ )
+      )
+    end
+
+    it "rejects provisional names without single quotes around epithet" do
+      taxon = Taxon.new(
+        name: "Cortinarius sp. callisteus",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon ).not_to be_valid
+      expect( taxon.errors[:name] ).to include(
+        match( /must be formatted as 'Genus sp\. 'epithet''/ )
+      )
+    end
+
+    it "rejects provisional names with invalid characters in epithet" do
+      taxon = Taxon.new(
+        name: "Cortinarius sp. 'test_invalid'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon ).not_to be_valid
+      expect( taxon.errors[:name] ).to include(
+        match( /must be formatted as 'Genus sp\. 'epithet''/ )
+      )
+    end
+
+    it "allows non-provisional taxa to use normal names" do
+      taxon = Taxon.new(
+        name: "Cortinarius validus",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: false
+      )
+      expect( taxon ).to be_valid
+    end
+
+    it "rejects non-provisional taxa using provisional format" do
+      taxon = Taxon.new(
+        name: "Cortinarius sp. 'invalid'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: false
+      )
+      expect( taxon ).not_to be_valid
+    end
+  end
+
+  describe "ancestry restriction" do
+    it "allows provisional taxa descended from Cortinariaceae" do
+      taxon = Taxon.new(
+        name: "Cortinarius sp. 'test'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon ).to be_valid
+    end
+
+    it "rejects provisional taxa not descended from Cortinariaceae" do
+      # Ensure Cortinariaceae exists for the validation to run
+      cortinariaceae
+      other_parent = Taxon.make!( name: "Agaricus", rank: Taxon::GENUS )
+      taxon = Taxon.new(
+        name: "Agaricus sp. 'test'",
+        rank: Taxon::SPECIES,
+        parent: other_parent,
+        provisional: true
+      )
+      expect( taxon ).not_to be_valid
+      expect( taxon.errors[:provisional] ).to include(
+        match( /can only be set to true for taxa that descend from Cortinariaceae/ )
+      )
+    end
+  end
+
+  describe "rank removal preservation" do
+    it "preserves 'sp.' in provisional taxon names" do
+      taxon = Taxon.create!(
+        name: "Cortinarius sp. 'test123'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon.reload.name ).to eq( "Cortinarius sp. 'test123'" )
+    end
+
+    it "removes rank from non-provisional taxon names" do
+      taxon = Taxon.create!(
+        name: "Cortinarius species testus",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: false
+      )
+      expect( taxon.reload.name ).to eq( "Cortinarius testus" )
+    end
+  end
+
+  describe "Taxon.user_can_edit_provisional_taxa?" do
+    it "returns true for admin users" do
+      admin = User.make!( login: "admin" )
+      admin.roles.create!( name: "admin" )
+      expect( Taxon.user_can_edit_provisional_taxa?( admin ) ).to be( true )
+    end
+
+    it "returns false for non-admin users" do
+      user = User.make!
+      expect( Taxon.user_can_edit_provisional_taxa?( user ) ).to be( false )
+    end
+
+    it "returns false for nil user" do
+      expect( Taxon.user_can_edit_provisional_taxa?( nil ) ).to be( false )
+    end
+  end
+end

@@ -66,7 +66,8 @@
       right: -15px;
       z-index: -1;
     }
-    .taxonomy-complete-notice .text-muted {
+    .taxonomy-complete-notice .text-muted,
+    .name-row > span > .text-muted {
       margin: 0 5px;
     }
     .row-content:before {
@@ -122,6 +123,15 @@
     opacity: 0.5;
   }
   .complete.all-shown .hidable {
+    display: block;
+  }
+  // Hide provisional taxa by default
+  li.provisional {
+    display: none;
+    opacity: 0.5;
+  }
+  // Show provisional taxa when parent has show-provisional class
+  .current.show-provisional li.provisional {
     display: block;
   }
 }

@@ -215,6 +215,14 @@
     <div class="description">
       <%= t :inactive_taxon_concepts_are %>
     </div>
+    <% if Taxon.user_can_edit_provisional_taxa?( current_user ) %>
+      <div class="ui upstacked admin">
+        <%= f.check_box :provisional, label_after: true, label: t(:provisional_taxon), disabled: !@protected_attributes_editable %>
+        <div class="description">
+          <%= t :provisional_taxa_are_not_published %>
+        </div>
+      </div>
+    <% end %>
   </fieldset>
 
   <fieldset class="column span-24">

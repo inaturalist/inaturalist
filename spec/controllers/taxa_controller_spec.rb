@@ -468,4 +468,74 @@ describe TaxaController do
       expect( response ).to be_successful
     end
   end
+
+  describe "provisional" do
+    before { load_test_taxa( iconic: true ) }
+    let( :fungi ) { Taxon::ICONIC_TAXA_BY_NAME["Fungi"] }
+    let( :cortinariaceae ) { Taxon.make!( name: "Cortinariaceae", rank: Taxon::FAMILY, parent: fungi ) }
+    let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
+
+    it "should not be updateable by curators" do
+      t = Taxon.make!( name: "Cortinarius testus", rank: Taxon::SPECIES, parent: cortinarius, provisional: false )
+      curator = make_curator
+      sign_in curator
+      expect( t.provisional ).to be( false )
+      put :update, params: { id: t.id, taxon: { provisional: true, name: "Cortinarius sp. 'test'" } }
+      t.reload
+      expect( t.provisional ).to be( false )
+    end
+
+    it "should be updateable by admins" do
+      t = Taxon.make!( name: "Cortinarius testus", rank: Taxon::SPECIES, parent: cortinarius, provisional: false )
+      admin = make_admin
+      sign_in admin
+      expect( t.provisional ).to be( false )
+      put :update, params: { id: t.id, taxon: { provisional: true, name: "Cortinarius sp. 'test'" } }
+      t.reload
+      expect( t.provisional ).to be( true )
+    end
+
+    it "should not allow curators to set provisional to false on existing provisional taxon" do
+      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: true )
+      curator = make_curator
+      sign_in curator
+      expect( t.provisional ).to be( true )
+      put :update, params: { id: t.id, taxon: { provisional: false } }
+      t.reload
+      expect( t.provisional ).to be( true )
+    end
+
+    it "should allow admins to set provisional to false on existing provisional taxon with minor changes" do
+      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: true )
+      admin = make_admin
+      sign_in admin
+      expect( t.provisional ).to be( true )
+      put :update, params: { id: t.id, taxon: { provisional: false, name: "Cortinarius testi" } }
+      t.reload
+      expect( t.provisional ).to be( false )
+      expect( t.name ).to eq( "Cortinarius testi" )
+    end
+
+    it "should not allow admins to set provisional to false on existing provisional taxon with major epithet changes" do
+      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: true )
+      admin = make_admin
+      sign_in admin
+      expect( t.provisional ).to be( true )
+      put :update, params: { id: t.id, taxon: { provisional: false, name: "Cortinarius validus" } }
+      t.reload
+      expect( t.provisional ).to be( true )
+      expect( t.name ).to eq( "Cortinarius sp. 'test'" )
+    end
+
+    it "should not allow admins to change genus when setting provisional to false" do
+      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: true )
+      admin = make_admin
+      sign_in admin
+      expect( t.provisional ).to be( true )
+      put :update, params: { id: t.id, taxon: { provisional: false, name: "Amanita test" } }
+      t.reload
+      expect( t.provisional ).to be( true )
+      expect( t.name ).to eq( "Cortinarius sp. 'test'" )
+    end
+  end
 end

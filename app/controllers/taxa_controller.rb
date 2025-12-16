@@ -1791,9 +1791,11 @@ class TaxaController < ApplicationController
       end
     end
 
-    if !current_user.is_admin? && params[:taxon][:photos_locked] &&
-        params[:taxon][:photos_locked] != @taxon.photos_locked
+    unless current_user.is_admin?
       params[:taxon].delete( :photos_locked )
+    end
+    unless Taxon.user_can_edit_provisional_taxa?( current_user )
+      params[:taxon].delete( :provisional )
     end
     true
   end

@@ -374,6 +374,7 @@ export function fetchTaxon( taxon, options = { params: { } } ) {
     if ( testingApiV2 ) {
       params.fields = {
         ...CORE_TAXON_FIELDS,
+        provisional: true,
         complete_species_count: true,
         observations_count: true,
         complete_rank: true,
@@ -384,12 +385,14 @@ export function fetchTaxon( taxon, options = { params: { } } ) {
         },
         ancestors: {
           ...CORE_TAXON_FIELDS,
+          provisional: true,
           complete_species_count: true,
           observations_count: true,
           complete_rank: true
         },
         children: {
           ...CORE_TAXON_FIELDS,
+          provisional: true,
           complete_species_count: true,
           observations_count: true,
           complete_rank: true

@@ -741,6 +741,13 @@ module DarwinCore
                   observation.community_taxon_id != ::Taxon::HUMAN.id
               end
             end
+            # Exclude observations of provisional taxa
+            unless @opts[:include_provisional]
+              filtered_obs = filtered_obs.select do | observation |
+                ( observation.taxon.blank? || !observation.taxon.provisional ) &&
+                  ( observation.community_taxon.blank? || !observation.community_taxon.provisional )
+              end
+            end
             batch.uniq!
             batch.sort!
             if last_obs = filtered_obs.last

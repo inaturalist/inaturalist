@@ -4933,7 +4933,8 @@ CREATE TABLE public.taxa (
     is_active boolean DEFAULT true NOT NULL,
     taxon_framework_relationship_id integer,
     uuid uuid DEFAULT public.uuid_generate_v4(),
-    photos_locked boolean DEFAULT false
+    photos_locked boolean DEFAULT false,
+    provisional boolean DEFAULT false NOT NULL
 );
 
 
@@ -12066,6 +12067,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251010205509'),
 ('20251014130528'),
 ('20251014130547'),
+('20251119043443'),
 ('20251119130558'),
 ('20251202224705');
 

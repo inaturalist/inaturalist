@@ -2208,6 +2208,8 @@ en:
   external_taxon_including_children: External taxon (including children)
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
+  # Label for provisional taxa in taxonomy displays
+  provisional_taxon: provisional
   extra_properties: Extra Properties
   evidence_accurately_depicts_organism_or_scene: Evidence accurately depicts organism or scene
   evidence_of_organism: Evidence of organism
@@ -2553,6 +2555,8 @@ en:
   # Label for a checkbox to remove observations from search results where the
   # observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Hide observations with private locations
+  # Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Hide Provisional Taxa
   # Label for a button to hide the running total of an accumulation chart
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
@@ -2726,6 +2730,12 @@ en:
   inactive_taxon_concepts_are:
     Inactive taxon concepts are either taxonomically outdated or being staged for a taxon change.
     Outdated concepts are kept to maintain history and compatibility with some partner sites.
+  provisional_taxon: Provisional
+  provisional_taxa_are_not_published:
+    'Provisional taxa are not published and may be subject to major changes.
+    They are currently only permitted for Fungi and must be associated with
+    an observation with a DNA sequence. Please link to that observation in the
+    "Why are you making this change?" field.'
   inappropriate_content: Inappropriate content?
   inat_account_action: "%{site_name} &#58; Account &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
@@ -5297,6 +5307,8 @@ en:
   show_running_total: Show Running Total
   show_taxa_from_both: (show taxa from both lists)
   show_taxa_from_everywhere: "Show taxa from everywhere"
+  # Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Show provisional taxa
   show_taxa_from_place: "Show taxa from %{place}"
   show_total_counts: Show total counts
   show_uncountable_species: Show uncountable species
