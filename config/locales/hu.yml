@@ -5876,6 +5876,9 @@ hu:
         place_admin1_name: A közigazgatási terület neve az országénál egy szinttel lentebb
         place_admin2_name: A közigazgatási terület neve az országénál két szinttel lentebb
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Tanuld meg az iNaturalist Meghatározás oldal használatát!
         you_reviewed_message: "%{reviewed} megfigyelést néztél át ezen az oldalon (%{pageTotal} közül). Összesen %{total} megfigyelés felel meg a keresési feltételeknek."
         unreview_all_tooltip: "Átnézett státusz visszavonása minden megfigyeléstől az oldalon"
       import:
