@@ -78,11 +78,12 @@ end
 
 relevant_taxa = {}
 begin
-  CSV.foreach( OPTS.taxonomy_csv_path, headers: true ) do | row |
+  CSV.foreach( OPTS.taxonomy_csv_path, headers: true, quote_char: "\x00" ) do | row |
     # ignore non-leaves
     relevant_taxa[row["taxon_id"].to_i] = true
   end
-rescue StandardError
+rescue StandardError => e
+  pp e
   puts "There was an error reading #{OPTS.taxonomy_csv_path}"
   exit( 0 )
 end
