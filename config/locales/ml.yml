@@ -128,6 +128,10 @@ ml:
   are_you_sure_delete_post: നിങ്ങൾ ഈ പോസ്റ്റ് നീക്കാൻ ഉറപ്പാണോ?
   are_you_sure_delete_this_place: നിങ്ങൾ ഈ സ്ഥലം നീക്കാൻ ഉറപ്പാണോ?
   are_you_sure_you_want_to_delete_this: നിങ്ങൾ ഇതു നീക്കം ചെയ്യാൻ ഉറപ്പാണോ?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: ഈ ശബ്ദം ഇല്ലാതാക്കണമെന്ന് തീർച്ചയാണോ?
+  artificially_generated_content: കൃത്രിമമായി സൃഷ്ടിക്കുന്ന ഉള്ളടക്കം
+  artificially_generated_content_desc: ആർട്ടിഫിഷ്യൽ ഇന്റലിജൻസിലൂടെ കൂടുതലും അല്ലെങ്കിൽ പൂർണ്ണമായും സൃഷ്ടിക്കുന്ന ഉള്ളടക്കം അടങ്ങിയിരിക്കുന്നു.
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -161,6 +165,7 @@ ml:
   community_curated: സമൂഹത്തിൻ്റെ മേൽനോട്ടത്തിൽ
   community_guidelines: ടാക്സോൺ മാർഗ്ഗനിർദ്ദേശങ്ങൾ
   community_id_heading: സമൂഹം ടാക്സോൺ
+  community_taxon_matches_observation_taxon: കമ്മ്യൂണിറ്റി ടാക്സോൺ നിരീക്ഷണ ടാക്സോണുമായി പൊരുത്തപ്പെടുന്നു
   computer_vision_model_included_desc: |
     നിലവിലെ കമ്പ്യൂട്ടർ വിഷൻ മോഡലുകൾ ഈ ടാക്‌സണിനെക്കുറിച്ച് ബോധവാന്മാരാണ്, അതിനാൽ ഇത് "ഒരേ ദൃശ്യപരത" ലേബൽ ഉള്ള സ്വയമേവയുള്ള നുറുങ്ങുകളിൽ ഉൾപ്പെടുത്താവുന്നതാണ്.
   confirming_ids: ഐഡികൾ സ്ഥിരീകരിക്കുന്നു
@@ -178,6 +183,8 @@ ml:
     പ്രോജക്റ്റിന്റെ നിരീക്ഷണം. ഇത് ഡിഫോൾട്ട് ക്രമീകരണം മാത്രമാണ്
     പദ്ധതികളിലെ നിരീക്ഷണങ്ങൾ. നിരീക്ഷകർക്ക് ഇത് മാറ്റാൻ തിരഞ്ഞെടുക്കാം
     വ്യക്തിഗത നിരീക്ഷണങ്ങൾ.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "നിലവിലെ കമ്മ്യൂണിറ്റി ടാക്സോൺ: %{taxon}"
   #Label for a custom boundary for an observation search
   custom_boundary: വ്യക്തിഗത അതിരുകൾ
   #Button to customize projects that appear in the header
@@ -214,6 +221,8 @@ ml:
   date_time: തീയതി/സമയം
   day: ദിവസം
   defaults_to_your_name_or_username: നിങ്ങളുടെ പേര് അല്ലെങ്കിൽ ഉപയോക്തൃനാമത്തിലേക്ക് ഡിഫോൾട്ട് ചെയ്യുന്നു.
+  #Label for a button to delete a sound file
+  delete_sound: ശബ്ദം ഇല്ലാതാക്കുക
   devise:
     confirmations:
       #Message a user sees when they try to manually trigger email
@@ -222,6 +231,8 @@ ml:
         നിങ്ങളുടെ ഇമെയിൽ വിലാസം ഞങ്ങളുടെ ഡാറ്റാബേസിൽ ഉള്ളതായാൽ, ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുന്നതിന് നിർദ്ദേശങ്ങളോടുകൂടിയ ഒരു ഇമെയിൽ നിങ്ങൾക്ക് കുറച്ച് മിനിറ്റുകൾക്കുള്ളിൽ ലഭിക്കും.
     failure:
       invalid: 'അസാധുവായ ഇമെയിൽ, ഉപയോക്തൃനാമം, അല്ലെങ്കിൽ രഹസ്യപദം.'
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: റീസെറ്റ് പാസ് വേഡ് ടോക്കൺ അസാധുവാണ്. ഏറ്റവും അടുത്തിടെ അയച്ച റീസെറ്റ് പാസ് വേഡ് ഇമെയിലിലെ ലിങ്ക് ഉപയോഗിക്കുക, അല്ലെങ്കിൽ <a href="%{url}">പുതിയൊരെണ്ണം അഭ്യർത്ഥിക്കുക</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കാൻ ചുവടെയുള്ള ലിങ്കിൽ ക്ലിക്കുചെയ്യുക. നിങ്ങളുടെ ഇമെയിൽ സ്ഥിരീകരിക്കുന്നില്ലെങ്കിൽ
@@ -233,6 +244,8 @@ ml:
   disagreements_show_observations_that: വിയോജിപ്പുള്ള ഐഡന്റിഫിക്കേഷനുകൾ ഉള്ള നിരീക്ഷണങ്ങൾ കാണിക്കുക
   doh_something_went_wrong: അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്.
   doh_something_went_wrong_error: "അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്: %{error}"
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: സംഭാവന ചെയ്യുക
   donate_again_today_caps: ഇന്ന് വീണ്ടും ദാനം നൽകുക
   #Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: വൃത്താകാര അതിരുകൾ വരക്കുക
@@ -246,6 +259,9 @@ ml:
   #Introductory form of address in an email. %{user} could be a username or a
   #name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: പ്രിയപ്പെട്ട %{user},
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "ശബ്ദം അപ് ഡേറ്റ് ചെയ്യുന്നതിൽ പിശക്: %{sound_errors}"
+  evidence_accurately_depicts_organism_or_scene: തെളിവുകൾ ജീവിയെയോ രംഗത്തെയോ കൃത്യമായി ചിത്രീകരിക്കുന്നു
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: പ്രിയപ്പെട്ടവ
   #Header for a section showing the user's favorite projects
@@ -256,6 +272,10 @@ ml:
     പേജ് പുതുക്കിയ ശേഷം ദൃശ്യമാകും.
   favorite_taxa: പ്രിയപ്പെട്ട ടാക്സ
   favorites: "പ്രിയപ്പെട്ടവ"
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: ഫയല് ഫോര് മാറ്റ്
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: ഫയല് URL
   fill_out_your_profile: നിങ്ങളുടെ പരിചയം പൂര്‍ത്തിയാക്കുക
   find_your_current_location: നിങ്ങളുടെ നിലവിലെ സ്ഥാനം കണ്ടെത്തുക
   forgot_your_password: നിങ്ങളുടെ പാസ്‌വേഡ് മറന്നിട്ടോ?
@@ -274,6 +294,8 @@ ml:
   header_your_calendar: നിങ്ങളുടെ കലണ്ടർ
   header_your_favorites: നിങ്ങളുടെ പ്രിയപ്പെട്ടവ
   header_your_profile: നിങ്ങളുടെ പരിചയ
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "ഹെഡ്സ് അപ്: ഈ ശബ്ദം ഫ്ലാഗ് ചെയ്തു."
   here_are_our_top_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ നിർദ്ദേശങ്ങൾ
   here_are_our_top_species_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ സ്പീഷീസ് നിർദ്ദേശങ്ങൾ
   #Title of identification that was automatically added by a taxon change
@@ -491,6 +513,8 @@ ml:
       village_block: ഗ്രാമ ബ്ലോക്ക്
       Zone: മേഖല
       zone: മേഖല
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: ഈ സ്ഥലവുമായി ബന്ധപ്പെട്ട നിരീക്ഷണങ്ങൾക്ക് ഒരു ദിവസം വരെ എടുത്തേക്കാം.
   place_must_have_a_boundary_defined: സ്ഥലത്തിന് ഒരു അതിരുകൾ നിർവചിക്കപ്പെട്ടിരിക്കണം.
   places_name:
     afghanistan: അഫ്ഗാനിസ്ഥാൻ
@@ -506,9 +530,17 @@ ml:
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     സ്ഥലങ്ങൾ 700,000 ചതുരശ്ര കിലോമീറ്ററിൽ കൂടുതൽ വലുതാകാൻ പാടില്ല.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    സ്ഥലങ്ങൾ 70,000 ചതുരശ്ര കിലോമീറ്ററിൽ കൂടാൻ പാടില്ല.
   #user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     സ്ഥലങ്ങളിൽ 200,000 നിരീക്ഷണങ്ങളിൽ കൂടുതൽ ഉണ്ടാകാൻ പാടില്ല.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    സ്ഥലങ്ങളിൽ 10,000 നിരീക്ഷണങ്ങളിൽ കൂടുതൽ പാടില്ല.
   please_confirm_your_inat_username: "ദയവായി നിങ്ങളുടെ %{site_name} ഉപയോക്തൃനാമം സ്ഥിരീകരിക്കുക."
   profile: പരിചയ
   profile_picture: പരിചയയുടെ ചിത്രങ്ങൾ
@@ -556,6 +588,14 @@ ml:
     no_photos_sounds: ചിത്രങ്ങളോ ശബ്ദങ്ങളോ ഇല്ല
     photos_sounds: ചിത്രങ്ങൾ / ശബ്ദങ്ങൾ
     sound: ശബ്ദം
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: ശബ്ദം %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: ശബ്ദം നീക്കം ചെയ്തു
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: ശബ്ദം മറഞ്ഞിരിക്കുന്നു
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: മറഞ്ഞിട്ടില്ലാത്ത ശബ്ദം
     sounds: ശബ്ദങ്ങൾ
   #Plural
   species: സ്പീഷീസ്
@@ -594,6 +634,8 @@ ml:
     ഈ ഓപ്ഷൻ തിരഞ്ഞെടുക്കുന്നത് നിങ്ങളുടെ പുതിയ ലൈസൻസ് ചോയ്സ് നിങ്ങളുടെ എല്ലാവർക്കും ബാധകമാക്കും
     നിലവിലുള്ള ശബ്ദങ്ങൾ. നിങ്ങൾക്ക് ധാരാളം ഉണ്ടെങ്കിൽ ഇത് കുറച്ച് മണിക്കൂറുകൾ എടുത്തേക്കാം
     ശബ്ദങ്ങൾ.
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: അപ്ഡേറ്റ് ചെയ്ത ശബ്ദം
   upload: അപ്‌ലോഡ് ചെയ്യുക
   upload_a_csv_file: CSV ഫയല് അപ്‌ലോഡ് ചെയ്യുക
   upload_a_csv_file_with_observation: |
@@ -670,10 +712,18 @@ ml:
         ഈ പ്രഖ്യാപനം അവസാനിക്കുമെന്ന് നിങ്ങളുടെ അക്കൗണ്ട് സമയമേഖലയിലെ സമയം
         പ്രത്യക്ഷപ്പെടുന്നു. ടൈം സോണുകളിലുടനീളം ബാധകമാണ്, അതിനാൽ എല്ലാവരും കാണുന്നത് നിർത്തും
         അതേ സമയം, അവരുടെ പ്രാദേശിക സമയവുമായി താരതമ്യപ്പെടുത്തുമ്പോൾ.
+      excludes_non_site_desc: |
+        നിങ്ങളുടെ അറിയിപ്പ് ഒരു സൈറ്റിനെ ലക്ഷ്യമിടുകയാണെങ്കിൽ (നിങ്ങൾ ഒരു വ്യക്തിയാണെങ്കിൽ ഇത് ഡിഫോൾട്ടാണ്
+        സൈറ്റ് അഡ്മിൻ), ഇത് എല്ലാ സൈറ്റുകളെയും ലക്ഷ്യമിടുന്ന പ്രഖ്യാപനങ്ങൾ ഒഴിവാക്കും
+        ഈ സ്ഥാനം.
       ip_countries_desc: |
         ഒന്നിലധികം തിരഞ്ഞെടുക്കുന്നതിന് CMD- അല്ലെങ്കിൽ SHIFT-ക്ലിക്കുചെയ്യുക. "എല്ലാം" തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ ഉണ്ടാക്കാതിരിക്കുക
         ഇനിപ്പറയുന്നവ കണക്കിലെടുക്കാതെ ഒരു തിരഞ്ഞെടുപ്പ് എല്ലാ ഉപയോക്താക്കൾക്കും അറിയിപ്പ് കാണിക്കും
         IP രാജ്യം.
+      exclude_ip_countries_desc: |
+        മൾട്ടിപ്പിൾ തിരഞ്ഞെടുക്കുന്നതിന് CMD- അല്ലെങ്കിൽ SHIFT-ക്ലിക്ക്. തിരഞ്ഞെടുത്ത രാജ്യങ്ങൾ കാണിക്കില്ല
+        പ്രഖ്യാപനം. ഐപി രാജ്യങ്ങൾ തിരഞ്ഞെടുക്കുകയാണെങ്കിൽ, തിരഞ്ഞെടുത്ത ഐപി രാജ്യങ്ങളെ ഒഴിവാക്കുക
+        ആദ്യത്തേതിൽ നിന്ന് കുറയ്ക്കും.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         ഉപയോക്താവ് ഏറ്റവും അടുത്തിടെ സൃഷ്ടിച്ച സൃഷ്ടി തീയതി ശ്രദ്ധിക്കുക
@@ -790,16 +840,41 @@ ml:
           നിങ്ങളുടെ ഇമെയിൽ സ്ഥിരീകരിച്ചതിന് ശേഷം നിങ്ങൾക്ക് പുതിയ സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയും
           വിലാസം, പരിശോധിച്ചുറപ്പിക്കാവുന്ന മൂന്ന് നിരീക്ഷണങ്ങൾ അല്ലെങ്കിൽ മൂന്ന് തിരിച്ചറിയലുകൾ ചേർത്തു
           മറ്റുള്ളവർക്കായി. ഇപ്പോൾ നിങ്ങൾക്ക് മറ്റുള്ളവർ അയയ്ക്കുന്ന സന്ദേശം വായിക്കാനും മറുപടി നൽകാനും കഴിയും.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ദി <strong>കമ്മ്യൂണിറ്റി ടാക്സോണും നിരീക്ഷണ ടാക്സോണും പൊരുത്തപ്പെടുന്നു</strong>
+          (നിരീക്ഷണ ടാക്സോൺ കൂടുതൽ ആകാൻ കഴിയുന്ന അപൂർവ സന്ദർഭങ്ങളിൽ
+          കമ്മ്യൂണിറ്റി ടാക്സോണിനേക്കാൾ നിർദ്ദിഷ്ടം)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          നിരീക്ഷണം <strong>ജീവിയുടെ കൃത്യമായ തെളിവുകൾ ഹാജരാക്കുന്നില്ല അല്ലെങ്കിൽ
+          രംഗം</strong> (ഉദാ: ആർട്ടിഫിഷ്യൽ ഇന്റലിജൻസ് ചേർക്കാനോ നീക്കംചെയ്യാനോ മാറ്റിസ്ഥാപിക്കാനോ ഉപയോഗിച്ചു
+          ചിത്രത്തിലോ ശബ്ദത്തിലോ ഉള്ള ഘടകങ്ങൾ. ഡിനോയിസിംഗ്, ഫോക്കസ് സ്റ്റാക്കിംഗ്, അല്ലെങ്കിൽ നിർമ്മാണം
+          സെൻസർ പൊടി നീക്കംചെയ്യുന്നത് പോലുള്ള ചെറിയ പരിഹാരങ്ങൾ സാധാരണയായി ശരിയാണ്).
     places:
       kml_field_desc3: |
         സ്ഥലത്തിന്റെ അതിരുകൾക്കുള്ള KML. നിങ്ങൾക്ക് ഇത് Google Maps, Google Earth, അല്ലെങ്കിൽ ഭൂരിപക്ഷം GIS ആപ്ലിക്കേഷനുകൾ ഉപയോഗിച്ച് സൃഷ്‌ടിക്കാം. കുറഞ്ഞത് ഒരു പോളിഗൺ ഉണ്ടായിരിക്കണം, 1 MB-ൽ താഴെ (സൈറ്റ് മേൽനോട്ടക്കാരൻമാർക്കായി 5 MB) ഉണ്ടായിരിക്കണം, ~700,000 ചതുരകിലോമീറ്റർ (സോമാലിയയുടെ അല്ലെങ്കിൽ അമേരിക്കയിലെ ടെക്സാസിന്റെ ചുരുങ്ങിയ അളവ്) കാഴ്ചപ്പാടിന് താഴെ ഉള്ള ഒരു വിസ്തീർണ്ണം ഉണ്ടാകണം
     search:
       index:
         no_taxa_forum: ഫോറവുമായി ബന്ധപ്പെടുക
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          നിങ്ങൾക്ക് ഒറിജിനൽ കാണാൻ കഴിയും <a href="%{url}">%{url}</a>. ദയവുചെയ്ത്
+          ഈ ശബ്ദം ഉണ്ടെങ്കിൽ പകർപ്പവകാശ ലംഘന പതാകകൾ പരിഹരിക്കപ്പെടാതെ വിടുക
+          പകർപ്പവകാശം ലംഘിക്കുന്നു.
     stats:
       index:
         active_desc: കഴിഞ്ഞ 30 ദിവസങ്ങളിൽ ഐഡി, നിരീക്ഷണം, അഭിപ്രായം, അല്ലെങ്കിൽ പോസ്റ്റ് സൃഷ്ടിച്ചു
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          നിങ്ങൾക്ക് സ്പീഷീസ് വിശേഷണത്തിൽ നേരിട്ട് ചെറിയ മാറ്റങ്ങൾ മാത്രമേ ചെയ്യാൻ കഴിയൂ (ഉദാ. ലിംഗമാറ്റങ്ങൾ, അക്ഷരവിന്യാസം തെറ്റ്). ചേർക്കുക <a target="_blank" href="%{url}">ടാക്സോൺ സ്വാപ്പ്</a> പേരിൽ വേറെ മാറ്റങ്ങൾ ആവശ്യമുണ്ടെങ്കിൽ.
       show:
         frequency:
           "Life Stage=Subimago": സുബിമാഗോ
@@ -808,6 +883,9 @@ ml:
           വിക്കിപീഡിയയിൽ നിന്നുള്ള ഉള്ളടക്കം</a>. പേജ് എഡിറ്റുചെയ്യുന്നതിലൂടെ നിങ്ങൾക്ക് സഹായിക്കാനാകും
           വിക്കിപീഡിയ ഈ വർഗ്ഗീകരണത്തിന് അനുയോജ്യമാക്കണം, അല്ലെങ്കിൽ ഇത് ഫ്ലാഗ് ചെയ്തുകൊണ്ട്
           സൈറ്റ് ക്യൂറേറ്റർമാരുടെ ശ്രദ്ധയിൽപ്പെടുത്താൻ ടാക്സോൺ.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        ആ ടാഗുകൾ പോസ്റ്റുചെയ്യാൻ ശ്രമിക്കുമ്പോൾ എന്തോ തെറ്റ് സംഭവിച്ചു: %{message}
     users:
       edit:
         errors:
@@ -882,6 +960,7 @@ ml:
         exclude_donor_start_date: ദാതാവിന്റെ ആരംഭ തീയതി ഒഴിവാക്കുക
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: ദാതാവിന്റെ അവസാന തീയതി ഒഴിവാക്കുക
+        excludes_non_site: സൈറ്റ് ID ഇല്ലാത്ത ഈ പ്ലേസ് മെന്റിൽ മറ്റ് അറിയിപ്പുകൾ മറയ്ക്കുക
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: അപ്ലിക്കേഷനുകളിൽ നിന്ന് നിരീക്ഷകരെ ഒഴിവാക്കുക

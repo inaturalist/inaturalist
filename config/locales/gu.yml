@@ -3,6 +3,18 @@ gu:
   add_a_project: પ્રોજેક્ટ ને ઉમેરો
   #Label for an option to show any place
   any_place: કોઇપણ
+  app_owner_application_about_p2_html: |
+    ૨૦૨૨ સુધીમાં અમને એપીઆઈ ગ્રાહકો બનાવવા માંગતા વપરાશકર્તાઓ માટે મેન્યુઅલ મંજૂરીની જરૂર છે.
+    તૃતીય-પક્ષ એપ્લિકેશન્સ બનાવવા માટે, તમારે બનવા માટે પ્રથમ એપ્લિકેશન સબમિટ કરવી આવશ્યક છે
+    એક "એપ્લિકેશન માલિક" છે. આ એપ્લિકેશન તમારી સૂચિત એપ્લિકેશનની કાર્યક્ષમતા વર્ણવવી જોઈએ
+    અને તમે તેનો ઉપયોગ કરવાની યોજના કેવી રીતે બનાવો છો. એપ્લિકેશન સબમિટ કરવા માટે તમારું ખાતું આમાં હોવું આવશ્યક છે
+    ઓછામાં ઓછા 2 મહિનાનું અને ઓછામાં ઓછું 10 મહિનાનું હોવું જોઈએ <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">ઓળખમાં સુધારો કરવો</a> છેલ્લા મહિનામાં તા. અમે ફોલો-અપ પૂછી શકીએ છીએ
+    તમારી યોજના વિશેના પ્રશ્નો અને કોઈ પણ કારણસર એપ્લિકેશનને બંધ કરવાનો અધિકાર અમે સુરક્ષિત રાખીએ છીએ.
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: શું તમે ખરેખર આ સાઉન્ડ કાઢી નાંખવા માંગો છો?
+  artificially_generated_content: કૃત્રિમ રીતે જનરેટ થયેલ સામગ્રી
+  artificially_generated_content_desc: કૃત્રિમ બુદ્ધિ દ્વારા મોટે ભાગે અથવા સંપૂર્ણ રીતે ઉત્પન્ન થતી સામગ્રી સમાવે છે.
   #Adjective describing when a place in an atlas was "exploded," i.e. divided
   #into its constituent places
   atlas_alteration_action_exploded: વિસ્ફોટિત
@@ -10,18 +22,87 @@ gu:
   #constituent places were removed and now the atlas just contains this
   #place
   atlas_alteration_action_unexploded: એક્સ્પ્લોડ થયેલ નથી
+  community_taxon_matches_observation_taxon: કોમ્યુનિટી ટેક્સન અવલોકન ટેક્સોન સાથે મેળ ખાય છે
   confirming_ids: IDs ની ખાતરી કરી રહ્યા છે
   confirming_ids_description: |
     જો તમે આ બંધ કરશો, તો તમને સંમત થનારા આઈડી વિશે સૂચિત કરવામાં આવશે નહીં
     તમારી સાથે સિવાય કે તેમની પાસે વધારાની ટિપ્પણીઓ ન હોય.
+  conservation_status_descriptions:
+    iucn: |
+      સમકક્ષ IUCN રેડ લિસ્ટ કોડ. આ વાસ્તવિક આઇયુસીએન આકારણી નથી,
+      ફક્ત આઇયુસીએન કોડ જે સંકલન જાહેરાતના ખતરા સાથે શ્રેષ્ઠ રીતે મેળ ખાય છે
+      આ સ્થિતિ દ્વારા સૂચિત. જો તે "ઓછામાં ઓછું" હોય તો આ ભૌગોલિકપ્રિસ્થિતિને ઓવરરાઇડ કરશે
+      ચિંતા" અથવા નીચે, તેથી જો તમે આના નિરીક્ષણોને અસ્પષ્ટ કરવા માંગતા હોવ તો
+      ટેક્સન, આને "નિયર થ્રેટ" અથવા તેથી વધુ પર સેટ કરો.
   curator_coordinate_access: ક્યુરેટર યામાક્ષ પ્રવેશ
   curator_coordinate_access_desc: |
     પરંપરાગત પ્રોજેક્ટ્સ માટે ક્યુરેટર કોઓર્ડિનેટ એક્સેસ કોણે ઉમેર્યું તેના પર આધાર રાખે છે
     પ્રોજેક્ટનું નિરીક્ષણ. આ ફક્ત તેના માટે મૂળભૂત સુયોજન છે
     પ્રોજેક્ટોમાં અવલોકનો. નિરીક્ષકો આ માટે આને બદલવાનું પણ પસંદ કરી શકે છે
     વ્યક્તિગત નિરીક્ષણો.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "વર્તમાન સમુદાય ટેક્સોન: %{taxon}"
   #Button to customize projects that appear in the header
   customize__projects: વૈવિધ્યપૂર્ણ બનાવો
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "હા! હું ભાગ લેવા માંગુ છું."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "ભાગ લેવાનું અટકાવો"
+    #link to a blog post
+    pilot_read_more: "અમારા બ્લોગ પર વધુ વાંચો."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "આઇડેન્ટિફિકેશન ગેપ્સ પાઇલટઃ આઇડી વોન્ટેડ પ્રજાતિઓની જરૂર છે"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "કમ્પ્યુટર વિઝન મોડલમાં હજુ સુધી સામેલ નથી"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "અમને લાગે છે કે તમે ઓળખી શકો છો"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "અહીં કમ્પ્યુટર વિઝન મોડેલમાં હજી સુધી શામેલ ન હોય તેવી પ્રજાતિઓના નિરીક્ષણોની એક લિંક છે જે અમને લાગે છે કે તમે ઓળખી શકો છો."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "કમ્પ્યુટર વિઝન મોડેલમાં હજી સુધી શામેલ ન હોય તેવી પ્રજાતિઓના નિરીક્ષણોની લિંક માટે આવતીકાલે પાછા તપાસો, જેને અમને લાગે છે કે તમે ઓળખી શકો છો. તમને એવી પ્રજાતિઓ બતાવવામાં આવશે જ્યાં તમે ઓછામાં ઓછી 3 સુધારેલી ઓળખ બનાવી છે."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "જો તમને કોઈ લિંક દેખાતી ન હોય, તો આ માપદંડો સાથે મેળ ખાતા કોઈ અવલોકનો ન હોઈ શકે જેને ID ની જરૂર હોય. તે દરરોજ એકવાર તપાસ કરશે."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "ઓબ્ઝર્વેશન ગેપ્સ પાઇલટઃ નજીકની વોન્ટેડ પ્રજાતિઓ"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "આવતી કાલે, તમને એવી પ્રજાતિઓની યાદી મળશે જે:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "કમ્પ્યૂટર વિઝન મોડલમાં હજુ સુધી નથી"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "તમારા છેલ્લા અવલોકનની નજીક આ મોસમમાં અવલોકન કરવામાં આવ્યું છે"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "છોડને પ્રાધાન્ય આપતી 300 પ્રજાતિઓના 200 નિરીક્ષણોના નમૂના દ્વારા સંચાલિત છે"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "આ પ્રજાતિઓનું અવલોકન કરીને, તમે મોડેલને સુધારવામાં અને જૈવવિવિધતા ડેટાના અંતરને ભરવામાં મદદ કરશો. જ્યારે મોડેલ અપડેટ થશે ત્યારે આ સૂચિ અપડેટ થશે. તમે ગમે ત્યારે બહાર નીકળી શકો છો."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "અહીં તમારી હાલની પ્રજાતિઓની યાદી છે જે આ પ્રમાણે છે:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "કમ્પ્યુટર વિઝન મોડલમાં હજુ સુધી સામેલ નથી"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "આ સિઝનમાં તમારા છેલ્લા સ્થાનની નજીક અવલોકન કરેલ છે"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "આનું અવલોકન કરીને, તમે પ્રજાતિઓની ઓળખને સુધારવામાં અને નિર્ણાયક ખાલી જગ્યાઓ ભરવામાં મદદ કરી રહ્યાં છો."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "પ્રજાતિઓને બ્રાઉઝ કરો"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "કમ્પ્યુટર વિઝન મોડેલમાં હજી સુધી ન હોય તેવી પ્રજાતિઓની વ્યક્તિગત સૂચિ માટે આવતીકાલે પાછા તપાસો, જે આ સિઝનમાં અવલોકન કરવામાં આવ્યું છે. વ્યક્તિગત સૂચિ તમારા સૌથી તાજેતરના નિરીક્ષણના સ્થાનનો ઉપયોગ કરશે."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "જો તમને કોઈ કડી દેખાતી ન હોય, તો તમારી નજીક આ માપદંડો સાથે મેળ ખાતી કોઈ પ્રજાતિ ન પણ હોઈ શકે."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "ઓળખ પાયલોટ: નવા વપરાશકર્તાઓ પર સવાર થઈ રહ્યા છીએ"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "આવતીકાલથી શરૂ કરીને, દરરોજ 30 જેટલા અવલોકનો પ્રાપ્ત કરો જે તમારી ઓળખ કુશળતા સાથે મેળ ખાય છે, જે નવા વપરાશકર્તાઓને ઓનબોર્ડ કરવામાં મદદ કરે છે. તમે ગમે ત્યારે બહાર નીકળી શકો છો."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "નીચે 30 નિરીક્ષણો છે જે તમારી ઓળખ કુશળતા સાથે મેળ ખાય છે."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "તમારી ઓળખ કુશળતા સાથે મેળ ખાતી નિરીક્ષણોની લિંક માટે આવતીકાલે પાછા તપાસો."
+  #Label for a button to delete a sound file
+  delete_sound: ધ્વનિ કાઢી નાંખો
+  devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: રીસેટ પાસવર્ડ ટોકન અયોગ્ય છે. કૃપા કરીને આ લિંકનો ઉપયોગ તાજેતરમાં જ મોકલેલા રિસેટ કરેલા પાસવર્ડ ઇમેઇલમાં કરો, અથવા <a href="%{url}">નવાની વિનંતી કરો</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     તમારા ઇમેઇલ એડ્રેસની ખાત્રી કરવા માટે કૃપા કરીને નીચેની લિંક પર ક્લિક કરો. જો તમે તમારા ઇમેઇલની પુષ્ટિ ન કરો તો
@@ -31,14 +112,25 @@ gu:
   disagreements: મતભેદ
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: નિરીક્ષણો બતાવો કે જેમને અસંમત ઓળખાણો છે
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: દાન કરો
   #Title for a page to edit an announcement
   editing_announcement_x: સંપાદન જાહેરાત %{id}
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "ધ્વનિ સુધારી રહ્યા હોય ત્યારે ભૂલ: %{sound_errors}"
+  evidence_accurately_depicts_organism_or_scene: પુરાવા સજીવ અથવા દ્રશ્યને સચોટ રીતે દર્શાવે છે
   #Header for a section showing the user's favorite projects
   favorite_projects: મનગમતા પ્રોજેક્ટો
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     હેડરમાં લિંક્સ તરીકે દેખાતા સાત પ્રોજેક્ટ્સ પસંદ કરો. અપડેટ
     પૃષ્ઠને રિફ્રેશ કર્યા પછી દેખાશે.
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: ફાઇલ બંધારણ
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: ફાઇલ URL
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "હેડ્સ અપ: આ અવાજને ફ્લેગ કરવામાં આવ્યો છે."
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaururalist એ આના દ્વારા સૂચવેલ ID ને અપડેટ કર્યું %{user}
   #Title for a preference to control whether you receive notifications about
@@ -83,12 +175,22 @@ gu:
   #A user who does not admin any projects
   non_project_admin: બિન-પ્રોજેક્ટ સંચાલક
   observation_fields_for_projects: પ્રોજેક્ટો માટે નિરીક્ષણ ક્ષેત્રો
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: નિરીક્ષણોને આ સ્થાન સાથે સાંકળવામાં એક દિવસ સુધીનો સમય લાગી શકે છે.
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     7,00,000 ચોરસ કિલોમીટરથી મોટા સ્થળો ન હોઈ શકે.
+  #user-facing guidance that new places cannot be too large, with a smaller max area
+  #when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_area_during_content_freeze: |
+    70,000 ચોરસ કિલોમીટરથી મોટા સ્થળો ન હોઈ શકે.
   #user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     સ્થળોએ 200,000થી વધુ અવલોકનો ન હોઈ શકે.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    સ્થળોએ 10,000 થી વધુ અવલોકનો હોઈ શકતા નથી.
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: પ્રોફાઇલ ચિત્ર ફાઇલ પ્રકાર
@@ -104,6 +206,15 @@ gu:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: ઉપપ્રજાતિઓ/વિવિધતા /ફોર્મ
+  sounds:
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: અવાજ %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: ધ્વનિ કાઢી નંખાયેલ છે
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: સાઉન્ડ છુપાયેલ છે
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: છુપાયેલ અવાજ
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: ઉમેદવારી નોંધાવો
@@ -119,6 +230,8 @@ gu:
     આ વિકલ્પને પસંદ કરવાનું તમારા બધા માટે તમારી નવી લાઇસન્સ પસંદગીને લાગુ કરશે
     હાલના અવાજો. જો તમારી પાસે ઘણું બધું હોય તો આમાં થોડા કલાકો લાગી શકે છે
     અવાજો.
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: સુધારેલ સાઉન્ડ
   user_trusts_this_project_when_added_by_any: |
     વપરાશકર્તા ઉમેરવામાં આવેલા અવલોકનોના છુપાયેલા સંકલનો સાથે પ્રોજેક્ટ ક્યુરેટર્સ પર વિશ્વાસ કરે છે
     કોઈ પણ વ્યક્તિ દ્વારા પ્રોજેક્ટ માટે.
@@ -147,10 +260,18 @@ gu:
         તમારા એકાઉન્ટ ટાઇમ ઝોનમાં સમય કે જે આ જાહેરાત બંધ થશે
         દેખાય છે. તમામ ટાઇમ ઝોનમાં લાગુ પડે છે, તેથી દરેક જણ જોવાનું બંધ કરશે
         તે જ સમયે, તેમના સ્થાનિક સમયની સાપેક્ષમાં નહીં.
+      excludes_non_site_desc: |
+        જો તમારી જાહેરાત કોઈ સાઇટને લક્ષ્ય બનાવે છે (જે મૂળભૂત છે જો તમે
+        સાઇટ એડમિન), આમાં બધી સાઇટ્સને લક્ષ્ય બનાવતી ઘોષણાઓને બાકાત રાખશે
+        આ પ્લેસમેન્ટ.
       ip_countries_desc: |
         બહુવિધ પસંદ કરવા માટે CMD- અથવા SHIFT-ક્લિક કરો. "બધા" ને પસંદ કરવા અથવા બનાવતા નથી
         પસંદગી બધા વપરાશકર્તાઓને ઘોષણાને આને ધ્યાનમાં લીધા વગર બતાવશે
         આઈ.પી. દેશ.
+      exclude_ip_countries_desc: |
+        મલ્ટિપલ પસંદ કરવા માટે CMD- અથવા SHIFT-ક્લિક કરો. પસંદ કરેલ દેશો બતાવવામાં આવશે નહિં
+        ઘોષણા. જો IP દેશો પસંદ થયેલ હોય, તો પસંદ કરેલ IP દેશોને બાકાત રાખો
+        પહેલામાંથી બાદબાકી કરવામાં આવશે.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         નોંધ લો કે વપરાશકર્તાએ તાજેતરમાં બનાવેલ ની બનાવટ તારીખ
@@ -168,6 +289,14 @@ gu:
         તમારા ખાતાના ટાઇમ ઝોનમાં સમય કે જે આ જાહેરાત શરૂ થશે
         દેખાય છે. તમામ ટાઇમ ઝોનમાં લાગુ પડે છે, તેથી દરેક જણ જોવાનું શરૂ કરશે
         તે જ સમયે, તેમના સ્થાનિક સમયની સાપેક્ષમાં નહીં.
+      include_virtuous_tags_desc: |
+        બહુવિધ પસંદ કરવા માટે CMD- અથવા SHIFT-ક્લિક કરો. "કોઈ પણ" પસંદ કરવું અથવા ન બનાવવું
+        પસંદગી બધા વપરાશકર્તાઓને ઘોષણાને આને ધ્યાનમાં લીધા વગર બતાવશે
+        તેમના સદ્ગુણી ટેગ્સ.
+      exclude_virtuous_tags_desc: |
+        બહુવિધ પસંદ કરવા માટે CMD- અથવા SHIFT-ક્લિક કરો. "કંઈ નહિં" અથવા બનાવી રહ્યા નથી તે પસંદ કરી રહ્યા છે
+        પસંદગી બધા વપરાશકર્તાઓને ઘોષણાને આને ધ્યાનમાં લીધા વગર બતાવશે
+        તેમના સદ્ગુણી ટેગ્સ.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: દાન વર્તણૂક દ્વારા વપરાશકર્તાઓને લક્ષ્ય બનાવો
@@ -263,15 +392,88 @@ gu:
           તમે તમારા ઇમેઇલની પુષ્ટિ કર્યા પછી તમે નવા સંદેશા મોકલી શકશો
           સરનામું, અને ત્રણ ચકાસી શકાય તેવા અવલોકનો અથવા ત્રણ ઓળખો ઉમેરી
           બીજાઓ માટે. હમણાં માટે તમે વાંચી શકો છો અને અન્ય લોકો તમને મોકલેલા સંદેશનો જવાબ આપી શકો છો.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          ધ <strong>કોમ્યુનિટી ટેક્સન અને ઓબ્ઝર્વેશન ટેક્સન મેળ ખાય છે</strong>
+          (તે દુર્લભ પ્રસંગો માટે જ્યારે ઓબ્ઝર્વેશન ટેક્સોન વધુ હોઈ શકે છે.
+          કોમ્યુનિટી ટેક્સન કરતાં વિશિષ્ટ)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          અવલોકન <strong>સજીવના સચોટ પુરાવા રજૂ કરતું નથી અથવા
+          દ્રશ્ય</strong> (દા.ત. આર્ટિફિશિયલ ઇન્ટેલિજન્સનો ઉપયોગ ઉમેરવા, દૂર કરવા અથવા બદલવા માટે કરવામાં આવ્યો હતો
+          છબી અથવા ધ્વનિમાં તત્વો. નોઇઝિંગ, ફોકસ સ્ટેકિંગ અથવા મેકિંગ
+          સેન્સર ધૂળ દૂર કરવા જેવા નાના સુધારાઓ સામાન્ય રીતે ઠીક છે).
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          તમે મૂળ અહીં જોઈ શકો છો <a href="%{url}">%{url}</a>. કૃપા કરી
+          જો આ અવાજ કરે તો ક copyrightપિરાઇટ ઉલ્લંઘન ફ્લેગને વણઉકેલાયેલી તરીકે છોડી દો
+          કૉપિરાઇટનું ઉલ્લંઘન કરે છે.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          તમે ફક્ત પ્રજાતિના વિશેષણમાં સીધા જ નાના ફેરફારો કરી શકો છો (દા.ત. લિંગ ફેરફારો, ખોટી જોડણી). એક ઉમેરો <a target="_blank" href="%{url}">ટેક્સોન સ્વેપ</a> જો તમને નામમાં અન્ય ફેરફારોની જરૂર હોય.
       show:
         site_curators_disabled_wikipedia_html: |
           સાઇટ ક્યુરેટરોએ બતાવવાનું નિષ્ક્રિય કર્યું છે <a href="%{url}">આ
           વિકિપીડિયામાંથી સમાવિષ્ટ</a>. તમે તેની પર પાનાંને સંપાદિત કરીને મદદ કરી શકો છો
           વિકિપીડિયા તેને આ ટેક્સન માટે યોગ્ય બનાવવા માટે, અથવા આને ફ્લેગ કરીને
           તેને સાઇટ ક્યુરેટર્સના ધ્યાન પર લાવવા માટે ટેક્સન.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        તે ટૅગ્સ પોસ્ટ કરવાનો પ્રયાસ કરતા કંઈક ખોટું થયું: %{message}
+    taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: શું તમે ખરેખર આ ટેક્સન ફેરફારને પુનર્સ્થાપિત કરવા માંગો છો?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: શું તમે ખરેખર આ ટેક્સન ફેરફાર પાછો ખેંચવા માંગો છો?
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: પુન:સંગ્રહ કરો
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: પુન:સંગ્રહ કરી રહ્યા છીએ
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: ઉપાડો
+      #state of an abandoned taxon change
+      withdrawn: પાછી ખેંચી લેવામાં આવી છે
+      #state of a committed taxon change
+      committed: પ્રતિબદ્ધ
+      #state of a draft taxon change
+      draft: ડ્રાફ્ટ
+      #the status of a taxon change: draft, withdrawn or committed
+      status: પરિસ્થિતિ
     users:
       edit:
+        block_desc_blocking_someone_prevents: |
+          કોઈને બ્લોક કરવાથી તે તમને મેસેજ કરતા અટકાવે છે, તમારા પર કોમેન્ટ કરતા અટકાવે છે
+          નિરીક્ષણો, તમારા નિરીક્ષણોને ઓળખવા, અને અન્યથા ક્રિયાપ્રતિક્રિયા
+          તમારી સાથે આના પર %{site_name}. તે તમારામાંથી તેમના નિરીક્ષણોને પણ દૂર કરે છે
+          શોધ પરિણામો અને તેમની શોધમાંથી તમારાં નિરીક્ષણોને દૂર કરે છે
+          પરિણામો. જો કે, તે તમને તેમના માટે અદૃશ્ય બનાવતું નથી. તેઓ કરી શકે છે
+          હજી પણ તમારા નિરીક્ષણો શોધો અને તમારી પ્રોફાઇલ જુઓ, તેઓ ફક્ત કરી શકતા નથી
+          તમારી સાથે વાતચીત કરો.
+        block_desc_blocking_is_for_situations: |
+          અવરોધ એ એવી પરિસ્થિતિઓ માટે છે જ્યાં તમે ફક્ત સાથે મળી શકતા નથી
+          કોઈક અને તેઓ તમારા શ્રેષ્ઠ પ્રયત્નો છતાં, તમને એકલા છોડશે નહીં
+          વિવાદોનું સમાધાન સંસ્કારી રીતે કરવું. તેનાથી છુપાવવાનો આ કોઈ રસ્તો નથી
+          લોકો, એવા લોકોની એકરૂપતા અટકાવવા માટે જેમના અભિપ્રાયો તમે
+          વિશ્વાસ કરશો નહીં, અથવા કોમ્યુનિટી આઇડીમાંથી બહાર નીકળવાનું પસંદ કરો (ત્યાં એક બીજું પણ છે
+          તેના માટે સેટિંગ). આમ, બ્લોકિંગ બંને રીતે કામ કરે છેઃ જા તમે બ્લોક કરો તો
+          કોઈક, તેઓ તમારી સાથે વાતચીત કરી શકતા નથી, પરંતુ તમે વાતચીત પણ કરી શકતા નથી
+          તેમની સાથે. જો તમે કોઈને તમારી ઓળખતા અટકાવવા માટે તેનો દુરુપયોગ કરો છો
+          નિરીક્ષણો, તમે તેમની ઓળખ કરતા પણ તમારી જાતને અટકાવો છો
+          નિરીક્ષણો.
+        block_desc_you_can_only_block_html: |
+          તમે ફક્ત ત્રણ લોકોને જ બ્લોક કરી શકો છો. અમને લાગે છે કે આ વાજબી છે
+          નંબર કે જે એવા લોકોને સમાવે છે કે જેમને જ્યારે બ્લોક કરવાની જરૂર હોય
+          અવરોધિત કરવાના દુરૂપયોગને અટકાવે છે. જો તમને લાગે કે તમારે વધુ બ્લોક કરવાની જરૂર છે
+          લોકો, મહેરબાની કરીને <a href="mailto:%{help_email}">અમારો સંપર્ક કરો</a>.
+        block_desc_there_are_two_exceptions: |
+          એવી બે પરિસ્થિતિઓ છે જ્યાં અવરોધિત કરવાથી ક્રિયાપ્રતિક્રિયાને અટકાવી શકાતી નથી:
         errors:
           #error message when a user attempts to update their profile picture using
           #an image that has an unsupported file type
@@ -304,6 +506,7 @@ gu:
         exclude_donor_start_date: દાતા શરૂઆત તારીખને સમાવો નહિં
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: દાતાની અંતિમ તારીખને સમાવો નહિં
+        excludes_non_site: આ સ્થાનમાં અન્ય ઘોષણાઓને છુપાવો કે જેની પાસે સાઇટ ID નથી
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: નિરીક્ષકોને એપ્લિકેશનોમાંથી સમાવો નહિં

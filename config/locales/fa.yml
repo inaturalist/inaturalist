@@ -82,16 +82,49 @@ fa:
   any_place: هر
   app_owner_application_explanation_required: |
     شما باید توضیح دقیق تری از آنچه می خواهید بسازید ارائه دهید.
+  app_owner_application_about_p2_html: |
+    از سال 2022، ما برای کاربرانی که مایل به ایجاد کلاینت API هستند، نیاز به تأیید دستی داریم.
+    برای ایجاد برنامه های شخص ثالث، ابتدا باید یک برنامه ارسال کنید تا تبدیل شوید
+    یک "مالک برنامه". این برنامه باید عملکرد برنامه پیشنهادی شما را توصیف کند
+    و چگونه قصد دارید از آن استفاده کنید. برای ارسال درخواست، حساب شما باید در
+    حداقل 2 ماه سن داشته باشید و حداقل 10 ماه داشته باشید <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">بهبود شناسایی</a> در ماه گذشته. ممکن است پیگیری را بپرسیم
+    در مورد طرح شما سؤال می کنیم و ما این حق را برای خود محفوظ می داریم که به هر دلیلی درخواست ها را رد کنیم.
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: آیا مطمئن هستید که می خواهید این صدا را حذف کنید؟
+  artificially_generated_content: محتوای تولید شده مصنوعی
+  artificially_generated_content_desc: حاوی محتوایی است که عمدتا یا به طور کامل از طریق هوش مصنوعی تولید می شود.
+  community_taxon_matches_observation_taxon: تاکسون جامعه با تاکسون مشاهده مطابقت دارد
   confirming_ids: تایید شناسه ها
   confirming_ids_description: |
     اگر این را خاموش کنید، دیگر درباره شناسه هایی که موافق هستند به شما اطلاع داده نمی شود
     با شما مگر اینکه اظهارات اضافی داشته باشند.
+  conservation_status_descriptions:
+    iucn: |
+      معادل کد لیست قرمز IUCN. این ارزیابی واقعی IUCN نیست،
+      فقط کد IUCN که به بهترین وجه با تهدید افشای مختصات مطابقت دارد
+      ضمنی از این وضعیت. این حریم خصوصی جغرافیایی را نادیده می گیرد اگر "حداقل" باشد
+      Concern" یا در زیر است، بنابراین اگر می خواهید مشاهدات این موضوع را مبهم کنید
+      taxon، این را روی "Near Threatened" یا بالاتر تنظیم کنید.
   curator_coordinate_access: دسترسی مختصات متصدی
   curator_coordinate_access_desc: |
     دسترسی هماهنگ کننده برای پروژه های سنتی بستگی به این دارد که چه کسی اضافه کرده است
     مشاهده پروژه. این فقط تنظیمات پیش فرض برای
     مشاهدات در پروژه ها. ناظران همچنین می توانند انتخاب کنند که این را برای
     مشاهدات فردی.
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "تاکسون جامعه فعلی: %{taxon}"
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "بله! من می خواهم شرکت کنم."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "خلبان شکاف های شناسایی: به گونه های مورد نیاز ID نیاز دارد"
+  #Label for a button to delete a sound file
+  delete_sound: حذف صدا
+  devise:
+    failure:
+      #Error message seen when using attempting to reset a password using an invalid reset token
+      reset_password_token_invalid: رمز بازنشانی رمز عبور نامعتبر است. لطفا از پیوند موجود در ایمیل بازنشانی رمز عبور اخیر ارسال شده استفاده کنید، یا <a href="%{url}">درخواست یک مورد جدید</a>.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     لطفا برای تأیید آدرس ایمیل خود روی لینک زیر کلیک کنید. اگر ایمیل خود را تأیید نکنید
@@ -101,8 +134,19 @@ fa:
   disagreements: اختلاف نظرها
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: مشاهداتی را نشان دهید که دارای هویت های مخالف هستند
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: اهدا
   #Title for a page to edit an announcement
   editing_announcement_x: اطلاعیه ویرایش %{id}
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "خطا در به روز رسانی صدا: %{sound_errors}"
+  evidence_accurately_depicts_organism_or_scene: شواهد ارگانیسم یا صحنه را به طور دقیق به تصویر می کشد
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: فرمت فایل
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: URL فایل
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "سر بالا: این صدا پرچم گذاری شده است."
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
@@ -118,6 +162,8 @@ fa:
   #A user who does not admin any projects
   non_project_admin: مدیر غیر پروژه
   observation_fields_for_projects: زمینه های مشاهده برای پروژه ها
+  #message describing a delay between importing a place and observations appearing in it
+  place_imported_delay: ممکن است تا یک روز طول بکشد تا مشاهدات با این مکان مرتبط شود.
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     مکان ها نمی توانند بزرگتر از 700000 کیلومتر مربع باشند.
@@ -128,6 +174,10 @@ fa:
   #user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     مکان ها نمی توانند بیش از 200000 مشاهده داشته باشند.
+  #user-facing guidance that new places cannot contain too many observations, with a lower max
+  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  places_warning_observation_count_during_content_freeze: |
+    مکان ها نمی توانند بیش از 10,000 مشاهده داشته باشند.
   #A user who admin's a project
   project_admin: مدیر پروژه
   rank_levels:
@@ -140,6 +190,17 @@ fa:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: زیرگونه / تنوع / فرم
+  sounds:
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: صدا %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: صدا حذف شد
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: صدا پنهان است
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: صدا پنهان نیست
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: صدای به روز شده
   user_trusts_this_project_when_added_by_any: |
     کاربر به متصدیان پروژه با مختصات پنهان مشاهدات اضافه شده اعتماد دارد
     به پروژه توسط هر کسی.
@@ -166,6 +227,14 @@ fa:
         زمانی در منطقه زمانی حساب شما که این اعلامیه متوقف می شود
         ظاهر. در سراسر مناطق زمانی اعمال می شود، بنابراین همه دیگر نمی بینند
         در عین حال، نه نسبت به زمان محلی آنها.
+      excludes_non_site_desc: |
+        اگر اعلامیه شما سایتی را هدف قرار می دهد (که اگر شما یک
+        مدیر سایت)، این اطلاعیه هایی را که همه سایت ها را هدف قرار می دهند حذف می کند
+        این قرار دادن.
+      exclude_ip_countries_desc: |
+        CMD- یا SHIFT برای انتخاب چندگانه کلیک کنید. کشورهای منتخب نشان داده نمی شوند
+        اعلامیه. اگر کشورهای IP انتخاب شده اند، حذف کشورهای IP را انتخاب کنید
+        از اولی کم خواهد شد.
       observation_oauth_application_ids_desc: |
         CMD- یا SHIFT را با فشار کلیک کنید تا چندگانه را انتخاب کنید. انتخاب "همه" یا ساخت نکردن
         یک انتخاب اعلامیه را به همه کاربران بدون در نظر گرفتن
@@ -213,6 +282,35 @@ fa:
           پس از تأیید ایمیل، می توانید پیام های جدیدی ارسال کنید
           آدرس، و سه مشاهدات قابل تأیید یا سه شناسایی اضافه کرد
           برای دیگران. در حال حاضر می توانید پیامی را که دیگران برای شما ارسال می کنند بخوانید و به آنها پاسخ دهید.
+    observations:
+      show:
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          این <strong>تاکسون جامعه و تاکسون مشاهده مطابقت دارند</strong>
+          (برای موارد نادری که تاکسون مشاهده می تواند بیشتر باشد
+          خاص از طبقه بندی جامعه)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          مشاهده <strong>شواهد دقیقی از ارگانیسم ارائه نمی دهد یا
+          صحنه</strong> (به عنوان مثال از هوش مصنوعی برای افزودن، حذف یا جایگزینی استفاده شد
+          عناصر موجود در تصویر یا صدا. Denoising، انباشته شدن فوکوس یا ساخت
+          اصلاحات کوچک مانند از بین بردن گرد و غبار سنسور معمولا خوب است).
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          می توانید نسخه اصلی را در آدرس زیر مشاهده کنید <a href="%{url}">%{url}</a>. لطفاً
+          پرچم های نقض حق نسخه برداری را حل نشده بگذارید اگر این صدا حل نشده باشد
+          حق چاپ را نقض می کند.
+    taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          شما فقط می توانید تغییرات جزئی را مستقیما در لقب گونه ایجاد کنید (به عنوان مثال تغییر جنسیت، غلط املایی). افزودن یک <a target="_blank" href="%{url}">سوآپ تاکسون</a> اگر نیاز به تغییرات دیگری در نام دارید.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        در تلاش برای ارسال این برچسب ها مشکلی پیش آمد: %{message}
   number:
     format:
       significant: false
@@ -224,6 +322,7 @@ fa:
   activerecord:
     attributes:
       announcement:
+        excludes_non_site: سایر اطلاعیه ها را در این مکان که شناسه سایت ندارند پنهان کنید
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: حذف ناظران از برنامه ها

@@ -618,6 +618,14 @@ de:
     or oversight. Please read our <a href="/pages/community+guidelines"
     target="_blank">Community Guidelines</a> prohibiting machine-generated
     observations, identifications, and comments for more details.
+  app_owner_application_about_p2_html: |
+    Ab 2022 benötigen wir eine manuelle Genehmigung für Benutzer, die API-Clients erstellen möchten.
+    Um Apps von Drittanbietern zu erstellen, müssen Sie zunächst eine Bewerbung einreichen, um
+    Ein "App-Besitzer". Diese Anwendung sollte die Funktionalität Ihrer vorgeschlagenen App beschreiben
+    und wie Sie es verwenden möchten. Um einen Antrag zu stellen, muss sich Ihr Konto bei
+    mindestens 2 Monate alt sein und mindestens 10 Monate alt sein <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank">Verbesserung der Identifizierung</a> im letzten Monat. Wir können um Nachverfolgung bitten
+    Fragen zu Ihrem Plan und wir behalten uns das Recht vor, Anträge aus beliebigem Grund abzulehnen.
   app_owner_application_inelligible: |
     Um eine App einzureichen, musst du seit mindestens 2 Monaten ein Benutzerkonto haben, mit dem du im letzten Monat mindestens 10 verbessernde IDs beigetragen hast.
   app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
@@ -701,6 +709,8 @@ de:
   are_you_sure_you_want_to_delete_this_assessment?: Bist du sicher, dass du die Wertung entfernen willst?
   are_you_sure_you_want_to_delete_this_photo?: Bist du sicher, dass du dieses Bild entfernen willst?
   are_you_sure_you_want_to_delete_this_post: Bist du sicher, dass du diesen Beitrag löschen möchtest?
+  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  are_you_sure_you_want_to_delete_this_sound?: Bist du sicher, dass du diese Tonaufnahme löschen möchtest?
   are_you_sure_you_want_to_delete_this_taxon_change: Bist du sicher, dass du diese Taxon-Änderung löschen möchtest?
   are_you_sure_you_want_to_remove_all_tags: Bist du sicher, dass du alle Stichwörter entfernen möchtest?
   are_you_sure_you_want_to_remove_curator: Bist du sicher, dass du %{user} als Kurator entfernen möchtest?
@@ -714,6 +724,8 @@ de:
     Bist du sicher, dass du diese Beobachtung aus "%{project}" entfernen möchtest?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bist du sicher, dass du dieses Taxon aus der Prüfliste von %{place} entfernen willst?"
   are_you_sure_you_want_to_flag_as_spammer: Ganz sicher, dass dies als Spam gekennzeichnet werden soll?
+  artificially_generated_content: Künstlich generierter Inhalt
+  artificially_generated_content_desc: Enthält Inhalte, die größtenteils oder vollständig durch künstliche Intelligenz generiert werden.
   associated_observations: Assoziierte Beobachtung(en)
   associated_taxa: Zugehörige Taxa
   attention: Achtung
@@ -780,7 +792,6 @@ de:
   back_to_all_species: Zurück zu Alle Arten
   back_to_editing_observation: Zurück zur Bearbeitung der Beobachtung
   back_to_friends: Zurück zu den Freunden
-  back_to_flags_html: "&laquo; Zurück zu den Meldungen"
   back_to_lists: "Zurück zu den %{name}-Listen"
   back_to_observation: Zurück zur Beobachtung
   back_to_observation_fields: Zurück zu den Beobachtungsfeldern
@@ -809,14 +820,26 @@ de:
   back_to_your_profile: Zurück zu deinem Profil
   badges: Abzeichen
   base_map_copyright_openstreetmap_html: Base map © %{startTag}OpenStreetMap%{endTag}
-  based_on_the_evidence_can_id_be_improved: |
-    Kann die Community-ID anhand der vorhandenen Belege noch weiter verbessert werden?
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Basierend auf einer Stichprobe von %{percent}% dieser IDs schätzen wir, dass dies in einer <strong>%{count} unbeabsichtigten Ablehnung</strong> der IDs von %{child} resultieren wird.
+    other: |
+      Basierend auf einer Stichprobe von %{percent}% dieser IDs schätzen wir, dass dies in <strong>%{count} unbeabsichtigte Ablehnungen</strong> der IDs von %{child} resultieren wird.
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Kann das Community-Taxon anhand vorhandener Belege verbessert werden?
   batch: Batch
   batch_edit: Stapelbearbeitung
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "mehrere Taxa für %{x} auf einmal bearbeiten"
   batch_operations: Stapeloperationen
   be_the_first_to_fave_this_observation: Diese Beobachtung favorisieren
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Weil wir davon ausgehen, dass diese Änderung zu mehr als 10 unbeabsichtigten
+    Ablehnungen führen wird, <strong>empfehlen wir Ihnen auch eine Taxonänderung mit
+    %{old_parent}, wie zum Beispiel der Trennung von %{new_parent} von %{old_parent}</strong>.
   become_a_donor_caps: Unterstützer werden
   become_a_donor_today_caps: Werde heute ein Unterstützer
   before_importing_photos: vor dem Importieren von Bildern verlinken
@@ -1018,6 +1041,7 @@ de:
   community_id_is_precise: Das Community-Taxon ist auf (Unter)Art-Niveau
   community_moderation_settings: Gemeinschaftsmoderations-Einstellungen
   community_supported_id: Gemeinschafts-unterstütztes Taxon?
+  community_taxon_matches_observation_taxon: Community-Taxon stimmt mit Beobachtungstaxon überein
   compare: Vergleichen
   compare_with: Vergleiche mit
   comparing: vergleiche
@@ -1087,6 +1111,12 @@ de:
     url: URL für eine Seite, die diesen Status beschreibt.
     geoprivacy: |
       Standardgeoprivität für Beobachtungen dieses Taxons. Beachte, dass der Schutzstatus, der innerhalb eines Kontinents, Landes oder Bundeslandes besteht, die Geoprivität der darüber liegenden Kategorie überschreiben kann.
+    iucn: |
+      Entsprechender Code der Roten Liste der IUCN. Dies ist nicht die eigentliche IUCN-Bewertung,
+      genau der IUCN-Code, der am besten zur Bedrohung durch die Offenlegung von Koordinaten passt
+      durch diesen Status impliziert. Dadurch wird der Geoprivacy außer Kraft gesetzt, wenn er auf "Am geringsten"
+      Concern" oder weiter unten, wenn Sie also Beobachtungen dazu verschleiern möchten
+      Taxon, setzen Sie dies auf "Near Threatened" oder höher.
   conservation_status_geoprivacy_desc: |
     Standardmäßig Geo-Privatsphäre auf alle Beobachtungen dieses Taxons an diesem Ort angewendet
   contact_support: Support kontaktieren
@@ -1295,6 +1325,7 @@ de:
   curating: Kuratierung
   curation: Kuration
   curator: Kurator
+  curators_with_most_ids_of_the_input_taxon: "Kuratoren mit den meisten IDs des Input-Taxons"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist-Kuratoren sind vertrauenswürdige Freiwillige, die die Berechtigung haben,
@@ -1416,6 +1447,8 @@ de:
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Des Weiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
   curator_coordinate_access: Kurator Koordinieren Sie den Zugriff
   curator_identification: Bestimmung des Kurators
+  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  current_community_id: "Aktuelles Community-Taxon: %{taxon}"
   current_flags: Aktuelle Meldungen
   #Label for a custom boundary for an observation search
   custom_boundary: angepasste Gebietsgrenze
@@ -1429,6 +1462,61 @@ de:
   daily_users: Tägliche Benutzer
   danger_zone: GEFAHRENZONE!
   dashboard: Dashboard
+  dashboard_pilots:
+    #button asking to participate in a pilot
+    pilot_participate: "Ja! Ich würde gerne teilnehmen."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Teilnahme beenden"
+    #link to a blog post
+    pilot_read_more: "Lesen Sie mehr in unserem Blog."
+    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    gaps_id_pilot_title: "Pilotprojekt zur Identifizierung von Lücken: Bedarf bei der Identifizierung gesuchter Arten"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Hilf uns, Lücken zu schließen, indem du teilnimmst, um täglich einen Link zu Beobachtungen zu erhalten:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Noch nicht im Modell für maschinelles Sehen enthalten"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Wir glauben, dass Sie sich damit identifizieren können"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Hier ist ein Link zu Beobachtungen von Arten, die noch nicht im Computer-Vision-Modell enthalten sind und von denen wir glauben, dass Sie sie identifizieren können."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Schauen Sie morgen wieder vorbei, um einen Link zu Beobachtungen von Arten zu erhalten, die noch nicht im Computer-Vision-Modell enthalten sind und von denen wir glauben, dass Sie sie identifizieren können. Ihnen werden Arten angezeigt, bei denen Sie mindestens 3 verbessernde Identifizierungen vorgenommen haben."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Wenn kein Link angezeigt wird, gibt es möglicherweise keine Beobachtungen, die diesen Kriterien entsprechen und eine ID benötigen. Es wird einmal pro Tag überprüft."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Pilotprojekt \"Beobachtungslücken\": Gesuchte Arten in der Nähe"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Morgen erhaltet ihr eine Liste von Arten, die:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "noch nicht im Computer Vision Modell enthalten sind"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Wurden in dieser Saison in der Nähe Ihrer letzten Beobachtung beobachtet"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Basieren auf einer Stichprobe von bis zu 200 Beobachtungen von bis zu 300 Arten, die Pflanzen priorisieren"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Durch die Beobachtung dieser Arten tragen Sie dazu bei, das Modell zu verbessern und Datenlücken zur Biodiversität zu schließen. Diese Liste wird aktualisiert, wenn das Modell aktualisiert wird. Sie können sich jederzeit abmelden."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Hier ist Ihre aktuelle Liste von Arten, die:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Noch nicht im Modell für maschinelles Sehen enthalten"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Beobachtet in der Nähe Ihres letzten Standorts in dieser Saison"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Indem Sie diese beobachten, tragen Sie dazu bei, die Artenerkennung zu verbessern und kritische Lücken zu schließen."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Arten durchsuchen"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Schauen Sie morgen wieder vorbei, um eine personalisierte Liste von Arten zu erhalten, die noch nicht im Computer-Vision-Modell enthalten sind, das in dieser Saison beobachtet wurde. Die personalisierte Liste verwendet den Ort Ihrer letzten Beobachtung."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Wenn Sie keinen Zusammenhang sehen, gibt es möglicherweise keine Art in Ihrer Nähe, die diesen Kriterien entspricht."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Identification Pilot: Onboarding neuer Benutzer"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Ab morgen erhalten Sie täglich bis zu 30 Beobachtungen, die Ihren Bestimmungsfähigkeiten entsprechen und Ihnen beim Onboarding neuer Benutzer helfen. Sie können sich jederzeit abmelden."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Im Folgenden finden Sie bis zu 30 Beobachtungen, die Ihren Bestimmungsfähigkeiten entsprechen."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Schauen Sie morgen wieder vorbei, um einen Link zu Beobachtungen zu erhalten, die Ihren Bestimmungsfähigkeiten entsprechen."
   data_deficient: ungenügende Datengrundlage
   data_quality: Datenqualität
   data_quality_assessment: Bewertung der Datenqualität
@@ -1521,6 +1609,8 @@ de:
   #Label for a button to delete a taxon range
   delete_range: Verbreitungsgebiet löschen
   delete_selected: Ausgewählte löschen
+  #Label for a button to delete a sound file
+  delete_sound: Tonaufnahme löschen
   delete_taxon_and_merge_most_data_html: |
     Lösche <i>%{taxon}</i> und füge die meisten Daten in ein anderes Taxon ein. Verwende dieses Tool zum <strong>Entfernen doppelter Taxa</strong>. Wenn du ein veraltetes Synonym entfernen möchtest, erstelle bitte einen Taxon-Tausch. <strong>ACHTUNG!</strong> Das Löschen von Taxa kann sehr destruktiv sein. Lese den <a href="%{curator_url}">Kurator-Guide</a> für weitere Details.
   delete_user: Benutzer löschen
@@ -1657,6 +1747,8 @@ de:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: SPENDEN
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Spenden
   donate_again_caps: Spende noch einmal
   donate_again_today_caps: SPENDE JETZT
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1787,6 +1879,8 @@ de:
   eol: EOL
   eol_collection_url: "EOL-Sammlungs-URL"
   error_updating_photo: "Fehler beim updaten der Fotos: %{photo_errors}"
+  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  error_updating_sound: "Fehler beim Aktualisieren der Tonaufnahme: %{sound_errors}"
   establishment:
     endemic: endemisch
     establishment: Etablierung
@@ -1816,10 +1910,17 @@ de:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Genauer Rang
   except: außer
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Ausschließen
   exclude_places: Gebiete ausschließen
   exclude_projects: Projekte ausschließen
   exclude_taxa: Taxa ausschließen
   exclude_users: Benutzer ausschließen
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: '%{count} Taxon ausgeschlossen'
+    other: '%{count} Taxa ausgeschlossen'
   exclusion_filters: Ausschluss-Filter
   existing_flags: Vorhandene Meldungen
   exit_full_screen: "Vollbild beenden"
@@ -1843,6 +1944,7 @@ de:
   extinct: ausgestorben
   extinct_in_the_wild: in der Natur ausgestorben
   extra_properties: Extra Eigenschaften
+  evidence_accurately_depicts_organism_or_scene: Dokumente stellen den Organismus oder die Szene angemessen dar
   evidence_of_organism: Hinweis auf einen Organismus?
   evidence_related_to_single_subject: Alle Nachweise beziehen sich auf den gleichen Organismus
   facebook: Facebook
@@ -1881,7 +1983,11 @@ de:
   fields_can_only_be_edited_by_the_people_who: Felder bearbeiten dürfen nur diejenigen, die sie erstellt haben, sowie Kuratoren
   fields_merged: Felder verbunden
   file: Datei
+  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  file_format: Dateiformat
   file_size: Dateigröße
+  #Label for the URL to a file (i.e. to a sound file, image file)
+  file_url: Datei-URL
   file_should_be_in_the_following_format: "Die Datei sollte in folgendem Format sein: Taxon-Name, Beschreibung"
   fill_out_project_observation_fields: Beobachtungsfelder des Projekts ausfüllen
   fill_out_your_profile: vervollständige dein Profil
@@ -1928,6 +2034,8 @@ de:
   flag_deleted: Meldung gelöscht
   flag_description: Melde diesen Inhalt, um Kuratoren wissen zu lassen, dass etwas nicht stimmt (Begründung am besten auf englisch verfassen).
   flag_comment_description: Erläutere in einem optionalen Kommentar den Sachverhalt näher und füge ggf. einen unterstützenden Link hinzu.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Meldungen, die eine Quelle zitieren, werden mit größerer Wahrscheinlichkeit schnell von unseren freiwilligen Kuratoren gelöst.
   flag_for_check_list_title_html: |
     Meldung für die Checkliste: %{title}
   flag_for_comment_id_html: Meldung dieses <a href="%{url}">Kommentars %{id}</a>
@@ -1961,7 +2069,7 @@ de:
   flag_marked_as_unresolved_html: '<span class="meta">Meldung gekennzeichnet als</span> <strong>"ungeklärt".</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Gegenstand der Meldung
-  flag_reason: "&ldquo;I'm flagging this %{record} because"
+  flag_reason2: "Ich melde %{record} weil"
   flag_resolution: Lösung
   flag_saved: Meldung abgegeben.
   flag_saved_thanks_html: Meldung gespeichert. Danke! <a href="%{url}" class="readmore">Meldung ansehen</a>
@@ -2119,6 +2227,8 @@ de:
   header_your_profile: Dein Profil
   heads_up: Achtung
   heads_up_this_photo_has_been_flagged: "Achtung: dieses Foto wurde gemeldet."
+  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  heads_up_this_sound_has_been_flagged: "ACHTUNG: Diese Tonaufnahme wurde gemeldet."
   heads_up_this_photo_is_already_associated_with: "Achtung: dieses Foto ist schon mit <a target='_blank' href='%{url}'>einer anderen Beobachtung verbunden</a>"
   heads_up_you_have_multiple: "Achtung: Du hast mehrere taxonomische maschinelle Tags für identische Ränge. Sie sind unten nach Rang farblich gekennzeichnet."
   help: Hilfe
@@ -4083,7 +4193,7 @@ de:
     yemen: Jemen
     zambia: Sambia
     zimbabwe: Simbabwe
-  places_of_interest: Interessante Orte
+  places_of_interest: gelistete Orte
   places_merged_successfully: Orte erfolgreich zusammengeführt!
   places_warning_export_complex_boundary_html: |
     Falls du Beobachtungen von einer komplexen Gebietsgrenze exportieren möchtest, erwäge
@@ -4866,7 +4976,15 @@ de:
     select_one_or_more_sounds: Eine oder mehrere Audio-Dateien auswählen
     selected_sounds: Ausgewählte Audiodateien
     sound: Audio
+    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    sound_by_id_attribution: Ton %{id}, %{attribution}
+    #Message that notifies a user that their sound was successfully deleted
+    sound_deleted: Tonaufnahme gelöscht
     sound_has_been_flagged: Diese Tonaufnahme wurde gemeldet.
+    #Notifies an admin/curator that they successfully censored a sound from the website
+    sound_hidden: Tonaufnahme versteckt
+    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    sound_unhidden: Tonaufnahme freigegeben
     soundcloud_replied_with_an_error: SoundCloud antwortete mit einem Fehler.  Bitte versuche es später noch einmal.
     sounds: Audio
     your_soundcloud_account: dein SoundCloud-Account
@@ -5259,6 +5377,7 @@ de:
   there_were_some_problems_with_these_files: "Es gab einige Probleme mit diesen Dateien:"
   theres_something_wrong_with_taxon_framework_relationship: Hier stimmt etwas nicht - wir können die Beziehung zwischen internen und externen Taxa nicht bestimmen
   therefore_committing_additional_taxon_changes: Daher ist es nicht erforderlich, nach diesem Taxon-Tausch weitere Taxon-Änderungen vorzunehmen.
+  therefore_committing_taxon_changes: Daher ist es nicht erforderlich, nach dieser Abstammungsänderung noch Taxonänderungen vorzunehmen.
   these_are_items_people_on: |
     Das sind Dinge, die die Leute auf der Seite zur Kuration gemeldet haben. Spam-Kommentare sollten gelöscht werden und Benutzer, die Spam verbreiten, sollten gesperrt werden (gehe zu deren Profilseite und klicke unten rechts auf "Benutzer sperren", um sie am Einloggen zu hindern). Andere gemeldete Sachen sollten nur gelöscht werden, wenn sie eindeutig hasserfüllt, illegal usw. sind. Unhöflichkeit, beleidigende Sprache usw. sollten mit einem höflichen Kommentar behandelt werden. Wiederholungstäter sollten einem Seitenadministrator oder %{email} gemeldet werden.
   these_are_taxa_that: |
@@ -5543,6 +5662,8 @@ de:
     vorhandene Fotos. Dies kann einige Stunden dauern, wenn Sie viele
     Fotos.
   update_existing_sounds_with_new_license: Bestehende Sounds mit der neuen Lizenzauswahl aktualisieren
+  update_existing_sounds_with_new_license_desc: |
+    Wenn diese Option ausgewählt wird, wird die neue Lizenzauswahl auf alle bereits existierenden Audios übertragen. Das kann eine Weile dauern, wenn viele Audios hinterlegt sind.
   update_observations: Beobachtungen aktualisieren
   update_past: "Einstellungen der %{type} aktualisieren"
   update_photos: Fotos aktualisieren
@@ -5561,6 +5682,8 @@ de:
   updated_by_user_on_date_html: Aktualisiert von %{user} am %{date}
   updated_daily: Täglich aktualisiert
   updated_photo: Foto aktualisiert
+  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  updated_sound: Tonaufnahme aktualisiert
   upload: Hochladen
   upload_a_csv_file: CSV-Datei hochladen
   upload_a_csv_file_with_observation: |
@@ -6090,6 +6213,7 @@ de:
   you_faved_this: Du hast dies favorisiert!
   you_have_left_x_project: "Du hast %{project} verlassen"
   you_have_not_confirmed_your_email_address: Du hast deine E-Mail-Adresse noch nicht bestätigt!
+  you_havent_joined_any_projects: Du bist noch keinen Projekten beigetreten
   you_havent_linked_your_inaturalist_google_account: "Du hast Deine Konten bei %{site_name} und Google noch nicht verknüpft"
   you_joined_this_project: Du bist diesem Projekt beigetreten!
   you_must_be_a_member_of_this_project_to_do_that: Du musst ein Mitglied dieses Projektes sein, um das tun zu können
@@ -6167,10 +6291,16 @@ de:
         CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
         Kunde.
+      excludes_non_site_desc: |
+        Wenn Ihre Ankündigung auf eine Website abzielt (was die Standardeinstellung ist, wenn Sie ein
+        Site-Admin), werden Ankündigungen ausgeschlossen, die auf alle Websites in
+        diese Platzierung.
       ip_countries_desc: |
         CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
         Land des geistigen Eigentums.
+      exclude_ip_countries_desc: |
+        ALT- oder UMSCHALT-Taste gedrückt halten, um mehrere auszuwählen. Ausgewählten Ländern wird die Ankündigung nicht angezeigt. Wenn IP-Länder ausgewählt sind, werden die auszuschließenden IP-Länder abgezogen.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Beachten Sie, dass das Erstellungsdatum der zuletzt erstellten Datei des Benutzers
@@ -6183,6 +6313,14 @@ de:
         CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
         Zugehörigkeit zur Website.
+      include_virtuous_tags_desc: |
+        CMD- oder SHIFT-Klick, um mehrere auszuwählen. Auswahl von "Beliebig" oder Nichtmachen
+        Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
+        ihre tugendhaften Etiketten.
+      exclude_virtuous_tags_desc: |
+        CMD- oder SHIFT-Klick, um mehrere auszuwählen. Auswahl von "Keine" oder Nichterstellung
+        Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
+        ihre tugendhaften Etiketten.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Nutzer nach Spendenverhalten ansprechen
@@ -6364,8 +6502,8 @@ de:
         flaggable_content: Gemeldeter Inhalt
         flaggable_content_desc: |
           Der gemeldete Inhalt ist das primäre Textattribut des gemeldeten Objekts zum Zeitpunkt der Erstellung der Meldung. Nur Kuratoren und Admins können dies sehen. Nur Admins können dies bei Nachrichten sehen.
-        flags_that_should_not_be_resolved_desc_html: |
-          Bitte <code>Spam</code> und <code>Copyright-Verletzungen</code> nur dann auflösen, wenn der Inhalt kein Spam ist oder keine Verletzung des Urheberrechts vorliegt.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Bitte Meldungen, die <code>Spam</code>, <code>Urheberrechtsverletzungen</code> und <code>künstlich generierte Inhalte</code> betreffen, nur dann auflösen, wenn der Inhalt kein Spam, keine Verletzung des Urheberrechts oder nicht künstlich generiert ist.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -6677,7 +6815,11 @@ de:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: mach uns besser!
-      to_help_us_improve: Um uns bei der Verbesserung dieses Modells zu helfen, möchten wir wissen, welche der Bilder auf dieser Seite für deine Suche &quot;%{searched_term}&quot;relevant sind. Bitte markiere jedes Bild als relevant %{thumbs_up_icon}, wenn es zu deiner Suche passt, und nicht relevant %{thumbs_down_icon}, falls dies nicht der Fall ist. Wenn du fertig bist, klicke auf 'Absenden'. #text for a button where a user can mark images as relevnt to their search term
+      to_help_us_improve: Um uns bei der Verbesserung dieses Modells zu helfen, möchten wir wissen, welche der Bilder auf dieser Seite für deine Suche &quot;%{searched_term}&quot;relevant sind. Bitte markiere jedes Bild als relevant %{thumbs_up_icon}, wenn es zu deiner Suche passt, und nicht relevant %{thumbs_down_icon}, falls dies nicht der Fall ist. Wenn du fertig bist, klicke auf 'Absenden'. #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Als relevant markieren
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Als nicht relevant markieren
+      #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Übrige als relevant markieren
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Übrige als nicht relevant markieren
@@ -6910,6 +7052,11 @@ de:
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Beobachtungen erhalten <strong>"Forschungsqualität"</strong>, wenn
         #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_observation_html: |
+          das <strong>Community-Taxon und Beobachtungstaxon stimmen überein</strong>
+          (für die seltenen Fälle, in denen das Beobachtungstaxon
+          spezifischer als das Gemeinschaftstaxon)
+        #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           die %{site_name}-<strong>Community mit der Artenbestimmung</strong> übereinstimmt, d.h. wenn mehr als 2/3 der Bestimmer einem Taxon zustimmen (wenn die Mehrheit ausgewählt hat, dass das Community-Taxon nicht weiter verbessert werden kann, erhält die Beobachtung ab Unterfamilien-Niveau 'Forschungsqualität')
         #Leads a list of ways an observation to revert to Casual status
@@ -6937,6 +7084,10 @@ de:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           dass die Beobachtung <strong> unterschiedliche Lebewesen</strong> in den einzelnen Fotos enthält (z.B sind vier Fotos von Lebewesen in der Beobachtung, die nichts miteinander zu tun haben) - ein Lebensraumfoto ist aber ok
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_accurate_evidence_html: |
+          Die Beobachtung zeigt <strong>keinen akkuraten Nachweis für den Organismus oder
+          Szene</strong> (z.B. wurde künstliche Intelligenz verwendet, um Elemente hinzuzufügen, zu entfernen oder zu ersetzen. Entrauschen, Fokus-Stacking oder kleinere Korrekturen wie das Entfernen von Sensorstaub sind generell in Ordnung).
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           dass die Bestimmung nicht weiter verbessert werden kann <em>und</em> das Community-Taxon
@@ -7495,6 +7646,14 @@ de:
       not_found:
         sorry_that_doesnt_exist: Sorry, die Seite gibt es nicht!
         even_our_dedicated_search_mole_couldnt: Selbst unser engagierter "Suchmaulwurf" konnte nichts finden!
+    sounds:
+      show:
+        #The user has been warned that an uploaded sound file has been noted as being problematic.
+        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        view_original_html: |
+          Du kannst das Original unter <a href="%{url}">%{url}</a> ansehen. Bitte
+          belasse Copyright-Meldungen als ungelöst, falls diese Tonaufnahme
+          das Urheberrecht verletzt.
     stats:
       index:
         active_desc: eine ID, obs, Kommentar oder Beitrag in den letzten 30 Tagen erstellt
@@ -7524,6 +7683,20 @@ de:
         recent_w_7_obs_desc: In den letzten 7 Tagen registriert und mindestens 7 Beobachtungen hinzugefügt
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Erstellt via <a href="%{url}">Seek</a>
+        today_identified_by_others: Von anderen identifizierte Beobachtungen (1 Tag)
+        today_identified_by_others_by_iconic_taxon: Von anderen identifizierte Beobachtungen (1 Tag)
+        observations_unknown: Unbekannte Beobachtungen nach 30 Tagen
+        observations_total_unknown_ratio: Verhältnis unbekannter Beobachtungen (30 Tage)
+        observations_total_unknown_ratio_desc: Verhältnis der unbekannten Beobachtungen zu allen Beobachtungen
+        for_others: Für andere
+        ids_last_7_days: Bestimmungen (7 Tage)
+        ids_last_7_days_desc: Bestimmungen, die in den vorangegangenen 7 Tagen erstellt wurden
+        ids_today: Bestimmungen (1 Tag)
+        ids_today_desc: Bestimmungen, die an einem einzigen Tag erstellt wurden
+        ids_last_7_days_for_others: Bestimmungen für andere (7 Tage)
+        ids_last_7_days_for_others_desc: Bestimmungen zu Beobachtungen anderer Personen in den vorangegangenen 7 Tagen hinzugefügt
+        ids_today_for_others: Bestimmungen für andere (1 Tag)
+        ids_today_for_others_desc: Bestimmungen zu Beobachtungen anderer Menschen an einem einzigen Tag hinzugefügt
         time_to_id_desc: Zeitdauer bis zur Bestimmung (in Stunden, 1 Woche gleitender Wert)
         TTCID: TTCID
         TTCID_desc: Zeit, eine Bestimmung von jemandem zu erhalten, der mit dem Community-Taxon übereinstimmt.
@@ -7662,6 +7835,9 @@ de:
           sie manuell aktualisiert wurde. Das Aktualisieren dieser Zusammenfassung aktualisiert 
           unseren Cache für den zugrundeliegenden Wikipedia-Inhalt, den wir auf der
           Website anzeigen, die automatisch nach einer Woche aktualisiert wird.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Sie können nur geringfügige Änderungen am Artepitheton direkt vornehmen (z. B. Geschlechtsänderungen, Rechtschreibfehler). Fügen Sie ein <a target="_blank" href="%{url}">Taxon-Tausch</a> Wenn Sie weitere Änderungen am Namen benötigen.
       show:
         about_names_desc: |
           <p>
@@ -7744,9 +7920,30 @@ de:
         trending_desc: Am meisten beobachtete Taxa im letzten Monat
         trending_in_place_desc_html: Meistbeobachtete Taxa im letzten Monat in <a href="%{url}">%{place}</a>
         wanted_desc: Arten in diesem Taxon, die noch nicht beobachtet wurden.
+      #error message when the Flickr tagger feature fails
+      something_went_wrong_tags: |
+        Beim Versuch, diese Tags zu posten, ist etwas schief gelaufen: %{message}
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Sind Sie sicher, dass Sie diese Taxonänderung wiederherstellen möchten?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Sind Sie sicher, dass Sie diese Taxonänderung zurückziehen möchten?
       move_children_desc: |
         Untergeordnete Taxa des Input-Taxons auf Gattungsebene oder höher werden zum Output verschoben; Arten, Unterarten, Sorten usw. werden entsprechend der neuen Gattung oder des neuen Artennamens getauscht.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Wiederherstellen
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: umlagernd
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Zurückziehen
+      #state of an abandoned taxon change
+      withdrawn: zurückgezogen
+      #state of a committed taxon change
+      committed: engagiert
+      #state of a draft taxon change
+      draft: Entwurf
+      #the status of a taxon change: draft, withdrawn or committed
+      status: Status
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7853,6 +8050,32 @@ de:
           Du musst %{confirmation_code} in das Formular eingeben, um dein Konto löschen zu können
       edit:
         about_third_party_tracking: Über das Tracking von Drittanbietern
+        block_desc_blocking_someone_prevents: |
+          Wenn Sie jemanden blockieren, hindert ihn er daran, Ihnen Nachrichten zu senden, Ihre
+          Beobachtungen, die Identifizierung Ihrer Beobachtungen und die anderweitige Interaktion
+          mit Ihnen auf %{site_name}. Es entfernt auch ihre Beobachtungen aus Ihren
+          Suchergebnisse und entfernt Ihre Beobachtungen aus ihrer Suche
+          Befund. Es macht Sie jedoch nicht unsichtbar für sie. Sie können
+          Finden Sie immer noch Ihre Beobachtungen und sehen Sie sich Ihr Profil an, sie können es einfach nicht
+          interagiere mit dir.
+        block_desc_blocking_is_for_situations: |
+          Blockieren ist für Situationen, mit denen du einfach nicht zurechtkommst
+          Jemand und sie werden dich nicht in Ruhe lassen, trotz deiner besten Bemühungen,
+          Streitigkeiten auf zivilisierte Weise beizulegen. Es ist keine Möglichkeit, sich vor
+          Menschen zu verhindern, um Identifikationen von Personen zu verhindern, deren Meinung Sie
+          nicht vertrauen oder sich von der Community-ID abmelden (es gibt eine andere
+          Einstellung dafür). Das Blockieren funktioniert also in beide Richtungen: Wenn Sie
+          Jemand, er kann nicht mit dir interagieren, aber du kannst auch nicht interagieren
+          mit ihnen. Wenn Sie es missbrauchen, um zu verhindern, dass jemand Ihre
+          Beobachtungen zu beobachten, hindern Sie sich auch daran, ihre
+          Beobachtungen.
+        block_desc_you_can_only_block_html: |
+          Sie können nur drei Personen blockieren. Wir halten das für vernünftig
+          Nummer, die die Personen aufnimmt, die gesperrt werden müssen, während
+          Verhinderung des Missbrauchs von Sperren. Wenn du das Gefühl hast, dass du mehr blockieren musst
+          Leute, bitte <a href="mailto:%{help_email}">kontaktieren Sie uns</a>.
+        block_desc_there_are_two_exceptions: |
+          Es gibt zwei Situationen, in denen das Blockieren die Interaktion nicht verhindert:
         common_scientific_name_display_order: Reihenfolge für wissenschaftliche/ Trivialnamen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wenn du deine Meinung änderst, kannst du jederzeit
@@ -8319,6 +8542,7 @@ de:
         exclude_donor_start_date: Startdatum des Spenders ausschließen
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Enddatum des Spenders ausschließen
+        excludes_non_site: Ausblenden anderer Ankündigungen in dieser Platzierung, die keine Standort-ID haben
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Ausschließen von Beobachtern mit Apps
@@ -8981,6 +9205,72 @@ de:
         Protozoa: Protozoen
         Mollusca: Mollusken
         Chromista: Chromista
+  id_summary_dqa:
+    public_metrics:
+      true: "Wahre Aussage"
+      identification: "Hilfreich für die Bestimmung"
+      references: "Gestützt durch Referenzen"
+      distinct: "Unterscheidet sich von anderen Zusammenfassungen"
+      clear: "Kurz, umgangssprachlich und klar geschrieben"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Der Kommentar ist für die Zusammenfassung relevant"
+      true: "Kommentar ist eine wahre Aussage"
+      matches_taxon: "Kommentar bezieht sich auf %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "ID-Zusammenfassung Demo"
+        info_line_one: "Diese Demo untersucht den Einsatz von KI zum Zusammenfassen von Kommentaren auf iNaturalist mit dem Ziel,"
+        info_line_two: "den Fundus an Bestimmungshilfen zugänglicher zu machen."
+        blog_link_text: "Erfahre mehr in unserem Blog"
+        missing_identifier: "Fehlende Kennung der Taxon-Zusammenfassung"
+        service_unavailable: "Details zur ID-Zusammenfassung sind vorübergehend nicht verfügbar."
+        no_summary_data: "Für dieses Taxon wurden keine zusammenfassenden Daten gefunden."
+      filters:
+        language_label: "Sprache"
+      summary_list:
+        feedback_toggle: "Feedback zu ID-Zusammenfassungen"
+      summary_item:
+        copy_link: "Link zu dieser Zusammenfassung kopieren"
+        photo_tip_aria: "Foto-Tipp: %{tip}"
+        references_toggle: "Referenzen von iNaturalist-Benutzerkommentaren"
+        user_fallback: "iNaturalist-Nutzer"
+        reference_commented: "kommentiert"
+        view_comment: "Kommentar ansehen"
+        view_reference_feedback: "Feedback zur Referenz anzeigen"
+      reference_feedback:
+        loading: "Referenz-Feedback wird geladen..."
+        sign_in_required: "Melde dich an, um das Referenzfeedback zu bewerten."
+        unavailable: "Referenz-Feedback ist momentan nicht verfügbar."
+        service_unavailable: "Der Referenz-Feedback-Service ist derzeit nicht verfügbar."
+        submit_failed: "Fehler beim Senden von Referenz-Feedback."
+        sign_in_tooltip: "Melde dich an, um diese Referenz zu bewerten"
+        aria_helpful: "%{label}: hilfreich"
+        aria_not_helpful: "%{label}: nicht hilfreich"
+      taxon_detail:
+        select_species: "Wähle eine Art aus, um ID-Zusammenfassungen anzuzeigen."
+        last_updated: "Zuletzt aktualisiert"
+        no_image: "Kein Bild verfügbar"
+        photo_tips_heading: "Foto-Tipps"
+        summary_uuid: "UUID der Taxon-ID-Zusammenfassung"
+      taxa_list:
+        group_labels:
+          animalia: "Andere Tiere"
+          actinopterygii: "Strahlenflosser"
+          aves: "Vögel"
+          reptilia: "Reptilien"
+          amphibia: "Amphibien"
+          mammalia: "Säugetiere"
+          arachnida: "Spinnentiere"
+          insecta: "Insekten"
+          plantae: "Pflanzen"
+          fungi: "Pilze"
+          protozoa: "Protozoen"
+          mollusca: "Weichtiere"
+          chromista: "Chromisten"
+        other_group: "Andere"
+        empty: "Keine Arten verfügbar."
   #Title of a section warning the user about something
   warning_title: Warnung
   wikimedia: Wikimedia
