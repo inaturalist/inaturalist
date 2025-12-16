@@ -1943,6 +1943,7 @@ de:
   external_taxon_including_children: Externes Taxon (einschließlich Nachfahren)
   extinct: ausgestorben
   extinct_in_the_wild: in der Natur ausgestorben
+  provisional_taxon: Vorläufig
   extra_properties: Extra Eigenschaften
   evidence_accurately_depicts_organism_or_scene: Dokumente stellen den Organismus oder die Szene angemessen dar
   evidence_of_organism: Hinweis auf einen Organismus?
@@ -2252,6 +2253,8 @@ de:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Beobachtungen mit privaten Standorten ausblenden
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Vorläufige Taxa verbergen
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Gesamtzahl ausblenden
   hide_uncountable_species: Nicht-zählbare Arten verstecken
@@ -2384,6 +2387,7 @@ de:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inaktiv
   inactive_taxon_concepts_are: Inaktive Taxon-Konzepte sind entweder taxonomisch veraltet oder für einen Taxonwechsel vorgesehen. Veraltete Konzepte werden beibehalten, um die Historie und Kompatibilität mit einigen Partnerseiten aufrechtzuerhalten.
+  provisional_taxa_are_not_published: 'Vorläufige Taxa werden nicht veröffentlicht und können wesentlichen Änderungen unterliegen. Sie sind derzeit nur für Pilze zugelassen und müssen mit einer Beobachtung, die eine DNA-Sequenz enthält, assoziiert werden. Bitte verlinke diese Beobachtung im Feld "Warum erstellst du diese Änderung?".'
   inappropriate_content: Unangemessener Inhalt?
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} glaubt, dass dies eine vollständige Auflistung dieses Taxons an diesem Ort ist."
@@ -4827,6 +4831,8 @@ de:
   show_running_total: Gesamtzahl anzeigen
   show_taxa_from_both: (Taxa von beiden Listen anzeigen)
   show_taxa_from_everywhere: "Taxa von überall anzeigen"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Vorläufige Taxa anzeigen
   show_taxa_from_place: "Taxa von %{place} anzeigen"
   show_total_counts: Gesamtzahlen anzeigen
   show_uncountable_species: Nicht-zählbare Spezies anzeigen
@@ -6988,6 +6994,9 @@ de:
           Beobachtungsort, wie er vom Beobachter geschrieben wurde, wenn der Standort verdeckt ist
         public_positional_accuracy: Maximale horizontale Positionsunsicherheit in Metern; beinhaltet Unsicherheit durch Verschleierung der Koordinaten
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Erfahre, wie diese Seite verwendet werden kann, um mit Bestimmungen beizutragen und anderen zu helfen!
         review_all_tooltip: "Alle Beobachtungen auf der Seite als \"begutachtet\" markieren"
         you_reviewed_message: "Du hast %{reviewed} von %{pageTotal} Beobachtungen auf dieser Seite von insgesamt %{total} passenden Beobachtungen begutachtet."
         unreview_all_tooltip: "\"Begutachtet\"-Status für alle Beobachtungen auf der Seite entfernen"
