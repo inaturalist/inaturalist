@@ -1,18 +1,18 @@
 sw:
-  #Placeholder for a project autocomplete field
+  # Placeholder for a project autocomplete field
   add_a_project: Ongeza mradi
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: Yoyote
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: Je, una uhakika unataka kufuta sauti hii?
   artificially_generated_content: Maudhui yanayozalishwa kwa bandia
   artificially_generated_content_desc: Ina yaliyomo ambayo huzalishwa zaidi au kabisa kupitia akili ya bandia.
-  #Adjective describing when a place in an atlas was "exploded," i.e. divided
-  #into its constituent places
+  # Adjective describing when a place in an atlas was "exploded," i.e. divided
+  # into its constituent places
   atlas_alteration_action_exploded: Lililipuka
-  #Adjective describing when a place in an atlas was "unexploded," i.e. its
-  #constituent places were removed and now the atlas just contains this
-  #place
+  # Adjective describing when a place in an atlas was "unexploded," i.e. its
+  # constituent places were removed and now the atlas just contains this
+  # place
   atlas_alteration_action_unexploded: Haijalipuka
   community_taxon_matches_observation_taxon: Taxon ya Jumuiya inalingana na Taxon ya Uchunguzi
   confirming_ids: Kuthibitisha vitambulisho
@@ -25,130 +25,130 @@ sw:
     uchunguzi wa mradi. Huu ni mpangilio chaguo-msingi wa
     uchunguzi katika miradi. Waangalizi wanaweza pia kuchagua kubadilisha hii kwa
     uchunguzi wa mtu binafsi.
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Ushuru wa sasa wa Jumuiya: %{taxon}"
-  #Button to customize projects that appear in the header
+  # Button to customize projects that appear in the header
   customize__projects: Geuza kukufaa
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: Futa sauti
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Ishara ya kuweka upya nenosiri ni batili. Tafadhali tumia kiunga katika barua pepe ya nenosiri iliyotumwa hivi karibuni, au <a href="%{url}">Omba mpya</a>.
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Tafadhali bonyeza kiungo hapa chini ili kuthibitisha anwani yako ya barua pepe. Kama huna email yako
     Anwani, hautaweza kuingiliana na maudhui ya watumiaji wengine.
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: Kutokubaliana
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Onyesha uchunguzi ambao una vitambulisho visivyokubaliana
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Kuchangia
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: Tangazo la kuhariri %{id}
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Hitilafu ya kusasisha sauti: %{sound_errors}"
   evidence_accurately_depicts_organism_or_scene: Ushahidi unaonyesha kwa usahihi kiumbe au eneo
-  #Header for a section showing the user's favorite projects
+  # Header for a section showing the user's favorite projects
   favorite_projects: Miradi inayopendwa
-  #Description of what Favorite Projects section in user settings
+  # Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Chagua hadi miradi saba inayoonekana kama viungo kwenye kichwa. Sasishi
     itaonekana baada ya kuonyesha upya ukurasa.
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Umbizo la faili
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL ya faili
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "VICHWA JUU: sauti hii imewekwa alamishwa."
-  #Title of identification that was automatically added by a taxon change
+  # Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist ilisasisha kitambulisho kilichopendekezwa na %{user}
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: Vitambulisho vya Infraspecies
-  #Description of preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Description of preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids_description: |
     Ukizima hii, hutaarifiwa tena kuhusu vitambulisho vya taxa
     chini ya kiwango cha spishi (kama spishi ndogo na aina) ambazo zinakubaliana na yako
     Kitambulisho cha kiwango cha spishi. Utaarifiwa ikiwa hawakubaliani na kitambulisho chako au
     ikiwa zina maoni ya ziada.
-  #Error message shown when a date format is invalid
+  # Error message shown when a date format is invalid
   invalid_date: Tarehe batili
-  #Adjective describing addition of a taxon to a list
+  # Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Zilizoorodheshwa
-  #Adjective describing removal of a taxon from a list
+  # Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: Haijaorodheshwa
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: Imeingia
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: Imeondoka
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: Chaguzi zaidi
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: Asiye mtunzaji
-  #Title for a preference to control whether you receive notifications about
-  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
-  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  # Title for a preference to control whether you receive notifications about
+  # non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  # someone else adds an ID of Mammalia but does not make it a disagreement.
   non_disagreeing_ancestor_ids: Vitambulisho vya Mababu visivyokubaliana
-  #Description of a preference to control whether you receive notifications
-  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
-  #and someone else adds an ID of Mammalia but does not make it a
-  #disagreement.
+  # Description of a preference to control whether you receive notifications
+  # about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  # and someone else adds an ID of Mammalia but does not make it a
+  # disagreement.
   non_disagreeing_ancestor_ids_description: |
     Ukizima hii, hutaarifiwa tena wakati mtu anaongeza
     Kitambulisho cha taxon ambayo ni babu wa taxon kutoka kwa kitambulisho chako na haifanyi hivyo
     haikubaliani wazi na Ushuru wa Jamii. Utaarifiwa ikiwa
     Kitambulisho kina maoni ya ziada.
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: Msimamizi asiye wa mradi
   observation_fields_for_projects: Sehemu za Uchunguzi kwa Miradi
-  #message describing a delay between importing a place and observations appearing in it
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Inaweza kuchukua hadi siku moja kwa uchunguzi kuhusishwa na mahali hapa.
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     Maeneo hayawezi kuwa makubwa kuliko kilomita za mraba 700,000.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     Maeneo hayawezi kuwa makubwa kuliko kilomita za mraba 70,000.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     Maeneo hayawezi kuwa na uchunguzi zaidi ya 200,000.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Maeneo hayawezi kuwa na uchunguzi zaidi ya 10,000.
-  #A user may attempt to upload a profile picture with an unsupported content type, and this
-  #text will be the first part of an error message displayed to the user describing that error
+  # A user may attempt to upload a profile picture with an unsupported content type, and this
+  # text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Aina ya faili ya Picha ya Wasifu
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: Msimamizi wa mradi
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: Jenasi / Jenasi, mseto
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: Spishi / Mseto
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: Aina ndogo / Aina / Fomu
   sounds:
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Sauti %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: Sauti imefutwa
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: Sauti imefichwa
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Sauti haijafichwa
-  #Label for a button that subscribes the user to updates on a resource, e.g.
-  #comments on a journal post
+  # Label for a button that subscribes the user to updates on a resource, e.g.
+  # comments on a journal post
   subscribe: Kujiunga
   update_existing_observations_with_new_license_desc: |
     Kuchagua chaguo hili kutatumia chaguo lako jipya la leseni kwa wote wako
@@ -162,7 +162,7 @@ sw:
     Kuchagua chaguo hili kutatumia chaguo lako jipya la leseni kwa wote wako
     sauti zilizopo. Hii inaweza kuchukua masaa machache ikiwa una mengi
     Sauti.
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Sauti iliyosasishwa
   user_trusts_this_project_when_added_by_any: |
     Mtumiaji anaamini wasimamizi wa mradi na kuratibu zilizofichwa za uchunguzi zilizoongezwa
@@ -172,7 +172,7 @@ sw:
     kwa mradi na mwangalizi.
   user_trusts_this_project_when_added_by_none: |
     Mtumiaji haamini wasimamizi wa mradi na kuratibu zilizofichwa.
-  #Link to view identifications affected by a taxon change
+  # Link to view identifications affected by a taxon change
   view_your_affected_ids: Tazama vitambulisho vyako vilivyoathiriwa
   we_also_support3: |
     Pia tunaunga mkono kuagiza picha kutoka <a href="http://flickr.com">Flickr</a>.
@@ -204,7 +204,7 @@ sw:
         CMD- au SHIFT-bonyeza ili kuchagua nyingi. Nchi zilizochaguliwa hazitaonyeshwa
         tangazo. Ikiwa nchi za IP zimechaguliwa, kuchaguliwa Ondoa nchi za IP
         itaondolewa kutoka kwa ile ya zamani.
-      #Note about how the announcement last observation date property works
+      # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Kumbuka kuwa tarehe ya uundaji wa mtumiaji iliyoundwa hivi karibuni
         uchunguzi umehifadhiwa, kwa hivyo inaweza kuchukua masaa machache kwa kulenga
@@ -221,81 +221,81 @@ sw:
         Muda katika eneo la saa za akaunti yako ambapo tangazo hili litaanza
         Kuonekana. Inatumika katika maeneo ya saa, kwa hivyo kila mtu ataanza kuona
         wakati huo huo, sio kuhusiana na wakati wao wa ndani.
-      #Description of a group of options for targeting announcements based
-      #on donation behavior
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
       target_users_by_donation_behavior: Watumiaji walengwa kwa tabia ya mchango
-      #Description of a group of options for targeting announcements based
-      #on identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
       target_users_by_identification_behavior: Watumiaji walengwa kwa tabia ya kitambulisho
-      #Description of a group of options for targeting announcements based
-      #on observation behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
       target_users_by_observation_behavior: Watumiaji walengwa kwa tabia ya uchunguzi
-      #Description of a group of options for targeting announcements based
-      #miscellaneous user attributes
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
       target_users_by_other_attributes: Watumiaji walengwa kwa sifa zingine
     atlases:
       show:
-        #Title for section describing atlases
+        # Title for section describing atlases
         about_atlases: Kuhusu Atlasi
-        #Description of what atlases are
+        # Description of what atlases are
         atlases_convey_the_global_distribution: |
           Atlasi huwasilisha usambazaji wa kimataifa wa taxon. Wasimamizi hufanya
           atlasi kwa kufafanua muundo wa atlasi na kuratibu
           taxa iliyoorodheshwa ambayo inaiendesha.
-        #Label for a button that divides a place in an atlas into it's
-        #constituent places. E.g. if the atlas for Red Fox contained Europe
-        #you wanted to specify that Red Fox only occurs in Belgium and
-        #France, you would "explode" Europe so you could choose Belgium and
-        #France.
+        # Label for a button that divides a place in an atlas into it's
+        # constituent places. E.g. if the atlas for Red Fox contained Europe
+        # you wanted to specify that Red Fox only occurs in Belgium and
+        # France, you would "explode" Europe so you could choose Belgium and
+        # France.
         explode_this_place: Mlipuko mahali hapa
-        #Label for a button that reunites places in an atlas into the place
-        #that contains them. E.g. if an atlas contains Europe but it has
-        #been "exploded" into its constituent countries, this would remove
-        #those countries so the atlas would just contain Europe again.
+        # Label for a button that reunites places in an atlas into the place
+        # that contains them. E.g. if an atlas contains Europe but it has
+        # been "exploded" into its constituent countries, this would remove
+        # those countries so the atlas would just contain Europe again.
         unexplode_this_place: Unexplode mahali hapa
-        #Notice when an atlas has not been altered
+        # Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Bado hakuna mabadiliko kwenye atlasi hii
-        #Title for a section showing recent alterations to an atlas
+        # Title for a section showing recent alterations to an atlas
         recent_atlas_alterations: Mabadiliko ya Hivi karibuni ya Atlasi
-        #Title for a section showing taxa that were recently added to a check
-        #list
+        # Title for a section showing taxa that were recently added to a check
+        # list
         recent_listed_taxon_additions: Mabadiliko ya Hivi Karibuni ya Taxon Yaliyoorodheshwa
-        #Label for a button that shows taxa on checklists for a place
+        # Label for a button that shows taxa on checklists for a place
         show_listed_taxa: Onyesha taxa iliyoorodheshwa
-        #Notice when an atlas is not active
+        # Notice when an atlas is not active
         this_atlas_is_not_currently_active: Atlasi hii haifanyi kazi kwa sasa
-        #Warning before removing a place from an atlas
+        # Warning before removing a place from an atlas
         this_will_remove_this_taxon_and_all: |
           Hii itaondoa taxon hii na vizazi vyake vyote kutoka kwa orodha za ukaguzi
           inayohusishwa na mahali hapa na Maeneo yoyote ya Kawaida yaliyomo. Ni
           haiwezi kutenduliwa. Je, una uhakika unataka kufanya hivi?
-        #Warning when there are observations outside of the places defined by
-        #the atlas
+        # Warning when there are observations outside of the places defined by
+        # the atlas
         warning_there_are_observations_not_represented: |
           Onyo: kuna uchunguzi ambao haujawakilishwa na atlasi hii
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Bonyeza hapa kutuma tena barua pepe ya uthibitisho
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: Barua pepe ya uthibitisho imetumwa
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         Hapa kuna anwani ya barua pepe ambayo tutatuma uthibitisho kwa:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         Ikiwa haupati barua pepe, hapa kuna vidokezo kadhaa:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: Ikiwa bado haujapokea barua pepe ya uthibitisho, tafadhali wasiliana nasi kwa <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Kwa hiyo, tunaweza kukusaidia.
       please_add_an_email_and_password: Tafadhali ongeza barua pepe na nenosiri ili usipoteze ufikiaji wa akaunti yako
       please_click_the_link_sent_to_email_to_confirm_html: Tafadhali bofya kiungo kilichotumwa kwa <span class="email">%{email}</span> Thibitisha anwani yako ya barua pepe.
-      please_confirm_that_email_is_the_best_contact_html: Tafadhali thibitisha kuwa <span class="email">%{email}</span> Ni njia bora ya kuwasiliana nawe. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Tafadhali thibitisha anwani yako ya barua pepe ili kuingiliana na maudhui ya watumiaji wengine na kufikia kurasa fulani. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Tafadhali thibitisha anwani yako ya barua pepe <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: Tafadhali thibitisha kuwa <span class="email">%{email}</span> Ni njia bora ya kuwasiliana nawe. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Tafadhali thibitisha anwani yako ya barua pepe ili kuingiliana na maudhui ya watumiaji wengine na kufikia kurasa fulani. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Tafadhali thibitisha anwani yako ya barua pepe <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: Tafadhali thibitisha anwani yako ya barua pepe ili kuingiliana na maudhui ya watumiaji wengine
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Tafadhali thibitisha anwani yako ya barua pepe kutumia ukurasa huu
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Angalia vichungi vyovyote ulivyotengeneza ambavyo vinaweza kuondoa barua pepe zetu kutoka kwa kikasha chako #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Angalia vichungi vyovyote ulivyotengeneza ambavyo vinaweza kuondoa barua pepe zetu kutoka kwa kikasha chako # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Angalia folda yako ya barua taka
       your_site_account_has_no_email: Yako %{site_name} Akaunti haina anwani ya barua pepe inayohusishwa nayo.
     guides:
@@ -305,25 +305,25 @@ sw:
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           Utaweza kutuma ujumbe mpya baada ya kuthibitisha barua pepe yako
           Anwani. Kwa sasa unaweza kusoma na kujibu ujumbe ambao watu wengine wanakutumia.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           Utaweza kutuma ujumbe mpya baada ya kuthibitisha barua pepe yako
           anwani, na kuongeza uchunguzi wa kuthibitishwa tatu au vitambulisho vitatu
           kwa wengine. Kwa sasa unaweza kusoma na kujibu ujumbe ambao watu wengine wanakutumia.
     observations:
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           Sehemu ya <strong>Mechi ya Taxon ya Jumuiya na Uchunguzi wa Taxon</strong>
           (kwa hafla hizo nadra wakati Taxon ya Uchunguzi inaweza kuwa zaidi
           maalum kuliko Taxon ya Jamii)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           Uchunguzi <strong>haitoi ushahidi sahihi wa kiumbe au
           Eneo</strong> (k.m. akili ya bandia ilitumiwa kuongeza, kuondoa, au kubadilisha
@@ -331,15 +331,15 @@ sw:
           Marekebisho madogo kama vile kuondoa vumbi la sensorer kawaida ni sawa).
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           Unaweza kutazama asili kwa <a href="%{url}">%{url}</a>. Tafadhali
           Acha bendera za ukiukaji wa hakimiliki kuwa hazijatatuliwa ikiwa sauti hii itafanya hivyo
           kukiuka hakimiliki.
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           Unaweza tu kufanya mabadiliko madogo kwa epithet ya spishi moja kwa moja (kwa mfano, mabadiliko ya kijinsia, tahajia mbaya). Ongeza a <a target="_blank" href="%{url}">Ubadilishaji wa taxon</a> ikiwa unahitaji mabadiliko mengine kwa jina.
       show:
@@ -348,7 +348,7 @@ sw:
           yaliyomo kutoka Wikipedia</a>. Unaweza kusaidia kwa kuhariri ukurasa kwenye
           Wikipedia kuifanya ifae kwa ushuru huu, au kwa kuashiria hii
           taxon kuileta kwa wasimamizi wa tovuti.
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Kuna kitu kilienda vibaya kujaribu kuchapisha vitambulisho hivyo: %{message}
     users:
@@ -368,8 +368,8 @@ sw:
           Tabia nyingine tunayoona haifai kwa tovuti yetu, tutafanya
           Kuchunguza.
         errors:
-          #error message when a user attempts to update their profile picture using
-          #an image that has an unsupported file type
+          # error message when a user attempts to update their profile picture using
+          # an image that has an unsupported file type
           unsupported_file_type: Aina ya faili haitumiki. Tunakubali JPG, PNG, na GIF
         this_only_applies_to_traditional_projects2: |
           Hii inatumika tu kwa miradi ya jadi. Huwezi kuwatenga uchunguzi
@@ -386,56 +386,56 @@ sw:
         strip_insignificant_zeros: true
   time:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
     attributes:
       announcement:
-        #Whether or not the announcement can be dismissed by people who see it
+        # Whether or not the announcement can be dismissed by people who see it
         dismissible: Inakataliwa
-        #Start of a date range that the viewer must not have donated in to see the announcement
+        # Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: Ondoa tarehe ya kuanza kwa wafadhili
-        #End of a date range that the viewer must not have donated in to see the announcement
+        # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Ondoa tarehe ya mwisho ya wafadhili
         excludes_non_site: Ficha matangazo mengine katika uwekaji huu ambayo hayana Kitambulisho cha Tovuti
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: Kuwatenga waangalizi kutoka kwa programu
-        #start of a date range that the viewer must have donated in to see the announcement
+        # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Jumuisha tarehe ya kuanza kwa wafadhili
-        #End of a date range that the viewer must have donated in to see the announcement
+        # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Jumuisha tarehe ya mwisho ya wafadhili
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: Jumuisha waangalizi kutoka kwa programu
-        #List of countries that the viewer's IP address can come from to see the announcement
+        # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: Nchi za IP
-        #Start of a date range that includes the viewer's most recent observation
+        # Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: Tarehe ya hivi punde ya kuanza kwa obs
-        #end of a date range that includes the viewer's most recent observation
+        # end of a date range that includes the viewer's most recent observation
         last_observation_end_date: Tarehe ya mwisho ya obs ya hivi punde
-        #Maximum number of identifications the viewer must have added for others to see the announcement
+        # Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Utambulisho wa juu
-        #Minimum number of identifications the viewer must have added for others to see the announcement
+        # Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: Vitambulisho vya chini
-        #Maximum number of observations the viewer must have added for others to see the announcement
+        # Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: Uchunguzi wa juu
-        #Minimum number of observations the viewer must have added for others to see the announcement
+        # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Uchunguzi mdogo
-        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Uwekaji
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: Muundaji wa lengo (kwa majaribio)
-        #Whether or not the announcement is shown to logged in users
+        # Whether or not the announcement is shown to logged in users
         target_logged_in: Lengo limeingia
-        #Earliest date the viewer can have signed up to see the announcement
+        # Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: Tarehe ya kwanza ya kujisajili kwa mtumiaji
-        #Latest date the viewer can have signed up to see the announcement
+        # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Tarehe ya hivi punde ya kujisajili kwa mtumiaji
       taxon:
-        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        # Boolean attribute that controls whether Wikipedia content is shown for this taxon
         shows_wikipedia: Inaonyesha Wikipedia
       user:
         faved_project_ids: Miradi inayopendwa
@@ -447,19 +447,19 @@ sw:
         moderator_action:
           attributes:
             base:
-              #Error saying that only staff can rename
+              # Error saying that only staff can rename
               only_staff_can_rename: Wafanyakazi pekee ndio wanaweza kubadilisha jina
         observation:
           attributes:
             observed_on:
-              #Error message when user attempts to enter an observation date
-              #like "2020 or "2020-05"
+              # Error message when user attempts to enter an observation date
+              # like "2020 or "2020-05"
               must_be_a_single_day: lazima iwe siku moja, sio masafa
         place:
           attributes:
             place_geometry:
-              #Error message when a user uploads a KML that has a polygon
-              #where all the points are the same.
+              # Error message when a user uploads a KML that has a polygon
+              # where all the points are the same.
               polygon_with_no_area: ina poligoni isiyo na eneo (alama zote ni sawa)
         project_fave:
           attributes:
@@ -468,17 +468,17 @@ sw:
         taxon_change:
           attributes:
             base:
-              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              # Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
               life_taxon_cannot_be_involved: Ushuru wa Maisha hauwezi kuhusika katika mabadiliko ya ushuru
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: haiwezi kujumuisha miradi zaidi ya 7
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: lazima zote ziwepo
             login:
               domain_is_not_supported: kikoa hakitumiki
