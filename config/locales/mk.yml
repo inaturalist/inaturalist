@@ -1,17 +1,10 @@
 mk:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} промена"
-    other: "%{count} промени"
   x_comments:
     one: '1 коментар'
     other: '%{count} коментари'
   x_identifications:
     one: '1 назнака'
     other: '%{count} назнаки'
-  x_languages:
-    one: "%{count} јазик"
-    other: "%{count} јазици"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> дневнички ставки'
     other: '<span class="count">%{count}</span> дневнички ставки'
@@ -24,20 +17,11 @@ mk:
   x_misidentifications_of_species_in_this_genus:
     one: "%{count} погрешно препознаен вид во овој род"
     other: "%{count} погрешно препознаени видови во овој род"
-  #This is a fallback. Most of the time we'll use
-  #x_misidentifications_of_species_in_this_genus
+  # This is a fallback. Most of the time we'll use
+  # x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} погрешно препознаени видови во овај %{rank}"
     other: "%{count} погрешно препознаени видови во ова %{rank}"
-  x_observations:
-    one: "1 набљудување"
-    other: "%{count} набљудувања"
-  x_observations_:
-    one: "1 набљудување"
-    other: "%{count} набљудувања"
-  x_observations_html:
-    one: "<span class='count'>1</span> набљудување"
-    other: "<span class='count'>%{count}</span> набљудувања"
   x_observations_link_html:
     one: "<a href='%{url}'>1 набљудување</a>"
     other: "<a href='%{url}'>%{count} набљудувања</a>"
@@ -47,9 +31,6 @@ mk:
   x_others:
     one: "1 друг"
     other: "%{count} други"
-  x_people:
-    one: "%{count} лице"
-    other: "%{count} лица"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} лица</strong> му помогнале на %{user} со <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 слика"
@@ -57,24 +38,12 @@ mk:
   x_new_species:
     one: "1 нов вид"
     other: "%{count} нови видови"
-  x_new_users:
-    one: '%{count} нов корисник'
-    other: '%{count} нови корисници'
-  x_species:
-    one: '1 вид'
-    other: '%{count} видови'
-  x_species_html:
-    one: "<span class='count'>1</span> вид"
-    other: "<span class='count'>%{count}</span> видови"
   x_species_link_html:
     one: "<a href='%{url}'>1 вид</a>"
     other: "<a href='%{url}'>%{count} видови</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} префлози филтрирани по:"
     other: "%{count} Предлози филтрирани по:"
-  x_taxa:
-    one: "%{count} таксон"
-    other: "%{count} таксони"
   x_taxa_observed_html:
     one: "Набљудуван <span class='count'>1</span> таксон"
     other: "<span class='count'>Набљудувани %{count}</span> таксони"
@@ -84,9 +53,6 @@ mk:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> препознаен вид (или пониско) од истражен степен</span>"
     other: "<span class='count'>%{count}</span> препознаени видови (или пониско) од истражен степен</span>"
-  x_sounds:
-    one: "%{count} звук"
-    other: "%{count} звуци"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> згрижен таксон"
     other: "<span class='count'>%{count}</span> згрижени таксони"
@@ -104,28 +70,28 @@ mk:
     Кога ќе го зачувате овој нов таксон, тука ќе имате можност да ставите други имиња (народни имиња, застарени научни имиња итн.).
   a_flag_for_x: "обележувач за %{x}"
   a_member_of_taxon_html: "член на %{taxon}"
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "А to Ш"
-  #Used as a noun phrase in sentences like "kueda added a comment to *an
-  #observation*". %{resource} could be any of the following:
-  #* assessment_section
-  #* atlas
-  #* listed_taxon
-  #* observation
-  #* observation_field
-  #* post
-  #* taxon_change
-  #* taxon_drop
-  #* taxon_link
-  #* taxon_merge
-  #* taxon_split
-  #* taxon_stage
-  #* taxon_swap
-  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
-  #to add masculine, feminine, and neuter forms of articles. I realize this is
-  #an awkward way to translate something, but fixing it will have to wait for
-  #an overhaul of our notification system.
+  # Used as a noun phrase in sentences like "kueda added a comment to *an
+  # observation*". %{resource} could be any of the following:
+  # * assessment_section
+  # * atlas
+  # * listed_taxon
+  # * observation
+  # * observation_field
+  # * post
+  # * taxon_change
+  # * taxon_drop
+  # * taxon_link
+  # * taxon_merge
+  # * taxon_split
+  # * taxon_stage
+  # * taxon_swap
+  # Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  # to add masculine, feminine, and neuter forms of articles. I realize this is
+  # an awkward way to translate something, but fixing it will have to wait for
+  # an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: За
   about_charts: За графиконите
@@ -133,16 +99,16 @@ mk:
   about_complete_taxa: За целосните таксони
   about_conservation_status: За заштитниот статус
   about_editing_observation_fields: За уредувањето на полињата на набљудување
-  #Header for a section explaining Establishment Means. See the
-  #about_establishment_desc key or
-  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  # Header for a section explaining Establishment Means. See the
+  # about_establishment_desc key or
+  # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: За начинот на населување
   about_license_options: За лиценцните можности
   about_licenses: За лиценците
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: За имињата
-  #Title for a section providing a text description of a place, @vow_or_con
-  #should work here
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
   about_place: "За %{place}"
   about_places: За местата
   about_taxon_ranges: За распространетоста на таксонот
@@ -154,11 +120,11 @@ mk:
   about_this_project: За проектов
   about_trusting_projects: За довербата во проекти
   about_trusting_projects_options_any: Сите баши набљудувања на овој проект
-  #Header for a section describing unintended disagreements
+  # Header for a section describing unintended disagreements
   about_unintended_disagreements: Сите нанамерни несогласувања
-  #Abbreviated form of "accuracy in meters", where "accuracy" is the
-  #positional_accuracy attribute of an observation, which is really more like
-  #positional uncertainty
+  # Abbreviated form of "accuracy in meters", where "accuracy" is the
+  # positional_accuracy attribute of an observation, which is really more like
+  # positional uncertainty
   acc: 'Уточнетост (м)'
   account: Сметка
   account_creation: Создавање на сметка
@@ -168,13 +134,13 @@ mk:
   accuracy_meters: Уточнетост (метри)
   accuracy_of_the_coordinates: |
     Уточнетост на координатите во метри. Можете да го измените ова на „уреди“ погоре или стискајќи на бележникот на картата и повлекувајќи ги рачките. Потрудете се кружницата да биде доволно голема за да бидете сигурни дека сте некаде во неа.
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Дејство
   actions: Дејства
   active: Активен
-  #Status of a complete set that is available for use
+  # Status of a complete set that is available for use
   active_complete_set_status: Активен
-  #Status of a taxon that is available for use on iNat
+  # Status of a taxon that is available for use on iNat
   active_taxon_status: Активен
   active_users: Активни корисници
   activity: Активност
@@ -194,7 +160,7 @@ mk:
   add_another_photo: Додај друга слика
   add_another_section: Додај друг оддел
   add_another_subscription: Додај друга претплата
-  #Project assets are files associated with projects, e.g. image files for a custom header
+  # Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Додај средство
   add_batch: Додај збир
   add_comma_separated_tags: "Додај ознаки одделени со запирки"
@@ -214,9 +180,9 @@ mk:
   add_new_source: "Додај нов извор..."
   add_new_taxon_name: Додај ново таксонско име
   add_observations: Додај набљудувања
-  #As in a Taxon Framework Relationship
+  # As in a Taxon Framework Relationship
   add_relationship: 'Додај однос'
-  #As in a Guide Section
+  # As in a Guide Section
   add_section: Додај поднаслов
   add_several_observations_at_once: Додајте неколку набљудувања наеднаш.
   add_some_now: Додајте некого сега
@@ -332,7 +298,7 @@ mk:
   announcement_was_successfully_created: Соопштението е успешно создадено.
   announcement_was_successfully_updated: Соопштението е успешно подновено.
   announcements: Соопштенија
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: Било кој
   app_owner_application_about_p2_html: |
     Од 2022 година бараме рачно одобрување за корисниците кои сакаат да направат API клиенти.
@@ -357,7 +323,7 @@ mk:
   are_you_sure_want_delete_this_range: Дали сте сигурни дека сакате да ја избришете оваа распространетост?
   are_you_sure_you_want_to_commit_this_change: Дали сте сигурни дека сакате да ја спроведете оваа промена? Ова дејство е неповратно.
   are_you_sure_you_want_to_delete_this: Дали сте сигурни дека сакате да го избришете ова?
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: Сигурни ли сте дека сакате да го избришете овој звук?
   artificially_generated_content: Вештачки генерирана содржина
   artificially_generated_content_desc: Содржи содржина која е претежно или целосно генерирана преку вештачка интелигенција.
@@ -377,13 +343,13 @@ mk:
   assessment_x: "Оценка %{assessment}"
   assessments: оценки
   associations: Поврзаности
-  #As in the Atom Syndication Format:
-  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
-  #an Atom representation of the content shown on the current page
+  # As in the Atom Syndication Format:
+  # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  # an Atom representation of the content shown on the current page
   atom: Атом
   attached_taxon: Приврзан таксон
-  #Noun form, as in a property of something. Generally used to describe the
-  #name of an attribute available for annotation, e.g. "Life Stage"
+  # Noun form, as in a property of something. Generally used to describe the
+  # name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Атрибут
   attribution: Припис
   authority_list:
@@ -405,7 +371,7 @@ mk:
   badges: Значки
   batch: Збир
   batch_edit: Збирно уредување
-  #Where x is the title of a list of taxa
+  # Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Збурно уредување на таксони за %{x}"
   batch_operations: Збирни постапки
   bg_color: заднинска боја
@@ -428,7 +394,7 @@ mk:
   casual: површно
   cc_attribution_license: лиценца Криејтив комонс Наведи извор
   cc_by_name: Припис
-  #Button to change the cover (or banner) image for a project
+  # Button to change the cover (or banner) image for a project
   change_cover: смени насловна
   change_geoprivacy: 'Измени геоприватност'
   change_group: Промени група
@@ -456,11 +422,11 @@ mk:
   comments_by_me: Коментари од мене
   comments_on_my_observations: Коментари на моите набљудувања
   commercial_solicitation: Рекламирање, не води никаде и тн.
-  #Second person verb to commit a taxon change, i.e. the change has been executed
+  # Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Спроведи
-  #Adjective describing a taxon change that has been committed
+  # Adjective describing a taxon change that has been committed
   committed: Спроведено
-  #Status message while a taxon change is being committed
+  # Status message while a taxon change is being committed
   committing: Спроведувам...
   community: Заедница
   community_guidelines: Правила на заедницата
@@ -471,8 +437,8 @@ mk:
   comparing_list_to_list: "Споредба на %{list1} со %{list2}"
   comparing_versions_x_and_y: "Споредба на верзиите %{x} и %{y}"
   compiled_by_name: "Составено од %{name}"
-  #As in whether or not a check list is comprehensive, i.e. it contains all the
-  #species in the taxon and place it purports to
+  # As in whether or not a check list is comprehensive, i.e. it contains all the
+  # species in the taxon and place it purports to
   comprehensive?: Сеопфатен?
   comprehensive_list: Сеопфатен список
   configure: Нагоди
@@ -533,14 +499,14 @@ mk:
     набљудувањето на проектот. Ова е само стандардната поставка за
     набљудувања во проекти. Набљудувачите исто така можат да изберат да го променат ова за
     индивидуални набљудувања.
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Моментален таксон на заедницата: %{taxon}"
   darr_apply_darr: "&darr; Примени &darr;"
   dashboard: Прегледник
   dashboard_pilots:
-    #button asking to participate in a pilot
+    # button asking to participate in a pilot
     pilot_participate: "Да! Би сакал да учествувам."
-    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    # title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Пилот за идентификациски празнини: Потреби за идентификација на посакувани видови"
   data_deficient: недоволно податоци
   data_quality_assessment: Оценка на квалитетот на податоците
@@ -580,22 +546,22 @@ mk:
   date_picker:
     closeText: Затвори
     currentText: Денес
-    #Contextual help for a button navigating to the previous month in a date picker
+    # Contextual help for a button navigating to the previous month in a date picker
     prevText: Прет
-    #Contextual help for a button navigating to the next month in a date picker
+    # Contextual help for a button navigating to the next month in a date picker
     nextText: След
   date_time: Датум/време
   day: Ден
-  #Default option
+  # Default option
   default: по основно
   default_invite_comment: "Одлична слика!  Треба да ја објавите на %{site_name}: {{INVITE_LINK}}"
   default_search_place_description: |
     Ова ќе биде вашето матично место за сите пребарувања во Истражи и препознај.
   delete: Избриши
   delete_all: Избриши ги сите
-  #Button to delete the cover (or banner) image for a project
+  # Button to delete the cover (or banner) image for a project
   delete_cover?: да ја избришам насловната?
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: Избриши звук
   deleted_synonyms: Ибришани синоними
   deleting: Бришам...
@@ -611,24 +577,24 @@ mk:
   details: Подробно
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Ресетирањето на лозинката е невалидно. Молиме користите линк во најновата испратена е-пошта за ресетирање на лозинка, или <a href="%{url}">Побарајте нов</a>.
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Моля, кликнете на линкот подолу за да ја потврдите вашата е-маил адреса. Ако не го потврдите својот е-маил
     адреса, нема да можете да комуницирате со содржината на другите корисници.
   did_you_mean: 'Дали мислевте на'
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: Несогласувања
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Покажи набљудувања кои имаат несогласни идентификации
   disconnect_provider: "Отстрани ја врската со %{provider}"
   documentation_for_developers_html: Документација за <a href="/pages/developers">разработувачи</a>
-  #Button text to donate to iNaturalist. Please try to keep translations as
-  #short as possible
+  # Button text to donate to iNaturalist. Please try to keep translations as
+  # short as possible
   donate: ДАРУВАЈТЕ
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Донирајте
   donate_again_caps: ДАРУВАЈТЕ ПОВТОРНО
   donate_again_today_caps: ДАРУВАЈТЕ ПОВТОРНО ДЕНЕС
@@ -660,10 +626,10 @@ mk:
   edit_your_account_and_profile_html: "Измени ја сметката и профилот"
   edit_your_default_settings: "Измени ги стандардните поставки"
   edited_by_name_html: "Изменето од %{name}"
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: Објава за уредување %{id}
   email: Е-пошта
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Грешка при ажурирање на звукот: %{sound_errors}"
   establishment:
     endemic: ендемски
@@ -675,7 +641,7 @@ mk:
   everyone: сите
   everyone_journal_posts: Сечии дневнички објави
   everywhere: насекаде
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точен ранг
   exit_full_screen: "Излези од цел екран"
   explore: Истражете
@@ -690,14 +656,14 @@ mk:
   favorite_taxa: омилени таксони
   favorites: "Омилени"
   featured: истакнат
-  #Plural noun, as in Atom and RSS feeds
+  # Plural noun, as in Atom and RSS feeds
   feeds: 'Тековници'
   field_note: |
     <strong>Напомена:</strong> Ако сакате да направите поле, стиснете да проверите да не е веќе направено од друг, со цел да избегнете удвојувања.
   fields: полиња
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Формат на датотеката
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL на датотека
   find: Најди
   find_a_guide: Најди водич
@@ -710,7 +676,7 @@ mk:
   find_some_people_to_follow: "Најдете некои луѓе за следење"
   find_species: Најди видови
   first_observer: прв набљудувач
-  #Verb form, as in "Flag this item"
+  # Verb form, as in "Flag this item"
   flag: Обележи
   flag_an_item: Обележи ставка
   flag_description: Обележете ја содржинава за да им соопштите на кустосите да ја згрижат бидејќи нешто не е во ред со неа.
@@ -723,7 +689,7 @@ mk:
   flagger: Обележал
   flickr_account_information: Информации за вашата сметка на Flickr
   flickr_tags: Ознаки на Flickr
-  #Text for a button to follow updates from a specific user
+  # Text for a button to follow updates from a specific user
   follow_user: "Следи го/ја %{user}"
   following: следач
   for_a_taxon: за таксон
@@ -761,21 +727,21 @@ mk:
   guide_was_successfully_updated: Водичот е успешно подновен.
   guidelines: Напатствија
   has_already_been_flagged_by: е веќе обележан од
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "HEADS UP: овој звук е означен."
   help: Помош
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
   hex_color_eg: Хексадецимална боја, на пр. 65644F
-  #Highest taxonomic rank to filter by, where the "highest" possible rank is
-  #kingdom
+  # Highest taxonomic rank to filter by, where the "highest" possible rank is
+  # kingdom
   highest_rank: Највисок ранг
   home: Почетна
   icon_size: Големина на иконата
   iconic_taxon: Иконски таксон
-  #Notification when an identification has been deleted
+  # Notification when an identification has been deleted
   identification_deleted: Препознавањето е избришано.
   identification_saved: "Препознавањето е зачувано!"
-  #Notification when an identification has been updated
+  # Notification when an identification has been updated
   identification_updated: Препознавањето е подновено!
   identifications: Препознавања
   identifiers: Препознавачи
@@ -795,24 +761,24 @@ mk:
   importing: "Увезувам..."
   in_the_past: во изминатите
   in_the_past_week: во изминатата седмица
-  #Status of a complete set that is not available for general use on iNat, e.g.
-  #a draft
+  # Status of a complete set that is not available for general use on iNat, e.g.
+  # a draft
   inactive_complete_set_status: Неактивно
-  #Status of a taxon that is not available for general use on iNat, e.g. an
-  #output taxon in a split that hasn't been committed
+  # Status of a taxon that is not available for general use on iNat, e.g. an
+  # output taxon in a split that hasn't been committed
   inactive_taxon_status: Неактивно
   inaturalist_places: "Места на %{site_name}"
   info: Инфо
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: Идентификатори на инфравидови
   input_taxon: Влезен таксон
   insects: Инсекти
   introduced: Доведен
   invitation: Покана
   invite: покани
-  #Type of project where people can only join after they have been invited
+  # Type of project where people can only join after they have been invited
   inviteonly: само со покана
   jobs: Работни места
   join: Приклучи се
@@ -840,7 +806,7 @@ mk:
   least_concern: со најмала загриженост
   leave_a_comment: Напишете коментар
   leave_this_project: Напушти го проектов
-  #Terminal nodes in a taxonomic tree
+  # Terminal nodes in a taxonomic tree
   leaves: напушта
   lexicon: Лексикон
   lexicons:
@@ -1008,9 +974,9 @@ mk:
   location_is_exact: местоположбата е докрај уточнета
   location_is_private: Местоположбата е доверлива
   log_in: Најава
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: Пријавен
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: Излезен
   logo:
     logo: Лого
@@ -1024,10 +990,10 @@ mk:
   look_up_name: "Побарај го името"
   looks_like_neither_have!: Изгледа обете немаат никакви таксони!
   lookup: Побарај
-  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
-  #subspecies or variety
+  # Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  # subspecies or variety
   lowest_rank: Најнизок ранг
-  #Header for main content section of the project detail page when editing custom project data.
+  # Header for main content section of the project detail page when editing custom project data.
   main_content: Главна содржина
   make_a_new_place: Направи ново место
   make_a_taxon_swap_instead?: А да го заменам таксонот?
@@ -1042,7 +1008,7 @@ mk:
   meet: Запознајте се
   member_of_the_inaturalist_network_html: |
     Член на <a href="%{url}">Мрежата на iNaturalist</a>
-  #As in members of a project
+  # As in members of a project
   members: Членови
   merge: Спој
   merging: Спојување
@@ -1054,13 +1020,13 @@ mk:
   mollusks: мекотелци
   month: Месец
   more: Повеќе
-  #Button to show more observations
+  # Button to show more observations
   more__context_observations_caps: ПОВЕЌЕ
-  #Button to show more places
+  # Button to show more places
   more__context_places: Повеќе
-  #Button to show more text
+  # Button to show more text
   more__context_text: Повеќе
-  #Button to show more translators, as in people who added translations
+  # Button to show more translators, as in people who added translations
   more__context_translators_caps: ПОВЕЌЕ
   more_caps: ПОВЕЌЕ
   more_fields: Повеќе полиња
@@ -1068,7 +1034,7 @@ mk:
   more_info_title: Повеќе инфо
   more_journal_posts: Повеќе дневнички објави
   more_observations: Повеќе набљудувања
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: Повеќе опции
   more_photos: Повеќе слики
   most_agree: највеќето се согласуваат
@@ -1163,9 +1129,9 @@ mk:
   no_taxonomic_changes_match_those_criteria: Ниедна таксономска промена не одговара на тие критериуми
   no_wikipedia_page_for_taxon: На Википедија нема страница за овој таксон.
   noble_curators: "Благородните кустоси на %{site}"
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: Не-куратор
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: Не-проектен администратор
   none: Ништо
   note: Напомена
@@ -1210,11 +1176,11 @@ mk:
   on_day: "на"
   one_by_one: "Еден по еден"
   one_of_your_lists: "еден од вашите списоци..."
-  #Geoprivacy status in which no privacy has been applied
+  # Geoprivacy status in which no privacy has been applied
   open: отворено
   or: или
-  #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in with Apple OR Google
+  # Usually used to separate buttons or functional areas of the interface, e.g.
+  # sign in with Apple OR Google
   or_all_caps: ИЛИ
   order: Редослед
   order_by: Подреди по
@@ -1222,9 +1188,9 @@ mk:
   our_blog: Нашиот блог
   output_taxon: Излезен таксон
   owner: Сопственик
-  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
+  # One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Матично
-  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  # Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Матично име
   password: Лозинка
   password_confirmation: 'Потврда на лозинката'
@@ -1239,10 +1205,10 @@ mk:
   photo_by_id_attribution: "Слика: %{id}, %{attribution}"
   photos_or_sounds?: Слики или звуци?
   photos_size:
-    small: мала
-    medium: средна
-    large: голема
-    original: изворно
+      small: мала
+      medium: средна
+      large: голема
+      original: изворно
   photos_updated: Сликите се подновени.
   pi_consent_label: |
     Му дозволувам на iNaturalist да складира и обработува ограничени
@@ -1259,78 +1225,78 @@ mk:
   place: Место
   place_deleted: Местото е избришано.
   place_geo:
-    geo_planet_place_types:
-      Aggregate: Насобрано
-      aggregate: насобрано
-      Airport: Аеродром
-      airport: аеродром
-      Building: Градба
-      building: градба
-      Colloquial: Разговорно
-      colloquial: разговорно
-      Continent: Континент
-      continent: континент
-      Country: Земја
-      country: земја
-      County: Округ
-      county: округ
-      Drainage: Одвод
-      drainage: одвод
-      Estate: Посед
-      estate: посед
-      Historical_County: Историски округ
-      historical_county: историски округ
-      Historical_State: Историска покраина/држава
-      historical_state: историска покраина/држава
-      Historical_Town: Историско гратче
-      historical_town: историско гратче
-      Intersection: Раскрсница
-      intersection: раскрсница
-      Island: Остров
-      island: остров
-      Land_Feature: Географски објект
-      land_feature: географски објект
-      Local_Administrative_Area: Месно управно подрачје
-      local_administrative_area: месно управно подрачје
-      Miscellaneous: Разно
-      miscellaneous: разно
-      Nationality: Националност
-      nationality: националност
-      Nearby_Building: Блиска градба
-      nearby_building: блиска градба
-      Nearby_Intersection: Блиска раскрсница
-      nearby_intersection: блиска раскрсница
-      Open_Space: Отворен простор
-      open_space: отворен_простор
-      Point_of_Interest: Место од интерес
-      point_of_interest: место од интерес
-      Postal_Code: Поштенски број
-      postal_code: поштенски број
-      Region: Регион
-      region: регион
-      Sports_Team: Спортска екипа
-      sports_team: спортска екипа
-      State: Сој. држава/покраина
-      state: сој. држава/покраина
-      Street: Улица
-      street: улица
-      Street_Segment: Потег од улица
-      street_segment: потег од улица
-      Suburb: Населба
-      suburb: населба
-      Supername: Надиме
-      supername: надиме
-      Territory: Територија
-      territory: територија
-      Time_Zone: Часовен појас
-      time_zone: часовен појас
-      Town: Град
-      town: град
-      Undefined: Неодредено
-      undefined: неодредено
-      Zone: Подрачје
-      zone: подрачје
-  #message describing a delay between importing a place and observations appearing in it
+          geo_planet_place_types:
+            Aggregate: Насобрано
+            aggregate: насобрано
+            Airport: Аеродром
+            airport: аеродром
+            Building: Градба
+            building: градба
+            Colloquial: Разговорно
+            colloquial: разговорно
+            Continent: Континент
+            continent: континент
+            Country: Земја
+            country: земја
+            County: Округ
+            county: округ
+            Drainage: Одвод
+            drainage: одвод
+            Estate: Посед
+            estate: посед
+            Historical_County: Историски округ
+            historical_county: историски округ
+            Historical_State: Историска покраина/држава
+            historical_state: историска покраина/држава
+            Historical_Town: Историско гратче
+            historical_town: историско гратче
+            Intersection: Раскрсница
+            intersection: раскрсница
+            Island: Остров
+            island: остров
+            Land_Feature: Географски објект
+            land_feature: географски објект
+            Local_Administrative_Area: Месно управно подрачје
+            local_administrative_area: месно управно подрачје
+            Miscellaneous: Разно
+            miscellaneous: разно
+            Nationality: Националност
+            nationality: националност
+            Nearby_Building: Блиска градба
+            nearby_building: блиска градба
+            Nearby_Intersection: Блиска раскрсница
+            nearby_intersection: блиска раскрсница
+            Open_Space: Отворен простор
+            open_space: отворен_простор
+            Point_of_Interest: Место од интерес
+            point_of_interest: место од интерес
+            Postal_Code: Поштенски број
+            postal_code: поштенски број
+            Region: Регион
+            region: регион
+            Sports_Team: Спортска екипа
+            sports_team: спортска екипа
+            State: Сој. држава/покраина
+            state: сој. држава/покраина
+            Street: Улица
+            street: улица
+            Street_Segment: Потег од улица
+            street_segment: потег од улица
+            Suburb: Населба
+            suburb: населба
+            Supername: Надиме
+            supername: надиме
+            Territory: Територија
+            territory: територија
+            Time_Zone: Часовен појас
+            time_zone: часовен појас
+            Town: Град
+            town: град
+            Undefined: Неодредено
+            undefined: неодредено
+            Zone: Подрачје
+            zone: подрачје
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Може да потрае и до еден ден за набљудувањата да се поврзат со ова место.
   place_updated: Местото е подновено!
   places: Места
@@ -1378,27 +1344,27 @@ mk:
     virgin_islands: Девствени Острови
     west_africa: Западна Африка
   places_merged_successfully: Местата се успешно споени!
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     Местата не можат да бидат поголеми од 700.000 квадратни километри.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     Местата не можат да бидат поголеми од 70.000 квадратни километри.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     Местата не можат да содржат повеќе од 200.000 набљудувања.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Местата не можат да содржат повеќе од 10.000 набљудувања.
   plants: растенија
   please_add_a_citation_for_this_change: Додајте навод во страницава.
   position: Положба
   posted_by: Објавено од
-  #Shows the date a journal post was published
+  # Shows the date a journal post was published
   posted_on_date_html: Објавено на %{date}
-  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  # Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
   posted_on_date_by_user_html: Објавено на %{date} од %{user}
   posts: Објави
   powered_by: Овозможено од
@@ -1414,7 +1380,7 @@ mk:
   processing3p: "Обработувам..."
   profile: Профил
   project: Проект
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: Администратор на проектот
   project_cover: Насловна на проектот
   project_home: Проектна
@@ -1425,7 +1391,7 @@ mk:
   projects: Проекти
   projects_description: |
     Проектите се начин да вашите набљудувања со другите на %{site_name}. Тие се корисни било да сте заинтересирани да почнете граѓански научен проект, или пак само да водите евиденција за птиците во месниот парк заедно со некое птичарско здружение.
-  #@vow_or_con should work on %{place}
+  # @vow_or_con should work on %{place}
   projects_from_place: "Проекти од %{place}"
   projects_you_admin: Проекти што ги раководите
   protozoans: праживотни
@@ -1433,55 +1399,55 @@ mk:
   publish: Објави
   quality_grade: Квалитет
   quality_grade_colon: "Квалитет:"
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: Род / Genushybrid
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: Видови / хибриди
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: Подвидови / Разновидност / Форма
-  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
-  #etc.). Generally used as a column header in lists of observers and
-  #identifiers
+  # A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  # etc.). Generally used as a column header in lists of observers and
+  # identifiers
   rank_position: Ранг
-  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
-  #Genus Noctua (but generally not Species Noctua pronuba)
+  # When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  # Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
   ranks:
-    kingdom: царство
-    phylum: колено
-    subphylum: потколено
-    superclass: наткласа
-    class: класа
-    subclass: поткласа
-    superorder: надред
-    order: ред
-    suborder: подред
-    superfamily: натсемејство
-    family: семејство
-    subfamily: потсемејство
-    supertribe: натплеме
-    tribe: племе
-    subtribe: потплеме
-    genus: род
-    genushybrid: родов хибрид
-    #Singular
-    species: вид
-    hybrid: хибрид
-    #Singular
-    subspecies: подвид
-    variety: разновидност
-    form: облик
+      kingdom: царство
+      phylum: колено
+      subphylum: потколено
+      superclass: наткласа
+      class: класа
+      subclass: поткласа
+      superorder: надред
+      order: ред
+      suborder: подред
+      superfamily: натсемејство
+      family: семејство
+      subfamily: потсемејство
+      supertribe: натплеме
+      tribe: племе
+      subtribe: потплеме
+      genus: род
+      genushybrid: родов хибрид
+      # Singular
+      species: вид
+      hybrid: хибрид
+      # Singular
+      subspecies: подвид
+      variety: разновидност
+      form: облик
   ray_finned_fishes: зракоперки
   read_more: Прочитајте повеќе
   recent_observations: Скорешни набљудувања
   recent_post: Скорешна објава
-  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
+  # Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Скорешни набљудувања од %{login} (Атом)"
   recent_observations_by: "Скорешни набљудувања од %{login}"
   recently_active: Неодамна активни
@@ -1530,15 +1496,15 @@ mk:
   search_ubio_raquo: "Пребарај го uBio &raquo;"
   search_your_photos: Пребарајте по вашите слики
   searching: "Пребарувам..."
-  #This is a fallback translation for posessive phrases. It could be used on
-  #pages that show a user's content where the title might be "Your
-  #Identifications", but we generally handle those with more specific
-  #translation keys like `your_identifications`. This is here in case we
-  #forget to add a translation key like that.
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "Your
+  # Identifications", but we generally handle those with more specific
+  # translation keys like `your_identifications`. This is here in case we
+  # forget to add a translation key like that.
   second_person_possessive_singular: "@gender{m:Ваш|f:Ваша|n:Ваше} %{noun}"
   select: Избери
   select_all: Избери сè
-  #select_one_or_more_photos: Select One Or More Photos
+  # select_one_or_more_photos: Select One Or More Photos
   select_none: Ниедно
   select_one_or_more_photos: 'Изерете една или повеќе слики'
   send: испрати
@@ -1553,7 +1519,7 @@ mk:
   showing_taxa_from_everywhere: "Приказ на таксони од секаде"
   showing_taxa_from_place: "Приказ на таксони од %{place}"
   sign_in: Најава
-  #Button to sign in to iNat with your Apple account
+  # Button to sign in to iNat with your Apple account
   sign_in_with_apple: Најавете се со Apple
   sign_in_with_provider: "Најави ме со %{provider}"
   sign_in_with_google: Најавете се со Google
@@ -1585,13 +1551,13 @@ mk:
     photos_sounds: Слики / Звуци
     selected_sounds: Избрани звуци
     sound: Звук
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Звук %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: Звукот е избришан
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: Звукот скриен
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Звучи нескриено
     sounds: Звуци
   source: Извор
@@ -1614,13 +1580,13 @@ mk:
   sources_and_credits: Извори и приписи
   sourcing: Извори
   spam: спам
-  #Plural
+  # Plural
   species: Видови
   species_from_around_the_world: Видови од целиот свет
   species_search: Пребарување на видови
   species_taxon_name: Име на видот / таксонот
   species_unknown: Непознат вид
-  #Abbreviation for "source"
+  # Abbreviation for "source"
   src: Извор
   start: Почни
   start_a_new_project: Почни нов проект
@@ -1632,8 +1598,8 @@ mk:
   start_typing_someones_name: "Почнете да пишувате нечие име..."
   stop_editing: Запри со уредување
   stop_following_user: "Запри со следење на %{user}"
-  #As in a place to purchase things. We use it as a link to a place where you
-  #can buy merchandise. Please try to keep translations as short as possible
+  # As in a place to purchase things. We use it as a link to a place where you
+  # can buy merchandise. Please try to keep translations as short as possible
   store: Продавница
   store_caps: ПРОДАВНИЦА
   stuff_just_added: "Работи кои штотуку ги додадовте..."
@@ -1656,11 +1622,11 @@ mk:
   taxa_needing_curation: Таксони со потреба од загрижување
   taxon: Таксон
   taxon_map:
-    data_url: Податочен URL
-    overlays: Облоги
+      data_url: Податочен URL
+      overlays: Облоги
   taxonomic_groups: Таксономски групи
-  #As in Terms of Service, an explicit description of what iNat the extent
-  #and limitations of the service provided to users
+  # As in Terms of Service, an explicit description of what iNat the extent
+  # and limitations of the service provided to users
   terms: Услови
   terms_and_rules_html: "Услови и правила"
   terms_service: Услови на употреба
@@ -1671,11 +1637,11 @@ mk:
   the_user_x_has_been_unsuspended: "Корисникот %{user} е повторно примен"
   the_world: Светот
   these_folks_kindly_volunteer_to: Овие луѓе љубезно и доброволно ја одржуваат нашата таксономија и се занимаваат со други проблематики.
-  #This is a fallback translation for posessive phrases. It could be used on
-  #pages that show a user's content where the title might be "kueda's
-  #identifications", but we generally handle those with more specific
-  #translation keys like `users_identifications`. This is here in case we
-  #forget to add a translation key like that.
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "kueda's
+  # identifications", but we generally handle those with more specific
+  # translation keys like `users_identifications`. This is here in case we
+  # forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} на %{object_phrase}"
   threatened: Загрозен
   time_ago: "пред %{time}"
@@ -1692,7 +1658,7 @@ mk:
   total_observations: Вкупно набљудувања
   total_species_observed_caps: ВКУПНО НАБЉУДУВАНИ ВИДОВИ
   total_unique_observers: Вкупно посебни набљудувачи
-  #As in a category, not as in a keyboard
+  # As in a category, not as in a keyboard
   type: Внесете
   type_authority: Внесете орган...
   uicn_red_list_status: "Статус на Црвениот список на МСЗП:"
@@ -1710,21 +1676,21 @@ mk:
   updated_by: Подновено од
   updated_daily: Се подновува секојдневно
   updated_photo: Подновена слика
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Ажуриран звук
   upload: Подигни
   upload_a_csv_file: Подигни CSV
   use_this_form_to_create_a_new: |
     Образецов е предвиден за правење на нацрт за нова таксономска промена. Притоа опишете го предложеното одвојување, спојување или замена на активните таксони што треба подоцна да се спроведе.
   user: Корисник
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} додаде %{x} во %{noun} од %{by}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} додаде %{x} во %{noun}"
   user_added_an_observation_html: "%{user} додаде набљудување"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} додаде %{x} во %{noun} од %{by}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} додаде %{x} во %{noun}"
   user_trusts_this_project_when_added_by_any: |
     Корисникот им верува на кураторите на проектот со додадени скриени координати на набљудувања
@@ -1865,27 +1831,27 @@ mk:
       donate_short_desc: "Дарувајте сега и искажете ја вашата поддршка!"
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Кликнете овде за повторно да испратите е-маил за потврда
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: Е-маил за потврда испратен
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         Еве ја е-маил адресата на која ќе ја испратиме потврдата:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         Ако не го добиете е-маилот, еве неколку совети:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: Ако сè уште не го добивате е-маил за потврда, молиме контактирајте ни на <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> така што ние можеме да ви помогнеме.
       please_add_an_email_and_password: Молиме додайте е-маил и лозинка за да не изгубите пристап до вашата сметка
       please_click_the_link_sent_to_email_to_confirm_html: Молиме кликнете на линкот испратен до <span class="email">%{email}</span> за да ја потврдите вашата е-маил адреса.
-      please_confirm_that_email_is_the_best_contact_html: Ве молиме потврдете дека <span class="email">%{email}</span> е најдобриот начин да ви контактирам. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Молиме потврдете ја вашата е-маил адреса за да комуницирате со содржината на другите корисници и да пристапите до одредени страници. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Молиме потврдете ја вашата е-маил адреса <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: Ве молиме потврдете дека <span class="email">%{email}</span> е најдобриот начин да ви контактирам. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Молиме потврдете ја вашата е-маил адреса за да комуницирате со содржината на другите корисници и да пристапите до одредени страници. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Молиме потврдете ја вашата е-маил адреса <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: Молиме потврдете ја вашата е-маил адреса за да комуницирате со содржината на другите корисници
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Молиме потврдете ја вашата е-маил адреса за да ја користите оваа страница
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Проверете дали има филтри што ги направивте, кои би можеле да ги избришат нашите пораки од вашето сандаче #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Проверете дали има филтри што ги направивте, кои би можеле да ги избришат нашите пораки од вашето сандаче # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Проверете ја папката за спам
       your_site_account_has_no_email: Вашиот %{site_name} Сметката нема е-маил адреса поврзана со него.
     guides:
@@ -1902,25 +1868,25 @@ mk:
           Решетка од поединечни слики, без описи
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           Ќе можете да испраќате нови пораки откако ќе го потврдите својот е-маил
           адреса. Засега можете да читате и да одговарате на пораките кои другите луѓе ви ги праќаат.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           Ќе можете да испраќате нови пораки откако ќе го потврдите својот е-маил
           адреса, и додадени три потврдливи набљудувања или три идентификации
           за други. Засега можете да читате и да одговарате на пораките кои другите луѓе ви ги праќаат.
     observations:
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           На <strong>Совпаѓање на таксонот на заедницата и таксонот за набљудување</strong>
           (за оние ретки случаи кога таксонот за набљудување може да биде повеќе
           специфичен од таксонот на заедницата)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           Забелешката <strong>не претставува точни докази за организмот или
           Сцена</strong> (на пример, вештачката интелигенција се користи за додавање, отстранување или замена
@@ -1935,63 +1901,63 @@ mk:
         are_you_sure_you_want_to_delete: Дали сте сигурни дека сакате да го избришете овој проект?
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           Можете да го видите оригиналот на <a href="%{url}">%{url}</a>. Молам
           Остави ги знаменчињата за кршење на авторските права како нерешени ако ова звучи
           прекршување на авторските права.
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           Можете директно да правите само мали промени во епитетот за видот (на пример, промени на полот, правописна грешка). Додај <a target="_blank" href="%{url}">Замена на таксони</a> ако имате потреба од други промени на името.
-        #message when you try to save edits to a taxon that is a descendant of a locked taxon
-        heads_up_locked: "Heads up: само што додадохте потомок на заклучен таксон (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Ве молиме размислете за спојување на ова во постоечки таксон." #message when you try to save edits to a taxon that has inactive parents
-        heads_up_inactive_parent: " Heads up: родителот на овој активен таксон е неактивен, но тоа е излезот од ова <a href='/taxon_changes/%{taxon_change_id}'> Нацрт таксонот промена</a> Ние претпоставуваме дека ќе се обврзате наскоро." #a message when you try to save an edit to a taxon covered by a taxon framework
+        # message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Heads up: само што додадохте потомок на заклучен таксон (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Ве молиме размислете за спојување на ова во постоечки таксон." # message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Heads up: родителот на овој активен таксон е неактивен, но тоа е излезот од ова <a href='/taxon_changes/%{taxon_change_id}'> Нацрт таксонот промена</a> Ние претпоставуваме дека ќе се обврзате наскоро." # a message when you try to save an edit to a taxon covered by a taxon framework
         covered_by_taxon_framework: Овој активен таксон има повеќе од %{count} низводни набљудувања или се опфатени со таксонска рамка, така што некои таксономски атрибути можат да бидат уредувани само од персоналот или кураторите на таксони поврзани со таа таксонска рамка.
-      #an error when someone tried to edit the name of a taxon too radically
+      # an error when someone tried to edit the name of a taxon too radically
       name_must_be_similar: Имињата мора да бидат слични кога се уредува директно, направете замена на таксони за радикални промени на имињата
-      #error message when Flicker permissions preventing Flickr tagger feature
+      # error message when Flicker permissions preventing Flickr tagger feature
       cant_tag_photos_html: |
         %{site} не може да додаде тагови на вашите фотографии додека Flickr не дознае дека сте ни дале дозвола.
         <a href='%{url}'>Дајте дозвола за Flickr</a>.
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Нешто тргна наопаку обидувајќи се да ги поставам овие тагови: %{message}
     taxon_changes:
-      #state of a pending taxon change
+      # state of a pending taxon change
       pending: Во очекување
-      #state of a approved taxon change
+      # state of a approved taxon change
       approved: одобрено
-      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      # for taxon changes requiring approval votes, a message indicating to the user that they voted
       vote_added: Гласање е додадено
-      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      # for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
       vote_removed: Гласањето е отстрането
-      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      # a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
       no_votes_yet: Сè уште нема гласови
-      #message when taxon change is committed
+      # message when taxon change is committed
       taxon_change_committed: Промена на таксонот е извршена! Записите кои можат автоматски да се ажурираат ќе бидат променети наскоро.
-      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      # message when taxon change is moved into the pending state, count is a number (e.g. 5)
       taxon_change_pending:
         one: "Оваа промена на таксонот сега е во тек. Потребно е одобрение од 1 куратор за да може да се обврзува."
         other: "Оваа промена на таксонот сега е во тек. Потребно е одобрување од страна на %{count} куратори да можат да се обврзат."
-      #message when someone tries to commit a taxon change with active children
+      # message when someone tries to commit a taxon change with active children
       input_taxon_cannot_have_active_children: |
         Влезниот таксон не може да има активни деца, прво да ги премести или да ја избере опцијата "Премести деца на излез?"
       output_taxon_rank_level_not_coarser_html: >
         Ниво на ранг на излезен таксон не е погрубо од нивото на ранг на активните деца на влезниот таксон %{taxon_link}.
-      #a message when someone tries to commit a taxon change that was already committed
+      # a message when someone tries to commit a taxon change that was already committed
       taxon_change_already_committed: Оваа таксономска промена веќе беше извршена!
-      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      # an error message when trying to delete a taxon change, param is the integer id of the taxon change
       something_whent_wrong: "Нешто тргна наопаку со бришењето на промената на таксонот \"%{id}'!"
-      #a message when a taxon change was deleted
+      # a message when a taxon change was deleted
       taxon_change_deleted: Промената на таксонот беше избришана.
-      #a message when a taxon change was successfully updated
+      # a message when a taxon change was successfully updated
       taxon_change_successfully_update: Таксонската промена беше успешно ажурирана.
-      #an error message when trying to modify/create a taxon change that can be found
+      # an error message when trying to modify/create a taxon change that can be found
       no_changes_specified: Нема наведени промени
-      #a message when a taxon change was successfully created
+      # a message when a taxon change was successfully created
       taxon_change_successfully_created: Промената на таксонот беше успешно создадена.
       #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
       requires_approval:
@@ -2031,15 +1997,6 @@ mk:
       index:
         connect_with_nature: Зближете се со природата
         explore_and_share: Истражете и споделете ги вашите набљудувања на природата.
-        observations_to_date:
-          one: "Набљудување досега"
-          other: "Набљудувања досега"
-        species_observed:
-          one: "Набљудуван вид"
-          other: "Набљудувани видови"
-        people_signed_up:
-          one: "Зачленети"
-          other: "Зачленети"
         how_it_works: Како работи
         record_your_observations: Запишете ги вашите набљудувања
         share_with_fellow_naturalists: Споделете со други природници
@@ -2113,7 +2070,7 @@ mk:
       6: пе
       7: са
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d %j %Y'
     month_names:
       - 
@@ -2181,15 +2138,15 @@ mk:
       update: Поднови %{model}
   number:
     format:
-      #The delimiter separates parts of large integers, so if the number is
-      #"one million and two and a half" this would be written as
-      #"1,000,002.5" in English, and "," is the delimiter. This should not be
-      #the same as the separator.
+      # The delimiter separates parts of large integers, so if the number is
+      # "one million and two and a half" this would be written as
+      # "1,000,002.5" in English, and "," is the delimiter. This should not be
+      # the same as the separator.
       delimiter: '.'
-      #The separator separates an integer from a decimal fraction, so if the
-      #number is "one million and two and a half" this would be written as
-      #"1,000,002.5" in English, and "." is the separator. This should not be
-      #the same as the delimiter.
+      # The separator separates an integer from a decimal fraction, so if the
+      # number is "one million and two and a half" this would be written as
+      # "1,000,002.5" in English, and "." is the separator. This should not be
+      # the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false
@@ -2214,20 +2171,20 @@ mk:
   time:
     am: претпладне
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'во %I:%M %p %Z'
     pm: попладне
   activerecord:
     attributes:
       announcement:
         excludes_non_site: Скриј други најави во овој пласман кои немаат идентификатор на сајт
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: Исклучување на набљудувачите од апликациите
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: Вклучете набљудувачи од апликации
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: Создавач на цел (за тестирање)
       assessment:
         description: Опис
@@ -2242,7 +2199,7 @@ mk:
         geoprivacy: Геоприватност
         iucn: Истоветник во МСЗП
       flag:
-        #The reason the item was flagged
+        # The reason the item was flagged
         reason: Причина
       guide:
         source_url: Изворен URL
@@ -2313,39 +2270,39 @@ mk:
         taxon:
           attributes:
             name:
-              #Error message trying to change name for a taxon other than animal/plant/fungi
+              # Error message trying to change name for a taxon other than animal/plant/fungi
               microbe_or_ungrafted: "Промена на имињата не е дозволена за вируси, бактерии или непресадени клади"
-              #Error message trying to change name for a taxon coarser than species
+              # Error message trying to change name for a taxon coarser than species
               coarser_than_species: "Промена на имињата не е дозволена за рангови погруби од видовите"
-              #Error message trying to change name like this Taricha torosa x granulosa
+              # Error message trying to change name like this Taricha torosa x granulosa
               hybrid_formulas: "Промена на имињата не е дозволена за хибридни формули"
-              #Error message trying to add an x as a hybrid sign
+              # Error message trying to add an x as a hybrid sign
               add_ascii_x_disallowed: "не може да се додаде 'x' како хибриден маркер помеѓу родот и видот"
-              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              # Error message trying to change a specie or ssp name to something with no genus or species parts
               must_be_binomial: "мора да биде биномна (род видови) за проверка"
-              #Error message trying to change the genus part of a ssp or sp
+              # Error message trying to change the genus part of a ssp or sp
               genus_cannot_change: "родот не може да се промени"
-              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              # Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
               nonstandard_species_marker_only: "Нестандардно име на вид: дозволено е само отстранување на 'x'/'×' или додавање '×'"
-              #Error message trying make major changes to sp epithet
+              # Error message trying make major changes to sp epithet
               specific_epithet_similar: "специфичен епитет мора да биде сличен (само мали печатни грешки)"
-              #Error message trying eliminate the ssp epithet part for a ssp
+              # Error message trying eliminate the ssp epithet part for a ssp
               infra_required: "инфраспецифичен епитет потребен за овој ранг"
-              #Error message trying make major changes to a species part of ssp
+              # Error message trying make major changes to a species part of ssp
               only_infra_may_change: "само инфраспецифичниот епитет може да се промени за инфраспецифичните редови"
-              #Error message trying make major changes to the ssp epithet
+              # Error message trying make major changes to the ssp epithet
               infra_epithet_similar: "инфраспецифичниот епитет мора да биде сличен (само мали печатни грешки)"
-              #Error message trying make major changes to the ssp epithet
+              # Error message trying make major changes to the ssp epithet
               first_letter_of_epithet_cannot_change: "Првата буква од било кој епитет не може да се промени."
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: не може да вклучи повеќе од 7 проекти
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: мора сите да постојат
             login:
               domain_is_not_supported: Доменот не е поддржан
