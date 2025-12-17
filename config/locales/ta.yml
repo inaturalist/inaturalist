@@ -1,8 +1,4 @@
 ta:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} மாற்றம்"
-    other: "%{count} மாற்றங்கள்"
   x_comments:
     one: '%{count} கருத்து'
     other: '%{count} கருத்துகள்'
@@ -12,30 +8,9 @@ ta:
   x_identifications:
     one: '%{count} அடையாளப்படுத்தல்'
     other: '%{count} அடையாளப்படுத்தல்'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> அடையாளம்'
-    other: '<span class="count">%{count}</span> அடையாளங்கள்'
-  x_identifications_:
-    one: '%{count} அடையாளப்படுத்தல்'
-    other: '%{count} அடையாளப்படுத்தல்கள்'
-  x_languages:
-    one: "%{count} மொழி"
-    other: "%{count} மொழிகள்"
   x_matching_taxa:
     one: '%{count} பொருந்துகிறது இனம்'
     other: '%{count} பொருந்துகிறது இனங்கள்'
-  x_observations:
-    one: "%{count} கவனிப்பு"
-    other: "%{count} கவனிப்புகள்"
-  x_observations_:
-    one: "%{count} கவனிப்பு"
-    other: "%{count} கவனிப்புகள்"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> கவனிப்பு"
-    other: "<span class='count'>%{count}</span> கவனிப்புகள்"
-  x_observations_caps_html:
-    one: "<span class='count'>%{count}</span> கவனிப்பு"
-    other: "<span class='count'>%{count}</span> கவனிப்புகள்"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count}கவனிப்பு</a>"
     other: "<a href='%{url}'>%{count}கவனிப்புகள்</a>"
@@ -45,50 +20,38 @@ ta:
   x_others:
     one: "%{count} மற்றவை"
     other: "%{count} மற்றவர்கள்"
-  x_people:
-    one: "%{count} நபர்"
-    other: "%{count} மக்கள்"
   x_photos:
     one: "%{count} படம்"
     other: "%{count} படங்கள்"
-  x_species:
-    one: '%{count} இனம்'
-    other: '%{count} இனங்கள்'
-  x_taxa:
-    one: "%{count} இனம்"
-    other: "%{count} இனங்கள்"
   x_research_grade_observations_html:
     one: "<span class='count'>%{count}</span> ஆராய்ச்சி தரம் கவனிப்பு"
     other: "<span class='count'>%{count}</span> ஆராய்ச்சி தரம் கவனிப்புகள்"
-  x_sounds:
-    one: "%{count} ஒலி"
-    other: "%{count} ஒலிகள்"
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: இயற்கை ஆராய்ச்சியாளர்களுக்கான சமூகம்
   a_flag_for_x: "பிளாக் %{x}க்கு"
   a_member_of_taxon_html: "ஒரு %{taxon} உறுப்பினர்"
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A முதல் Z"
-  #Used as a noun phrase in sentences like "kueda added a comment to *an
-  #observation*". %{resource} could be any of the following:
-  #* assessment_section
-  #* atlas
-  #* listed_taxon
-  #* observation
-  #* observation_field
-  #* post
-  #* taxon_change
-  #* taxon_drop
-  #* taxon_link
-  #* taxon_merge
-  #* taxon_split
-  #* taxon_stage
-  #* taxon_swap
-  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
-  #to add masculine, feminine, and neuter forms of articles. I realize this is
-  #an awkward way to translate something, but fixing it will have to wait for
-  #an overhaul of our notification system.
+  # Used as a noun phrase in sentences like "kueda added a comment to *an
+  # observation*". %{resource} could be any of the following:
+  # * assessment_section
+  # * atlas
+  # * listed_taxon
+  # * observation
+  # * observation_field
+  # * post
+  # * taxon_change
+  # * taxon_drop
+  # * taxon_link
+  # * taxon_merge
+  # * taxon_split
+  # * taxon_stage
+  # * taxon_swap
+  # Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  # to add masculine, feminine, and neuter forms of articles. I realize this is
+  # an awkward way to translate something, but fixing it will have to wait for
+  # an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: பற்றி
   about_charts: அட்டவணைகள் பற்றியது
@@ -97,10 +60,10 @@ ta:
   about_conservation_status: பாதுகாப்பு நிலை பற்றி
   about_license_options: உரிமங்கள் அமைப்புகள்பற்றி
   about_licenses: உரிமங்கள் பற்றி
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: பெயர்கள் பற்றி
-  #Title for a section providing a text description of a place, @vow_or_con
-  #should work here
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
   about_place: "%{place} பற்றி"
   about_places: இடங்களைப் பற்றி
   about_taxon_ranges: இனம் வரம்புகள் பற்றி
@@ -110,16 +73,16 @@ ta:
   account_settings: கணக்கு அமைப்புகள்
   accuracy: துல்லியம்
   accuracy_meters: துல்லியம் (மீட்டர்)
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: செயல்
   actions: செயல்கள்
   active: சுறுசுறுப்புள்ள
-  #Status of a complete set that is available for use
+  # Status of a complete set that is available for use
   active_complete_set_status: சுறுசுறுப்புள்ள
-  #Status of a taxon that is available for use on iNat
+  # Status of a taxon that is available for use on iNat
   active_taxon_status: சுறுசுறுப்புள்ள
   add: சேர்
-  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  # Text for a button that links to a page where curators can add new conservation statuses for taxa
   add_a_conservation_status: ஒரு பாதுகாப்பு நிலை சேர்க்கவும்
   add_a_taxon: ஒரு இனம் சேர்க்கவும்
   add_an_identification: ஒரு அடையாளப்படுத்தல் சேர்க்கவும்
@@ -136,10 +99,10 @@ ta:
   add_editor: பதிப்பாசிரியர் சேர்க்கவும்
   add_id: ஒரு ID சேர்க்கவும்
   add_new_lexicon: புதிய நிகண்டு
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: ஒரு சேர்க்கவும்!
-  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
-  #"one" refers to a photo
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: இப்போது ஒன்று சேர்க்கவும்
   add_place: ஒரு இடம் சேர்க்கவும்
   add_alive_or_dead_alive_annotation: '"உயிருடன் அல்லது இறந்தவர்: உயிருடன்" க்கு விளக்கங்கள் சேர்க்கவும்'
@@ -173,7 +136,7 @@ ta:
   agree_with_observation_taxon: அவதானிப்புகளின் இனங்கள் உடன்படுகிறது
   agreeing: ஒப்புதல்...
   aka: அல்லது
-  #Noun, title of a popup alerting you to something
+  # Noun, title of a popup alerting you to something
   alert: எச்சரிக்கை
   all: அனைத்து
   all_names: அனைத்து பெயர்கள்
@@ -201,11 +164,11 @@ ta:
       one: "%{count} முதலுயிரி"
       other: "%{count} முதலுயிரிகள்"
   annotations: விளக்கங்கள்
-  #Label for an option to show content from any date
+  # Label for an option to show content from any date
   any_date: ஏதாவது
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: ஏதாவது
-  #Label for an option to show content from any project
+  # Label for an option to show content from any project
   any_project: ஏதேனும்
   app_owner_application_about_p2_html: |
     2022 ஆம் ஆண்டு நிலவரப்படி, API கிளையண்டுகளை உருவாக்க விரும்பும் பயனர்களுக்கு கையேடு ஒப்புதல் தேவை.
@@ -215,7 +178,7 @@ ta:
     குறைந்தது 2 மாதங்கள் மற்றும் குறைந்தது 10 செய்திருக்க வேண்டும் <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">அடையாளங்களை மேம்படுத்துதல்</a> கடந்த மாதத்தில். பின்தொடர்தல் கேட்கலாம்
     உங்கள் திட்டத்தைப் பற்றிய கேள்விகள் மற்றும் எந்த காரணத்திற்காகவும் விண்ணப்பங்களை நிராகரிக்கும் உரிமை எங்களுக்கு உள்ளது.
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: இந்த ஒலியை நிச்சயமாக நீக்க விரும்புகிறீர்களா?
   artificially_generated_content: செயற்கையாக உருவாக்கப்பட்ட உள்ளடக்கம்
   artificially_generated_content_desc: செயற்கை நுண்ணறிவு மூலம் பெரும்பாலும் அல்லது முழுமையாக உருவாக்கப்படும் உள்ளடக்கத்தைக் கொண்டுள்ளது.
@@ -229,19 +192,19 @@ ta:
   casual_: சாதாரண
   casual_tooltip_html: '"சாதாரண" கவனிப்புகள் ஊடகம், இடம், அல்லது தேதி காணப்படவில்லை, அல்லது "ஆராய்ச்சி" அல்லது "ID தேவை" தரங்களுக்குப் பிற காரணங்களால் தேவைகளைப் பூர்த்தி செய்யவில்லை. <a href="https://www.inaturalist.org/pages/help#quality">தரங்கள்பற்றி மேலும் அறியவும்</a>'
   categories: பகுப்புகள்
-  #Button to change the cover (or banner) image for a project
+  # Button to change the cover (or banner) image for a project
   change_cover: அட்டை மாற்று
-  #Plural noun, as in changes to a taxon record over time
+  # Plural noun, as in changes to a taxon record over time
   changes: மாற்றங்கள்
   check_out_the_inat_store: iNaturalist Store பார்க்கவும்
   cid_d_to_genus: பேரினமாக CID'd
-  #Verb, generally a label on a button that allows the user to add a comment
+  # Verb, generally a label on a button that allows the user to add a comment
   comment_: கருத்து
   community: சமூகம்
   community_guidelines: சமூகம் வழிகாட்டுதல்கள்
   community_taxon_matches_observation_taxon: சமூக வகைப்பாட்டு கண்காணிப்பு வகைப்பாட்டுடன் பொருந்துகிறது
-  #As in whether or not a check list is comprehensive, i.e. it contains all the
-  #species in the taxon and place it purports to
+  # As in whether or not a check list is comprehensive, i.e. it contains all the
+  # species in the taxon and place it purports to
   comprehensive?: விரிவானது?
   confirming_ids: ஐடிகளை உறுதிப்படுத்துதல்
   confirming_ids_description: |
@@ -255,9 +218,9 @@ ta:
       கவலை" அல்லது கீழே, எனவே இதைப் பற்றிய அவதானிப்புகளை நீங்கள் மறைக்க விரும்பினால்
       டேக்ஸன், இதை "அருகிலுள்ள அச்சுறுத்தல்" அல்லது அதற்கு மேல் அமைக்கவும்.
   controlled_term_labels:
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_flowers_and_fruits: ஏதாவது
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: ஏதேனும்
     sex: பாலினம்
     male: ஆண்
@@ -273,9 +236,9 @@ ta:
     nymph: இளம்பூச்சி
     juvenile: இளவயது
     alive_or_dead: உயிருடன் அல்லது இறந்தவர்
-    #Abnormal growth
+    # Abnormal growth
     gall: முடிச்சு
-    #Evidence of something made my an organism, made with or excavated from other materials
+    # Evidence of something made my an organism, made with or excavated from other materials
     construction: கட்டுமானம்
   controlled_term_definitions:
     gall: ஒட்டுண்ணி உயிரினங்களால் ஏற்படும் சிதைக்கப்பட்ட தாவர திசுக்களின் வளர்ச்சி
@@ -290,13 +253,13 @@ ta:
     திட்டத்திற்கான அவதானிப்பு. இது இயல்புநிலை அமைப்பாகும்
     திட்டங்களில் அவதானிப்புகள். பார்வையாளர்கள் இதை மாற்றவும் தேர்வு செய்யலாம்
     தனிப்பட்ட அவதானிப்புகள்.
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "தற்போதைய சமூக வகைப்பாட்டு: %{taxon}"
   dashboard: முகப்பலகம்
   dashboard_pilots:
-    #button asking to participate in a pilot
+    # button asking to participate in a pilot
     pilot_participate: "ஆம்! நான் பங்கேற்க விரும்புகிறேன்."
-    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    # title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "அடையாள இடைவெளிகள் பைலட்: தேவை ஐடி தேவை இனங்கள்"
   date_: தேதி
   date_added: தேதி சேர்க்கப்பட்டது
@@ -308,19 +271,19 @@ ta:
     month:
       june: ஜூன்
   date_joined: சேரும் தேதி
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: ஒலியை நீக்கு
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்த கீழேயுள்ள இணைப்பைக் கிளிக் செய்யவும். உங்கள் மின்னஞ்சலை உறுதிப்படுத்தவில்லை என்றால்
     முகவரி, பிற பயனர்களின் உள்ளடக்கத்துடன் நீங்கள் தொடர்பு கொள்ள முடியாது.
   disagree_: எதிர்மனப்படு
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: கருத்து வேறுபாடுகள்
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: உடன்படாத அடையாளங்களைக் கொண்ட அவதானிப்புகளைக் காட்டு
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: நன்கொடை
   edit_project: திட்டம் திருத்தவும்
   edit_taxa: இனங்கள் திருத்தவும்
@@ -329,26 +292,26 @@ ta:
   edit_taxon_link: இனம் லிங்க் திருத்தவும்
   edit_taxon_range: இனம் வரம்பு திருத்தவும்
   edit_your_default_settings: "உங்கள் டிஃபால்ட் அமைப்புகளைத் திருத்தவும்"
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: எடிட்டிங் அறிவிப்பு %{id}
   editing_project: திருத்துவது %{project}
   editors: பதிப்பாசிரியர்கள்
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "ஒலியைப் புதுப்பிப்பதில் பிழை: %{sound_errors}"
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: துல்லியமானது ரேங்க்
   exclude_taxa: இனங்கள் விலக்கு
   explore: ஆராயுங்கள்
   evidence_accurately_depicts_organism_or_scene: சான்றுகள் உயிரினம் அல்லது காட்சியை துல்லியமாக சித்தரிக்கின்றன
-  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: பிடித்தவை
   favorite_taxa: பிடித்தது இனங்கள்
   favorites: "பிடித்தவை"
-  #Button to show fewer places
+  # Button to show fewer places
   fewer__context_places: குறைவான
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: கோப்பு வடிவமைப்பு
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: கோப்பு URL
   forum: மன்றம்
   forum_categories:
@@ -360,13 +323,13 @@ ta:
   guide_taxon: வழிகாட்டி இனம்
   has_one_or_more_faves: ஒரு அல்லது மேற்பட்ட பிடித்தங்கள் உள்ளன
   header_your_favorites: உங்கள் பிடித்தவை
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "ஹெட்ஸ் அப்: இந்த ஒலி கொடியிடப்பட்டுள்ளது."
   help_translate!: மொழிபெயர் உதவி செய்க!
   include_places: இடங்களைச் சேர்க்கவும்
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: இன்ஃப்ராஸ்பீசிஸ் ஐடிகள்
   'joined!': சேர்ந்தார்!
   joined_projects: சேர்ந்தது கணிப்புகள்
@@ -400,30 +363,30 @@ ta:
   log_in: புகுபதிகை
   log_out: வெளியேறு செய்யவும்
   log_out_caps: வெளியேறு செய்யவும்
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: உள்நுழைந்தது
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: வெளியேறியது
-  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  # Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: மாக்ரோஸ்ட்ராட்
-  #Header for main content section of the project detail page when editing custom project data.
+  # Header for main content section of the project detail page when editing custom project data.
   main_content: முக்கிய உள்ளடக்கம்
-  #Stub text for the main content section when editing custom project data
+  # Stub text for the main content section when editing custom project data
   main_content_description: முக்கிய உள்ளடக்கம் இங்கே செல்கிறது
   map: வரைபடம்
-  #Used to join media types required by a project, e.g. photos *and* sounds.
-  #If a single word won't work, a symbol like "+" would be fine.
+  # Used to join media types required by a project, e.g. photos *and* sounds.
+  # If a single word won't work, a symbol like "+" would be fine.
   media_and: மற்றும்
   meet: சந்திக்கவும்
   more: மேலும்
-  #Button to show more places
+  # Button to show more places
   more__context_places: இன்னும்
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: கூடுதல் விருப்பங்கள்
   most_comments_and_faves: நிறைய கருத்துகளும் பாராட்டுகளும்
   native_to_place: "பூர்வீகம் %{place}"
-  #Short for "navigation," used to describe a navigational component on the
-  #project detail page when editing custom project data
+  # Short for "navigation," used to describe a navigational component on the
+  # project detail page when editing custom project data
   nav: வழிசெலுத்தல்
   new_guide: புதிய வழிகாட்டி
   no_comments_yet: இதுவரை கருத்துகள் இல்லை.
@@ -431,16 +394,16 @@ ta:
     current_user: நீங்கள் இன்னும் பிடித்தவைகளைச் சேர்க்கவில்லை.
     user: "%{user} அவர்கள் இன்னும் பிடித்தவைகளைச் சேர்க்கவில்லை."
   no_more_mail_from_site: "நீங்கள் %{site_name} இல் இருந்து எந்த மின்னஞ்சலையும் பெற விரும்பவில்லை என்றால்? உங்கள் மின்னஞ்சல் அமைப்புகளைத் திருத்தவும்"
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: அல்லாத கியூரேட்டர்
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: திட்டம் அல்லாத நிர்வாகம்
-  #Attributes an observation to a user and specifies that copyright is retained
-  #(though a license may be applied). %{user} can be a username or a full name.
-  #@vow_or_con will work here and use the first letter of the name used. &copy;
-  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
-  #@this could also be translated like "Observation by %{user} (copyright)" or
-  #@something.
+  # Attributes an observation to a user and specifies that copyright is retained
+  # (though a license may be applied). %{user} can be a username or a full name.
+  # @vow_or_con will work here and use the first letter of the name used. &copy;
+  # @is the HTML entity for the copyright symbol. If that doesn't make sense,
+  # @this could also be translated like "Observation by %{user} (copyright)" or
+  # @something.
   observation_attribution_copyright_html: கவனிப்பு &copy; %{user}
   observation_brief_taxon_from_place: "%{place}யிலிருந்து %{taxon}"
   observation_brief_taxon_from_place_by_user: "%{place}யில் இருந்து %{taxon} %{user} மூலம்"
@@ -448,13 +411,13 @@ ta:
   observation_brief_taxon_from_place_on_day_by_user: "%{place}யில் இருந்து %{taxon} %{day} அன்று %{user} மூலம்"
   observation_brief_taxon_from_place_on_day_at_time: "%{place}யிலிருந்து %{taxon} %{day} அன்று %{time} மணிக்கு"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{place}யிலிருந்து %{taxon} %{day} அன்று %{time} மணிக்கு %{user} மூலம்"
-  #%{month} will be filled in the name of the month
+  # %{month} will be filled in the name of the month
   observation_brief_taxon_from_place_in_month_year: "%{place}யிலிருந்து %{taxon} %{month} %{year}ல்"
-  #%{month} will be filled in the name of the month
+  # %{month} will be filled in the name of the month
   observation_brief_taxon_from_place_in_month_year_by_user: "%{place}யிலிருந்து %{taxon} %{month} %{year}ல் %{user} மூலம்"
   observation_fields_for_projects: திட்டங்களுக்கான கண்காணிப்பு புலங்கள்
   onboarding:
-    observe_panel_body_p2: வெளியே சென்று ஒரு தனிப்பட்ட உயிரினத்தைக் கவனியுங்கள். காட்டுத்தனமான ஒன்றைத் தேர்ந்தெடுத்து தெளிவான, முழு பிரேம் புகைப்படத்தை எடுக்கவும். உங்களிடம் ஏற்கனவே காட்டுத்தனமான ஒன்றின் புகைப்படம் இருந்தால்.<a href="%{new_observation_path}">அதை இப்போது சேர்க்கவும்</a>. கவனிப்புகளை பதிவு செய்ய %{site_name} செயலிகளைப் பயன்படுத்தலாம்.
+      observe_panel_body_p2: வெளியே சென்று ஒரு தனிப்பட்ட உயிரினத்தைக் கவனியுங்கள். காட்டுத்தனமான ஒன்றைத் தேர்ந்தெடுத்து தெளிவான, முழு பிரேம் புகைப்படத்தை எடுக்கவும். உங்களிடம் ஏற்கனவே காட்டுத்தனமான ஒன்றின் புகைப்படம் இருந்தால்.<a href="%{new_observation_path}">அதை இப்போது சேர்க்கவும்</a>. கவனிப்புகளை பதிவு செய்ய %{site_name} செயலிகளைப் பயன்படுத்தலாம்.
   or: அல்லது
   people: மக்கள்
   pi_consent_label: |
@@ -465,7 +428,7 @@ ta:
     எனது தனிப்பட்ட தகவலை United States of America க்கு மாற்றுவதற்கு நான் அங்கீகரிக்கிறேன்
   data_transfer_consent_child_label: |
     எனது குழந்தையின் தனிப்பட்ட தகவல்களை க்கு மாற்ற அனுமதிக்கிறேன் United States of America
-  #message describing a delay between importing a place and observations appearing in it
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: இந்த இடத்துடன் அவதானிப்புகள் தொடர்புபடுத்த ஒரு நாள் வரை ஆகலாம்.
   places: இடங்கள்
   places_name:
@@ -496,64 +459,64 @@ ta:
     new_zealand: நியுசிலாந்து
     nicaragua: நிகரகுவா
     north_america: நோர்த் அமெரிக்கா
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     இடங்கள் 700,000 சதுர கிலோமீட்டருக்கு மேல் இருக்க முடியாது.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     இடங்கள் 70,000 சதுர கிலோமீட்டருக்கு மேல் இருக்கக்கூடாது.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     இடங்களில் 200,000 க்கும் மேற்பட்ட அவதானிப்புகள் இருக்க முடியாது.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     இடங்கள் 10,000 க்கும் மேற்பட்ட அவதானிப்புகளைக் கொண்டிருக்கக்கூடாது.
-  #Title to a section warning a user to exercise caution
+  # Title to a section warning a user to exercise caution
   please_be_careful!: தயவுசெய்து கவனமாக இருங்கள்!
   privacy: தனியுரிமை
   profile: தனியமைப்பு
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: திட்ட நிர்வாகம்
   projects: கணிப்புகள்
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: பேரினம் / பேரினம்கலப்பு
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: இனங்கள் / கலப்பின
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: துணையினங்கள் / வகை / படிவம்
-  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
-  #Genus Noctua (but generally not Species Noctua pronuba)
+  # When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  # Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
   ranks:
-    genus: பேரினம்
-    x_genera:
-      one: பேரினம்
-      other: பேரினங்கள்
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+      genus: பேரினம்
+      x_genera:
+        one: பேரினம்
+        other: பேரினங்கள்
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: பொருட்களின் நிலை
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: குடும்பம்
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
   ranks_lowercase_subfamily: துணைக்குடும்பம்
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
   ranks_lowercase_supertribe: உயரினக்குழு
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
   ranks_lowercase_tribe: குழு
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: பேரினம்
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
   ranks_lowercase_genushybrid: பேரினம்கலப்புப்பிறப்பு
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
   ranks_lowercase_hybrid: கலப்புப்பிறப்பு
   satellite: செயற்கைக்கோள்
   save_settings_caps: அமைப்புகளைச் சேமிக்கவும்.
-  #E.g. "Homo sapiens" instead of "human"
+  # E.g. "Homo sapiens" instead of "human"
   scientific_name: அறிவியல் பெயர்
   search: தேடு
   set_a_place_if_this_link_only_applies_to: இந்த லிங்க் குறிப்பிட்ட இடத்திலிருந்து வரும் இனங்கள் மட்டுமே பொருந்தினால், இடத்தை அமைக்கவும். உலகமெங்கும் வரும் இனங்களுக்கு பொருந்தினால், வெறுமையாக விலக்கவும்.
@@ -562,21 +525,21 @@ ta:
   sign_out: வெளியேறு
   sign_up: பதிவு செய்யுங்கள்
   sounds:
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: ஒலி %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: ஒலி நீக்கப்பட்டது
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: ஒலி மறைக்கப்பட்டுள்ளது
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: மறைக்கப்படாத ஒலி
   species_from_around_the_world: உலகம் முழுவதும் உள்ள இனங்கள்
-  #As in a place to purchase things. We use it as a link to a place where you
-  #can buy merchandise. Please try to keep translations as short as possible
+  # As in a place to purchase things. We use it as a link to a place where you
+  # can buy merchandise. Please try to keep translations as short as possible
   store: கடை
   store_caps: கடை
-  #Label for a button that subscribes the user to updates on a resource, e.g.
-  #comments on a journal post
+  # Label for a button that subscribes the user to updates on a resource, e.g.
+  # comments on a journal post
   subscribe: சந்தா செலுத்து
   suitable_for_the_global_biodiversity_information_facility: Global Biodiversity Information Facilityக்கு ஏற்றது
   taxonomy_settings: உயிரியல் வகைப்பாடு அமைப்புகள்
@@ -591,7 +554,7 @@ ta:
   update_existing_observations_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள கவனிப்புகளைப் புதுப்பிக்கவும்
   update_existing_photos_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள புகைப்படங்களைப் புதுப்பிக்கவும்
   update_existing_sounds_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள ஒலிகளைப் புதுப்பிக்கவும்
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: புதுப்பிக்கப்பட்ட ஒலி
   upload: அப்லோடு செய்ய
   upload_a_csv_file: அப்லோடு செய்ய சசிவ் பைலை
@@ -610,13 +573,13 @@ ta:
   view_post: இடுகை பார்க்க
   we_also_support3: |
     இதிலிருந்து புகைப்படங்களை இறக்குமதி செய்வதையும் நாங்கள் ஆதரிக்கிறோம் <a href="http://flickr.com">பிளிக்கர்</a>.
-  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  # Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: இதுவே பேரினத்தில் இருக்க வாய்ப்பு
-  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  # Label for the most probable taxon in the automated suggestions when that taxon is a family
   were_pretty_sure_this_is_in_the_family: இதுவே குடும்பத்தில் இருக்க வாய்ப்பு
-  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  # Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: இதுவே வரிசையில் இருக்க வாய்ப்பு
-  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  # Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
   were_pretty_sure_this_is_in_the_subfamily: இதுவே துணைக்குடும்பத்தில் இருக்க வாய்ப்பு
   year_in_review: "மதிப்பாய்வில் ஆண்டு %{year}"
   year_in_review2: "மதிப்பாய்வில் ஆண்டு %{year}"
@@ -627,7 +590,7 @@ ta:
   yir_email_because_of_you: |
     உங்களால், கடந்த ஆண்டைவிட இந்த ஆண்டு பல்லுயிர் பெருக்கம் பற்றிய தகவல்கள் அதிகம்
     ஆண்டு. நீங்கள் வைத்திருக்கும் அனைத்திற்கும் மதிப்பாய்வில் ஆண்டு எங்கள் பரிசு iNaturalist மூலம் பல்லுயிர் பெருக்கத்திற்காகச் செய்யப்பட்டது.
-  #Feel free to adjust this if %{year} or "Your" don't translate well
+  # Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
     உங்கள் %{year} iNaturalist மதிப்பாய்வில் ஆண்டு — பல்லுயிர் பெருக்கத்துடன் உங்கள் ஆண்டைக் கொண்டாடுங்கள்
   you_faved_this: நீங்கள் இதைப் பிடித்தமாகக்!
@@ -662,7 +625,7 @@ ta:
         CMD- அல்லது SHIFT-கிளிக் செய்து பலவற்றைத் தேர்ந்தெடுக்கவும். தேர்ந்தெடுத்த நாடுகள் காண்பிக்கப்படாது
         அறிவிப்பு. IP நாடுகள் தேர்ந்தெடுக்கப்பட்டால், ஐபி நாடுகளைத் தவிர்த்து தேர்ந்தெடுக்கவும்
         முந்தையதிலிருந்து கழிக்கப்படும்.
-      #Note about how the announcement last observation date property works
+      # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         பயனரின் மிக சமீபத்தில் உருவாக்கப்பட்ட தேதி என்பதை நினைவில் கொள்க
         கண்காணிப்பு தற்காலிக சேமிப்பில் உள்ளது, எனவே இலக்கு வைக்க சில மணிநேரங்கள் ஆகலாம்
@@ -679,43 +642,43 @@ ta:
         இந்த அறிவிப்பு தொடங்கும் உங்கள் கணக்கின் நேர மண்டலத்தின் நேரம்
         தோன்றும். நேர மண்டலங்களில் பொருந்தும், எனவே அனைவரும் பார்க்கத் தொடங்குவார்கள்
         அதே நேரத்தில், அவர்களின் உள்ளூர் நேரத்துடன் தொடர்புடையது அல்ல.
-      #Description of a group of options for targeting announcements based
-      #on donation behavior
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
       target_users_by_donation_behavior: நன்கொடை நடத்தை மூலம் இலக்கு பயனர்கள்
-      #Description of a group of options for targeting announcements based
-      #on identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
       target_users_by_identification_behavior: அடையாள நடத்தை மூலம் இலக்கு பயனர்கள்
-      #Description of a group of options for targeting announcements based
-      #on observation behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
       target_users_by_observation_behavior: கவனிப்பு நடத்தை மூலம் இலக்கு பயனர்கள்
-      #Description of a group of options for targeting announcements based
-      #miscellaneous user attributes
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
       target_users_by_other_attributes: பிற பண்புக்கூறுகளால் இலக்கு பயனர்கள்
     donate:
       post_donate_social_media_text: நான் iNaturalist ஐ ஆதரிக்கிறேன் ஏனெனில்...
     email_confirmation:
       click_here_to_resend_a_confirmation_email: உறுதிப்படுத்தல் மின்னஞ்சலை மீண்டும் அனுப்ப இங்கே கிளிக் செய்யவும்
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: உறுதிப்படுத்தல் மின்னஞ்சல் அனுப்பப்பட்டது
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         உறுதிப்படுத்தலை நாங்கள் அனுப்பும் மின்னஞ்சல் முகவரி இதோ:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         நீங்கள் மின்னஞ்சலைப் பெறவில்லை என்றால், இங்கே சில குறிப்புகள் உள்ளன:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: நீங்கள் இன்னும் உறுதிப்படுத்தல் மின்னஞ்சலைப் பெறவில்லை என்றால், எங்களைப் பின்வரும் எண்ணில் தொடர்பு கொள்ளவும் <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> எனவே நாங்கள் உங்களுக்கு உதவ முடியும்.
       please_add_an_email_and_password: மின்னஞ்சல் மற்றும் கடவுச்சொல்லைச் சேர்க்கவும், இதனால் உங்கள் கணக்கிற்கான அணுகலை இழக்க மாட்டீர்கள்
       please_click_the_link_sent_to_email_to_confirm_html: இதற்கு அனுப்பப்பட்ட இணைப்பை கிளிக் செய்யவும் <span class="email">%{email}</span> உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்த.
-      please_confirm_that_email_is_the_best_contact_html: தயவு செய்து உறுதிப்படுத்தவும் <span class="email">%{email}</span> உங்களை தொடர்பு கொள்ள சிறந்த வழி. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: பிற பயனர்களின் உள்ளடக்கத்துடன் ஊடாடவும் குறிப்பிட்ட பக்கங்களை அணுகவும் உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்தவும். #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்துங்கள் <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: தயவு செய்து உறுதிப்படுத்தவும் <span class="email">%{email}</span> உங்களை தொடர்பு கொள்ள சிறந்த வழி. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: பிற பயனர்களின் உள்ளடக்கத்துடன் ஊடாடவும் குறிப்பிட்ட பக்கங்களை அணுகவும் உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்தவும். # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்துங்கள் <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: பிற பயனர்களின் உள்ளடக்கத்துடன் தொடர்புகொள்வதற்கு உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்தவும்
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: இந்தப் பக்கத்தைப் பயன்படுத்த உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்துங்கள்
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: உங்கள் இன்பாக்ஸிலிருந்து எங்கள் மின்னஞ்சல்களை அகற்றக்கூடிய எந்த வடிப்பான்களையும் சரிபார்க்கவும் #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: உங்கள் இன்பாக்ஸிலிருந்து எங்கள் மின்னஞ்சல்களை அகற்றக்கூடிய எந்த வடிப்பான்களையும் சரிபார்க்கவும் # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: உங்கள் ஸ்பேம் கோப்புறையை சரிபார்க்கவும்
       your_site_account_has_no_email: உங்களுடைய %{site_name} கணக்கிற்கு அதனுடன் தொடர்புடைய மின்னஞ்சல் முகவரி எதுவும் இல்லை.
     guides:
@@ -728,25 +691,25 @@ ta:
         journal: சஞ்சிகை
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           உங்கள் மின்னஞ்சலை உறுதிப்படுத்திய பிறகு நீங்கள் புதிய செய்திகளை அனுப்ப முடியும்
           முகவரி. இப்போதைக்கு நீங்கள் மற்றவர்கள் உங்களுக்கு அனுப்பும் செய்தியைப் படித்து பதிலளிக்கலாம்.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           உங்கள் மின்னஞ்சலை உறுதிப்படுத்திய பிறகு நீங்கள் புதிய செய்திகளை அனுப்ப முடியும்
           மூன்று சரிபார்க்கக்கூடிய அவதானிப்புகள் அல்லது மூன்று அடையாளங்களைச் சேர்த்தார்
           மற்றவர்களுக்கு. இப்போதைக்கு நீங்கள் மற்றவர்கள் உங்களுக்கு அனுப்பும் செய்தியைப் படித்து பதிலளிக்கலாம்.
     observations:
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           தி <strong>சமூக வகைப்பாட்டு மற்றும் உற்றுநோக்கல் வகைப்பாட்டு பொருத்தம்</strong>
           (கண்காணிப்பு வகைப்பாட்டு அதிகமாக இருக்கும் அந்த அரிதான சந்தர்ப்பங்களுக்கு)
           சமூக வகைப்பாட்டை விட குறிப்பிட்டது)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           அவதானிப்பு <strong>உயிரினத்தின் துல்லியமான ஆதாரங்களை முன்வைக்கவில்லை அல்லது
           காட்சி</strong> (எ.கா. செயற்கை நுண்ணறிவு சேர்க்க, அகற்ற அல்லது மாற்ற பயன்படுத்தப்பட்டது
@@ -771,21 +734,21 @@ ta:
         sorry_that_doesnt_exist: மன்னிக்கவும், அது இல்லை!
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           நீங்கள் அசல் பார்க்க முடியும் <a href="%{url}">%{url}</a>. தயவு செய்து
           இந்த ஒலி இருந்தால் பதிப்புரிமை மீறல் கொடிகளை தீர்க்கப்படாமல் விட்டுவிடுங்கள்.
           பதிப்புரிமை மீறல்.
     stats:
       year:
-        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        # Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: ஒருமுறை
         store_prompt: |
           நீங்கள் எங்கே போனாலும் உங்கள் iNat பெருமையைக் காட்ட விரும்புகிறீர்களா? iNat Store பார்க்கவும்!
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           நீங்கள் இனத்தின் அடைமொழியில் நேரடியாக சிறிய மாற்றங்களை மட்டுமே செய்ய முடியும் (எ.கா. பாலின மாற்றங்கள், எழுத்துப்பிழை தவறு). ஒரு சேர்க்கவும் <a target="_blank" href="%{url}">வகைப்பாட்டு இடமாற்றம்</a> உங்களுக்கு பெயரில் வேறு மாற்றங்கள் தேவைப்பட்டால்.
       show:
@@ -798,7 +761,7 @@ ta:
           "Life Stage=Teneral": உருகிய பிறகு
           "Sex=Female": பெண்
           "Sex=Male": ஆண்
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         அந்த குறிச்சொற்களை இடுகையிட முயற்சித்ததில் ஏதோ தவறு நடந்துவிட்டது: %{message}
     users:
@@ -810,11 +773,11 @@ ta:
         project_addition_preferences:
           any: ஏதேனும்
         taxon_name_priorities:
-          #A common name lexicon is a categorization of the vocabulary used. For example the
-          #lexicon could be a language, or a regional use of language (locale), or a lexicon
-          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          # A common name lexicon is a categorization of the vocabulary used. For example the
+          # lexicon could be a language, or a regional use of language (locale), or a lexicon
+          # could be a set of codes (bird codes, plant codes, etc) used to represent taxa
           add_a_common_name_lexicon: ஒரு பொதுவான பெயர் லெக்சிகன் சேர்க்கவும்.
-          #optionally add a place configuration for a common name lexicon setting
+          # optionally add a place configuration for a common name lexicon setting
           add_a_place_optional: ஒரு இடம் சேர்க்கவும் (விரும்பினால்)
           common_name_lexicon_display_order: பொதுவான பெயர் லெக்சிகன் காட்சி வரிசை
           common_name_lexicons: பொதுவான பெயர் லெக்சிகன்கள்
@@ -841,19 +804,19 @@ ta:
         join_today: இன்று சேரவும்
   date:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b %-d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%b %-d, %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%B %-d, %Y'
     month_names:
       - 
@@ -888,11 +851,11 @@ ta:
       significant: false
       strip_insignificant_zeros: false
       si:
-        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        # 10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         kilo: "%{number}k"
-        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        # 10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         mega: "%{number}M"
-        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        # 10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
       decimal_units:
@@ -904,68 +867,68 @@ ta:
         format: '%n %u'
   time:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%b. %-d, %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%B %-d, %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
   activerecord:
     models:
       Photo: புகைப்படம்
     attributes:
       announcement:
-        #Start of a date range that the viewer must not have donated in to see the announcement
+        # Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: நன்கொடையாளர் தொடக்க தேதியை விலக்கு
-        #End of a date range that the viewer must not have donated in to see the announcement
+        # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: நன்கொடையாளர் முடிவுத் தேதியை விலக்கு
         excludes_non_site: இந்த பிளேஸ்மெண்டில் தல ஐடி இல்லாத பிற அறிவிப்புகளை மறைக்கவும்
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: பயன்பாடுகளிலிருந்து பார்வையாளர்களை விலக்கவும்
-        #start of a date range that the viewer must have donated in to see the announcement
+        # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: நன்கொடையாளர் தொடக்க தேதியைச் சேர்க்கவும்
-        #End of a date range that the viewer must have donated in to see the announcement
+        # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: நன்கொடையாளர் முடிவுத் தேதியைச் சேர்க்கவும்
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: பயன்பாடுகளிலிருந்து பார்வையாளர்களைச் சேர்க்கவும்
-        #List of countries that the viewer's IP address can come from to see the announcement
+        # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: அறிவுசார் சொத்து நாடுகள்
-        #Start of a date range that includes the viewer's most recent observation
+        # Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: சமீபத்திய ஓபிஎஸ் தொடக்க தேதி
-        #end of a date range that includes the viewer's most recent observation
+        # end of a date range that includes the viewer's most recent observation
         last_observation_end_date: சமீபத்திய ஓபிஎஸ் முடிவு தேதி
-        #Maximum number of identifications the viewer must have added for others to see the announcement
+        # Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: அதிகபட்ச அடையாளங்கள்
-        #Minimum number of identifications the viewer must have added for others to see the announcement
+        # Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: குறைந்தபட்ச அடையாளங்கள்
-        #Maximum number of observations the viewer must have added for others to see the announcement
+        # Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: அதிகபட்ச அவதானிப்புகள்
-        #Minimum number of observations the viewer must have added for others to see the announcement
+        # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: குறைந்தபட்ச அவதானிப்புகள்
-        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: வேலை வாய்ப்பு
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: இலக்கு உருவாக்கியவர் (சோதனைக்கு)
-        #Whether or not the announcement is shown to logged in users
+        # Whether or not the announcement is shown to logged in users
         target_logged_in: இலக்கு உள்நுழைந்தது
-        #Earliest date the viewer can have signed up to see the announcement
+        # Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: முந்தையப் பயனர் பதிவுசெய்தல் தேதி
-        #Latest date the viewer can have signed up to see the announcement
+        # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: சமீபத்திய பயனர் பதிவுசெய்தல் தேதி
       post:
         title: தலைப்பு
       taxon:
         auto_photos: தானியங்கு புகைப்படங்கள்
-        #Boolean attribute determining whether users can add, remove, or
-        #re-order photos of this taxon
+        # Boolean attribute determining whether users can add, remove, or
+        # re-order photos of this taxon
         photos_locked: புகைப்படங்கள் பூட்டப்பட்டதா?
       user:
         faved_project_ids: பிடித்த திட்டங்கள்
@@ -986,12 +949,12 @@ ta:
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: 7 திட்டங்களுக்கு மேல் சேர்க்க முடியாது
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: அனைத்தும் இருக்க வேண்டும்
             login:
               domain_is_not_supported: டொமைன் ஆதரிக்கப்படவில்லை
@@ -1004,18 +967,18 @@ ta:
         m: ஆண்
         f: பெண்
         "n": நடுநிலையான
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genushybrid: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         listed_taxon: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subgenus: "@n"
-        #Default gender for nouns that aren't listed here
+        # Default gender for nouns that aren't listed here
         default: "@n"
   zoom_photo: படத்தை பெரிதாக்கவும்
