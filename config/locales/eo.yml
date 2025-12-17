@@ -2,78 +2,36 @@ eo:
   x_comments:
     one: '1 komento'
     other: '%{count} komentoj'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> komento'
-    other: '<span class="count">%{count}</span> komentoj'
   x_faves:
     one: '1 favorato'
     other: '%{count} favoratoj'
   x_identifications:
     one: '1 identigado'
     other: '%{count} identigadoj'
-  x_identifications_:
-    one: '1 Identigado'
-    other: '%{count} Identigadoj'
-  x_languages:
-    one: "%{count} lingvo"
-    other: "%{count} lingvoj"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} vivlisto unue"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} vivlisto unue"
   x_journal_posts_html:
     one: '<span class="count">1</span> ĵurnala afiŝo'
     other: '<span class="count">%{count}</span> ĵurnalaj afiŝoj'
   x_matching_taxa:
     one: '1 kongrua taksono'
     other: '%{count} kongruaj taksonoj'
-  x_observations:
-    one: "1 observo"
-    other: "%{count} observoj"
-  x_observations_:
-    one: "1 Observo"
-    other: "%{count} Observoj"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> observo"
-    other: "<span class='count'>%{count}</span> observoj"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observo</a>"
     other: "<a href='%{url}'>%{count} observoj</a>"
   x_others:
     one: "1 alio"
     other: "%{count} alioj"
-  x_people:
-    one: "%{count} persono"
-    other: "%{count} homoj"
   x_photos:
     one: "1 foto"
     other: "%{count} fotoj"
   x_new_species:
     one: "1 Nova Specio"
     other: "%{count} Novaj Specioj"
-  x_new_users:
-    one: '%{count} nova uzanto'
-    other: '%{count} novaj uzantoj'
-  x_species:
-    one: '1 Specio'
-    other: '%{count} Specioj'
-  x_species_html:
-    one: "<span class='count'>1</span> specio"
-    other: "<span class='count'>%{count}</span> specioj"
   x_species_link_html:
     one: "<a href='%{url}'>1 specio</a>"
     other: "<a href='%{url}'>%{count} specioj</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} Sugesto Filtrita de:"
     other: "%{count} Sugestoj Filtritaj de:"
-  x_taxa:
-    one: "%{count} taksono"
-    other: "%{count} taksonoj"
-  x_sounds:
-    one: "%{count} sono"
-    other: "%{count} sonoj"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taksono komisiita"
     other: "<span class='count'>%{count}</span> taksonoj prizorgitaj"
@@ -90,20 +48,20 @@ eo:
   about_complete_taxa: Pri Kompletaj Taksonoj
   about_conservation_status: Pri Konserva Stato
   about_editing_observation_fields: Pri Redaktado de Observaj Kampoj
-  #Header for a section explaining Establishment Means. See the
-  #about_establishment_desc key or
-  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  # Header for a section explaining Establishment Means. See the
+  # about_establishment_desc key or
+  # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Pri Rimedoj pri Establado
   about_licenses: Pri permesiloj
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: Pri Nomoj
   about_places: Pri Lokoj
   about_this_bioblitz: Pri ĉi tiu biofulmado
   about_this_map: Pri Ĉi Tiu Mapo
   about_this_project: Pri ĉi tiu Projekto
-  #Abbreviated form of "accuracy in meters", where "accuracy" is the
-  #positional_accuracy attribute of an observation, which is really more like
-  #positional uncertainty
+  # Abbreviated form of "accuracy in meters", where "accuracy" is the
+  # positional_accuracy attribute of an observation, which is really more like
+  # positional uncertainty
   acc: 'Prec (m)'
   account: Konto
   account_creation: Kreado de Konto
@@ -113,7 +71,7 @@ eo:
   accuracy_meters: Precizeco (metroj)
   accuracy_of_the_coordinates: |
     Precizeco de la koordinatoj en metroj. Vi povas redakti ĉi tion alklakante la ligon "redakti" supre aŭ alklakante la mapan markilon kaj trenante la tenilojn. Provu fari la rondon sufiĉe granda, ke vi certas, ke vi estis ie en ĝi.
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Ago
   actions: Agoj
   active: Aktiva
@@ -126,7 +84,7 @@ eo:
   add_a_comment: Aldoni Komenton
   add_a_field: Aldoni Kampon
   add_a_flag: Aldoni Flagon
-  #Tool tip for a button that adds a link to a text area
+  # Tool tip for a button that adds a link to a text area
   add_a_link: Aldoni ligilon
   add_a_name: Aldoni Nomon
   add_a_single_observation: Aldoni Unuopan Observon.
@@ -144,7 +102,7 @@ eo:
   add_editor: Aldoni Redaktoron
   add_link: Aldoni Ligilon
   add_id: Aldoni Identigilon
-  #Tool tip for a button that adds italic text to a text area
+  # Tool tip for a button that adds italic text to a text area
   add_italic_text: Aldoni kursivan tekston
   add_new_lexicon: Aldoni Novan Terminaron
   add_new_place: Aldoni Novan Lokon
@@ -155,10 +113,10 @@ eo:
   add_observations: Aldoni Observojn
   add_observations_by_checking_off: Aldonu observojn per kontrolado de specioj el listo.
   add_observations_project: Aldoni Observojn al Ĉi Tiu Projekto
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: Aldoni Unu!
-  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
-  #"one" refers to a photo
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: Aldoni Unu Nun
   add_place: Aldoni Lokon
   add_alive_or_dead_alive_annotation: 'Aldoni komentaron "Morta aŭ Vivu: Vivu"'
@@ -167,9 +125,9 @@ eo:
   add_plant_phenology_budding_annotation: 'Aldonu komenton "Planta fenologio: florbukedoj"'
   add_plant_phenology_flowering_annotation: 'Aldonu komenton "Planta fenologio: florado"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Aldonu "Planto-Fenologio: Neniu Evidemo pri Florigado"'
-  #As in a Taxon Framework Relationship
+  # As in a Taxon Framework Relationship
   add_relationship: 'Aldoni rilaton'
-  #As in a Guide Section
+  # As in a Guide Section
   add_section: Aldoni Paragrafon
   add_some_now: Aldoni Kelkajn Nun
   add_tag: Aldoni Etikedon
@@ -301,15 +259,15 @@ eo:
   animals: Animaloj
   annotations: Komentarioj
   announcements: Anoncoj
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any: ajna
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any_: Ajna
   apply_geoprivacy: Apliki geografian privatecon
   appropriate?: Ĉu taŭga?
@@ -354,7 +312,7 @@ eo:
   card: Karto
   categories: Kategorioj
   cc_0_name: Sen Aŭtorrajtoj (CC0)
-  #Button to change the cover (or banner) image for a project
+  # Button to change the cover (or banner) image for a project
   change_cover: Ŝanĝi kovrilon
   change_geoprivacy: 'Ŝanĝi geografian privatecon'
   change_group: Ŝanĝi grupon
@@ -391,18 +349,18 @@ eo:
   colors: Koloroj
   columns: Kolumnoj
   combine: Kunigi
-  #Noun, used to label a comment or a comment field in a form
+  # Noun, used to label a comment or a comment field in a form
   comment: komento
-  #Verb, generally a label on a button that allows the user to add a comment
+  # Verb, generally a label on a button that allows the user to add a comment
   comment_: Komento
   comment_deleted: Koment forigita
   comments: Komentoj
   comments_by_me: Komentoj far mi
-  #Second person verb to commit a taxon change, i.e. the change has been executed
+  # Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Enmeti
-  #Adjective describing a taxon change that has been committed
+  # Adjective describing a taxon change that has been committed
   committed: Enmetita
-  #Status message while a taxon change is being committed
+  # Status message while a taxon change is being committed
   committing: Enmetante...
   community: Komunumo
   community_curated: Komunuma Komisiono
@@ -414,12 +372,12 @@ eo:
   comparing_list_to_list: "Komparante liston %{list1} kun %{list2}"
   comparing_versions_x_and_y: "Komparante versiojn %{x} kaj %{y}"
   compiled_by_name: "Kompilita de %{name}"
-  #Adjective, e.g. "this Taxon Framework is complete"
+  # Adjective, e.g. "this Taxon Framework is complete"
   complete: Kompleta
   completed: Kompletigita
   completed_at: Kompletigita Je
-  #As in whether or not a check list is comprehensive, i.e. it contains all the
-  #species in the taxon and place it purports to
+  # As in whether or not a check list is comprehensive, i.e. it contains all the
+  # species in the taxon and place it purports to
   comprehensive?: Ĉu ampleksa?
   comprehensive_list: Ampleksa listo
   concept_status: Stato de Koncepto
@@ -450,7 +408,7 @@ eo:
     no_evidence_of_flowering: Neniu evidenteco de florado
     nymph: Nimfo
     larva: Larvo
-    #Evidence of an egg of an organism
+    # Evidence of an egg of an organism
     egg: Ovo
     juvenile: Junulo
   controlled_term_definitions:
@@ -532,19 +490,19 @@ eo:
   date_picker:
     closeText: Fermi
     currentText: Hodiaŭ
-    #Contextual help for a button navigating to the previous month in a date picker
+    # Contextual help for a button navigating to the previous month in a date picker
     prevText: Antaŭen
-    #Contextual help for a button navigating to the next month in a date picker
+    # Contextual help for a button navigating to the next month in a date picker
     nextText: Sekven
   date_time: Dato/tempo
   day: Tago
-  #Default option
+  # Default option
   default: implicita
   definitions: Difinoj
   delete: Forigi
   delete_all: Forigi ĉiujn
   delete_conversation: Forigi konversacion
-  #Button to delete the cover (or banner) image for a project
+  # Button to delete the cover (or banner) image for a project
   delete_cover?: forigi kovrilon?
   delete_icon?: Forigi ikonon?
   delete_photo: Forigi foton
@@ -578,12 +536,12 @@ eo:
   documentation_for_developers_html: Dokumentaro por <a href="/pages/developers">evoluigantoj</a>
   doh_something_went_wrong: Domaĝe, io misfunkciis.
   doh_something_went_wrong_error: "Domaĝe, io misfunkciis: %{error}"
-  #Button text to donate to iNaturalist. Please try to keep translations as
-  #short as possible
+  # Button text to donate to iNaturalist. Please try to keep translations as
+  # short as possible
   donate: DONACU
   donate_again_caps: DONACU DENOVE
   donate_again_today_caps: DONACU DENOVE HODIAŬ
-  #Title for pages and sections that encourage people to donate to iNaturalist
+  # Title for pages and sections that encourage people to donate to iNaturalist
   donate_to_inaturalist: Donacu al iNaturalist
   done: Farita
   dont_have_an_account_sign_up_html: Ĉu vi ne havas konton? <strong>Registriĝu.</strong>
@@ -591,13 +549,13 @@ eo:
   download_csv: Elŝuti kiel komo-apartigitaj valoroj
   download_csv_template: Elŝuti ŝablonon de Komo-Apartigitaj Valoroj
   download_kml: Elŝuti KML-dosieron
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft: malneto
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_: Malneo
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_saved: Konservis malneton!
-  #Noun, as in journal posts that has not been published
+  # Noun, as in journal posts that has not been published
   drafts: Malnetoj
   drawings: Desegnaĵoj
   duplicate_verb: Duplikato
@@ -623,7 +581,7 @@ eo:
   editing_project: Redaktante projekton %{project}
   email: Retpoŝta adreso
   end: Fino
-  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  # Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EdV
   eol_collection_url: "Retadreso de kolekto ĉe EdV"
   establishment:
@@ -672,7 +630,7 @@ eo:
   find_species: Trovi Specion
   finished: Finita
   finished_with_page: Finita Kun Paĝo
-  #Verb form, as in "Flag this item"
+  # Verb form, as in "Flag this item"
   flag: Flago
   flag_it!: Flagi ĝin!
   flag_this_photo: Flagi Tiun Foton
@@ -688,7 +646,7 @@ eo:
   flickr_style: Flickr-stila
   flickr_tags: Etikedoj ĉe Flickr
   follow: Aboni
-  #Text for a button to follow updates from a specific user
+  # Text for a button to follow updates from a specific user
   follow_user: "Aboni uzanton %{user}"
   followers: Abonantoj
   following: Abonante
@@ -742,10 +700,10 @@ eo:
   identify_title: "Identigi"
   identification: Identigo
   identification_by_user: Identigo far %{user}
-  #Notification when an identification has been deleted
+  # Notification when an identification has been deleted
   identification_deleted: Identigo foriĝis.
   identification_saved: "Identigo konserviĝis!"
-  #Notification when an identification has been updated
+  # Notification when an identification has been updated
   identification_updated: Identigo aktualiĝis!
   identifications: Identigoj
   identifiers: Identigistoj
@@ -776,12 +734,12 @@ eo:
   keep_editing: Daŭrigi modifi
   kml: KML-dosiero
   labels: Etikedoj
-  #Large photo size
+  # Large photo size
   large: granda
   last_year: Lasta Jaro
   latitude: Latitudo
   latitude_value: "Latitudo: %{latitude}"
-  #As in map layers, i.e. layers of data that might be overlayed on a map
+  # As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Tavoloj
   leaderboard: Ĉampionejo
   leaderboard_for_x: "Ĉampionejo por %{x}"
@@ -792,7 +750,7 @@ eo:
   leave: Foriri
   leave_a_comment: Lasi komenton
   leave_this_project: Forlasi ĉi tiun projekton
-  #Terminal nodes in a taxonomic tree
+  # Terminal nodes in a taxonomic tree
   leaves: folioj
   lexicon: Terminaro
   lexicons:
@@ -895,7 +853,7 @@ eo:
   longitude_value: "Longitudo: %{longitude}"
   low: Malalta
   make_admin: Estigi administranto
-  #Header for main content section of the project detail page when editing custom project data.
+  # Header for main content section of the project detail page when editing custom project data.
   main_content: Ĉefenhavo
   make_a_new_place: Fari novan lokon
   make_curator: Estigi kuratoro
@@ -911,7 +869,7 @@ eo:
   meet: Renkonti
   member_of_the_inaturalist_network_html: |
     Ano de la <a href="%{url}">Reto iNaturalist</a>
-  #As in members of a project
+  # As in members of a project
   members: Anoj
   merge: Kunigi
   merging: Kunigado
@@ -922,21 +880,21 @@ eo:
     shortRelativeTime:
       future: "en %s"
       past: "%s"
-      #Short text representing 1 second in the past
+      # Short text representing 1 second in the past
       s: "1s"
-      #Short text representing %d minutes in the past
+      # Short text representing %d minutes in the past
       mm: "%dmin"
-      #Short text representing 1 hour in the past
+      # Short text representing 1 hour in the past
       h: "1h"
-      #Short text representing 1 day in the past
+      # Short text representing 1 day in the past
       d: "1t"
-      #Short text representing %d days in the past
+      # Short text representing %d days in the past
       dd: "%dt"
-      #Short text representing 1 year in the past
+      # Short text representing 1 year in the past
       'y': "1j"
-      #Short text representing %d years in the past
+      # Short text representing %d years in the past
       yy: "%j"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "YYYY-MM-DD · LT z"
   month: Monato
   months: Monatoj
@@ -1015,13 +973,13 @@ eo:
   official_blog: Oficiala Rettaglibro
   ok: "Bone"
   only_you: Nur vi
-  #Geoprivacy status in which no privacy has been applied
+  # Geoprivacy status in which no privacy has been applied
   open: malfermi
-  #Geoprivacy status in which no privacy has been applied
+  # Geoprivacy status in which no privacy has been applied
   open_: Malfermi
   or: aŭ
-  #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in with Apple OR Google
+  # Usually used to separate buttons or functional areas of the interface, e.g.
+  # sign in with Apple OR Google
   or_all_caps: AŬ
   order: Ordo
   order_by: Ordigi laŭ
@@ -1047,10 +1005,10 @@ eo:
   photo_attribution: "Foto %{attribution}"
   photos_of_taxon_html: "Fotoj de %{taxon}"
   photos_size:
-    small: malgranda
-    medium: meza
-    large: granda
-    original: originala
+      small: malgranda
+      medium: meza
+      large: granda
+      original: originala
   pi_consent_desc_title: Pri Personaj Informoj
   pi_consent_label: |
     Mi konsentas permesi iNaturalist stoki kaj prilabori limigitajn specojn de
@@ -1061,57 +1019,57 @@ eo:
   pin_verb: Alpingli
   place: Loko
   place_geo:
-    geo_planet_place_types:
-      Airport: Flughaveno
-      airport: flughaveno
-      Building: Konstruaĵo
-      building: konstruaĵo
-      Canton: Kantono
-      canton: kantono
-      Commune: Komunumo
-      commune: komunumo
-      Continent: Koninento
-      continent: kontinento
-      Country: Lando
-      country: lando
-      County: Kantono
-      county: kantono
-      District: Distrikto
-      district: distrikto
-      Governorate: Gubernio
-      governorate: gubernio
-      Island: Insulo
-      island: insulo
-      Nearby_Building: Apuda Konstruaĵo
-      nearby_building: apuda konstruaĵo
-      Parish: Paroĥo
-      parish: paroĥo
-      Postal_Code: Poŝtkodo
-      postal_code: poŝtkodo
-      Province: Provinco
-      province: provinco
-      Region: Regiono
-      region: regiono
-      Republic: Respubliko
-      republic: respubliko
-      Sports_Team: Sporta Teamo
-      sports_team: sporta teamo
-      State: Ŝtato
-      state: ŝtato
-      Street: Strato
-      street: strato
-      Territory: Teritorio
-      territory: teritorio
-      Time_Zone: Horzono
-      time_zone: horzono
-      Town: Urbo
-      town: urbo
-      Undefined: Nedifinita
-      undefined: nedifinita
-      Unknown: Nekonata
-      unknown: nekonata
-      Zone: Zono
-      zone: zono
+          geo_planet_place_types:
+            Airport: Flughaveno
+            airport: flughaveno
+            Building: Konstruaĵo
+            building: konstruaĵo
+            Canton: Kantono
+            canton: kantono
+            Commune: Komunumo
+            commune: komunumo
+            Continent: Koninento
+            continent: kontinento
+            Country: Lando
+            country: lando
+            County: Kantono
+            county: kantono
+            District: Distrikto
+            district: distrikto
+            Governorate: Gubernio
+            governorate: gubernio
+            Island: Insulo
+            island: insulo
+            Nearby_Building: Apuda Konstruaĵo
+            nearby_building: apuda konstruaĵo
+            Parish: Paroĥo
+            parish: paroĥo
+            Postal_Code: Poŝtkodo
+            postal_code: poŝtkodo
+            Province: Provinco
+            province: provinco
+            Region: Regiono
+            region: regiono
+            Republic: Respubliko
+            republic: respubliko
+            Sports_Team: Sporta Teamo
+            sports_team: sporta teamo
+            State: Ŝtato
+            state: ŝtato
+            Street: Strato
+            street: strato
+            Territory: Teritorio
+            territory: teritorio
+            Time_Zone: Horzono
+            time_zone: horzono
+            Town: Urbo
+            town: urbo
+            Undefined: Nedifinita
+            undefined: nedifinita
+            Unknown: Nekonata
+            unknown: nekonata
+            Zone: Zono
+            zone: zono
   place_name: Loknomo
   place_notes: Notoj pri Loko
   places: Lokoj
@@ -1402,7 +1360,7 @@ eo:
   project_was_successfully_created: Sukcese kreis projekton.
   project_was_successfully_updated: Sukcese ĝisdatigis projekton.
   projects: Projektoj
-  #@vow_or_con should work on %{place}
+  # @vow_or_con should work on %{place}
   projects_from_place: "Projektoj ĉe %{place}"
   projects_you_admin: Projektoj Administrataj de Vi
   protozoans: protozooj
@@ -1412,45 +1370,45 @@ eo:
   radius: Radiuso (m)
   radius_value: "Radiuso (m): %{radius}"
   random: Hazarda
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rango
-  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
-  #etc.). Generally used as a column header in lists of observers and
-  #identifiers
+  # A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  # etc.). Generally used as a column header in lists of observers and
+  # identifiers
   rank_position: Rango
   ranks:
-    kingdom: Regno
-    subkingdom: Subregno
-    phylum: Filumo
-    subphylum: Subfilumo
-    superclass: Superklaso
-    class: Klaso
-    subclass: Subklaso
-    infraclass: Infraklaso
-    superorder: Superordo
-    order: Ordo
-    suborder: Subordo
-    infraorder: Infraordo
-    zoosection: Zoosekcio
-    zoosubsection: Zoosubsekcio
-    superfamily: Superfamilio
-    family: Familio
-    subfamily: Subfamilio
-    supertribe: Supertribo
-    tribe: Tribo
-    subtribe: Subtribo
-    genus: Genro
-    genushybrid: Generhibrido
-    subgenus: Subgenro
-    section: Sekcio
-    subsection: Subsekcio
-    complex: Komplekso
-    #Singular
-    species: Specio
-    hybrid: Hibrido
-    #Singular
-    subspecies: Subspecio
-    form: Formo
+      kingdom: Regno
+      subkingdom: Subregno
+      phylum: Filumo
+      subphylum: Subfilumo
+      superclass: Superklaso
+      class: Klaso
+      subclass: Subklaso
+      infraclass: Infraklaso
+      superorder: Superordo
+      order: Ordo
+      suborder: Subordo
+      infraorder: Infraordo
+      zoosection: Zoosekcio
+      zoosubsection: Zoosubsekcio
+      superfamily: Superfamilio
+      family: Familio
+      subfamily: Subfamilio
+      supertribe: Supertribo
+      tribe: Tribo
+      subtribe: Subtribo
+      genus: Genro
+      genushybrid: Generhibrido
+      subgenus: Subgenro
+      section: Sekcio
+      subsection: Subsekcio
+      complex: Komplekso
+      # Singular
+      species: Specio
+      hybrid: Hibrido
+      # Singular
+      subspecies: Subspecio
+      form: Formo
   ray_finned_fishes: aktinopterigoj
   read_more: Legi Plu
   reason: Kialo
@@ -1464,7 +1422,7 @@ eo:
   reject?: Ĉu malakcepti?
   relationship: "Rilato"
   relationships:
-    error: eraro
+      error: eraro
   remember_me: Memori min
   remove: Forigi
   remove_all_tags: Forigi ĉiujn etikedojn
@@ -1521,17 +1479,17 @@ eo:
   search_this_taxon: serĉi tiun taksonon
   searching: "Serĉante..."
   seasonality: Sezoneco
-  #This is a fallback translation for posessive phrases. It could be used on
-  #pages that show a user's content where the title might be "Your
-  #Identifications", but we generally handle those with more specific
-  #translation keys like `your_identifications`. This is here in case we
-  #forget to add a translation key like that.
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "Your
+  # Identifications", but we generally handle those with more specific
+  # translation keys like `your_identifications`. This is here in case we
+  # forget to add a translation key like that.
   second_person_possessive_singular: "Via %{noun}"
   seen_one: Ĉu vidis unu?
   select: Elekti
   select_all: Elekti Ĉiujn
   select_at_least_one: Elektu Almenaŭ Unu
-  #select_one_or_more_photos: Select One Or More Photos
+  # select_one_or_more_photos: Select One Or More Photos
   select_none: Elekti Neniun
   select_options: Elekti Opciojn
   selected: elektita
@@ -1540,7 +1498,7 @@ eo:
   select_this_taxon: Elekti Tiun Taksonon
   send: sendi
   sending: Sendante...
-  #Label for messages you've sent
+  # Label for messages you've sent
   sent: Sendita
   separate_values_with_a_pipe: Apartigu valorojn per vertikalo, ekz. "1-5|6-10|multe" aŭ "jes|ne|eble"
   settings: Agordoj
@@ -1552,7 +1510,7 @@ eo:
   sign_up: Registriĝi
   similar_species: Similaj Specioj
   similar_taxa: Similaj Taksonoj
-  #Journal post formatting option
+  # Journal post formatting option
   simple: Simpla
   single_observation: Unuopa observo
   sizes: Grandoj
@@ -1601,7 +1559,7 @@ eo:
   sources: Fontoj
   spam: Trudmesaĝo
   spammer: Trudmesaĝisto
-  #Plural
+  # Plural
   species: Specio
   species_by_category: specioj laŭ kategorio
   species_guess: konjekto pri specio
@@ -1610,7 +1568,7 @@ eo:
   species_search: Serĉado de Specioj
   species_taxon_name: Nomo de Specio aŭ Taksono
   species_unknown: nekonata specio
-  #Abbreviation for "source"
+  # Abbreviation for "source"
   src: Fonto
   standard: Norma
   start: Komenci
@@ -1624,8 +1582,8 @@ eo:
   start_typing_someones_name: "Ektajpu ies nomon..."
   stats: Statistiko
   status: Stato
-  #As in a place to purchase things. We use it as a link to a place where you
-  #can buy merchandise. Please try to keep translations as short as possible
+  # As in a place to purchase things. We use it as a link to a place where you
+  # can buy merchandise. Please try to keep translations as short as possible
   store: Vendejo
   store_caps: VENDEJO
   submitted: Sendita
@@ -1640,7 +1598,7 @@ eo:
   synonyms: Sinonimoj
   table: Tabelo
   table_of_contents: Enhavtabelo
-  #Noun, as in "add a tag to this observation"
+  # Noun, as in "add a tag to this observation"
   tag: Etikedo
   tagging: 'Aldonante etikedon...'
   tags: Etikedoj
@@ -1652,7 +1610,7 @@ eo:
   taxon_id: Identigilo de Taksono
   taxon_ids: Identigiloj de Taksonoj
   taxon_map:
-    data_url: Datena retadreso
+      data_url: Datena retadreso
   taxon_changes: Taksonaj Ŝanĝoj
   taxon_colors: Taksonaj Koloroj
   taxon_name: Nomo de taksono
@@ -1677,7 +1635,7 @@ eo:
   this_observation: Tiu observo
   this_year: Nuna Jaro
   time_: tempo
-  #As in the title of a book or a blog post
+  # As in the title of a book or a blog post
   title: titolo
   title_and_description: "Titolo & Priskribo"
   to_recipient: al
@@ -2010,16 +1968,16 @@ eo:
       update: Ĝisdatigi modelon %{model}
   number:
     format:
-      #The delimiter separates parts of large integers, so if the number is
-      #"one million and two and a half" this would be written as
-      #"1,000,002.5" in English, and "," is the delimiter. This should not be
-      #the same as the separator.
+      # The delimiter separates parts of large integers, so if the number is
+      # "one million and two and a half" this would be written as
+      # "1,000,002.5" in English, and "," is the delimiter. This should not be
+      # the same as the separator.
       delimiter: ' '
       precision: 3
-      #The separator separates an integer from a decimal fraction, so if the
-      #number is "one million and two and a half" this would be written as
-      #"1,000,002.5" in English, and "." is the separator. This should not be
-      #the same as the delimiter.
+      # The separator separates an integer from a decimal fraction, so if the
+      # number is "one million and two and a half" this would be written as
+      # "1,000,002.5" in English, and "." is the separator. This should not be
+      # the same as the delimiter.
       separator: ','
       significant: false
       strip_insignificant_zeros: false
@@ -2070,9 +2028,9 @@ eo:
         url: Retadreso
         geoprivacy: Geografia privateco
       flag:
-        #The reason the item was flagged
+        # The reason the item was flagged
         reason: Kialo
-        #The kind of flag that was made
+        # The kind of flag that was made
         flag: Flago
       guide:
         source_url: Retadreso de fonto
@@ -2162,17 +2120,17 @@ eo:
     flash:
       applications:
         create:
-          #Application as in a software application
+          # Application as in a software application
           notice: 'Aplikaĵo kreiĝis.'
         destroy:
-          #Application as in a software application
+          # Application as in a software application
           notice: 'Aplikaĵo foriĝis.'
         update:
-          #Application as in a software application
+          # Application as in a software application
           notice: 'Aplikaĵo ĝisdatiĝis.'
       authorized_applications:
         destroy:
-          #Application as in a software application
+          # Application as in a software application
           notice: 'Aplikaĵo revokiĝis.'
   wild: Sovaĝa
   will_paginate:
