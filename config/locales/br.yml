@@ -10,9 +10,9 @@ br:
   about_complete_taxa: Diwar-benn an Takson Glok
   about_conservation_status: Diwar-benn Statud ar Mirerezh
   about_editing_observation_fields: Diwar-benn Kemmadurioù ar Maezioù Arsellet
-  #Header for a section explaining Establishment Means. See the
-  #about_establishment_desc key or
-  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  # Header for a section explaining Establishment Means. See the
+  # about_establishment_desc key or
+  # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Diwar-benn an Doare Enplantañ
   about_licenses: Diwar-bennn aotreoù-implijout
   about_places: Diwar-benn al lec'hioù
@@ -45,7 +45,7 @@ br:
   add_another_photo: Ouzhpennañ ur poltred all
   add_another_section: Ouzhpennañ ur rannskrid all
   add_another_subscription: Ouzhpennañ ur c'houmanant all
-  #Project assets are files associated with projects, e.g. image files for a custom header
+  # Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Ouzhpennañ ur splet
   add_batch: Ouzpennañ ul lod
   add_comma_separated_tags: "Ouzhpennañ tikedennoù dispartiet gant skejoù"
@@ -68,10 +68,10 @@ br:
   add_observations: Ouzhpennañ evezhiadennoù
   add_observations_by_checking_off: Ouzhpennañ evezhiadennoù en ur askañ spesadoù en ul listenn.
   add_observations_project: Ouzhpennañ evezhiadennoù d'ar raktres-mañ
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: Ouzhpennañ unan !
-  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
-  #"one" refers to a photo
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: Ouzhpennañ unan bremañ
   add_place: Ouzhpennañ ul lec'h
   add_several_observations_at_once: Ouzhepnnañ meur a evezhiadenn war un dro.
@@ -143,10 +143,10 @@ br:
   announcement_was_successfully_created: Krouet mat eo bet ar c'hemenn.
   announcement_was_successfully_updated: Hizivaet mat eo bet ar c'hemenn.
   announcements: Kemennoù
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any: forzh pehini
   apply_to_selected: Arloet ouzh an dibab
   apply_fields: Arloañ ar maeziennoù
@@ -216,7 +216,7 @@ br:
   back_to_your_profile: Distreiñ d'ho profil
   batch: Lod
   batch_edit: Kemmañ lod
-  #Where x is the title of a list of taxa
+  # Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Lod kemmañ taksonoù evit %{x}"
   batch_operations: Oberiadennoù dre lod
   before_importing_photos: a-raok enporzhiañ luc'hskeudennoù
@@ -246,7 +246,7 @@ br:
   categories: rummadoù
   cc_used_under_a: "Creative Commons, implijet dindan un"
   change_descriptions:
-    split: Takson kozh rannet e meur a dakson nevez
+      split: Takson kozh rannet e meur a dakson nevez
   change_group: Kemmañ ar strollad
   change_icon: Kemmañ an arlun
   change_password: Kemmañ ar ger-tremen
@@ -258,11 +258,11 @@ br:
     swap: Eskemm
     stage: Aozañ
     drop: Lemel
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: Rannañ adalek
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: Rannet e
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: Kendeuzet e
     dropped: dilamet
     staged: kinniget
@@ -291,16 +291,16 @@ br:
   columns: Bannoù
   combine: Kenaozañ
   comma_separated_please: Dispartiet gant skejoù, mar plij
-  #Noun, used to label a comment or a comment field in a form
+  # Noun, used to label a comment or a comment field in a form
   comment: evezhiadenn
   comment_deleted: Evezhiadenn dilamet
   comments: Evezhiadennoù
   comments_by_me: Ma evezhiadennoù
-  #Second person verb to commit a taxon change, i.e. the change has been executed
+  # Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Kadarnaat
-  #Adjective describing a taxon change that has been committed
+  # Adjective describing a taxon change that has been committed
   committed: Kadarnaet
-  #Status message while a taxon change is being committed
+  # Status message while a taxon change is being committed
   committing: O kadarnaat...
   community_moderation_settings: Arventennoù evit kemmañ ar gumuniezh
   community_supported_id: ID kumuniezh degemeret ?
@@ -311,8 +311,8 @@ br:
   compiled_by_name: "Kempunet gant %{name}"
   completed: Klokaet
   completed_at: Klokaet e
-  #As in whether or not a check list is comprehensive, i.e. it contains all the
-  #species in the taxon and place it purports to
+  # As in whether or not a check list is comprehensive, i.e. it contains all the
+  # species in the taxon and place it purports to
   comprehensive?: Klok?
   comprehensive_list: Roll klok
   concept_status: Stad ar meizad
@@ -397,13 +397,13 @@ br:
   date_picker:
     closeText: Serriñ
     currentText: Hiziv
-    #Contextual help for a button navigating to the previous month in a date picker
+    # Contextual help for a button navigating to the previous month in a date picker
     prevText: Kent
-    #Contextual help for a button navigating to the next month in a date picker
+    # Contextual help for a button navigating to the next month in a date picker
     nextText: War-lerc'h
   date_time: Deiz/Eur
   day: Deiz
-  #Default option
+  # Default option
   default: dre ziouer
   default_invite_comment: "Nag ur gaer a luc'hskeudenn ! Ret e vefe deoc'h embann anezhi e %{site_name}} :"
   default_observation_license: Aotre-implijout an evezhiadennoù dre ziouer
@@ -413,7 +413,7 @@ br:
   delete: Dilemel
   delete_all: Dilemel pep tra
   delete_conversation: Dilemel ar gaozeadenn
-  #Button to delete the cover (or banner) image for a project
+  # Button to delete the cover (or banner) image for a project
   delete_cover?: Lemel ar golo ?
   delete_icon?: Lemel an arlun ?
   delete_photo: Lemel al luc'hskeudenn
@@ -453,13 +453,13 @@ br:
   download_csv: Pellgargit ar furmad CSV
   download_csv_template: Pellgargit ar patrom "CSV"
   download_kml: Pellgargañ KML
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft: brouilhed
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_: brouilhed
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_saved: Brouilhed enrollet!
-  #Noun, as in journal posts that has not been published
+  # Noun, as in journal posts that has not been published
   drafts: Brouilhedoù
   edit: Kemmañ
   edit_a_batch_of_observations: Kemmañ ul lod evehiadennoù
@@ -514,7 +514,7 @@ br:
   events_only: Darvoudoù hepken
   everyone: An holl dud
   everywhere: E pep lec'h
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Renk resis
   existing_flags: Banieloù zo anezho
   exit_full_screen: "Kuitaat ar mod skramm leun"
@@ -528,7 +528,7 @@ br:
   Family: Kerentiad
   featured: Lakaet da dalvezout
   feedback: Evezhiadennoù
-  #Plural noun, as in Atom and RSS feeds
+  # Plural noun, as in Atom and RSS feeds
   feeds: 'Gwazh'
   failed: C'hwitet
   field_note: |
@@ -565,7 +565,7 @@ br:
   first_connect_your_provider_account_to_your_site: "Da gentañ, kevreit ho kont %{provider} ouzh %{site_name} :"
   first_inat_observation: "Evezhiadenn gentañ %{site_name}"
   first_observer: Evezhiadenn gentañ
-  #Verb form, as in "Flag this item"
+  # Verb form, as in "Flag this item"
   flag: Banniel
   flag_an_item: Merkañ un elfenn
   flag_as_spammer: Merkañ evel ur strober
@@ -578,7 +578,7 @@ br:
   flickr_style: Stil Flickr
   flickr_tagger: Liketenniñ al luc'hskeudennoù Flickr
   flickr_tags: Liketennoù Flickr
-  #Text for a button to follow updates from a specific user
+  # Text for a button to follow updates from a specific user
   follow_user: "Heuliañ %{user}"
   following: Emaoc'h o heuliañ
   for_a_taxon: evit un takson
@@ -615,8 +615,8 @@ br:
   hex_color_eg: Liv e niver c'hwezekredel, da sk. 65644F
   hi_user: "Demat, %{user}"
   high: uhel
-  #Highest taxonomic rank to filter by, where the "highest" possible rank is
-  #kingdom
+  # Highest taxonomic rank to filter by, where the "highest" possible rank is
+  # kingdom
   highest_rank: Renk uhelañ
   home: Degemer
   however_there_were_some_issues: "Un nebeud kudennoù zo bet, koulskoude : %{issues}"
@@ -634,7 +634,7 @@ br:
   import_tags_from_csv: Enporzhiañ an tikedennoù diwar ur restr CSV
   importing: "Oc'h enporzhiañ..."
   in_n: "e %{n}"
-  #Label for messages you've received
+  # Label for messages you've received
   inbox: boest resev
   including: en ur gontañ e-barzh
   in_the_past: en amzer-dremenet
@@ -657,7 +657,7 @@ br:
   just_added!: Ouzpennadennoù nevez
   kml_file_size_error: "Ar furmad KML a rank bezañ 1Mo da nebeutañ"
   labels: Labelioù
-  #Large photo size
+  # Large photo size
   large: bras
   last_confirmed_observation: Arselladenn diwezhañ kardarnaet
   last_seen: Gwelet ar wech diwezhañ
@@ -666,7 +666,7 @@ br:
   latitude: Ledred
   latitude_in_decimals: 'Ledred e derezioù degel, da skouer 38,123'
   latitude_slash_y_coord_slash_northing: Ledred / daveennoù y / urzhienn
-  #As in map layers, i.e. layers of data that might be overlayed on a map
+  # As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Gwiskadoù
   layout: Pajennaozañ
   leaderboards: Renkadurioù
@@ -676,7 +676,7 @@ br:
   learn_what_these_licenses_mean: Deskit muioc'h diwar-benn talvoudegezh an aotroù-implijout-mañ
   leave_a_comment: Lezel un evezhiadenn
   leave_this_project: Kuitaat ar raktres-mañ
-  #Terminal nodes in a taxonomic tree
+  # Terminal nodes in a taxonomic tree
   leaves: delioù
   legacy_authentication_notice_html: |
     Seblantout a ra emaoc'h oc'h implijout ur ger-tremen eus un doare kozh eus al lec'hienn Genrouedad-mañ. Dalc'hit mat <a href="%{url}">kemmañ ho ker-tremen</a> evit an doare nevez.
@@ -750,8 +750,8 @@ br:
   longitude_slash_x_coord_slash_easting: Hedred / daveenn x/ absisenn
   look_up_name: "Klask an anv"
   lookup: Klask
-  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
-  #subspecies or variety
+  # Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  # subspecies or variety
   lowest_rank: Renk an izelañ
   mammals: bronneged
   manage_all_your_subscriptions: Merañ ho holl goumanantoù
@@ -772,7 +772,7 @@ br:
   medium: etre
   member_of_the_inaturalist_network_html: |
     Ezel eus ar restr <a href="%{url}">Rouedad iNaturalist</a>
-  #As in members of a project
+  # As in members of a project
   members: Izili
   merge: Kendeuziñ
   merge_it_with_another_place: Kendeuziñ en ul lec'h all
@@ -784,7 +784,7 @@ br:
   momentjs:
     shortRelativeTime:
       future: "e %s"
-      #Short text representing 1 hour in the past
+      # Short text representing 1 hour in the past
       h: "1 e"
   month: Miz
   more: Muioc'h
@@ -856,7 +856,7 @@ br:
   ok: "Mat eo"
   on_day: "gweredekaet"
   one_of_your_lists: "Unan eus ho rolloù..."
-  #Geoprivacy status in which no privacy has been applied
+  # Geoprivacy status in which no privacy has been applied
   open: digor
   or: pe
   or_choose_high_level_taxa: "... pe dibabit adalek taksonoù a renk uhel"
@@ -894,93 +894,93 @@ br:
   photo_urls_repaired: Urloù luc'hskeudennoù dreset
   photos_or_sounds?: Luc'hskeudennoù pe sonioù ?
   photos_size:
-    small: Bihan
-    medium: etre
-    large: bras
-    original: Orin
+      small: Bihan
+      medium: etre
+      large: bras
+      original: Orin
   photos_updated: Luc'hskeudennoù hizivaet
   place: Lec'h
   place_deleted: Lec'h dilamet
   place_geo:
-    geo_planet_place_types:
-      Aggregate: Strollet
-      aggregate: strollet
-      Airport: Aerborzh
-      airport: Aerborzh
-      Building: O sevel
-      building: o sevel
-      Canton: Kanton
-      canton: kanton
-      Colloquial: Kaozeek
-      colloquial: kaozeek
-      Commune: Kumun
-      commune: kumun
-      Continent: Kevandir
-      continent: kevandir
-      Country: Bro
-      country: bro
-      County: Kontelezh
-      county: kontelezh
-      District: Distrig
-      district: distrig
-      Drainage: Diazad hidrografek
-      drainage: diazad hidrografek
-      Estate: Stad
-      estate: stad
-      Historical_County: Kontelezh istorel
-      historical_county: kontelezh istorel
-      Historical_State: Stad istorel
-      historical_state: Stad istorel
-      Historical_Town: Kêr istorel
-      historical_town: kêr istorel
-      Intersection: Kroashent
-      intersection: kroashent
-      Island: Enez
-      island: enez
-      Land_Feature: Perzh an dachenn
-      land_feature: perzh an dachenn
-      Local_Administrative_Area: Unvez velestradurel lec'hel
-      local_administrative_area: unvez velestradurel lec'hel
-      Miscellaneous: A bep seurt
-      miscellaneous: a bep  seurt
-      Nationality: Broadelezh
-      nationality: broadelezh
-      Nearby_Building: Savadur e-kichen
-      nearby_building: savadur e-kichen
-      Nearby_Intersection: Kroashent e-kichen
-      nearby_intersection: kroashent e-kichen
-      Open_Space: Takad digor
-      open_space: open_space
-      Postal_Code: Kod-post
-      postal_code: kod-post
-      Province: Proviñs
-      province: proviñs
-      Region: Rannvro
-      region: rannvro
-      Shire: Kontelezh
-      shire: kontelez
-      Sports_Team: Skipailh sport
-      sports_team: skipaih sport
-      State: Stad
-      state: Stad
-      Street: Straed
-      street: straed
-      Street_Segment: Pennad hent
-      street_segment: pennad hent
-      Suburb: Banlev
-      suburb: banlev
-      Supername: Lesanv
-      supername: lesanv
-      Territory: Tiriad
-      territory: tiriad
-      Time_Zone: Gwerzhid-eur
-      time_zone: gwerzhid-eur
-      Town: Kêr
-      town: Kêr
-      Undefined: Andermenet
-      undefined: andermenet
-      Zone: Takad
-      zone: takad
+          geo_planet_place_types:
+            Aggregate: Strollet
+            aggregate: strollet
+            Airport: Aerborzh
+            airport: Aerborzh
+            Building: O sevel
+            building: o sevel
+            Canton: Kanton
+            canton: kanton
+            Colloquial: Kaozeek
+            colloquial: kaozeek
+            Commune: Kumun
+            commune: kumun
+            Continent: Kevandir
+            continent: kevandir
+            Country: Bro
+            country: bro
+            County: Kontelezh
+            county: kontelezh
+            District: Distrig
+            district: distrig
+            Drainage: Diazad hidrografek
+            drainage: diazad hidrografek
+            Estate: Stad
+            estate: stad
+            Historical_County: Kontelezh istorel
+            historical_county: kontelezh istorel
+            Historical_State: Stad istorel
+            historical_state: Stad istorel
+            Historical_Town: Kêr istorel
+            historical_town: kêr istorel
+            Intersection: Kroashent
+            intersection: kroashent
+            Island: Enez
+            island: enez
+            Land_Feature: Perzh an dachenn
+            land_feature: perzh an dachenn
+            Local_Administrative_Area: Unvez velestradurel lec'hel
+            local_administrative_area: unvez velestradurel lec'hel
+            Miscellaneous: A bep seurt
+            miscellaneous: a bep  seurt
+            Nationality: Broadelezh
+            nationality: broadelezh
+            Nearby_Building: Savadur e-kichen
+            nearby_building: savadur e-kichen
+            Nearby_Intersection: Kroashent e-kichen
+            nearby_intersection: kroashent e-kichen
+            Open_Space: Takad digor
+            open_space: open_space
+            Postal_Code: Kod-post
+            postal_code: kod-post
+            Province: Proviñs
+            province: proviñs
+            Region: Rannvro
+            region: rannvro
+            Shire: Kontelezh
+            shire: kontelez
+            Sports_Team: Skipailh sport
+            sports_team: skipaih sport
+            State: Stad
+            state: Stad
+            Street: Straed
+            street: straed
+            Street_Segment: Pennad hent
+            street_segment: pennad hent
+            Suburb: Banlev
+            suburb: banlev
+            Supername: Lesanv
+            supername: lesanv
+            Territory: Tiriad
+            territory: tiriad
+            Time_Zone: Gwerzhid-eur
+            time_zone: gwerzhid-eur
+            Town: Kêr
+            town: Kêr
+            Undefined: Andermenet
+            undefined: andermenet
+            Zone: Takad
+            zone: takad
   place_guess: lec'h dre zegouezh
   place_imported: Lec'h enporzhiet!
   place_must_have_a_boundary_defined: Rankout a ra al lec'h kaout harzoù termenet.
