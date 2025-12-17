@@ -1,78 +1,33 @@
 ms:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    other: "%{count} perubahan"
   x_comments:
     other: '%{count} komen'
-  x_comments_html:
-    other: '<span class="count">%{count}</span> komen'
   x_identifications:
     other: '%{count} pengenalan'
-  x_identifications_html:
-    other: '<span class="count">%{count}</span> pengenalan'
-  x_identifications_:
-    other: '%{count} Pengenalan'
-  x_identifications_caps_html:
-    other: '<span class="count">%{count}</span> PENGENALAN'
-  #Number of people who have added identifications
-  x_identifiers_caps_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> PENGENAL'
-  x_ids_made_for_others_html:
-    other: '<span class="count">%{count}</span> ID dibuat untuk orang lain'
-  x_languages:
-    other: "%{count} bahasa"
-  x_observations:
-    other: "%{count} pemerhatian"
-  x_observations_:
-    other: "%{count} Pemerhatian"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span> Pemerhatian"
-  x_observations_caps_html:
-    other: "<span class='count'>%{count}</span> PEMERHATIAN"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} pemerhatian</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> pemerhatian disemak"
-  x_observers_caps_html:
-    other: '<span class="count">%{count}</span> PEMERHATI'
   x_others:
     other: "%{count} lain"
-  x_people:
-    other: "%{count} orang"
-  x_people_html:
-    other: '<span class="count">%{count}</span> orang'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} orang</strong> membantu %{user} dengan <strong>%{y} ID</strong>"
   x_photos:
     other: "%{count} gambar"
   x_new_species:
     other: "%{count} Spesies Baru"
-  x_new_users:
-    other: '%{count} Pengguna Baru'
-  x_species:
-    other: '%{count} Spesies'
-  x_species_caps_html:
-    other: "<span class='count'>%{count}</span> SPESIES"
-  x_species_html:
-    other: "<span class='count'>%{count}</span> spesies"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} spesies</a>"
-  x_taxa:
-    other: "%{count} taksa"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> taksa diperhati"
   x_research_grade_observations_html:
     other: "<span class='count'>%{count}</span> pemerhatian gred penyelidikan"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span> pemerhatian gred penyelidikan yang dikenalpastikan kepada spesies atau lebih rendah"
-  x_sounds:
-    other: "%{count} bunyi"
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A hingga Z"
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: Sebarang
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: Adakah anda pasti mahu memadamkan bunyi ini?
   artificially_generated_content: Kandungan yang dijana secara buatan
   artificially_generated_content_desc: Mengandungi kandungan yang kebanyakannya atau sepenuhnya dijana melalui kecerdasan buatan.
@@ -87,92 +42,92 @@ ms:
     pemerhatian kepada projek. Ini hanyalah tetapan lalai untuk
     pemerhatian dalam projek. Pemerhati juga boleh memilih untuk menukar ini untuk
     pemerhatian individu.
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Takson Komuniti Semasa: %{taxon}"
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: Padamkan bunyi
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Token tetapkan semula kata laluan tidak sah. Sila gunakan pautan dalam e-mel tetapan semula kata laluan yang dihantar baru-baru ini, atau <a href="%{url}">Minta yang baru</a>.
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Sila klik pautan di bawah untuk mengesahkan alamat e-mel anda. Jika anda tidak mengesahkan e-mel anda
     alamat, anda tidak akan dapat berinteraksi dengan kandungan pengguna lain.
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: Perselisihan faham
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Tunjukkan pemerhatian yang mempunyai pengenalan yang tidak bersetuju
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Menderma
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: Pengumuman penyuntingan %{id}
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Ralat mengemas kini bunyi: %{sound_errors}"
   evidence_accurately_depicts_organism_or_scene: Bukti dengan tepat menggambarkan organisma atau tempat kejadian
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Format fail
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL fail
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "PERHATIAN: bunyi ini telah dibenderakan."
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: ID Infraspesies
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: Log masuk
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: Dilog keluar
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: Lebih Banyak Pilihan
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: Bukan kurator
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: Pentadbir bukan projek
   observation_fields_for_projects: Bidang Pemerhatian untuk Projek
-  #message describing a delay between importing a place and observations appearing in it
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Ia mungkin mengambil masa sehingga sehari untuk pemerhatian dikaitkan dengan tempat ini.
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     Tempat tidak boleh lebih besar daripada 700,000 kilometer persegi.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     Tempat tidak boleh lebih besar daripada 70,000 kilometer persegi.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     Tempat tidak boleh mengandungi lebih daripada 200,000 pemerhatian.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Tempat tidak boleh mengandungi lebih daripada 10,000 pemerhatian.
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: Pentadbir projek
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: Genus / Genushibrid
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: Spesies / Hibrid
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: Subspesies / Varieti / Bentuk
   sounds:
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Bunyi %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: Bunyi dipadamkan
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: Bunyi tersembunyi
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Bunyi tidak tersembunyi
-  #Label for a button that subscribes the user to updates on a resource, e.g.
-  #comments on a journal post
+  # Label for a button that subscribes the user to updates on a resource, e.g.
+  # comments on a journal post
   subscribe: Melanggan
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Bunyi yang dikemas kini
   user_trusts_this_project_when_added_by_any: |
     Pengguna mempercayai kurator projek dengan koordinat pemerhatian tersembunyi ditambah
@@ -212,7 +167,7 @@ ms:
         CMD- atau SHIFT-klik untuk memilih berbilang. Negara terpilih tidak akan dipaparkan
         pengumuman. Jika negara IP dipilih, pilih Kecualikan negara IP
         akan ditolak daripada yang pertama.
-      #Note about how the announcement last observation date property works
+      # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Ambil perhatian bahawa tarikh penciptaan pengguna yang paling baru dicipta
         pemerhatian dicache, jadi ia mungkin mengambil masa beberapa jam untuk menyasarkan
@@ -229,41 +184,41 @@ ms:
         Masa dalam zon waktu akaun anda bahawa pengumuman ini akan bermula
         Muncul. Digunakan merentas zon waktu, jadi semua orang akan mula melihat
         ia pada masa yang sama, tidak berkaitan dengan waktu tempatan mereka.
-      #Description of a group of options for targeting announcements based
-      #on donation behavior
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
       target_users_by_donation_behavior: Sasarkan pengguna mengikut tingkah laku derma
-      #Description of a group of options for targeting announcements based
-      #on identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
       target_users_by_identification_behavior: Sasarkan pengguna mengikut tingkah laku pengenalan
-      #Description of a group of options for targeting announcements based
-      #on observation behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
       target_users_by_observation_behavior: Sasarkan pengguna mengikut tingkah laku pemerhatian
-      #Description of a group of options for targeting announcements based
-      #miscellaneous user attributes
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
       target_users_by_other_attributes: Sasarkan pengguna mengikut atribut lain
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klik di sini untuk menghantar semula e-mel pengesahan
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: E-mel pengesahan dihantar
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         Berikut ialah alamat e-mel yang akan kami hantar pengesahan kepada:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         Jika anda tidak menerima e-mel, berikut ialah beberapa petua:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: Jika anda masih tidak menerima e-mel pengesahan, sila hubungi kami di <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Jadi kami boleh membantu anda.
       please_add_an_email_and_password: Sila tambah e-mel dan kata laluan supaya anda tidak kehilangan akses kepada akaun anda
       please_click_the_link_sent_to_email_to_confirm_html: Sila klik pautan yang dihantar ke <span class="email">%{email}</span> untuk mengesahkan alamat e-mel anda.
-      please_confirm_that_email_is_the_best_contact_html: Sila sahkan bahawa <span class="email">%{email}</span> ialah cara terbaik untuk menghubungi anda. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Sila sahkan alamat e-mel anda untuk berinteraksi dengan kandungan pengguna lain dan mengakses halaman tertentu. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Sila sahkan alamat e-mel anda <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: Sila sahkan bahawa <span class="email">%{email}</span> ialah cara terbaik untuk menghubungi anda. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Sila sahkan alamat e-mel anda untuk berinteraksi dengan kandungan pengguna lain dan mengakses halaman tertentu. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Sila sahkan alamat e-mel anda <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: Sila sahkan alamat e-mel anda untuk berinteraksi dengan kandungan pengguna lain
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Sila sahkan alamat e-mel anda untuk menggunakan halaman ini
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Semak sebarang penapis yang anda buat yang mungkin mengalih keluar e-mel kami daripada peti masuk anda #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Semak sebarang penapis yang anda buat yang mungkin mengalih keluar e-mel kami daripada peti masuk anda # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Semak folder spam anda
       your_site_account_has_no_email: Anda %{site_name} akaun tidak mempunyai alamat e-mel yang dikaitkan dengannya.
     guides:
@@ -273,25 +228,25 @@ ms:
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           Anda akan dapat menghantar mesej baharu selepas anda mengesahkan e-mel anda
           Alamat. Buat masa ini anda boleh membaca dan membalas mesej yang dihantar oleh orang lain kepada anda.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           Anda akan dapat menghantar mesej baharu selepas anda mengesahkan e-mel anda
           alamat, dan menambah tiga pemerhatian yang boleh disahkan atau tiga pengenalan
           untuk yang lain. Buat masa ini anda boleh membaca dan membalas mesej yang dihantar oleh orang lain kepada anda.
     observations:
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           yang <strong>Padanan Takson Komuniti dan Takson Pemerhatian</strong>
           (untuk majlis-majlis yang jarang berlaku apabila Takson Pemerhatian boleh menjadi lebih
           khusus daripada Takson Komuniti)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           Pemerhatian <strong>tidak mengemukakan bukti yang tepat tentang organisma atau
           Adegan</strong> (cth kecerdasan buatan digunakan untuk menambah, mengalih keluar atau menggantikan
@@ -299,18 +254,18 @@ ms:
           pembetulan kecil seperti mengeluarkan habuk penderia biasanya OK).
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           Anda boleh melihat yang asal di <a href="%{url}">%{url}</a>. Tolong
           Biarkan bendera pelanggaran hak cipta sebagai tidak diselesaikan jika bunyi ini berlaku
           melanggar hak cipta.
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           Anda hanya boleh membuat perubahan kecil pada julukan spesies secara langsung (cth. perubahan jantina, salah ejaan). Tambah <a target="_blank" href="%{url}">Pertukaran takson</a> jika anda memerlukan perubahan lain pada nama.
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Ada yang tidak kena ketika cuba menyiarkan tag tersebut: %{message}
   number:
@@ -324,44 +279,44 @@ ms:
   activerecord:
     attributes:
       announcement:
-        #Start of a date range that the viewer must not have donated in to see the announcement
+        # Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: Kecualikan tarikh mula penderma
-        #End of a date range that the viewer must not have donated in to see the announcement
+        # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kecualikan tarikh tamat penderma
         excludes_non_site: Sembunyikan pengumuman lain dalam peletakan ini yang tidak mempunyai ID Tapak
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: Kecualikan pemerhati daripada apl
-        #start of a date range that the viewer must have donated in to see the announcement
+        # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Sertakan tarikh mula penderma
-        #End of a date range that the viewer must have donated in to see the announcement
+        # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Sertakan tarikh tamat penderma
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: Sertakan pemerhati daripada apl
-        #List of countries that the viewer's IP address can come from to see the announcement
+        # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: Negara IP
-        #Start of a date range that includes the viewer's most recent observation
+        # Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: Tarikh mula obs terkini
-        #end of a date range that includes the viewer's most recent observation
+        # end of a date range that includes the viewer's most recent observation
         last_observation_end_date: Tarikh tamat obs terkini
-        #Maximum number of identifications the viewer must have added for others to see the announcement
+        # Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Pengenalan maksimum
-        #Minimum number of identifications the viewer must have added for others to see the announcement
+        # Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: Pengenalan minimum
-        #Maximum number of observations the viewer must have added for others to see the announcement
+        # Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: Pemerhatian maksimum
-        #Minimum number of observations the viewer must have added for others to see the announcement
+        # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Pemerhatian min
-        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Penempatan
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: Pencipta sasaran (untuk ujian)
-        #Whether or not the announcement is shown to logged in users
+        # Whether or not the announcement is shown to logged in users
         target_logged_in: Sasaran log masuk
-        #Earliest date the viewer can have signed up to see the announcement
+        # Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: Tarikh pendaftaran pengguna terawal
-        #Latest date the viewer can have signed up to see the announcement
+        # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Tarikh pendaftaran pengguna terkini
       user:
         faved_project_ids: Projek kegemaran
@@ -377,12 +332,12 @@ ms:
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: Tidak boleh memasukkan lebih daripada 7 projek
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: mesti semua wujud
             login:
               domain_is_not_supported: domain tidak disokong
