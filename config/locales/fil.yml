@@ -1,14 +1,7 @@
 fil:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} pagbabago"
-    other: "%{count} (na) pagbabago"
   x_comments:
     one: '%{count} komento'
     other: '%{count} (na) komento'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> komento'
-    other: '<span class="count">%{count}</span> (na) komento'
   x_faves:
     one: '%{count} fave'
     other: '%{count} (na) fave'
@@ -18,21 +11,6 @@ fil:
   x_identifications:
     one: '%{count} pagtukoy'
     other: '%{count} (na) pagtukoy'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> pagtukoy'
-    other: '<span class="count">%{count}</span> (na) pagtukoy'
-  x_identifications_:
-    one: '%{count} Pagtukoy'
-    other: '%{count} (na) Pagtukoy'
-  x_languages:
-    one: "%{count} wika"
-    other: "%{count} (na) wika"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} una sa listahan ng buhay"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} (na) una sa listahan ng buhay"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> journal post'
     other: '<span class="count">%{count}</span> (na) journal post'
@@ -42,9 +20,9 @@ fil:
   x_matching_taxa_html:
     one: '<span class="count">%{count}</span> tumugmang taxon'
     other: '<span class="count">%{count}</span> (na) tumugmang taxon'
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: Anumang
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: Sigurado ka bang gusto mong tanggalin ang tunog na ito?
   artificially_generated_content: Artipisyal na Nabuo na Nilalaman
   artificially_generated_content_desc: Naglalaman ng nilalaman na karamihan o ganap na nabuo sa pamamagitan ng artipisyal na katalinuhan.
@@ -59,89 +37,89 @@ fil:
     Ang obserbasyon sa proyekto. Ito ay lamang ang default na setting para sa
     obserbasyon sa mga proyekto. Maaari ring piliin ng mga tagamasid na baguhin ito para sa
     Mga indibidwal na obserbasyon.
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Kasalukuyang Taxon ng Komunidad: %{taxon}"
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: Tanggalin ang tunog
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Ang token ng reset ng password ay hindi wasto. Mangyaring gamitin ang link sa pinakahuling ipinadala na email sa pag-reset ng password, o <a href="%{url}">Humiling ng bago</a>.
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Mangyaring i click ang link sa ibaba upang kumpirmahin ang iyong email address. Kung hindi mo kumpirmahin ang iyong email
     address, hindi ka magagawang upang makihalubilo sa iba pang mga gumagamit 'nilalaman.
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: Hindi pagkakasundo
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Ipakita ang mga obserbasyon na may hindi magkasundo na pagkakakilanlan
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Email Address *
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: Anunsyo sa pag-edit %{id}
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Error sa pag-update ng tunog: %{sound_errors}"
   evidence_accurately_depicts_organism_or_scene: Tumpak na inilalarawan ng ebidensya ang organismo o eksena
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Format ng file
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: File URL
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "Tagalog Example Sentence: Ang tunog na ito ay na-flag na."
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: Mga ID ng Infraspecies
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: Email Address *
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: Email Address *
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: Higit pang mga Pagpipilian
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: Hindi tagapangasiwa
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: Admin ng di-proyekto
   observation_fields_for_projects: Mga patlang ng pagmamasid para sa mga proyekto
-  #message describing a delay between importing a place and observations appearing in it
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Maaaring tumagal ng hanggang isang araw bago maiugnay ang mga obserbasyon sa lugar na ito.
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     Ang mga lugar ay hindi maaaring mas malaki kaysa sa 700,000 kilometro kuwadrado.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     Ang mga lugar ay hindi maaaring lumampas sa 70,000 kilometro kuwadrado.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     Ang mga lugar ay hindi maaaring maglaman ng higit sa 200,000 mga obserbasyon.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Ang mga lugar ay hindi maaaring maglaman ng higit sa 10,000 mga obserbasyon.
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: Admin ng proyekto
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: Genus / Genushybrid
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: Species / Hybrid
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: Subspecies / Iba't-ibang / Anyo
   sounds:
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Tunog %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: Tinanggal ang tunog
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: Nakatago ang tunog
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Tunog na hindi nakatago
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Na-update na tunog
   user_trusts_this_project_when_added_by_any: |
     Pinagkakatiwalaan ng gumagamit ang mga curator ng proyekto na may mga nakatagong coordinate ng mga obserbasyon na idinagdag
@@ -183,27 +161,27 @@ fil:
         app.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Mag click dito upang muling magpadala ng isang email ng kumpirmasyon
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: Ipinadala ang email ng kumpirmasyon
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         Narito ang email address na ipapadala namin ang kumpirmasyon:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         Kung hindi mo matanggap ang email, narito ang ilang mga tip:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: Kung hindi mo pa rin natatanggap ang email ng kumpirmasyon, mangyaring makipag ugnay sa amin sa <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> para ma assist ka namin.
       please_add_an_email_and_password: Mangyaring magdagdag ng isang email at password upang hindi ka mawalan ng access sa iyong account
       please_click_the_link_sent_to_email_to_confirm_html: Paki click ang link na ipinadala sa <span class="email">%{email}</span> para ma confirm ang email address mo.
-      please_confirm_that_email_is_the_best_contact_html: Paki confirm na po <span class="email">%{email}</span> ay ang pinakamahusay na paraan upang makipag ugnay sa iyo. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Mangyaring kumpirmahin ang iyong email address upang makipag ugnayan sa nilalaman ng iba pang mga gumagamit at ma access ang ilang mga pahina. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Mangyaring kumpirmahin ang iyong email address <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: Paki confirm na po <span class="email">%{email}</span> ay ang pinakamahusay na paraan upang makipag ugnay sa iyo. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Mangyaring kumpirmahin ang iyong email address upang makipag ugnayan sa nilalaman ng iba pang mga gumagamit at ma access ang ilang mga pahina. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Mangyaring kumpirmahin ang iyong email address <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: Mangyaring kumpirmahin ang iyong email address upang makipag ugnayan sa nilalaman ng iba pang mga gumagamit
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Mangyaring kumpirmahin ang iyong email address upang magamit ang pahinang ito
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Suriin para sa anumang mga filter na ginawa mo na maaaring alisin ang aming mga email mula sa iyong inbox #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Suriin para sa anumang mga filter na ginawa mo na maaaring alisin ang aming mga email mula sa iyong inbox # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Suriin ang iyong spam folder
       your_site_account_has_no_email: Ang iyong %{site_name} account ay walang email address na nauugnay dito.
     guides:
@@ -213,25 +191,25 @@ fil:
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           Makakapagpadala ka ng mga bagong mensahe pagkatapos mong kumpirmahin ang iyong email
           address. Sa ngayon ay maaari mong basahin at tumugon sa mensahe na ipinapadala sa iyo ng ibang tao.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           Makakapagpadala ka ng mga bagong mensahe pagkatapos mong kumpirmahin ang iyong email
           address, at nagdagdag ng tatlong mapapatunayang obserbasyon o tatlong pagkakakilanlan
           para sa iba. Sa ngayon ay maaari mong basahin at tumugon sa mensahe na ipinapadala sa iyo ng ibang tao.
     observations:
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           ang <strong>Taxon ng Komunidad at Pagtutugma sa Taxon ng Pagmamasid</strong>
           (Para sa mga bihirang pagkakataon na ang Observation Taxon ay maaaring maging higit pa
           partikular kaysa sa Community Taxon)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           Ang obserbasyon <strong>Hindi ito nagpapakita ng tumpak na katibayan ng organismo o
           eksena</strong> (Halimbawa, ang artipisyal na katalinuhan ay ginamit upang magdagdag, alisin, o palitan
@@ -239,18 +217,18 @@ fil:
           Ang mga maliliit na pag-aayos tulad ng pag-alis ng alikabok ng sensor ay karaniwang OK).
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           Maaari mong makita ang orihinal na <a href="%{url}">%{url}</a>. Pakiusap
           iwanan ang mga flag ng paglabag sa copyright bilang hindi nalutas kung ang tunog na ito ay
           lumabag sa copyright.
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           Maaari ka lamang gumawa ng mga menor de edad na pagbabago sa epithet ng species nang direkta (hal. mga pagbabago sa kasarian, maling pagbaybay). Magdagdag ng isang <a target="_blank" href="%{url}">Pagpapalit ng Taxon</a> Kung kailangan mo ng iba pang mga pagbabago sa pangalan.
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         May mali sa pagsisikap na i-post ang mga tag na iyon: %{message}
   number:
@@ -265,13 +243,13 @@ fil:
     attributes:
       announcement:
         excludes_non_site: Itago ang iba pang mga anunsyo sa placement na ito na walang Site ID
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: Ibukod ang mga tagamasid mula sa mga app
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: Isama ang mga tagamasid mula sa mga app
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: Tagalikha ng target (para sa pagsubok)
       user:
         faved_project_ids: Mga paboritong proyekto
@@ -287,12 +265,12 @@ fil:
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: Hindi maaaring isama ang higit sa 7 mga proyekto
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: dapat lahat ay umiiral
             login:
               domain_is_not_supported: Hindi suportado ang domain
