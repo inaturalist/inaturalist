@@ -1,10 +1,4 @@
 fa:
-  x_comments_html:
-    one: '<span class="count">%{count}</span> نظر'
-    other: '<span class="count">%{count}</span> نظرات'
-  x_languages:
-    one: "%{count} زبان"
-    other: "%{count} زبان‌ها"
   x_misidentifications_of_this_species:
     one: "%{count} شناسایی نادرست این گونه"
     other: "%{count} شناسایی نادرست این گونه ها"
@@ -15,9 +9,6 @@ fa:
   x_suggestions_filtered_by_colon:
     one: "%{count} فیلتر پیشنهاد با:"
     other: "%{count} فیلتر پیشنهادات با:"
-  x_taxa:
-    one: "%{count} رده بندی شده"
-    other: "%{count} رده بندی شده"
   _100_day_trends: ۱۰۰ ترند روز
   _percent_ID_d: "% شناسنامه"
   a_community_for_naturalist: انجمنی برای طبیعت گرایان
@@ -25,8 +16,8 @@ fa:
     یک نام برای رده‌بندی از مشخصه‌های نام علمی این رده به صورت خودکار ایجاد می گردد. زمانی که شما یک رده‌بندی را ذخیره می کنید، شما می توانید نام های دیگری را اینجا اضافه نمایید. (نام مرسوم، نام های منسوخ شده و ...)
   a_flag_for_x: "یک نماد برای %{x}"
   a_member_of_taxon_html: "یک عضو از %{taxon}"
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "از A تا Z"
   about: درباره
   about_charts: درباره چارت ها
@@ -34,16 +25,16 @@ fa:
   about_complete_taxa: درباره رده‌بندی کامل
   about_conservation_status: درباره وضعیت پایندگی
   about_editing_observation_fields: درباره ویرایش فیلدهای مشاهده
-  #Header for a section explaining Establishment Means. See the
-  #about_establishment_desc key or
-  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  # Header for a section explaining Establishment Means. See the
+  # about_establishment_desc key or
+  # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: درباره معانی تاسیس
   about_license_options: درباره گزینه های مجوز
   about_licenses: درباره مجوزها
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: درباره نام ها
-  #Title for a section providing a text description of a place, @vow_or_con
-  #should work here
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
   about_place: "درباره %{place}"
   about_places: درباره مکان‌ها
   about_taxon_ranges: درباره محدوده های تاکسون
@@ -59,13 +50,13 @@ fa:
   account_settings: تنظیمات حساب
   accuracy: دقت
   accuracy_meters: دقت (متر)
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: اقدام
   actions: اقدامات
   active: فعال
-  #Status of a complete set that is available for use
+  # Status of a complete set that is available for use
   active_complete_set_status: فعال
-  #Status of a taxon that is available for use on iNat
+  # Status of a taxon that is available for use on iNat
   active_taxon_status: فعال
   active_users: کاربران فعال
   activity: فعالیت
@@ -74,11 +65,11 @@ fa:
   add_a_comment: افزودن نظر
   add_a_field: افزودن فیلد
   add_a_flag: افزودن پرچم
-  #Tool tip for a button that adds a link to a text area
+  # Tool tip for a button that adds a link to a text area
   add_a_link: افزودن لینک
   add_a_name: افزودن نام
   add_a_note: افزودن يادداشت
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: هر
   app_owner_application_explanation_required: |
     شما باید توضیح دقیق تری از آنچه می خواهید بسازید ارائه دهید.
@@ -90,7 +81,7 @@ fa:
     حداقل 2 ماه سن داشته باشید و حداقل 10 ماه داشته باشید <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">بهبود شناسایی</a> در ماه گذشته. ممکن است پیگیری را بپرسیم
     در مورد طرح شما سؤال می کنیم و ما این حق را برای خود محفوظ می داریم که به هر دلیلی درخواست ها را رد کنیم.
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: آیا مطمئن هستید که می خواهید این صدا را حذف کنید؟
   artificially_generated_content: محتوای تولید شده مصنوعی
   artificially_generated_content_desc: حاوی محتوایی است که عمدتا یا به طور کامل از طریق هوش مصنوعی تولید می شود.
@@ -112,94 +103,94 @@ fa:
     مشاهده پروژه. این فقط تنظیمات پیش فرض برای
     مشاهدات در پروژه ها. ناظران همچنین می توانند انتخاب کنند که این را برای
     مشاهدات فردی.
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "تاکسون جامعه فعلی: %{taxon}"
   dashboard_pilots:
-    #button asking to participate in a pilot
+    # button asking to participate in a pilot
     pilot_participate: "بله! من می خواهم شرکت کنم."
-    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    # title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "خلبان شکاف های شناسایی: به گونه های مورد نیاز ID نیاز دارد"
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: حذف صدا
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: رمز بازنشانی رمز عبور نامعتبر است. لطفا از پیوند موجود در ایمیل بازنشانی رمز عبور اخیر ارسال شده استفاده کنید، یا <a href="%{url}">درخواست یک مورد جدید</a>.
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     لطفا برای تأیید آدرس ایمیل خود روی لینک زیر کلیک کنید. اگر ایمیل خود را تأیید نکنید
     آدرس، شما نمی توانید با محتوای سایر کاربران تعامل داشته باشید.
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: اختلاف نظرها
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: مشاهداتی را نشان دهید که دارای هویت های مخالف هستند
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: اهدا
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: اطلاعیه ویرایش %{id}
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "خطا در به روز رسانی صدا: %{sound_errors}"
   evidence_accurately_depicts_organism_or_scene: شواهد ارگانیسم یا صحنه را به طور دقیق به تصویر می کشد
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: فرمت فایل
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL فایل
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "سر بالا: این صدا پرچم گذاری شده است."
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: شناسه های زیرگونه ای
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: وارد سیستم شده اید
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: از سیستم خارج شده اید
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: گزینه های بیشتر
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: غیر متصدی
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: مدیر غیر پروژه
   observation_fields_for_projects: زمینه های مشاهده برای پروژه ها
-  #message describing a delay between importing a place and observations appearing in it
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: ممکن است تا یک روز طول بکشد تا مشاهدات با این مکان مرتبط شود.
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     مکان ها نمی توانند بزرگتر از 700000 کیلومتر مربع باشند.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     مکان ها نمی توانند بزرگتر از 70000 کیلومتر مربع باشند.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     مکان ها نمی توانند بیش از 200000 مشاهده داشته باشند.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     مکان ها نمی توانند بیش از 10,000 مشاهده داشته باشند.
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: مدیر پروژه
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: جنس / جنسترکیبی
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: گونه ها / هیبریدی
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: زیرگونه / تنوع / فرم
   sounds:
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: صدا %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: صدا حذف شد
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: صدا پنهان است
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: صدا پنهان نیست
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: صدای به روز شده
   user_trusts_this_project_when_added_by_any: |
     کاربر به متصدیان پروژه با مختصات پنهان مشاهدات اضافه شده اعتماد دارد
@@ -241,27 +232,27 @@ fa:
         App.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: برای ارسال مجدد ایمیل تأیید اینجا را کلیک کنید
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: ایمیل تایید ارسال شد
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         در اینجا آدرس ایمیلی است که تأیید را به آن ارسال خواهیم کرد:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         اگر ایمیل را دریافت نکردید، در اینجا چند نکته وجود دارد:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: اگر هنوز ایمیل تأیید را دریافت نمی کنید، لطفا با ما تماس بگیرید <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> بنابراین ما می توانیم به شما کمک کنیم.
       please_add_an_email_and_password: لطفا یک ایمیل و رمز عبور اضافه کنید تا دسترسی به حساب خود را از دست ندهید
       please_click_the_link_sent_to_email_to_confirm_html: لطفا روی لینک ارسال شده به <span class="email">%{email}</span> برای تأیید آدرس ایمیل خود.
-      please_confirm_that_email_is_the_best_contact_html: لطفا تأیید کنید که <span class="email">%{email}</span> بهترین راه برای تماس با شما است. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: لطفا آدرس ایمیل خود را برای تعامل با محتوای سایر کاربران و دسترسی به صفحات خاص تأیید کنید. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: لطفا آدرس ایمیل خود را تأیید کنید <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: لطفا تأیید کنید که <span class="email">%{email}</span> بهترین راه برای تماس با شما است. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: لطفا آدرس ایمیل خود را برای تعامل با محتوای سایر کاربران و دسترسی به صفحات خاص تأیید کنید. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: لطفا آدرس ایمیل خود را تأیید کنید <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: لطفا آدرس ایمیل خود را برای تعامل با محتوای سایر کاربران تأیید کنید
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: لطفا آدرس ایمیل خود را برای استفاده از این صفحه تأیید کنید
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: فیلترهایی را که ایجاد کرده اید بررسی کنید که ممکن است ایمیل های ما را از صندوق ورودی شما حذف کند #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: فیلترهایی را که ایجاد کرده اید بررسی کنید که ممکن است ایمیل های ما را از صندوق ورودی شما حذف کند # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: پوشه هرزنامه خود را بررسی کنید
       your_site_account_has_no_email: شما %{site_name} حساب هیچ آدرس ایمیلی مرتبط با آن ندارد.
     guides:
@@ -271,25 +262,25 @@ fa:
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           پس از تأیید ایمیل، می توانید پیام های جدیدی ارسال کنید
           آدرس. در حال حاضر می توانید پیامی را که دیگران برای شما ارسال می کنند بخوانید و به آنها پاسخ دهید.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           پس از تأیید ایمیل، می توانید پیام های جدیدی ارسال کنید
           آدرس، و سه مشاهدات قابل تأیید یا سه شناسایی اضافه کرد
           برای دیگران. در حال حاضر می توانید پیامی را که دیگران برای شما ارسال می کنند بخوانید و به آنها پاسخ دهید.
     observations:
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           این <strong>تاکسون جامعه و تاکسون مشاهده مطابقت دارند</strong>
           (برای موارد نادری که تاکسون مشاهده می تواند بیشتر باشد
           خاص از طبقه بندی جامعه)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           مشاهده <strong>شواهد دقیقی از ارگانیسم ارائه نمی دهد یا
           صحنه</strong> (به عنوان مثال از هوش مصنوعی برای افزودن، حذف یا جایگزینی استفاده شد
@@ -297,18 +288,18 @@ fa:
           اصلاحات کوچک مانند از بین بردن گرد و غبار سنسور معمولا خوب است).
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           می توانید نسخه اصلی را در آدرس زیر مشاهده کنید <a href="%{url}">%{url}</a>. لطفاً
           پرچم های نقض حق نسخه برداری را حل نشده بگذارید اگر این صدا حل نشده باشد
           حق چاپ را نقض می کند.
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           شما فقط می توانید تغییرات جزئی را مستقیما در لقب گونه ایجاد کنید (به عنوان مثال تغییر جنسیت، غلط املایی). افزودن یک <a target="_blank" href="%{url}">سوآپ تاکسون</a> اگر نیاز به تغییرات دیگری در نام دارید.
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         در تلاش برای ارسال این برچسب ها مشکلی پیش آمد: %{message}
   number:
@@ -323,13 +314,13 @@ fa:
     attributes:
       announcement:
         excludes_non_site: سایر اطلاعیه ها را در این مکان که شناسه سایت ندارند پنهان کنید
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: حذف ناظران از برنامه ها
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: افزودن ناظران از برنامه ها
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: سازنده هدف (برای آزمایش)
       user:
         faved_project_ids: پروژه های مورد علاقه
@@ -345,12 +336,12 @@ fa:
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: نمی تواند بیش از 7 پروژه را شامل شود
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: باید همه وجود داشته باشد
             login:
               domain_is_not_supported: دامنه پشتیبانی نمی شود
