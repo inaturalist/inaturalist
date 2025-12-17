@@ -1,67 +1,47 @@
 mi:
   x_identifications:
     other: '%{count} tautuhi'
-  x_identifications_html:
-    other: '<span class="count">%{count}</span> tautuhi'
-  x_identifications_:
-    other: '%{count} Tautuhi'
-  x_languages:
-    other: "%{count} ngā reo"
-  x_observations:
-    other: "%{count} mauhanga"
-  x_observations_:
-    other: "%{count} Mauhanga"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span> mauhanga"
   x_new_species:
     other: "%{count} Momo hou"
-  x_species:
-    other: '%{count} Momo'
-  x_species_html:
-    other: "<span class='count'>%{count}</span> momo"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} momo</a>"
-  x_taxa:
-    other: "%{count} ngā rōpū"
-  x_sounds:
-    other: "%{count} oro"
   _100_day_trends: Ia kotahi rau rā
   a_community_for_naturalist: He hapori mō kaitaiao
   a_member_of_taxon_html: "He huānga i %{taxon}"
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A ki Z"
   about: Pārongo
   about_conservation_status: Mō tūnga whāomoomo
   about_license_options: Mō kōwhiringa raihana
   about_licenses: Mō ngā raihana
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: Mō ngā ingoa
-  #Title for a section providing a text description of a place, @vow_or_con
-  #should work here
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
   about_place: "Mō te %{place}"
   about_places: Mō ngā wāhi
   about_the_network: Mo te tūhononga
   about_this_map: Mō te mahere tēnei
   about_this_project: Mō te kohinga tēnei
   about_trusting_projects_options_any: Āu mauhanga katoa i roto i kohinga tēnei
-  #Abbreviated form of "accuracy in meters", where "accuracy" is the
-  #positional_accuracy attribute of an observation, which is really more like
-  #positional uncertainty
+  # Abbreviated form of "accuracy in meters", where "accuracy" is the
+  # positional_accuracy attribute of an observation, which is really more like
+  # positional uncertainty
   acc: 'Tika (m)'
   account: Pūkete
   account_settings: Tautuhinga pūkete
   accuracy: Tika
   accuracy_meters: Tika (mita)
   active: Hohe
-  #Status of a complete set that is available for use
+  # Status of a complete set that is available for use
   active_complete_set_status: Hohe
-  #Status of a taxon that is available for use on iNat
+  # Status of a taxon that is available for use on iNat
   active_taxon_status: Hohe
   activity: Hohenga
   add: Tāpiri
   add_a_comment: Tāpiri tētahi kōrero
-  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  # Text for a button that links to a page where curators can add new conservation statuses for taxa
   add_a_conservation_status: Tāpiri tūnga whāomoomo
   add_a_field: Tāpiri te āpure
   add_a_flag: Tāpiritia Kara
@@ -160,47 +140,47 @@ mi:
   annotation: Kupu tāpiri
   annotations: Kupu tāpiri
   announcements: Pānui
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any_: Katoa
-  #Label for an option to show content with any annotation attribute
+  # Label for an option to show content with any annotation attribute
   any_annotation_attribute: Katoa
-  #Label for an option to show content with any annotation value
+  # Label for an option to show content with any annotation value
   any_annotation_value: Katoa
-  #Label for an option to show content from any date
+  # Label for an option to show content from any date
   any_date: Katoa
-  #Label for an option to show content with any establishment means
+  # Label for an option to show content with any establishment means
   any_establishment: Katoa
-  #Label for an option to show content with any license
+  # Label for an option to show content with any license
   any_license: Katoa
-  #Label for an option to show content with photos, sounds, or neither
+  # Label for an option to show content with photos, sounds, or neither
   any_media: Katoa
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: Tētahi
-  #Label for an option to show content from any project
+  # Label for an option to show content from any project
   any_project: Katoa
-  #Label for an option to show content with any quality grade
+  # Label for an option to show content with any quality grade
   any_quality_grade: Katoa
-  #Label for an option to show observation with any reviewed status, i.e. both
-  #reviewed and unreviewed
+  # Label for an option to show observation with any reviewed status, i.e. both
+  # reviewed and unreviewed
   any_reviewed: Katoa
-  #Label for an option to show/include content by any user
+  # Label for an option to show/include content by any user
   any_user: Katoa
   appropriate?: He tika?
   arachnids: pūngāwerewere
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: E tika ana kia mukua tēnei oro?
   artificially_generated_content: Ihirangi i Hangaia Noatia
   artificially_generated_content_desc: Kei roto ko ngā ihirangi e hangaia ana te nuinga, te katoa rānei mā te mōhiohio horihori.
   asc: Piki
   ascending: Whakapiki
-  #Noun form, as in a property of something. Generally used to describe the
-  #name of an attribute available for annotation, e.g. "Life Stage"
+  # Noun form, as in a property of something. Generally used to describe the
+  # name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Āhuatanga
-  #Abbreviation of "average," i.e. the sum of all values divided by the numer
-  #of values, and not a synonym of "typical" or "normal"
+  # Abbreviation of "average," i.e. the sum of all values divided by the numer
+  # of values, and not a synonym of "typical" or "normal"
   avg: Toharite
   back_to_all_species: Hoki ki ngā momo katoa
   back_to_friends: Hoki ki ngā hoa
@@ -265,12 +245,12 @@ mi:
   colors: Ngā tae
   columns: Tīwae
   combine: Paheko
-  #Noun, used to label a comment or a comment field in a form
+  # Noun, used to label a comment or a comment field in a form
   comment: kōrero
-  #Verb, generally a label on a button that allows the user to add a comment
+  # Verb, generally a label on a button that allows the user to add a comment
   comment_: Kōrero
   comment_deleted: I mukua te kōrero
-  #Notice when a comment has been hidden by moderators
+  # Notice when a comment has been hidden by moderators
   comment_hidden: Kua hunaia te kōrero
   comments: Kōrero
   community: Hapori
@@ -282,14 +262,14 @@ mi:
   confirm: Whakaū
   confirm_new_password: Whakaū i te kupuhipa hou
   confirm_now: Whakaū ināianei
-  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  # Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: I whakamanahia i %{date}
   confirming_ids: Whakaū ana i ngā ID
   confirming_ids_description: |
     Ki te whakaweto koe i tēnei, kāore koe e whakamōhiotia mō ngā ID e whakaae ana
     ki a koe ki te kore e whai kōrero anō.
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
+  # Label for a button to connect your iNat account to another account, e.g.
+  # connecting to Flickr
   connect: Hono
   conservation_status: Tūnga whāomoomo
   conservation_status_created: I hanga te tūnga whāomoomo
@@ -298,15 +278,15 @@ mi:
   continue: Haere tonu
   continue_to_site: Haere tonu ki %{site_name}
   controlled_term_labels:
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Katoa
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Katoa
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Katoa
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Katoa
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Katoa
     sex: Taihema taketake
     male: Tourawhi
@@ -315,21 +295,21 @@ mi:
     adult: Pakeke
     pupa: Tūngoungou
     larva: Pūhouhou
-    #Evidence of an egg of an organism
+    # Evidence of an egg of an organism
     egg: Hua
     alive_or_dead: Ora, mate rānei
     alive: Ora
     dead: Mate
-    #As in the feather on a bird
+    # As in the feather on a bird
     feather: Huruhuru
-    #Refers to an observation that depicts the actual organism and not some
-    #kind of secondary evidence like a footprint
+    # Refers to an observation that depicts the actual organism and not some
+    # kind of secondary evidence like a footprint
     organism: Rauropi
-    #Fecal matter, not regurgitated matter
+    # Fecal matter, not regurgitated matter
     scat: Tūtae
-    #Impression made by the organism on the ground or in snow, like a footprint
+    # Impression made by the organism on the ground or in snow, like a footprint
     track: Makenu
-    #Endoskeletal remains, like a deer bone
+    # Endoskeletal remains, like a deer bone
     bone: Wheua
   copy: Tārua
   copyright:
@@ -360,7 +340,7 @@ mi:
   created_by: I hangaia nā
   critically_endangered: Mōrea rukiruki
   curator: Kairauhī
-  #Prompt for information when applying to be a curator
+  # Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: He aha koe i pirangi ai hei kairauhī?
   curators: Kairauhī
   curator_coordinate_access: Āheitanga Taururuku Kaitiaki
@@ -369,7 +349,7 @@ mi:
     te kitenga ki te kaupapa. Koinei anake te tautuhinga taunoa mō
     ngā kitenga i roto i ngā kaupapa. Ka taea hoki e ngā kaitirotiro te kōwhiri ki te huri i tēnei mō
     ngā kitenga takitahi.
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Tāke Hapori o Nāianei: %{taxon}"
   dashboard: Paemana
   date_: Rā
@@ -408,19 +388,19 @@ mi:
   date_picker:
     closeText: Kati
     currentText: Nōnāianei
-    #Contextual help for a button navigating to the next month in a date picker
+    # Contextual help for a button navigating to the next month in a date picker
     nextText: Panuku
   date_time: Rā/Wā
-  #Express a date range. d1 and d2 could be any expression of dates, so better
-  #to use the most flexible form possible here, e.g. not something like "d1 to
-  #d2" if "to" might be translated differently for different values of d1 and
-  #d2
+  # Express a date range. d1 and d2 could be any expression of dates, so better
+  # to use the most flexible form possible here, e.g. not something like "d1 to
+  # d2" if "to" might be translated differently for different values of d1 and
+  # d2
   date_to_date: "%{d1} - %{d2}"
   date_updated: Rā whakahou
   day: Rā
-  #Default option
+  # Default option
   default: taunoa
-  #Default option
+  # Default option
   default_: Taunoa
   default_observation_license: Raihana taunoa mō ngā mauhanga
   default_photo_license: Raihana taunoa mō ngā whakaahua
@@ -429,7 +409,7 @@ mi:
   delete_all: Mukua katoa
   delete_photo: Mukua whakaahua
   delete_project: Mukua te kohinga tēnei
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: Mukua te oro
   delete_user: Mukua kaiwhakamahi
   delete_your_account: Mukua tōu pūkete
@@ -440,54 +420,54 @@ mi:
   details: Taipitopito
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: He muhu te maimai kupuhipa tautuhi anō. Whakamahia koa te hono i roto i te īmēra kupuhipa tautuhi anō kātahi anō ka tukua, rānei <a href="%{url}">tonoa he mea hou</a>.
     mailer:
       confirmation_instructions:
-        #Subject of an email sent to confirm your account
+        # Subject of an email sent to confirm your account
         subject: Whakamanahia tāku wāhitau īmēra
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Pāwhiritia koa te hono o raro nei hei whakaū i tō wāhitau īmēra. Ki te kore koe e whakaū i tō īmēra
     wāhitau, kāore e taea e koe te tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi.
   devise_confirmation_instructions_send_confirmation_email: Tukuna te īmera whakamana
   devise_reset_password_instructions_hello_email: Kia ora %{email}
   disagree_: Whakahē
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: Ngā tautohetohe
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Whakaaturia ngā kitenga e whakahē ana i ngā tāutunga
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
+  # Label for a button to disconnect your iNat account from another account,
+  # e.g. disconnecting your Flickr account
   disconnect: Momotu
   disconnect_caps: MOMOTU
   disconnect_provider: "Momotu %{provider}"
   display: Whakaatu
   display_name: Ingoa whakaatu
   documentation_for_developers_html: Aratohu mō<a href="/pages/developers">kaihunga</a>
-  #Button text to donate to iNaturalist. Please try to keep translations as
-  #short as possible
+  # Button text to donate to iNaturalist. Please try to keep translations as
+  # short as possible
   donate: KOHA
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Koha
   donate_again_caps: TAKOHATIA ANŌ
   donate_again_today_caps: TAKOHATIA ANŌ INAIANEI
   done: Ka oti
-  #Prompt shown when you are dragging a file somewhere and should release it to
-  #add the file as, for example, a new photo in the Uploader
+  # Prompt shown when you are dragging a file somewhere and should release it to
+  # add the file as, for example, a new photo in the Uploader
   drop_it: Whakataka mai
   download: Tikiake
   download_caps: TIKIAKE
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft: hukihuki
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_: Hukihuki
-  #Attribution for a journal post that has not been published
+  # Attribution for a journal post that has not been published
   draft_by_user_html: Nā %{user} te hukihuki
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_saved: Kua tiakina te hukihuki!
-  #Noun, as in journal posts that has not been published
+  # Noun, as in journal posts that has not been published
   drafts: Hukihuki
   drag_and_drop_some_photos_or_sounds: Tōia me te whakataka ētahi whakaahua, oro rānei
   duplicate_verb: Tārua
@@ -514,7 +494,7 @@ mi:
   edited_by_name_some_rights_reserved_html: |
     Whakatika nā %{name}, kua rāhuitia ngā mōtika ētahi (%{license})
   editing: E whakatika ana
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: Pānui whakatika ana %{id}
   editing_observation_id: "E whakatika ana te mauhanga %{obs_id}"
   editing_project: E whakatika ana %{project}
@@ -522,15 +502,15 @@ mi:
   editing_this: E whakatika ana %{elem}
   editors: Kaiwhakatika
   email: Īmēra
-  #Introductory form of address in an email. %{user} could be a username or a
-  #name, and the gender is unknown. @vow_or_con should work.
+  # Introductory form of address in an email. %{user} could be a username or a
+  # name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: Kia ora %{user},
   end: Mutunga
   end_date_time: Rā/Wā mutunga
   endangered: Mōrearea
   endemic: Taketake
   endemic_to_x: "Taketake ki %{x}"
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Kua hapa te whakahōu oro: %{sound_errors}"
   establishment:
     endemic: Taketake
@@ -551,12 +531,12 @@ mi:
   fields: āpure
   fields_: Āpure
   file: Kōnae
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Hōputu kōnae
   file_size: Rahi kōnae
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL Kōnae
-  #The name of a computer file
+  # The name of a computer file
   filename: Ingoa kōnae
   filter: Tātari
   filtering: E tātari ana
@@ -569,7 +549,7 @@ mi:
   find_species: Kimihia ngā momo
   finished: Ka mutu
   first_observer: kaimātaki tuatahi
-  #Verb form, as in "Flag this item"
+  # Verb form, as in "Flag this item"
   flag: Whakakara
   flag_deleted: I muku te kara
   flag_for_guide_title_html: |
@@ -603,7 +583,7 @@ mi:
   flags_with_count: Kara (%{count})
   flags_for_x_html: Ngā kara mō %{x}
   follow: Aru
-  #Text for a button to follow updates from a specific user
+  # Text for a button to follow updates from a specific user
   follow_user: "Aruhia a %{user}"
   followers: Kiriaru
   following: E whai ana
@@ -633,14 +613,14 @@ mi:
   header_your_identifications: Āu tautuhi
   header_your_projects: Āu kohinga
   header_your_profile: Tāu kīwhaiaro
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "HEADS UPOKO AKE: kua karaina tēnei oro."
   help: Āwhina
   help_translate!: Āwhina e whakareo!
   here_are_our_top_suggestions: Ānei ngā marohi ki runga
   here_are_our_top_species_suggestions: Ānei ngā marohi momo ki runga
   hi_user: "Kia ora %{user}"
-  #Verb, usually a button to hide an interface element
+  # Verb, usually a button to hide an interface element
   hide: Huna
   high: Tiketike
   home: Kāinga
@@ -649,12 +629,12 @@ mi:
   identify_title: "Tautuhitia"
   identification: tautuhi
   identification_by_user: Tautuhi nā %{user}
-  #Notification when an identification has been deleted
+  # Notification when an identification has been deleted
   identification_deleted: Kua mukua te tautuhi
   identification_saved: "Kua tiakina te tautuhi!"
-  #Notification when an identification has been updated
+  # Notification when an identification has been updated
   identification_updated: Kua whakahoutia te tautuhi!
-  #Notification when an identification has been withdrawn
+  # Notification when an identification has been withdrawn
   identification_withdrawn: Kua maunu te tautuhi
   identifications: Tautuhi
   identifiers: Ngā kaitautuhi
@@ -667,13 +647,13 @@ mi:
   importing: "E kawe mai ana..."
   improving: Whakapai
   in_n: "i roto i %{n}"
-  #Label for messages you've received
+  # Label for messages you've received
   inbox: Pouakauru
   inat_user_profile: "%{site_name}: Kīwhaiaro tō %{user}"
   info: Pārongo
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: Ngā TT Infraspecies
   insects: pepeke
   instagram: Paeāhua
@@ -684,11 +664,11 @@ mi:
   jpg_png_or_gif: "JPG, PNG, GIF rānei"
   kml: KML
   label_colon: "%{label}:"
-  #Label shown when a location has not been entered. Originally "unknown" in
-  #English but we switched to "missing" to convey that a complete observation
-  #*should* have a location
+  # Label shown when a location has not been entered. Originally "unknown" in
+  # English but we switched to "missing" to convey that a complete observation
+  # *should* have a location
   location_unknown: Wāhi ngaro
-  #Large photo size
+  # Large photo size
   large: nui
   lat: Pae
   latitude: Ahopae
@@ -705,8 +685,8 @@ mi:
   list: Tūtira
   list_views:
     photo: whakaahua
-  #Template for a comma-separated list of items. We'll use this to generate
-  #lists of this form for an arbitrary number of items, not just three.
+  # Template for a comma-separated list of items. We'll use this to generate
+  # lists of this form for an arbitrary number of items, not just three.
   list_with_n_items: "%{one}, %{two}, me %{three}"
   list_with_two_items: "%{one} me %{two}"
   lists: Tūtira
@@ -731,11 +711,11 @@ mi:
   log_in: Takiuru
   log_out: Takiputa
   log_out_caps: TAKIPUTA
-  #Application is a mobile app the user has authorized to access their iNat account
+  # Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Takiputa atu i %{site_name}?"
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: Kua takiuru
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: Kua takiputa
   long: Pou
   longitude: Ahopau
@@ -753,13 +733,13 @@ mi:
       observations: Mauhanga
   mark_as_reviewed: Tohutia i kua arotake
   mark_all_as_reviewed: Tohutia katoa i kua arotake
-  #Used to join media types required by a project, e.g. photos *and* sounds.
-  #If a single word won't work, a symbol like "+" would be fine.
+  # Used to join media types required by a project, e.g. photos *and* sounds.
+  # If a single word won't work, a symbol like "+" would be fine.
   media_and: me
   meet: Tūtaki
   member_of_the_inaturalist_network_html: |
     He huānga i te <a href="%{url}">tūhononga iNaturalist</a>
-  #As in members of a project
+  # As in members of a project
   members: Huānga
   merge: Hanumi
   message: Karere
@@ -767,64 +747,64 @@ mi:
   message_from_user_at_time: Nā %{user} i %{time}
   message_from_user_on_date: Nā %{user} i %{date}
   messages: Karere
-  #Label shown when a date has not been entered
+  # Label shown when a date has not been entered
   missing_date: Rā ngaro
-  #Action a moderator can take to hide content; verb
+  # Action a moderator can take to hide content; verb
   moderator_actions_hide: Huna
   mollusks: kaiwhao
   momentjs:
     shortRelativeTime:
       past: "%s"
-      #Short text representing 1 second in the past
+      # Short text representing 1 second in the past
       s: "1 he"
-      #Short text representing 1 minute in the past
+      # Short text representing 1 minute in the past
       m: "1 men"
-      #Short text representing %d minutes in the past
+      # Short text representing %d minutes in the past
       mm: "%d m"
-      #Short text representing 1 hour in the past
+      # Short text representing 1 hour in the past
       h: "1 h"
-      #Short text representing %d hours in the past
+      # Short text representing %d hours in the past
       hh: "%d h"
-      #Short text representing 1 day in the past
+      # Short text representing 1 day in the past
       d: "1 r"
-      #Short text representing %d days in the past
+      # Short text representing %d days in the past
       dd: "%d r"
-      #Short text representing 1 month in the past
+      # Short text representing 1 month in the past
       M: "1 ma"
-      #Short text representing %d months in the past
+      # Short text representing %d months in the past
       MM: "%d ma"
-      #Short text representing 1 year in the past
+      # Short text representing 1 year in the past
       'y': "1 t"
-      #Short text representing %d years in the past
+      # Short text representing %d years in the past
       yy: "%d t"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone_no_year: "D MMMM h:mma z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display an offset and not a time zone code, so
-    #please use Z and not z
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    # Note that this should display an offset and not a time zone code, so
+    # please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "D MMMM YYYY"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h:mm a"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Marama
   months: Marama
   more: Anō
-  #Button to show more observations
+  # Button to show more observations
   more__context_observations_caps: ANŌ
-  #Button to show more places
+  # Button to show more places
   more__context_places: Anō
-  #Button to show more text
+  # Button to show more text
   more__context_text: Anō
-  #Button to show more translators, as in people who added translations
+  # Button to show more translators, as in people who added translations
   more__context_translators_caps: ANŌ
   more_caps: ANŌ
   more_fields: Āpure anō
@@ -832,7 +812,7 @@ mi:
   more_info: Mōhiohio anō
   more_info_title: Mōhiohio anō
   more_observations: Tonuhia ngā mauhanga
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: Ngā kōwhiringa anō
   more_photos: Tonuhia ngā whakaahua
   n_ago: "%{n} i mua"
@@ -876,9 +856,9 @@ mi:
   no_recent_activity: E kore ngā hohenga inātata nei
   no_taxa: Kāore ngā rōpū
   noble_curators: "Ngā kairauhī rangatira o %{site}"
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: Kaitiaki Kore
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: Kaiwhakahaere kaupapa-kore
   notes: Kupu tīpoka
   number_of_observers_value: "E hia ngā kaimātaki: %{number}"
@@ -888,22 +868,22 @@ mi:
   observation_accuracy_experiment_continent: "Paparahi"
   observation_accuracy_experiment_year: "Tau"
   observation_added_to_the_project: "Kua tāpiri i mauhanga ki te kohinga \"%{project}\""
-  #Attributes an observation to a user. %{user} can be a username or a full
-  #name. @vow_or_con will work here and use the first letter of the name used
+  # Attributes an observation to a user. %{user} can be a username or a full
+  # name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: Mauhanga nā %{user}
-  #Attributes an observation to a user and specifies that copyright is retained
-  #(though a license may be applied). %{user} can be a username or a full name.
-  #@vow_or_con will work here and use the first letter of the name used. &copy;
-  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
-  #@this could also be translated like "Observation by %{user} (copyright)" or
-  #@something.
+  # Attributes an observation to a user and specifies that copyright is retained
+  # (though a license may be applied). %{user} can be a username or a full name.
+  # @vow_or_con will work here and use the first letter of the name used. &copy;
+  # @is the HTML entity for the copyright symbol. If that doesn't make sense,
+  # @this could also be translated like "Observation by %{user} (copyright)" or
+  # @something.
   observation_attribution_copyright_html: Mauhanga &copy; %{user}
   observation_brief_taxon_by_user: "%{taxon} nā %{user}"
   observation_brief_taxon_from_place: "%{taxon} ki %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} ki %{place} nā %{user}"
   observation_date: Rā
   observation_date?: Rā?
-  #Taxon-related observation export fields
+  # Taxon-related observation export fields
   observation_export_column_type_taxon: Rōpū
   observation_field: Āpure mauhanga
   observation_field_type_text: Kuputuhi
@@ -938,18 +918,18 @@ mi:
   paste: Whakapiri
   people: Tāngata
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation
+    # Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    # kueda
+    # added an observation
     observation: I tāpiri ia tētahi <a href="%{observation_url}">mauhanga</a>
     identification:
-      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-      #kueda
-      #added an ID to an observation by loarie
+      # Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      # kueda
+      # added an ID to an observation by loarie
       with_observation: I tāpiri ia tētahi <strong>tautuhi</strong> ki tētahi %{observation_link} nā %{user_link}
-      #The same as people_added.identification.with_observation, except it
-      #covers the rare situation in which we have an update for an
-      #identification but the observation has been deleted
+      # The same as people_added.identification.with_observation, except it
+      # covers the rare situation in which we have an update for an
+      # identification but the observation has been deleted
       without_observation: I tāpiri ia tētahi <strong>tautuhi</strong>
   per_day: Ia rā
   per_month: Ia marama
@@ -961,35 +941,35 @@ mi:
   photo_browser: Pūtirotiro whakaahua
   photo_by_id_attribution: "Whakaahua %{id}, %{attribution}"
   photo_deleted: Kua mukua te whakaahua
-  #Message displayed after a photo has been hidden
+  # Message displayed after a photo has been hidden
   photo_hidden: Kua hunaia te whakaahua
   photos_or_sounds: Whakaahua, oro rānei
   photos_or_sounds?: Whakaahua, oro rānei?
   photos_size:
-    small: iti
-    medium: wawaenga
-    large: nui
-    original: taketake
+      small: iti
+      medium: wawaenga
+      large: nui
+      original: taketake
   photos_updated: Kua whakahou ngā whakaahua
   pi_consent_desc_title: Mō mōhiohio whaiaro
   place: Wāhi
   place_geo:
-    geo_planet_place_types:
-      Island: Motu
-      island: motu
-      Parish: Pāriha
-      parish: pāriha
-      Postal_Code: Tohu karere
-      postal_code: tohu karere
-      Province: Porowini
-      province: porowini
-      Street: Huarahi
-      street: huarahi
-      Time_Zone: Rohe wā
-      time_zone: rohe wā
-      Town: Tāone
-      town: tāone
-  #message describing a delay between importing a place and observations appearing in it
+          geo_planet_place_types:
+            Island: Motu
+            island: motu
+            Parish: Pāriha
+            parish: pāriha
+            Postal_Code: Tohu karere
+            postal_code: tohu karere
+            Province: Porowini
+            province: porowini
+            Street: Huarahi
+            street: huarahi
+            Time_Zone: Rohe wā
+            time_zone: rohe wā
+            Town: Tāone
+            town: tāone
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Tērā pea ka pau te rā kia pāhonotia ngā kitenga ki tēnei wāhi.
   places: Wāhi
   places_name:
@@ -1142,23 +1122,23 @@ mi:
     vietnam: Witināma
     zambia: Tāmipia
     zimbabwe: Timuwawe
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     Kāore e taea e ngā wāhi te nui ake i te 700,000 kiromita tapawhā.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     Kāore e taea e ngā wāhi te nui ake i te 70,000 kiromita tapawhā.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     Kāore e taea e ngā wāhi te neke atu i te 200,000 ngā kitenga.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Kāore e taea e ngā wāhi te neke atu i te 10,000 ngā kitenga.
   plants: tipu
   play_first_sound: Pureingia te oro tuatahi
-  #Title to a section warning a user to exercise caution
+  # Title to a section warning a user to exercise caution
   please_be_careful!: Kia tūpato!
   press: Arapāho
   preview: Huritao takamua
@@ -1169,7 +1149,7 @@ mi:
   profile: Kīwhaiaro
   profile_picture: Atawhaiaro
   project: Kohinga
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: Kaiwhakahaere kaupapa
   project_home: Kāinga kohinga
   project_list_defaults:
@@ -1182,116 +1162,116 @@ mi:
   radius_value: "Pūtoro (m): %{radius}"
   random: Matapōkere
   range: Ine whānui
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Kapa
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: Genus / Genushybrid
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: Momo / Hinu
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: Momo Roto / Momo / Puka
-  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
-  #etc.). Generally used as a column header in lists of observers and
-  #identifiers
+  # A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  # etc.). Generally used as a column header in lists of observers and
+  # identifiers
   rank_position: Kapa
-  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
-  #Genus Noctua (but generally not Species Noctua pronuba)
+  # When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  # Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} a %{name}"
   ranks:
-    kingdom: Mātāmuatanga
-    x_kingdoms:
-      other: Mātāmuatanga
-    subkingdom: Mātāmuatanga iti
-    phylum: Pori
-    x_phyla:
-      other: Pori
-    subphylum: Pori iti
-    superclass: Karangatanga nui
-    class: Karangatanga
-    x_classes:
-      other: Karangatanga
-    subclass: Karangatanga iti
-    infraclass: Karangatanga tuaiti
-    superorder: Pūtoi nui
-    order: Pūtoi
-    x_orders:
-      other: Pūtoi
-    suborder: Pūtoi iti
-    infraorder: Pūtoi tuaiti
-    superfamily: Whānau nui
-    family: Whānau
-    x_families:
-      other: Whānau
-    subfamily: Whānau iti
-    supertribe: Iwi nui
-    tribe: Iwi
-    subtribe: Iwi iti
-    genus: Puninga
-    x_genera:
-      other: Puninga
-    genushybrid: Momorua pūninga
-    subgenus: Puninga iti
-    #Singular
-    species: Momo
-    x_species:
-      other: Momo
-    hybrid: Momorua
-    #Singular
-    subspecies: Momo iti
-    infrahybrid: Momorua tuaiti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+      kingdom: Mātāmuatanga
+      x_kingdoms:
+        other: Mātāmuatanga
+      subkingdom: Mātāmuatanga iti
+      phylum: Pori
+      x_phyla:
+        other: Pori
+      subphylum: Pori iti
+      superclass: Karangatanga nui
+      class: Karangatanga
+      x_classes:
+        other: Karangatanga
+      subclass: Karangatanga iti
+      infraclass: Karangatanga tuaiti
+      superorder: Pūtoi nui
+      order: Pūtoi
+      x_orders:
+        other: Pūtoi
+      suborder: Pūtoi iti
+      infraorder: Pūtoi tuaiti
+      superfamily: Whānau nui
+      family: Whānau
+      x_families:
+        other: Whānau
+      subfamily: Whānau iti
+      supertribe: Iwi nui
+      tribe: Iwi
+      subtribe: Iwi iti
+      genus: Puninga
+      x_genera:
+        other: Puninga
+      genushybrid: Momorua pūninga
+      subgenus: Puninga iti
+      # Singular
+      species: Momo
+      x_species:
+        other: Momo
+      hybrid: Momorua
+      # Singular
+      subspecies: Momo iti
+      infrahybrid: Momorua tuaiti
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
   ranks_lowercase_kingdom: mātāmuatanga
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
   ranks_lowercase_subkingdom: mātāmuatanga iti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
   ranks_lowercase_phylum: pori
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
   ranks_lowercase_subphylum: pori iti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
   ranks_lowercase_superclass: karangatanga nui
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
   ranks_lowercase_class: karangatanga
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
   ranks_lowercase_subclass: karangatanga iti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
   ranks_lowercase_infraclass: karangatanga tuaiti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
   ranks_lowercase_superorder: pūtoi nui
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
   ranks_lowercase_order: pūtoi
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
   ranks_lowercase_suborder: pūtoi iti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: pūtoi tuaiti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: whānau nui
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: whānau
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
   ranks_lowercase_subfamily: whānau iti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
   ranks_lowercase_supertribe: rōpū nui
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
   ranks_lowercase_tribe: iwi
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
   ranks_lowercase_subtribe: iwi iti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: puninga
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
   ranks_lowercase_genushybrid: momorua pūninga
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
   ranks_lowercase_subgenus: puninga iti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
   ranks_lowercase_species: momo
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
   ranks_lowercase_hybrid: momorua
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
   ranks_lowercase_subspecies: momo iti
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: momorua tuaiti
   ranges: Tuari
   ray_finned_fishes: ika
@@ -1300,11 +1280,11 @@ mi:
   refreshing: e tāmata ana
   regenerate_stats: Tatauhia tauanga anō
   relationships:
-    one_to_one: kotahi-ki-kotahi
-    many_to_many: maha-ki-maha
-    many_to_one: maha-ki-kotahi
-    one_to_many: kotahi-ki-maha
-    error: hapa
+      one_to_one: kotahi-ki-kotahi
+      many_to_many: maha-ki-maha
+      many_to_one: maha-ki-kotahi
+      one_to_many: kotahi-ki-maha
+      error: hapa
   remember_me: Maumahara ki ahau
   remove: Tangohia
   remove_photo: Tangohia te whakaahua
@@ -1314,11 +1294,11 @@ mi:
   research: rangahau
   research_: Rangahau
   research_grade: Kua pūruatia
-  #Label for a button that re-sends the account confirmation email and signs
-  #you out until you do
+  # Label for a button that re-sends the account confirmation email and signs
+  # you out until you do
   resend_and_sign_out: Tukuna anō me takiputa
   resend_confirmation_email: Tukuna anō te īmera whakamana
-  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  # Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Tautuhi anō
   reset_filters_short: Tautuhi anō
   restore: Whakaoratia
@@ -1340,26 +1320,26 @@ mi:
   saving_verb: E tiaki ana
   search: Rapunga
   search_by_name_or_email: Rapua nā ingoa, īmera rānei
-  #This is a fallback translation for posessive phrases. It could be used on
-  #pages that show a user's content where the title might be "Your
-  #Identifications", but we generally handle those with more specific
-  #translation keys like `your_identifications`. This is here in case we
-  #forget to add a translation key like that.
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "Your
+  # Identifications", but we generally handle those with more specific
+  # translation keys like `your_identifications`. This is here in case we
+  # forget to add a translation key like that.
   second_person_possessive_singular: "Tō %{noun}"
   select: Tīpako
   select_all: Tīpakohia te katoa
-  #select_one_or_more_photos: Select One Or More Photos
+  # select_one_or_more_photos: Select One Or More Photos
   select_none: Tīpako kore
   send: tuku
-  #Label for a button that re-sends the account confirmation email and signs
-  #you out until you do
+  # Label for a button that re-sends the account confirmation email and signs
+  # you out until you do
   send_and_sign_out: Tukuna me takiputa
   send_confirmation_email: Tukuna te īmera whakamana
   sending: E tuku ana...
   show: Hura
   show_more: Hurahia tonuhia
   sign_in: Takiuru
-  #Button to sign in to iNat with your Apple account
+  # Button to sign in to iNat with your Apple account
   sign_in_with_apple: Takiuru mai ki Āporo
   sign_in_with_provider: "Takiuru mai ki %{provider}"
   sign_in_with_google: Takiuru mai ki Kūkara
@@ -1379,19 +1359,19 @@ mi:
     no_photos_sounds: E kore ngā whakaahua, oro rānei
     photos_sounds: Whakaahua/Oro
     sound: Oro
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Oro %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: Kua mukua te oro
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: Oro hunaia
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Oro hunakore
     sounds: Oro
   source: Te pū
   source_: 'Te pū:'
   source_wikipedia: "Te pū: Wikipedia"
-  #Plural
+  # Plural
   species: Momo
   species_name_cap: Ingoa momo
   species_names: ingoa momo
@@ -1405,14 +1385,14 @@ mi:
   status_in_place: '"%{status}" i roto i %{place}'
   stop_editing: Kāti te whakatika
   stop_following_user: "Kati e whai ana a %{user}"
-  #As in a place to purchase things. We use it as a link to a place where you
-  #can buy merchandise. Please try to keep translations as short as possible
+  # As in a place to purchase things. We use it as a link to a place where you
+  # can buy merchandise. Please try to keep translations as short as possible
   store: Toa
   store_caps: TOA
   submission_model_description: Ko wai e taea i tāpiri ngā mauhanga ki tāu kohinga?
   submitted: I tukua
-  #Label for a button that subscribes the user to updates on a resource, e.g.
-  #comments on a journal post
+  # Label for a button that subscribes the user to updates on a resource, e.g.
+  # comments on a journal post
   subscribe: Ohauru
   subscribe_to_a_taxon: Ohaurutia ki tētahi rōpu
   subscribe_to_a_place: Ohaurutia ki tētahi wāhi
@@ -1424,7 +1404,7 @@ mi:
   summary: Whakarapopotanga
   supporting: Tautoko
   sync: Tukutahi?
-  #Noun, as in "add a tag to this observation"
+  # Noun, as in "add a tag to this observation"
   tag: tūtohu
   tagging: 'E tūtohu ana...'
   tags: Tūtohu
@@ -1441,8 +1421,8 @@ mi:
   teachers_guide: Aratohu o kaiako
   tell_the_world_a_little_about_yourself: Kōrero mai i a koe
   tell_us_why: Kōrero mai he ai
-  #As in Terms of Service, an explicit description of what iNat the extent
-  #and limitations of the service provided to users
+  # As in Terms of Service, an explicit description of what iNat the extent
+  # and limitations of the service provided to users
   terms: Kuputaka
   terms_service: Tikanga whakamahi
   terrain: takoto
@@ -1452,11 +1432,11 @@ mi:
   the_world: Te Ao
   these_observations_have_not_been_uploaded_yet: |
     Kāore anō kia tukuatu ēnei mauhanga
-  #This is a fallback translation for posessive phrases. It could be used on
-  #pages that show a user's content where the title might be "kueda's
-  #identifications", but we generally handle those with more specific
-  #translation keys like `users_identifications`. This is here in case we
-  #forget to add a translation key like that.
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "kueda's
+  # identifications", but we generally handle those with more specific
+  # translation keys like `users_identifications`. This is here in case we
+  # forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} tō %{object_phrase}"
   this: tēnei
   this_is_your_observation: He tāu mauhanga tēnei
@@ -1485,7 +1465,7 @@ mi:
   updated: I whakahou
   updated_by: I whakahou nā
   updated_daily: I whakahou ai i rā
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Oro kua whakahōutia
   upload: Tukuatu
   uploader:
@@ -1501,27 +1481,27 @@ mi:
   user: Kaiwhakamahi
   user_added_a_comment_html: "Nā %{user} tāpiritia tētahi kōrero"
   user_added_a_flag_html: "Nā %{user} tāpiritia tētahi kara"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x: "Nā %{user} tāpiritia tētahi %{x}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nāu"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun}"
   user_added_an_identification_html: "Nā %{user} tāpiritia tētahi tautuhi"
   user_added_an_observation_html: "Nā %{user} tāpiritia tētahi mauhanga"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x: "Nā %{user} tāpiritia tētahi %{x}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nāu"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun}"
   user_commented: "I kōrero a %{user}"
   user_suggested_an_id: "I whakaaranga a %{user} tētahi tautuhi"
@@ -1592,10 +1572,10 @@ mi:
   when_did_you_see_it?: Inahea?
   where: I hea
   where_were_you?: I hea i a koe?
-  #Label for a button to withdraw an identification, i.e. to deactivate it
-  #without deleting it
+  # Label for a button to withdraw an identification, i.e. to deactivate it
+  # without deleting it
   withdraw: Maunuhia
-  #Loading status while an identification is being withdrawn
+  # Loading status while an identification is being withdrawn
   withdrawing: E maunu ana...
   x_blog: "Rangitaki tō a %{x}"
   x_journal: "Rangitaki tō a %{user}"
@@ -1656,7 +1636,7 @@ mi:
         CMD-pāwhiri-PANUKU rānei hei tīpako i ngā taumaha. Kāore e whakaaturia ngā whenua kua tīpakohia
         te pānuitanga. Ki te tīpakohia ngā whenua IP, tīpakohia te Waiho ngā whenua IP
         ka tangohia mai i te mea o mua.
-      #Note about how the announcement last observation date property works
+      # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Kia mahara ko te rā waihanga o te mea i waihangatia e te kaiwhakamahi i mua tata nei
         kua keteroki te kitenga, nā reira ka pau pea ētahi haora mō te ūnga ki
@@ -1673,43 +1653,43 @@ mi:
         Te wā i tō rohe wā pūkete ka tīmata ai tēnei pānui
         e puta ana. Ka hoatu puta noa i ngā rohe wā, kia tīmata ai te katoa ki te kite
         i te wā kotahi, ehara i te mea e pā ana ki tō rātou wā paetata.
-      #Description of a group of options for targeting announcements based
-      #on donation behavior
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
       target_users_by_donation_behavior: Ūkuia ngā kaiwhakamahi mā te whanonga koha
-      #Description of a group of options for targeting announcements based
-      #on identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
       target_users_by_identification_behavior: Ūnga kaiwhakamahi mā te whanonga tāutunga
-      #Description of a group of options for targeting announcements based
-      #on observation behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
       target_users_by_observation_behavior: Ūnga kaiwhakamahi mā te whanonga mātakitaki
-      #Description of a group of options for targeting announcements based
-      #miscellaneous user attributes
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
       target_users_by_other_attributes: Ūnga kaiwhakamahi mā ētahi atu huanga
     donate:
       post_donate_social_media_text: Kei te tautoko ahau i iNaturalist nō te mea ...
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Pāwhiri ki konei hei tuku anō i tētahi īmēra whakaū
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: Kua tukua te īmēra whakaū
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         Anei te wāhitau īmēra ka tukua e mātou te whakaūnga ki:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         Ki te kore koe e whiwhi i te īmēra, anei ētahi aki:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: Mēnā kāore tonu koe i te whiwhi i te īmēra whakaū, whakapā mai koa ki a mātou i <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> kia taea ai e mātau te āwhina i a koe.
       please_add_an_email_and_password: Tāpiri koa i tētahi īmēra me te kupuhipa kia kore ai koe e ngaro te āheitanga ki tō pūkete
       please_click_the_link_sent_to_email_to_confirm_html: Pāwhiritia koa te hono i tukua ki <span class="email">%{email}</span> hei whakaū i tō wāhitau īmēra.
-      please_confirm_that_email_is_the_best_contact_html: Whakaū koa i tēnā <span class="email">%{email}</span> ko te huarahi pai rawa atu ki te whakapā atu ki a koe. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Whakaū koa i tō wāhitau īmēra kia tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi me te uru ki ētahi whārangi. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Whakaū koa i tō wāhitau īmēra <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: Whakaū koa i tēnā <span class="email">%{email}</span> ko te huarahi pai rawa atu ki te whakapā atu ki a koe. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Whakaū koa i tō wāhitau īmēra kia tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi me te uru ki ētahi whārangi. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Whakaū koa i tō wāhitau īmēra <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: Whakaū koa i tō wāhitau īmēra kia tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Whakaū koa i tō wāhitau īmēra hei whakamahi i tēnei whārangi
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Takina ngā tātari i mahia e koe ka tango pea i ā mātou īmēra mai i tō pouakauru #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Takina ngā tātari i mahia e koe ka tango pea i ā mātou īmēra mai i tō pouakauru # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Takina tō kōpaki spam
       your_site_account_has_no_email: Tō %{site_name} Kāore he wāhitau īmēra o te pūkete e pā ana ki taua pūkete.
     guides:
@@ -1741,13 +1721,13 @@ mi:
       from: Mai i
       to: Ki
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           Ka taea e koe te tuku karere hōu i muri i tō whakaūnga i tō īmēra
           Whaikōrero. Mō tēnei wā ka taea e koe te pānui me te whakautu ki te karere ka tukuna koe e ētahi atu tāngata.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           Ka taea e koe te tuku karere hōu i muri i tō whakaūnga i tō īmēra
           wāhitau, ā, e toru ngā kitenga ka taea te tāpiri, kia toru rānei ngā tāutunga
@@ -1760,25 +1740,25 @@ mi:
         score: Tapeke
       compare:
         about_missing_taxa: Mō rōpū ngaro
-        #Label for a visualization that combines multiple series of data in a single chart
+        # Label for a visualization that combines multiple series of data in a single chart
         combined: Kua paheko
-        #Date field to use when grouping by date, e.g. date created or date added
+        # Date field to use when grouping by date, e.g. date created or date added
         date_field: Āpure Rā
-        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        # Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Huapae
-        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        # Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Āputa
-        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        # Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Poutū
       field_descriptions:
         time_zone: Rohe wā o te mauhanga
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           Te <strong>Ōrite te Tāke Hapori me te Tāke Kitenga</strong>
           (mō ērā wā āhua kore nei ka nui ake te Tāke Kitenga
           tauwhāiti i te Tāke Hapori)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           te kitenga <strong>kāore i te whakaatu i ngā whakaaturanga tika o te rauropi,
           tirohanga</strong> (hei tauira, i whakamahia te mōhiohio horihori hei tāpiri, hei tango, hei whakakapi rānei
@@ -1798,8 +1778,8 @@ mi:
         none: Kao.
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           Ka taea e koe te tiro i te mea taketake ki <a href="%{url}">%{url}</a>. Tēnā koa
           waiho ngā kara takahi manatārua kia kore e whakatauria mēnā ka puta tēnei oro
@@ -1815,7 +1795,7 @@ mi:
         translators_title: Kaiwhakareo
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           Ka taea anake e koe te whakarerekē i ngā huringa iti ki te ingoa momo (hei tauira, ngā huringa ira tangata, te takikupu hē). Tāpiritia he <a target="_blank" href="%{url}">whakawhiti tāke</a> mēnā e hiahia ana koe ki ētahi atu huringa ki te ingoa.
       show:
@@ -1832,18 +1812,18 @@ mi:
           "Life Stage=Pupa": Tūngoungou
           "Sex=Female": Uwha
           "Sex=Male": Tourawhi
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         I puta he raru i te ngana ki te whakairi i aua tūtohu: %{message}
     users:
       delete:
         type_confirmation_code: Patopatohia %{confirmation_code}
       edit:
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Kōrero
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Tautuhi
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Karere
         project_addition_preferences:
           any: Katoa
@@ -1900,19 +1880,19 @@ mi:
       6: Me
       7: Ho
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%-d %b %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%-d %B %Y'
     month_names:
       - 
@@ -1960,65 +1940,65 @@ mi:
         format: '%n %u'
   time:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%-d %b %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%-d %B %Y"
   activerecord:
     models:
-      #Information authored by site admins shown to users at various places
-      #on the web site, mostly on the dashboard
+      # Information authored by site admins shown to users at various places
+      # on the web site, mostly on the dashboard
       Announcement: Pānui
-      #Noun
+      # Noun
       Flag: Kara
     attributes:
       announcement:
-        #Start of a date range that the viewer must not have donated in to see the announcement
+        # Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: Waihotia te rā tīmata o te kaituku
-        #End of a date range that the viewer must not have donated in to see the announcement
+        # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Waihotia te rā mutunga o te kaituku
         excludes_non_site: Hunaia ētahi atu pānuitanga i tēnei whakanohonga kāore he ID Pae
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: Aukati i ngā kaimātakitaki mai i ngā taupānga
-        #start of a date range that the viewer must have donated in to see the announcement
+        # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Whakaurua te rā tīmata o te kaituku
-        #End of a date range that the viewer must have donated in to see the announcement
+        # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Whakaurua te rā mutunga o te kaituku
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: Whakaurua ngā kaitirotiro mai i ngā taupānga
-        #List of countries that the viewer's IP address can come from to see the announcement
+        # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: Ngā Whenua IP
-        #Start of a date range that includes the viewer's most recent observation
+        # Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: Rā tīmatanga obs hōu rawa
-        #end of a date range that includes the viewer's most recent observation
+        # end of a date range that includes the viewer's most recent observation
         last_observation_end_date: Rā whakamutunga obs hōu rawa
-        #Maximum number of identifications the viewer must have added for others to see the announcement
+        # Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Ngā tāutunga mōrahi
-        #Minimum number of identifications the viewer must have added for others to see the announcement
+        # Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: Ngā tāutunga mōkito
-        #Maximum number of observations the viewer must have added for others to see the announcement
+        # Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: Ngā kitenga mōrahi
-        #Minimum number of observations the viewer must have added for others to see the announcement
+        # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Ngā kitenga mōkito
-        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Whakanohonga
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: Kaihanga ūnga (hei whakamātautau)
-        #Whether or not the announcement is shown to logged in users
+        # Whether or not the announcement is shown to logged in users
         target_logged_in: Kua takiuru te ūnga
-        #Earliest date the viewer can have signed up to see the announcement
+        # Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: Rā tohuake kaiwhakamahi tōmua rawa
-        #Latest date the viewer can have signed up to see the announcement
+        # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Rā tohuake kaiwhakamahi hōu rawa
       conservation_status:
         status: Tūnga
         place_id: Wāhi
       flag:
-        #The kind of flag that was made
+        # The kind of flag that was made
         flag: Kara
       observation:
         description: Kupu tīpoka
@@ -2026,7 +2006,7 @@ mi:
       observation_field_value:
         value: 'Uara'
       observations_export_flow_task:
-        #Date/time the task finished processing
+        # Date/time the task finished processing
         finished_at: Ka mutu
       project:
         end_time: Wā mutunga
@@ -2038,15 +2018,15 @@ mi:
         longitude: Ahopau
         name: Ingoa
       taxon:
-        #The most conservative, global, IUCN Red List status for this taxon
+        # The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Tūnga whāomoomo
         name: Ingoa
       taxon_name:
         name: Ingoa
       taxon_link:
-        #Taxon this link is associated with
+        # Taxon this link is associated with
         taxon: Rōpū
-        #Place this link is associated with
+        # Place this link is associated with
         place: Wāhi
       user:
         email: Īmēra
@@ -2071,8 +2051,8 @@ mi:
         con: orokati
   will_paginate:
     next_label: "Panuku &#8594;"
-  #Descending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (descending)"
+  # Descending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (descending)"
   z_to_a: Z ki A
   zoom_in: Topa atu
   zoom_out: Topa atu
