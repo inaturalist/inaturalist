@@ -5,33 +5,15 @@ oc:
   x_identifications:
     one: '1 identificacion'
     other: '%{count} identificacions'
-  x_identifications_:
-    one: '1 identificacion'
-    other: '%{count} identificacions'
   x_matching_taxa:
     one: '1 taxon correspondent'
     other: '%{count} taxons correspondents'
   x_matching_taxa_html:
     one: '<span class="count">1</span> taxon correspondent'
     other: '<span class="count">%{count}</span> taxons correspondents'
-  x_observations:
-    one: "1 observacion"
-    other: "%{count} observacions"
-  x_observations_:
-    one: "1 observacion"
-    other: "%{count} observacions"
-  x_observations_html:
-    one: "<span class='count'>1</span> observacion"
-    other: "<span class='count'>%{count}</span> observacions"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observacion</a>"
     other: "<a href='%{url}'>%{count} observacions</a>"
-  x_species:
-    one: '1 espècia'
-    other: '%{count} espècias'
-  x_species_html:
-    one: "<span class='count'>1</span> espècia"
-    other: "<span class='count'>%{count}</span> espècias"
   x_species_link_html:
     one: "<a href='%{url}'>1 espècia</a>"
     other: "<a href='%{url}'>%{count} espècias</a>"
@@ -54,20 +36,20 @@ oc:
   about_charts: A prepaus dels grafics
   about_community_taxa: A prepaus dels taxons de la comunautat
   about_licenses: A prepaus de las licéncias
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: A prepaus dels noms
   about_places: A prepaus dels luòcs
   about_this_map: A prepaus d'aquesta mapa
   about_this_project: A prepaus d'aqueste projècte
-  #Abbreviated form of "accuracy in meters", where "accuracy" is the
-  #positional_accuracy attribute of an observation, which is really more like
-  #positional uncertainty
+  # Abbreviated form of "accuracy in meters", where "accuracy" is the
+  # positional_accuracy attribute of an observation, which is really more like
+  # positional uncertainty
   acc: 'Exactitud (mètres)'
   account: Compte
   accept_community_identifications: Acceptar las identificacions de la comunautat
   accuracy: Precision
   accuracy_meters: Precision (mètres)
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Accion
   actions: Accions
   active: actiu
@@ -91,7 +73,7 @@ oc:
   add_another_photo: Apondre una autra fòto
   add_another_section: Apondre una autra seccion
   add_another_subscription: Apondre un autre abonament
-  #Project assets are files associated with projects, e.g. image files for a custom header
+  # Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Apondre un avantatge
   add_batch: Apondre un tractament per lòt
   add_comma_separated_tags: "Apondre de balisas separadas per de virgulas"
@@ -111,10 +93,10 @@ oc:
   add_obs_from_a_link: "Apondre las observacions de la lista : %{link}"
   add_obs_from_a_list: Apondre las observacions dempuèi una lista
   add_observations: Apondre d'observacions
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: N'apondre una !
-  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
-  #"one" refers to a photo
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: N'apondre un ara
   add_place: Apondre un luòc
   add_several_observations_at_once: Apondre mantuna observacion a l'encòp.
@@ -221,10 +203,10 @@ oc:
   and_other_taxa: "&amp; Autres taxons"
   annotations: Anotacions
   announcements: Anoncis
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any: totes
   apply_to_selected: Aplicar a la seleccion
   apply_captive_cultivated: "Aplicar captiu / cultivat"
@@ -248,9 +230,9 @@ oc:
   assessment_x: "avaloracion %{assessment}"
   assessments: avaloracions
   associations: Associacions
-  #As in the Atom Syndication Format:
-  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
-  #an Atom representation of the content shown on the current page
+  # As in the Atom Syndication Format:
+  # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  # an Atom representation of the content shown on the current page
   atom: Atòm
   authority_list:
     iucn_red_list: Lista roja de l'UICN
@@ -278,7 +260,7 @@ oc:
   back_to_your_profile: Retorn a vòstre perfil
   batch: Lòt
   batch_edit: Moditicacion del lòt
-  #Where x is the title of a list of taxa
+  # Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Lòt de modificacions de taxons per %{x}"
   batch_operations: Operacions per lòt
   before_importing_photos: abans d’importar de fòtos
@@ -310,10 +292,10 @@ oc:
   cc_by_nd_name: Atribucion Sens derivats
   cc_by_sa_name: Atribucion Partejada a l’identic
   cc_used_under_a: "Creative Commons, utilizat jos un"
-  #Button to change the cover (or banner) image for a project
+  # Button to change the cover (or banner) image for a project
   change_cover: Modificar la tampa
   change_descriptions:
-    stage: Preparar un concèpte inactiu per difusion dins un grop de modificacions.
+      stage: Preparar un concèpte inactiu per difusion dins un grop de modificacions.
   change_geoprivacy: 'Modificar la confidencialitat geografica'
   change_group: Modificar lo grop
   change_icon: Modificar l’icòna
@@ -326,11 +308,11 @@ oc:
     swap: Escambiar
     stage: Etapa
     drop: Levar
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: devesit a partir de
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: devesit en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: fusionat en
     dropped: eliminat
     staged: presentat
@@ -352,16 +334,16 @@ oc:
   code: Còdi
   columns: Colomnas
   combine: Combinar
-  #Noun, used to label a comment or a comment field in a form
+  # Noun, used to label a comment or a comment field in a form
   comment: comentari
   comment_deleted: Comentari suprimit
   comments: Comentaris
   comments_by_me: Mos comentaris
-  #Second person verb to commit a taxon change, i.e. the change has been executed
+  # Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Validar
-  #Adjective describing a taxon change that has been committed
+  # Adjective describing a taxon change that has been committed
   committed: Validat
-  #Status message while a taxon change is being committed
+  # Status message while a taxon change is being committed
   committing: Validacion en cors…
   compare_with: Comparar amb
   comparing: comparason
@@ -370,8 +352,8 @@ oc:
   compiled_by_name: "Regropat per %{name}"
   completed: Acabat
   completed_at: Completat a
-  #As in whether or not a check list is comprehensive, i.e. it contains all the
-  #species in the taxon and place it purports to
+  # As in whether or not a check list is comprehensive, i.e. it contains all the
+  # species in the taxon and place it purports to
   comprehensive?: Complet ?
   comprehensive_list: Lista completa
   concept_status: Estat del concèpte
@@ -445,13 +427,13 @@ oc:
   date_picker:
     closeText: Tampar
     currentText: Uèi
-    #Contextual help for a button navigating to the previous month in a date picker
+    # Contextual help for a button navigating to the previous month in a date picker
     prevText: Precedent
-    #Contextual help for a button navigating to the next month in a date picker
+    # Contextual help for a button navigating to the next month in a date picker
     nextText: Seguent
   date_time: Data/Ora
   day: Jorn
-  #Default option
+  # Default option
   default: per defaut
   delete: Suprimir
   delete_all: Suprimir tot
@@ -473,19 +455,19 @@ oc:
   did_you_mean: 'Volètz dire'
   did_you_photos_flickr?: Avètz mes de fòtos sus Flickr ?
   disconnect_provider: "Desconnectar %{provider}"
-  #Prompt shown when you are dragging a file somewhere and should release it to
-  #add the file as, for example, a new photo in the Uploader
+  # Prompt shown when you are dragging a file somewhere and should release it to
+  # add the file as, for example, a new photo in the Uploader
   drop_it: Lo depausar
   download: Telecargar
   download_csv: Telecargar lo CSV
   download_kml: Telecargar lo KML
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft: borrolhon
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_: Borrolhon
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_saved: Borrolhon enregistrat !
-  #Noun, as in journal posts that has not been published
+  # Noun, as in journal posts that has not been published
   drafts: Borrolhons
   edit: Modificar
   edit_body: Modificar lo còs
@@ -509,7 +491,7 @@ oc:
   endangered: en via de desaparicion
   endemic: endemica
   endemic_to_x: "Endemica a %{x}"
-  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  # Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EdlV
   eol_collection_url: "URL de collècta d'EdlV"
   establishment:
@@ -526,7 +508,7 @@ oc:
   everyone: tot lo monde
   everywhere: pertot
   exact_date: Data exacta
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Reng exacte
   existing_flags: Bandièras existentas
   exit_full_screen: "Sortir del mòde ecran complet"
@@ -535,14 +517,14 @@ oc:
   exporting: "Expòrt en cors..."
   extinct: atudat
   'false': 'Fals'
-  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorits
   Family: Familha
   favorite_taxa: taxons favorits
   favorites: "Favorits"
   featured: remirable
   feedback: Vejaires
-  #Plural noun, as in Atom and RSS feeds
+  # Plural noun, as in Atom and RSS feeds
   feeds: 'Flux'
   failed: Fracàs
   fields: camps
@@ -562,7 +544,7 @@ oc:
   find_species: Recercar d'espècias
   finished: Acabat
   first_observer: Primièr observador
-  #Verb form, as in "Flag this item"
+  # Verb form, as in "Flag this item"
   flag: Marcar
   flag_as_spammer: Marcar coma productor de spam
   flag_as_non_spammer: Marcar coma non productor de spam
@@ -575,9 +557,9 @@ oc:
   flickr_style: Estil Flickr
   flickr_tagger: Marcador Flickr
   flickr_tags: Balisas Flickr
-  #Adjective, as in a fluid layout of images
+  # Adjective, as in a fluid layout of images
   fluid: fluida
-  #Text for a button to follow updates from a specific user
+  # Text for a button to follow updates from a specific user
   follow_user: "Seguir %{user}"
   following: seguiment
   for_a_taxon: per un taxon
@@ -622,21 +604,21 @@ oc:
   identify_observations: "Identificar las observacions"
   identify_title: "Identificar"
   identification: identificacion
-  #Notification when an identification has been deleted
+  # Notification when an identification has been deleted
   identification_deleted: identificacion suprimida.
   identification_saved: "Identificacion enregistrada !"
   identifications: Identificacions
   identifiers: Identificants
   identotron_for: Identotron per
   identotron_help: Ajuda de l’Identotron
-  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
+  # NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: En perilh
   import: Importar
   import_all_photos_as_observations: Importar totas las fòtos coma d'observacions
   import_photos: Importar de fòtos
   importing: "Importacion en cors..."
   in_n: "dins %{n}"
-  #Label for messages you've received
+  # Label for messages you've received
   inbox: bóstia de recepcion
   including: inclús
   in_the_past: dins lo passat
@@ -660,17 +642,17 @@ oc:
   jump_to_letter: Sautar a la letra
   labels: Libellats
   language_slash_type: Lenga / Tipe
-  #Large photo size
+  # Large photo size
   large: grand
   latitude: Latitud
-  #As in map layers, i.e. layers of data that might be overlayed on a map
+  # As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Jaces
   layout: Mesa en pagina
   leaderboard: Classament
   leaderboard_for_x: "Classament per %{x}"
   leaderboards: Classaments
   learn_more: Ne saber mai
-  #Terminal nodes in a taxonomic tree
+  # Terminal nodes in a taxonomic tree
   leaves: fuèlhas
   lexicon: Lexic
   lexicons:
@@ -734,10 +716,10 @@ oc:
   longitude: Longitud
   lookup: Recèrca
   low: bas
-  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
-  #subspecies or variety
+  # Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  # subspecies or variety
   lowest_rank: Rend lo mai bas
-  #Header for main content section of the project detail page when editing custom project data.
+  # Header for main content section of the project detail page when editing custom project data.
   main_content: Contengut principal
   mammals: mamifèrs
   manage_all_your_subscriptions: Gerir totes vòstres abonaments
@@ -754,7 +736,7 @@ oc:
   mark_all_as_unreviewed: Marcar tot coma pas relegit
   media: Mèdia
   medium: mejan
-  #As in members of a project
+  # As in members of a project
   members: Membres
   mentioned_you_in_noun_html: "%{user} vos a mencionat dins %{noun}"
   mentioned_you_in_noun_by_html: "%{user} vos a mencionat dins %{noun} per %{by}"
@@ -771,9 +753,9 @@ oc:
   momentjs:
     shortRelativeTime:
       future: "en %s"
-      #Short text representing 1 minute in the past
+      # Short text representing 1 minute in the past
       m: "1 min"
-      #Short text representing 1 month in the past
+      # Short text representing 1 month in the past
       M: "1 min"
   month: Mes
   months: Meses
@@ -832,10 +814,10 @@ oc:
   ok: "D'acòrdi"
   on_day: "sus"
   onboarding:
-    observe_panel_title: Començam per publicar qualques observacions
-    follow_panel_title_global: Seguir qualques naturalistas actius
-    updates_by_you_panel_title: Aqueste onglet es un mejan rapid de filtrar unicament las mesas a jorn de vòstre contengut.
-  #Geoprivacy status in which no privacy has been applied
+      observe_panel_title: Començam per publicar qualques observacions
+      follow_panel_title_global: Seguir qualques naturalistas actius
+      updates_by_you_panel_title: Aqueste onglet es un mejan rapid de filtrar unicament las mesas a jorn de vòstre contengut.
+  # Geoprivacy status in which no privacy has been applied
   open: dobrir
   optional: facultatiu
   or: o
@@ -845,7 +827,7 @@ oc:
   other: autre
   other_animals: autres animals
   owner: Proprietari
-  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  # Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nom del parent
   password: Senhal
   password_confirmation: 'Confirmacion del senhal'
@@ -857,67 +839,67 @@ oc:
   photo_deleted: Fòto suprimida
   photos_from: Fòtos de
   photos_size:
-    small: pichon
-    medium: mejan
-    large: grand
+      small: pichon
+      medium: mejan
+      large: grand
   place: Luòc
   place_geo:
-    geo_planet_place_types:
-      Airport: Aeropòrt
-      airport: aeropòrt
-      Building: Construccion
-      building: bastiment
-      Colloquial: Familièr
-      colloquial: familièr
-      Country: País
-      country: país
-      County: Comtat
-      county: comtat
-      Drainage: Drenatge
-      drainage: drenatge
-      estate: domeni
-      Historical_State: Estat istoric
-      historical_town: vila istorica
-      Intersection: Interseccion
-      intersection: interseccion
-      Island: Illa
-      island: illa
-      Land_Feature: Foncion territoriala
-      land_feature: foncion territoriala
-      Miscellaneous: Divèrs
-      miscellaneous: divèrs
-      Municipality: Municipalitat
-      municipality: Municipalitat
-      Nationality: Nacionalitat
-      nationality: nacionalitat
-      Prefecture_City: Vila prefectura
-      Point_of_Interest: Punt interessant
-      point_of_interest: punt interessant
-      Postal_Code: Còdi postal
-      postal_code: còdi postal
-      republic: Republica
-      Sports_Team: Equipa esportiva
-      sports_team: equipa esportiva
-      State: Estat
-      state: estat
-      Street: Carrièra
-      street: carrièra
-      Street_Segment: Segment de via
-      street_segment: segment de via
-      subdivision: Subdivision
-      Suburb: Banlèga
-      suburb: banlèga
-      Supername: Supernom
-      Territory: Territòri
-      Time_Zone: Fus orari
-      time_zone: fus orari
-      Town: Vila
-      town: vila
-      Undefined: Pas definit
-      undefined: pas definit
-      Unknown: Desconegut
-      Zone: Zòna
-      zone: zòna
+          geo_planet_place_types:
+            Airport: Aeropòrt
+            airport: aeropòrt
+            Building: Construccion
+            building: bastiment
+            Colloquial: Familièr
+            colloquial: familièr
+            Country: País
+            country: país
+            County: Comtat
+            county: comtat
+            Drainage: Drenatge
+            drainage: drenatge
+            estate: domeni
+            Historical_State: Estat istoric
+            historical_town: vila istorica
+            Intersection: Interseccion
+            intersection: interseccion
+            Island: Illa
+            island: illa
+            Land_Feature: Foncion territoriala
+            land_feature: foncion territoriala
+            Miscellaneous: Divèrs
+            miscellaneous: divèrs
+            Municipality: Municipalitat
+            municipality: Municipalitat
+            Nationality: Nacionalitat
+            nationality: nacionalitat
+            Prefecture_City: Vila prefectura
+            Point_of_Interest: Punt interessant
+            point_of_interest: punt interessant
+            Postal_Code: Còdi postal
+            postal_code: còdi postal
+            republic: Republica
+            Sports_Team: Equipa esportiva
+            sports_team: equipa esportiva
+            State: Estat
+            state: estat
+            Street: Carrièra
+            street: carrièra
+            Street_Segment: Segment de via
+            street_segment: segment de via
+            subdivision: Subdivision
+            Suburb: Banlèga
+            suburb: banlèga
+            Supername: Supernom
+            Territory: Territòri
+            Time_Zone: Fus orari
+            time_zone: fus orari
+            Town: Vila
+            town: vila
+            Undefined: Pas definit
+            undefined: pas definit
+            Unknown: Desconegut
+            Zone: Zòna
+            zone: zòna
   placement: Emplaçament
   places: Luòcs
   places_name:
@@ -984,33 +966,33 @@ oc:
   quality_grade: Gras de qualitat
   quality_grade_colon: "Gras de qualitat :"
   range: Interval
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Reng
   ranks:
-    kingdom: règne
-    phylum: fil
-    subphylum: sosfil
-    superclass: superclassa
-    class: classa
-    subclass: sosclassa
-    superorder: superòrdre
-    order: òrdre
-    suborder: sosòrdre
-    superfamily: superfamilha
-    family: familha
-    subfamily: sosfamilha
-    supertribe: supertribú
-    tribe: tribú
-    subtribe: sostribú
-    genus: genre
-    genushybrid: genre ibrid
-    #Singular
-    species: espècias
-    hybrid: ibrid
-    #Singular
-    subspecies: sosespècias
-    variety: varietat
-    form: forma
+      kingdom: règne
+      phylum: fil
+      subphylum: sosfil
+      superclass: superclassa
+      class: classa
+      subclass: sosclassa
+      superorder: superòrdre
+      order: òrdre
+      suborder: sosòrdre
+      superfamily: superfamilha
+      family: familha
+      subfamily: sosfamilha
+      supertribe: supertribú
+      tribe: tribú
+      subtribe: sostribú
+      genus: genre
+      genushybrid: genre ibrid
+      # Singular
+      species: espècias
+      hybrid: ibrid
+      # Singular
+      subspecies: sosespècias
+      variety: varietat
+      form: forma
   ray_finned_fishes: peisses amb nadarèlas raionadas
   reason: Motiu
   redo_search_in_map_area: Refar la recèrca dins la region cartografica
@@ -1042,7 +1024,7 @@ oc:
   select_one_or_more_photos: 'Seleccionar una o mantuna fòtos'
   selected: seleccionat
   send: mandar
-  #Label for messages you've sent
+  # Label for messages you've sent
   sent: Mandat
   settings: paramètres
   show: Afichar
@@ -1071,27 +1053,27 @@ oc:
   sources: Fonts
   sourcing: Font
   spam: spam
-  #Plural
+  # Plural
   species: Espècias
   start: Aviar
   stats: Estatisticas
   status: Estat
   summary: Resumit
   taxa: Taxons
-  #As in Terms of Service, an explicit description of what iNat the extent
-  #and limitations of the service provided to users
+  # As in Terms of Service, an explicit description of what iNat the extent
+  # and limitations of the service provided to users
   terms: Condicions
   terms_service: Condicions d’utilizacion
   thats_not_a_real_date: Es pas una vertadièra data !
   time_: ora
   time_ago: "i a %{time}"
-  #As in the title of a book or a blog post
+  # As in the title of a book or a blog post
   title: títol
   today: Uèi
   tools: Aisinas
   total: total
   'true': 'Verai'
-  #As in a category, not as in a keyboard
+  # As in a category, not as in a keyboard
   type: Tipe
   unreview_all: Marcar tot coma pas relegit
   updated_daily: Mes a jorn a cada jorn
