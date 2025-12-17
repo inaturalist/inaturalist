@@ -1,13 +1,13 @@
 te:
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A నుండి Z"
   all_updates: అన్ని నవీకరణలు
-  #Label for an option to show content from any date
+  # Label for an option to show content from any date
   any_date: ఏదైనా
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: ఏదైనా
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: ఈ సౌండ్ ని మీరు కచ్చితంగా డిలీట్ చేయాలని అనుకుంటున్నారా?
   artificially_generated_content: కృత్రిమంగా రూపొందించిన కంటెంట్
   artificially_generated_content_desc: కృత్రిమ మేధస్సు ద్వారా ఎక్కువగా లేదా పూర్తిగా జనరేట్ చేయబడ్డ కంటెంట్ ని కలిగి ఉంటుంది.
@@ -23,7 +23,7 @@ te:
     ప్రాజెక్టు పరిశీలన.. ఇది కేవలం డిఫాల్ట్ సెట్టింగ్ మాత్రమే
     ప్రాజెక్టుల్లో పరిశీలనలు.. పరిశీలకులు దీని కోసం దీనిని మార్చడానికి కూడా ఎంచుకోవచ్చు
     వ్యక్తిగత పరిశీలనలు..
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "ప్రస్తుత కమ్యూనిటీ టాక్సాన్: %{taxon}"
   date_: తేదీ
   date_added: జోడించారు తేదీ
@@ -56,48 +56,48 @@ te:
       october: అక్టోబర్
       november: నవంబర్
       december: డిసెంబర్
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: ధ్వనిని తొలగించు
   delete_user: వినియోగదారుని తొలగించండి
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: రీసెట్ పాస్ వర్డ్ టోకెన్ చెల్లదు. దయచేసి ఇటీవల పంపిన రీసెట్ పాస్ వర్డ్ ఇమెయిల్ లో లింక్ ఉపయోగించండి, లేదా <a href="%{url}">కొత్తదాన్ని అభ్యర్థించండి</a>.
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     మీ ఇమెయిల్ చిరునామాను ధృవీకరించడానికి దయచేసి దిగువ లింక్ క్లిక్ చేయండి. మీరు మీ ఇమెయిల్ ని ధృవీకరించకపోతే
     చిరునామా, మీరు ఇతర వినియోగదారుల కంటెంట్ తో ఇంటరాక్ట్ కాలేరు.
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: భిన్నాభిప్రాయాలు[మార్చు
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: విభేదించే గుర్తింపులను కలిగి ఉన్న పరిశీలనలను చూపించండి
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: బహూకరించు
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: ఎడిటింగ్ ప్రకటన %{id}
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "ధ్వనిని నవీకరించడంలో దోషం: %{sound_errors}"
   evidence_accurately_depicts_organism_or_scene: సాక్ష్యం జీవి లేదా దృశ్యాన్ని ఖచ్చితంగా వర్ణిస్తుంది
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: ఫైల్ ఫార్మాట్
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: ఫైల్ URL
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "హెడ్స్ అప్: ఈ ధ్వని ఫ్లాగ్ చేయబడింది."
   hi_user: "నమస్తే %{user}"
   identify: గుర్తించండి
   identify_observations: "వీక్షణలను గుర్తించండి"
   identify_title: "గుర్తించండి"
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: ఇన్ ఫ్రాస్పెసిటీ ఐడీలు
-  #Label shown when a location has been entered but has been hidden due to the geoprivacy
+  # Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: స్థానం ప్రైవేట్
-  #Label shown when a location has not been entered. Originally "unknown" in
-  #English but we switched to "missing" to convey that a complete observation
-  #*should* have a location
+  # Label shown when a location has not been entered. Originally "unknown" in
+  # English but we switched to "missing" to convey that a complete observation
+  # *should* have a location
   location_unknown: స్థలం లేదు
   lexicons:
     russian: రష్యన్
@@ -109,65 +109,65 @@ te:
   location_is_public: స్థానం పబ్లిక్
   location_is_obscured: స్థానం అస్పష్టంగా ఉంది
   location_is_private: స్థానం ప్రైవేట్
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: లాగిన్ చేయబడింది
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: లాగ్ అవుట్ చేయబడింది
   more_from_x: '%{x} నుండి మరిన్ని'
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: మరిన్ని ఎంపికలు
   no_matching_users: సరిపోలే వినియోగదారులు లేరు.
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: నాన్ క్యూరేటర్
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: నాన్-ప్రాజెక్ట్ అడ్మిన్
   observation_fields_for_projects: ప్రాజెక్టుల కొరకు పరిశీలనా క్షేత్రాలు
-  #message describing a delay between importing a place and observations appearing in it
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: ఈ ప్రదేశానికి సంబంధించిన పరిశీలనలకు ఒక రోజు పట్టవచ్చు.
   places_name:
     british_indian_ocean_territory: బ్రిటిష్ ఇండియన్ ఓషన్ టెర్రిటరీ
     india: ఇండియా
     russia: రష్యా
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     ప్రదేశాలు 700,000 చదరపు కిలోమీటర్ల కంటే పెద్దవి కాకూడదు.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     ప్రదేశాలు 70,000 చదరపు కిలోమీటర్ల కంటే పెద్దవి కాకూడదు.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     ప్రదేశాలు 200,000 కంటే ఎక్కువ పరిశీలనలను కలిగి ఉండకూడదు.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     ప్రదేశాలు 10,000 కంటే ఎక్కువ పరిశీలనలను కలిగి ఉండకూడదు.
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: ప్రాజెక్ట్ అడ్మిన్
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: జాతి / జెనుషిబ్రిడ్
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: జాతులు / హైబ్రిడ్
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: ఉపజాతులు / రకాలు / రూపం
   sounds:
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: ధ్వని %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: ధ్వని తొలగించబడింది
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: ధ్వని దాచబడింది
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: దాచబడని ధ్వని
-  #Label for a button that subscribes the user to updates on a resource, e.g.
-  #comments on a journal post
+  # Label for a button that subscribes the user to updates on a resource, e.g.
+  # comments on a journal post
   subscribe: సబ్ స్క్రైబ్
   the_world: మన ప్రపంచం
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: నవీకరించబడిన ధ్వని
   user_trusts_this_project_when_added_by_any: |
     పరిశీలనల యొక్క దాచిన కోఆర్డినేట్ లతో యూజర్ ప్రాజెక్ట్ క్యూరేటర్ లను విశ్వసిస్తారు
@@ -209,7 +209,7 @@ te:
         మల్టిపుల్ సెలెక్ట్ చేయడానికై CMD- లేదా షిఫ్ట్-క్లిక్ చేయండి. ఎంపిక చేయబడ్డ దేశాలు చూపించబడవు
         ప్రకటన. ఒకవేళ IP దేశాలు ఎంచుకోబడితే, IP దేశాలను మినహాయించండి
         మొదటి నుంచి తీసివేయబడుతుంది.
-      #Note about how the announcement last observation date property works
+      # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         యూజర్ ఇటీవల సృష్టించిన దాని సృష్టి తేదీ గురించి గమనించండి
         పరిశీలన రహస్యంగా ఉంది, కాబట్టి లక్ష్యంగా చేసుకోవడానికి కొన్ని గంటలు పట్టవచ్చు
@@ -226,41 +226,41 @@ te:
         మీ ఖాతా టైమ్ జోన్ లో ఈ ప్రకటన ప్రారంభమవుతుంది
         కనిపిస్తుంది. టైమ్ జోన్లలో వర్తిస్తుంది, కాబట్టి ప్రతి ఒక్కరూ చూడటం ప్రారంభిస్తారు
         అదే సమయంలో, వారి స్థానిక కాలానికి సంబంధించినది కాదు.
-      #Description of a group of options for targeting announcements based
-      #on donation behavior
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
       target_users_by_donation_behavior: విరాళాల ప్రవర్తన ద్వారా వినియోగదారులను లక్ష్యంగా చేసుకోండి
-      #Description of a group of options for targeting announcements based
-      #on identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
       target_users_by_identification_behavior: గుర్తింపు ప్రవర్తన ద్వారా వినియోగదారులను లక్ష్యంగా చేసుకోండి
-      #Description of a group of options for targeting announcements based
-      #on observation behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
       target_users_by_observation_behavior: పరిశీలన ప్రవర్తన ద్వారా వినియోగదారులను లక్ష్యంగా చేసుకోండి
-      #Description of a group of options for targeting announcements based
-      #miscellaneous user attributes
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
       target_users_by_other_attributes: ఇతర లక్షణాల ద్వారా యూజర్లను టార్గెట్ చేయండి
     email_confirmation:
       click_here_to_resend_a_confirmation_email: ధృవీకరణ ఇమెయిల్ ని తిరిగి పంపడానికి ఇక్కడ క్లిక్ చేయండి
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: ధృవీకరణ ఇమెయిల్ పంపబడింది
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         ధృవీకరణను మేము పంపే ఇమెయిల్ చిరునామా ఇక్కడ ఉంది:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         మీరు ఇమెయిల్ అందుకోకపోతే, ఇక్కడ కొన్ని చిట్కాలు ఉన్నాయి:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: ఒకవేళ మీరు ఇంకా ధృవీకరణ ఇమెయిల్ ని అందుకోనట్లయితే, దయచేసి మమ్మల్ని సంప్రదించండి <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> కాబట్టి మేము మీకు సహాయపడగలము.
       please_add_an_email_and_password: దయచేసి ఇమెయిల్ మరియు పాస్ వర్డ్ జోడించండి, తద్వారా మీరు మీ ఖాతాకు ప్రాప్యతను కోల్పోరు
       please_click_the_link_sent_to_email_to_confirm_html: పంపిన లింక్ పై క్లిక్ చేయండి <span class="email">%{email}</span> మీ ఇమెయిల్ చిరునామాను ధృవీకరించడానికి.
-      please_confirm_that_email_is_the_best_contact_html: దయచేసి దీనిని ధృవీకరించండి <span class="email">%{email}</span> మిమ్మల్ని సంప్రదించడానికి ఉత్తమ మార్గం. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: ఇతర వినియోగదారుల కంటెంట్ తో ఇంటరాక్ట్ అవ్వడానికి మరియు నిర్ధిష్ట పేజీలను యాక్సెస్ చేయడానికి దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: దయచేసి దీనిని ధృవీకరించండి <span class="email">%{email}</span> మిమ్మల్ని సంప్రదించడానికి ఉత్తమ మార్గం. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: ఇతర వినియోగదారుల కంటెంట్ తో ఇంటరాక్ట్ అవ్వడానికి మరియు నిర్ధిష్ట పేజీలను యాక్సెస్ చేయడానికి దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: ఇతర వినియోగదారుల కంటెంట్ తో ఇంటరాక్ట్ అవ్వడం కొరకు దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: ఈ పేజీని ఉపయోగించడం కొరకు దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: మీ ఇన్ బాక్స్ నుండి మా ఇమెయిల్ లను తొలగించే ఏవైనా ఫిల్టర్ లను మీరు తయారు చేశారా అని తనిఖీ చేయండి #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: మీ ఇన్ బాక్స్ నుండి మా ఇమెయిల్ లను తొలగించే ఏవైనా ఫిల్టర్ లను మీరు తయారు చేశారా అని తనిఖీ చేయండి # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: మీ స్పామ్ ఫోల్డర్ ను తనిఖీ చేయండి
       your_site_account_has_no_email: నీ %{site_name} ఖాతాకు ఎటువంటి ఇమెయిల్ చిరునామా అసోసియేట్ చేయబడలేదు.
     guides:
@@ -270,25 +270,25 @@ te:
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           మీరు మీ ఇమెయిల్ ను ధృవీకరించిన తరువాత మీరు కొత్త సందేశాలను పంపగలుగుతారు
           చిరునామా. ప్రస్తుతానికి ఇతరులు మీకు పంపే సందేశాన్ని మీరు చదవవచ్చు మరియు ప్రతిస్పందించవచ్చు.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           మీరు మీ ఇమెయిల్ ను ధృవీకరించిన తరువాత మీరు కొత్త సందేశాలను పంపగలుగుతారు
           చిరునామా, మరియు మూడు ధృవీకరించదగిన పరిశీలనలు లేదా మూడు గుర్తింపులను జోడించింది
           ఇతరుల కోసం.. ప్రస్తుతానికి ఇతరులు మీకు పంపే సందేశాన్ని మీరు చదవవచ్చు మరియు ప్రతిస్పందించవచ్చు.
     observations:
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           ది <strong>కమ్యూనిటీ టాక్సాన్ మరియు అబ్జర్వేషన్ టాక్సాన్ మ్యాచ్ అవుతాయి</strong>
           (అబ్జర్వేషన్ టాక్సాన్ ఎక్కువగా ఉండే అరుదైన సందర్భాల్లో
           కమ్యూనిటీ టాక్సాన్ కంటే నిర్దిష్టమైనది)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           పరిశీలన <strong>జీవికి సంబంధించిన ఖచ్చితమైన సాక్ష్యాలను అందించకపోవడం లేదా
           దృశ్యం</strong> (ఉదా. జోడించడానికి, తొలగించడానికి లేదా భర్తీ చేయడానికి కృత్రిమ మేధస్సు ఉపయోగించబడింది
@@ -296,18 +296,18 @@ te:
           సెన్సార్ ధూళిని తొలగించడం వంటి చిన్న పరిష్కారాలు సాధారణంగా సరే).
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           మీరు ఒరిజినల్ ని ఇక్కడ చూడవచ్చు <a href="%{url}">%{url}</a>. దయచేసి
           ఈ ధ్వని ఉంటే కాపీరైట్ ఉల్లంఘన ఫ్లాగ్ లను పరిష్కరించని విధంగా వదిలివేయండి
           కాపీరైట్ ఉల్లంఘన.
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           మీరు జాతి విశేషణంలో నేరుగా చిన్న మార్పులు మాత్రమే చేయవచ్చు (ఉదా. లింగ మార్పులు, స్పెల్లింగ్ తప్పు). జోడించండి <a target="_blank" href="%{url}">టాక్సాన్ మార్పిడి</a> మీకు పేరుకు ఇతర మార్పులు అవసరమైతే.
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         ఆ ట్యాగ్ లను పోస్ట్ చేయడానికి ప్రయత్నించడంలో ఏదో తప్పు జరిగింది: %{message}
   number:
@@ -321,44 +321,44 @@ te:
   activerecord:
     attributes:
       announcement:
-        #Start of a date range that the viewer must not have donated in to see the announcement
+        # Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: దాత ప్రారంభ తేదీని మినహాయించండి
-        #End of a date range that the viewer must not have donated in to see the announcement
+        # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: దాత ముగింపు తేదీని మినహాయించండి
         excludes_non_site: సైట్ ఐడి లేని ఇతర ప్రకటనలను ఈ ప్లేస్ మెంట్ లో దాచండి
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: యాప్ ల నుంచి పరిశీలకులను మినహాయించండి
-        #start of a date range that the viewer must have donated in to see the announcement
+        # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: దాత ప్రారంభ తేదీని చేర్చండి
-        #End of a date range that the viewer must have donated in to see the announcement
+        # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: దాత ముగింపు తేదీని చేర్చండి
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: యాప్ ల నుంచి పరిశీలకులను చేర్చండి
-        #List of countries that the viewer's IP address can come from to see the announcement
+        # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP దేశాలు
-        #Start of a date range that includes the viewer's most recent observation
+        # Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: తాజా ఒబిఎస్ ప్రారంభ తేదీ
-        #end of a date range that includes the viewer's most recent observation
+        # end of a date range that includes the viewer's most recent observation
         last_observation_end_date: తాజా ఒబిఎస్ ముగింపు తేదీ
-        #Maximum number of identifications the viewer must have added for others to see the announcement
+        # Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: గరిష్ట గుర్తింపులు
-        #Minimum number of identifications the viewer must have added for others to see the announcement
+        # Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: కనీస గుర్తింపులు
-        #Maximum number of observations the viewer must have added for others to see the announcement
+        # Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: గరిష్ట పరిశీలనలు
-        #Minimum number of observations the viewer must have added for others to see the announcement
+        # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: కనీస పరిశీలనలు[మార్చు]
-        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: స్థానం[మార్చు]
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: టార్గెట్ క్రియేటర్ (టెస్టింగ్ కొరకు)
-        #Whether or not the announcement is shown to logged in users
+        # Whether or not the announcement is shown to logged in users
         target_logged_in: టార్గెట్ లాగిన్ చేయబడింది
-        #Earliest date the viewer can have signed up to see the announcement
+        # Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: తొలి యూజర్ సైన్ అప్ తేదీ
-        #Latest date the viewer can have signed up to see the announcement
+        # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: తాజా యూజర్ సైన్ అప్ తేదీ
       user:
         faved_project_ids: ఇష్టమైన ప్రాజెక్టులు
@@ -374,12 +374,12 @@ te:
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: 7 కంటే ఎక్కువ ప్రాజెక్టులను చేర్చలేరు
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: అన్నీ ఉండాలి
             login:
               domain_is_not_supported: డొమైన్ కు మద్దతు లేదు
