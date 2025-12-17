@@ -1,9 +1,4 @@
 ro:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} modificare"
-    few: "%{count} modificări"
-    other: "%{count} modificări"
   x_comments:
     one: 'comentariu'
     few: '%{count} comentarii'
@@ -24,23 +19,23 @@ ro:
     Când ai salvat acest taxon nou, vei putea adăuga alte nume aici (nume comune, nume științifice învechite etc.).
   a_flag_for_x: "un steag pentru %{x}"
   a_member_of_taxon_html: "un membru al %{taxon}"
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A la Z"
   about: Despre
   about_charts: Despre Diagrame
   about_complete_taxa: Despre taxoni compleți
   about_conservation_status: Despre starea de conservare
-  #Header for a section explaining Establishment Means. See the
-  #about_establishment_desc key or
-  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  # Header for a section explaining Establishment Means. See the
+  # about_establishment_desc key or
+  # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Despre mijloacele de stabilire
   about_license_options: Despre opțiunile de licențe
   about_licenses: Despre licențe
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: Despre nume
-  #Title for a section providing a text description of a place, @vow_or_con
-  #should work here
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
   about_place: "Despre %{place}"
   about_places: Despre Locuri
   about_taxon_ranges: Despre Arealele Taxonului
@@ -60,13 +55,13 @@ ro:
     Precizia coordonatelor în metri. Poți edita acest lucru făcând clic pe linkul "editare" 
     de mai sus sau făcând clic pe marcajul hărții și trăgând mânerele. Încearcă
     să faci cercul suficient de mare încât să fii sigur că ai fost undeva înăuntrul lui.
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Acțiune
   actions: Acțiuni
   active: Activ
-  #Status of a complete set that is available for use
+  # Status of a complete set that is available for use
   active_complete_set_status: Activ
-  #Status of a taxon that is available for use on iNat
+  # Status of a taxon that is available for use on iNat
   active_taxon_status: Activ
   active_users: Utilizatori activi
   activity: Activitate
@@ -74,13 +69,13 @@ ro:
   add: Adaugă
   add_a_comment: Adaugă un comentariu
   add_a_field: Adaugă un câmp
-  #Tool tip for a button that adds a link to a text area
+  # Tool tip for a button that adds a link to a text area
   add_a_link: Adaugă un link
   add_a_name: Adaugă un nume
   add_a_note: Adaugă o notă
-  #Tool tip for a button that adds a numbered list to a text area
+  # Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Adaugă o listă numerotată
-  #Placeholder for a project autocomplete field
+  # Placeholder for a project autocomplete field
   add_a_project: Adăugarea unui proiect
   add_a_single_observation: Adaugă o singură observație.
   add_a_taxon: Adaugă un taxon
@@ -89,27 +84,27 @@ ro:
   add_an_observation: Adaugă o observație
   add_batch: Adaugă lot
   add_blocked_users: Adaugă utilizatori blocați
-  #Tool tip for a button that adds bold text to a text area
+  # Tool tip for a button that adds bold text to a text area
   add_bold_text: Adaugă text îngroșat
   add_comment: Adaugă un comentariu
   add_editor: Adaugă editor
   add_link: Adaugă un link
   add_id: Adaugă ID
-  #Tool tip for a button that adds italic text to a text area
+  # Tool tip for a button that adds italic text to a text area
   add_italic_text: Adaugă text italic
   add_muted_users: Adaugă utilizatori dezactivați
   add_new_rule: Adaugă o regulă nouă
   add_new_source: "Adaugă sursă nouă..."
   add_observations: Adaugă observații
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: Adaugă unul!
-  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
-  #"one" refers to a photo
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: Adaugă una acum
   add_place: Adaugă locație
-  #As in a Taxon Framework Relationship
+  # As in a Taxon Framework Relationship
   add_relationship: 'Adaugă relație'
-  #As in a Guide Section
+  # As in a Guide Section
   add_section: Adaugă secțiune
   add_to_a_project: Adaugă la un proiect
   add_to_project: Adaugă la proiect
@@ -119,7 +114,7 @@ ro:
   added_by: Adăugat de
   added_by_user_on_date_html: "Adăugat de %{user} la data de %{date}"
   added_on_datetime: "Adăugat la %{datetime}"
-  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  # Message displayed after a project user changes role, e.g. they become a manager or a curator
   added_role: Rol adăugat
   adding: "Se adaugă..."
   admin: Admin
@@ -128,13 +123,13 @@ ro:
   agree_with_current_taxon: Acceptă taxonul curent
   agree_with_observation_taxon: De acord cu taxonul observat
   aka: alias
-  #Noun, title of a popup alerting you to something
+  # Noun, title of a popup alerting you to something
   alert: Alertă
   all: Toate
-  #Title for a list of all 3rd party applications
+  # Title for a list of all 3rd party applications
   all_applications: Toate aplicaţiile
   all_comments: Toate comentariile
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: Oricare
   app_owner_application_about_p2_html: |
     Începând cu 2022, solicităm aprobarea manuală pentru utilizatorii care doresc să facă clienți API.
@@ -144,16 +139,16 @@ ro:
     cel puțin 2 luni și trebuie să fi făcut cel puțin 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">îmbunătățirea identificărilor</a> în ultima lună. Putem cere urmărire
     întrebări despre planul dumneavoastră și ne rezervăm dreptul de a refuza cererile din orice motiv.
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: Sunteți sigur că doriți să ștergeți acest sunet?
   artificially_generated_content: Conținut generat artificial
   artificially_generated_content_desc: Conține conținut care este generat în mare parte sau în întregime prin inteligență artificială.
-  #Adjective describing when a place in an atlas was "exploded," i.e. divided
-  #into its constituent places
+  # Adjective describing when a place in an atlas was "exploded," i.e. divided
+  # into its constituent places
   atlas_alteration_action_exploded: Explodat
-  #Adjective describing when a place in an atlas was "unexploded," i.e. its
-  #constituent places were removed and now the atlas just contains this
-  #place
+  # Adjective describing when a place in an atlas was "unexploded," i.e. its
+  # constituent places were removed and now the atlas just contains this
+  # place
   atlas_alteration_action_unexploded: Neexplodat
   community_taxon_matches_observation_taxon: Taxonul comunitar se potrivește cu taxonul de observare
   confirming_ids: Confirmarea actelor de identitate
@@ -173,139 +168,139 @@ ro:
     observația la proiect. Aceasta este doar setarea implicită pentru
     observații în proiecte. Observatorii pot alege, de asemenea, să modifice acest lucru pentru
     observații individuale.
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Taxonul comunitar actual: %{taxon}"
-  #Button to customize projects that appear in the header
+  # Button to customize projects that appear in the header
   customize__projects: Personaliza
   dashboard_pilots:
-    #button asking to participate in a pilot
+    # button asking to participate in a pilot
     pilot_participate: "Da! Aș dori să particip."
-    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    # title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Pilot privind lacunele de identificare: Are nevoie de specii căutate de identificare"
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: Ștergeți sunetul
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Simbolul de resetare a parolei nu este valid. Vă rugăm să utilizați linkul din cel mai recent e-mail de resetare a parolei trimis sau <a href="%{url}">Solicitați unul nou</a>.
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Vă rugăm să faceți clic pe linkul de mai jos pentru a vă confirma adresa de e-mail. Dacă nu confirmați adresa de e-mail
     adresă, nu veți putea interacționa cu conținutul altor utilizatori.
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: Dezacorduri
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Afișați observații care au identificări în dezacord
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: A dona
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: Editarea anunțului %{id}
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Eroare la actualizarea sunetului: %{sound_errors}"
   evidence_accurately_depicts_organism_or_scene: Dovezile descriu cu acuratețe organismul sau scena
-  #Header for a section showing the user's favorite projects
+  # Header for a section showing the user's favorite projects
   favorite_projects: Proiecte preferate
-  #Description of what Favorite Projects section in user settings
+  # Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Alegeți până la șapte proiecte care apar ca linkuri în antet. Actualizări
     va apărea după reîmprospătarea paginii.
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Formatul fișierului
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: Adresa URL a fișierului
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "ATENȚIE: acest sunet a fost semnalat."
-  #Title of identification that was automatically added by a taxon change
+  # Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist a actualizat ID-ul sugerat de %{user}
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: ID-uri infraspecii
-  #Description of preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Description of preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids_description: |
     Dacă dezactivați această opțiune, nu veți mai fi notificat cu privire la ID-urile taxonilor
     sub nivel de specie (cum ar fi subspecii și soiuri) care sunt de acord cu
     ID la nivel de specie. Veți fi notificat dacă nu sunt de acord cu actul dvs. de identitate sau
     dacă acestea conțin observații suplimentare.
-  #Error message shown when a date format is invalid
+  # Error message shown when a date format is invalid
   invalid_date: Data nevalidă
-  #Adjective describing addition of a taxon to a list
+  # Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Enumerate
-  #Adjective describing removal of a taxon from a list
+  # Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: Nelistate
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: Conectat
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: Deconectat
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: Mai multe opțiuni
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: Non-curator
-  #Title for a preference to control whether you receive notifications about
-  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
-  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  # Title for a preference to control whether you receive notifications about
+  # non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  # someone else adds an ID of Mammalia but does not make it a disagreement.
   non_disagreeing_ancestor_ids: ID-uri de strămoși care nu sunt de acord
-  #Description of a preference to control whether you receive notifications
-  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
-  #and someone else adds an ID of Mammalia but does not make it a
-  #disagreement.
+  # Description of a preference to control whether you receive notifications
+  # about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  # and someone else adds an ID of Mammalia but does not make it a
+  # disagreement.
   non_disagreeing_ancestor_ids_description: |
     Dacă dezactivați această opțiune, nu veți mai fi notificat când cineva adaugă un
     ID-ul unui taxon care este un strămoș al taxonului din ID-ul dvs.
     în mod explicit nu sunt de acord cu taxonul comunitar. Veți fi notificat dacă
     ID are observații suplimentare.
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: Non-administrator de proiect
   observation_fields_for_projects: Câmpuri de observare pentru proiecte
-  #message describing a delay between importing a place and observations appearing in it
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Poate dura până la o zi pentru ca observațiile să fie asociate cu acest loc.
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     Locurile nu pot fi mai mari de 700.000 de kilometri pătrați.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     Locurile nu pot fi mai mari de 70.000 de kilometri pătrați.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     Locurile nu pot conține mai mult de 200.000 de observații.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Locurile nu pot conține mai mult de 10.000 de observații.
-  #A user may attempt to upload a profile picture with an unsupported content type, and this
-  #text will be the first part of an error message displayed to the user describing that error
+  # A user may attempt to upload a profile picture with an unsupported content type, and this
+  # text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Tip de fișier imagine de profil
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: Administrator de proiect
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: Gen/Genhibrid
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: Specii / Hibrid
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: Subspecii / Varietate / Formă
-  #Message displayed when you have joined a test of right-to-left layouts,
-  #e.g. for languages like Arabic and Hebrew. Could also be translated
-  #as "You have joined..."
+  # Message displayed when you have joined a test of right-to-left layouts,
+  # e.g. for languages like Arabic and Hebrew. Could also be translated
+  # as "You have joined..."
   rtl_test_joined_status: S-a alăturat testului de aspect dreapta-stânga
   sounds:
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Sunet %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: Sunet șters
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: Sunet ascuns
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Sunet neascuns
-  #Label for a button that subscribes the user to updates on a resource, e.g.
-  #comments on a journal post
+  # Label for a button that subscribes the user to updates on a resource, e.g.
+  # comments on a journal post
   subscribe: Abona
   update_existing_observations_with_new_license_desc: |
     Selectarea acestei opțiuni va aplica noua opțiune de licență tuturor
@@ -319,7 +314,7 @@ ro:
     Selectarea acestei opțiuni va aplica noua opțiune de licență tuturor
     sunete existente. Acest lucru poate dura câteva ore dacă aveți o mulțime de
     Sunete.
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Sunet actualizat
   user_trusts_this_project_when_added_by_any: |
     Utilizatorul are încredere în curatorii de proiect cu coordonatele ascunse ale observațiilor adăugate
@@ -329,7 +324,7 @@ ro:
     proiectului de către observator.
   user_trusts_this_project_when_added_by_none: |
     Utilizatorul nu are încredere în curatorii de proiect cu coordonate ascunse.
-  #Link to view identifications affected by a taxon change
+  # Link to view identifications affected by a taxon change
   view_your_affected_ids: Vizualizarea ID-urilor afectate
   we_also_support3: |
     De asemenea, acceptăm importul de fotografii din <a href="http://flickr.com">Flickr</a>.
@@ -361,7 +356,7 @@ ro:
         CMD sau SHIFT-clic pentru a selecta mai multe. Țările selectate nu vor fi afișate
         anunțul. Dacă sunt selectate țări IP, selectați Excludere țări IP
         vor fi scăzute din primul.
-      #Note about how the announcement last observation date property works
+      # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Rețineți că data de creare a celei mai recente creații a utilizatorului
         observația este stocată în cache, deci ar putea dura câteva ore pentru ca direcționarea către
@@ -378,81 +373,81 @@ ro:
         Ora din fusul orar al contului în care va începe acest anunț
         Apare. Se aplică pe toate fusurile orare, astfel încât toată lumea va începe să vadă
         în același timp, nu în raport cu ora lor locală.
-      #Description of a group of options for targeting announcements based
-      #on donation behavior
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
       target_users_by_donation_behavior: Vizați utilizatorii în funcție de comportamentul donațiilor
-      #Description of a group of options for targeting announcements based
-      #on identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
       target_users_by_identification_behavior: Vizați utilizatorii după comportamentul de identificare
-      #Description of a group of options for targeting announcements based
-      #on observation behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
       target_users_by_observation_behavior: Vizați utilizatorii în funcție de comportamentul de observare
-      #Description of a group of options for targeting announcements based
-      #miscellaneous user attributes
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
       target_users_by_other_attributes: Vizați utilizatorii după alte atribute
     atlases:
       show:
-        #Title for section describing atlases
+        # Title for section describing atlases
         about_atlases: Despre Atlases
-        #Description of what atlases are
+        # Description of what atlases are
         atlases_convey_the_global_distribution: |
           Atlasele transmit distribuția globală a unui taxon. Curatorii fac
           prin definirea structurii unui atlas și organizarea
           taxoni listați care îl conduc.
-        #Label for a button that divides a place in an atlas into it's
-        #constituent places. E.g. if the atlas for Red Fox contained Europe
-        #you wanted to specify that Red Fox only occurs in Belgium and
-        #France, you would "explode" Europe so you could choose Belgium and
-        #France.
+        # Label for a button that divides a place in an atlas into it's
+        # constituent places. E.g. if the atlas for Red Fox contained Europe
+        # you wanted to specify that Red Fox only occurs in Belgium and
+        # France, you would "explode" Europe so you could choose Belgium and
+        # France.
         explode_this_place: Explodează acest loc
-        #Label for a button that reunites places in an atlas into the place
-        #that contains them. E.g. if an atlas contains Europe but it has
-        #been "exploded" into its constituent countries, this would remove
-        #those countries so the atlas would just contain Europe again.
+        # Label for a button that reunites places in an atlas into the place
+        # that contains them. E.g. if an atlas contains Europe but it has
+        # been "exploded" into its constituent countries, this would remove
+        # those countries so the atlas would just contain Europe again.
         unexplode_this_place: Deexplodează acest loc
-        #Notice when an atlas has not been altered
+        # Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Nu există încă modificări la acest atlas
-        #Title for a section showing recent alterations to an atlas
+        # Title for a section showing recent alterations to an atlas
         recent_atlas_alterations: Modificări recente ale Atlasului
-        #Title for a section showing taxa that were recently added to a check
-        #list
+        # Title for a section showing taxa that were recently added to a check
+        # list
         recent_listed_taxon_additions: Modificări recente ale taxonilor listați
-        #Label for a button that shows taxa on checklists for a place
+        # Label for a button that shows taxa on checklists for a place
         show_listed_taxa: Afișați taxonii listați
-        #Notice when an atlas is not active
+        # Notice when an atlas is not active
         this_atlas_is_not_currently_active: Acest atlas nu este activ în prezent
-        #Warning before removing a place from an atlas
+        # Warning before removing a place from an atlas
         this_will_remove_this_taxon_and_all: |
           Acest lucru va elimina acest taxon și toți descendenții săi de pe listele de verificare
           asociat cu acest loc și cu orice locuri standard pe care le conține. El
           nu poate fi anulat. Ești sigur că vrei să faci asta?
-        #Warning when there are observations outside of the places defined by
-        #the atlas
+        # Warning when there are observations outside of the places defined by
+        # the atlas
         warning_there_are_observations_not_represented: |
           Avertisment: există observații care nu sunt reprezentate de acest atlas
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Faceți clic aici pentru a retrimite un e-mail de confirmare
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: E-mail de confirmare trimis
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         Iată adresa de e-mail la care vom trimite confirmarea:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         Dacă nu primiți e-mailul, iată câteva sfaturi:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: Dacă tot nu primiți e-mailul de confirmare, vă rugăm să ne contactați la <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> astfel încât să vă putem ajuta.
       please_add_an_email_and_password: Vă rugăm să adăugați un e-mail și o parolă pentru a nu pierde accesul la contul dvs.
       please_click_the_link_sent_to_email_to_confirm_html: Vă rugăm să faceți clic pe linkul trimis la <span class="email">%{email}</span> pentru a vă confirma adresa de e-mail.
-      please_confirm_that_email_is_the_best_contact_html: Vă rugăm să confirmați că <span class="email">%{email}</span> este cel mai bun mod de a vă contacta. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Vă rugăm să vă confirmați adresa de e-mail pentru a interacționa cu conținutul altor utilizatori și pentru a accesa anumite pagini. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Vă rugăm să confirmați adresa de e-mail <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: Vă rugăm să confirmați că <span class="email">%{email}</span> este cel mai bun mod de a vă contacta. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Vă rugăm să vă confirmați adresa de e-mail pentru a interacționa cu conținutul altor utilizatori și pentru a accesa anumite pagini. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Vă rugăm să confirmați adresa de e-mail <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: Vă rugăm să vă confirmați adresa de e-mail pentru a interacționa cu conținutul altor utilizatori
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Vă rugăm să confirmați adresa de e-mail pentru a utiliza această pagină
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Verificați dacă există filtrele pe care le-ați creat și care ar putea elimina e-mailurile noastre din căsuța de e-mail #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Verificați dacă există filtrele pe care le-ați creat și care ar putea elimina e-mailurile noastre din căsuța de e-mail # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Verificați folderul de spam
       your_site_account_has_no_email: Vostru %{site_name} nu are nicio adresă de e-mail asociată.
     guides:
@@ -462,25 +457,25 @@ ro:
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           Vei putea trimite mesaje noi după ce ai confirmat e-mailul
           adresă. Deocamdată puteți citi și răspunde la mesajele pe care vi le trimit alte persoane.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           Vei putea trimite mesaje noi după ce ai confirmat e-mailul
           și a adăugat trei observații verificabile sau trei identificări
           pentru alții. Deocamdată puteți citi și răspunde la mesajele pe care vi le trimit alte persoane.
     observations:
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           cel <strong>Taxonul comunitar și taxonul de observare se potrivesc</strong>
           (pentru acele rare ocazii în care taxonul de observare poate fi mai mult
           specific taxonului comunitar)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           Observația <strong>nu prezintă dovezi exacte ale organismului sau
           scenă</strong> (de exemplu, inteligența artificială a fost utilizată pentru a adăuga, elimina sau înlocui
@@ -488,15 +483,15 @@ ro:
           remedieri mici, cum ar fi îndepărtarea prafului senzorului, sunt de obicei OK).
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           Puteți vizualiza originalul la <a href="%{url}">%{url}</a>. Vă rog
           lăsați semnalizările de încălcare a drepturilor de autor ca nerezolvate dacă acest sunet
           încalcă drepturile de autor.
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           Puteți face doar modificări minore la epitetul speciei direct (de exemplu, schimbări de gen, greșeli de ortografie). Adăugați un <a target="_blank" href="%{url}">Schimb de taxoni</a> dacă aveți nevoie de alte modificări ale numelui.
       show:
@@ -505,7 +500,7 @@ ro:
           conținut din Wikipedia</a>. Puteți ajuta editând pagina pe
           Wikipedia pentru a-l face adecvat pentru acest taxon sau prin marcarea acestui
           taxon pentru a-l aduce în atenția curatorilor site-ului.
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Ceva nu a mers bine încercând să postez acele etichete: %{message}
     users:
@@ -537,8 +532,8 @@ ro:
         block_desc_there_are_two_exceptions: |
           Există două situații în care blocarea nu împiedică interacțiunea:
         errors:
-          #error message when a user attempts to update their profile picture using
-          #an image that has an unsupported file type
+          # error message when a user attempts to update their profile picture using
+          # an image that has an unsupported file type
           unsupported_file_type: Tipul de fișier nu este acceptat. Acceptăm JPG, PNG și GIF
         this_only_applies_to_traditional_projects2: |
           Acest lucru este valabil doar pentru proiectele tradiționale. Nu poți exclude observațiile
@@ -555,56 +550,56 @@ ro:
         strip_insignificant_zeros: true
   time:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
     attributes:
       announcement:
-        #Whether or not the announcement can be dismissed by people who see it
+        # Whether or not the announcement can be dismissed by people who see it
         dismissible: Respingere
-        #Start of a date range that the viewer must not have donated in to see the announcement
+        # Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: Excludeți data de începere a donatorului
-        #End of a date range that the viewer must not have donated in to see the announcement
+        # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Excludeți data de încheiere a donatorului
         excludes_non_site: Ascundeți alte anunțuri din această poziționare care nu au ID de site
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: Excluderea observatorilor din aplicații
-        #start of a date range that the viewer must have donated in to see the announcement
+        # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Includeți data de începere a donatorului
-        #End of a date range that the viewer must have donated in to see the announcement
+        # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Includeți data de încheiere a donatorului
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: Includeți observatori din aplicații
-        #List of countries that the viewer's IP address can come from to see the announcement
+        # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: Țări IP
-        #Start of a date range that includes the viewer's most recent observation
+        # Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: Ultima dată de începere a obs.
-        #end of a date range that includes the viewer's most recent observation
+        # end of a date range that includes the viewer's most recent observation
         last_observation_end_date: Cea mai recentă dată de încheiere a obs
-        #Maximum number of identifications the viewer must have added for others to see the announcement
+        # Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Identificări maxime
-        #Minimum number of identifications the viewer must have added for others to see the announcement
+        # Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: Identificări minime
-        #Maximum number of observations the viewer must have added for others to see the announcement
+        # Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: Observații maxime
-        #Minimum number of observations the viewer must have added for others to see the announcement
+        # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Observații minime
-        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Plasare
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: Creatorul țintă (pentru testare)
-        #Whether or not the announcement is shown to logged in users
+        # Whether or not the announcement is shown to logged in users
         target_logged_in: Țintă conectată
-        #Earliest date the viewer can have signed up to see the announcement
+        # Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: Cea mai apropiată dată de înscriere a utilizatorului
-        #Latest date the viewer can have signed up to see the announcement
+        # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Cea mai recentă dată de înscriere a utilizatorului
       taxon:
-        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        # Boolean attribute that controls whether Wikipedia content is shown for this taxon
         shows_wikipedia: Arată Wikipedia
       user:
         faved_project_ids: Proiecte preferate
@@ -616,19 +611,19 @@ ro:
         moderator_action:
           attributes:
             base:
-              #Error saying that only staff can rename
+              # Error saying that only staff can rename
               only_staff_can_rename: Doar personalul poate redenumi
         observation:
           attributes:
             observed_on:
-              #Error message when user attempts to enter an observation date
-              #like "2020 or "2020-05"
+              # Error message when user attempts to enter an observation date
+              # like "2020 or "2020-05"
               must_be_a_single_day: trebuie să fie o singură zi, nu un interval
         place:
           attributes:
             place_geometry:
-              #Error message when a user uploads a KML that has a polygon
-              #where all the points are the same.
+              # Error message when a user uploads a KML that has a polygon
+              # where all the points are the same.
               polygon_with_no_area: are un poligon fără suprafață (toate punctele sunt la fel)
         project_fave:
           attributes:
@@ -637,17 +632,17 @@ ro:
         taxon_change:
           attributes:
             base:
-              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              # Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
               life_taxon_cannot_be_involved: Taxonul Life nu poate fi implicat în modificările taxonului
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: nu poate include mai mult de 7 proiecte
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: trebuie să existe toate
             login:
               domain_is_not_supported: domeniu nu este acceptat
