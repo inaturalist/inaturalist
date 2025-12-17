@@ -1,35 +1,12 @@
 th:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    other: "เปลี่ยนแปลง %{count} รายการ"
   x_comments:
     other: '%{count} ความคิดเห็น'
-  x_comments_html:
-    other: '<span class="count">%{count}</span> ความคิดเห็น'
   x_faves:
     other: '%{count} ชอบ'
   x_flags_resolved_html:
     other: "แก้ปัญหาการรายงาน <span class='count'>%{count}</span> ครั้ง"
   x_identifications:
     other: '%{count} การจำแนก'
-  x_identifications_html:
-    other: '<span class="count">%{count}</span> การจำแนก'
-  x_identifications_:
-    other: '%{count} การจำแนก'
-  x_identifications_caps_html:
-    other: '<span class="count">%{count}</span> การจำแนก'
-  #Number of people who have added identifications
-  x_identifiers_caps_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ผู้จำแนก'
-  x_ids_made_for_others_html:
-    other: '<span class="count">%{count}</span> การจำแนกให้ผู้อื่น'
-  x_languages:
-    other: "%{count} ภาษา"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    other: "รายการสิ่งมีชีวิต %{count} รายการแรก"
   x_journal_posts_html:
     other: '<span class="count">%{count}</span> โพสต์บทความ'
   x_matching_taxa:
@@ -40,57 +17,31 @@ th:
     other: "ชนิดนี้มีการจำแนกผิด %{count} ครั้ง"
   x_misidentifications_of_species_in_this_genus:
     other: "มีการจำแนกชนิดผิด %{count} ครั้งในสกุลนี้"
-  #This is a fallback. Most of the time we'll use
-  #x_misidentifications_of_species_in_this_genus
+  # This is a fallback. Most of the time we'll use
+  # x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     other: "มีการจำแนกชนิดผิด %{count} ครั้งใน%{rank}นี้"
-  x_observations:
-    other: "%{count} การสังเกต"
-  x_observations_:
-    other: "%{count} การสังเกต"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span> การสังเกต"
-  x_observations_caps_html:
-    other: "<span class='count'>%{count}</span> การสังเกต"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} การสังเกต</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> การสังเกตที่ตรวจสอบแล้ว"
-  x_observers_caps_html:
-    other: '<span class="count">%{count}</span> ผู้สังเกต'
   x_others:
     other: "%{count} อื่น ๆ"
-  x_people:
-    other: "%{count} คน"
-  x_people_html:
-    other: '<span class="count">%{count}</span> คน'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} คน</strong> ช่วย %{user} ด้วย <strong>%{y} การจำแนก</strong>"
   x_photos:
     other: "%{count} รูป"
   x_new_species:
     other: "%{count} ชนิดใหม่"
-  x_new_users:
-    other: '%{count} ผู้ใช้งานใหม่'
-  x_species:
-    other: '%{count} ชนิด'
-  x_species_caps_html:
-    other: "<span class='count'>%{count}</span> ชนิด"
-  x_species_html:
-    other: "<span class='count'>%{count}</span> ชนิด"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} ชนิด</a>"
   x_suggestions_filtered_by_colon:
     other: "%{count} คำแนะนำกรองข้อมูลโดย:"
-  x_taxa:
-    other: "%{count} หน่วยอนุกรมวิธาน"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> หน่วยอนุกรมวิธานที่สังเกตแล้ว"
   x_research_grade_observations_html:
     other: "<span class='count'>%{count}</span> การสังเกตระดับงานวิจัย"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span> การสังเกตระดับงานวิจัยที่ได้รับจำแนกตั้งแต่ระดับชนิดลงไป"
-  x_sounds:
-    other: "%{count} เสียง"
   x_taxa_curated_html:
     other: "จัดการ <span class='count'>%{count}</span> หน่วยอนุกรมวิธาน"
   x_taxa_matching_current_filters:
@@ -105,28 +56,28 @@ th:
     เมื่อบันทึกชื่อตามอนุกรมวิธานใหม่นี้ ผู้ใช้สามารถเพิ่มชื่ออื่น ๆ ได้ที่นี่ (ชื่อสามัญ ชื่อวิทยาศาสตร์เดิมที่ถูกยกเลิก ฯลฯ)
   a_flag_for_x: "รายงานสำหรับ %{x}"
   a_member_of_taxon_html: "สมาชิกของ%{taxon}"
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A ถึง Z"
-  #Used as a noun phrase in sentences like "kueda added a comment to *an
-  #observation*". %{resource} could be any of the following:
-  #* assessment_section
-  #* atlas
-  #* listed_taxon
-  #* observation
-  #* observation_field
-  #* post
-  #* taxon_change
-  #* taxon_drop
-  #* taxon_link
-  #* taxon_merge
-  #* taxon_split
-  #* taxon_stage
-  #* taxon_swap
-  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
-  #to add masculine, feminine, and neuter forms of articles. I realize this is
-  #an awkward way to translate something, but fixing it will have to wait for
-  #an overhaul of our notification system.
+  # Used as a noun phrase in sentences like "kueda added a comment to *an
+  # observation*". %{resource} could be any of the following:
+  # * assessment_section
+  # * atlas
+  # * listed_taxon
+  # * observation
+  # * observation_field
+  # * post
+  # * taxon_change
+  # * taxon_drop
+  # * taxon_link
+  # * taxon_merge
+  # * taxon_split
+  # * taxon_stage
+  # * taxon_swap
+  # Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  # to add masculine, feminine, and neuter forms of articles. I realize this is
+  # an awkward way to translate something, but fixing it will have to wait for
+  # an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: รายละเอียด
   about_charts: เกี่ยวกับแผนภูมิ
@@ -134,16 +85,16 @@ th:
   about_complete_taxa: เกี่ยวกับหน่วยอนุกรมวิธานที่สมบูรณ์
   about_conservation_status: เพิ่มสถานะการอนุรักษ์
   about_editing_observation_fields: เกี่ยวกับการแก้ไขข้อมูลเสริมการสังเกต
-  #Header for a section explaining Establishment Means. See the
-  #about_establishment_desc key or
-  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  # Header for a section explaining Establishment Means. See the
+  # about_establishment_desc key or
+  # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: เกี่ยวกับการเข้ามาตั้งถิ่นฐาน
   about_license_options: เกี่ยวกับตัวเลือกของใบอนุญาต
   about_licenses: เกี่ยวกับใบอนุญาต
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: เกี่ยวกับชื่อ
-  #Title for a section providing a text description of a place, @vow_or_con
-  #should work here
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
   about_place: "เกี่ยวกับ %{place}"
   about_places: เกี่ยวกับสถานที่
   about_taxon_ranges: เกี่ยวกับพื้นที่อาศัยของหน่วยฯ
@@ -157,26 +108,26 @@ th:
     ทั้งนี้รวมถึงสิ่งที่สังเกต (observations) เมื่อผู้ใช้ตั้งค่าการปกปิดระบบพิกัด (geoprivacy) เป็นแบบ "คลุมเครือ" (obscured) หรือ "ส่วนตัว" (private) เช่น สิ่งที่สังเกตในสวนหลังบ้านหรือตำแหน่งที่ไม่ต้องการให้ผู้อื่นรู้
   about_trusting_projects_options_taxon: |-
     เฉพาะการสังเกตของคุณในโครงการนี้ที่มีพิกัดพรางเพราะเป็นชนิดพันธุ์ที่ถูกคุกคาม
-  #Header for a section listing all the project managers (admins and curators)
-  #of a project
+  # Header for a section listing all the project managers (admins and curators)
+  # of a project
   about_trusting_projects_project_managers_are: |-
     ผู้จัดการโครงการที่จะสามารถเข้าถึงพิกัดที่ซ่อนอยู่ของคุณ ได้แก่ :
   about_trusting_projects_warning: |-
     โปรดทราบว่าผู้จัดการโครงการสามารถเปลี่ยนพารามิเตอร์โครงการเพื่อรวมการสังเกตของคุณและสามารถเพิ่มหรือลบผู้จัดการโครงการได้ตลอดเวลา คุณจะได้รับการแจ้งเตือนเกี่ยวกับการเปลี่ยนแปลงเหล่านี้ แต่คุณแสดงความเชื่อมั่นในโครงการนี้ด้วยข้อมูลตำแหน่งส่วนตัวของคุณดังนั้นโปรดใช้ความระมัดระวัง
-  #Header for a section listing the different ways you can trust a project
+  # Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     คุณสามารถเลือกที่จะแบ่งปันพิกัดที่ซ่อนอยู่สำหรับ
-  #Header for a section describing unintended disagreements
+  # Header for a section describing unintended disagreements
   about_unintended_disagreements: เกี่ยวกับการไม่เห็นด้วยแบบไม่ตั้งใจ
-  #Abbreviated form of "accuracy in meters", where "accuracy" is the
-  #positional_accuracy attribute of an observation, which is really more like
-  #positional uncertainty
+  # Abbreviated form of "accuracy in meters", where "accuracy" is the
+  # positional_accuracy attribute of an observation, which is really more like
+  # positional uncertainty
   acc: 'ความแม่นยำ (เมตร)'
-  #Filter for observations with positional accuracy above a certain value
+  # Filter for observations with positional accuracy above a certain value
   acc_above: คลาดเคลื่อนสูงกว่า
-  #Filter for observations with positional accuracy below a certain value
+  # Filter for observations with positional accuracy below a certain value
   acc_below: คลาดเคลื่อนต่ำกว่า
-  #Filter for observations with positional accuracy below a certain value or missing
+  # Filter for observations with positional accuracy below a certain value or missing
   acc_below_or_unknown: คลาดเคลื่อนต่ำกว่าหรือไม่ทราบ
   account: บัญชีผู้ใช้
   account_creation: การสร้างบัญชี
@@ -186,13 +137,13 @@ th:
   accuracy_meters: ความแม่นยำ (เมตร)
   accuracy_of_the_coordinates: |
     ความแม่นยำของพิกัดแสดงเป็นหน่วยเมตร สามารถแก้ไขโดยคลิกลิงก์ "แก้ไข" ด้านบนหรือคลิกบนแผนที่แล้วลากออก โดยพยายามลากวงกลมให้ครอบคลุมตำแหน่งการสังเกตที่คุณแน่ใจ
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: การกระทำ
   actions: การดำเนินการทั้งหมด
   active: กำลังดำเนินการ
-  #Status of a complete set that is available for use
+  # Status of a complete set that is available for use
   active_complete_set_status: ใช้งาน
-  #Status of a taxon that is available for use on iNat
+  # Status of a taxon that is available for use on iNat
   active_taxon_status: ใช้งาน
   active_users: ผู้ใช้ที่ยังมีความเคลื่อนไหว
   activity: กิจกรรม
@@ -200,21 +151,21 @@ th:
   add: เพิ่ม
   add_a_batch_of_observations: เพิ่มหลายการสังเกต
   add_a_batch_of_taxa: เพิ่มหลายหน่วยอนุกรมวิธาน
-  #Tool tip for a button that adds a bulleted list to a text area
+  # Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: เพิ่มรายการสัญลักษณ์แสดงหัวข้อย่อย
   add_a_comment: เพิ่มข้อเสนอแนะ
-  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  # Text for a button that links to a page where curators can add new conservation statuses for taxa
   add_a_conservation_status: เพิ่มสถานะการอนุรักษ์
   add_a_field: เพิ่มข้อมูลเสริม
   add_a_flag: เพิ่มการรายงาน
-  #Tool tip for a button that adds a link to a text area
+  # Tool tip for a button that adds a link to a text area
   add_a_link: เพิ่มลิงก์
   add_a_name: เพิ่มชื่อ
   add_a_note: เพิ่มหมายเหตุ
   add_a_new_change_group: เพิ่มการเปลี่ยนแปลงกลุ่ม
-  #Tool tip for a button that adds a numbered list to a text area
+  # Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: เพิ่มรายการลำดับเลข
-  #Placeholder for a project autocomplete field
+  # Placeholder for a project autocomplete field
   add_a_project: เพิ่มโครงการ
   add_a_single_observation: เพิ่มการสังเกตอันเดียว
   add_a_taxon: เพิ่มอันดับอนุกรมวิธาน
@@ -237,11 +188,11 @@ th:
   add_another_photo: เพิ่มอีกรูป
   add_another_section: เพิ่มอีกส่วน
   add_another_subscription: เพิ่มคำอธิบายตัวกรอง
-  #Project assets are files associated with projects, e.g. image files for a custom header
+  # Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: เพิ่มโครงการที่เกี่ยวข้อง
   add_batch: เพิ่มแบบกลุ่ม
   add_blocked_users: เพิ่มผู้ใช้ที่ถูกบล็อก
-  #Tool tip for a button that adds bold text to a text area
+  # Tool tip for a button that adds bold text to a text area
   add_bold_text: เพิ่มข้อความตัวหนา
   add_comma_separated_tags: "เพิ่มจุลภาคเพื่อคั่นแท็ก"
   add_comment: เพิ่มความคิดเห็น
@@ -254,7 +205,7 @@ th:
   add_link: เพิ่มลิงก์
   add_higher_level_taxon: เพิ่มหน่วยอนุกรมวิธานระดับสูงกว่า (เช่น "นก")
   add_id: เพิ่มการจำแนก
-  #Tool tip for a button that adds italic text to a text area
+  # Tool tip for a button that adds italic text to a text area
   add_italic_text: เพิ่มข้อความตัวเอียง
   add_muted_users: เพิ่มผู้ใช้ที่ถูกปิดกั้น
   add_new_lexicon: เพิ่มภาษา/ศัพท์เฉพาะใหม่
@@ -270,13 +221,13 @@ th:
   add_observations: เพิ่มการสังเกต
   add_observations_by_checking_off: เพิ่มข้อสังเกตโดยการตรวจสอบสายพันธุ์จากรายการ
   add_observations_project: เพิ่มการสังเกตในโครงการนี้
-  #Used for buttons to add observations where the words "Add"
-  #and "Observations" need to be styled differently
+  # Used for buttons to add observations where the words "Add"
+  # and "Observations" need to be styled differently
   add_observations_split_html: "<span>เพิ่ม</span><span>การสังเกต</span>"
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: เพิ่มอีก
-  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
-  #"one" refers to a photo
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: เพิ่มเดี๋ยวนี้
   add_place: เพิ่มสถานที่
   add_alive_or_dead_alive_annotation: 'เพิ่มหมายเหตุ "มีชีวิตหรือตาย: มีชีวิต"'
@@ -312,9 +263,9 @@ th:
   add_evidence_of_presence_leafmine_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: รอยชอนใบ"'
   add_evidence_of_presence_hair_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: ขน"'
   add_evidence_of_presence_construction_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: สิ่งที่สัตว์สร้าง"'
-  #As in a Taxon Framework Relationship
+  # As in a Taxon Framework Relationship
   add_relationship: 'เพิ่มความสัมพันธ์'
-  #As in a Guide Section
+  # As in a Guide Section
   add_section: เพิ่มส่วน
   add_several_observations_at_once: เพิ่มข้อสังเกตหลายอย่างพร้อมกัน
   add_sex_female_annotation: 'ใส่คำอธิบายประกอบ "เพศ: เมีย"'
@@ -354,7 +305,7 @@ th:
   added_by: เพิ่มโดย
   added_by_user_on_date_html: "เพิ่มโดย %{user} เมื่อ %{date}"
   added_on_datetime: "เพิ่มเมื่อ %{datetime}"
-  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  # Message displayed after a project user changes role, e.g. they become a manager or a curator
   added_role: ได้รับการแต่งตั้ง
   added_to_favorites_html: |
     เพิ่มไปยัง<a href="%{url}">รายการโปรด</a>
@@ -364,7 +315,7 @@ th:
   admin_s: กลุ่มแอดมิน
   admin_only: แอดมินเท่านั้น
   admin_tools: เครื่องมือสำหรับแอดมิน
-  #Organizations affiliated with an iNaturalist Network member or similar entity
+  # Organizations affiliated with an iNaturalist Network member or similar entity
   affiliated_organizations: องค์กรในเครือข่าย
   agree_: เห็นด้วย
   agree?: เห็นด้วย
@@ -372,10 +323,10 @@ th:
   agree_with_observation_taxon: เห็นด้วยกับหน่วยอนุกรมวิธานของการสังเกต
   agreeing: กำลังยืนยัน...
   aka: เป็นที่รู้จักกันในชื่อ
-  #Noun, title of a popup alerting you to something
+  # Noun, title of a popup alerting you to something
   alert: แจ้งเตือน
   all: ทั้งหมด
-  #Title for a list of all 3rd party applications
+  # Title for a list of all 3rd party applications
   all_applications: แอปพลิเคชันทั้งหมด
   all_comments: ความคิดเห็นทั้งหมด
   all_flags_must_be_resolved: ธงปักทั้งหมดต้องได้รับการแก้ไข
@@ -484,38 +435,38 @@ th:
   annotation: หมายเหตุ
   annotations: หมายเหตุ
   announcements: ประกาศ
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any: ไม่ระบุ
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any_: ไม่ระบุ
-  #Label for an option to show content with any annotation attribute
+  # Label for an option to show content with any annotation attribute
   any_annotation_attribute: ไม่ระบุ
-  #Label for an option to show content with any annotation value
+  # Label for an option to show content with any annotation value
   any_annotation_value: ไม่ระบุ
-  #Label for an option to show content from any date
+  # Label for an option to show content from any date
   any_date: ไม่ระบุ
-  #Label for an option to show content with any establishment means
+  # Label for an option to show content with any establishment means
   any_establishment: ไม่ระบุ
-  #Label for an option to show content with any license
+  # Label for an option to show content with any license
   any_license: ไม่ระบุ
-  #Label for an option to show content with photos, sounds, or neither
+  # Label for an option to show content with photos, sounds, or neither
   any_media: ไม่ระบุ
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: ใด
-  #Label for an option to show content from any project
+  # Label for an option to show content from any project
   any_project: ไม่ระบุ
-  #Label for an option to show content with any quality grade
+  # Label for an option to show content with any quality grade
   any_quality_grade: ไม่ระบุ
-  #Label for an option to show observation with any reviewed status, i.e. both
-  #reviewed and unreviewed
+  # Label for an option to show observation with any reviewed status, i.e. both
+  # reviewed and unreviewed
   any_reviewed: ไม่ระบุ
-  #Label for an option to show/include content by any user
+  # Label for an option to show/include content by any user
   any_user: ไม่ระบุ
   anyone: ใครก็ได้
   app_owner_application_about_p2_html: |
@@ -526,15 +477,15 @@ th:
     อายุอย่างน้อย 2 เดือน และต้องมีอายุอย่างน้อย 10 ปี <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">การปรับปรุงการระบุตัวตน</a> ในเดือนที่แล้ว เราอาจขอติดตามผล
     คําถามเกี่ยวกับแผนของคุณและเราขอสงวนสิทธิ์ในการปฏิเสธใบสมัครไม่ว่าด้วยเหตุผลใดก็ตาม
-  #An app or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
+  # An app or service the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
   application: แอปพลิเคชัน
-  #Apps or services the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
+  # Apps or services the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
   applications: แอปพลิเคชัน
   apply_app_owner: สมัคร
-  #Button label and section header when submitting a form to request to be a
-  #curator
+  # Button label and section header when submitting a form to request to be a
+  # curator
   apply_curator: สมัคร
   apply_to_selected: นำไปใช้กับไฟล์ที่เลือก
   apply_captive_cultivated: "นำไปใช้กับการเพาะเลี้ยง/เพาะปลูก"
@@ -598,7 +549,7 @@ th:
   are_you_sure_you_want_to_delete_this_assessment?: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
   are_you_sure_you_want_to_delete_this_photo?: แน่ใจหรือไม่ว่าต้องการลบรูปนี้?
   are_you_sure_you_want_to_delete_this_post: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: คุณแน่ใจหรือไม่ว่าต้องการลบเสียงนี้?
   are_you_sure_you_want_to_delete_this_taxon_change: แน่ใจหรือไม่ว่าต้องการลบการเปลี่ยนหน่วยอนุกรมวิธานนี้?
   are_you_sure_you_want_to_remove_all_tags: แน่ใจหรือไม่ว่าจะนำแท็กทั้งหมดออก
@@ -619,17 +570,17 @@ th:
   ascending: น้อยไปมาก
   assessment: การประเมินผล
   assessments: การประเมิน
-  #As in the Atom Syndication Format:
-  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
-  #an Atom representation of the content shown on the current page
+  # As in the Atom Syndication Format:
+  # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  # an Atom representation of the content shown on the current page
   atom: Atom
-  #Noun form, as in a property of something. Generally used to describe the
-  #name of an attribute available for annotation, e.g. "Life Stage"
+  # Noun form, as in a property of something. Generally used to describe the
+  # name of an attribute available for annotation, e.g. "Life Stage"
   attribute: คุณลักษณะ
   attribution: แสดงที่มา
-  #Shows photo attribution along with who uploaded the photo. %
-  #{attribution} will be one of the copyright.* keys, like
-  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  # Shows photo attribution along with who uploaded the photo. %
+  # {attribution} will be one of the copyright.* keys, like
+  # copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution} อัปโหลดโดย %{user}"
   authority_list:
     iucn_red_list: บัญชีแดง IUCN
@@ -639,8 +590,8 @@ th:
   automatic_short: อัตโนมัติ
   automatically_add_observations_to_this_project: เพิ่มการสังเกตเข้าโครงการนี้อัตโนมัติ
   automatically_update_my_content_for_taxon_changes: อัปเดตเนื้อหาของฉันอัตโนมัติสำหรับการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
-  #Abbreviation of "average," i.e. the sum of all values divided by the numer
-  #of values, and not a synonym of "typical" or "normal"
+  # Abbreviation of "average," i.e. the sum of all values divided by the numer
+  # of values, and not a synonym of "typical" or "normal"
   avg: ค่าเฉลี่ย
   back: ย้อนกลับ
   back_to_all_species: กลับไปที่ชนิดทั้งหมด
@@ -680,7 +631,7 @@ th:
   blocked_users: ผู้ใช้ที่ถูกบล็อก
   blog_widget: วิดเจ็ตของบล็อก
   blue_butterfly_etc: "สีฟ้า ผีเสื้อ ฯลฯ"
-  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  # Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: ข้อความตัวหนา
   browse: เรียกดู
   browse_all_projects: เรียกดูโครงการทั้งหมด
@@ -711,11 +662,11 @@ th:
   cc_by_nd_name: แสดงที่มา-ไม่ดัดแปลง
   cc_by_sa_name: แสดงที่มา-อนุญาตแบบเดียวกัน
   change_admin: เปลี่ยนแอดมิน
-  #Button to change the cover (or banner) image for a project
+  # Button to change the cover (or banner) image for a project
   change_cover: เปลี่ยนภาพหน้าปก
   change_descriptions:
-    split: แยกหน่วยอนุกรมวิธานเก่าเป็นหลายหน่วยฯ ใหม่
-    merge: หลายหน่วยอนุกรมวิธานเก่ารวมเป็นหนึ่งหน่วยฯ ใหม่
+      split: แยกหน่วยอนุกรมวิธานเก่าเป็นหลายหน่วยฯ ใหม่
+      merge: หลายหน่วยอนุกรมวิธานเก่ารวมเป็นหนึ่งหน่วยฯ ใหม่
   change_geoprivacy: 'เปลี่ยนการเปิดเผยพิกัด'
   change_group: เปลี่ยนกลุ่ม
   change_icon: เปลี่ยนไอคอน
@@ -724,13 +675,13 @@ th:
     split: แยก
     merge: ยุบรวม
     swap: เปลี่ยน
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: แยกจาก
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: แยกเป็น
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ถูกยุบรวมเป็น
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ถูกแทนที่ด้วย
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} จะถูกแยกเป็น %{output_taxa}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} จะถูกรวมเป็น %{output_taxon}"
@@ -765,12 +716,12 @@ th:
   colors: สี
   combine: รวม
   comma_separated_please: แยกแต่ละแท็ก, ด้วย comma
-  #Noun, used to label a comment or a comment field in a form
+  # Noun, used to label a comment or a comment field in a form
   comment: ความคิดเห็น
-  #Verb, generally a label on a button that allows the user to add a comment
+  # Verb, generally a label on a button that allows the user to add a comment
   comment_: ความคิดเห็น
   comment_deleted: ความคิดเห็นที่ถูกลบ
-  #Notice when a comment has been hidden by moderators
+  # Notice when a comment has been hidden by moderators
   comment_hidden: ความคิดเห็นถูกซ่อน
   comments: ความคิดเห็น
   comments_by_me: ความคิดเห็นของฉัน
@@ -790,11 +741,11 @@ th:
   comparing: เปรียบเทียบ
   comparing_list_to_list: "เปรียบเทียบ %{list1} กับ %{list2}"
   comparing_versions_x_and_y: "เปรียบเทียบเวอร์ชัน %{x} กับ %{y}"
-  #As in whether or not a check list is comprehensive, i.e. it contains all the
-  #species in the taxon and place it purports to
+  # As in whether or not a check list is comprehensive, i.e. it contains all the
+  # species in the taxon and place it purports to
   comprehensive?: ครอบคลุมหรือไม่?
-  #Name for the statistical model used to determine visual similarity between
-  #photos and taxa
+  # Name for the statistical model used to determine visual similarity between
+  # photos and taxa
   computer_vision_model: โมเดลจำแนกภาพด้วยคอมพิวเตอร์
   confidential: ไม่เปิดเผย
   confirm: ยืนยัน
@@ -805,8 +756,8 @@ th:
   confirming_ids: ยืนยันการจำแนก
   confirming_ids_description: |
     หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีผู้เห็นด้วยกับการจำแนกของคุณ หากไม่มีหมายเหตุเพิ่มเติม
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
+  # Label for a button to connect your iNat account to another account, e.g.
+  # connecting to Flickr
   connect: เชื่อมต่อ
   connect_to_provider: "เชื่อมต่อกับ %{provider}"
   conservation_status: สถานะการอนุรักษ์
@@ -819,12 +770,12 @@ th:
       อนุกรมวิธานตั้งค่าเป็น "ใกล้คุกคาม" หรือสูงกว่า
   conservation_status_geoprivacy_desc: |
     การเปิดเผยพิกัดเริ่มต้นที่ใช้กับการสังเกตทั้งหมดของหน่วยอนุกรมวิธานนี้ในสถานที่นี้
-  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  # Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: เนื้อหา
   content_and_display: เนื้อหา & การแสดงผล
   content_author: ผู้สร้างเนื้อหา
   content_hidden: เนื้อหาถูกซ่อนไว้
-  #message on hidden content displaying when and why the content was hidden, and by whom
+  # message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     เนื้อหาถูกซ่อนโดย %{user} เมื่อ %{date} เนื่องจาก "%{reason}"
   content_type: ประเภทเนื้อหา
@@ -833,19 +784,19 @@ th:
   user_unhid_this_item_because_reason_html: |
     %{user} เลิกซ่อน%{item}นี้ เนื่องจาก "%{reason}"
   controlled_term_labels:
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: ไม่ระบุ
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: ไม่ระบุ
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_flowers_and_fruits: ระบุไม่ได้
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_leaves: ระบุไม่ได้
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: ไม่ระบุ
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: ไม่ระบุ
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: ไม่ระบุ
     sex: เพศ
     male: เพศผู้
@@ -873,7 +824,7 @@ th:
     no_evidence_of_flowering: ไม่พบการออกดอก
     nymph: ตัวอ่อน
     larva: ตัวอ่อน
-    #Evidence of an egg of an organism
+    # Evidence of an egg of an organism
     egg: ไข่
     juvenile: วัยอ่อน
     alive_or_dead: มีชีวิตหรือตาย
@@ -881,31 +832,31 @@ th:
     dead: ตาย
     cannot_be_determined: ระบุไม่ได้
     evidence_of_presence: หลักฐานที่พบ
-    #As in the feather on a bird
+    # As in the feather on a bird
     feather: ขนนก
-    #Abnormal growth
+    # Abnormal growth
     gall: ปุ่มปมในพืช
-    #Refers to an observation that depicts the actual organism and not some
-    #kind of secondary evidence like a footprint
+    # Refers to an observation that depicts the actual organism and not some
+    # kind of secondary evidence like a footprint
     organism: ตัวสิ่งมีชีวิต
-    #Fecal matter, not regurgitated matter
+    # Fecal matter, not regurgitated matter
     scat: มูลสัตว์
-    #Impression made by the organism on the ground or in snow, like a footprint
+    # Impression made by the organism on the ground or in snow, like a footprint
     track: รอยตามทาง
-    #Endoskeletal remains, like a deer bone
+    # Endoskeletal remains, like a deer bone
     bone: กระดูก
-    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
-    #plumage in a bird or seasonal hair/fur in a mammal
+    # Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    # plumage in a bird or seasonal hair/fur in a mammal
     molt: คราบ
-    #Evidence of an organism feeding between the dermal layers of a leaf
+    # Evidence of an organism feeding between the dermal layers of a leaf
     leafmine: รอยชอนใบ
-    #Evidence of hair no longer attached to the organism from which it originated
+    # Evidence of hair no longer attached to the organism from which it originated
     hair: ขน
-    #Evidence of something made my an organism, made with or excavated from other materials
+    # Evidence of something made my an organism, made with or excavated from other materials
     construction: สิ่งที่สัตว์สร้าง
-    #Does the observation belong to a non-established population or not
+    # Does the observation belong to a non-established population or not
     established: หลุด/ถูกปล่อย?
-    #Organism is not a member of an established population
+    # Organism is not a member of an established population
     not_established: หลุด/ถูกปล่อย
   controlled_term_definitions:
     feather: ขนที่หลุดออกจากตัวนก
@@ -926,10 +877,10 @@ th:
     organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
   coordinate_systems: ระบบพิกัด
   coordinates: พิกัด
-  #A filter option that only shows observations for which the viewer has
-  #permission to see the "true" or "hidden" coordinates for observations in a
-  #particular project, i.e. anythign unobscured as well as anything obscured
-  #that the viewer has permission to see
+  # A filter option that only shows observations for which the viewer has
+  # permission to see the "true" or "hidden" coordinates for observations in a
+  # particular project, i.e. anythign unobscured as well as anything obscured
+  # that the viewer has permission to see
   coords_viewable_for_proj_label: เฉพาะการสังเกตที่เปิดเผยพิกัดเท่านั้น
   copy: คัดลอก
   copy_and_paste_this_into_your_own_html: คัดลอกและวางรหัสนี้ใน HTML ของคุณ
@@ -968,20 +919,20 @@ th:
   cumulative_ids: "การจำแนกสะสม: %{count} จาก %{total}"
   curation: จัดการอนุกรมวิธาน
   curator: ผู้ดูแล
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
+  # Message shown when the viewer is not yet elligible to apply to become a
+  # curator
   curator_application_inelligible2: |
     ในการสมัครเป็น Curator คุณต้องเป็นผู้ใช้ 60 วันขึ้นไป และเพิ่มอย่างน้อย 5 flags และต้องมี 100 improving identifications ให้กับการสังเกตของทุกคน รวมถึงของคุณเอง (คุณได้เพิ่ม %{num_idents}) เมื่อมีคุณสมบัติตามเกณฑ์ที่กำหนด กลับมาหน้านี่และดำเนินการยื่นส่งใบสมัครได้
-  #Header
+  # Header
   curator_application_what_curators_can_do: สิ่งที่ผู้ดูแลทำได้
-  #Description of a curator's ability to edit places; part of a list of
-  #things curators can do, so you might imagine it is preceded with "Curators
-  #can..."
+  # Description of a curator's ability to edit places; part of a list of
+  # things curators can do, so you might imagine it is preceded with "Curators
+  # can..."
   curator_application_what_curators_can_do_edit_places_html: |
     แก้ไขสถานที่ที่สร้างโดยผู้ใช้งานและอัปโหลดไฟล์ KML ที่ใหญ่กว่า 1 MB (แต่เล็กกว่า 5 MB)
-  #Header
+  # Header
   curator_application_what_curators_cannot_do: สิ่งที่ผู้ดูแลทำไม่ได้
-  #Label for a menu item linking to a help page aimed at curators
+  # Label for a menu item linking to a help page aimed at curators
   curator_guide: คู่มือผู้ดูแล
   curators: ผู้ดูแล
   curator_coordinate_access_desc: |
@@ -990,20 +941,20 @@ th:
     การสังเกตในโครงการ ผู้สังเกตการณ์ยังสามารถเลือกที่จะเปลี่ยนสิ่งนี้สําหรับ
     การสังเกตส่วนบุคคล
   curator_identification: การจำแนกโดย Curator
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "อนุกรมวิธานชุมชนปัจจุบัน: %{taxon}"
   custom_project_was_successfully_created: เพิ่มการปรับแต่งโครงการแล้ว
   custom_project_was_successfully_updated: อัปเดตการปรับแต่งโครงการแล้ว
-  #Button to customize projects that appear in the header
+  # Button to customize projects that appear in the header
   customize__projects: กำหนดเอง
   customize_location: กำหนดตำแหน่งเอง
   daily_users: ผู้ใช้งานรายวัน
   danger_zone: พิจารณาให้ดีก่อนเลือก
   dashboard: หน้ารวม
   dashboard_pilots:
-    #button asking to participate in a pilot
+    # button asking to participate in a pilot
     pilot_participate: "ใช่! ฉันต้องการเข้าร่วม"
-    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    # title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "การนําร่องช่องว่างการระบุ: ต้องการ ID สายพันธุ์ที่ต้องการ"
   data_deficient: ข้อมูลไม่เพียงพอ
   data_quality: คุณภาพข้อมูล
@@ -1047,25 +998,25 @@ th:
   date_picker:
     closeText: ปิด
     currentText: วันนี้
-    #Contextual help for a button navigating to the previous month in a date picker
+    # Contextual help for a button navigating to the previous month in a date picker
     prevText: ก่อนหน้า
-    #Contextual help for a button navigating to the next month in a date picker
+    # Contextual help for a button navigating to the next month in a date picker
     nextText: ถัดไป
     range: ช่วงวันที่
   date_range: ช่วงวันที่
   date_specified: มีการระบุวันที่สังเกต
   date_time: วันที่/เวลา
-  #Express a date range. d1 and d2 could be any expression of dates, so better
-  #to use the most flexible form possible here, e.g. not something like "d1 to
-  #d2" if "to" might be translated differently for different values of d1 and
-  #d2
+  # Express a date range. d1 and d2 could be any expression of dates, so better
+  # to use the most flexible form possible here, e.g. not something like "d1 to
+  # d2" if "to" might be translated differently for different values of d1 and
+  # d2
   date_to_date: "%{d1} - %{d2}"
   date_updated: วันที่อัปเดต
   day: วัน
   decrease_brightness: ลดความสว่าง
-  #Default option
+  # Default option
   default: ค่าเริ่มต้น
-  #Default option
+  # Default option
   default_: ค่าเริ่มต้น
   default_display_time_zone: แสดงเขตเวลาตั้งต้น
   default_invite_comment: "ภาพนี้อย่างแจ่ม! คุณน่าจะเอาไปโพสต์ที่ %{site_name}: {{INVITE_LINK}}"
@@ -1075,12 +1026,12 @@ th:
   delete: ลบ
   delete_all: ลบทั้งหมด
   delete_conversation: ลบการสนทนา
-  #Button to delete the cover (or banner) image for a project
+  # Button to delete the cover (or banner) image for a project
   delete_cover?: ลบภาพหน้าปก?
   delete_icon?: ลบไอคอน?
   delete_photo: ลบรูป
   delete_project: ลบโครงการนี้
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: ลบเสียง
   delete_user: ลบผู้ใช้
   delete_your_account: ลบบัญชีของคุณ
@@ -1100,7 +1051,7 @@ th:
   details: รายละเอียด
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: โทเค็นรหัสผ่านรีเซ็ตไม่ถูกต้อง โปรดใช้ลิงก์ในอีเมลรีเซ็ตรหัสผ่านที่ส่งล่าสุด หรือ <a href="%{url}">ขอใหม่</a>.
     sessions:
       signed_out: 'ออกจากระบบเรียบร้อยแล้ว'
@@ -1108,33 +1059,33 @@ th:
       destroyed: 'ลาก่อน! ยกเลิกบัญชีของคุณสำเร็จแล้ว เราหวังว่าจะได้พบคุณอีกในเร็ว ๆ นี้'
     mailer:
       confirmation_instructions:
-        #Subject of an email sent to confirm your account
+        # Subject of an email sent to confirm your account
         subject: ยืนยันอีเมลของคุณ
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     โปรดคลิกลิงก์ด้านล่างเพื่อยืนยันที่อยู่อีเมลของคุณ หากคุณไม่ยืนยันอีเมลของคุณ
     คุณจะไม่สามารถโต้ตอบกับเนื้อหาของผู้ใช้รายอื่นได้
   devise_reset_password_instructions_hello_email: สวัสดี %{email}
   did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: ความขัดแย้ง
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: แสดงข้อสังเกตที่มีการระบุตัวตนที่ไม่เห็นด้วย
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
+  # Label for a button to disconnect your iNat account from another account,
+  # e.g. disconnecting your Flickr account
   disconnect: เลิกเชื่อมต่อ
   distance_traveled_value: "ระยะทาง: %{distance} เมตร"
   documentation_for_developers_html: เอกสารสำหรับ<a href="/pages/developers">ผู้พัฒนา</a>
-  #Button text to donate to iNaturalist. Please try to keep translations as
-  #short as possible
+  # Button text to donate to iNaturalist. Please try to keep translations as
+  # short as possible
   donate: บริจาค
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: บริจาค
   donate_again_caps: บริจาคอีกครั้ง
   donate_again_today_caps: บริจาคอีกครั้งในวันนี้
-  #Title for pages and sections that encourage people to donate to iNaturalist
+  # Title for pages and sections that encourage people to donate to iNaturalist
   donate_to_inaturalist: บริจาคให้ iNaturalist
   done: เสร็จสิ้น
   download: ดาวน์โหลด
@@ -1143,12 +1094,12 @@ th:
     <a href="%{url}">ดาวน์โหลดแม่แบบ</a>เพื่อใช้สำหรับ<a href="/observations/import?project_id=%{project_id}#csv_import">เครื่องมืออัปโหลดจำนวนมาก</a>
   download_csv: ดาวน์โหลด CSV
   download_kml: ดาวน์โหลด KML
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_saved: บันทึกฉบับร่างแล้ว!
   drag_and_drop_some_photos_or_sounds: ลากแล้ววางรูปถ่ายหรือเสียง
-  #Button label for drawing a circular boundary for an observation search
+  # Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: วาดขอบเขตวงกลม
-  #Button label for drawing a rectangular boundary for an observation search
+  # Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: วาดขอบเขตสี่เหลี่ยม
   duplicate_verb: คัดลอก
   duration_value: "ระยะเวลา: %{duration} นาที"
@@ -1179,7 +1130,7 @@ th:
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
   editing: แก้ไข
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: การแก้ไขประกาศ %{id}
   editing_observation_field: แก้ไขข้อมูลเสริมการสังเกต
   editing_observation_id: "แก้ไขการสังเกต %{obs_id}"
@@ -1192,7 +1143,7 @@ th:
   editing_taxon_name_for_taxon_html: แก้ไขชื่อ "%{name}" สำหรับ %{taxon}
   editing_this: แก้ไข %{elem}
   editing_x_in_y: "แก้ไข %{x} ใน %{y}"
-  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  # Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
   educators_guide: คู่มือครู/วิทยากร
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
   email: อีเมล
@@ -1204,9 +1155,9 @@ th:
   end_date_time: วันที่ / เวลาสิ้นสุด
   endangered: ใกล้สูญพันธุ์
   endemic: เฉพาะถิ่น
-  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  # Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "ข้อผิดพลาดในการอัปเดตเสียง: %{sound_errors}"
   establishment:
     endemic: ประจำถิ่นเดียว
@@ -1228,7 +1179,7 @@ th:
   everywhere: ทุกที่
   exact: เฉพาะวันที่
   exact_date: เฉพาะวันที่
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: เฉพาะลำดับ
   except: ยกเว้น
   exclude_places: ไม่รวมสถานที่นี้
@@ -1252,7 +1203,7 @@ th:
   evidence_related_to_single_subject: หลักฐานแสดงถึงสิ่งมีชีวิตเพียงชนิดเดียว
   facebook: เฟซบุ๊ก
   'false': 'เท็จ'
-  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: รายการโปรด
   Family: วงศ์
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
@@ -1261,12 +1212,12 @@ th:
   fields: ข้อมูลเสริม
   fields_: ข้อมูลเสริม
   fields_merged: ข้อมูลเสริมถูกรวม
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: รูปแบบไฟล์
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL ของไฟล์
   file_should_be_in_the_following_format: "ควรจัดเรียงไฟล์ตามรูปแบบนี้: ชื่อหน่วยอนุกรมวิธาน, คำอธิบาย"
-  #The name of a computer file
+  # The name of a computer file
   filename: ชื่อไฟล์
   filter_by_curator_identification: กรองตามการจำแนกโดยผู้ดูแล
   filter_by_place: กรองตามสถานที่
@@ -1289,12 +1240,12 @@ th:
   finished_with_page: สิ้นสุดหน้านี้แล้ว
   first_inat_observation: "การสังเกตแรกใน %{site_name}"
   first_observer: ผู้สังเกตคนแรก
-  #Verb form, as in "Flag this item"
+  # Verb form, as in "Flag this item"
   flag: รายงาน
   flag_as_inappropriate: รายงานว่าไม่เหมาะสม
   flag_as_spammer: รายงานว่าเป็นสแปม
   flag_as_non_spammer: รายงานว่าไม่เป็นสแปม
-  #Label for the date/time when a flag was created
+  # Label for the date/time when a flag was created
   flag_created: รายงานเมื่อ
   flag_for_check_list_title_html: |
     รายงานรายการตรวจสอบ: %{title}
@@ -1306,7 +1257,7 @@ th:
   flag_for_user_title_html: |
     รายงานผู้ใช้งาน: %{title}
   flag_it!: รายงานเลย!
-  #Label for the object that was flagged, e.g. a table header
+  # Label for the object that was flagged, e.g. a table header
   flag_object: สิ่งที่รายงาน
   flag_resolution: การแก้ปัญหา
   flag_saved: บันทึกรายงานแล้ว
@@ -1326,10 +1277,10 @@ th:
   flags_on_users_content: "รายงานเนื้อหาของ %{user}"
   flickr_has_no_creative_commons: Flickr ไม่มีรูปที่มีสัญญาอนุญาตครีเอทีฟคอมมอนส์จากสถานที่นี้
   follow: ติดตาม
-  #Text for a button to follow updates on an observation
+  # Text for a button to follow updates on an observation
   follow_observation: ติดตามการสังเกต
   follow_receive_updates_about_new_observations: ติดตาม (รับข้อมูลเกี่ยวกับการสังเกตใหม่ ๆ)
-  #Text for a button to follow updates from a specific user
+  # Text for a button to follow updates from a specific user
   follow_user: "ติดตาม %{user}"
   followers: ผู้ติดตาม
   following: กำลังติดตาม
@@ -1357,7 +1308,7 @@ th:
   gbif_occurrences: รายงานการพบใน GBIF
   generate_taxonomic_tags_for_flickr: สร้างแท็กอนุกรมวิธานสำหรับรูป Flickr ของคุณ
   generate_widget: สร้างวิดเจ็ต
-  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  # E.g GENERATE YOUR 2023 YEAR IN REVIEW
   generate_your_year_in_review_caps: ดูภาพรวมปี %{year} ของคุณ
   Genus: สกุล
   geoprivacy: การเปิดเผยพิกัด
@@ -1366,10 +1317,10 @@ th:
   geoprivacy_is_private: การเปิดเผยพิกัดเป็นส่วนตัว
   georeferenced: อ้างอิงพิกัด?
   get_started: สร้างโครงการ
-  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  # Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: การเริ่มต้นใช้งาน
   getting_started_guide: คู่มือเริ่มต้นใช้งาน
-  #Prompt to donate money once
+  # Prompt to donate money once
   give_now_caps: บริจาคเลย
   globally: ทั่วโลก
   go: ค้นหา
@@ -1397,7 +1348,7 @@ th:
   header_your_identifications: การจำแนกของคุณ
   header_your_projects: โครงการของคุณ
   header_your_profile: โปรไฟล์ของคุณ
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "HEADS UP: เสียงนี้ถูกตั้งค่าสถานะแล้ว"
   help: ช่วยเหลือ
   help_confirm_observations!: ช่วยยืนยันการสังเกต!
@@ -1407,19 +1358,19 @@ th:
   here_are_our_top_species_suggestions: นี่คือชนิดที่เราแนะนำเป็นอันดับแรก
   hi_user: "สวัสดี %{user}"
   hide_content: ซ่อนเนื้อหา
-  #Option to hide data series that show "No Annotation" data, i.e. records that
-  #have no annotation
+  # Option to hide data series that show "No Annotation" data, i.e. records that
+  # have no annotation
   hide_no_annotation: ซ่อน "ไม่มีหมายเหตุ"
-  #Label for a button to hide the running total of an accumulation chart
+  # Label for a button to hide the running total of an accumulation chart
   hide_running_total: ซ่อนผลรวมสะสม
   hide_uncountable_species: ซ่อนชนิดที่นับไม่ได้
   high: สูง
-  #Highest taxonomic rank to filter by, where the "highest" possible rank is
-  #kingdom
+  # Highest taxonomic rank to filter by, where the "highest" possible rank is
+  # kingdom
   highest_rank: ลำดับสูงสุด
   history: ประวัติ
   home: หน้าหลัก
-  #Label showing hours adjusted in the time shifter in the Uploader
+  # Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "จำนวนชั่วโมงที่ปรับ"
   i_dont_know_but_i_am_sure_this_is_taxon: ฉันไม่รู้ แต่ฉันแน่ใจว่านี่คือ%{taxon}
   id: การจำแนก
@@ -1439,12 +1390,12 @@ th:
   identify_title: "จำแนกชนิด"
   identification: การจำแนก
   identification_by_user: การจำแนกโดย %{user}
-  #Notification when an identification has been deleted
+  # Notification when an identification has been deleted
   identification_deleted: ลบการจำแนกแล้ว
   identification_saved: "บันทึกการจำแนกแล้ว!"
-  #Notification when an identification has been updated
+  # Notification when an identification has been updated
   identification_updated: อัปเดตการจำแนกแล้ว!
-  #Notification when an identification has been withdrawn
+  # Notification when an identification has been withdrawn
   identification_withdrawn: ถอนการจำแนกแล้ว
   identifications: การจำแนก
   inaturalist_global_year_in_review: "ภาพรวม iNaturalist ทั่วโลกในปี %{year}"
@@ -1460,10 +1411,10 @@ th:
   import_observations: นำเข้าการสังเกต
   improving: แนะนำคนแรก
   in_place_x: ใน %{place}
-  #As in a reason to flag something
+  # As in a reason to flag something
   inappropriate: ไม่เหมาะสม
   inaturalist_network_affiliation: การสังกัดเครือข่าย iNaturalist
-  #Label for messages you've received
+  # Label for messages you've received
   inbox: กล่องข้อความ
   include_places: รวมสถานที่นี้
   include_suggestions_not_seen_nearby: รวมคำแนะนำที่ไม่พบในบริเวณใกล้เคียง
@@ -1473,19 +1424,19 @@ th:
   increase_brightness: เพิ่มความสว่าง
   in_the_past_week: ในสัปดาห์ที่แล้ว
   inactive_taxon: หน่วยอนุกรมวิธานที่ไม่ใช้งาน
-  #Status of a taxon that is not available for general use on iNat, e.g. an
-  #output taxon in a split that hasn't been committed
+  # Status of a taxon that is not available for general use on iNat, e.g. an
+  # output taxon in a split that hasn't been committed
   inactive_taxon_status: ไม่ใช้งาน
   inappropriate_content: เนื้อหาไม่เหมาะสมใช่ไหม?
   inaturalist_activity_notifications: "การแจ้งเตือนกิจกรรม %{site_name}"
   info: ข้อมูล
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: การจำแนกระดับต่ำกว่าชนิด
-  #Description of preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Description of preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids_description: |
     หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีผู้จำแนกในระดับต่ำกว่าชนิดที่คุณเคยจำแนกไว้โดยไม่ขัดแย้งกับคุณ (เช่น ชนิดย่อย พันธุ์) แต่จะได้รับการแจ้งเตือนหากมีผู้ไม่เห็นด้วยกับการจำแนกของคุณหรือมีหมายเหตุเพิ่มเติม
   insects: แมลง
@@ -1510,24 +1461,24 @@ th:
   journal_posts: โพสต์วารสาร
   keep_editing: แก้ไขต่อ
   labels: ป้ายกำกับ
-  #Label shown when a location has been entered but has been hidden due to the geoprivacy
+  # Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: ตำแหน่งเป็นส่วนตัว
-  #Label shown when a location has not been entered. Originally "unknown" in
-  #English but we switched to "missing" to convey that a complete observation
-  #*should* have a location
+  # Label shown when a location has not been entered. Originally "unknown" in
+  # English but we switched to "missing" to convey that a complete observation
+  # *should* have a location
   location_unknown: ไม่มีตำแหน่ง
-  #Option to lock the zoom level for maps on Identify so the zoom level remains
-  #the same as you move from one observation to another
+  # Option to lock the zoom level for maps on Identify so the zoom level remains
+  # the same as you move from one observation to another
   lock_zoom_level: ล็อกระดับการขยาย
   language_slash_type: ภาษา / ศัพท์เฉพาะ
-  #Large photo size
+  # Large photo size
   large: ใหญ่
   last_active_with_date: "ใช้งานล่าสุด: %{date}"
   last_observation: การสังเกตล่าสุด
   last_observation_caps: การสังเกตล่าสุด
   last_year: ปีที่แล้ว
   lat: ละติจูด
-  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  # shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
   latlon: พิกัด
   latitude: ละติจูด
   latitude_in_decimals: 'ละติจูดแบบองศาทศนิยม เช่น 38.123'
@@ -1551,7 +1502,7 @@ th:
   leave: ออก
   leave_a_comment: แสดงความคิดเห็น
   leave_this_project: ออกจากโครงการนี้
-  #Terminal nodes in a taxonomic tree
+  # Terminal nodes in a taxonomic tree
   leaves: ใบ
   let_us_walk_you_through: ให้เราแนะนำคุณเกี่ยวกับคุณสมบัติหลักของเว็บไซต์นี้
   lexicon: ภาษา/ศัพท์เฉพาะ
@@ -1719,9 +1670,9 @@ th:
   location_is_private: สถานที่นี้เป็นส่วนตัว
   location_specified: มีการระบุตำแหน่ง
   log_scale_label: ล็อก
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: เข้าสู่ระบบ
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: ออกจากระบบ
   logo:
     logo: โลโก้
@@ -1737,12 +1688,12 @@ th:
   looks_like_no_species_in_guide: ดูเหมือนว่ายังไม่มีรายชื่อชนิดในคู่มือของคุณ
   lookup: ค้นหา
   low: ตํ่า
-  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
-  #subspecies or variety
+  # Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  # subspecies or variety
   lowest_rank: ลำดับต่ำสุด
-  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  # Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
-  #Header for main content section of the project detail page when editing custom project data.
+  # Header for main content section of the project detail page when editing custom project data.
   main_content: เนื้อหาหลัก
   make_curator: ตั้งเป็นผู้ดูแล
   make_manager: ตั้งเป็นผู้จัดการ
@@ -1764,21 +1715,21 @@ th:
       checklist_places: สถานที่รายการตรวจสอบ
       range: ขอบเขต
   mark_as_reviewed: ทำเครื่องหมายว่าตรวจแล้ว
-  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  # Note that "Identify" is https://www.inaturalist.org/observations/identify
   mark_as_reviewed_desc: |
     การทำเครื่องหมายว่าตรวจแล้วจะทำให้การสังเกตนี้ไม่แสดงในหน้าจำแนกชนิดอีก แต่ผู้อื่นยังมองเห็นการสังเกตนี้ในหน้าจำแนกชนิดได้
   mark_all_as_reviewed: ทำเครื่องหมายทั้งหมดว่าตรวจแล้ว
   mark_all_as_unreviewed: ทำเครื่องหมายทั้งหมดว่ายังไม่ตรวจ
   maverick: ขัดแย้ง
   media: สื่อ
-  #Used to join media types required by a project, e.g. photos *and* sounds.
-  #If a single word won't work, a symbol like "+" would be fine.
+  # Used to join media types required by a project, e.g. photos *and* sounds.
+  # If a single word won't work, a symbol like "+" would be fine.
   media_and: และ
   media_type: ประเภทสื่อ
   medium: กลาง
   member_of_the_inaturalist_network_html: |
     ส่วนหนึ่งของ<a href="%{url}">เครือข่าย iNaturalist</a>
-  #As in members of a project
+  # As in members of a project
   members: สมาชิก
   membership_model: เงื่อนไขการเป็นสมาชิก
   mentioned_you_in_noun_html: "%{user} พูดถึงคุณใน%{noun}"
@@ -1801,57 +1752,57 @@ th:
   message_from_user_on_date: จาก %{user} เมื่อ %{date}
   messages: ข้อความ
   misidentifications: การจำแนกผิด
-  #Label shown when a date has not been entered
+  # Label shown when a date has not been entered
   missing_date: ไม่มีวันที่
   mobile: โทรศัพท์
-  #Person who executed a moderator action or flagged something
+  # Person who executed a moderator action or flagged something
   moderator_or_flagger: ผู้ควบคุม / ผู้รายงาน
   momentjs:
     shortRelativeTime:
-      #Short text representing 1 second in the past
+      # Short text representing 1 second in the past
       s: "1 วินาที"
-      #Short text representing 1 minute in the past
+      # Short text representing 1 minute in the past
       m: "1 นาที"
-      #Short text representing %d minutes in the past
+      # Short text representing %d minutes in the past
       mm: "%d นาที"
-      #Short text representing 1 hour in the past
+      # Short text representing 1 hour in the past
       h: "1 ชม."
-      #Short text representing %d hours in the past
+      # Short text representing %d hours in the past
       hh: "%d ชม."
-      #Short text representing 1 day in the past
+      # Short text representing 1 day in the past
       d: "1 วัน"
-      #Short text representing %d days in the past
+      # Short text representing %d days in the past
       dd: "%d วัน"
-      #Short text representing 1 month in the past
+      # Short text representing 1 month in the past
       M: "1 เดือน"
-      #Short text representing %d months in the past
+      # Short text representing %d months in the past
       MM: "%d เดือน"
-      #Short text representing %d years in the past
+      # Short text representing %d years in the past
       yy: "%d ปี"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT Z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone_no_year: "D MMMM H:mm Z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display an offset and not a time zone code, so
-    #please use Z and not z
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    # Note that this should display an offset and not a time zone code, so
+    # please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "D MMMM YYYY"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: เดือน
-  #title for section describing people who donate to iNat every month
+  # title for section describing people who donate to iNat every month
   monthly_supporters: ผู้สนับสนุนรายเดือน
   months: เดือน
   more: เพิ่มเติม
-  #Button to show more translators, as in people who added translations
+  # Button to show more translators, as in people who added translations
   more__context_translators_caps: เพิ่มเติม
   more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
   more_fields: ข้อมูลเสริมเพิ่มเติม
@@ -1862,7 +1813,7 @@ th:
   more_info_title: ข้อมูลเพิ่มเติม
   more_journal_posts: โพสต์บันทึกเพิ่มเติม
   more_observations: การสังเกตเพิ่มเติม
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: ตัวเลือกเพิ่มเติม
   more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
   most_disagree: ไม่เห็นด้วยมากที่สุด
@@ -1872,8 +1823,8 @@ th:
   most_observed_species: ชนิดที่พบมากสุด
   most_observed_introduced_species: ชนิดพันธุ์ต่างถิ่นที่พบมากสุด
   most_observed_threatened_species: ชนิดที่ถูกคุกคามที่พบมากสุด
-  #Project rule for an umbrella project. %{project} is the title of the project
-  #the observation must be in
+  # Project rule for an umbrella project. %{project} is the title of the project
+  # the observation must be in
   must_be_in_project: ต้องอยู่ในโครงการ %{project}
   must_be_in_taxon: ต้องอยู่ใน %{taxon}
   must_be_not_in_taxon: ต้องไม่อยู่ใน %{taxon}
@@ -1890,8 +1841,8 @@ th:
   names_for_taxon_html: "ชื่อสำหรับ %{taxon}"
   native: พื้นเมือง
   native_to_place: "ชนิดพันธุ์พื้นเมืองใน %{place}"
-  #Short for "navigation," used to describe a navigational component on the
-  #project detail page when editing custom project data
+  # Short for "navigation," used to describe a navigational component on the
+  # project detail page when editing custom project data
   nav: นำทาง
   near_threatened: ใกล้ถูกคุกคาม
   nearby_observations_: การสังเกตในบริเวณใกล้เคียง
@@ -1899,7 +1850,7 @@ th:
   needs_id_: รอจำแนกชนิด
   needs_id_expandable_html: "<span class='full'>รอ</span>จำแนกชนิด"
   needs_id_tooltip_html: 'การสังเกตที่ "รอจำแนกชนิด" มีสื่อ ตำแหน่ง และวันที่ แต่ยังขาดความเห็นพ้องของชุมชนในการจำแนกที่ระดับชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
-  #Column header in a table listing iNaturalist Network members
+  # Column header in a table listing iNaturalist Network members
   network_member: สมาชิกเครือข่าย
   new_and_noteworthy: ใหม่ & น่าสนใจ
   new_check_list: รายการตรวจสอบใหม่
@@ -1969,16 +1920,16 @@ th:
   no_taxonomic_changes_match_those_criteria: ไม่มีการเปลี่ยนแปลงอนุกรมวิธานที่ตรงกับเกณฑ์เหล่านั้น
   no_users_found_with_those_filters: ไม่พบผู้ใช้งานจากการใช้ตัวกรอง
   noble_curators: "ผู้ดูแลดีเด่นของ %{site}"
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: ไม่ใช่ภัณฑารักษ์
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: ผู้ที่ไม่ใช่ผู้ดูแลระบบโครงการ
   none: ไม่ระบุ
   none_found: ไม่พบ
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
   not_evaluated: ยังไม่มีการประเมิน
   not_finding_place_you_want?: ไม่พบสถานที่ที่คุณต้องการ?
-  #Filter for observations not in a particular place
+  # Filter for observations not in a particular place
   not_in_place: ยกเว้นสถานที่
   not_recorded: ไม่ได้บันทึก
   not_resolved: ไม่แก้ไข
@@ -1996,23 +1947,23 @@ th:
   obscured_description: |
     พิกัดที่แสดงให้ผู้อื่นเห็นเป็นจุดที่ถูกสุ่มภายในกรอบสี่เหลี่ยมขนาด 0.2 องศา โดยมีพิกัดจริงซ่อนอยู่ในกรอบนั้น
   observation_accuracy_experiment_research_grade_results: "ผลระดับงานวิจัย"
-  #Attributes an observation to a user. %{user} can be a username or a full
-  #name. @vow_or_con will work here and use the first letter of the name used
+  # Attributes an observation to a user. %{user} can be a username or a full
+  # name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: การสังเกตโดย %{user}
-  #Attributes an observation to a user and specifies that copyright is retained
-  #(though a license may be applied). %{user} can be a username or a full name.
-  #@vow_or_con will work here and use the first letter of the name used. &copy;
-  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
-  #@this could also be translated like "Observation by %{user} (copyright)" or
-  #@something.
+  # Attributes an observation to a user and specifies that copyright is retained
+  # (though a license may be applied). %{user} can be a username or a full name.
+  # @vow_or_con will work here and use the first letter of the name used. &copy;
+  # @is the HTML entity for the copyright symbol. If that doesn't make sense,
+  # @this could also be translated like "Observation by %{user} (copyright)" or
+  # @something.
   observation_attribution_copyright_html: การสังเกต &copy; %{user}
-  #%{month} will be filled in the name of the month
+  # %{month} will be filled in the name of the month
   observation_brief_taxon_in_month_year: "%{taxon} ใน%{month} %{year}"
-  #%{month} will be filled in the name of the month
+  # %{month} will be filled in the name of the month
   observation_brief_taxon_in_month_year_by_user: "%{taxon} ใน%{month} %{year} โดย %{user}"
-  #%{month} will be filled in the name of the month
+  # %{month} will be filled in the name of the month
   observation_brief_taxon_from_place_in_month_year: "%{taxon} จาก %{place} ใน%{month} %{year}"
-  #%{month} will be filled in the name of the month
+  # %{month} will be filled in the name of the month
   observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} จาก %{place} ใน%{month} %{year} โดย %{user}"
   observations_by_category: "การสังเกตแบ่งตามประเภท"
   observations_by_app: การสังเกตแบ่งตามแอป
@@ -2022,9 +1973,9 @@ th:
   observations_by_you_on_date: "การสังเกตโดยคุณเมื่อ %{date}"
   observation_calendar_for: "ปฏิทินการสังเกตสำหรับ %{user} ในปี %{year}"
   observation_date: วันที่
-  #Basic observation export fields
+  # Basic observation export fields
   observation_export_column_type_basic: พื้นฐาน
-  #Geographic observation export fields
+  # Geographic observation export fields
   observation_export_column_type_geo: ภูมิศาสตร์
   observation_field: ข้อมูลเสริมการสังเกต
   observation_field_details: รายละเอียดข้อมูลเสริม
@@ -2032,7 +1983,7 @@ th:
   observation_field_type_datetime: วันที่และเวลา
   observation_fields: ข้อมูลเสริมการสังเกต
   observation_fields_for_projects: ฟิลด์สังเกตการณ์สําหรับโครงการ
-  #Help text to show what kind of values you can enter for the date an observation was observed
+  # Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     เช่น 2019-10-29 13:12:21
   observation_removed_from_the_project: "การสังเกตถูกลบออกจากโครงการ \"%{project}\""
@@ -2085,15 +2036,15 @@ th:
     doubtful: น่าสงสัย
     absent: ไม่ปรากฏ
   of_this_taxon: ของหน่วยฯ นี้
-  #Header label for hiding or unhiding the time shifter in the Uploader
+  # Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "ปรับเวลา"
-  #Button label to offset the date/time of observations by a set number of hours
+  # Button label to offset the date/time of observations by a set number of hours
   offset_time_verb: ปรับ
   old_observation_form: ฟอร์มการสังเกตแบบเก่า (เลิกใช้)
   ok: "ตกลง"
   onboarding:
-    following_panel_title: ติดตามผู้คน หน่วยอนุกรมวิธาน และสถานที่
-    comments_panel_title: คุณอยากรู้ไหมว่าคนอื่น ๆ พูดคุยเรื่องอะไรกันบ้างบน %{site_name}?
+      following_panel_title: ติดตามผู้คน หน่วยอนุกรมวิธาน และสถานที่
+      comments_panel_title: คุณอยากรู้ไหมว่าคนอื่น ๆ พูดคุยเรื่องอะไรกันบ้างบน %{site_name}?
   one_of_your_lists: "รายการของคุณ"
   only_administrators_may_access_that_page: แอดมินเท่านั้นที่เข้าถึงหน้านั้นได้
   only_an_admin_can_remove_project_users: แอดมินเท่านั้นที่ลบผู้ใช้โครงการได้
@@ -2101,15 +2052,15 @@ th:
   only_show_for_species_subspecies_varieties_etc: แสดงเฉพาะชนิด ชนิดย่อย พันธุ์ ฯลฯ
   only_showing_taxa_from: แสดงหน่วยอนุกรมวิธานจากรายการนี้เท่านั้น
   only_view_nearby_suggestions: ดูเฉพาะชนิดที่อาจพบในบริเวณใกล้เคียง
-  #Geoprivacy status in which no privacy has been applied
+  # Geoprivacy status in which no privacy has been applied
   open: เปิด
-  #Geoprivacy status in which no privacy has been applied
+  # Geoprivacy status in which no privacy has been applied
   open_: เปิด
   open_street_map: OpenStreetMap
   optional: ไม่บังคับ
   or: หรือ
-  #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in with Apple OR Google
+  # Usually used to separate buttons or functional areas of the interface, e.g.
+  # sign in with Apple OR Google
   or_all_caps: หรือ
   order: อันดับ
   order_by: เรียงลำดับตาม
@@ -2143,18 +2094,18 @@ th:
   people_following_user: "ผู้คนที่ติดตาม %{user}"
   people_user_follows: "ผู้คนที่ %{user} ติดตาม"
   people_added:
-    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-    #kueda
-    #added an observation
+    # Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    # kueda
+    # added an observation
     observation: เพิ่ม<a href="%{observation_url}">การสังเกต</a>
     identification:
-      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-      #kueda
-      #added an ID to an observation by loarie
+      # Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      # kueda
+      # added an ID to an observation by loarie
       with_observation: เพิ่ม<strong>การจำแนก</strong>ไปที่%{observation_link}ของ %{user_link}
-      #The same as people_added.identification.with_observation, except it
-      #covers the rare situation in which we have an update for an
-      #identification but the observation has been deleted
+      # The same as people_added.identification.with_observation, except it
+      # covers the rare situation in which we have an update for an
+      # identification but the observation has been deleted
       without_observation: เพิ่ม<strong>การจำแนก</strong>
   per_day: ต่อวัน
   per_month: ต่อเดือน
@@ -2168,9 +2119,9 @@ th:
   photos_or_sounds: รูปถ่ายหรือเสียง
   photos_or_sounds?: รูปถ่ายหรือเสียง?
   photos_size:
-    small: เล็ก
-    medium: กลาง
-    large: ใหญ่
+      small: เล็ก
+      medium: กลาง
+      large: ใหญ่
   photos_updated: รูปที่อัปเดตแล้ว
   pi_consent_label: |
     ฉันยินยอมให้ iNaturalist จัดเก็บและประมวลผลข้อมูลส่วนบุคคลบางประเภทเพื่อใช้ในการจัดการบัญชีของฉัน
@@ -2178,43 +2129,43 @@ th:
     ฉันยินยอมให้เปิดเผยข้อมูลส่วนบุคคลไปยังสหรัฐอเมริกา
   place: สถานที่
   place_geo:
-    geo_planet_place_types:
-      Airport: สนามบิน
-      airport: สนามบิน
-      Building: อาคาร
-      building: อาคาร
-      City Building: อาคารในเมือง
-      city building: อาคารในเมือง
-      Continent: ทวีป
-      continent: ทวีป
-      Country: ประเทศ
-      country: ประเทศ
-      County: เทศมณฑล
-      county: เทศมณฑล
-      District: เขต/อำเภอ
-      district: เขต/อำเภอ
-      Historical_County: เทศมณฑลประวัติศาสตร์
-      historical_county: เทศมณฑลประวัติศาสตร์
-      Historical_Town: เมืองประวัติศาสตร์
-      historical_town: เมืองประวัติศาสตร์
-      Open_Space: พื้นที่เปิด
-      open_space: พื้นที่เปิด
-      Point_of_Interest: จุดสนใจ
-      point_of_interest: จุดสนใจ
-      Province: จังหวัด
-      province: จังหวัด
-      Region: ภูมิภาค
-      region: ภูมิภาค
-      State: รัฐ
-      state: รัฐ
-      Time_Zone: เขตเวลา
-      time_zone: เขตเวลา
-      Town: เมือง
-      town: เมือง
-      Unknown: ไม่ทราบ
-      unknown: ไม่ทราบ
+          geo_planet_place_types:
+            Airport: สนามบิน
+            airport: สนามบิน
+            Building: อาคาร
+            building: อาคาร
+            City Building: อาคารในเมือง
+            city building: อาคารในเมือง
+            Continent: ทวีป
+            continent: ทวีป
+            Country: ประเทศ
+            country: ประเทศ
+            County: เทศมณฑล
+            county: เทศมณฑล
+            District: เขต/อำเภอ
+            district: เขต/อำเภอ
+            Historical_County: เทศมณฑลประวัติศาสตร์
+            historical_county: เทศมณฑลประวัติศาสตร์
+            Historical_Town: เมืองประวัติศาสตร์
+            historical_town: เมืองประวัติศาสตร์
+            Open_Space: พื้นที่เปิด
+            open_space: พื้นที่เปิด
+            Point_of_Interest: จุดสนใจ
+            point_of_interest: จุดสนใจ
+            Province: จังหวัด
+            province: จังหวัด
+            Region: ภูมิภาค
+            region: ภูมิภาค
+            State: รัฐ
+            state: รัฐ
+            Time_Zone: เขตเวลา
+            time_zone: เขตเวลา
+            Town: เมือง
+            town: เมือง
+            Unknown: ไม่ทราบ
+            unknown: ไม่ทราบ
   place_imported: นำเข้าสถานที่แล้ว!
-  #message describing a delay between importing a place and observations appearing in it
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: อาจใช้เวลาถึงหนึ่งวันในการสังเกตที่เกี่ยวข้องกับสถานที่แห่งนี้
   place_must_have_a_boundary_defined: ต้องมีการกำหนดขอบเขตสถานที่
   place_name: ชื่อสถานที่
@@ -2321,32 +2272,32 @@ th:
     zambia: แซมเบีย
   places_of_interest: สถานที่บนหน้าจอ
   places_merged_successfully: รวมสถานที่สำเร็จแล้ว!
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     สถานที่ต้องมีขนาดใหญ่กว่า 700,000 ตารางกิโลเมตร
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     สถานที่ต้องไม่เกิน 70,000 ตารางกิโลเมตร
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     สถานที่ต้องไม่เกิน 200,000 ข้อสังเกต
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     สถานที่ต้องไม่มีการสังเกตการณ์มากกว่า 10,000 รายการ
-  #Title to a section warning a user to exercise caution
+  # Title to a section warning a user to exercise caution
   please_be_careful!: โปรดระวัง!
   please_confirm_your_inat_username: "โปรดยืนยันชื่อผู้ใช้ %{site_name} ของคุณ"
   popular: ยอดนิยม
-  #Post is a noun
+  # Post is a noun
   post_from_journal_by_parent_html: โพสต์จาก<a href="%{url}">วารสารของ %{parent}</a>
-  #Post is a noun
+  # Post is a noun
   post_from_your_journal_html: โพสต์จาก<a href="%{url}">วารสารของคุณ</a>
   post_published: เผยแพร่โพสต์แล้ว!
-  #Shows the date a journal post was published
+  # Shows the date a journal post was published
   posted_on_date_html: โพสต์เมื่อ %{date}
-  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  # Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
   posted_on_date_by_user_html: โพสต์เมื่อ %{date} โดย %{user}
   posts: โพสต์
   powered_by: ขับเคลื่อนโดย
@@ -2366,7 +2317,7 @@ th:
   profile: โปรไฟล์
   profile_picture: รูปโปรไฟล์
   project: โครงการ
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: ผู้ดูแลระบบโครงการ
   project_admins:
     other: แอดมินโครงการ
@@ -2394,9 +2345,9 @@ th:
   projects: โครงการ
   projects_description: |
     การสร้างโครงการจะช่วยรวบรวมการสังเกตของคุณร่วมกับผู้อื่นใน %{site_name} ไม่ว่าจะเป็นเพื่อการรวบรวมข้อมูลรายงานวิทยาศาสตร์พลเมืองหรือเพื่อจดบันทึกนกในสวนหลังบ้านก็ตาม โครงการจะช่วยตอบโจทย์คุณได้
-  #@vow_or_con should work on %{place}
+  # @vow_or_con should work on %{place}
   projects_from_place: "โครงการจาก %{place}"
-  #"admins" is equivalent to "administrates"
+  # "admins" is equivalent to "administrates"
   projects_user_admins: โครงการที่ %{user} เป็นแอดมิน
   projects_you_admin: โครงการที่คุณเป็นแอดมิน
   protozoans: โปรโตซัว
@@ -2406,147 +2357,147 @@ th:
   quality_grade_colon: "ระดับคุณภาพ"
   radius_value: "รัศมี (เมตร): %{radius}"
   random: สุ่ม
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: ลำดับ
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: สกุล / สกุลผสม
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: ชนิด / พันธุ์ผสม
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: ชนิดย่อย / พันธุ์ / แบบ
-  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
-  #etc.). Generally used as a column header in lists of observers and
-  #identifiers
+  # A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  # etc.). Generally used as a column header in lists of observers and
+  # identifiers
   rank_position: อันดับ
   ranks:
-    stateofmatter: สถานะของสสาร
-    kingdom: อาณาจักร
-    x_kingdoms:
-      other: อาณาจักร
-    subkingdom: อาณาจักรย่อย
-    phylum: ไฟลัม
-    x_phyla:
-      other: ไฟลัม
-    subphylum: ไฟลัมย่อย
-    superclass: ชั้นใหญ่
-    class: ชั้น
-    x_classes:
-      other: ชั้น
-    subclass: ชั้นย่อย
-    infraclass: ชั้นฐาน
-    superorder: อันดับใหญ่
-    order: อันดับ
-    x_orders:
-      other: อันดับ
-    suborder: อันดับย่อย
-    infraorder: อันดับฐาน
-    subterclass: ชั้นใต้
-    parvorder: อนุอันดับ
-    zoosection: ส่วน
-    zoosubsection: ส่วนย่อย
-    superfamily: วงศ์ใหญ่
-    epifamily: ลำดับเหนือวงศ์
-    family: วงศ์
-    x_families:
-      other: วงศ์
-    subfamily: วงศ์ย่อย
-    supertribe: เผ่าใหญ่
-    tribe: เผ่า
-    subtribe: เผ่าย่อย
-    genus: สกุล
-    x_genera:
-      other: สกุล
-    genushybrid: สกุลผสม
-    subgenus: สกุลย่อย
-    section: ส่วน
-    subsection: ส่วนย่อย
-    complex: ชนิดเชิงซ้อน
-    #Singular
-    species: ชนิด
-    x_species:
-      other: ชนิด
-    hybrid: ลูกผสม
-    #Singular
-    subspecies: ชนิดย่อย
-    variety: พันธุ์
-    form: แบบ
-    infrahybrid: ลูกผสมฐาน
-    leaves: ใบ
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+      stateofmatter: สถานะของสสาร
+      kingdom: อาณาจักร
+      x_kingdoms:
+        other: อาณาจักร
+      subkingdom: อาณาจักรย่อย
+      phylum: ไฟลัม
+      x_phyla:
+        other: ไฟลัม
+      subphylum: ไฟลัมย่อย
+      superclass: ชั้นใหญ่
+      class: ชั้น
+      x_classes:
+        other: ชั้น
+      subclass: ชั้นย่อย
+      infraclass: ชั้นฐาน
+      superorder: อันดับใหญ่
+      order: อันดับ
+      x_orders:
+        other: อันดับ
+      suborder: อันดับย่อย
+      infraorder: อันดับฐาน
+      subterclass: ชั้นใต้
+      parvorder: อนุอันดับ
+      zoosection: ส่วน
+      zoosubsection: ส่วนย่อย
+      superfamily: วงศ์ใหญ่
+      epifamily: ลำดับเหนือวงศ์
+      family: วงศ์
+      x_families:
+        other: วงศ์
+      subfamily: วงศ์ย่อย
+      supertribe: เผ่าใหญ่
+      tribe: เผ่า
+      subtribe: เผ่าย่อย
+      genus: สกุล
+      x_genera:
+        other: สกุล
+      genushybrid: สกุลผสม
+      subgenus: สกุลย่อย
+      section: ส่วน
+      subsection: ส่วนย่อย
+      complex: ชนิดเชิงซ้อน
+      # Singular
+      species: ชนิด
+      x_species:
+        other: ชนิด
+      hybrid: ลูกผสม
+      # Singular
+      subspecies: ชนิดย่อย
+      variety: พันธุ์
+      form: แบบ
+      infrahybrid: ลูกผสมฐาน
+      leaves: ใบ
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: สถานะของสสาร
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
   ranks_lowercase_kingdom: อาณาจักร
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
   ranks_lowercase_subkingdom: อาณาจักรย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
   ranks_lowercase_phylum: ไฟลัม
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
   ranks_lowercase_subphylum: ไฟลัมย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
   ranks_lowercase_superclass: ชั้นใหญ่
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
   ranks_lowercase_class: ชั้น
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
   ranks_lowercase_subclass: ชั้นย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
   ranks_lowercase_infraclass: ชั้นฐาน
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
   ranks_lowercase_superorder: อันดับใหญ่
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
   ranks_lowercase_order: อันดับ
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
   ranks_lowercase_suborder: อันดับย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: อันดับฐาน
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
   ranks_lowercase_subterclass: ชั้นใต้
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
   ranks_lowercase_parvorder: อนุอันดับ
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
   ranks_lowercase_zoosection: ส่วน
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
   ranks_lowercase_zoosubsection: ส่วนย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: วงศ์ใหญ่
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
   ranks_lowercase_epifamily: ลำดับเหนือวงศ์
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: วงศ์
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
   ranks_lowercase_subfamily: วงศ์ย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
   ranks_lowercase_supertribe: เผ่าใหญ่
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
   ranks_lowercase_tribe: เผ่า
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
   ranks_lowercase_subtribe: เผ่าย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: สกุล
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
   ranks_lowercase_genushybrid: สกุลผสม
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
   ranks_lowercase_subgenus: สกุลย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
   ranks_lowercase_section: ส่วน
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
   ranks_lowercase_subsection: ส่วนย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
   ranks_lowercase_complex: ชนิดเชิงซ้อน
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
   ranks_lowercase_species: ชนิด
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
   ranks_lowercase_hybrid: ลูกผสม
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
   ranks_lowercase_subspecies: ชนิดย่อย
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
   ranks_lowercase_variety: พันธุ์
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
   ranks_lowercase_form: แบบ
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: ลูกผสมฐาน
   re_order_photos: "เรียงลำดับรูป &raquo;"
   read_more: อ่านเพิ่มเติม
@@ -2560,7 +2511,7 @@ th:
   recent_new_users: ผู้ใช้งานใหม่ล่าสุด
   recent_observations: การสังเกตล่าสุด
   recent_observations_: การสังเกตล่าสุด
-  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
+  # Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "การสังเกตล่าสุดโดย %{login} (Atom)"
   recent_observations_by: "การสังเกตล่าสุดโดย %{login}"
   recently_active: เคลื่อนไหวล่าสุด
@@ -2576,11 +2527,11 @@ th:
   relationship: "ความสัมพันธ์"
   relationship_x: "ความสัมพันธ์: %{relationship}"
   relationships:
-    one_to_one: หนึ่งต่อหนึ่ง
-    many_to_many: กลุ่มต่อกลุ่ม
-    many_to_one: กลุ่มต่อหนึ่ง
-    one_to_many: หนึ่งต่อกลุ่ม
-    error: ผิดพลาด
+      one_to_one: หนึ่งต่อหนึ่ง
+      many_to_many: กลุ่มต่อกลุ่ม
+      many_to_one: กลุ่มต่อหนึ่ง
+      one_to_many: หนึ่งต่อกลุ่ม
+      error: ผิดพลาด
   relationships_user_settings: ความสัมพันธ์
   relationship_html: "ความสัมพันธ์: %{link}"
   remove: ลบออก
@@ -2607,7 +2558,7 @@ th:
   remove_tags: ลบแท็ก
   removed: ลบออกแล้ว
   removed_project_user: ผู้ใช้โครงการที่ถูกลบ
-  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  # Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
   removed_role: บทบาทถูกยกเลิก
   required: จำเป็น
   required_: จำเป็น
@@ -2658,7 +2609,7 @@ th:
   scale_colon: "มาตราส่วน:"
   schemes: แบบแผน
   schemes_including: แบบแผนที่มี
-  #E.g. "Homo sapiens" instead of "human"
+  # E.g. "Homo sapiens" instead of "human"
   scientific_name: ชื่อวิทยาศาสตร์
   search: ค้นหา
   search_all_fields: ค้นหาข้อมูลเสริมทั้งหมด
@@ -2669,7 +2620,7 @@ th:
   search_list: ค้นหารายการ
   search_observations: "ค้นหาการสังเกต"
   search_projects: ค้นหาโครงการ
-  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  # Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
   search_reasons: ค้นหาเหตุผล
   search_results_for: ผลการค้นหาสำหรับ
   search_results_for_query: 'ผลการค้นหาสำหรับ "%{query}"'
@@ -2680,19 +2631,19 @@ th:
   search_your_photos: ค้นหารูปของคุณ
   searching: "กำลังค้นหา..."
   seasonality: ตามฤดูกาล
-  #This is a fallback translation for posessive phrases. It could be used on
-  #pages that show a user's content where the title might be "Your
-  #Identifications", but we generally handle those with more specific
-  #translation keys like `your_identifications`. This is here in case we
-  #forget to add a translation key like that.
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "Your
+  # Identifications", but we generally handle those with more specific
+  # translation keys like `your_identifications`. This is here in case we
+  # forget to add a translation key like that.
   second_person_possessive_singular: "%{noun}ของคุณ"
-  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  # Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
   seen_nearby: พบในบริเวณใกล้เคียง
   select: เลือก
   select_all: เลือกทั้งหมด
   select_at_least_one: เลือกอย่างน้อยหนึ่งข้อ
-  #select_one_or_more_photos: Select One Or More Photos
+  # select_one_or_more_photos: Select One Or More Photos
   select_none: ไม่เลือก
   select_observations_to_edit: เลือกการสังเกตที่จะแก้ไข...
   select_options: เลือก
@@ -2700,37 +2651,37 @@ th:
   selected_taxon: หน่วยอนุกรมวิธานที่ถูกเลือก
   select_this_taxon: เลือกหน่วยอนุกรมวิธานนี้
   send: ส่ง
-  #Label for a button that re-sends the account confirmation email and signs
-  #you out until you do
+  # Label for a button that re-sends the account confirmation email and signs
+  # you out until you do
   send_and_sign_out: ส่งและลงชื่อออก
   send_confirmation_email: ส่งอีเมลยืนยัน
   sending: กำลังส่ง...
-  #Label for messages you've sent
+  # Label for messages you've sent
   sent: ส่งแล้ว
   separate_values_with_a_pipe: แยกแต่ละค่าด้วยขีดตั้ง เช่น "1-5|6-10|a lot" หรือ "yes|no|maybe"
   set_license: ตั้งค่าสัญญาอนุญาต
   settings: การตั้งค่า
   share: แชร์
   share_colon: "แชร์:"
-  #Form field label for setting a common name as the default common name in a language for a taxon
+  # Form field label for setting a common name as the default common name in a language for a taxon
   should_this_common_name_be_shown_by_default: ชื่อสามัญนี้ควรแสดงเป็นชื่อแรกสำหรับหน่วยอนุกรมวิธานนี้หรือไม่?
   show: แสดง
   show_hidden_content: แสดงเนื้อหาที่ซ่อนอยู่
   show_keyboard_shortcuts: แสดงปุ่มลัดแป้นพิมพ์
   show_less: แสดงน้อยลง
   show_more: แสดงเพิ่ม
-  #Option to show data series that show "No Annotation" data, i.e. records that
-  #have no annotation
+  # Option to show data series that show "No Annotation" data, i.e. records that
+  # have no annotation
   show_no_annotation: แสดง "ไม่มีหมายเหตุ"
   show_off_your_recent_observations: อวดการสังเกตล่าสุดบนบล็อกหรือเว็บไซต์ของคุณ!
   show_only: แสดงเฉพาะ
   show_relative_proportions_of_all_observations: แสดงสัดส่วนสัมพัทธ์ของการสังเกตทั้งหมด
-  #Label for a button to show the running total of an accumulation chart
+  # Label for a button to show the running total of an accumulation chart
   show_running_total: แสดงผลรวมสะสม
   show_taxa_from_both: (แสดงหน่วยอนุกรมวิธานจากทั้งสองรายการ)
   show_uncountable_species: แสดงชนิดที่นับไม่ได้
-  #Text to indicate that the first X items in a list are being shown, but there
-  #could be more
+  # Text to indicate that the first X items in a list are being shown, but there
+  # could be more
   showing_first_x: แสดง %{x} รายการแรก
   showing_taxa_from_place: "แสดงหน่วยอนุกรมวิธานจาก %{place}"
   showing_x_of_y: แสดง %{x} จาก %{y}
@@ -2740,7 +2691,7 @@ th:
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
   single_observation: การสังเกตเดียว
-  #@vow_or_con should work with %{site}
+  # @vow_or_con should work with %{site}
   site_year_in_review: "ภาพรวม %{site} ปี %{year}"
   sizes: ขนาด
   skip_to_next_page: "ข้ามไปหน้าถัดไป"
@@ -2776,14 +2727,14 @@ th:
     select_one_or_more_sounds: เลือกอย่างน้อยหนึ่งเสียง
     selected_sounds: เสียงที่ถูกเลือก
     sound: เสียง
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: เสียง %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: ลบเสียง
     sound_has_been_flagged: เสียงนี้ถูกรายงาน
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: เสียงที่ซ่อนอยู่
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: เสียงไม่ซ่อน
     sounds: เสียง
     your_soundcloud_account: บัญชี SoundCloud ของคุณ
@@ -2800,7 +2751,7 @@ th:
   sourced_to: อ้างอิงจาก
   spam: สแปม
   spammer: ผู้ส่งสแปม
-  #Plural
+  # Plural
   species: ชนิด
   species_by_category: ชนิดตามหมวดหมู่
   species_from_around_the_world: ชนิดจากทั่วโลก
@@ -2810,7 +2761,7 @@ th:
   species_search: การค้นหาชนิด
   species_taxon_name: ชนิด / ชื่อหน่วยอนุกรมวิธาน
   species_unknown: ไม่ทราบชนิด
-  #Abbreviation for "source"
+  # Abbreviation for "source"
   src: ที่มา
   standard: มาตรฐาน
   start: เริ่มต้น
@@ -2826,8 +2777,8 @@ th:
   status_globally: '%{status} ทั่วโลก'
   stop_editing: หยุดแก้ไข
   stop_following_user: "เลิกติดตาม %{user}"
-  #As in a place to purchase things. We use it as a link to a place where you
-  #can buy merchandise. Please try to keep translations as short as possible
+  # As in a place to purchase things. We use it as a link to a place where you
+  # can buy merchandise. Please try to keep translations as short as possible
   store: ร้านค้า
   store_caps: ร้านค้า
   studies_that_used_inaturalist_data_in_year: การศึกษาที่ใช้ข้อมูลจาก iNaturalist ในปี %{year}
@@ -2836,8 +2787,8 @@ th:
   submit_observations:
     other: ส่ง %{count} การสังเกต
   submitted: ส่งเมื่อ
-  #Label for a button that subscribes the user to updates on a resource, e.g.
-  #comments on a journal post
+  # Label for a button that subscribes the user to updates on a resource, e.g.
+  # comments on a journal post
   subscribe: ติดตาม
   subscribe_to_a_taxon: ติดตามหน่วยอนุกรมวิธาน
   subscribe_to_a_place: ติดตามสถานที่
@@ -2881,7 +2832,7 @@ th:
   taxon_change_title_taxon_split: แยกหน่วยอนุกรมวิธาน %{id}
   taxon_change_title_taxon_swap: แทนที่หน่วยอนุกรมวิธาน %{id}
   taxon_map:
-    gbif_occurrences: รายงานการพบใน GBIF
+      gbif_occurrences: รายงานการพบใน GBIF
   taxon_changes: การเปลี่ยนแปลงหน่วยอนุกรมวิธาน
   taxon_framework_relationships_with_count_html: "ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน: %{count}"
   taxon_framework_relationship: ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน
@@ -2897,7 +2848,7 @@ th:
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: นี่ไม่ใช่แผนที่การกระจายของบัญชีแดง IUCN เนื่องจากหน่วยอนุกรมวิธานนี้ไม่อยู่ในบัญชีแดง IUCN
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: แผนที่การกระจายของบัญชีแดง IUCN สำหรับหน่วยอนุกรมวิธานนี้ไม่เหมาะสม
   taxon_range_guidelines_learn_more_about_taxon_ranges: เรียนรู้เพิ่มเติมเกี่ยวกับช่วงหน่วยอนุกรมวิธาน
-  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: ลำดับอนุกรมวิธาน
   taxon_removed_from_list: หน่วยอนุกรมวิธานที่ลบออกจากรายการ
   taxon_scheme: แบบแผนหน่วยอนุกรมวิธาน
@@ -2941,11 +2892,11 @@ th:
   theres_something_wrong_with_taxon_framework_relationship: มีบางอย่างผิดพลาดที่นี่ - เราไม่สามารถกำหนดความสัมพันธ์ระหว่างหน่วยอนุกรมวิธานใด ๆ ระหว่างภายในกับภายนอก
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
-  #This is a fallback translation for posessive phrases. It could be used on
-  #pages that show a user's content where the title might be "kueda's
-  #identifications", but we generally handle those with more specific
-  #translation keys like `users_identifications`. This is here in case we
-  #forget to add a translation key like that.
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "kueda's
+  # identifications", but we generally handle those with more specific
+  # translation keys like `users_identifications`. This is here in case we
+  # forget to add a translation key like that.
   third_person_possessive_singular: "%{noun}ของ%{object_phrase}"
   this_bioblitz_beings_in: Bioblitz นี้จะเริ่มในอีก
   this_is_your_observation: นี่คือการสังเกตของคุณ
@@ -2953,8 +2904,6 @@ th:
   this_list_only_accepts_taxa_that_are_species: รายการนี้ยอมรับหน่วยอนุกรมวิธานที่เป็นชนิดเท่านั้น
   this_list_only_accepts_taxa_that_are_species_or_lower: รายการนี้ยอมรับหน่วยอนุกรมวิธานที่ระดับชนิดหรือต่ำกว่าเท่านั้น
   this_observation: การสังเกตนี้
-  this_observation_is_featured_on_x_sites:
-    other: มีการสังเกตนี้ใน %{count} เว็บไซต์
   this_observation_is_research_grade: การสังเกตนี้เป็นระดับงานวิจัย!
   this_observation_was_created_using: "การสังเกตนี้สร้างขึ้นมาด้วยการใช้:"
   this_place_has_no_check_list: "สถานที่นี้ไม่มีรายการตรวจสอบ"
@@ -2962,123 +2911,123 @@ th:
   this_year: ปีนี้
   threatened: ถูกคุกคาม
   time_ago: "%{time} ที่แล้ว"
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_algiers: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_johannesburg: เวลาแอฟริกาใต้
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_nairobi: เวลาแอฟริกาตะวันออก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_argentina_buenos_aires: เวลาอาร์เจนตินา
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_bogota: เวลาคลอมเบีย
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_chicago: เวลากลาง (สหรัฐฯ และแคนาดา)
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_chihuahua: เวลาแปซิฟิก (เม็กซิโก)
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_denver: เวลาแถบภูเขา (สหรัฐฯ และแคนาดา)
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_guatemala: เวลากัวเตมาลา
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_halifax: เวลามาตรฐานแอตแลนติก (แคนาดา)
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_la_paz: เวลาโบลิเวีย
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_lima: เวลาเปรู
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_los_angeles: เวลาแปซิฟิก (สหรัฐฯ และแคนาดา)
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_mexico_city: เวลากลาง (เม็กซิโก)
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_new_york: เวลาตะวันออก (สหรัฐฯ และแคนาดา)
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_phoenix: เวลาแอริโซนา
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_santiago: เวลาชิลีภาคพื้นทวีป
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_sao_paulo: เวลาบราซิล
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_tijuana: เวลาแปซิฟิก (เม็กซิโก)
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_baghdad: เวลามาตรฐานอาหรับ
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_bangkok: เวลาอินโดจีน
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_hong_kong: เวลาฮ่องกง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_jakarta: เวลาอินโดนีเซียตะวันตก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_jerusalem: เวลามาตรฐานอิสราเอล
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_kolkata: เวลามาตรฐานอินเดีย
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_novosibirsk: เวลาครัสโนยาสค์
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_shanghai: เวลามาตรฐานจีน
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_singapore: เวลาสิงคโปร์มาตรฐาน
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_taipei: เวลาไต้หวัน
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_tokyo: เวลาญี่ปุ่นมาตรฐาน
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_yekaterinburg: เวลาเยคาเตรินบุร์ก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_brisbane: เวลาบริสเบน
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_melbourne: เวลาเมลเบิร์น
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_perth: เวลาเพิร์ธ
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_sydney: เวลาซิดนีย์
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_etc_utc: UTC
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_athens: เวลายุโรปตะวันออก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_berlin: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_brussels: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_copenhagen: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_helsinki: เวลายุโรปตะวันออก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_istanbul: เวลาตุรกี
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_kiev: เวลายุโรปตะวันออก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_lisbon: เวลายุโรปตะวันตก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_london: เวลายุโรปตะวันตก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_madrid: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_moscow: เวลามอสโก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_paris: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_prague: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_rome: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_vienna: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_vilnius: เวลายุโรปตะวันออก
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_warsaw: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_zagreb: เวลายุโรปกลาง
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_apia: เวลาซามัว
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: เวลานิวซีแลนด์
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_honolulu: เวลาฮาวาย-อะลูเชียน
-  #As in the title of a book or a blog post
+  # As in the title of a book or a blog post
   title: หัวข้อ
   title_and_description: "หัวข้อ & คำอธิบาย"
   today: วันนี้
@@ -3096,7 +3045,7 @@ th:
   translated_languages: ภาษาที่แปล
   'true': 'จริง'
   trends: แนวโน้ม
-  #Noun
+  # Noun
   trust: ความไว้วางใจ
   trust_this_person_with_your_private_coordinates: ไว้วางใจคนนี้และเปิดเผยพิกัดให้เขาทราบ
   trust_this_project_with_your_private_coordinates?: เปิดเผยพิกัดที่ซ่อนไว้ต่อโครงการนี้หรือไม่?
@@ -3108,14 +3057,14 @@ th:
   umbrella_projects: โครงการครอบคลุม
   unable_to_save_comment: เราไม่สามารถบันทึกความคิดเห็นของคุณได้
   unclassified: ไม่ถูกจัดจำแนก
-  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  # Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: การใช้งานโครงการ
   unknown: ไม่ทราบ
   unknown_error: ข้อผิดพลาดที่ไม่รู้จัก
   unknown_rank: '(ลำดับที่ไม่รู้จัก)'
-  #Text for a button to stop following updates on an observation
+  # Text for a button to stop following updates on an observation
   unfollow_observation: เลิกติดตามการสังเกต
-  #Text for a button to stop following updates from a user
+  # Text for a button to stop following updates from a user
   unfollow_user: เลิกติดตามผู้ใช้นี้
   unpublish: เลิกเผยแพร่
   unreview_all: เลิกทบทวนทั้งหมด
@@ -3133,7 +3082,7 @@ th:
   updated_by_user_on_date_html: อัปเดตโดย %{user} เมื่อ %{date}
   updated_daily: อัปเดตรายวัน
   updated_photo: รูปที่อัปเดต
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: อัปเดตเสียง
   upload: อัปโหลด
   upload_a_csv_file: อัปโหลดไฟล์ CSV
@@ -3141,7 +3090,7 @@ th:
     อัปโหลดไฟล์ CSV พร้อมข้อมูลการสังเกต ถ้าผู้ใช้มีข้อมูลใน spreadsheet หรือฐานข้อมูล
   upload_new_photo: อัพโหลดรูปภาพใหม่
   upload_photo: อัปโหลดรูปภาพ
-  #Label that notes who uploaded some content, not in a sentence
+  # Label that notes who uploaded some content, not in a sentence
   uploaded_by: อัปโหลดโดย
   uploader:
     tooltips:
@@ -3159,22 +3108,22 @@ th:
   user1_user2_and_x_others_faved_this_observation: "%{user1} %{user2} และ %{x_others} ชอบการสังเกตนี้"
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
   user_added_a_flag_html: "%{user} เพิ่มการรายงาน"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} เพิ่ม%{x}ไปที่%{noun}ของ %{by}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} เพิ่ม%{x}ไปที่%{noun}ของ %{by}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
   user_added_an_identification_html: "%{user} เพิ่มการจำแนก"
   user_added_an_observation_field_value_html: "%{user} เพิ่มข้อมูลเสริมการสังเกต"
   user_added_an_observation_html: "%{user} เพิ่มการสังเกต"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x: "%{user} เพิ่ม%{x}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
   user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
@@ -3201,7 +3150,7 @@ th:
   users_journal: "วารสารของ %{user}"
   users_lists: "รายการของ %{user}"
   users_profile: "โปรไฟล์ของ %{user}"
-  #@vow_or_con should work with %{site}
+  # @vow_or_con should work with %{site}
   users_site_year_in_review: "ภาพรวม %{site} ปี %{year} ของ %{user}"
   value: ค่า
   values: ค่า
@@ -3213,9 +3162,6 @@ th:
   view_all_fields: ดูข้อมูลเสริมทั้งหมด
   view_all_flags: ดูรายงานทั้งหมด
   view_all_members: ดูสมาชิกทั้งหมด
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    other: "ดูทั้งหมด %{count}"
   view_all_observations: ดูการสังเกตทั้งหมด
   view_all_photocount_photos: "ดูทั้งหมด %{photo_count} รูป"
   view_check_list_page: ดูหน้ารายการตรวจสอบ
@@ -3227,8 +3173,8 @@ th:
   view_full_size_photo: ดูรูปขนาดเต็ม
   view_inaturalist_global_year_in_review: ดูภาพรวม iNaturalist ทั่วโลกในปี %{year}
   view_inaturalist_global_year_in_review_caps: ดูภาพรวม iNaturalist ทั่วโลกในปี %{year}
-  #Text in link to view Year in Review for a specific site. %{site} should
-  #support @vow_or_con
+  # Text in link to view Year in Review for a specific site. %{site} should
+  # support @vow_or_con
   view_site_year_in_review: ดูภาพรวม %{site} ปี %{year}
   view_site_year_in_review_caps: ดูภาพรวม %{site} ปี %{year}
   view_journal: ดูวารสาร
@@ -3277,20 +3223,20 @@ th:
   welcome_to_inat: "ยินดีต้อนรับเข้าสู่ %{site_name}!"
   welcome_to_guides: "ยินดีต้อนรับเข้าสู่คู่มือสำรวจ %{site_name}!"
   welcome_to_x_project: "ยินดีต้อนรับเข้าสู่ %{project}"
-  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  # Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: เราค่อนข้างแน่ใจว่าอยู่ในสกุลนี้
-  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  # Label for the most probable taxon in the automated suggestions when that taxon is a family
   were_pretty_sure_this_is_in_the_family: เราค่อนข้างแน่ใจว่าอยู่ในวงศ์นี้
-  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  # Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: เราค่อนข้างแน่ใจว่าอยู่ในอันดับนี้
-  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  # Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
   were_pretty_sure_this_is_in_the_subfamily: เราค่อนข้างแน่ใจว่าอยู่ในวงศ์ย่อยนี้
-  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  # Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
   were_pretty_sure_this_is_in_the_superfamily: เราค่อนข้างแน่ใจว่าอยู่ในวงศ์ใหญ่นี้
-  #Falback label for the most probable taxon in the automated suggestions.
-  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
-  #instead. @gender should work here. %{rank} is usually genus or a
-  #higher-level rank like family
+  # Falback label for the most probable taxon in the automated suggestions.
+  # Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  # instead. @gender should work here. %{rank} is usually genus or a
+  # higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: เราค่อนข้างแน่ใจว่าอยู่ใน %{rank}
   what_did_you_see: คุณเห็นอะไร?
   what_did_you_see?: คุณเห็น<em>อะไร</em>?
@@ -3298,7 +3244,7 @@ th:
   when_did_you_see_it?: คุณเห็นเมื่อไหร่?
   where_were_you?: คุณอยู่ที่ไหน?
   which_projects_can_add_your_observations?: อนุญาตให้ผู้อื่นเพิ่มการสังเกตของคุณเข้าโครงการแบบดั้งเดิมใดบ้าง?
-  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  # Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: เปลี่ยนแปลงชื่อเพราะเหตุใด? (ไม่บังคับ)
   why_are_you_making_this_change_cite_source_required: โปรดอธิบายเหตุผลที่เปลี่ยนแปลงชื่อ และหากเป็นไปได้ควรอ้างอิงแหล่งที่มาด้วย (จำเป็น)
   why_you_can_see_the_coordinates: คุณมองเห็นพิกัดได้เพราะว่า
@@ -3317,20 +3263,18 @@ th:
   widget_for: วิดเจ็ตสำหรับ
   wikipedia_attribution_cc_by_sa_3: |
     ที่มา: วิกิพีเดีย, "%{title}", %{url}, CC BY-SA 3.0
-  #Filter for observations not in a particular taxon
+  # Filter for observations not in a particular taxon
   without_taxon: ยกเว้นหน่วยฯ
-  #Label for a button to withdraw an identification, i.e. to deactivate it
-  #without deleting it
+  # Label for a button to withdraw an identification, i.e. to deactivate it
+  # without deleting it
   withdraw: ถอนออก
-  #Loading status while an identification is being withdrawn
+  # Loading status while an identification is being withdrawn
   withdrawing: กำลังถอน...
   worldwide: ทั่วโลก
   x_journal: "วารสารของ %{user}"
-  #This might be shown if there is a character limit in a text field, in which
-  #it would mean "x of y characters remaining"
+  # This might be shown if there is a character limit in a text field, in which
+  # it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    other: "ยืนยันแล้ว %{x} จาก %{count}"
   x_project_journal: "%{name} ของ %{project}"
   x_site_is_a_social_network_for_naturalist: |
     %{site} เป็นเครือข่ายสังคมสำหรับนักธรรมชาติวิทยา! บันทึกการสังเกตของพืชและสัตว์ แชร์ให้เพื่อนและนักวิจัย และเรียนรู้เกี่ยวกับโลกธรรมชาติ
@@ -3340,29 +3284,29 @@ th:
   year_in_review_caps: "ภาพรวมปี %{year}"
   year_month: ปี/เดือน
   'yes': "ใช่"
-  #Used when trusting a project and the user is agreeing to trust the project
-  #with access to their hidden coordinates but only for observations of
-  #threatened taxa
+  # Used when trusting a project and the user is agreeing to trust the project
+  # with access to their hidden coordinates but only for observations of
+  # threatened taxa
   yes_but_only_for_threatened: |-
     เฉพาะการสังเกตที่เป็นชนิดพันธุ์ที่ถูกคุกคาม ยกเว้นการสังเกตที่ฉันตั้งค่าซ่อนพิกัดเอง
   yes_find_them!: "ใช่ ค้นหาเลย!"
-  #Used when trusting a project and the user is agreeing to trust the project
-  #with access to their hidden coordinates
+  # Used when trusting a project and the user is agreeing to trust the project
+  # with access to their hidden coordinates
   yes_for_any_of_my_observations: "ใช่ เปิดเผยพิกัดทุกการสังเกต"
   yes_i_want_to_join: ใช่ ฉันอยากเข้าร่วม
   yes_reject_it: ปฏิเสธ
   yesterday: เมื่อวาน
   yir_donate_banner_inaturalist_in_year: "INATURALIST ในปี %{year}"
   yir_donate_banner_reaching_millions: เข้าถึงผู้คนนับล้าน เผยให้เห็นความหลากหลายทางชีวภาพ สร้างความร่วมมือระดับโลก
-  #"You" is singular
+  # "You" is singular
   yir_donate_banner_all_thanks: ขอขอบคุณทุกท่านที่มีส่วนร่วม!
-  #"Your" is singular
+  # "Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist ต้องการให้คุณสนับสนุน
   yir_email_because_of_you: |
     คุณเป็นผู้ที่ทำให้ข้อมูลความหลากหลายทางชีวภาพเพิ่มขึ้นกว่าปีที่แล้ว การสรุปภาพรวมประจำปีจึงเป็นของขวัญสำหรับคุณที่ได้ส่งเสริมความหลากหลายทางชีวภาพผ่านทาง iNaturalist มาโดยตลอด
   yir_email_log_in_to_generate: |
     เข้าสู่ระบบเพื่อสร้างภาพรวมประจำปีของคุณ
-  #Feel free to adjust this if %{year} or "Your" don't translate well
+  # Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
     ภาพรวม iNaturalist ปี %{year} ของคุณ — เฉลิมฉลองปีของคุณด้วยความหลากหลายทางชีวภาพ
   yir_email_the_year_isnt_over: |
@@ -3426,7 +3370,7 @@ th:
         คลิก CMD หรือ SHIFT เพื่อเลือกหลายรายการ บางประเทศจะไม่แสดง
         การประกาศ หากเลือกประเทศ IP ให้เลือกยกเว้นประเทศ IP
         จะถูกลบออกจากอดีต
-      #Note about how the announcement last observation date property works
+      # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         โปรดทราบว่าวันที่สร้างของผู้ใช้ที่สร้างล่าสุด
         การสังเกตจะถูกแคช ดังนั้นจึงอาจใช้เวลาสองสามชั่วโมงในการกําหนดเป้าหมาย
@@ -3439,17 +3383,17 @@ th:
         คลิกค้างไว้แล้วคลิก CMD- หรือ SHIFT เพื่อเลือกหลายรายการ การเลือก "ทั้งหมด" หรือไม่ทํา
         การเลือกจะแสดงประกาศต่อผู้ใช้ทุกคนโดยไม่คํานึงถึง
         สังกัดเว็บไซต์
-      #Description of a group of options for targeting announcements based
-      #on donation behavior
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
       target_users_by_donation_behavior: กําหนดเป้าหมายผู้ใช้ตามพฤติกรรมการบริจาค
-      #Description of a group of options for targeting announcements based
-      #on identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
       target_users_by_identification_behavior: กําหนดเป้าหมายผู้ใช้ตามพฤติกรรมการระบุตัวตน
-      #Description of a group of options for targeting announcements based
-      #on observation behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
       target_users_by_observation_behavior: กําหนดเป้าหมายผู้ใช้ตามพฤติกรรมการสังเกต
-      #Description of a group of options for targeting announcements based
-      #miscellaneous user attributes
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
       target_users_by_other_attributes: กําหนดเป้าหมายผู้ใช้ตามแอตทริบิวต์อื่นๆ
     donate:
       donate_short_desc: "บริจาคเพื่อสนับสนุนเลย!"
@@ -3459,27 +3403,27 @@ th:
         become_a_monthly_supporter_of_inaturalist_caps: มาเป็นผู้สนับสนุน iNaturalist รายเดือน
     email_confirmation:
       click_here_to_resend_a_confirmation_email: คลิกที่นี่เพื่อส่งอีเมลยืนยันอีกครั้ง
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: ส่งอีเมลยืนยัน
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         นี่คือที่อยู่อีเมลที่เราจะส่งการยืนยันไปที่:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         หากคุณไม่ได้รับอีเมล ต่อไปนี้เป็นเคล็ดลับบางประการ:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: หากคุณยังไม่ได้รับอีเมลยืนยัน โปรดติดต่อเราที่ <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> ดังนั้นเราจึงสามารถช่วยเหลือคุณได้
       please_add_an_email_and_password: โปรดเพิ่มอีเมลและรหัสผ่านเพื่อไม่ให้สูญเสียการเข้าถึงบัญชีของคุณ
       please_click_the_link_sent_to_email_to_confirm_html: กรุณาคลิกลิงก์ที่ส่งมาที่ <span class="email">%{email}</span> เพื่อยืนยันที่อยู่อีเมลของคุณ
-      please_confirm_that_email_is_the_best_contact_html: โปรดยืนยันว่า <span class="email">%{email}</span> เป็นวิธีที่ดีที่สุดในการติดต่อคุณ #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: โปรดยืนยันที่อยู่อีเมลของคุณเพื่อโต้ตอบกับเนื้อหาของผู้ใช้รายอื่นและเข้าถึงบางหน้า #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: โปรดยืนยันที่อยู่อีเมลของคุณ <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: โปรดยืนยันว่า <span class="email">%{email}</span> เป็นวิธีที่ดีที่สุดในการติดต่อคุณ # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: โปรดยืนยันที่อยู่อีเมลของคุณเพื่อโต้ตอบกับเนื้อหาของผู้ใช้รายอื่นและเข้าถึงบางหน้า # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: โปรดยืนยันที่อยู่อีเมลของคุณ <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: โปรดยืนยันที่อยู่อีเมลของคุณเพื่อโต้ตอบกับเนื้อหาของผู้ใช้รายอื่น
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: โปรดยืนยันที่อยู่อีเมลของคุณเพื่อใช้หน้านี้
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: ตรวจสอบตัวกรองใดๆ ที่คุณทําซึ่งอาจนําอีเมลของเราออกจากกล่องจดหมายของคุณ #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: ตรวจสอบตัวกรองใดๆ ที่คุณทําซึ่งอาจนําอีเมลของเราออกจากกล่องจดหมายของคุณ # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: ตรวจสอบโฟลเดอร์สแปม
       your_site_account_has_no_email: ของคุณ %{site_name} บัญชีไม่มีที่อยู่อีเมลที่เชื่อมโยง
     guides:
@@ -3536,13 +3480,13 @@ th:
     messages:
       from: จาก
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           คุณจะสามารถส่งข้อความใหม่ได้หลังจากยืนยันอีเมลแล้ว
           ที่อยู่  สําหรับตอนนี้คุณสามารถอ่านและตอบกลับข้อความที่คนอื่นส่งถึงคุณได้
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           คุณจะสามารถส่งข้อความใหม่ได้หลังจากยืนยันอีเมลแล้ว
           ที่อยู่และเพิ่มข้อสังเกตที่ตรวจสอบได้สามข้อหรือการระบุตัวตนสามรายการ
@@ -3554,13 +3498,13 @@ th:
         identification_count: จำนวนการจำแนก
         score: คะแนน
       compare:
-        #Label for a visualization that combines multiple series of data in a single chart
+        # Label for a visualization that combines multiple series of data in a single chart
         combined: รวม
-        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        # Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: แนวนอน
-        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        # Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: ช่วง
-        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        # Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: แนวตั้ง
       export:
         choose_columns_desc: เลือกคอลัมน์ที่คุณต้องการส่งออก
@@ -3580,12 +3524,12 @@ th:
         data_quality_assessment_desc3_html: |
           ระดับคุณภาพเป็นการสรุปภาพรวมความแม่นยำ ความเที่ยงตรง ความสมบูรณ์ ความเกี่ยวข้อง และความเหมาะสมของการสังเกตใน iNaturalist ให้เป็นข้อมูลความหลากหลายทางชีวภาพ คุณสมบัติบางรายการจะถูกกำหนดโดยอัตโนมัติ ในขณะที่รายการอื่น ๆ จะขึ้นอยู่กับการโหวตโดยผู้ใช้งาน นอกจากนี้ iNaturalist จะแบ่งปันการสังเกต "ระดับงานวิจัย" ให้แก่พาร์ตเนอร์ทางข้อมูลจำนวนมากเพื่อใช้ในงานวิทยาศาสตร์และการอนุรักษ์ต่อไป
         disagreement_count_desc: "จำนวนหน่วยอนุกรมวิธานที่ได้รับการจำแนกและไม่เป็นสมาชิกของหน่วยฯ ที่เหนือกว่า"
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           พื้นที่ <strong>อนุกรมวิธานชุมชนและอนุกรมวิธานสังเกตการณ์ตรงกัน</strong>
           (สําหรับโอกาสที่หายากที่อนุกรมวิธานสังเกตการณ์สามารถมีได้มากกว่า
           เฉพาะกว่าอนุกรมวิธานชุมชน)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           การสังเกต <strong>ไม่แสดงหลักฐานที่ถูกต้องของสิ่งมีชีวิตหรือ
           ฉาก</strong> (เช่น ปัญญาประดิษฐ์ถูกใช้เพื่อเพิ่ม ลบ หรือแทนที่
@@ -3596,7 +3540,7 @@ th:
           บางรูปถูกรายงานว่ามีเนื้อหาไม่เหมาะสมหรือมีการละเมิดลิขสิทธิ์ ดูรายละเอียดเพิ่มเติมที่ %{links}
     emailer:
       collection_project_changed_for_trusting_member:
-        #Followed by the project icon and a link to the project
+        # Followed by the project icon and a link to the project
         requirements_have_changed: |-
           ข้อกำหนดการสังเกตของโครงการต่อไปนี้เพิ่งมีการเปลี่ยนแปลง:
         wondering_what_this_means_html: |
@@ -3608,7 +3552,7 @@ th:
       edit:
         admins_must_be_existing_members: แอดมินต้องเป็นสมาชิกที่มีตัวตนอยู่จริงในโครงการนี้
         icon_desc: "จะถูกครอบตัดเป็นสี่เหลี่ยมจัตุรัส"
-        #Label for button to make another user the owner of a project
+        # Label for button to make another user the owner of a project
         make_owner: ตั้งเป็นเจ้าของ
         rules:
           has_media: มีสื่อ (รูปหรือเสียง)
@@ -3700,8 +3644,8 @@ th:
         this_has_been_flagged_as_spam: การสังเกตนี้ถูกรายงานว่าเป็นสแปม
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           สามารถดูต้นฉบับได้ที่ <a href="%{url}">%{url}</a>. กรุณา
           ปล่อยให้ค่าสถานะการละเมิดลิขสิทธิ์เป็นยังไม่ได้รับการแก้ไขหากเสียงนี้ไม่ได้รับการแก้ไข
@@ -3709,14 +3653,14 @@ th:
     stats:
       index:
         new_users_desc: ลงทะเบียนวันนี้
-        #Short for "observations community-identified to genus"
+        # Short for "observations community-identified to genus"
         obs_cid_d_to_genus: การสังเกตที่จำแนกถึงระดับสกุล
         obs_id_d_desc: สร้างขึ้นภายใน 7 วันก่อนหน้าและมีการจำแนก (อาจเป็นการจำแนกโดยผู้สังเกตเอง)
         observers_desc: เพิ่มการสังเกตในวันนี้
         recent_desc: ลงทะเบียนเมื่อ 7 วันก่อน
       year:
-        #label used for a chart component that shows the count of users that
-        #added both identifications and observations
+        # label used for a chart component that shows the count of users that
+        # added both identifications and observations
         added_both: ทั้งคู่
         added_only_identifications: จำแนกชนิดเท่านั้น
         added_only_observations: เพิ่มการสังเกตเท่านั้น
@@ -3739,11 +3683,11 @@ th:
         percent_of_total_growth: "% การเติบโตทั้งหมด"
         observations_per_year: การสังเกต / ปี
         observations_per_year_by_date_added: ตามวันที่เพิ่ม
-        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        # Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: การสังเกตอย่างต่อเนื่อง
         observation_streaks_color_desc: |
           แสดงจำนวนวันด้วยสีตามมาตราส่วนลอการิทึม:
-        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        # Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: เป็นประจำ
         species_per_year: ชนิด / ปี
         species_per_year_by_date_added: ตามวันที่เพิ่ม
@@ -3756,17 +3700,10 @@ th:
           รู้หรือไม่ว่า %{site_name} มีผู้แปลภาษาไม่น้อยกว่า %{x_people} คน? นี่คือเหล่านักแปลที่ยอดเยี่ยมที่ได้เพิ่มคำแปลในปีนี้พร้อมกับจำนวนคำที่พวกเขาแปลใน%{website_link_tag}เว็บไซต์%{link_tag_end} ในแอป iNaturalist ของ %{iphone_link_tag}iPhone%{link_tag_end} และ %{android_link_tag}Android%{link_tag_end} และใน %{seek_link_tag}Seek%{link_tag_end} คุณสามารถดูรายชื่อผู้แปลทั้งหมดสำหรับทุกภาษา รวมถึงผู้แปลในปีก่อน ๆ และผู้แปลจาก Translatewiki ใน%{view_all_web_link_tag}เว็บไซต์%{link_tag_end}และ %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories ของเรา
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           คุณสามารถเปลี่ยนแปลงฉายาสายพันธุ์ได้โดยตรงเท่านั้น (เช่น การเปลี่ยนเพศ การสะกดผิด) เพิ่ม <a target="_blank" href="%{url}">การแลกเปลี่ยนอนุกรมวิธาน</a> หากคุณต้องการเปลี่ยนชื่ออื่น ๆ
       show:
-        about_regional_names_desc: |
-          <p>
-          ในบางสถานที่ (เช่น ประเทศ) อาจมีชื่อเพิ่มเติม เนื่องจากแต่ละประเทศหรือภูมิภาคอาจใช้ชื่อสามัญในภาษาเดียวกันต่างกันไป เช่น เม็กซิโกและคอสตาริกาอาจมีชื่อภาษาสเปนต่างกันสำหรับชนิดเดียวกัน
-          </p>
-          <p>
-          ตารางต่อไปนี้แสดงรายชื่อที่ถูกเพิ่มและเรียงลำดับความสำคัญในแต่ละสถานที่ หากมีการเพิ่มชื่อภาษาสเปนสองชื่อในประเทศเม็กซิโก ชื่อที่อยู่ในรายการแรกจะแสดงขึ้นมาถ้าคุณต้องการดูชื่อภาษาสเปนที่เพิ่มในประเทศเม็กซิโก
-          </p>
         about_conservation_status_desc: |
           สถานะการอนุรักษ์แสดงถึงระดับความเสี่ยงต่อการสูญพันธุ์ของสิ่งมีชีวิตแต่ละกลุ่ม
         about_establishment_desc: |
@@ -3797,42 +3734,32 @@ th:
           "Life Stage=Subimago": ตัวรองตัวเต็มวัย
           "Life Stage=Teneral": หลังลอกคราบ
           unannotated: ไม่มีหมายเหตุ
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         มีบางอย่างผิดพลาดในการพยายามโพสต์แท็กเหล่านั้น: %{message}
     users:
       edit:
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          <a href="%{url}" target="_blank">เครือข่าย iNaturalist</a> คือกลุ่มของเว็บไซต์ท้องถิ่นที่เชื่อมต่ออย่างสมบูรณ์กับชุมชน iNaturalist ทั่วโลก เว็บไซต์ในเครือข่ายเหล่านี้ได้รับการสนับสนุนจากสถาบันท้องถิ่นที่ได้ลงนามข้อตกลงกับ iNaturalist เพื่อส่งเสริมการใช้งานในระดับท้องถิ่นและเป็นประโยชน์ต่อความหลากหลายทางชีวภาพในพื้นที่นั้น ๆ โดยเครือข่ายสามารถเข้าถึงพิกัดจริงจากประเทศของตนซึ่งถูกปกปิดจากสาธารณะโดยอัตโนมัติเพื่อปกป้องชนิดพันธุ์ที่ถูกคุกคาม
-          </p>
-          <p>
-          ชื่อผู้ใช้และรหัสผ่านของคุณสามารถใช้ได้กับทุกเว็บไซต์ที่เป็นส่วนหนึ่งของเครือข่าย iNaturalist หากคุณเลือกที่จะสังกัดกับเว็บไซต์เครือข่ายใด สถาบันท้องถิ่นที่ดูแลเว็บไซต์นั้น ๆ จะสามารถเข้าถึงที่อยู่อีเมลของคุณ (เพื่อวัตถุประสงค์ในการสื่อสารเกี่ยวกับกิจกรรมของเว็บไซต์เท่านั้น) และยังเข้าถึงพิกัดจริงของการสังเกตที่ถูกพรางหรือซ่อนของคุณได้ด้วย
-          </p>
-          <p>
-          หมายเหตุ: โปรดอย่าลองเปลี่ยนสังกัดโดยไม่มีเหตุอันควร หากคุณมีการสังเกตมากกว่า 1000 ครั้งแล้ว
-          </p>
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: ความคิดเห็น
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: การจำแนก
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_mentions: การพูดถึง
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: ข้อความ
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: โพสต์วารสารโครงการ
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: เมื่อมีการเพิ่มการสังเกตของคุณเข้าโครงการ
-        #Checkbox label for user preference about what to receive in the daily
-        #email update. This one controls whether or not you get notifications
-        #when the curators change in a project you've joined
+        # Checkbox label for user preference about what to receive in the daily
+        # email update. This one controls whether or not you get notifications
+        # when the curators change in a project you've joined
         notification_preferences_project_curator_changes: การเปลี่ยนแปลงผู้ดูแลโครงการ
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: การเปลี่ยนแปลงอนุกรมวิธาน
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: การสังเกตของคนที่ฉันติดตาม
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: การสังเกตของหน่วยอนุกรมวิธานจากสถานที่ที่ฉันติดตาม
         project_addition_preferences:
           none: "คุณเท่านั้นที่เพิ่มการสังเกตเข้าโครงการได้"
@@ -3845,8 +3772,6 @@ th:
       index:
         connect_with_nature: เชื่อมโยงกับธรรมชาติ
         explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
-        species_observed:
-          other: "ชนิดที่สังเกต"
         how_it_works: หลักการทำงาน
         record_your_observations: บันทึกการสังเกตของคุณ
         share_with_fellow_naturalists: แชร์ให้นักธรรมชาติวิทยาคนอื่น ๆ
@@ -3898,19 +3823,19 @@ th:
       - ศุกร์
       - เสาร์
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%-d %b %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%-d %B %Y'
     month_names:
       - 
@@ -3967,19 +3892,19 @@ th:
       update: อัปเดต %{model}
   number:
     format:
-      #The delimiter separates parts of large integers, so if the number is
-      #"one million and two and a half" this would be written as
-      #"1,000,002.5" in English, and "," is the delimiter. This should not be
-      #the same as the separator.
+      # The delimiter separates parts of large integers, so if the number is
+      # "one million and two and a half" this would be written as
+      # "1,000,002.5" in English, and "," is the delimiter. This should not be
+      # the same as the separator.
       delimiter: ','
       significant: false
       strip_insignificant_zeros: false
       si:
-        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        # 10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         kilo: "%{number}k"
-        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        # 10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         mega: "%{number}M"
-        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        # 10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
       decimal_units:
@@ -3994,64 +3919,64 @@ th:
         strip_insignificant_zeros: true
   time:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%-d %b %Y %H:%M:%S %z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%-d %B %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: หลังเที่ยง
   activerecord:
     models:
-      #Software application that operates iNat on a user's behalf, e.g. the
-      #iNaturalist Android app or an app made by a third party
+      # Software application that operates iNat on a user's behalf, e.g. the
+      # iNaturalist Android app or an app made by a third party
       OauthApplication: แอปพลิเคชัน
     attributes:
       announcement:
-        #Start of a date range that the viewer must not have donated in to see the announcement
+        # Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: ยกเว้นวันที่เริ่มต้นของผู้บริจาค
-        #End of a date range that the viewer must not have donated in to see the announcement
+        # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: ยกเว้นวันที่สิ้นสุดของผู้บริจาค
         excludes_non_site: ซ่อนประกาศอื่นๆ ในตําแหน่งการจัดวางนี้ที่ไม่มีรหัสเว็บไซต์
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: ยกเว้นผู้สังเกตการณ์จากแอป
-        #start of a date range that the viewer must have donated in to see the announcement
+        # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: รวมวันที่เริ่มต้นของผู้บริจาค
-        #End of a date range that the viewer must have donated in to see the announcement
+        # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: รวมวันที่สิ้นสุดของผู้บริจาค
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: รวมผู้สังเกตการณ์จากแอป
-        #List of countries that the viewer's IP address can come from to see the announcement
+        # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: ประเทศ IP
-        #Start of a date range that includes the viewer's most recent observation
+        # Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: วันที่เริ่มต้น obs ล่าสุด
-        #end of a date range that includes the viewer's most recent observation
+        # end of a date range that includes the viewer's most recent observation
         last_observation_end_date: วันที่สิ้นสุด obs ล่าสุด
-        #Maximum number of identifications the viewer must have added for others to see the announcement
+        # Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: การระบุตัวตนสูงสุด
-        #Minimum number of identifications the viewer must have added for others to see the announcement
+        # Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: การระบุขั้นต่ํา
-        #Maximum number of observations the viewer must have added for others to see the announcement
+        # Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: การสังเกตสูงสุด
-        #Minimum number of observations the viewer must have added for others to see the announcement
+        # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: การสังเกตขั้นต่ํา
-        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: ตำแหน่ง
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: ผู้สร้างเป้าหมาย (สําหรับการทดสอบ)
-        #Whether or not the announcement is shown to logged in users
+        # Whether or not the announcement is shown to logged in users
         target_logged_in: เป้าหมายเข้าสู่ระบบ
-        #Earliest date the viewer can have signed up to see the announcement
+        # Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: วันที่ลงทะเบียนผู้ใช้เร็วที่สุด
-        #Latest date the viewer can have signed up to see the announcement
+        # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: วันที่ลงทะเบียนผู้ใช้ล่าสุด
       assessment:
         description: คำอธิบาย
@@ -4062,16 +3987,16 @@ th:
         description: คำอธิบาย
         geoprivacy: การเปิดเผยพิกัด
       flag:
-        #The reason the item was flagged
+        # The reason the item was flagged
         reason: เหตุผล
-        #The person who resolved the flag
+        # The person who resolved the flag
         resolver_id: ผู้แก้ปัญหา
       listed_taxon:
         occurrence_status_level: ระดับสถานะการปรากฏ
         establishment_means: การเข้ามาตั้งถิ่นฐาน
       moderator_action:
-        #The reason a moderator action was taken, e.g. an explanation for why
-        #someone thought a comment should be hidden
+        # The reason a moderator action was taken, e.g. an explanation for why
+        # someone thought a comment should be hidden
         reason: เหตุผล
       observation_field_value:
         value: 'ค่า'
@@ -4093,15 +4018,15 @@ th:
       source:
         title: หัวข้อ
       taxon:
-        #Rank down to which all of this taxon's descendants have been added,
-        #e.g. if Homonidae has complete_rank set to genus, you would expect
-        #the genus Homo to be in the database, but not necessarily Homo
-        #sapiens
+        # Rank down to which all of this taxon's descendants have been added,
+        # e.g. if Homonidae has complete_rank set to genus, you would expect
+        # the genus Homo to be in the database, but not necessarily Homo
+        # sapiens
         complete_rank: ลำดับขั้นที่สมบูรณ์
-        #The most conservative, global, IUCN Red List status for this taxon
+        # The most conservative, global, IUCN Red List status for this taxon
         conservation_status: สถานะการอนุรักษ์
         name: ชื่อ
-        #External source of the taxon, e.g. Catalogue of Life
+        # External source of the taxon, e.g. Catalogue of Life
         name_provider: ที่มาของชื่อ
         wikipedia_title: หัวข้อวิกิพีเดีย
       taxon_name:
@@ -4109,8 +4034,8 @@ th:
         name: ชื่อ
         name_provider: ที่มาของชื่อ
       taxon_link:
-        #Name of the web site being linked to bey a taxon link, e.g. Global
-        #Biodiversity Information Facility
+        # Name of the web site being linked to bey a taxon link, e.g. Global
+        # Biodiversity Information Facility
         site_title: ชื่อเว็บไซต์
       user:
         faved_project_ids: โครงการที่ชื่นชอบ
@@ -4130,7 +4055,7 @@ th:
         observation:
           attributes:
             observed_on:
-              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              # Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: ต้องไม่เกิน 130 ปีที่ผ่านมา
         observation_field_value:
           attributes:
@@ -4157,12 +4082,12 @@ th:
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: ไม่สามารถรวมได้มากกว่า 7 โครงการ
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: ต้องมีอยู่ทั้งหมด
             login:
               domain_is_not_supported: ไม่รองรับโดเมน
@@ -4172,118 +4097,118 @@ th:
         m: เพศผู้
         f: เพศเมีย
         "n": เพศ
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         application: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         assessment_section: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         atlas: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         class: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         comment: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         complex: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         epifamily: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         family: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genushybrid: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         hybrid: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         infraclass: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         infraorder: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         journal: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         listed_taxon: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         note: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         order: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         phylum: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         profile: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         section: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subclass: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subfamily: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subgenus: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         suborder: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subphylum: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subsection: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subspecies: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subtribe: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         superclass: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         superfamily: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         superorder: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         supertribe: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_change: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_drop: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_link: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_merge: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_split: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_stage: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         tribe: "@n"
-        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        # Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         variety: "@n"
-  #Title of a section warning the user about something
+  # Title of a section warning the user about something
   warning_title: คำเตือน
   wikimedia: วิกิมีเดีย
   wild: พบตามธรรมชาติ
-  #Descending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (descending)"
+  # Descending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (descending)"
   z_to_a: Z ถึง A
   zoom_in: ขยาย
   zoom_out: ย่อ
