@@ -1,14 +1,7 @@
 fr-CA:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} changement"
-    other: "%{count} changements"
   x_comments:
     one: '%{count} commentaire'
     other: '%{count} commentaires'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> commentaire'
-    other: '<span class="count">%{count}</span> commentaires'
   x_faves:
     one: '%{count} favori'
     other: '%{count} favoris'
@@ -18,21 +11,6 @@ fr-CA:
   x_identifications:
     one: '%{count} identification'
     other: '%{count} identifications'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> identification'
-    other: '<span class="count">%{count}</span> identifications'
-  x_identifications_:
-    one: '%{count} Identification'
-    other: '%{count} Identifications'
-  x_languages:
-    one: "%{count} langue"
-    other: "%{count} langues"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} liste de vie en premier"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} premiers lanceurs de la liste de vie"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> article de blogue'
     other: '<span class="count">%{count}</span> articles de blogue'
@@ -48,20 +26,11 @@ fr-CA:
   x_misidentifications_of_species_in_this_genus:
     one: "%{count} mauvaise identification d'une espèce dans ce genre"
     other: "%{count} mauvaises identifications d'espèces dans ce genre"
-  #This is a fallback. Most of the time we'll use
-  #x_misidentifications_of_species_in_this_genus
+  # This is a fallback. Most of the time we'll use
+  # x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} mauvaise identification d’espèce dans ce %{rank}"
     other: "%{count} mauvaises identifications d’espèces dans ce %{rank}"
-  x_observations:
-    one: "%{count} observation"
-    other: "%{count} observations"
-  x_observations_:
-    one: "%{count} observation"
-    other: "%{count} observations"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> observation"
-    other: "<span class='count'>%{count}</span> observations"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
@@ -71,9 +40,6 @@ fr-CA:
   x_others:
     one: "%{count} autre"
     other: "%{count} autres"
-  x_people:
-    one: "%{count} personne"
-    other: "%{count} personnes"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personnes</strong> ont aidé %{user} sur <strong>%{y} ID</strong>"
   x_photos:
     one: "%{count} photo"
@@ -81,24 +47,12 @@ fr-CA:
   x_new_species:
     one: "%{count} nouvelle espèce"
     other: "%{count} nouvelles espèces"
-  x_new_users:
-    one: '%{count} nouvel utilisateur'
-    other: '%{count} nouveaux utilisateurs'
-  x_species:
-    one: '%{count} espèce'
-    other: '%{count} espèces'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> espèce"
-    other: "<span class='count'>%{count}</span> espèces"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} espèce</a>"
     other: "<a href='%{url}'>%{count} espèces</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} suggestion filtrée par :"
     other: "%{count} suggestions filtrées par :"
-  x_taxa:
-    one: "%{count} taxon"
-    other: "%{count} taxons"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observé"
     other: "<span class='count'>%{count}</span> taxons observés"
@@ -108,9 +62,6 @@ fr-CA:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> observation de qualité recherche identifiée au rang de l'espèce ou à un rang inférieur"
     other: "<span class='count'>%{count}</span> observations de qualité recherche identifiées au rang de l'espèce ou à un rang inférieur"
-  x_sounds:
-    one: "%{count} son"
-    other: "%{count} sons"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxon modifié"
     other: "<span class='count'>%{count}</span> taxons modifiés"
@@ -127,41 +78,41 @@ fr-CA:
     Un nom de taxon par défaut sera créé automatiquement à partir de l’attribut « nom scientifique » de ce taxon. Quand vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms vernaculaires, noms scientifiques obsolètes, etc.).
   a_flag_for_x: "un signalement pour %{x}"
   a_member_of_taxon_html: "un membre des %{taxon}"
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "De A à Z"
-  #Used as a noun phrase in sentences like "kueda added a comment to *an
-  #observation*". %{resource} could be any of the following:
-  #* assessment_section
-  #* atlas
-  #* listed_taxon
-  #* observation
-  #* observation_field
-  #* post
-  #* taxon_change
-  #* taxon_drop
-  #* taxon_link
-  #* taxon_merge
-  #* taxon_split
-  #* taxon_stage
-  #* taxon_swap
-  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
-  #to add masculine, feminine, and neuter forms of articles. I realize this is
-  #an awkward way to translate something, but fixing it will have to wait for
-  #an overhaul of our notification system.
+  # Used as a noun phrase in sentences like "kueda added a comment to *an
+  # observation*". %{resource} could be any of the following:
+  # * assessment_section
+  # * atlas
+  # * listed_taxon
+  # * observation
+  # * observation_field
+  # * post
+  # * taxon_change
+  # * taxon_drop
+  # * taxon_link
+  # * taxon_merge
+  # * taxon_split
+  # * taxon_stage
+  # * taxon_swap
+  # Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  # to add masculine, feminine, and neuter forms of articles. I realize this is
+  # an awkward way to translate something, but fixing it will have to wait for
+  # an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "@gender{m:un|une} %{resource}"
   about: À propos
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: À propos des noms
   about_places: À propos des lieux
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
-  #Abbreviated form of "accuracy in meters", where "accuracy" is the
-  #positional_accuracy attribute of an observation, which is really more like
-  #positional uncertainty
+  # Abbreviated form of "accuracy in meters", where "accuracy" is the
+  # positional_accuracy attribute of an observation, which is really more like
+  # positional uncertainty
   acc: 'Préc. (m)'
   account: Compte
   account_creation: Création de compte
@@ -175,7 +126,7 @@ fr-CA:
     marqueur de la carte et en le déplaçant au bon endroit. Assurez-vous que le
     cercle soit assez grand pour être certain que vous vous trouviez
     à l’intérieur.
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Action
   actions: Actions
   active: Actif
@@ -185,23 +136,23 @@ fr-CA:
   add: Ajouter
   add_a_batch_of_observations: Ajouter un groupe d’observations
   add_a_batch_of_taxa: Ajouter un grupe de taxons
-  #Tool tip for a button that adds a bulleted list to a text area
+  # Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Ajouter une liste à puces
   add_a_comment: Ajouter un commentaire
   add_a_field: Ajouter un champ
   add_a_flag: Ajouter un signalement
-  #Tool tip for a button that adds a link to a text area
+  # Tool tip for a button that adds a link to a text area
   add_a_link: Ajouter un lien
   add_a_name: Ajouter un nom
   add_a_note: Ajouter une note
-  #Tool tip for a button that adds a numbered list to a text area
+  # Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Ajouter une liste numérotée
-  #Tool tip for a button that adds bold text to a text area
+  # Tool tip for a button that adds bold text to a text area
   add_bold_text: Ajouter un texte en gras
   add_link: Ajouter un lien
   add_higher_level_taxon: Ajouter un taxon de plus haut rang (par ex. « oiseaux »)
   add_id: Ajouter une identification
-  #Tool tip for a button that adds italic text to a text area
+  # Tool tip for a button that adds italic text to a text area
   add_italic_text: Ajouter un texte en italique
   add_new_lexicon: Ajouter un nouveau lexique
   add_new_photos_by_their_ids: Ajouter de nouvelles photos à partir de leur identifiant Flickr (la licence doit être Creative Commons!)
@@ -211,10 +162,10 @@ fr-CA:
   add_new_taxon_name: Ajouter un nouveau nom de taxon
   add_observations_by_checking_off: Ajouter des observations en cochant les espèces dans une liste.
   add_observations_project: Ajouter des observations à ce projet
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: En ajouter une!
-  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
-  #"one" refers to a photo
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: En ajouter une
   add_place: Ajouter un lieu
   add_alive_or_dead_alive_annotation: 'Ajouter l''annotation « Vivant ou Mort : Vivant »'
@@ -225,9 +176,9 @@ fr-CA:
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie végétale : floraison »'
   add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie végétale : fruits »'
   add_life_stage_egg_annotation: 'Ajoute l''annotation « Stade d''évolution : œuf »'
-  #As in a Taxon Framework Relationship
+  # As in a Taxon Framework Relationship
   add_relationship: 'Ajouter un lien'
-  #As in a Guide Section
+  # As in a Guide Section
   add_section: Ajouter une section
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
   add_sex_female_annotation: 'Ajouter l''annotation « Sexe : femelle »'
@@ -294,13 +245,13 @@ fr-CA:
   all_updates: Toutes les mises à jour
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
     Êtes-vous sûr·e de vouloir supprimer ce taxon? Il a répertorié des taxons et des identifications
-  #As in the Atom Syndication Format:
-  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
-  #an Atom representation of the content shown on the current page
+  # As in the Atom Syndication Format:
+  # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  # an Atom representation of the content shown on the current page
   atom: Atom
   back_to_x_blog: "Retour au blogue de %{x}"
   blog_widget: Widget de blogue
-  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  # Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: texte en gras
   check_this_box_if_html: |
     Cochez cette case si vous voulez appliquer une
@@ -319,11 +270,11 @@ fr-CA:
         Vous ne pouvez pas accéder à cette page sans venir d'un courriel de réinitialisation de mot de passe. Si vous venez effectivement d'un courriel de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie.
     mailer:
       confirmation_instructions:
-        #Subject of an email sent to confirm your account
+        # Subject of an email sent to confirm your account
         subject: Instructions de confirmation
       reset_password_instructions:
         subject: 'Instructions de réinitialisation de mot de passe'
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Veuillez cliquer sur le lien ci-dessous pour confirmer votre adresse courriel. Si vous ne confirmez pas votre courriel
     adresse, vous ne pourrez pas interagir avec le contenu des autres utilisateurs.
@@ -339,31 +290,31 @@ fr-CA:
   devise_unlock_instructions_click_the_link: |
     Cliquez sur le lien ci-dessous pour débloquer votre compte :
   devise_unlock_instructions_unlock: Déverrouiller votre compte
-  #Prompt shown when you are dragging a file somewhere and should release it to
-  #add the file as, for example, a new photo in the Uploader
+  # Prompt shown when you are dragging a file somewhere and should release it to
+  # add the file as, for example, a new photo in the Uploader
   drop_it: Le déposer
   download_bulk_import_template_html: |
     <a href="%{url}">Télécharger le modèle</a> pour l’utiliser dans le
     <a href="/observations/import?project_id=%{project_id}#csv_import">téléverseur par lot</a>
   email: Courriel
   email_address_for_comments_and_other_feedback: Adresse courriel pour les commentaires
-  #Introductory form of address in an email. %{user} could be a username or a
-  #name, and the gender is unknown. @vow_or_con should work.
+  # Introductory form of address in an email. %{user} could be a username or a
+  # name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: Cher/chère %{user},
   embed_widget_project: Intégrer un widget pour ce projet sur votre site Web
   forum_categories:
     bug_reports: Signalements de bogue
   forum_desc: |
     Le forum est un endroit pour discuter de iNat lui-même, y compris pour l’aide et le soutien, les demandes de fonctionnalité, les rapports de bogues, les annonces, et autres.
-  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  # E.g GENERATE YOUR 2023 YEAR IN REVIEW
   generate_your_year_in_review_caps: GÉNÉRER VOTRE RÉTROSPECTIVE DE L'ANNÉE %{year}
-  #Option to hide data series that show "No Annotation" data, i.e. records that
-  #have no annotation
+  # Option to hide data series that show "No Annotation" data, i.e. records that
+  # have no annotation
   hide_no_annotation: Masquer « Pas d'annotation »
-  #Tool tip for a button that inserts quoted text into a text area
+  # Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Insérer une citation
   it_can_now_be_used_for_research: Elle peut maintenant être utilisée pour la recherche et mise en vedette sur d’autres sites Web
-  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  # Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: texte en italique
   item_flagged_notice_html: |
     Ceci a été marqué comme pourriel et n’est plus
@@ -374,13 +325,13 @@ fr-CA:
   legacy_authentication_notice_html: |
     Il semble que vous utilisez un mot de passe d'une ancienne version de ce site Web.
     Souvenez-vous de <a href="%{url}">modifier votre mot de passe</a> aux fins de la nouvelle version.
-  #Text inserted into a textarea when the link button is clicked but no text was selected
+  # Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: texte lié
   log_in_or_sign_up_to_add_comments_html: |
     <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
-  #Label shown when a date has not been entered
+  # Label shown when a date has not been entered
   missing_date: Date manquante
   no_more_mail_from_site: "Vous ne voulez pas recevoir de courriel d’%{site_name}?  Modifiez vos paramètres de courriel à"
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l'attribut 'height' pour l’adapter à l'espace disponible sur votre page Web."
@@ -391,14 +342,14 @@ fr-CA:
     invalid_email: Format de courriel invalide
   people_added:
     identification:
-      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-      #kueda
-      #added an ID to an observation by loarie
+      # Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      # kueda
+      # added an ID to an observation by loarie
       with_observation: a ajouté une <strong>identification</strong> à une %{observation_link} de %{user_link}
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
   search_by_name_or_email: Rechercher par nom ou par courriel
-  #Option to show data series that show "No Annotation" data, i.e. records that
-  #have no annotation
+  # Option to show data series that show "No Annotation" data, i.e. records that
+  # have no annotation
   show_no_annotation: Afficher « Pas d'annotation »
   show_off_your_recent_observations: Mettez en valeur vos observations récentes sur votre propre blogue ou site Web!
   some_observations_are_missing_media_or_identifications: |
@@ -417,7 +368,7 @@ fr-CA:
   this_job_failed_to_run: Cette tâche ne s’est pas exécutée. Veuillez contacter %{email}
   this_user_has_been_suspended_message: |
     Si c’est votre compte et que vous pensez que ceci a été fait par erreur, veuillez <a href="mailto:%{email}">nous contacter</a>.
-  #As in the title of a book or a blog post
+  # As in the title of a book or a blog post
   title: titre
   updates_notification_email_subject: "%{prefix} Nouvelles mises à jour du %{date}"
   updates_suspension_email_subject: "%{prefix} Vos abonnements sont en attente"
@@ -428,7 +379,7 @@ fr-CA:
     Téléverser les données d'observation dans un fichier CSV. Si vos données se trouvent dans une feuille de calcul ou une base de données, c'est la meilleure méthode à adopter.
   upload_photo: Téléverser la photo
   upload_range: Téléverser l'aire de répartition
-  #Label that notes who uploaded some content, not in a sentence
+  # Label that notes who uploaded some content, not in a sentence
   uploaded_by: Téléversé par
   uploader:
     errors:
@@ -455,18 +406,18 @@ fr-CA:
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse courriel.
   website: Site Web
   x_blog: "Blogue de %{x}"
-  #This might be shown if there is a character limit in a text field, in which
-  #it would mean "x of y characters remaining"
+  # This might be shown if there is a character limit in a text field, in which
+  # it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
   year_in_review_caps: "RÉTROSPECTIVE DE L'ANNÉE %{year}"
   yir_email_because_of_you: |
     Grâce à vous, il y a plus de données sur la biodiversité cette année que l’an passé. Nous vous invitons à examiner la Rétrospective de l’année; c’est notre façon de vous remercier pour tout ce que vous avez fait pour la biodiversité par l’entremise d’iNaturalist.
   yir_email_log_in_to_generate: |
     Pour le savoir, connectez-vous pour obtenir votre rétrospective personnelle de l’année!
-  #Feel free to adjust this if %{year} or "Your" don't translate well
+  # Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
     Votre Rétrospective de l’année %{year} dans iNaturalist – célébrez la biodiversité
-  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  # This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: L'équipe iNaturalist
   yir_email_the_year_isnt_over: |
     L’année n’est pas finie, et il n’est jamais trop tard pour téléverser vos vieilles observations. Quand vous les aurez enregistrées, cliquez sur ‘Regénérer les statistiques’ au bas de votre Rétrospective de l’année pour voir les mises à jour.
@@ -504,27 +455,27 @@ fr-CA:
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Cliquez ici pour renvoyer un courriel de confirmation
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: Courriel de confirmation envoyé
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         Voici l’adresse courriel à laquelle nous enverrons la confirmation :
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         Si vous ne recevez pas le courriel, voici quelques conseils :
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: 'Si vous ne recevez toujours pas le courriel de confirmation, veuillez communiquer avec nous à l’adresse suivante : <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> afin que nous puissions vous aider.'
       please_add_an_email_and_password: Veuillez ajouter un courriel et un mot de passe pour ne pas perdre l’accès à votre compte
       please_click_the_link_sent_to_email_to_confirm_html: Veuillez cliquer sur le lien envoyé à <span class="email">%{email}</span> pour confirmer votre adresse courriel.
-      please_confirm_that_email_is_the_best_contact_html: Veuillez confirmer que <span class="email">%{email}</span> est la meilleure façon de vous contacter. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Veuillez confirmer votre adresse courriel pour interagir avec le contenu d’autres utilisateurs et accéder à certaines pages. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Veuillez confirmer votre adresse courriel <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: Veuillez confirmer que <span class="email">%{email}</span> est la meilleure façon de vous contacter. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Veuillez confirmer votre adresse courriel pour interagir avec le contenu d’autres utilisateurs et accéder à certaines pages. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Veuillez confirmer votre adresse courriel <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: Veuillez confirmer votre adresse courriel pour interagir avec le contenu des autres utilisateurs
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Veuillez confirmer votre adresse courriel pour utiliser cette page
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Vérifiez les filtres que vous avez créés et qui pourraient supprimer nos courriels de votre boîte de réception #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Vérifiez les filtres que vous avez créés et qui pourraient supprimer nos courriels de votre boîte de réception # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Vérifiez votre dossier de pourriels
       your_site_account_has_no_email: Votre %{site_name} n’a pas d’adresse courriel associée.
     guides:
@@ -559,13 +510,13 @@ fr-CA:
           La première ligne commence par « Nom », suivi par l’étiquette des prédicats de catégories. Chaque ligne suivante commence par le nom du taxon, suivi par les contenus correspondant au prédicat de catégorie de la colonne. Dans cet exemple, <i>Homo sapiens</i> contient le prédicat suivant : <code>Nombre de mains=2</code>, plus la mention complémentaire (colonne sans étiquette) <code>bipède</code> ; et <i>Vulpes vulpes</i> est défini par les mentions : <code>Couleur=rouge</code>, <code>Couleur=noir</code>, <code>Nombre de mains=0</code>, ainsi que la mention complémentaire <code>quadrupède</code>. Les espaces (caractères « blancs ») seront ignorées. Vous pouvez ajouter plusieurs lignes par taxon. Vous pouvez également ajouter plusieurs valeurs par cellule, séparées par le caractère '|' (« ligne verticale »).</p>
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           Vous pourrez envoyer de nouveaux messages après avoir confirmé votre courriel
           adresse. Pour l’instant, vous pouvez lire et répondre aux messages que d’autres personnes vous envoient.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           Vous pourrez envoyer de nouveaux messages après avoir confirmé votre courriel
           et a ajouté trois observations vérifiables ou trois identifications
@@ -739,25 +690,6 @@ fr-CA:
           Nous avons inclus les liens vers les photos concernées ci-dessous.
       user_parent_confirmation:
         subject: Le compte iNaturalist de votre enfant a été activé
-        content_html: |
-          <p>
-          Merci d'avoir créé un compte iNaturalist pour votre enfant! Le compte a été activé. Voici les détails que vous avez saisis et que nous avons enregistrés :
-          </p>
-          <ul>
-          <li><strong>Nom du parent ou du représentant légal :</strong>
-          %{parent_name}</li>
-          <li><strong>Courriel du parent ou du représentant légal :</strong> %{parent_email}</li>
-          <li><strong>Nom de l'enfant :</strong> %{child_name}</li>
-          <li><strong>Anniversaire de l'enfant :</strong> %{child_birthday}</li>
-          <li><strong>Courriel de l'enfant :</strong> %{child_email}</li>
-          <li><strong>Nom d'utilisateur du compte de l'enfant :</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Veuillez vous connecter au compte à partir de l'application Seek de votre enfant en tapant sur le bouton « iNaturalist » du menu puis sur « Se connecter avec iNaturalist » en bas de l'écran.
-          </p>
-          <p>
-          Votre enfant pourra ensuite poster les observations sur son compte iNaturalist en utilisant l'application Seek afin qu'elles soient visibles sur iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Vous avez été inactif sur %{site_name} depuis un moment, nous avons donc suspendu
@@ -889,27 +821,27 @@ fr-CA:
           <p>
            Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.
           </p>
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Commentaires
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Identifications
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_mentions: Mentions
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Messages
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Notes de journal du projet
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Quand un projet ajoute vos observations
-        #Checkbox label for user preference about what to receive in the daily
-        #email update. This one controls whether or not you get notifications
-        #when the curators change in a project you've joined
+        # Checkbox label for user preference about what to receive in the daily
+        # email update. This one controls whether or not you get notifications
+        # when the curators change in a project you've joined
         notification_preferences_project_curator_changes: Modifications par le superviseur du projet
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Modifications taxinomiques
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: Observations de personnes que je suis
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Observations de taxons ou de lieux auxquels je suis abonné·e
         prefers_no_tracking_label_desc_we_use: |
           Nous utilisons des services tiers pour évaluer la stabilité de l'application et détecter des bogues. Ces programmes tiers incluent
