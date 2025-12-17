@@ -1434,6 +1434,19 @@ time {
       }
     }
   }
+
+  .dropdown {
+    margin-bottom: 15px;
+    .place-type {
+      color: $text-grey;
+      &:before {
+        content: " (";
+      }
+      &:after {
+        content: ")"
+      }
+    }
+  }
 }
 
 .OptOutPopover {
