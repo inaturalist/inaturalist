@@ -1,14 +1,7 @@
 en-GB:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} change"
-    other: "%{count} changes"
   x_comments:
     one: '%{count} comment'
     other: '%{count} comments'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> comment'
-    other: '<span class="count">%{count}</span> comments'
   x_faves:
     one: '%{count} fave'
     other: '%{count} faves'
@@ -18,33 +11,6 @@ en-GB:
   x_identifications:
     one: '%{count} identification'
     other: '%{count} identification'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> identification'
-    other: '<span class="count">%{count}</span> identification'
-  x_identifications_:
-    one: '%{count} Identification'
-    other: '%{count} Identification'
-  x_identifications_caps_html:
-    one: '<span class="count">%{count}</span> IDENTIFICATION'
-    other: '<span class="count">%{count}</span> IDENTIFICATIONS'
-  #Number of people who have added identifications
-  x_identifiers_caps_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> IDENTIFIER'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> IDENTIFIERS'
-  x_ids_made_for_others_html:
-    one: '<span class="count">%{count}</span> ID made for others'
-    other: '<span class="count">%{count}</span> IDs made for others'
-  x_languages:
-    one: "%{count} language"
-    other: "%{count} languages"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} life list first"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} life list first"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> journal post'
     other: '<span class="count">%{count}</span> journal posts'
@@ -60,41 +26,20 @@ en-GB:
   x_misidentifications_of_species_in_this_genus:
     one: "%{count} misidentification of species in this genus"
     other: "%{count} misidentifications of species in this genus"
-  #This is a fallback. Most of the time we'll use
-  #x_misidentifications_of_species_in_this_genus
+  # This is a fallback. Most of the time we'll use
+  # x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} misidentification of species in this %{rank}"
     other: "%{count} misidentifications of species in this %{rank}"
-  x_observations:
-    one: "%{count} observation"
-    other: "%{count} observation"
-  x_observations_:
-    one: "%{count} Observation"
-    other: "%{count} Observation"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> observation"
-    other: "<span class='count'>%{count}</span> observation"
-  x_observations_caps_html:
-    one: "<span class='count'>%{count}</span> OBSERVATION"
-    other: "<span class='count'>%{count}</span> OBSERVATIONS"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observation</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> observation reviewed"
     other: "<span class='count'>%{count}</span> observations reviewed"
-  x_observers_caps_html:
-    one: '<span class="count">%{count}</span> OBSERVER'
-    other: '<span class="count">%{count}</span> OBSERVERS'
   x_others:
     one: "%{count} other"
     other: "%{count} others"
-  x_people:
-    one: "%{count} person"
-    other: "%{count} people"
-  x_people_html:
-    one: '<span class="count">%{count}</span> person'
-    other: '<span class="count">%{count}</span> people'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count}photo"
@@ -102,27 +47,12 @@ en-GB:
   x_new_species:
     one: "%{count} New Species"
     other: "%{count} New Species"
-  x_new_users:
-    one: '%{count} New User'
-    other: '%{count} New Users'
-  x_species:
-    one: '%{count} Species'
-    other: '%{count} Species'
-  x_species_caps_html:
-    one: "<span class='count'>%{count}</span> SPECIES"
-    other: "<span class='count'>%{count}</span> SPECIES"
-  x_species_html:
-    one: "<span class='count'>%{count}</span> species"
-    other: "<span class='count'>%{count}</span> species"
   x_species_link_html:
     one: "<a href='%{url}'>%{count}species</a>"
     other: "<a href='%{url}'>%{count}species</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} Suggestion Filtered By:"
     other: "%{count} Suggestions Filtered By:"
-  x_taxa:
-    one: "%{count} taxon"
-    other: "%{count} taxa"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observed"
     other: "<span class='count'>%{count}</span> taxa observed"
@@ -132,9 +62,6 @@ en-GB:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> research-grade observation ID'd to species or lower"
     other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower"
-  x_sounds:
-    one: "%{count} sound"
-    other: "%{count} sounds"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxon curated"
     other: "<span class='count'>%{count}</span> taxa curated"
@@ -150,28 +77,28 @@ en-GB:
   a_default_taxon_name_will_automatically_created: |
     A default taxon name will automatically be created from the scientific name attribute of this taxon.
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A to Z"
-  #Used as a noun phrase in sentences like "kueda added a comment to *an
-  #observation*". %{resource} could be any of the following:
-  #* assessment_section
-  #* atlas
-  #* listed_taxon
-  #* observation
-  #* observation_field
-  #* post
-  #* taxon_change
-  #* taxon_drop
-  #* taxon_link
-  #* taxon_merge
-  #* taxon_split
-  #* taxon_stage
-  #* taxon_swap
-  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
-  #to add masculine, feminine, and neuter forms of articles. I realize this is
-  #an awkward way to translate something, but fixing it will have to wait for
-  #an overhaul of our notification system.
+  # Used as a noun phrase in sentences like "kueda added a comment to *an
+  # observation*". %{resource} could be any of the following:
+  # * assessment_section
+  # * atlas
+  # * listed_taxon
+  # * observation
+  # * observation_field
+  # * post
+  # * taxon_change
+  # * taxon_drop
+  # * taxon_link
+  # * taxon_merge
+  # * taxon_split
+  # * taxon_stage
+  # * taxon_swap
+  # Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  # to add masculine, feminine, and neuter forms of articles. I realize this is
+  # an awkward way to translate something, but fixing it will have to wait for
+  # an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: About
   about_charts: About Charts
@@ -179,16 +106,16 @@ en-GB:
   about_complete_taxa: About Complete Taxa
   about_conservation_status: About Conservation Status
   about_editing_observation_fields: About Editing Observation Fields
-  #Header for a section explaining Establishment Means. See the
-  #about_establishment_desc key or
-  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  # Header for a section explaining Establishment Means. See the
+  # about_establishment_desc key or
+  # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: About Establishment Means
   about_license_options: About Licence Options
   about_licenses: About licences
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: About Names
-  #Title for a section providing a text description of a place, @vow_or_con
-  #should work here
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
   about_place: "About %{place}"
   about_places: About Places
   about_taxon_ranges: About Taxon Ranges
@@ -217,8 +144,8 @@ en-GB:
     project. This is extremely important in situations where scientists or
     resource managers need access to exact coordinates for analysis and
     decision-making.
-  #Header for a section listing all the project managers (admins and curators)
-  #of a project
+  # Header for a section listing all the project managers (admins and curators)
+  # of a project
   about_trusting_projects_project_managers_are: |-
     The project managers who will have access to your hidden coordinates are:
   about_trusting_projects_warning: |-
@@ -227,20 +154,20 @@ en-GB:
     time. You will receive notifications about these changes, but you are
     essentially trusting this project with your private location data, so be
     careful.
-  #Header for a section listing the different ways you can trust a project
+  # Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     You can choose to share hidden coordinates for
-  #Header for a section describing unintended disagreements
+  # Header for a section describing unintended disagreements
   about_unintended_disagreements: About Unintended Disagreements
-  #Abbreviated form of "accuracy in meters", where "accuracy" is the
-  #positional_accuracy attribute of an observation, which is really more like
-  #positional uncertainty
+  # Abbreviated form of "accuracy in meters", where "accuracy" is the
+  # positional_accuracy attribute of an observation, which is really more like
+  # positional uncertainty
   acc: 'Acc (m)'
-  #Filter for observations with positional accuracy above a certain value
+  # Filter for observations with positional accuracy above a certain value
   acc_above: Acc. above
-  #Filter for observations with positional accuracy below a certain value
+  # Filter for observations with positional accuracy below a certain value
   acc_below: Acc. below
-  #Filter for observations with positional accuracy below a certain value or missing
+  # Filter for observations with positional accuracy below a certain value or missing
   acc_below_or_unknown: Acc. below or unknown
   account: Account
   account_creation: Account Creation
@@ -252,13 +179,13 @@ en-GB:
     Accuracy of the coordinates in meters. You can edit this by click the "edit"
     link above or by clicking on the map marker and dragging the handles. Try to
     make the circle big enough that you are sure you were somewhere inside it.
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Action
   actions: Actions
   active: Active
-  #Status of a complete set that is available for use
+  # Status of a complete set that is available for use
   active_complete_set_status: Active
-  #Status of a taxon that is available for use on iNat
+  # Status of a taxon that is available for use on iNat
   active_taxon_status: Active
   active_users: Active Users
   activity: Activity
@@ -267,19 +194,19 @@ en-GB:
   add: Add
   add_a_batch_of_observations: Add a Batch of Observations
   add_a_batch_of_taxa: Add a Batch of Taxa
-  #Tool tip for a button that adds a bulleted list to a text area
+  # Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Add a bulleted list
   add_a_comment: Add a Comment
-  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  # Text for a button that links to a page where curators can add new conservation statuses for taxa
   add_a_conservation_status: Add a Conservation Status
   add_a_field: Add a Field
   add_a_flag: Add a Flag
-  #Tool tip for a button that adds a link to a text area
+  # Tool tip for a button that adds a link to a text area
   add_a_link: Add a link
   add_a_name: Add a Name
   add_a_note: Add a Note
   add_a_new_change_group: Add a New Change Group
-  #Tool tip for a button that adds a numbered list to a text area
+  # Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Add a numbered list
   add_a_single_observation: Add a Single Observation
   add_a_taxon: Add a Taxon
@@ -302,11 +229,11 @@ en-GB:
   add_another_photo: Add Another Photo
   add_another_section: Add Another Section
   add_another_subscription: Add Another Subscription
-  #Project assets are files associated with projects, e.g. image files for a custom header
+  # Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Add Project Asset
   add_batch: Add Batch
   add_blocked_users: Add blocked users
-  #Tool tip for a button that adds bold text to a text area
+  # Tool tip for a button that adds bold text to a text area
   add_bold_text: Add bold text
   add_comma_separated_tags: "Add Comma-separated Tags"
   add_comment: Add a Comment
@@ -319,7 +246,7 @@ en-GB:
   add_link: Add Link
   add_higher_level_taxon: Add a higher-level taxon (e.g. "birds")
   add_id: Add ID
-  #Tool tip for a button that adds italic text to a text area
+  # Tool tip for a button that adds italic text to a text area
   add_italic_text: Add italic text
   add_muted_users: Add muted users
   add_new_lexicon: Add New Lexicon
@@ -335,13 +262,13 @@ en-GB:
   add_observations: Add Observations
   add_observations_by_checking_off: Add observations by checking off species from a list.
   add_observations_project: Add Observations to This Project
-  #Used for buttons to add observations where the words "Add"
-  #and "Observations" need to be styled differently
+  # Used for buttons to add observations where the words "Add"
+  # and "Observations" need to be styled differently
   add_observations_split_html: "<span>Add</span> <span>Observations</span>"
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: Add One!
-  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
-  #"one" refers to a photo
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: Add One Now
   add_place: Add Place
   add_alive_or_dead_alive_annotation: 'Add "Alive or Dead: Alive" annotation'
@@ -380,9 +307,9 @@ en-GB:
   add_evidence_of_presence_egg_annotation: 'Add "Evidence of Presence: egg" annotation'
   add_evidence_of_presence_construction_annotation: 'Add "Evidence of Presence: construction" annotation`'
   add_established_not_established: 'Add "Established: not established" annotation'
-  #As in a Taxon Framework Relationship
+  # As in a Taxon Framework Relationship
   add_relationship: 'Add relationship'
-  #As in a Guide Section
+  # As in a Guide Section
   add_section: Add Section
   add_several_observations_at_once: Add several observations at once.
   add_sex_female_annotation: 'Add several observations at once.'
@@ -425,7 +352,7 @@ en-GB:
   added_by: Added by
   added_by_user_on_date_html: "Added by %{user} on %{date}"
   added_on_datetime: "Added on %{datetime}"
-  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  # Message displayed after a project user changes role, e.g. they become a manager or a curator
   added_role: Added role
   added_to_favorites_html: |
     Added to <a href="%{url}">favourites</a>
@@ -435,7 +362,7 @@ en-GB:
   admin_s: Admin(s)
   admin_only: Admin-only
   admin_tools: Admin Tools
-  #Organizations affiliated with an iNaturalist Network member or similar entity
+  # Organizations affiliated with an iNaturalist Network member or similar entity
   affiliated_organizations: Affiliated Organizations
   agree_: Agree
   agree?: Agree?
@@ -443,10 +370,10 @@ en-GB:
   agree_with_observation_taxon: Agree with observation taxon
   agreeing: Agreeing...
   aka: aka
-  #Noun, title of a popup alerting you to something
+  # Noun, title of a popup alerting you to something
   alert: Alert
   all: All
-  #Title for a list of all 3rd party applications
+  # Title for a list of all 3rd party applications
   all_applications: All Applications
   all_comments: All comments
   all_flags_must_be_resolved: All flags must be resolved
@@ -561,9 +488,9 @@ en-GB:
   alphabetical_order: Alphabetical Order
   already_have_an_account_log_in_html: Already have an account? <strong>Log in.</strong>
   amphibians: amphibians
-  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
-  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
-  #as disagreements with existing IDs of the thinned descendant.
+  # This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  # in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  # as disagreements with existing IDs of the thinned descendant.
   analyze_clashes: Analyse Unintended Disagreements
   analyze_ids: Analyse IDs
   ancestor_taxon: Ancestor Taxon
@@ -575,36 +502,36 @@ en-GB:
   announcement_was_successfully_created: Announcement was successfully created.
   announcement_was_successfully_updated: Announcement was successfully updated.
   announcements: Announcements
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any: any
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any_: Any
-  #Label for an option to show content with any annotation attribute
+  # Label for an option to show content with any annotation attribute
   any_annotation_attribute: Any
-  #Label for an option to show content with any annotation value
+  # Label for an option to show content with any annotation value
   any_annotation_value: Any
-  #Label for an option to show content from any date
+  # Label for an option to show content from any date
   any_date: Any
-  #Label for an option to show content with any establishment means
+  # Label for an option to show content with any establishment means
   any_establishment: Any
-  #Label for an option to show content with any license
+  # Label for an option to show content with any license
   any_license: Any
-  #Label for an option to show content with photos, sounds, or neither
+  # Label for an option to show content with photos, sounds, or neither
   any_media: Any
-  #Label for an option to show content from any project
+  # Label for an option to show content from any project
   any_project: Any
-  #Label for an option to show content with any quality grade
+  # Label for an option to show content with any quality grade
   any_quality_grade: Any
-  #Label for an option to show observation with any reviewed status, i.e. both
-  #reviewed and unreviewed
+  # Label for an option to show observation with any reviewed status, i.e. both
+  # reviewed and unreviewed
   any_reviewed: Any
-  #Label for an option to show/include content by any user
+  # Label for an option to show/include content by any user
   any_user: Any
   anyone: Anyone
   app_owner_application_explanation_required: |
@@ -617,15 +544,15 @@ en-GB:
     have made at least 10 improving identifications in the last month.
   app_owner_application_fields_explanation_html: Describe the functionality your app will have and how you plan to use it.
   app_owner_application_success: App owner application submitted
-  #An app or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
+  # An app or service the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
   application: Application
-  #Apps or services the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
+  # Apps or services the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
   applications: Applications
   apply_app_owner: Apply
-  #Button label and section header when submitting a form to request to be a
-  #curator
+  # Button label and section header when submitting a form to request to be a
+  # curator
   apply_curator: Apply
   apply_to_be_an_app_owner: Apply to be an App Owner
   apply_to_create_applications_title: Apply To Create Applications
@@ -728,30 +655,30 @@ en-GB:
   associations: Associations
   atlased: Atlased
   atlas_for_taxon_html: Atlas for %{taxon}
-  #As in the Atom Syndication Format:
-  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
-  #an Atom representation of the content shown on the current page
+  # As in the Atom Syndication Format:
+  # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  # an Atom representation of the content shown on the current page
   atom: Atom
   attached_taxon: Attached Taxon
-  #Noun form, as in a property of something. Generally used to describe the
-  #name of an attribute available for annotation, e.g. "Life Stage"
+  # Noun form, as in a property of something. Generally used to describe the
+  # name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribute
   attribution: Attribution
-  #Shows photo attribution along with who uploaded the photo. %
-  #{attribution} will be one of the copyright.* keys, like
-  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  # Shows photo attribution along with who uploaded the photo. %
+  # {attribution} will be one of the copyright.* keys, like
+  # copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, uploaded by %{user}"
   authority_list:
     iucn_red_list: IUCN Red List
     natureserve: NatureServe
     cites: CITES
   authorize: Authorise
-  #Second-person verb to authorize an application to access an iNat account
-  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  # Second-person verb to authorize an application to access an iNat account
+  # via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: Authorise with PKCE
-  #Explanation for how to use the PKCE authorization link. All variables are
-  #code that must match the content of the link and thus cannot be
-  #translated.
+  # Explanation for how to use the PKCE authorization link. All variables are
+  # code that must match the content of the link and thus cannot be
+  # translated.
   authorize_with_pkce_desc_html: |
     (Use <code>%{code_challenge}</code> as the
     <code>%{code_verifier_param}</code>) Note: this is a basic example. In production code,
@@ -761,8 +688,8 @@ en-GB:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatically add observations to this project
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
-  #Abbreviation of "average," i.e. the sum of all values divided by the numer
-  #of values, and not a synonym of "typical" or "normal"
+  # Abbreviation of "average," i.e. the sum of all values divided by the numer
+  # of values, and not a synonym of "typical" or "normal"
   avg: Avg
   back: Back
   back_to_applications: "&laquo; Back to applications"
@@ -797,24 +724,18 @@ en-GB:
   back_to_your_profile: Back to your profile
   badges: Badges
   base_map_copyright_openstreetmap_html: Base map © %{startTag}OpenStreetMap%{endTag}
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Based on a sample of %{percent}% of these IDs, we estimate that this will result in <strong>%{count} unintended disagreement</strong> with IDs of %{child}.
-    other: |
-      Based on a sample of %{percent}% of these IDs, we estimate that this will result in <strong>%{count} unintended disagreements</strong> with IDs of %{child}.
   batch: Batch
   batch_edit: Batch edit
-  #Where x is the title of a list of taxa
+  # Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Batch edit taxa for %{x}"
   batch_operations: Batch Operations
   be_the_first_to_fave_this_observation: Be the first to fave this observation!
-  #disagreements are identifications that disagree with other identifications on the same observation
+  # disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
     Because we estimate this change will result in more than 10 unintended
     disagreements, <strong>we recommend you also commit a taxon change involving
     %{old_parent}, such as splitting %{new_parent} off from %{old_parent}</strong>.
-  #disagreements are identifications that disagree with other identifications on the same observation
+  # disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_dont_act_html: |
     Because we estimate this change will result in 10 or fewer unintended
     disagreements, <strong>it's probably not necessary to commit a taxon change
@@ -835,15 +756,15 @@ en-GB:
   blog_widget: Blog widget
   blue_butterfly_etc: "blue, butterfly, etc."
   body: Body
-  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  # Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
-  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  # Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: bold text
   breadcrumbs: Breadcrumbs
-  #This is a description of the "head" property of Custom Project Fields, i.e.
-  #the customizable content that will replace top section of the project detail
-  #page where the project title and a button to add an observation are usually
-  #shown
+  # This is a description of the "head" property of Custom Project Fields, i.e.
+  # the customizable content that will replace top section of the project detail
+  # page where the project title and a button to add an observation are usually
+  # shown
   breadcrumbs_description: "This will replace the h1 and default calls to action, so make sure to include them if they're important to this project and remember the max width allow is 950px"
   brief_caption: Brief caption
   browse: Browse
@@ -890,19 +811,19 @@ en-GB:
   cc_by_sa_name: Attribution-ShareAlike
   cc_used_under_a: "Creative Commons, used under a "
   change_admin: Change Admin
-  #Button to change the cover (or banner) image for a project
+  # Button to change the cover (or banner) image for a project
   change_cover: Change cover
   change_descriptions:
-    split: Old taxon split into multiple new taxa
-    merge: Several old taxa lumped into one new taxon
-    swap: Replace input taxon with output taxon
-    drop: Taxon concept completely invalid, maintained for historical purposes or partner compatibility
-    stage: Prepare an inactive concept for release as part of a change group
+      split: Old taxon split into multiple new taxa
+      merge: Several old taxa lumped into one new taxon
+      swap: Replace input taxon with output taxon
+      drop: Taxon concept completely invalid, maintained for historical purposes or partner compatibility
+      stage: Prepare an inactive concept for release as part of a change group
   change_geoprivacy: 'Change geoprivacy'
   change_group: Change group
   change_icon: Change icon
   change_password: Change Password
-  #Message shown after you change your email address
+  # Message shown after you change your email address
   change_to_email_requested_html: Change to <strong>%{email}</strong> requested. Check your email at that address to confirm the change.
   change_types:
     activated_soon: activated soon
@@ -912,13 +833,13 @@ en-GB:
     swap: Swap
     stage: Stage
     drop: Drop
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: split from
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: split into
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: merged into
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: replaced with
     dropped: dropped
     staged: staged
@@ -932,9 +853,9 @@ en-GB:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} were merged into %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} will be merged into %{output_taxon}"
   change_your_password: Change Your Password
-  #Plural noun, as in changes to a taxon record over time
+  # Plural noun, as in changes to a taxon record over time
   changes: Changes
-  #disagreements are identifications that disagree with other identifications on the same observation
+  # disagreements are identifications that disagree with other identifications on the same observation
   changing_the_ancestry_to_that_parent: Changing the ancestry to that parent may result in unintended disagreements. Please analyse them first, which may take a while.
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
   check_above_for_errors: Check above for errors
@@ -980,13 +901,13 @@ en-GB:
   choose_what_kind_of_change_youre_creating: "Choose what kind of change you're creating."
   cid_d_to_genus: CID'd to Genus
   citation: Citation
-  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  # thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
   clashes_occur_for_moves_html: |
     Unintended disagreements occur when a parent <strong>(B)</strong> is
     thinned by moving a child <strong>(E)</strong> to another part of the
     taxonomic tree, resulting in existing IDs of the parent being interpreted
     as disagreements with existing IDs of the moved child.
-  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  # thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
   clashes_occur_for_swaps_html: |
     Unintended disagreements occur when a parent <strong>(B)</strong> is
     thinned by swapping a child <strong>(E)</strong> to another part of the
@@ -999,7 +920,7 @@ en-GB:
   click_the_map: "<strong>Click the map</strong> to add a location."
   close: Close
   code: Code
-  #People who have contributed code to iNat open-source software projects
+  # People who have contributed code to iNat open-source software projects
   code_contributors: Code Contributors
   colors: Colours
   columns: Columns
@@ -1009,32 +930,32 @@ en-GB:
     people to the new observation form, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     You can use this to track participation from different sources. You can access these codes when downloading your project's observations as CSV.
   comma_separated_please: Comma-separated, please
-  #Noun, used to label a comment or a comment field in a form
+  # Noun, used to label a comment or a comment field in a form
   comment: comment
-  #Verb, generally a label on a button that allows the user to add a comment
+  # Verb, generally a label on a button that allows the user to add a comment
   comment_: Comment
   comment_deleted: Comment deleted
-  #Notice when a comment has been hidden by moderators
+  # Notice when a comment has been hidden by moderators
   comment_hidden: Comment hidden
-  #Notice when a comment has been unhidden by moderators
+  # Notice when a comment has been unhidden by moderators
   comment_unhidden: Comment unhidden
   comments: Comments
   comments_by_me: Comments by me
   comments_have_been_disabled: Comments have been disabled
   comments_on_my_observations: Comments on my observations
   commercial_solicitation: Commercial solicitation, links to nowhere, etc.
-  #Second person verb to commit a taxon change, i.e. the change has been executed
+  # Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Commit
-  #Adjective describing a taxon change that has been committed
+  # Adjective describing a taxon change that has been committed
   committed: Committed
   committed_by_user_on_date_html: Committed by %{user} on %{date}
-  #Label for date the taxon change was committed
+  # Label for date the taxon change was committed
   committed_on: Committed on %{date}
   committed_taxon_changes_cannot_be_deleted: Committed taxon changes cannot be deleted
-  #Status message while a taxon change is being committed
+  # Status message while a taxon change is being committed
   committing: Committing...
-  #disagreements are identifications that disagree with previous identifications on the same observation
-  #committing refers to committing a taxon swap
+  # disagreements are identifications that disagree with previous identifications on the same observation
+  # committing refers to committing a taxon swap
   committing_this_swap_may_result: Committing may result in unintended disagreements. Please analyse them first, which may take a while.
   common_name: Common Name
   community: Community
@@ -1052,27 +973,27 @@ en-GB:
   comparing_list_to_list: "Comparing %{list1} with %{list2}"
   comparing_versions_x_and_y: "Comparing versions %{x} and %{y}"
   compiled_by_name: "Compiled by %{name}"
-  #Adjective, e.g. "this Taxon Framework is complete"
+  # Adjective, e.g. "this Taxon Framework is complete"
   complete: Complete
   complete_set_for_taxon_in_place_html: "Complete Set for %{taxon} in %{place}"
   completed: Completed
   completed_at: Completed At
-  #As in whether or not a check list is comprehensive, i.e. it contains all the
-  #species in the taxon and place it purports to
+  # As in whether or not a check list is comprehensive, i.e. it contains all the
+  # species in the taxon and place it purports to
   comprehensive?: Comprehensive?
   comprehensive_check_list_for_taxon_html: |
     <span class="comprehensive_notice" data-tip="%{tip}">Comprehensive</span>
     check list for %{taxon}
   comprehensive_list: Comprehensive list
-  #Name for the statistical model used to determine visual similarity between
-  #photos and taxa
+  # Name for the statistical model used to determine visual similarity between
+  # photos and taxa
   computer_vision_model: Computer Vision Model
-  #Status of a taxon that the Computer Vision Model can recognize
+  # Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Included
   computer_vision_model_included_desc: |
     The current Computer Vision Model knows about this taxon, so it might be
     included in automated suggestions with the "Visually Similar" label.
-  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  # Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pending
   computer_vision_model_pending_desc2: |
     The current Computer Vision Model does not know about this taxon, so while
@@ -1091,12 +1012,12 @@ en-GB:
   confirm_new_password: Confirm New Password
   confirm_now: Confirm now
   confirm_your_info: Confirm your info
-  #date will be formated with momentjs.datetime_with_zone_no_year
+  # date will be formated with momentjs.datetime_with_zone_no_year
   confirmation_email_sent_at_datetime: Confirmation email sent at %{datetime}
-  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  # Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmed on %{date}
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
+  # Label for a button to connect your iNat account to another account, e.g.
+  # connecting to Flickr
   connect: Connect
   connect_to_provider: "Connect to %{provider}"
   connected_accounts_description: Connected accounts are your accounts from other apps or websites that you have allowed iNaturalist access to on your behalf to support sign in, photo import, or other functionality.
@@ -1127,15 +1048,15 @@ en-GB:
     Default geoprivacy applied to all observations of this taxon in this place
   contact_support: Contact Support
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
-  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  # Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Content
   content_and_display: Content & Display
   content_author: Content Author
   content_hidden: Content Hidden
-  #message on hidden content displaying when and why the content was hidden
+  # message on hidden content displaying when and why the content was hidden
   content_hidden_on_date_because_reason_html: |
     Content hidden on %{date} because: "%{reason}"
-  #message on hidden content displaying when and why the content was hidden, and by whom
+  # message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Content hidden by %{user} on %{date} because: "%{reason}"
   content_type: Content Type
@@ -1148,19 +1069,19 @@ en-GB:
   contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
   controlled_term_labels:
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Any
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Any
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_flowers_and_fruits: Any
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_leaves: Any
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Any
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Any
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Any
     sex: Sex
     male: Male
@@ -1188,7 +1109,7 @@ en-GB:
     no_evidence_of_flowering: No Evidence of Flowering
     nymph: Nymph
     larva: Larva
-    #Evidence of an egg of an organism
+    # Evidence of an egg of an organism
     egg: Egg
     juvenile: Juvenile
     alive_or_dead: Alive or Dead
@@ -1196,31 +1117,31 @@ en-GB:
     dead: Dead
     cannot_be_determined: Cannot Be Determined
     evidence_of_presence: Evidence of Presence
-    #As in the feather on a bird
+    # As in the feather on a bird
     feather: Feather
-    #Abnormal growth
+    # Abnormal growth
     gall: Gall
-    #Refers to an observation that depicts the actual organism and not some
-    #kind of secondary evidence like a footprint
+    # Refers to an observation that depicts the actual organism and not some
+    # kind of secondary evidence like a footprint
     organism: Organism
-    #Fecal matter, not regurgitated matter
+    # Fecal matter, not regurgitated matter
     scat: Scat
-    #Impression made by the organism on the ground or in snow, like a footprint
+    # Impression made by the organism on the ground or in snow, like a footprint
     track: Track
-    #Endoskeletal remains, like a deer bone
+    # Endoskeletal remains, like a deer bone
     bone: Bone
-    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
-    #plumage in a bird or seasonal hair/fur in a mammal
+    # Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    # plumage in a bird or seasonal hair/fur in a mammal
     molt: Molt
-    #Evidence of an organism feeding between the dermal layers of a leaf
+    # Evidence of an organism feeding between the dermal layers of a leaf
     leafmine: Leafmine
-    #Evidence of hair no longer attached to the organism from which it originated
+    # Evidence of hair no longer attached to the organism from which it originated
     hair: Hair
-    #Evidence of something made my an organism, made with or excavated from other materials
+    # Evidence of something made my an organism, made with or excavated from other materials
     construction: Construction
-    #Does the observation belong to a non-established population or not
+    # Does the observation belong to a non-established population or not
     established: Established
-    #Organism is not a member of an established population
+    # Organism is not a member of an established population
     not_established: Not Established
   controlled_term_definitions:
     alive: Organism is living and shows no signs of imminent death
@@ -1255,7 +1176,7 @@ en-GB:
   favorites: "Favourites"
   header_your_favorites: Your Favourites
   momentjs:
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
   no_favorites_added:
     current_user: You haven't added favourites yet.
