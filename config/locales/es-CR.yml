@@ -7,25 +7,25 @@ es-CR:
   add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huella"'
   add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: hueso"'
   add_evidence_of_presence_molt_annotation: 'Añadir anotación "Evidencia de Presencia: muda"'
-  #Notice when a comment has been hidden by moderators
+  # Notice when a comment has been hidden by moderators
   comment_hidden: Se ocultó el comentario
-  #Notice when a comment has been unhidden by moderators
+  # Notice when a comment has been unhidden by moderators
   comment_unhidden: Se hizo visible el comentario
   controlled_term_labels:
     evidence_of_presence: Evidencia de Presencia
-    #As in the feather on a bird
+    # As in the feather on a bird
     feather: Pluma
-    #Refers to an observation that depicts the actual organism and not some
-    #kind of secondary evidence like a footprint
+    # Refers to an observation that depicts the actual organism and not some
+    # kind of secondary evidence like a footprint
     organism: Organismo
-    #Fecal matter, not regurgitated matter
+    # Fecal matter, not regurgitated matter
     scat: Heces
-    #Impression made by the organism on the ground or in snow, like a footprint
+    # Impression made by the organism on the ground or in snow, like a footprint
     track: huella
-    #Endoskeletal remains, like a deer bone
+    # Endoskeletal remains, like a deer bone
     bone: hueso
-    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
-    #plumage in a bird or seasonal hair/fur in a mammal
+    # Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    # plumage in a bird or seasonal hair/fur in a mammal
     molt: muda
   controlled_term_definitions:
     bone: |
@@ -35,15 +35,15 @@ es-CR:
     organism: Organismo total o parcial
     scat: Materia fecal (no egagrópilas de búho u otra materia regurgitada)
     track: Impresión en suelo o nieve hecha por el organismo
-  #Introductory form of address in an email. %{user} could be a username or a
-  #name, and the gender is unknown. @vow_or_con should work.
+  # Introductory form of address in an email. %{user} could be a username or a
+  # name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: 'Estimado/a %{user}:'
-  #The name of a computer file
+  # The name of a computer file
   filename: Nombre de archivo
   flag_for_place_title_html: |
     Marca para Lugar: %{title}
   flag_this_place: Marcar este lugar
-  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  # E.g GENERATE YOUR 2023 YEAR IN REVIEW
   generate_your_year_in_review_caps: GENERAR SU %{year} RESUMEN DEL AÑO
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist es una organización sin fines de lucro independiente y exenta de impuestos bajo el régimen fiscal 501(c)(3), con sede en los Estados Unidos de América (id. tributaria: 92-1296468).
@@ -54,13 +54,13 @@ es-CR:
     observations_in_year: La mayoría de las observaciones en %{year}
     identifications_in_month_year: La mayoría de identificaciones en %{month_year}
     identifications_in_year: La mayoría de identificaciones en %{year}
-  #Status message shown while logging in
+  # Status message shown while logging in
   logging_in: Iniciando sesión ...
   no_species_on_this_list_for_owner: |
     Podés empezar a añadir especies a esta lista usando la herramienta "Añadir a tu lista" a la derecha.
   play_first_sound: Reproducir primer sonido
-  #Label for a button that re-sends the account confirmation email and signs
-  #you out until you do
+  # Label for a button that re-sends the account confirmation email and signs
+  # you out until you do
   send_and_sign_out: Enviar y cerrar sesión
   send_confirmation_email: Enviar email de confirmación
   suspend_user_html: Suspender a %{user}
@@ -71,25 +71,6 @@ es-CR:
   unsuspend_user_html: Anular suspensión de %{user}
   unsuspend_user_reason_instructions: |
     Por favor, explicá por qué se anula la suspensión de este usuario.
-  users_edit_send_confirmation_prompt_html: |
-    <h3>Estás a punto de cerrar sesión</h3>
-    <p>
-    Después de enviar el correo electrónico de confirmación, cerrarás la sesión y
-    no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en
-    el correo electrónico, así que <strong class="bg-warning">asegúrate de que has introducido tu dirección de correo electrónico
-    correctamente.</strong>
-    </p>
-    <p>
-    Esta es la dirección de correo electrónico a la que enviaremos la confirmación:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <h4>Si cancelas la suscripción de todos los correos electrónicos...</h4>
-    <p>
-    Si has cancelado <em>todos</em> los correos electrónicos de nosotros, no podemos enviar
-    tu correo de confirmación. Para volver a suscribirte, necesitas encontrar uno de nuestros correos electrónicos anteriores, hacer clic en el enlace de desinscribirse y elegir volver a inscribirse para recibir correo electrónico. Si no puede hacer esto, por favor enviá un correo electrónico a 
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> usando
-    la dirección de correo electrónico que has introducido aquí para que podamos ayudarte.
-    </p>
   view_inaturalist_global_year_in_review_caps: VER EL RESUMEN GLOBAL DE INATURALIST DEL AÑO %{year}
   year_in_review_caps: "RESUMEN DEL AÑO %{year}"
   yir_email_because_of_you: |
@@ -99,10 +80,10 @@ es-CR:
   yir_email_of_your_observations:
     one: De tus %{count} observaciones, ¿sabés cuántas se hicieron en %{year}?
     other: De tus %{count} observaciones, ¿sabés cuántas se hicieron en %{year}?
-  #Feel free to adjust this if %{year} or "Your" don't translate well
+  # Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
     Tu resumen anual de iNaturalist %{year} - celebra tu año con la biodiversidad
-  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  # This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: El equipo de iNaturalist
   yir_email_the_year_isnt_over: |
     El año aún no ha terminado y nunca es tarde para publicar observaciones antiguas. Después de compartir más observaciones, asegúrate de seleccionar "Regenerar estadísticas" en la parte inferior de tu Resumen anual para ver las actualizaciones.
@@ -115,21 +96,21 @@ es-CR:
     ¡Sos parte de algo grande! Cada persona que comparte observaciones, añade identificaciones y corre la voz sobre iNaturalist marca la diferencia para la biodiversidad. Con nuestros esfuerzos colectivos, estamos logrando que los datos y el conocimiento sobre la biodiversidad estén disponibles a una escala sin precedentes. ¡Gracias por ser parte de la comunidad de iNaturalist!
   yir_email_you_make_a_difference: |
     Con iNaturalist, marcas la diferencia para la biodiversidad. ¡Gracias por todo lo que haces!"
-  #@vow_or_con works on %{username}. %{created_date} will use the date.long
-  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  # @vow_or_con works on %{username}. %{created_date} will use the date.long
+  # format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
   you_received_this_email_notice: |
     Ha recibido este mensaje porque %{email} se ha asociado con
     https://www.inaturalist.org/people/%{username}, una cuenta de iNaturalist creada el %{created_date}.
-  #@vow_or_con works on %{username}. %{created_date} will use the date.long
-  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  # @vow_or_con works on %{username}. %{created_date} will use the date.long
+  # format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
   you_received_this_email_notice_html: |
     Ha recibido este mensaje porque %{email} se ha asociado con
     <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
     una cuenta de iNaturalist creada el %{created_date}.
-  #@vow_or_con works on %{site_name}
+  # @vow_or_con works on %{site_name}
   your_account_is_affiliated: |
     Tu cuenta está afiliada con %{site_name} (%{site_url}).
-  #@vow_or_con works on %{site_name}
+  # @vow_or_con works on %{site_name}
   your_account_is_affiliated_html: |
     Tu cuenta está afiliada con <a href="%{site_url}">%{site_name}</a>.
   views:
@@ -147,8 +128,8 @@ es-CR:
   activerecord:
     attributes:
       moderator_action:
-        #The reason a moderator action was taken, e.g. an explanation for why
-        #someone thought a comment should be hidden
+        # The reason a moderator action was taken, e.g. an explanation for why
+        # someone thought a comment should be hidden
         reason: Razón
     errors:
       models:
