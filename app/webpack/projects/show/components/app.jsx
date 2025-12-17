@@ -107,8 +107,11 @@ const App = ( {
     <div className="header-members-button">
       <button
         type="button"
-        className="btn btn-nostyle action clicky"
+        className={`btn btn-nostyle action clicky ${project.project_type === "collection" && !project.currentUserIsMember && loggedIn ? "inverted" : ""}`}
         onClick={membershipAction}
+        style={project.project_type === "collection" && !project.currentUserIsMember && loggedIn ? {
+          color: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},1)`
+        } : null}
       >
         { membershipLabel }
       </button>
