@@ -7491,6 +7491,9 @@ da:
           Universel entydig identifikator på observationen. Se
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Læs, hvordan man bruger denne side og bidrager til identifikationer på iNaturalist!
         review_all_tooltip: "Markér alle observationer på siden som gennemgået"
         you_reviewed_message: "Du har gennemgået %{reviewed} af %{pageTotal} observationer på denne side ud af %{total} matchende observationer."
         unreview_all_tooltip: "Fjern gennemgået status for alle observationer på siden"

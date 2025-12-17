@@ -7094,6 +7094,9 @@ id:
         uuid: |
           Pengenal unik universal untuk pengamatannya. Lihat https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Pelajari cara menggunakan halaman ini dan bantu membuat identifikasi di iNaturalist!
         review_all_tooltip: "Tandai semua pengamatan pada halaman sudah ditinjau"
         you_reviewed_message: "Anda telah meninjau %{reviewed} dari %{pageTotal} pengamatan pada halaman ini dari %{total} pengamatan yang cocok."
         unreview_all_tooltip: "Hapus status sudah ditinjau dari semua pengamatan di halaman ini"

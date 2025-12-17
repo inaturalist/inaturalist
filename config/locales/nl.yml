@@ -7378,6 +7378,9 @@ nl:
           Universeel unieke identifier voor de waarneming. Zie
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Leer deze pagina te gebruiken en hiermee determinaties bij te dragen op iNaturalist!
         review_all_tooltip: "Markeer alle waarnemingen op de pagina als nagekeken"
         you_reviewed_message: "Je hebt %{reviewed} van de %{pageTotal} waarnemingen op deze pagina nagekeken van de %{total} overeenkomende waarnemingen."
         unreview_all_tooltip: "Verwijder de nagekeken status van alle waarnemingen op de pagina"
