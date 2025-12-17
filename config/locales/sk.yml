@@ -1,21 +1,10 @@
 sk:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} zmena"
-    few: "%{count} zmeny"
-    many: "%{count} zmien"
-    other: "%{count} zmeny"
   x_comments:
     one: '%{count} komentár'
     few: '%{count} komentáre'
     many: '%{count} komentárov'
     other: '%{count} komentáre'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} ľudí</strong> pomohlo %{user} s <strong>%{y} identifikáciou</strong>"
-  x_sounds:
-    one: "%{count} zvuk"
-    few: "%{count} zvuky"
-    many: "%{count} zvukov"
-    other: "%{count} zvuky"
   _100_day_trends: 100-dňové trendy
   _percent_ID_d: "% identifikované"
   a_community_for_naturalist: Komunita pre Naturalistov
@@ -29,20 +18,20 @@ sk:
   about_complete_taxa: O kompletných taxónoch
   about_conservation_status: O statuse ochrany
   about_editing_observation_fields: O editovaní polí pozorovaní
-  #Header for a section explaining Establishment Means. See the
-  #about_establishment_desc key or
-  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  # Header for a section explaining Establishment Means. See the
+  # about_establishment_desc key or
+  # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: O spôsobu vzniku
   about_licenses: O licenciách
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: O názvoch
   about_places: O miestach
   about_this_bioblitz: O tomto bioblitze.
   about_this_map: O tejto mape
   about_this_project: O tomto projekte
-  #Abbreviated form of "accuracy in meters", where "accuracy" is the
-  #positional_accuracy attribute of an observation, which is really more like
-  #positional uncertainty
+  # Abbreviated form of "accuracy in meters", where "accuracy" is the
+  # positional_accuracy attribute of an observation, which is really more like
+  # positional uncertainty
   acc: 'Presnosť (m)'
   account: Účet
   account_creation: Vytvorenie účtu
@@ -52,7 +41,7 @@ sk:
   accuracy_meters: Presnosť (v metroch)
   accuracy_of_the_coordinates: |
     Presnosť súradníc v metroch. Môžete editovať kliknutím na odkaz "editovať" vyššie alebo kliknutím na označenie mapy a pretiahnutím. Pokúste sa vytvoriť dostatočne veľký kruh, aby ste si boli istí, že ste boli vnútri.
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Akcia
   actions: Akcie
   active: Aktívny
@@ -67,7 +56,7 @@ sk:
   add_a_flag: Pridať značku
   add_a_name: Vložiť meno
   add_a_new_change_group: Pridať novú skupinu zmien
-  #Placeholder for a project autocomplete field
+  # Placeholder for a project autocomplete field
   add_a_project: Pridanie projektu
   add_a_single_observation: Vložiť jedno pozorovanie
   add_a_taxon: Vložiť taxón
@@ -86,7 +75,7 @@ sk:
   add_another_photo: Vložiť ďalšie foto
   add_another_section: Vložiť ďalší oddiel
   add_another_subscription: Vložiť ďalšie predplatné
-  #Project assets are files associated with projects, e.g. image files for a custom header
+  # Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Pridajte položku
   add_batch: Vložiť skupinu
   add_comma_separated_tags: "Vložiť tagy oddelené čiarkou"
@@ -112,10 +101,10 @@ sk:
   add_observations: Vložiť pozorovania
   add_observations_by_checking_off: Vložiť pozorovania výberom zo zoznamu.
   add_observations_project: Vložiť pozorovania do tohto projektu
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: Vložiť jedno pozorovanie!
-  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
-  #"one" refers to a photo
+  # Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  # "one" refers to a photo
   add_one_now: Pridať teraz
   add_place: Pridať miesto
   add_plant_phenology_budding_annotation: 'Pridať anotáciu „Fenológia rastliny: pučenie“'
@@ -129,9 +118,9 @@ sk:
   add_life_stage_larva_annotation: 'Pridať anotáciu „Štádium života: larva“'
   add_life_stage_juvenile_annotation: 'Pridať anotáciu „Štádium života: mláďa“'
   add_life_stage_egg_annotation: 'Pridať anotáciu „Štádium života: vajíčko“'
-  #As in a Taxon Framework Relationship
+  # As in a Taxon Framework Relationship
   add_relationship: 'Pridať vzťah'
-  #As in a Guide Section
+  # As in a Guide Section
   add_section: Pridať sekciu
   add_several_observations_at_once: Vložiť niekoľko pozorovaní naraz.
   add_sex_female_annotation: 'Pridať anotáciu „Pohlavie: samica“'
@@ -251,17 +240,17 @@ sk:
   announcement_was_successfully_created: Oznámenie bolo úspešne vytvorené.
   announcement_was_successfully_updated: Oznámenie oylo úspešne aktualizované.
   announcements: Oznámenia
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any: ľubovoľný
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any_: Ľubovoľný
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: Akýkoľvek
   anyone: Ktokoľvek
   app_owner_application_about_p2_html: |
@@ -306,7 +295,7 @@ sk:
   are_you_sure_you_want_to_delete_this_assessment?: Naozaj chcete odstrániť toto hodnotenie?
   are_you_sure_you_want_to_delete_this_photo?: Naozaj chcete odstrániť túto fotku?
   are_you_sure_you_want_to_delete_this_post: Naozaj chcete odstrániť tento príspevok?
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: Naozaj chcete tento zvuk odstrániť?
   are_you_sure_you_want_to_delete_this_taxon_change: Naozaj chcete odstrániť túto zmenu taxónu?
   are_you_sure_you_want_to_remove_all_tags: Naozaj chcete toto odstrániť všetky značky?
@@ -336,16 +325,16 @@ sk:
   assessments: hodnotenia
   associations: Asociácie
   attached_taxon: Pripojený taxón
-  #Noun form, as in a property of something. Generally used to describe the
-  #name of an attribute available for annotation, e.g. "Life Stage"
+  # Noun form, as in a property of something. Generally used to describe the
+  # name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribút
   attribution: Uvedenie autora
-  #Adjective describing when a place in an atlas was "exploded," i.e. divided
-  #into its constituent places
+  # Adjective describing when a place in an atlas was "exploded," i.e. divided
+  # into its constituent places
   atlas_alteration_action_exploded: Explodoval
-  #Adjective describing when a place in an atlas was "unexploded," i.e. its
-  #constituent places were removed and now the atlas just contains this
-  #place
+  # Adjective describing when a place in an atlas was "unexploded," i.e. its
+  # constituent places were removed and now the atlas just contains this
+  # place
   atlas_alteration_action_unexploded: Nevybuchnutej
   authority_list:
     iucn_red_list: Červený zoznam IUCN
@@ -383,7 +372,7 @@ sk:
   back_to_your_profile: Späť na váš profil
   batch: Séria
   batch_edit: Upraviť sériu
-  #Where x is the title of a list of taxa
+  # Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Hromadná editácia taxónov pre %{x}"
   batch_operations: Hromadné operácie
   be_the_first_to_fave_this_observation: Buďte prvý, komu sa toto pozorovanie páči!
@@ -397,10 +386,10 @@ sk:
   blue_butterfly_etc: "modrý, motýľ atď."
   body: Telo
   breadcrumbs: Strúhanka
-  #This is a description of the "head" property of Custom Project Fields, i.e.
-  #the customizable content that will replace top section of the project detail
-  #page where the project title and a button to add an observation are usually
-  #shown
+  # This is a description of the "head" property of Custom Project Fields, i.e.
+  # the customizable content that will replace top section of the project detail
+  # page where the project title and a button to add an observation are usually
+  # shown
   breadcrumbs_description: "Toto nahradí h1 a základné nastavenie výziev, preto ich pridajte, ak sú pre tento projekt dôležité, a nezabudnite, že maximálna povolená veľkosť je 950px"
   brief_caption: Stručný opis
   browse: Prehliadať
@@ -444,13 +433,13 @@ sk:
   cc_by_sa_name: S uvedením autora - zdieľanie
   cc_used_under_a: "Creative Commons, použité podľa"
   change_admin: Zmeniť správcu
-  #Button to change the cover (or banner) image for a project
+  # Button to change the cover (or banner) image for a project
   change_cover: Zmeniť obal
   change_descriptions:
-    split: Rozdelenie starého taxónu do niekoľko nových taxónov
-    merge: Zlúčenie niekoľko starých taxonov do jedného nového taxónu
-    drop: Koncept taxónu úplne neplatný, udržiavaný na historické účely alebo kompatibilitu s partnerom
-    stage: Pripraviť neaktívny koncept pre spustenie v rámci skupiny zmien
+      split: Rozdelenie starého taxónu do niekoľko nových taxónov
+      merge: Zlúčenie niekoľko starých taxonov do jedného nového taxónu
+      drop: Koncept taxónu úplne neplatný, udržiavaný na historické účely alebo kompatibilitu s partnerom
+      stage: Pripraviť neaktívny koncept pre spustenie v rámci skupiny zmien
   change_geoprivacy: 'Zmeniť geosúkromie'
   change_group: Zmeniť skupinu
   change_icon: Zmeniť ikonu
@@ -463,13 +452,13 @@ sk:
     swap: Zameniť
     stage: Štádium
     drop: Zahodiť
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: oddeliť z
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: rozdeliť na
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: zlúčiť do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    # Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: nahradiť s
     dropped: zahodené
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} bol rozdelený na %{output_taxa}"
@@ -525,22 +514,22 @@ sk:
   columns: Stĺpce
   combine: Spojiť
   comma_separated_please: Oddeľte čiarkami, prosím
-  #Noun, used to label a comment or a comment field in a form
+  # Noun, used to label a comment or a comment field in a form
   comment: komentár
-  #Verb, generally a label on a button that allows the user to add a comment
+  # Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentár
   comment_deleted: komentár zmazaný
   comments: Komentáre
   comments_by_me: Moje komentáre
   comments_on_my_observations: Komentáre k mojim pozorovaniam
   commercial_solicitation: Komerčná žiadosť, neplatné odkazy atď.
-  #Second person verb to commit a taxon change, i.e. the change has been executed
+  # Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Previesť
-  #Adjective describing a taxon change that has been committed
+  # Adjective describing a taxon change that has been committed
   committed: Prevedené
-  #Label for date the taxon change was committed
+  # Label for date the taxon change was committed
   committed_on: Pridaný dňa %{date}
-  #Status message while a taxon change is being committed
+  # Status message while a taxon change is being committed
   committing: Predvádzanie...
   community: Komunita
   community_curated: Komunitné organizácie
@@ -556,12 +545,12 @@ sk:
   comparing_list_to_list: "Porovnať %{list1} s %{list2}"
   comparing_versions_x_and_y: "Porovnať verzie %{x} a %{y}"
   compiled_by_name: "Zostavil užívateľ %{name}"
-  #Adjective, e.g. "this Taxon Framework is complete"
+  # Adjective, e.g. "this Taxon Framework is complete"
   complete: Dokončiť
   completed: Dokončené
   completed_at: Dokončené na
-  #As in whether or not a check list is comprehensive, i.e. it contains all the
-  #species in the taxon and place it purports to
+  # As in whether or not a check list is comprehensive, i.e. it contains all the
+  # species in the taxon and place it purports to
   comprehensive?: Komplexný?
   comprehensive_list: Komplexný zoznam
   concept_status: Status komceptu
@@ -590,10 +579,10 @@ sk:
       taxón, nastavte to na "Takmer ohrozený" alebo vyššie.
   contact_support: Kontaktujte podporu
   contain_all_descendants?: Obsahuje tento zoznam všetky následné taxóny, ktoré se tu vyskytujú?
-  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  # Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Obsah
   content_hidden: Obsah skrytý
-  #message on hidden content displaying when and why the content was hidden, and by whom
+  # message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Obsah skryl používateľ %{user} v čase %{date} pretože: "%{reason}"
   user_hid_this_item_because_reason_html: |
@@ -617,7 +606,7 @@ sk:
     teneral: Po zvliekaní
     subimago: Subimágo
     nymph: Nymfa
-    #Evidence of an egg of an organism
+    # Evidence of an egg of an organism
     egg: Vajíčko
     juvenile: Mláďa
   controls: Ovládacie prvky
@@ -680,7 +669,7 @@ sk:
   curator: Kurátor
   curators_changed_for_x_html: "Správcovia zmenený na %{x}"
   curators: Kurátori
-  curators_can_remove_observations_from: Kurátori môžu odstrániť pozorovania z projektu a ich identifikácie sú uvedené pri pozorovaniach v náhľadoch projektu. Kurátori tiež vidia skutočné súradnice súkromných a skrytých príspevkov do tohto projektu.
+  curators_can_remove_observations_from: Kurátori môžu odstrániť pozorovania z projektu a ich identifikácie sú uvedené pri pozorovaniach v náhľadoch projektu. Kurátori tiež vidia skutočné súradnice súkromných a skrytých príspevkov do tohto projektu. #Attribute that controls whether or not project curators can view the # hidden coordinates of an observation in a traditional project. This # exists on the record of the observation's addition to the project, and it # exists as a default value in the user's membership in the project.
   curator_coordinate_access: Prístup ku súradniciam kurátora
   curator_coordinate_access_desc: |
     Kurátor koordinuje prístup k tradičným projektom v závislosti od toho, kto pridal
@@ -688,21 +677,21 @@ sk:
     Pozorovania v projektoch. Pozorovatelia sa tiež môžu rozhodnúť zmeniť túto možnosť pre
     individuálne pozorovania.
   curator_identification: Identifikácia správcu
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Súčasný taxón Spoločenstva: %{taxon}"
   current_flags: Aktuálne značky
   custom_project_fields: Vlastné projektové polia
   custom_project_was_successfully_created: Vlastný projekt bol úspešne vytvorený.
   custom_project_was_successfully_updated: Vlastný projekt bol úspešne aktualizovaný.
-  #Button to customize projects that appear in the header
+  # Button to customize projects that appear in the header
   customize__projects: Prispôsobiť
   customize_location: Upraviť lokalitu
   darr_apply_darr: "&darr; Použiť &darr;"
   dashboard: Nástenka
   dashboard_pilots:
-    #button asking to participate in a pilot
+    # button asking to participate in a pilot
     pilot_participate: "Áno! Chcel by som sa zúčastniť."
-    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    # title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Pilotný projekt identifikačných medzier: Potrebuje identifikáciu hľadaných druhov"
   data_deficient: chýbajúce údaje
   data_quality: Kvalita údajov
@@ -746,9 +735,9 @@ sk:
   date_picker:
     closeText: Zatvoriť
     currentText: Dnes
-    #Contextual help for a button navigating to the previous month in a date picker
+    # Contextual help for a button navigating to the previous month in a date picker
     prevText: Predchádzajúci
-    #Contextual help for a button navigating to the next month in a date picker
+    # Contextual help for a button navigating to the next month in a date picker
     nextText: Ďalší
     range: Rozsah
   date_range: Časový interval
@@ -757,7 +746,7 @@ sk:
   date_updated: Dátum aktualizovaný
   day: Deň
   decrease_brightness: Znížiť jas
-  #Default option
+  # Default option
   default: štandardne
   default_invite_comment: "Super fotka! Mali by ste ju zverejniť na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Štandardná licencia pozorovania
@@ -769,13 +758,13 @@ sk:
   delete: Zmazať
   delete_all: Zmazať všetko
   delete_conversation: Zmazať rozhovor
-  #Button to delete the cover (or banner) image for a project
+  # Button to delete the cover (or banner) image for a project
   delete_cover?: zmazať obal?
   delete_icon?: Zmazať ikonu?
   delete_photo: Zmazať fotku
   delete_project: Zmazať tento projekt
   delete_selected: Zmazať vybrané
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: Odstránenie zvuku
   delete_user: Zmazať používateľa
   delete_your_account: Zmazať váš účet
@@ -802,9 +791,9 @@ sk:
     failure:
       user:
         suspended: Váš účet bol pozastavený
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Token obnovenia hesla je neplatný. Použite odkaz v naposledy odoslanom e-maile s obnovením hesla, alebo <a href="%{url}">Požiadať o nový</a>.
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Kliknutím na odkaz nižšie potvrďte svoju e-mailovú adresu. Ak nepotvrdíte svoj e-mail
     nebudete môcť interagovať s obsahom iných používateľov.
@@ -813,10 +802,10 @@ sk:
   did_you_photos_flickr?: Nahrali ste nejaké fotografie na Flickr?
   disable: Vypnúť
   disagree_: Nesúhlasím
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: Nezhody
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Zobrazenie pozorovaní, ktoré majú nesúhlasné identifikácie
   disconnect_provider: "Odpojiť %{provider}"
   display_link_to_checklist: Zobraziť odkaz na zoznam projektu zo stránky projektu
@@ -827,13 +816,13 @@ sk:
   doesnt_have_default_photo: nemá ešte štandardnú fotku.
   doh_something_went_wrong: Och, niečo je zle.
   doh_something_went_wrong_error: "Och, niečo sa pokazilo: %{error}"
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Darovať
   done: Hotovo
   dont_have_an_account_sign_up_html: Nemáte účet? <strong>Zaregistrujte sa.</strong>
   dont_use_double_quotes: Nikde inde nepoužívajte dvojité úvodzovky
-  #Prompt shown when you are dragging a file somewhere and should release it to
-  #add the file as, for example, a new photo in the Uploader
+  # Prompt shown when you are dragging a file somewhere and should release it to
+  # add the file as, for example, a new photo in the Uploader
   drop_it: Pustite
   download: Stiahnuť
   download_bulk_import_template_html: |
@@ -841,16 +830,16 @@ sk:
   download_csv: Stiahnuť CSV
   download_csv_template: Stiahnuť šablónu CSV
   download_kml: Stiahnuť KML
-  #Label for a link to taxa that are descendants ("downstream") of the current
-  #taxon that are covered by the same Taxon Framework
+  # Label for a link to taxa that are descendants ("downstream") of the current
+  # taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Označené taxóny
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft: koncept
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_: Koncept
-  #Noun, as in a journal post that has not been published
+  # Noun, as in a journal post that has not been published
   draft_saved: Komcept uložený!
-  #Noun, as in journal posts that has not been published
+  # Noun, as in journal posts that has not been published
   drafts: Koncepty
   drag_and_drop_some_photos_or_sounds: Ťahaj a pusti nejaké fotky alebo zvuk
   drawings: Kresba
@@ -893,7 +882,7 @@ sk:
   edited_by_name_some_rights_reserved_html: |
     Upravené používateľom %{name}, niektoré práva vyhradené (%{license})
   editing: Upravuje sa
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: Oznámenie o úprave %{id}
   editing_custom_project_fields_for: Upraviť vlastné projektové polia pre
   editing_observation_field: Upraviť pole pozorovania
@@ -923,7 +912,7 @@ sk:
   endemic_to_x: "Endemický na %{x}"
   eol_collection_url: "URL súboru EOL"
   error_updating_photo: "Chyba pri aktualizácii obrázku: %{photo_errors}"
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Chyba pri aktualizácii zvuku: %{sound_errors}"
   establishment:
     endemic: Endemický
@@ -946,7 +935,7 @@ sk:
   everywhere: všade
   exact: Presný
   exact_date: Presný dátum
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Presné poradie
   except: okrem
   exclusion_filters: Vylučovacie filtre
@@ -967,12 +956,12 @@ sk:
   failed_to_repair_photo: "Oprava fotky sa nepodarila: %{errors}"
   failed_to_save_record: "Nepodarilo sa uložiť záznam. Skúste to prosím znova."
   'false': 'Nepravda'
-  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Obľúbené
   Family: Čeľaď
-  #Header for a section showing the user's favorite projects
+  # Header for a section showing the user's favorite projects
   favorite_projects: Obľúbené projekty
-  #Description of what Favorite Projects section in user settings
+  # Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Vyberte až sedem projektov, ktoré sa zobrazia ako odkazy v hlavičke. Aktualizácie
     sa zobrazí po obnovení stránky.
@@ -980,10 +969,10 @@ sk:
   favorites: "Obľúbené"
   feature_this_project_: "Odporučiť tento projekt"
   featured: Odporúčané
-  #Title for a button or section describing the "featured" status of a project
+  # Title for a button or section describing the "featured" status of a project
   featuring: Odporúčané
   feedback: Spätná väzba
-  #Plural noun, as in Atom and RSS feeds
+  # Plural noun, as in Atom and RSS feeds
   feeds: 'Kanály'
   failed: Chyba
   field_note: |
@@ -993,9 +982,9 @@ sk:
   fields_can_only_be_edited_by_the_people_who: Polia môžu upravovať iba osoby, ktoré ich vytvorili a kurátori stránok
   fields_merged: Zlúčené polia
   file: Súbor
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Formát súboru
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL adresa súboru
   file_should_be_in_the_following_format: "Súbor by mal byť v nasledujúcom formáte: názov taxónu, opis"
   fill_out_project_observation_fields: Vyplniť pole pozorovania v projekte
@@ -1026,7 +1015,7 @@ sk:
   first_connect_your_provider_account_to_your_site: "Najskôr prepojte svoj účet na %{provider} so stránkou %{site_name}:"
   first_inat_observation: "Prvé pozorovanie %{site_name}"
   first_observer: 1. pozorovateľ
-  #Verb form, as in "Flag this item"
+  # Verb form, as in "Flag this item"
   flag: Značka
   flag_as_inappropriate: Označiť ako nevhodné
   flag_an_item: Označiť položku
@@ -1062,11 +1051,11 @@ sk:
   flickr_tagger: Autor tagov na Flickr
   flickr_tags: Tagy na Flickr
   fluid_layout: Premenlivé rozloženie
-  #Adjective, as in a fluid layout of images
+  # Adjective, as in a fluid layout of images
   fluid: premenlivé
   follow: Sledovať
   follow_receive_updates_about_new_observations: Sledujte (dostanete informácie o nových pozorovaniach)
-  #Text for a button to follow updates from a specific user
+  # Text for a button to follow updates from a specific user
   follow_user: "Sledovať %{user}"
   followers: Sledovatelia
   following: Sledovať
@@ -1143,7 +1132,7 @@ sk:
   header_your_observations: Vaše pozorovania
   heads_up: Pozor
   heads_up_this_photo_has_been_flagged: "POZOR: táto fotka bola označená."
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "POZOR: tento zvuk bol označený."
   help: Pomoc
   help_confirm_observations!: Pomôžte potvrdiť pozorovania!
@@ -1154,8 +1143,8 @@ sk:
   hide_content: Skryť obsah
   hide_uncountable_species: Skryť nespočítateľné druhy
   high: Vysoká
-  #Highest taxonomic rank to filter by, where the "highest" possible rank is
-  #kingdom
+  # Highest taxonomic rank to filter by, where the "highest" possible rank is
+  # kingdom
   highest_rank: Najvyššie poradie
   highlights_and_stats_from_year_on_site: "Najvýznamnejšie udalosti a štatistiky z roku %{year} v %{site}"
   history: História
@@ -1172,16 +1161,16 @@ sk:
   identify_title: "Identifikovať"
   identification: identifikáciu
   identification_by_user: Identifikácia užívateľa %{user}
-  #Notification when an identification has been deleted
+  # Notification when an identification has been deleted
   identification_deleted: Identifikácia zmazaná.
   identification_saved: "Identifikácia uložená!"
-  #Notification when an identification has been updated
+  # Notification when an identification has been updated
   identification_updated: Identifikácia aktualizovaná!
   identification_user_short: Ident. užívateľa
-  #Notification when an identification has been withdrawn
+  # Notification when an identification has been withdrawn
   identification_withdrawn: Identifikácia odstránená.
   identifications: Identifikácie
-  #Title of identification that was automatically added by a taxon change
+  # Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist aktualizoval ID navrhnuté %{user}
   computer_vision_suggestion: Návrh počítačového videnia
   identifiers: Identifikátory
@@ -1196,7 +1185,7 @@ sk:
   ignore_and_continue: Ignorovať a pokračovať
   ignore_times: Ignorovať časy
   image_must_be_exactly: obrázok musí byť presne 950px široký a maximálne 400px vysoký
-  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
+  # NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Ohrozený
   import_all_photos_as_observations: Importovať všetky fotky ako pozorovania
   import_as_an_observation: Importovať ako pozorovanie
@@ -1215,7 +1204,7 @@ sk:
   in_n: "v %{n}"
   in_place_x: v %{place}
   inaturalist_network_affiliation: Pridruženie k sieti iNaturalist
-  #Label for messages you've received
+  # Label for messages you've received
   inbox: Doručené správy
   including: vrátane
   increase_brightness: Zvýšiť jas
@@ -1229,13 +1218,13 @@ sk:
   inat_user_profile: "%{site_name}: Profil užívateľa %{user}"
   inaturalist_places: "%{site_name} Miesta"
   info: Informácie
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: Infradruhové ID
-  #Description of preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Description of preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids_description: |
     Ak túto možnosť vypnete, už nebudete upozornení na ID taxónov
     pod druhovou úrovňou (ako sú poddruhy a odrody), ktoré súhlasia s vašou
@@ -1250,13 +1239,13 @@ sk:
   internal_taxon_rank: Hodnosť interného taxónu
   introduced: Introdukovaný
   introduced_in_place: "Introdukovaný v %{place}"
-  #Error message shown when a date format is invalid
+  # Error message shown when a date format is invalid
   invalid_date: Neplatný dátum
   invitation: Pozvánka
   invite: pozvať
   invite_people: Pozvať ľudí
   invite_people_to_project: "Pozvať ľudí do %{project}"
-  #Type of project where people can only join after they have been invited
+  # Type of project where people can only join after they have been invited
   inviteonly: iba pre pozvaných
   invited_x: "Pozvaný/á %{x}"
   is_not_following_anyone: nikoho nesleduje.
@@ -1289,10 +1278,10 @@ sk:
   kml_file_size_error: "KML musí byť menší ako 1 MB"
   labels: Štítky
   label_to_group_a_batch_of_taxon_changes: Spoločný štítok pre súbor zmien taxónov
-  #Label shown when a location has been entered but has been hidden due to the geoprivacy
+  # Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Súkromná lokalita
   language_slash_type: Jazyk / Typ
-  #Large photo size
+  # Large photo size
   large: veľký
   last_active_with_date: "Naposledy aktívny %{date}"
   last_confirmed_observation: Posledné potvrdené pozorovanie
@@ -1304,7 +1293,7 @@ sk:
   latitude_in_decimals: 'Zemepisná šírka v desatinných stupňoch, napr. 38.123'
   latitude_slash_y_coord_slash_northing: Zemepisná šírka / súradnice y / severne od rovníku
   latitude_value: "Zemepisná šírka: %{latitude}"
-  #As in map layers, i.e. layers of data that might be overlayed on a map
+  # As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Vrstvy
   layout: Rozloženie
   leaderboard: Najlepšie výsledky
@@ -1320,7 +1309,7 @@ sk:
   leave: Opustiť
   leave_a_comment: Zanechať komentár
   leave_this_project: Opustiť tento projekt
-  #Terminal nodes in a taxonomic tree
+  # Terminal nodes in a taxonomic tree
   leaves: odchádza
   legacy_authentication_notice_html: |
     Zdá sa, že používate heslo zo staršej verzie tejto webovej stránky. Nezabudnite si prosím pre novú verziu <a href="%{url}">heslo zmeniť</a>.
@@ -1390,9 +1379,9 @@ sk:
   list_was_successfully_created: Zoznam bol úspešne vytvorený.
   listed_taxa: Taxóny uvedené na zozname
   listed_taxon: Taxón uvedený na zozname
-  #Adjective describing addition of a taxon to a list
+  # Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Uvedené
-  #Adjective describing removal of a taxon from a list
+  # Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: Neuvedené
   listed_taxon_updated: Taxón uvedený na zozname bol aktualizovaný
   listing_lists: Zoznamy zápisov
@@ -1460,9 +1449,9 @@ sk:
   locked_taxa_will_not_allow_new: Zamknuté taxóny neumožňujú pridávanie nových následných taxónov. Takže ak ste zamkli obojživelníky a niekto sa pokúsil importovať <i>Rana catesbeiana</i> od externého poskytovateľa názvov, nový taxón bude vytvorený, ale nemožno ho klasifikovať ako obojživelníka. Pokiaľ k tomuto dôjde, novo pridané taxóny by mali byť označené pre správcov. Tento postup by sa mal používať iba pre taxóny, u ktorých sme presvedčení, že už máme všetky následné. Kurátor môže vykonať úpravu editáciou taxónov a priamym zadaním základných ID, zvážte však prosím zlúčenie nových taxónov s existujúcimi taxóny.
   log_in: Prihlásiť sa
   log_scale_label: Protokol
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: Prihlásený
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: Odhlásený
   logo:
     white_bg_gif: GIF s bielym pozadím
@@ -1479,11 +1468,11 @@ sk:
   looks_like_no_species_in_guide: Vyzerá to, že vo svojom sprievodcovi nemáte ešte žiadny druh.
   lookup: Vyhľadať
   low: Nízka
-  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
-  #subspecies or variety
+  # Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  # subspecies or variety
   lowest_rank: Najnižšia hodnosť
   make_admin: Vytvoriť admina
-  #Header for main content section of the project detail page when editing custom project data.
+  # Header for main content section of the project detail page when editing custom project data.
   main_content: Hlavný obsah
   make_a_new_place: Vytvoriť nové miesto
   make_a_taxon_swap_instead?: Namiesto toho urobiť zámenu taxónu?
@@ -1527,7 +1516,7 @@ sk:
   meet: Stretnúť sa
   member_of_the_inaturalist_network_html: |
     Člen siete <a href="%{url}">iNaturalist</a>
-  #As in members of a project
+  # As in members of a project
   members: Členovia
   membership_model: Členský model
   mentioned_you_in_noun_html: "užívateľ %{user} sa o vás zmienil v %{noun}"
@@ -1553,17 +1542,17 @@ sk:
   momentjs:
     shortRelativeTime:
       future: "v %s"
-      #Short text representing 1 second in the past
+      # Short text representing 1 second in the past
       s: "1 s"
-      #Short text representing 1 minute in the past
+      # Short text representing 1 minute in the past
       m: "1 min"
-      #Short text representing 1 hour in the past
+      # Short text representing 1 hour in the past
       h: "1 h"
-      #Short text representing 1 day in the past
+      # Short text representing 1 day in the past
       d: "1 d"
-      #Short text representing 1 month in the past
+      # Short text representing 1 month in the past
       M: "1 m"
-      #Short text representing 1 year in the past
+      # Short text representing 1 year in the past
       'y': "1 r"
   month: Mesiac
   months: Mesiace
@@ -1576,7 +1565,7 @@ sk:
   more_info_title: Viac informácií
   more_journal_posts: Ďalšie príspevky v denníku
   more_observations: Ďalšie pozorovania
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: Ďalšie možnosti
   more_photos: Ďalšie fotky
   more_than_a_week_ago: Viac ako pred týždňom
@@ -1597,7 +1586,7 @@ sk:
   must_be_less_than_x_MB: "Musí byť menej ako %{x} MB"
   must_have_observation_field: "pole pozorovania '%{operand}' musí byť vyplnené"
   must_have_x: "musí mať %{x}"
-  #Mute is a noun here
+  # Mute is a noun here
   mute_removed: Stlmenie zrušené
   muted_users: Stlmení používatelia
   n_ago: "pred %{n}"
@@ -1614,8 +1603,8 @@ sk:
   native: pôvodný
   native_page_url: pôvodná stránka URL
   native_to_place: "Pôvodný v %{place}"
-  #Short for "navigation," used to describe a navigational component on the
-  #project detail page when editing custom project data
+  # Short for "navigation," used to describe a navigational component on the
+  # project detail page when editing custom project data
   nav: Navigácia
   ne_lat: z.d. SV
   ne_lon: z. š. SV
@@ -1739,23 +1728,23 @@ sk:
   no_taxonomic_changes_match_those_criteria: Týmto kritériám nezodpovedajú žiadne taxonomické zmeny
   no_wikipedia_page_for_taxon: "Žiadna stránka na Wikipédii pre tento taxón \n."
   noble_curators: "Vybraní kurátori stránky %{site}"
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: Nekurátor
-  #Title for a preference to control whether you receive notifications about
-  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
-  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  # Title for a preference to control whether you receive notifications about
+  # non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  # someone else adds an ID of Mammalia but does not make it a disagreement.
   non_disagreeing_ancestor_ids: Nesúhlasné ID predkov
-  #Description of a preference to control whether you receive notifications
-  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
-  #and someone else adds an ID of Mammalia but does not make it a
-  #disagreement.
+  # Description of a preference to control whether you receive notifications
+  # about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  # and someone else adds an ID of Mammalia but does not make it a
+  # disagreement.
   non_disagreeing_ancestor_ids_description: |
     Ak túto možnosť vypnete, už nebudete dostávať upozornenia, keď niekto pridá
     ID taxónu, ktorý je predkom taxónu z vášho ID a nie
     výslovne nesúhlasím s taxónom Spoločenstva. Budete upozornení, ak
     ID obsahuje ďalšie poznámky.
   non_human?: Nie je ľudský?
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: Nie je správcom projektu
   none: Žiadny
   none_found: Nenájdené
@@ -1870,15 +1859,15 @@ sk:
   old_observation_form: Pôvodný formulár pozorovania (zastaraný)
   on_day: "dňa"
   onboarding:
-    observe_panel_title: Začneme odoslaním nejakých pozorovaní
-    observe_panel_body_p1_local: Potrebujete inšpiráciu? Tu nájdete niekoľko organizmov, ktoré sú pozorované v okolí...
-    observe_panel_body_p1_global: Potrebujete inšpiráciu? Tu nájdete niekoľko organizmov, ktoré sú pozorované...
-    follow_panel_title_local: Sledovať prírodovedca vo svojom okolí
-    follow_panel_title_global: Sledovať aktívnych prírodovedcov
-    following_panel_title: Sledovať ľudí, taxóny a miesta
-    comments_panel_title: Ste zvedavý, aké diskusie prebiehajú na stránke %{site_name}?
-    youve_got_updates_panel_title: Máte aktualizácie!
-    youve_got_updates_panel_body_p1: Zostaňte aktuálny s aktualizáciami nasledujúceho...
+      observe_panel_title: Začneme odoslaním nejakých pozorovaní
+      observe_panel_body_p1_local: Potrebujete inšpiráciu? Tu nájdete niekoľko organizmov, ktoré sú pozorované v okolí...
+      observe_panel_body_p1_global: Potrebujete inšpiráciu? Tu nájdete niekoľko organizmov, ktoré sú pozorované...
+      follow_panel_title_local: Sledovať prírodovedca vo svojom okolí
+      follow_panel_title_global: Sledovať aktívnych prírodovedcov
+      following_panel_title: Sledovať ľudí, taxóny a miesta
+      comments_panel_title: Ste zvedavý, aké diskusie prebiehajú na stránke %{site_name}?
+      youve_got_updates_panel_title: Máte aktualizácie!
+      youve_got_updates_panel_body_p1: Zostaňte aktuálny s aktualizáciami nasledujúceho...
   one_by_one: "Jeden po druhom"
   one_of_your_lists: "jeden z vašich zoznamov..."
   only_a_project_manager_can_add: Status kurátora projektu môže pridať iba manažér projektu
@@ -1898,14 +1887,14 @@ sk:
   only_staff_can_edit_large_places: Iba personál stránky môže upravovať veľmi veľké miesta
   only_staff_can_edit_standard_places: Iba personál stránky môže upraviť miesta v štandardnej hierarchii
   only_you: Iba vy
-  #Geoprivacy status in which no privacy has been applied
+  # Geoprivacy status in which no privacy has been applied
   open: otvorený
-  #Geoprivacy status in which no privacy has been applied
+  # Geoprivacy status in which no privacy has been applied
   open_: Otvorený
   optional: voliteľný
   or: alebo
-  #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in with Apple OR Google
+  # Usually used to separate buttons or functional areas of the interface, e.g.
+  # sign in with Apple OR Google
   or_all_caps: ALEBO
   order: Zoradiť
   order_by: Zoradiť podľa
@@ -1931,9 +1920,9 @@ sk:
   output_taxon: Výstupný taxón
   overview: Prehľad
   owner: Vlastník
-  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
+  # One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Nadradený
-  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  # Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Názov nadradeného
   parental_consent:
     must_specify_email: Musíte uviesť emailovú adresu
@@ -1947,13 +1936,13 @@ sk:
   people_user_follows: "Ľudia, ktorí sledujú užívateľa %{user}"
   people_added:
     identification:
-      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
-      #kueda
-      #added an ID to an observation by loarie
+      # Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      # kueda
+      # added an ID to an observation by loarie
       with_observation: pridal/a <strong>ID</strong> k %{observation_link} užívateľa %{user_link}
-      #The same as people_added.identification.with_observation, except it
-      #covers the rare situation in which we have an update for an
-      #identification but the observation has been deleted
+      # The same as people_added.identification.with_observation, except it
+      # covers the rare situation in which we have an update for an
+      # identification but the observation has been deleted
       without_observation: pridal/a <strong>ID</strong>
     post: vložil/a %{post_link}
     comment:
@@ -1980,10 +1969,10 @@ sk:
   photos_or_sounds: Fotky alebo zvuky
   photos_or_sounds?: Fotky alebo zvuky?
   photos_size:
-    small: malý
-    medium: stredný
-    large: veľký
-    original: pôvodný
+      small: malý
+      medium: stredný
+      large: veľký
+      original: pôvodný
   photos_updated: Fotky boli aktualizované.
   pi_consent_desc_title: O osobných údajoch
   pin_verb: Pripnúť
@@ -1994,106 +1983,106 @@ sk:
   place_autocomplete_placeholder: Zion National Park, Miami, atď.
   place_deleted: Miesto zmazané.
   place_geo:
-    geo_planet_place_types:
-      Aggregate: Agregát
-      aggregate: zoskupiť
-      Airport: Letisko
-      airport: letisko
-      Building: Budova
-      building: budova
-      Canton: Kantón
-      canton: kantón
-      Colloquial: Hovorový
-      colloquial: hovorový
-      Commune: Obec
-      commune: Obec
-      Continent: Kontinent
-      continent: kontinent
-      Country: Krajina
-      country: krajina
-      District: Okres
-      district: okres
-      Division: Časť
-      division: časť
-      Drainage: Spádová oblasť
-      drainage: spádová oblasť
-      Estate: Pozemok
-      estate: pozemok
-      Governorate: Správny celok
-      governorate: správny celok
-      Historical_County: Historický County
-      historical_county: historický county
-      Historical_State: Historický štát
-      historical_state: historický štát
-      Historical_Town: Historické mesto
-      historical_town: historické mesto
-      Intersection: Križovatka
-      intersection: križovatka
-      Island: Ostrov
-      island: ostrov
-      Land_Feature: Krajinný prvok
-      land_feature: krajinný prvok
-      Local_Administrative_Area: Lokálna administratívna oblasť
-      local_administrative_area: lokálna administratívna oblasť
-      Local_Authority: Miestny orgán
-      local_authority: miestny orgán
-      Miscellaneous: Rôzne
-      miscellaneous: rôzne
-      Municipality: Obec
-      municipality: obec
-      Nationality: Národnosť
-      nationality: národnosť
-      Nearby_Building: Blízka budova
-      nearby_building: blízka budova
-      Nearby_Intersection: Blízka križovatka
-      nearby_intersection: blízka križovatka
-      Open_Space: Otvorený priestor
-      open_space: otvorený priestor
-      Parish: Farnosť
-      parish: farnosť
-      Prefecture_City: Mesto prefektúry
-      prefecture_city: mesto prefektúry
-      Point_of_Interest: Zaujímavé miesto
-      point_of_interest: zaujímavé miesto
-      Postal_Code: Poštové smerovacie číslo
-      postal_code: poštové smerovacie číslo
-      Province: Provincia
-      province: provincia
-      Region: Región
-      region: región
-      Republic: Republika
-      republic: republika
-      Shire: Kraj
-      shire: kraj
-      Sports_Team: Športový tím
-      sports_team: športový tím
-      State: Štát
-      state: štát
-      Street: Ulica
-      street: ulica
-      Street_Segment: Časť ulice
-      street_segment: časť ulice
-      Subdivision: Sekcia
-      subdivision: sekcia
-      Suburb: Mestský obvod
-      suburb: mestský obvod
-      Supername: Nadradený názov
-      supername: nadradený názov
-      Territory: Teritórium
-      territory: teritórium
-      Time_Zone: Časové pásmo
-      time_zone: časové pásmo
-      Town: Mesto
-      town: mesto
-      Undefined: Nedefinované
-      undefined: Nedefinované
-      Unknown: Neznáme
-      unknown: neznáme
-      Zone: Zóna
-      zone: zóna
+          geo_planet_place_types:
+            Aggregate: Agregát
+            aggregate: zoskupiť
+            Airport: Letisko
+            airport: letisko
+            Building: Budova
+            building: budova
+            Canton: Kantón
+            canton: kantón
+            Colloquial: Hovorový
+            colloquial: hovorový
+            Commune: Obec
+            commune: Obec
+            Continent: Kontinent
+            continent: kontinent
+            Country: Krajina
+            country: krajina
+            District: Okres
+            district: okres
+            Division: Časť
+            division: časť
+            Drainage: Spádová oblasť
+            drainage: spádová oblasť
+            Estate: Pozemok
+            estate: pozemok
+            Governorate: Správny celok
+            governorate: správny celok
+            Historical_County: Historický County
+            historical_county: historický county
+            Historical_State: Historický štát
+            historical_state: historický štát
+            Historical_Town: Historické mesto
+            historical_town: historické mesto
+            Intersection: Križovatka
+            intersection: križovatka
+            Island: Ostrov
+            island: ostrov
+            Land_Feature: Krajinný prvok
+            land_feature: krajinný prvok
+            Local_Administrative_Area: Lokálna administratívna oblasť
+            local_administrative_area: lokálna administratívna oblasť
+            Local_Authority: Miestny orgán
+            local_authority: miestny orgán
+            Miscellaneous: Rôzne
+            miscellaneous: rôzne
+            Municipality: Obec
+            municipality: obec
+            Nationality: Národnosť
+            nationality: národnosť
+            Nearby_Building: Blízka budova
+            nearby_building: blízka budova
+            Nearby_Intersection: Blízka križovatka
+            nearby_intersection: blízka križovatka
+            Open_Space: Otvorený priestor
+            open_space: otvorený priestor
+            Parish: Farnosť
+            parish: farnosť
+            Prefecture_City: Mesto prefektúry
+            prefecture_city: mesto prefektúry
+            Point_of_Interest: Zaujímavé miesto
+            point_of_interest: zaujímavé miesto
+            Postal_Code: Poštové smerovacie číslo
+            postal_code: poštové smerovacie číslo
+            Province: Provincia
+            province: provincia
+            Region: Región
+            region: región
+            Republic: Republika
+            republic: republika
+            Shire: Kraj
+            shire: kraj
+            Sports_Team: Športový tím
+            sports_team: športový tím
+            State: Štát
+            state: štát
+            Street: Ulica
+            street: ulica
+            Street_Segment: Časť ulice
+            street_segment: časť ulice
+            Subdivision: Sekcia
+            subdivision: sekcia
+            Suburb: Mestský obvod
+            suburb: mestský obvod
+            Supername: Nadradený názov
+            supername: nadradený názov
+            Territory: Teritórium
+            territory: teritórium
+            Time_Zone: Časové pásmo
+            time_zone: časové pásmo
+            Town: Mesto
+            town: mesto
+            Undefined: Nedefinované
+            undefined: Nedefinované
+            Unknown: Neznáme
+            unknown: neznáme
+            Zone: Zóna
+            zone: zóna
   place_guess: hádať miesto
   place_imported: Miesto bolo importované!
-  #message describing a delay between importing a place and observations appearing in it
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Môže trvať až jeden deň, kým sa pozorovania spoja s týmto miestom.
   place_must_have_a_boundary_defined: Miesto musí mať definovanú hranicu.
   place_name: Názov miesta
@@ -2319,23 +2308,23 @@ sk:
     yemen: Jemen
   places_of_interest: Zaujímavé miesta
   places_merged_successfully: Miesta boli úspešne zlúčené!
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     Miesta nemôžu byť väčšie ako 700 000 kilometrov štvorcových.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     Miesta nemôžu byť väčšie ako 70 000 kilometrov štvorcových.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     Miesta nemôžu obsahovať viac ako 200 000 pozorovaní.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Miesta nemôžu obsahovať viac ako 10 000 pozorovaní.
   plants: rastliny
   please_add_a_citation_for_this_change: Pridajte prosím citáciu pre túto zmenu.
-  please_allow_a_few_weeks_for_external_sites: Počkajte prosím pár týždňov, než sa zmeny z tohto pozorovania synchronizujú s externými stránkami #Request that a known child ask their parents for permission to use this service
+  please_allow_a_few_weeks_for_external_sites: Počkajte prosím pár týždňov, než sa zmeny z tohto pozorovania synchronizujú s externými stránkami # Request that a known child ask their parents for permission to use this service
   please_complete_the_following_to_add_project: |
     Ak chcete pridať toto pozorovanie k projektu, vyplňte prosím nasledujúce:
   please_confirm_your_inat_username: "Potvrďte prosím svoje používateľské meno pre %{site_name}"
@@ -2344,9 +2333,9 @@ sk:
   please_fix_your_csv_and_try_again: Opravte si prosím CSV a skúste to znova.
   popular: Obľúbené
   position: Pozícia
-  #Post is a noun
+  # Post is a noun
   post_from_journal_by_parent_html: Príspevok z <a href="%{url}"> denníka od %{parent} </a>
-  #Post is a noun
+  # Post is a noun
   post_from_your_journal_html: Príspevok z <a href="%{url}">vášho denníka</a>
   post_published: Príspevok zverejnený!
   posted_by: Autor
@@ -2374,11 +2363,11 @@ sk:
   processing: Spracováva sa
   processing3p: "Spracováva sa..."
   profile: Profil
-  #A user may attempt to upload a profile picture with an unsupported content type, and this
-  #text will be the first part of an error message displayed to the user describing that error
+  # A user may attempt to upload a profile picture with an unsupported content type, and this
+  # text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Typ súboru profilového obrázka
   project: Projekt
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: Správca projektu
   project_assessments: Hodnotenie projektu
   project_assets: Položky projektu
@@ -2412,7 +2401,7 @@ sk:
   project_was_successfully_updated: Projekt bol úspešne aktualizovaný.
   project_x_was_delete: "%{project} bol zmazaný (počkajte prosím pár minút, než bude odstránený z webovej stránky)"
   projects: Projekty
-  #@vow_or_con should work on %{place}
+  # @vow_or_con should work on %{place}
   projects_from_place: "Projekty z %{place}"
   projects_you_admin: Projekty, ktoré spravujete
   proposed_taxa_that_contradict_the_community_id: Navrhované taxóny, ktoré sa lišia od ID komunity
@@ -2429,60 +2418,60 @@ sk:
   radius_value: "Polomer (m): %{radius}"
   random: Náhodný
   range: Rozsah
-  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikácia
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: Rod / Rod hybrid
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: Druh / Hybrid
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: Poddruh / Odroda / Forma
-  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
-  #etc.). Generally used as a column header in lists of observers and
-  #identifiers
+  # A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  # etc.). Generally used as a column header in lists of observers and
+  # identifiers
   rank_position: Klasifikácia
   ranks:
-    stateofmatter: Stav veci
-    kingdom: Ríša
-    subkingdom: Podríša
-    phylum: Kmeň
-    subphylum: Podkmeň
-    superclass: Nadtrieda
-    class: Trieda
-    subclass: Podtrieda
-    infraclass: Infratrieda
-    superorder: Nadrad
-    order: Rad
-    suborder: Podrad
-    infraorder: Infrarad
-    parvorder: Parvrad
-    zoosection: zoosekcia
-    zoosubsection: Zoopodsekcia
-    superfamily: Nadčeľaď
-    epifamily: epičeľaď
-    family: Čeľaď
-    subfamily: Podčeľaď
-    supertribe: Nadkmeň
-    tribe: Kmeň
-    subtribe: Podkmeň
-    genus: Rod
-    genushybrid: Hybridný rod
-    subgenus: Podrod
-    section: Sekcia
-    subsection: Podsekcia
-    complex: Dokončiť
-    #Singular
-    species: Druh
-    hybrid: Kríženec
-    #Singular
-    subspecies: Poddruh
-    variety: Varieta
-    form: Forma
-    leaves: Listy
+      stateofmatter: Stav veci
+      kingdom: Ríša
+      subkingdom: Podríša
+      phylum: Kmeň
+      subphylum: Podkmeň
+      superclass: Nadtrieda
+      class: Trieda
+      subclass: Podtrieda
+      infraclass: Infratrieda
+      superorder: Nadrad
+      order: Rad
+      suborder: Podrad
+      infraorder: Infrarad
+      parvorder: Parvrad
+      zoosection: zoosekcia
+      zoosubsection: Zoopodsekcia
+      superfamily: Nadčeľaď
+      epifamily: epičeľaď
+      family: Čeľaď
+      subfamily: Podčeľaď
+      supertribe: Nadkmeň
+      tribe: Kmeň
+      subtribe: Podkmeň
+      genus: Rod
+      genushybrid: Hybridný rod
+      subgenus: Podrod
+      section: Sekcia
+      subsection: Podsekcia
+      complex: Dokončiť
+      # Singular
+      species: Druh
+      hybrid: Kríženec
+      # Singular
+      subspecies: Poddruh
+      variety: Varieta
+      form: Forma
+      leaves: Listy
   ranges: Rozsahy
   ray_finned_fishes: lúčoplutvovce
   re_order_photos: "Znovu usporiadať fotky &raquo;"
@@ -2500,7 +2489,7 @@ sk:
   recent_observations: Nedávne pozorovania
   recent_observations_: Nedávne pozorovania
   recent_post: Nedávne príspevky
-  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
+  # Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Nedávne pozorovania užívateľa %{login} (Atom)"
   recent_observations_by: "Nedávne pozorovania užívateľa %{login}"
   recently_active: Nedávno aktívne
@@ -2519,15 +2508,15 @@ sk:
   relationship: "Vzťah"
   relationship_x: "Vzťah %{relationship}"
   relationships:
-    match: spojenie
-    one_to_one: jedna ku jednej
-    alternate_position: náhradná pozícia
-    many_to_many: mnoho k mnoho
-    many_to_one: mnoho k jednému
-    one_to_many: jeden k mnohým
-    not_external: nie je externý
-    not_internal: nie je interný
-    error: chyba
+      match: spojenie
+      one_to_one: jedna ku jednej
+      alternate_position: náhradná pozícia
+      many_to_many: mnoho k mnoho
+      many_to_one: mnoho k jednému
+      one_to_many: jeden k mnohým
+      not_external: nie je externý
+      not_internal: nie je interný
+      error: chyba
   relationship_html: "Vzťah: %{link}"
   reload_from_observations: Znovu načítať z pozorovaní
   reload_timed_out: 'Čas pre opätovné načítanie vypršal. Skúste to prosím znovu neskôr.'
@@ -2645,11 +2634,11 @@ sk:
   search_your_photos: Prehľadať vaše fotky
   searching: "Hľadám..."
   seasonality: Sezónnosť
-  #This is a fallback translation for posessive phrases. It could be used on
-  #pages that show a user's content where the title might be "Your
-  #Identifications", but we generally handle those with more specific
-  #translation keys like `your_identifications`. This is here in case we
-  #forget to add a translation key like that.
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "Your
+  # Identifications", but we generally handle those with more specific
+  # translation keys like `your_identifications`. This is here in case we
+  # forget to add a translation key like that.
   second_person_possessive_singular: "Vaše %{noun}"
   see_something_wrong_with_taxon: Je s týmto taxónom niečo v neporiadku? Dajte to vedieť kurátorom.
   seen_nearby: Videné blízko
@@ -2657,7 +2646,7 @@ sk:
   select: Vybrať
   select_all: Vybrať všetko
   select_at_least_one: Vybrať aspoň jeden
-  #select_one_or_more_photos: Select One Or More Photos
+  # select_one_or_more_photos: Select One Or More Photos
   select_none: Nevybrať žiadny
   select_observations_to_edit: Vyberte pozorovanie na úpravu...
   select_one_of_friends_albums: Vyberte jeden z albumov užívateľa %{friend}
@@ -2671,7 +2660,7 @@ sk:
   send: odoslať
   send_me_reset_password_instructions: Pošlite mi pokyny k obnoveniu hesla
   sending: Posiela sa...
-  #Label for messages you've sent
+  # Label for messages you've sent
   sent: Odoslané
   separate_values_with_a_pipe: Oddeľte hodnoty zvislou čiarou, napr. „1-5|6-10|veľa“ alebo „áno|nie|možno“
   set_a_place_if_this_link_only_applies_to: Nastavte miesto, ak sa tento odkaz vzťahuje iba na taxóny z určitého miesta. Nechajte prázdne, ak sa vzťahuje k taxónom po celom svete.
@@ -2688,7 +2677,7 @@ sk:
   show_off_your_recent_observations: Ukážte svoje posledné pozorovania na svojom blogu alebo webovej stránke!
   show_only: Zobraziť len
   show_relative_proportions_of_all_observations: Zobraziť príbuzné časti všetkých pozorovaní
-  #Label for a button to show the running total of an accumulation chart
+  # Label for a button to show the running total of an accumulation chart
   show_running_total: Zobraziť doteraz celkom
   show_taxa_from_both: (zobraziť taxóny z obidvoch zoznamov)
   show_taxa_from_everywhere: "Zobraziť taxóny zo všetkých miest"
@@ -2704,7 +2693,7 @@ sk:
   sign_up: Zaregistrovať sa
   similar_species: Podobné druhy
   similar_taxa: Podobné taxóny
-  #Journal post formatting option
+  # Journal post formatting option
   simple: Jednoduché
   single_observation: Jedno pozorovanie
   sizes: Veľkosti
@@ -2749,14 +2738,14 @@ sk:
     select_one_or_more_sounds: Vyberte jeden alebo viac zvukov
     selected_sounds: Vybrané zvuky
     sound: Zvuk
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Zvuk %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: Zvuk bol odstránený
     sound_has_been_flagged: Tento zvuk bol označený.
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: Skrytý zvuk
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Zvuk neskrytý
     soundcloud_replied_with_an_error: SoundCloud odpovedal chybou. Skúste to prosím znovu neskôr.
     sounds: Zvuky
@@ -2787,7 +2776,7 @@ sk:
   sources_youve_added: Zdroje, ktoré ste pridali
   sources_and_credits: Zdroje a autorstvo
   sourcing: Zaistenie zdrojov
-  #Plural
+  # Plural
   species: Druhy
   species_by_category: druhy podľa kategórie
   species_from_around_the_world: Druhy z celého sveta
@@ -2798,7 +2787,7 @@ sk:
   species_taxon_name: Druh / názov taxónu
   species_unknown: Neznámy druh
   specify_the_reason_youre_flagging: Špecifikujte dôvod prečo označujete túto položku
-  #Abbreviation for "source"
+  # Abbreviation for "source"
   src: Zdr.
   standard: Štandardný
   start: Začiatok
@@ -2847,7 +2836,7 @@ sk:
   synonyms: Synonymá
   table: Tabuľka
   table_of_contents: Obsah
-  #Noun, as in "add a tag to this observation"
+  # Noun, as in "add a tag to this observation"
   tag: Tag
   tagging: 'Tagovanie...'
   tags: Tagy
@@ -2870,9 +2859,9 @@ sk:
   taxon_id: ID taxónu
   taxon_ids: ID taxónu
   taxon_map:
-    gbif_occurrences: Výskyty GBIF
-    data_url: URL údajov
-    overlays: Prekrytie
+      gbif_occurrences: Výskyty GBIF
+      data_url: URL údajov
+      overlays: Prekrytie
   taxon_changes: Zmeny taxónu
   taxon_colors: Farby taxónu
   taxon_curators: Kurátori taxónov
@@ -2891,7 +2880,7 @@ sk:
   taxon_range: Rozsah taxónu
   taxon_range_created_notice: Rozsah taxónu bol úspešne vytvorený. Počkajte prosím pár minút, než sa objaví na mapách.
   taxon_range_updated_notice: Rozsah taxónu bol úspešne aktualizovaný. Počkajte prosím pár minut, než sa objaví na mapách.
-  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
+  # Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Poradie taxónu
   taxon_removed_from_list: Taxón bol odstránený zo zoznamu.
   taxon_scheme: Plán taxónu
@@ -2899,7 +2888,7 @@ sk:
   taxon_search: Prehľadávanie taxónu
   taxon_search_results_for: Výsledky prehľadávania taxónu pre
   taxon_split: rozdelenie taxónu
-  #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
+  # A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: štádium taxónu
   taxon_swap: zámena taxónu
   taxon_swap_only_has_one_input: pre zámenu je povolený iba jeden vstup
@@ -2921,8 +2910,8 @@ sk:
   teachers_guide: Príručka pre učiteľa
   tell_the_world_a_little_about_yourself: Povedzte nám niečo o sobe
   tell_us_why: Povedzte nám prečo...
-  #As in Terms of Service, an explicit description of what iNat the extent
-  #and limitations of the service provided to users
+  # As in Terms of Service, an explicit description of what iNat the extent
+  # and limitations of the service provided to users
   terms: Podmienky
   terms_and_rules_html: "Podmienky &amp; Pravidlá"
   terms_new_users: "Ak pridáte podmienky, musia ich noví používatelia odsúhlasiť, než sa pripoja k tomuto projektu."
@@ -2960,7 +2949,7 @@ sk:
   threatened: Ohrozený
   time_: čas
   time_ago: "pred %{time}"
-  #As in the title of a book or a blog post
+  # As in the title of a book or a blog post
   title: názov
   title_and_description: "Názov a opis"
   to_add_comments: pridať komentáre
@@ -2986,7 +2975,7 @@ sk:
   trusted: Dôveryhodné
   trusted_project?: Dôveryhodný projekt?
   two_thirds: 2/3
-  #As in a category, not as in a keyboard
+  # As in a category, not as in a keyboard
   type: Napíšte
   type_one_name_per_line: Napíšte jeden názov na každý riadok
   type_place_name: Napíšte názov miesta
@@ -3026,19 +3015,19 @@ sk:
   updated: Aktualizované
   updated_daily: Aktualizované denne
   updated_photo: Aktualizovaná fotka
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Aktualizovaný zvuk
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x: "%{user} pridal(a) %{x}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} pridal(a) %{x} k %{noun}"
   user_added_an_identification_html: "%{user} pridal identifikáciu"
   user_added_an_observation_html: "Používateľ %{user} pridal pozorovanie"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x: "%{user} pridal(a) %{x}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} vložil %{x} na %{noun} od %{by}"
-  #@gender operates on %{x}
+  # @gender operates on %{x}
   user_added_an_x_to_noun_html: "Používateľ %{user} pridal %{x} k %{noun}"
   user_commented: "%{user} komentoval"
   user_disagrees_this_is_taxon: "Užívateľ %{user} nesúhlasí s tým, že toto je %{taxon}"
@@ -3077,7 +3066,7 @@ sk:
   view_more_observations_near_x_place: "Zobraziť viac pozorovaní blízko %{place} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Zobraziť viac pozorovaní %{taxon} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Zobraziť viac neskontrolovaných"
-  #Link to view identifications affected by a taxon change
+  # Link to view identifications affected by a taxon change
   view_your_affected_ids: Zobrazenie ovplyvnených identifikátorov
   view_observation: Zobraziť pozorovanie
   view_observations: Zobraziť pozorovania
@@ -3163,42 +3152,42 @@ sk:
         App.
     atlases:
       show:
-        #Title for section describing atlases
+        # Title for section describing atlases
         about_atlases: O atlasoch
-        #Description of what atlases are
+        # Description of what atlases are
         atlases_convey_the_global_distribution: |
           Atlasy vyjadrujú globálnu distribúciu taxónu. Kurátori robia
           definovaním štruktúry atlasu a kurátorstvom
           uvedené taxóny, ktoré ho riadia.
-        #Label for a button that divides a place in an atlas into it's
-        #constituent places. E.g. if the atlas for Red Fox contained Europe
-        #you wanted to specify that Red Fox only occurs in Belgium and
-        #France, you would "explode" Europe so you could choose Belgium and
-        #France.
+        # Label for a button that divides a place in an atlas into it's
+        # constituent places. E.g. if the atlas for Red Fox contained Europe
+        # you wanted to specify that Red Fox only occurs in Belgium and
+        # France, you would "explode" Europe so you could choose Belgium and
+        # France.
         explode_this_place: Vybuchnite toto miesto
-        #Label for a button that reunites places in an atlas into the place
-        #that contains them. E.g. if an atlas contains Europe but it has
-        #been "exploded" into its constituent countries, this would remove
-        #those countries so the atlas would just contain Europe again.
+        # Label for a button that reunites places in an atlas into the place
+        # that contains them. E.g. if an atlas contains Europe but it has
+        # been "exploded" into its constituent countries, this would remove
+        # those countries so the atlas would just contain Europe again.
         unexplode_this_place: Nevybuchnite toto miesto
-        #Notice when an atlas has not been altered
+        # Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Zatiaľ žiadne zmeny v tomto atlase
-        #Title for a section showing recent alterations to an atlas
+        # Title for a section showing recent alterations to an atlas
         recent_atlas_alterations: Nedávne zmeny atlasu
-        #Title for a section showing taxa that were recently added to a check
-        #list
+        # Title for a section showing taxa that were recently added to a check
+        # list
         recent_listed_taxon_additions: Nedávne uvedené zmeny taxónov
-        #Label for a button that shows taxa on checklists for a place
+        # Label for a button that shows taxa on checklists for a place
         show_listed_taxa: Zobraziť uvedené taxóny
-        #Notice when an atlas is not active
+        # Notice when an atlas is not active
         this_atlas_is_not_currently_active: Tento atlas momentálne nie je aktívny
-        #Warning before removing a place from an atlas
+        # Warning before removing a place from an atlas
         this_will_remove_this_taxon_and_all: |
           Tým sa tento taxón a všetci jeho potomkovia odstránia z kontrolných zoznamov
           spojené s týmto miestom a všetkými štandardnými miestami, ktoré obsahuje. Ono
           nedá sa vrátiť späť. Naozaj to chcete urobiť?
-        #Warning when there are observations outside of the places defined by
-        #the atlas
+        # Warning when there are observations outside of the places defined by
+        # the atlas
         warning_there_are_observations_not_represented: |
           Upozornenie: existujú pozorovania, ktoré tento atlas nepredstavuje
     devise:
@@ -3210,27 +3199,27 @@ sk:
             ako udržať iNaturalist priateľským a príjemným miestom.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Kliknite sem pre opätovné odoslanie potvrdzovacieho e-mailu
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: Odoslaný potvrdzovací e-mail
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         Tu je e-mailová adresa, na ktorú pošleme potvrdenie:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         Ak e-mail nedostanete, tu je niekoľko tipov:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: Ak stále nedostávate potvrdzovací e-mail, kontaktujte nás na adrese <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> aby sme vám mohli pomôcť.
       please_add_an_email_and_password: Pridajte e-mail a heslo, aby ste nestratili prístup k svojmu účtu
       please_click_the_link_sent_to_email_to_confirm_html: Kliknite na odkaz zaslaný na adresu <span class="email">%{email}</span> a potvrďte svoju e-mailovú adresu.
-      please_confirm_that_email_is_the_best_contact_html: Potvrďte, že <span class="email">%{email}</span> je najlepší spôsob, ako vás kontaktovať. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Potvrďte svoju e-mailovú adresu, aby ste mohli interagovať s obsahom iných používateľov a pristupovať na určité stránky. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Potvrďte svoju e-mailovú adresu <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: Potvrďte, že <span class="email">%{email}</span> je najlepší spôsob, ako vás kontaktovať. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Potvrďte svoju e-mailovú adresu, aby ste mohli interagovať s obsahom iných používateľov a pristupovať na určité stránky. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Potvrďte svoju e-mailovú adresu <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: Potvrďte svoju e-mailovú adresu, aby ste mohli interagovať s obsahom iných používateľov
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Ak chcete používať túto stránku, potvrďte svoju e-mailovú adresu
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Skontrolujte všetky filtre, ktoré by mohli odstrániť naše e-maily z vašej doručenej pošty #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Skontrolujte všetky filtre, ktoré by mohli odstrániť naše e-maily z vašej doručenej pošty # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Skontrolujte priečinok so spamom
       your_site_account_has_no_email: Tvoj %{site_name} k účtu nie je priradená žiadna e-mailová adresa.
     guides:
@@ -3240,13 +3229,13 @@ sk:
           <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           Po potvrdení e-mailu budete môcť posielať nové správy
           adresa. Zatiaľ si môžete prečítať a odpovedať na správy, ktoré vám pošlú iní ľudia.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           Po potvrdení e-mailu budete môcť posielať nové správy
           a pridali tri overiteľné pripomienky alebo tri identifikácie
@@ -3254,8 +3243,8 @@ sk:
     oauth:
       authorizations:
         new:
-          #Application is an app or service the user has authorized to
-          #access their iNat account
+          # Application is an app or service the user has authorized to
+          # access their iNat account
           more_about_application: Viac o %{application}
     observations:
       export:
@@ -3265,12 +3254,12 @@ sk:
       field_descriptions:
         place_admin1_name: Názov administratívneho miesta v rámci krajiny
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           tá <strong>Zhoda taxónu Spoločenstva a taxónu pozorovania</strong>
           (pre tie zriedkavé prípady, keď môže byť taxón pozorovania viac
           špecifické ako taxón Spoločenstva)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           Pripomienka <strong>nepredkladá presné dôkazy o existencii organizmu alebo
           scéna</strong> (napr. umelá inteligencia bola použitá na pridanie, odstránenie alebo nahradenie
@@ -3289,8 +3278,8 @@ sk:
           Zablokovali ste majiteľa tohto zdroja, čo vám zabraňuje s nimi komunikovať. Väčšina interaktívnych funkcií na tejto stránke bude nefunkčná.
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           Originál si môžete pozrieť na <a href="%{url}">%{url}</a>. Prosím
           Ak tento zvuk ponecháva príznaky porušenia autorských práv ako nevyriešené
@@ -3300,7 +3289,7 @@ sk:
         obs_1_day: "Pozorovania (1 deň)"
         obs_1_day_desc: "Pozorovania vytvorené v jeden deň"
         obs_cid_d_desc: Vytvorené za posledných 7 dní a má ID komunity
-        #Short for "observations community-identified to genus"
+        # Short for "observations community-identified to genus"
         obs_cid_d_to_genus: CID pozorovania do rodu
         obs_cid_d_to_genus_desc: Vytvorené za posledných 7 dní a má komunitnú identitu na úrovni alebo pod úrovňou rodu
         obs_desc: Vytvorené pred 7 dňami
@@ -3317,12 +3306,12 @@ sk:
       edit:
         high_status_conservation_status_notice_html: |
           Pridanie statusu ochrany vyššiemu taxónu ovplyvňuje pozorovania všetkých druhov v tomto taxóne. Nepridávajte prosím statusy pre taxóny, ktoré obsahujú druhy bez statusu pretože to zakryje súradnice pozorovaní týchto druhov.
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           Priamo môžete vykonať len menšie zmeny v prívlastku druhu (napr. zmeny pohlavia, preklepy). Pridanie <a target="_blank" href="%{url}">výmena taxónov</a> ak potrebujete ďalšie zmeny názvu.
-        #message when you try to save edits to a taxon that is a descendant of a locked taxon
-        heads_up_locked: "Upozornenie: práve ste pridali potomka uzamknutého taxónu (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Zvážte namiesto toho zlúčenie do existujúceho taxónu." #message when you try to save edits to a taxon that has inactive parents
-        heads_up_inactive_parent: " Upozornenie: rodič tohto aktívneho taxónu je neaktívny, ale je to výstup tohto <a href='/taxon_changes/%{taxon_change_id}'> návrh zmeny taxónu</a> predpokladáme, že sa čoskoro zaviažete." #a message when you try to save an edit to a taxon covered by a taxon framework
+        # message when you try to save edits to a taxon that is a descendant of a locked taxon
+        heads_up_locked: "Upozornenie: práve ste pridali potomka uzamknutého taxónu (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Zvážte namiesto toho zlúčenie do existujúceho taxónu." # message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " Upozornenie: rodič tohto aktívneho taxónu je neaktívny, ale je to výstup tohto <a href='/taxon_changes/%{taxon_change_id}'> návrh zmeny taxónu</a> predpokladáme, že sa čoskoro zaviažete." # a message when you try to save an edit to a taxon covered by a taxon framework
         covered_by_taxon_framework: Tento aktívny taxón má viac ako %{count} následné pozorovania alebo je pokrytý rámcom taxónov, takže niektoré taxonomické atribúty môžu upravovať iba zamestnanci alebo kurátori taxónov spojení s týmto rámcom taxónov.
       show:
         site_curators_disabled_wikipedia_html: |
@@ -3330,50 +3319,50 @@ sk:
           obsah z Wikipédie</a>. Môžete pomôcť úpravou stránky na
           Wikipédia, aby to bolo vhodné pre tento taxón, alebo označením tohto
           taxon, aby naň upozornil kurátorov stránok.
-      #an error when someone tried to edit the name of a taxon too radically
+      # an error when someone tried to edit the name of a taxon too radically
       name_must_be_similar: Názvy musia byť podobné pri priamej úprave, urobte výmenu taxónov pre radikálne zmeny názvu
-      #error message when Flicker permissions preventing Flickr tagger feature
+      # error message when Flicker permissions preventing Flickr tagger feature
       cant_tag_photos_html: |
         %{site} nemôžeme k fotografiám pridávať značky, kým sa služba Flickr nedovie, že ste nám udelili povolenie.
         <a href='%{url}'>Udelenie povolenia Flickru</a>.
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Pri pokuse o uverejnenie týchto značiek sa niečo pokazilo: %{message}
     taxon_changes:
-      #state of a pending taxon change
+      # state of a pending taxon change
       pending: nerozhodnutý
-      #state of a approved taxon change
+      # state of a approved taxon change
       approved: schválený
-      #for taxon changes requiring approval votes, a message indicating to the user that they voted
+      # for taxon changes requiring approval votes, a message indicating to the user that they voted
       vote_added: Hlasovanie pridané
-      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      # for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
       vote_removed: Hlasovanie odstránené
-      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      # a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
       no_votes_yet: Zatiaľ žiadne hlasovanie
-      #message when taxon change is committed
+      # message when taxon change is committed
       taxon_change_committed: Zmena taxónu vykonaná! Záznamy, ktoré je možné automaticky aktualizovať, sa čoskoro zmenia.
-      #message when taxon change is moved into the pending state, count is a number (e.g. 5)
+      # message when taxon change is moved into the pending state, count is a number (e.g. 5)
       taxon_change_pending:
         one: "Na túto zmenu taxónu sa teraz čaká. Vyžaduje súhlas 1 kurátora, aby sa mohol zaviazať."
         few: "Na túto zmenu taxónu sa teraz čaká. Vyžaduje si schválenie %{count} kurátorov, aby sa mohli zaviazať."
         many: "Na túto zmenu taxónu sa teraz čaká. Vyžaduje si schválenie %{count} kurátorov, aby sa mohli zaviazať."
         other: "Na túto zmenu taxónu sa teraz čaká. Vyžaduje si schválenie %{count} kurátorov, aby sa mohli zaviazať."
-      #message when someone tries to commit a taxon change with active children
+      # message when someone tries to commit a taxon change with active children
       input_taxon_cannot_have_active_children: |
         Vstupný taxón nemôže mať aktívne potomky, presunúť ich ako prvé alebo vybrať možnosť "Presunúť deti na výstup?"
       output_taxon_rank_level_not_coarser_html: >
         Úroveň poradia vstupného taxónu nie hrubšia ako úroveň poradia aktívnych podriadených vstupného taxónu %{taxon_link}.
-      #a message when someone tries to commit a taxon change that was already committed
+      # a message when someone tries to commit a taxon change that was already committed
       taxon_change_already_committed: Táto taxonomická zmena už bola vykonaná!
-      #an error message when trying to delete a taxon change, param is the integer id of the taxon change
+      # an error message when trying to delete a taxon change, param is the integer id of the taxon change
       something_whent_wrong: "Niečo sa pokazilo pri vymazaní zmeny taxónu '%{id}'!"
-      #a message when a taxon change was deleted
+      # a message when a taxon change was deleted
       taxon_change_deleted: Zmena taxónu bola vymazaná.
-      #a message when a taxon change was successfully updated
+      # a message when a taxon change was successfully updated
       taxon_change_successfully_update: Zmena taxónu bola úspešne aktualizovaná.
-      #an error message when trying to modify/create a taxon change that can be found
+      # an error message when trying to modify/create a taxon change that can be found
       no_changes_specified: Nie sú uvedené žiadne zmeny
-      #a message when a taxon change was successfully created
+      # a message when a taxon change was successfully created
       taxon_change_successfully_created: Zmena taxónu bola úspešne vytvorená.
       #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
       requires_approval:
@@ -3384,8 +3373,8 @@ sk:
     users:
       edit:
         errors:
-          #error message when a user attempts to update their profile picture using
-          #an image that has an unsupported file type
+          # error message when a user attempts to update their profile picture using
+          # an image that has an unsupported file type
           unsupported_file_type: Typ súboru nie je podporovaný. Akceptujeme formáty JPG, PNG a GIF
         this_only_applies_to_traditional_projects2: |
           To platí len pre tradičné projekty. Pozorovania nie je možné vylúčiť
@@ -3464,7 +3453,7 @@ sk:
       6: Pia
       7: So
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%R-%m-%d'
     month_names:
       - 
@@ -3502,28 +3491,28 @@ sk:
         strip_insignificant_zeros: true
   time:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
     attributes:
       announcement:
-        #Whether or not the announcement can be dismissed by people who see it
+        # Whether or not the announcement can be dismissed by people who see it
         dismissible: Zamietnuť
         excludes_non_site: Skrytie ďalších oznámení v tomto umiestnení, ktoré nemajú ID lokality
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: Vylúčenie pozorovateľov z aplikácií
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: Zahrnutie pozorovateľov z aplikácií
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: Cieľový tvorca (na testovanie)
       project:
         last_aggregated_at: Naposledy zoskupené pozorovania
       taxon:
-        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        # Boolean attribute that controls whether Wikipedia content is shown for this taxon
         shows_wikipedia: Zobrazuje Wikipédiu
       user:
         faved_project_ids: Obľúbené projekty
@@ -3536,19 +3525,19 @@ sk:
         moderator_action:
           attributes:
             base:
-              #Error saying that only staff can rename
+              # Error saying that only staff can rename
               only_staff_can_rename: Premenovať môžu iba zamestnanci
         observation:
           attributes:
             observed_on:
-              #Error message when user attempts to enter an observation date
-              #like "2020 or "2020-05"
+              # Error message when user attempts to enter an observation date
+              # like "2020 or "2020-05"
               must_be_a_single_day: musí to byť jeden deň, nie rozsah
         place:
           attributes:
             place_geometry:
-              #Error message when a user uploads a KML that has a polygon
-              #where all the points are the same.
+              # Error message when a user uploads a KML that has a polygon
+              # where all the points are the same.
               polygon_with_no_area: má mnohouholník bez plochy (všetky body sú rovnaké)
         project_fave:
           attributes:
@@ -3570,44 +3559,44 @@ sk:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 môže byť zmenený iba kurátorom tohto taxónu
             name:
-              #Error message trying to change name for a taxon other than animal/plant/fungi
+              # Error message trying to change name for a taxon other than animal/plant/fungi
               microbe_or_ungrafted: "Zmeny názvov nie sú povolené pre vírusy, baktérie alebo neštepené klady"
-              #Error message trying to change name for a taxon coarser than species
+              # Error message trying to change name for a taxon coarser than species
               coarser_than_species: "zmeny názvu nie sú povolené pre hodnosti hrubšie ako druhy"
-              #Error message trying to change name like this Taricha torosa x granulosa
+              # Error message trying to change name like this Taricha torosa x granulosa
               hybrid_formulas: "Zmeny názvu nie sú povolené pre hybridné vzorce"
-              #Error message trying to add an x as a hybrid sign
+              # Error message trying to add an x as a hybrid sign
               add_ascii_x_disallowed: "nemôže pridať \"x\" ako hybridný marker medzi rodom a druhom"
-              #Error message trying to change a specie or ssp name to something with no genus or species parts
+              # Error message trying to change a specie or ssp name to something with no genus or species parts
               must_be_binomial: "musia byť binomické (rodové druhy) na kontrolu"
-              #Error message trying to change the genus part of a ssp or sp
+              # Error message trying to change the genus part of a ssp or sp
               genus_cannot_change: "rod sa nemôže zmeniť"
-              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              # Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
               nonstandard_species_marker_only: "neštandardný názov druhu: povolené je iba odstránenie \"x\"/\"×\" alebo pridanie \"×\""
-              #Error message trying make major changes to sp epithet
+              # Error message trying make major changes to sp epithet
               specific_epithet_similar: "špecifický prívlastok musí byť podobný (len drobný preklep/pohlavie)"
-              #Error message trying eliminate the ssp epithet part for a ssp
+              # Error message trying eliminate the ssp epithet part for a ssp
               infra_required: "pre túto hodnosť sa vyžaduje infrašpecifický epiteton"
-              #Error message trying make major changes to a species part of ssp
+              # Error message trying make major changes to a species part of ssp
               only_infra_may_change: "pre infrašpecifické hodnosti sa môže zmeniť iba infrašpecifický epiteton"
-              #Error message trying make major changes to the ssp epithet
+              # Error message trying make major changes to the ssp epithet
               infra_epithet_similar: "infrašpecifický epiteton musí byť podobný (iba drobný preklep/pohlavie)"
-              #Error message trying make major changes to the ssp epithet
+              # Error message trying make major changes to the ssp epithet
               first_letter_of_epithet_cannot_change: "prvé písmeno akéhokoľvek epitetona sa nemôže zmeniť."
         taxon_change:
           attributes:
             base:
-              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              # Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
               life_taxon_cannot_be_involved: Taxón Life nemôže byť zapojený do zmien taxónov
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: nemôže zahŕňať viac ako 7 projektov
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: musia existovať všetky
             login:
               domain_is_not_supported: doména nie je podporovaná
