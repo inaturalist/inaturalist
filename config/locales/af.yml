@@ -2,43 +2,22 @@ af:
   x_faves:
     one: '%{count} gunsteling'
     other: '%{count} gunstelinge'
-  x_languages:
-    one: "%{count} taal"
-    other: "%{count} tale"
-  x_observations:
-    one: "%{count} waarneming"
-    other: "%{count} waarnemings"
-  x_observations_:
-    one: "%{count} Waarneming"
-    other: "%{count} Waarnemings"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> Waarneming"
-    other: "<span class='count'>%{count}</span> Waarnemings"
   x_photos:
     one: "%{count} foto"
     other: "%{count} foto's"
   x_new_species:
     one: "%{count} Nuwe Spesie"
     other: "%{count} Nuwe Spesies"
-  x_new_users:
-    one: '%{count} Nuwe Gebruiker'
-    other: '%{count} Nuwe Gebuikers'
-  x_species:
-    one: '%{count} Spesie'
-    other: '%{count} Spesies'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> Spesies"
-    other: "<span class='count'>%{count}</span> Spesies"
   _100_day_trends: 100-dae neiging
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A tot Z"
   about_conservation_status: Oor Bewaringstatus
   about_licenses: Aangaande lisensies
-  #Header for a section describing taxon names
+  # Header for a section describing taxon names
   about_names: Oor Name
-  #Title for a section providing a text description of a place, @vow_or_con
-  #should work here
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
   about_place: "Oor %{place}"
   about_places: Oor Plekke
   about_the_network: Oor die Netwerk
@@ -50,30 +29,30 @@ af:
     Hierdie sluit in waarnemings waarvan jy die geoprivaatheid op "weggesteek" of "privaat" gestel het, bv. waarnemings in jou agterplaas of plekke waarvan jy nie wil hê ander mense moet weet nie.
   about_trusting_projects_options_taxon_desc: |-
     Baie projekte het net toegang tot koördinate nodig wat weggesteek is omdat die waarneming 'n bedreigde takson wys.
-  #Header for a section listing all the project managers (admins and curators)
-  #of a project
+  # Header for a section listing all the project managers (admins and curators)
+  # of a project
   about_trusting_projects_project_managers_are: |-
     Die projekbestuurders wat toegang gaan hê tot jou weggesteekte koördinate is:
   about_trusting_projects_warning: |-
     Let op dat projekbestuurders die projek parameters kan verander om enige van jou waarnemings in te sluit, en hulle kan ter enige tyd projekbestuurders bysit of wegneem. Jy sal kennisgewings oor hierdie veranderinge kry, maar jy vertrou basies hierdie projek met jou private liggingsdata, so wees versigtig.
-  #Header for a section listing the different ways you can trust a project
+  # Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Jy kan kies om weggesteekte koördinate te deel vir
   account_settings: Rekening instellings
   accuracy: Akkuraatheid
-  #Noun, as in "Ken-ichi's action was not acceptable"
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Aksie
   actions: Aksies
   active: Aktief
-  #Status of a complete set that is available for use
+  # Status of a complete set that is available for use
   active_complete_set_status: Aktief
-  #Status of a taxon that is available for use on iNat
+  # Status of a taxon that is available for use on iNat
   active_taxon_status: Aktief
   active_users: Aktiewe Gebruikers
   activity: Aktiwiteit
   add: Sit By
   add_a_comment: Voeg Kommentaar By
-  #Placeholder for a project autocomplete field
+  # Placeholder for a project autocomplete field
   add_a_project: Voeg 'n projek by
   add_a_taxon: Voeg 'n takson by
   add_an_observation: Voeg 'n waarneming by
@@ -87,10 +66,10 @@ af:
   add_obs_from_a_list: Sit Waarnemings by vanaf 'n Lys
   add_observations: Sit Waarnemings By
   add_observations_project: Sit Waarnemings in Hierdie Projek
-  #Prompt to add a new journal post
+  # Prompt to add a new journal post
   add_one: Skryf een!
   add_place: Sit Plek By
-  #As in a Taxon Framework Relationship
+  # As in a Taxon Framework Relationship
   add_relationship: 'Sit verhouding by'
   add_several_observations_at_once: Voeg verskeie waarnemings gelyk by.
   add_taxa: Voeg taksa by
@@ -108,7 +87,7 @@ af:
   agree_: Stem saam
   agree?: Stem saam?
   all: Almal
-  #Title for a list of all 3rd party applications
+  # Title for a list of all 3rd party applications
   all_applications: Alle Toepassings
   all_comments: Alle kommentaar
   all_life: Alle lewe
@@ -148,7 +127,7 @@ af:
   amphibians: amfibieë
   android: Android
   animals: Diere
-  #Label for an option to show any place
+  # Label for an option to show any place
   any_place: Enige
   app_owner_application_about_p2_html: |
     Vanaf 2022 vereis ons handmatige goedkeuring vir gebruikers wat API-kliënte wil maak.
@@ -171,7 +150,7 @@ af:
   are_you_sure_want_delete_this_name: Is jy seker jy wil hierdie naam uitvee?
   are_you_sure_you_want_to_delete_this: Is jy seker jy wil hierdie uitvee?
   are_you_sure_you_want_to_delete_this_photo?: Is jy seker jy wil hierdie foto uitvee?
-  #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
+  # A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: Wil u definitief hierdie klank uitvee?
   are_you_sure_you_want_to_remove_from_project: Is jy seker jy wil %{user} van hierdie projek verwyder?
   are_you_sure_you_want_to_remove_manager: Is jy seker jy wil %{user} as bestuurder verwyder?
@@ -185,12 +164,12 @@ af:
   assessment: assessering
   assessment_has_benn_completed: Assessering is voltooid
   assessment_sections: Assessering seksies
-  #Adjective describing when a place in an atlas was "exploded," i.e. divided
-  #into its constituent places
+  # Adjective describing when a place in an atlas was "exploded," i.e. divided
+  # into its constituent places
   atlas_alteration_action_exploded: Ontplof
-  #Adjective describing when a place in an atlas was "unexploded," i.e. its
-  #constituent places were removed and now the atlas just contains this
-  #place
+  # Adjective describing when a place in an atlas was "unexploded," i.e. its
+  # constituent places were removed and now the atlas just contains this
+  # place
   atlas_alteration_action_unexploded: Onontplof
   authority_list:
     cites: CITES
@@ -230,7 +209,7 @@ af:
   categories: Kategorieë
   cc_0_name: Geen Kopiereg (CC0)
   change_your_password: Verander Jou Wagwoord
-  #Plural noun, as in changes to a taxon record over time
+  # Plural noun, as in changes to a taxon record over time
   changes: Veranderinge
   check_this_box_if_html: |
     Merk hierdie blokkie as u 'n <a
@@ -254,12 +233,12 @@ af:
   choose_taxon: Kies 'n takson
   colors: Kleure
   columns: Kolomme
-  #Noun, used to label a comment or a comment field in a form
+  # Noun, used to label a comment or a comment field in a form
   comment: kommentaar
-  #Verb, generally a label on a button that allows the user to add a comment
+  # Verb, generally a label on a button that allows the user to add a comment
   comment_: Lewer kommentaar
   comment_deleted: Kommentaar uitgevee
-  #Notice when a comment has been hidden by moderators
+  # Notice when a comment has been hidden by moderators
   comment_hidden: Kommentaar weggesteek
   comments: Kommentaar
   comments_by_me: Kommentaar deur my
@@ -275,13 +254,13 @@ af:
   compare_with: Vergelyk met
   comparing: besig om te vergelyk
   comparing_list_to_list: "Besig om %{list1} met %{list2} te vergelyk"
-  #Adjective, e.g. "this Taxon Framework is complete"
+  # Adjective, e.g. "this Taxon Framework is complete"
   complete: Voltooid
   completed: Voltooid
-  #Name for the statistical model used to determine visual similarity between
-  #photos and taxa
+  # Name for the statistical model used to determine visual similarity between
+  # photos and taxa
   computer_vision_model: Rekenaarvisie Model
-  #Status of a taxon that the Computer Vision Model can recognize
+  # Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Ingesluit
   computer_vision_model_included_desc: |
     Die huidige Rekenaarvisie Model weet van hierdie takson, so dit kan dalk ingesluit word in die outomatiese voorstelle met die "Visueel soortgelyk" aanduiding
@@ -298,10 +277,10 @@ af:
       geïmpliseer deur hierdie status. Dit sal die geoprivaatheid ignoreer as dit "Minste
       Bekommernis" of hieronder, so as jy waarnemings hiervan wil verberg
       takson, stel dit op "Naby bedreig" of hoër.
-  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  # Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Inhoud
   content_hidden: Inhoud weggesteek
-  #message on hidden content displaying when and why the content was hidden, and by whom
+  # message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Inhoud weggesteek deur %{user} op %{date} want: "%{reason}"
   content_type: Inhoudstipe
@@ -310,19 +289,19 @@ af:
   continue: Gaan Voort
   continue_to_site: Gaan voort na %{site_name}
   controlled_term_labels:
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Enige een
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Enige
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_flowers_and_fruits: Enige
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_leaves: Enige
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Enige een
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Enige een
-    #Value displayed when a filter is not filtering by a specific value for this attribute
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Enige
     sex: Seks
     male: Mannetjie
@@ -337,10 +316,10 @@ af:
     green_leaves: Groen Blare
     colored_leaves: Gekleurde Blare
     life_stage: Lewensstadium
-    #Evidence of an egg of an organism
+    # Evidence of an egg of an organism
     egg: Ei
-    #Refers to an observation that depicts the actual organism and not some
-    #kind of secondary evidence like a footprint
+    # Refers to an observation that depicts the actual organism and not some
+    # kind of secondary evidence like a footprint
     organism: Organisme
   controlled_term_definitions:
     flowers: Ten minste een oop blom
@@ -373,15 +352,15 @@ af:
     die waarneming van die projek. Hierdie is net die verstekinstelling vir
     waarnemings in projekte. Waarnemers kan ook kies om dit te verander vir
     individuele waarnemings.
-  #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
+  # Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Huidige gemeenskapstakson: %{taxon}"
-  #Button to customize projects that appear in the header
+  # Button to customize projects that appear in the header
   customize__projects: Pasmaak
   dashboard: Paneelbord
   dashboard_pilots:
-    #button asking to participate in a pilot
+    # button asking to participate in a pilot
     pilot_participate: "Ja! Ek wil graag deelneem."
-    #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
+    # title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Identifikasiegapingsloods: Benodig ID gesoekte spesies"
   date_: Datum
   date_format:
@@ -404,67 +383,67 @@ af:
   date_observed_: Datum Waargeneem
   date_picker:
     currentText: Vandag
-    #Contextual help for a button navigating to the previous month in a date picker
+    # Contextual help for a button navigating to the previous month in a date picker
     prevText: Vorige
-    #Contextual help for a button navigating to the next month in a date picker
+    # Contextual help for a button navigating to the next month in a date picker
     nextText: Volgende
   date_time: Datum/Tyd
   day: Dag
-  #Default option
+  # Default option
   default: verstek
-  #Default option
+  # Default option
   default_: Verstek
   definitions: Definisies
-  #Label for a button to delete a sound file
+  # Label for a button to delete a sound file
   delete_sound: Skrap klank
   description: Beskrywing
   desription: Beskrywing
   devise:
     failure:
-      #Error message seen when using attempting to reset a password using an invalid reset token
+      # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Die herstelwagwoordbewys is ongeldig. Gebruik asb. die skakel in die mees onlangs gestuurde e-pos met die terugstel van wagwoord, of <a href="%{url}">Versoek 'n nuwe een</a>.
-  #message informing the user the must confirm their email address to interact with other users
+  # message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Klik asseblief op die skakel hieronder om jou e-posadres te bevestig. As jy nie jou e-pos bevestig nie
     adres, sal jy nie met ander gebruikers se inhoud kan kommunikeer nie.
   devise_reset_password_instructions_hello_email: Hallo %{email}
-  #Checkbox controlling whether to show observations that have disagreeing
-  #identifications or not
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
   disagreements: Meningsverskille
-  #Title / tooltip for the disagreements checkbox
+  # Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Wys waarnemings wat nie saamstem nie
-  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Skenk
   edit_observations: Redigeer waarnemings
-  #Title for a page to edit an announcement
+  # Title for a page to edit an announcement
   editing_announcement_x: Redigeer tans aankondiging %{id}
   email: E-pos
   email_notifications: E-poskennisgewings
   end: Einde
   endemic: Endemies
-  #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
+  # The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Fout met opdatering van klank: %{sound_errors}"
   explore: Verken
   evidence_accurately_depicts_organism_or_scene: Bewyse beeld organisme of toneel akkuraat uit
   facebook: Facebook
   Family: Familie
-  #Header for a section showing the user's favorite projects
+  # Header for a section showing the user's favorite projects
   favorite_projects: Gunsteling projekte
-  #Description of what Favorite Projects section in user settings
+  # Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Kies tot sewe projekte wat as skakels in die opskrif verskyn. Bywerkings
     sal verskyn nadat die bladsy verfris is.
   favorites: "Gunstelinge"
-  #Label for a computer file's content type. Example values: audio/mp3, image/gif
+  # Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Lêerformaat
-  #Label for the URL to a file (i.e. to a sound file, image file)
+  # Label for the URL to a file (i.e. to a sound file, image file)
   file_url: Lêer URL
   filter: Filter
   find: Vind
-  #Adjective, as in a fluid layout of images
+  # Adjective, as in a fluid layout of images
   fluid: vloeistof
   follow: Volg
-  #Text for a button to follow updates from a specific user
+  # Text for a button to follow updates from a specific user
   follow_user: "Volg %{user}"
   forum: Forum
   gbif: GBIF
@@ -474,7 +453,7 @@ af:
   grid: Rooster
   group: Groep
   guides: Gidse
-  #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
+  # A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "HEADS UP: hierdie geluid is gemerk."
   help: Help
   help_translate!: Help met Vertaling!
@@ -483,25 +462,25 @@ af:
   id: ID
   identify: Identifiseer
   identifications: Identifikasie
-  #Title of identification that was automatically added by a taxon change
+  # Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist het die ID wat voorgestel is deur opgedateer %{user}
   identifiers: Identifiseerder
   ids: "ID's"
   inaturalist_network: iNaturalist Netwerk
   inactive: Onaktief
-  #Status of a complete set that is not available for general use on iNat, e.g.
-  #a draft
+  # Status of a complete set that is not available for general use on iNat, e.g.
+  # a draft
   inactive_complete_set_status: Onaktief
-  #Status of a taxon that is not available for general use on iNat, e.g. an
-  #output taxon in a split that hasn't been committed
+  # Status of a taxon that is not available for general use on iNat, e.g. an
+  # output taxon in a split that hasn't been committed
   inactive_taxon_status: Onaktief
-  #Title for a preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids: Infraspesie ID's
-  #Description of preference to control whether you receive notifications about
-  #infraspecies IDs, i.e. identifications of taxa below the species level,
-  #like subspecies
+  # Description of preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
   infraspecies_ids_description: |
     As jy dit afskakel, sal jy nie meer in kennis gestel word van ID's van taksa nie
     onder spesievlak (soos subspesies en variëteite) wat ooreenstem met jou
@@ -509,14 +488,14 @@ af:
     as hulle addisionele opmerkings bevat.
   insects: insekte
   instagram: Instagram
-  #Error message shown when a date format is invalid
+  # Error message shown when a date format is invalid
   invalid_date: Ongeldige datum
   iphone: iPhone
   join_the_largest_group_of_naturalists_in_the_world: Sluit aan by die grootste groep natuurkundiges ter wêreld!
   journal: Joernaal
   journal_posts: Tydskrif Poste
   labels: Etikette
-  #Large photo size
+  # Large photo size
   large: groot
   latitude: Breedtegraad
   leaderboards: Ranglyste
@@ -548,9 +527,9 @@ af:
   list: Lys
   list_views:
     photo: foto
-  #Adjective describing addition of a taxon to a list
+  # Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Gelys
-  #Adjective describing removal of a taxon from a list
+  # Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: Nie gelys nie
   lists: Lyste
   locales:
@@ -575,9 +554,9 @@ af:
     pt-BR: Portugees (Brasilië)
     ru: Russies
   log_in: Teken aan
-  #Adjectival phrase describing state of being logged in
+  # Adjectival phrase describing state of being logged in
   logged_in: Aangemeld
-  #Adjectival phrase describing state of being logged out
+  # Adjectival phrase describing state of being logged out
   logged_out: Afgemeld
   longitude: Lengtegraad
   low: Laag
@@ -587,8 +566,8 @@ af:
     overlays:
       all_observations: Alle waarnemings
       observations: Waarnemings
-  #Used to join media types required by a project, e.g. photos *and* sounds.
-  #If a single word won't work, a symbol like "+" would be fine.
+  # Used to join media types required by a project, e.g. photos *and* sounds.
+  # If a single word won't work, a symbol like "+" would be fine.
   media_and: en
   meet: Ontmoet
   merge: Kombineer
@@ -597,16 +576,16 @@ af:
   month: Maand
   months: Maande
   more: Meer
-  #Button to show more observations
+  # Button to show more observations
   more__context_observations_caps: MEER
-  #Button to show more places
+  # Button to show more places
   more__context_places: Meer
-  #Button to show more text
+  # Button to show more text
   more__context_text: Meer
-  #Button to show more translators, as in people who added translations
+  # Button to show more translators, as in people who added translations
   more__context_translators_caps: MEER
   more_caps: MEER
-  #Label for a button or section that shows additional options
+  # Label for a button or section that shows additional options
   more_options: Meer opsies
   more_photos: Meer foto's
   next: Volgende
@@ -616,22 +595,22 @@ af:
   next_post_short: Volgende
   next_taxon_short: Volgende
   'no': 'Nee'
-  #A user who is not a curator
+  # A user who is not a curator
   non_curator: Nie-kurator
-  #Title for a preference to control whether you receive notifications about
-  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
-  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  # Title for a preference to control whether you receive notifications about
+  # non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  # someone else adds an ID of Mammalia but does not make it a disagreement.
   non_disagreeing_ancestor_ids: Voorouer-ID's wat nie saamstem nie
-  #Description of a preference to control whether you receive notifications
-  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
-  #and someone else adds an ID of Mammalia but does not make it a
-  #disagreement.
+  # Description of a preference to control whether you receive notifications
+  # about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  # and someone else adds an ID of Mammalia but does not make it a
+  # disagreement.
   non_disagreeing_ancestor_ids_description: |
     As jy dit afskakel, sal jy nie meer in kennis gestel word wanneer iemand 'n byvoeg nie
     ID van 'n takson wat 'n voorouer van die takson van jou ID is en nie
     stem uitdruklik nie saam met die gemeenskapstakson nie. Jy sal in kennis gestel word as die
     ID het bykomende opmerkings.
-  #A user who does not admin any projects
+  # A user who does not admin any projects
   non_project_admin: Nie-projek admin
   none: Geen
   observation: Waarneming
@@ -640,7 +619,7 @@ af:
   observation_accuracy_experiment_accuracy: "Akkuraatheid"
   observation_date: Datum
   observation_date?: Datum?
-  #Taxon-related observation export fields
+  # Taxon-related observation export fields
   observation_export_column_type_taxon: Takson
   observation_field_type_date: Datum
   observation_field_type_time: Tyd
@@ -662,23 +641,8 @@ af:
   photo: Foto
   photo_attribution: "Foto %{attribution}"
   photos_size:
-    large: groot
+      large: groot
   pi_consent_desc_title: Oor persoonlike inligting
-  pi_consent_desc_html: |
-    <p>
-    Ons stoor persoonlike inligting soos gebruikersname en e-posadresse in
-    om rekeninge op hierdie webwerf te bestuur en om aan privaatheidswette te voldoen,
-    Ons het nodig dat u hierdie blokkie merk om aan te dui dat u tot hierdie gebruik instem
-    van persoonlike inligting. Om meer te wete te kom oor watter inligting ons
-    versamel en hoe ons dit gebruik, sien asseblief ons
-    <a href='%{privacy_url}' target='_blank'>Privaatheidsbeleid</a>
-    en ons <a href='%{terms_url}' target='_blank'>Gebruiksvoorwaardes</a>.
-    </p>
-    <p>
-    Daar is geen manier om 'n iNaturalist-rekening te hê sonder om persoonlike te stoor nie
-    inligting, so die enigste manier om hierdie toestemming te herroep, is om jou
-    Rekening.
-    </p>
   pi_consent_label: |
     Ek stem in om iNaturalist toe te laat om beperkte soorte te stoor en te verwerk
     persoonlike inligting oor my om my rekening te bestuur
@@ -686,40 +650,6 @@ af:
     Ek stem in om iNaturalist toe te laat om beperkte soorte te stoor en te verwerk
     persoonlike inligting oor my kind om my kind se rekening te bestuur
   data_transfer_consent_desc_title: Oor toestemming vir die oordrag van persoonlike inligting
-  data_transfer_consent_desc_html: |
-    <p>
-    Sommige wette oor dataprivaatheid, soos die algemene data van die Europese Unie
-    Beskermingsregulasie (GDPR), vereis uitdruklike toestemming om oor te dra
-    persoonlike inligting van hul jurisdiksies na ander jurisdiksies
-    waar die wetlike beskerming van hierdie inligting nie oorweeg word nie
-    Voldoende. Vanaf
-    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
-    die Europese Unie beskou die Verenigde State nie meer as 'n
-    jurisdiksie wat voldoende wetlike beskerming van persoonlike
-    inligting, spesifiek as gevolg van die moontlikheid van die Amerikaanse regering
-    toesig oor data wat die VSA binnekom. Dit is moontlik dat ander jurisdiksies
-    kan dieselfde mening hê.
-    </p>
-    <p>
-    Die gebruik van iNaturalist vereis die berging van persoonlike inligting soos u
-    e-posadres, word alle iNaturalist-data in die Verenigde State gestoor, en
-    Ons kan nie seker wees in watter regsjurisdiksie jy is wanneer jy gebruik nie
-    iNaturalist, so om aan privaatheidswette soos die GDPR te voldoen, moet jy
-    moet erken dat jy hierdie risiko en toestemming verstaan en aanvaar
-    om jou persoonlike inligting na iNaturalist se bedieners oor te dra in
-    die VSA.
-    </p>
-    <p>
-    Om meer te wete te kom oor watter inligting ons insamel en hoe ons dit gebruik,
-    Sien asseblief ons
-    <a href='%{privacy_url}' target='_blank'>Privaatheidsbeleid</a>
-    en ons <a href='%{terms_url}' target='_blank'>Gebruiksvoorwaardes</a>.
-    </p>
-    <p>
-    Daar is geen manier om 'n iNaturalist-rekening te hê sonder om persoonlike te stoor nie
-    inligting, so die enigste manier om hierdie toestemming te herroep, is om jou
-    Rekening.
-    </p>
   data_transfer_consent_label: |
     Ek stem in om toe te laat dat my persoonlike inligting na die Verenigde Koninkryk oorgedra word
     State van Amerika
@@ -728,26 +658,26 @@ af:
     Verenigde State van Amerika
   place: Plek
   place_geo:
-    geo_planet_place_types:
-      Airport: Lughawe
-      airport: lughawe
-      Building: Gebou
-      building: gebou
-      District: Distrik
-      district: distrik
-      Island: Eiland
-      island: eiland
-      Municipality: Munisipaliteit
-      municipality: munisipaliteit
-      Postal_Code: Poskode
-      postal_code: poskode
-      Province: Provinsie
-      province: provinsie
-      Time_Zone: Tydsone
-      time_zone: tydsone
-      Town: Dorp
-      town: dorp
-  #message describing a delay between importing a place and observations appearing in it
+          geo_planet_place_types:
+            Airport: Lughawe
+            airport: lughawe
+            Building: Gebou
+            building: gebou
+            District: Distrik
+            district: distrik
+            Island: Eiland
+            island: eiland
+            Municipality: Munisipaliteit
+            municipality: munisipaliteit
+            Postal_Code: Poskode
+            postal_code: poskode
+            Province: Provinsie
+            province: provinsie
+            Time_Zone: Tydsone
+            time_zone: tydsone
+            Town: Dorp
+            town: dorp
+  # message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Dit kan tot 'n dag neem voordat waarnemings met hierdie plek geassosieer word.
   places: Plekke
   places_name:
@@ -792,18 +722,18 @@ af:
     united_kingdom: Verenigde Koninkryk
     united_states: Verenigde State
     zimbabwe: Zimbabwe
-  #user-facing guidance that new places cannot be too large
+  # user-facing guidance that new places cannot be too large
   places_warning_area: |
     Plekke kan nie groter as 700 000 vierkante kilometer wees nie.
-  #user-facing guidance that new places cannot be too large, with a smaller max area
-  #when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot be too large, with a smaller max area
+  # when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_area_during_content_freeze: |
     Plekke kan nie groter as 70 000 vierkante kilometer wees nie.
-  #user-facing guidance that new places cannot contain too many observations
+  # user-facing guidance that new places cannot contain too many observations
   places_warning_observation_count: |
     Plekke kan nie meer as 200 000 waarnemings bevat nie.
-  #user-facing guidance that new places cannot contain too many observations, with a lower max
-  #observat count when we have enable the "content-freeze" mode to reduce processing on the site
+  # user-facing guidance that new places cannot contain too many observations, with a lower max
+  # observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Plekke kan nie meer as 10 000 waarnemings bevat nie.
   plants: plante
@@ -812,34 +742,34 @@ af:
   privacy: Privaatheid
   private_: Privaat
   profile: Profiel
-  #A user may attempt to upload a profile picture with an unsupported content type, and this
-  #text will be the first part of an error message displayed to the user describing that error
+  # A user may attempt to upload a profile picture with an unsupported content type, and this
+  # text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Profielfoto lêer tipe
   project: Projek
-  #A user who admin's a project
+  # A user who admin's a project
   project_admin: Projek admin
   project_group_label: Groep
   projects: Projekte
   rank_levels:
-    #Label when displaying genus level, which is the same for genus and
-    #genushybrid
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
     genus: Geslag / Genushybrid
-    #Label when displaying species level, which is the same for species and
-    #hybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
     species: Spesie / baster
-    #Label when displaying infraspecies level, which is the same for all the
-    #infraspecies ranks
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
     subspecies: Subspesies / Verskeidenheid / Vorm
   ranks:
-    family: Familie
-    genus: Genus
-    #Singular
-    species: Spesies
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+      family: Familie
+      genus: Genus
+      # Singular
+      species: Spesies
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: familie
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: genus
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
   ranks_lowercase_species: spesies
   recent: Onlangs
   refresh: Herlaai
@@ -849,7 +779,7 @@ af:
   restore: Herstel
   satellite: Satelliet
   search: Soek
-  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  # Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
   settings: Instellings
   share: Deel
@@ -862,13 +792,13 @@ af:
   some_rights_reserved: sommige regte voorbehou
   sounds:
     sound: Klank
-    #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
+    # The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Klank %{id}, %{attribution}
-    #Message that notifies a user that their sound was successfully deleted
+    # Message that notifies a user that their sound was successfully deleted
     sound_deleted: Klank geskrap
-    #Notifies an admin/curator that they successfully censored a sound from the website
+    # Notifies an admin/curator that they successfully censored a sound from the website
     sound_hidden: Klink weggesteek
-    #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
+    # Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Klank nie weggesteek nie
     sounds: Klanke
   source: Bron
@@ -876,13 +806,13 @@ af:
   source_wikipedia: "Bron: Wikipedia"
   source_list:
     inaturalist: iNaturalist
-  #Plural
+  # Plural
   species: Spesies
   start: Begin
   stats: Statistieke
   status: Status
-  #Label for a button that subscribes the user to updates on a resource, e.g.
-  #comments on a journal post
+  # Label for a button that subscribes the user to updates on a resource, e.g.
+  # comments on a journal post
   subscribe: Inteken
   suggestions: Voorstelle
   taxa_info: Taksa Inligting
@@ -895,7 +825,7 @@ af:
   text: Teks
   thank_you!: Dankie!
   thanks!: Dankie!
-  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_etc_utc: UTC
   today: Vandag
   tos_privacy_guidelines_label: |
@@ -919,7 +849,7 @@ af:
     Deur hierdie opsie te kies, sal jou nuwe lisensiekeuse op al jou toegepas word
     bestaande klanke. Dit kan 'n paar uur neem as jy baie het
     Klanke.
-  #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
+  # Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Opgedateerde klank
   upload: Oplaai
   user: Gebruiker
@@ -935,9 +865,9 @@ af:
   username: Gebruikersnaam
   username_or_email: Gebruikersnaam of e-pos
   video_tutorials: Video tutoriale
-  #Link to view identifications affected by a taxon change
+  # Link to view identifications affected by a taxon change
   view_your_affected_ids: Bekyk jou geaffekteerde ID's
-  #Species that are "wanted," e.g. we know they exist but haven't been observed
+  # Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesoek
   we_also_support3: |
     Ons ondersteun ook die invoer van foto's vanaf <a href="http://flickr.com">Flickr</a>.
@@ -948,8 +878,8 @@ af:
   when: Wanneer
   where: Waar
   with: met
-  #Label for a button to withdraw an identification, i.e. to deactivate it
-  #without deleting it
+  # Label for a button to withdraw an identification, i.e. to deactivate it
+  # without deleting it
   withdraw: Ontrek
   worldwide: Wêreldwyd
   year: Jaar
@@ -988,7 +918,7 @@ af:
         CMD- of SHIFT-klik om veelvuldige te kies. Geselekteerde lande sal nie gewys word nie
         die aankondiging. As IP-lande gekies is, kies Sluit IP-lande uit
         sal van eersgenoemde afgetrek word.
-      #Note about how the announcement last observation date property works
+      # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Let daarop dat die skeppingsdatum van die gebruiker se mees onlangse geskep
         waarneming in die kas geplaas word, so dit kan 'n paar uur neem om te teiken
@@ -1005,81 +935,81 @@ af:
         Tyd in jou rekening tydsone wat hierdie aankondiging sal begin
         Verskyn. Van toepassing oor tydsones, sodat almal sal begin sien
         dit terselfdertyd, nie relatief tot hul plaaslike tyd nie.
-      #Description of a group of options for targeting announcements based
-      #on donation behavior
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
       target_users_by_donation_behavior: Teiken gebruikers volgens skenkingsgedrag
-      #Description of a group of options for targeting announcements based
-      #on identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
       target_users_by_identification_behavior: Teiken gebruikers volgens identifikasiegedrag
-      #Description of a group of options for targeting announcements based
-      #on observation behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
       target_users_by_observation_behavior: Teiken gebruikers volgens waarnemingsgedrag
-      #Description of a group of options for targeting announcements based
-      #miscellaneous user attributes
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
       target_users_by_other_attributes: Teiken gebruikers volgens ander eienskappe
     atlases:
       show:
-        #Title for section describing atlases
+        # Title for section describing atlases
         about_atlases: Oor atlasse
-        #Description of what atlases are
+        # Description of what atlases are
         atlases_convey_the_global_distribution: |
           Atlasse dra die wêreldwye verspreiding van 'n takson oor. Kurators maak
           atlasse deur die struktuur van 'n atlas te definieer en die
           gelyste taksa wat dit dryf.
-        #Label for a button that divides a place in an atlas into it's
-        #constituent places. E.g. if the atlas for Red Fox contained Europe
-        #you wanted to specify that Red Fox only occurs in Belgium and
-        #France, you would "explode" Europe so you could choose Belgium and
-        #France.
+        # Label for a button that divides a place in an atlas into it's
+        # constituent places. E.g. if the atlas for Red Fox contained Europe
+        # you wanted to specify that Red Fox only occurs in Belgium and
+        # France, you would "explode" Europe so you could choose Belgium and
+        # France.
         explode_this_place: Ontplof hierdie plek
-        #Label for a button that reunites places in an atlas into the place
-        #that contains them. E.g. if an atlas contains Europe but it has
-        #been "exploded" into its constituent countries, this would remove
-        #those countries so the atlas would just contain Europe again.
+        # Label for a button that reunites places in an atlas into the place
+        # that contains them. E.g. if an atlas contains Europe but it has
+        # been "exploded" into its constituent countries, this would remove
+        # those countries so the atlas would just contain Europe again.
         unexplode_this_place: Ontplof hierdie plek
-        #Notice when an atlas has not been altered
+        # Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Nog geen veranderinge aan hierdie atlas nie
-        #Title for a section showing recent alterations to an atlas
+        # Title for a section showing recent alterations to an atlas
         recent_atlas_alterations: Onlangse atlasveranderings
-        #Title for a section showing taxa that were recently added to a check
-        #list
+        # Title for a section showing taxa that were recently added to a check
+        # list
         recent_listed_taxon_additions: Onlangse genoteerde taksonveranderings
-        #Label for a button that shows taxa on checklists for a place
+        # Label for a button that shows taxa on checklists for a place
         show_listed_taxa: Wys gelyste taksa
-        #Notice when an atlas is not active
+        # Notice when an atlas is not active
         this_atlas_is_not_currently_active: Hierdie atlas is nie tans aktief nie
-        #Warning before removing a place from an atlas
+        # Warning before removing a place from an atlas
         this_will_remove_this_taxon_and_all: |
           Dit sal hierdie takson en al sy afstammelinge van kontrolelyste verwyder
           geassosieer met hierdie plek en enige standaardplekke wat dit bevat. Dit
           kan nie ongedaan gemaak word nie. Is jy seker jy wil dit doen?
-        #Warning when there are observations outside of the places defined by
-        #the atlas
+        # Warning when there are observations outside of the places defined by
+        # the atlas
         warning_there_are_observations_not_represented: |
           Waarskuwing: daar is waarnemings wat nie deur hierdie atlas voorgestel word nie
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klik hier om 'n bevestigings-e-pos weer te stuur
-      #message displayed after users trigger sending a email to confirm their email address
+      # message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: Bevestigings-e-pos gestuur
-      #text displayed before showing a user the email address that we will
-      #resend a confirmation email to
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
       here_is_the_email_colon: |
         Hier is die e-posadres waarheen ons die bevestiging sal stuur:
-      #statement introducing suggestions for users that do no receive confirmation emails
+      # statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
         As jy nie die e-pos ontvang nie, is hier 'n paar wenke:
-      #statement telling users to contact us if they are not receiving confirmation emails
+      # statement telling users to contact us if they are not receiving confirmation emails
       if_you_are_still_not_receiving_email_contact_us_html: As jy steeds nie die bevestigings-e-pos ontvang nie, kontak ons asseblief by <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> sodat ons jou kan bystaan.
       please_add_an_email_and_password: Voeg asseblief 'n e-posadres en wagwoord by sodat jy nie toegang tot jou rekening verloor nie
       please_click_the_link_sent_to_email_to_confirm_html: Klik asseblief op die skakel wat gestuur is na <span class="email">%{email}</span> om jou e-posadres te bevestig.
-      please_confirm_that_email_is_the_best_contact_html: Bevestig asseblief dat <span class="email">%{email}</span> is die beste manier om jou te kontak. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Bevestig asseblief jou e-posadres om met ander gebruikers se inhoud te kommunikeer en toegang tot sekere bladsye te kry. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Bevestig asseblief jou e-posadres <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_that_email_is_the_best_contact_html: Bevestig asseblief dat <span class="email">%{email}</span> is die beste manier om jou te kontak. # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Bevestig asseblief jou e-posadres om met ander gebruikers se inhoud te kommunikeer en toegang tot sekere bladsye te kry. # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Bevestig asseblief jou e-posadres <span class="email">%{email}</span>. # statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
       please_confirm_to_interact: Bevestig asseblief jou e-posadres om met ander gebruikers se inhoud te kommunikeer
-      #statement used on pages that are not functional unless a user has confirmed their email address
+      # statement used on pages that are not functional unless a user has confirmed their email address
       please_confirm_to_use_this_page: Bevestig asseblief jou e-posadres om hierdie bladsy te gebruik
-      #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Kyk vir enige filters wat jy gemaak het wat ons e-posse uit jou inkassie kan verwyder #tip for users who do not receive confirmation emails to check their email spam folder
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Kyk vir enige filters wat jy gemaak het wat ons e-posse uit jou inkassie kan verwyder # tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Gaan jou strooiposgids na
       your_site_account_has_no_email: Jou %{site_name} rekening het geen e-posadres daaraan geassosieer nie.
     guides:
@@ -1095,13 +1025,13 @@ af:
     messages:
       from: Vanaf
       index:
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
         interaction_privilege_notice: |
           Jy sal nuwe boodskappe kan stuur nadat jy jou e-pos bevestig het
           Adres. Vir eers kan jy boodskappe lees en beantwoord wat ander mense vir jou stuur.
-        #Users cannot create messages if they lack the criteria for
-        #earning interaction or speech privilege
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
         privilege_notice: |
           Jy sal nuwe boodskappe kan stuur nadat jy jou e-pos bevestig het
           adres, en het drie verifieerbare waarnemings of drie identifikasies bygevoeg
@@ -1110,12 +1040,12 @@ af:
       community_id:
         score: Telling
       show:
-        #One of a list of requirements an observation must meet to be in the Research Grade category
+        # One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_observation_html: |
           Die <strong>Gemeenskapstakson- en waarnemingstaksonwedstryd</strong>
           (vir die seldsame geleenthede wanneer die waarnemingstakson meer kan wees
           spesifiek as die Gemeenskapstakson)
-        #One of a list of reasons for an observation to revert to Casual
+        # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_accurate_evidence_html: |
           Die waarneming <strong>bied nie akkurate bewyse van die organisme of
           Toneel</strong> (bv. kunsmatige intelligensie is gebruik om by te voeg, te verwyder of te vervang
@@ -1127,8 +1057,8 @@ af:
           any: enigiemand
     sounds:
       show:
-        #The user has been warned that an uploaded sound file has been noted as being problematic.
-        #To bypass the warning, this additional text provides a link to the sound and guidance.
+        # The user has been warned that an uploaded sound file has been noted as being problematic.
+        # To bypass the warning, this additional text provides a link to the sound and guidance.
         view_original_html: |
           U kan die oorspronklike sien by <a href="%{url}">%{url}</a>. Asseblief
           Laat kopieregskendingsvlaggies as onopgelos as hierdie klank dit wel doen
@@ -1138,7 +1068,7 @@ af:
         translators_title: Vertalers
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
+        # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
           U kan slegs geringe veranderinge direk aan die spesiebynaam aanbring (bv. geslagsveranderinge, spelfoute). Voeg 'n <a target="_blank" href="%{url}">Takson-ruil</a> as u ander veranderinge aan die naam benodig.
       show:
@@ -1157,7 +1087,7 @@ af:
           inhoud van Wikipedia</a>. Jy kan help deur die bladsy te wysig op
           Wikipedia om dit geskik te maak vir hierdie takson, of deur dit te merk
           takson om dit onder die aandag van terreinkurators te bring.
-      #error message when the Flickr tagger feature fails
+      # error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Iets het verkeerd geloop om die etikette te plaas: %{message}
     users:
@@ -1189,12 +1119,12 @@ af:
         block_desc_there_are_two_exceptions: |
           Daar is twee situasies waar blokkering nie interaksie voorkom nie:
         errors:
-          #error message when a user attempts to update their profile picture using
-          #an image that has an unsupported file type
+          # error message when a user attempts to update their profile picture using
+          # an image that has an unsupported file type
           unsupported_file_type: Lêertipe word nie ondersteun nie. Ons aanvaar JPG, PNG en GIF
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Identifikasie
-        #Checkbox label for user preference about what to receive in the daily email update
+        # Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Boodskappe
         project_addition_preferences:
           any: Enige
@@ -1286,9 +1216,9 @@ af:
         strip_insignificant_zeros: true
   time:
     formats:
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
     models:
@@ -1296,46 +1226,46 @@ af:
       Photo: Foto
     attributes:
       announcement:
-        #Whether or not the announcement can be dismissed by people who see it
+        # Whether or not the announcement can be dismissed by people who see it
         dismissible: Afwysbaar
-        #Start of a date range that the viewer must not have donated in to see the announcement
+        # Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: Sluit skenker se begindatum uit
-        #End of a date range that the viewer must not have donated in to see the announcement
+        # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Sluit skenker se einddatum uit
         excludes_non_site: Versteek ander aankondigings in hierdie plasing wat geen werf-ID het nie
-        #iNat client applications that the user must not have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
         exclude_observation_oauth_application_ids: Sluit waarnemers van programme uit
-        #start of a date range that the viewer must have donated in to see the announcement
+        # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Sluit die begindatum van die skenker in
-        #End of a date range that the viewer must have donated in to see the announcement
+        # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Sluit skenker se einddatum in
-        #iNat client applications that the user must have made an observation
-        #with to see the announcement
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
         include_observation_oauth_application_ids: Sluit waarnemers van programme in
-        #List of countries that the viewer's IP address can come from to see the announcement
+        # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP-lande
-        #Start of a date range that includes the viewer's most recent observation
+        # Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: Laaste obs-begindatum
-        #end of a date range that includes the viewer's most recent observation
+        # end of a date range that includes the viewer's most recent observation
         last_observation_end_date: Jongste obs-einddatum
-        #Maximum number of identifications the viewer must have added for others to see the announcement
+        # Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Maksimum identifikasies
-        #Minimum number of identifications the viewer must have added for others to see the announcement
+        # Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: Min identifikasies
-        #Maximum number of observations the viewer must have added for others to see the announcement
+        # Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: Maksimum waarnemings
-        #Minimum number of observations the viewer must have added for others to see the announcement
+        # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min waarnemings
-        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Plasing
-        #Preference for an announcement that is only shown to the user who created the announcement
+        # Preference for an announcement that is only shown to the user who created the announcement
         target_creator: Teikenskepper (vir toetsing)
-        #Whether or not the announcement is shown to logged in users
+        # Whether or not the announcement is shown to logged in users
         target_logged_in: Teiken aangemeld
-        #Earliest date the viewer can have signed up to see the announcement
+        # Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: Vroegste gebruiker aanmelddatum
-        #Latest date the viewer can have signed up to see the announcement
+        # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Datum vir die aanmelding van die laaste gebruiker
       assessment:
         description: Beskrywing
@@ -1344,7 +1274,7 @@ af:
         place_id: Plek
         geoprivacy: Geoprivaatheid
       oauth_application:
-        #Unique identifier for an application
+        # Unique identifier for an application
         uid: ID
       project:
         description: Beskrywing
@@ -1352,15 +1282,15 @@ af:
         latitude: Breedtegraad
         longitude: Lengtegraad
       taxon:
-        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        # Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktief?
         rank: Rang
-        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        # Boolean attribute that controls whether Wikipedia content is shown for this taxon
         shows_wikipedia: Wys Wikipedia
       taxon_link:
-        #Taxon this link is associated with
+        # Taxon this link is associated with
         taxon: Takson
-        #Place this link is associated with
+        # Place this link is associated with
         place: Plek
       user:
         email: E-pos
@@ -1375,19 +1305,19 @@ af:
         moderator_action:
           attributes:
             base:
-              #Error saying that only staff can rename
+              # Error saying that only staff can rename
               only_staff_can_rename: Slegs personeel kan hernoem
         observation:
           attributes:
             observed_on:
-              #Error message when user attempts to enter an observation date
-              #like "2020 or "2020-05"
+              # Error message when user attempts to enter an observation date
+              # like "2020 or "2020-05"
               must_be_a_single_day: moet 'n enkele dag wees, nie 'n reeks nie
         place:
           attributes:
             place_geometry:
-              #Error message when a user uploads a KML that has a polygon
-              #where all the points are the same.
+              # Error message when a user uploads a KML that has a polygon
+              # where all the points are the same.
               polygon_with_no_area: het 'n veelhoek sonder oppervlakte (alle punte is dieselfde)
         project_fave:
           attributes:
@@ -1396,17 +1326,17 @@ af:
         taxon_change:
           attributes:
             base:
-              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              # Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
               life_taxon_cannot_be_involved: Die Life-takson kan nie by taksonveranderinge betrokke wees nie
         user:
           attributes:
             faved_project_ids:
-              #Error when a user tries to add more than 7 favorite projects,
-              #e.g. "Faved projects cannot include more than 7 projects"
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
               cannot_include_more_than_7_projects: kan nie meer as 7 projekte insluit nie
-              #Error when a user tries to add a project that does not exist
-              #to their favorite projects, e.g. "Faved projects must all
-              #exist"
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
               must_all_exist: moet almal bestaan
             login:
               domain_is_not_supported: domein word nie ondersteun nie
