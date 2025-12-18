@@ -1,7 +1,18 @@
 fr:
+  # Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    zero: "%{count} changements"
+    few: "%{count} changements"
+    many: "%{count} changements"
+    other: "%{count} changements"
   x_comments:
     one: '1 commentaire'
     other: '%{count} commentaires'
+  x_comments_html:
+    zero: '<span class="count">%{count}</span> commentaires'
+    few: '<span class="count">%{count}</span> commentaires'
+    many: '<span class="count">%{count}</span> commentaires'
+    other: '<span class="count">%{count}</span> commentaires'
   x_faves:
     one: '1 favori'
     other: '%{count} favoris'
@@ -11,6 +22,30 @@ fr:
   x_identifications:
     one: '1 identification'
     other: '%{count} identifications'
+  x_identifications_html:
+    zero: '<span class="count">%{count}</span> identifications'
+    one: '<span class="count">%{count}</span> identification'
+    few: '<span class="count">%{count}</span> identifications'
+    many: '<span class="count">%{count}</span> identifications'
+    other: '<span class="count">%{count}</span> identifications'
+  x_identifications_:
+    zero: '%{count} identifications'
+    one: '%{count} identification'
+    few: '%{count} identifications'
+    many: '%{count} identifications'
+    other: '%{count} identifications'
+  x_ids_made_for_others_html:
+    zero: '<span class="count">%{count}</span> IDs pour d''autres'
+    one: '<span class="count">%{count}</span> ID pour d''autres'
+    few: '<span class="count">%{count}</span> IDs pour d''autres'
+    many: '<span class="count">%{count}</span> IDs pour d''autres'
+    other: '<span class="count">%{count}</span> IDs pour d''autres'
+  x_languages:
+    zero: "%{count} langues"
+    one: "%{count} langue"
+    few: "%{count} langues"
+    many: "%{count} langues"
+    other: "%{count} langues"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> article de journal'
     other: '<span class="count">%{count}</span> articles de journal'
@@ -40,6 +75,10 @@ fr:
   x_others:
     one: "1 autre"
     other: "%{count} autres"
+  x_people_html:
+    few: '<span class="count">%{count}</span> personnes'
+    many: '<span class="count">%{count}</span> personnes'
+    other: '<span class="count">%{count}</span> personnes'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personne(s)</strong> a/ont aidé %{user} sur <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} photo"
@@ -47,12 +86,24 @@ fr:
   x_new_species:
     one: "1 nouvelle espèce"
     other: "%{count} nouvelles espèces"
+  x_species_html:
+    zero: "<span class='count'>%{count}</span> espèces"
+    one: "<span class='count'>%{count}</span> espèces"
+    few: "<span class='count'>%{count}</span> espèces"
+    many: "<span class='count'>%{count}</span> espèces"
+    other: "<span class='count'>%{count}</span> espèces"
   x_species_link_html:
     one: "<a href='%{url}'>1 espèce</a>"
     other: "<a href='%{url}'>%{count} espèces</a>"
   x_suggestions_filtered_by_colon:
     one: "1 suggestion filtrée par :"
     other: "%{count} suggestions filtrées par :"
+  x_taxa:
+    zero: "%{count} taxons"
+    one: "%{count} taxon"
+    few: "%{count} taxons"
+    many: "%{count} taxons"
+    other: "%{count} taxons"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxon observé"
     other: "<span class='count'>%{count}</span> taxons observés"
@@ -62,6 +113,10 @@ fr:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> observation de qualité recherche identifiée au niveau de l'espèce ou à un niveau inférieur"
     other: "<span class='count'>%{count}</span> observation de qualité recherche identifiée au niveau de l'espèce ou à un niveau inférieur</span>"
+  x_sounds:
+    one: "%{count} son"
+    many: "%{count} sons"
+    other: "%{count} sons"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxon supervisé"
     other: "<span class='count'>%{count}</span> taxons supervisés"
@@ -357,7 +412,7 @@ fr:
   agree_: Accepter
   agree?: Accepter ?
   agree_with_current_taxon: Accepter le taxon actuel
-  agree_with_observation_taxon: Approuver le taxon de l'observation
+  agree_with_observation_taxon: Accepter le taxon de l'observation
   agreeing: En cours d'acceptation…
   aka: alias
   # Noun, title of a popup alerting you to something
@@ -1849,6 +1904,13 @@ fr:
   exclude_projects: Exclure des projets
   exclude_taxa: Exclure des taxons
   exclude_users: Exclude des utilisateurs
+  # Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    zero: '%{count} taxons exclus'
+    one: '%{count} taxon exclu'
+    few: '%{count} taxons exclus'
+    many: '%{count} taxons exclus'
+    other: '%{count} taxons exclus'
   exclusion_filters: Filtres d'exclusion
   existing_flags: Signalements existants
   exit_full_screen: "Sortir du mode plein écran"
@@ -5331,6 +5393,12 @@ fr:
   this_list_only_accepts_taxa_that_are_species: Cette liste n'accepte que les taxons qui sont des espèces
   this_list_only_accepts_taxa_that_are_species_or_lower: Cette liste n'accepte que les taxons de rang espèce ou inférieur
   this_observation: Cette observation
+  this_observation_is_featured_on_x_sites:
+    zero: Cette observation est présentée sur %{count} sites
+    one: Cette observation est présentée sur %{count} site
+    few: Cette observation est présentée sur %{count} sites
+    many: Cette observation est présentée sur %{count} sites
+    other: Cette observation est présentée sur %{count} sites
   this_observation_is_research_grade: Cette observation est de Qualité Recherche !
   this_observation_was_created_using: "Cette observation a été créée en utilisant :"
   this_photo_is_already_associated: Cette photo est déjà associée à une de vos observations.
@@ -7997,6 +8065,18 @@ fr:
       index:
         connect_with_nature: Connectez-vous Avec la Nature
         explore_and_share: Explorer et partager vos observations du monde naturel.
+        species_observed:
+          zero: "Espèces observées"
+          one: "Espèces observées"
+          few: "Espèces observées"
+          many: "Espèces observées"
+          other: "Espèces observées"
+        people_signed_up:
+          zero: "Personnes inscrites"
+          one: "Personne inscrite"
+          few: "Personnes inscrites"
+          many: "Personnes inscrites"
+          other: "Personnes inscrites"
         how_it_works: Comment cela marche
         record_your_observations: Enregistrer vos observations
         share_with_fellow_naturalists: Partager avec d'autres naturalistes
