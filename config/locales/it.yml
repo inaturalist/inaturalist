@@ -1,7 +1,20 @@
 it:
+  # Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    zero: "%{count} modifiche"
+    one: "%{count} modifica"
+    few: "%{count} modifiche"
+    many: "%{count} modifiche"
+    other: "%{count} modifiche"
   x_comments:
     one: '%{count} commento'
     other: '%{count} commenti'
+  x_comments_html:
+    zero: '<span class="count">%{count}</span> commenti'
+    one: '<span class="count">%{count}</span> commento'
+    few: '<span class="count">%{count}</span> commenti'
+    many: '<span class="count">%{count}</span> commenti'
+    other: '<span class="count">%{count}</span> commenti'
   x_faves:
     one: '%{count} preferito'
     other: '%{count} preferiti'
@@ -11,6 +24,60 @@ it:
   x_identifications:
     one: '%{count} identificazione'
     other: '%{count} identificazioni'
+  x_identifications_html:
+    zero: '<span class="count">%{count}</span> identificazioni'
+    one: '<span class="count">%{count}</span> identificazione'
+    few: '<span class="count">%{count}</span> identificazioni'
+    many: '<span class="count">%{count}</span> identificazioni'
+    other: '<span class="count">%{count}</span> identificazioni'
+  x_identifications_:
+    zero: '%{count} Identificazioni'
+    one: '%{count} Identificazione'
+    few: '%{count} Identificazioni'
+    many: '%{count} Identificazioni'
+    other: '%{count} Identificazioni'
+  x_identifications_caps_html:
+    zero: '<span class="count">%{count}</span> IDENTIFICAZIONI'
+    one: '<span class="count">%{count}</span> IDENTIFICAZIONE'
+    few: '<span class="count">%{count}</span> IDENTIFICAZIONI'
+    many: '<span class="count">%{count}</span> IDENTIFICAZIONI'
+    other: '<span class="count">%{count}</span> IDENTIFICAZIONI'
+  # Number of people who have added identifications
+  x_identifiers_caps_html:
+    # Number of people who have added identifications
+    zero: '<span class="count">%{count}</span> IDENTIFICATORI'
+    # Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFICATORE'
+    # Number of people who have added identifications
+    few: '<span class="count">%{count}</span> IDENTIFICATORI'
+    # Number of people who have added identifications
+    many: '<span class="count">%{count}</span> IDENTIFICATORI'
+    # Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFICATORI'
+  x_ids_made_for_others_html:
+    zero: '<span class="count">%{count}</span> ID fatte per altri'
+    one: '<span class="count">%{count}</span> ID fatta per altri'
+    few: '<span class="count">%{count}</span> ID fatte per altri'
+    many: '<span class="count">%{count}</span> ID fatte per altri'
+    other: '<span class="count">%{count}</span> ID fatte per altri'
+  x_languages:
+    zero: "%{count} lingue"
+    one: "%{count} lingua"
+    few: "%{count} lingue"
+    many: "%{count} lingue"
+    other: "%{count} lingue"
+  # Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    # Count of number of taxa that represent the first addition to a life list
+    zero: "%{count} per la prima volta nella lista degli esseri viventi"
+    # Count of number of taxa that represent the first addition to a life list
+    one: "%{count} per la prima volta nella lista degli esseri viventi"
+    # Count of number of taxa that represent the first addition to a life list
+    few: "%{count} per la prima volta nella lista degli esseri viventi"
+    # Count of number of taxa that represent the first addition to a life list
+    many: "%{count} per la prima volta nella lista degli esseri viventi"
+    # Count of number of taxa that represent the first addition to a life list
+    other: "%{count} per la prima volta nella lista degli esseri viventi"
   x_journal_posts_html:
     one: '<span class="count">1</span> post del diario'
     other: '<span class="count">%{count}</span> post del diario'
@@ -31,15 +98,57 @@ it:
   x_misidentifications_of_species_in_this_rank:
     one: "1 errore di identificazione di specie in questo %{rank}"
     other: "%{count} errori di identificazione di specie in questo %{rank}"
+  x_observations:
+    zero: "%{count} osservazioni"
+    one: "%{count} osservazioni"
+    few: "%{count} osservazioni"
+    many: "%{count} osservazioni"
+    other: "%{count} osservazioni"
+  x_observations_:
+    zero: "%{count} Osservazioni"
+    one: "%{count} Osservazione"
+    few: "%{count} Osservazioni"
+    many: "%{count} Osservazioni"
+    other: "%{count} Osservazioni"
+  x_observations_html:
+    zero: "<span class='count'>%{count}</span> osservazioni"
+    one: "<span class='count'>%{count}</span> osservazione"
+    few: "<span class='count'>%{count}</span> osservazioni"
+    many: "<span class='count'>%{count}</span> osservazioni"
+    other: "<span class='count'>%{count}</span> osservazioni"
+  x_observations_caps_html:
+    zero: "<span class='count'>%{count}</span> OSSERVAZIONI"
+    one: "<span class='count'>%{count}</span> OSSERVAZIONE"
+    few: "<span class='count'>%{count}</span> OSSERVAZIONI"
+    many: "<span class='count'>%{count}</span> OSSERVAZIONI"
+    other: "<span class='count'>%{count}</span> OSSERVAZIONI"
   x_observations_link_html:
     one: "<a href='%{url}'>1 osservazione</a>"
     other: "<a href='%{url}'>%{count} osservazioni</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> osservazione controllata"
     other: "<span class='count'>%{count}</span> osservazioni controllate"
+  x_observers_caps_html:
+    zero: '<span class="count">%{count}</span> OSSERVATORI'
+    one: '<span class="count">%{count}</span> OSSERVATORE'
+    few: '<span class="count">%{count}</span> OSSERVATORI'
+    many: '<span class="count">%{count}</span> OSSERVATORI'
+    other: '<span class="count">%{count}</span> OSSERVATORI'
   x_others:
     one: "un altro"
     other: "%{count} altri"
+  x_people:
+    zero: "%{count} persone"
+    one: "%{count} persona"
+    few: "%{count} persone"
+    many: "%{count} persone"
+    other: "%{count} persone"
+  x_people_html:
+    zero: '<span class="count">%{count}</span> persone'
+    one: '<span class="count">%{count}</span> persona'
+    few: '<span class="count">%{count}</span> persone'
+    many: '<span class="count">%{count}</span> persone'
+    other: '<span class="count">%{count}</span> persone'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} persone</strong> hanno aiutato %{user} con <strong>%{y} le ID</strong>"
   x_photos:
     one: "1 foto"
@@ -47,12 +156,42 @@ it:
   x_new_species:
     one: "1 nuova specie"
     other: "%{count} nuove specie"
+  x_new_users:
+    zero: "%{count} Nuovi Utenti"
+    one: '%{count} Nuovo Utente'
+    few: '%{count} Nuovi Utenti'
+    many: '%{count} Nuovi Utenti'
+    other: '%{count} Nuovi Utenti'
+  x_species:
+    zero: "%{count} specie"
+    one: '%{count} specie'
+    few: '%{count} specie'
+    many: '%{count} specie'
+    other: '%{count} specie'
+  x_species_caps_html:
+    zero: "<span class='count'>%{count}</span> SPECIE"
+    one: "<span class='count'>%{count}</span> SPECIE"
+    few: "<span class='count'>%{count}</span> SPECIE"
+    many: "<span class='count'>%{count}</span> SPECIE"
+    other: "<span class='count'>%{count}</span> SPECIE"
+  x_species_html:
+    zero: "<span class='count'>%{count}</span> specie"
+    one: "<span class='count'>%{count}</span> specie"
+    few: "<span class='count'>%{count}</span> specie"
+    many: "<span class='count'>%{count}</span> specie"
+    other: "<span class='count'>%{count}</span> specie"
   x_species_link_html:
     one: "<a href='%{url}'>1 specie</a>"
     other: "<a href='%{url}'>%{count} specie</a>"
   x_suggestions_filtered_by_colon:
     one: "1 suggerimento filtrato per:"
     other: "%{count} suggerimenti filtrati per:"
+  x_taxa:
+    zero: "%{count} taxa"
+    one: "%{count} taxon"
+    few: "%{count} taxa"
+    many: "%{count} taxa"
+    other: "%{count} taxa"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxon osservato"
     other: "<span class='count'>%{count}</span> taxa osservati"
@@ -62,6 +201,12 @@ it:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> osservazione livello di ricerca identificate al grado di specie o inferiore"
     other: "<span class='count'>%{count}</span> osservazioni livello di ricerca identificate al grado di specie o inferiore"
+  x_sounds:
+    zero: "%{count} suoni"
+    one: "%{count} suono"
+    few: "%{count} suoni"
+    many: "%{count} suoni"
+    other: "%{count} suoni"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxon curato"
     other: "<span class='count'>%{count}</span> taxa curati"
@@ -127,6 +272,21 @@ it:
   about_this_bioblitz: Riguardo questo bioblitz
   about_this_map: A proposito di questa mappa
   about_this_project: A proposito di questo Progetto
+  about_trips2_html: |
+    <h4>
+    Le escursioni permettono la raccolta di dati di presenza-assenza, aggiungendo un contesto alle tue osservazioni
+    </h4>
+    <p>
+    <strong>Perchè</strong> I dati di Presenza-Assenza includono informazioni sullo sforzo di ricerca effettuato, utile per analisi scientifiche quali i modelli di distribuzione (le osservazioni iNaturalist grezze sono dati di 'sola-presenza').
+    </p>
+    <p><strong>Come</strong> Un'escursione aggiunge contesto alle tue osservazioni registrando:
+    </p>
+    <ul>
+    <li><strong>Cosa</strong> hai cercato (lista obbiettivi)</li>
+    <li><strong>Dove</strong> hai cercato (area di ricerca)</li>
+    <li><strong>Quando</strong> hai cercato (intervallo di ricerca)</li>
+    </ul>
+     <p>Le specie sulla tua lista di obbiettivi che sei stato in grado di osservare nell'area definita e per l'intervallo di ricerca sono interpretate come presenza. Mentre le specie sulla tua lista di obbiettivi che non sei stato in grado di osservare sono interpretate come assenze. Clicca 'Tabulato Dati Presenza-Assenza dalle escursioni' per generare una tabella di record di presenza-assenza per una specie a partire dai viaggi e dalle osservazioni associate. <a href='%{url}'>Scopri di più</a></p>
   about_trusting_projects: Riguardo al Fidarsi dei Progetti
   about_trusting_projects_options_any: Tutte le tue osservazioni in questo progetto
   about_trusting_projects_options_any_desc: |-
@@ -734,6 +894,23 @@ it:
   back_to_your_profile: Torna al tuo profilo
   badges: Distintivi
   base_map_copyright_openstreetmap_html: Mappa di base ©️ %{startTag}OpenStreetMap%{endTag}
+  # disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    zero: |
+      Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
+      determinerà in <strong>%{count} disaccordi involontari</strong> con le ID di %{child}.
+    one: |
+      Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
+      determinerà in <strong>%{count} disaccordo involontario</strong> con le ID di %{child}.
+    few: |
+      Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
+      determinerà in <strong>%{count} disaccordi involontari</strong> con le ID di %{child}.
+    many: |
+      Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
+      determinerà in <strong>%{count} disaccordi involontari</strong> con le ID di %{child}.
+    other: |
+      Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
+      determinerà in <strong>%{count} disaccordi involontari</strong> con le ID di %{child}.
   # A Data Quality Assessment Metric question accepting yes/no votes
   based_on_the_evidence_can_id_be_improved_2: |
     Sulla base delle prove, il Taxon della Comunità può essere migliorato?
@@ -1852,6 +2029,13 @@ it:
   exclude_projects: Escludi Progetti
   exclude_taxa: Escludi Taxa
   exclude_users: Escludi Utenti
+  # Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    zero: Escludendo %{count} taxa
+    one: Escludendo %{count} taxon
+    few: Escludendo %{count} taxa
+    many: Escludendo %{count} taxa
+    other: Escludendo %{count} taxa
   exclusion_filters: Filtri di esclusione
   existing_flags: Contrassegni esistenti
   exit_full_screen: "Esci dalla modalità a tutto schermo"
@@ -3329,6 +3513,19 @@ it:
   observation_accuracy_validator_email_subject2: "Ci aiuterai con un Esperimento %{version} per stimare la precisione delle osservazioni di iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Ci aiuterai con un <a href="%{url}">esperimento (version %{version})</a> per stimare la precisione delle osservazioni di iNaturalist?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Identifica tutte le osservazioni nel link qui sotto con la massima precisione possibil, anche se sono di Livello Ricerca, e anche se il tuo migliore ID è ad un livello tassonomico superiore (anche regno).</li>
+    <li>Se vedi il popup “Disaccordo Potenziale”…
+    <ul>
+    <li>e sei sicuro che l'ID è errata clicca sul pulsante arancione,</li>
+    <li>o se non sei sicuro al di là della tua ID, clicca sul pulsante verde</li>
+    </ul>
+    </li>
+    <li>Fai questo entro il <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Ecco il sottoinsieme <a href="%{sample_url}">di %{num_obs} osservazioni</a>* che pensiamo che tu possa identificare in base alla tua attività su iNat. <b>Sei pregato di aggiungere la miglior ID possibile a ciascuna delle osservazioni entro il %{validator_deadline_date}</b>.
+    *<i>Questo link aprirà lo strumento Identifica sul sito iNaturalist che richiede l'accesso. Si consiglia di fare questo lavoro da un computer, ma è possibile anche dal browser su un dispositivo mobile. Se stai leggendo questo messaggio all'interno dell'app iNaturalist Android, assicurati di aprire il link in un'applicazione browser (non l'app iNat stessa). Potrebbe essere necessario accedere al sito web tramite l'app browser.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     Calcoleremo la precisione confrontando la tua ID con il Taxon di Osservazione. Puoi saltare le osservazioni dove
     hai precedentemente aggiunto una ID se tale ID è ancora rilevante. Per saperne di più su come conteggiare accordi e disaccordi, continuare a leggere.
@@ -5353,6 +5550,12 @@ it:
   this_list_only_accepts_taxa_that_are_species: Questa lista accetta solo taxa di rango specie
   this_list_only_accepts_taxa_that_are_species_or_lower: Questa lista accetta solo taxa di rango specie o inferiore
   this_observation: Questa osservazione
+  this_observation_is_featured_on_x_sites:
+    zero: Questa osservazione è messa in risalto su %{count} siti web
+    one: Questa osservazione è messa in risalto su %{count} sito web
+    few: Questa osservazione è messa in risalto su %{count} siti web
+    many: Questa osservazione è messa in risalto su %{count} siti web
+    other: Questa osservazione è messa in risalto su %{count} siti web
   this_observation_is_research_grade: Questa osservazione è di Livello ricerca!
   this_observation_was_created_using: "Questa osservazione è stata creata usando:"
   this_photo_is_already_associated: Questa foto è già associata ad una delle tue osservazioni.
@@ -5731,6 +5934,9 @@ it:
   user_faved_this_observation: "%{user} ha messo nei preferiti questa osservazione"
   user_flagged_as_a_non_spammer_html: "%{user} l'ha segnato come un non-spammer"
   user_flagged_as_a_spammer_html: "%{user} l'ha contrassegnato come uno spammer"
+  user_has_been_removed_from_site: |
+    %{username} è stato rimosso da %{site_name} (potrebbe volerci fino a un'ora
+    per eliminare completamente tutti i contenuti associati)
   user_has_opted_out_of_community_id: L'utente ha deselezionato il taxon della comunità
   user_hasnt_joined_any_projects: "%{user} non si è unito a nessun progetto"
   user_helped_x_people_with_y_ids_html: "%{user} ha aiutato strong>%{x} persone</strong> con <strong>%{y} le ID</strong>"
@@ -5776,6 +5982,27 @@ it:
   users_contributions_to_project_html: I contributi di <a href="%{url}">%{login}</a> al progetto %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Dopo aver inviato nuovamente l'email di conferma, sarai disconnesso e non sarai in grado di accedere al tuo account fino a quando non fai clic sul link in l'email, quindi <strong>assicurati di aver inserito correttamente il tuo indirizzo email.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Stai per uscire</h3>
+    <p>
+    Dopo aver inviato l'email di conferma, sarai disconnesso e
+    non sarai in grado di accedere al tuo account fino a quando non fai clic sul link nell'email,
+    quindi <strong class="bg-warning">assicurati di avere
+    inserito correttamente il tuo indirizzo email.</strong>
+    </p>
+    <p>
+    Ecco l'indirizzo email a cui invieremo la richiesta di conferma:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Se non ti sei disiscritto da tutte le email...</h4>
+    <p>
+    Se hai annullato l'iscrizione a <em>tutte</em> le nostre email, non possiamo inviare
+    email di conferma. Per reiscriversi, è necessario trovare una nostra precedente
+    email, clicca sul link per annullare la sottoscrizione, e segliere di tornare indietro all'opzione
+    che permette di ricevere l'email. Se non riesci a farlo, per favore manda una mail a
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist. rg</a> usando
+    l'indirizzo email che hai inserito qui affinchè possiamo aiutarti.
+    </p>
   users_favorites: "Preferiti di %{user}"
   users_highlights_and_stats_from_year_on_site: "Sintesi e statistiche di %{user} dal %{year} su %{site}"
   users_id: "ID di %{user}"
@@ -5799,6 +6026,13 @@ it:
   view_all_fields: Visualizza Tutti I Campi
   view_all_flags: Mostra tutti i contrassegni
   view_all_members: Visualizza tutti i membri
+  # As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    zero: "Visualizza Tutte %{count}"
+    one: "Visualizza Tutte %{count}"
+    few: "Visualizza Tutte %{count}"
+    many: "Visualizza Tutte %{count}"
+    other: "Visualizza Tutte %{count}"
   view_all_observations: Visualizza tutte le osservazioni
   view_all_photocount_photos: "Visualizza tutte le %{photo_count} foto"
   view_assessment: Visualizza la valutazione
@@ -5980,6 +6214,18 @@ it:
   # This might be shown if there is a character limit in a text field, in which
   # it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
+  x_of_count_confirmed:
+    zero: "%{x} di %{count} confermate"
+    one: "%{x} di %{count} confermata"
+    few: "%{x} di %{count} confermate"
+    many: "%{x} di %{count} confermate"
+    other: "%{x} di %{count} confermate"
+  x_of_count_observed:
+    zero: "%{x} di %{count} osservate"
+    one: "%{x} di %{count} osservata"
+    few: "%{x} di %{count} osservate"
+    many: "%{x} di %{count} osservate"
+    other: "%{x} di %{count} osservate"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} di %{y} persone (oltre 2/3) concordano che è"
   x_is_the_root_of_the_tree: "%{rank}%{name} è la radice dell'albero"
   x_project_journal: "%{name} del progetto %{project}"
@@ -6319,10 +6565,90 @@ it:
             Se così, per favore leggi la nostra <a href="%{url}">Guida per gli insegnanti</a> per suggerimenti su come usare %{site_name} con gli studenti
     donate:
       donate_short_desc: "Dona ora per mostrare il tuo supporto!"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Puoi <u>raddoppiare</u> o <u>triplicare</u> il tuo regalo! Grazie alla Fondazione Gordon e Betty Moore, tutte le donazioni ricorrenti mensili, trimestrali e annuali sono triplicate e le donazioni una tantum sono raddoppiate fino al 31 dicembre 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist è una delle più grandi comunità mondiali dedicate alla biodiversità. Grazie di farne parte!
+        </p>
+        <p class="lead">
+        Se credi nel potere di questa comunità globale di amanti della natura nel condividere le conoscenze e generare dati insostituibili di biodiversità, per favore considera un regalo una tantum o ricorrente online, o esplora <a href="https://www.inaturalist.org/pages/giving">altri modi per contribuire</a>.
+        </p>
+        <p class="lead">
+        La tua donazione è vitale per iNaturalist man mano che la nostra comunità cresce, sia per migliorare la nostra tecnologia per identificare accuratamente le specie sia per implementare nuove funzionalità per supportare i nostri server e il nostro personale.
+        </p>
+        <p class="text-muted">
+        iNaturalist è un organizzazione indipendente 501(c)(3), esentasse, senza scopo dinlucro con sede negli Stati Uniti d'America (Tax ID: 92-1296468).
+        </p>
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist è una delle community più grandi al mondo, dedicate
+        all'esplorazione della biodiversità. Grazie per esserne parte!</strong>
+        </p>
+        <p class="lead">
+        Se credi nella potenza di questa community globale di amanti della natura
+        per la condivisione di conoscenza e per generare insostituibili dati sulla biodiversità,
+        ti preghiamo di considerare un dono una tantum o ricorrente online, o di esplorare <a
+        href="https://www.inaturalist.org/pages/giving">altri
+        metodi per donare</a>.
+        </p>
+        <p class="lead">
+        La tua donazione aiuta a supportare iNaturalist al crescere della community,
+        dall'avanzamanento della visione informatica e l'implementazione di nuove funzionalità, al supportare
+        i nostri server e membri dello staff.
+        </p>
+        <p class="text-muted">
+        iNaturalist è un'organizzazione indipendente 501(c)(3), esente dalle tasse, senza
+        scopi di lucro, con sede negli Stati Uniti d'America (ID Fiscale: 92-1296468).
+        </p>
       post_donate_social_media_text: Io sostengo iNaturalist perché...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile di iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: DIVENTA UN SOSTENITORE MENSILE DI INATURALIST
+        desc_moore_html: |
+          <p class="lead">
+          <strong>Puoi <u>triplicare</u> il tuo dono! Grazie alla Fondazione Gordon e Betty
+          Moore, tutte le donazioni mensili dei Sostenitori sono triplicate fino al 31 dicembre 2023.</strong>
+          </p>
+          <p class="lead">
+          iNaturalist è una delle più grandi comunità al mondo dedicate all'esplorazione della biodiversità. Grazie di farne parte!
+          </p>
+          <p class="lead">
+          Se ami iNaturalist, ti preghiamo di prendere in considerazione la possibilità di diventare un sostenitore mensile. I regali ricorrenti aiutano a garantire che iNaturalist possa continuare ad implementare le nostre infrastrutture e il nostro personale fornendo entrate prevedibili. E il tuo regalo mensile ha triplicato l'impatto!
+          Puoi anche scegliere di mostrare il tuo stato di Sostenitore Mensile sul tuo profilo utenteI.
+          </p>
+          <p class="lead">
+          Le tue donazioni di beneficenza contribuiscono a sostenere iNaturalist man mano che cresce la comunità, nell’avanzamento della visione informatica e nell’implementazione di nuove funzionalità
+          a supporto dei nostri server e del nostro personale. Puoi anche fare una <a href="%{donate_url}">donazione una tantum</a> o vedere gli
+          <a href="https://www.inaturalist.org/pages/giving">altri modi per contribuire</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist è un'organizzazione indipendente 501(c)(3), esente da imposte,
+          senza scopo di lucro e sede negli Stati Uniti diAmerica (Tax ID: 92-1296468).
+          </p>
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist è una delle più grandi community dedicate all'esplorazione
+          della biodiversità. Grazie per esserne parte!</strong>
+          </p>
+          <p class="lead">
+          Vogliamo mantenere iNaturalist gratuito da utilizzare, ma non è gratuito da operare.
+          Se ami iNaturalist, ti preghiamo di considerare di divenire un sostenitore mensile.
+          I doni ricorrenti aiutano ad assicurare che iNaturalist possa continuare a
+          ridimensionare la propria infrastruttura e staff, fornendo entrate prevedibili.
+          Inoltre, puoi optare per mostrare lo stato di sostenitore sul tuo profilo utente.
+          </p>
+          <p class="lead">
+          Le tue caritevoli donazioni aiutano a supportare iNaturalist al crescere della
+          community, dall'avanzamento della visione informatica e l'implementazione di nuove
+          funzionalità, al supporto dei nostri server e membri dello staff. Se preferisci effettuare una
+          donazione una tantum, ti preghiamo di <a href="%{donate_url}">cliccare qui</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist è un'organizzazione senza scopo di lucro, esente dalle tasse e indipendente
+          501(c)(3), con sede negli Stati Uniti d'America (ID Fiscale: 92-1296468).
+          </p>
         thank_you_for_being_a_monthly_supporter: Grazie per essere un Sostenitore Mensile!
         thank_you_for_being_a_monthly_supporter_caps: GRAZIE PER ESSERE UN SOSTENITORE MENSILE!
       temporarily_unavailable: |
@@ -6753,6 +7079,54 @@ it:
           A volte vedrai più righe con conteggi diversi da zero perché ci sono taxa di livello superiore provenienti da altre interrogazioni. Per esempio, Se l'Interrogazione 1 ha un'osservazione di Homo sapiens e l'Interrogazione 2 ha un'osservazione di Genere Homo, entrambi i taxa saranno presenti nella tabella, ma nell'Interrogazione 1 il Genere Homo costituisce una riga aggiuntiva ma non è incluso nel conteggio totale perchè l'interrogazione ha considerato solo la specie Homo sapiens all'interno di quel genere (in quanto quella costituiva la "foglia" di quella parte dell'albero).
         # Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Verticale
+        # Count of how many taxa several observation searches have in common
+        x_in_common:
+          # Count of how many taxa several observation searches have in common
+          zero: "%{count} in comune"
+          # Count of how many taxa several observation searches have in common
+          one: "%{count} in comune"
+          # Count of how many taxa several observation searches have in common
+          few: "%{count} in comune"
+          # Count of how many taxa several observation searches have in common
+          many: "%{count} in comune"
+          # Count of how many taxa several observation searches have in common
+          other: "%{count} in comune"
+        # Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          # Count of how many taxa are not present in *all* of several observation searches
+          zero: "%{count} non in comune"
+          # Count of how many taxa are not present in *all* of several observation searches
+          one: "%{count} non in comune"
+          # Count of how many taxa are not present in *all* of several observation searches
+          few: "%{count} non in comune"
+          # Count of how many taxa are not present in *all* of several observation searches
+          many: "%{count} non in comune"
+          # Count of how many taxa are not present in *all* of several observation searches
+          other: "%{count} non in comune"
+        # Count of how many taxa are present in an observation search
+        x_total:
+          # Count of how many taxa are present in an observation search
+          zero: "%{count} totali"
+          # Count of how many taxa are present in an observation search
+          one: "%{count} totale"
+          # Count of how many taxa are present in an observation search
+          few: "%{count} totali"
+          # Count of how many taxa are present in an observation search
+          many: "%{count} totali"
+          # Count of how many taxa are present in an observation search
+          other: "%{count} totali"
+        # Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          zero: "%{count} uniche"
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          one: "%{count} unica"
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          few: "%{count} uniche"
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          many: "%{count} uniche"
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          other: "%{count} uniche"
       export:
         choose_columns_desc: Scegli le colonne da esportare
         create_a_query_desc_html: |
@@ -7190,6 +7564,24 @@ it:
           Abbiamo incluso i collegamenti alle foto interessate qui sotto.
       user_parent_confirmation:
         subject: L'account iNaturalist di tuo figlio è stato attivato
+        content_html: |
+          <p>
+          Grazie per la creazione di un account iNaturalist per tuo figlio! L'account è stato attivato. Qui i dettagli che hai insertito che abbiamo memorizzato:
+          </p>
+          <ul>
+          <li><strong>Nome del genitore o tutore legale:</strong> %{parent_name}</li>
+          <li><strong>Email del genitore o tutore legale:</strong> %{parent_email}</li>
+          <li><strong>Nome del bambino:</strong> %{child_name}</li>
+          <li><strong>Data di nascita del bambino:</strong> %{child_birthday}</li>
+          <li><strong>Email dell'account del minore:</strong> %{child_email}</li>
+          <li><strong>Nome utente dell'account del minore:</strong> %{child_username}</li>
+          </ul>
+          <p>
+          Per favore entra nell'account dall'app Seek di tuo figlio toccando il bottone "iNaturalist" nel menù e poi "Effettua il login con iNaturalist" al fondo dello schermo.
+          </p>
+          <p>
+          Tuo figlio sarà così in grado di publicare osservazioni sul suo account iNaturalist usando l'app Seek app in modo che queste siano visibili su iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: |
           Sei stato inattivo su%{site_name} per un po', così abbiamo sospeso la tua iscrizione. Per riattivarla, per favore, <a href="%{login_url}">accedi al tuo account</a>.
@@ -7694,6 +8086,12 @@ it:
           Sapevi che %{site_name} è stato tradotto quasi interamente da %{x_people}? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno, con il numero di parole che hanno tradotto per %{website_link_tag}il sito web%{link_tag_end}, le nostre app %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}, e per %{help_link_tag}iNatHelp%{link_tag_end}
         translators_prompt: |
           Se vuoi aiutarci nella traduzione, %{link_tag}scopri come%{link_tag_end}.
+        view_all_publications_count_caps2:
+          zero: "VISUALIZZA TUTTE LE %{count} PUBBLICAZIONI"
+          one: "VISUALIZZA %{count} PUBBLICAZIONE"
+          few: "VISUALIZZA TUTTE LE %{count} PUBBLICAZIONI"
+          many: "VISUALIZZA TUTTE LE %{count} PUBBLICAZIONI"
+          other: "VISUALIZZA TUTTE LE %{count} PUBBLICAZIONI"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7714,6 +8112,23 @@ it:
         heads_up_inactive_parent: " Attenzione: il parentale di questo taxon attivo è inattivo ma è l'output di questa <a href='/taxon_changes/%{taxon_change_id}'> bozza di modifica di taxon</a> che presumiamo attuerai a breve." # a message when you try to save an edit to a taxon covered by a taxon framework
         covered_by_taxon_framework: Questo taxon attivo ha più di %{count} osservazioni a valle o è coperto da un quadro taxon, quindi alcuni attributi tassonomici possono essere modificati solo dallo staff o dai curatori del taxon associati a questo quadro del taxon.
       show:
+        about_names_desc: |
+          <p>
+          Gran parte delle categorie di organismi hanno dei "nomi comuni" nelle lingue parlate. Questi nomi sono solitamente riconoscibili, facili da pronunciare e stabili nel tempo, ma molti organismi hanno svariati nomi differenti in luoghi differenti, anche nella stessa lingua, il che rende difficile comunicare a riguardo di essi, senza confusione. Gli scienziati risolvono questo problema utilizzando un singolo "nome scientifico" per ogni categoria di organismi, conforme alle regole della <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biologica</a>, ma questi nomi tendono a basarsi sul Latino, una lingua che non è parlata da nessuno, quindi non sono altrettanto memorizzabili quanto i nomi comuni per molti. I nomi scientifici, inoltre, possono riflettere il posizionamento tassonomico di un organismo, così che possano cambiare quando gli scienziati sviluppano teorie più accurate sulle relazioni evolutive tra organismi differenti, riducendone ulteriormente l'utiliità nella comunicazione, persino tra le persone che conoscono i nomi scientifici.
+          </p>
+          <p>
+          Un vecchio detto lo riassume: "I nomi comuni cambiano di luogo in luogo e i nomi scientifici cambiano con il tempo."
+          </p>
+          <p>
+          Proviamo a risolvere questi difetti mostrando sia i nomi comuni che scientifici (laddove possibile), e scegliendo nomi comuni a seconda delle preferenze linguistiche e geografiche del visualizzatore. I nomi sono elencati a seconda della loro priorità globale, entro ogni Lingua / Tipo.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          I nomi potrebbero essere aggiunti ai luoghi (solitamente paesi), nei casi in cui paesi o regioni diversi, utilizzino nomi comuni differenti, nonostante la lingua sia la stessa. Ad esempio, Messico e Costa Rica potrebbero avere nomi spagnoli differenti per la stessa specie.
+          </p>
+          <p>
+          Questa tabella mostra quali nomi sono stati aggiunti a quali luoghi e sono elencati in ordine di priorità per ogni luogo. Se due nomi spagnoli sono aggiunti al Messico, quello elencato per primo apparirà se preferisci visualizzare i nomi spagnoli aggiunti per il Messico.
+          </p>
         about_conservation_status_desc: |
           Lo stato di conservazione riassume il rischio di estinzione per un gruppo di organismi.
         about_establishment_desc: |
@@ -7863,6 +8278,23 @@ it:
           Il nome dal taxon con il rango. Per ranghi infraspecifici, il rango è inserito dopo il nome binomiale.
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Cerca di aggiungere nomi già utilizzati altrove. Per favore non inventare nuovi nomi.</p></li>
+          <li><p>Non aggiungere duplicati, e.g. non nominare numerose aquile "aquila"</p></li>
+          <li><p>Per i taxa di categoria più elevata, cerca di utilizzare nomi che contengano tutti i discendenti, come ad esempio "aironi e simili" o "ericacee"</p></li>
+          <li><p>Non aggiungere informazioni che non siano il nome, ad esempio informazioni parentetiche su come pensate che il nome debba essere utilizzato </p></li>
+          <li><p>Il nuovo lessico deve essere in inglese. Per favore non aggiungere nomi di lingue tradotte come "Francese, Français" perché ciò renderebbe più difficile o impossibile per noi mostrare i nomi locali alle persone che usano il sito in lingue diverse.
+          </p>
+          </li>
+          <li>
+          <p>
+          Verranno visualizzati i nomi comuni associati alle lingue tradotte
+          come nome comune predefinito per quella lingua (salvo l'effetto delle preferenze di luogo, dell’ordine dei nomi, ecc.).
+          <a class="readmore" href="/pages/translate">Learn more about translation</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           Aggiungi un nome per un luogo al fine di dargli una priorità per il sito e per gli utenti di quel luogo. Se ci sono più nomi per lo stesso luogo puoi dargli una priorità <a href="%{url}">qui</a>. Per favore <strong>non</strong> aggiungere nomi per OGNI luogo dove quel nome è usato, ma solo per i luoghi in conflitto con altri.
       taxon:
@@ -8126,6 +8558,24 @@ it:
       index:
         connect_with_nature: Connettiti con la Natura
         explore_and_share: Esplora e condividi le tue osservazioni della natura.
+        observations_to_date:
+          zero: "Osservazioni Finora"
+          one: "Osservazione Finora"
+          few: "Osservazioni Finora"
+          many: "Osservazioni Finora"
+          other: "Osservazioni Finora"
+        species_observed:
+          zero: "Specie Osservate"
+          one: "Specie Osservata"
+          few: "Specie Osservate"
+          many: "Specie Osservate"
+          other: "Specie Osservate"
+        people_signed_up:
+          zero: "Persone Iscritte"
+          one: "Persona Iscritta"
+          few: "Persone Iscritte"
+          many: "Persone Iscritte"
+          other: "Persone Iscritte"
         how_it_works: Come Funziona
         record_your_observations: Registra le tue osservazioni
         share_with_fellow_naturalists: Condividi con gli altri naturalisti
