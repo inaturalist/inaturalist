@@ -2009,6 +2009,7 @@ nl:
   external_taxon_including_children: Extern taxon (inclusief kinderen)
   extinct: uitgestorven
   extinct_in_the_wild: Uitgestorven in het Wild
+  provisional_taxon: Voorlopig
   extra_properties: Extra eigenschappen
   evidence_accurately_depicts_organism_or_scene: Bewijs geeft het organisme of de scène nauwkeurig weer
   evidence_of_organism: Bewijs van organisme
@@ -2340,6 +2341,8 @@ nl:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Waarnemingen verbergen met privélocaties
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Verberg voorlopige taxa
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Huidig totaal verbergen
   hide_uncountable_species: Verberg ongetelde soorten
@@ -2499,6 +2502,7 @@ nl:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inactief
   inactive_taxon_concepts_are: Inactieve taxonconcepten zijn taxonomisch achterhaald of krijgen een taxonwijziging. Achterhaalde concepten worden bewaard om de geschiedenis te behouden en voor de compatibiliteit met sommige partnerwebsites.
+  provisional_taxa_are_not_published: 'Voorlopige taxa worden niet gepubliceerd en kunnen onderhevig zijn aan grote wijzigingen. Ze zijn momenteel alleen toegestaan voor schimmels en moeten gekoppeld zijn aan een waarneming met een DNA-sequence. Link naar deze waarneming in het Notitieveld "Waarom maakt u deze wijziging?".'
   inappropriate_content: Ongepaste inhoud?
   inat_account_action: "%{site_name} &#58; Account &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} gelooft dat dit een volledige lijst is van dit taxon op deze plaats."
@@ -4991,6 +4995,8 @@ nl:
   show_running_total: Lopend totaal weergeven
   show_taxa_from_both: (toon taxa van beide lijsten)
   show_taxa_from_everywhere: "Toon taxa van overal"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Toon voorlopige taxa
   show_taxa_from_place: "Toon taxa uit %{place}"
   show_total_counts: Toon totale aantallen
   show_uncountable_species: Laat ontelbare soorten zien
