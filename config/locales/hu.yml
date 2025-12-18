@@ -101,6 +101,18 @@ hu:
   x_others:
     one: "%{count} további felhasználó"
     other: "%{count} további felhasználó"
+  x_people:
+    zero: "%{count} személy"
+    one: "%{count} személy"
+    few: "%{count} személy"
+    many: "%{count} személy"
+    other: "%{count} személy"
+  x_people_html:
+    zero: '<span class="count">%{count}</span> személy'
+    one: '<span class="count">%{count}</span> személy'
+    few: '<span class="count">%{count}</span> személy'
+    many: '<span class="count">%{count}</span> személy'
+    other: '<span class="count">%{count}</span> személy'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} személy</strong> segített %{user} felhasználónak <strong>%{y} meghatározással</strong>"
   x_photos:
     one: "%{count} fénykép"
@@ -108,6 +120,18 @@ hu:
   x_new_species:
     one: "%{count} új faj"
     other: "%{count} új faj"
+  x_new_users:
+    zero: "%{count} új felhasználó"
+    one: '%{count} új felhasználó'
+    few: '%{count} új felhasználó'
+    many: '%{count} új felhasználó'
+    other: '%{count} új felhasználó'
+  x_species:
+    zero: "%{count} faj"
+    one: '%{count} faj'
+    few: '%{count} faj'
+    many: '%{count} faj'
+    other: '%{count} faj'
   x_species_link_html:
     one: "<a href='%{url}'>%{count} faj</a>"
     other: "<a href='%{url}'>%{count} faj</a>"
