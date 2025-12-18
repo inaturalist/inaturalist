@@ -1917,6 +1917,7 @@ id:
   external_taxon_including_children: Takson Eksternal (termasuk turunannya)
   extinct: punah
   extinct_in_the_wild: Punah di Alam Liar
+  provisional_taxon: Sementara
   extra_properties: Properti Tambahan
   evidence_accurately_depicts_organism_or_scene: Bukti menggambarkan organisme atau suasana secara akurat
   evidence_of_organism: Bukti organisme
@@ -2235,6 +2236,8 @@ id:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Sembunyikan pengamatan dengan lokasi pribadi
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Sembunyikan Taksa Sementara
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Sembunyikan Total Akumulasi
   hide_uncountable_species: Sembunyikan Spesies Yang Tidak Terhitung
@@ -2391,6 +2394,7 @@ id:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Tidak aktif
   inactive_taxon_concepts_are: Konsep takson yang tidak aktif baik yang sudah usang secara taksonomi maupun sedang disiapkan untuk perubahan takson. Konsep yang sudah usang tetap disimpan untuk mempertahankan sejarah dan kompatibilitas dengan beberapa situs mitra.
+  provisional_taxa_are_not_published: 'Takson sementara tidak diterbitkan dan dapat mengalami perubahan besar. Saat ini, mereka hanya diizinkan untuk Fungi dan harus dikaitkan dengan pengamatan dengan urutan DNA. Silakan tautkan ke pengamatan tersebut di bidang "Mengapa Anda membuat perubahan ini?".'
   inappropriate_content: Konten tidak pantas?
   inat_account_action: "%{site_name} &#58; Akun &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} meyakini bahwa daftar dari takson ini di tempat ini sudah komplet."
@@ -4838,6 +4842,8 @@ id:
   show_running_total: Tunjukkan Total Akumulasi
   show_taxa_from_both: (tampilkan taksa dari kedua daftar)
   show_taxa_from_everywhere: "Tampilkan taksa dari manapun"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Tampilkan takson sementara
   show_taxa_from_place: "Tampilkan taksa dari %{place}"
   show_total_counts: Tampilkan total hitungan
   show_uncountable_species: Tampilkan spesies yang tidak terhitung
