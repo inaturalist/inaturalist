@@ -1,5 +1,18 @@
 zh-CN:
+  # Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    zero: "%{count} 个变化"
+    one: "%{count} 个变化"
+    few: "%{count} 个变化"
+    many: "%{count} 个变化"
+    other: "%{count} 个变化"
   x_comments:
+    other: '%{count} 条评论'
+  x_comments_html:
+    zero: '%{count} 条评论'
+    one: '%{count} 条评论'
+    few: '%{count} 条评论'
+    many: '%{count} 条评论'
     other: '%{count} 条评论'
   x_faves:
     other: '%{count} 次收藏'
@@ -7,6 +20,60 @@ zh-CN:
     other: "<span class='count'>%{count}</span>个标记已解决"
   x_identifications:
     other: '%{count} 次鉴定'
+  x_identifications_html:
+    zero: '%{count} 个鉴定'
+    one: '%{count} 个鉴定'
+    few: '%{count} 个鉴定'
+    many: '%{count} 个鉴定'
+    other: '%{count} 个鉴定'
+  x_identifications_:
+    zero: '%{count} 个鉴定'
+    one: '%{count} 个鉴定'
+    few: '%{count} 个鉴定'
+    many: '%{count} 个鉴定'
+    other: '%{count} 个鉴定'
+  x_identifications_caps_html:
+    zero: '<span class="count">%{count}</span>个鉴定'
+    one: '<span class="count">%{count}</span>个鉴定'
+    few: '<span class="count">%{count}</span>个鉴定'
+    many: '<span class="count">%{count}</span>个鉴定'
+    other: '<span class="count">%{count}</span>个鉴定'
+  # Number of people who have added identifications
+  x_identifiers_caps_html:
+    # Number of people who have added identifications
+    zero: '<span class="count">%{count}</span>名鉴定者'
+    # Number of people who have added identifications
+    one: '<span class="count">%{count}</span>名鉴定者'
+    # Number of people who have added identifications
+    few: '<span class="count">%{count}</span>名鉴定者'
+    # Number of people who have added identifications
+    many: '<span class="count">%{count}</span>名鉴定者'
+    # Number of people who have added identifications
+    other: '<span class="count">%{count}</span>名鉴定者'
+  x_ids_made_for_others_html:
+    zero: '<span class="count">%{count}</span>个为他人做出的鉴定'
+    one: '<span class="count">%{count}</span>个为他人做出的鉴定'
+    few: '<span class="count">%{count}</span>个为他人做出的鉴定'
+    many: '<span class="count">%{count}</span>个为他人做出的鉴定'
+    other: '<span class="count">%{count}</span>个为他人做出的鉴定'
+  x_languages:
+    zero: "%{count}种语言"
+    one: "%{count}种语言"
+    few: "%{count}种语言"
+    many: "%{count}种语言"
+    other: "%{count}种语言"
+  # Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    # Count of number of taxa that represent the first addition to a life list
+    zero: "%{count}项首个观察物种"
+    # Count of number of taxa that represent the first addition to a life list
+    one: "%{count}项首个观察物种"
+    # Count of number of taxa that represent the first addition to a life list
+    few: "%{count}项首个观察物种"
+    # Count of number of taxa that represent the first addition to a life list
+    many: "%{count}项首个观察物种"
+    # Count of number of taxa that represent the first addition to a life list
+    other: "%{count}项首个观察物种"
   x_journal_posts_html:
     other: '<span class="count">%{count}</span>个日记'
   x_matching_taxa:
@@ -21,27 +88,105 @@ zh-CN:
   # x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     other: "在%{rank}中有%{count}个错误鉴定"
+  x_observations:
+    zero: "%{count}个观察"
+    one: "%{count}个观察"
+    few: "%{count}个观察"
+    many: "%{count}个观察"
+    other: "%{count}个观察"
+  x_observations_:
+    zero: "%{count}个观察"
+    one: "%{count}个观察"
+    few: "%{count}个观察"
+    many: "%{count}个观察"
+    other: "%{count}个观察"
+  x_observations_html:
+    zero: "<span class='count'>%{count}</span> 个观察"
+    one: "<span class='count'>%{count}</span> 个观察"
+    few: "<span class='count'>%{count}</span>个观察"
+    many: "<span class='count'>%{count}</span>个观察"
+    other: "<span class='count'>%{count}</span>个观察"
+  x_observations_caps_html:
+    zero: "<span class='count'>%{count}</span>个观察"
+    one: "<span class='count'>%{count}</span>个观察"
+    few: "<span class='count'>%{count}</span>个观察"
+    many: "<span class='count'>%{count}</span>个观察"
+    other: "<span class='count'>%{count}</span>个观察"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} 次观察</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 次观察已复核"
+  x_observers_caps_html:
+    zero: '<span class="count">%{count}</span>名观察者'
+    one: '<span class="count">%{count}</span>名观察者'
+    few: '<span class="count">%{count}</span>名观察者'
+    many: '<span class="count">%{count}</span>名观察者'
+    other: '<span class="count">%{count}</span>名观察者'
   x_others:
     other: "%{count}个其他的"
+  x_people:
+    zero: "%{count}个人"
+    one: "%{count}个人"
+    few: "%{count}个人"
+    many: "%{count}个人"
+    other: "%{count}个人"
+  x_people_html:
+    zero: '<span class="count">%{count}</span> 个人'
+    one: '<span class="count">%{count}</span> 个人'
+    few: '<span class="count">%{count}</span> 个人'
+    many: '<span class="count">%{count}</span> 个人'
+    other: '<span class="count">%{count}</span> 个人'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 人</strong> 用 <strong>%{y} 个鉴定</strong>帮助了 %{user}"
   x_photos:
     other: "%{count} 张照片"
   x_new_species:
     other: "%{count} 个新物种"
+  x_new_users:
+    zero: "%{count} 个新用户"
+    one: '%{count} 个新用户'
+    few: '%{count} 个新用户'
+    many: '%{count} 个新用户'
+    other: '%{count} 个新用户'
+  x_species:
+    zero: "%{count} 种物种"
+    one: '%{count} 种物种'
+    few: '%{count} 种物种'
+    many: '%{count} 种物种'
+    other: '%{count} 种物种'
+  x_species_caps_html:
+    zero: "<span class='count'>%{count}</span>种物种"
+    one: "<span class='count'>%{count}</span>种物种"
+    few: "<span class='count'>%{count}</span>种物种"
+    many: "<span class='count'>%{count}</span>种物种"
+    other: "<span class='count'>%{count}</span>种物种"
+  x_species_html:
+    zero: "<span class='count'>%{count}</span>种物种"
+    one: "<span class='count'>%{count}</span>种物种"
+    few: "<span class='count'>%{count}</span>种物种"
+    many: "<span class='count'>%{count}</span>种物种"
+    other: "<span class='count'>%{count}</span>种物种"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} 种物种</a>"
   x_suggestions_filtered_by_colon:
     other: "经以下过滤器给出%{count}个建议："
+  x_taxa:
+    zero: "%{count} 个分类单元"
+    one: "%{count} 个分类单元"
+    few: "%{count} 个分类单元"
+    many: "%{count} 个分类单元"
+    other: "%{count} 个分类单元"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> 个分类群已观察"
   x_research_grade_observations_html:
     other: "<span class='count'>%{count}</span> 个研究级观察</span>"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span> 个研究级观察ID已降级至物种或更低</span>"
+  x_sounds:
+    zero: "%{count} 条声音"
+    one: "%{count} 条声音"
+    few: "%{count} 条声音"
+    many: "%{count} 条声音"
+    other: "%{count} 条声音"
   x_taxa_curated_html:
     other: "<span class='count'>%{count}</span>个分类单元已管理"
   x_taxa_matching_current_filters:
@@ -104,6 +249,24 @@ zh-CN:
   about_this_bioblitz: 关于此bioblitz
   about_this_map: 关于此地图
   about_this_project: 关于这个项目
+  about_trips2_html: |
+    <h4>
+    探索功能使你能够通过添加观察场景的描述，收集未出现或出现情况下的数据。
+    </h4>
+    <p>
+    <strong>为什么</strong>有些未出现或者出现情况下的数据包含了可以帮助物种采样的信息。这些信息对于像物种分布模型等科学家们日后的分析有着极大的帮助。（未经处理的iNaturalist观察记录均为“出现的”数据。）
+    </p>
+    <p>
+    <strong>怎么做</strong>你可以在探索过程中记录以下信息：
+    </p>
+    <ul>
+    <li><strong>有什么</strong>你在寻找（目标物种列表）</li>
+    <li><strong>在哪里</strong>你在（探索地点）寻找</li>
+    <li><strong>时间</strong>你寻找了（多长时间）</li>
+    </ul>
+    <p>
+    那些你能够在搜寻地点范围内找到的目标物种将被视为出现。与之相反，在你的目标物种列表上但并未被观察到的物种会被视为未出现。点击“显示过往探索中的物种踪迹”以查看从探索和有关观察中获得的物种出现记录表单。<a href='%{url}'>了解更多</a>
+    </p>
   about_trusting_projects: 关于信任的项目
   about_trusting_projects_options_any: 您在此项目中的所有观察
   about_trusting_projects_options_any_desc: |-
@@ -694,6 +857,21 @@ zh-CN:
   back_to_your_profile: 回到您的详细信息
   badges: 徽章
   base_map_copyright_openstreetmap_html: 地图底图 © %{startTag}开放街区地图%{endTag}
+  # disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    zero: |
+      根据这些鉴定中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的鉴定 <strong>无意中产生分歧</strong> 。
+    one: |
+      根据这些鉴定中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的鉴定 <strong>无意中产生分歧</strong> 。
+    few: |
+      根据这些鉴定中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的鉴定 <strong>无意中产生分歧</strong> 。
+    many: |
+      根据这些鉴定中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的鉴定 <strong>无意中产生分歧</strong> 。
+    other: |
+      根据这些鉴定中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的鉴定 <strong>无意中产生分歧</strong> 。
+  # A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    基于现有证据，社群鉴定分类能否得到进一步改进？
   batch: 批
   batch_edit: 批量编辑
   # Where x is the title of a list of taxa
@@ -1199,6 +1377,7 @@ zh-CN:
   curating: 助理
   curation: 管理
   curator: 馆长
+  curators_with_most_ids_of_the_input_taxon: "拥有最多输入分类单元鉴定数的馆长"
   # A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist网站馆长是官方授信的志愿者，有编辑iNaturalist分类学系统和修改用户内容的权限。网站馆长对iNaturalist十分重要，他们保持网站分类系统的及时更新，用户发言的合适与文明。想了解成为馆长意味着什么，请参阅以下内容，如果您也想成为馆长，请仔细浏览<a href="/pages/curator+guide" target="_blank">馆长指南</a>，然后填写本页面的申请。
@@ -1798,6 +1977,13 @@ zh-CN:
   exclude_projects: 排除项目
   exclude_taxa: 排除的分类群
   exclude_users: 排除用户
+  # Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    zero: 排除 %{count} 个分类单元
+    one: 排除 %{count} 个分类单元
+    few: 排除 %{count} 个分类单元
+    many: 排除 %{count} 个分类单元
+    other: 排除 %{count} 个分类单元
   exclusion_filters: 排除过滤器
   existing_flags: 现有标记
   exit_full_screen: "退出全屏"
@@ -1820,6 +2006,7 @@ zh-CN:
   external_taxon_including_children: 外部分类（包含子项）
   extinct: 灭绝
   extinct_in_the_wild: 野外灭绝
+  provisional_taxon: 临时
   extra_properties: 额外属性
   evidence_accurately_depicts_organism_or_scene: 证据准确地描述了个体或场景
   evidence_of_organism: 生物证据
@@ -2134,6 +2321,8 @@ zh-CN:
   # Label for a checkbox to remove observations from search results where the
   # observation locations are private due to geoprivacy
   hide_observations_with_private_locations: 隐藏私密位置的观察
+  # Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: 隐藏临时分类单元
   # Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隐藏运行总计
   hide_uncountable_species: 隐藏无法计数的物种
@@ -2286,6 +2475,7 @@ zh-CN:
   # output taxon in a split that hasn't been committed
   inactive_taxon_status: 无效
   inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
+  provisional_taxa_are_not_published: '临时分类单元不公开，可能会有重大变动。目前仅允许用于真菌，且必须与DNA序列的观察结果相关联。请在“你为什么要做这个改变？”栏里链接到这个观察。'
   inappropriate_content: 不适当的内容？
   inat_account_action: "%{site_name} &#58; 账户 &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}相信这是此地区内，这种分类单元的完整列表。"
@@ -3254,6 +3444,19 @@ zh-CN:
   observation_accuracy_validator_email_subject2: "您是否会帮助我们进行实验%{version}，以估计iNaturalist观察的准确度？"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     您是否会帮助我们进行一次<a href="%{url}">实验（版本%{version}）</a>，以估计iNaturalist观察的准确度？
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>尽可能细致地鉴定下面链接中的所有观察结果，即使它们已经达到了研究等级，即使您最好的的鉴定处于更高的分类级别（甚至是界一级）。</li>
+    <li>如果您看到“潜在分歧”弹出窗口……
+    <ul>
+    <li>并且您确信它是错误鉴定，请单击橙色按钮，</li>
+    <li>或者如果您不确定超出您的鉴定的内容，请单击绿色按钮</li>
+    </ul>
+    </li>
+    <li>在 <b>%{validator_deadline_date} 之前完成此操作</b></li>
+    </ol>
+    以下是我们认为您可以根据您在 iNat 上的活动识别的 <a href="%{sample_url}">%{num_obs} 个观察结果的子集</a>*。<b>请在 %{validator_deadline_date} 之前为每个观察结果添加您能找到的最精细鉴定</b>。
+    *<i>此链接将打开 iNaturalist 网站上的识别工具，需要您登录。我们建议使用电脑执行此任务，但也可以在您的移动浏览器应用程序中执行。如果您在 iNaturalist Android 应用程序中阅读此消息，请确保在浏览器应用程序中打开链接（而不是 iNat 应用程序本身）。您可能必须通过浏览器应用程序登录网站。</i>
   observation_accuracy_validator_email_we_will_calculate: |
     我们将通过将您的鉴定结果与观察分类单元进行比较来计算精度。您可以跳过您以前添加过鉴定的观察，如果这一观察仍然相关的话。 要查看我们是如何计算协议和分歧的更多信息，请继续阅读。
   observation_accuracy_validator_email_ids_equal_to: |
@@ -3629,11 +3832,31 @@ zh-CN:
       original: 原始
   photos_updated: 照片已更新。
   pi_consent_desc_title: 关于个人信息
+  pi_consent_desc_html: |
+    <p>
+    我们存储用户名和电子邮件地址等个人信息以管理本网站上的帐户，并遵守隐私法律，我们需要您选中此框以表明您同意对个人信息的这种使用。 要详细了解我们收集哪些信息以及我们如何使用这些信息，请参阅我们的<a href='%{privacy_url}' target='_blank'>隐私政策</a>和<a href='%{terms_url}' target='_blank'>使用条款</a>。
+    </p>
+    <p>
+    如果不存储个人信息，就无法拥有 iNaturalist 帐户，因此撤销此同意的唯一方法是删除您的帐户。
+    </p>
   pi_consent_label: |
     我同意允许 iNaturalist 储存、处理关于我的有限个人信息，以便管理我的账号。
   pi_consent_child_label: |
     我同意允许 iNaturalist 储存、处理关于我子女的有限个人信息，以便管理我子女的账号。
   data_transfer_consent_desc_title: 关于个人信息传输协议
+  data_transfer_consent_desc_html: |
+    <p>
+    有些数据隐私法，如欧洲联盟的《一般数据保护条例》（GPD）， 如果认为对个人信息的法律保护不充分，则要求明确同意将个人信息从其管辖区转移到其他管辖区。 截止到<a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020年</a>，欧洲联盟不再认为美国是为个人信息提供适当法律保护的管辖区。 特别是因为美国政府有可能对进入美国的数据进行监测。 其他法域可能也有同样的意见。
+    </p>
+    <p>
+    使用 iNaturalist 需要存储您的电子邮件地址等个人信息，所有iNaturalist 数据都存储在美国， 而且我们不能确定你在使用iNaturalist时拥有什么法律管辖权， 为了遵守诸如《通用数据保护条例》（GDPR）之类的隐私法， 您必须承认您理解并接受这种风险，并同意将您的个人信息传输到 iNaturalist 在美国的服务器。
+    </p>
+    <p>
+    要更多地了解我们收集的信息以及我们如何使用这些信息，请参阅我们的<a href='%{privacy_url}' target='_blank'>隐私政策</a>和我们的<a href='%{terms_url}' target='_blank'>使用条款</a>。
+    </p>
+    <p>
+    如果不存储个人信息，就无法开设iNaturalist 账户。 所以撤销此同意的唯一方法是删除您的帐户。
+    </p>
   data_transfer_consent_label: |
     我同意将我的个人信息移交给美国
   data_transfer_consent_child_label: |
@@ -4669,6 +4892,8 @@ zh-CN:
   show_running_total: 显示运行总计
   show_taxa_from_both: '（显示来自两个清单中的分类群）'
   show_taxa_from_everywhere: "显示来自世界各地的分类单元"
+  # Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: 展示临时分类单元
   show_taxa_from_place: "显示来自%{place}的分类群"
   show_total_counts: 显示总计计数
   show_uncountable_species: 显示无法计数的物种
@@ -4932,6 +5157,8 @@ zh-CN:
   supporting: 支持
   suspend_user: 停用用户
   suspend_user_html: 停用%{user}
+  suspend_user_reason_instructions_html: |
+    解释一下为什么您要停用这个账户，并标注出其违反的%{link_start_tag}社区指导规则%{link_end_tag}条款。请不要添加个人成见。
   sw_lat: 西南纬度
   sw_lon: 西南经度
   sync: 同步
@@ -5210,6 +5437,12 @@ zh-CN:
   this_list_only_accepts_taxa_that_are_species: 此列表只接受属于物种的分类单元
   this_list_only_accepts_taxa_that_are_species_or_lower: 此列表只接受物种或更低的分类
   this_observation: 此观察
+  this_observation_is_featured_on_x_sites:
+    zero: 此观察已被显示在%{count}个网站上
+    one: 此观察已被显示在%{count}个网站上
+    few: 此观察已被显示在%{count}个网站上
+    many: 此观察已被显示在%{count}个网站上
+    other: 此观察已被显示在%{count}个网站上
   this_observation_is_research_grade: 此观察达到了研究级！
   this_observation_was_created_using: "此观察的创建使用了："
   this_photo_is_already_associated: 此照片已与您的某个观察相关联。
@@ -5577,7 +5810,9 @@ zh-CN:
   user_faved_this_observation: "%{user} 收藏了此观察"
   user_flagged_as_a_non_spammer_html: "%{user} 被标记为非垃圾邮件发送者"
   user_flagged_as_a_spammer_html: "%{user} 被标记为垃圾信息发送者"
-  user_has_opted_out_of_community_id: 用户已选择退出社区分类单元
+  user_has_been_removed_from_site: |
+    %{username}已被移除出%{site_name}（删除全部相关内容可能需要花上一个小时）
+  user_has_opted_out_of_community_id: 用户已选择不接受社群分类
   user_hasnt_joined_any_projects: "%{user} 还未加入任何项目"
   user_helped_x_people_with_y_ids_html: "%{user}以 <strong>%{y} 个鉴定</strong>帮助到了 <strong>%{x} 个人</strong>"
   user_invite_observation_to_project: '%{user}邀请把您的观察“%{observation}”加入至%{project}项目。'
@@ -5620,6 +5855,20 @@ zh-CN:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>对%{project_title}的贡献
   users_edit_resend_confirmation_prompt_html: |
     在您重新发送确认邮件后， 您将被登出，并在您点击电子邮件中的链接之前再也无法登陆，因此<strong>一定要确保您输入了正确的电子邮件地址</strong>。
+  users_edit_send_confirmation_prompt_html: |
+    <h3>您即将退出</h3>
+    <p>
+    发送确认电子邮件后您将退出，并且在您点击电子邮件中的链接之前您将无法登录您的帐户，因此<strong class="bg-warning">请务必确保您已正确输入电子邮件地址。</strong>
+    </p>
+    <p>
+    以下是我们将向其发送确认的电子邮件地址：
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>如果您取消订阅了所有电子邮件...</h4>
+    <p>
+    如果您取消订阅我们发送的<em>所有</em>电子邮件，我们将无法向您发送确认电子邮件。要重新订阅，您需要找到我们发送的先前电子邮件，单击取消订阅链接，然后选择重新接收电子邮件。如果您无法执行此操作，请使用您在此处输入的电子邮件地址发送电子邮件至
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>，以便我们为您提供帮助。
+    </p>
   users_favorites: "%{user}的收藏夹"
   users_highlights_and_stats_from_year_on_site: "来自%{site}在%{year}年的%{user}的要点与统计数据"
   users_id: "%{user} 的鉴定"
@@ -5643,6 +5892,13 @@ zh-CN:
   view_all_fields: 查看所有字段
   view_all_flags: 查看所有标记
   view_all_members: 查看所有成员
+  # As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    zero: "查看全部 %{count}个"
+    one: "查看全部 %{count}个"
+    few: "查看全部 %{count}个"
+    many: "查看全部 %{count}个"
+    other: "查看全部 %{count}个"
   view_all_observations: 查看所有观察
   view_all_photocount_photos: "查看所有 %{photo_count} 张照片"
   view_assessment: 查看评估
@@ -5821,6 +6077,18 @@ zh-CN:
   # This might be shown if there is a character limit in a text field, in which
   # it would mean "x of y characters remaining"
   x_of_y_short: "%{x}/%{y}"
+  x_of_count_confirmed:
+    zero: "%{count}中的%{x}个已被确认"
+    one: "%{count}中的%{x}个已被确认"
+    few: "%{count}中的%{x}个已被确认"
+    many: "%{count}中的%{x}个已被确认"
+    other: "%{count}中的%{x}个已被确认"
+  x_of_count_observed:
+    zero: "%{count}中的%{x}个已被观察到"
+    one: "%{count}中的%{x}个已被观察到"
+    few: "%{count}中的%{x}个已被观察到"
+    many: "%{count}中的%{x}个已被观察到"
+    other: "%{count}中的%{x}个已被观察到"
   x_of_y_people_over_two_thirds_agree_it_is: "在%{y}人中，有%{x}人（超过2/3）同意这个"
   x_is_the_root_of_the_tree: "%{rank} %{name} 是树状图的根目录"
   x_project_journal: "%{project}的%{name}"
@@ -6144,10 +6412,69 @@ zh-CN:
             如果可以，请阅读我们的<a href="%{url}">教育者指南</a>以获得与学生使用%{site_name}的提示。
     donate:
       donate_short_desc: "立即捐款显示您的支持！"
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>您可以<u>双倍</u>或者<u>三倍</u>赋予你的捐助！感谢戈登与贝蒂·摩尔基金会，在2023年12月31日之前所有月度、季度和年度重复捐助都将翻三倍，而一次性捐助则将翻倍。</strong>
+        </p>
+        <p class="lead">
+        iNaturalist是全球最大的生物多样性社群之一。感谢您成为它的一员！
+        </p>
+        <p class="lead">
+        如果你信任这个为自然爱好者分享知识和生成不可替代的生物多样性数据的全球性社群，请考虑一次性地或重复地在线提供捐助，或者<a href="https://www.inaturalist.org/pages/giving">查看其他捐助方式</a>。
+        </p>
+        <p class="lead">
+        您的捐助对社群日益扩大的iNaturalist至关重要，这能帮助我们改进我们精确识别物种的技术和引入新的特性，以支持我们的服务器和员工。
+        </p>
+        <p class="text-muted">
+        iNaturalist是一个设立于美国的独立501(c)(3)、免税、非盈利组织（税号：92-1296468）。
+        </p>
+      donate_desc3_html: |
+        <p class="lead">
+         <strong>iNaturalist 是世界上致力于探索生物多样性的最大社区之一。谢谢您的加入！</strong>
+        </p>
+        <p class="lead">
+         如果你相信这个全球性的自然爱好者社区有能力分享知识和产生不可替代的生物多样性数据，请考虑在网上一次性或重复赠捐赠, 或在<a
+        href="https://www.inaturalist.org/pages/giving">使用其他方式捐助</a>。
+        </p>
+        <p class="lead">
+         您的捐款将帮助iNaturalist的社群发展，有助于从推进计算机视觉和实现新功能来支持我们的服务器和员工。
+        </p>
+        <p class="text-muted">
+        INaturalist是一个位于美国的独立501(c)(3)、免税、非盈利组织。(税号: 94-1156258)。
+        </p>
       post_donate_social_media_text: 我支持iNaturalist，因为…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成为iNaturalist 的月捐支持者
         become_a_monthly_supporter_of_inaturalist_caps: 成为INATURALIST的月度支持者
+        desc_moore_html: |
+          <p class="lead">
+          <strong>您可以<u>三倍</u>赋予你的捐助！感谢戈登与贝蒂·摩尔基金会，在2023年12月31日之前所有月度、季度和年度重复捐助都将翻三倍，而一次性捐助则将翻倍。</strong>
+          </p>
+          <p class="lead">
+          iNaturalist是全球最大的生物多样性社群之一。感谢您成为它的一员！
+          </p>
+          <p class="lead">
+          如果你喜爱iNaturalist，请考虑成为一名月度捐助人。重复性捐助能通过可预测的现金流帮助iNaturalist继续扩大我们的基础建设和员工规模。而且您的月度捐助的效果会是捐助金的三倍！您还可以在你的个人简介页面中显示您的月度捐助人身份。
+          </p>
+          <p class="lead">
+          您的慈善捐助对社群日益扩大的iNaturalist至关重要，这能帮助我们改进我们精确识别物种的技术和引入新的特性，以支持我们的服务器和员工。您还可以进行<a href="%{donate_url}">一次性捐助</a>或<a href="https://www.inaturalist.org/pages/giving">探索其他捐助方式</a>。
+          </p>
+          <p class="text-muted">
+          iNaturalist是一个设立于美国的独立501(c)(3)、免税、非盈利组织（税号：92-1296468）。
+          </p>
+        desc3_html: |
+          <p class="lead">
+           <strong>iNaturalist 是世界上致力于探索生物多样性的最大社区之一。谢谢您的加入！</strong>
+          </p>
+          <p class="lead">
+          我们希望 iNaturalist 保持免费开放, 但系统开发却需要资金。如果您喜欢 iNaturalist, 请考虑成为请考虑成为每月的支持者。定期捐助有助于确保iNaturalist能够通过提供可预测的收入继续扩大其基础设施和员工规模。您也可以选择在您的个人档案展示您的每月捐赠状况。
+          </p>
+          <p class="lead">
+           您的捐款将帮助iNaturalist的社群发展，有助于从推进计算机视觉和实现新功能来支持我们的服务器和员工。如果您想进行一次性捐助， 请 <a href="%{donate_url}">点击这里</a>。
+          </p>
+          <p class="text-muted">
+          INaturalist是一个位于美国的独立501(c)(3)、免税、非盈利组织。(税号: 94-1156258)。
+          </p>
         thank_you_for_being_a_monthly_supporter: 感谢您成为每月支持者！
         thank_you_for_being_a_monthly_supporter_caps: 感谢您成为每月支持者！
       temporarily_unavailable: |
@@ -6185,6 +6512,11 @@ zh-CN:
         flaggable_content: 可标记的内容
         flaggable_content_desc: |
           可标记内容是创建标记时标记对象的主要文本属性。只有馆长和员工可以看到它。只有员工可以看到它的内容消息。
+        flags_that_should_not_be_resolved_desc2_html: |
+          请解决 <code>垃圾邮件</code>, <code>版权
+          侵权</code>和 <code>人工生成内容</code>
+          仅在内容非垃圾信息、不构成侵权时才标记
+          分别是版权，或非人工生成。
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -6565,6 +6897,54 @@ zh-CN:
           这是查询中表示的“叶”分类单元的总数。有时您会看到比此更多的非零计数行，因为有来自其他查询的更高级别的分类单元。例如，如果查询 1 有对智人的观察，查询 2 有对人属的观察，则这两个分类单元都会出现在表中，但这表示查询 1 中人属的额外一行，它没有将其包括在总数中，因为它只计算了该属中的智人物种，因为那是树的该部分的“叶”。
         # Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: 垂直
+        # Count of how many taxa several observation searches have in common
+        x_in_common:
+          # Count of how many taxa several observation searches have in common
+          zero: "%{count}个共同分类单元"
+          # Count of how many taxa several observation searches have in common
+          one: "%{count}个共同分类单元"
+          # Count of how many taxa several observation searches have in common
+          few: "%{count}个共同分类单元"
+          # Count of how many taxa several observation searches have in common
+          many: "%{count}个共同分类单元"
+          # Count of how many taxa several observation searches have in common
+          other: "%{count}个共同分类单元"
+        # Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          # Count of how many taxa are not present in *all* of several observation searches
+          zero: "%{count}个不同分类单元"
+          # Count of how many taxa are not present in *all* of several observation searches
+          one: "%{count}个不同分类单元"
+          # Count of how many taxa are not present in *all* of several observation searches
+          few: "%{count}个不同分类单元"
+          # Count of how many taxa are not present in *all* of several observation searches
+          many: "%{count}个不同分类单元"
+          # Count of how many taxa are not present in *all* of several observation searches
+          other: "%{count}个不重合分类单元"
+        # Count of how many taxa are present in an observation search
+        x_total:
+          # Count of how many taxa are present in an observation search
+          zero: "总计%{count}个"
+          # Count of how many taxa are present in an observation search
+          one: "总计%{count}个"
+          # Count of how many taxa are present in an observation search
+          few: "总计%{count}个"
+          # Count of how many taxa are present in an observation search
+          many: "总计%{count}个"
+          # Count of how many taxa are present in an observation search
+          other: "总计%{count}个"
+        # Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          zero: "%{count}个独特的"
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          one: "%{count}个独特的"
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          few: "%{count}个独特的"
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          many: "%{count}个独特的"
+          # Count of how many taxa in several observation searches are present in only one of those searches
+          other: "%{count}个独特的"
       export:
         choose_columns_desc: 选择您想要导出的列
         create_a_query_desc_html: |
@@ -6738,6 +7118,9 @@ zh-CN:
           观察的通用、唯一的标识符。请见
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        # message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          了解如何使用本页面并在iNaturalist上贡献鉴定！
         review_all_tooltip: "将本页全部观察标记为已审核"
         you_reviewed_message: "您审核了本页%{pageTotal}个观察中的%{reviewed}个，一共有%{total}个匹配的观察。"
         unreview_all_tooltip: "移除本页所有观察的已审核状态"
@@ -6972,6 +7355,24 @@ zh-CN:
           我们已经包括了以下受影响照片的链接。
       user_parent_confirmation:
         subject: 您的孩子的 iNaturalist 帐户已被激活
+        content_html: |
+          <p>
+          感谢您为您的孩子建立 iNaturalist 账号！该账号现已启用，以下是我们记录的您输入的详细信息：
+          </p>
+          <ul>
+          <li><strong>父母或法定监护人名称：</strong> %{parent_name}</li>
+          <li><strong>父母或法定监护人电子邮箱：</strong> %{parent_email}</li>
+          <li><strong>孩子的名称：</strong> %{child_name}</li>
+          <li><strong>孩子的生日：</strong> %{child_birthday}</li>
+          <li><strong>孩子账号的电子邮箱：</strong> %{child_email}</li>
+          <li><strong>孩子账号名称：</strong> %{child_username}</li>
+          </ul>
+          <p>
+          请在您孩子的Seek app上点击菜单中的“INaturalist”选项，再点击菜单底部的"Log in with iNaturalist" 选项来登录您孩子的账号。
+          </p>
+          <p>
+          您的孩子将通过Seek app 上传他们的观察记录，并可以在iNaturalist.org 上看到它们。
+          </p>
       users_updates_suspended:
         message: |
           您在 %{site_name} 已有段时间不活跃，因此我们暂停了您的订阅。要重新开始获取网站活跃更新，请<a href="%{login_url}">登录您的账户</a>以重试。
@@ -7325,6 +7726,20 @@ zh-CN:
         recent_w_7_obs_desc: 在此前7天内注册，并添加了不少于7个观察
         # label for chart legend, linking to more information on the Seek app
         seek_desc_html: 通过<a href="%{url}">Seek</a>创建
+        today_identified_by_others: 他人鉴定过的观察（1天）
+        today_identified_by_others_by_iconic_taxon: 他人鉴定过的观察（1天）
+        observations_unknown: 30天后仍为未知生命的观察
+        observations_total_unknown_ratio: 未知观察的比例（30天）
+        observations_total_unknown_ratio_desc: 未知观察占所有观察的比例
+        for_others: 对其他人来说
+        ids_last_7_days: 鉴定（7天）
+        ids_last_7_days_desc: 过去7天内创建的鉴定
+        ids_today: 鉴定（1天）
+        ids_today_desc: 一天内创建的鉴定
+        ids_last_7_days_for_others: 为他人鉴定（7天）
+        ids_last_7_days_for_others_desc: 这些鉴定是在过去7天内添加到其他人的观察上的
+        ids_today_for_others: 为他人鉴定（1天）
+        ids_today_for_others_desc: 这些鉴定是在1天内添加到其他人的观察上的
         time_to_id_desc: 鉴定所需的时间（小时，1周移动窗口）
         TTCID: 社群鉴定所需时间
         TTCID_desc: 从与社群分类单元匹配的其他人那里获得鉴定的时间。
@@ -7417,6 +7832,12 @@ zh-CN:
           你知不知道%{site_name}几乎完全是由%{x_people}翻译的？这里是所有在今年添加了翻译的个人的名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，%{seek_link_tag}Seek%{link_tag_end}，以及%{help_link_tag}iNatHelp%{link_tag_end}所翻译的词条数量。
         translators_prompt: |
           如果您想要帮助翻译， %{link_tag}点此了解更多%{link_tag_end}。
+        view_all_publications_count_caps2:
+          zero: "查看全部%{count}个出版物"
+          one: "查看%{count}个出版物"
+          few: "查看全部%{count}个出版物"
+          many: "查看全部%{count}个出版物"
+          other: "查看全部%{count}个出版物"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7433,7 +7854,26 @@ zh-CN:
           您只能直接对物种绰号进行细微的更改（例如性别更改、拼写错误）。添加一个 <a target="_blank" href="%{url}">分类单元交换</a> 如果您需要对名称进行其他更改。
         # message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "注意：您刚刚添加了一个锁定分类单元的后代（<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>)。请考虑将其合并到现有分类单元中。" # message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " 注意：这个活跃分类单元的父本是不活跃的，但它是这个分类单元的输出 <a href='/taxon_changes/%{taxon_change_id}'> 分类单元更改草案</a> 我们假设您很快就会提出。" # a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: 这个活跃的分类单元拥有的不仅仅是 %{count} 下游观察或受分类框架覆盖，因此某些分类属性只能由与该分类框架相关的工作人员或分类管理人编辑。
       show:
+        about_names_desc: |
+          <p>
+          大多数类群的生物在口语中都有“俗名”。这些名字通常易识别，易发音，且长时间保持稳定，但即使是同种语言，许多生物在不同地区也会有不同的名字，这会让准确无混淆的沟通变得困难。对于遵从<a href="https://zh.wikipedia.org/wiki/二名法">双名法</a>命名的生物 ，科学家通过使用唯一的“学名”解决这个问题，但学名往往由拉丁语（一种没人说的语言）衍生而来，不如俗名容易记忆。学名也包含了生物的分类学位置，所以当研究者提出新的理论，更准确地描述演化学关系时，相关类群的学名也会改变，这又降低了它们在沟通中的可用性，即使是对熟悉学名的人而言。
+          </p>
+          <p>
+          用一句格言做个总结：“俗名异地而异，学名与时俱进。”
+          </p>
+          <p>
+          为了解决上述的问题，我们尽量同时展示俗名和学名，并基于用户的语言和地理位置偏好选择相应的俗名。物种名的排列顺序由其在全局或对应语言下的优先级决定。
+          </p>
+        about_regional_names_desc: |
+          <p>
+          对于使用相同语言的不同国家地区，其对物种的俗名选择也会有所不同，所以物种名需要分地区加入（通常以国家区分）。比如墨西哥和哥斯达黎加都使用西班牙语，但对同一物种可能有不同的称呼。
+          </p>
+          <p>
+          这张表包含了不同地区已加入的物种名，且每个地区的物种名根据优先级进行排列。假设有两个西班牙语的物种名被加入墨西哥地区，上方的会被优先展示。
+          </p>
         about_conservation_status_desc: |
           保护状况总结了一组生物灭绝的风险。
         about_establishment_desc: |
@@ -7570,6 +8010,27 @@ zh-CN:
           分类单元名称与等级。对于同一物种的等级，等级会在二项式后插入。
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>尝试添加已在其他地方使用过的名称。请不要发明新名字。</p></li>
+          <li><p>不要添加重复的名称，例如不要为很多种类的鹰命名为“鹰”</p></li>
+          <li><p>对于更高级别的分类群，尝试使用包含所有后代的名称，如“苍鹭及其同类”或“杜鹃花科”</p></li>
+          <li>
+          <p>
+          不要添加不是名称的信息，例如，有关您认为应如何使用该名称的想法的括号信息
+          </p>
+          </li>
+          <li>
+          <p>
+          新词典应该是英文的。请不要添加如“French，Français”一般的翻译语言名称，因为这样我们很难或不可能为使用不同语言的网站的用户显示本地化名称。
+          </p>
+          </li>
+          <li>
+          <p>
+          与翻译语言相关的常用名称将显示为该语言的默认通用名称（除非受到地点首选项、名称排序等的影响）。<a class="readmore" href="/pages/translate">了解有关翻译的详情</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           添加地方专属的名称，以便为该地方的站点和用户优先提供该名称。如果一个地方有多个名称，您可以优先考虑<a href="%{url}">此处</a>。请<strong>不要</strong>为每个使用该名称的地方添加同样的名称，请仅将其用于与其他地方的名称发生冲突的地方。
       taxon:
@@ -7659,6 +8120,16 @@ zh-CN:
         common_scientific_name_display_order: 俗名/学名显示顺序
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。网络站点由当地的科研机构所支持，他们和iNaturalist签署了协议以支持当地对生物多样性数据的运用。他们有权限获得本国之内为保护濒危物种而对一般用户自动遮盖了的真实坐标。
+          </p>
+          <p>
+          你的用户名和密码在所有iNaturalist网络的站点上均适用。如果你选择参与一个网络站点，运营这一站点的当地机构将获得您的email地址（仅用于就站点活动联系您）并获得为保护濒危物种而对一般用户自动遮盖或设置私有的真实坐标。
+          </p>
+          <p>
+          备注：在拥有超过1000个观察的情况下，请不要为了测试而随便改变您的参与站点。
+          </p>
         licensing_desc_html: |
           许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href="http://www.gbif.org/">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。
         errors:
@@ -7809,6 +8280,24 @@ zh-CN:
       index:
         connect_with_nature: 连接自然
         explore_and_share: 探索并分享您对自然世界的观察。
+        observations_to_date:
+          zero: "个观察至今"
+          one: "个观察至今"
+          few: "个观察至今"
+          many: "个观察至今"
+          other: "个观察至今"
+        species_observed:
+          zero: "个物种已观察"
+          one: "个物种已观察"
+          few: "个物种已观察"
+          many: "个物种已观察"
+          other: "个物种已观察"
+        people_signed_up:
+          zero: "个人已注册"
+          one: "个人已注册"
+          few: "个人已注册"
+          many: "个人已注册"
+          other: "个人已注册"
         how_it_works: 它是如何工作的
         record_your_observations: 记录您的观察
         share_with_fellow_naturalists: 与自然学家分享
@@ -8795,6 +9284,98 @@ zh-CN:
         Protozoa: 原生动物
         Mollusca: 软体动物
         Chromista: 假菌
+  id_summary_dqa:
+    public_metrics:
+      true: "真实陈述"
+      identification: "对鉴定有用"
+      references: "有参考资料支持"
+      distinct: "区别于其他摘要"
+      clear: "简短、学术性和清晰的写作"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "评论与摘要有关。"
+      true: "评论是真实陈述"
+      matches_taxon: "评论涉及 %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "鉴定摘要演示"
+        info_line_one: "本演示探讨了利用人工智能总结iNaturalist评论的目的"
+        info_line_two: "使鉴定专业知识更加易于获取。"
+        blog_link_text: "在我们的博客上了解更多"
+        missing_identifier: "缺少分类单元摘要标识符"
+        service_unavailable: "鉴定摘要信息暂不可用。"
+        no_summary_data: "没有找到该分类单元的摘要数据。"
+        load_failed: "加载分类单元摘要失败"
+      filters:
+        active_only: "仅显示活跃摘要"
+        run_label: "运行名称"
+        run_placeholder: "选择一个运行"
+        run_loading: "正在加载运行……"
+        photo_tips_toggle: "显示照片提示"
+        language_label: "语言"
+      summary_list:
+        loading: "正在加载鉴定摘要..."
+        empty: "没有此物种的鉴定摘要。"
+        refreshing: "刷新摘要..."
+        heading: "鉴定摘要"
+        feedback_toggle: "鉴定摘要反馈"
+        feedback_unavailable: "对此摘要的反馈不可用。"
+        sign_in_required: "登录以对鉴定摘要反馈进行投票"
+        service_unavailable: "反馈服务现在不可用。"
+        submit_failed: "提交反馈失败。"
+      summary_feedback:
+        loading: "正在加载反馈..."
+        explainer: "您的反馈将被用来帮助在将来改进鉴定摘要"
+        sign_in_tooltip: "登录以对此摘要进行投票"
+        submitting_tooltip: "提交反馈..."
+        aria_helpful: "%{label}：有帮助"
+        aria_not_helpful: "%{label}：没有帮助"
+      summary_item:
+        disclaimer: "此 iNaturalist 用户评论的摘要由 AI 生成，可能不正确。您可以通过提供反馈来帮助我们改进这个摘要。"
+        default_label: "摘 要"
+        default_title: "摘要"
+        copy_link: "复制本摘要链接"
+        photo_tip_label: "照片提示"
+        photo_tip_aria: "照片提示： %{tip}"
+        references_toggle: "iNaturalist 用户评论参考"
+        user_fallback: "iNaturalist 用户"
+        reference_commented: "已评论"
+        view_comment: "查看评论"
+        view_reference_feedback: "查看参考反馈"
+      reference_feedback:
+        loading: "正在加载参考反馈..."
+        sign_in_required: "登录以对参考反馈进行投票。"
+        unavailable: "目前无法提供参考反馈。"
+        service_unavailable: "参考反馈服务目前不可用。"
+        submit_failed: "未能提交参考反馈。"
+        sign_in_tooltip: "登录以对此参考进行投票"
+        submitting_tooltip: "提交反馈..."
+        aria_helpful: "%{label}：有帮助"
+        aria_not_helpful: "%{label}： 没有帮助"
+      taxon_detail:
+        select_species: "选择一个物种以查看鉴定摘要。"
+        last_updated: "上次更新时间"
+        no_image: "无可用图片"
+        photo_tips_heading: "照片提示"
+        summary_uuid: "分类单元鉴定摘要 UUID"
+      taxa_list:
+        group_labels:
+          animalia: "其他动物"
+          actinopterygii: "辐鳍鱼"
+          aves: "鸟类"
+          reptilia: "爬行动物"
+          amphibia: "两栖动物"
+          mammalia: "哺乳动物"
+          arachnida: "蛛形纲动物 Arachnids"
+          insecta: "昆虫"
+          plantae: "植物"
+          fungi: "真菌"
+          protozoa: "原 生 动物"
+          mollusca: "软体动物"
+          chromista: "色藻"
+        other_group: "其他"
+        empty: "没有可用的物种。"
   # Title of a section warning the user about something
   warning_title: 警告
   wikimedia: Wikimedia
