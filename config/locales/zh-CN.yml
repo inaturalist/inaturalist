@@ -765,6 +765,9 @@ zh-CN:
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
       根据这些 ID中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的 ID <strong>无意中产生分歧</strong> 。
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    基于现有证据，社群鉴定分类能否得到进一步改进？
   batch: 批
   batch_edit: 批量编辑
   #Where x is the title of a list of taxa
@@ -1270,6 +1273,7 @@ zh-CN:
   curating: 助理
   curation: 管理
   curator: 馆长
+  curators_with_most_ids_of_the_input_taxon: "拥有最多输入分类单元鉴定数的馆长"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist网站馆长是官方授信的志愿者，有编辑iNaturalist分类学系统和修改用户内容的权限。网站馆长对iNaturalist十分重要，他们保持网站分类系统的及时更新，用户发言的合适与文明。想了解成为馆长意味着什么，请参阅以下内容，如果您也想成为馆长，请仔细浏览<a href="/pages/curator+guide" target="_blank">馆长指南</a>，然后填写本页面的申请。
@@ -1894,6 +1898,7 @@ zh-CN:
   external_taxon_including_children: 外部分类（包含子项）
   extinct: 灭绝
   extinct_in_the_wild: 野外灭绝
+  provisional_taxon: 临时
   extra_properties: 额外属性
   evidence_accurately_depicts_organism_or_scene: 证据准确地描述了个体或场景
   evidence_of_organism: 生物证据
@@ -2208,6 +2213,8 @@ zh-CN:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: 隐藏私密位置的观察
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: 隐藏临时分类单元
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隐藏运行总计
   hide_uncountable_species: 隐藏无法计数的物种
@@ -2360,6 +2367,7 @@ zh-CN:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: 无效
   inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
+  provisional_taxa_are_not_published: '临时分类单元不公开，可能会有重大变动。目前仅允许用于真菌，且必须与DNA序列的观察结果相关联。请在“你为什么要做这个改变？”栏里链接到这个观察。'
   inappropriate_content: 不适当的内容？
   inat_account_action: "%{site_name} &#58; 账户 &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}相信这是此地区内，这种分类单元的完整列表。"
@@ -4776,6 +4784,8 @@ zh-CN:
   show_running_total: 显示运行总计
   show_taxa_from_both: '（显示来自两个清单中的分类群）'
   show_taxa_from_everywhere: "显示来自世界各地的分类单元"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: 展示临时分类单元
   show_taxa_from_place: "显示来自%{place}的分类群"
   show_total_counts: 显示总计计数
   show_uncountable_species: 显示无法计数的物种
@@ -5690,7 +5700,7 @@ zh-CN:
   user_flagged_as_a_spammer_html: "%{user} 被标记为垃圾信息发送者"
   user_has_been_removed_from_site: |
     %{username}已被移除出%{site_name}（删除全部相关内容可能需要花上一个小时）
-  user_has_opted_out_of_community_id: 用户已选择退出社区分类单元
+  user_has_opted_out_of_community_id: 用户已选择不接受社群分类
   user_hasnt_joined_any_projects: "%{user} 还未加入任何项目"
   user_helped_x_people_with_y_ids_html: "%{user}以 <strong>%{y} 个鉴定</strong>帮助到了 <strong>%{x} 个人</strong>"
   user_invite_observation_to_project: '%{user}邀请把您的观察“%{observation}”加入至%{project}项目。'
@@ -6378,6 +6388,11 @@ zh-CN:
         flaggable_content: 可标记的内容
         flaggable_content_desc: |
           可标记内容是创建标记时标记对象的主要文本属性。只有馆长和员工可以看到它。只有员工可以看到它的内容消息。
+        flags_that_should_not_be_resolved_desc2_html: |
+          请解决 <code>垃圾邮件</code>, <code>版权
+          侵权</code>和 <code>人工生成内容</code>
+          仅在内容非垃圾信息、不构成侵权时才标记
+          分别是版权，或非人工生成。
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -6939,6 +6954,9 @@ zh-CN:
           观察的通用、唯一的标识符。请见
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          了解如何使用本页面并在iNaturalist上贡献鉴定！
         review_all_tooltip: "将本页全部观察标记为已审核"
         you_reviewed_message: "您审核了本页%{pageTotal}个观察中的%{reviewed}个，一共有%{total}个匹配的观察。"
         unreview_all_tooltip: "移除本页所有观察的已审核状态"
@@ -7540,6 +7558,20 @@ zh-CN:
         recent_w_7_obs_desc: 在此前7天内注册，并添加了不少于7个观察
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: 通过<a href="%{url}">Seek</a>创建
+        today_identified_by_others: 他人鉴定过的观察（1天）
+        today_identified_by_others_by_iconic_taxon: 他人鉴定过的观察（1天）
+        observations_unknown: 30天后仍为未知生命的观察
+        observations_total_unknown_ratio: 未知观察的比例（30天）
+        observations_total_unknown_ratio_desc: 未知观察占所有观察的比例
+        for_others: 对其他人来说
+        ids_last_7_days: 鉴定（7天）
+        ids_last_7_days_desc: 过去7天内创建的鉴定
+        ids_today: 鉴定（1天）
+        ids_today_desc: 一天内创建的鉴定
+        ids_last_7_days_for_others: 为他人鉴定（7天）
+        ids_last_7_days_for_others_desc: 这些鉴定是在过去7天内添加到其他人的观察上的
+        ids_today_for_others: 为他人鉴定（1天）
+        ids_today_for_others_desc: 这些鉴定是在1天内添加到其他人的观察上的
         time_to_id_desc: 鉴定所需的时间（小时，1周移动窗口）
         TTCID: 社群鉴定所需时间
         TTCID_desc: 从与社群分类单元匹配的其他人那里获得鉴定的时间。
@@ -7650,6 +7682,8 @@ zh-CN:
           您只能直接对物种绰号进行细微的更改（例如性别更改、拼写错误）。添加一个 <a target="_blank" href="%{url}">分类单元交换</a> 如果您需要对名称进行其他更改。
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "注意：您刚刚添加了一个锁定分类单元的后代（<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>)。请考虑将其合并到现有分类单元中。" #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " 注意：这个活跃分类单元的父本是不活跃的，但它是这个分类单元的输出 <a href='/taxon_changes/%{taxon_change_id}'> 分类单元更改草案</a> 我们假设您很快就会提出。" #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: 这个活跃的分类单元拥有的不仅仅是 %{count} 下游观察或受分类框架覆盖，因此某些分类属性只能由与该分类框架相关的工作人员或分类管理人编辑。
       show:
         about_names_desc: |
           <p>
@@ -9066,6 +9100,98 @@ zh-CN:
         Protozoa: 原生动物
         Mollusca: 软体动物
         Chromista: 假菌
+  id_summary_dqa:
+    public_metrics:
+      true: "真实陈述"
+      identification: "对鉴定有用"
+      references: "有参考资料支持"
+      distinct: "区别于其他摘要"
+      clear: "简短、学术性和清晰的写作"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "评论与摘要有关。"
+      true: "评论是真实陈述"
+      matches_taxon: "评论涉及 %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "鉴定摘要演示"
+        info_line_one: "本演示探讨了利用人工智能总结iNaturalist评论的目的"
+        info_line_two: "使鉴定专业知识更加易于获取。"
+        blog_link_text: "在我们的博客上了解更多"
+        missing_identifier: "缺少分类单元摘要标识符"
+        service_unavailable: "鉴定摘要信息暂不可用。"
+        no_summary_data: "没有找到该分类单元的摘要数据。"
+        load_failed: "加载分类单元摘要失败"
+      filters:
+        active_only: "仅显示活跃摘要"
+        run_label: "运行名称"
+        run_placeholder: "选择一个运行"
+        run_loading: "正在加载运行……"
+        photo_tips_toggle: "显示照片提示"
+        language_label: "语言"
+      summary_list:
+        loading: "正在加载鉴定摘要..."
+        empty: "没有此物种的鉴定摘要。"
+        refreshing: "刷新摘要..."
+        heading: "鉴定摘要"
+        feedback_toggle: "鉴定摘要反馈"
+        feedback_unavailable: "对此摘要的反馈不可用。"
+        sign_in_required: "登录以对鉴定摘要反馈进行投票"
+        service_unavailable: "反馈服务现在不可用。"
+        submit_failed: "提交反馈失败。"
+      summary_feedback:
+        loading: "正在加载反馈..."
+        explainer: "您的反馈将被用来帮助在将来改进鉴定摘要"
+        sign_in_tooltip: "登录以对此摘要进行投票"
+        submitting_tooltip: "提交反馈..."
+        aria_helpful: "%{label}：有帮助"
+        aria_not_helpful: "%{label}：没有帮助"
+      summary_item:
+        disclaimer: "此 iNaturalist 用户评论的摘要由 AI 生成，可能不正确。您可以通过提供反馈来帮助我们改进这个摘要。"
+        default_label: "摘 要"
+        default_title: "摘要"
+        copy_link: "复制本摘要链接"
+        photo_tip_label: "照片提示"
+        photo_tip_aria: "照片提示： %{tip}"
+        references_toggle: "iNaturalist 用户评论参考"
+        user_fallback: "iNaturalist 用户"
+        reference_commented: "已评论"
+        view_comment: "查看评论"
+        view_reference_feedback: "查看参考反馈"
+      reference_feedback:
+        loading: "正在加载参考反馈..."
+        sign_in_required: "登录以对参考反馈进行投票。"
+        unavailable: "目前无法提供参考反馈。"
+        service_unavailable: "参考反馈服务目前不可用。"
+        submit_failed: "未能提交参考反馈。"
+        sign_in_tooltip: "登录以对此参考进行投票"
+        submitting_tooltip: "提交反馈..."
+        aria_helpful: "%{label}：有帮助"
+        aria_not_helpful: "%{label}： 没有帮助"
+      taxon_detail:
+        select_species: "选择一个物种以查看鉴定摘要。"
+        last_updated: "上次更新时间"
+        no_image: "无可用图片"
+        photo_tips_heading: "照片提示"
+        summary_uuid: "分类单元鉴定摘要 UUID"
+      taxa_list:
+        group_labels:
+          animalia: "其他动物"
+          actinopterygii: "辐鳍鱼"
+          aves: "鸟类"
+          reptilia: "爬行动物"
+          amphibia: "两栖动物"
+          mammalia: "哺乳动物"
+          arachnida: "蛛形纲动物 Arachnids"
+          insecta: "昆虫"
+          plantae: "植物"
+          fungi: "真菌"
+          protozoa: "原 生 动物"
+          mollusca: "软体动物"
+          chromista: "色藻"
+        other_group: "其他"
+        empty: "没有可用的物种。"
   #Title of a section warning the user about something
   warning_title: 警告
   wikimedia: Wikimedia
