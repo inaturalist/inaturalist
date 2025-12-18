@@ -1735,6 +1735,7 @@ hu:
   external_applications: Külső alkalmazások
   extinct: kihalt
   extinct_in_the_wild: Vadon kihalt
+  provisional_taxon: Ideiglenes
   evidence_accurately_depicts_organism_or_scene: A bizonyíték pontosan ábrázolják az élőlényt vagy a környezetét
   evidence_of_organism: Bizonyíték az organizmusra
   evidence_related_to_single_subject: A bizonyíték egyetlen organizmusra utal
@@ -2014,6 +2015,8 @@ hu:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Rejtsd el a rejtett koordinátákkal rendelkező megfigyeléseket
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Ideiglenes taxonok elrejtése
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Kumulatív elrejtése
   hide_uncountable_species: Megszámlálhatatlan fajok elrejtése
@@ -2138,6 +2141,7 @@ hu:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inaktív
   inactive_taxon_concepts_are: Az inaktív taxonok olyan taxonok, melyek rendszertanilag elavultak vagy be vannak ütemezve egy taxoncserére. Az elavult taxonokat azért tartjuk meg, hogy megmaradjon előzetes történetük és biztosítsuk a kompatibilitást bizonyos partner honlapokkal.
+  provisional_taxa_are_not_published: 'Az ideiglenes taxonok nem publikusak, és jelentős változásoknak lehetnek kitéve. Jelenleg csak gombák esetében engedélyezettek, és csak DNS-szekvenciával rendelkező megfigyelésekhez használhatók. Kérjük, hogy linkelj egy ilyen megfigyelésre a "Mi a módosítás oka?" mezőben.'
   inappropriate_content: Kifogásolható tartalom?
   inat_believes_this_is_a_complete_listing: "%{site_name} szerint ezen a helyen ennek a taxonnak ez egy teljes listája."
   inat_user_profile: "%{site_name}: %{user} profilja"
@@ -4290,6 +4294,8 @@ hu:
   show_relative_proportions_of_all_observations: Az összes megfigyeléshez képest
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Kumulatív megjelenítése
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Ideiglenes taxonok megjelenítése
   show_taxa_from_place: "%{place}-i taxonok megjelenítése"
   show_uncountable_species: Megszámlálhatatlan fajok megjelenítése
   #Text to indicate that the first X items in a list are being shown, but there
@@ -5194,7 +5200,7 @@ hu:
   where_were_you?: Hol voltál?
   which_projects_can_add_your_observations?: Mely hagyományos projektek használhatják fel a megfigyeléseidet?
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
-  why_are_you_making_this_change_optional: Miért módosítasz? (opcionális)
+  why_are_you_making_this_change_optional: Mi a módosítás oka? (opcionális)
   why_are_you_making_this_change_cite_source_required: Mi a módosítás oka? Kérjük, hogy adj magyarázatot, lehetőleg forrásmegjelöléssel. (Kötelező)
   why_you_can_see_the_coordinates: Miért láthatod a koordinátákat
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
