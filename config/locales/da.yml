@@ -36,6 +36,10 @@ da:
     few: '%{count} identifikationer'
     many: '%{count} identifikationer'
     other: '%{count} identifikationer'
+  x_identifications_caps_html:
+    zero: '<span class="count">%{count}</span> IDENTIFIKATIONER'
+    one: '<span class="count">%{count}</span> IDENTIFIKATION'
+    few: '<span class="count">%{count}</span> IDENTIFIKATIONER'
   x_languages:
     zero: "%{count} sprog"
     one: "%{count} sprog"
