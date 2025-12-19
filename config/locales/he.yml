@@ -7967,6 +7967,9 @@ he:
         wikipedia_summary_desc_html: |
           סיכום קצר של טקסון זה המבוסס של <a target="_blank"
           href="%{url}">עמוד הויקיפדיה</a> שלו הנמצא במטמון שלנו עד לרענון ידני. רענון סיכום זה גם מעדכן מייד את המטמון שלנו של תוכן ויקיפדיה יסודי המוצג באתר שלנו, המתעדכן אוטומטית לאחר שבוע.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          ניתן לבצע רק שינויים קלים בכינוי המין ישירות (למשל שינויי מין, שגיאות כתיב). הוסף <a target="_blank" href="%{url}">החלפת טקסון</a> אם אתה זקוק לשינויים אחרים בשם.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "שימו לב: זה עתה הוספת צאצא של טקסון נעול (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). נא לשקול למזג את זה לתוך טקסון קיים במקום." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " שימו לב: האב של הטקסון הפעיל הזה אינו פעיל אבל הוא הפלט של זה <a href='/taxon_changes/%{taxon_change_id}'> טיוטת שינוי טקסון</a> שאנחנו מניחים שתאשר.י בקרוב." #a message when you try to save an edit to a taxon covered by a taxon framework
