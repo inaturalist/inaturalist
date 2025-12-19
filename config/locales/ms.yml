@@ -306,10 +306,6 @@ ms:
           Biarkan bendera pelanggaran hak cipta sebagai tidak diselesaikan jika bunyi ini berlaku
           melanggar hak cipta.
     taxa:
-      edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Anda hanya boleh membuat perubahan kecil pada julukan spesies secara langsung (cth. perubahan jantina, salah ejaan). Tambah <a target="_blank" href="%{url}">Pertukaran takson</a> jika anda memerlukan perubahan lain pada nama.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Ada yang tidak kena ketika cuba menyiarkan tag tersebut: %{message}
