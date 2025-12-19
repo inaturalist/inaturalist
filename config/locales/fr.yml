@@ -959,8 +959,6 @@ fr:
   changing_the_geoprivacy: 'En changeant la géoconfidentialité, vous changez la façon dont les gens voient l’emplacement de votre observation.'
   check_above_for_errors: Veuillez corriger les erreurs ci-dessus.
   check_back_soon: Revenez voir dans quelques temps !
-  check_here_to_autoload_description: "Cochez pour charger automatiquement la description à partir de Wikipédia.\nNe cochez pas si le nom scientifique de taxon est aussi un nom non\nscientifique ou un mot souvent mal écrit, comme « Parus »."
-  check_here_to_autoload_photos: "Cochez ici pour charger automatiquement les photos à partir de Flickr. Ne\ncochez pas si le nom scientifique d’un taxon est aussi un nom non\nscientifique ou un mot souvent mal écrit, comme « Parus »."
   check_list: Vérifier la liste
   check_list_description: "Choisissez un taxon d’une catégorie supérieure que vous voulez afficher\ndans la liste, comme « Aves » pour les oiseaux, ou « Amphibie » pour les\namphibiens. Une fois établie, cette liste n’autorisera pas des taxons qui\nne font pas partie du taxon établi. Par exemple, si vous créez une liste\nd’oiseaux, vous ne pourrez y ajouter\nune grenouille."
   check_list_for_individual_taxa_that: 'Check-list pour les taxons qui vivent ici, par ex. « Oiseaux de %{place} ».'
@@ -8174,9 +8172,6 @@ fr:
           Rang auquel ce taxon est complet, par ex. si cette famille contient tous ses genres, mais pas toutes ses espèces, cela serait mis à « genre ». Par défaut, espèces.
         wikipedia_summary_desc_html: |
           Bref résumé de ce taxon basé sur sa page <a target="_blank" href="%{url}">Wikipédia</a> que nous mettons en cache indéfiniment jusqu'à ce qu'il soit actualisé manuellement. Rafraîchir ce résumé met également immédiatement à jour notre cache du contenu sous-jacent de Wikipédia que nous affichons sur le site Web, et qui se rafraîchit automatiquement après une semaine.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Vous ne pouvez apporter que des modifications mineures à l’épithète d’espèce directement (par exemple, changements de sexe, fautes d’orthographe). Ajoutez un <a target="_blank" href="%{url}">Échange de taxons</a> si vous avez besoin d’autres modifications du nom.
       show:
         about_names_desc: |
           <p>
