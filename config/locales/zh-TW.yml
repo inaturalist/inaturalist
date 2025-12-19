@@ -6910,6 +6910,9 @@ zh-TW:
           我們根據<a target="_blank" href="%{url}">維基百科頁面</a>對於此分類群的
           簡短描述之無限期快取，直到手動更新頁面。重新整理此摘要也會立即更新
           我們顯示在網站上下方的維基百科內容快取，會在一週後自動更新。
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          您只能直接對物種綽號進行微小的更改（例如性別更改、拼寫錯誤）。新增 <a target="_blank" href="%{url}">分類單元交換</a> 如果您需要對名稱進行其他更改。
       show:
         about_conservation_status_desc: |
           保育狀態總結出一群生物的滅絕風險。
