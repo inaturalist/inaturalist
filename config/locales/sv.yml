@@ -975,8 +975,6 @@ sv:
   changing_the_geoprivacy: 'Ändring av koordinatsekretess förändrar hur andra personer ser ditt fynds position.'
   check_above_for_errors: Kolla efter fel ovan
   check_back_soon: Kolla snart igen!
-  check_here_to_autoload_description: Markera här för att automatiskt ladda Wikipedias beskrivningen. Du bör kanske undvika detta när ett taxons vetenskapliga namn samtidigt är ett icke-vetenskapligt ord eller en vanlig felstavning, som "Parus".
-  check_here_to_autoload_photos: Markera här för att automatiskt ladda bilder från Flickr. Du bör kanske undvika detta när ett taxons vetenskapliga namn samtidigt är ett icke-vetenskapligt ord eller en vanlig felstavning, som "Parus".
   check_list: Kolla lista
   check_list_description: Välj ett taxon på högre nivå som du vill visa i den här listan, som "Aves" för fåglar eller "Amphibia" för groddjur. Väl inställt kommer listan inte att tillåta taxa som inte tillhör gruppen. Till exempel, om du skapar en lista över fåglar kommer du inte att kunna lägga till några grodor.
   check_list_for_individual_taxa_that: 'Checklistor för enskilda taxa som finns här, t.ex. "Fåglar i %{place}".'
@@ -8130,9 +8128,6 @@ sv:
         wikipedia_summary_desc_html: |
           Kort sammanfattning av detta taxon baserat på dess <a target="_blank" href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
           webbplatsen, som uppdateras automatiskt efter en vecka.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Du kan bara göra mindre ändringar av artepitetet direkt (t.ex. könsändringar, felstavning). Lägg till en <a target="_blank" href="%{url}">Byte av taxon</a> om du behöver andra ändringar av namnet.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Observera att du just har lagt till en ättling till ett låst taxon (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Överväg att slå ihop detta med ett befintligt taxon i stället." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Heads up: föräldern till detta aktiva taxon är inaktiv, men det är utdata från detta <a href='/taxon_changes/%{taxon_change_id}'> Utkast till taxonändring</a> som vi antar att du kommer att begå inom kort." #a message when you try to save an edit to a taxon covered by a taxon framework
