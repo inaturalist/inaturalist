@@ -956,8 +956,6 @@ de:
   changing_the_geoprivacy: 'Die Änderung der Geo-Privatsphäre bestimmt, wie andere Personen den Ort deiner Beobachtung sehen.'
   check_above_for_errors: Oben nach Fehlern suchen
   check_back_soon: Schau demnächst wieder vorbei!
-  check_here_to_autoload_description: Hier klicken, um die Beschreibung von Wikipedia automatisch zu laden. Vielleicht möchtest du es deaktivieren, wenn der wissenschaftliche Name eines Taxons auch ein nichtwissenschaftliches Wort oder eine häufige falsche Schreibweise wie "Parus" ist.
-  check_here_to_autoload_photos: Wähle dies aus, wenn Fotos von Flickr automatisch geladen werden sollen. Du solltest es abwählen, wenn der wissenschaftliche Name eines Taxons auch ein nichtwissenschaftliches Wort (z.B. "Mus") oder eine häufige Falschschreibung ist.
   check_list: Checkliste
   check_list_description: Wähle ein höherstufiges Taxon, wie "Aves" für Vögel oder "Amphibia" für Lurche aus, das du in dieser Liste anzeigen möchtest. Wenn gesetzt, erlaubt diese Liste keine Taxa, die nicht in diesem Taxon enthalten sind. Zum Beispiel, wenn du eine Liste mit Vögeln erstellt, wirst dort keine Frösche hinzufügen können.
   check_list_for_individual_taxa_that: 'Checklisten für das Vorkommen individueller Taxa, wie z.B. "Vögel in %{place}".'
@@ -7844,9 +7842,6 @@ de:
           sie manuell aktualisiert wurde. Das Aktualisieren dieser Zusammenfassung aktualisiert 
           unseren Cache für den zugrundeliegenden Wikipedia-Inhalt, den wir auf der
           Website anzeigen, die automatisch nach einer Woche aktualisiert wird.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Sie können nur geringfügige Änderungen am Artepitheton direkt vornehmen (z. B. Geschlechtsänderungen, Rechtschreibfehler). Fügen Sie ein <a target="_blank" href="%{url}">Taxon-Tausch</a> Wenn Sie weitere Änderungen am Namen benötigen.
       show:
         about_names_desc: |
           <p>
