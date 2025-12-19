@@ -8190,6 +8190,9 @@ nl:
           handmatig wordt vernieuwd. Verversen van deze samenvatting update onmiddellijk
           onze cache van de onderliggende Wikipedia-inhoud die we laten zien op de
           website, die automatisch verversd wordt na een week.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Je kunt alleen kleine wijzigingen rechtstreeks in de soortaanduiding aanbrengen (bijv. geslachtsveranderingen, spelfout)en. Voer een <a target="_blank" href="%{url}">Taxonwissel</a> uit als je andere wijzigingen in de naam nodig hebt.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Let op: je hebt zojuist een afstammeling van een gesloten taxon toegevoegd (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Overweeg om dit in plaats daarvan samen te voegen met een bestaand taxon." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Let op: de ouder van dit actieve taxon is inactief, maar het is de output van dit <a href='/taxon_changes/%{taxon_change_id}'> Ontwerp taxon verandering</a> waarvan we aannemen dat u zich binnenkort zult vastleggen." #a message when you try to save an edit to a taxon covered by a taxon framework
