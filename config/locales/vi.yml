@@ -249,10 +249,6 @@ vi:
           Để cờ vi phạm bản quyền là chưa được giải quyết nếu âm thanh này không được giải quyết
           vi phạm bản quyền.
     taxa:
-      edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Bạn chỉ có thể thực hiện các thay đổi nhỏ đối với biệt hiệu loài trực tiếp (ví dụ: thay đổi giới tính, sai chính tả). Thêm một <a target="_blank" href="%{url}">Hoán đổi đơn vị phân loại</a> nếu bạn cần những thay đổi khác đối với tên.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Đã xảy ra sự cố khi cố gắng đăng các thẻ đó: %{message}
