@@ -7798,6 +7798,9 @@ tr:
         wikipedia_summary_desc_html: |
           Bu, taksonun <a target="_blank"
           href="%{url}">Wikipedia sayfasına</a> dayanan ve manuel olarak yenilenene kadar süresiz olarak önbelleğe aldığımız kısa özetidir. Bu özetin yenilenmesi, web sitesinde gösterdiğimiz ve bir hafta sonra otomatik olarak yenilenen temel Wikipedia içeriğinin önbelleğini de hemen günceller.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Tür adında yalnızca küçük değişiklikler yapabilirsiniz (ör. cinsiyet değişiklikleri, yazım hataları). Başka değişiklikler yapmanız gerekiyorsa <a target="_blank" href="%{url}">takson yer değişimi</a> ekleyin.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Dikkat: Az önce kilitli bir taksonun altına bir alt takson eklediniz (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Bunun yerine lütfen bunu mevcut bir taksonla birleştirmeyi düşünün." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Dikkat: Bu aktif taksonun üst taksonu pasif durumda ancak bunun nedeni bu <a href='/taxon_changes/%{taxon_change_id}'>taslak takson değiştirme</a> ve muhtemelen yakında onaylayacağınızı varsayıyoruz." #a message when you try to save an edit to a taxon covered by a taxon framework
