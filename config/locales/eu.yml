@@ -3255,6 +3255,10 @@ eu:
       index:
         observers_desc: Egun honetan behaketa bat gehitu da
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Espeziearen epitetoan aldaketa txikiak egin ditzakezu zuzenean (adibidez, genero aldaketak, ortografia okerra). Gehitu <a target="_blank" href="%{url}">Taxon trukea</a> Izena aldatu behar izanez gero.
       show:
         site_curators_disabled_wikipedia_html: |
           Webguneko kuradoreek aurkezpena bertan desgaitu dute <a href="%{url}">hau
