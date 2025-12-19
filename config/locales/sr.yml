@@ -5790,6 +5790,9 @@ sr:
       edit:
         high_status_conservation_status_notice_html: |
           Dodavanje statusa ugroženosti višem nivou taksona utiče na opservacije svih vrsta unutar tog taksona. Molimo te da ne dodaješ statuse taksonima koji sadrže vrste koje nemaju status ugroženosti jer će tako koordinate opservacija tih vrsta biti nepotrebno skrivene.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Možete samo da napravite manje izmene epiteta vrste direktno (npr. promene pola, pravopisne greške). Dodajte <a target="_blank" href="%{url}">Razmena taksona</a> ako su vam potrebne druge izmene imena.
       show:
         about_names_desc: |
           <p>
