@@ -358,6 +358,10 @@ hy:
           Հեղինակային իրավունքի խախտման դրոշները թողեք որպես չլուծված, եթե այս ձայնը չլուծվի
           խախտել հեղինակային իրավունքը:
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Դուք կարող եք ուղղակիորեն աննշան փոփոխություններ կատարել տեսակի էպիտետում (օրինակ՝ սեռի փոփոխություն, սխալ ուղղագրություն)։ Ավելացնել ա <a target="_blank" href="%{url}">տաքսոնների փոխանակում</a> եթե Ձեզ անհրաժեշտ են անվանման այլ փոփոխություններ:
       show:
         site_curators_disabled_wikipedia_html: |
           Կայքի կուրատորները անջատել են ցուցադրումը <a href="%{url}">սա
