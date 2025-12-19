@@ -6676,6 +6676,9 @@ lv:
         wikipedia_summary_desc_html: |
           Īss taksona apraksts, atsaucoties uz <a target="_blank"
           href="%{url}">Vikipēdijas lapu</a>. Glabājam to kešatmiņā līdz tas tiek manuāli pārlādēts. Pārlādējot aprakstu, tiek atjaunota arī Vikipēdijas satura kešatmiņa, kas tiek pārlādēta automātiski reizi nedēļā.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Jūs varat veikt tikai nelielas izmaiņas sugas epitetā tieši (piemēram, dzimuma maiņa, pareizrakstības kļūda). Pievienot <a target="_blank" href="%{url}">Taksona mijmaiņa</a> ja jums ir nepieciešamas citas nosaukuma izmaiņas.
       show:
         about_conservation_status_desc: |
           Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
