@@ -6063,6 +6063,9 @@ gl:
         wikipedia_summary_desc_html: |
           Breve resumo deste taxon baseado na sua <a target="_blank"
           href="%{url}">páxina da Wikipedia</a>, que almacenamos indefinidamente ata que se actualice manualmente. A actualización este resumo tamén recarga imediatamente o noso caché do contido da Wikipedia subxacente que mostramos no site, e que é actualizado automaticamente logo dunha semana.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Só podes facer pequenos cambios no epíteto da especie directamente (por exemplo, cambios de xénero, erros ortográficos). Engadir un <a target="_blank" href="%{url}">Intercambio de taxons</a> Se precisas outros cambios no nome.
       show:
         about_conservation_status_desc: |
           O estado de conservación resume o risco de extinción para un grupo de organismos.
