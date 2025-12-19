@@ -246,6 +246,10 @@ fil:
           iwanan ang mga flag ng paglabag sa copyright bilang hindi nalutas kung ang tunog na ito ay
           lumabag sa copyright.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Maaari ka lamang gumawa ng mga menor de edad na pagbabago sa epithet ng species nang direkta (hal. mga pagbabago sa kasarian, maling pagbaybay). Magdagdag ng isang <a target="_blank" href="%{url}">Pagpapalit ng Taxon</a> Kung kailangan mo ng iba pang mga pagbabago sa pangalan.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         May mali sa pagsisikap na i-post ang mga tag na iyon: %{message}
