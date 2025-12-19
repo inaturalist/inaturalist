@@ -897,8 +897,6 @@ id:
   changing_the_geoprivacy: 'Mengubah geoprivasi mengubah bagaimana orang lain melihat lokasi pengamatan Anda.'
   check_above_for_errors: Periksa hal-hal di atas untuk eror
   check_back_soon: Periksa kembali nanti!
-  check_here_to_autoload_description: Cek di sini untuk memuat otomatis deskripsi dari Wikipedia. Anda mungkin ingin menghapus centang ketika nama ilmiah takson juga merupakan sebuah kata non-ilmiah atau kesalahan ejaan yang umum, seperti "Parus".
-  check_here_to_autoload_photos: Cek di sini untuk foto muat otomatis dari Flickr. Anda mungkin ingin menghapus centang ketika nama ilmiah takson juga merupakan sebuah kata non-ilmiah atau kesalahan ejaan yang umum, seperti "Parus".
   check_list: Daftar centang
   check_list_description: Pilih tingkat taksonomi yang lebih tinggi yang ingin Anda tampilkan dalam daftar ini, seperti "Aves" untuk burung, atau "Amfibi" untuk amfibi. Bila sudah diatur, daftar ini tidak akan mengizinkan taksa yang tidak ada di dalam takson ini. Sebagai contoh, jika Anda membuat daftar burung, Anda tidak akan dapat menambahkan katak untuk itu.
   check_list_for_individual_taxa_that: 'Daftar centang untuk taksa individu yang tinggal di sini, contohnya "Burung dari %{place}".'
@@ -7841,9 +7839,6 @@ id:
         wikipedia_summary_desc_html: |
           Ringkasan singkat dari takson ini berdasarkan <a target="_blank"
           href="%{url}">halaman Wikipedianya</a> yang terus kami simpan dalam cache hingga disegarkan secara manual. Menyegarkan ringkasan ini juga akan secara langsung mengubah cache konten Wikipedia kami yang kami tampilkan di situs web, yang akan disegarkan secara otomatis setiap minggunya.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Anda hanya dapat membuat perubahan kecil pada julukan spesies secara langsung (misalnya perubahan jenis kelamin, salah ejaan). Tambahkan <a target="_blank" href="%{url}">penukaran takson</a> jika Anda memerlukan perubahan lain pada namanya.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Perhatian: Anda baru saja menambahkan keturunan takson yang terkunci (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Harap pertimbangkan untuk menggabungkan ini ke dalam takson yang sudah ada." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Perhatian: induk dari takson aktif ini tidak aktif, namun ia merupakan hasil dari <a href='/taxon_changes/%{taxon_change_id}'> perubahan takson draf</a> ini yang kami asumsikan akan Anda terapkan segera." #a message when you try to save an edit to a taxon covered by a taxon framework
