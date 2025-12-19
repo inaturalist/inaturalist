@@ -227,10 +227,6 @@ ka:
           დატოვეთ საავტორო უფლებების დარღვევის დროშები, როგორც გადაუჭრელი, თუ ეს ხმა
           არღვევს საავტორო უფლებებს.
     taxa:
-      edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          თქვენ შეგიძლიათ მხოლოდ უმნიშვნელო ცვლილებების შეტანა სახეობების ეპითეტში პირდაპირ (მაგ. სქესის ცვლილებები, მართლწერის შეცდომა). დამატება <a target="_blank" href="%{url}">ტაქსონის გაცვლა</a> თუ თქვენ გჭირდებათ სხვა ცვლილებები სახელში.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         რაღაც არასწორად მოხდა ამ ტეგების გამოქვეყნების მცდელობისას: %{message}
