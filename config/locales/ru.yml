@@ -8102,6 +8102,9 @@ ru:
         wikipedia_summary_desc_html: |
           Краткое описание этого таксона основано на его <a target="_blank"
           href="%{url}">странице Википедии</a> , которую мы кэшируем неопределенно долго, пока не обновим вручную. Обновление этого описания приводит к немедленному обновлению нашего кэша базового контента Википедии, который автоматически обновляется еженедельно и показывается на веб-сайте.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Вы можете вносить напрямую лишь незначительные изменения в видовой эпитет (например, изменение пола, орфографические ошибки). Добавьте <a target="_blank" href="%{url}">Замена таксонов</a> если вам нужны другие изменения в названии.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Внимание: вы только что добавили потомка заблокированного таксона (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Пожалуйста, рассмотрите возможность объединения его с существующим таксоном." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Внимание: родитель этого активного таксона неактивен, но это результат этого <a href='/taxon_changes/%{taxon_change_id}'> проекта изменения таксона</a> Мы предполагаем, что вы сделаете это в ближайшее время." #a message when you try to save an edit to a taxon covered by a taxon framework
