@@ -8272,6 +8272,9 @@ hr:
           ručno ne osvježi. Osvježavanje ovog sažetka također odmah ažurira
           našu predmemoriju osnovnog sadržaja Wikipedije koji prikazujemo na
           web stranici, koja se automatski osvježava nakon tjedan dana.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Možete samo izravno napraviti manje promjene epiteta vrste (npr. promjene spola, pravopisne pogreške). Dodajte <a target="_blank" href="%{url}">Zamjena taksona</a> ako su vam potrebne druge promjene imena.
       show:
         about_names_desc: |
           <p>
