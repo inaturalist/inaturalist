@@ -7979,6 +7979,9 @@ it:
           Breve descrizione sintetica di questo taxon basata sulla sua <a target="_blank"
           href="%{url}"> pagina di Wikipedia</a> che manteniamo a tempo indeterminato fino ad un
           aggiornamento manuale. Aggiornando questa sintesi viene aggiornata immediatamente anche la nostra cache del sottostante contenuto di Wikipedia visualizzato sul sito web, che si aggiorna automaticamente dopo una settimana.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Puoi apportare direttamente solo piccole modifiche all'epiteto della specie (ad es. cambiamenti di genere, errori di ortografia). Aggiungi un <a target="_blank" href="%{url}">Scambio di taxon</a> se hai bisogno di altre modifiche al nome.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Attenzione: hai appena aggiunto un discendente di un taxon bloccato (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Si prega di considerare la possibilità di unirlo in un taxon esistente." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Attenzione: il parentale di questo taxon attivo è inattivo ma è l'output di questa <a href='/taxon_changes/%{taxon_change_id}'> bozza di modifica di taxon</a> che presumiamo attuerai a breve." #a message when you try to save an edit to a taxon covered by a taxon framework
