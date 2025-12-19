@@ -495,6 +495,10 @@ ro:
           lăsați semnalizările de încălcare a drepturilor de autor ca nerezolvate dacă acest sunet
           încalcă drepturile de autor.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Puteți face doar modificări minore la epitetul speciei direct (de exemplu, schimbări de gen, greșeli de ortografie). Adăugați un <a target="_blank" href="%{url}">Schimb de taxoni</a> dacă aveți nevoie de alte modificări ale numelui.
       show:
         site_curators_disabled_wikipedia_html: |
           Curatorii site-ului au dezactivat afișarea <a href="%{url}">acest
