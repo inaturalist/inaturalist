@@ -3315,6 +3315,9 @@ sk:
       edit:
         high_status_conservation_status_notice_html: |
           Pridanie statusu ochrany vyššiemu taxónu ovplyvňuje pozorovania všetkých druhov v tomto taxóne. Nepridávajte prosím statusy pre taxóny, ktoré obsahujú druhy bez statusu pretože to zakryje súradnice pozorovaní týchto druhov.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Priamo môžete vykonať len menšie zmeny v prívlastku druhu (napr. zmeny pohlavia, preklepy). Pridanie <a target="_blank" href="%{url}">výmena taxónov</a> ak potrebujete ďalšie zmeny názvu.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Upozornenie: práve ste pridali potomka uzamknutého taxónu (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Zvážte namiesto toho zlúčenie do existujúceho taxónu." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Upozornenie: rodič tohto aktívneho taxónu je neaktívny, ale je to výstup tohto <a href='/taxon_changes/%{taxon_change_id}'> návrh zmeny taxónu</a> predpokladáme, že sa čoskoro zaviažete." #a message when you try to save an edit to a taxon covered by a taxon framework
