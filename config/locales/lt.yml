@@ -889,8 +889,6 @@ lt:
   changing_the_geoprivacy: 'Vietos privatumo pakeitimas lemia, kaip kiti žmonės mato jūsų stebėjimo vietą.'
   check_above_for_errors: Patikrinkite, ar nėra klaidų
   check_back_soon: Patikrinkite netrukus!
-  check_here_to_autoload_description: Pažymėkite, kad automatiškai užsikrautų aprašymas iš Vikipedijos. Atžymėkite, jeigu taksono mokslinis pavadinimas taip pat yra nemokslinis žodis arba dažnai klaidingai įvedamas žodis, pavyzdžiui „Parus“.
-  check_here_to_autoload_photos: Pažymėkite, kad automatiškai užsikrautų nuotraukos iš Flickr. Atžymėkite, jeigu taksono mokslinis pavadinimas taip pat yra nemokslinis žodis arba dažnai klaidingai įvedamas žodis, pavyzdžiui „Parus“.
   check_list: Kontrolinis sąrašas
   check_list_description: Pasirinkite aukštesnio lygio taksoną, kurį norėtumėte matyti šiame sąraše, pvz. "Aves" paukščiams ar "Amphibia" varliagyviams. Taip nustačius, šiame sąraše nebus galimi taksonai, nepriklausantys nuradytam taksonui. Pavyzdžiui, jei sukursite paukščių sąrašą, jūs negalėsite pridėti prie jo varlių.
   check_list_for_individual_taxa_that: 'Patikrinkite atskirus taksonus, kurie čia gyvena, pvz.: „%{place} paukščiai“.'
@@ -4795,9 +4793,6 @@ lt:
           Jeigu norite padėti versti, %{link_tag}sužinokite, kaip tą galite padaryti%{link_tag_end}.
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Galite atlikti tik nedidelius rūšies epiteto pakeitimus tiesiogiai (pvz., lyties pakeitimai, rašybos klaidos). Pridėti <a target="_blank" href="%{url}">Taksonų apsikeitimas</a> jei reikia kitų pavadinimo pakeitimų.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Įspėjimas: ką tik pridėjote užrakinto taksono palikuonį (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Prašome apsvarstyti galimybę sujungti tai į esamą taksoną." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Įspėjimas: šio aktyvaus taksono tėvas yra neaktyvus, bet tai yra šio rezultatas <a href='/taxon_changes/%{taxon_change_id}'> Taksono pakeitimo projektas</a> kad mes manome, kad netrukus įsipareigosite." #a message when you try to save an edit to a taxon covered by a taxon framework
