@@ -304,10 +304,6 @@ fa:
           پرچم های نقض حق نسخه برداری را حل نشده بگذارید اگر این صدا حل نشده باشد
           حق چاپ را نقض می کند.
     taxa:
-      edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          شما فقط می توانید تغییرات جزئی را مستقیما در لقب گونه ایجاد کنید (به عنوان مثال تغییر جنسیت، غلط املایی). افزودن یک <a target="_blank" href="%{url}">سوآپ تاکسون</a> اگر نیاز به تغییرات دیگری در نام دارید.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         در تلاش برای ارسال این برچسب ها مشکلی پیش آمد: %{message}
