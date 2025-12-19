@@ -254,6 +254,10 @@ hi:
           कॉपीराइट उल्लंघन झंडे को अनसुलझे के रूप में छोड़ दें यदि यह ध्वनि करती है
           कॉपीराइट का उल्लंघन।
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          आप केवल प्रजातियों के विशेषण में सीधे मामूली बदलाव कर सकते हैं (उदाहरण के लिए लिंग परिवर्तन, गलत वर्तनी)। एक जोड़ें <a target="_blank" href="%{url}">टैक्सोन स्वैप</a> यदि आपको नाम में अन्य परिवर्तनों की आवश्यकता है।
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         उन टैग को पोस्ट करने की कोशिश में कुछ गलत हो गया: %{message}
