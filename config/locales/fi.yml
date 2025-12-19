@@ -6680,6 +6680,10 @@ fi:
         translators_prompt: |
           Jos haluat auttaa käännöstyössä, %{link_tag}lue lisää miten%{link_tag_end}.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Voit tehdä vain pieniä muutoksia lajin epiteettiin suoraan (esim. sukupuolen muutokset, kirjoitusvirheet). Lisää <a target="_blank" href="%{url}">taksonin vaihto</a> jos tarvitset muita muutoksia nimeen.
       show:
         about_names_desc: |
           <p>
