@@ -7675,6 +7675,9 @@ zh-CN:
         wikipedia_summary_desc_html: |
           基于<a target="_blank"
           href="%{url}">维基百科</a>页面的关于该分类单元的简介会由我站进行无限期缓存，直到手动更新为止。更新这一简介也会立刻更新我站对上述维基百科内容的缓存，以供显示在网站上，这会在一个星期后自动刷新。
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          您只能直接对物种绰号进行细微的更改（例如性别更改、拼写错误）。添加一个 <a target="_blank" href="%{url}">分类单元交换</a> 如果您需要对名称进行其他更改。
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "注意：您刚刚添加了一个锁定分类单元的后代（<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>)。请考虑将其合并到现有分类单元中。" #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " 注意：这个活跃分类单元的父本是不活跃的，但它是这个分类单元的输出 <a href='/taxon_changes/%{taxon_change_id}'> 分类单元更改草案</a> 我们假设您很快就会提出。" #a message when you try to save an edit to a taxon covered by a taxon framework
