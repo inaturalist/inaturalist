@@ -908,8 +908,6 @@ lv:
   changing_the_geoprivacy: 'Ģeoprivātuma iestatījumi izmaina to, kā citiem lietotājiem izskatās tava novērojuma atrašanās vieta.'
   check_above_for_errors: Paritini uz augšu, lai apskatītu kļūdas
   check_back_soon: Pārbaudi vēlreiz vēlāk!
-  check_here_to_autoload_description: Atzīmē lodziņu, lai automātiski ielādētu Vikipēdijas aprakstu. Iesakām neatzīmēt šo lodziņu, ja taksona zinātniskais nosaukums sakrīt ar nezinātnisko nosaukumu vai ar nosaukumu, kas bieži tiek nepareizi uzrakstīts, piemēram, "Parus".
-  check_here_to_autoload_photos: Atzīmē lodziņu, lai automātiski ielādētu Flickr fotogrāfijas. Iesakām neatzīmēt šo lodziņu, ja taksona zinātniskais nosaukums sakrīt ar nezinātnisko nosaukumu vai ar nosaukumu, kas bieži tiek nepareizi uzrakstīts, piemēram, "Parus".
   check_list: Kontrollapa
   check_list_description: Izvēlies, kuru augstākas pakāpes taksonu vēlies rādīt sarakstā, piemēram "Aves" putniem vai "Amphibia" abiniekiem. Sarakstā netiks rādīti taksoni, kas nav daļa no izvēlētā augstākas pakāpes taksona. Piemēram, sarakstā, kas paredzēts putniem nebūs iespējams pievienot novērojumus ar vardēm.
   check_list_for_individual_taxa_that: 'Individuālu šeit dzīvojošu taksonu kontrollapas, piemēram, "Putni no %{place}".'
@@ -6678,9 +6676,6 @@ lv:
         wikipedia_summary_desc_html: |
           Īss taksona apraksts, atsaucoties uz <a target="_blank"
           href="%{url}">Vikipēdijas lapu</a>. Glabājam to kešatmiņā līdz tas tiek manuāli pārlādēts. Pārlādējot aprakstu, tiek atjaunota arī Vikipēdijas satura kešatmiņa, kas tiek pārlādēta automātiski reizi nedēļā.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Jūs varat veikt tikai nelielas izmaiņas sugas epitetā tieši (piemēram, dzimuma maiņa, pareizrakstības kļūda). Pievienot <a target="_blank" href="%{url}">Taksona mijmaiņa</a> ja jums ir nepieciešamas citas nosaukuma izmaiņas.
       show:
         about_conservation_status_desc: |
           Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
