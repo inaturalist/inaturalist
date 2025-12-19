@@ -1082,8 +1082,6 @@ pl:
   changing_the_geoprivacy: 'Zmiana geo-prywatności zmienia to jak inni widzą lokalizację Twojej obserwacji.'
   check_above_for_errors: Sprawdź powyżej pod kątem błędów
   check_back_soon: Sprawdź ponownie wkrótce!
-  check_here_to_autoload_description: Zaznacz tutaj, aby pobrać automatycznie opis z Wikipedii. Nie zaznaczaj, jeśli nazwa naukowa taksonu jest jednocześnie zwykłym słowem lub częstym błędem (np. "Lodówka").
-  check_here_to_autoload_photos: Zaznacz tutaj, aby pobrać automatycznie zdjęcia z Flickra. Nie zaznaczaj, jeśli nazwa naukowa taksonu jest jednocześnie zwykłym słowem lub częstym błędem (np. "Lodówka").
   check_list: Checklista
   check_list_description: Wybierz takson wyższego rzędu, który chciałbyś ująć w liście (np. "Aves" dla ptaków, "Amphibia" dla płazów etc.). W wyniku takiego ustawienia na liście nie znajdą się taksony, które nie spełniają kryteriów - na przykład jeśli utworzysz listę ptaków, to nie będziesz mógł do niej dodać żadnych żab.
   check_list_for_individual_taxa_that: 'Checklisty dla pojedynczych taksonów, które tu występują, np. "%{place} - lista ptaków".'
@@ -5429,9 +5427,6 @@ pl:
         translators_title: Tłumacze
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Możesz wprowadzać tylko drobne zmiany bezpośrednio w epitecie gatunku (np. zmiany płci, błędy ortograficzne). Dodaj plik <a target="_blank" href="%{url}">Zamiana taksonów</a> Jeśli potrzebujesz innych zmian w nazwie.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Uwaga: właśnie dodałeś potomka zablokowanego taksonu (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Zamiast tego rozważ połączenie tego z istniejącym taksonem." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Uwaga: rodzic tego aktywnego taksonu jest nieaktywny, ale jest to wynik tego <a href='/taxon_changes/%{taxon_change_id}'> Projekt zmiany taksonu</a> Zakładamy, że wkrótce się zobowiążesz." #a message when you try to save an edit to a taxon covered by a taxon framework
