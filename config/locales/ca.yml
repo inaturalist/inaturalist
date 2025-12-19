@@ -7291,6 +7291,9 @@ ca:
         wikipedia_summary_desc_html: |
           Breu resum d'aquest tàxon basat a la seva <a target="_blank"
           href="%{url}">pàgina de la Viquipèdia</a>, la qual guardem indefinidament fins que és actualitzada manualment. L'actualització d'aquest sumari també actualitzar automàticament la nostra còpia del contingut de la Viquipèdia que mostrem en el lloc Web, el qual s'actualitza automàticament passada una setmana.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Només podeu fer canvis menors a l'epítet de l'espècie directament (per exemple, canvis de gènere, errors ortogràfics). Afegeix un <a target="_blank" href="%{url}">Intercanvi de tàxons</a> si necessiteu altres canvis al nom.
       show:
         about_conservation_status_desc: |
           L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.
