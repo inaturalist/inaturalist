@@ -784,6 +784,10 @@ ta:
         store_prompt: |
           நீங்கள் எங்கே போனாலும் உங்கள் iNat பெருமையைக் காட்ட விரும்புகிறீர்களா? iNat Store பார்க்கவும்!
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          நீங்கள் இனத்தின் அடைமொழியில் நேரடியாக சிறிய மாற்றங்களை மட்டுமே செய்ய முடியும் (எ.கா. பாலின மாற்றங்கள், எழுத்துப்பிழை தவறு). ஒரு சேர்க்கவும் <a target="_blank" href="%{url}">வகைப்பாட்டு இடமாற்றம்</a> உங்களுக்கு பெயரில் வேறு மாற்றங்கள் தேவைப்பட்டால்.
       show:
         frequency:
           "Alive or Dead=Alive": உயிருடன்
