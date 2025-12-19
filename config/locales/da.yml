@@ -985,8 +985,6 @@ da:
   changing_the_geoprivacy: 'Ændring af geofortrolighed ændrer hvordan andre personer ser placeringen af din observation.'
   check_above_for_errors: Tjek ovenstående for fejl
   check_back_soon: Kig ind snart!
-  check_here_to_autoload_description: Sæt markering her for at auto-indlæse en Wikipedia beskrivelse. Du vil muligvis fjerne markeringen igen, når et taksons videnskabelige navn også er et ikke-videnskabeligt ord eller en almindelig fejlstavning, som "Parus".
-  check_here_to_autoload_photos: Sæt markering her for at auto-indlæse fotos fra Flickr.. Du vil muligvis fjerne markeringen igen, når et taksons videnskabelige navn også er et ikke-videnskabeligt ord eller en almindelig fejlstavning, som "Parus".
   check_list: Tjekliste
   check_list_description: Vælg en takson på et højere niveau som du vil vise på denne liste, som "Aves" for fugle eller "Amphibia" for padder. Når den først er indstillet, tillader denne liste ikke taksa, der ikke er i denne takson. Hvis du f.eks. opretter en liste over fugle, vil du ikke kunne tilføje nogle frøer til den.
   check_list_for_individual_taxa_that: 'Tjeklister for individuelle taksa, der lever her, f.eks. "Fugle i %{place}".'
@@ -8507,9 +8505,6 @@ da:
           href="%{url}">Wikipedia-side</a>, der caches på ubestemt tid indtil
           manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
           hvilket automatisk opfriskes efter én uge.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Kun mindre ændringer i artsbetegnelsen kan foretages direkte (f.eks. kønsændringer, stavefejl). Tilføj en <a target="_blank" href="%{url}">taksonombytning</a> ved behov for andre navneændringer.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Bemærk: Du har netop tilføjet en efterkommer af en låst takson (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Overvej venligst at flette denne med en eksisterende takson i stedet." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Bemærk: Forælderen til denne aktive takson er inaktiv, men det er outputtet af denne <a href='/taxon_changes/%{taxon_change_id}'> taksons udkastsændring</a>, som vi antager, at du snarest vil angive." #a message when you try to save an edit to a taxon covered by a taxon framework
