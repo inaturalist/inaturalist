@@ -1814,6 +1814,10 @@ mi:
         species_per_year_by_date_added: Nā rā tapiritia
         translators_title: Kaiwhakareo
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Ka taea anake e koe te whakarerekē i ngā huringa iti ki te ingoa momo (hei tauira, ngā huringa ira tangata, te takikupu hē). Tāpiritia he <a target="_blank" href="%{url}">whakawhiti tāke</a> mēnā e hiahia ana koe ki ētahi atu huringa ki te ingoa.
       show:
         charts_caps: TŪTOHI
         frequency:
