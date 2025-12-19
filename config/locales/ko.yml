@@ -569,8 +569,6 @@ ko:
   change_your_password: 비밀번호 바꾸기
   changing_the_geoprivacy: '위치보호를 변경하면 다른 사람이 사용자의 관찰 위치를 보는 방식이 변경됩니다.'
   check_above_for_errors: 오류에 대해서는 상단을 확인하십시오
-  check_here_to_autoload_description: 위키백과에서 설명을 자동으로 가져오려면 여기에 체크하십시오. 분류군의 학명이 비과학 용어거나 흔한 오타일 경우 체크하지 않는 것이 좋습니다.
-  check_here_to_autoload_photos: 플리커에서 자동으로 사진을 업로드하려면 체크하세요. 학명이 일반적으로 쓰는 단어이거나 흔한 오타일 경우 체크하지 않는 것이 좋습니다.
   check_list: 체크리스트
   check_list_description: 목록에 표시할 상위 분류군을 선택하세요. 예를 들어, 조류의 경우 Aves, 양서류의 경우 Amphibia를 넣으면 됩니다. 선택 후 이 분류군이 아닌 관찰을 여기에 추가할 수 없습니다. 예를 들어, 새 목록을 만들 경우 어떠한 개구리도 해당 목록에 넣을 수 없습니다.
   check_list_for_individual_taxa_that: '이 장소에 사는 각 분류군 체크리스트 (예: %{place}에 사는 새)'
@@ -3014,9 +3012,6 @@ ko:
         include_usa: 미국 포함
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          종 별명을 직접 사소한 변경만 할 수 있습니다(예: 성별 변경, 철자 오류). 추가 <a target="_blank" href="%{url}">분류군 스왑</a> 이름에 다른 변경이 필요한 경우.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "주의: 방금 잠긴 분류군의 후손을 추가했습니다(<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). 대신 이것을 기존 분류군에 병합하는 것을 고려하십시오." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " 주의: 이 활성 분류군의 부모는 비활성 상태이지만 이 분류군의 출력입니다. <a href='/taxon_changes/%{taxon_change_id}'> 분류군 변경 초안</a> 우리는 당신이 곧 커밋할 것이라고 가정합니다." #a message when you try to save an edit to a taxon covered by a taxon framework
