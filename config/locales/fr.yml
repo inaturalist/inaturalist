@@ -8172,6 +8172,9 @@ fr:
           Rang auquel ce taxon est complet, par ex. si cette famille contient tous ses genres, mais pas toutes ses espèces, cela serait mis à « genre ». Par défaut, espèces.
         wikipedia_summary_desc_html: |
           Bref résumé de ce taxon basé sur sa page <a target="_blank" href="%{url}">Wikipédia</a> que nous mettons en cache indéfiniment jusqu'à ce qu'il soit actualisé manuellement. Rafraîchir ce résumé met également immédiatement à jour notre cache du contenu sous-jacent de Wikipédia que nous affichons sur le site Web, et qui se rafraîchit automatiquement après une semaine.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Vous ne pouvez apporter que des modifications mineures à l’épithète d’espèce directement (par exemple, changements de sexe, fautes d’orthographe). Ajoutez un <a target="_blank" href="%{url}">Échange de taxons</a> si vous avez besoin d’autres modifications du nom.
       show:
         about_names_desc: |
           <p>
