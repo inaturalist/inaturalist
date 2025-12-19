@@ -1943,6 +1943,9 @@ mk:
           прекршување на авторските права.
     taxa:
       edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Можете директно да правите само мали промени во епитетот за видот (на пример, промени на полот, правописна грешка). Додај <a target="_blank" href="%{url}">Замена на таксони</a> ако имате потреба од други промени на името.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Heads up: само што додадохте потомок на заклучен таксон (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Ве молиме размислете за спојување на ова во постоечки таксон." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Heads up: родителот на овој активен таксон е неактивен, но тоа е излезот од ова <a href='/taxon_changes/%{taxon_change_id}'> Нацрт таксонот промена</a> Ние претпоставуваме дека ќе се обврзате наскоро." #a message when you try to save an edit to a taxon covered by a taxon framework
