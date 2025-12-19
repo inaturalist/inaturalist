@@ -5010,6 +5010,9 @@ ar:
           الرتبة التي تكمل هذه الأصنوفة، على سبيل المثال إذا كانت هذه العائلة تحتوي على 
           كل أجناسها ولكن ليس كل أنواعها، هذا سيتم تعيينه إلى "جنس". 
           الافتراضي هو النوع.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          يمكنك فقط إجراء تغييرات طفيفة على لقب الأنواع مباشرة (مثل تغييرات الجنس والأخطاء الإملائية). أضف <a target="_blank" href="%{url}">مبادلة الأصناف</a> إذا كنت بحاجة إلى تغييرات أخرى على الاسم.
       show:
         about_names_desc: |
           <p>
