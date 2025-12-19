@@ -5427,6 +5427,9 @@ pl:
         translators_title: Tłumacze
     taxa:
       edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Możesz wprowadzać tylko drobne zmiany bezpośrednio w epitecie gatunku (np. zmiany płci, błędy ortograficzne). Dodaj plik <a target="_blank" href="%{url}">Zamiana taksonów</a> Jeśli potrzebujesz innych zmian w nazwie.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Uwaga: właśnie dodałeś potomka zablokowanego taksonu (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Zamiast tego rozważ połączenie tego z istniejącym taksonem." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Uwaga: rodzic tego aktywnego taksonu jest nieaktywny, ale jest to wynik tego <a href='/taxon_changes/%{taxon_change_id}'> Projekt zmiany taksonu</a> Zakładamy, że wkrótce się zobowiążesz." #a message when you try to save an edit to a taxon covered by a taxon framework
