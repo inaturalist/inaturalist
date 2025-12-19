@@ -1087,8 +1087,8 @@ en:
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
   check_above_for_errors: Check above for errors
   check_back_soon: Check back soon!
-  check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
-  check_here_to_autoload_photos: Check here to auto-load photos from Flickr. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
+  check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common misspelling, like "Parus".
+  check_here_to_autoload_photos: Check here to auto-load photos from Flickr. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common misspelling, like "Parus".
   check_list: Check list
   check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it.
   check_list_for_individual_taxa_that: 'Check lists for individual taxa that live here, e.g. "Birds of %{place}".'
@@ -9212,7 +9212,7 @@ en:
           website, which automatically refreshes after a week.
         # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          You can only make minor changes to the species epithet directly (e.g. gender changes, mispelling). Add a <a target="_blank" href="%{url}">taxon swap</a> if you need other changes to the name.
+          You can only make minor changes to the species epithet directly (e.g. gender changes, misspelling). Add a <a target="_blank" href="%{url}">taxon swap</a> if you need other changes to the name.
         # message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: 
           "Heads up: you just added a descendant of a locked taxon 
