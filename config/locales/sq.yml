@@ -2833,6 +2833,9 @@ sq:
           shkelin të drejtën e autorit.
     taxa:
       edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Ju mund të bëni vetëm ndryshime të vogla në epitetin e specieve drejtpërdrejt (p.sh. ndryshime gjinie, gabime drejtshkrimore). Shtoni një <a target="_blank" href="%{url}">shkëmbimi i taksonit</a> nëse keni nevojë për ndryshime të tjera në emër.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Kujdes lart: sapo shtuat një pasardhës të një taksoni të kyçur (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Ju lutemi merrni parasysh bashkimin e kësaj në një takson ekzistues." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Kujdes: prindi i këtij taksoni aktiv është joaktiv, por është rezultati i kësaj <a href='/taxon_changes/%{taxon_change_id}'> ndryshimi i draftit të taksonit</a> që supozojmë se do të angazhoheni së shpejti." #a message when you try to save an edit to a taxon covered by a taxon framework
