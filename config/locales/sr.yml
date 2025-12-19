@@ -1223,8 +1223,6 @@ sr:
     gaps_id_pilot_condition_2: "Mislimo da možete da identifikujete"
     #instructions once people have participated explaining the list of observations
     gaps_id_pilot_current_intro: "Evo linka na zapažanja vrsta koje još nisu uključene u model računarskog vida za koji mislimo da možete identifikovati."
-    #instructions once people have participated if the list of observaitons is not ready
-    gaps_id_pilot_check_back: "Vratite se sutra za link na zapažanja vrsta koje još nisu uključene u model računarskog vida za koji mislimo da možete da identifikujete. Biće vam prikazane vrste u kojima ste napravili najmanje 3 poboljšanja identifikacije."
     #instructions once people have participated if the list of observaitons is not ready explaining why
     gaps_id_pilot_check_back_body: "Ako ne vidite vezu, možda neće biti nikakvih zapažanja koja odgovaraju ovim kriterijumima koji trebaju ID. Proveravaće se jednom dnevno."
     #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
@@ -1249,8 +1247,6 @@ sr:
     gaps_obs_pilot_current_body: "Posmatrajući ih, pomažete u poboljšanju prepoznavanja vrsta i popunjavanju kritičnih praznina."
     #label of link to explore species view
     gaps_obs_pilot_browse: "Pregledaj vrste"
-    #instructions once people have participated if the list of observaitons is not ready
-    gaps_obs_pilot_check_back: "Vratite se sutra za personalizovanu listu vrsta koje još nisu u modelu kompjuterskog vida, posmatrane ove sezone. Personalizovana lista će koristiti lokaciju vašeg najnovijeg posmatranja."
     #instructions once people have participated if the list of observaitons is not ready explaining why
     gaps_obs_pilot_check_back_body: "Ako ne vidite vezu, možda ne postoji nijedna vrsta koja odgovara ovim kriterijumima u vašoj blizini."
     #title for a pilot asking users to help onboard new users by identifying their obs
@@ -1259,8 +1255,6 @@ sr:
     identification_pilot_body_intro: "Počevši od sutra, primajte do 30 zapažanja dnevno koja odgovaraju vašim veštinama identifikacije, pomažući u uključivanju novih korisnika. Možete se odjaviti u bilo kom trenutku."
     #instructions for people participating in the pilot if the list is ready
     identification_pilot_current_intro: "Ispod su do 30 zapažanja koja odgovaraju vašim veštinama identifikacije."
-    #instructions for people participating in the pilot if the list is not ready
-    identification_pilot_check_back: "Vratite se sutra za link do zapažanja koja odgovaraju vašim veštinama identifikacije."
   data_deficient: Nedovoljno podataka
   data_quality: Kvalitet podataka
   data_quality_assessment: Procena kvaliteta podataka
@@ -5796,9 +5790,6 @@ sr:
       edit:
         high_status_conservation_status_notice_html: |
           Dodavanje statusa ugroženosti višem nivou taksona utiče na opservacije svih vrsta unutar tog taksona. Molimo te da ne dodaješ statuse taksonima koji sadrže vrste koje nemaju status ugroženosti jer će tako koordinate opservacija tih vrsta biti nepotrebno skrivene.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Možete samo da napravite manje izmene epiteta vrste direktno (npr. promene pola, pravopisne greške). Dodajte <a target="_blank" href="%{url}">Razmena taksona</a> ako su vam potrebne druge izmene imena.
       show:
         about_names_desc: |
           <p>
