@@ -8128,6 +8128,9 @@ sv:
         wikipedia_summary_desc_html: |
           Kort sammanfattning av detta taxon baserat på dess <a target="_blank" href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
           webbplatsen, som uppdateras automatiskt efter en vecka.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Du kan bara göra mindre ändringar av artepitetet direkt (t.ex. könsändringar, felstavning). Lägg till en <a target="_blank" href="%{url}">Byte av taxon</a> om du behöver andra ändringar av namnet.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Observera att du just har lagt till en ättling till ett låst taxon (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Överväg att slå ihop detta med ett befintligt taxon i stället." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Heads up: föräldern till detta aktiva taxon är inaktiv, men det är utdata från detta <a href='/taxon_changes/%{taxon_change_id}'> Utkast till taxonändring</a> som vi antar att du kommer att begå inom kort." #a message when you try to save an edit to a taxon covered by a taxon framework
