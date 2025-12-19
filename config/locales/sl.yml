@@ -916,8 +916,6 @@ sl:
   changes: Spremembe
   check_above_for_errors: Preveri napake zgoraj
   check_back_soon: Preveri kmalu!
-  check_here_to_autoload_description: Označite tu, če želite samodejno naložiti opis iz Wikipedije. Počistite to polje, če je znanstveno ime taksona tudi neznanstvena beseda ali pogosto napačno črkovano, kot je "Parus".
-  check_here_to_autoload_photos: Označite tu, če želite samodejno naložiti fotografije iz Flickra. Počistite to polje, če je znanstveno ime taksona tudi neznanstvena beseda ali pogosto napačno črkovano, kot je "Parus".
   check_list: Kontrolni seznam
   check_list_for_individual_taxa_that: 'Kontrolni seznami za posamezne taksone, ki živijo tukaj, npr. "Ptiči iz kraja %{place}".'
   check_list_for_taxon_html: "Kontrolni seznam za %{taxon}"
@@ -5984,9 +5982,6 @@ sl:
           other: "POGLEJ %{count} PUBLIKACIJ"
     taxa:
       edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Neposredno lahko naredite le manjše spremembe epiteta vrste (npr. spremembe spola, napačno črkovanje). Dodajanje <a target="_blank" href="%{url}">Zamenjava taksonov</a> če potrebujete druge spremembe imena.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Opozorilo: pravkar ste dodali potomca zaklenjenega taksona (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Prosimo, razmislite o združitvi tega v obstoječi takson." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Pozor: starš tega aktivnega taksona je neaktiven, vendar je rezultat tega <a href='/taxon_changes/%{taxon_change_id}'> osnutek spremembe taksona</a> za katero predvidevamo, da se boste kmalu zavezali." #a message when you try to save an edit to a taxon covered by a taxon framework
