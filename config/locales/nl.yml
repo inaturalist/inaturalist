@@ -971,8 +971,6 @@ nl:
   changing_the_geoprivacy: 'Het wijzigen van de geoprivacy verandert hoe anderen de locatie van je waarneming zien.'
   check_above_for_errors: Controleer hierboven op fouten
   check_back_soon: Tot binnenkort!
-  check_here_to_autoload_description: Klik hier om de beschrijving van Wikipedia automatisch te laden. Je kunt dit misschien beter deselecteren als de wetenschappelijke naam van een taxon ook een niet-wetenschappelijk woord of veel voorkomende spellingsfout is, zoals "Parus".
-  check_here_to_autoload_photos: Klik hier om automatisch de foto's van Flickr te laden. Je wil dit misschien deselecteren als een taxon's wetenschappelijke naam ook een niet-wetenschappelijke woord of veel voorkomende spellingsfout is, zoals "Parus".
   check_list: Checklist
   check_list_description: Kies een hoger niveau taxon dat je in deze lijst wilt weergeven, zoals 'Aves' voor vogels of 'Amphibia' voor amfibieën. Indien ingesteld staat deze lijst geen taxa toe die niet in dit taxon voorkomen. Als je bijvoorbeeld een lijst met vogels maakt, kun je er geen kikkers aan toevoegen.
   check_list_for_individual_taxa_that: 'Checklists voor individuele taxa die hier voorkomen, bv. "Vogels van %{place}".'
@@ -8192,9 +8190,6 @@ nl:
           handmatig wordt vernieuwd. Verversen van deze samenvatting update onmiddellijk
           onze cache van de onderliggende Wikipedia-inhoud die we laten zien op de
           website, die automatisch verversd wordt na een week.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Je kunt alleen kleine wijzigingen rechtstreeks in de soortaanduiding aanbrengen (bijv. geslachtsveranderingen, spelfout)en. Voer een <a target="_blank" href="%{url}">Taxonwissel</a> uit als je andere wijzigingen in de naam nodig hebt.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Let op: je hebt zojuist een afstammeling van een gesloten taxon toegevoegd (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Overweeg om dit in plaats daarvan samen te voegen met een bestaand taxon." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Let op: de ouder van dit actieve taxon is inactief, maar het is de output van dit <a href='/taxon_changes/%{taxon_change_id}'> Ontwerp taxon verandering</a> waarvan we aannemen dat u zich binnenkort zult vastleggen." #a message when you try to save an edit to a taxon covered by a taxon framework
