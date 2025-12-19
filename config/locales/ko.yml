@@ -3012,6 +3012,9 @@ ko:
         include_usa: 미국 포함
     taxa:
       edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          종 별명을 직접 사소한 변경만 할 수 있습니다(예: 성별 변경, 철자 오류). 추가 <a target="_blank" href="%{url}">분류군 스왑</a> 이름에 다른 변경이 필요한 경우.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "주의: 방금 잠긴 분류군의 후손을 추가했습니다(<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). 대신 이것을 기존 분류군에 병합하는 것을 고려하십시오." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " 주의: 이 활성 분류군의 부모는 비활성 상태이지만 이 분류군의 출력입니다. <a href='/taxon_changes/%{taxon_change_id}'> 분류군 변경 초안</a> 우리는 당신이 곧 커밋할 것이라고 가정합니다." #a message when you try to save an edit to a taxon covered by a taxon framework
