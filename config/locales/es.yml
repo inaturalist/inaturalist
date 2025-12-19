@@ -969,8 +969,6 @@ es:
   changing_the_geoprivacy: 'Cambiar la geoprivacidad modifica como otras personas ven la localización de tu observación.'
   check_above_for_errors: Revisa errores en lo anterior
   check_back_soon: '¡Vuelve a consultar pronto!'
-  check_here_to_autoload_description: Marca aquí para autocargar la descripción desde Wikipedia. Puedes querer desmarcarlo cuando el nombre científico de un taxón también es una palabra no científica o una falta de ortografía común, como "Parus".
-  check_here_to_autoload_photos: Marca aquí para auto-cargar fotos desde Flickr. Puedes querer desmarcarlo cuando el nombre científico de un taxón también es una palabra no científica o una falta de ortografía común, como "Parus".
   check_list: Lista de comprobación
   check_list_description: Selecciona un taxón de más alto nivel que desees mostrar en esta lista, como "Aves" para aves, o "Anfibios" para anfibios. Cuando termines, esta lista no permitirá taxones que no estén incluidos. Por ejemplo, si creas una lista de aves, no podrás agregarle ranas.
   check_list_for_individual_taxa_that: 'Listas de comprobación para una especie o grupo específico que habita aquí, ej. "Aves de %{place}".'
@@ -7941,9 +7939,6 @@ es:
         wikipedia_summary_desc_html: |
           Breve resumen de este taxón basado en su página de <a target="_blank"
           href="%{url}">Wikipedia</a> que guardamos indefinidamente hasta actualizarlo manualmente. La carga de este resumen también actualiza inmediatamente nuestra caché del contenido de Wikipedia que mostramos en el sitio web, que se actualiza automáticamente después de una semana.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Solo puede realizar cambios menores en el epíteto de la especie directamente (por ejemplo, cambios de género, errores ortográficos). Agrega un <a target="_blank" href="%{url}">Intercambio de taxones</a> si necesita otros cambios en el nombre.
       show:
         about_names_desc: |
           <p>
