@@ -303,10 +303,6 @@ te:
           ఈ ధ్వని ఉంటే కాపీరైట్ ఉల్లంఘన ఫ్లాగ్ లను పరిష్కరించని విధంగా వదిలివేయండి
           కాపీరైట్ ఉల్లంఘన.
     taxa:
-      edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          మీరు జాతి విశేషణంలో నేరుగా చిన్న మార్పులు మాత్రమే చేయవచ్చు (ఉదా. లింగ మార్పులు, స్పెల్లింగ్ తప్పు). జోడించండి <a target="_blank" href="%{url}">టాక్సాన్ మార్పిడి</a> మీకు పేరుకు ఇతర మార్పులు అవసరమైతే.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         ఆ ట్యాగ్ లను పోస్ట్ చేయడానికి ప్రయత్నించడంలో ఏదో తప్పు జరిగింది: %{message}
