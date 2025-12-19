@@ -921,8 +921,6 @@ ca:
   changing_the_geoprivacy: 'Canviar la geoprivacitat modifica la manera en què altres persones veuen la localització de la vostra observació.'
   check_above_for_errors: Verifiqueu els errors anteriors
   check_back_soon: Verifiqueu properament!
-  check_here_to_autoload_description: Feu clic aquí per carregar automàticament la descripció des de Viquipèdia. Pot ser que ho vulgueu desmarcar quan el nom científic d'un tàxon també sigui una paraula no científica o una falta d'ortografia comuna, com ara "Parus."
-  check_here_to_autoload_photos: Feu clic aquí per carregar automàticament les fotos des de Flickr. Pot ser que ho vulgueu desmarcar quan el nom científic d'un tàxon també sigui una paraula no científica o una falta d'ortografia comuna, com ara "Parus."
   check_list: llista de comprovació de
   check_list_description: Seleccioneu un tàxon d'un rang superior si voleu que aparegui en aquesta llista, com ara "Aus" per a aus, o "Amphibia" per a amfibis. Quan acabeu, aquesta llista no admetrà tàxons que no hi estiguin inclosos. Per exemple, si creeu una llista d'aus, no podreu afegir-hi granotes.
   check_list_for_individual_taxa_that: 'Llistes de comprovació per a una espècie o grup específic que habita aquí, p. ex. Aus de %{place}.'
@@ -7293,9 +7291,6 @@ ca:
         wikipedia_summary_desc_html: |
           Breu resum d'aquest tàxon basat a la seva <a target="_blank"
           href="%{url}">pàgina de la Viquipèdia</a>, la qual guardem indefinidament fins que és actualitzada manualment. L'actualització d'aquest sumari també actualitzar automàticament la nostra còpia del contingut de la Viquipèdia que mostrem en el lloc Web, el qual s'actualitza automàticament passada una setmana.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Només podeu fer canvis menors a l'epítet de l'espècie directament (per exemple, canvis de gènere, errors ortogràfics). Afegeix un <a target="_blank" href="%{url}">Intercanvi de tàxons</a> si necessiteu altres canvis al nom.
       show:
         about_conservation_status_desc: |
           L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.
