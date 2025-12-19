@@ -995,8 +995,6 @@ hr:
   changing_the_geoprivacy: 'Promjena geopostavki mijenja način na koji drugi vide lokaciju vašeg opažanja.'
   check_above_for_errors: Provjerite gore za greške
   check_back_soon: Provjerite uskoro ponovno!
-  check_here_to_autoload_description: Označite ovdje za automatsko učitavanje opisa s Wikipedije. Možda ćete htjeti odznačiti ovu opciju kada je znanstveno ime taksona također neznanstvena riječ ili uobičajena greška u pisanju, kao što je "Parus".
-  check_here_to_autoload_photos: Označite ovdje za automatsko učitavanje fotografija s Flickra. Možda ćete htjeti odznačiti ovu opciju kada je znanstveno ime taksona također neznanstvena riječ ili uobičajena greška u pisanju, kao što je "Parus".
   check_list: Provjeri popis
   check_list_description: Odaberite takson višeg ranga koji želite prikazati na ovoj listi, poput "Aves" za ptice ili "Amphibia" za vodozemce. Kada je postavljeno, ova lista neće dopuštati taksone koji nisu u tom taksonu. Na primjer, ako kreirate listu ptica, nećete moći dodavati žabe na nju.
   check_list_for_individual_taxa_that: 'Provjerite liste za pojedinačne taksone koji žive ovdje, npr. "Ptice %{place}".'
@@ -8274,9 +8272,6 @@ hr:
           ručno ne osvježi. Osvježavanje ovog sažetka također odmah ažurira
           našu predmemoriju osnovnog sadržaja Wikipedije koji prikazujemo na
           web stranici, koja se automatski osvježava nakon tjedan dana.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Možete samo izravno napraviti manje promjene epiteta vrste (npr. promjene spola, pravopisne pogreške). Dodajte <a target="_blank" href="%{url}">Zamjena taksona</a> ako su vam potrebne druge promjene imena.
       show:
         about_names_desc: |
           <p>
