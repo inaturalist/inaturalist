@@ -5853,6 +5853,9 @@ et:
           "Täielik" takson sisaldab <em>kõiki</em> selle teadaolevaid alamtaksoneid, mis vastavad iNaturalisti taksonite kureerimise reeglitele hoolimata sellest, kas neid on vaadeldud või mitte. Praegusel hetkel saavad ainult administraatorid määrata mõne taksoni täielikuks.
         complete_rank_desc_html: |
           Tase milleni see takson on täielik. Kui see sugukond sisaldab kõiki perekondi, kuid mitte kõiki liike, märgitaks siia "perekond". Vaikimisi valik on liik.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Liigiepiteedi otseses osas saab teha ainult väiksemaid muudatusi (nt soomuutused, õigekirjaviga). Lisage <a target="_blank" href="%{url}">taksonite vahetus</a> kui vajate nimes muid muudatusi.
       show:
         about_conservation_status_desc: |
           Kaitsestaatus võtab kokku organismidegrupi hävimisohu.
