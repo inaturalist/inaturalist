@@ -1417,10 +1417,6 @@ mr:
           one: "%{count} प्रकाशन पहा"
           other: "सर्व %{count} प्रकाशने पहा"
     taxa:
-      edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          आपण केवळ प्रजातीच्या विशेषणात थेट किरकोळ बदल करू शकता (उदा. लिंग बदल, चुकीचे शब्दलेखन). एक जोडा <a target="_blank" href="%{url}">टॅक्सॉन स्वॅप</a> जर आपल्याला नावात इतर बदल हवे असतील तर.
       show:
         frequency:
           "Plant Phenology=No Evidence of Flowering": फुलल्याचा पुरावा नाही
