@@ -6689,6 +6689,10 @@ ja:
         view_all_publications_count_caps2:
           other: "%{count} 件の出版物を表示"
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          種の形容詞に直接小さな変更を加えることしかできません(性別の変更、スペルミスなど)。を追加します <a target="_blank" href="%{url}">分類群のスワップ</a> 名前に他の変更が必要な場合。
       show:
         about_names_desc: |
           <p>
