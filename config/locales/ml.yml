@@ -871,6 +871,10 @@ ml:
       index:
         active_desc: കഴിഞ്ഞ 30 ദിവസങ്ങളിൽ ഐഡി, നിരീക്ഷണം, അഭിപ്രായം, അല്ലെങ്കിൽ പോസ്റ്റ് സൃഷ്ടിച്ചു
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          നിങ്ങൾക്ക് സ്പീഷീസ് വിശേഷണത്തിൽ നേരിട്ട് ചെറിയ മാറ്റങ്ങൾ മാത്രമേ ചെയ്യാൻ കഴിയൂ (ഉദാ. ലിംഗമാറ്റങ്ങൾ, അക്ഷരവിന്യാസം തെറ്റ്). ചേർക്കുക <a target="_blank" href="%{url}">ടാക്സോൺ സ്വാപ്പ്</a> പേരിൽ വേറെ മാറ്റങ്ങൾ ആവശ്യമുണ്ടെങ്കിൽ.
       show:
         frequency:
           "Life Stage=Subimago": സുബിമാഗോ
