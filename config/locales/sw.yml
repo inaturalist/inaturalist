@@ -338,6 +338,10 @@ sw:
           Acha bendera za ukiukaji wa hakimiliki kuwa hazijatatuliwa ikiwa sauti hii itafanya hivyo
           kukiuka hakimiliki.
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Unaweza tu kufanya mabadiliko madogo kwa epithet ya spishi moja kwa moja (kwa mfano, mabadiliko ya kijinsia, tahajia mbaya). Ongeza a <a target="_blank" href="%{url}">Ubadilishaji wa taxon</a> ikiwa unahitaji mabadiliko mengine kwa jina.
       show:
         site_curators_disabled_wikipedia_html: |
           Wasimamizi wa tovuti wamelemaza maonyesho <a href="%{url}">Hii
