@@ -3755,6 +3755,10 @@ th:
         translators_desc_for_site: |
           รู้หรือไม่ว่า %{site_name} มีผู้แปลภาษาไม่น้อยกว่า %{x_people} คน? นี่คือเหล่านักแปลที่ยอดเยี่ยมที่ได้เพิ่มคำแปลในปีนี้พร้อมกับจำนวนคำที่พวกเขาแปลใน%{website_link_tag}เว็บไซต์%{link_tag_end} ในแอป iNaturalist ของ %{iphone_link_tag}iPhone%{link_tag_end} และ %{android_link_tag}Android%{link_tag_end} และใน %{seek_link_tag}Seek%{link_tag_end} คุณสามารถดูรายชื่อผู้แปลทั้งหมดสำหรับทุกภาษา รวมถึงผู้แปลในปีก่อน ๆ และผู้แปลจาก Translatewiki ใน%{view_all_web_link_tag}เว็บไซต์%{link_tag_end}และ %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories ของเรา
     taxa:
+      edit:
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          คุณสามารถเปลี่ยนแปลงฉายาสายพันธุ์ได้โดยตรงเท่านั้น (เช่น การเปลี่ยนเพศ การสะกดผิด) เพิ่ม <a target="_blank" href="%{url}">การแลกเปลี่ยนอนุกรมวิธาน</a> หากคุณต้องการเปลี่ยนชื่ออื่น ๆ
       show:
         about_regional_names_desc: |
           <p>
