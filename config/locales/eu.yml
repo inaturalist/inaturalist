@@ -844,8 +844,6 @@ eu:
   changing_the_geoprivacy: 'Geopribatutasuna aldatzeak beste pertsona batzuek zure oharraren kokapena ikusteko modua aldatzen du.'
   check_above_for_errors: Begiratu goian akatsen bila
   check_back_soon: Laster itzuli!
-  check_here_to_autoload_description: Markatu hemen deskribapena automatikoki Wikipedia-tik kargatzeko. Baliteke marka kendu nahi izatea taxonaren izen zientifikoa hitz ez-zientifikoa edo ortografia-akats arrunta ere badenean, hala nola "Parus".
-  check_here_to_autoload_photos: Klikatu hemen Flickr-eko argazkiak automatikoki kargatzeko. Baliteke marka kendu nahi izatea taxonaren izen zientifikoa hitz ez zientifikoa ere edo ohiko ortografia-akatsa ere badenean, hala nola "Parus".
   check_list: 'honen egiaztapen-zerrenda:'
   check_list_description: Hautatu zerrendan erakutsi nahi duzun maila altuagoko taxona, esate baterako, "Aves" hegaztietarako edo "Amphibia" anfibioetarako. Amaitzen duzunean, zerrenda honek ez du jaso gabeko taxonik onartuko. Esate baterako, hegazti-zerrenda sortzen baduzu, ezingo duzu igelik gehitu.
   check_list_for_individual_taxa_that: 'Hemen bizi den espezie edo talde espezifiko baterako egiaztapen-zerrendak, adibidez: Hemengo hegaztiak: %{place}.'
@@ -3257,10 +3255,6 @@ eu:
       index:
         observers_desc: Egun honetan behaketa bat gehitu da
     taxa:
-      edit:
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Espeziearen epitetoan aldaketa txikiak egin ditzakezu zuzenean (adibidez, genero aldaketak, ortografia okerra). Gehitu <a target="_blank" href="%{url}">Taxon trukea</a> Izena aldatu behar izanez gero.
       show:
         site_curators_disabled_wikipedia_html: |
           Webguneko kuradoreek aurkezpena bertan desgaitu dute <a href="%{url}">hau
