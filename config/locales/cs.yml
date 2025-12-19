@@ -8360,6 +8360,9 @@ cs:
           href="%{url}">stránky na Wikipedii</a> , které máme natrvalo uložené, dokud jej někdo ručně neobnoví. Obnovení tohoto shrnutí také okamžitě aktualizuje
           naši mezipaměť obsahu Wikipedie, který zobrazujeme na
           webových stránkách, a který se po týdnu aktualizuje automaticky.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Přímo můžete provádět pouze drobné změny epiteta druhu (např. změny pohlaví, překlepy). Přidejte soubor <a target="_blank" href="%{url}">Výměna taxonu</a> , pokud potřebujete další změny názvu.
       show:
         about_names_desc: |
           <p>
