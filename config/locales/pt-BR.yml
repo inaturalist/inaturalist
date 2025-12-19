@@ -974,8 +974,6 @@ pt-BR:
   changing_the_geoprivacy: 'Mudar a geoprivacidade altera como as outras pessoas verão a localização das suas observações.'
   check_above_for_errors: Verifique erros acima
   check_back_soon: Verifique em breve!
-  check_here_to_autoload_description: Selecione aqui para carregar automaticamente as descrições da Wikipedia. Desmarque esta seleção quando uma nome científico for empregado igualmente como nome popular, como por exemplo "PArus".
-  check_here_to_autoload_photos: Selecione aqui para carregar automaticamente fotos do Flickr. Você pode se interessar em desmarcar esta seleção quando um nome científico é similar a um nome popular.
   check_list: Lista de Verificação
   check_list_description: Selecione um táxon em um nível mais alto para exibir nesta lista, como por exemplo "Aves" para pássaros, ou "Anfíbios" para sapos. Uma vez selecionado, será restringida inclusão de espécies de outros táxons. Por exemplo, se for criada uma lista de aves, não poderão ser adicionadas espécies de aves.
   check_list_for_individual_taxa_that: 'Lista de verificação de táxons de espécies ou grupos que moram aqui, ex: "Aves de %{place}".'
@@ -8084,9 +8082,6 @@ pt-BR:
           Breve resumo deste táxon com base na sua <a target="_blank"
           href="%{url}">página da Wikipédia</a> que armazenamos indefinidamente até que
           seja atualizado manualmente. Atualizar este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
-        #a message when you try to save major changes to a taoxn name
-        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Você só pode fazer pequenas alterações no epíteto da espécie diretamente (por exemplo, mudanças de gênero, erros ortográficos). Adicione um <a target="_blank" href="%{url}">swap de táxons</a> se você precisar de outras alterações no nome.
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "Atenção: você acabou de adicionar um descendente de um táxon bloqueado (<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>). Por favor, considere adicioná-lo a um táxon existente." #message when you try to save edits to a taxon that has inactive parents
         heads_up_inactive_parent: " Atenção: o pai deste táxon ativo está inativo, mas é filho desta <a href='/taxon_changes/%{taxon_change_id}'> mudança de táxon proposta</a> que presumimos que entrará em vigor em breve." #a message when you try to save an edit to a taxon covered by a taxon framework
