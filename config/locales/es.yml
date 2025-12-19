@@ -7939,6 +7939,9 @@ es:
         wikipedia_summary_desc_html: |
           Breve resumen de este taxón basado en su página de <a target="_blank"
           href="%{url}">Wikipedia</a> que guardamos indefinidamente hasta actualizarlo manualmente. La carga de este resumen también actualiza inmediatamente nuestra caché del contenido de Wikipedia que mostramos en el sitio web, que se actualiza automáticamente después de una semana.
+        #a message when you try to save major changes to a taoxn name
+        you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
+          Solo puede realizar cambios menores en el epíteto de la especie directamente (por ejemplo, cambios de género, errores ortográficos). Agrega un <a target="_blank" href="%{url}">Intercambio de taxones</a> si necesita otros cambios en el nombre.
       show:
         about_names_desc: |
           <p>
