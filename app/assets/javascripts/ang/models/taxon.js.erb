@@ -65,9 +65,15 @@ iNatModels.Taxon.prototype.localizedPhotoAttribution = function ( opts ) {
     userName = user.name || user.login || userName;
   }
   if ( userName.length === 0 && photo.attribution ) {
-    var matches = photo.attribution.match( /\(.+\) (.+?),/ );
+    var matches = photo.attribution.match( /\(.+\) (.+?),/ ); // e.g. "(c) Anonymous, some rights reserved (CC BY-NC-SA)"
+    var matchesUploadedBy = photo.attribution.match( /uploaded by (.+?)(?:,|$)/ ); // e.g. "no rights reserved, uploaded by Anonymous", in licence-code: cco
+    var matchesPublicDomain = !photo.attribution.includes( "(public domain)" ) ? undefined : photo.attribution.match( /(.+?),/ ); // e.g. "Anonymous, no known copyright restrictions (public domain)", in licence-code: pd
     if ( matches ) {
       userName = matches[1];
+    } else if ( matchesUploadedBy ) {
+      userName = matchesUploadedBy[1];
+    } else if ( matchesPublicDomain ) {
+      userName = matchesPublicDomain[1];
     }
   }
   userName = userName.length === 0 ? I18n.t( "unknown" ) : userName;
