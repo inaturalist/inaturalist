@@ -200,6 +200,8 @@ ca:
   about_this_bioblitz: Quant aquest bioblitz
   about_this_map: Quant a aquest mapa
   about_this_project: Sobre aquest projecte
+  about_trips2_html: |
+    <h4>Els viatges permeten recopilar dades de presència/absència afegint context a les vostres observacions</h4><p><strong>Per què?</strong> Les dades sobre presència/absència inclouen informació sobre l'esforç de mostreig, la qual és útil per a l'anàlisi científica com són els estudis de distribució (les observacions d'iNaturalist indiquen només la presència).</p><p><strong>Com?</strong> Un viatge afegeix context a les vostres observacions en el moment de registrar-les.</p><ul><li><strong>Què</strong> heu cercat (llista d’objectius)</li><li><strong>On</strong> heu cercat (àrea de cerca)</li><li><strong>Quan</strong> heu cercat (interval de dates de la cerca) </li> </ul> <p> Les espècies de la vostra llista d’objectius que heu pogut observar a l’àrea de cerca i l’interval s’interpreten com a presència. En canvi, les espècies de la vostra llista d’objectius que no s’ha pogut observar s’interpreten com a absències. Feu clic a "Tabular dades de presència/absència dels viatges" per generar una taula de registres de presència/absència d’una espècie a partir de viatges i de les observacions associades. <a href='%{url}'>Més informació </a></p>
   about_trusting_projects: Sobre la Confiança en Projectes
   about_trusting_projects_options_any: Totes les vostres observacions en aquest projecte
   about_trusting_projects_options_any_desc: |-
@@ -257,6 +259,8 @@ ca:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Afegir una llista amb punts
   add_a_comment: Afegiu un comentari
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Afegiu un estat de conservació
   add_a_field: Afegiu un camp
   add_a_flag: Afegiu una etiqueta
   #Tool tip for a button that adds a link to a text area
@@ -339,6 +343,14 @@ ca:
   add_plant_phenology_flowering_annotation: 'Afegiu nota "Fenologia de la planta: Floració"'
   add_plant_phenology_fruiting_annotation: 'Afegiu nota "Fenologia de la planta: Fructificació"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Afegiu la nota "Fenologia de la planta: Sense evidències de Floració"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Afegiu l''annotació "Flors i fruits: Brots florals"'
+  add_flowers_and_fruits_flowers_annotation: 'Afegiu l''anotació "Flors i fruits: Flors"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Afegiu l''anotació "Flors i fruits: Fruits i llavors"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Afegiu l''anotació "Flors i fruits: Sense flors ni fruits"'
+  add_leaves_breaking_leaf_buds: 'Afegiu l''anotació "Fulles: Sortint els brots de les fulles"'
+  add_leaves_green_leaves: 'Afegiu l''anotació "Fulles: Fulles Verdes"'
+  add_leaves_colored_leaves: 'Afegiu l''anotació "Fulles: Fulles acolorides"'
+  add_leaves_no_live_leaves: 'Afegiu l''anotació "Fulles: Sense Fulles Vives"'
   add_life_stage_adult_annotation: 'Afegiu nota "Estat del Cicle biològic: Adult"'
   add_life_stage_teneral_annotation: 'Afegiu nota "Estat del Cicle biològic: Imago tendre"'
   add_life_stage_subimago_annotation: 'Afegir l''anotació «Etapa de la vida: subimago»'
@@ -788,6 +800,7 @@ ca:
   back_to_your_observations: Torneu a les vostres observacions
   back_to_your_profile: Torneu al vostre perfil
   badges: Insígnies
+  base_map_copyright_openstreetmap_html: Mapa base © %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -796,6 +809,9 @@ ca:
     other: |
       Basant-nos en una mostra del %{percent}% percent d'aquests ID, calculem que això farà
       resultat en <strong>%{count} desacords no intencionats</strong> amb la ID de %{child}.
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Segons l'evidència, es pot millorar el tàxon comunitari?
   batch: Grup
   batch_edit: Modifica el grup
   #Where x is the title of a list of taxa
@@ -1110,6 +1126,9 @@ ca:
   content_and_display: Contingut i Presentació
   content_author: Autor del contingut
   content_hidden: Contingut amagat
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Contingut amagat el %{date} perquè: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Contingut amagat per %{user} el %{date} per: %{reason}
@@ -1211,6 +1230,8 @@ ca:
     flowers: Almenys una flor oberta
     flower_buds: Almenys una gemma de flor
     fruits_or_seeds: Almenys un fruit o llavor
+    breaking_leaf_buds: Almenys un brot amb la primera fulla o agulla nova no totalment desplegada
+    green_leaves: Almenys una fulla o agulla verda (o vermellosa si aquest és el color normal)
     gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
     male: L'evidència indica que l'organisme pot produir espermatozoides per utilitzar-los en la reproducció sexual
     molt: Restes de pell o exoesquelet
@@ -1438,6 +1459,32 @@ ca:
     pilot_participate: "Sí! M'agradaria participar-hi."
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Pilot de llacunes d'identificació: Necessita espècies buscades per identificació"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "S'ha observat aquesta temporada prop de la teva última observació"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Estan impulsats per una mostra de fins a 200 observacions de fins a 300 espècies, prioritzant les plantes"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Observant aquestes espècies, ajudaràs a millorar el model i a cobrir les mancances de dades de biodiversitat. Aquesta llista s'actualitzarà quan el Model s'actualitzi. Pots donar-te de baixa en qualsevol moment."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Aquí teniu la vostra llista actual d'espècies que són:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Encara no inclosa en el Model de Visió per Computador"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Observat prop de la teva última ubicació aquesta temporada"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Observant-los, estàs ajudant a millorar el reconeixement d'espècies i a omplir buits crítics."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Torna demà per veure una llista personalitzada d'espècies que encara no formen part del Model de Visió per Computador, observades aquesta temporada. La llista personalitzada utilitzarà la ubicació de la teva observació més recent."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Si no veus cap enllaç, potser no hi ha cap espècie que compleixi aquests criteris a prop teu."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Pilot d'identificació: Incorporació de nous usuaris"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "A partir de demà, rep fins a 30 observacions diàries que coincideixin amb les teves habilitats d'identificació, ajudant a incorporar nous usuaris. Pots donar-te de baixa en qualsevol moment."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "A continuació trobaràs fins a 30 observacions que coincideixen amb les teves habilitats d'identificació."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Torna demà per veure l'enllaç a observacions que coincideixin amb les teves habilitats d'identificació."
   data_deficient: Dades Insuficients
   data_quality: Qualitat de les dades
   data_quality_assessment: Avaluació de la qualitat de dades
@@ -1514,6 +1561,8 @@ ca:
   default_time_zone_desc: |
     Aquesta és la zona horària per defecte. La zona horària final serà assignada considerant la localització de l'observació quan s'ha guardat.
   defaults_to_your_name_or_username: Per defecte al vostre nom o nom d'usuari
+  #As in the definition of a word
+  definition: Definició
   defines_a_taxon_framework_for: Definiu un marc taxonòmic per a %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Defineix un Marc Taxonòmin per a %{taxon}, la font del qual és %{source}
   definitions: Definicions
@@ -1837,10 +1886,17 @@ ca:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rang exacte
   except: excepte
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Exclou
   exclude_places: Excloure Llocs
   exclude_projects: Excloure Projectes
   exclude_taxa: Excloure Tàxons
   exclude_users: Excloure Usuaris
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Excloent %{count} tàxon
+    other: Excloent %{count} tàxons
   exclusion_filters: Filtres d'exclusió
   existing_flags: Marques existents.
   exit_full_screen: "Surt del mode de pantalla completa."
@@ -1851,6 +1907,9 @@ ca:
   export: Exportar
   export_observations: Exporta observacions
   export_with_private_coordinates: Exporteu amb coordenades ocultes
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
+  exported_at_datetime: Exportat el %{datetime}
   exporting: "Exportant..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -1860,6 +1919,7 @@ ca:
   external_taxon_including_children: Tàxon extern (inclosos els inferiors)
   extinct: extint
   extinct_in_the_wild: Extingit en estat silvestre
+  provisional_taxon: Provisional
   extra_properties: Propietats extres
   evidence_accurately_depicts_organism_or_scene: L'evidència representa amb precisió l'organisme o l'escena
   evidence_of_organism: Evidència d'organisme
@@ -1950,6 +2010,8 @@ ca:
   flag_deleted: Marca eliminada
   flag_description: Marca aquest contingut perquè els supervisors sàpiguen que alguna cosa no va bé.
   flag_comment_description: Afegiu un comentari addicional a aquesta marca que ajudi a explicar per què l'esteu afegint i proporcionar enllaços que donin suport a la seva evidència.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Els indicadors que citen una font tenen més probabilitats de ser resolts ràpidament pels nostres comissaris voluntaris.
   flag_for_check_list_title_html: |
     Marca per a la Llista de Comprovació: %{title}
   flag_for_comment_id_html: Marqueu per <a href="%{url}">Comentar %{id}</a>
@@ -1983,6 +2045,7 @@ ca:
   flag_marked_as_unresolved_html: '<span class=meta>Marca com a</span> <strong>no resolta.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objecte
+  flag_reason2: "Estic marcant aquest %{record} perquè"
   flag_resolution: Resolució
   flag_saved: Advertència desada.
   flag_saved_thanks_html: Marca desada. Gràcies! <a href="%{url}" class="readmore">Veure la marca</a>
@@ -2027,6 +2090,9 @@ ca:
     one: 'Seguint 1 Persona'
     other: 'Seguint %{count} Persones'
   for_a_taxon: d'un tàxon
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Per a més informació sobre encapçalaments de columna, vegeu %{url}
   formatting: Formatatge
   forgot_your_password: Heu oblidat la contrasenya?
   forum: Fòrum
@@ -2061,6 +2127,9 @@ ca:
   generate_your_year_in_review_caps: GENERAR EL TEU RESUM DE L'ANY %{year}
   generating_mobile_archive: "Generant arxiu mòbil"
   Genus: Gènere
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Puntuació geogràfica
   geomodel_expected_nearby_label_is_derived: |
     L'etiqueta "Esperat a prop" deriva del Geomodel.
     <a href="%{url}">Obteniu més informació sobre el Geomodel aquí</a>.
@@ -2070,6 +2139,9 @@ ca:
   geoprivacy_is_private: Geoprivacitat és privada
   geoprivacy_is_private_desc: L'Observador ha escollit ocultar les coordenades.
   georeferenced: Geolocalització?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geoespacial
   get_started: Comenceu
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Primers passos
@@ -2164,6 +2236,11 @@ ca:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Amaga "Sense anotacions"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Amaga les observacions amb ubicacions privades
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Amagar Tàxons Provisionals
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Amagar el total acumulat
   hide_uncountable_species: Amaga les espècies incomptables
@@ -2241,6 +2318,7 @@ ca:
   identotron_for: Identotron per a
   identotron_help: Ajuda amb l'identotron
   ids: "IDs"
+  ids_made_for_others__title: ID fetes per altres usuaris
   if_for_some_reason_a_user_doesnt_agree: |
     Si per algun motiu no esteu d'acord amb el tàxon de la comunitat, el podeu refusar, el que significa que la seva Identificació és utilitzada per enllaçar a altres observacions, actualitzant llistes de vida, etc. També significa que la vostra observació només podrà ser de grau de recerca si la comunitat està d'acord amb vostè.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2281,12 +2359,22 @@ ca:
   in_place_x: a %{place}
   #As in a reason to flag something
   inappropriate: Inapropiat
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Xarxa iNaturalist
   inaturalist_network_affiliation: Afiliació a la Xarxa d'iNaturalist
   #Label for messages you've received
   inbox: bústia
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Inclou
   include_places: Incloure Llocs
   include_projects: Incloure Projectes
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Incloure/Excloure Tàxons d'Ancestres
   include_suggestions_not_seen_nearby: Incloure suggeriments no vistos aprop
   include_suggestions_not_expected_nearby: Incloure suggeriments no esperats a prop
   include_taxa: Incloure Tàxons
@@ -2352,6 +2440,11 @@ ca:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Aquesta evidència és suficient per confirmar que és %{taxon}?
   is_this_offensive_html: 'És <a href="/help#inappropriate">inadequat</a>, brossa, o ofensiu?'
   is_this_place_a_duplicate: Aquest lloc està duplicat?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Aquest és el nom científic acceptat actualment?
   it_can_now_be_used_for_research: Ara pot ser utilitzat per a recerca i mostrat en altres pàgines web
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: text en cursiva
@@ -2404,6 +2497,8 @@ ca:
   large: gran
   last_active_with_date: "Darrera activitat: %{date}"
   last_confirmed_observation: Última observació confirmada
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Editat per última vegada per
   last_observation: Darrera observació
   last_observation_caps: DARRERA OBSERVACIÓ
   last_seen: Vist per última vegada
@@ -2445,6 +2540,10 @@ ca:
     Recordeu que heu de <a href="%{url}">canviar la vostra contrasenya</a> per a la nova versió.
   let_us_walk_you_through: Deixeu-nos explicar-vos les principals característiques d'aquest lloc.
   lexicon: Lèxic
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Nom d'un conjunt de paraules o termes que contenen un nom de taxó, per exemple, el
+    nom d'una llengua o d'un conjunt d'abreviatures
   lexicon_cannot_contain_words: "no pot contenir les següents paraules: %{words}"
   lexicons:
     afrikaans: Afrikaans
@@ -2665,6 +2764,7 @@ ca:
     lv: Letó
     mi: Maorí
     mk: Macedònic
+    ml: Malaiàlam
     mr: Marathi
     nb: Noruec (Bokmål)
     nl: Holandès
@@ -2679,6 +2779,7 @@ ca:
     sq: Albanès
     sr: Serbi
     sv: Suec
+    ta: Tàmil
     th: Tailandès
     tr: Turc
     uk: Ucraïnès
@@ -2740,6 +2841,9 @@ ca:
   make_a_taxon_swap_instead?: Voleu fer un intercanvi del tàxon?
   make_curator: Feu supervisor
   make_manager: Feu gestor
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Fer privat
   make_sure_the_default_photo_looks_good: Assegureu-vos que la foto per defecte es vegi bé en mida gran.
   make_this_your_default_license: "Feu que aquesta sigui la llicència %{type} per defecte"
   make_this_the_primary_listing: "Feu que aquesta sigui la llista primària"
@@ -3178,6 +3282,9 @@ ca:
   not_confident: No tenim prou seguretat per fer una recomanació.
   not_confident_top_suggestions: No estem prou segurs per fer una recomanació, però aquí teniu els nostres primers suggeriments
   not_covered_by_any_taxon_frameworks: No està cobert per cap marc taxonòmic
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: No s'espera a prop
   not_evaluated: no avaluat
   not_findig_what_you_want: No trobeu el que cercàveu?
   not_finding_place_you_want?: No heu trobat el lloc que cercàveu?
@@ -3554,6 +3661,8 @@ ca:
   original_url_for_this_map: URL Original d'aquest mapa
   organism_appears_captive_cultivated: L'organisme sembla captiu/conreat
   other: Un altre
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Altres
   other_animals: altres animals
   other_lexicons: Altres Lèxics
   other_listings_of_this_taxon_for_this_place: Altres observacions d'aquesta espècie per a aquest lloc
@@ -4699,6 +4808,8 @@ ca:
   share_colon: "Compartiu:"
   short_code_for_this_place: Codi curt per al país, ex. MX per a Mèxic
   short_or_abbreviated_title_for_display: Normalment és una abreviatura del títol quan l'espai és molt limitat (màxim 10 caràcters).
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Aquest nom comú hauria de mostrar-se per defecte per a aquest tàxon?
   show: Mostra
   show_active_and_inactive_taxa: Mostra tàxons actius i inactius
   show_hidden_content: Mostra Contingut Ocult
@@ -4715,6 +4826,8 @@ ca:
   show_no_annotation: Mostra "Sense anotacions"
   show_off_your_recent_observations: Publiqueu les observacions en el vostre propi blog o pàgina web!
   show_only: Mostra només
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Mostra OpenStreetMap
   show_relative_proportions_of_all_observations: Mostra les proporcions relatives de totes les observacions
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar l'acumulat total
@@ -4786,6 +4899,10 @@ ca:
     Per avançar en la investigació i conservació a les seves àrees respectives, els membres de la xarxa poden compartir dades d’iNaturalist. Tenen la responsabilitat d’avaluar la validesa i adequació de les sol·licituds de dades i els seus possibles resultats; transmetre per escrit la responsabilitat per garantir també la seguretat d’aquestes dades i no exposar-les públicament de cap manera, ni compartir-les o utilitzar-les més enllà de la finalitat prevista originalment; documentar tots els casos d’intercanvi juntament amb els resultats, resultats o usos previstos associats; i informar anualment a iNaturalist.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     La %{start_tag_network}Xarxa iNaturalist%{end_tag_network} és un conjunt de llocs web localitzats de la %{start_tag_global}comunitat global iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    La %{start_tag_network}Xarxa iNaturalist%{end_tag_network} ofereix una
+    experiència localitzada a la %{start_tag_global}
+    Comunitat iNaturalist Global%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     Quan us afilieu a un membre de la xarxa iNaturalist, la vostra adreça de correu electrònic i les ubicacions reals de les vostres ubicacions privades i ocultes es comparteixen amb aquest membre de la xarxa. Això permet que les vostres observacions siguin més valuoses per als esforços de conservació locals. Si viviu o visiteu amb freqüència l'àrea d'un membre de la xarxa, us recomanem que l'escolliu per afiliar-vos per facilitar l’intercanvi de dades.
   sites_affiliation_overview_you_can_continue_html: |
@@ -4794,9 +4911,15 @@ ca:
   sites_network_agreements_html: |
     iNaturalist té acords formals amb organitzacions de cadascuna d'aquestes àrees geogràfiques per donar suport a l'ús de la plataforma iNaturalist.
     <strong>Si la vostra organització està interessada a unir-se a la xarxa iNaturalist, podeu consultar més detalls a %{start_tag_join}aquí%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    iNaturalist té acords formals amb organitzacions de les següents àrees geogràfiques per donar suport a l'ús de la plataforma iNaturalist. Des de 2024, estem treballant en un enfoc simplificat per a les col·laboracions en xarxes.
+    <strong>Si la teva organització està interessada a unir-se a la Xarxa iNaturalist, pots trobar més detalls
+    %{start_tag_join}aquí%{end_tag_join}.</strong>
   sites_network_consists_of: "La Xarxa iNaturalist està formada per moltes organitzacions:"
   sites_network_inaturalist_network_collection: |
     La xarxa iNaturalist és un conjunt de llocs web localitzats totalment connectats a la comunitat iNaturalist global. Els llocs de la xarxa tenen el suport d’institucions locals que promouen el seu ús local i faciliten l’ús de les dades d’iNaturalist per beneficiar la biodiversitat local. Tenen accés a les coordenades autèntiques dins de les seves àrees geogràfiques, les quals s’amaguen automàticament de la vista pública per protegir millor les espècies amenaçades.
+  sites_network_inaturalist_network_collection2: |
+    La Xarxa iNaturalist és una experiència localitzada que està completament connectada amb la comunitat global d'iNaturalist. Els membres de la xarxa són institucions locals que promouen l'ús local i faciliten l'ús de dades d'iNaturalist per beneficiar la biodiversitat local. Tenen accés a les coordenades reals dins les seves àrees geogràfiques que queden automàticament ocultes a la vista del públic per protegir millor les espècies amenaçades.
   sites_network_your_username: |
     El vostre nom d'usuari i contrasenya funciona a tots els llocs que formen part de la xarxa iNaturalist. Si decidiu afiliar-vos a un lloc de la xarxa, les institucions locals que donin suport a aquell lloc també tindran accés a la vostra adreça de correu electrònic (només per comunicar-se amb vosaltres sobre les activitats del lloc) i accés a les coordenades reals de les observacions que hàgiu triat ocultar de forma pública o privada.
   some_agree: alguns usuaris hi estan d’acord
@@ -5172,6 +5295,8 @@ ca:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Termes
+  #As in a list of distinct words
+  terminology: Terminologia
   terms_and_rules_html: "Condicions i normes"
   terms_new_users: "Si incorporeu condicions, els nous usuaris han d'acceptar-les abans d'unir-se al projecte."
   terms_service: Condicions d'ús
@@ -5564,6 +5689,7 @@ ca:
   uploader:
     errors:
       file_too_big: L'arxiu ha de ser menys de %{megabytes}MB
+      unsupported_file_type: Tipus d'arxiu no suportat. S'accepte_ JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3 i MP4 (només àudio)
     resize_tip: |
       Si els vostres arxius de foto són massa grans, proveu retallar-los a un màxim de 2048 per 2048 píxels. En el servidor es retallaran igualment a aquesta mida, per tant, si ho feu aconseguireu que es pugin més ràpid.
     tooltips:
@@ -5654,6 +5780,9 @@ ca:
   user_faved_this_observation: "%{user} ha marcat com a favorita aquesta observació"
   user_flagged_as_a_non_spammer_html: "%{user} marca com a no spammer"
   user_flagged_as_a_spammer_html: "%{user} marcat com spammer"
+  user_has_been_removed_from_site: |
+    %{username} ha estat eliminat de %{site_name} (pot trigar fins a una hora
+    per retirar completament tot el contingut associat)
   user_has_opted_out_of_community_id: L'usuari ha refusat el Tàxon de la Comunitat
   user_hasnt_joined_any_projects: "%{user} no s'ha unit a cap projecte"
   user_helped_x_people_with_y_ids_html: "%{user} ha ajudat <strong>%{x} persones</strong> amb <strong>%{y} IDs</strong>"
@@ -5671,6 +5800,7 @@ ca:
   user_muted: Usuari silenciat
   user_observed_on_on_date_in_place: |
     %{user} observà un el %{date} a %{place}
+  user_said_comment_html: <span class="meta">%{user} va dir,</span> "%{comment}"
   user_suggested_an_id: "%{user} ha suggerit una identificació"
   user_trusts_this_project_for_none: L'usuari no confia en aquest projecte amb coordenades ocultes.
   user_trusts_this_project_for_any: |
@@ -5688,6 +5818,7 @@ ca:
   user_trusts_you_with_their_private_coordinates: "%{user} comparteix amb tu les seves coordenades ocultes"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'observador ha escollit compartir amb tu les coordenades ocultes de totes les seves observacions.
+  user_updated_an_observation_field_html: '%{user} ha actualitzat el valor de "%{field_name}" en una observació de %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> ha escrit,
   username: Nom d'usuari
   username_description: Aquest és el nom d'usuari que utilitzareu per ingressar, i amb el qual us podran identificar altres usuaris a iNaturalist
@@ -5973,6 +6104,9 @@ ca:
   yir_email_of_your_observations:
     one: De la teva %{count} observació, saps quantes vau fer el %{year}?
     other: De les teve %{count} observación, saps quantes vau fer el %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    El vostre Resum de l'any %{year} a iNaturalist — celebra el teu any amb biodiversitat
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: L'Equip d'iNaturalist
   yir_email_what_else_will_you_observe_caps: QUÈ MÉS OBSERVAREU?
@@ -7203,6 +7337,14 @@ ca:
         recent_w_0_obs_desc: Connectat els darrers 7 dies i sense observacions afegides
         recent_w_7_obs: Recent amb >= 7 observacions
         recent_w_7_obs_desc: Connectat els darrers 7 dies i més de 7 observacions afegides
+        for_others: Per a altres
+        ids_last_7_days: Identificacions (7 dies)
+        ids_last_7_days_desc: Identificacions creades durant els darrers 7 dies
+        ids_today: Identificacions (1 dia)
+        ids_today_desc: Identificacions creades en un únic dia
+        ids_last_7_days_for_others: Identificacions per altres (7 dies)
+        ids_last_7_days_for_others_desc: Identificacions afegides a les observacions d'altres persones durant els 7 dies anteriors
+        ids_today_for_others: Identificacions per altres (1 dia)
         time_to_id_desc: Temps fins a ID (hores, finestra mòbil d'una setmana)
         TTCID: TFIdC
         TTCID_desc: Temps fins a rebre una observació d'algú més que coincideix amb el tàxon de la comunitat.
@@ -8528,6 +8670,10 @@ ca:
         Protozoa: Protozous
         Mollusca: Mol·luscs
         Chromista: Algues brunes i parents
+  id_summary_dqa:
+    public_metrics:
+      identification: "Útil per a la identificació"
+      references: "Sostingut per referències"
   #Title of a section warning the user about something
   warning_title: Atenció
   wikimedia: Wikimedia
