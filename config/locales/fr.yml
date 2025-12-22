@@ -916,7 +916,7 @@ fr:
     split: Ancien taxon divisé en plusieurs nouveaux taxons
     merge: Plusieurs anciens taxons agrégés dans un nouveau taxon
     swap: Remplacer le taxon d'entrée par le taxon de sortie
-    drop: Le concept de taxon est non valide mais conservé à des fins historiques ou de compatibilité avec le partenaire
+    drop: Le concept de taxon est complètement invalide mais conservé à des fins historiques ou de compatibilité avec les partenaires
     stage: Préparer un concept inactif pour publication dans un groupe de modifications
   change_geoprivacy: 'Modifier la géoconfidentialité'
   change_group: Groupe de modifications
@@ -1109,8 +1109,7 @@ fr:
   confirmed_on_date: Confirmé le %{date}
   confirming_ids: IDs confirmant
   confirming_ids_description: |
-    Si vous désactivez cette option, vous ne serez plus informé des IDs en accord
-    avec le vôtre à moins qu’ils n’aient des remarques supplémentaires.
+    Si vous désactivez cette option, vous ne serez plus informé des IDs en accord avec le vôtre à moins qu’ils n’aient des remarques supplémentaires.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Connecter
@@ -1533,6 +1532,10 @@ fr:
     gaps_obs_pilot_current_body: "En observant celles-ci, vous aidez à l'amélioration de la reconnaissance des espèces et comblez des lacunes critiques."
     #label of link to explore species view
     gaps_obs_pilot_browse: "Parcourir les espèces"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "À partir de demain, vous recevrez jusqu'à 30 observations par jour correspondant à vos compétences d'identification, aidant à intégrer de nouveaux utilisateurs. Vous pouvez vous retirer à tout moment."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Vous trouverez ci-dessous jusqu'à 30 observations correspondant à vos compétences d'identification."
   data_deficient: Données insuffisantes
   data_quality: Qualité des données
   data_quality_assessment: Évaluation de la qualité des données
@@ -1990,8 +1993,7 @@ fr:
   favorite_projects: Projets favoris
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
-    Choisissez jusqu’à sept projets qui apparaitront sous forme de liens dans l’en-tête. Les mises à jour
-    apparaîtront après l’actualisation de la page.
+    Choisissez jusqu’à sept projets qui apparaitront sous forme de liens dans l’en-tête. Les mises à jour apparaîtront après l’actualisation de la page.
   favorite_taxa: Taxons favoris
   favorites: "Favoris"
   feature_this_project_: "Mettre en valeur ce projet"
@@ -2069,7 +2071,7 @@ fr:
     Signalement de la check-list : %{title}
   flag_for_comment_id_html: Signaler pour <a href="%{url}">Commentaire %{id}</a>
   flag_for_comment_id_deleted: Signalement pour le commentaire %{id} (supprimé)
-  flag_for_curation: Marquer pour la supervision
+  flag_for_curation: Signaler aux curateurs
   flag_for_guide_title_html: |
     Signalement du Guide : %{title}
   flag_for_identification_id_html: Signalement pour <a href="%{url}">Identification %{id}</a>
@@ -2099,7 +2101,7 @@ fr:
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objet
   flag_resolution: Résolution
-  flag_saved: Marque enregistrée
+  flag_saved: Signalement enregistré
   flag_saved_thanks_html: Signalement enregistré. Merci ! <a href="%{url}" class="readmore">Afficher le signalement</a>
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
@@ -2110,7 +2112,7 @@ fr:
   flagged_taxon: Taxon signalé
   flagged_thing_explanation: "Les utilisateurs ont signalé @gender{m:ce|cette} %{thing} parce que"
   flagging_desc: |
-    Le signalement attire l’attention des responsables bénévoles du site sur quelque chose. Veuillez ne pas signaler les problèmes que vous pouvez régler par les identifications, par l’Évaluation de la qualité des données, ou en parlant à la personne qui a rédigé le contenu.
+    Le signalement attire l’attention des curateurs bénévoles du site sur quelque chose. Veuillez ne pas signaler les problèmes que vous pouvez régler par les identifications, par l’Évaluation de la Qualité des Données, ou en discutant avec la personne qui a rédigé le contenu.
   flagger: Rapporteur
   flags: Signalements
   flags_with_count: Signalements (%{count})
@@ -5779,7 +5781,7 @@ fr:
       select_all: Sélectionner toutes les observations
       upload_failed: Échec de l’import
   uploading_num_of_count_photos:
-    one: Téléversement d’une photo…
+    one: Import d’une photo…
     other: Import de %{num} sur %{count} photos…
   url_for_your_app_outside_of_inaturalist: URL de votre application en dehors d'iNaturalist
   url_identifier_of_a_project_derived_from: "URL/identifiant d'un projet dérivé d’une ressource externe"
@@ -5938,7 +5940,7 @@ fr:
   view_all: Afficher tout
   view_all_caps: TOUT AFFICHER
   view_all_fields: Afficher tous les champs
-  view_all_flags: Voir tout les signalements
+  view_all_flags: Voir tous les signalements
   view_all_members: Afficher tous les membres
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -6609,7 +6611,7 @@ fr:
           figure_alt_text: Le modèle géographique applique l'étiquette « Présence attendue à proximité »
           #text for a link to a GeoJSON-formatted representation of the taxon's
           #Expected Nearby range that the user can download
-          download_expected_nearby_map_as_geojson: Télécharger la carte de proximité attendue en tant que GeoJSON
+          download_expected_nearby_map_as_geojson: Télécharger la carte de proximité attendue comme GeoJSON
         unthresholded_map:
           unthresholded_map: Carte non seuillée
           we_use_the_unthresholded_map: |
@@ -6907,7 +6909,7 @@ fr:
           Vous pourrez envoyer de nouveaux messages une fois que vous aurez confirmé votre adresse e-mail et ajouté trois observations vérifiables ou trois identifications pour d'autres utilisateurs. Pour l'instant, vous pouvez lire et répondre aux messages que d'autres personnes vous envoient.
       show:
         flag_notice_html: |
-          Vous avez signalé cette conversation le %{date}. Le drapeau sera maintenu même
+          Vous avez signalé cette conversation le %{date}. Le signalement sera maintenu même
           si vous supprimez votre copie de cette conversation, donc il n'y a pas de risque à le faire
           si vous ne voulez plus voir celle-ci.
         privacy_notice_html: |
@@ -9419,7 +9421,7 @@ fr:
               #basically saved searches so you don't have to add anything to
               #them
               collection_and_umbrella_projects_do_not_allow_direct_submission: |
-                l'ajout direct d'observations dans des projets de collection et des projets-cadres n'est pas possible
+                l'ajout direct d'observations dans des projets de collection et des projets de compilation n'est pas possible
             user_id:
               must_be_curator: doit être un responsable de ce projet
             observation_id:
@@ -9464,6 +9466,22 @@ fr:
               bad_format: |
                 ne peut contenir que des caractères standards latins, des tirets, des espaces, et 
                 ×; notez que les taxons et cultivars putatifs ne sont pas autorisés
+              #Error message trying to change name for a taxon other than animal/plant/fungi
+              microbe_or_ungrafted: "les changement de noms ne sont pas autorisés pour les virus, bactéries, ou les clades non greffés"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "le genre ne peut pas changer"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "nom d'espèce non standard : seuls la suppression de 'x'/'×' ou l'ajout de '×' sont autorisés"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "l'épithète spécifique doit être similaire (seulement faute de frappe/genre incorrect)"
+              #Error message trying eliminate the ssp epithet part for a ssp
+              infra_required: "l'épithète infraspécifique est requise pour ce rang"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "seule l'épithète infraspécifique peut changer pour les taxons infraspécifiques"
+              #Error message trying make major changes to the ssp epithet
+              infra_epithet_similar: "l'épithète infraspécifique doit être similaire (seulement faute de frappe/genre incorrect)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "la première lettre de toute épithète ne peut pas changer"
         taxon_change:
           attributes:
             base:
@@ -9737,6 +9755,8 @@ fr:
         run_loading: "Chargement..."
         photo_tips_toggle: "Afficher les conseils photo"
         language_label: "Langue"
+      summary_item:
+        disclaimer: "Ce résumé des commentaires des utilisateurs d’iNaturalist a été généré par IA et peut être incorrect. Vous pouvez nous aider à améliorer ce résumé en nous faisant part de vos commentaires."
   #Title of a section warning the user about something
   warning_title: Avertissement
   wikimedia: Wikimédia

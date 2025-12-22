@@ -1974,6 +1974,7 @@ it:
   external_taxon_including_children: Taxon esterno (inclusi discendenti)
   extinct: Estinta
   extinct_in_the_wild: Estinta in Natura
+  provisional_taxon: Provvisorio
   extra_properties: Proprietà aggiuntive
   evidence_accurately_depicts_organism_or_scene: Le prove descrivono accuratamente l'organismo o la scena
   evidence_of_organism: Evidenza della presenza dell'organismo
@@ -2296,6 +2297,8 @@ it:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Nascondi le osservazioni con posizioni private
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Nascondere Taxa Provvisori
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Nascondi il totale attuale
   hide_uncountable_species: Nascondi le specie non conteggiabili
@@ -2448,6 +2451,7 @@ it:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inattivo
   inactive_taxon_concepts_are: I taxa inattivi sono quelli obsoleti da un punto di vista tassonomico, o in attesa di una modifica del taxon. I taxa obsoleti sono mantenuti per mantenere la cronologia e la compatibilità con alcuni dei siti partner.
+  provisional_taxa_are_not_published: 'I taxa provvisori non vengono pubblicati e possono essere soggetti a cambiamenti importanti. Attualmente sono permessi solo per i funghi e devono essere associati a un''osservazione con una sequenza di DNA. Per favore, linka questa osservazione nel campo "Perché stai facendo questo cambiamento?".'
   inappropriate_content: Contenuto inappropriato?
   inat_account_action: "%{site_name} &#58; Profilo &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} crede che questa sia una lista completa di questo taxon in questo luogo."
@@ -4890,6 +4894,8 @@ it:
   show_running_total: Mostra il totale attuale
   show_taxa_from_both: (mostra i taxa di entrambe le liste)
   show_taxa_from_everywhere: "Visualizza i taxa di tutto il mondo"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Mostra taxa provvisori
   show_taxa_from_place: "Mostra i taxa in %{place}"
   show_total_counts: Mostra tutti i conteggi
   show_uncountable_species: Mostra le specie non conteggiabili
@@ -7165,6 +7171,9 @@ it:
           Identificatore universale univoco per l'osservazione. Vedi
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Scopri come usare questa pagina e contribuisci con le identificazioni su iNaturalist!
         review_all_tooltip: "Contrassegna tutte le osservazioni della pagina come già controllate"
         you_reviewed_message: "Hai controllato %{reviewed} di %{pageTotal} osservazioni in questa pagina su %{total} osservazioni corrispondenti."
         unreview_all_tooltip: "Rimuovi lo stato \"revisionata\" da tutte le osservazioni della pagina"

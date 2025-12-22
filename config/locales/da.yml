@@ -2028,6 +2028,7 @@ da:
   external_taxon_including_children: Ekstern takson (inklusiv efterfølgere)
   extinct: uddød
   extinct_in_the_wild: Uddøde i naturen
+  provisional_taxon: Provisorisk
   extra_properties: Ekstra egenskaber
   evidence_accurately_depicts_organism_or_scene: Beviser afbilder præcist organisme eller scene
   evidence_of_organism: Bevis for organisme
@@ -2359,6 +2360,8 @@ da:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Skjul observationer med fortrolige placeringer
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Skjul provisoriske taksa
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Skjul igangværende total
   hide_uncountable_species: Skjul arter der ikke medregnes
@@ -2514,6 +2517,7 @@ da:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inaktiv
   inactive_taxon_concepts_are: Inaktive takson koncepter er enten taksonomisk forældede eller bliver klargjort til en takson ændring. Forældede koncepter bibeholdes for at opretholde historie og kompatibilitet med nogle websted partnere.
+  provisional_taxa_are_not_published: 'Provisoriske taksa er ikke offentliggjort og kan være underlagt større ændringer. De er i p.t. kun tilladt for svampe og skal være forbundet med en observation med en DNA-sekvens. Link venligst til denne observation i feltet "Hvorfor foretages denne ændring?".'
   inappropriate_content: Upassende indhold?
   inat_account_action: "%{site_name} &#58; konto &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} mener, at dette er en komplet liste over denne taxon på dette sted."
@@ -5007,6 +5011,8 @@ da:
   show_running_total: Vis igangværende total
   show_taxa_from_both: (vis taksa fra begge lister)
   show_taxa_from_everywhere: "Viser taksa fra overalt"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Vis provisoriske taksa
   show_taxa_from_place: "Vis taksa fra %{place}"
   show_total_counts: Vis totalt antal
   show_uncountable_species: Skjul arter der ikke medregnes
