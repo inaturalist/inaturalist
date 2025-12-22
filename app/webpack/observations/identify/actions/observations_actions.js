@@ -20,6 +20,9 @@ const OBSERVATION_FIELDS = {
   comments_count: true,
   identifications_count: true,
   place_ids: true,
+  preferences: {
+    prefers_community_taxon: true
+  },
   private_place_ids: true,
   observation_photos: {
     id: true
@@ -59,7 +62,12 @@ const OBSERVATION_FIELDS = {
     id: true,
     login: true,
     name: true,
-    icon_url: true
+    icon_url: true,
+    preferences: {
+      prefers_community_taxa: true,
+      prefers_observation_fields_by: true,
+      prefers_project_addition_by: true
+    }
   }
 };
 
