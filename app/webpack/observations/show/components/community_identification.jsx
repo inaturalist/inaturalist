@@ -279,11 +279,11 @@ class CommunityIdentification extends React.Component {
             && i.id > firstIdentOfTaxon.id ) {
             votesAgainst.push( i );
           } else if ( observation.communityTaxon.ancestry
-            && !observation.communityTaxon.ancestry.split( "/" ).includes( i.taxon.id ) ) {
+            && !observation.communityTaxon.ancestry.split( "/" ).includes( i.taxon.id.toString() ) ) {
             votesFor.push( i );
           }
         } else if ( observation.communityTaxon.ancestry
-          && !observation.communityTaxon.ancestry.split( "/" ).includes( i.taxon.id ) ) {
+          && !observation.communityTaxon.ancestry.split( "/" ).includes( i.taxon.id.toString() ) ) {
           votesAgainst.push( i );
         }
       } );

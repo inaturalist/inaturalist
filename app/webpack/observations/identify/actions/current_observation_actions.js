@@ -264,7 +264,8 @@ const OBSERVATION_FIELDS = {
     observations_count: true,
     preferences: {
       prefers_community_taxa: true,
-      prefers_observation_fields_by: true
+      prefers_observation_fields_by: true,
+      prefers_project_addition_by: true
     }
   },
   viewer_trusted_by_observer: true,

@@ -23,17 +23,27 @@ class TaxonName < ApplicationRecord
   validate :no_forbidden_lexicons
   validates_format_of :lexicon, with: %r{\A[^/,]+\z},
     message: :should_not_contain_commas_or_slashes,
-    if: proc {| tn | tn.lexicon_changed? }
+    if: :lexicon_changed?
   validate :species_common_name_cannot_match_taxon_name
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: proc {| tn | tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: proc {| tn | tn.lexicon.present? }
   validate :user_submitted_names_need_notes
+  validate :provisional_scientific_name_format
   SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/
+  # Format: Genus sp. 'epithet-phrase'
+  # Example: Aureonarius sp. 'callisteus-infucatus' or Calonarius sp. 'AK01'
+  # Genus can contain letters or hyphens, epithet can contain letters (upper/lower), numbers, or hyphens
+  PROVISIONAL_NAME_FORMAT = /\A[A-Z][a-z-]+\s+sp\.\s+'[A-Za-z0-9-]+'\z/
   validates :name,
     format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
+    unless: proc {| tn |
+      tn.taxon&.provisional
+    },
     if: proc {| tn |
-      tn.lexicon == SCIENTIFIC_NAMES && ( tn.name_changed? || tn.new_record? )
+      scientific_name = tn.lexicon == SCIENTIFIC_NAMES
+      name_or_provisional_changed = tn.name_changed? || tn.new_record? || tn.taxon&.will_save_change_to_provisional?
+      scientific_name && name_or_provisional_changed
     }
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   before_validation :capitalize_scientific_name
@@ -117,7 +127,7 @@ class TaxonName < ApplicationRecord
   }.freeze
 
   LEXICONS.each do | k, v |
-    define_method "is_#{k.to_s.downcase}?".to_sym do
+    define_method :"is_#{k.to_s.downcase}?" do
       lexicon == v
     end
     alias_method :"#{k.to_s.downcase}?", :"is_#{k.to_s.downcase}?"
@@ -200,8 +210,7 @@ class TaxonName < ApplicationRecord
   alias is_scientific? is_scientific_names?
   alias scientific? is_scientific_names?
 
-  attr_accessor :skip_indexing
-  attr_accessor :user_submission
+  attr_accessor :skip_indexing, :user_submission
 
   def to_s
     "<TaxonName #{id}: #{name} in #{lexicon}>"
@@ -226,6 +235,8 @@ class TaxonName < ApplicationRecord
 
   def remove_rank_from_name
     return unless lexicon == LEXICONS[:SCIENTIFIC_NAMES]
+    # Skip rank removal for provisional taxa as they need "sp." in their name
+    return true if taxon&.provisional
 
     self.name = Taxon.remove_rank_from_name( name )
     true
@@ -255,7 +266,7 @@ class TaxonName < ApplicationRecord
     if options.blank?
       options[:only] = [:id, :name, :lexicon, :is_valid]
     end
-    super( options )
+    super
   end
 
   def as_indexed_json( options = {} )
@@ -326,21 +337,21 @@ class TaxonName < ApplicationRecord
       exact_place_names = []
     end
     if options[:lexicon]
-      lexicon_names = common_names.select { |n| n.parameterized_lexicon == options[:lexicon] }
-      lexicon_and_place_names = place_names.select { |n| n.parameterized_lexicon == options[:lexicon] }
-      exact_lexicon_and_place_names = exact_place_names.select { |n| n.parameterized_lexicon == options[:lexicon] }
+      lexicon_names = common_names.select {| n | n.parameterized_lexicon == options[:lexicon] }
+      lexicon_and_place_names = place_names.select {| n | n.parameterized_lexicon == options[:lexicon] }
+      exact_lexicon_and_place_names = exact_place_names.select {| n | n.parameterized_lexicon == options[:lexicon] }
     else
       locale = options[:locale]
       locale = options[:user].try( :locale ) if locale.blank?
       locale = options[:site].try( :locale ) if locale.blank?
       locale = I18n.locale if locale.blank?
       language_name = language_for_locale( locale )
-      lexicon_names = common_names.select { |n| n.localizable_lexicon == language_name }
+      lexicon_names = common_names.select {| n | n.localizable_lexicon == language_name }
 
       # We want Maori names to show up in New Zealand even for English speakers,
       # but we don't want North American English names to show in Mexcio
-      lexicon_and_place_names = place_names.select { |n| n.localizable_lexicon == language_name }
-      exact_lexicon_and_place_names = exact_place_names.select { |n| n.localizable_lexicon == language_name }
+      lexicon_and_place_names = place_names.select {| n | n.localizable_lexicon == language_name }
+      exact_lexicon_and_place_names = exact_place_names.select {| n | n.localizable_lexicon == language_name }
     end
 
     if exact_lexicon_and_place_names.length.positive?
@@ -392,9 +403,25 @@ class TaxonName < ApplicationRecord
     errors.add( :name, :must_match_the_taxon_if_valid )
   end
 
+  def provisional_scientific_name_format
+    return unless is_scientific_names? && taxon&.provisional
+    return if name.blank?
+
+    # Only validate on change or new record
+    return unless name_changed? || new_record? || taxon&.will_save_change_to_provisional?
+
+    return if name.match?( PROVISIONAL_NAME_FORMAT )
+
+    errors.add(
+      :name,
+      "must be formatted as 'Genus sp. 'epithet'' for provisional taxa " \
+        "(e.g., Aureonarius sp. 'callisteus-infucatus' or Calonarius sp. 'AK01')"
+    )
+  end
+
   def no_forbidden_lexicons
     return unless new_record? || lexicon_changed?
-    return unless lexicon =~ /(#{FORBIDDEN_LEXICONS.join( "|" )})/i
+    return unless lexicon =~ /(#{FORBIDDEN_LEXICONS.join( '|' )})/i
 
     errors.add(
       :lexicon,
@@ -504,9 +531,10 @@ class TaxonName < ApplicationRecord
 
   def self.all_lexicons
     Rails.cache.fetch( "TaxonName::all_lexicons", expires_in: 1.hour ) do
-      Hash[TaxonName.where( "lexicon IS NOT NULL" ).distinct.pluck( :lexicon ).map do |l|
+      result = TaxonName.where( "lexicon IS NOT NULL" ).distinct.pluck( :lexicon ).map do | l |
         [l.parameterize, l]
-      end.sort].filter{ |k,v| !k.blank? }
+      end
+      result.sort.to_h.filter {| k, _v | !k.blank? }
     end
   end
 
@@ -542,14 +570,15 @@ class TaxonName < ApplicationRecord
     errors.add( :lexicon, :should_be_in_english ) if lexicon.parameterize.empty?
   end
 
-  def user_submitted_names_need_notes( options = { } )
+  def user_submitted_names_need_notes( options = {} )
     return unless user_submission
     return unless options[:ignore_field_checks] || name_changed? ||
       is_valid_changed? || lexicon_changed? ||
-      place_taxon_names.any?{ |ptn| ptn.changes.without( :position ).any? }
-    if audit_comment.blank? || audit_comment.length < 10
-      errors.add( :audit_comment, :needs_to_be_at_least_10_characters )
-    end
+      place_taxon_names.any? {| ptn | ptn.changes.without( :position ).any? }
+
+    return unless audit_comment.blank? || audit_comment.length < 10
+
+    errors.add( :audit_comment, :needs_to_be_at_least_10_characters )
   end
 
   # audited was setting the audit_comment to nil before a `before_destroy` callback was being
@@ -562,5 +591,4 @@ class TaxonName < ApplicationRecord
     throw( :abort ) unless errors.details[:audit_comment].blank?
     super
   end
-
 end

@@ -733,6 +733,9 @@ en:
   app_owner_application_inelligible: |
     In order to submit an application your account must be at least 2 months old and must
     have made at least 10 improving identifications in the last month.
+  app_owner_application_inelligible2: |
+    In order to submit an application your account must be at least 2 months old and must
+    have made at least 10 improving identifications for other users in the last month.
   app_owner_application_fields_explanation_html: Describe the functionality your app
     will have and how you plan to use it.
   app_owner_application_success: App owner application submitted
@@ -1087,8 +1090,8 @@ en:
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
   check_above_for_errors: Check above for errors
   check_back_soon: Check back soon!
-  check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
-  check_here_to_autoload_photos: Check here to auto-load photos from Flickr. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
+  check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common misspelling, like "Parus".
+  check_here_to_autoload_photos: Check here to auto-load photos from Flickr. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common misspelling, like "Parus".
   check_list: Check list
   check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it.
   check_list_for_individual_taxa_that: 'Check lists for individual taxa that live here, e.g. "Birds of %{place}".'
@@ -2208,6 +2211,8 @@ en:
   external_taxon_including_children: External taxon (including children)
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
+  # Label for provisional taxa in taxonomy displays
+  provisional_taxon: provisional
   extra_properties: Extra Properties
   evidence_accurately_depicts_organism_or_scene: Evidence accurately depicts organism or scene
   evidence_of_organism: Evidence of organism
@@ -2553,6 +2558,8 @@ en:
   # Label for a checkbox to remove observations from search results where the
   # observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Hide observations with private locations
+  # Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Hide Provisional Taxa
   # Label for a button to hide the running total of an accumulation chart
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
@@ -2726,6 +2733,12 @@ en:
   inactive_taxon_concepts_are:
     Inactive taxon concepts are either taxonomically outdated or being staged for a taxon change.
     Outdated concepts are kept to maintain history and compatibility with some partner sites.
+  provisional_taxon: Provisional
+  provisional_taxa_are_not_published:
+    'Provisional taxa are not published and may be subject to major changes.
+    They are currently only permitted for Fungi and must be associated with
+    an observation with a DNA sequence. Please link to that observation in the
+    "Why are you making this change?" field.'
   inappropriate_content: Inappropriate content?
   inat_account_action: "%{site_name} &#58; Account &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
@@ -5297,6 +5310,8 @@ en:
   show_running_total: Show Running Total
   show_taxa_from_both: (show taxa from both lists)
   show_taxa_from_everywhere: "Show taxa from everywhere"
+  # Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Show provisional taxa
   show_taxa_from_place: "Show taxa from %{place}"
   show_total_counts: Show total counts
   show_uncountable_species: Show uncountable species
@@ -9200,7 +9215,7 @@ en:
           website, which automatically refreshes after a week.
         # a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          You can only make minor changes to the species epithet directly (e.g. gender changes, mispelling). Add a <a target="_blank" href="%{url}">taxon swap</a> if you need other changes to the name.
+          You can only make minor changes to the species epithet directly (e.g. gender changes, misspelling). Add a <a target="_blank" href="%{url}">taxon swap</a> if you need other changes to the name.
         # message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: 
           "Heads up: you just added a descendant of a locked taxon 
