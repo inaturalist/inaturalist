@@ -2296,7 +2296,7 @@ fr:
   hide_observations_with_private_locations: Cacher les observations avec des emplacements privés
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Masquer le total actuel
-  hide_uncountable_species: Masquer les espèces indénombrables
+  hide_uncountable_species: Masquer les espèces non comptabilisables
   high: Haut
   #Highest taxonomic rank to filter by, where the "highest" possible rank is
   #kingdom
@@ -4912,7 +4912,7 @@ fr:
   show_taxa_from_everywhere: "Afficher les taxons de partout"
   show_taxa_from_place: "Afficher les taxons de %{place}"
   show_total_counts: Afficher les compteurs totaux
-  show_uncountable_species: Afficher les espèces indénombrables
+  show_uncountable_species: Afficher les espèces non comptabilisables
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: Affichage des %{x} premiers
@@ -8245,7 +8245,7 @@ fr:
           qui sont très rarement observés, mais c’est également vrai du nombre total
           d’observations.
         complete_taxon_desc: |
-          Les taxons « complets » ont tous leurs taxons descendants encore en vie à un rang particulier présents dans la base de données du site. Quand un taxon est complet pour les espèces,par exemple, nous pouvons dire combien de ses espèces ont été observées et combien doivent encore l’être. Le nombre des espèces pour les taxons complets pour les espèces ne comprend pas les espèces « indénombrables » comme les espèces éteintes ou les concepts d’espèce inactifs, et incluent seulement les espèces, non les taxons de niveau spécifique inférieur, comme les sous-espèces ou les variétés.
+          Les taxons « complets » ont tous leurs taxons descendants encore en vie à un rang particulier présents dans la base de données du site. Quand un taxon est complet pour les espèces, par exemple, on peut dire combien de ses espèces ont été observées et combien doivent encore l’être. Le nombre d'espèces pour les taxons complets pour les espèces ne comprend pas les espèces « non comptabilisables », comme les espèces éteintes ou les concepts d’espèce inactifs, et inclut seulement les espèces et non les taxons de niveau infraspécifique, comme les sous-espèces ou les variétés.
         discoveries_desc: "Espèces nouvellement identifiées les plus récentes dans ce taxon"
         frequency:
           research: Qualité Recherche
