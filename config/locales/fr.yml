@@ -95,7 +95,7 @@ fr:
   x_people_html:
     one: '<span class="count">%{count}</span> personne'
     other: '<span class="count">%{count}</span> personnes'
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} personne(s)</strong> a/ont aidé %{user} sur <strong>%{y} IDs</strong>"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} personne(s)</strong> a/ont aidé %{user} avec <strong>%{y} ID</strong>"
   x_photos:
     one: "%{count} photo"
     other: "%{count} photos"
@@ -802,7 +802,7 @@ fr:
   back_to_suggestions: Retourner aux propositions
   back_to_taxon: "Retourner à %{defaulttaxon}"
   back_to_taxon_changes: "Retourner aux modifications taxinomiques"
-  back_to_taxon_framework_for_x: "Retourner au cadre taxinomique pour %{taxon_name}"
+  back_to_taxon_framework_for_x: "Retourner à la structure taxinomique pour %{taxon_name}"
   back_to_users_calendar: "Retourner au calendrier @vow_or_con{vow:d'|de }%{user}"
   back_to_users_lists: "Retourner aux listes @vow_or_con{vow:d'|de }%{user}"
   back_to_viewing: "Retourner à <i>%{taxon}</i>"
@@ -1314,7 +1314,7 @@ fr:
   copyright_infringement: Violation de droit d’auteur
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne autre que l’observateur et attribution manquante
   covered_by_a_taxon_framework_html: "Couvert par un %{link}"
-  covered_by_a_taxon_framework_link: "Cadre taxinomique pour %{taxon_framework_rank} %{taxon_framework_name}"
+  covered_by_a_taxon_framework_link: "Structure taxinomique pour %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "Impossible de modifier votre mot de passe : %{e}"
   couldnt_find_a_user_matching_x_param: "Impossible de trouver un utilisateur correspondant à %{id}"
   couldnt_find_that_taxon: Impossible de trouver ce taxon.
@@ -1614,7 +1614,7 @@ fr:
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
   #As in the definition of a word
   definition: Définition
-  defines_a_taxon_framework_for: 'Définit un cadre taxinomique pour : %{taxon_name}'
+  defines_a_taxon_framework_for: 'Définit une structure taxinomique pour : %{taxon_name}'
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Définit un cadre taxinomique pour %{taxon} provenant de %{source}
   definitions: Définitions
   delete: Supprimer
@@ -1844,7 +1844,7 @@ fr:
   edit_source: Modifier la source
   edit_taxa: Modifier les taxons
   edit_taxon: Modifier le taxon
-  edit_taxon_framework: Modifier le cadre taxinomique
+  edit_taxon_framework: Modifier la structure taxinomique
   edit_taxon_link: Modifier le lien relatif au taxon
   edit_taxon_range: Modifier l'aire de répartition du taxon
   edit_the_observation: Modifier l’observation
@@ -2064,7 +2064,7 @@ fr:
   flag_created: Signalement créé
   flag_deleted: Indicateur supprimé
   flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
-  flag_comment_description: Ajoutez un commentaire facultatif à cet indication pour expliquer plus en détail pourquoi vous l'ajoutez et pour fournir des liens vers des données qui étayent votre point de vue.
+  flag_comment_description: Ajoutez un commentaire facultatif à ce signalement pour expliquer plus en détail pourquoi vous l'ajoutez et pour fournir des liens vers des données qui étayent votre point de vue.
   #Text reminding the user to cite sources
   flag_comment_taxon_description: Les drapeaux qui citent une source ont plus de chances d’être résolus rapidement par nos conservateurs bénévoles.
   flag_for_check_list_title_html: |
@@ -2262,9 +2262,9 @@ fr:
   heads_up_automatable_split_notice_html: |
     <strong>Avertissement :</strong> Certaines ou toutes les identifications affectées par cette division peuvent avoir été remplacées par des identifications de %{taxon}. Ceci se produit lorsque nous ne pouvons pas assigner automatiquement une identification à l'un des taxons de sortie.
   heads_up_observose_taxon_change_html: |
-    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée impliqués dans cette modification a plus de %{observose_taxon_threshold} observations en aval. Seuls les administrateurs ou les responsables de ce cadre taxinomique peuvent valider cette modification.
+    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée impliqués dans cette modification a plus de %{observose_taxon_threshold} observations en aval. Seuls les administrateurs ou les responsables de cette structure taxinomique peuvent valider cette modification.
   heads_up_taxon_change_inputs_covered_by_framework_html: |
-    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée touchés par cette modification sont dans un <a href="%{framework_url}">cadre taxinomique</a>. Seuls les administrateurs ou les responsables de ce cadre taxinomique peuvent valider des modifications qui touchent les taxons couverts. Adressez-vous à l'un des responsables de ce taxon pour valider cette modification.
+    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée touchés par cette modification sont dans une <a href="%{framework_url}">structure taxinomique</a>. Seuls les administrateurs ou les responsables de cette structure taxinomique peuvent valider des modifications qui touchent les taxons couverts. Adressez-vous à l'un des responsables de ce taxon pour valider cette modification.
   heads_up_there_are_other_draft_taxon_changes_html:
     one: "<strong>Avertissement :</strong> Il y a %{count} autre projet de modification de taxon avec les mêmes taxons d'entrée :"
     other: "<strong>Avertissement :</strong> Il y a %{count} autres projets de modification de taxon avec les mêmes taxons d'entrée :"
@@ -2339,7 +2339,7 @@ fr:
   #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
   id_two_of_taxon_swap_html: "L'ID 2 du taxon <strong>E</strong> sera un désaccord involontaire avec l'ID 1 du taxon <strong>B</strong> après l'échange de taxon"
   id_withdrawn: ID supprimé
-  ids_by_taxon: IDs par taxon
+  ids_by_taxon: ID par taxon
   identify: Identifier
   identify_observations: "Identifier les observations"
   identify_observations_by_these_users: Identifier les observations par ces utilisateurs
@@ -2558,7 +2558,7 @@ fr:
   last_observation: Dernière observation
   last_observation_caps: DERNIÈRE OBSERVATION
   last_seen: Vu la dernière fois
-  last_year: Année dernière
+  last_year: An dernier
   lat: Lat.
   #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
   latlon: Lat./Long.
@@ -2859,7 +2859,7 @@ fr:
   log_out_caps: SE DECONNECTER
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Se déconnecter de %{site_name}?"
-  log_scale_label: Trace
+  log_scale_label: Logarithmique
   #Adjectival phrase describing state of being logged in
   logged_in: Connecté
   #Adjectival phrase describing state of being logged out
@@ -3309,7 +3309,7 @@ fr:
   no_taxa_listed: Aucun taxon répertorié
   no_taxa_selected: Aucun taxon sélectionné !
   no_taxa_with_unknown_relationships: Aucun taxon avec des relations inconnues
-  no_taxon_framework_relationships: aucune relation de cadre taxinomique
+  no_taxon_framework_relationships: aucun lien de structure taxinomique
   no_taxonomic_changes_match_those_criteria: Aucune modification taxinomique ne correspond à ces critères
   no_users_found_with_those_filters: Pas d'utilisateurs trouvés ave ces filtres
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
@@ -3594,7 +3594,7 @@ fr:
   observations_specifying_this_field_with_value: Observations spécifiant ce champ avec « %{value} »
   observations_text_search_warning: |
     Les recherches textuelles peuvent produire des résultats bizarres quand elles sont combinées avec d’autres filtres. Si vous voulez trouver l’observation d’une espèce particulière, utilisez le filtre de taxon.
-  observations_this_year_vs_last_year: Observations de cette année vs. l’année dernière
+  observations_this_year_vs_last_year: Observations cette année par rapport à l’année dernière
   observations_total: Total des observations
   observations_w: Observations avec /
   observations_w_field: Observations w/champ
@@ -5168,7 +5168,7 @@ fr:
   suitable_for_the_global_biodiversity_information_facility: Convient au Système Mondial d'Information sur la Biodiversité (GBIF)
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Convient à Wikipédia et aux autres projets de la Fondation Wikimédia
   summary: Résumé
-  supporting: Soutenir
+  supporting: Soutien
   suspend_user: Suspendre l’utilisateur
   suspend_user_html: Suspendre %{user}
   suspend_user_reason_instructions_html: |
@@ -5283,14 +5283,14 @@ fr:
   taxon_curators: Responsables des taxons
   taxon_framework_complete: "Complet : vrai"
   taxon_framework_deviations_with_count_html: "Déviations : %{count}"
-  taxon_framework_relationships_with_count_html: "Relations du cadre taxinomique : %{count}"
+  taxon_framework_relationships_with_count_html: "Liens de la structure taxinomique : %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxons couverts signalés : %{count}"
-  taxon_framework_notes: Notes du cadre taxinomique
-  taxon_framework_relationship: Relation du cadre taxinomique
+  taxon_framework_notes: Notes de la structure taxinomique
+  taxon_framework_relationship: Lien avec la structure taxinomique
   taxon_framework_relationship_number: "Relation du cadre taxinomique %{number}"
   taxon_framework_relationship_unknown_count_html: "Nombre de relations inconnues : %{count}"
-  taxon_framework_relationships: Relations du cadre taxinomique
+  taxon_framework_relationships: Liens de la structure taxinomique
   taxon_framework_taxon: Taxon du cadre taxinomique
   taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
   taxon_merge: fusion de taxon
@@ -5864,7 +5864,7 @@ fr:
     pour supprimer complètement le contenu associé)
   user_has_opted_out_of_community_id: L’utilisateur a refusé le Taxon Communautaire
   user_hasnt_joined_any_projects: "%{user} n'a rejoint aucun projet"
-  user_helped_x_people_with_y_ids_html: "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} IDs</strong>"
+  user_helped_x_people_with_y_ids_html: "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} ID</strong>"
   user_invite_observation_to_project: '%{user} aimerait obtenir votre observation « %{observation} » dans le projet %{project}.'
   user_invited_you_to_join_html: "%{user} vous a invité à vous joindre"
   user_invited_you_to_join_project: "%{user} vous a invité à vvous joindre à %{project}"
@@ -6001,7 +6001,7 @@ fr:
   view_stats: Afficher les statistiques
   view_taxon_change: Afficher la modification du taxon
   view_taxon_changes: Afficher les modifications de taxon
-  view_taxon_framework_relationship: Afficher la relation du cadre taxinomique
+  view_taxon_framework_relationship: Afficher le lien de la structure taxinomique
   view_taxon_page: Afficher la page de taxon
   view_taxon_page_for_this_x: "Afficher la page de taxon pour ce %{x}"
   view_taxononomy_details_for_taxon: "Afficher les détails de la taxinomie pour %{taxon}"
@@ -6037,7 +6037,7 @@ fr:
   we_support_flickr: Pour le moment, nous prenons en charge ''Flickr'' pour l’hébergement d’images et espérons ajouter d’autres hébergeurs prochainement.
   weather: Météo
   website: Site web
-  week_of_date: "Semaine de %{date}"
+  week_of_date: "Semaine du %{date}"
   welcome: bienvenue
   welcome_back!: Re-bonjour !
   welcome_to_inat: "Bienvenue sur %{site_name} !"
@@ -8050,11 +8050,11 @@ fr:
         broader_impacts_desc: |
           Plusieurs partenaires externes importent régulièrement des observations iNaturalist pour soutenir la science et la conservation. Vos observations, vos identifications et vos choix de licences ouvertes permettent à ces organisations de fournir des informations sur la biodiversité utiles aux personnes qui en ont besoin dans le monde.
         compare_desc: |
-          Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle.
+          Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle. La barre verte représente cette année, la barre verticale blanche représente l'année dernière, et les zones grises représentent l'année du maximum et celle du minimum d'activité, ainsi que la moyenne toutes années confondues. Les statistiques n'incluent pas les années où le nombre était zéro.
         compare_site_desc: |
           Comment cette année s'est-elle déroulée par rapport aux précédentes ? La barre verte représente l'année en cours, la barre blanche l'année dernière, et les zones de fond gris les années les plus basses et les plus élevées, ainsi que la moyenne de toutes les années.
-        compared_to_previous_years: Comparer aux années précédentes
-        donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
+        compared_to_previous_years: Comparaison avec les années précédentes
+        donate_title: "À tous nos soutiens : merci !"
         donate_desc2_html: |
           Merci de la générosité dont vous faites preuve en offrant votre temps, votre attention, votre expertise et vos dons ! iNaturalist est une organisation 501(c)3 sans but lucratif, basée aux États-Unis. Le projet est porté par une <a href="%{team_url}">petite équipe</a> qui s'occupe de toute la conception et du génie logiciel pour le web, la plateforme mobile et <a href="%{seek_url}">Seek by iNaturalist</a>, et qui gère l'aide à la communauté, les collaborations et les intégrations qui sont la clé du succès (et d'un développement rapide !). Le programme est rendu possible par de nombreux dons et subventions, entre autres les dons d'une infime partie des utilisateurs. Nous sommes particulièrement reconnaissants aux personnes qui font un don chaque mois. Ces dons récurrents nous aident à préparer l'avenir. Vous pouvez faire un don dans différentes devises pour soutenir les activités de base d'iNaturalist. Grâce à vous, %{year} sera la meilleure année qu'aura connu iNaturalist à ce jour !
         donors: Donateurs
@@ -8064,14 +8064,14 @@ fr:
           Consultez la rétrospective de l'année des membres du réseau iNaturalist.
         include_usa: Inclure les États-Unis
         growth_by_country_desc_html: |
-          Où y-a-t-il croissance ? Cette carte et ce graphe essaient de partager cette information par pays, ce qui est compliqué parce que la croissance par pays peut être très déséquilibrée. Ici nous avons choisi d'omettre les États-Unis et d'utiliser une échelle logarithmique par défaut pour accentuer les différences avec les autres pays. Si un pays apparaît en noir cela signifie qu'il n'a pas contribué significativement au pourcentage, ou qu'il n'a pas présenté de croissance cette année, ou il n'a pas eu plus d'observations cet année que l'année dernière (passer le curseur sur un pays pour avoir plus de détails). <strong>"% de la croissance totale"</strong> signifie la part de la croissance mondiale provenant d'un pays particulier, par exemple s'il y a 20 observations en 2018 et 10 en 2017, cela représente 10 observations de croissance, et si 5 d'entre elles concernent le Bénin, alors le Bénin a contribué à 50% du total de la croissance. <strong>"% de croissance"</strong> représente le pourcentage d'observations de cette année dans ce pays par rapport aux observations de l'année dernière dans ce pays, donc si il a eu 10 observations sur le Laos l'an passé et 20 cette année, cela représente une croissance de 100%, et s'il y en a eu 0 l'an passé et 1 cette année, cela représente un pourcentage de croissance infinie.
+          Où y a-t-il croissance ? Cette carte et ce graphe essaient de présenter cette information par pays, ce qui est compliqué parce que la croissance par pays peut être très déséquilibrée. Ici, nous avons choisi d'omettre les États-Unis et d'utiliser une échelle logarithmique par défaut pour accentuer les différences avec les autres pays. Si un pays apparaît en noir, cela signifie qu'il n'a pas contribué significativement au pourcentage, ou qu'il n'a pas présenté de croissance cette année, ou qu'il n'a pas eu plus d'observations cette année que l'année dernière (passer le curseur sur un pays pour avoir plus de détails). <strong>"% de la croissance totale"</strong> signifie la part de la croissance mondiale provenant d'un pays particulier, par exemple s'il y avait 20 observations en 2018 et 10 en 2017, cela représente 10 observations de croissance, et si 5 d'entre elles concernent le Bénin, alors le Bénin a contribué à 50% du total de la croissance. <strong>"% de croissance"</strong> représente le pourcentage d'observations de cette année dans ce pays par rapport aux observations de l'année dernière dans ce pays. Donc, s'il y a eu 10 observations au Laos l'an passé et 20 cette année, cela représente une croissance de 100%, et s'il y en a eu 0 l'an passé et 1 cette année, cela représente un pourcentage de croissance infinie.
         growth_by_country_title: Croissance par pays
         growth_desc: |
           Les graphiques « Observations » et « Taxons » peuvent inclure des données visibles sur
           %{site_name} fournies par des personnes qui ne sont pas affiliées à
           %{site_name}, alors que le graphique "Utilisateurs" ne montre que les dates où les utilisateurs
           actuellement affiliés à %{site_name} ont rejoint iNaturalist.
-        growth_in_year_obs: "Croissance pendant %{year} (obs)"
+        growth_in_year_obs: "Croissance en %{year} (obs)"
         growth_title: Croissance
         #Label when a mark on a chart has a value that is too small to
         #visualize. low_value is the value (usually a number), low_desc is
@@ -9174,7 +9174,7 @@ fr:
         source_url: URL source
         #Identifier of the taxon framework relationship record associated
         #with this taxon
-        taxon_framework_relationship_id: ID du type de relation avec le cadre taxinomique
+        taxon_framework_relationship_id: ID du type de lien avec la structure taxinomique
         wikipedia_summary: Résumé Wikipédia
         wikipedia_title: Titre de l'article Wikipédia
       taxon_name:
