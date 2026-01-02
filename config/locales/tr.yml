@@ -621,6 +621,8 @@ tr:
     target="_blank">geliştirici tanımlama</a> yapmış olması gerekir. Planınızla ilgili sorular sorabiliriz ve herhangi bir nedenle başvuruları reddetme hakkını saklı tutarız.
   app_owner_application_inelligible: |
     Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 geliştirme tanımlaması yapmış olmanız gerekmektedir.
+  app_owner_application_inelligible2: |
+    Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde diğer kullanıcılar için en az 10 geliştirici tanımlama yapmış olması gerekir.
   app_owner_application_fields_explanation_html: Uygulamanızın sahip olacağı işlevselliği ve nasıl kullanmayı tasarladığınızı açıklayın.
   app_owner_application_success: Uygulama sahibi başvurusu gönderildi
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -1942,6 +1944,7 @@ tr:
   external_taxon_including_children: Harici takson (alt taksonlar dahil)
   extinct: soyu tükenmiş
   extinct_in_the_wild: Doğada Soyu Tükenmiş
+  provisional_taxon: Geçici
   extra_properties: Ek Özellikler
   evidence_accurately_depicts_organism_or_scene: Kanıtlar organizmayı veya sahneyi doğru bir şekilde tasvir ediyor
   evidence_of_organism: Organizmanın kanıtı
@@ -2259,6 +2262,8 @@ tr:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Özel konumlu gözlemleri gizle
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Geçici Taksonları Gizle
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Toplamı Gizle
   hide_uncountable_species: Sayılamayan Türleri Gizle
@@ -2411,6 +2416,7 @@ tr:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Pasif
   inactive_taxon_concepts_are: Pasif takson ya taksonomik olarak güncel değildir ya da bir takson değiştirme için hazırlanmaktadır. Eski kavramlar, geçmişi korumak ve bazı ortak sitelerle uyumluluğu sağlamak için korunmaktadır.
+  provisional_taxa_are_not_published: 'Geçici taksonlar yayımlanmaz ve önemli değişikliklere tabi olabilir. Şu anda sadece mantarlar için izin verilmektedir ve bir DNA dizisi ile gözlemle ilişkilendirilmeleri gerekir. Lütfen “Bu değişikliği neden yapıyorsunuz?” alanına bu gözlemle ilgili bağlantıyı ekleyin.'
   inappropriate_content: Uygunsuz içerik mi?
   inat_account_action: "%{site_name}&#58; Hesap &#58;%{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}, bu yerdeki bu taksonun tam bir listesinin bu olduğunu düşünüyor."
@@ -4834,6 +4840,8 @@ tr:
   show_running_total: Toplam Bulunanı Göster
   show_taxa_from_both: (her iki listeden taksonları göster)
   show_taxa_from_everywhere: "Her yerden taksonları göster"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Geçici taksonları göster
   show_taxa_from_place: "%{place} konumundan taksonları göster"
   show_total_counts: Toplam sayıyı göster
   show_uncountable_species: Sayılamayan türleri göster
