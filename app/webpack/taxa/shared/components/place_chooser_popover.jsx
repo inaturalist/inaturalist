@@ -97,6 +97,9 @@ class PlaceChooserPopover extends React.Component {
 
   handlePlacesResponse( response ) {
     let newPlaces = response.results;
+    if ( response.results && !_.isEmpty( response.results ) && response.results[0].place ) {
+      newPlaces = _.map( response.results, "place" );
+    }
     if (
       this.props.defaultPlace
       && this.props.place
@@ -134,16 +137,17 @@ class PlaceChooserPopover extends React.Component {
   }
 
   searchPlaces( text ) {
-    const { config } = this.props;
-    const { testingApiV2 } = config;
-    const searchEndpoint = testingApiV2 ? inatjs.places.search : inatjs.places.autocomplete;
-    const params = { q: text };
-    if ( this.props.withBoundaries ) {
-      params.geo = true;
-    }
-    if ( testingApiV2 ) {
-      params.fields = PLACE_SEARCH_FIELDS;
-    }
+    const searchEndpoint = inatjs.search;
+    const params = {
+      q: text,
+      sources: ["places"],
+      fields: ["id", "uuid", "slug", "name", "display_name", "display_name_autocomplete", "place_type", "admin_level",
+        "bbox_area", "ancestor_place_ids", "user", "geometry_geojson", "bounding_box_geojson", "location",
+        "point_geojson", "without_check_list", "observations_count", "universal_search_rank", "names", "matched_term"]
+    };
+    params.locale = I18n.locale;
+    params.preferred_place_id = PREFERRED_PLACE ? PREFERRED_PLACE.id : null;
+    params.per_page = 10;
     searchEndpoint( params )
       .then( response => this.handlePlacesResponse( response ) );
   }
