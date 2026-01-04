@@ -96,10 +96,7 @@ class PlaceChooserPopover extends React.Component {
   }
 
   handlePlacesResponse( response ) {
-    let newPlaces = response.results;
-    if ( response.results && !_.isEmpty( response.results ) && response.results[0].place ) {
-      newPlaces = _.map( response.results, "place" );
-    }
+    let newPlaces = _.map( response.results, "place" );
     if (
       this.props.defaultPlace
       && this.props.place
