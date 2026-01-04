@@ -141,9 +141,7 @@ class PlaceChooserPopover extends React.Component {
     const params = {
       q: text,
       sources: ["places"],
-      fields: ["id", "uuid", "slug", "name", "display_name", "display_name_autocomplete", "place_type", "admin_level",
-        "bbox_area", "ancestor_place_ids", "user", "geometry_geojson", "bounding_box_geojson", "location",
-        "point_geojson", "without_check_list", "observations_count", "universal_search_rank", "names", "matched_term"]
+      fields: { all: true }
     };
     params.locale = I18n.locale;
     params.preferred_place_id = PREFERRED_PLACE ? PREFERRED_PLACE.id : null;
