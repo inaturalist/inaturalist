@@ -75,7 +75,7 @@ const normalizeParams = params => {
     }
   }
   if ( newParams.without_term_value_id && !(
-    newParams.term_id || newParams.term_id_or_unknown
+    newParams.without_term_id || newParams.term_id_or_unknown
   ) ) {
     delete newParams.without_term_value_id;
   }
