@@ -687,7 +687,7 @@ class FiltersButton extends React.Component {
             <div className="term-value">
               <big>=</big>
               <select
-                id="params-term-value-id"
+                id="params-without-term-value-id"
                 className={`form-control ${params.without_term_value_id ? "filter-changed" : ""}`}
                 defaultValue={params.without_term_value_id}
                 onChange={e => updateSearchParams( { without_term_value_id: e.target.value } )}
