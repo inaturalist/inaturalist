@@ -60,7 +60,8 @@ const TAXON_FIELDS = {
     is_active: true,
     preferred_common_name: true,
     rank: true,
-    rank_level: true
+    rank_level: true,
+    ancestor_ids: true
   },
   default_photo: {
     attribution: true,
