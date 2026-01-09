@@ -623,6 +623,8 @@ fi:
     Saatamme esittää lisäkysymyksiä suunnitelmastasi, ja pidätämme oikeuden hylätä hakemuksia mistä tahansa syystä.
   app_owner_application_inelligible: |
     Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 tunnistuksen parantamista viime kuussa.
+  app_owner_application_inelligible2: |
+    Hakemuksen jättämiseksi tilisi täytyy olla vähintään 2 kuukautta vanha ja olet tehnyt vähintään 10 tunnistusta muiden käyttäjien havaintoihin viimeisen kuukauden aikana.
   app_owner_application_fields_explanation_html: Kuvaile sovelluksesi toiminnallisuus ja miten aiot käyttää sitä.
   app_owner_application_success: Sovelluksen omistajan hakemus lähetetty
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -801,6 +803,9 @@ fi:
   back_to_your_profile: Takaisin profiiliisi
   badges: Merkit
   base_map_copyright_openstreetmap_html: Pohjakartta © %{startTag}OpenStreetMap%{endTag}
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Voiko yhteisön taksonia parantaa havainnon tietojen perusteella?
   batch: Erä
   batch_edit: Erän muokkaus
   #Where x is the title of a list of taxa
@@ -924,8 +929,8 @@ fi:
   changing_the_geoprivacy: 'Sijainnin tietosuojan muuttaminen vaikuttaa siihen miten muut ihmiset näkevät havaintopaikkasi sijainnin.'
   check_above_for_errors: Tarkista virheet ylempää
   check_back_soon: Tulethan pian takaisin!
-  check_here_to_autoload_description: Valitse tämä ladataksesi kuvaus automaattisesti Wikipediasta. Saatat haluta poistaa valinnan kun taksonin nimi ei ole tieteellinen nimi tai se on väärin kirjoitettu.
-  check_here_to_autoload_photos: Valitse tämä ladataksesi kuvia automaattisesti Flickr'istä. Saatat haluta poistaa valinnan kun taksonin nimi ei ole tieteellinen nimi tai se on väärin kirjoitettu, kuten "Parus".
+  check_here_to_autoload_description: Valitse tämä ladataksesi kuvauksen automaattisesti Wikipediasta. Harkitse valinnan poistamista, kun taksonin tieteellinen nimi on myös yleiskielen sana tai se kirjoitetaan usein väärin.
+  check_here_to_autoload_photos: Valitse tämä ladataksesi kuvia automaattisesti Flickr'istä. Harkitse valinnan poistamista, kun taksonin tieteellinen nimi on myös yleiskielen sana tai se kirjoitetaan usein väärin.
   check_list: Lajiluettelo
   check_list_description: Valitse ylemmän tason taksoni jonka haluat näyttää tässä listassa, kuten "Aves" linnuille, tai "Amphibia" sammakkoeläimille. Kun olet tehnyt sen, tämä luettelo ei salli taksoneita jotka eivät kuulu tähän taksoniin. Esimerkiksi, jos luot listan linnuista, et voi lisätä siihen sammakoita.
   check_list_for_individual_taxa_that: 'Lajilistat yksittäisistä taksoneista, jotka elävät täällä, esim. "Paikan %{place}" linnut.'
@@ -1263,6 +1268,7 @@ fi:
   curating: Kuratointi
   curation: Kuratointi
   curator: Kuraattori
+  curators_with_most_ids_of_the_input_taxon: "Kuraattorit, joilla on eniten tunnistuksia kyseisestä taksonista"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist-sivuston kuraattorit ovat luotettuja vapaaehtoisia, jotka ylläpitävät iNaturalistin taksonomiaa ja moderoivat käyttäjäsisältöä. Sivuston kuraattorit ovat tärkeä osa iNaturalistia, koska he pitävät taksonomian ajan tasalla ja iNaturalistin keskustelun asianmukaisena ja kohteliaania. Alla on kuvaus siitä, mitä kuraattorina olo tarkoittaa. Tutustu siihen ja, jos haluat kuraattoriksi, lue huolellisesti läpi
@@ -6101,6 +6107,10 @@ fi:
         quality_grade: Tämän havainnon laatutaso. Katso ohjeista lisätietoja siitä, mitä tämä tarkoittaa. Katso https://help.inaturalist.org/support/solutions/articles/151000169936
         url: URL-osoite havainnolle
         tag_list: Pilkulla erotettu luettelo tunnisteista
+      identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Opi käyttämään tätä sivustoa ja tunnistamaan havaintoja iNaturalistissa!
       import:
         coordinate_systems_help: |
           %{site_name} hyväksyy koordinaatit useassa eri koordinaattijärjestelmässä, joten kun annat koordinaatit jossain muussa järjestelmässä kuin leveysaste/pituusaste (latitudi/longitudi), tarvitaan tieto koordinaattijärjestelmästä koordinaattien tulkitsemiseksi oikein. Ole hyvä ja varmista, että olet valinnut oikean koordinaattijärjestelmän datallesi tai sijainti voi mennä kauaksikin oikeasta paikasta. Jos koordinaatit ovat peräisin GPS-laitteelta, tarkista laitteen asetuksista sen käyttämä koordinaattijärjestelmä. Huomaa, että emme säilytä erikoiskoordinaatteja, vain niiden konversiot leveys- ja pituusasteisiin.
@@ -6599,6 +6609,14 @@ fi:
         recent_w_7_obs_desc: Rekisteröitynyt edeltävänä 7 päivänä ja lisännyt >= 7 havaintoa
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Luotu <a href="%{url}">Seek</a>-sovelluksella
+        today_identified_by_others: Muiden tunnistamat havainnot (1 vrk)
+        today_identified_by_others_by_iconic_taxon: Muiden tunnistamat havainnot (1 vrk)
+        for_others: Muille
+        ids_last_7_days: Tunnistukset (7 vrk)
+        ids_last_7_days_desc: Viimeisen seitsemän päivän aikana tehdyt tunnistukset
+        ids_today: Tunnistukset (1 vrk)
+        ids_today_desc: Yhden päivän aikana tehdyt tunnistukset
+        ids_today_for_others: Muille tehdyt tunnistukset (1 vrk)
         time_to_id_desc: Aika tunnistukseen (tunteina, 1 viikon siirtyvä aikaikkuna)
         TTCID: TTCID (aika yhteisömääritykseen)
         TTID: Aika tunnistukseen
