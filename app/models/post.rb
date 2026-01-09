@@ -36,7 +36,21 @@ class Post < ApplicationRecord
     on: :save,
     delay: false,
     notification: "mention",
-    if: ->( u ) { u.prefers_receive_mentions? }
+    if: lambda( &:prefers_receive_mentions? ),
+    unless: lambda {| post |
+      # post is going from unpublished to published, so send notifications
+      return false if post.previous_changes[:published_at] &&
+        post.previous_changes[:published_at][0].nil? &&
+        post.previous_changes[:published_at][1]
+      # body hasn't changed, so mentions haven't changed
+      return true unless post.previous_changes[:body]
+
+      # body has changed, but neither version mentioned users
+      post.previous_changes[:body].map do | d |
+        d ? d.mentioned_users.any? : false
+      end.none?
+    }
+
   belongs_to :parent, polymorphic: true
   belongs_to :user
   has_many :comments, as: :parent, dependent: :destroy
