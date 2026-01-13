@@ -1047,6 +1047,10 @@ $nav-btn-dim: 40px;
         background-position: center;
         border-radius: 3px;
       }
+      i.icon {
+        font-size: 100px;
+        color: #ccc;
+      }
     }
     .content {
       flex: 1;
@@ -1075,24 +1079,8 @@ $nav-btn-dim: 40px;
         .id_body .content {
           padding-left: 0px;
         }
-      }
-      .votes {
-        align-content: center;
-        width: 65px;
-        text-align: right;
-        .fa-thumbs-up,
-        .fa-thumbs-o-up,
-        .fa-thumbs-down,
-        .fa-thumbs-o-down {
-          font-size: 18px;
-          color: #BBBBBB;
-          margin-right: 3px;
-        }
-        .vote-count {
-          margin-left: 3px;
-        }
-        & button:nth-of-type(2) {
-          margin-left: 10px;
+        .UserText .content {
+          overflow-wrap: anywhere;
         }
       }
     }
@@ -1121,8 +1109,26 @@ $nav-btn-dim: 40px;
     }
     .panel-footer {
       background: none;
-      .time {
-        margin-inline-end: 0px;
+      .votes {
+        white-space: nowrap;
+        border-inline-start: 1px solid #ddd;
+        align-content: center;
+        width: 65px;
+        text-align: right;
+        .fa-thumbs-up,
+        .fa-thumbs-o-up,
+        .fa-thumbs-down,
+        .fa-thumbs-o-down {
+          font-size: 18px;
+          color: #BBBBBB;
+          margin-right: 3px;
+        }
+        .vote-count {
+          margin-left: 3px;
+        }
+        & button {
+          margin-left: 10px;
+        }
       }
     }
     .annotations-conversation {
@@ -1144,6 +1150,44 @@ $nav-btn-dim: 40px;
       margin-bottom: 3px;
     }
   }
+
+  .rc-pagination {
+    padding: 0;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .rc-pagination li,
+  .rc-pagination li a {
+    display: inline-block;
+  }
+  .rc-pagination li a {
+    border: 1px solid #aaa;
+    background-color: white;
+    padding: 3px 5px;
+    text-align: center;
+    min-width: 2em;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  .rc-pagination-next a:before {
+    content: "\2192"
+  }
+  .rc-pagination-prev a:before {
+    content: "\2190"
+  }
+  .rc-pagination-disabled a,
+  .rc-pagination-disabled:hover a {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .rc-pagination-jump-prev a:after,
+  .rc-pagination-jump-next a:after {
+    content: "...";
+  }
+  li.rc-pagination-item-active a {
+    border-color: black;
+  }
+
 }
 
 .DraggablePhoto {

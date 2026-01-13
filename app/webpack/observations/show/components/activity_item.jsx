@@ -36,6 +36,39 @@ class ActivityItem extends React.Component {
     };
   }
 
+  componentDidMount( ) {
+    const {
+      item,
+      performOrOpenConfirmationModal,
+      setFlaggingModalState,
+      hideContent
+    } = this.props;
+    let targetHash = window.location.hash;
+    let targetID;
+    let action;
+    const actionMatches = targetHash.match( /(.*):(.*)/ );
+    if ( actionMatches !== null ) {
+      targetHash = actionMatches[1];
+      action = actionMatches[2];
+    }
+    if ( targetHash ) {
+      targetID = _.replace( targetHash, /^#[a-z]+-/, "" );
+    }
+    if ( item?.uuid === targetID && action ) {
+      if ( action === "flag" ) {
+        performOrOpenConfirmationModal( ( ) => (
+          setFlaggingModalState( { item, show: true } )
+        ), {
+          permitOwnerOf: item
+        } );
+        history.replaceState( window.history.state, "", window.location.href.replace( /:[^:]*$/, "" ) );
+      } else if ( action === "hide" && hideContent && !item.hidden ) {
+        hideContent( item );
+        history.replaceState( window.history.state, "", window.location.href.replace( /:[^:]*$/, "" ) );
+      }
+    }
+  }
+
   componentDidUpdate( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( "textarea", domNode ).textcompleteUsers();
@@ -421,7 +454,6 @@ class ActivityItem extends React.Component {
           {!_.isEmpty( idBody ) && (
             <div className="id-body-wrapper">
               { idBody }
-              { config.testFeature === "altvotes" || editing || this.identificationVotes( ) }
             </div>
           )}
         </div>
@@ -636,17 +668,16 @@ class ActivityItem extends React.Component {
         <>
           <span className="footer-text">
             <b>{item.exemplar_identification.nominated_by_user.login}</b>
-            &nbsp;marked this as an ID tip
+            &nbsp;nominated this as an ID tip
           </span>
-          { config.testFeature === "altvotes" ? this.identificationVotes( ) : (
-            <time
-              className="time"
-              dateTime={item.exemplar_identification.nominated_at}
-              title={moment( item.exemplar_identification.nominated_at ).format( I18n.t( "momentjs.datetime_with_zone" ) )}
-            >
-              {moment.parseZone( item.exemplar_identification.nominated_at ).fromNow( )}
-            </time>
-          ) }
+          <time
+            className="time"
+            dateTime={item.exemplar_identification.nominated_at}
+            title={moment( item.exemplar_identification.nominated_at ).format( I18n.t( "momentjs.datetime_with_zone" ) )}
+          >
+            {moment.parseZone( item.exemplar_identification.nominated_at ).fromNow( )}
+          </time>
+          {this.identificationVotes( )}
         </>
       );
     }

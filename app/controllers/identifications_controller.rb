@@ -71,11 +71,18 @@ class IdentificationsController < ApplicationController
       format.html { render layout: "bootstrap" }
     end
   end
-    
+
   def show
-    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.uuid}")
+    anchor = "identification-#{@identification.uuid}"
+    if params[:_action]
+      anchor += ":#{params[:_action]}"
+    end
+    redirect_to observation_url(
+      @identification.observation,
+      anchor: anchor
+    )
   end
-  
+
   def by_login
     block_if_spammer(@selected_user) && return
     params[:page] = params[:page].to_i

@@ -754,7 +754,8 @@ export function fetchIdentifications( options = { } ) {
       "downvoted",
       "nominated",
       "order_by",
-      "order"
+      "order",
+      "page"
     ], param => {
       if ( queryParams[param] ) {
         params[param] = queryParams[param];

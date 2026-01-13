@@ -11,6 +11,7 @@ import {
   MenuItem
 } from "react-bootstrap";
 import moment from "moment-timezone";
+import Pagination from "rc-pagination";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import { taxonLayerForTaxon } from "../../shared/util";
 import UserText from "../../../shared/components/user_text";
@@ -111,6 +112,7 @@ class IdentificationsTab extends Component {
       voteIdentification,
       unvoteIdentification
     } = this.props;
+    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
     const annotations = (
       <div className="annotations">
         {result.identification.observation.annotations.map( annotation => (
@@ -122,12 +124,14 @@ class IdentificationsTab extends Component {
               if ( identificationsQuery.term_value_id === annotation.controlled_value.id ) {
                 setIdentificationsQuery( {
                   ...identificationsQuery,
-                  term_value_id: null
+                  term_value_id: null,
+                  page: null
                 } );
               } else {
                 setIdentificationsQuery( {
                   ...identificationsQuery,
-                  term_value_id: annotation.controlled_value.id
+                  term_value_id: annotation.controlled_value.id,
+                  page: null
                 } );
               }
               $( "html, body" ).animate( {
@@ -152,6 +156,10 @@ class IdentificationsTab extends Component {
             backgroundImage: `url('${photo.photoUrl( "medium" )}')`
           }}
         />
+      );
+    } else {
+      img = (
+        <i className="icon icon-iconic-aves" />
       );
     }
     const time = (
@@ -192,6 +200,24 @@ class IdentificationsTab extends Component {
     const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
 
     const nominationMenuItems = [];
+    if ( loggedInUser ) {
+      nominationMenuItems.push( (
+        <MenuItem
+          key={`id-flag-${result.id}`}
+          eventKey="flag"
+        >
+          { I18n.t( "flag" ) }
+        </MenuItem>
+      ) );
+      nominationMenuItems.push( (
+        <MenuItem
+          key={`id-hide-${result.uuid}`}
+          eventKey="hide"
+        >
+          { I18n.t( "hide_content" ) }
+        </MenuItem>
+      ) );
+    }
     if ( result.nominated_by_user ) {
       nominationMenuItems.push( (
         <MenuItem
@@ -252,7 +278,13 @@ class IdentificationsTab extends Component {
                       <Dropdown
                         id="grouping-control"
                         onSelect={key => {
-                          if ( key === "nominate" ) {
+                          if ( key === "flag" ) {
+                            const url = `/identifications/${result.identification.uuid}?_action=flag`;
+                            window.open( url, "_blank", "noopener,noreferrer" );
+                          } else if ( key === "hide" ) {
+                            const url = `/identifications/${result.identification.uuid}?_action=hide`;
+                            window.open( url, "_blank", "noopener,noreferrer" );
+                          } else if ( key === "nominate" ) {
                             nominateIdentification( result.identification.uuid, result.id );
                           } else if ( key === "unnominate" ) {
                             unnominateIdentification( result.identification.uuid, result.id );
@@ -274,46 +306,6 @@ class IdentificationsTab extends Component {
                 <div className="body">
                   <UserText text={result.identification.body} className="id_body" />
                 </div>
-                { result.nominated_by_user && (
-                  <div className="votes">
-                    <button
-                      type="button"
-                      className="btn btn-nostyle"
-                      onClick={voteAction}
-                      aria-label={I18n.t( "agree_" )}
-                      title={I18n.t( "agree_" )}
-                    >
-                      <i className={`fa ${agreeClass}`} />
-                    </button>
-                    { !_.isEmpty( votesFor ) && (
-                      <UsersPopover
-                        users={_.map( votesFor, "user" )}
-                        keyPrefix={`votes-against-${result.identification.uuid}`}
-                        contents={(
-                          <span>{votesFor.length === 0 ? null : votesFor.length}</span>
-                        )}
-                      />
-                    ) }
-                    <button
-                      type="button"
-                      onClick={unvoteAction}
-                      className="btn btn-nostyle"
-                      aria-label={I18n.t( "disagree_" )}
-                      title={I18n.t( "disagree_" )}
-                    >
-                      <i className={`fa ${disagreeClass}`} />
-                    </button>
-                    { !_.isEmpty( votesAgainst ) && (
-                      <UsersPopover
-                        users={_.map( votesAgainst, "user" )}
-                        keyPrefix={`votes-against-${result.identification.uuid}`}
-                        contents={(
-                          <span>{votesAgainst.length === 0 ? null : votesAgainst.length}</span>
-                        )}
-                      />
-                    ) }
-                  </div>
-                ) }
               </Panel.Body>
               { result.nominated_by_user && (
                 <Panel.Footer>
@@ -325,7 +317,7 @@ class IdentificationsTab extends Component {
                       href={`/identifications/${result.identification.uuid}`}
                       user={result.nominated_by_user}
                     />
-                    &nbsp;marked this as an ID tip
+                    &nbsp;nominated this as an ID tip
                   </span>
                   <time
                     className="time"
@@ -334,6 +326,46 @@ class IdentificationsTab extends Component {
                   >
                     {moment.parseZone( result.nominated_at ).fromNow( )}
                   </time>
+                  { result.nominated_by_user && (
+                    <div className="votes">
+                      <button
+                        type="button"
+                        className="btn btn-nostyle"
+                        onClick={voteAction}
+                        aria-label={I18n.t( "agree_" )}
+                        title={I18n.t( "agree_" )}
+                      >
+                        <i className={`fa ${agreeClass}`} />
+                      </button>
+                      { !_.isEmpty( votesFor ) && (
+                        <UsersPopover
+                          users={_.map( votesFor, "user" )}
+                          keyPrefix={`votes-against-${result.identification.uuid}`}
+                          contents={(
+                            <span>{votesFor.length === 0 ? null : votesFor.length}</span>
+                          )}
+                        />
+                      ) }
+                      <button
+                        type="button"
+                        onClick={unvoteAction}
+                        className="btn btn-nostyle"
+                        aria-label={I18n.t( "disagree_" )}
+                        title={I18n.t( "disagree_" )}
+                      >
+                        <i className={`fa ${disagreeClass}`} />
+                      </button>
+                      { !_.isEmpty( votesAgainst ) && (
+                        <UsersPopover
+                          users={_.map( votesAgainst, "user" )}
+                          keyPrefix={`votes-against-${result.identification.uuid}`}
+                          contents={(
+                            <span>{votesAgainst.length === 0 ? null : votesAgainst.length}</span>
+                          )}
+                        />
+                      ) }
+                    </div>
+                  ) }
                 </Panel.Footer>
               ) }
             </Panel>
@@ -392,7 +424,8 @@ class IdentificationsTab extends Component {
               term_value_id: null,
               order_by: this.state.tabSorts.upvoted[0].order_by,
               order: this.state.tabSorts.upvoted[0].order,
-              sortKey: this.state.tabSorts.upvoted[0].key
+              sortKey: this.state.tabSorts.upvoted[0].key,
+              page: null
             } );
             $( "#identifications_search_query" ).val( "" );
           }}
@@ -415,7 +448,8 @@ class IdentificationsTab extends Component {
               term_value_id: null,
               order_by: this.state.tabSorts.downvoted[0].order_by,
               order: this.state.tabSorts.downvoted[0].order,
-              sortKey: this.state.tabSorts.downvoted[0].key
+              sortKey: this.state.tabSorts.downvoted[0].key,
+              page: null
             } );
             $( "#identifications_search_query" ).val( "" );
           }}
@@ -438,7 +472,8 @@ class IdentificationsTab extends Component {
               term_value_id: null,
               order_by: this.state.tabSorts["no-votes"][0].order_by,
               order: this.state.tabSorts["no-votes"][0].order,
-              sortKey: this.state.tabSorts["no-votes"][0].key
+              sortKey: this.state.tabSorts["no-votes"][0].key,
+              page: null
             } );
             $( "#identifications_search_query" ).val( "" );
           }}
@@ -462,7 +497,8 @@ class IdentificationsTab extends Component {
               term_value_id: null,
               order_by: this.state.tabSorts["not-nominated"][0].order_by,
               order: this.state.tabSorts["not-nominated"][0].order,
-              sortKey: this.state.tabSorts["not-nominated"][0].key
+              sortKey: this.state.tabSorts["not-nominated"][0].key,
+              page: null
             } );
             $( "#identifications_search_query" ).val( "" );
           }}
@@ -490,7 +526,8 @@ class IdentificationsTab extends Component {
             ...identificationsQuery,
             order_by: selectedSort.order_by,
             order: selectedSort.order,
-            sortKey: e.target.value
+            sortKey: e.target.value,
+            page: null
           } );
         }}
         value={identificationsQuery.sortKey}
@@ -500,6 +537,8 @@ class IdentificationsTab extends Component {
             value={sortOption.key}
             key={`params-order-by-${sortOption.key}`}
           >
+            Sort:
+            {" "}
             { I18n.t( sortOption.label, { defaultValue: sortOption.label } ) }
           </option>
         ) ) }
@@ -542,12 +581,14 @@ class IdentificationsTab extends Component {
               if ( identificationsQuery.term_value_id === termValue.value.id ) {
                 setIdentificationsQuery( {
                   ...identificationsQuery,
-                  term_value_id: null
+                  term_value_id: null,
+                  page: null
                 } );
               } else {
                 setIdentificationsQuery( {
                   ...identificationsQuery,
-                  term_value_id: termValue.value.id
+                  term_value_id: termValue.value.id,
+                  page: null
                 } );
               }
             }}
@@ -576,6 +617,7 @@ class IdentificationsTab extends Component {
       currentUser
     } = this.props;
     let content;
+    let pagination;
     const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
     if ( !isAdmin ) {
       return null;
@@ -588,6 +630,21 @@ class IdentificationsTab extends Component {
       );
     } else if ( response?.results?.length > 0 ) {
       content = _.map( response.results, result => this.identificationPanel( result ) );
+      pagination = (
+        <Pagination
+          total={response.total_results}
+          current={response.page}
+          pageSize={response.per_page}
+          locale={{
+            prev_page: I18n.t( "previous_page_short" ),
+            next_page: I18n.t( "next_page_short" )
+          }}
+          onChange={page => setIdentificationsQuery( {
+            ...identificationsQuery,
+            page
+          } )}
+        />
+      );
     }
     return (
       <Grid className="IdentificationsTab">
@@ -603,7 +660,8 @@ class IdentificationsTab extends Component {
                 onSubmit={e => {
                   setIdentificationsQuery( {
                     ...identificationsQuery,
-                    q: $( e.target ).find( "[name='q']" ).val( )
+                    q: $( e.target ).find( "[name='q']" ).val( ),
+                    page: null
                   } );
                   e.preventDefault( );
                 }}
@@ -631,7 +689,8 @@ class IdentificationsTab extends Component {
                           this.setSearchSearchTermPresent( false );
                           setIdentificationsQuery( {
                             ...identificationsQuery,
-                            q: null
+                            q: null,
+                            page: null
                           } );
                         }}
                       />
@@ -653,7 +712,12 @@ class IdentificationsTab extends Component {
               <div className="loading">
                 <div className="loading_spinner" />
               </div>
-            ) : content }
+            ) : (
+              <>
+                {content}
+                {pagination}
+              </>
+            ) }
           </Col>
           <Col xs={4}>
             <Row>

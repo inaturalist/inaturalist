@@ -19,6 +19,10 @@ class Activity extends React.Component {
       // seems to scroll back to the top. Note that $.scrollTo doesn't seem to
       // work in Safari.
       let targetHash = window.location.hash;
+      const actionMatches = targetHash.match( /(.*):(.*)/ );
+      if ( actionMatches !== null ) {
+        targetHash = actionMatches[1];
+      }
       if ( $( targetHash ).length === 0 ) {
         targetHash = _.replace( `activity_${targetHash.replace( "#", "" )}`, "-", "_" );
         targetHash = `#${targetHash}`;
