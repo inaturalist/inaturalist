@@ -1,48 +1,40 @@
 import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
-import { fetchObservationsStats, resetObservationsStats } from "./observations_stats_actions";
+import {
+  fetchObservationsStats,
+  resetObservationsStats,
+  prepareParamersForAPIRequest
+} from "./observations_stats_actions";
 import { setConfig } from "../../../shared/ducks/config";
 import { showAlert, hideAlert } from "../../../shared/ducks/alert_modal";
 import { paramsForSearch } from "../reducers/search_params_reducer";
-import { confirmResendConfirmation } from "../../../shared/ducks/user_confirmation";
 
 import {
   RECEIVE_OBSERVATIONS,
   UPDATE_OBSERVATION_IN_COLLECTION,
   UPDATE_ALL_LOCAL,
+  SET_OBSERVATIONS,
   SET_REVIEWING,
   SET_PLACES_BY_ID,
   SET_LAST_REQUEST_AT
 } from "./observations_actions_names";
 
-const OBSERVATION_FIELDS = {
+const USER_FIELDS = {
   id: true,
-  comments_count: true,
-  identifications_count: true,
-  place_ids: true,
-  preferences: {
-    prefers_community_taxon: true
-  },
-  private_place_ids: true,
-  observation_photos: {
-    id: true
-  },
-  photos: {
-    id: true,
-    uuid: true,
-    url: true
-  },
-  reviewed_by: true,
-  identifications: {
-    current: true,
-    user: {
-      id: true
-    },
-    taxon: {
-      id: true
-    }
-  },
-  taxon: {
+  login: true,
+  icon_url: true
+};
+const MODERATOR_ACTION_FIELDS = {
+  action: true,
+  id: true,
+  created_at: true,
+  reason: true,
+  user: USER_FIELDS
+};
+const TAXON_FIELDS = {
+  ancestry: true,
+  ancestor_ids: true,
+  ancestors: {
     id: true,
     uuid: true,
     name: true,
@@ -50,29 +42,215 @@ const OBSERVATION_FIELDS = {
     is_active: true,
     preferred_common_name: true,
     rank: true,
-    rank_level: true,
-    default_photo: {
-      attribution: true,
-      license_code: true,
-      url: true,
-      square_url: true
+    rank_level: true
+  },
+  default_photo: {
+    attribution: true,
+    license_code: true,
+    url: true,
+    square_url: true
+  },
+  iconic_taxon_name: true,
+  id: true,
+  is_active: true,
+  name: true,
+  preferred_common_name: true,
+  rank: true,
+  rank_level: true
+};
+const CONTROLLED_TERM_FIELDS = {
+  id: true,
+  label: true,
+  multivalued: true
+};
+const PROJECT_FIELDS = {
+  admins: {
+    user_id: true
+  },
+  icon: true,
+  project_observation_fields: {
+    id: true,
+    observation_field: {
+      allowed_values: true,
+      datatype: true,
+      description: true,
+      id: true,
+      name: true
     }
   },
-  user: {
+  slug: true,
+  title: true
+};
+const OBSERVATION_FIELDS = {
+  annotations: {
+    controlled_attribute: CONTROLLED_TERM_FIELDS,
+    controlled_value: CONTROLLED_TERM_FIELDS,
+    user: USER_FIELDS,
+    vote_score: true,
+    votes: {
+      vote_flag: true,
+      user: USER_FIELDS
+    }
+  },
+  application: {
     id: true,
-    login: true,
+    icon: true,
     name: true,
-    icon_url: true,
+    url: true
+  },
+  comments: {
+    body: true,
+    created_at: true,
+    flags: { id: true },
+    hidden: true,
+    id: true,
+    moderator_actions: MODERATOR_ACTION_FIELDS,
+    spam: true,
+    user: USER_FIELDS
+  },
+  community_taxon: TAXON_FIELDS,
+  created_at: true,
+  description: true,
+  faves: {
+    user: USER_FIELDS
+  },
+  flags: {
+    id: true,
+    flag: true,
+    resolved: true
+  },
+  geojson: true,
+  geoprivacy: true,
+  id: true,
+  identifications: {
+    body: true,
+    category: true,
+    created_at: true,
+    current: true,
+    disagreement: true,
+    flags: { id: true },
+    hidden: true,
+    moderator_actions: MODERATOR_ACTION_FIELDS,
+    previous_observation_taxon: TAXON_FIELDS,
+    spam: true,
+    taxon: TAXON_FIELDS,
+    taxon_change: { id: true, type: true },
+    updated_at: true,
+    user: USER_FIELDS,
+    uuid: true,
+    vision: true
+  },
+  identifications_most_agree: true,
+  // TODO refactor to rely on geojson instead of lat and lon
+  latitude: true,
+  license_code: true,
+  location: true,
+  longitude: true,
+  map_scale: true,
+  non_traditional_projects: {
+    current_user_is_member: true,
+    project_user: {
+      user: USER_FIELDS
+    },
+    project: PROJECT_FIELDS
+  },
+  obscured: true,
+  observed_on: true,
+  observed_time_zone: true,
+  ofvs: {
+    observation_field: {
+      allowed_values: true,
+      datatype: true,
+      description: true,
+      name: true,
+      taxon: {
+        name: true
+      },
+      uuid: true
+    },
+    user: USER_FIELDS,
+    uuid: true,
+    value: true,
+    taxon: TAXON_FIELDS
+  },
+  outlinks: {
+    source: true,
+    url: true
+  },
+  observation_photos: {
+    id: true
+  },
+  photos: {
+    id: true,
+    uuid: true,
+    url: true,
+    license_code: true
+  },
+  place_guess: true,
+  place_ids: true,
+  positional_accuracy: true,
+  preferences: {
+    prefers_community_taxon: true
+  },
+  private_geojson: true,
+  private_place_guess: true,
+  private_place_ids: true,
+  project_observations: {
+    current_user_is_member: true,
+    preferences: {
+      allows_curator_coordinate_access: true
+    },
+    project: PROJECT_FIELDS,
+    uuid: true
+  },
+  public_positional_accuracy: true,
+  quality_grade: true,
+  quality_metrics: {
+    id: true,
+    metric: true,
+    agree: true,
+    user: USER_FIELDS
+  },
+  reviewed_by: true,
+  sounds: {
+    file_url: true,
+    file_content_type: true,
+    id: true,
+    license_code: true,
+    play_local: true,
+    url: true,
+    uuid: true
+  },
+  tags: true,
+  taxon: TAXON_FIELDS,
+  taxon_geoprivacy: true,
+  time_observed_at: true,
+  time_zone: true,
+  user: {
+    ...USER_FIELDS,
+    name: true,
+    observations_count: true,
     preferences: {
       prefers_community_taxa: true,
       prefers_observation_fields_by: true,
       prefers_project_addition_by: true
     }
+  },
+  viewer_trusted_by_observer: true,
+  votes: {
+    id: true,
+    user: USER_FIELDS,
+    vote_flag: true,
+    vote_scope: true
   }
 };
 
 function receiveObservations( results ) {
   return { type: RECEIVE_OBSERVATIONS, ...results };
+}
+
+function setObservations( observations ) {
+  return { type: SET_OBSERVATIONS, observations };
 }
 
 function setPlacesByID( placesByID ) {
@@ -111,7 +289,24 @@ function fetchObservationPlaces( ) {
     }
     return iNaturalistJS.places.fetch( placeIDs, params )
       .then( response => {
-        dispatch( setPlacesByID( _.keyBy( response.results, "id" ) ) );
+        const placesByID = _.keyBy( response.results, "id" );
+        dispatch( setPlacesByID( placesByID ) );
+        // now that we have places, inject the place objects into the observations results
+        const observationsWithPlacesAdded = getState( ).observations.results;
+        _.each( observationsWithPlacesAdded, observation => {
+          if ( observation.places ) {
+            return;
+          }
+          const observationPlaceIDs = _.uniq( _.flatten( [
+            observation.place_ids,
+            observation.private_place_ids
+          ] ) );
+          const cachedPlaces = _.compact( observationPlaceIDs.map( pid => placesByID[pid] ) );
+          if ( cachedPlaces && cachedPlaces.length > 0 ) {
+            observation.places = cachedPlaces;
+          }
+        } );
+        dispatch( setObservations( observationsWithPlacesAdded ) );
       } );
   };
 }
@@ -122,11 +317,11 @@ function fetchObservations( ) {
     const s = getState();
     const currentUser = s.config.currentUser ? s.config.currentUser : null;
     if ( !currentUser?.privilegedWith( "interaction" ) ) {
-      return;
+      return null;
     }
 
     const preferredPlace = s.config.preferredPlace ? s.config.preferredPlace : null;
-    const apiParams = {
+    let apiParams = {
       viewer_id: currentUser.id,
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
       locale: I18n.locale,
@@ -141,14 +336,7 @@ function fetchObservations( ) {
     if ( s.config.testingApiV2 ) {
       apiParams.fields = OBSERVATION_FIELDS;
     }
-    _.each( apiParams, ( v, k ) => {
-      if ( ( _.isNull( v ) || v === "" || v === "any" ) && !_.startsWith( k, "field:" ) ) {
-        delete apiParams[k];
-      } else if ( /license$/.test( k ) ) {
-        apiParams[k] = _.toLower( v );
-      }
-    } );
-    delete apiParams.createdDateType;
+    apiParams = prepareParamersForAPIRequest( apiParams );
     const thisRequestSentAt = new Date( );
     dispatch( setLastRequestAt( thisRequestSentAt ) );
     return iNaturalistJS.observations.search( apiParams )
@@ -305,9 +493,11 @@ function unreviewAll( ) {
 }
 
 export {
+  OBSERVATION_FIELDS,
   RECEIVE_OBSERVATIONS,
   UPDATE_OBSERVATION_IN_COLLECTION,
   UPDATE_ALL_LOCAL,
+  SET_OBSERVATIONS,
   SET_REVIEWING,
   SET_PLACES_BY_ID,
   SET_LAST_REQUEST_AT,
@@ -317,6 +507,7 @@ export {
   reviewAll,
   unreviewAll,
   updateAllLocal,
+  setObservations,
   setReviewing,
   setLastRequestAt
 };
