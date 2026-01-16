@@ -554,6 +554,7 @@ class FiltersButton extends React.Component {
           <div className="input-group">
             <span className="input-group-addon fa fa-briefcase" />
             <ProjectAutocomplete
+              config={config}
               resetOnChange={false}
               initialProjectID={params.project_id}
               bootstrapClear
@@ -565,7 +566,7 @@ class FiltersButton extends React.Component {
                 updateSearchParams( { project_id: null } );
               }}
             />
-            <input value={params.project_id} type="hidden" name="project_id" />
+            <input type="hidden" name="project_id" />
           </div>
           { params.project_id && viewerCuratesProject && (
             <FilterCheckbox
@@ -586,6 +587,7 @@ class FiltersButton extends React.Component {
           <div className="input-group">
             <span className="input-group-addon fa fa-globe" />
             <PlaceAutocomplete
+              config={config}
               resetOnChange={false}
               initialPlaceID={
                 params.place_id && params.place_id !== "any" ? params.place_id : null
