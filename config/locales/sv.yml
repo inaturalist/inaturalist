@@ -2463,6 +2463,14 @@ sv:
   inaturalist_applications: "iNaturalist-applikationer"
   inaturalist_places: "%{site_name}-fyndplatser"
   info: Info
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Om du stänger av detta, kommer du inte längre att meddelas om bestämningar
+    för taxa under artnivån (som underarter och varieteter) som håller med dig i din
+    bestämning till art. Du kommer att meddelas om de inte håller med din bestämning
+    eller om de innehåller ytterligare anmärkningar.
   input_taxon: Ingångstaxon
   insects: insekter
   insect_life_stage: Insektsstadium
