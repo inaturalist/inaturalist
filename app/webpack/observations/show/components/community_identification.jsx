@@ -268,9 +268,17 @@ class CommunityIdentification extends React.Component {
       _.each( sortedIdents, i => {
         const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
         if ( ancestriesMatch( idAncestry ) || ancestriesMatch( obsTaxonAncestry, idAncestry ) ) {
+          // For explicit ancestor disagreements, only count if the ID's taxon is an
+          // ancestor of previous_observation_taxon (disagreeing "up" the tree)
+          const prevTaxonAncestry = i.previous_observation_taxon
+            ? `${i.previous_observation_taxon.ancestry}/${i.previous_observation_taxon.id}`
+            : null;
+          const isRelevantAncestorDisagreement = i.disagreement
+            && prevTaxonAncestry
+            && ancestriesMatch( idAncestry, prevTaxonAncestry );
           if ( ancestriesMatch( idAncestry )
             && obsTaxonAncestry !== idAncestry
-            && i.disagreement ) {
+            && isRelevantAncestorDisagreement ) {
             votesAgainst.push( i );
           } else if ( firstIdentOfTaxon
             && ancestriesMatch( idAncestry )
