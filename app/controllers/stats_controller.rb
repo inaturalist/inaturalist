@@ -268,7 +268,7 @@ class StatsController < ApplicationController
 
       @data << {
         id: p.id,
-        title: p.title.gsub( /City Nature Challenge: /, "" ),
+        title: p.title.gsub( "City Nature Challenge: ", "" ),
         slug: p.slug,
         observation_count: observations_count,
         in_progress: p.event_in_progress?,
@@ -285,7 +285,7 @@ class StatsController < ApplicationController
     end
     in_project_elastic_params = Observation.params_to_elastic_query( @in_project_params )
     unique_taxon_ids = Observation.elastic_taxon_leaf_counts( in_project_elastic_params ).map do | taxon_id, count |
-      count == 1 ? taxon_id : nil
+      ( count == 1 ) ? taxon_id : nil
     end.compact.uniq
     @unique_contributors = User.
       select( "users.*, count(*) AS unique_count, array_agg(observations.taxon_id) AS taxon_ids" ).
@@ -333,10 +333,22 @@ class StatsController < ApplicationController
   end
 
   def user_segments
-    segmentation_record = SegmentationStatistic.order( "created_at asc" ).last
+    segmentation_record = if params[:date].present?
+      SegmentationStatistic.where( "DATE(created_at) = ?", params[:date] ).first
+    else
+      SegmentationStatistic.order( "created_at asc" ).last
+    end
     redirect_to "/" and return unless segmentation_record
 
     @record_date = segmentation_record.created_at.strftime( "%Y-%m-%d" )
+    @previous_record = SegmentationStatistic.
+      where( "created_at < ?", segmentation_record.created_at ).
+      order( "created_at desc" ).first
+    @next_record = SegmentationStatistic.
+      where( "created_at > ?", segmentation_record.created_at ).
+      order( "created_at asc" ).first
+    @previous_date = @previous_record&.created_at&.strftime( "%Y-%m-%d" )
+    @next_date = @next_record&.created_at&.strftime( "%Y-%m-%d" )
 
     # Main metrics
     seg_main_metrics = segmentation_record.data["main_metrics"]
@@ -505,7 +517,7 @@ class StatsController < ApplicationController
 
     # prepare the data needed for the slideshow
     begin
-      all_project_data = projs.map do | p |
+      all_project_data = projs.to_h do | p |
         [p.id,
          {
            id: p.id,
@@ -518,7 +530,7 @@ class StatsController < ApplicationController
            in_progress: p.event_in_progress?,
            species_count: p.node_api_species_count || 0
          }]
-      end.to_h
+      end
     rescue StandardError => e
       Rails.logger.debug "[DEBUG] error loading project data: #{e}"
       sleep( 2 )
@@ -548,7 +560,7 @@ class StatsController < ApplicationController
     @umbrella_projects = umbrella_project_ids.
       map {| id | all_project_data[id] }.compact
     if options[:trim_slackers]
-      @umbrella_projects = @umbrella_projects.delete_if {| p | ( p[:observation_count] ).zero? }
+      @umbrella_projects.delete_if {| p | p[:observation_count].zero? }
     end
 
     # randomizing subprojects

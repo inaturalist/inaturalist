@@ -18,8 +18,14 @@
     var STATS_JSON = #{ @segmentation_statistic.to_json.html_safe };
     $( document ).ready( function() {
       var data = STATS_JSON;
+      // Rename "power" to "pwr" in the data
+      function renameNodes( node ) {
+        if ( node.name === "power" ) node.name = "pwr";
+        if ( node.children ) node.children.forEach( renameNodes );
+      }
+      renameNodes( data );
       var width = 1000;
-          height = 700;
+          height = 1800;
       var svg = d3.select( "#user_dataviz" ).append( "svg" )
         .attr( "viewBox", "0 0 " + width + " " + height )
         .attr( "preserveAspectRatio", "xMinYMin meet" );
@@ -28,9 +34,21 @@
       var sumOfLeaves = root.value;
       d3.treemap()
         .size( [width, height] )
-        .paddingTop( 28 )
-        .paddingRight( 7 )
-        .paddingInner( 3 )
+        .tile( function( parent, x0, y0, x1, y1 ) {
+          // Depth 1 (new/existing): slice into rows
+          // Depth 2 (power/casual/inactive): dice into columns
+          // Depth 3+ (web/ios/etc): use squarify
+          if ( parent.depth === 0 ) {
+            d3.treemapSlice( parent, x0, y0, x1, y1 );
+          } else if ( parent.depth === 1 ) {
+            d3.treemapDice( parent, x0, y0, x1, y1 );
+          } else {
+            d3.treemapSquarify( parent, x0, y0, x1, y1 );
+          }
+        } )
+        .paddingTop( 42 )
+        .paddingRight( 5 )
+        .paddingInner( 8 )
         ( root )
 
       var color = d3.scaleOrdinal()
@@ -74,8 +92,8 @@
   
       svg
         .selectAll( "text" )
-        .data( root.leaves().filter( function(d) { 
-          return d.data.value > 10000 & d.parent.parent.data.name == "existing";
+        .data( root.leaves().filter( function(d) {
+          return d.data.value > 10000;
         } ) )
         .enter()
         .append( "text" )
@@ -87,8 +105,8 @@
 
       svg
         .selectAll( "vals" )
-        .data( root.leaves().filter(function( d ) { 
-          return d.data.value > 10000 & d.parent.parent.data.name == "existing"; 
+        .data( root.leaves().filter( function( d ) {
+          return d.data.value > 10000;
         } ) )
         .enter()
         .append( "text")
@@ -100,8 +118,8 @@
 
       svg
         .selectAll( "vals" )
-        .data( root.leaves().filter( function( d ) { 
-          return d.data.value > 10000 & d.parent.parent.data.name == "existing"; 
+        .data( root.leaves().filter( function( d ) {
+          return d.data.value > 10000;
         } ) )
         .enter()
         .append( "text" )
@@ -131,17 +149,21 @@
         .enter()
         .append( "text" )
           .attr( "x", function( d ){ return d.x0} )
-          .attr( "y", function( d ){ return d.y0+21} )
-          .text( function( d ){ 
-            var ratio = ( d.value / sumOfLeaves * 100 ).toFixed( 2 );
-            if ( d.value > 10000 ) {
-              return d.data.name + ": " + d.value.toLocaleString() + " (" + ratio + "%)" 
-            } else {
-              return d.data.name + ": " + d.value.toLocaleString()
-            }
-          } )
+          .attr( "y", function( d ){ return d.y0+12} )
           .attr( "font-size", "14px" )
           .attr( "fill",  "black" )
+          .each( function( d ) {
+            var ratio = ( d.value / sumOfLeaves * 100 ).toFixed( 2 );
+            var text = d3.select( this );
+            // Wrap all labels on two lines
+            text.append( "tspan" )
+              .attr( "x", d.x0 )
+              .text( d.data.name + ": " + d.value.toLocaleString() );
+            text.append( "tspan" )
+              .attr( "x", d.x0 )
+              .attr( "dy", "1.1em" )
+              .text( "(" + ratio + "%)" );
+          } );
       } );
     var STATS_DAU_MAU_JSON = #{ @segmentation_dau_mau.to_json.html_safe };
     $( document ).ready( function() {
@@ -271,8 +293,16 @@
 .container-fluid
   .row
     .col-xs-12
-      %h1 Logged in User Segments
-      = "30 days period ending on #{@record_date}"
+      %h1{ style: "display: flex; align-items: center; gap: 15px;" }
+        Logged in User Segments
+        .btn-group
+          - if @previous_date
+            %a.btn.btn-default.btn-sm{ href: user_segments_stats_path( date: @previous_date ) }
+              %span.glyphicon.glyphicon-chevron-left
+          - if @next_date
+            %a.btn.btn-default.btn-sm{ href: user_segments_stats_path( date: @next_date ) }
+              %span.glyphicon.glyphicon-chevron-right
+      %p{ style: "margin-bottom: 5px;" }= "30 days period ending on #{@record_date}"
       #user_dataviz
   .row
     .col-xs-12
