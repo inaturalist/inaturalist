@@ -38,7 +38,7 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 
 --
--- Name: _final_median(anyarray); Type: FUNCTION; Schema: public; Owner: -
+-- Name: _final_median(anycompatiblearray); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION public._final_median(anycompatiblearray) RETURNS double precision
@@ -225,7 +225,7 @@ CREATE FUNCTION public.st_aslatlontext(public.geometry) RETURNS text
 
 
 --
--- Name: median(anyelement); Type: AGGREGATE; Schema: public; Owner: -
+-- Name: median(anycompatible); Type: AGGREGATE; Schema: public; Owner: -
 --
 
 CREATE AGGREGATE public.median(anycompatible) (
@@ -759,6 +759,37 @@ CREATE SEQUENCE public.cohort_lifecycles_id_seq
 --
 
 ALTER SEQUENCE public.cohort_lifecycles_id_seq OWNED BY public.cohort_lifecycles.id;
+
+
+--
+-- Name: cohort_statistics; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cohort_statistics (
+    id bigint NOT NULL,
+    stat_type character varying NOT NULL,
+    created_at timestamp without time zone,
+    data json
+);
+
+
+--
+-- Name: cohort_statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cohort_statistics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cohort_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cohort_statistics_id_seq OWNED BY public.cohort_statistics.id;
 
 
 --
@@ -6386,6 +6417,13 @@ ALTER TABLE ONLY public.cohort_lifecycles ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: cohort_statistics id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cohort_statistics ALTER COLUMN id SET DEFAULT nextval('public.cohort_statistics_id_seq'::regclass);
+
+
+--
 -- Name: colors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7482,6 +7520,14 @@ ALTER TABLE ONLY public.blocked_ips
 
 ALTER TABLE ONLY public.cohort_lifecycles
     ADD CONSTRAINT cohort_lifecycles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cohort_statistics cohort_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cohort_statistics
+    ADD CONSTRAINT cohort_statistics_pkey PRIMARY KEY (id);
 
 
 --
@@ -8898,6 +8944,13 @@ CREATE UNIQUE INDEX index_cohort_lifecycles_on_cohort_and_user_id ON public.coho
 --
 
 CREATE INDEX index_cohort_lifecycles_on_user_id ON public.cohort_lifecycles USING btree (user_id);
+
+
+--
+-- Name: index_cohort_statistics_on_stat_type_and_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cohort_statistics_on_stat_type_and_created_at ON public.cohort_statistics USING btree (stat_type, created_at);
 
 
 --
@@ -12069,6 +12122,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251014130547'),
 ('20251119043443'),
 ('20251119130558'),
-('20251202224705');
+('20251202224705'),
+('20260119093529');
 
 
