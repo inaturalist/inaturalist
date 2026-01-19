@@ -19,7 +19,7 @@ class CohortStatistic < ApplicationRecord
     sleep 1
     CohortStatistic.create!(
       stat_type: "acquisition",
-      data: get_acquisition_cohorts_without_ghost_accounts,
+      data: get_acquisition_cohorts,
       created_at: at_time.beginning_of_day
     )
   end
@@ -70,7 +70,7 @@ class CohortStatistic < ApplicationRecord
   #                created_users_in_2025
   #                active_users_2025 / created_users_in_2024
   #
-  def self.get_acquisition_cohorts_without_ghost_accounts
+  def self.get_acquisition_cohorts
     created_users = get_all_yearly_created_users
     active_users = get_all_yearly_active_users
 

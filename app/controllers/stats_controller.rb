@@ -9,7 +9,12 @@ class StatsController < ApplicationController
   before_action :authenticate_user!,
     only: [:cnc2017_taxa, :cnc2017_stats, :generate_year, :user_segments, :daily_active_user_model],
     unless: -> { authenticated_with_oauth? }
-  before_action :admin_required, only: [:user_segments, :daily_active_user_model]
+  before_action :admin_required, only: [
+    :user_segments,
+    :daily_active_user_model,
+    :acquisition_cohort_statistics,
+    :behavior_cohort_statistics
+  ]
 
   allow_external_iframes( only: [:wed_bioblitz] )
 
@@ -450,7 +455,123 @@ class StatsController < ApplicationController
     render layout: "bootstrap"
   end
 
+  # Load acquisition cohorts for a selected snapshot date (or latest).
+  def acquisition_cohort_statistics
+    acquisition_record, acquisition_records = cohort_stat_record_for(
+      "acquisition",
+      stat_date: params[:date]
+    )
+    @acquisition_record = acquisition_record
+    @acquisition_prev_record, @acquisition_next_record = cohort_stat_neighbors(
+      acquisition_record,
+      acquisition_records
+    )
+    set_acquisition_cohort_vars( acquisition_record )
+    render "acquisition_cohort_statistics", layout: "bootstrap"
+  end
+
+  # Load behavior cohorts for a selected snapshot date (or latest).
+  def behavior_cohort_statistics
+    behavior_record, behavior_records = cohort_stat_record_for(
+      "behavior",
+      stat_date: params[:date]
+    )
+    @behavior_record = behavior_record
+    @behavior_prev_record, @behavior_next_record = cohort_stat_neighbors(
+      behavior_record,
+      behavior_records
+    )
+    set_behavior_cohort_vars( behavior_record )
+    render "behavior_cohort_statistics", layout: "bootstrap"
+  end
+
+  # Build the table-ready rows and offsets for the acquisition view.
+  def set_acquisition_cohort_vars( acquisition_record )
+    acquisition = acquisition_record&.data
+    acquisition = acquisition.deep_symbolize_keys if acquisition.respond_to?( :deep_symbolize_keys )
+    if acquisition.blank?
+      @acquisition_generated_at = acquisition_record&.created_at
+      @acquisition_rows = []
+      @acquisition_offsets = []
+      return
+    end
+
+    @acquisition_generated_at = acquisition_record&.created_at
+    @acquisition_years = acquisition.keys.map( &:to_s ).sort
+    @acquisition_rows = acquisition.sort_by {| key, _ | key.to_s.to_i }.map do | key, data |
+      acquisitions_sorted = data[:acquisitions].sort_by {| item | item[:key].to_s.to_i }
+      acquisitions_by_offset = {}
+      acquisitions_sorted.each_with_index do | item, index |
+        acquisitions_by_offset[index] = item
+      end
+      {
+        key: key.to_s,
+        label: data[:label],
+        cohort_count: data[:cohort_count],
+        acquisitions_by_offset: acquisitions_by_offset
+      }
+    end
+    @acquisition_offsets = ( 0..@acquisition_rows.map {| row | row[:acquisitions_by_offset].size }.max.to_i - 1 ).
+      to_a
+  end
+
+  # Build the table-ready rows and offsets for the behavior view.
+  def set_behavior_cohort_vars( behavior_record )
+    behavior = behavior_record&.data
+    behavior = behavior.deep_symbolize_keys if behavior.respond_to?( :deep_symbolize_keys )
+    if behavior.blank?
+      @behavior_generated_at = behavior_record&.created_at
+      @behavior_rows = []
+      @behavior_offsets = []
+      return
+    end
+
+    @behavior_generated_at = behavior_record&.created_at
+
+    behavior = behavior.reject {| key, data | key == "precohort" || data[:cohort_count].to_i.zero? }
+    @behavior_rows = behavior.sort_by {| key, _ | key.to_s }.map do | key, data |
+      behaviors_sorted = data[:behaviors].sort_by {| item | item[:key].to_s }
+      behaviors_by_offset = {}
+      behaviors_sorted.each_with_index do | item, index |
+        behaviors_by_offset[index] = item
+      end
+      {
+        key: key.to_s,
+        label: data[:label],
+        cohort_count: data[:cohort_count],
+        behaviors_by_offset: behaviors_by_offset
+      }
+    end
+    @behavior_offsets = ( 0..@behavior_rows.map {| row | row[:behaviors_by_offset].size }.max.to_i - 1 ).to_a
+  end
+
   private
+
+  # Fetch a cohort stat record by date (YYYY-MM-DD), defaulting to most recent.
+  def cohort_stat_record_for( stat_type, stat_date: nil )
+    records = CohortStatistic.where( stat_type: stat_type ).order( created_at: :desc )
+    record = nil
+    if stat_date.present?
+      parsed_date = begin
+        Time.zone.parse( stat_date )
+      rescue StandardError
+        nil
+      end
+      record = records.where( "DATE(created_at) = DATE(?)", parsed_date ).first if parsed_date
+    end
+    record ||= records.first
+    [record, records.to_a]
+  end
+
+  # Derive previous and next records for the navigation bar.
+  def cohort_stat_neighbors( record, records )
+    return [nil, nil] unless record
+
+    current_index = records.index( record )
+    prev_record = records[current_index + 1] if current_index
+    next_record = records[current_index - 1] if current_index&.positive?
+    [prev_record, next_record]
+  end
 
   def set_time_zone_to_utc
     Time.zone = "UTC"

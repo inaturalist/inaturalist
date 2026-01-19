@@ -654,6 +654,8 @@ Rails.application.routes.draw do
       get :parks_canada_2017
       get :user_segments
       get :daily_active_user_model
+      get :acquisition_cohort_statistics
+      get :behavior_cohort_statistics
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
