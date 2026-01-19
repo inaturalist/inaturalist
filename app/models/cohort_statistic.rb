@@ -9,7 +9,7 @@ class CohortStatistic < ApplicationRecord
   #
   def self.generate_acquisition_cohorts_stats( at_time = Time.now, options = {} )
     at_time = at_time.utc.end_of_day
-    scope = CohortStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc ).
+    scope = CohortStatistic.where( "DATE(created_at) = DATE(?)", at_time ).
       where( stat_type: "acquisition" )
     if options[:force]
       scope.delete_all
@@ -19,8 +19,8 @@ class CohortStatistic < ApplicationRecord
     sleep 1
     CohortStatistic.create!(
       stat_type: "acquisition",
-      data: get_acquisition_cohorts,
-      created_at: at_time.beginning_of_day
+      data: get_acquisition_cohorts( at_time ),
+      created_at: at_time
     )
   end
 
@@ -29,7 +29,7 @@ class CohortStatistic < ApplicationRecord
   #
   def self.generate_behavior_cohorts_stats( at_time = Time.now, options = {} )
     at_time = at_time.utc.end_of_day
-    scope = CohortStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc ).
+    scope = CohortStatistic.where( "DATE(created_at) = DATE(?)", at_time ).
       where( stat_type: "behavior" )
     if options[:force]
       scope.delete_all
@@ -39,8 +39,8 @@ class CohortStatistic < ApplicationRecord
     sleep 1
     CohortStatistic.create!(
       stat_type: "behavior",
-      data: get_behavior_cohorts,
-      created_at: at_time.beginning_of_day
+      data: get_behavior_cohorts( at_time ),
+      created_at: at_time
     )
   end
 
@@ -70,9 +70,9 @@ class CohortStatistic < ApplicationRecord
   #                created_users_in_2025
   #                active_users_2025 / created_users_in_2024
   #
-  def self.get_acquisition_cohorts
-    created_users = get_all_yearly_created_users
-    active_users = get_all_yearly_active_users
+  def self.get_acquisition_cohorts( at_time = Time.current.utc )
+    created_users = get_all_yearly_created_users( at_time )
+    active_users = get_all_yearly_active_users( at_time )
 
     year_keys = created_users.keys.sort
     acquisition_cohorts = {}
@@ -111,60 +111,59 @@ class CohortStatistic < ApplicationRecord
   end
 
   # Get the list of users (user_id) created per year
-  # since the begining of iNaturalist
+  # since the begining of iNaturalist up to at_time
+  # (the last period ends on at_time)
   #
-  def self.get_all_yearly_created_users
+  def self.get_all_yearly_created_users( at_time = Time.current.utc )
     start_year = 2008
-    end_year = Time.current.year
+    end_year = at_time.year
     created_users_by_year = {}
 
     ( start_year..end_year ).each do | year |
-      year_start = Time.zone.local( year ).beginning_of_year
-      year_end = year_start.end_of_year
-      key = year.to_s
-      created_users_by_year[key] = {
+      start_at = Time.utc( year ).beginning_of_year
+      end_at = ( year == end_year ) ? at_time.end_of_day : start_at.end_of_year
+      year_key = year.to_s
+      created_users_by_year[year_key] = {
         label: year.to_s,
-        start_at: year_start,
-        end_at: year_end,
-        created_users: get_yearly_created_users( year_start, year_end )
+        start_at: start_at,
+        end_at: end_at,
+        created_users: User.where( created_at: start_at..end_at ).distinct.pluck( :id )
       }
     end
 
     created_users_by_year
   end
 
-  # Get the list of users (user_id) created during a selected year
-  #
-  def self.get_yearly_created_users( start_of_year, end_of_year )
-    User.where( created_at: start_of_year..end_of_year ).distinct.pluck( :id )
-  end
-
   # Get the list of users (user_id) active per year
-  # since the begining of iNaturalist
+  # since the begining of iNaturalist up to at_time
+  # (the last period ends on at_time)
   #
-  def self.get_all_yearly_active_users
+  def self.get_all_yearly_active_users( at_time = Time.current.utc )
     start_year = 2008
-    end_year = Time.current.year
+    end_year = at_time.year
     active_users_by_year = {}
 
     ( start_year..end_year ).each do | year |
-      year_start = Time.zone.local( year ).beginning_of_year
-      year_end = year_start.end_of_year
+      start_at = Time.utc( year ).beginning_of_year
+      end_at = ( year == end_year ) ? at_time.end_of_day : start_at.end_of_year
       year_key = year.to_s
 
       active_users = []
       12.times do | month_index |
-        month_start = ( year_start + month_index.months ).beginning_of_month
-        break if month_start > Time.current
+        month_start = ( start_at + month_index.months ).beginning_of_month
+        break if month_start > at_time
 
         month_end = month_start.end_of_month.end_of_day
+        if year == end_year && month_start.month == at_time.month
+          month_end = at_time.end_of_day
+        end
         active_users |= get_monthly_active_users( month_start, month_end )
       end
 
       active_users_by_year[year_key] = {
         label: year.to_s,
-        start_at: year_start,
-        end_at: year_end,
+        start_at: start_at,
+        end_at: end_at,
         active_users: active_users
       }
     end
@@ -192,8 +191,8 @@ class CohortStatistic < ApplicationRecord
   #      2025_11
   #                2025_11 active_users_in_november_2025 / cohort_november_2025
   #
-  def self.get_behavior_cohorts
-    active_users = get_25_monthly_active_users
+  def self.get_behavior_cohorts( at_time = Time.current.utc )
+    active_users = get_25_monthly_active_users( at_time )
     precohort = active_users["precohort"][:active_users]
     cohorts = get_cohorts_from_active_users( active_users, precohort )
     month_keys = active_users.keys
@@ -257,12 +256,11 @@ class CohortStatistic < ApplicationRecord
   #      2025_10 active_users_in_october_2025
   #      2025_11 active_users_in_november_2025
   #
-  def self.get_25_monthly_active_users
-    now = Time.current.beginning_of_month
+  def self.get_25_monthly_active_users( at_time = Time.current.utc )
     active_users = {}
     24.downto( 0 ).each do | months_ago |
-      month_start = ( now - months_ago.months ).beginning_of_month
-      month_end = month_start.end_of_month.end_of_day
+      month_start = ( at_time - months_ago.months ).beginning_of_month
+      month_end = months_ago.zero? ? at_time.end_of_day : month_start.end_of_month.end_of_day
       key = month_start.strftime( "%Y_%m" )
       active_users[key] = {
         label: month_start.strftime( "%B %Y" ),
@@ -275,7 +273,7 @@ class CohortStatistic < ApplicationRecord
     earliest_month = active_users.values.map {| data | data[:start_at] }.min
     historical_users = []
     if earliest_month
-      current_month = Time.zone.local( 2008 ).beginning_of_month
+      current_month = Time.utc( 2008 ).beginning_of_month
       while current_month < earliest_month
         month_end = current_month.end_of_month.end_of_day
         historical_users |= get_monthly_active_users( current_month, month_end )
