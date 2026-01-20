@@ -172,15 +172,18 @@ module HasSubscribers
         end
         true
       end
-      
+
       # this is potentially weird b/c there might be other reasons you're
       # subscribed to something, and this will remove the subscription anyway.
       # alts would be to remove uniqueness constraint so every
       # auto_subscribing object generates a subscription...
-      after_destroy do |record|
-        unless record.try(:unsubscribable?) || CONFIG.has_subscribers == :disabled
-          resource = options[:to] ? record.send(options[:to]) : record
-          user = record.auto_subscriber || record.send(subscriber)
+      after_destroy do | record |
+        unless record.try( :unsubscribable? ) || CONFIG.has_subscribers == :disabled || (
+          options[:unsubscribe_enabled] && respond_to?( options[:unsubscribe_enabled] ) &&
+          !send( options[:unsubscribe_enabled] )
+        )
+          resource = options[:to] ? record.send( options[:to] ) : record
+          user = record.auto_subscriber || record.send( subscriber )
           if user && resource
             Subscription.where(
               user_id: user.id,
@@ -193,7 +196,7 @@ module HasSubscribers
         end
       end
     end
-    
+
     def notify_subscribers_with(notifier, subscribable_association)
       return if CONFIG.has_subscribers == :disabled
       options = self.notifies_subscribers_of_options[subscribable_association.to_sym]
