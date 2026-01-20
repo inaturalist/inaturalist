@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CohortStatistic < ApplicationRecord
-  STAT_TYPES = %w(acquisition behavior).freeze
+  STAT_TYPES = %w(acquisition behavior segment_active_users).freeze
   validates :stat_type, presence: true, inclusion: { in: STAT_TYPES }
 
   # Acquisition cohort statistics
@@ -40,6 +40,26 @@ class CohortStatistic < ApplicationRecord
     CohortStatistic.create!(
       stat_type: "behavior",
       data: get_behavior_cohorts( at_time ),
+      created_at: at_time
+    )
+  end
+
+  # Segment active users statistics
+  #   generated on last day of the month
+  #
+  def self.generate_segment_active_users_stats( at_time = Time.now, options = {} )
+    at_time = at_time.utc.end_of_day
+    scope = CohortStatistic.where( "DATE(created_at) = DATE(?)", at_time ).
+      where( stat_type: "segment_active_users" )
+    if options[:force]
+      scope.delete_all
+    elsif scope.exists?
+      return
+    end
+    sleep 1
+    CohortStatistic.create!(
+      stat_type: "segment_active_users",
+      data: get_segment_active_users( at_time ),
       created_at: at_time
     )
   end
@@ -248,6 +268,43 @@ class CohortStatistic < ApplicationRecord
     cohorts
   end
 
+  # Segment monthly active users into:
+  #   new (first activity this month),
+  #   retained (active this month and last month),
+  #   re-engaged (active this month but not last month)
+  #
+  def self.get_segment_active_users( at_time = Time.current.utc )
+    active_users = get_25_monthly_active_users( at_time )
+    month_keys = active_users.keys.reject {| key | key == "precohort" }
+    seen_users = active_users["precohort"] ? active_users["precohort"][:active_users].dup : []
+    segment_active_users = {}
+
+    month_keys.each_with_index do | key, index |
+      month_data = active_users[key]
+      month_active = month_data[:active_users]
+      prev_key = index.zero? ? nil : month_keys[index - 1]
+      prev_active = prev_key ? active_users[prev_key][:active_users] : []
+
+      new_users = month_active - seen_users
+      retained_users = prev_active.empty? ? [] : ( month_active & prev_active )
+      reengaged_users = month_active - prev_active - new_users
+
+      segment_active_users[key] = {
+        label: month_data[:label],
+        start_at: month_data[:start_at],
+        end_at: month_data[:end_at],
+        active: month_active.count,
+        new: new_users.count,
+        retained: retained_users.count,
+        reengaged: reengaged_users.count
+      }
+
+      seen_users |= month_active
+    end
+
+    segment_active_users
+  end
+
   # Get the 25 months of active users
   # ex:  2023_11 active_users_in_november_2023
   #      2023_12 active_users_in_december_2023
@@ -276,7 +333,10 @@ class CohortStatistic < ApplicationRecord
       current_month = Time.utc( 2008 ).beginning_of_month
       while current_month < earliest_month
         month_end = current_month.end_of_month.end_of_day
-        historical_users |= get_monthly_active_users( current_month, month_end )
+        historical_users |= get_monthly_active_users(
+          current_month,
+          month_end
+        )
         current_month = ( current_month + 1.month ).beginning_of_month
       end
     end

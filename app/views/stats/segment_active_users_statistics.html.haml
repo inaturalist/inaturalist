@@ -1,0 +1,187 @@
+- content_for( :title ) do
+  = @title = "Segment Active Users"
+- content_for( :extracss ) do
+  :css
+    :root {
+      --segment-border: #dde2ea;
+      --segment-text: #1f2a44;
+      --segment-subtle: #5a6476;
+      --segment-new: #2b6f3e;
+      --segment-retained: #1f4b99;
+      --segment-reengaged: #c16b1a;
+      --segment-track: #f1f3f6;
+    }
+    .segment-stat-block {
+      background: #fff;
+      border: none;
+      padding: 0;
+      margin: 24px 0;
+    }
+    .segment-stat-title {
+      font-size: 22px;
+      margin: 0 0 8px;
+      color: var(--segment-text);
+    }
+    .segment-stat-subtitle {
+      color: var(--segment-subtle);
+      margin: 0 0 16px;
+    }
+    .segment-stat-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--segment-border);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+    .segment-nav-link {
+      color: #2b6f3e;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .segment-nav-link:hover {
+      text-decoration: underline;
+    }
+    .segment-nav-link.is-disabled {
+      color: #9aa3b2;
+      cursor: default;
+      pointer-events: none;
+      text-decoration: none;
+    }
+    .segment-nav-date {
+      color: #1f2a44;
+      font-weight: 600;
+    }
+    .segment-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .segment-table th,
+    .segment-table td {
+      border-bottom: 1px solid var(--segment-border);
+      padding: 8px 6px;
+      vertical-align: middle;
+    }
+    .segment-row-title {
+      width: 180px;
+      text-align: left;
+      color: var(--segment-text);
+      font-weight: 600;
+    }
+    .segment-bar-stack {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+    .segment-bar-labels {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--segment-subtle);
+    }
+    .segment-bar-labels span {
+      display: block;
+    }
+    .segment-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .segment-bar-track {
+      background: var(--segment-track);
+      border-radius: 4px;
+      height: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .segment-bar {
+      height: 100%;
+      border-radius: 4px;
+    }
+    .segment-bar.is-new { background: var(--segment-new); }
+    .segment-bar.is-retained { background: var(--segment-retained); }
+    .segment-bar.is-reengaged { background: var(--segment-reengaged); }
+    .segment-legend {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--segment-subtle);
+      margin-top: 12px;
+    }
+    .segment-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .segment-legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+.container-fluid
+  %h1 Segment Active Users
+  .segment-stat-nav
+    - if @segment_active_users_prev_record
+      = link_to "Previous", segment_active_users_statistics_stats_path( date: @segment_active_users_prev_record.created_at.to_date ), class: "segment-nav-link"
+    - else
+      %span.segment-nav-link.is-disabled Previous
+    - if @segment_active_users_generated_at
+      = link_to @segment_active_users_generated_at.to_date.to_s, segment_active_users_statistics_stats_path( date: @segment_active_users_generated_at.to_date ), class: "segment-nav-date"
+    - else
+      %span.segment-nav-date No data
+    - if @segment_active_users_next_record
+      = link_to "Next", segment_active_users_statistics_stats_path( date: @segment_active_users_next_record.created_at.to_date ), class: "segment-nav-link"
+    - else
+      %span.segment-nav-link.is-disabled Next
+
+  .segment-stat-block
+    %p.segment-stat-subtitle
+      Monthly active users segmented by new, retained, and re-engaged activity.
+      - if @segment_active_users_generated_at
+        %br/
+        %span= "Data as of #{@segment_active_users_generated_at.to_date}"
+    - if @segment_active_users_rows.blank?
+      %p.segment-stat-subtitle No data available.
+    - else
+      %table.segment-table
+        %thead
+          %tr
+            %th.segment-row-title Month
+            %th Activity
+        %tbody
+          - @segment_active_users_rows.each do | row |
+            - max_value = @segment_active_users_max.positive? ? @segment_active_users_max.to_f : 1
+            - new_width = ( row[:new].to_f / max_value * 100 ).round( 2 )
+            - retained_width = ( row[:retained].to_f / max_value * 100 ).round( 2 )
+            - reengaged_width = ( row[:reengaged].to_f / max_value * 100 ).round( 2 )
+            %tr
+              %th.segment-row-title= row[:label]
+              %td
+                .segment-bar-stack
+                  .segment-bar-labels
+                    %span= "New (#{number_with_delimiter( row[:new] )})"
+                    %span= "Retained (#{number_with_delimiter( row[:retained] )})"
+                    %span= "Re-engaged (#{number_with_delimiter( row[:reengaged] )})"
+                  .segment-bars
+                    .segment-bar-track{ title: "New: #{number_with_delimiter( row[:new] )}" }
+                      .segment-bar.is-new{ style: "width: #{new_width}%;" }
+                    .segment-bar-track{ title: "Retained: #{number_with_delimiter( row[:retained] )}" }
+                      .segment-bar.is-retained{ style: "width: #{retained_width}%;" }
+                    .segment-bar-track{ title: "Re-engaged: #{number_with_delimiter( row[:reengaged] )}" }
+                      .segment-bar.is-reengaged{ style: "width: #{reengaged_width}%;" }
+      .segment-legend
+        .segment-legend-item
+          .segment-legend-swatch{ style: "background: var(--segment-new);" }
+          %span New
+        .segment-legend-item
+          .segment-legend-swatch{ style: "background: var(--segment-retained);" }
+          %span Retained
+        .segment-legend-item
+          .segment-legend-swatch{ style: "background: var(--segment-reengaged);" }
+          %span Re-engaged

@@ -13,7 +13,8 @@ class StatsController < ApplicationController
     :user_segments,
     :daily_active_user_model,
     :acquisition_cohort_statistics,
-    :behavior_cohort_statistics
+    :behavior_cohort_statistics,
+    :segment_active_users_statistics
   ]
 
   allow_external_iframes( only: [:wed_bioblitz] )
@@ -485,6 +486,21 @@ class StatsController < ApplicationController
     render "behavior_cohort_statistics", layout: "bootstrap"
   end
 
+  # Load segment active users for a selected snapshot date (or latest).
+  def segment_active_users_statistics
+    segment_record, segment_records = cohort_stat_record_for(
+      "segment_active_users",
+      stat_date: params[:date]
+    )
+    @segment_active_users_record = segment_record
+    @segment_active_users_prev_record, @segment_active_users_next_record = cohort_stat_neighbors(
+      segment_record,
+      segment_records
+    )
+    set_segment_active_users_vars( segment_record )
+    render "segment_active_users_statistics", layout: "bootstrap"
+  end
+
   # Build the table-ready rows and offsets for the acquisition view.
   def set_acquisition_cohort_vars( acquisition_record )
     acquisition = acquisition_record&.data
@@ -543,6 +559,33 @@ class StatsController < ApplicationController
       }
     end
     @behavior_offsets = ( 0..@behavior_rows.map {| row | row[:behaviors_by_offset].size }.max.to_i - 1 ).to_a
+  end
+
+  # Build the table-ready rows for the segment active users view.
+  def set_segment_active_users_vars( segment_record )
+    segment_data = segment_record&.data
+    segment_data = segment_data.deep_symbolize_keys if segment_data.respond_to?( :deep_symbolize_keys )
+    if segment_data.blank?
+      @segment_active_users_generated_at = segment_record&.created_at
+      @segment_active_users_rows = []
+      @segment_active_users_max = 0
+      return
+    end
+
+    @segment_active_users_generated_at = segment_record&.created_at
+    @segment_active_users_rows = segment_data.sort_by do | key, _ |
+      key.to_s
+    end.map do | key, data |
+      {
+        key: key.to_s,
+        label: data[:label],
+        active: data[:active],
+        new: data[:new],
+        retained: data[:retained],
+        reengaged: data[:reengaged]
+      }
+    end
+    @segment_active_users_max = @segment_active_users_rows.map {| row | row[:active].to_i }.max.to_i
   end
 
   private

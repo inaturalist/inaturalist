@@ -656,6 +656,7 @@ Rails.application.routes.draw do
       get :daily_active_user_model
       get :acquisition_cohort_statistics
       get :behavior_cohort_statistics
+      get :segment_active_users_statistics
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
