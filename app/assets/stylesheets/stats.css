@@ -1,6 +1,10 @@
 .vis {
   height: 300px;
 }
+.stats-wide {
+  max-width: 1700px;
+  width: 100%;
+}
 .bootstrap .container.vis {
   padding-left: 0;
   padding-right: 0;
@@ -18,4 +22,53 @@
   text-align: center;
   font-size: smaller;
   color: #777;
+}
+.stats-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #dde2ea;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.stats-nav-link {
+  color: #2b6f3e;
+  font-weight: 600;
+  text-decoration: none;
+}
+.stats-nav-link:hover {
+  text-decoration: underline;
+}
+.stats-nav-link.is-disabled {
+  color: #9aa3b2;
+  cursor: default;
+  pointer-events: none;
+  text-decoration: none;
+}
+.stats-nav-date {
+  color: #1f2a44;
+  font-weight: 600;
+}
+.staff-stats-bar {
+  background: #f6f8fb;
+  border: 1px solid #dde2ea;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 12px 0 16px;
+  font-size: 13px;
+}
+.staff-stats-label {
+  font-weight: 600;
+  margin-right: 8px;
+  color: #1f2a44;
+}
+.staff-stats-link {
+  margin-right: 10px;
+  color: #2b6f3e;
+  font-weight: 600;
+}
+.staff-stats-link:last-child {
+  margin-right: 0;
 }

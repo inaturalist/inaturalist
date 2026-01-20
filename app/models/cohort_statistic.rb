@@ -277,13 +277,23 @@ class CohortStatistic < ApplicationRecord
     active_users = get_25_monthly_active_users( at_time )
     month_keys = active_users.keys.reject {| key | key == "precohort" }
     seen_users = active_users["precohort"] ? active_users["precohort"][:active_users].dup : []
+    prev_active_for_first_month = []
+    if month_keys.first
+      first_month = active_users[month_keys.first]
+      prev_month_start = ( first_month[:start_at] - 1.month ).beginning_of_month
+      prev_month_end = prev_month_start.end_of_month.end_of_day
+      prev_active_for_first_month = get_monthly_active_users(
+        prev_month_start,
+        prev_month_end
+      )
+    end
     segment_active_users = {}
 
     month_keys.each_with_index do | key, index |
       month_data = active_users[key]
       month_active = month_data[:active_users]
       prev_key = index.zero? ? nil : month_keys[index - 1]
-      prev_active = prev_key ? active_users[prev_key][:active_users] : []
+      prev_active = prev_key ? active_users[prev_key][:active_users] : prev_active_for_first_month
 
       new_users = month_active - seen_users
       retained_users = prev_active.empty? ? [] : ( month_active & prev_active )

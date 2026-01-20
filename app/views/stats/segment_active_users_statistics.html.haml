@@ -1,6 +1,7 @@
 - content_for( :title ) do
   = @title = "Segment Active Users"
 - content_for( :extracss ) do
+  = stylesheet_link_tag :stats
   :css
     :root {
       --segment-border: #dde2ea;
@@ -26,34 +27,6 @@
       color: var(--segment-subtle);
       margin: 0 0 16px;
     }
-    .segment-stat-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid var(--segment-border);
-      padding-bottom: 12px;
-      margin-bottom: 18px;
-      font-size: 13px;
-    }
-    .segment-nav-link {
-      color: #2b6f3e;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .segment-nav-link:hover {
-      text-decoration: underline;
-    }
-    .segment-nav-link.is-disabled {
-      color: #9aa3b2;
-      cursor: default;
-      pointer-events: none;
-      text-decoration: none;
-    }
-    .segment-nav-date {
-      color: #1f2a44;
-      font-weight: 600;
-    }
     .segment-table {
       width: 100%;
       border-collapse: collapse;
@@ -71,6 +44,16 @@
       color: var(--segment-text);
       font-weight: 600;
     }
+    .segment-col-labels {
+      width: 100px;
+    }
+    .segment-col-counts {
+      width: 100px;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .segment-col-bars {
+    }
     .segment-bar-stack {
       display: grid;
       grid-template-columns: 120px 1fr;
@@ -85,6 +68,17 @@
       color: var(--segment-subtle);
     }
     .segment-bar-labels span {
+      display: block;
+    }
+    .segment-bar-numbers {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--segment-text);
+      text-align: right;
+    }
+    .segment-bar-numbers span {
       display: block;
     }
     .segment-bars {
@@ -124,21 +118,22 @@
       border-radius: 2px;
     }
 
-.container-fluid
+.container-fluid.stats-wide
+  = render "stats/staff_stats_bar"
   %h1 Segment Active Users
-  .segment-stat-nav
+  .stats-nav
     - if @segment_active_users_prev_record
-      = link_to "Previous", segment_active_users_statistics_stats_path( date: @segment_active_users_prev_record.created_at.to_date ), class: "segment-nav-link"
+      = link_to "Previous", segment_active_users_statistics_stats_path( date: @segment_active_users_prev_record.created_at.to_date ), class: "stats-nav-link"
     - else
-      %span.segment-nav-link.is-disabled Previous
+      %span.stats-nav-link.is-disabled Previous
     - if @segment_active_users_generated_at
-      = link_to @segment_active_users_generated_at.to_date.to_s, segment_active_users_statistics_stats_path( date: @segment_active_users_generated_at.to_date ), class: "segment-nav-date"
+      = link_to @segment_active_users_generated_at.to_date.to_s, segment_active_users_statistics_stats_path( date: @segment_active_users_generated_at.to_date ), class: "stats-nav-date"
     - else
-      %span.segment-nav-date No data
+      %span.stats-nav-date No data
     - if @segment_active_users_next_record
-      = link_to "Next", segment_active_users_statistics_stats_path( date: @segment_active_users_next_record.created_at.to_date ), class: "segment-nav-link"
+      = link_to "Next", segment_active_users_statistics_stats_path( date: @segment_active_users_next_record.created_at.to_date ), class: "stats-nav-link"
     - else
-      %span.segment-nav-link.is-disabled Next
+      %span.stats-nav-link.is-disabled Next
 
   .segment-stat-block
     %p.segment-stat-subtitle
@@ -153,7 +148,9 @@
         %thead
           %tr
             %th.segment-row-title Month
-            %th Activity
+            %th.segment-col-labels Activity
+            %th.segment-col-counts
+            %th.segment-col-bars
         %tbody
           - @segment_active_users_rows.each do | row |
             - max_value = @segment_active_users_max.positive? ? @segment_active_users_max.to_f : 1
@@ -162,19 +159,24 @@
             - reengaged_width = ( row[:reengaged].to_f / max_value * 100 ).round( 2 )
             %tr
               %th.segment-row-title= row[:label]
-              %td
-                .segment-bar-stack
-                  .segment-bar-labels
-                    %span= "New (#{number_with_delimiter( row[:new] )})"
-                    %span= "Retained (#{number_with_delimiter( row[:retained] )})"
-                    %span= "Re-engaged (#{number_with_delimiter( row[:reengaged] )})"
-                  .segment-bars
-                    .segment-bar-track{ title: "New: #{number_with_delimiter( row[:new] )}" }
-                      .segment-bar.is-new{ style: "width: #{new_width}%;" }
-                    .segment-bar-track{ title: "Retained: #{number_with_delimiter( row[:retained] )}" }
-                      .segment-bar.is-retained{ style: "width: #{retained_width}%;" }
-                    .segment-bar-track{ title: "Re-engaged: #{number_with_delimiter( row[:reengaged] )}" }
-                      .segment-bar.is-reengaged{ style: "width: #{reengaged_width}%;" }
+              %td.segment-col-labels
+                .segment-bar-labels
+                  %span New
+                  %span Retained
+                  %span Re-engaged
+              %td.segment-col-counts
+                .segment-bar-numbers
+                  %span= number_with_delimiter( row[:new] )
+                  %span= number_with_delimiter( row[:retained] )
+                  %span= number_with_delimiter( row[:reengaged] )
+              %td.segment-col-bars
+                .segment-bars
+                  .segment-bar-track{ title: "New: #{number_with_delimiter( row[:new] )}" }
+                    .segment-bar.is-new{ style: "width: #{new_width}%;" }
+                  .segment-bar-track{ title: "Retained: #{number_with_delimiter( row[:retained] )}" }
+                    .segment-bar.is-retained{ style: "width: #{retained_width}%;" }
+                  .segment-bar-track{ title: "Re-engaged: #{number_with_delimiter( row[:reengaged] )}" }
+                    .segment-bar.is-reengaged{ style: "width: #{reengaged_width}%;" }
       .segment-legend
         .segment-legend-item
           .segment-legend-swatch{ style: "background: var(--segment-new);" }

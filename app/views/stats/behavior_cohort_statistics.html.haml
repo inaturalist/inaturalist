@@ -1,6 +1,7 @@
 - content_for( :title ) do
   = @title = "Behavior Cohort Statistics"
 - content_for( :extracss ) do
+  = stylesheet_link_tag :stats
   :css
     :root {
       --cohort-border: #dde2ea;
@@ -25,41 +26,9 @@
       color: #5a6476;
       margin: 0 0 16px;
     }
-    .cohort-stat-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid var(--cohort-border);
-      padding-bottom: 12px;
-      margin-bottom: 18px;
-      font-size: 13px;
-    }
-    .cohort-nav-link {
-      color: #2b6f3e;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .cohort-nav-link:hover {
-      text-decoration: underline;
-    }
-    .cohort-nav-link.is-disabled {
-      color: #9aa3b2;
-      cursor: default;
-      pointer-events: none;
-      text-decoration: none;
-    }
-    .cohort-nav-date {
-      color: #1f2a44;
-      font-weight: 600;
-    }
     .cohort-stat-meta {
       color: #7a859a;
       font-size: 12px;
-    }
-    .cohort-wide {
-      max-width: 1700px;
-      width: 100%;
     }
     .cohort-table-wrap {
       overflow-x: auto;
@@ -109,21 +78,22 @@
       font-weight: 400;
     }
 
-.container-fluid.cohort-wide
+.container-fluid.stats-wide
+  = render "stats/staff_stats_bar"
   %h1 Behavior Cohort Statistics
-  .cohort-stat-nav
+  .stats-nav
     - if @behavior_prev_record
-      = link_to "Previous", behavior_cohort_statistics_stats_path( date: @behavior_prev_record.created_at.to_date ), class: "cohort-nav-link"
+      = link_to "Previous", behavior_cohort_statistics_stats_path( date: @behavior_prev_record.created_at.to_date ), class: "stats-nav-link"
     - else
-      %span.cohort-nav-link.is-disabled Previous
+      %span.stats-nav-link.is-disabled Previous
     - if @behavior_generated_at
-      = link_to @behavior_generated_at.to_date.to_s, behavior_cohort_statistics_stats_path( date: @behavior_generated_at.to_date ), class: "cohort-nav-date"
+      = link_to @behavior_generated_at.to_date.to_s, behavior_cohort_statistics_stats_path( date: @behavior_generated_at.to_date ), class: "stats-nav-date"
     - else
-      %span.cohort-nav-date No data
+      %span.stats-nav-date No data
     - if @behavior_next_record
-      = link_to "Next", behavior_cohort_statistics_stats_path( date: @behavior_next_record.created_at.to_date ), class: "cohort-nav-link"
+      = link_to "Next", behavior_cohort_statistics_stats_path( date: @behavior_next_record.created_at.to_date ), class: "stats-nav-link"
     - else
-      %span.cohort-nav-link.is-disabled Next
+      %span.stats-nav-link.is-disabled Next
 
   .cohort-stat-block
     %p.cohort-stat-subtitle

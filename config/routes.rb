@@ -653,6 +653,7 @@ Rails.application.routes.draw do
       get :canada_150
       get :parks_canada_2017
       get :user_segments
+      get :segmentation_dau_mau
       get :daily_active_user_model
       get :acquisition_cohort_statistics
       get :behavior_cohort_statistics
