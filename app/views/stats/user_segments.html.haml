@@ -19,19 +19,65 @@
     var STATS_JSON = #{ @segmentation_statistic.to_json.html_safe };
     $( document ).ready( function() {
       var data = STATS_JSON;
+      // Rename "power" to "pwr" in the data
+      function renameNodes( node ) {
+        if ( node.name === "power" ) node.name = "pwr";
+        if ( node.children ) node.children.forEach( renameNodes );
+      }
+      renameNodes( data );
       var width = 1000;
-          height = 700;
+          height = 1000;
+      var rawSum = 0;
+      ( function sumLeaves( node ) {
+        if ( node.children && node.children.length ) {
+          node.children.forEach( sumLeaves );
+        } else {
+          rawSum += node.value || 0;
+        }
+      } )( data );
+      var minLeafArea = 30 * 30;
+      var minValue = rawSum > 0 ? ( minLeafArea / ( width * height ) ) * rawSum : 0;
       var svg = d3.select( "#user_dataviz" ).append( "svg" )
         .attr( "viewBox", "0 0 " + width + " " + height )
         .attr( "preserveAspectRatio", "xMinYMin meet" );
 
-      var root = d3.hierarchy( data ).sum( function( d ){ return d.value } )
-      var sumOfLeaves = root.value;
+      var root = d3.hierarchy( data ).sum( function( d ) {
+        if ( d.children ) return 0;
+        return Math.max( d.value || 0, minValue );
+      } )
+      root.eachAfter( function( d ) {
+        if ( !d.children || d.children.length === 0 ) {
+          d.rawValue = d.data.value || 0;
+        } else {
+          d.rawValue = d.children.reduce( function( sum, child ) {
+            return sum + ( child.rawValue || 0 );
+          }, 0 );
+        }
+      } );
+      var sumOfLeaves = rawSum;
       d3.treemap()
         .size( [width, height] )
-        .paddingTop( 28 )
-        .paddingRight( 7 )
-        .paddingInner( 3 )
+        .tile( function( parent, x0, y0, x1, y1 ) {
+          // Depth 1 (new/existing): slice into rows
+          // Depth 2 (power/casual/inactive): dice into columns
+          // Depth 3+ (web/ios/etc): use squarify
+          if ( parent.depth === 0 ) {
+            d3.treemapSlice( parent, x0, y0, x1, y1 );
+          } else if ( parent.depth === 1 ) {
+            d3.treemapDice( parent, x0, y0, x1, y1 );
+          } else {
+            d3.treemapSquarify( parent, x0, y0, x1, y1 );
+          }
+        } )
+        .paddingTop( function( d ) {
+          if ( d.depth === 1 ) return 28;
+          if ( d.depth === 2 ) return 24;
+          return 5;
+        } )
+        .paddingRight( 5 )
+        .paddingBottom( 5 )
+        .paddingLeft( 5 )
+        .paddingInner( 2 )
         ( root )
 
       var color = d3.scaleOrdinal()
@@ -60,8 +106,8 @@
           tooltip.style( "top", ( d3.event.pageY + 10 ) + "px" );
           tooltip.html(
             "Name: " + d.data.name + "<br/>" + 
-            "Value: " + d.data.value.toLocaleString() + "<br/>" +
-            "Percent: " + ( d.data.value / sumOfLeaves * 100 ).toFixed( 2 ) + "%"
+            "Value: " + ( d.data.value || 0 ).toLocaleString() + "<br/>" +
+            "Percent: " + ( ( d.data.value || 0 ) / sumOfLeaves * 100 ).toFixed( 2 ) + "%"
           );
         } )
         .on( "mouseout", function() {
@@ -76,40 +122,40 @@
       svg
         .selectAll( "text" )
         .data( root.leaves().filter( function(d) { 
-          return d.data.value > 10000 & d.parent.parent.data.name == "existing";
+          return d.data.value > 10000;
         } ) )
         .enter()
         .append( "text" )
         .attr( "x", function( d ){ return d.x0 + 5} )
-        .attr( "y", function( d ){ return d.y0 + 20} )
+        .attr( "y", function( d ){ return d.y0 + 16} )
         .text( function( d ){ return d.data.name } )
-        .attr( "font-size", "12px" )
-        .attr( "fill", "white" )
-
-      svg
-        .selectAll( "vals" )
-        .data( root.leaves().filter(function( d ) { 
-          return d.data.value > 10000 & d.parent.parent.data.name == "existing"; 
-        } ) )
-        .enter()
-        .append( "text")
-        .attr( "x", function(d){ return d.x0 + 5} )
-        .attr( "y", function(d){ return d.y0 + 35} )
-        .text( function(d){ return d.data.value.toLocaleString() } )
-        .attr( "font-size", "11px" )
+        .attr( "font-size", "10px" )
         .attr( "fill", "white" )
 
       svg
         .selectAll( "vals" )
         .data( root.leaves().filter( function( d ) { 
-          return d.data.value > 10000 & d.parent.parent.data.name == "existing"; 
+          return d.data.value > 10000;
+        } ) )
+        .enter()
+        .append( "text")
+        .attr( "x", function(d){ return d.x0 + 5} )
+        .attr( "y", function(d){ return d.y0 + 28} )
+        .text( function(d){ return d.data.value.toLocaleString() } )
+        .attr( "font-size", "8px" )
+        .attr( "fill", "white" )
+
+      svg
+        .selectAll( "vals" )
+        .data( root.leaves().filter( function( d ) { 
+          return d.data.value > 10000; 
         } ) )
         .enter()
         .append( "text" )
           .attr( "x", function(d){ return d.x0+5} )
-          .attr( "y", function(d){ return d.y0+50} )
+          .attr( "y", function(d){ return d.y0+40} )
           .text( function(d){ return ( d.data.value / sumOfLeaves * 100 ).toFixed( 2 ) + "%"; } )
-          .attr( "font-size", "11px" )
+          .attr( "font-size", "8px" )
           .attr( "fill", "white" )
           
       svg
@@ -118,12 +164,12 @@
         .enter()
         .append( "text" )
           .attr( "x", function( d ){ return d.x0} )
-          .attr( "y", function( d ){ return d.y0+21} )
+          .attr( "y", function( d ){ return d.y0+18} )
           .text( function( d ){ 
-            var ratio = ( d.value / sumOfLeaves * 100 ).toFixed( 2 );
-            return d.data.name + ": " + d.value.toLocaleString() + " (" + ratio + "%)" 
+            var ratio = ( d.rawValue / sumOfLeaves * 100 ).toFixed( 2 );
+            return d.data.name + ": " + d.rawValue.toLocaleString() + " (" + ratio + "%)" 
           } )
-          .attr( "font-size", "15px" )
+          .attr( "font-size", "12px" )
           .attr( "fill",  "black" )
       
       svg
@@ -132,17 +178,21 @@
         .enter()
         .append( "text" )
           .attr( "x", function( d ){ return d.x0} )
-          .attr( "y", function( d ){ return d.y0+21} )
-          .text( function( d ){ 
-            var ratio = ( d.value / sumOfLeaves * 100 ).toFixed( 2 );
-            if ( d.value > 10000 ) {
-              return d.data.name + ": " + d.value.toLocaleString() + " (" + ratio + "%)" 
-            } else {
-              return d.data.name + ": " + d.value.toLocaleString()
-            }
-          } )
-          .attr( "font-size", "14px" )
+          .attr( "y", function( d ){ return d.y0+10} )
+          .attr( "font-size", "10px" )
           .attr( "fill",  "black" )
+          .each( function( d ) {
+            var ratio = ( d.rawValue / sumOfLeaves * 100 ).toFixed( 2 );
+            var text = d3.select( this );
+            // Wrap all labels on two lines
+            text.append( "tspan" )
+              .attr( "x", d.x0+5 )
+              .text( d.data.name + ": " + d.rawValue.toLocaleString() );
+            text.append( "tspan" )
+              .attr( "x", d.x0+5 )
+              .attr( "dy", "10px" )
+              .text( "(" + ratio + "%)" );
+          } );
       } );
 .container-fluid.stats-wide
   .row
