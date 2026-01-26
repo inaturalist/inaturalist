@@ -55,53 +55,58 @@ if OPTS.log_task_name
   task_logger = TaskLogger.new( OPTS.log_task_name, nil, "export" )
 end
 
-task_logger&.start
+begin
+  task_logger&.start
 
-start_time = Time.now
-site_name = OPTS.site_name || ARGV[0]
-site = Site.find_by_name( site_name )
-site ||= Site.find_by_id( OPTS.site_id )
+  start_time = Time.now
+  site_name = OPTS.site_name || ARGV[0]
+  site = Site.find_by_name( site_name )
+  site ||= Site.find_by_id( OPTS.site_id )
 
-sites = if site
-  [site]
-else
-  # Note that we are sorting by id DESC b/c more recent sites tend to have
-  # smaller exports, so that should reveal problems a bit sooner
-  Site.where( "id != ?", Site.default ).where( "NOT draft" ).order( "id DESC" )
-end
-
-max_obs_id = Observation.calculate( :maximum, :id )
-export_params = {
-  max_obs_id: max_obs_id,
-  debug: OPTS.debug,
-  verbose: OPTS.verbose,
-  taxon_id: OPTS.taxon_id,
-  num_processes: OPTS.num_processes
-}
-paths = sites.to_a.compact.collect do | site_to_export |
-  puts
-  puts "Exporting data for #{site_to_export}..."
-  task_logger&.info( "Export data for #{site_to_export}" )
-  path = SiteDataExporter.new( site_to_export, export_params ).export
-  if OPTS.dir
-    new_path = File.join( File.expand_path( OPTS.dir ), File.basename( path ) )
-    FileUtils.move( path, new_path )
-    path = new_path
+  sites = if site
+    [site]
+  else
+    # Note that we are sorting by id DESC b/c more recent sites tend to have
+    # smaller exports, so that should reveal problems a bit sooner
+    Site.where( "id != ?", Site.default ).where( "NOT draft" ).order( "id DESC" )
   end
-  path
-end
 
-if paths.size == 1 && OPTS[:file]
-  system_call( "mv #{paths[0]} #{OPTS[:file]}" )
-  paths = [OPTS[:file]]
-end
+  max_obs_id = Observation.calculate( :maximum, :id )
+  export_params = {
+    max_obs_id: max_obs_id,
+    debug: OPTS.debug,
+    verbose: OPTS.verbose,
+    taxon_id: OPTS.taxon_id,
+    num_processes: OPTS.num_processes
+  }
+  paths = sites.to_a.compact.collect do | site_to_export |
+    puts
+    puts "Exporting data for #{site_to_export}..."
+    task_logger&.info( "Export data for #{site_to_export}" )
+    path = SiteDataExporter.new( site_to_export, export_params ).export
+    if OPTS.dir
+      new_path = File.join( File.expand_path( OPTS.dir ), File.basename( path ) )
+      FileUtils.move( path, new_path )
+      path = new_path
+    end
+    path
+  end
 
-puts
-puts "Exported site data in #{Time.now - start_time} s to the following locations:"
-puts
-paths.each do | path |
-  puts path
-end
-puts
+  if paths.size == 1 && OPTS[:file]
+    system_call( "mv #{paths[0]} #{OPTS[:file]}" )
+    paths = [OPTS[:file]]
+  end
 
-task_logger&.end
+  puts
+  puts "Exported site data in #{Time.now - start_time} s to the following locations:"
+  puts
+  paths.each do | path |
+    puts path
+  end
+  puts
+rescue => e # rubocop:disable Style/RescueStandardError
+  task_logger&.error( "#{e}\n#{e.backtrace[0..30].join( "\n" )}" )
+  raise
+ensure
+  task_logger&.end
+end
