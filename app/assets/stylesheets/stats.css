@@ -72,3 +72,71 @@
 .staff-stats-link:last-child {
   margin-right: 0;
 }
+.cohort-stat-block {
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 24px 0;
+  box-shadow: none;
+}
+.cohort-stat-title {
+  font-size: 22px;
+  margin: 0 0 8px;
+  color: #1f2a44;
+}
+.cohort-stat-subtitle {
+  color: #5a6476;
+  margin: 0 0 16px;
+}
+.cohort-stat-meta {
+  color: #7a859a;
+  font-size: 12px;
+}
+.cohort-table-wrap {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid #dde2ea;
+}
+.cohort-table {
+  border-collapse: collapse;
+  min-width: 1300px;
+  width: 100%;
+  font-size: 13px;
+}
+.cohort-table th,
+.cohort-table td {
+  border: 1px solid #dde2ea;
+  padding: 6px 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+.cohort-table thead th {
+  background: #f6f8fb;
+  font-weight: 600;
+}
+.cohort-row-title {
+  text-align: left;
+  background: #fff;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  min-width: 180px;
+}
+.cohort-row-label {
+  font-weight: 600;
+  color: #1f2a44;
+}
+.cohort-row-sub {
+  color: #7a859a;
+  font-size: 12px;
+}
+.cohort-cell {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.cohort-cell.is-empty {
+  background: #f1f3f6;
+  color: #9aa3b2;
+  font-weight: 400;
+}
