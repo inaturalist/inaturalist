@@ -114,7 +114,7 @@ begin
   task_logger&.start
   DarwinCore::Archive.generate( opts )
   task_logger&.end
-rescue => e
+rescue => e # rubocop:disable Style/RescueStandardError
   task_logger&.error( "#{e}\n#{e.backtrace[0..30].join( "\n" )}" )
   raise e
 end

@@ -41,7 +41,7 @@ class ObservationFieldValue < ApplicationRecord
     }
   auto_subscribes :user, :to => :observation, :if => lambda {|record, subscribable| 
     record.user_id != subscribable.user_id
-  }
+  }, unsubscribe_enabled: :observation_unsubscribe_enabled?
 
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
@@ -312,6 +312,14 @@ class ObservationFieldValue < ApplicationRecord
     return false unless updated_at && created_at
 
     updated_at > created_at
+  end
+
+  def observation_unsubscribe_enabled?
+    return false if ObservationFieldValue.where( observation: observation, user_id: user_id ).where.not( id: id ).any?
+    return false if Identification.where( observation: observation, user_id: user_id ).any?
+    return false if Comment.where( parent: observation, user_id: user_id ).any?
+
+    true
   end
 
   def as_indexed_json
