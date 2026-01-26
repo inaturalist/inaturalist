@@ -40,7 +40,6 @@ class CohortStatistic < ApplicationRecord
     elsif scope.exists?
       return
     end
-    sleep 1
     CohortStatistic.create!(
       stat_type: "acquisition",
       data: get_acquisition_cohorts( at_time ),
@@ -60,7 +59,6 @@ class CohortStatistic < ApplicationRecord
     elsif scope.exists?
       return
     end
-    sleep 1
     CohortStatistic.create!(
       stat_type: "behavior",
       data: get_behavior_cohorts( at_time ),
@@ -80,7 +78,6 @@ class CohortStatistic < ApplicationRecord
     elsif scope.exists?
       return
     end
-    sleep 1
     CohortStatistic.create!(
       stat_type: "segment_active_users",
       data: get_segment_active_users( at_time ),

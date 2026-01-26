@@ -20,7 +20,6 @@ class SiteStatistic < ApplicationRecord
     elsif stats_generated_for_day?( at_time )
       return
     end
-    sleep 1
     site_statistic_data = STAT_TYPES.to_h {| st | [st, send( "#{st}_stats", at_time )] }
     daily_active_user_model_data = generate_daily_active_user_model_data( at_time )
     site_statistic_data[:daily_active_user_model] = daily_active_user_model_data[:statistic]

@@ -8,7 +8,6 @@ class SegmentationStatistic < ApplicationRecord
     elsif stats_generated_for_day?( at_time )
       return
     end
-    sleep 1
     SegmentationStatistic.create!(
       data: generate_segmentation_metrics( at_time ),
       created_at: at_time.beginning_of_day
