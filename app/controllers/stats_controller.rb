@@ -340,7 +340,7 @@ class StatsController < ApplicationController
   end
 
   def user_segments
-    segmentation_record, segmentation_records = segmentation_stat_record_for(
+    segmentation_record, segmentation_records = SegmentationStatistic.record_for(
       stat_date: params[:date]
     )
     redirect_to "/" and return unless segmentation_record
@@ -388,7 +388,7 @@ class StatsController < ApplicationController
   end
 
   def daily_active_user_model
-    stats_record, stats_records = site_stat_record_for(
+    stats_record, stats_records = SiteStatistic.record_for(
       stat_date: params[:date]
     )
     redirect_to "/" and return unless stats_record
@@ -404,7 +404,7 @@ class StatsController < ApplicationController
   end
 
   def segmentation_dau_mau
-    segmentation_record, segmentation_records = segmentation_stat_record_for(
+    segmentation_record, segmentation_records = SegmentationStatistic.record_for(
       stat_date: params[:date]
     )
     redirect_to "/" and return unless segmentation_record
@@ -493,12 +493,12 @@ class StatsController < ApplicationController
 
   # Load acquisition cohorts for a selected snapshot date (or latest).
   def acquisition_cohort_statistics
-    acquisition_record, acquisition_records = cohort_stat_record_for(
+    acquisition_record, acquisition_records = CohortStatistic.record_for(
       "acquisition",
       stat_date: params[:date]
     )
     @acquisition_record = acquisition_record
-    @acquisition_prev_record, @acquisition_next_record = cohort_stat_neighbors(
+    @acquisition_prev_record, @acquisition_next_record = CohortStatistic.record_neighbors(
       acquisition_record,
       acquisition_records
     )
@@ -508,12 +508,12 @@ class StatsController < ApplicationController
 
   # Load behavior cohorts for a selected snapshot date (or latest).
   def behavior_cohort_statistics
-    behavior_record, behavior_records = cohort_stat_record_for(
+    behavior_record, behavior_records = CohortStatistic.record_for(
       "behavior",
       stat_date: params[:date]
     )
     @behavior_record = behavior_record
-    @behavior_prev_record, @behavior_next_record = cohort_stat_neighbors(
+    @behavior_prev_record, @behavior_next_record = CohortStatistic.record_neighbors(
       behavior_record,
       behavior_records
     )
@@ -523,12 +523,12 @@ class StatsController < ApplicationController
 
   # Load segment active users for a selected snapshot date (or latest).
   def segment_active_users_statistics
-    segment_record, segment_records = cohort_stat_record_for(
+    segment_record, segment_records = CohortStatistic.record_for(
       "segment_active_users",
       stat_date: params[:date]
     )
     @segment_active_users_record = segment_record
-    @segment_active_users_prev_record, @segment_active_users_next_record = cohort_stat_neighbors(
+    @segment_active_users_prev_record, @segment_active_users_next_record = CohortStatistic.record_neighbors(
       segment_record,
       segment_records
     )
@@ -625,56 +625,6 @@ class StatsController < ApplicationController
   end
 
   private
-
-  # Fetch a cohort stat record by date (YYYY-MM-DD), defaulting to most recent.
-  def cohort_stat_record_for( stat_type, stat_date: nil )
-    records = CohortStatistic.where( stat_type: stat_type ).order( created_at: :desc )
-    record = nil
-    if stat_date.present?
-      parsed_date = begin
-        Time.zone.parse( stat_date )
-      rescue StandardError
-        nil
-      end
-      record = records.where( "DATE(created_at) = DATE(?)", parsed_date ).first if parsed_date
-    end
-    record ||= records.first
-    [record, records.to_a]
-  end
-
-  # Derive previous and next records for the navigation bar.
-  def cohort_stat_neighbors( record, records )
-    return [nil, nil] unless record
-
-    current_index = records.index( record )
-    prev_record = records[current_index + 1] if current_index
-    next_record = records[current_index - 1] if current_index&.positive?
-    [prev_record, next_record]
-  end
-
-  def site_stat_record_for( stat_date: nil )
-    records = SiteStatistic.order( created_at: :desc )
-    record = record_for_date( records, stat_date )
-    [record, records.to_a]
-  end
-
-  def segmentation_stat_record_for( stat_date: nil )
-    records = SegmentationStatistic.order( created_at: :desc )
-    record = record_for_date( records, stat_date )
-    [record, records.to_a]
-  end
-
-  def record_for_date( records, stat_date )
-    return records.first unless stat_date.present?
-
-    parsed_date = begin
-      Time.zone.parse( stat_date )
-    rescue StandardError
-      nil
-    end
-    record = records.where( "DATE(created_at) = DATE(?)", parsed_date ).first if parsed_date
-    record || records.first
-  end
 
   def stat_record_neighbors( record, records )
     return [nil, nil] unless record

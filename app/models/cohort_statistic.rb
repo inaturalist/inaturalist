@@ -4,6 +4,30 @@ class CohortStatistic < ApplicationRecord
   STAT_TYPES = %w(acquisition behavior segment_active_users).freeze
   validates :stat_type, presence: true, inclusion: { in: STAT_TYPES }
 
+  def self.record_for( stat_type, stat_date: nil )
+    records = CohortStatistic.where( stat_type: stat_type ).order( created_at: :desc )
+    record = nil
+    if stat_date.present?
+      parsed_date = begin
+        Time.zone.parse( stat_date )
+      rescue StandardError
+        nil
+      end
+      record = records.where( "DATE(created_at) = DATE(?)", parsed_date ).first if parsed_date
+    end
+    record ||= records.first
+    [record, records.to_a]
+  end
+
+  def self.record_neighbors( record, records )
+    return [nil, nil] unless record
+
+    current_index = records.index( record )
+    prev_record = records[current_index + 1] if current_index
+    next_record = records[current_index - 1] if current_index&.positive?
+    [prev_record, next_record]
+  end
+
   # Acquisition cohort statistics
   #   generated on last day of the month
   #
