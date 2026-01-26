@@ -343,7 +343,7 @@ class StatsController < ApplicationController
     segmentation_record, segmentation_records = SegmentationStatistic.record_for(
       stat_date: params[:date]
     )
-    redirect_to "/" and return unless segmentation_record
+    redirect_to( root_url ) and return unless segmentation_record
 
     @segmentation_prev_record, @segmentation_next_record = stat_record_neighbors(
       segmentation_record,
@@ -391,7 +391,7 @@ class StatsController < ApplicationController
     stats_record, stats_records = SiteStatistic.record_for(
       stat_date: params[:date]
     )
-    redirect_to "/" and return unless stats_record
+    redirect_to( root_url ) and return unless stats_record
 
     @daily_active_users_prev_record, @daily_active_users_next_record = stat_record_neighbors(
       stats_record,
@@ -407,7 +407,7 @@ class StatsController < ApplicationController
     segmentation_record, segmentation_records = SegmentationStatistic.record_for(
       stat_date: params[:date]
     )
-    redirect_to "/" and return unless segmentation_record
+    redirect_to( root_url ) and return unless segmentation_record
 
     @segmentation_prev_record, @segmentation_next_record = stat_record_neighbors(
       segmentation_record,
