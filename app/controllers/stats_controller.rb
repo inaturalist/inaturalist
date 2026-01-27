@@ -9,7 +9,14 @@ class StatsController < ApplicationController
   before_action :authenticate_user!,
     only: [:cnc2017_taxa, :cnc2017_stats, :generate_year, :user_segments, :daily_active_user_model],
     unless: -> { authenticated_with_oauth? }
-  before_action :admin_required, only: [:user_segments, :daily_active_user_model]
+  before_action :admin_required, only: [
+    :user_segments,
+    :segmentation_dau_mau,
+    :daily_active_user_model,
+    :acquisition_cohort_statistics,
+    :behavior_cohort_statistics,
+    :segment_active_users_statistics
+  ]
 
   allow_external_iframes( only: [:wed_bioblitz] )
 
@@ -333,9 +340,16 @@ class StatsController < ApplicationController
   end
 
   def user_segments
-    segmentation_record = SegmentationStatistic.order( "created_at asc" ).last
-    redirect_to "/" and return unless segmentation_record
+    segmentation_record, segmentation_records = SegmentationStatistic.record_for(
+      stat_date: params[:date]
+    )
+    redirect_to( root_url ) and return unless segmentation_record
 
+    @segmentation_prev_record, @segmentation_next_record = stat_record_neighbors(
+      segmentation_record,
+      segmentation_records
+    )
+    @segmentation_record_created_at = segmentation_record.created_at
     @record_date = segmentation_record.created_at.strftime( "%Y-%m-%d" )
 
     # Main metrics
@@ -366,6 +380,42 @@ class StatsController < ApplicationController
     end
 
     # DAU/MAU
+    respond_to do | format |
+      format.html do
+        render layout: "bootstrap"
+      end
+    end
+  end
+
+  def daily_active_user_model
+    stats_record, stats_records = SiteStatistic.record_for(
+      stat_date: params[:date]
+    )
+    redirect_to( root_url ) and return unless stats_record
+
+    @daily_active_users_prev_record, @daily_active_users_next_record = stat_record_neighbors(
+      stats_record,
+      stats_records
+    )
+    @daily_active_users_record_created_at = stats_record.created_at
+    @record_date = stats_record.created_at.strftime( "%Y-%m-%d" )
+    @daily_active_user_model = stats_record.data["daily_active_user_model"]
+    render layout: "bootstrap"
+  end
+
+  def segmentation_dau_mau
+    segmentation_record, segmentation_records = SegmentationStatistic.record_for(
+      stat_date: params[:date]
+    )
+    redirect_to( root_url ) and return unless segmentation_record
+
+    @segmentation_prev_record, @segmentation_next_record = stat_record_neighbors(
+      segmentation_record,
+      segmentation_records
+    )
+    @segmentation_record_created_at = segmentation_record.created_at
+    @record_date = segmentation_record.created_at.strftime( "%Y-%m-%d" )
+
     seg_dau_mau = segmentation_record.data["dau_mau_metrics"]
     @segmentation_dau_mau = []
     @segmentation_dau_mau << {
@@ -441,16 +491,149 @@ class StatsController < ApplicationController
     end
   end
 
-  def daily_active_user_model
-    stats_record = SiteStatistic.order( "created_at asc" ).last
-    redirect_to "/" and return unless stats_record
+  # Load acquisition cohorts for a selected snapshot date (or latest).
+  def acquisition_cohort_statistics
+    acquisition_record, acquisition_records = CohortStatistic.record_for(
+      "acquisition",
+      stat_date: params[:date]
+    )
+    @acquisition_record = acquisition_record
+    @acquisition_prev_record, @acquisition_next_record = CohortStatistic.record_neighbors(
+      acquisition_record,
+      acquisition_records
+    )
+    set_acquisition_cohort_vars( acquisition_record )
+    render "acquisition_cohort_statistics", layout: "bootstrap"
+  end
 
-    @record_date = stats_record.created_at.strftime( "%Y-%m-%d" )
-    @daily_active_user_model = stats_record.data["daily_active_user_model"]
-    render layout: "bootstrap"
+  # Load behavior cohorts for a selected snapshot date (or latest).
+  def behavior_cohort_statistics
+    behavior_record, behavior_records = CohortStatistic.record_for(
+      "behavior",
+      stat_date: params[:date]
+    )
+    @behavior_record = behavior_record
+    @behavior_prev_record, @behavior_next_record = CohortStatistic.record_neighbors(
+      behavior_record,
+      behavior_records
+    )
+    set_behavior_cohort_vars( behavior_record )
+    render "behavior_cohort_statistics", layout: "bootstrap"
+  end
+
+  # Load segment active users for a selected snapshot date (or latest).
+  def segment_active_users_statistics
+    segment_record, segment_records = CohortStatistic.record_for(
+      "segment_active_users",
+      stat_date: params[:date]
+    )
+    @segment_active_users_record = segment_record
+    @segment_active_users_prev_record, @segment_active_users_next_record = CohortStatistic.record_neighbors(
+      segment_record,
+      segment_records
+    )
+    set_segment_active_users_vars( segment_record )
+    render "segment_active_users_statistics", layout: "bootstrap"
+  end
+
+  # Build the table-ready rows and offsets for the acquisition view.
+  def set_acquisition_cohort_vars( acquisition_record )
+    acquisition = acquisition_record&.data
+    acquisition = acquisition.deep_symbolize_keys if acquisition.respond_to?( :deep_symbolize_keys )
+    if acquisition.blank?
+      @acquisition_generated_at = acquisition_record&.created_at
+      @acquisition_rows = []
+      @acquisition_offsets = []
+      return
+    end
+
+    @acquisition_generated_at = acquisition_record&.created_at
+    @acquisition_years = acquisition.keys.map( &:to_s ).sort
+    @acquisition_rows = acquisition.sort_by {| key, _ | key.to_s.to_i }.map do | key, data |
+      acquisitions_sorted = data[:acquisitions].sort_by {| item | item[:key].to_s.to_i }
+      acquisitions_by_offset = {}
+      acquisitions_sorted.each_with_index do | item, index |
+        acquisitions_by_offset[index] = item
+      end
+      {
+        key: key.to_s,
+        label: data[:label],
+        cohort_count: data[:cohort_count],
+        acquisitions_by_offset: acquisitions_by_offset
+      }
+    end
+    @acquisition_offsets = ( 0..@acquisition_rows.map {| row | row[:acquisitions_by_offset].size }.max.to_i - 1 ).
+      to_a
+  end
+
+  # Build the table-ready rows and offsets for the behavior view.
+  def set_behavior_cohort_vars( behavior_record )
+    behavior = behavior_record&.data
+    behavior = behavior.deep_symbolize_keys if behavior.respond_to?( :deep_symbolize_keys )
+    if behavior.blank?
+      @behavior_generated_at = behavior_record&.created_at
+      @behavior_rows = []
+      @behavior_offsets = []
+      return
+    end
+
+    @behavior_generated_at = behavior_record&.created_at
+
+    behavior = behavior.reject {| key, data | key == "precohort" || data[:cohort_count].to_i.zero? }
+    @behavior_rows = behavior.sort_by {| key, _ | key.to_s }.map do | key, data |
+      behaviors_sorted = data[:behaviors].sort_by {| item | item[:key].to_s }
+      behaviors_by_offset = {}
+      behaviors_sorted.each_with_index do | item, index |
+        behaviors_by_offset[index] = item
+      end
+      {
+        key: key.to_s,
+        label: data[:label],
+        cohort_count: data[:cohort_count],
+        behaviors_by_offset: behaviors_by_offset
+      }
+    end
+    @behavior_offsets = ( 0..@behavior_rows.map {| row | row[:behaviors_by_offset].size }.max.to_i - 1 ).to_a
+  end
+
+  # Build the table-ready rows for the segment active users view.
+  def set_segment_active_users_vars( segment_record )
+    segment_data = segment_record&.data
+    segment_data = segment_data.deep_symbolize_keys if segment_data.respond_to?( :deep_symbolize_keys )
+    if segment_data.blank?
+      @segment_active_users_generated_at = segment_record&.created_at
+      @segment_active_users_rows = []
+      @segment_active_users_max = 0
+      return
+    end
+
+    @segment_active_users_generated_at = segment_record&.created_at
+    sorted_segment_data = segment_data.sort_by do | key, _ |
+      key.to_s
+    end
+    @segment_active_users_rows = sorted_segment_data.map do | key, data |
+      {
+        key: key.to_s,
+        label: data[:label],
+        active: data[:active],
+        new: data[:new],
+        retained: data[:retained],
+        reengaged: data[:reengaged]
+      }
+    end
+    @segment_active_users_max = @segment_active_users_rows.map {| row | row[:active].to_i }.max.to_i
   end
 
   private
+
+  def stat_record_neighbors( record, records )
+    return [nil, nil] unless record
+
+    current_index = records.index( record )
+    prev_record = records[current_index + 1] if current_index
+    next_record = records[current_index - 1] if current_index&.positive?
+    [prev_record, next_record]
+  end
 
   def set_time_zone_to_utc
     Time.zone = "UTC"

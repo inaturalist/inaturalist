@@ -1,0 +1,50 @@
+- content_for( :title ) do
+  = @title = "Acquisition Cohort Statistics"
+- content_for( :extracss ) do
+  = stylesheet_link_tag :stats
+.container-fluid.stats-wide
+  = render "stats/staff_stats_bar"
+  %h1 Acquisition Cohort Statistics
+  .stats-nav
+    - if @acquisition_prev_record
+      = link_to "Previous", acquisition_cohort_statistics_stats_path( date: @acquisition_prev_record.created_at.to_date ), class: "stats-nav-link"
+    - else
+      %span.stats-nav-link.is-disabled Previous
+    - if @acquisition_generated_at
+      = link_to @acquisition_generated_at.to_date.to_s, acquisition_cohort_statistics_stats_path( date: @acquisition_generated_at.to_date ), class: "stats-nav-date"
+    - else
+      %span.stats-nav-date No data
+    - if @acquisition_next_record
+      = link_to "Next", acquisition_cohort_statistics_stats_path( date: @acquisition_next_record.created_at.to_date ), class: "stats-nav-link"
+    - else
+      %span.stats-nav-link.is-disabled Next
+
+  .cohort-stat-block
+    %p.cohort-stat-subtitle
+      Retention by year for users created in each cohort year.
+      - if @acquisition_generated_at
+        %br/
+        %span.cohort-stat-meta= "Data as of #{@acquisition_generated_at.to_date}"
+    - if @acquisition_rows.blank?
+      %p.cohort-stat-subtitle No data available.
+    - else
+      .cohort-table-wrap
+        %table.cohort-table
+          %thead
+            %tr
+              %th.cohort-row-title Cohort
+              - @acquisition_offsets.each do | offset |
+                %th= offset
+          %tbody
+            - @acquisition_rows.each do | row |
+              %tr
+                %th.cohort-row-title
+                  %div.cohort-row-label= row[:label]
+                  %div.cohort-row-sub= "#{number_with_delimiter( row[:cohort_count] )} users"
+                - @acquisition_offsets.each do | offset |
+                  - cell = row[:acquisitions_by_offset][offset]
+                  - if cell
+                    %td.cohort-cell{ style: cohort_cell_style( cell[:percent] ), title: "#{cohort_percent_label( cell[:percent] )} (#{number_with_delimiter( cell[:count] )} users)" }
+                      = cohort_percent_label( cell[:percent] )
+                  - else
+                    %td.cohort-cell.is-empty -

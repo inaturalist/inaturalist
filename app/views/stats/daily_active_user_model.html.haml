@@ -1,12 +1,28 @@
 - content_for(:title) do
   = @title = "Daily Active User Model"
-.container
+- content_for(:extracss) do
+  = stylesheet_link_tag :stats
+.container-fluid.stats-wide
   .row
-    .col-12
+    .col-xs-12
+      = render "stats/staff_stats_bar"
       %h1 Daily Active User Model
-      = "on #{@record_date}"
+      .stats-nav
+        - if @daily_active_users_prev_record
+          = link_to "Previous", daily_active_user_model_stats_path( date: @daily_active_users_prev_record.created_at.to_date ), class: "stats-nav-link"
+        - else
+          %span.stats-nav-link.is-disabled Previous
+        - if @daily_active_users_record_created_at
+          = link_to @daily_active_users_record_created_at.to_date.to_s, daily_active_user_model_stats_path( date: @daily_active_users_record_created_at.to_date ), class: "stats-nav-date"
+        - else
+          %span.stats-nav-date No data
+        - if @daily_active_users_next_record
+          = link_to "Next", daily_active_user_model_stats_path( date: @daily_active_users_next_record.created_at.to_date ), class: "stats-nav-link"
+        - else
+          %span.stats-nav-link.is-disabled Next
+      = "Daily Active User Model on #{@record_date}"
   .row
-    .col-12 
+    .col-xs-12
       %svg{ width: "960", height: "620", fontFamily: "arial" }
         %defs
           %marker{ id: 'head-green', orient: "auto", markerWidth: '3', markerHeight: '4', refX: '0.1', refY: '2' }

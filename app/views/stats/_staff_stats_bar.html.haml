@@ -1,0 +1,17 @@
+- if is_admin?
+  .row
+    .col-xs-12
+      .staff-stats-bar
+        = link_to "Site Stats", stats_path, class: "staff-stats-link"
+        %span.staff-stats-label  -
+        = link_to "User Segments", user_segments_stats_path, class: "staff-stats-link"
+        %span.staff-stats-label  -
+        = link_to "DAU/MAU", segmentation_dau_mau_stats_path, class: "staff-stats-link"
+        %span.staff-stats-label  -
+        = link_to "Daily Active User Model", daily_active_user_model_stats_path, class: "staff-stats-link"
+        %span.staff-stats-label  -
+        = link_to "Acquisition Cohorts", acquisition_cohort_statistics_stats_path, class: "staff-stats-link"
+        %span.staff-stats-label  -
+        = link_to "Behavior Cohorts", behavior_cohort_statistics_stats_path, class: "staff-stats-link"
+        %span.staff-stats-label  -
+        = link_to "Segment Active Users", segment_active_users_statistics_stats_path, class: "staff-stats-link"
