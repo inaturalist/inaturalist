@@ -52,7 +52,6 @@ module ImportObservationFromProduction
     opts[:photo_quality] ||= "medium"
 
     user_id = get_user_ids( ids )
-
     observations = API.get( "/v2/observations?id=#{ids}&user_id=#{user_id}&fields=all" )
     json = JSON.parse( observations.body, symbolize_names: true )
 
@@ -64,14 +63,17 @@ module ImportObservationFromProduction
       import_users( obs_data )
 
       # 2. Make the observation
-      already_exists = observation_already_exists?( obs_data )
-      observation = make_observation( obs_data )
+      is_newly_created, observation = make_observation( obs_data )
 
       # 3. Decorate with photos, identifications, etc.
-      add_photos( obs_data, observation, opts[:photo_quality] ) unless already_exists
-      add_identifications( obs_data, observation ) unless already_exists
+      add_photos( obs_data, observation, opts[:photo_quality] ) if is_newly_created
+      add_identifications( obs_data, observation ) if is_newly_created
     end
   end
+
+  #======================================#
+  ## Private Methods                    ##
+  ###==================================###
 
   def self.get_user_ids( observation_ids )
     resp = API.get( "/v2/observations?id=#{observation_ids}&fields=id,user.id" )
@@ -108,31 +110,27 @@ module ImportObservationFromProduction
     end
   end
 
-  def self.observation_already_exists?( obs_data )
-    longitude, latitude = obs_data.dig( :geojson, :coordinates )
-    Observation.exists?( { latitude:, longitude:, created_at: obs_data[:created_at] } )
-  end
-
   def self.make_observation( obs_data )
     observer = User.find_by( login: obs_data.dig( :user, :login ) )
     longitude, latitude = obs_data.dig( :geojson, :coordinates )
 
-    observation = Observation.find_or_create_by( {
-      latitude:,
-      longitude:,
-      created_at: obs_data[:created_at]
-    } ) do | obs |
+    observation = Observation.find_or_initialize_by( uuid: obs_data[:uuid] ) do | obs |
+      obs.created_at = obs_data[:created_at]
+      obs.latitude = latitude
+      obs.longitude = longitude
+      obs.user = observer
       obs.description = obs_data[:description]
       obs.observed_on_string = obs_data[:observed_on]
       obs.taxon = Taxon.find_by( name: obs_data[:taxon][:name], rank: obs_data[:taxon][:rank] )
-      obs.user = observer
     end
+    is_newly_created = observation.new_record?
     observation.save!
 
-    observation
+    [is_newly_created, observation]
   end
 
   def self.add_photos( obs_data, observation, photo_quality )
+    puts "Downloading #{obs_data[:photos].size} photos..."
     observer = User.find_by( login: obs_data.dig( :user, :login ) )
     obs_data[:photos].each do | photo |
       url = photo[:url].sub( "square", photo_quality )
@@ -151,6 +149,7 @@ module ImportObservationFromProduction
   end
 
   def self.add_identifications( obs_data, observation )
+    puts "Adding #{obs_data[:identifications].size} identifications..."
     obs_data[:identifications].each do | idn_data |
       ident = Identification.find_or_initialize_by(
         body: idn_data[:body],
@@ -159,7 +158,7 @@ module ImportObservationFromProduction
         taxon: Taxon.find_by( name: idn_data[:taxon][:name], rank: idn_data[:taxon][:rank] ),
         user: User.find_by( login: idn_data[:user][:login] )
       )
-      ident.assign_attributes( idn_data.slice( :body, :current, :category, :uuid, :created_at ) )
+      ident.assign_attributes( idn_data.slice( :body, :current, :category, :created_at ) )
       ident.save!
     end
   end
