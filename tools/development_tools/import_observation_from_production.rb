@@ -25,6 +25,7 @@ OPTS = Optimist.options do
 end
 
 module ImportObservationFromProduction
+  # this simply prints the url being fetched
   class RequestPrinter < Faraday::Middleware
     def call( env )
       puts env[:url]
@@ -55,73 +56,20 @@ module ImportObservationFromProduction
     observations = API.get( "/v2/observations?id=#{ids}&user_id=#{user_id}&fields=all" )
     json = JSON.parse( observations.body, symbolize_names: true )
 
-    json[:results].each do | observation |
-      puts "Observation::#{observation[:id]}"
+    json[:results].each do | obs_data |
+      puts "Importing https://www.inaturalist.org/observations/#{obs_data[:id]}"
 
-      # 1. create any taxons that don't exist
-      taxon_ids = [
-        observation.dig( :taxon, :id ),
-        observation[:identifications].map {| i | i[:taxon_id] }
-      ].flatten.compact.uniq
-      puts "Importing #{taxon_ids.size} taxons..."
-      local_taxon_ids = taxon_ids.map {| taxon_id | TaxonImporter.import( taxon_id: ) }
+      # 1. Import dependencies (taxa, users)
+      import_taxa( obs_data )
+      import_users( obs_data )
 
-      # 2. create all relevant users
-      relevant_users = [
-        observation[:user],
-        observation[:annotations].map {| a | a[:user] },
-        observation[:faves].map {| f | f[:user] },
-        observation[:identifications].map {| i | i[:user] }
-      ].flatten.compact.uniq {| u | u[:id] }
-      puts "Importing #{relevant_users.size} users..."
-      relevant_users.each {| user | find_or_create_user!( user ) }
+      # 2. Make the observation
+      already_exists = observation_already_exists?( obs_data )
+      observation = make_observation( obs_data )
 
-      observer = find_or_create_user!( observation[:user] )
-
-      # 3. make the observation
-      longitude, latitude = observation.dig( :geojson, :coordinates )
-      o = Observation.find_or_create_by( {
-        latitude:,
-        longitude:,
-        created_at: observation[:created_at]
-      } ) do | obs |
-        obs.user = observer
-        obs.taxon = Taxon.find_by_id( local_taxon_ids.first )
-        obs.observed_on_string = observation[:observed_on]
-        obs.description = observation[:description]
-      end
-      o.save!
-
-      # 4. add photos
-      observation[:photos].each do | photo |
-        url = photo[:url].sub( "square", opts[:photo_quality] )
-
-        begin
-          downloaded_io = URI.open( url )
-          photo = LocalPhoto.new( user: observer )
-          photo.file = downloaded_io
-          photo.save!
-
-          ObservationPhoto.create!( observation: o, photo: )
-        rescue StandardError => e
-          next puts "Failed to download #{url}: #{e}"
-        end
-      end
-
-      # 5. add identifications
-      observation[:identifications].each do | idn_attrs |
-        ident = Identification.find_or_initialize_by(
-          body: idn_attrs[:body],
-          created_at: idn_attrs[:created_at],
-          observation: o,
-          taxon: Taxon.find_by( name: idn_attrs[:taxon][:name], rank: idn_attrs[:taxon][:rank] ),
-          user: User.find_by( login: idn_attrs[:user][:login] )
-        )
-        ident.assign_attributes(
-          idn_attrs.slice( :body, :current, :category, :uuid, :created_at )
-        )
-        ident.save!
-      end
+      # 3. Decorate with photos, identifications, etc.
+      add_photos( obs_data, observation, opts[:photo_quality] ) unless already_exists
+      add_identifications( obs_data, observation ) unless already_exists
     end
   end
 
@@ -133,16 +81,90 @@ module ImportObservationFromProduction
     user_ids.join( "," )
   end
 
-  def self.find_or_create_user!( user )
-    User.find_or_create_by!( login: user[:login] ) do | u |
-      u.login = user[:login]
-      u.email = "#{user[:login]}@example.com"
-      u.password = Faker::Internet.password
-      u.created_at = user[:created_at]
+  def self.import_taxa( obs_data )
+    taxon_ids = [
+      obs_data.dig( :taxon, :id ),
+      obs_data[:identifications].map {| i | i[:taxon_id] }
+    ].flatten.compact.uniq
+    puts "Importing #{taxon_ids.size} taxons..."
+    taxon_ids.map {| taxon_id | TaxonImporter.import( taxon_id: ) }
+  end
+
+  def self.import_users( obs_data )
+    relevant_users = [
+      obs_data[:user],
+      obs_data[:annotations].map {| a | a[:user] },
+      obs_data[:faves].map {| f | f[:user] },
+      obs_data[:identifications].map {| i | i[:user] }
+    ].flatten.compact.uniq {| u | u[:id] }
+    puts "Importing #{relevant_users.size} users..."
+    relevant_users.each do | user |
+      User.find_or_create_by!( login: user[:login] ) do | u |
+        u.login = user[:login]
+        u.email = "#{user[:login]}@example.com"
+        u.password = Faker::Internet.password
+        u.created_at = user[:created_at]
+      end
     end
   end
 
-  private_class_method :get_user_ids, :find_or_create_user!
+  def self.observation_already_exists?( obs_data )
+    longitude, latitude = obs_data.dig( :geojson, :coordinates )
+    Observation.exists?( { latitude:, longitude:, created_at: obs_data[:created_at] } )
+  end
+
+  def self.make_observation( obs_data )
+    observer = User.find_by( login: obs_data.dig( :user, :login ) )
+    longitude, latitude = obs_data.dig( :geojson, :coordinates )
+
+    observation = Observation.find_or_create_by( {
+      latitude:,
+      longitude:,
+      created_at: obs_data[:created_at]
+    } ) do | obs |
+      obs.description = obs_data[:description]
+      obs.observed_on_string = obs_data[:observed_on]
+      obs.taxon = Taxon.find_by( name: obs_data[:taxon][:name], rank: obs_data[:taxon][:rank] )
+      obs.user = observer
+    end
+    observation.save!
+
+    observation
+  end
+
+  def self.add_photos( obs_data, observation, photo_quality )
+    observer = User.find_by( login: obs_data.dig( :user, :login ) )
+    obs_data[:photos].each do | photo |
+      url = photo[:url].sub( "square", photo_quality )
+
+      begin
+        downloaded_io = URI.open( url )
+        photo = LocalPhoto.new( user: observer )
+        photo.file = downloaded_io
+        photo.save!
+
+        ObservationPhoto.create!( observation:, photo: )
+      rescue StandardError => e
+        next puts "Failed to download #{url}: #{e}"
+      end
+    end
+  end
+
+  def self.add_identifications( obs_data, observation )
+    obs_data[:identifications].each do | idn_data |
+      ident = Identification.find_or_initialize_by(
+        body: idn_data[:body],
+        created_at: idn_data[:created_at],
+        observation:,
+        taxon: Taxon.find_by( name: idn_data[:taxon][:name], rank: idn_data[:taxon][:rank] ),
+        user: User.find_by( login: idn_data[:user][:login] )
+      )
+      ident.assign_attributes( idn_data.slice( :body, :current, :category, :uuid, :created_at ) )
+      ident.save!
+    end
+  end
+
+  private_class_method :get_user_ids, :import_taxa, :import_users, :make_observation, :add_photos, :add_identifications
 end
 
 ImportObservationFromProduction.import_observations( OPTS.ids )
