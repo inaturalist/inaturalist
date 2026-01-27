@@ -2182,6 +2182,16 @@ describe Taxon, "provisional taxa name validation" do
       expect( taxon ).to be_valid
     end
 
+    it "accepts provisional names with spaces in epithet" do
+      taxon = Taxon.new(
+        name: "Cortinarius sp. 'test with spaces'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon ).to be_valid
+    end
+
     it "rejects provisional names missing 'sp.'" do
       taxon = Taxon.new(
         name: "Cortinarius 'callisteus'",
