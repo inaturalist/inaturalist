@@ -575,6 +575,10 @@ class Taxon < ApplicationRecord
     const_set( "ICONIC_TAXA_BY_NAME", Taxon::ICONIC_TAXA.index_by( &:name ) )
   end
 
+  def self.cortinariaceae
+    @cortinariaceae ||= Taxon.where( name: "Cortinariaceae", iconic_taxon: ICONIC_TAXA_BY_NAME["Fungi"] ).first
+  end
+
   # Callbacks ###############################################################
 
   def cannot_edit_parent_during_content_freeze
@@ -865,7 +869,7 @@ class Taxon < ApplicationRecord
   def to_param
     return nil if new_record?
 
-    "#{id}-#{name.gsub( /\W/, '-' )}"
+    "#{id}-#{name.gsub( /[^a-zA-Z0-9]/, '-' )}"
   end
 
   def to_plain_s( options = {} )
@@ -1157,26 +1161,21 @@ class Taxon < ApplicationRecord
     return unless provisional
     # Only validate if provisional flag is being set/changed
     return unless new_record? || will_save_change_to_provisional?
+    return if descends_from_cortinariaceae?
 
-    # Find the Cortinariaceae taxon dynamically
-    cortinariaceae = Taxon.where( name: "Cortinariaceae", iconic_taxon: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ).first
-    unless cortinariaceae
-      errors.add( :provisional, "can only be set to true for taxa that descend from Cortinariaceae" )
-      return
-    end
+    errors.add( :provisional, "can only be set to true for taxa that descend from Cortinariaceae" )
+  end
 
-    # Check if this taxon descends from Cortinariaceae
+  def descends_from_cortinariaceae?
+    cortinariaceae = Taxon.cortinariaceae
+    return false unless cortinariaceae
+
     # For new records, build the ancestry chain from parent
-    is_cortinariaceae_descendant = if new_record? && parent
-      parent.ancestor_ids.include?( cortinariaceae.id ) ||
-        parent.id == cortinariaceae.id
+    if new_record? && parent
+      parent.ancestor_ids.include?( cortinariaceae.id ) || parent.id == cortinariaceae.id
     else
       ancestor_ids.include?( cortinariaceae.id )
     end
-
-    return if is_cortinariaceae_descendant
-
-    errors.add( :provisional, "can only be set to true for taxa that descend from Cortinariaceae" )
   end
 
   def provisional_name_unique_within_parent
@@ -2419,12 +2418,6 @@ class Taxon < ApplicationRecord
     return RANK_EQUIVALENTS[rank] if RANK_EQUIVALENTS[rank]
 
     rank
-  end
-
-  def self.user_can_edit_provisional_taxa?( user )
-    return false unless user
-
-    user.is_admin?
   end
 
   def self.remove_rank_from_name( name )

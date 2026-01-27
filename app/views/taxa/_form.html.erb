@@ -215,11 +215,11 @@
     <div class="description">
       <%= t :inactive_taxon_concepts_are %>
     </div>
-    <% if Taxon.user_can_edit_provisional_taxa?( current_user ) %>
-      <div class="ui upstacked admin">
+    <% if @taxon.editable_by?( current_user ) %>
+      <div class="ui upstacked" id="provisional_field" style="display: none;">
         <%= f.check_box :provisional, label_after: true, label: t(:provisional_taxon), disabled: !@protected_attributes_editable %>
         <div class="description">
-          <%= t :provisional_taxa_are_not_published %>
+          Provisional taxa are not published and may be subject to major changes. They are currently only permitted for Cortinariaceae Fungi and must be associated with an observation with a DNA sequence. Please link to that observation in the "Why are you making this change?" field.
         </div>
       </div>
     <% end %>
@@ -305,7 +305,7 @@
   </fieldset>
 
   <div class="clear">
-    <%= f.text_area :audit_comment, label: t(:note), placeholder: t(:why_are_you_making_this_change_optional) %>
+    <%= f.text_area :audit_comment, label: false, placeholder: t(:why_are_you_making_this_change_optional) %>
   </div>
   
   <div class="clear buttonrow">

@@ -2304,21 +2304,4 @@ describe Taxon, "provisional taxa name validation" do
       expect( taxon.reload.name ).to eq( "Cortinarius testus" )
     end
   end
-
-  describe "Taxon.user_can_edit_provisional_taxa?" do
-    it "returns true for admin users" do
-      admin = User.make!( login: "admin" )
-      admin.roles.create!( name: "admin" )
-      expect( Taxon.user_can_edit_provisional_taxa?( admin ) ).to be( true )
-    end
-
-    it "returns false for non-admin users" do
-      user = User.make!
-      expect( Taxon.user_can_edit_provisional_taxa?( user ) ).to be( false )
-    end
-
-    it "returns false for nil user" do
-      expect( Taxon.user_can_edit_provisional_taxa?( nil ) ).to be( false )
-    end
-  end
 end

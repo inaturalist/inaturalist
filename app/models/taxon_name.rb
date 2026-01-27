@@ -33,8 +33,8 @@ class TaxonName < ApplicationRecord
   SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/
   # Format: Genus sp. 'epithet-phrase'
   # Example: Aureonarius sp. 'callisteus-infucatus' or Calonarius sp. 'AK01'
-  # Genus can contain letters or hyphens, epithet can contain letters (upper/lower), numbers, or hyphens
-  PROVISIONAL_NAME_FORMAT = /\A[A-Z][a-z-]+\s+sp\.\s+'[A-Za-z0-9-]+'\z/
+  # Genus can contain letters or hyphens, epithet can contain letters (upper/lower), numbers, hyphens, or spaces
+  PROVISIONAL_NAME_FORMAT = /\A[A-Z][a-z-]+\s+sp\.\s+'[A-Za-z0-9\- ]+'\z/
   validates :name,
     format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
     unless: proc {| tn |
