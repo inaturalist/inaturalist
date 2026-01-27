@@ -470,10 +470,17 @@ describe TaxaController do
   end
 
   describe "provisional" do
-    before { load_test_taxa( iconic: true ) }
+    before do
+      load_test_taxa( iconic: true )
+      Taxon.instance_variable_set( :@cortinariaceae, nil )
+    end
     let( :fungi ) { Taxon::ICONIC_TAXA_BY_NAME["Fungi"] }
-    let( :cortinariaceae ) { Taxon.make!( name: "Cortinariaceae", rank: Taxon::FAMILY, parent: fungi ) }
-    let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
+    let( :cortinariaceae ) do
+      Taxon.make!( name: "Cortinariaceae", rank: Taxon::FAMILY, parent: fungi, iconic_taxon: fungi )
+    end
+    let( :cortinarius ) do
+      Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae, iconic_taxon: fungi )
+    end
 
     it "should be updateable by curators" do
       t = Taxon.make!( name: "Cortinarius testus", rank: Taxon::SPECIES, parent: cortinarius, provisional: false )
@@ -483,17 +490,6 @@ describe TaxaController do
       put :update, params: { id: t.id, taxon: { provisional: true, name: "Cortinarius sp. 'test'" } }
       t.reload
       expect( t.provisional ).to be( true )
-    end
-
-    it "should allow curators to set provisional to false on existing provisional taxon with minor changes" do
-      t = Taxon.make!( name: "Cortinarius sp. 'test'", rank: Taxon::SPECIES, parent: cortinarius, provisional: true )
-      curator = make_curator
-      sign_in curator
-      expect( t.provisional ).to be( true )
-      put :update, params: { id: t.id, taxon: { provisional: false, name: "Cortinarius testi" } }
-      t.reload
-      expect( t.provisional ).to be( false )
-      expect( t.name ).to eq( "Cortinarius testi" )
     end
 
     it "should allow curators to set provisional to false on existing provisional taxon with minor changes" do
