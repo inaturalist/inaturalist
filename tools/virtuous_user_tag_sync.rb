@@ -37,7 +37,8 @@ begin
     RestClient::GatewayTimeout,
     RestClient::TooManyRequests,
     RestClient::InternalServerError,
-    RestClient::BadGateway
+    RestClient::BadGateway,
+    RestClient::Exceptions::Timeout
   ]
 
   tag_users = UserVirtuousTag::POSSIBLE_TAGS.to_h {| k | [k, []] }
@@ -68,11 +69,17 @@ begin
     pp post_body
 
     response = try_and_try_again( potential_errors, exponential_backoff: true, sleep: 3 ) do
-      RestClient.post( url, post_body.to_json, {
-        Authorization: "Bearer #{CONFIG.virtuous.token}",
-        content_type: :json,
-        accept: :json
-      } )
+      RestClient::Request.execute(
+        url: url,
+        method: :post,
+        payload: post_body.to_json,
+        headers: {
+          Authorization: "Bearer #{CONFIG.virtuous.token}",
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        timeout: 120
+      )
     end
     break if response&.code != 200
 
