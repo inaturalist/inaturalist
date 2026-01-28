@@ -108,6 +108,7 @@ const OBSERVATION_FIELDS = {
     spam: true,
     user: USER_FIELDS
   },
+  comments_count: true,
   community_taxon: TAXON_FIELDS,
   created_at: true,
   description: true,
@@ -184,7 +185,11 @@ const OBSERVATION_FIELDS = {
     id: true,
     uuid: true,
     url: true,
-    license_code: true
+    license_code: true,
+    original_dimensions: {
+      width: true,
+      height: true
+    }
   },
   place_guess: true,
   place_ids: true,
