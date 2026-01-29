@@ -419,9 +419,11 @@ class Observation < ApplicationRecord
             # Don't want to compare to ourselves
             ident.id != other_ident.id &&
               # Did this ident disagree with a taxon that is associated with
-              # another current ident OR that contains the taxon in another
-              # current ident?
-              other_ident.taxon.self_and_ancestor_ids.include?( ident.previous_observation_taxon_id )
+              # another current ident OR when a current ident in ancestor or descendant of disagreed ID
+              (
+                other_ident.taxon.self_and_ancestor_ids.include?( ident.previous_observation_taxon_id ) ||
+                ident.previous_observation_taxon.self_and_ancestor_ids.include?(other_ident.taxon.id)
+              )
           end
         end.size,
         identifications_count: num_identifications_by_others,
