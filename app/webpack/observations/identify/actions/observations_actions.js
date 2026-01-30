@@ -217,6 +217,7 @@ const OBSERVATION_FIELDS = {
     user: USER_FIELDS
   },
   reviewed_by: true,
+  species_guess: true,
   sounds: {
     file_url: true,
     file_content_type: true,
