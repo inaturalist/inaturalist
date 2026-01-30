@@ -597,7 +597,7 @@ body > [role="dialog"] .ObservationModal {
       flex-direction: column;
       justify-content: space-between;
       padding-left: 20px;
-      ul {
+      > ul {
         padding-left: 0px;
         list-style: none;
 
@@ -667,10 +667,6 @@ body > [role="dialog"] .ObservationModal {
           .open .dropdown-toggle.btn-default,
           .dropdown-toggle.btn-default:focus {
             background: none;
-          }
-          .unfollow {
-            color: #468cc7;
-            margin-left: 5px;
           }
         }
       }
