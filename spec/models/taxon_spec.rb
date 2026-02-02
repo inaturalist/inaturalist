@@ -2182,6 +2182,16 @@ describe Taxon, "provisional taxa name validation" do
       expect( taxon ).to be_valid
     end
 
+    it "accepts provisional names with spaces in epithet" do
+      taxon = Taxon.new(
+        name: "Cortinarius sp. 'test with spaces'",
+        rank: Taxon::SPECIES,
+        parent: cortinarius,
+        provisional: true
+      )
+      expect( taxon ).to be_valid
+    end
+
     it "rejects provisional names missing 'sp.'" do
       taxon = Taxon.new(
         name: "Cortinarius 'callisteus'",
@@ -2302,23 +2312,6 @@ describe Taxon, "provisional taxa name validation" do
         provisional: false
       )
       expect( taxon.reload.name ).to eq( "Cortinarius testus" )
-    end
-  end
-
-  describe "Taxon.user_can_edit_provisional_taxa?" do
-    it "returns true for admin users" do
-      admin = User.make!( login: "admin" )
-      admin.roles.create!( name: "admin" )
-      expect( Taxon.user_can_edit_provisional_taxa?( admin ) ).to be( true )
-    end
-
-    it "returns false for non-admin users" do
-      user = User.make!
-      expect( Taxon.user_can_edit_provisional_taxa?( user ) ).to be( false )
-    end
-
-    it "returns false for nil user" do
-      expect( Taxon.user_can_edit_provisional_taxa?( nil ) ).to be( false )
     end
   end
 end

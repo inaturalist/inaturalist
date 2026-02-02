@@ -9,10 +9,50 @@
                            "taxon_browser" %>
 
 <script type="text/javascript" charset="utf-8">
+  var CORTINARIACEAE_ID = <%= @cortinariaceae&.id || 'null' %>;
+
+  function updateProvisionalCheckbox( parentId ) {
+    var $field = $( '#provisional_field' );
+    var $checkbox = $( '#taxon_provisional' );
+    if ( !$field.length || !CORTINARIACEAE_ID ) return;
+
+    if ( !parentId || !$.isNumeric( parentId ) ) {
+      // No parent selected, hide and uncheck provisional
+      $field.hide();
+      $checkbox.prop( 'checked', false );
+      return;
+    }
+
+    $.ajax( {
+      type: "get",
+      dataType: "json",
+      url: "/taxa/" + parentId,
+      success: function( taxon ) {
+        var ancestry = taxon.ancestry ? taxon.ancestry.split( "/" ) : [];
+        ancestry.push( String( taxon.id ) );
+        var isCortinariaceaeDescendant = ancestry.indexOf( String( CORTINARIACEAE_ID ) ) !== -1;
+        if ( isCortinariaceaeDescendant ) {
+          $field.show();
+        } else {
+          $field.hide();
+          $checkbox.prop( 'checked', false );
+        }
+      },
+      error: function( ) {
+        $field.hide();
+        $checkbox.prop( 'checked', false );
+      }
+    } );
+  }
+
   $(document).ready(function() {
     $('#parent_name').simpleTaxonSelector({
       taxonIDField: $('#taxon_parent_id')
     })
+
+    // Check provisional checkbox state on page load
+    var initialParentId = $( '#taxon_parent_id' ).val();
+    updateProvisionalCheckbox( initialParentId );
     
     // Setup taxon browser
     $('body').append(
@@ -63,6 +103,10 @@
       var old_ancestors = raw_old_ancestors == null ? [] : raw_old_ancestors.split( "/" );
       var old_parent = old_ancestors[old_ancestors.length - 1];
       var new_parent = $( "#taxon_parent_id" ).val( );
+
+      // Update provisional checkbox based on new parent
+      updateProvisionalCheckbox( new_parent );
+
       if( $.isNumeric( new_parent ) && $.isNumeric( old_parent ) ){
         $.ajax( {
           type: "get",

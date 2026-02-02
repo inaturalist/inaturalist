@@ -34,7 +34,7 @@ const TaxonImage = ( { taxon, user, size } ) => {
   return (
     <a
       className="taxonimage TaxonImage"
-      href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}
+      href={`/taxa/${taxon.id}-${taxon.name.replace( /[^a-zA-Z0-9]/g, "-" )}`}
       title={ title }
     >
       { image }
