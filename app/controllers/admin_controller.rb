@@ -126,6 +126,7 @@ class AdminController < ApplicationController
       password_confirmation: password,
       test_groups: "prod_like_test_users"
     )
+    user.skip_welcome_email = true
     user.skip_confirmation_notification! if user.respond_to?( :skip_confirmation_notification! )
     user.confirmed_at = now
     user.confirmation_token = nil
@@ -215,6 +216,7 @@ class AdminController < ApplicationController
         password_confirmation: password,
         confirmed_at: Time.now
       )
+      notifier_user.skip_welcome_email = true
       notifier_user.skip_confirmation_notification! if notifier_user.respond_to?( :skip_confirmation_notification! )
       notifier_user.save!
     end

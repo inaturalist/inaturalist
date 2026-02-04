@@ -29,6 +29,7 @@ class User < ApplicationRecord
   attr_accessor :make_observation_licenses_same,
     :make_photo_licenses_same,
     :make_sound_licenses_same,
+    :skip_welcome_email,
     :html,
     :pi_consent,
     :data_transfer_consent,
@@ -308,6 +309,7 @@ class User < ApplicationRecord
   after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_create :send_welcome_email, if: lambda {| user |
+    return false if user.skip_welcome_email
     # Can't send emails to addresses that don't exist
     return false if user.email.blank?
 
