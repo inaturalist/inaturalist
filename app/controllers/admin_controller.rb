@@ -87,6 +87,188 @@ class AdminController < ApplicationController
     end
   end
 
+  def build_test_users
+    @staging_enabled = staging_environment?
+    @test_group_name = "prod_like_test_users"
+    @test_group_users = User.
+      where( "test_groups LIKE ?", "%#{@test_group_name}%" ).
+      order( "id desc" ).
+      limit( 200 )
+    @form_defaults = {
+      login: params[:login],
+      observations_count: params[:observations_count],
+      identifications_for_others_count: params[:identifications_for_others_count]
+    }
+    render layout: "admin"
+  end
+
+  def build_test_user
+    unless staging_environment?
+      flash[:error] = "Test user creation is only allowed on staging"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+
+    login = params[:login].to_s.strip
+    password = params[:password].to_s
+    observations_count = [params[:observations_count].to_i, 0].max
+    identifications_for_others_count = [params[:identifications_for_others_count].to_i, 0].max
+
+    if login.blank? || password.blank?
+      flash[:error] = "Login and password are required"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+
+    now = Time.now
+    user = User.new(
+      login: login,
+      email: "#{login}@inaturalist.org",
+      password: password,
+      password_confirmation: password,
+      test_groups: "prod_like_test_users"
+    )
+    user.skip_confirmation_notification! if user.respond_to?( :skip_confirmation_notification! )
+    user.confirmed_at = now
+    user.confirmation_token = nil
+    user.confirmation_sent_at = nil
+    user.unconfirmed_email = nil
+
+    unless user.save
+      flash[:error] = "Failed to create user: #{user.errors.full_messages.to_sentence}"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+
+    obs_ids = []
+    ident_ids_for_obs = []
+    ident_ids_for_others = []
+    other_obs_ids = []
+
+    if observations_count.positive?
+      obs_ids = Observation.order( Arel.sql( "RANDOM()" ) ).
+        limit( observations_count ).pluck( :id )
+      if obs_ids.any?
+        Observation.where( id: obs_ids ).update_all( user_id: user.id, updated_at: now )
+        ident_ids_for_obs = Identification.where( observation_id: obs_ids ).pluck( :id )
+        Identification.where( id: ident_ids_for_obs ).update_all( user_id: user.id, updated_at: now ) if ident_ids_for_obs.any?
+      end
+    end
+
+    if identifications_for_others_count.positive?
+      ident_ids_for_others = Identification.where.not( observation_id: obs_ids ).
+        order( Arel.sql( "RANDOM()" ) ).
+        limit( identifications_for_others_count ).
+        pluck( :id )
+      if ident_ids_for_others.any?
+        Identification.where( id: ident_ids_for_others ).update_all( user_id: user.id, updated_at: now )
+        other_obs_ids = Identification.where( id: ident_ids_for_others ).distinct.pluck( :observation_id )
+      end
+    end
+
+    User.update_observations_counter_cache( user.id )
+    User.update_species_counter_cache( user.id )
+    user.reload
+    user.elastic_index!
+
+    all_observation_ids = ( obs_ids + other_obs_ids ).uniq
+    all_identification_ids = ( ident_ids_for_obs + ident_ids_for_others ).uniq
+
+    Observation.elastic_index!( ids: all_observation_ids, wait_for_index_refresh: true ) if all_observation_ids.any?
+    Identification.elastic_index!( ids: all_identification_ids, wait_for_index_refresh: true ) if all_identification_ids.any?
+
+    flash[:notice] = [
+      "Created user #{user.login}",
+      "observations reassigned: #{obs_ids.length}",
+      "identifications on those observations reassigned: #{ident_ids_for_obs.length}",
+      "other identifications reassigned: #{ident_ids_for_others.length}"
+    ].join( "; " )
+    redirect_to build_test_users_admin_path
+  end
+
+  def build_test_user_updates
+    unless staging_environment?
+      flash[:error] = "Test user updates are only allowed on staging"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+
+    test_group_name = "prod_like_test_users"
+    target_user_id = params[:target_user_id].to_i
+    update_action = params[:update_action].to_s
+    count = [params[:count].to_i, 0].max
+
+    target_user = User.find_by_id( target_user_id )
+    unless target_user&.test_groups_array&.include?( test_group_name )
+      flash[:error] = "Please select a valid test user"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+    if count <= 0
+      flash[:error] = "Please enter a positive number"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+
+    notifier_login = "test_user_for_notifications"
+    notifier_user = User.find_by_login( notifier_login )
+    unless notifier_user
+      password = SecureRandom.hex( 16 )
+      notifier_user = User.new(
+        login: notifier_login,
+        email: "#{notifier_login}@inaturalist.org",
+        password: password,
+        password_confirmation: password,
+        confirmed_at: Time.now
+      )
+      notifier_user.skip_confirmation_notification! if notifier_user.respond_to?( :skip_confirmation_notification! )
+      notifier_user.save!
+    end
+
+    processed = 0
+    case update_action
+    when "messages"
+      count.times do |i|
+        msg = Message.new(
+          user: notifier_user,
+          from_user: notifier_user,
+          to_user: target_user,
+          subject: "Test message #{i + 1}",
+          body: "Test message generated at #{Time.now.utc}"
+        )
+        msg.skip_email = true
+        msg.save!
+        msg.send_message
+        processed += 1
+      end
+    when "confirming_identifications", "conflicting_identifications"
+      obs_scope = Observation.where( user_id: target_user.id ).
+        order( Arel.sql( "RANDOM()" ) ).
+        limit( count )
+      obs_scope.each do |obs|
+        taxon = nil
+        if update_action == "confirming_identifications"
+          taxon = obs.taxon || obs.community_taxon
+        else
+          if obs.taxon_id
+            taxon = Taxon.where.not( id: obs.taxon_id ).order( Arel.sql( "RANDOM()" ) ).first
+          else
+            taxon = Taxon.order( Arel.sql( "RANDOM()" ) ).first
+          end
+        end
+        next unless taxon
+        Identification.create!( observation: obs, user: notifier_user, taxon: taxon )
+        processed += 1
+      end
+    else
+      flash[:error] = "Unknown update action"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+
+    flash[:notice] = "Created #{processed} #{update_action.humanize.downcase} for #{target_user.login}"
+    redirect_to build_test_users_admin_path
+  end
+
+  private
+
+  def staging_environment?
+    request.host.to_s.include?( "staging" )
+  end
+
   def user_content
     return unless load_user_content_info
 

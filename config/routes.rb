@@ -596,6 +596,9 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :users
+      get :build_test_users
+      post :build_test_user
+      post :build_test_user_updates
       get "users/:id" => "admin#user_detail", as: :user_detail
       get "login_as/:id" => "admin#login_as", as: :login_as
       get :deleted_users

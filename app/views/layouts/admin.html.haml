@@ -34,6 +34,9 @@
           %li= link_to t(:curate_taxa), curate_taxa_path
           %li= link_to t(:announcements), announcements_path
           %li= link_to t(:app_build_info), admin_app_build_info_path
+          - if current_user&.is_admin?
+            %li{ class: ("active" if action_name == "build_test_users") }
+              = link_to "Build Test Users", build_test_users_admin_path
           %li= link_to t(:stats), stats_path
           %li= link_to "Redirect Links", redirect_links_path
           %li= link_to t( :username_reserved_words ), admin_username_reserved_words_path
