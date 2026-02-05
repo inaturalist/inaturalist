@@ -13,7 +13,19 @@ module BuildTestUser
 
   Result = Struct.new( :success, :message, :user, :details, keyword_init: true )
 
-  def self.build_user( login:, password:, observations_count:, identifications_for_others_count: )
+  def self.build_user( *args, login: nil, password: nil, observations_count: nil,
+    identifications_for_others_count: nil )
+    if args.length == 1 && args.first.is_a?( Hash )
+      payload = args.first
+      login = payload[:login]
+      password = payload[:password]
+      observations_count = payload[:observations_count]
+      identifications_for_others_count = payload[:identifications_for_others_count]
+    end
+    raise ArgumentError, "login is required" if login.blank?
+    raise ArgumentError, "password is required" if password.blank?
+    raise ArgumentError, "observations_count is required" if observations_count.nil?
+    raise ArgumentError, "identifications_for_others_count is required" if identifications_for_others_count.nil?
     update_progress( login, status: "started", progress: 0 )
     now = Time.now
     observations_count = [observations_count.to_i, MAX_COUNT].min

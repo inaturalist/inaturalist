@@ -108,8 +108,8 @@ class AdminController < ApplicationController
       return redirect_back_or_default( build_test_users_admin_path )
     end
 
-    login = params[:login].to_s.strip
-    password = params[:password].to_s
+    login = params[:build_test_login].to_s.strip
+    password = params[:build_test_password].to_s
     observations_count = [params[:observations_count].to_i, 0].max
     identifications_for_others_count = [params[:identifications_for_others_count].to_i, 0].max
 

@@ -7,15 +7,15 @@
 
 = form_tag build_test_user_admin_path, method: :post, class: "form-horizontal" do
   .form-group
-    %label.control-label.col-sm-3{ for: "login" } Login
+    %label.control-label.col-sm-3{ for: "build_test_login" } Login
     .col-sm-6
-      %input.form-control{ type: "text", name: "login", id: "login",
+      %input.form-control{ type: "text", name: "build_test_login", id: "build_test_login",
         value: @form_defaults[:login], required: true, disabled: !@staging_enabled,
         autocomplete: "off" }
   .form-group
-    %label.control-label.col-sm-3{ for: "password" } Password
+    %label.control-label.col-sm-3{ for: "build_test_password" } Password
     .col-sm-6
-      %input.form-control{ type: "password", name: "password", id: "password",
+      %input.form-control{ type: "password", name: "build_test_password", id: "build_test_password",
         required: true, disabled: !@staging_enabled, autocomplete: "new-password" }
   .form-group
     %label.control-label.col-sm-3{ for: "observations_count" } Number of observations
@@ -34,7 +34,6 @@
     .col-sm-offset-3.col-sm-6
       %button.btn.btn-primary{ type: "submit", disabled: !@staging_enabled } Create test user
 
-%p#build-test-user-progress.text-muted
 %p
   = link_to "Monitor progress", build_test_user_progress_log_admin_path
 
@@ -105,36 +104,3 @@
   .form-group
     .col-sm-offset-3.col-sm-6
       %button.btn.btn-primary{ type: "submit", disabled: !@staging_enabled } Run
-
-:javascript
-  (function( ) {
-    var progressEl = document.getElementById( "build-test-user-progress" );
-    var loginInput = document.getElementById( "login" );
-    if ( !progressEl || !loginInput ) { return; }
-    var lastLogin = null;
-    function poll( ) {
-      var login = loginInput.value.trim( );
-      if ( !login ) {
-        progressEl.textContent = "";
-        lastLogin = null;
-        return;
-      }
-      if ( login !== lastLogin ) {
-        progressEl.textContent = "Checking progress for " + login + "...";
-        lastLogin = login;
-      }
-      fetch( "/admin/build_test_user_progress?login=" + encodeURIComponent( login ) ).
-        then( function( response ) { return response.json( ); } ).
-        then( function( data ) {
-          if ( data.status === "not_found" ) {
-            progressEl.textContent = "No progress found for " + login;
-            return;
-          }
-          var msg = "Status: " + data.status + " (" + data.progress + "%)";
-          if ( data.message ) { msg += " - " + data.message; }
-          progressEl.textContent = msg;
-        } );
-    }
-    setInterval( poll, 3000 );
-    loginInput.addEventListener( "change", poll );
-  } )( );
