@@ -91,7 +91,7 @@ class AdminController < ApplicationController
     @staging_enabled = staging_environment?
     @test_group_name = BuildTestUser::TEST_GROUP_NAME
     @test_group_users = User.
-      where( "test_groups LIKE ?", "%#{@test_group_name}%" ).
+      where( test_groups: @test_group_name ).
       order( "id desc" ).
       limit( 200 )
     @form_defaults = {
