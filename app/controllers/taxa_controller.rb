@@ -335,6 +335,7 @@ class TaxaController < ApplicationController
   def new
     @taxon = Taxon.new( name: params[:name] )
     @protected_attributes_editable = true
+    @cortinariaceae = Taxon.cortinariaceae
   end
 
   def create
@@ -1296,6 +1297,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.find_by( taxon_id: @taxon.id )
     @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
+    @cortinariaceae = Taxon.cortinariaceae
   end
 
   def respond_to_merge_error( msg )
@@ -1794,7 +1796,7 @@ class TaxaController < ApplicationController
     unless current_user.is_admin?
       params[:taxon].delete( :photos_locked )
     end
-    unless Taxon.user_can_edit_provisional_taxa?( current_user )
+    unless @taxon.editable_by?( current_user )
       params[:taxon].delete( :provisional )
     end
     true

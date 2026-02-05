@@ -884,6 +884,16 @@ describe Identification, "deletion" do
     expect( o.observation_reviews.count ).to eq 0
   end
 
+  it "does not destroy automatically created reviews if other identifications exist" do
+    o = Observation.make!
+    i = Identification.make!( observation: o, user: o.user )
+    Identification.make!( observation: o, user: o.user )
+    expect( o.observation_reviews.count ).to eq 1
+    i.destroy
+    o.reload
+    expect( o.observation_reviews.count ).to eq 1
+  end
+
   it "does not destroy user created reviews" do
     o = Observation.make!
     i = Identification.make!( observation: o, user: o.user )

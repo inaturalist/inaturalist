@@ -30,9 +30,6 @@ const relativeTime = {
 moment.locale( I18n.locale );
 moment.updateLocale( moment.locale(), { relativeTime } );
 
-const testingApiV2 = ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
-  || window.location.search.match( /test=apiv2/ );
-
 if ( !_.isEmpty( CURRENT_USER ) ) {
   sharedStore.dispatch( setCurrentUser( CURRENT_USER ) );
 }
@@ -47,7 +44,7 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 if ( PREFERRED_SEARCH_PLACE !== undefined && PREFERRED_SEARCH_PLACE !== null ) {
   // this is the default place for all obs API requests
   sharedStore.dispatch( updateDefaultParams( {
-    place_id: testingApiV2 ? PREFERRED_SEARCH_PLACE.uuid : PREFERRED_SEARCH_PLACE.id
+    place_id: PREFERRED_SEARCH_PLACE.uuid
   } ) );
 }
 
@@ -58,19 +55,16 @@ if ( OFFICIAL_APP_IDS !== undefined && OFFICIAL_APP_IDS !== null ) {
   } ) );
 }
 
-if ( testingApiV2 ) {
-  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
-  const defaultApiUrl = element && element.getAttribute( "content" );
-  if ( defaultApiUrl ) {
-    sharedStore.dispatch( setConfig( {
-      testingApiV2: true
-    } ) );
-    // For some reason this seems to set it everywhere...
-    inatjs.setConfig( {
-      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
-      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
-    } );
-  }
+const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+const defaultApiUrl = element && element.getAttribute( "content" );
+if ( defaultApiUrl ) {
+  sharedStore.dispatch( setConfig( {
+    testingApiV2: true
+  } ) );
+  inatjs.setConfig( {
+    apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+    writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+  } );
 }
 
 setupKeyboardShortcuts( sharedStore.dispatch );

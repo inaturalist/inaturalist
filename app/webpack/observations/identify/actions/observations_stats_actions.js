@@ -19,6 +19,18 @@ function resetObservationsStats( ) {
   };
 }
 
+function prepareParamersForAPIRequest( apiParams ) {
+  _.each( apiParams, ( v, k ) => {
+    if ( ( _.isNull( v ) || v === "" || v === "any" ) && !_.startsWith( k, "field:" ) ) {
+      delete apiParams[k];
+    } else if ( /license$/.test( k ) ) {
+      apiParams[k] = _.toLower( v );
+    }
+  } );
+  delete apiParams.createdDateType;
+  return apiParams;
+}
+
 function fetchObservationsStats( force = false ) {
   return function ( dispatch, getState ) {
     const s = getState();
@@ -30,16 +42,12 @@ function fetchObservationsStats( force = false ) {
     ) ) {
       return;
     }
-    const apiParams = {
+    let apiParams = {
       viewer_id: s.config.currentUser ? s.config.currentUser.id : null,
       ttl: -1,
       ...paramsForSearch( s.searchParams.params )
     };
-    _.each( apiParams, ( v, k ) => {
-      if ( ( _.isNull( v ) || v === "" || v === "any" ) && !_.startsWith( k, "field:" ) ) {
-        delete apiParams[k];
-      }
-    } );
+    apiParams = prepareParamersForAPIRequest( apiParams );
     const reviewedParams = {
       ...apiParams,
       reviewed: true,
@@ -99,5 +107,6 @@ export {
   fetchObservationsStats,
   incrementReviewed,
   decrementReviewed,
-  resetObservationsStats
+  resetObservationsStats,
+  prepareParamersForAPIRequest
 };

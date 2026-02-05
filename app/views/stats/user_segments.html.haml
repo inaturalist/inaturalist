@@ -1,6 +1,7 @@
 - content_for(:title) do
   = @title = "Segmentation Statistic"
 - content_for(:extracss) do
+  = stylesheet_link_tag :stats
   :css
     body { font-family: Arial,sans-serif; }
     .tooltip {
@@ -18,19 +19,65 @@
     var STATS_JSON = #{ @segmentation_statistic.to_json.html_safe };
     $( document ).ready( function() {
       var data = STATS_JSON;
+      // Rename "power" to "pwr" in the data
+      function renameNodes( node ) {
+        if ( node.name === "power" ) node.name = "pwr";
+        if ( node.children ) node.children.forEach( renameNodes );
+      }
+      renameNodes( data );
       var width = 1000;
-          height = 700;
+          height = 1000;
+      var rawSum = 0;
+      ( function sumLeaves( node ) {
+        if ( node.children && node.children.length ) {
+          node.children.forEach( sumLeaves );
+        } else {
+          rawSum += node.value || 0;
+        }
+      } )( data );
+      var minLeafArea = 30 * 30;
+      var minValue = rawSum > 0 ? ( minLeafArea / ( width * height ) ) * rawSum : 0;
       var svg = d3.select( "#user_dataviz" ).append( "svg" )
         .attr( "viewBox", "0 0 " + width + " " + height )
         .attr( "preserveAspectRatio", "xMinYMin meet" );
 
-      var root = d3.hierarchy( data ).sum( function( d ){ return d.value } )
-      var sumOfLeaves = root.value;
+      var root = d3.hierarchy( data ).sum( function( d ) {
+        if ( d.children ) return 0;
+        return Math.max( d.value || 0, minValue );
+      } )
+      root.eachAfter( function( d ) {
+        if ( !d.children || d.children.length === 0 ) {
+          d.rawValue = d.data.value || 0;
+        } else {
+          d.rawValue = d.children.reduce( function( sum, child ) {
+            return sum + ( child.rawValue || 0 );
+          }, 0 );
+        }
+      } );
+      var sumOfLeaves = rawSum;
       d3.treemap()
         .size( [width, height] )
-        .paddingTop( 28 )
-        .paddingRight( 7 )
-        .paddingInner( 3 )
+        .tile( function( parent, x0, y0, x1, y1 ) {
+          // Depth 1 (new/existing): slice into rows
+          // Depth 2 (power/casual/inactive): dice into columns
+          // Depth 3+ (web/ios/etc): use squarify
+          if ( parent.depth === 0 ) {
+            d3.treemapSlice( parent, x0, y0, x1, y1 );
+          } else if ( parent.depth === 1 ) {
+            d3.treemapDice( parent, x0, y0, x1, y1 );
+          } else {
+            d3.treemapSquarify( parent, x0, y0, x1, y1 );
+          }
+        } )
+        .paddingTop( function( d ) {
+          if ( d.depth === 1 ) return 28;
+          if ( d.depth === 2 ) return 24;
+          return 5;
+        } )
+        .paddingRight( 5 )
+        .paddingBottom( 5 )
+        .paddingLeft( 5 )
+        .paddingInner( 2 )
         ( root )
 
       var color = d3.scaleOrdinal()
@@ -59,8 +106,8 @@
           tooltip.style( "top", ( d3.event.pageY + 10 ) + "px" );
           tooltip.html(
             "Name: " + d.data.name + "<br/>" + 
-            "Value: " + d.data.value.toLocaleString() + "<br/>" +
-            "Percent: " + ( d.data.value / sumOfLeaves * 100 ).toFixed( 2 ) + "%"
+            "Value: " + ( d.data.value || 0 ).toLocaleString() + "<br/>" +
+            "Percent: " + ( ( d.data.value || 0 ) / sumOfLeaves * 100 ).toFixed( 2 ) + "%"
           );
         } )
         .on( "mouseout", function() {
@@ -75,40 +122,40 @@
       svg
         .selectAll( "text" )
         .data( root.leaves().filter( function(d) { 
-          return d.data.value > 10000 & d.parent.parent.data.name == "existing";
+          return d.data.value > 10000;
         } ) )
         .enter()
         .append( "text" )
         .attr( "x", function( d ){ return d.x0 + 5} )
-        .attr( "y", function( d ){ return d.y0 + 20} )
+        .attr( "y", function( d ){ return d.y0 + 16} )
         .text( function( d ){ return d.data.name } )
-        .attr( "font-size", "12px" )
-        .attr( "fill", "white" )
-
-      svg
-        .selectAll( "vals" )
-        .data( root.leaves().filter(function( d ) { 
-          return d.data.value > 10000 & d.parent.parent.data.name == "existing"; 
-        } ) )
-        .enter()
-        .append( "text")
-        .attr( "x", function(d){ return d.x0 + 5} )
-        .attr( "y", function(d){ return d.y0 + 35} )
-        .text( function(d){ return d.data.value.toLocaleString() } )
-        .attr( "font-size", "11px" )
+        .attr( "font-size", "10px" )
         .attr( "fill", "white" )
 
       svg
         .selectAll( "vals" )
         .data( root.leaves().filter( function( d ) { 
-          return d.data.value > 10000 & d.parent.parent.data.name == "existing"; 
+          return d.data.value > 10000;
+        } ) )
+        .enter()
+        .append( "text")
+        .attr( "x", function(d){ return d.x0 + 5} )
+        .attr( "y", function(d){ return d.y0 + 28} )
+        .text( function(d){ return d.data.value.toLocaleString() } )
+        .attr( "font-size", "8px" )
+        .attr( "fill", "white" )
+
+      svg
+        .selectAll( "vals" )
+        .data( root.leaves().filter( function( d ) { 
+          return d.data.value > 10000; 
         } ) )
         .enter()
         .append( "text" )
           .attr( "x", function(d){ return d.x0+5} )
-          .attr( "y", function(d){ return d.y0+50} )
+          .attr( "y", function(d){ return d.y0+40} )
           .text( function(d){ return ( d.data.value / sumOfLeaves * 100 ).toFixed( 2 ) + "%"; } )
-          .attr( "font-size", "11px" )
+          .attr( "font-size", "8px" )
           .attr( "fill", "white" )
           
       svg
@@ -117,12 +164,12 @@
         .enter()
         .append( "text" )
           .attr( "x", function( d ){ return d.x0} )
-          .attr( "y", function( d ){ return d.y0+21} )
+          .attr( "y", function( d ){ return d.y0+18} )
           .text( function( d ){ 
-            var ratio = ( d.value / sumOfLeaves * 100 ).toFixed( 2 );
-            return d.data.name + ": " + d.value.toLocaleString() + " (" + ratio + "%)" 
+            var ratio = ( d.rawValue / sumOfLeaves * 100 ).toFixed( 2 );
+            return d.data.name + ": " + d.rawValue.toLocaleString() + " (" + ratio + "%)" 
           } )
-          .attr( "font-size", "15px" )
+          .attr( "font-size", "12px" )
           .attr( "fill",  "black" )
       
       svg
@@ -131,156 +178,39 @@
         .enter()
         .append( "text" )
           .attr( "x", function( d ){ return d.x0} )
-          .attr( "y", function( d ){ return d.y0+21} )
-          .text( function( d ){ 
-            var ratio = ( d.value / sumOfLeaves * 100 ).toFixed( 2 );
-            if ( d.value > 10000 ) {
-              return d.data.name + ": " + d.value.toLocaleString() + " (" + ratio + "%)" 
-            } else {
-              return d.data.name + ": " + d.value.toLocaleString()
-            }
-          } )
-          .attr( "font-size", "14px" )
+          .attr( "y", function( d ){ return d.y0+10} )
+          .attr( "font-size", "10px" )
           .attr( "fill",  "black" )
+          .each( function( d ) {
+            var ratio = ( d.rawValue / sumOfLeaves * 100 ).toFixed( 2 );
+            var text = d3.select( this );
+            // Wrap all labels on two lines
+            text.append( "tspan" )
+              .attr( "x", d.x0+5 )
+              .text( d.data.name + ": " + d.rawValue.toLocaleString() );
+            text.append( "tspan" )
+              .attr( "x", d.x0+5 )
+              .attr( "dy", "10px" )
+              .text( "(" + ratio + "%)" );
+          } );
       } );
-    var STATS_DAU_MAU_JSON = #{ @segmentation_dau_mau.to_json.html_safe };
-    $( document ).ready( function() {
-      var data = STATS_DAU_MAU_JSON;
-      var margin = {top: 20, right: 30, bottom: 40, left: 180};
-      var width = 1000 - margin.left - margin.right;
-          height = 300 - margin.top - margin.bottom;
-
-      var tooltip = d3.select( "body" )
-        .append( "div" )
-        .attr( "class", "tooltip" )
-        .style( "opacity", 0 );
-  
-      var svg = d3.select( "#dau_mau_dataviz" )
-        .append( "svg" )
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-          .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
-
-      // Add X axis
-      var x = d3.scaleLinear()
-        .domain([0, 100])
-        .range([ 0, width]);
-      svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x))
-        .selectAll("text")
-          .attr("transform", "translate(-10,0)rotate(-45)")
-          .style("text-anchor", "end");
-
-      // Y axis
-      var y = d3.scaleBand()
-        .range([ 0, height ])
-        .domain(data.map(function(d) { return d.label; }))
-        .padding(.1);
-      svg.append("g")
-        .call(d3.axisLeft(y))
-
-      //Bars
-      svg.selectAll("myRect")
-        .data(data)
-        .enter()
-        .append("rect")
-        .attr("x", x(0) )
-        .attr("y", function(d) { return y(d.label); })
-        .attr("width", function(d) { return x(d.value); })
-        .attr("height", y.bandwidth() )
-        .attr("fill", "#69b3a2")
-        .on( "mouseover", function( d ) {
-          tooltip.style( "opacity", 1 );
-          tooltip.style( "left", ( d3.event.pageX + 10 ) + "px" );
-          tooltip.style( "top", ( d3.event.pageY + 10 ) + "px" );
-          tooltip.html(
-            "Group: " + d.label + "<br/>" + 
-            "DAU/MAU: " + d.value.toFixed( 2 ) + "%"
-          );
-        } )
-        .on( "mouseout", function() {
-          tooltip.style( "opacity", 0 );
-        } );
-      } );
-    var STATS_DAU_MAU_CREATED_AT_JSON = #{ @segmentation_dau_mau_by_created_at_buckets.to_json.html_safe };
-    $( document ).ready( function() {
-      var data = STATS_DAU_MAU_CREATED_AT_JSON;
-      var margin = {top: 20, right: 30, bottom: 40, left: 180};
-      var width = 1000 - margin.left - margin.right;
-          height = 500 - margin.top - margin.bottom;
-
-      var tooltip = d3.select( "body" )
-        .append( "div" )
-        .attr( "class", "tooltip" )
-        .style( "opacity", 0 );
-  
-      var svg = d3.select( "#dau_mau_created_at_dataviz" )
-        .append( "svg" )
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-          .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
-
-      // Add X axis
-      var x = d3.scaleLinear()
-        .domain([0, 100])
-        .range([ 0, width]);
-      svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x))
-        .selectAll("text")
-          .attr("transform", "translate(-10,0)rotate(-45)")
-          .style("text-anchor", "end");
-
-      // Y axis
-      var y = d3.scaleBand()
-        .range([ 0, height ])
-        .domain(data.map(function(d) { return d.label; }))
-        .padding(.1);
-      svg.append("g")
-        .call(d3.axisLeft(y))
-
-      //Bars
-      svg.selectAll("myRect")
-        .data(data)
-        .enter()
-        .append("rect")
-        .attr("x", x(0) )
-        .attr("y", function(d) { return y(d.label); })
-        .attr("width", function(d) { return x(d.value); })
-        .attr("height", y.bandwidth() )
-        .attr("fill", "#69b3a2")
-        .on( "mouseover", function( d ) {
-          tooltip.style( "opacity", 1 );
-          tooltip.style( "left", ( d3.event.pageX + 10 ) + "px" );
-          tooltip.style( "top", ( d3.event.pageY + 10 ) + "px" );
-          tooltip.html(
-            "Group: " + d.label + "<br/>" + 
-            "DAU/MAU: " + d.value.toFixed( 2 ) + "%"
-          );
-        } )
-        .on( "mouseout", function() {
-          tooltip.style( "opacity", 0 );
-        } );
-      } );
-       
-.container-fluid
+.container-fluid.stats-wide
   .row
     .col-xs-12
+      = render "stats/staff_stats_bar"
       %h1 Logged in User Segments
+      .stats-nav
+        - if @segmentation_prev_record
+          = link_to "Previous", user_segments_stats_path( date: @segmentation_prev_record.created_at.to_date ), class: "stats-nav-link"
+        - else
+          %span.stats-nav-link.is-disabled Previous
+        - if @segmentation_record_created_at
+          = link_to @segmentation_record_created_at.to_date.to_s, user_segments_stats_path( date: @segmentation_record_created_at.to_date ), class: "stats-nav-date"
+        - else
+          %span.stats-nav-date No data
+        - if @segmentation_next_record
+          = link_to "Next", user_segments_stats_path( date: @segmentation_next_record.created_at.to_date ), class: "stats-nav-link"
+        - else
+          %span.stats-nav-link.is-disabled Next
       = "30 days period ending on #{@record_date}"
       #user_dataviz
-  .row
-    .col-xs-12
-      %h1 DAU/MAU
-      = "30 days period ending on #{@record_date}"
-      #dau_mau_dataviz
-  .row
-    .col-xs-12
-      %h1 DAU/MAU by account creation date
-      = "30 days period ending on #{@record_date}"
-      #dau_mau_created_at_dataviz

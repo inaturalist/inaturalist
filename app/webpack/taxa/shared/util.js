@@ -3,10 +3,10 @@ import React from "react";
 import { COLORS } from "../../shared/util";
 
 const urlForTaxon = t => (
-  t ? `/taxa/${t.id}-${t.name.replace( /\W/g, "-" )}` : null
+  t ? `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}` : null
 );
 const urlForTaxonPhotos = ( t, params ) => {
-  let url = `/taxa/${t.id}-${t.name.replace( /\W/g, "-" )}/browse_photos`;
+  let url = `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}/browse_photos`;
   if ( params ) {
     url += `?${_.map( params, ( v, k ) => `${k}=${v}` ).join( "&" )}`;
   }

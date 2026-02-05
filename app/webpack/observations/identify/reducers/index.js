@@ -37,6 +37,7 @@ import controlledTerms from "../../show/ducks/controlled_terms";
 import qualityMetrics from "../../show/ducks/quality_metrics";
 import flaggingModal from "../../show/ducks/flagging_modal";
 import subscriptions from "../../show/ducks/subscriptions";
+import relationships from "../../show/ducks/relationships";
 import disagreementAlert from "../../shared/ducks/disagreement_alert";
 import moderatorActions from "../../../shared/ducks/moderator_actions";
 import brightnesses from "../ducks/brightnesses";
@@ -56,6 +57,7 @@ export default {
   qualityMetrics,
   flaggingModal,
   subscriptions,
+  relationships,
   disagreementAlert,
   moderatorActions,
   brightnesses,

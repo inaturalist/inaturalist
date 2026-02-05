@@ -67,10 +67,11 @@ const DateFilters = ( {
             <DateTimeFieldWrapper
               mode="date"
               inputProps={{
-                className: "filters-dates-exact form-control input-sm date-picker"
+                className: "filters-dates-exact form-control input-sm date-picker",
+                placeholder: "YYYY-MM-DD"
               }}
               inputFormat="YYYY-MM-DD"
-              defaultText={params[onField] || "YYYY-MM-DD"}
+              defaultText={params[onField]}
               onClick={( ) => updateSearchParams( { [dateTypeField]: "exact" } )}
               onChange={date => updateSearchParams( { [onField]: date } )}
             />
@@ -96,10 +97,11 @@ const DateFilters = ( {
             <DateTimeFieldWrapper
               mode="date"
               inputProps={{
-                className: "filters-dates-exact form-control input-sm date-picker"
+                className: "filters-dates-exact form-control input-sm date-picker",
+                placeholder: I18n.t( "start" )
               }}
               inputFormat="YYYY-MM-DD"
-              defaultText={params[d1Field] || I18n.t( "start" )}
+              defaultText={params[d1Field]}
               onClick={( ) => updateSearchParams( { [dateTypeField]: "exact" } )}
               onChange={date => updateSearchParams( { [d1Field]: date } )}
             />
@@ -113,10 +115,11 @@ const DateFilters = ( {
             <DateTimeFieldWrapper
               mode="date"
               inputProps={{
-                className: "filters-dates-exact form-control input-sm date-picker"
+                className: "filters-dates-exact form-control input-sm date-picker",
+                placeholder: I18n.t( "end" )
               }}
               inputFormat="YYYY-MM-DD"
-              defaultText={params[d2Field] || I18n.t( "end" )}
+              defaultText={params[d2Field]}
               onClick={( ) => updateSearchParams( { [dateTypeField]: "exact" } )}
               onChange={date => updateSearchParams( { [d2Field]: date } )}
             />

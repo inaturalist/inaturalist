@@ -128,7 +128,7 @@ class Identification < ApplicationRecord
 
   auto_subscribes :user, to: :observation, if: lambda {| ident, observation |
     ident.user_id != observation.user_id
-  }
+  }, unsubscribe_enabled: :observation_unsubscribe_enabled?
 
   notifies_users :mentioned_users,
     on: :save,
@@ -445,6 +445,8 @@ class Identification < ApplicationRecord
   end
 
   def remove_automated_observation_reviews
+    return if Identification.where( observation_id: observation_id, user_id: user_id ).where.not( id: id ).any?
+
     ObservationReview.where( observation_id: observation_id,
       user_id: user_id, user_added: false ).destroy_all
     true
@@ -637,6 +639,13 @@ class Identification < ApplicationRecord
       nominated_by_user: nil,
       nominated_at: nil
     )
+
+  def observation_unsubscribe_enabled?
+    return false if Identification.where( observation: observation, user_id: user_id ).where.not( id: id ).any?
+    return false if Comment.where( parent: observation, user_id: user_id ).any?
+    return false if ObservationFieldValue.where( observation: observation, user_id: user_id ).any?
+
+    true
   end
 
   # Static ##################################################################
