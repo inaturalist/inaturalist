@@ -10,12 +10,13 @@
     %label.control-label.col-sm-3{ for: "login" } Login
     .col-sm-6
       %input.form-control{ type: "text", name: "login", id: "login",
-        value: @form_defaults[:login], required: true, disabled: !@staging_enabled }
+        value: @form_defaults[:login], required: true, disabled: !@staging_enabled,
+        autocomplete: "off" }
   .form-group
     %label.control-label.col-sm-3{ for: "password" } Password
     .col-sm-6
       %input.form-control{ type: "password", name: "password", id: "password",
-        required: true, disabled: !@staging_enabled }
+        required: true, disabled: !@staging_enabled, autocomplete: "new-password" }
   .form-group
     %label.control-label.col-sm-3{ for: "observations_count" } Number of observations
     .col-sm-3
@@ -34,6 +35,8 @@
       %button.btn.btn-primary{ type: "submit", disabled: !@staging_enabled } Create test user
 
 %p#build-test-user-progress.text-muted
+%p
+  = link_to "Monitor progress", build_test_user_progress_log_admin_path
 
 %hr
 

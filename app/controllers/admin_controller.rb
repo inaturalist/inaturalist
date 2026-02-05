@@ -123,10 +123,12 @@ class AdminController < ApplicationController
       priority: INTEGRITY_PRIORITY,
       queue: "slow"
     ).build_user(
-      login: login,
-      password: password,
-      observations_count: observations_count,
-      identifications_for_others_count: identifications_for_others_count
+      {
+        login: login,
+        password: password,
+        observations_count: observations_count,
+        identifications_for_others_count: identifications_for_others_count
+      }
     )
     flash[:notice] = "Build test user job queued for #{login}"
     redirect_to build_test_users_admin_path
@@ -137,6 +139,11 @@ class AdminController < ApplicationController
     progress = login.present? ? BuildTestUser.progress( login ) : nil
     progress ||= { status: "not_found" }
     render json: progress
+  end
+
+  def build_test_user_progress_log
+    @progress_log = BuildTestUser.progress_log
+    render layout: "admin"
   end
 
   def build_test_user_updates

@@ -599,6 +599,7 @@ Rails.application.routes.draw do
       get :build_test_users
       post :build_test_user
       get :build_test_user_progress
+      get :build_test_user_progress_log
       post :build_test_user_updates
       get "users/:id" => "admin#user_detail", as: :user_detail
       get "login_as/:id" => "admin#login_as", as: :login_as

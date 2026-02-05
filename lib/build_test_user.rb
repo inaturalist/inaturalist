@@ -329,21 +329,29 @@ module BuildTestUser
   def self.update_progress( login, status:, progress:, message: nil )
     # Cache progress for the admin UI poller.
     puts "BuildTestUser.update_progress login=#{login} status=#{status} progress=#{progress} message=#{message}"
+    log_entry = {
+      login: login,
+      status: status,
+      progress: progress,
+      message: message,
+      updated_at: Time.now.utc
+    }
+    log_entries = Rails.cache.read( "build_test_user_progress_log" ) || []
+    log_entries.unshift( log_entry )
+    Rails.cache.write( "build_test_user_progress_log", log_entries, expires_in: 2.hours )
     Rails.cache.write(
       progress_key( login ),
-      {
-        login: login,
-        status: status,
-        progress: progress,
-        message: message,
-        updated_at: Time.now.utc
-      },
+      log_entry,
       expires_in: 2.hours
     )
   end
 
   def self.progress( login )
     Rails.cache.read( progress_key( login ) )
+  end
+
+  def self.progress_log
+    Rails.cache.read( "build_test_user_progress_log" ) || []
   end
 
   private_class_method :ensure_notifier_users
