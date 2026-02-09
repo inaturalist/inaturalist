@@ -1680,6 +1680,10 @@ module ApplicationHelper
     @responsive
   end
 
+  def responsive_constrained?
+    @responsive && @responsive_constrained
+  end
+
   def photo_type_label( type )
     case type
     when "FlickrPhoto"
