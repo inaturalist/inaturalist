@@ -47,6 +47,7 @@ class Project < ApplicationRecord
       indexes :header_image_file_name, type: "keyword", index: false
       indexes :header_image_url, type: "keyword", index: false
       indexes :hide_title, type: "boolean", index: false
+      indexes :hide_leaderboard, type: "boolean", index: false
       indexes :icon, type: "keyword", index: false
       indexes :icon_file_name, type: "keyword", index: false
       indexes :id, type: "integer" do
@@ -197,6 +198,7 @@ class Project < ApplicationRecord
       title_autocomplete: title,
       title_exact: title,
       hide_title: !!prefers_hide_title,
+      hide_leaderboard: !!prefers_hide_leaderboard,
       description: description,
       slug: slug,
       slug_keyword: slug,

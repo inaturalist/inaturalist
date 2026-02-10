@@ -94,6 +94,7 @@ class Project < ApplicationRecord
   preference :banner_color, :string
   preference :banner_contain, :boolean, default: false
   preference :hide_title, :boolean, default: false
+  preference :hide_leaderboard, :boolean, default: false
   preference :hide_umbrella_map_flags, :boolean, default: false
   preference :rule_quality_grade, :string, default: "research,needs_id"
   preference :rule_photos, :boolean

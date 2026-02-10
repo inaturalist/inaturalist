@@ -338,6 +338,30 @@ class SharedForm extends React.Component {
               </div>
             </Col>
           </Row>
+          { project.project_type === "collection" && (
+            <Row className="first-row">
+              <Col xs={4}>
+                <label htmlFor="project-bgcolor">
+                  Leaderboard
+                </label>
+                <div className="help-text">
+                  The leaderboard panel displays users with the most observations, users with the
+                  most species, and the top observed species. It can be optionally hidden.
+                </div>
+                <div className="input-group">
+                  <input
+                    type="checkbox"
+                    id="project-hide-leaderboard"
+                    defaultChecked={project.hide_leaderboard}
+                    onChange={e => updateProject( { hide_leaderboard: e.target.checked } )}
+                  />
+                  <label className="inline" htmlFor="project-hide-leaderboard">
+                    Hide Leaderboard
+                  </label>
+                </div>
+              </Col>
+            </Row>
+          ) }
           <Row className="separator-row">
             <Col xs={12}>
               <div className="separator" />
