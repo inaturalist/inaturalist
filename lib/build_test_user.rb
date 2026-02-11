@@ -32,26 +32,29 @@ module BuildTestUser
     observations_count = [observations_count.to_i, MAX_COUNT].min
     identifications_for_others_count = [identifications_for_others_count.to_i, MAX_COUNT].min
     # Create a confirmed, test-group user without sending welcome email.
-    user = User.new(
-      login: login,
-      email: "#{login}@inaturalist.org",
-      password: password,
-      password_confirmation: password,
-      test_groups: TEST_GROUP_NAME
-    )
-    user.skip_welcome_email = true
-    user.skip_confirmation_notification! if user.respond_to?( :skip_confirmation_notification! )
-    user.confirmed_at = now
-    user.confirmation_token = nil
-    user.confirmation_sent_at = nil
-    user.unconfirmed_email = nil
-
-    unless user.save
-      update_progress( login, status: "failed", progress: 100, message: user.errors.full_messages.to_sentence )
-      return Result.new(
-        success: false,
-        message: "Failed to create user: #{user.errors.full_messages.to_sentence}"
+    user = User.find_by_login( login )
+    unless user
+      user = User.new(
+        login: login,
+        email: "#{login}@inaturalist.org",
+        password: password,
+        password_confirmation: password,
+        test_groups: TEST_GROUP_NAME
       )
+      user.skip_welcome_email = true if user.respond_to?( :skip_welcome_email= )
+      user.skip_confirmation_notification! if user.respond_to?( :skip_confirmation_notification! )
+      user.confirmed_at = now
+      user.confirmation_token = nil
+      user.confirmation_sent_at = nil
+      user.unconfirmed_email = nil
+
+      unless user.save
+        update_progress( login, status: "failed", progress: 100, message: user.errors.full_messages.to_sentence )
+        return Result.new(
+          success: false,
+          message: "Failed to create user: #{user.errors.full_messages.to_sentence}"
+        )
+      end
     end
 
     # Pick a random set of observations to clone.
@@ -72,6 +75,12 @@ module BuildTestUser
         cloned_obs = obs.dup
         cloned_obs.user_id = user.id
         cloned_obs.uuid = nil if cloned_obs.respond_to?( :uuid )
+        clone_note = "Cloned from obs #{obs.id} by user #{original_user_id}"
+        if cloned_obs.description.to_s.strip.empty?
+          cloned_obs.description = clone_note
+        else
+          cloned_obs.description = "#{cloned_obs.description}\n\n#{clone_note}"
+        end
         if obs.latitude.present? && obs.longitude.present?
           cloned_obs.private_latitude = obs.latitude
           cloned_obs.private_longitude = obs.longitude
@@ -79,11 +88,19 @@ module BuildTestUser
         cloned_obs.save!
         cloned_observation_ids << cloned_obs.id
 
-        obs.observation_photos.each do | op |
-          ObservationPhoto.create!(
-            observation_id: cloned_obs.id,
-            photo_id: op.photo_id,
-            position: op.position
+        if obs.observation_photos.any?
+          photo_rows = obs.observation_photos.map do | op |
+            {
+              observation_id: cloned_obs.id,
+              photo_id: op.photo_id,
+              position: op.position,
+              created_at: now,
+              updated_at: now
+            }
+          end
+          ObservationPhoto.insert_all( photo_rows )
+          Observation.where( id: cloned_obs.id ).update_all(
+            observation_photos_count: photo_rows.length
           )
         end
 
@@ -355,7 +372,7 @@ module BuildTestUser
           password_confirmation: password,
           confirmed_at: Time.now
         )
-        notifier_user.skip_welcome_email = true
+        notifier_user.skip_welcome_email = true if notifier_user.respond_to?( :skip_welcome_email= )
         notifier_user.skip_confirmation_notification! if notifier_user.respond_to?( :skip_confirmation_notification! )
         notifier_user.save!
       end
