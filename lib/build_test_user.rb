@@ -14,7 +14,7 @@ module BuildTestUser
   Result = Struct.new( :success, :message, :user, :details, keyword_init: true )
 
   def self.build_user( *args, login: nil, password: nil, observations_count: nil,
-    identifications_for_others_count: nil )
+                       identifications_for_others_count: nil )
     if args.length == 1 && args.first.is_a?( Hash )
       payload = args.first
       login = payload[:login]
@@ -26,6 +26,7 @@ module BuildTestUser
     raise ArgumentError, "password is required" if password.blank?
     raise ArgumentError, "observations_count is required" if observations_count.nil?
     raise ArgumentError, "identifications_for_others_count is required" if identifications_for_others_count.nil?
+
     update_progress( login, status: "started", progress: 0 )
     now = Time.now
     observations_count = [observations_count.to_i, MAX_COUNT].min
@@ -53,62 +54,94 @@ module BuildTestUser
       )
     end
 
-    # Pick a random set of other observations.
+    # Pick a random set of observations to clone.
     observations = randomize_observations( count: observations_count )
     update_progress( login, status: "observations_selected", progress: 10 )
 
-    # For each selected observation, update the user in:
-    # - the observation
-    # - the identifications associated to this observation, from the original user
-    # - the annotations associated to this observation, from the original user
-    # - the observation fields associated to this observation, from the original user
-    # Extract the list of updated identifications (identifications_from_own_obs)
+    # For each selected observation, clone the observation and its related records.
     identifications_from_own_obs = []
+    cloned_observation_ids = []
+    cloned_identification_ids = []
+    observations_from_other_ids = []
     if observations_count.positive? && observations.any?
-      Observation.where( id: observations ).select( :id, :user_id ).find_each do | obs |
+      Observation.where( id: observations ).
+        includes( :observation_photos, :observation_field_values, :annotations, :identifications, :comments ).
+        find_each do | obs |
         original_user_id = obs.user_id
 
-        identifications_from_this_observation = Identification.
-          where( observation_id: obs.id, user_id: original_user_id ).
-          pluck( :id )
-        if identifications_from_this_observation.any?
-          Identification.where( id: identifications_from_this_observation ).
-            update_all( user_id: user.id, updated_at: now )
-          identifications_from_own_obs.concat( identifications_from_this_observation )
+        cloned_obs = obs.dup
+        cloned_obs.user_id = user.id
+        cloned_obs.uuid = nil if cloned_obs.respond_to?( :uuid )
+        if obs.latitude.present? && obs.longitude.present?
+          cloned_obs.private_latitude = obs.latitude
+          cloned_obs.private_longitude = obs.longitude
+        end
+        cloned_obs.save!
+        cloned_observation_ids << cloned_obs.id
+
+        obs.observation_photos.each do | op |
+          ObservationPhoto.create!(
+            observation_id: cloned_obs.id,
+            photo_id: op.photo_id,
+            position: op.position
+          )
         end
 
-        Annotation.where(
-          resource_type: "Observation",
-          resource_id: obs.id,
-          user_id: original_user_id
-        ).update_all( user_id: user.id, updated_at: now )
+        obs.observation_field_values.each do | ofv |
+          cloned_ofv = ofv.dup
+          cloned_ofv.observation_id = cloned_obs.id
+          cloned_ofv.user_id = ( ( ofv.user_id == original_user_id ) ? user.id : ofv.user_id )
+          cloned_ofv.uuid = nil if cloned_ofv.respond_to?( :uuid )
+          cloned_ofv.save!
+        end
 
-        ObservationFieldValue.where(
-          observation_id: obs.id,
-          user_id: original_user_id
-        ).update_all( user_id: user.id, updated_at: now )
+        obs.annotations.where( observation_field_value_id: nil ).each do | a |
+          cloned_annotation = a.dup
+          cloned_annotation.resource = cloned_obs
+          cloned_annotation.user_id = ( ( a.user_id == original_user_id ) ? user.id : a.user_id )
+          cloned_annotation.uuid = nil if cloned_annotation.respond_to?( :uuid )
+          cloned_annotation.save!
+        end
 
-        Observation.where( id: obs.id ).update_all( user_id: user.id, updated_at: now )
+        obs.identifications.each do | ident |
+          cloned_ident = ident.dup
+          cloned_ident.observation_id = cloned_obs.id
+          cloned_ident.user_id = ( ( ident.user_id == original_user_id ) ? user.id : ident.user_id )
+          cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
+          cloned_ident.save!
+          cloned_identification_ids << cloned_ident.id
+          identifications_from_own_obs << cloned_ident.id if ident.user_id == original_user_id
+        end
+
+        obs.comments.each do | comment |
+          cloned_comment = comment.dup
+          cloned_comment.parent = cloned_obs
+          cloned_comment.user_id = ( ( comment.user_id == original_user_id ) ? user.id : comment.user_id )
+          cloned_comment.uuid = nil if cloned_comment.respond_to?( :uuid )
+          cloned_comment.save!
+        end
       end
     end
     update_progress( login, status: "observations_assigned", progress: 50 )
 
-    # Pick a random set of other identifications, excluding those already moved.
-    indentifications = randomize_identifications( count: identifications_for_others_count,
-      exclude_ids: identifications_from_own_obs )
+    # Pick a random set of other identifications and clone them for the new user.
+    indentifications = randomize_identifications( count: identifications_for_others_count )
     update_progress( login, status: "identifications_selected", progress: 60 )
 
-    # For each selected identification, update the user
-    # Extract the list of associated observations (observations_from_other_ids)
-    observations_from_other_ids = []
     if identifications_for_others_count.positive? && indentifications.any?
-      Identification.where( id: indentifications ).update_all( user_id: user.id, updated_at: now )
-      observations_from_other_ids = Identification.where( id: indentifications ).pluck( :observation_id )
+      Identification.where( id: indentifications ).find_each do | ident |
+        cloned_ident = ident.dup
+        cloned_ident.user_id = user.id
+        cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
+        cloned_ident.save!
+        cloned_identification_ids << cloned_ident.id
+        observations_from_other_ids << cloned_ident.observation_id
+      end
     end
     update_progress( login, status: "identifications_assigned", progress: 75 )
 
-    all_observations = ( observations + observations_from_other_ids ).uniq
-    all_identifications = ( identifications_from_own_obs + indentifications ).uniq
+    all_observations = ( cloned_observation_ids + observations_from_other_ids ).uniq
+    all_identifications = cloned_identification_ids.uniq
 
     # Reindex changed observation and identification records.
     if all_observations.any?
@@ -137,13 +170,13 @@ module BuildTestUser
       success: true,
       message: [
         "Created user #{user.login}",
-        "observations reassigned: #{observations.length}",
-        "identifications on those observations reassigned: #{identifications_from_own_obs.length}",
-        "other identifications reassigned: #{indentifications.length}"
+        "observations cloned: #{cloned_observation_ids.length}",
+        "identifications cloned on those observations: #{identifications_from_own_obs.length}",
+        "other identifications cloned: #{indentifications.length}"
       ].join( "; " ),
       user: user,
       details: {
-        observations: observations,
+        observations: cloned_observation_ids,
         identifications_from_own_obs: identifications_from_own_obs,
         indentifications: indentifications,
         observations_from_other_ids: observations_from_other_ids
