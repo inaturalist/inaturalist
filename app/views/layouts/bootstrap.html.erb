@@ -59,7 +59,7 @@
       <meta property="og:image" content="<%= image_url @site.shareable_image.url %>"/>
     <% end %>
   </head>
-  <body class="<%= responsive? ? 'responsive' : '' %> <%= skip_min_width? ? 'skip-min-width' : '' %>">
+  <body class="<%= responsive? ? 'responsive' : '' %><%= skip_min_width? ? ' skip-min-width' : '' %>">
     <div id="bodywrapper" class="<%=raw 'no-footer-gap' if @no_footer_gap %> <%=raw 'noh1' if params[:noh1] %>">
       <%= render partial: "shared/confirmation_banner" %>
       <% unless @headless -%>

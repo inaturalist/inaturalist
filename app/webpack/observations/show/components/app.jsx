@@ -217,7 +217,7 @@ class App extends React.Component {
     const description = observation.description
       ? (
         <Row>
-          <Col xs={12} sm={responsive ? 12 : null}>
+          <Col xs={12}>
             <h3>
               {
                 I18n.t( "notes", {

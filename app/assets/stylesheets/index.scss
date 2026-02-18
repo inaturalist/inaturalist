@@ -2539,6 +2539,11 @@ body:not(.responsive) {
 
 @media (max-width: 768px) {
   body.responsive {
+    .container {
+      width: auto;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
     #header {
       #narrow-menu {
         display: flex;
