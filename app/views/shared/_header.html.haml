@@ -1,6 +1,6 @@
 - site = @site || CONFIG
 - header_search_open = session[:header_search_open].yesish? || ( logged_in? && session[:header_search_open] != false )
-#header.bootstrap{ class: "#{header_search_open ? 'search-open ' : ''}#{responsive? ? 'responsive ' : ''}#{responsive_constrained? ? 'responsive-constrained' : ''}" }
+#header.bootstrap{ class: header_search_open ? "search-open" : nil }
   #narrow-menu.navtabs
     .dropdown
       #header-narrow-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }

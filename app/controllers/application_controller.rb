@@ -855,11 +855,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_testing_responsive
-    if params[:test] == "responsive"
+    if current_user&.in_test_group?( "responsive-header" )
       @responsive = true
-    elsif params[:test] == "responsive-constrained"
-      @responsive = true
-      @responsive_constrained = true
     end
   end
 end

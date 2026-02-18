@@ -1,6 +1,6 @@
 - site = @site || CONFIG
 
-#footer.bootstrap{ class: "#{responsive? ? 'responsive ' : ''}#{responsive_constrained? ? 'responsive-constrained' : ''}" }
+#footer.bootstrap
   .container
     .row
       .col-sm-3.links-col
@@ -48,7 +48,7 @@
               = image_tag "bluesky-logo.svg", "aria-hidden" => true
       = raw site.custom_footer if site.custom_footer
 = raw site.custom_secondary_footer if site.custom_secondary_footer
-#inatnotice.bootstrap{ class: "#{responsive? ? 'responsive ' : ''}#{responsive_constrained? ? 'responsive-constrained' : ''}" }
+#inatnotice.bootstrap
   .container
     .row
       .col-xs-12

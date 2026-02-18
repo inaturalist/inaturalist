@@ -1680,8 +1680,8 @@ module ApplicationHelper
     @responsive
   end
 
-  def responsive_constrained?
-    @responsive && @responsive_constrained
+  def skip_min_width?
+    @skip_min_width
   end
 
   def photo_type_label( type )
