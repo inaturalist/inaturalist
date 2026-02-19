@@ -93,6 +93,27 @@ button.linky,
   height: 200px;
 }
 
+#app {
+  background: $page-background-grey;
+}
+
+body.responsive {
+  min-width: auto;
+  #header {
+    margin-bottom: 0px;
+  }
+  #app {
+    min-width: 980px;
+    padding-top: 20px;
+  }
+}
+
+body.skip-min-width {
+  #app {
+    min-width: auto;
+  }
+}
+
 .bootstrap {
   h1, h2, h3, h4, h5 {
     margin-top: 20px;

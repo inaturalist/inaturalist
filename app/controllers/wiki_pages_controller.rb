@@ -33,7 +33,9 @@ class WikiPagesController < ApplicationController
 
     # If the content uses Blueprint's grid system, we can't make the page
     # responsive
-    @responsive = false if @page&.content&.include?( "span-" )
+    if @page&.content&.include?( "span-" ) && !current_user&.in_test_group?( "responsive-header" )
+      @responsive = false
+    end
 
     result
   end

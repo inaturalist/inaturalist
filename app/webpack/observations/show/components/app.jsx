@@ -212,6 +212,8 @@ class App extends React.Component {
       && ( !observation.sounds || observation.sounds.length === 0 )
     ) ? "empty" : null;
     const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
+    const responsive = config.currentUser?.isAdmin
+      && config.currentUser?.isInTestGroup( "responsive-obs-detail" );
     const description = observation.description
       ? (
         <Row>
@@ -331,10 +333,10 @@ class App extends React.Component {
               <Col xs={12}>
                 <Grid className="top_container">
                   <Row className="top_row">
-                    <Col xs={7} className={`photos_column ${photosColClass}`}>
+                    <Col xs={responsive ? null : 7} sm={responsive ? 7 : null} className={`photos_column ${photosColClass}`}>
                       <PhotoBrowserContainer />
                     </Col>
-                    <Col xs={5} className="info_column">
+                    <Col xs={responsive ? null : 5} sm={responsive ? 5 : null} className="info_column">
                       <div className="user_info">
                         <PreviousNextButtonsContainer />
                         <UserWithIcon
@@ -376,7 +378,7 @@ class App extends React.Component {
               </Col>
             </Row>
             <Row>
-              <Col xs={7} className="middle_left">
+              <Col xs={responsive ? null : 7} sm={responsive ? 7 : null} className="middle_left">
                 { description }
                 <Row>
                   <Col xs={12}>
@@ -384,7 +386,7 @@ class App extends React.Component {
                   </Col>
                 </Row>
               </Col>
-              <Col xs={5} className="opposite_activity">
+              <Col xs={responsive ? null : 5} sm={responsive ? 5 : null} className="opposite_activity">
                 <Row>
                   <Col xs={12}>
                     <CommunityIdentificationContainer />
@@ -394,7 +396,6 @@ class App extends React.Component {
                   <LazyLoad
                     debounce={false}
                     offset={100}
-                    height={30}
                   >
                     <Col xs={12}>
                       <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
@@ -450,10 +451,10 @@ class App extends React.Component {
               </Grid>
               <Grid>
                 <Row>
-                  <Col xs={6}>
+                  <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
                     <NearbyContainer />
                   </Col>
-                  <Col xs={6}>
+                  <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
                     <SimilarContainer />
                   </Col>
                 </Row>

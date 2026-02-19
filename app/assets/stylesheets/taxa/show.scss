@@ -26,6 +26,13 @@
   min-width: 980px;
 }
 
+body.skip-min-width {
+  #TaxonDetail .container-fluid,
+  #TaxonDetail .container {
+    min-width: auto;
+  }
+}
+
 #TaxonHeader .inner {
   display: flex;
   justify-content: space-between;

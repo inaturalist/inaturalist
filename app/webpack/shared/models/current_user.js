@@ -58,6 +58,10 @@ const CurrentUser = class CurrentUser {
     }
     return true;
   }
+
+  isInTestGroup( testGroup ) {
+    return this.testGroups && this.testGroups.indexOf( testGroup ) >= 0;
+  }
 };
 
 export default CurrentUser;
