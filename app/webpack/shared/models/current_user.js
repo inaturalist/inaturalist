@@ -36,6 +36,10 @@ const CurrentUser = class CurrentUser {
     }
     return this.privileges.includes( privilege );
   }
+
+  isInTestGroup( testGroup ) {
+    return this.testGroups && this.testGroups.indexOf( testGroup ) >= 0;
+  }
 };
 
 export default CurrentUser;

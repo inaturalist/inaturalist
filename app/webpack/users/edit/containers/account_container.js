@@ -6,6 +6,7 @@ import {
   handlePlaceAutocomplete,
   handleCustomDropdownSelect
 } from "../ducks/user_settings";
+import { toggleGroup } from "../../../shared/actions/test_groups";
 
 function mapStateToProps( state ) {
   return {
@@ -23,7 +24,8 @@ function mapDispatchToProps( dispatch ) {
     },
     handleCustomDropdownSelect: ( eventKey, name ) => {
       dispatch( handleCustomDropdownSelect( eventKey, name ) );
-    }
+    },
+    toggleGroup: group => dispatch( toggleGroup( group ) )
   };
 }
 

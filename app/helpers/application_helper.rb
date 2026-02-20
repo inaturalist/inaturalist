@@ -1680,6 +1680,10 @@ module ApplicationHelper
     @responsive
   end
 
+  def skip_min_width?
+    @skip_min_width
+  end
+
   def photo_type_label( type )
     case type
     when "FlickrPhoto"

@@ -50,9 +50,10 @@ jobs:
         sudo sysctl -w vm.max_map_count=262144
 
     - name: Runs Elasticsearch
-      uses: miyataka/elastic-github-actions/elasticsearch@feature/plugin_support
+      uses: elastic/elastic-github-actions/elasticsearch@master
       with:
         stack-version: 8.15.3
+        security-enabled: false
         plugins: analysis-kuromoji
 
     - name: Ensure elasticsearch is reachable

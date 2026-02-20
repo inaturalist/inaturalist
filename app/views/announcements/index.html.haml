@@ -10,6 +10,13 @@
     .sidebar-body { max-width: 360px; }
     .sidebar-body img, .general-body img { max-width: 100%; }
     th.user, td.user { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+- content_for :extrajs do
+  :javascript
+    window.addEventListener( "DOMContentLoaded", function( ) {
+      $( ".announcement-body iframe" ).each( function( index, iframe ) {
+        $( iframe ).height( iframe.contentWindow.document.body.scrollHeight + 10 );
+      } );
+    } );
 .container
   .row
     .col-xs-12
@@ -56,7 +63,11 @@
                 - if announcement.end > Time.now
                   %span.label.label-success=t :active
               %td.announcement-body
-                - if announcement.placement === "users/dashboard#sidebar"
+                - if announcement.placement =~ /^mobile/
+                  %iframe{src: announcement_url( announcement, body: true ), style: "width: 100%; border: 0;"}
+                  %p
+                    = link_to "View in new window", announcement_url( announcement, body: true ), class: "readmore"
+                - elsif announcement.placement === "users/dashboard#sidebar"
                   %div.sidebar-body
                     = render "announcements/announcement", announcement: announcement, preview: true
                 - else

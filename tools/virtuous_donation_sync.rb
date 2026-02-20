@@ -39,7 +39,8 @@ begin
     RestClient::GatewayTimeout,
     RestClient::TooManyRequests,
     RestClient::InternalServerError,
-    RestClient::BadGateway
+    RestClient::BadGateway,
+    RestClient::Exceptions::Timeout
   ]
 
   total_verified_users = 0
@@ -81,11 +82,17 @@ begin
 
     # fetch a batch of gifts
     response = try_and_try_again( potential_errors, exponential_backoff: true, sleep: 3 ) do
-      RestClient.post( url, post_body.to_json, {
-        Authorization: "Bearer #{CONFIG.virtuous.token}",
-        content_type: :json,
-        accept: :json
-      } )
+      RestClient::Request.execute(
+        url: url,
+        method: :post,
+        payload: post_body.to_json,
+        headers: {
+          Authorization: "Bearer #{CONFIG.virtuous.token}",
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        timeout: 120
+      )
     end
     break if response&.code != 200
 
@@ -117,11 +124,17 @@ begin
     puts "Calling #{contacts_url} with long post body"
 
     contacts_response = try_and_try_again( potential_errors, exponential_backoff: true, sleep: 3 ) do
-      RestClient.post( contacts_url, contacts_post_body.to_json, {
-        Authorization: "Bearer #{CONFIG.virtuous.token}",
-        content_type: :json,
-        accept: :json
-      } )
+      RestClient::Request.execute(
+        url: contacts_url,
+        method: :post,
+        payload: contacts_post_body.to_json,
+        headers: {
+          Authorization: "Bearer #{CONFIG.virtuous.token}",
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        timeout: 120
+      )
     end
     next unless contacts_response&.code == 200
 

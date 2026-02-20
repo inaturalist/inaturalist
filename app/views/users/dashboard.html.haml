@@ -246,7 +246,7 @@
                         %a.inlineblock.label.label-default{ href: "#{@discourse_url}/c/#{dc["slug"]}", style: "color: ##{dc["text_color"]}; background-color: ##{dc["color"]}" }
                           =t "forum_categories.#{dc["name"].underscore}", default: dc["name"]
                       - topic["tags"].each do |tag|
-                        %a.inlineblock.label.label-default{ href: "#{@discourse_url}/tags/#{tag}" }= tag
+                        %a.inlineblock.label.label-default{ href: "#{@discourse_url}/tags/#{tag['slug']}" }= tag["slug"]
                   .right
                     .text-muted.time{ title: datetime.iso8601 }
                       = compact_date( datetime )

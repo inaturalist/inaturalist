@@ -33,6 +33,7 @@ import {
 import { updateSession } from "../../show/ducks/users";
 import { parseRailsErrorsResponse } from "../../../shared/util";
 import { showAlert } from "../../../shared/ducks/alert_modal";
+import { fetchRelationships, setRelationships } from "../../show/ducks/relationships";
 
 import {
   SHOW_CURRENT_OBSERVATION,
@@ -903,11 +904,27 @@ export function followUser( ) {
     if ( !state.currentObservation.observation ) { return; }
     const obs = state.currentObservation.observation;
     if ( !obs.user ) { return; }
-    const { currentUser } = state.config;
+    const { currentUser, testingApiV2 } = state.config;
     const obsUser = obs.user;
     if ( obsUser.id === currentUser.id ) {
       return;
     }
+    if ( testingApiV2 ) {
+      // v2 handles following through the relationships endpoints
+      dispatch( setRelationships( [{
+        api_status: "saving"
+      }] ) );
+      const payload = {
+        relationship: {
+          friend_id: obsUser.id
+        }
+      };
+      iNaturalistJS.relationships.create( payload ).then(
+        ( ) => dispatch( fetchRelationships( { observation: obs } ) )
+      );
+      return;
+    }
+
     const newSubscriptions = state.subscriptions.subscriptions.concat( [{
       resource_type: "User",
       resource_id: obsUser.id,
@@ -932,11 +949,26 @@ export function unfollowUser( ) {
     if ( !state.currentObservation.observation ) { return; }
     const obs = state.currentObservation.observation;
     const obsUser = obs.user;
-    const { currentUser } = state.config;
+    const { currentUser, testingApiV2 } = state.config;
     if ( !obsUser ) { return; }
     if ( obsUser.id === currentUser.id ) {
       return;
     }
+    if ( testingApiV2 ) {
+      // v2 handles following through the relationships endpoints
+      const relationship = state.relationships.relationships[0];
+      if ( _.isEmpty( relationship ) ) {
+        return;
+      }
+      dispatch( setRelationships( [{
+        api_status: "deleting"
+      }] ) );
+      iNaturalistJS.relationships.delete( { id: relationship.id } ).then( ( ) => {
+        dispatch( fetchRelationships( { observation: obs } ) );
+      } );
+      return;
+    }
+
     const newSubscriptions = _.map( state.subscriptions.subscriptions, s => (
       s.resource_type === "User" && s.resource_id === obsUser.id
         ? Object.assign( { }, s, { api_status: "deleting" } )
@@ -962,7 +994,7 @@ export function subscribe( ) {
     if ( state.currentObservation.observation.user.id === state.config.currentUser.id ) {
       return;
     }
-    const observation = { id: state.currentObservation.observation.id };
+    const { observation } = state.currentObservation;
     const obsSubscription = _.find( state.subscriptions.subscriptions, s => (
       s.resource_type === "Observation" && s.resource_id === observation.id ) );
     if ( obsSubscription ) {
@@ -981,7 +1013,7 @@ export function subscribe( ) {
       }] );
       dispatch( setSubscriptions( newSubscriptions ) );
     }
-    const payload = { id: observation.id };
+    const payload = { id: observation.uuid };
     iNaturalistJS.observations.subscribe( payload ).then( ( ) => {
       dispatch( fetchSubscriptions( { observation } ) );
     } );
