@@ -43,12 +43,14 @@
           %li.nav-item{class: ( "active" if @tab == "research_grade_results" )}
             %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: "research_grade_results" )}
               =t :observation_accuracy_experiment_research_grade_results
-          %li.nav-item{class: ( "active" if @tab == "verifiable_results" )}
-            %a.nav-link{href: observation_accuracy_experiment_path( @experiment, tab: "verifiable_results" )}
-              =t :observation_accuracy_experiment_verifiable_results
-          %li.nav-item{class: ( "active" if @tab == "all_results" )}
-            %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: "all_results" )}
-              =t :observation_accuracy_experiment_all_results
+          - if @experiment.sample_quality_filter.nil? || @experiment.sample_quality_filter.in?( %w(verifiable all) )
+            %li.nav-item{class: ( "active" if @tab == "verifiable_results" )}
+              %a.nav-link{href: observation_accuracy_experiment_path( @experiment, tab: "verifiable_results" )}
+                =t :observation_accuracy_experiment_verifiable_results
+          - if @experiment.sample_quality_filter.nil? || @experiment.sample_quality_filter == "all"
+            %li.nav-item{class: ( "active" if @tab == "all_results" )}
+              %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: "all_results" )}
+                =t :observation_accuracy_experiment_all_results
           %li.nav-item{class: ( "active" if @tab == "methods" )}
             %a.nav-link{href: observation_accuracy_experiment_path( @experiment, tab: "methods" )}
               =t :observation_accuracy_experiment_methods

@@ -119,24 +119,29 @@ class ObservationAccuracyExperiment < ApplicationRecord
     improving_window: nil
   )
     # Pull *current* IDs for these observations in a stable order for "who added what in what order"
+    # NOTE: identifications.own_observation may not exist in DB; compute from observations.user_id instead
     ids_rel = Identification.
+      joins( "JOIN observations ON observations.id = identifications.observation_id" ).
       where( observation_id: observation_ids, current: true ).
       select(
-        :id,
-        :observation_id,
-        :user_id,
-        :taxon_id,
-        :created_at,
-        :disagreement,
-        :previous_observation_taxon_id,
-        :own_observation
+        "identifications.id",
+        "identifications.observation_id",
+        "identifications.user_id",
+        "identifications.taxon_id",
+        "identifications.created_at",
+        "identifications.disagreement",
+        "identifications.previous_observation_taxon_id",
+        "(identifications.user_id = observations.user_id) AS own_observation"
       ).
-      order( :observation_id, :created_at, :id )
+      order( "identifications.observation_id, identifications.created_at, identifications.id" )
 
     return if ids_rel.none?
 
-    user_ids  = ids_rel.distinct.pluck( :user_id )
-    taxon_ids = ids_rel.distinct.pluck( :taxon_id )
+    # Compute user_ids / taxon_ids for this batch without loading everything into memory
+    base_for_distinct = ids_rel.unscope( :order )
+
+    user_ids  = base_for_distinct.reselect( :user_id ).distinct.pluck( :user_id )
+    taxon_ids = base_for_distinct.reselect( :taxon_id ).distinct.pluck( :taxon_id )
 
     # Total IDs per (user, taxon) from Postgres
     total_counts = Identification.
@@ -195,35 +200,31 @@ class ObservationAccuracyExperiment < ApplicationRecord
     counts = {}
     after_key = nil
 
-    with_es_retries do
-      loop do
-        composite = {
-          pair: {
-            composite: {
-              size: 10_000,
-              sources: [
-                { user_id: { terms: { field: "user.id" } } },
-                { taxon_id: { terms: { field: "taxon.id" } } }
-              ],
-              after: after_key
-            }
-          }
-        }
+    loop do
+      comp = {
+        size: 10_000,
+        sources: [
+          { user_id:  { terms: { field: "user.id" } } },
+          { taxon_id: { terms: { field: "taxon.id" } } }
+        ]
+      }
+      comp[:after] = after_key if after_key.present?
 
-        resp = Identification.elastic_search(
-          size: 0,
-          filters: filters,
-          aggregate: composite
-        ).response.aggregations.pair
+      composite = { pair: { composite: comp } }
 
-        resp.buckets.each do | b |
-          key = b["key"]
-          counts[[key["user_id"].to_i, key["taxon_id"].to_i]] = b["doc_count"].to_i
-        end
+      resp = Identification.elastic_search(
+        size: 0,
+        filters: filters,
+        aggregate: composite
+      ).response.aggregations.pair
 
-        after_key = resp.after_key
-        break if after_key.blank?
+      resp.buckets.each do | b |
+        key = b["key"]
+        counts[[key["user_id"].to_i, key["taxon_id"].to_i]] = b["doc_count"].to_i
       end
+
+      after_key = resp.after_key
+      break if after_key.blank?
     end
 
     counts

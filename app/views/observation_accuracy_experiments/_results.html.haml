@@ -131,6 +131,8 @@
                           continent_label = case label
                           when "Africa"
                             t( "places_name.africa" )
+                          when "Antarctica"
+                            t( "places_name.antarctica" )
                           when "Asia"
                             t( "places_name.asia" )
                           when "Europe"
@@ -141,7 +143,7 @@
                             t( "places_name.oceania" )
                           when "South America"
                             t( "places_name.south_america" )
-                          when "none" 
+                          when "none"
                             t :none
                           end
                           truncate( continent_label, length: 8, omission: "..." )
@@ -235,6 +237,8 @@
                           continent_label = case label
                           when "Africa"
                             t( "places_name.africa" )
+                          when "Antarctica"
+                            t( "places_name.antarctica" )
                           when "Asia"
                             t( "places_name.asia" )
                           when "Europe"
