@@ -2946,7 +2946,12 @@ CREATE TABLE public.observation_accuracy_experiments (
     updated_at timestamp(6) without time zone NOT NULL,
     version character varying,
     consider_location boolean DEFAULT false,
-    post_id integer
+    post_id integer,
+    id_history_csv_path character varying,
+    sample_quality_filter character varying,
+    generate_sample_now boolean,
+    export_id_history_csv boolean,
+    id_history_improving_use_recent_window boolean
 );
 
 
@@ -12123,6 +12128,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251119043443'),
 ('20251119130558'),
 ('20251202224705'),
-('20260119093529');
+('20260119093529'),
+('20260220230351');
 
 

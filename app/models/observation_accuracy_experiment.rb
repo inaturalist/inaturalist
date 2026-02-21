@@ -13,10 +13,16 @@ class ObservationAccuracyExperiment < ApplicationRecord
   attribute :taxon_id, :integer
   attribute :consider_location, :boolean, default: false
   attribute :generate_sample_now, :boolean, default: false
+  attribute :export_id_history_csv, :boolean, default: false
+  attribute :id_history_csv_path, :string
+  attribute :id_history_improving_use_recent_window, :boolean, default: false
+  attribute :sample_quality_filter, :string, default: "all"
 
   after_create :generate_sample_if_requested
 
   validates_presence_of :version
+  SAMPLE_QUALITY_FILTERS = %w(all verifiable research).freeze
+  validates :sample_quality_filter, inclusion: { in: SAMPLE_QUALITY_FILTERS }
 
   NEEDS_ID_PILOT_VERSION = "Needs ID Pilot"
   NEEDS_ID_PILOT_POST_TITLE = "Identification Pilot to Onboard New Users"
@@ -25,8 +31,202 @@ class ObservationAccuracyExperiment < ApplicationRecord
   GAPS_OBS_PILOT_POST_TITLE = "Based in Canada? Help us observe and identify species gaps in the Computer Vision Model!"
   GAPS_ID_PILOT_POST_TITLE = "Based in Canada? Help us observe and identify species gaps in the Computer Vision Model!"
 
+  ID_HISTORY_EXPORT_OBS_BATCH = 1_000
+  MAX_OBS_PER_VALIDATOR = 100
+  ES_MAX_RETRIES = 5
+
   def generate_sample_if_requested
     generate_sample if generate_sample_now
+  end
+
+  def now
+    Time.current
+  end
+
+  def with_es_retries
+    retries = 0
+    begin
+      yield
+    rescue Faraday::ConnectionFailed => e
+      retries += 1
+      raise e if retries > ES_MAX_RETRIES
+
+      puts "ConnectionFailed (attempt #{retries}/#{ES_MAX_RETRIES}), retrying..."
+      sleep( 2**retries )
+      retry
+    end
+  end
+
+  def should_export_id_history_csv?
+    return true if export_id_history_csv
+
+    # allow ENV toggle w/out schema changes
+    ENV["OAE_EXPORT_ID_HISTORY_CSV"].to_s.downcase.in?( ["1", "true", "t", "yes", "y"] )
+  end
+
+  def resolved_id_history_csv_path
+    id_history_csv_path.presence || ENV.fetch( "OAE_ID_HISTORY_CSV_PATH", nil )
+  end
+
+  def export_current_identification_history_csv!(
+    observation_ids:,
+    csv_path:,
+    exclude_own_observation_ids: false,
+    improving_window: nil
+  )
+    raise ArgumentError, "csv_path required for ID history export" if csv_path.blank?
+
+    FileUtils.mkdir_p( File.dirname( csv_path ) )
+
+    # Create file + header once
+    wrote_header = File.exist?( csv_path ) && File.size( csv_path ) > 0
+    CSV.open( csv_path, ( wrote_header ? "a" : "w" ) ) do | csv |
+      unless wrote_header
+        csv << [
+          "observation_accuracy_experiment_id",
+          "observation_id",
+          "position",
+          "identification_id",
+          "identification_created_at",
+          "user_id",
+          "taxon_id",
+          "disagreement",
+          "previous_observation_taxon_id",
+          "own_observation",
+          "user_taxon_total_ids",
+          "user_taxon_improving_ids"
+        ]
+      end
+
+      observation_ids.each_slice( ID_HISTORY_EXPORT_OBS_BATCH ) do | obs_batch |
+        export_current_identification_history_csv_batch!(
+          csv: csv,
+          observation_ids: obs_batch,
+          exclude_own_observation_ids: exclude_own_observation_ids,
+          improving_window: improving_window
+        )
+      end
+    end
+
+    puts "Wrote ID history CSV: #{csv_path}"
+    true
+  end
+
+  def export_current_identification_history_csv_batch!(
+    csv:,
+    observation_ids:,
+    exclude_own_observation_ids: false,
+    improving_window: nil
+  )
+    # Pull *current* IDs for these observations in a stable order for "who added what in what order"
+    ids_rel = Identification.
+      where( observation_id: observation_ids, current: true ).
+      select(
+        :id,
+        :observation_id,
+        :user_id,
+        :taxon_id,
+        :created_at,
+        :disagreement,
+        :previous_observation_taxon_id,
+        :own_observation
+      ).
+      order( :observation_id, :created_at, :id )
+
+    return if ids_rel.none?
+
+    user_ids  = ids_rel.distinct.pluck( :user_id )
+    taxon_ids = ids_rel.distinct.pluck( :taxon_id )
+
+    # Total IDs per (user, taxon) from Postgres
+    total_counts = Identification.
+      where( user_id: user_ids, taxon_id: taxon_ids ).
+      group( :user_id, :taxon_id ).
+      count
+    # => { [user_id, taxon_id] => n }
+
+    # Improving IDs per (user, taxon) from ES (composite agg with paging)
+    improving_counts = improving_id_counts_by_user_and_taxon(
+      user_ids: user_ids,
+      taxon_ids: taxon_ids,
+      window: improving_window,
+      exclude_own_observation_ids: exclude_own_observation_ids
+    )
+
+    pos_by_obs = Hash.new( 0 )
+
+    ids_rel.find_each( batch_size: 5_000 ) do | ident |
+      pos_by_obs[ident.observation_id] += 1
+      pair = [ident.user_id, ident.taxon_id]
+      csv << [
+        id,
+        ident.observation_id,
+        pos_by_obs[ident.observation_id],
+        ident.id,
+        ident.created_at,
+        ident.user_id,
+        ident.taxon_id,
+        ident.disagreement,
+        ident.previous_observation_taxon_id,
+        ident.own_observation,
+        total_counts[pair] || 0,
+        improving_counts[pair] || 0
+      ]
+    end
+  end
+
+  def improving_id_counts_by_user_and_taxon( user_ids:, taxon_ids:, window: nil, exclude_own_observation_ids: false )
+    return {} if user_ids.blank? || taxon_ids.blank?
+
+    filters = [
+      {
+        bool: {
+          must: [
+            { term: { category: "improving" } },
+            { terms: { "user.id": user_ids } },
+            { terms: { "taxon.id": taxon_ids } }
+          ]
+        }
+      }
+    ]
+    filters.unshift( { range: { created_at: { gte: window } } } ) if window
+    filters.last[:bool][:must] << { term: { own_observation: false } } if exclude_own_observation_ids
+
+    counts = {}
+    after_key = nil
+
+    with_es_retries do
+      loop do
+        composite = {
+          pair: {
+            composite: {
+              size: 10_000,
+              sources: [
+                { user_id: { terms: { field: "user.id" } } },
+                { taxon_id: { terms: { field: "taxon.id" } } }
+              ],
+              after: after_key
+            }
+          }
+        }
+
+        resp = Identification.elastic_search(
+          size: 0,
+          filters: filters,
+          aggregate: composite
+        ).response.aggregations.pair
+
+        resp.buckets.each do | b |
+          key = b["key"]
+          counts[[key["user_id"].to_i, key["taxon_id"].to_i]] = b["doc_count"].to_i
+        end
+
+        after_key = resp.after_key
+        break if after_key.blank?
+      end
+    end
+
+    counts
   end
 
   def self.quality_metric_observation_ids( observation_ids, metrics )
@@ -34,20 +234,28 @@ class ObservationAccuracyExperiment < ApplicationRecord
       select( :observation_id ).
       where( observation_id: observation_ids, metric: metrics ).
       group( :observation_id, :metric ).
-      having(
-        "COUNT( CASE WHEN agree THEN 1 ELSE NULL END ) < COUNT( CASE WHEN agree THEN NULL ELSE 1 END )"
-      ).
+      having( "COUNT( CASE WHEN agree THEN 1 ELSE NULL END ) < COUNT( CASE WHEN agree THEN NULL ELSE 1 END )" ).
       distinct.pluck( :observation_id )
   end
 
+  # ---- Taxon cache for assess_quality (big speedup in assess_experiment) ----
+  def taxon_cache
+    @taxon_cache ||= {}
+  end
+
+  def cached_taxon( tid )
+    taxon_cache[tid] ||= Taxon.find( tid )
+  end
+
   def assess_quality( test_taxon_id, groundtruth_taxon_id, disagreement, previous_observation_taxon_id )
-    test_taxon = Taxon.find( test_taxon_id )
-    groundtruth_taxon = Taxon.find( groundtruth_taxon_id )
+    test_taxon = cached_taxon( test_taxon_id )
+    groundtruth_taxon = cached_taxon( groundtruth_taxon_id )
+
     return 1 if groundtruth_taxon_id == test_taxon_id || groundtruth_taxon.descendant_of?( test_taxon )
 
     return 0 if !groundtruth_taxon.in_same_branch_of?( test_taxon ) ||
       ( groundtruth_taxon.ancestor_of?( test_taxon ) &&
-      disagreement && previous_observation_taxon_id == test_taxon_id )
+        disagreement && previous_observation_taxon_id == test_taxon_id )
 
     nil
   end
@@ -60,7 +268,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     iders
   end
 
-  def get_improving_identifiers( taxon_id: nil, place_id: nil, window: nil, not_own_observation: nil )
+  def get_improving_identifiers( taxon_id: nil, place_id: nil, window: nil, exclude_own_observation_ids: nil )
     filter = [
       {
         bool: {
@@ -70,6 +278,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
         }
       }
     ]
+
     if window
       filter.unshift(
         {
@@ -81,13 +290,16 @@ class ObservationAccuracyExperiment < ApplicationRecord
         }
       )
     end
-    filter.last[:bool][:must] << { term: { own_observation: false } } if not_own_observation
+
+    filter.last[:bool][:must] << { term: { own_observation: false } } if exclude_own_observation_ids
     filter.last[:bool][:must] << { term: { "taxon.id": taxon_id } } if taxon_id
+
     if place_id
       filter.last[:bool][:must] << {
         terms: { "observation.place_ids": Array( place_id ) }
       }
     end
+
     aggregation = {
       user_id: {
         terms: {
@@ -96,26 +308,22 @@ class ObservationAccuracyExperiment < ApplicationRecord
         }
       }
     }
-    begin
-      response = Identification.elastic_search(
+
+    with_es_retries do
+      Identification.elastic_search(
         size: 0,
         filters: filter,
         aggregate: aggregation
       ).response.aggregations.user_id.buckets
-    rescue Faraday::ConnectionFailed
-      puts "ConnectionFailed, trying again"
-      sleep( 10 )
-      retry
     end
-    response
   end
 
-  def get_qualified_candidates( taxon_id: nil, window: nil, place_id: nil, not_own_observation: nil )
+  def get_qualified_candidates( taxon_id: nil, window: nil, place_id: nil, exclude_own_observation_ids: nil )
     ids_data = get_improving_identifiers(
       taxon_id: taxon_id,
       place_id: place_id,
       window: window,
-      not_own_observation: not_own_observation
+      exclude_own_observation_ids: exclude_own_observation_ids
     )
     sorted_frequency_hash = ids_data.to_h {| i | [i["key"], i["doc_count"]] }
     keepers = User.where( "id IN (?) AND last_active > ?", sorted_frequency_hash.keys, 1.year.ago ).pluck( :id )
@@ -127,113 +335,159 @@ class ObservationAccuracyExperiment < ApplicationRecord
   # Qualified candidate identifiers have made at least improving_id_threshold number of improving IDs
   # preferably within recent_window. We want up to validator_redundancy_factor of each. Every taxon
   # might not have qualified identifers. Its slow because we have to make idententifications API calls
-  def get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon, top_iders, not_own_observation )
+  def get_candidate_identifiers_by_taxon( observation_ids_grouped_by_taxon, top_iders, exclude_own_observation_ids )
     root_id = Taxon::LIFE.id
+    target_n = validator_redundancy_factor * 2
+    thresh = improving_id_threshold
+    recent = recent_window
+
     identifiers_by_taxon_id = {}
     counter = 0
     denom = observation_ids_grouped_by_taxon.count
-    observation_ids_grouped_by_taxon.each_key do | taxon_id |
-      identifiers_by_taxon_id[taxon_id] = if taxon_id == root_id
-        qualified_candidates = top_iders.select {| _, v | v >= improving_id_threshold }
-        qualified_candidates.keys.sample( validator_redundancy_factor * 2 ) || []
-      else
-        recent_qualified_candidates = get_qualified_candidates(
-          taxon_id: taxon_id,
-          window: recent_window,
-          not_own_observation: not_own_observation
-        )
-        if recent_qualified_candidates.count < validator_redundancy_factor
-          top_ider_qualified_candidates = get_qualified_candidates(
-            taxon_id: taxon_id,
-            window: nil,
-            not_own_observation: not_own_observation
+
+    observation_ids_grouped_by_taxon.each_key do | tid |
+      identifiers_by_taxon_id[tid] =
+        if tid == root_id
+          qualified_candidates = top_iders.select {| _, v | v >= thresh }
+          qualified_candidates.keys.sample( target_n ) || []
+        else
+          recent_qualified_candidates = get_qualified_candidates(
+            taxon_id: tid,
+            window: recent,
+            exclude_own_observation_ids: exclude_own_observation_ids
           )
-          recent_qualified_candidates = recent_qualified_candidates.
-            union( top_ider_qualified_candidates ).first( validator_redundancy_factor * 2 )
+
+          if recent_qualified_candidates.count < validator_redundancy_factor
+            top_ider_qualified_candidates = get_qualified_candidates(
+              taxon_id: tid,
+              window: nil,
+              exclude_own_observation_ids: exclude_own_observation_ids
+            )
+            recent_qualified_candidates =
+              ( recent_qualified_candidates | top_ider_qualified_candidates ).first( target_n )
+          else
+            recent_qualified_candidates = recent_qualified_candidates.first( target_n )
+          end
+
+          recent_qualified_candidates
         end
-        recent_qualified_candidates
-      end
+
       counter += 1
       puts "Processed #{counter} records of #{denom}" if ( counter % 100 ).zero?
     end
+
     identifiers_by_taxon_id
   end
 
-  def get_candidate_identifiers_by_taxon_and_place( observation_ids_grouped_by_taxon_and_place, top_iders, not_own_obs )
+  def get_candidate_identifiers_by_taxon_and_place( observation_ids_grouped_by_taxon_and_place, top_iders,
+                                                    exclude_own_observation_ids )
     root_id = Taxon::LIFE.id
+    target_n = validator_redundancy_factor * 2
+    thresh = improving_id_threshold
+    recent = recent_window
+
     identifiers_by_taxon_and_place = {}
     counter = 0
     denom = observation_ids_grouped_by_taxon_and_place.count
+
     observation_ids_grouped_by_taxon_and_place.each_key do | key |
-      taxon_id = key[0]
-      place_id = key[1]
-      identifiers_by_taxon_and_place[[taxon_id, place_id]] = if taxon_id == root_id
-        qualified_candidates = top_iders.select {| _, v | v >= improving_id_threshold }
-        qualified_candidates.keys.sample( validator_redundancy_factor * 2 ) || []
-      else
-        recent_qualified_candidates = get_qualified_candidates(
-          taxon_id: taxon_id,
-          window: recent_window,
-          place_id: place_id,
-          not_own_observation: not_own_obs
-        )
-        if recent_qualified_candidates.count < validator_redundancy_factor
-          top_ider_qualified_candidates = get_qualified_candidates(
-            taxon_id: taxon_id,
-            window: nil,
-            place_id: place_id,
-            not_own_observation: not_own_obs
+      tid = key[0]
+      pid = key[1]
+      identifiers_by_taxon_and_place[[tid, pid]] =
+        if tid == root_id
+          qualified_candidates = top_iders.select {| _, v | v >= thresh }
+          qualified_candidates.keys.sample( target_n ) || []
+        else
+          recent_qualified_candidates = get_qualified_candidates(
+            taxon_id: tid,
+            window: recent,
+            place_id: pid,
+            exclude_own_observation_ids: exclude_own_observation_ids
           )
-          recent_qualified_candidates = recent_qualified_candidates.
-            union( top_ider_qualified_candidates ).first( validator_redundancy_factor * 2 )
+
+          if recent_qualified_candidates.count < validator_redundancy_factor
+            top_ider_qualified_candidates = get_qualified_candidates(
+              taxon_id: tid,
+              window: nil,
+              place_id: pid,
+              exclude_own_observation_ids: exclude_own_observation_ids
+            )
+            recent_qualified_candidates =
+              ( recent_qualified_candidates | top_ider_qualified_candidates ).first( target_n )
+          else
+            recent_qualified_candidates = recent_qualified_candidates.first( target_n )
+          end
+
+          recent_qualified_candidates
         end
-        recent_qualified_candidates
-      end
+
       counter += 1
       puts "Processed #{counter} records of #{denom}" if ( counter % 10 ).zero?
     end
+
     identifiers_by_taxon_and_place
+  end
+
+  # ---- Association helpers (reduce duplication + enforce caps consistently) ----
+  def prioritize_candidates( sorted_identifiers, top_iders, user_obs_count )
+    # enforce cap
+    candidates = sorted_identifiers.reject {| uid | user_obs_count[uid] >= MAX_OBS_PER_VALIDATOR }
+
+    # prefer top iders first
+    top_pref = candidates.select {| uid | top_iders.key?( uid ) }
+    rest = candidates.reject {| uid | top_pref.include?( uid ) }
+    top_pref + rest
+  end
+
+  def remove_blocked!( candidates, observer_id, user_blocks )
+    candidates.reject! {| uid | user_blocks[uid]&.include?( observer_id ) }
+  end
+
+  def trim_existing_identifiers!( candidates, observation_identifications, target_n )
+    return if candidates.length <= target_n
+    return if observation_identifications.blank?
+
+    running_length = candidates.length
+    candidates.reject! do | uid |
+      include_user = observation_identifications.include?( uid ) && running_length > target_n
+      running_length -= 1 if include_user
+      include_user
+    end
   end
 
   def associate_observations_with_identifiers( observation_ids_grouped_by_taxon, identifiers_by_taxon, top_iders )
     validator_candidates = identifiers_by_taxon.values.flatten.uniq
     observation_ids = observation_ids_grouped_by_taxon.values.flatten.uniq
-    observer_hash = Observation.find( observation_ids ).to_h {| o | [o.id, o.user_id] }
+
+    observer_hash = Observation.where( id: observation_ids ).pluck( :id, :user_id ).to_h
+
     user_blocks = UserBlock.
       where( blocked_user_id: validator_candidates ).
       group( :blocked_user_id ).
       pluck( :blocked_user_id, Arel.sql( "ARRAY_AGG(user_id)" ) ).to_h
+
     observation_identifications_hash = Observation.
       joins( :identifications ).
       where( id: observation_ids ).
       group( :id ).
       pluck( :id, Arel.sql( "ARRAY_AGG(DISTINCT identifications.user_id) AS user_ids" ) ).to_h
+
     associations = Hash.new {| hash, key | hash[key] = [] }
     user_obs_count = Hash.new( 0 )
-    observation_ids_grouped_by_taxon.each do | taxon_id, obs_ids |
-      sorted_identifiers = identifiers_by_taxon[taxon_id] || []
+
+    observation_ids_grouped_by_taxon.each do | tid, obs_ids |
+      sorted_identifiers = identifiers_by_taxon[tid] || []
+
       obs_ids.each do | obs_id |
-        top_ider_candidates = sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
-          select {| user_id | top_iders.keys.include? user_id }
-        top_ider_candidates.concat( sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
-          reject {| user_id | top_ider_candidates.include? user_id } )
-        top_ider_candidates = top_ider_candidates.reject do | user_id |
-          user_blocks[user_id]&.include?( observer_hash[obs_id] )
-        end
-        if top_ider_candidates.length > validator_redundancy_factor
-          observation_identifications = observation_identifications_hash[obs_id] || []
-          running_length = top_ider_candidates.length
-          top_ider_candidates = top_ider_candidates.reject do | user_id |
-            include_user = observation_identifications.include?( user_id ) &&
-              running_length > validator_redundancy_factor
-            running_length -= 1 if include_user
-            include_user
-          end
-        end
-        top_ider_candidates.each {| user_id | user_obs_count[user_id] += 1 }
-        associations[obs_id] += top_ider_candidates
+        candidates = prioritize_candidates( sorted_identifiers, top_iders, user_obs_count )
+        remove_blocked!( candidates, observer_hash[obs_id], user_blocks )
+        trim_existing_identifiers!( candidates, observation_identifications_hash[obs_id], validator_redundancy_factor )
+
+        candidates.each {| uid | user_obs_count[uid] += 1 }
+        associations[obs_id].concat( candidates )
       end
     end
+
     associations.each_with_object( {} ) do | ( obs_id, user_ids ), result |
       user_ids.each do | user_id |
         result[user_id] ||= []
@@ -249,44 +503,38 @@ class ObservationAccuracyExperiment < ApplicationRecord
   )
     validator_candidates = identifiers_by_taxon_and_place.values.flatten.uniq
     observation_ids = observation_ids_grouped_by_taxon_and_place.values.flatten.uniq
-    observer_hash = Observation.find( observation_ids ).to_h {| o | [o.id, o.user_id] }
+
+    observer_hash = Observation.where( id: observation_ids ).pluck( :id, :user_id ).to_h
+
     user_blocks = UserBlock.
       where( blocked_user_id: validator_candidates ).
       group( :blocked_user_id ).
       pluck( :blocked_user_id, Arel.sql( "ARRAY_AGG(user_id)" ) ).to_h
+
     observation_identifications_hash = Observation.
       joins( :identifications ).
       where( id: observation_ids ).
       group( :id ).
       pluck( :id, Arel.sql( "ARRAY_AGG(DISTINCT identifications.user_id) AS user_ids" ) ).to_h
+
     associations = Hash.new {| hash, key | hash[key] = [] }
     user_obs_count = Hash.new( 0 )
+
     observation_ids_grouped_by_taxon_and_place.each do | key, obs_ids |
-      taxon_id = key[0]
-      place_id = key[1]
-      sorted_identifiers = identifiers_by_taxon_and_place[[taxon_id, place_id]] || []
+      tid = key[0]
+      pid = key[1]
+      sorted_identifiers = identifiers_by_taxon_and_place[[tid, pid]] || []
+
       obs_ids.each do | obs_id |
-        top_ider_candidates = sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
-          select {| user_id | top_iders.keys.include? user_id }
-        top_ider_candidates.concat( sorted_identifiers.reject {| user_id | user_obs_count[user_id] >= 100 }.
-          reject {| user_id | top_ider_candidates.include? user_id } )
-        top_ider_candidates = top_ider_candidates.reject do | user_id |
-          user_blocks[user_id]&.include?( observer_hash[obs_id] )
-        end
-        if top_ider_candidates.length > validator_redundancy_factor
-          observation_identifications = observation_identifications_hash[obs_id] || []
-          running_length = top_ider_candidates.length
-          top_ider_candidates = top_ider_candidates.reject do | user_id |
-            include_user = observation_identifications.include?( user_id ) &&
-              running_length > validator_redundancy_factor
-            running_length -= 1 if include_user
-            include_user
-          end
-        end
-        top_ider_candidates.each {| user_id | user_obs_count[user_id] += 1 }
-        associations[obs_id] += top_ider_candidates
+        candidates = prioritize_candidates( sorted_identifiers, top_iders, user_obs_count )
+        remove_blocked!( candidates, observer_hash[obs_id], user_blocks )
+        trim_existing_identifiers!( candidates, observation_identifications_hash[obs_id], validator_redundancy_factor )
+
+        candidates.each {| uid | user_obs_count[uid] += 1 }
+        associations[obs_id].concat( candidates )
       end
     end
+
     associations.each_with_object( {} ) do | ( obs_id, user_ids ), result |
       user_ids.each do | user_id |
         result[user_id] ||= []
@@ -297,25 +545,65 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def get_place_obs( oids, place_ids )
     batch_size = 500
-    total_elapsed_time = 0
+    total_elapsed_time = 0.0
     observation_places = []
+
     ( 0..oids.length - 1 ).step( batch_size ) do | i |
-      start_time = Time.now
+      start_time = now
       observation_ids = oids[i, batch_size]
       batch_observation_places = ObservationsPlace.
         where( observation_id: observation_ids, place_id: place_ids ).
         pluck( :observation_id, :place_id )
       observation_places.concat( batch_observation_places )
-      end_time = Time.now
-      elapsed_time = end_time - start_time
-      total_elapsed_time += elapsed_time
+      total_elapsed_time += ( now - start_time )
     end
+
     puts "Total time: #{total_elapsed_time} seconds"
     puts "Average time per batch: #{total_elapsed_time / ( oids.length.to_f / batch_size )} seconds"
-    observation_places.to_h
+
+    # If multiple places match, just take the first one encountered per obs
+    observation_places.group_by( &:first ).transform_values {| arr | arr.first.second }
   end
 
-  def distribute_to_validators
+  # groups_by_taxon_place: { [taxon_id, place_id] => [obs_id, ...] }
+  # by_taxon_place:        { [taxon_id, place_id] => [user_id, ...] } (may be empty)
+  # by_taxon:              { taxon_id => [user_id, ...] } fallback
+  def identifiers_by_taxon_and_place_with_fallback(
+    groups_by_taxon_place,
+    by_taxon_place,
+    by_taxon,
+    target_n
+  )
+    groups_by_taxon_place.each_key.with_object( {} ) do | ( taxon_id2, place_id ), out |
+      preferred = Array( by_taxon_place[[taxon_id2, place_id]] ).uniq
+      fallback  = Array( by_taxon[taxon_id2] )
+      merged = ( preferred + fallback ).uniq
+      out[[taxon_id2, place_id]] = merged.first( target_n )
+    end
+  end
+
+  # identifiers_by_taxon_and_place: { [taxon_id, place_id] => [user_id, ...] }
+  # identifiers_by_taxon:          { taxon_id => [user_id, ...] }
+  def top_off_identifiers_by_taxon_and_place( by_taxon_place, by_taxon, target_n )
+    out = {}
+
+    by_taxon_place.each do | ( taxon_id2, place_id ), ids |
+      ids ||= []
+      ids = ids.uniq
+
+      if ids.length < target_n
+        fallback = Array( by_taxon[taxon_id2] )
+        # Keep ordering: existing (place-aware) first, then fallback in order
+        ids = ( ids + fallback ).uniq
+      end
+
+      out[[taxon_id2, place_id]] = ids.first( target_n )
+    end
+
+    out
+  end
+
+  def distribute_to_validators( exclude_own_observation_ids: false )
     puts "Distributing among validators"
     samples = observation_accuracy_samples.where( no_evidence: false )
 
@@ -326,18 +614,41 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     if consider_location
       place_ids = Place.where( admin_level: Place::COUNTRY_LEVEL ).pluck( :id )
-      place_obs = get_place_obs( samples.pluck( :observation_id ), place_ids )
-      place_hash = place_obs.to_h
+      place_hash = get_place_obs( samples.pluck( :observation_id ), place_ids )
 
       observation_ids_grouped_by_taxon_and_place = samples.
         group_by {| sample | [sample.taxon_id, place_hash[sample.observation_id]] }.
         transform_values {| s | s.map( &:observation_id ) }
 
-      puts "Select identifiers for each taxon represented in the sample..."
+      puts "Select identifiers for each taxon+place represented in the sample..."
       identifiers_by_taxon_and_place = get_candidate_identifiers_by_taxon_and_place(
         observation_ids_grouped_by_taxon_and_place,
         top_iders,
-        true
+        exclude_own_observation_ids
+      )
+
+      # --- fallback: taxon-only candidates ---
+      observation_ids_grouped_by_taxon = samples.group_by( &:taxon_id ).
+        transform_values {| s | s.map( &:observation_id ) }
+
+      puts "Select fallback identifiers by taxon (ignoring place)..."
+      identifiers_by_taxon = get_candidate_identifiers_by_taxon(
+        observation_ids_grouped_by_taxon,
+        top_iders.first( 50 ).to_h,
+        exclude_own_observation_ids
+      )
+
+      identifiers_by_taxon_and_place = identifiers_by_taxon_and_place_with_fallback(
+        observation_ids_grouped_by_taxon_and_place,
+        identifiers_by_taxon_and_place,
+        identifiers_by_taxon,
+        validator_redundancy_factor
+      )
+
+      identifiers_by_taxon_and_place = top_off_identifiers_by_taxon_and_place(
+        identifiers_by_taxon_and_place,
+        identifiers_by_taxon,
+        validator_redundancy_factor
       )
 
       puts "Assign observations to identifiers..."
@@ -366,18 +677,25 @@ class ObservationAccuracyExperiment < ApplicationRecord
     end
 
     puts "Optimally reduce to validator redundancy factor and save..."
-    sorted_obs_id_by_user = obs_id_by_user.sort_by {| _user_id, observation_ids | observation_ids.length }.to_h
-    sorted_obs_id_by_user.each do | user_id, observation_ids |
-      if observation_ids.all? do | obs_id |
-        sorted_obs_id_by_user.count {| _, obs_ids | obs_ids.include?( obs_id ) } > validator_redundancy_factor
+
+    sorted = obs_id_by_user.sort_by {| _uid, obs_ids | obs_ids.length }.to_h
+
+    # Precompute per-observation coverage once (major speedup)
+    coverage = Hash.new( 0 )
+    sorted.each_value {| obs_ids | obs_ids.each {| oid | coverage[oid] += 1 } }
+
+    sorted.each do | user_id, observation_ids |
+      if observation_ids.all? {| obs_id | coverage[obs_id] > validator_redundancy_factor }
+        sorted.delete( user_id )
+        next
       end
-        sorted_obs_id_by_user.delete( user_id )
-      else
-        observation_validator = ObservationAccuracyValidator.
-          create( user_id: user_id, observation_accuracy_experiment_id: id )
-        observation_validator.observation_accuracy_samples << ObservationAccuracySample.
-          where( observation_id: observation_ids, observation_accuracy_experiment_id: id )
-      end
+
+      observation_validator = ObservationAccuracyValidator.create(
+        user_id: user_id,
+        observation_accuracy_experiment_id: id
+      )
+      observation_validator.observation_accuracy_samples << ObservationAccuracySample.
+        where( observation_id: observation_ids, observation_accuracy_experiment_id: id )
     end
   end
 
@@ -389,8 +707,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       group( "observation_accuracy_samples.id" ).
       having( "COUNT(observation_accuracy_validators.id) < ?", 5 )
     place_ids = Place.where( admin_level: Place::CONTINENT_LEVEL ).pluck( :id )
-    place_obs = get_place_obs( sample_subset.pluck( :observation_id ), place_ids )
-    place_hash = place_obs.to_h
+    place_hash = get_place_obs( sample_subset.pluck( :observation_id ), place_ids )
 
     observation_ids_grouped_by_taxon_and_place = sample_subset.
       group_by {| sample | [sample.taxon_id, place_hash[sample.observation_id]] }.
@@ -459,51 +776,78 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def get_continent_obs( oids, continents )
     batch_size = 500
-    total_elapsed_time = 0
+    total_elapsed_time = 0.0
     observation_continents = []
+
     ( 0..oids.length - 1 ).step( batch_size ) do | i |
-      start_time = Time.now
+      start_time = now
       observation_ids = oids[i, batch_size]
       batch_observation_continents = ObservationsPlace.
         where( observation_id: observation_ids, place_id: continents ).
         pluck( :observation_id, :place_id )
       observation_continents.concat( batch_observation_continents )
-      end_time = Time.now
-      elapsed_time = end_time - start_time
-      total_elapsed_time += elapsed_time
+      total_elapsed_time += ( now - start_time )
     end
+
     puts "Total time: #{total_elapsed_time} seconds"
     puts "Average time per batch: #{total_elapsed_time / ( oids.length.to_f / batch_size )} seconds"
-    observation_continents.to_h
+
+    observation_continents.group_by( &:first ).transform_values {| arr | arr.first.second }
+  end
+
+  def sampled_observation_ids( limit_n )
+    rel = Observation.all
+
+    # quality filter
+    rel = case sample_quality_filter
+    when "research"
+      rel.where( quality_grade: "research" )
+    when "verifiable"
+      rel.where( quality_grade: ["research", "needs_id"] )
+    else
+      rel
+    end
+
+    # taxon subtree filter
+    if taxon_id.present? && taxon_id != Taxon::LIFE.id
+      taxon = Taxon.find( taxon_id )
+      ancestry_string = "#{taxon.ancestry}/#{taxon.id}"
+      rel = rel.joins( :taxon ).where(
+        "(taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?)",
+        taxon_id, ancestry_string, "#{ancestry_string}/%"
+      )
+    end
+
+    rel.order( Arel.sql( "RANDOM()" ) ).limit( limit_n ).pluck( :id )
   end
 
   def generate_sample
-    last_obs = Observation.last
-    return nil if last_obs.nil?
+    return if Observation.last.nil?
 
+    start_time = now
     puts "Generating sample of size #{sample_size}..."
-    start_time = Time.now
-    sample_size = self.sample_size
-    taxon_id = self.taxon_id
-    ceil = last_obs.id
-    random_numbers = ( 1..ceil ).to_a.sample( sample_size * 2 )
-    o = if taxon_id.nil? || taxon_id == Taxon::LIFE.id
-      Observation.select( :id ).where( "id IN (?)", random_numbers )
-    else
-      taxon = Taxon.find( taxon_id )
-      ancestry_string = "#{taxon.ancestry}/#{taxon.id}"
-      Observation.
-        joins( :taxon ).select( "observations.id" ).
-        where(
-          "( taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ( ? ) ) AND observations.id IN ( ? )",
-          taxon_id,
-          ancestry_string,
-          "#{ancestry_string}/%",
-          random_numbers
+
+    o = sampled_observation_ids( sample_size )
+    puts "Warning: only found #{o.length} matching observations (requested #{sample_size})" if o.length < sample_size
+
+    observations = Observation.includes( :taxon ).where( id: o ).to_a
+
+    if should_export_id_history_csv?
+      path = resolved_id_history_csv_path
+      improving_window = id_history_improving_use_recent_window ? recent_window : nil
+      if path.present?
+        puts "Exporting current identification history snapshot to CSV..."
+        export_current_identification_history_csv!(
+          observation_ids: o,
+          csv_path: path,
+          exclude_own_observation_ids: false,
+          improving_window: improving_window
         )
+      else
+        puts "OAE_EXPORT_ID_HISTORY_CSV enabled but no CSV path set " \
+          "(id_history_csv_path or ENV[OAE_ID_HISTORY_CSV_PATH])"
+      end
     end
-    o = o.map {| a | a[:id] }.shuffle[0..( sample_size - 1 )]
-    observations = Observation.includes( :taxon ).find( o )
 
     puts "Fetching continent groupings"
     continents = Place.where( admin_level: Place::CONTINENT_LEVEL ).map( &:id )
@@ -521,12 +865,13 @@ class ObservationAccuracyExperiment < ApplicationRecord
       next if taxon_descendant_count[obs_taxon_id]
 
       obs_taxon = observation.taxon || Taxon::LIFE
-      if obs_taxon.rank_level <= 10
-        leaf_count = 1
-      else
-        taxon_info = taxonomy_parser.taxa[obs_taxon_id]
-        leaf_count = taxon_info[:leaf_count] || taxon_info[:children].count.nonzero? || 1
-      end
+      leaf_count =
+        if obs_taxon.rank_level <= 10
+          1
+        else
+          taxon_info = taxonomy_parser.taxa[obs_taxon_id]
+          taxon_info[:leaf_count] || taxon_info[:children].count.nonzero? || 1
+        end
       taxon_descendant_count[obs_taxon_id] = leaf_count
     end
     taxonomy_parser = nil
@@ -549,40 +894,43 @@ class ObservationAccuracyExperiment < ApplicationRecord
     other_dqa_issue = ObservationAccuracyExperiment.quality_metric_observation_ids( o, ["location", "date", "recent"] )
 
     puts "Processing sample"
+    ts = now
     obs_data = observations.map do | obs |
+      obs_taxon_id = obs.taxon_id.nil? ? root_id : obs.taxon_id
       {
         observation_accuracy_experiment_id: id,
         observation_id: obs.id,
-        taxon_id: obs.taxon_id.nil? ? root_id : obs.taxon_id,
+        taxon_id: obs_taxon_id,
         quality_grade: obs.quality_grade,
         year: obs.created_at.year,
         iconic_taxon_name: iconic_taxon_key[obs.iconic_taxon_id],
         continent: continent_key[continent_obs[obs.id]],
         taxon_observations_count: obs.taxon&.observations_count,
         taxon_rank_level: obs.taxon_id.nil? ? Taxon::ROOT_LEVEL : obs.taxon&.rank_level,
-        descendant_count: taxon_descendant_count[obs.taxon_id.nil? ? root_id : obs.taxon_id],
+        descendant_count: taxon_descendant_count[obs_taxon_id],
         no_evidence: no_media.include?( obs.id ) || no_evidence.include?( obs.id ),
         sounds_only: sounds_only.include?( obs.id ),
         has_cid: has_cid.include?( obs.id ),
         captive: captive.include?( obs.id ),
-        other_dqa_issue: other_dqa_issue.include?( obs.id )
+        other_dqa_issue: other_dqa_issue.include?( obs.id ),
+        created_at: ts,
+        updated_at: ts
       }
     end
 
     puts "Saving sample"
-    ObservationAccuracySample.create!( obs_data )
+    # insert_all! is much faster than create! for large samples; also avoids AR instantiation.
+    ObservationAccuracySample.insert_all!( obs_data )
 
-    self.sample_generation_date = Time.now
+    self.sample_generation_date = ts
     save!
 
-    end_time = Time.now
-    duration = end_time - start_time
+    duration = now - start_time
     puts "Sample generated in #{duration} seconds."
   end
 
   def observation_accuracy_validator_contact( validator )
     return false unless ( user = User.where( id: validator.user_id ).first )
-
     return false unless ( admin = User.where( email: CONFIG.admin_user_email ).first )
 
     obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
@@ -633,21 +981,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
       subject: subject,
       body: message_body
     )
-    if message.save
-      true
-    else
-      false
-    end
+    message.save ? true : false
   end
 
   def contact_validators
     observation_accuracy_validators.each do | validator |
       if observation_accuracy_validator_contact( validator )
-        validator.email_date = Time.now
+        validator.email_date = now
         validator.save!
       end
     end
-    self.validator_contact_date = Time.now
+    self.validator_contact_date = now
     save!
   end
 
@@ -664,6 +1008,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def assess_experiment
+    @taxon_cache = {}
+
     groundtruths = {}
     observation_accuracy_validators.each do | validator |
       obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
@@ -705,9 +1051,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
           quality = assess_quality( test_taxon, groundtruth_taxon, disagreement, previous_observation_taxon_id )
           qualities_for_row << quality
         end
-        sample.correct = if !qualities_for_row.map( &:nil? ).all? &&
-            qualities_for_row.compact.uniq.count > 1
-          # conflict
+        sample.correct = if !qualities_for_row.map( &:nil? ).all? && qualities_for_row.compact.uniq.count > 1
           -1
         elsif qualities_for_row.map( &:nil? ).all?
           nil
@@ -719,7 +1063,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       sample.save!
     end
 
-    self.assessment_date = Time.now
+    self.assessment_date = now
     self.responding_validators = responding_validators
     self.validated_observations = validated_observations
     save!
@@ -828,8 +1172,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
       data[k] = if descendant_counts.empty?
         0
       else
-        descendant_counts.
-          map {| descendant_count | calculate_precision( descendant_count ) }.sum / descendant_counts.count
+        descendant_counts.map do | descendant_count |
+          calculate_precision( descendant_count )
+        end.sum / descendant_counts.count
       end
     end
     data
@@ -837,7 +1182,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def get_stats_for_single_bar( key: "quality_grade", value: "research", raw: false, subset: nil )
     value_condition = ( value == "none" ) ? "#{key} IS NULL" : "#{key} = ?"
-
     value_condition = [subset, value_condition].compact.join( " AND " ) unless key == "quality_grade"
 
     counts = {
@@ -882,18 +1226,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def get_precision_stats_for_single_bar( key: "quality_grade", value: "research", raw: false, subset: nil )
     value_condition = ( value == "none" ) ? "#{key} IS NULL" : "#{key} = ?"
-
     value_condition = [subset, value_condition].compact.join( " AND " ) unless key == "quality_grade"
 
-    descendant_counts = observation_accuracy_samples.where( value_condition, value.to_s ).
-      map( &:descendant_count )
+    descendant_counts = observation_accuracy_samples.where( value_condition, value.to_s ).map( &:descendant_count )
     return descendant_counts if raw
 
     if descendant_counts.empty?
       0
     else
-      descendant_counts.
-        map {| descendant_count | calculate_precision( descendant_count ) }.sum / descendant_counts.count
+      descendant_counts.map do | descendant_count |
+        calculate_precision( descendant_count )
+      end.sum / descendant_counts.count
     end
   end
 
@@ -1060,7 +1403,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
       user_id: user.id
     )
     return unless validator
-
     return if ( validator&.validation_count || 0 ).zero?
 
     obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
@@ -1104,7 +1446,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
       user_id: user.id
     )
     return unless observer
-
     return if ( observer&.validation_count || 0 ).zero?
 
     obs_ids = observer.observation_accuracy_samples.pluck( :observation_id )
@@ -1139,7 +1480,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     last_observation = observations["results"][0]
     return nil unless last_observation
-
     return nil unless last_observation["geojson"]
 
     last_observation["geojson"]["coordinates"]
@@ -1200,7 +1540,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
       if lat.nil?
         observer.validation_count = 0
         observer.save!
-
         next
       end
 
@@ -1219,7 +1558,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
       if observations.nil?
         observer.validation_count = 0
         observer.save!
-
         next
       end
 
@@ -1276,7 +1614,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
       user_id: user.id
     )
     return unless identifier
-
     return if ( identifier&.validation_count || 0 ).zero?
 
     obs_ids = identifier.observation_accuracy_samples.pluck( :observation_id )
@@ -1333,7 +1670,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
         identifier.validation_count = 0
         identifier.save!
         next
-
       end
 
       target_taxon_ids = Taxon.where( id: unmodeled_taxon_ids ).
@@ -1342,7 +1678,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
         identifier.validation_count = 0
         identifier.save!
         next
-
       end
 
       target_place_ids = improving_id_matches.values.flatten.uniq
@@ -1358,8 +1693,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
         identifier.validation_count = 0
         identifier.save!
         next
-
       end
+
       obs_ids.each do | obs_id |
         sample = ObservationAccuracySample.
           where( observation_accuracy_experiment_id: gaps_id_pilot.id ).
