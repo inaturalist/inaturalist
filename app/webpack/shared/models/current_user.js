@@ -43,6 +43,8 @@ const CurrentUser = class CurrentUser {
       || identification.hidden
       || !this.loggedIn
       || _.isEmpty( _.trim( identification.body ) )
+      || !this.isAdmin
+      || !this.isInTestGroup( "helpful-id-tips" )
     ) {
       return false;
     }
@@ -53,6 +55,8 @@ const CurrentUser = class CurrentUser {
     if (
       !this.loggedIn
       || !identification.exemplar_identification?.nominated_by_user
+      || !this.isAdmin
+      || !this.isInTestGroup( "helpful-id-tips" )
     ) {
       return false;
     }
