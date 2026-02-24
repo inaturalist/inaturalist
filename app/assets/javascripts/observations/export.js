@@ -126,6 +126,14 @@ $(document).ready(function() {
   $( "input[type='checkbox']" ).on( "change", function ( e ) {
     var element = $( e.target );
     var name = element.attr( "name" );
+    // ignore checkboxes for array parameters
+    if ( _.endsWith( name, "[]" ) ) {
+      return;
+    }
+    // some observation field options can be shared between personal and
+    // project fields. This ensures that interacting with a field in one
+    // section makes the same change to a field with the same name in
+    // the other section
     $( "input[type='checkbox'][name='" + name + "']" ).prop( "checked", element.prop( "checked" ) );
   } );
 } );
