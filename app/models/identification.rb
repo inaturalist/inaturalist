@@ -67,6 +67,8 @@ class Identification < ApplicationRecord
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
 
+  acts_as_votable
+  SUBSCRIBABLE = false
   attr_accessor :skip_observation, :html, :captive_flag, :skip_set_previous_observation_taxon, :skip_set_disagreement,
     :bulk_delete, :wait_for_obs_index_refresh, :nominate
 

@@ -202,6 +202,7 @@ class IdentificationsController < ApplicationController
         duplicate_key_violation = true
       end
       if @identification.nominate
+        @identification.wait_for_index_refresh = true
         @identification.nominate_as_exemplar_by( current_user )
       end
       if @identification.valid? && duplicate_key_violation == false

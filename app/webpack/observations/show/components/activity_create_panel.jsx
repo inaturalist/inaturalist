@@ -136,6 +136,8 @@ class ActivityCreatePanel extends React.Component {
         />
       );
     }
+    const { currentUser } = config;
+    const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
     if ( config?.currentUserCanInteractWithResource( observation ) ) {
       // attempting to match the logic in the computervision/score_observation endpoint
       // so we don't attempt to fetch vision results for obs which will have no results
@@ -187,23 +189,25 @@ class ActivityCreatePanel extends React.Component {
               maxLength={5000}
               showCharsRemainingAt={4000}
             />
-            <div className="nomination">
-              <input
-                type="checkbox"
-                id="nominate-id"
-                defaultChecked={nominate}
-                disabled={_.size( content ) === 0}
-                onChange={e => {
-                  setNominateOnSubmit( e.target.checked );
-                }}
-              />
-              <label
-                className="identificationNomination"
-                htmlFor="nominate-id"
-              >
-                Nominate as an ID Tip (diagnostic characteristics that teach others to identify this organism)
-              </label>
-            </div>
+            { isAdmin && currentUser.isInTestGroup( "helpful-id-tips" ) && (
+              <div className="nomination">
+                <input
+                  type="checkbox"
+                  id="nominate-id"
+                  defaultChecked={nominate}
+                  disabled={_.size( content ) === 0}
+                  onChange={e => {
+                    setNominateOnSubmit( e.target.checked );
+                  }}
+                />
+                <label
+                  className="identificationNomination"
+                  htmlFor="nominate-id"
+                >
+                  Nominate as an ID Tip (diagnostic characteristics that teach others to identify this organism)
+                </label>
+              </div>
+            ) }
           </div>
         </div>
       );
