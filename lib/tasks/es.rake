@@ -145,7 +145,8 @@ def elastic_models
     Project => {},
     Taxon => {},
     UpdateAction => { batch_size: 5000 },
-    User => {}
+    User => {},
+    TaxonPhoto => {}
   }
 end
 
