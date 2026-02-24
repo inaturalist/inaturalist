@@ -10,6 +10,8 @@
 @import "../shared/taxonomic_branch";
 @import "../shared/full_screen_modal";
 @import "../shared/flash_message";
+@import "../users/user_popover";
+@import "./shared/loading_spinner";
 
 #app {
   min-height: 600px;
@@ -966,6 +968,233 @@ $nav-btn-dim: 40px;
 .SimilarTab .TaxonThumbnail {
   margin: 5px;
   width: 18.9%;
+}
+
+.IdentificationsTab {
+  .loading {
+    text-align: center;
+    .loading_spinner {
+      margin-top: 20px;
+      width: 40px;
+      height: 40px;
+      border: 7px solid #DDD;
+      border-top: 7px solid #74ac00;
+    }
+  }
+  .search-container {
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+  .btn-group.identification-categories {
+    margin-bottom: 10px;
+  }
+  .search {
+    margin-bottom: 40px;
+    select.form-control {
+      width: 120px;
+      &.order {
+        width: 80px;
+      }
+    }
+    .search-input {
+      position: relative;
+      .searchclear {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        padding-left: 5px;
+        color: #ddd;
+        background: inherit;
+        z-index: 3;
+      }
+    }
+    select[name="sort"] {
+      margin-left: 10px;
+      min-width: 195px;
+    }
+  }
+  .annotation-search {
+    margin-top: 10px;
+    button {
+      margin-right: 3px;
+      margin-bottom: 3px;
+    }
+  }
+  .TaxonMap {
+    height: 300px;
+  }
+  .taxon-map-container {
+    position: sticky;
+    top: 0;
+    padding-top: 1px;
+  }
+  & > .row {
+    display: flex;
+    & > .col-xs-4 {
+      display: flex;
+      & > .row {
+        flex: 1;
+      }
+    }
+  }
+  .Identification {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    .contents {
+      display: flex;
+    }
+    .preview {
+      width: 120px;
+      .image {
+        height: 125px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 3px;
+      }
+      i.icon {
+        font-size: 100px;
+        color: #ccc;
+      }
+    }
+    .content {
+      flex: 1;
+      padding-left: 10px;
+    }
+    .panel {
+      margin-bottom: 0px;
+    }
+    .panel-heading {
+      .menu {
+        border-inline-start: 1px solid #DDD;
+        .dropdown.btn-group button {
+          margin-bottom: 2px;
+          margin-inline-start: 12px;
+          padding: 0;
+          border: none !important;
+          background: none !important;
+          box-shadow: none !important;
+        }
+      }
+    }
+    .panel-body {
+      display: flex;
+      .body {
+        flex: 1;
+        .id_body .content {
+          padding-left: 0px;
+        }
+        .UserText .content {
+          overflow-wrap: anywhere;
+        }
+      }
+    }
+    .panel-heading, .panel-footer {
+      padding: 8px 15px;
+    }
+    .panel-title, .panel-footer {
+      font-size: 14px;
+      display: flex;
+      align-items: flex-start;
+      a {
+        color: inherit;
+      }
+      .title-text, .footer-text {
+        flex: 2;
+        margin-inline-end: 20px;
+      }
+      .time {
+        margin-inline-end: 12px;
+        color: #999999;
+      }
+      .userlink a {
+        font-weight: 600;
+        color: black;
+      }
+    }
+    .panel-footer {
+      background: none;
+      .votes {
+        white-space: nowrap;
+        border-inline-start: 1px solid #ddd;
+        align-content: center;
+        width: 65px;
+        text-align: right;
+        .fa-thumbs-up,
+        .fa-thumbs-o-up,
+        .fa-thumbs-down,
+        .fa-thumbs-o-down {
+          font-size: 18px;
+          color: #BBBBBB;
+          margin-right: 3px;
+        }
+        .vote-count {
+          margin-left: 3px;
+        }
+        & button {
+          margin-left: 10px;
+        }
+      }
+    }
+    .annotations-conversation {
+      padding-top: 8px;
+      display: flex;
+      align-items: center;
+      .annotations {
+        flex-grow: 1,
+      }
+      .conversation {
+        white-space: nowrap;
+        a {
+          text-decoration: underline;
+        }
+      }
+    }
+    .btn-sm {
+      margin-right: 3px;
+      margin-bottom: 3px;
+    }
+  }
+
+  .rc-pagination {
+    padding: 0;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .rc-pagination li,
+  .rc-pagination li a {
+    display: inline-block;
+  }
+  .rc-pagination li a {
+    border: 1px solid #aaa;
+    background-color: white;
+    padding: 3px 5px;
+    text-align: center;
+    min-width: 2em;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  .rc-pagination-next a:before {
+    content: "\2192"
+  }
+  .rc-pagination-prev a:before {
+    content: "\2190"
+  }
+  .rc-pagination-disabled a,
+  .rc-pagination-disabled:hover a {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .rc-pagination-jump-prev a:after,
+  .rc-pagination-jump-next a:after {
+    content: "...";
+  }
+  li.rc-pagination-item-active a {
+    border-color: black;
+  }
+
 }
 
 .DraggablePhoto {

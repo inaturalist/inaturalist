@@ -139,7 +139,8 @@ const OBSERVATION_FIELDS = {
     updated_at: true,
     user: USER_FIELDS,
     uuid: true,
-    vision: true
+    vision: true,
+    exemplar_identification: "all"
   },
   identifications_most_agree: true,
   // TODO refactor to rely on geojson instead of lat and lon
