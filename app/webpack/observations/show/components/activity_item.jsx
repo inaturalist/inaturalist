@@ -23,6 +23,8 @@ import HiddenContentMessageContainer from "../../../shared/containers/hidden_con
 import HiddenActivityItem from "./hidden_activity_item";
 import UsersPopover from "./users_popover";
 
+/* eslint-disable react/no-danger */
+
 class ActivityItem extends React.Component {
   constructor( props ) {
     super( props );
@@ -626,7 +628,7 @@ class ActivityItem extends React.Component {
       );
     }
     const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
-    let footer;
+    const footers = {};
 
     if ( item.disagreement && !hideDisagreement && !this.isDisagreementWithHiddenIdent( ) ) {
       const previousTaxonLink = (
@@ -641,7 +643,7 @@ class ActivityItem extends React.Component {
         user: ReactDOMServer.renderToString( userLink ),
         taxon: ReactDOMServer.renderToString( previousTaxonLink )
       } );
-      footer = (
+      footers.disagreement = (
         <span
           className="title_text"
           dangerouslySetInnerHTML={{
@@ -654,7 +656,7 @@ class ActivityItem extends React.Component {
       const footerText = I18n.t( "user_disagrees_with_previous_finer_identifications", {
         user: ReactDOMServer.renderToString( userLink )
       } );
-      footer = (
+      footers.disagreement = (
         <span
           className="title_text"
           dangerouslySetInnerHTML={{
@@ -664,7 +666,7 @@ class ActivityItem extends React.Component {
       );
     }
     if ( this.identificationHasNomination( ) ) {
-      footer = (
+      footers.nomination = (
         <>
           <span className="footer-text">
             <b>{item.exemplar_identification.nominated_by_user.login}</b>
@@ -766,7 +768,11 @@ class ActivityItem extends React.Component {
               {contents}
             </div>
           </Panel.Body>
-          {footer ? <Panel.Footer>{footer}</Panel.Footer> : null}
+          { _.map( footers, ( footer, key ) => (
+            <Panel.Footer key={`${elementID}-footer-${key}`}>
+              {footer}
+            </Panel.Footer>
+          ) ) }
         </Panel>
       </div>
     );

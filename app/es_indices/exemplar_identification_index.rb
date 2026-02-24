@@ -22,7 +22,10 @@ class ExemplarIdentification < ApplicationRecord
     )
   }
 
-  settings index: { number_of_shards: 4, analysis: ElasticModel::ANALYSIS } do
+  settings index: {
+    number_of_shards: 4,
+    analysis: ElasticModel::ANALYSIS
+  } do
     mappings( dynamic: false ) do
       indexes :id, type: "integer" do
         indexes :keyword, type: "keyword"
@@ -39,6 +42,7 @@ class ExemplarIdentification < ApplicationRecord
         indexes :keyword, type: "keyword"
       end
       indexes :nominated_at, type: "date"
+      indexes :active, type: "boolean"
       indexes :identification do
         indexes :id, type: "integer" do
           indexes :keyword, type: "keyword"
@@ -88,6 +92,33 @@ class ExemplarIdentification < ApplicationRecord
   end
 
   def as_indexed_json( _options = {} )
+    observation = identification.observation
+    observation_schema = if observation
+      {
+        id: observation.id,
+        discussion_count: observation.comments.size +
+          + observation.identifications.filter do | obs_id |
+            !obs_id.body&.strip.blank?
+          end.size,
+        taxon: observation.taxon ? {
+          id: observation.taxon.id,
+          ancestor_ids: observation.taxon.self_and_ancestor_ids
+        } : {},
+        annotations: observation.annotations.reject( &:term_taxon_mismatch? ).reject do | a |
+          a.vote_score.negative?
+        end.map do | annotation |
+          {
+            uuid: annotation.uuid,
+            concatenated_attr_val: [
+              annotation.controlled_attribute_id,
+              annotation.controlled_value_id
+            ].join( "|" ),
+            controlled_attribute_id: annotation.controlled_attribute_id,
+            controlled_value_id: annotation.controlled_value_id
+          }
+        end
+      }
+    end
     {
       id: id,
       created_at: created_at,
@@ -96,55 +127,22 @@ class ExemplarIdentification < ApplicationRecord
         votes_for.select( &:vote_flag? ).size - votes_for.reject( &:vote_flag? ).size,
       nominated_by_user_id: nominated_by_user_id,
       nominated_at: nominated_at,
+      active: active,
       identification: {
         id: identification.id,
         uuid: identification.uuid,
         body: identification.body,
-        body_word_length:
-          identification.body.blank? ? 0 : identification.body.split( /\s+/ ).length,
-        body_character_length:
-          identification.body.blank? ? 0 : identification.body.length,
+        body_word_length: identification.body&.split&.length || 0,
+        body_character_length: identification.body&.length || 0,
         created_at: identification.created_at,
         user: {
           id: identification.user_id
         },
-        observation: if identification.observation
-                       {
-                         id: identification.observation.id,
-                         discussion_count: identification.observation.comments.size +
-                           + identification.observation.identifications.filter do | identification |
-                             !identification.body&.strip.blank?
-                           end.size,
-                         taxon: {
-                           id: identification.observation.taxon&.id,
-                           ancestor_ids: ( (
-                             identification.observation.taxon&.ancestry ?
-                               identification.observation.taxon.ancestry.split( "/" ).map( &:to_i ) : []
-                           ) << identification.observation.taxon&.id ).compact
-                         },
-                         annotations: identification.observation.annotations.
-                           reject( &:term_taxon_mismatch? ).map do | annotation |
-                             {
-                               uuid: annotation.uuid,
-                               concatenated_attr_val: [
-                                 annotation.controlled_attribute_id,
-                                 annotation.controlled_value_id
-                               ].join( "|" ),
-                               controlled_attribute_id: annotation.controlled_attribute_id,
-                               controlled_value_id: annotation.controlled_value_id
-                             }
-                           end
-                       }
-        end,
-        taxon: if identification.taxon
-                 {
-                   id: identification.taxon.id,
-                   ancestor_ids: ( (
-                     identification.taxon.ancestry ?
-                       identification.taxon.ancestry.split( "/" ).map( &:to_i ) : []
-                   ) << id )
-                 }
-        end
+        observation: observation_schema,
+        taxon: identification.taxon ? {
+          id: identification.taxon.id,
+          ancestor_ids: identification.taxon.self_and_ancestor_ids
+        } : {}
       }
     }
   end

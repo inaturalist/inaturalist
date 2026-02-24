@@ -363,7 +363,7 @@ export function voteIdentification( observation, id, voteValue, setAttributes, f
     dispatch(
       callAPI(
         observation,
-        inatjs.identifications.vote,
+        inatjs.exemplar_identifications.vote,
         payload,
         fetchObservation,
         { useApiV2: true }
@@ -378,7 +378,7 @@ export function unvoteIdentification( observation, id, setAttributes, fetchObser
     dispatch(
       callAPI(
         observation,
-        inatjs.identifications.unvote,
+        inatjs.exemplar_identifications.unvote,
         payload,
         fetchObservation,
         { useApiV2: true }

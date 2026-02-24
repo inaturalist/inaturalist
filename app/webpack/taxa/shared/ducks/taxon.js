@@ -764,7 +764,7 @@ export function fetchIdentifications( options = { } ) {
     params.include_category_counts = "true";
     params.include_category_controlled_terms = "true";
     params.fields = "all";
-    inatjs.taxon_identifications.search( params ).then(
+    inatjs.exemplar_identifications.search( params ).then(
       response => {
         if ( options.initialLoad
           && _.isEmpty( response.results )
@@ -790,12 +790,45 @@ export function fetchIdentifications( options = { } ) {
   };
 }
 
-export function reloadTaxonIdentification( id ) {
+export function fetchIdentificationCagtegories( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const identifications = _.cloneDeep( state.taxon.identifications );
-    inatjs.taxon_identifications.search( { id, fields: "all" } ).then(
+    const { taxon } = state.taxon;
+    const params = {
+      direct_taxon_id: taxon.id
+    };
+    const queryParams = state.taxon.identificationsQuery;
+    _.each( [
+      "q",
+      "term_value_id",
+      "upvoted",
+      "downvoted",
+      "nominated"
+    ], param => {
+      if ( queryParams[param] ) {
+        params[param] = queryParams[param];
+      }
+    } );
+    params.per_page = 0;
+    params.include_category_counts = "true";
+    params.include_category_controlled_terms = "true";
+    params.fields = "all";
+    inatjs.exemplar_identifications.search( params ).then(
       response => {
+        const identifications = _.cloneDeep( getState( ).taxon.identifications );
+        identifications.category_counts = response.category_counts;
+        identifications.category_controlled_terms = response.category_controlled_terms;
+        dispatch( setIdentifications( identifications ) );
+      },
+      error => console.log( "[DEBUG] error: ", error )
+    );
+  };
+}
+export function reloadExemplarIdentification( id ) {
+  return ( dispatch, getState ) => {
+    inatjs.exemplar_identifications.search( { id, fields: "all" } ).then(
+      response => {
+        const identifications = _.cloneDeep( getState( ).taxon.identifications );
         const updatedIdentifications = _.map( identifications.results, identification => (
           ( identification.id === id ) ? response.results[0] : identification
         ) );
@@ -804,21 +837,22 @@ export function reloadTaxonIdentification( id ) {
       },
       error => console.log( "[DEBUG] error: ", error )
     );
+    dispatch( fetchIdentificationCagtegories( ) );
   };
 }
 
 export function nominateIdentification( id, exemplarID ) {
-  return ( dispatch, getState ) => {
+  return dispatch => {
     inatjs.identifications.nominate( { id }, { same_origin: true } ).then( ( ) => {
-      dispatch( reloadTaxonIdentification( exemplarID ) );
+      dispatch( reloadExemplarIdentification( exemplarID ) );
     } );
   };
 }
 
 export function unnominateIdentification( id, exemplarID ) {
-  return ( dispatch, getState ) => {
+  return dispatch => {
     inatjs.identifications.unnominate( { id }, { same_origin: true } ).then( ( ) => {
-      dispatch( reloadTaxonIdentification( exemplarID ) );
+      dispatch( reloadExemplarIdentification( exemplarID ) );
     } );
   };
 }
@@ -843,8 +877,8 @@ export function voteIdentification( id, voteValue ) {
     ) );
     identifications.results = newIdentifications;
     dispatch( setIdentifications( identifications ) );
-    inatjs.identifications.vote( { id, vote: voteValue } ).then( ( ) => {
-      dispatch( reloadTaxonIdentification( id ) );
+    inatjs.exemplar_identifications.vote( { id, vote: voteValue } ).then( ( ) => {
+      dispatch( reloadExemplarIdentification( id ) );
     } );
   };
 }
@@ -865,8 +899,8 @@ export function unvoteIdentification( id ) {
     ) );
     identifications.results = newIdentifications;
     dispatch( setIdentifications( identifications ) );
-    inatjs.identifications.unvote( { id } ).then( ( ) => {
-      dispatch( reloadTaxonIdentification( id ) );
+    inatjs.exemplar_identifications.unvote( { id } ).then( ( ) => {
+      dispatch( reloadExemplarIdentification( id ) );
     } );
   };
 }

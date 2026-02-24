@@ -400,17 +400,33 @@ class IdentificationsTab extends Component {
     return activeTab;
   }
 
+  categoryTabDisabled( category ) {
+    const { response } = this.props;
+    if ( !response?.category_counts ) {
+      return true;
+    }
+    return response.category_counts[category] === 0;
+  }
+
   identificationCategories( ) {
     const {
       identificationsQuery,
       setIdentificationsQuery
     } = this.props;
     const activeTab = this.activeTab( );
+    const upvotedDisabled = this.categoryTabDisabled( "upvoted" );
+    const downvotedDisabled = this.categoryTabDisabled( "downvoted" );
+    const noVotesDisabled = this.categoryTabDisabled( "no_votes" );
+    const notNominatedDisabled = this.categoryTabDisabled( "not_nominated" );
     return (
       <div className="btn-group identification-categories">
         <button
           type="button"
-          className={`btn btn-default${activeTab === "upvoted" ? " active" : ""}`}
+          className={
+            `btn btn-default${activeTab === "upvoted" ? " active" : ""}`
+            + `${upvotedDisabled ? " disabled " : ""}`
+          }
+          disabled={upvotedDisabled}
           onClick={( ) => {
             if ( activeTab === "upvoted" ) {
               return;
@@ -434,7 +450,11 @@ class IdentificationsTab extends Component {
         </button>
         <button
           type="button"
-          className={`btn btn-default${activeTab === "downvoted" ? " active" : ""}`}
+          className={
+            `btn btn-default${activeTab === "downvoted" ? " active" : ""}`
+            + `${downvotedDisabled ? " disabled " : ""}`
+          }
+          disabled={downvotedDisabled}
           onClick={( ) => {
             if ( activeTab === "downvoted" ) {
               return;
@@ -458,7 +478,11 @@ class IdentificationsTab extends Component {
         </button>
         <button
           type="button"
-          className={`btn btn-default${activeTab === "no-votes" ? " active" : ""}`}
+          className={
+            `btn btn-default${activeTab === "no-votes" ? " active" : ""}`
+            + `${noVotesDisabled ? " disabled " : ""}`
+          }
+          disabled={noVotesDisabled}
           onClick={( ) => {
             if ( activeTab === "no-votes" ) {
               return;
@@ -482,7 +506,11 @@ class IdentificationsTab extends Component {
         </button>
         <button
           type="button"
-          className={`btn btn-default${activeTab === "not-nominated" ? " active" : ""}`}
+          className={
+            `btn btn-default${activeTab === "not-nominated" ? " active" : ""}`
+            + `${notNominatedDisabled ? " disabled " : ""}`
+          }
+          disabled={notNominatedDisabled}
           onClick={( ) => {
             if ( activeTab === "not-nominated" ) {
               return;
@@ -622,6 +650,8 @@ class IdentificationsTab extends Component {
     if ( !isAdmin ) {
       return null;
     }
+    const responsive = currentUser?.isAdmin
+      && currentUser?.isInTestGroup( "responsive-taxon-detail" );
     if ( response?.results?.length === 0 ) {
       content = (
         <div className="no-identifications">
@@ -649,7 +679,7 @@ class IdentificationsTab extends Component {
     return (
       <Grid className="IdentificationsTab">
         <Row>
-          <Col xs={8}>
+          <Col xs={responsive ? null : 8} sm={responsive ? 12 : null}>
             <h2>
               {I18n.t( "identifications" )}
             </h2>
@@ -719,7 +749,7 @@ class IdentificationsTab extends Component {
               </>
             ) }
           </Col>
-          <Col xs={4}>
+          <Col xs={responsive ? null : 4} sm={responsive ? 4 : null} className={responsive ? "hidden-xs" : null}>
             <Row>
               <div className="taxon-map-container">
                 <TaxonMap

@@ -31,8 +31,7 @@ class Identification < ApplicationRecord
   # NOTE: order is important here. set_previous_observation_taxon should
   # happen before update_other_identifications
   before_save :set_previous_observation_taxon,
-    :update_other_identifications,
-    :delete_exemplar_if_withdrawn
+    :update_other_identifications
 
   before_create :set_disagreement
   after_create :update_observation_if_test_env,
@@ -41,6 +40,8 @@ class Identification < ApplicationRecord
     :update_quality_metrics
   after_update :update_curator_identification,
     :update_quality_metrics
+  after_save :create_exemplar_identification_association,
+    :update_exemplar_identification
 
   # NOTE: update_categories must run last, or at least after update_observation,
   # b/c it relies on the community taxon being up to date
@@ -48,7 +49,6 @@ class Identification < ApplicationRecord
     :update_observation,
     :update_obs_stats,
     :update_user_counter_cache,
-    :index_exemplar,
     unless: proc {| i | i.observation.destroyed? }
 
   # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
@@ -201,11 +201,27 @@ class Identification < ApplicationRecord
     true
   end
 
-  def delete_exemplar_if_withdrawn
-    return unless will_save_change_to_current? && !current? && exemplar_identification
+  def create_exemplar_identification_association
+    return if exemplar_identification
+    return if body.nil? || body.strip.blank?
 
-    self.wait_for_index_refresh = true
-    unnominate
+    create_exemplar_identification(
+      skip_indexing: skip_indexing,
+      wait_for_index_refresh: wait_for_index_refresh
+    )
+  end
+
+  def update_exemplar_identification
+    return unless exemplar_identification
+
+    if body.nil? || body&.strip&.blank?
+      exemplar_identification.identification_body_recently_emptied = true
+      exemplar_identification.destroy
+      return
+    end
+
+    exemplar_identification.wait_for_index_refresh = wait_for_index_refresh
+    exemplar_identification.save
   end
 
   def set_previous_observation_taxon
@@ -397,15 +413,6 @@ class Identification < ApplicationRecord
     true
   end
 
-  def index_exemplar
-    return unless exemplar_identification
-
-    ExemplarIdentification.elastic_index!(
-      ids: [exemplar_identification.id],
-      wait_for_index_refresh: wait_for_index_refresh
-    )
-  end
-
   def set_last_identification_as_current
     last_current = observation.identifications.current.by( user_id ).order( "id ASC" ).last
     return true if last_current
@@ -559,6 +566,9 @@ class Identification < ApplicationRecord
     obs.reload
     obs.wait_for_index_refresh ||= !options[:wait_for_obs_index_refresh].nil?
     obs.elastic_index!
+    ExemplarIdentification.elastic_index!(
+      ids: ExemplarIdentification.where( identification_id: idents.map( &:id ) )
+    )
   end
 
   def update_categories
@@ -604,41 +614,25 @@ class Identification < ApplicationRecord
   end
 
   def nominate_as_exemplar_by( nominating_user )
+    return unless exemplar_identification
     return unless nominating_user.is_a?( User )
 
-    if exemplar_identification
-      return if exemplar_identification.nominated_by_user
-
-      exemplar_identification.update(
-        nominated_by_user: nominating_user,
-        nominated_at: Time.now,
-        wait_for_index_refresh: wait_for_index_refresh
-      )
-      return
-    end
-
-    create_exemplar_identification(
-      identification: self,
+    exemplar_identification.update(
       nominated_by_user: nominating_user,
-      nominated_at: Time.now,
       wait_for_index_refresh: wait_for_index_refresh
     )
   end
 
-  def unnominate
+  def unnominate_as_exemplar
     return unless exemplar_identification
 
-    exemplar_identification.wait_for_index_refresh = wait_for_index_refresh
-    if body&.strip&.blank?
-      exemplar_identification.destroy
-      return
-    end
-
-    ActsAsVotable::Vote.where( votable: exemplar_identification ).destroy_all
+    exemplar_identification.votes_for.destroy_all
     exemplar_identification.update(
       nominated_by_user: nil,
-      nominated_at: nil
+      nominated_at: nil,
+      wait_for_index_refresh: wait_for_index_refresh
     )
+  end
 
   def observation_unsubscribe_enabled?
     return false if Identification.where( observation: observation, user_id: user_id ).where.not( id: id ).any?

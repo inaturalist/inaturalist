@@ -256,6 +256,20 @@ const Account = ( {
                       </button>
                     </td>
                   </tr>
+                  <tr>
+                    <td className="col-xs-4 borderless table-row">
+                      Helpful ID Tips
+                    </td>
+                    <td className="col-xs-4 borderless table-row">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={( ) => toggleGroup( "helpful-id-tips" )}
+                      >
+                        { config.currentUser.isInTestGroup( "helpful-id-tips" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                      </button>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </SettingsItem>

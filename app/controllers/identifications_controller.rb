@@ -288,7 +288,6 @@ class IdentificationsController < ApplicationController
       end
     end
   end
-  
 
   # DELETE identification_url
   def destroy
@@ -386,22 +385,56 @@ class IdentificationsController < ApplicationController
   def nominate
     @identification.wait_for_index_refresh = true
     @identification.nominate_as_exemplar_by( current_user )
-    respond_to do | format |
-      format.html do
-        redirect_to @record
+    if @identification.exemplar_identification&.errors&.any?
+      msg = t(
+        :there_was_a_problem_nominating_this_identification,
+        error: @identification.exemplar_identification.errors.full_messages.join( ", " )
+      )
+      respond_to do | format |
+        format.html do
+          flash[:error] = msg
+          redirect_to @identification.observation
+        end
+        format.json do
+          render status: :unprocessable_entity, json: {
+            errors: @identification.exemplar_identification.errors.full_messages
+          }
+        end
       end
-      format.json { head :no_content }
+    else
+      respond_to do | format |
+        format.html do
+          redirect_to @record
+        end
+        format.json { head :no_content }
+      end
     end
   end
 
   def unnominate
     @identification.wait_for_index_refresh = true
-    @identification.unnominate
-    respond_to do | format |
-      format.html do
-        redirect_to @record
+    @identification.unnominate_as_exemplar
+    if @identification.errors.any?
+      msg = t(
+        :there_was_a_problem_saving_your_identification,
+        error: @identification.errors.full_messages.join( ", " )
+      )
+      respond_to do | format |
+        format.html do
+          flash[:error] = msg
+          redirect_to @identification.observation
+        end
+        format.json do
+          render status: :unprocessable_entity, json: { errors: @identification.errors.full_messages }
+        end
       end
-      format.json { head :no_content }
+    else
+      respond_to do | format |
+        format.html do
+          redirect_to @record
+        end
+        format.json { head :no_content }
+      end
     end
   end
 
