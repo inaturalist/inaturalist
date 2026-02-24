@@ -13,10 +13,13 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
+      - path.repo=/snapshots
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
     ports:
       - 9200:9200
     volumes:
       - es_data:/usr/share/elasticsearch/data
+      - es_snapshot_data:/snapshots
     command: >
       /bin/sh -c "bin/elasticsearch-plugin list | grep -q analysis-kuromoji
       || bin/elasticsearch-plugin install analysis-kuromoji;
@@ -42,4 +45,5 @@ services:
 volumes:
   redis_data:
   es_data:
+  es_snapshot_data:
   pg_data:
