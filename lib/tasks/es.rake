@@ -64,8 +64,8 @@ namespace :es do
     klass.elastic_index!( opts )
   end
 
-  desc "Delete and recreate a single index. Usage: rake es:recreate_index[Place,200,0.1,1,4]"
-  task :recreate_index, [:model, :batch_size, :sleep, :part, :parts] => :environment do | _, args |
+  desc "Delete and recreate a single index. Usage: rake es:recreate_index[Place]"
+  task :recreate_index, [:model] => :environment do | _, args |
     next if fail_unless_elasticsearch_is_running
 
     model_name = args[:model]
@@ -80,17 +80,11 @@ namespace :es do
       next
     end
 
-    opts = ( elastic_models[klass] || {} ).dup
-    opts.merge!( elastic_index_options_from_args( args ) )
-    apply_partition_options!( klass, opts, args )
-
     puts "Recreating index #{klass}..."
-    puts "Options: #{opts.inspect}" unless opts.empty?
     client = klass.__elasticsearch__.client
     index = klass.index_name
     client.indices.delete( index: index ) if client.indices.exists( index: index )
     klass.__elasticsearch__.create_index!
-    klass.elastic_index!( opts )
   end
 
   desc "Delete and rebuild all models in elasticsearch"
@@ -146,7 +140,8 @@ def elastic_models
     Taxon => {},
     UpdateAction => { batch_size: 5000 },
     User => {},
-    TaxonPhoto => {}
+    TaxonPhoto => {},
+    ExemplarIdentification => {}
   }
 end
 
@@ -159,11 +154,11 @@ end
 def elastic_index_options_from_args( args )
   opts = {}
 
-  if args.key?( :batch_size )
-    opts[:batch_size] = args[:batch_size]
+  if args.key?( :batch_size ) && args[:batch_size].present?
+    opts[:batch_size] = args[:batch_size].to_i
   end
-  if args.key?( :sleep )
-    opts[:sleep] = args[:sleep]
+  if args.key?( :sleep ) && args[:sleep].present?
+    opts[:sleep] = args[:sleep].to_f
   end
 
   opts
@@ -173,6 +168,11 @@ def apply_partition_options!( klass, opts, args )
   part = args[:part]
   parts = args[:parts]
   return if part.nil? && parts.nil?
+
+  part = part.to_i
+  parts = parts.to_i
+  raise ArgumentError, "parts must be > 0" if parts <= 0
+  raise ArgumentError, "part must be between 1 and #{parts}" if part < 1 || part > parts
 
   min_id = klass.minimum( :id )
   max_id = klass.maximum( :id )
