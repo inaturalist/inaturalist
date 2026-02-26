@@ -67,12 +67,11 @@
 %h3 Trigger updates for a test user
 = form_tag build_test_user_updates_admin_path, method: :post, class: "form-horizontal" do
   .form-group
-    %label.control-label.col-sm-3{ for: "target_user_id" } Test user
+    %label.control-label.col-sm-3{ for: "target_user_login" } Test user login
     .col-sm-6
-      %select.form-control{ name: "target_user_id", id: "target_user_id", disabled: !@staging_enabled }
-        %option{ value: "" } Select a user
-        - @test_group_users.each do |u|
-          %option{ value: u.id }= "#{u.login} (##{u.id})"
+      %input.form-control{ type: "text", name: "target_user_login", id: "target_user_login",
+        placeholder: "user login", required: true, disabled: !@staging_enabled,
+        autocomplete: "off" }
   .form-group
     %label.control-label.col-sm-3 Action
     .col-sm-6

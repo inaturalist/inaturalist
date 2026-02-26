@@ -152,11 +152,12 @@ class AdminController < ApplicationController
       return redirect_back_or_default( build_test_users_admin_path )
     end
 
-    target_user_id = params[:target_user_id].to_i
+    target_user_login = params[:target_user_login].to_s.strip
+    target_user = User.where( "lower(login) = ?", target_user_login.downcase ).first unless target_user_login.blank?
     update_action = params[:update_action].to_s
     count = [params[:count].to_i, 0].max
     result = BuildTestUser.apply_updates(
-      target_user_id: target_user_id,
+      target_user_id: target_user&.id,
       update_action: update_action,
       count: count
     )
