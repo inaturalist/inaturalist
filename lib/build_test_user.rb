@@ -67,76 +67,84 @@ module BuildTestUser
     cloned_observation_ids = []
     cloned_identification_ids = []
     observations_from_other_ids = []
+    failed_observations = []
+    failed_identifications = []
     if observations_count.positive? && observations.any?
       Observation.where( id: observations ).
         includes( :observation_photos, :observation_field_values, :annotations, :identifications, :comments ).
         find_each do | obs |
-        original_user_id = obs.user_id
+        begin
+          original_user_id = obs.user_id
 
-        cloned_obs = obs.dup
-        cloned_obs.user_id = user.id
-        cloned_obs.uuid = nil if cloned_obs.respond_to?( :uuid )
-        clone_note = "Cloned from obs #{obs.id} by user #{original_user_id}"
-        if cloned_obs.description.to_s.strip.empty?
-          cloned_obs.description = clone_note
-        else
-          cloned_obs.description = "#{cloned_obs.description}\n\n#{clone_note}"
-        end
-        if obs.latitude.present? && obs.longitude.present?
-          cloned_obs.private_latitude = obs.latitude
-          cloned_obs.private_longitude = obs.longitude
-        end
-        cloned_obs.save!
-        cloned_observation_ids << cloned_obs.id
-
-        if obs.observation_photos.any?
-          photo_rows = obs.observation_photos.map do | op |
-            {
-              observation_id: cloned_obs.id,
-              photo_id: op.photo_id,
-              position: op.position,
-              created_at: now,
-              updated_at: now
-            }
+          cloned_obs = obs.dup
+          cloned_obs.user_id = user.id
+          cloned_obs.uuid = nil if cloned_obs.respond_to?( :uuid )
+          clone_note = "Cloned from obs #{obs.id} by user #{original_user_id}"
+          if cloned_obs.description.to_s.strip.empty?
+            cloned_obs.description = clone_note
+          else
+            cloned_obs.description = "#{cloned_obs.description}\n\n#{clone_note}"
           end
-          ObservationPhoto.insert_all( photo_rows )
-          Observation.where( id: cloned_obs.id ).update_all(
-            observation_photos_count: photo_rows.length
-          )
-        end
+          if obs.latitude.present? && obs.longitude.present?
+            cloned_obs.private_latitude = obs.latitude
+            cloned_obs.private_longitude = obs.longitude
+          end
+          cloned_obs.save!
+          cloned_observation_ids << cloned_obs.id
 
-        obs.observation_field_values.each do | ofv |
-          cloned_ofv = ofv.dup
-          cloned_ofv.observation_id = cloned_obs.id
-          cloned_ofv.user_id = ( ( ofv.user_id == original_user_id ) ? user.id : ofv.user_id )
-          cloned_ofv.uuid = nil if cloned_ofv.respond_to?( :uuid )
-          cloned_ofv.save!
-        end
+          if obs.observation_photos.any?
+            photo_rows = obs.observation_photos.map do | op |
+              {
+                observation_id: cloned_obs.id,
+                photo_id: op.photo_id,
+                position: op.position,
+                created_at: now,
+                updated_at: now
+              }
+            end
+            ObservationPhoto.insert_all( photo_rows )
+            Observation.where( id: cloned_obs.id ).update_all(
+              observation_photos_count: photo_rows.length
+            )
+          end
 
-        obs.annotations.where( observation_field_value_id: nil ).each do | a |
-          cloned_annotation = a.dup
-          cloned_annotation.resource = cloned_obs
-          cloned_annotation.user_id = ( ( a.user_id == original_user_id ) ? user.id : a.user_id )
-          cloned_annotation.uuid = nil if cloned_annotation.respond_to?( :uuid )
-          cloned_annotation.save!
-        end
+          obs.observation_field_values.each do | ofv |
+            cloned_ofv = ofv.dup
+            cloned_ofv.observation_id = cloned_obs.id
+            cloned_ofv.user_id = ( ( ofv.user_id == original_user_id ) ? user.id : ofv.user_id )
+            cloned_ofv.uuid = nil if cloned_ofv.respond_to?( :uuid )
+            cloned_ofv.save!
+          end
 
-        obs.identifications.each do | ident |
-          cloned_ident = ident.dup
-          cloned_ident.observation_id = cloned_obs.id
-          cloned_ident.user_id = ( ( ident.user_id == original_user_id ) ? user.id : ident.user_id )
-          cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
-          cloned_ident.save!
-          cloned_identification_ids << cloned_ident.id
-          identifications_from_own_obs << cloned_ident.id if ident.user_id == original_user_id
-        end
+          obs.annotations.where( observation_field_value_id: nil ).each do | a |
+            cloned_annotation = a.dup
+            cloned_annotation.resource = cloned_obs
+            cloned_annotation.user_id = ( ( a.user_id == original_user_id ) ? user.id : a.user_id )
+            cloned_annotation.uuid = nil if cloned_annotation.respond_to?( :uuid )
+            cloned_annotation.save!
+          end
 
-        obs.comments.each do | comment |
-          cloned_comment = comment.dup
-          cloned_comment.parent = cloned_obs
-          cloned_comment.user_id = ( ( comment.user_id == original_user_id ) ? user.id : comment.user_id )
-          cloned_comment.uuid = nil if cloned_comment.respond_to?( :uuid )
-          cloned_comment.save!
+          obs.identifications.each do | ident |
+            cloned_ident = ident.dup
+            cloned_ident.observation_id = cloned_obs.id
+            cloned_ident.user_id = ( ( ident.user_id == original_user_id ) ? user.id : ident.user_id )
+            cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
+            cloned_ident.save!
+            cloned_identification_ids << cloned_ident.id
+            identifications_from_own_obs << cloned_ident.id if ident.user_id == original_user_id
+          end
+
+          obs.comments.each do | comment |
+            cloned_comment = comment.dup
+            cloned_comment.parent = cloned_obs
+            cloned_comment.user_id = ( ( comment.user_id == original_user_id ) ? user.id : comment.user_id )
+            cloned_comment.uuid = nil if cloned_comment.respond_to?( :uuid )
+            cloned_comment.save!
+          end
+        rescue => e
+          failed_observations << { id: obs.id, error: e.message }
+          puts "BuildTestUser.build_user observation_clone_failed id=#{obs.id} error=#{e.class}: #{e.message}"
+          next
         end
       end
     end
@@ -148,12 +156,18 @@ module BuildTestUser
 
     if identifications_for_others_count.positive? && indentifications.any?
       Identification.where( id: indentifications ).find_each do | ident |
-        cloned_ident = ident.dup
-        cloned_ident.user_id = user.id
-        cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
-        cloned_ident.save!
-        cloned_identification_ids << cloned_ident.id
-        observations_from_other_ids << cloned_ident.observation_id
+        begin
+          cloned_ident = ident.dup
+          cloned_ident.user_id = user.id
+          cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
+          cloned_ident.save!
+          cloned_identification_ids << cloned_ident.id
+          observations_from_other_ids << cloned_ident.observation_id
+        rescue => e
+          failed_identifications << { id: ident.id, error: e.message }
+          puts "BuildTestUser.build_user identification_clone_failed id=#{ident.id} error=#{e.class}: #{e.message}"
+          next
+        end
       end
     end
     update_progress( login, status: "identifications_assigned", progress: 75 )
@@ -197,7 +211,9 @@ module BuildTestUser
         observations: cloned_observation_ids,
         identifications_from_own_obs: identifications_from_own_obs,
         indentifications: indentifications,
-        observations_from_other_ids: observations_from_other_ids
+        observations_from_other_ids: observations_from_other_ids,
+        failed_observations: failed_observations,
+        failed_identifications: failed_identifications
       }
     )
   end
