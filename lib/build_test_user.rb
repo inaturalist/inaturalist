@@ -5,6 +5,7 @@ module BuildTestUser
   NOTIFIER_LOGIN_PREFIX = "test_user_for_notifications"
   NOTIFIER_POOL_SIZE = 10
   MAX_COUNT = 10_000
+  RANDOM_SAMPLE_THRESHOLD = 1_000_000
   # Use a floor to avoid very old / sparse ID ranges.
   MIN_OBSERVATION_ID = 100_000
   MAX_OBSERVATION_ID = Observation.maximum( :id ).to_i
@@ -321,6 +322,16 @@ module BuildTestUser
   def self.randomize_observations( count:, exclude_ids: [] )
     return [] unless count.positive?
 
+    total_available = Observation.count
+    if total_available < RANDOM_SAMPLE_THRESHOLD
+      ids = Observation.order( Arel.sql( "RANDOM()" ) ).limit( count ).pluck( :id )
+      puts(
+        "BuildTestUser.randomize_observations random_scope total_available=#{total_available} " \
+          "found=#{ids.size}"
+      )
+      return ids
+    end
+
     results = []
     attempts = 0
     while results.size < count && attempts < 5
@@ -340,6 +351,16 @@ module BuildTestUser
 
   def self.randomize_identifications( count:, exclude_ids: [] )
     return [] unless count.positive?
+
+    total_available = Identification.count
+    if total_available < RANDOM_SAMPLE_THRESHOLD
+      ids = Identification.order( Arel.sql( "RANDOM()" ) ).limit( count ).pluck( :id )
+      puts(
+        "BuildTestUser.randomize_identifications random_scope total_available=#{total_available} " \
+          "found=#{ids.size}"
+      )
+      return ids
+    end
 
     results = []
     attempts = 0
