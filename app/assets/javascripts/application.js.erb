@@ -499,7 +499,7 @@ $(document).ready(function() {
 
 
 function checkFormForRequiredFields(e) {
-  var inputs = $('input[required]:visible').filter(function() { return !$(this).val() })
+  var inputs = $(this).find('input[required]:visible').filter(function() { return !$(this).val() })
   if (inputs.length == 0) {
     return true
   }
