@@ -14,11 +14,13 @@ const Account = ( {
   handleInputChange,
   handlePlaceAutocomplete,
   sites,
-  userSettings
+  userSettings,
+  toggleGroup
 } ) => {
   if ( !sites ) { return null; }
   const siteId = userSettings.site_id || 1;
   const currentNetworkAffiliation = sites.filter( site => site.id === siteId )[0];
+  const viewerIsAdmin = config.currentUser.roles && config.currentUser.roles.indexOf( "admin" ) >= 0;
 
   // these locales are not available for all regions (like "en-US")
   // so taking the list of keys from the english version
@@ -208,6 +210,70 @@ const Account = ( {
               </SettingsItem>
             )
             : <div className="nocontent"><div className="loading_spinner" /></div> }
+          { viewerIsAdmin && (
+            <SettingsItem header="Test Groups" htmlFor="user_test_groups">
+              <table className="table">
+                <tbody className="borderless">
+                  <tr>
+                    <td className="col-xs-4 borderless table-row">
+                      Responsive Header
+                    </td>
+                    <td className="col-xs-4 borderless table-row">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={( ) => toggleGroup( "responsive-header" )}
+                      >
+                        { config.currentUser.isInTestGroup( "responsive-header" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="col-xs-4 borderless table-row">
+                      Responsive Obs Detail
+                    </td>
+                    <td className="col-xs-4 borderless table-row">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={( ) => toggleGroup( "responsive-obs-detail" )}
+                      >
+                        { config.currentUser.isInTestGroup( "responsive-obs-detail" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="col-xs-4 borderless table-row">
+                      Responsive Taxon Detail
+                    </td>
+                    <td className="col-xs-4 borderless table-row">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={( ) => toggleGroup( "responsive-taxon-detail" )}
+                      >
+                        { config.currentUser.isInTestGroup( "responsive-taxon-detail" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="col-xs-4 borderless table-row">
+                      Helpful ID Tips
+                    </td>
+                    <td className="col-xs-4 borderless table-row">
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={( ) => toggleGroup( "helpful-id-tips" )}
+                      >
+                        { config.currentUser.isInTestGroup( "helpful-id-tips" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </SettingsItem>
+          )}
         </div>
       </div>
       <div className="row">
@@ -238,7 +304,8 @@ Account.propTypes = {
   handleCustomDropdownSelect: PropTypes.func,
   handleInputChange: PropTypes.func,
   handlePlaceAutocomplete: PropTypes.func,
-  sites: PropTypes.array
+  sites: PropTypes.array,
+  toggleGroup: PropTypes.func
 };
 
 export default Account;

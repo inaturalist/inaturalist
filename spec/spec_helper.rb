@@ -45,6 +45,7 @@ RSpec.configure do | config |
     Elasticsearch::Model.client.ping
     es_classes = [
       ControlledTerm,
+      ExemplarIdentification,
       Identification,
       ObservationField,
       Observation,

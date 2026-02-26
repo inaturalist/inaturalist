@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   check_spam only: [:create, :update], instance: :user
   before_action :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_action :admin_required, :only => [:curation, :merge]
+  before_action :admin_required_for_some_test_groups, only: :join_test
   before_action :site_admin_of_user_required, only: [:add_role, :remove_role]
   before_action :curator_required, only: [
     :moderation,
@@ -1349,5 +1350,11 @@ class UsersController < ApplicationController
       end
       return false
     end
+  end
+
+  def admin_required_for_some_test_groups
+    return unless User::ADMIN_ONLY_TEST_GROUPS.include?( params[:test] )
+
+    admin_required
   end
 end

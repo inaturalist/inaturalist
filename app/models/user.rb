@@ -393,6 +393,13 @@ class User < ApplicationRecord
   scope :active, -> { where( "suspended_at IS NULL" ) }
   scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
 
+  ADMIN_ONLY_TEST_GROUPS = %w(
+    responsive-header
+    responsive-obs-detail
+    responsive-taxon-detail
+    helpful-id-tips
+  ).freeze
+
   def login_must_not_contain_reserved_words
     return unless new_record? || login_changed?
     return if UsernameReservedWord.all_cached.empty?

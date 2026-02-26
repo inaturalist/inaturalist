@@ -9,6 +9,7 @@ import {
   fetchInteractions,
   fetchTrending,
   fetchSimilar,
+  fetchIdentifications,
   showPhotoChooser
 } from "../../shared/ducks/taxon";
 import { getChosenTab } from "../../shared/util";
@@ -41,6 +42,9 @@ function mapDispatchToProps( dispatch ) {
         break;
       case "similar":
         dispatch( fetchSimilar( ) );
+        break;
+      case "identifications":
+        dispatch( fetchIdentifications( { initialLoad: true } ) );
         break;
       default:
         // it's cool, you probably have what you need

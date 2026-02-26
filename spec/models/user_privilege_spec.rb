@@ -76,7 +76,7 @@ describe UserPrivilege do
 
   describe "earns_privilege" do
     describe "for observation" do
-      it "should earn speech after 3 verifiable observations" do
+      it "earns speech after 3 verifiable observations" do
         expect( user ).not_to be_privileged_with( UserPrivilege::SPEECH )
         3.times do
           make_research_grade_candidate_observation( user: user )
@@ -86,7 +86,7 @@ describe UserPrivilege do
         expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
       end
 
-      it "should not lose speech if an observation is deleted" do
+      it "does not lose speech if an observation is deleted" do
         3.times do
           make_research_grade_candidate_observation( user: user )
         end
@@ -104,7 +104,7 @@ describe UserPrivilege do
         expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
       end
 
-      it "should earn organizer" do
+      it "earns organizer with 50 verifiable observations" do
         expect( UserPrivilege.earned_organizer?( user ) ).to be false
         stub_verifiable_obs = double( "verifiable" )
         expect( stub_verifiable_obs ).to receive( :limit ).and_return( ( 1..50 ).to_a )
@@ -112,7 +112,17 @@ describe UserPrivilege do
         expect( UserPrivilege.earned_organizer?( user ) ).to be true
       end
 
-      it "should not earn organizer if email is not confirmed" do
+      it "earns organizer with 100 IDs for others" do
+        expect( UserPrivilege.earned_organizer?( user ) ).to be false
+        stub_ids_current = double( "current" )
+        stub_ids_for_others = double( "for_others" )
+        expect( stub_ids_for_others ).to receive( :limit ).and_return( ( 1..100 ).to_a )
+        expect( user.identifications ).to receive( "current" ).and_return( stub_ids_current )
+        expect( stub_ids_current ).to receive( "for_others" ).and_return( stub_ids_for_others )
+        expect( UserPrivilege.earned_organizer?( user ) ).to be true
+      end
+
+      it "does not earn organizer if email is not confirmed" do
         expect( UserPrivilege.earned_organizer?( user ) ).to be false
         stub_verifiable_obs = double( "verifiable" )
         expect( stub_verifiable_obs ).to receive( :limit ).and_return( ( 1..50 ).to_a )
@@ -122,7 +132,7 @@ describe UserPrivilege do
         expect( UserPrivilege.earned_organizer?( user ) ).to be false
       end
 
-      it "organizer is earned after email is confirmed" do
+      it "earns organizer after email is confirmed" do
         user = User.make!( confirmed_at: nil )
         expect( UserPrivilege.earned_organizer?( user ) ).to be false
         stub_verifiable_obs = double( "verifiable" )

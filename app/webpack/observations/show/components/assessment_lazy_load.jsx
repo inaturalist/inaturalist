@@ -10,11 +10,6 @@ const AssessmentLazyLoad = ( {
 } ) => (
   <LazyLoad
     debounce={false}
-    height={
-      !config.currentUser || !config.currentUser.prefers_hide_obs_show_quality_metrics
-        ? 670
-        : 70
-    }
     verticalOffset={500}
   >
     { children }
