@@ -220,8 +220,8 @@ module BuildTestUser
 
   def self.apply_updates( target_user_id:, update_action:, count: )
     target_user = User.find_by_id( target_user_id )
-    unless target_user&.test_groups_array&.include?( TEST_GROUP_NAME )
-      return Result.new( success: false, message: "Please select a valid test user" )
+    unless target_user
+      return Result.new( success: false, message: "Please select a valid user" )
     end
 
     count = [count.to_i, MAX_COUNT].min

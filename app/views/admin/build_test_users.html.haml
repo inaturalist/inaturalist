@@ -10,13 +10,13 @@
     %label.control-label.col-sm-3{ for: "build_test_login" } Login
     .col-sm-6
       %input.form-control{ type: "text", name: "build_test_login", id: "build_test_login",
-        value: @form_defaults[:login], required: true, disabled: !@staging_enabled,
+        value: @form_defaults[:login], disabled: !@staging_enabled,
         autocomplete: "off" }
   .form-group
     %label.control-label.col-sm-3{ for: "build_test_password" } Password
     .col-sm-6
       %input.form-control{ type: "password", name: "build_test_password", id: "build_test_password",
-        required: true, disabled: !@staging_enabled, autocomplete: "new-password" }
+        disabled: !@staging_enabled, autocomplete: "new-password" }
   .form-group
     %label.control-label.col-sm-3{ for: "observations_count" } Number of observations
     .col-sm-3
@@ -64,13 +64,13 @@
 
 %hr
 
-%h3 Trigger updates for a test user
+%h3 Trigger updates for a user
 = form_tag build_test_user_updates_admin_path, method: :post, class: "form-horizontal" do
   .form-group
-    %label.control-label.col-sm-3{ for: "target_user_login" } Test user login
+    %label.control-label.col-sm-3{ for: "target_user_login" } User login
     .col-sm-6
       %input.form-control{ type: "text", name: "target_user_login", id: "target_user_login",
-        placeholder: "user login", required: true, disabled: !@staging_enabled,
+        placeholder: "user login", disabled: !@staging_enabled,
         autocomplete: "off" }
   .form-group
     %label.control-label.col-sm-3 Action
@@ -102,8 +102,4 @@
         disabled: !@staging_enabled }
   .form-group
     .col-sm-offset-3.col-sm-6
-      %button.btn.btn-primary{ type: "submit",
-        formaction: build_test_user_updates_admin_path,
-        formmethod: "post",
-        formnovalidate: true,
-        disabled: !@staging_enabled } Run
+      %button.btn.btn-primary{ type: "submit", disabled: !@staging_enabled } Run
