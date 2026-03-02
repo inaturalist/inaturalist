@@ -902,6 +902,28 @@ describe Identification, "deletion" do
     o.reload
     expect( o.observation_reviews.count ).to eq 1
   end
+
+  # this test block attempts to test Identification model callbacks as close as
+  # possible to a real world scenarios. In particular, it is testing behavior
+  # of some after_commit callbacks which don't normally run in the test
+  # environment due to transactional fixtures not committing, and not calling
+  # *_commit lifecycle callbacks
+  describe "index interaction" do
+    elastic_models( Observation, Identification, { use_transactional_fixtures: false } )
+
+    around( :each ) do | example |
+      DatabaseCleaner.strategy = :truncation
+      example.run
+      DatabaseCleaner.strategy = :transaction
+    end
+
+    it "removes the identification from the Elasticsearch index" do
+      i = Identification.make!
+      expect( Identification.elastic_search( where: { id: i.id } ).results.results ).not_to be_empty
+      i.destroy
+      expect( Identification.elastic_search( where: { id: i.id } ).results.results ).to be_empty
+    end
+  end
 end
 
 describe Identification, "captive" do

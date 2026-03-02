@@ -242,6 +242,7 @@ end
 # Turn on elastic indexing for certain models. We do this selectively b/c
 # updating ES slows down the specs.
 def enable_elastic_indexing( *args )
+  options = args.last.is_a?( Hash ) ? args.pop : {}
   classes = [args].flatten
   classes.each do | klass |
     try_and_try_again(
@@ -252,6 +253,8 @@ def enable_elastic_indexing( *args )
     ) do
       klass.__elasticsearch__.client.delete_by_query( index: klass.index_name, body: { query: { match_all: {} } } )
     end
+    next if options[:use_transactional_fixtures] == false
+
     unless klass == TaxonPhoto
       klass.send :after_save, :elastic_index!
       klass.send :after_touch, :elastic_index!
@@ -263,13 +266,16 @@ end
 # Turn off elastic indexing for certain models. Make sure to do this after
 # specs if you used enable_elastic_indexing
 def disable_elastic_indexing( *args )
+  options = args.last.is_a?( Hash ) ? args.pop : {}
   classes = [args].flatten
   classes.each do | klass |
-    unless klass == TaxonPhoto
-      klass.send :skip_callback, :save, :after, :elastic_index!
-      klass.send :skip_callback, :touch, :after, :elastic_index!
+    unless options[:use_transactional_fixtures] == false
+      unless klass == TaxonPhoto
+        klass.send :skip_callback, :save, :after, :elastic_index!
+        klass.send :skip_callback, :touch, :after, :elastic_index!
+      end
+      klass.send :skip_callback, :destroy, :after, :elastic_delete!
     end
-    klass.send :skip_callback, :destroy, :after, :elastic_delete!
     try_and_try_again(
       [
         Elastic::Transport::Transport::Errors::Conflict,
