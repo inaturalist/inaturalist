@@ -55,7 +55,8 @@ namespace :inaturalist do
       task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
     end
     task_logger&.start
-    min_id = UpdateAction.minimum( :id )
+    earliest_id = CONFIG.update_action_rollover_id || 1
+    min_id = UpdateAction.where( "id >= ?", earliest_id ).minimum( :id )
     # using an ID clause to limit the number of rows in the query
     last_id_to_delete = UpdateAction.where( ["created_at < ?", 90.days.ago] ).
       where( "id >= #{min_id} AND id < #{min_id + 1_000_000}" ).maximum( :id )
