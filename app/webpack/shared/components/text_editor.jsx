@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import mousetrap from "mousetrap";
@@ -75,12 +76,16 @@ class TextEditor extends React.Component {
       className,
       textareaClassName,
       showCharsRemainingAt,
-      onBlur
+      onBlur,
+      onChange
     } = this.props;
     const { preview, content } = this.state;
     const textareaChars = content ? content.length : 0;
     const textareaOnChange = e => {
       this.setState( { content: e.target.value } );
+      if ( _.isFunction( onChange ) ) {
+        onChange( e );
+      }
     };
     return (
       <div className={`TextEditor ${className || ""} ${preview ? "with-preview" : ""}`}>
@@ -241,7 +246,8 @@ TextEditor.propTypes = {
   className: PropTypes.string,
   textareaClassName: PropTypes.string,
   showCharsRemainingAt: PropTypes.number,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func
 };
 
 TextEditor.defaultProps = {

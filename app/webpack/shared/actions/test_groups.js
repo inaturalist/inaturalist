@@ -24,7 +24,10 @@ function toggleGroup( group ) {
     const path = userInGroup
       ? `/users/${currentUser.id}/leave_test?test=${group}`
       : `/users/${currentUser.id}/join_test?test=${group}`;
-    fetch( path, fetchOpts ).then( ( ) => {
+    fetch( path, fetchOpts ).then( r => {
+      if ( !r.ok ) {
+        return;
+      }
       const newTestGroups = userInGroup
         ? _.without( currentUser.testGroups, group )
         : _.uniq( currentUser.testGroups.concat( [group] ) );

@@ -28,7 +28,11 @@ import {
   joinProject as sharedJoinProject,
   addObservationFieldValue as sharedAddObservationFieldValue,
   updateObservationFieldValue as sharedUpdateObservationFieldValue,
-  removeObservationFieldValue as sharedRemoveObservationFieldValue
+  removeObservationFieldValue as sharedRemoveObservationFieldValue,
+  nominateIdentification as sharedNominateIdentification,
+  unnominateIdentification as sharedUnnominateIdentification,
+  voteIdentification as sharedVoteIdentification,
+  unvoteIdentification as sharedUnvoteIdentification
 } from "../../shared/ducks/observation";
 import { updateSession } from "../../show/ducks/users";
 import { parseRailsErrorsResponse } from "../../../shared/util";
@@ -51,7 +55,6 @@ import {
 
 // order matters...
 const TABS = ["info", "suggestions", "annotations", "data-quality"];
-
 
 function showCurrentObservation( observation ) {
   return {
@@ -1065,6 +1068,63 @@ export function addObservationFields( ) {
         prefers_hide_identify_observation_fields: false
       } ) );
     }
+  };
+}
+
+export function nominateIdentification( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( sharedNominateIdentification(
+      state.currentObservation.observation,
+      id,
+      null,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      }
+    ) );
+  };
+}
+
+export function unnominateIdentification( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( sharedUnnominateIdentification(
+      state.currentObservation.observation,
+      id,
+      null,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      }
+    ) );
+  };
+}
+
+export function voteIdentification( id, voteValue ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( sharedVoteIdentification(
+      state.currentObservation.observation,
+      id,
+      voteValue,
+      null,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      }
+    ) );
+  };
+}
+
+export function unvoteIdentification( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( sharedUnvoteIdentification(
+      state.currentObservation.observation,
+      id,
+      null,
+      ( ) => {
+        dispatch( fetchCurrentObservation( ) );
+      }
+    ) );
   };
 }
 
