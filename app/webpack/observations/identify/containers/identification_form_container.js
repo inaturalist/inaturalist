@@ -14,7 +14,8 @@ function mapStateToProps( state, ownProps ) {
     observation: ownProps.observation,
     currentUser: state.config.currentUser,
     blind: state.config.blind,
-    content: state.textEditor.obsIdentifyIdComment
+    content: state.textEditor.obsIdentifyIdComment,
+    nominate: state.textEditor.nominate
   };
 }
 

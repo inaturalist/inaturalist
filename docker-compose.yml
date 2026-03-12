@@ -37,6 +37,9 @@ services:
     environment:
       POSTGRES_USER: inaturalist
       POSTGRES_PASSWORD: inaturalist
+      POSTGRES_HOST_AUTH_METHOD: md5
+      POSTGRES_INITDB_ARGS: --auth-host=md5
+    command: ["postgres", "-c", "log_statement=all", "-c", "log_destination=stderr", "-c", "password_encryption=md5"]
     ports:
       - 5432:5432
     volumes:
