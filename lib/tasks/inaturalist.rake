@@ -15,41 +15,6 @@ namespace :inaturalist do
     exit 0
   end
 
-  desc "Reset a user password. Usage: rake inaturalist:reset_user_password[USER_ID, PASSWORD]"
-  task :reset_user_password, [:id, :password] => :environment do | _, args |
-    user_id = args[:id] || Rails.env.fetch( "USER_ID" )
-    password = args[:password] || Rails.env.fetch( "PASSWORD" )
-
-    user = User.find_by( id: user_id )
-    unless user
-      puts "User not found: #{user_id}"
-      exit 1
-    end
-
-    user.password = password
-    user.password_confirmation = password
-    user.save!
-    puts "Updated password for user #{user.id} (#{user.login || user.email})"
-  end
-
-  desc "Set the public_positional_accuracy and mappable fields on observations."
-  task :update_public_accuracy => :environment do
-    batch = 0
-    batch_size = 10000
-    total_observations = Observation.count
-    total_batches = (total_observations / batch_size).ceil
-    start_time = Time.now
-    Observation.includes(:quality_metrics).find_in_batches(batch_size: batch_size) do |observations|
-      puts "Starting batch #{ batch += 1 } of #{ total_batches } at #{ (Time.now - start_time).round(2) } seconds"
-      Observation.connection.transaction do
-        observations.each do |o|
-          o.update_public_positional_accuracy
-          o.update_mappable
-        end
-      end
-    end
-  end
-
   desc "Delete content from spmmer accounts."
   task :delete_spam_content => :environment do
     spammer_ids = User.where(spammer: true).
