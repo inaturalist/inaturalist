@@ -83,8 +83,7 @@ namespace :es do
     puts "Recreating index #{klass}..."
     client = klass.__elasticsearch__.client
     index = klass.index_name
-    client.indices.delete( index: index ) if client.indices.exists( index: index )
-    klass.__elasticsearch__.create_index!
+    klass.__elasticsearch__.create_index! force: true
   end
 
   desc "Delete and rebuild all models in elasticsearch"
