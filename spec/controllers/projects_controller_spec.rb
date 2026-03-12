@@ -142,6 +142,40 @@ describe ProjectsController, "search" do
   end
 end
 
+describe ProjectsController, "create" do
+  let( :user ) { User.make! }
+  before { sign_in user }
+
+  describe "umbrella project" do
+    it "should persist umbrella_project_list_sort when provided" do
+      post :create, params: { project: {
+        title: "Test Umbrella Sort",
+        project_type: "umbrella",
+        prefers_umbrella_project_list_sort: "ascending"
+      } }
+      expect( Project.find_by( title: "Test Umbrella Sort" ).prefers_umbrella_project_list_sort ).to eq "ascending"
+    end
+
+    it "should default umbrella_project_list_sort to alphabetical" do
+      post :create, params: { project: {
+        title: "Test Umbrella Default Sort",
+        project_type: "umbrella"
+      } }
+      expect( Project.find_by( title: "Test Umbrella Default Sort" ).
+        prefers_umbrella_project_list_sort ).to eq "alphabetical"
+    end
+
+    it "should set umbrella_project_list_sort to nil when the project_type is not umbrella" do
+      post :create, params: { project: {
+        title: "Test Umbrella Default Sort",
+        project_type: "collection"
+      } }
+      expect( Project.find_by( title: "Test Umbrella Default Sort" ).
+        prefers_umbrella_project_list_sort ).to be_nil
+    end
+  end
+end
+
 describe ProjectsController, "update" do
   let(:project) { Project.make! }
   let(:user) { project.user }
@@ -182,6 +216,21 @@ describe ProjectsController, "update" do
     put :update, params: { id: project.id, project: {prefers_aggregation: false} }
     project.reload
     expect( project ).to be_prefers_aggregation
+  end
+
+  describe "umbrella project sort" do
+    let( :umbrella ) { Project.make!( project_type: "umbrella", user: user ) }
+
+    it "should persist umbrella_project_list_sort when updated" do
+      put :update, params: { id: umbrella.id, project: { prefers_umbrella_project_list_sort: "descending" } }
+      expect( umbrella.reload.prefers_umbrella_project_list_sort ).to eq "descending"
+    end
+
+    it "should allow changing umbrella_project_list_sort to a different valid value" do
+      umbrella.update( prefers_umbrella_project_list_sort: "ascending" )
+      put :update, params: { id: umbrella.id, project: { prefers_umbrella_project_list_sort: "alphabetical" } }
+      expect( umbrella.reload.prefers_umbrella_project_list_sort ).to eq "alphabetical"
+    end
   end
 end
 

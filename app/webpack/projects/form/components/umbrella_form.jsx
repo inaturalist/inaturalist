@@ -38,6 +38,23 @@ class UmbrellaForm extends React.Component {
               </label>
             </Col>
           </Row>
+          <Row>
+            <Col xs={4}>
+              <label htmlFor="project-sort">
+                { I18n.t( "sort_included_projects_on_leaderboard_by" ) }
+              </label>
+              <select
+                id="project-sort"
+                className="form-control"
+                value={project.umbrella_project_list_sort || "descending"}
+                onChange={e => updateProject( { umbrella_project_list_sort: e.target.value } )}
+              >
+                <option value="alphabetical">{ I18n.t( "alphabetical" ) }</option>
+                <option value="descending">{ I18n.t( "count_descending" ) }</option>
+                <option value="ascending">{ I18n.t( "count_ascending" ) }</option>
+              </select>
+            </Col>
+          </Row>
         </Grid>
       </div>
     );
