@@ -26,7 +26,10 @@ brew install docker-compose &
 brew install postgresql
 
 ## RVM was not respecting the openssl-dir parameter, so we can use rbenv instead.
-# rvm install $(cat .ruby-version) --with-openssl-dir=$(brew --prefix openssl@3) --with-readline-dir=$(brew --prefix readline) &
+# rvm install $(cat .ruby-version) \
+#   --autolibs=disable \
+#   --with-openssl-dir=$(brew --prefix openssl@3) \
+#   --with-readline-dir=$(brew --prefix readline)
 # rvm use &
 
 rbenv install
