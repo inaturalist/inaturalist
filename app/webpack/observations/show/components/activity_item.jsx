@@ -305,7 +305,6 @@ class ActivityItem extends React.Component {
     const { taxon } = item;
     const { currentUser } = config;
     const loggedIn = config?.currentUser;
-    const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
     const userCanInteract = config?.currentUserCanInteractWithResource( observation );
     const canSeeHidden = config && config.currentUser && (
       config.currentUser.roles.indexOf( "admin" ) >= 0
@@ -667,7 +666,7 @@ class ActivityItem extends React.Component {
         />
       );
     }
-    if ( isAdmin && currentUser?.isInTestGroup( "helpful-id-tips" ) && this.identificationHasNomination( ) ) {
+    if ( currentUser?.canViewHelpfulIDTips( ) && this.identificationHasNomination( ) ) {
       footers.nomination = (
         <>
           <span className="footer-text">
