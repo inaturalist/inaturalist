@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
@@ -10,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery with: :exception, if: -> { request.headers["Authorization"].blank? }
+  prepend_before_action :reject_invalid_signed_in_traffic_cookie
   before_action :permit_params
   around_action :set_time_zone
   around_action :logstash_catchall
@@ -35,10 +38,25 @@ class ApplicationController < ActionController::Base
   # /ping should skip all before filters and just render
   skip_before_action *_process_action_callbacks.map(&:filter), only: :ping, raise: false
 
-  PER_PAGES = [10,30,50,100,200]
+  PER_PAGES = [10, 30, 50, 100, 200]
   HEADER_VERSION = 21
-  
+  SIGNED_IN_TRAFFIC_COOKIE_KEY = "inat_signed_in".freeze
+  SIGNED_IN_TRAFFIC_COOKIE_VALUE = "1".freeze
+
   alias :logged_in? :user_signed_in?
+
+  def sign_in( resource_or_scope, *args )
+    result = super
+    options = args.last.is_a?( Hash ) ? args.last : {}
+    set_signed_in_traffic_cookie if options[:store] != false
+    result
+  end
+
+  def sign_out( resource_or_scope = nil )
+    result = super
+    clear_signed_in_traffic_cookie
+    result
+  end
 
   # set the locale for the current session. If the user is
   # logged in, also update their preferred locale in the DB
@@ -57,6 +75,32 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def reject_invalid_signed_in_traffic_cookie
+    return if cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].blank?
+    return if cookies.signed[SIGNED_IN_TRAFFIC_COOKIE_KEY] == SIGNED_IN_TRAFFIC_COOKIE_VALUE
+
+    head :forbidden
+  end
+
+  def set_signed_in_traffic_cookie
+    cookies.signed[SIGNED_IN_TRAFFIC_COOKIE_KEY] =
+      signed_in_traffic_cookie_options.merge( value: SIGNED_IN_TRAFFIC_COOKIE_VALUE )
+  end
+
+  def clear_signed_in_traffic_cookie
+    cookies.delete( SIGNED_IN_TRAFFIC_COOKIE_KEY, signed_in_traffic_cookie_options )
+  end
+
+  def signed_in_traffic_cookie_options
+    {
+      domain: Rails.configuration.session_options[:domain],
+      path: Rails.configuration.session_options[:path] || "/",
+      secure: request.ssl?,
+      httponly: true,
+      same_site: :lax
+    }.compact
+  end
 
   def default_url_options
     return @default_url_options if @default_url_options
