@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
 
   PER_PAGES = [10, 30, 50, 100, 200]
   HEADER_VERSION = 21
-  SIGNED_IN_TRAFFIC_COOKIE_KEY = "inat_signed_in".freeze
+  SIGNED_IN_TRAFFIC_COOKIE_KEY = "_inaturalist_signed_in".freeze
   SIGNED_IN_TRAFFIC_COOKIE_VALUE = "1".freeze
 
   alias :logged_in? :user_signed_in?
