@@ -42,6 +42,7 @@ class ApplicationController < ActionController::Base
   HEADER_VERSION = 21
   SIGNED_IN_TRAFFIC_COOKIE_KEY = "_inaturalist_signed_in".freeze
   SIGNED_IN_TRAFFIC_COOKIE_VALUE = "1".freeze
+  INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "invalid_signed_in_cookie".freeze
 
   alias :logged_in? :user_signed_in?
 
@@ -80,6 +81,7 @@ class ApplicationController < ActionController::Base
     return if cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].blank?
     return if cookies.signed[SIGNED_IN_TRAFFIC_COOKIE_KEY] == SIGNED_IN_TRAFFIC_COOKIE_VALUE
 
+    response.set_header( "X-Sec-Rule", INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE )
     head :forbidden
   end
 
