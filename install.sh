@@ -39,6 +39,14 @@ rbenv local $(cat .ruby-version)
 sudo gem install bundler -v 2.4.22 &
 bundle install
 
+
+# install and run webpack to generate necessary assets
+nvm install
+
+npm install
+
+npm run webpack
+
 rake inaturalist:generate_translations_js
 
 # Customize the docker config
