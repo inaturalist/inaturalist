@@ -1612,7 +1612,7 @@ class User < ApplicationRecord
     User.where(id: user_id).update_all(identifications_count: count)
   end
 
-  def self.update_observations_counter_cache(user_id)
+  def self.update_observations_counter_cache( user_id, options = {} )
     return unless user = User.find_by_id( user_id )
     result = Observation.elastic_search(
       filters: [
@@ -1625,6 +1625,8 @@ class User < ApplicationRecord
     )
     count = (result && result.response) ? result.response.hits.total.value : 0
     User.where( id: user_id ).update_all( observations_count: count )
+    return if options[:skip_indexing]
+
     user.reload
     user.elastic_index!
   end

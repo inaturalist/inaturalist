@@ -67,6 +67,7 @@ module BuildTestUser
     cloned_observation_ids = []
     cloned_identification_ids = []
     observations_from_other_ids = []
+    observations_with_identification_changes = []
     failed_observations = []
     failed_identifications = []
     if observations_count.positive? && observations.any?
@@ -78,6 +79,7 @@ module BuildTestUser
 
           cloned_obs = obs.dup
           cloned_obs.user_id = user.id
+          cloned_obs.skip_indexing = true
           cloned_obs.uuid = nil if cloned_obs.respond_to?( :uuid )
           clone_note = "Cloned from obs #{obs.id} by user #{original_user_id}"
           if cloned_obs.description.to_s.strip.empty?
@@ -120,6 +122,7 @@ module BuildTestUser
             cloned_annotation = a.dup
             cloned_annotation.resource = cloned_obs
             cloned_annotation.user_id = ( ( a.user_id == original_user_id ) ? user.id : a.user_id )
+            cloned_annotation.skip_indexing = true
             cloned_annotation.uuid = nil if cloned_annotation.respond_to?( :uuid )
             cloned_annotation.save!
           end
@@ -128,9 +131,11 @@ module BuildTestUser
             cloned_ident = ident.dup
             cloned_ident.observation_id = cloned_obs.id
             cloned_ident.user_id = ( ( ident.user_id == original_user_id ) ? user.id : ident.user_id )
+            cloned_ident.skip_indexing = true
             cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
             cloned_ident.save!
             cloned_identification_ids << cloned_ident.id
+            observations_with_identification_changes << cloned_obs.id
             identifications_from_own_obs << cloned_ident.id if ident.user_id == original_user_id
           end
 
@@ -159,10 +164,12 @@ module BuildTestUser
         begin
           cloned_ident = ident.dup
           cloned_ident.user_id = user.id
+          cloned_ident.skip_indexing = true
           cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
           cloned_ident.save!
           cloned_identification_ids << cloned_ident.id
           observations_from_other_ids << cloned_ident.observation_id
+          observations_with_identification_changes << cloned_ident.observation_id
         rescue => e
           failed_identifications << { id: ident.id, error: e.message }
           puts "BuildTestUser.build_user identification_clone_failed id=#{ident.id} error=#{e.class}: #{e.message}"
@@ -174,6 +181,7 @@ module BuildTestUser
 
     all_observations = ( cloned_observation_ids + observations_from_other_ids ).uniq
     all_identifications = cloned_identification_ids.uniq
+    observations_with_identification_changes.uniq!
 
     # Reindex changed observation and identification records.
     if all_observations.any?
@@ -182,17 +190,24 @@ module BuildTestUser
         message: "Re-indexed #{all_observations.count} observations" )
     end
 
-    if all_identifications.any?
+    if observations_with_identification_changes.any?
+      Identification.elastic_index!(
+        scope: Identification.where( observation_id: observations_with_identification_changes ),
+        wait_for_index_refresh: true
+      )
+      update_progress( login, status: "identifications_re_indexed", progress: 95,
+        message: "Re-indexed identifications for #{observations_with_identification_changes.count} observations" )
+    elsif all_identifications.any?
       Identification.elastic_index!( ids: all_identifications, wait_for_index_refresh: true )
       update_progress( login, status: "identifications_re_indexed", progress: 95,
-        message: "Re-indexed #{all_identifications.count} indentifications" )
+        message: "Re-indexed #{all_identifications.count} identifications" )
     end
 
     # Reindex user and recompute counters for consistent search and stats.
-    User.update_observations_counter_cache( user.id )
+    User.update_observations_counter_cache( user.id, skip_indexing: true )
     User.update_identifications_counter_cache( user.id )
-    User.update_annotated_observations_counter_cache( user.id )
-    User.update_species_counter_cache( user.id )
+    User.update_annotated_observations_counter_cache( user.id, skip_indexing: true )
+    User.update_species_counter_cache( user.id, skip_indexing: true )
     user.reload
     user.elastic_index!
     update_progress( login, status: "user_re_indexed", progress: 100 )
