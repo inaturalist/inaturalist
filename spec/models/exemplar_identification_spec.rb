@@ -90,9 +90,27 @@ describe ExemplarIdentification do
     let( :genus ) { Taxon.make!( rank: Taxon::GENUS ) }
     let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
 
-    it "sets active to true when identifications are species and consitent with observation taxon" do
+    it "sets active to true when identifications are species and consistent with observation taxon" do
       observation = Observation.make!( taxon: species )
       identification = Identification.make!( observation: observation, taxon: species, body: "thebody" )
+      expect( identification.exemplar_identification.active? ).to be true
+    end
+
+    it "sets active to true when identifications are species and observations have no taxon yet" do
+      observation = Observation.make!( taxon: nil )
+      identification = Identification.new(
+        observation: observation,
+        taxon: species, body: "thebody",
+        user: User.make!
+      )
+      # the Identification model implements a custom callback for the test env
+      # due to conflicts with the test environment's transactional DB cleaning.
+      # That callback changes the normal order of operations (turning an
+      # after_commit into an after_create), and changing the normal data flow
+      # this test is evaluating. Skip that callback for now to test the real
+      # world case of an observation having no taxon when `set_active` is called
+      expect( identification ).to receive( :update_observation_if_test_env ).and_return( nil )
+      identification.save
       expect( identification.exemplar_identification.active? ).to be true
     end
 

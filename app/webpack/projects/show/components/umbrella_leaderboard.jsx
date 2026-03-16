@@ -22,7 +22,7 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
   const showMore = sortedProjectStats.length > limit;
   return (
     <div className="UmbrellaLeaderboard">
-      <h2>{ I18n.t( "leaderboard" ) }</h2>
+      <h2>{ I18n.t( "projects" ) }</h2>
       <div className="sort">
         { `${I18n.t( "sort_by" )}:` }
         <span

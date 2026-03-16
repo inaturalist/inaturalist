@@ -585,10 +585,12 @@ class Identification < ApplicationRecord
         skip_indexing: skip_indexing
       } )
       # update_categories_for_observation will reindex all the observation's
-      # identifications, so we both do not need to re-index this individual
-      # identification after that happens, and in fact that may result in
-      # indexing stale data, e.g. a blank category
-      self.skip_indexing = true
+      # identifications, so, except when the identification has been deleted,
+      # we both do not need to re-index this individual identification after
+      # that happens, and in fact that may result in indexing stale data,
+      # e.g. a blank category. If the Identification has been deleted, it must
+      # not enable `skip_indexing` so its doc gets removed from Elasticsearch
+      self.skip_indexing = persisted?
     end
     true
   end

@@ -451,6 +451,36 @@ describe ApplicationHelper do
     end
   end
 
+  describe "t_with_fallback" do
+    it "returns the new key translation when both keys exist" do
+      allow( I18n ).to receive( :has_t? ).with( :old_key ).and_return( true )
+      allow( I18n ).to receive( :has_t? ).with( :new_key ).and_return( true )
+      allow( I18n ).to receive( :t ).with( :new_key ).and_return( "new translation" )
+      expect( t_with_fallback( :new_key, :old_key ) ).to eq "new translation"
+    end
+
+    it "returns the old key translation when only the old key exists" do
+      allow( I18n ).to receive( :has_t? ).with( :old_key ).and_return( true )
+      allow( I18n ).to receive( :has_t? ).with( :new_key ).and_return( false )
+      allow( I18n ).to receive( :t ).with( :old_key ).and_return( "old translation" )
+      expect( t_with_fallback( :new_key, :old_key ) ).to eq "old translation"
+    end
+
+    it "returns the new key translation when neither key exists" do
+      allow( I18n ).to receive( :has_t? ).with( :old_key ).and_return( false )
+      allow( I18n ).to receive( :has_t? ).with( :new_key ).and_return( false )
+      allow( I18n ).to receive( :t ).with( :new_key ).and_return( "translation missing: en.new_key" )
+      expect( t_with_fallback( :new_key, :old_key ) ).to eq "translation missing: en.new_key"
+    end
+
+    it "returns the new key translation when only the new key exists" do
+      allow( I18n ).to receive( :has_t? ).with( :old_key ).and_return( false )
+      allow( I18n ).to receive( :has_t? ).with( :new_key ).and_return( true )
+      allow( I18n ).to receive( :t ).with( :new_key ).and_return( "new translation" )
+      expect( t_with_fallback( :new_key, :old_key ) ).to eq "new translation"
+    end
+  end
+
   describe "absolute_url_or_relative_to_site" do
     let( :site ) do
       Site.make!
