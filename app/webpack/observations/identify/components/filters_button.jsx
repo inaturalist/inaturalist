@@ -596,7 +596,7 @@ class FiltersButton extends React.Component {
               className={params.place_id ? "filter-changed" : ""}
               afterSelect={result => {
                 updateSearchParams( {
-                  place_id: config.testingApiV2 ? result.item.uuid : result.item.id
+                  place_id: result.item.id,
                 } );
               }}
               afterUnselect={( ) => {
