@@ -26,17 +26,17 @@ brew install docker-compose &
 brew install postgresql
 
 ## RVM was not respecting the openssl-dir parameter, so we can use rbenv instead.
-# rvm install $(cat .ruby-version) \
-#   --autolibs=disable \
-#   --with-openssl-dir=$(brew --prefix openssl@3) \
-#   --with-readline-dir=$(brew --prefix readline)
-# rvm use &
+rvm install $(cat .ruby-version) \
+  --autolibs=disable \
+  --with-openssl-dir=$(brew --prefix openssl@3) \
+  --with-readline-dir=$(brew --prefix readline)
+rvm use
 
-rbenv install
-rbenv local $(cat .ruby-version)
+# rbenv install
+# rbenv local $(cat .ruby-version)
 
 # Install gems 
-sudo gem install bundler -v 2.4.22 &
+sudo gem install bundler
 bundle install
 
 
@@ -52,5 +52,5 @@ rake inaturalist:generate_translations_js
 # Customize the docker config
 cp docker-compose.override.yml.example docker-compose.override.yml &
 
-bundle config build.pg "--with-cflags=-I/opt/homebrew/opt/libpq/include --with-ldflags=-L/opt/homebrew/opt/libpq/lib" &
-CFLAGS="-Wno-error=implicit-function-declaration" bundle
+# bundle config build.pg "--with-cflags=-I/opt/homebrew/opt/libpq/include --with-ldflags=-L/opt/homebrew/opt/libpq/lib" &
+# CFLAGS="-Wno-error=implicit-function-declaration" bundle
