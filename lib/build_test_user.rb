@@ -65,9 +65,9 @@ module BuildTestUser
     # For each selected observation, clone the observation and its related records.
     identifications_from_own_obs = []
     cloned_observation_ids = []
-    cloned_identification_ids_from_cloned_observations = []
-    cloned_identification_ids_on_existing_observations = []
+    cloned_identification_ids = []
     observations_from_other_ids = []
+    observations_with_identification_changes = []
     failed_observations = []
     failed_identifications = []
     if observations_count.positive? && observations.any?
@@ -79,8 +79,6 @@ module BuildTestUser
 
           cloned_obs = obs.dup
           cloned_obs.user_id = user.id
-          cloned_obs.skip_updates = true
-          cloned_obs.skip_identifications = true
           cloned_obs.skip_indexing = true
           cloned_obs.uuid = nil if cloned_obs.respond_to?( :uuid )
           clone_note = "Cloned from obs #{obs.id} by user #{original_user_id}"
@@ -116,7 +114,6 @@ module BuildTestUser
             cloned_ofv = ofv.dup
             cloned_ofv.observation_id = cloned_obs.id
             cloned_ofv.user_id = ( ( ofv.user_id == original_user_id ) ? user.id : ofv.user_id )
-            cloned_ofv.skip_updates = true
             cloned_ofv.uuid = nil if cloned_ofv.respond_to?( :uuid )
             cloned_ofv.save!
           end
@@ -134,14 +131,11 @@ module BuildTestUser
             cloned_ident = ident.dup
             cloned_ident.observation_id = cloned_obs.id
             cloned_ident.user_id = ( ( ident.user_id == original_user_id ) ? user.id : ident.user_id )
-            # Avoid callback-driven jobs; we'll handle indexing in bulk later.
-            cloned_ident.skip_observation = true
-            cloned_ident.bulk_delete = true
-            cloned_ident.skip_updates = true
             cloned_ident.skip_indexing = true
             cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
             cloned_ident.save!
-            cloned_identification_ids_from_cloned_observations << cloned_ident.id
+            cloned_identification_ids << cloned_ident.id
+            observations_with_identification_changes << cloned_obs.id
             identifications_from_own_obs << cloned_ident.id if ident.user_id == original_user_id
           end
 
@@ -149,7 +143,6 @@ module BuildTestUser
             cloned_comment = comment.dup
             cloned_comment.parent = cloned_obs
             cloned_comment.user_id = ( ( comment.user_id == original_user_id ) ? user.id : comment.user_id )
-            cloned_comment.skip_updates = true
             cloned_comment.uuid = nil if cloned_comment.respond_to?( :uuid )
             cloned_comment.save!
           end
@@ -171,15 +164,12 @@ module BuildTestUser
         begin
           cloned_ident = ident.dup
           cloned_ident.user_id = user.id
-          # Avoid callback-driven jobs; we'll handle indexing in bulk later.
-          cloned_ident.skip_observation = true
-          cloned_ident.bulk_delete = true
-          cloned_ident.skip_updates = true
           cloned_ident.skip_indexing = true
           cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
           cloned_ident.save!
-          cloned_identification_ids_on_existing_observations << cloned_ident.id
+          cloned_identification_ids << cloned_ident.id
           observations_from_other_ids << cloned_ident.observation_id
+          observations_with_identification_changes << cloned_ident.observation_id
         rescue => e
           failed_identifications << { id: ident.id, error: e.message }
           puts "BuildTestUser.build_user identification_clone_failed id=#{ident.id} error=#{e.class}: #{e.message}"
@@ -189,53 +179,25 @@ module BuildTestUser
     end
     update_progress( login, status: "identifications_assigned", progress: 75 )
 
-    cloned_observation_ids.uniq!
-    observations_from_other_ids.uniq!
-    cloned_identification_ids_from_cloned_observations.uniq!
-    cloned_identification_ids_on_existing_observations.uniq!
-
-    if cloned_identification_ids_from_cloned_observations.any?
-      recompute_observations_after_identification_changes( cloned_observation_ids )
-    end
-    if cloned_identification_ids_on_existing_observations.any?
-      recompute_observations_after_identification_changes( observations_from_other_ids )
-    end
+    all_observations = ( cloned_observation_ids + observations_from_other_ids ).uniq
+    all_identifications = cloned_identification_ids.uniq
+    observations_with_identification_changes.uniq!
 
     # Reindex changed observation and identification records.
-    indexed_observation_count = 0
-    if cloned_observation_ids.any?
-      Observation.elastic_index!( ids: cloned_observation_ids, wait_for_index_refresh: true )
-      indexed_observation_count += cloned_observation_ids.count
-    end
-    if observations_from_other_ids.any?
-      Observation.elastic_index!( ids: observations_from_other_ids, wait_for_index_refresh: true )
-      indexed_observation_count += observations_from_other_ids.count
-    end
-    if indexed_observation_count.positive?
+    if all_observations.any?
+      Observation.elastic_index!( ids: all_observations, wait_for_index_refresh: true )
       update_progress( login, status: "observations_re_indexed", progress: 85,
-        message: "Re-indexed #{indexed_observation_count} observations " \
-          "(#{cloned_observation_ids.count} cloned + #{observations_from_other_ids.count} existing)" )
+        message: "Re-indexed #{all_observations.count} observations" )
     end
 
-    identifications_reindexed = false
-    if cloned_identification_ids_from_cloned_observations.any?
-      Identification.elastic_index!(
-        ids: cloned_identification_ids_from_cloned_observations,
-        wait_for_index_refresh: true
-      )
-      identifications_reindexed = true
-    end
-    if observations_from_other_ids.any?
-      Identification.elastic_index!(
-        scope: Identification.where( observation_id: observations_from_other_ids ),
-        wait_for_index_refresh: true
-      )
-      identifications_reindexed = true
-    end
-    if identifications_reindexed
+    if observations_with_identification_changes.any?
+      Observation.elastic_index!( ids: observations_with_identification_changes , wait_for_index_refresh: true )
+      update_progress( login, status: "observations_from_identification_re_indexed", progress: 95,
+        message: "Re-indexed observations for #{observations_with_identification_changes.count} identifications" )
+    elsif all_identifications.any?
+      Identification.elastic_index!( ids: all_identifications, wait_for_index_refresh: true )
       update_progress( login, status: "identifications_re_indexed", progress: 95,
-        message: "Re-indexed identifications (#{cloned_identification_ids_from_cloned_observations.count} cloned " \
-          "+ all IDs for #{observations_from_other_ids.count} existing observations)" )
+        message: "Re-indexed #{all_identifications.count} identifications" )
     end
 
     # Reindex user and recompute counters for consistent search and stats.
@@ -245,10 +207,6 @@ module BuildTestUser
     User.update_species_counter_cache( user.id, skip_indexing: true )
     user.reload
     user.elastic_index!
-    # NOTE: We intentionally optimize for test-user generation speed.
-    # If strict global consistency is needed, we should also collect the
-    # non-test users whose identifications were cloned onto new observations
-    # and refresh their identifications counters (and user index docs) here.
     update_progress( login, status: "user_re_indexed", progress: 100 )
 
     update_progress( login, status: "complete", progress: 100 )
@@ -264,8 +222,6 @@ module BuildTestUser
       details: {
         observations: cloned_observation_ids,
         identifications_from_own_obs: identifications_from_own_obs,
-        cloned_identifications_from_cloned_observations: cloned_identification_ids_from_cloned_observations,
-        cloned_identifications_on_existing_observations: cloned_identification_ids_on_existing_observations,
         indentifications: indentifications,
         observations_from_other_ids: observations_from_other_ids,
         failed_observations: failed_observations,
@@ -509,28 +465,5 @@ module BuildTestUser
     Rails.cache.read( "build_test_user_progress_log" ) || []
   end
 
-  def self.recompute_observations_after_identification_changes( observation_ids )
-    Observation.where( id: observation_ids ).
-      includes( :community_taxon, :quality_metrics, { identifications: [:taxon, :moderator_actions] } ).
-      find_each do | obs |
-      # Suppress callback side effects; this pass is only to normalize persisted state before bulk indexing.
-      obs.skip_updates = true if obs.respond_to?( :skip_updates= )
-      obs.skip_refresh_check_lists = true
-      obs.skip_identifications = true
-      obs.skip_quality_metrics = true
-      obs.skip_indexing = true
-      obs.set_community_taxon( force: true )
-      obs.set_taxon_geoprivacy
-
-      Identification.update_categories_for_observation(
-        obs,
-        skip_reload: true,
-        skip_indexing: true
-      )
-      obs.update_stats
-    end
-  end
-
   private_class_method :ensure_notifier_users
-  private_class_method :recompute_observations_after_identification_changes
 end
