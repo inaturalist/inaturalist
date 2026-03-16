@@ -79,6 +79,8 @@ module BuildTestUser
 
           cloned_obs = obs.dup
           cloned_obs.user_id = user.id
+          cloned_obs.skip_updates = true
+          cloned_obs.skip_identifications = true
           cloned_obs.skip_indexing = true
           cloned_obs.uuid = nil if cloned_obs.respond_to?( :uuid )
           clone_note = "Cloned from obs #{obs.id} by user #{original_user_id}"
@@ -131,6 +133,7 @@ module BuildTestUser
             cloned_ident = ident.dup
             cloned_ident.observation_id = cloned_obs.id
             cloned_ident.user_id = ( ( ident.user_id == original_user_id ) ? user.id : ident.user_id )
+            cloned_ident.skip_updates = true
             cloned_ident.skip_indexing = true
             cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
             cloned_ident.save!
@@ -164,6 +167,7 @@ module BuildTestUser
         begin
           cloned_ident = ident.dup
           cloned_ident.user_id = user.id
+          cloned_ident.skip_updates = true
           cloned_ident.skip_indexing = true
           cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
           cloned_ident.save!
