@@ -2061,6 +2061,104 @@ describe User do
     end
   end
 
+  describe "test_groups" do
+    describe "validate_new_admin_only_test_groups" do
+      it "does not let non-admins join admin-only test groups" do
+        u = User.make!
+        u.update( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+        expect( u.errors["test_groups"] ).not_to be_blank
+
+        u.update( test_groups: ["group1", User::ADMIN_ONLY_TEST_GROUPS[0]].join( "|" ) )
+        expect( u.errors["test_groups"] ).not_to be_blank
+
+        u.update( test_groups: [User::ADMIN_ONLY_TEST_GROUPS[0], "group2"].join( "|" ) )
+        expect( u.errors["test_groups"] ).not_to be_blank
+
+        u.update( test_groups: ["group1", "group2"].join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+
+      it "allows non-admins to add new non-admin-only test groups" do
+        u = User.make!
+        # start the user in an admin-only test group which would not be allowed
+        # without directly updating the attribute with update_columns
+        u.update_columns( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+
+        # adding non-admin-only test groups is allowed
+        u.update( test_groups: ( u.test_groups_array + ["group1"] ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        # attemping to add another admin-only test group is not allowed
+        u.update( test_groups: (
+          u.test_groups_array + [User::ADMIN_ONLY_TEST_GROUPS[1]]
+        ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).not_to be_blank
+      end
+
+      it "allows non-admins leave test groups" do
+        u = User.make!
+        # start the user in an admin-only test group which would not be allowed
+        # without directly updating the attribute with update_columns
+        u.update_columns( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+
+        # adding non-admin-only test groups is allowed
+        u.update( test_groups: ( u.test_groups_array + ["group1"] ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        # leaving non-admin-only test groups is allowed
+        u.update( test_groups: ( u.test_groups_array - ["group1"] ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        # leaving the admin-only test group is allowed
+        u.update( test_groups: nil )
+      end
+
+      it "allows admins to join admin-only test groups" do
+        u = make_admin
+        u.update( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: ["group1", User::ADMIN_ONLY_TEST_GROUPS[0]].join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: [User::ADMIN_ONLY_TEST_GROUPS[0], "group2"].join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+    end
+
+    describe "validate_joining_helpful_id_tips_test_group" do
+      it "allows admins to join and leave the helpful IDs test group" do
+        u = make_admin
+        u.update( test_groups: User::HELPFUL_ID_TIPS_TEST_GROUP )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: nil )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+
+      it "does not allow non-admins to join the helpful IDs test group" do
+        u = User.make!
+        u.update( test_groups: User::HELPFUL_ID_TIPS_TEST_GROUP )
+        expect( u.errors["test_groups"] ).not_to be_blank
+      end
+
+      it "allows reviewers to join and leave the helpful IDs test group" do
+        u = User.make!
+        # start the user in an admin-only test group which would not be allowed
+        # without directly updating the attribute with update_columns
+        u.update_columns( test_groups: User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+
+        u.update( test_groups: (
+          u.test_groups_array + [User::HELPFUL_ID_TIPS_TEST_GROUP]
+        ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+    end
+  end
+
   protected
 
   def create_user( options = {} )

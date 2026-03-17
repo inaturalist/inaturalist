@@ -43,7 +43,7 @@ class ExemplarIdentification < ApplicationRecord
 
   def set_active
     unless identification.current? &&
-        identification.taxon.rank == "species" &&
+        identification.taxon.species_or_lower? &&
         ( !identification.observation.taxon ||
           identification.observation.taxon.self_and_ancestor_ids.include?( identification.taxon_id )
         )

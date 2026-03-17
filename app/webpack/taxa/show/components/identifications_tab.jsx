@@ -209,14 +209,16 @@ class IdentificationsTab extends Component {
           { I18n.t( "flag" ) }
         </MenuItem>
       ) );
-      nominationMenuItems.push( (
-        <MenuItem
-          key={`id-hide-${result.uuid}`}
-          eventKey="hide"
-        >
-          { I18n.t( "hide_content" ) }
-        </MenuItem>
-      ) );
+      if ( loggedInUser.isCurator ) {
+        nominationMenuItems.push( (
+          <MenuItem
+            key={`id-hide-${result.uuid}`}
+            eventKey="hide"
+          >
+            { I18n.t( "hide_content" ) }
+          </MenuItem>
+        ) );
+      }
     }
     if ( result.nominated_by_user ) {
       nominationMenuItems.push( (
@@ -646,8 +648,7 @@ class IdentificationsTab extends Component {
     } = this.props;
     let content;
     let pagination;
-    const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
-    if ( !isAdmin ) {
+    if ( !currentUser?.canViewHelpfulIDTips( ) ) {
       return null;
     }
     const responsive = currentUser?.isAdmin

@@ -89,9 +89,16 @@ describe ExemplarIdentification do
   describe "set_active" do
     let( :genus ) { Taxon.make!( rank: Taxon::GENUS ) }
     let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
+    let( :subspecies ) { Taxon.make!( rank: Taxon::SUBSPECIES, parent: species ) }
 
     it "sets active to true when identifications are species and consistent with observation taxon" do
       observation = Observation.make!( taxon: species )
+      identification = Identification.make!( observation: observation, taxon: species, body: "thebody" )
+      expect( identification.exemplar_identification.active? ).to be true
+    end
+
+    it "sets active to true when identifications are subspecies and consistent with observation taxon" do
+      observation = Observation.make!( taxon: subspecies )
       identification = Identification.make!( observation: observation, taxon: species, body: "thebody" )
       expect( identification.exemplar_identification.active? ).to be true
     end

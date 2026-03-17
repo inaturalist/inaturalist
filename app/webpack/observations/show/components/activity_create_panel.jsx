@@ -137,7 +137,6 @@ class ActivityCreatePanel extends React.Component {
       );
     }
     const { currentUser } = config;
-    const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
     if ( config?.currentUserCanInteractWithResource( observation ) ) {
       // attempting to match the logic in the computervision/score_observation endpoint
       // so we don't attempt to fetch vision results for obs which will have no results
@@ -189,7 +188,7 @@ class ActivityCreatePanel extends React.Component {
               maxLength={5000}
               showCharsRemainingAt={4000}
             />
-            { isAdmin && currentUser.isInTestGroup( "helpful-id-tips" ) && (
+            { currentUser?.canViewHelpfulIDTips( ) && (
               <div className="nomination">
                 <input
                   type="checkbox"
