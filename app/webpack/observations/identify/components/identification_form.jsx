@@ -37,7 +37,6 @@ class IdentificationForm extends React.Component {
       updateEditorContent
     } = this.props;
     const { currentUser } = config;
-    const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
     return (
       <form
         key={key}
@@ -94,7 +93,7 @@ class IdentificationForm extends React.Component {
             textareaClassName="form-control"
             mentions
           />
-          { isAdmin && currentUser.isInTestGroup( "helpful-id-tips" ) && (
+          { currentUser?.canViewHelpfulIDTips( ) && (
             <div className="nomination">
               <input
                 type="checkbox"
