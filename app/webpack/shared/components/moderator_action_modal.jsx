@@ -113,6 +113,7 @@ const ModeratorActionModal = ( {
       show={visible}
       className="ModeratorActionModal"
       onHide={( ) => hide( )}
+      // autoFocus={false}
     >
       <form
         onSubmit={e => {
@@ -132,7 +133,13 @@ const ModeratorActionModal = ( {
         <Modal.Body>
           {contentPreview}
           <div className="form-group">
-            <textarea name="reason" className="form-control" placeholder={placeholder} required />
+            <textarea
+              autoFocus
+              name="reason"
+              className="form-control"
+              placeholder={placeholder}
+              required
+            />
           </div>
           {privateToggle}
           <input type="hidden" name="action" value={action || ""} />
