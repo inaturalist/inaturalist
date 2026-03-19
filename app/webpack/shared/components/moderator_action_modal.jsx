@@ -113,7 +113,6 @@ const ModeratorActionModal = ( {
       show={visible}
       className="ModeratorActionModal"
       onHide={( ) => hide( )}
-      // autoFocus={false}
     >
       <form
         onSubmit={e => {
