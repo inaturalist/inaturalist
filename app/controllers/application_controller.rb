@@ -40,16 +40,18 @@ class ApplicationController < ActionController::Base
 
   PER_PAGES = [10, 30, 50, 100, 200]
   HEADER_VERSION = 21
-  SIGNED_IN_TRAFFIC_COOKIE_KEY = "_inaturalist_signed_in".freeze
-  SIGNED_IN_TRAFFIC_COOKIE_VALUE = "1".freeze
-  INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "invalid_signed_in_cookie".freeze
+  SIGNED_IN_TRAFFIC_COOKIE_KEY = "_inaturalist_signed_in"
+  TAMPERED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_tampered_signature"
+  INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_invalid_payload"
+  UNAUTHENTICATED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_without_authenticated_session"
+  MISMATCHED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_user_mismatch"
 
   alias :logged_in? :user_signed_in?
 
   def sign_in( resource_or_scope, *args )
     result = super
     options = args.last.is_a?( Hash ) ? args.last : {}
-    set_signed_in_traffic_cookie if options[:store] != false
+    set_signed_in_traffic_cookie( current_user ) if options[:store] != false && current_user
     result
   end
 
@@ -78,16 +80,32 @@ class ApplicationController < ActionController::Base
   private
 
   def reject_invalid_signed_in_traffic_cookie
+    # No cookie, ignore
     return if cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].blank?
-    return if cookies.signed[SIGNED_IN_TRAFFIC_COOKIE_KEY] == SIGNED_IN_TRAFFIC_COOKIE_VALUE
 
-    response.set_header( "X-Sec-Rule", INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE )
-    head :forbidden
+    # Cookie present, but no session, return to homepage
+    # could happen maliciously, or simply when session expires
+    unless user_signed_in?
+      clear_signed_in_traffic_cookie
+      response.set_header( "X-Sec-Rule", UNAUTHENTICATED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE )
+      return redirect_to( root_path )
+    end
+
+    # Reject cookie with wrong signature
+    signed_cookie_value = cookies.signed[SIGNED_IN_TRAFFIC_COOKIE_KEY]
+    return forbid_signed_in_traffic_cookie!( TAMPERED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE ) unless signed_cookie_value
+
+    # Reject cookie without uid
+    uid = signed_in_traffic_cookie_uid( signed_cookie_value )
+    return forbid_signed_in_traffic_cookie!( INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE ) unless uid
+
+    # Reject cookie from someone else
+    forbid_signed_in_traffic_cookie!( MISMATCHED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE ) unless uid == current_user.id
   end
 
-  def set_signed_in_traffic_cookie
+  def set_signed_in_traffic_cookie( user )
     cookies.signed[SIGNED_IN_TRAFFIC_COOKIE_KEY] =
-      signed_in_traffic_cookie_options.merge( value: SIGNED_IN_TRAFFIC_COOKIE_VALUE )
+      signed_in_traffic_cookie_options.merge( value: { uid: user.id } )
   end
 
   def clear_signed_in_traffic_cookie
@@ -96,12 +114,24 @@ class ApplicationController < ActionController::Base
 
   def signed_in_traffic_cookie_options
     {
-      domain: Rails.configuration.session_options[:domain],
-      path: Rails.configuration.session_options[:path] || "/",
+      path: "/",
       secure: request.ssl?,
-      httponly: true,
-      same_site: :lax
-    }.compact
+      httponly: true
+    }
+  end
+
+  def signed_in_traffic_cookie_uid( signed_cookie_value )
+    return nil unless signed_cookie_value.is_a?( Hash )
+
+    uid = signed_cookie_value[:uid] || signed_cookie_value["uid"]
+    return nil unless uid.present?
+
+    uid.to_i
+  end
+
+  def forbid_signed_in_traffic_cookie!( rule )
+    response.set_header( "X-Sec-Rule", rule )
+    head :forbidden
   end
 
   def default_url_options
