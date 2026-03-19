@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
   PER_PAGES = [10, 30, 50, 100, 200]
   HEADER_VERSION = 21
   SIGNED_IN_TRAFFIC_COOKIE_KEY = "_inaturalist_signed_in"
+  SIGNED_IN_TRAFFIC_COOKIE_TTL = 2.weeks
   TAMPERED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_tampered_signature"
   INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_invalid_payload"
   UNAUTHENTICATED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_without_authenticated_session"
@@ -80,27 +81,47 @@ class ApplicationController < ActionController::Base
   private
 
   def reject_invalid_signed_in_traffic_cookie
-    # No cookie, ignore
-    return if cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].blank?
-
-    # Cookie present, but no session, return to homepage
-    # could happen maliciously, or simply when session expires
-    unless user_signed_in?
-      clear_signed_in_traffic_cookie
-      response.set_header( "X-Sec-Rule", UNAUTHENTICATED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE )
-      return redirect_to( root_path )
+    # No marker cookie: let anonymous traffic pass, recreate for authenticated users.
+    if cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].blank?
+      set_signed_in_traffic_cookie( current_user ) if user_signed_in?
+      return
     end
 
-    # Reject cookie with wrong signature
     signed_cookie_value = cookies.signed[SIGNED_IN_TRAFFIC_COOKIE_KEY]
-    return forbid_signed_in_traffic_cookie!( TAMPERED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE ) unless signed_cookie_value
 
-    # Reject cookie without uid
+    # Signature invalid: suspicious marker. Clear and log.
+    unless signed_cookie_value
+      clear_signed_in_traffic_cookie
+      return log_signed_in_traffic_cookie_issue( TAMPERED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE )
+    end
+
+    # Marker payload invalid: suspicious marker. Clear and log.
     uid = signed_in_traffic_cookie_uid( signed_cookie_value )
-    return forbid_signed_in_traffic_cookie!( INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE ) unless uid
+    unless uid
+      clear_signed_in_traffic_cookie
+      return log_signed_in_traffic_cookie_issue( INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE )
+    end
 
-    # Reject cookie from someone else
-    forbid_signed_in_traffic_cookie!( MISMATCHED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE ) unless uid == current_user.id
+    # Marker on anonymous request: likely stale session or replay attempt. Clear and log.
+    unless user_signed_in?
+      clear_signed_in_traffic_cookie
+      return log_signed_in_traffic_cookie_issue(
+        UNAUTHENTICATED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE,
+        marker_uid: uid
+      )
+    end
+
+    # Marker uid mismatch while authenticated: suspicious marker. Clear and log.
+    if uid != current_user.id
+      clear_signed_in_traffic_cookie
+      return log_signed_in_traffic_cookie_issue(
+        MISMATCHED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE,
+        marker_uid: uid
+      )
+    end
+
+    # Sliding expiration for active authenticated users.
+    set_signed_in_traffic_cookie( current_user )
   end
 
   def set_signed_in_traffic_cookie( user )
@@ -109,15 +130,17 @@ class ApplicationController < ActionController::Base
   end
 
   def clear_signed_in_traffic_cookie
-    cookies.delete( SIGNED_IN_TRAFFIC_COOKIE_KEY, signed_in_traffic_cookie_options )
+    cookies.delete( SIGNED_IN_TRAFFIC_COOKIE_KEY, signed_in_traffic_cookie_options( include_expires: false ) )
   end
 
-  def signed_in_traffic_cookie_options
-    {
+  def signed_in_traffic_cookie_options( include_expires: true )
+    options = {
       path: "/",
       secure: request.ssl?,
       httponly: true
     }
+    options[:expires] = SIGNED_IN_TRAFFIC_COOKIE_TTL.from_now if include_expires
+    options
   end
 
   def signed_in_traffic_cookie_uid( signed_cookie_value )
@@ -129,9 +152,11 @@ class ApplicationController < ActionController::Base
     uid.to_i
   end
 
-  def forbid_signed_in_traffic_cookie!( rule )
+  def log_signed_in_traffic_cookie_issue( rule, **_metadata )
+    marker_uid = _metadata[:marker_uid]
     response.set_header( "X-Sec-Rule", rule )
-    head :forbidden
+    response.set_header( "X-Sec-Rule-Marker-Uid", marker_uid ) if marker_uid
+    nil
   end
 
   def default_url_options
