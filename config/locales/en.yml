@@ -6199,6 +6199,8 @@ en:
   total_observations_caps: TOTAL OBSERVATIONS
   total_species_observed_caps: TOTAL SPECIES OBSERVED
   total_unique_observers: Total unique observers
+  # Verb (e.g. keeping track of species you've seen).
+  track: Track
   translated_languages: Translated Languages
   'true': 'True'
   trending: Trending
@@ -10039,9 +10041,6 @@ en:
         # Description of what users can Identify
         feature_identify_desc: plants, animals, fungi, & more
 
-        # Label for the Track feature card
-        feature_track_label: Track
-
         # Description of what users can Track
         feature_track_desc: species you've seen worldwide
 
@@ -10145,19 +10144,39 @@ en:
           record what lives where.
 
         # ============================================================
-        # Testimonial
+        # Testimonials (quote + name + role / place for each)
         # ============================================================
 
-        # Pull-quote from a community member about the platform's value
-        testimonial_quote: >
-          It has really helped me with species identification. In addition to
-          giving me the opportunity to interact with different people around
-          the world.
+        gube_testimonial_quote: >
+          It has really helped me with species identification, in addition to
+          giving me the opportunity to interact with different people around the world.
+        gube_testimonial_name: Dzivula Gube
+        gube_testimonial_title: Marine Conservationist & Underwater Photographer, Kenya
 
-        # Title / role of the person giving the testimonial
-        testimonial_title: "Marine Conservationist & Underwater Photographer, Kenya"
+        kratzer_testimonial_quote: >
+          iNaturalist opens the door to so much new and exciting research on understudied taxa.
+          In my opinion, this platform is the cutting edge of ecological science.
+        kratzer_testimonial_name: 'Chris Alice "Alie" Kratzer'
+        kratzer_testimonial_title: Field Guide Author at Owlfly LLC, USA
 
-        # TODO: add remaining testimonials
+        sumanapala_testimonial_quote: >
+          iNaturalist and its dedicated community of identifiers became an invaluable resource
+          in my explorations. It helped lay the foundation of my current work.
+        sumanapala_testimonial_name: Amila Sumanapala
+        sumanapala_testimonial_title: Biodiversity Researcher, Sri Lanka
+
+        fachetti_testimonial_quote: >
+          iNaturalist is a powerful tool that connects people, nature, and knowledge. I can
+          photograph a rare species, or even one that has not yet been described, and at the
+          same time, I contribute to conserving our natural heritage.
+        fachetti_testimonial_name: Nagyla Fachetti
+        fachetti_testimonial_title: Environmental Technician and hobby photographer, Brazil
+
+        velazco_testimonial_quote: >
+          No matter where in the world you are, whether you have a PhD or just love the outdoors,
+          iNaturalist will bring you closer to nature and many fellow naturalists.
+        velazco_testimonial_name: Carlos G. Velazco Macias
+        velazco_testimonial_title: Biologist, Mexico
 
         # ============================================================
         # "Everyone is a naturalist" value proposition section
@@ -10180,7 +10199,6 @@ en:
           researchers worldwide depend on.
 
         # Heading for the community reputation sub-section
-        # TODO(design): underline via markup vs. styling the whole string.
         community_heading: "\"The nicest place online\""
 
         # Description of the welcoming community aspect
@@ -10202,13 +10220,11 @@ en:
         download_count_label: "%{count}+ Downloads"
 
         # ============================================================
-        # Explore species section
+        # Explore species section - species cards generated from static JSON exported from iNat
         # ============================================================
 
         # Heading for the explore species section
         explore_heading: Explore species worldwide
-
-        # TODO: species tiles — common names from taxonomy per locale, not this YAML.
 
         # Button / link to browse species without downloading
         explore_button: Explore now
@@ -10303,13 +10319,22 @@ en:
         # ============================================================
 
         # Footer attribution line noting iNaturalist's membership in its wider network
-        footer_network_member: Member of the iNaturalist Network
+        footer_member_network_text: Member of the
+
+        # Follows footer_member_network_text
+        footer_member_network_link: iNaturalist Network
 
         # Footer attribution line crediting the open-source software powering the site
-        footer_powered_by: Powered by iNaturalist open source software
+        footer_powered_by_text: Powered by
+
+        # Follows footer_powered_by_text
+        footer_powered_by_link: iNaturalist open source software
 
         # Footer link to developer / API documentation
-        footer_developer_docs: Documentation for developers
+        footer_developer_docs_text: Documentation for
+
+        # Follows footer_developer_docs_text
+        footer_developer_docs_link: developers
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Save and edit to add attachments
