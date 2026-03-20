@@ -8,7 +8,7 @@ import {
   decrementReviewed
 } from "./observations_stats_actions";
 import { updateObservationInCollection, OBSERVATION_FIELDS } from "./observations_actions";
-import { showFinishedModal } from "./finished_modal_actions";
+import { hideFinishedModal, showFinishedModal } from "./finished_modal_actions";
 import {
   fetchSuggestions,
   updateWithObservation as updateSuggestionsWithObservation,
@@ -272,6 +272,8 @@ function showPrevObservation( ) {
   return ( dispatch, getState ) => {
     const { observations, currentObservation } = getState();
     if ( !currentObservation.visible ) {
+      dispatch( hideFinishedModal( ) );
+      dispatch( showCurrentObservation( currentObservation.observation ) );
       return;
     }
     let prevIndex = _.findIndex( observations.results, o => (
