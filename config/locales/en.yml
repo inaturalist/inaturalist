@@ -1311,6 +1311,7 @@ en:
     %{user} unhid this %{item} because "%{reason}"
   continue: Continue
   continue_to_site: Continue to %{site_name}
+  contribute: Contribute
   contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
   controlled_term_labels:
@@ -1955,6 +1956,7 @@ en:
   devise_unlock_instructions_click_the_link: |
     Click the link below to unlock your account
   devise_unlock_instructions_unlock: Unlock Your Account
+  discover: Discover
   discoveries: Discoveries
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
@@ -3690,6 +3692,7 @@ en:
   obscured_description: |
     Public coordinates shown as a random point within the 0.2 degree lat/lon
     cell that contains the true coordinates.
+  observe: Observe
   observation: Observation
   observation_: observation
   observation_accuracy_experiment_the_sample_for: "The sample for this experiment has not yet been generated"
@@ -6645,6 +6648,7 @@ en:
   why_are_you_making_this_change_optional: Why are you making this change? (optional)
   why_are_you_making_this_change_cite_source_required: Why are you making this change? Please explain, and cite a source if possible. (Required)
   why_you_can_see_the_coordinates: Why You Can See the Coordinates
+  who: Who
   who_can_add_observation_fields_to_my_obs: Who can add observation fields to my observations?
   who_can_add_observations_to_this_project?: Who can add observations to this project?
   who_can_see_the_coordinates: Who Can See the Coordinates
@@ -10032,9 +10036,6 @@ en:
         # Section label introducing the three core user actions
         features_intro: "With iNaturalist you can:"
 
-        # Label for the Identify feature card
-        feature_identify_label: Identify
-
         # Description of what users can Identify
         feature_identify_desc: plants, animals, fungi, & more
 
@@ -10044,20 +10045,11 @@ en:
         # Description of what users can Track
         feature_track_desc: species you've seen worldwide
 
-        # Label for the Contribute feature card
-        feature_contribute_label: Contribute
-
         # Description of where users can Contribute
         feature_contribute_desc: to real science
 
-        # Label for the Discover feature card
-        feature_discover_label: Discover
-
         # Description of what users can Discover
         feature_discover_desc: nature nearby
-
-        # Label for the Learn feature card
-        feature_learn_label: Learn
 
         # Description of what users can Learn
         feature_learn_desc: from a global community of naturalists
@@ -10070,15 +10062,14 @@ en:
         stories_heading: The power of community science
 
         # Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
-        # Do not translate items inside %{}
         story_observation_credit: Seen by %{user} in %{place}
 
         # Heading for the story about rediscovering an extinct moth species
         story_moth_heading: Rediscovering long-lost species
 
-        # Body text for the moth rediscovery story
+        # Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
         story_moth_body: >
-          The Frosted Phoenix moth hadn't been spotted in decades and was once
+          The %{moth_common_name} moth hadn't been spotted in decades and was once
           thought extinct — until a tourist in New Zealand spotted it by accident.
 
         # Heading for the story about a new-to-science mantis species
@@ -10107,18 +10098,6 @@ en:
         # Heading for the sample observation section
         observation_heading: Every observation tells a story
 
-        # Label for the observer name field in the sample observation section
-        observation_who_label: Who
-
-        # Label for the species identification field in the sample observation section
-        observation_what_label: What
-
-        # Label for the location field in the sample observation section
-        observation_where_label: Where
-
-        # Label for the date/time field in the sample observation section
-        observation_when_label: When
-
         # ============================================================
         # Impact Statistics
         # ============================================================
@@ -10139,24 +10118,15 @@ en:
         # How it works — three-step flow
         # ============================================================
 
-        # Step 1 heading
-        how_step1_heading: Observe
-
         # Step 1 description — instructing users to photograph any organism
         how_step1_body: >
           Open the app and photograph any wild plant, animal, fungi, or other
           organism — from your neighborhood or anywhere in the world.
 
-        # Step 2 heading
-        how_step2_heading: Identify
-
         # Step 2 description — explaining AI and community identification
         how_step2_body: >
           The app suggests an identification instantly, and a global community of
           naturalists confirm or refine it.
-
-        # Step 3 heading
-        how_step3_heading: Contribute
 
         # Step 3 description — explaining how observations become open scientific data
         how_step3_body: >
@@ -10264,9 +10234,6 @@ en:
         # Description of the newsletter's content
         newsletter_body: Stay connected with stories and discoveries from the iNaturalist community.
 
-        # Label for the newsletter sign-up button / link
-        newsletter_cta: Sign up
-
         # ============================================================
         # Donate banner
         # ============================================================
@@ -10332,33 +10299,6 @@ en:
         # ============================================================
         # Footer links
         # ============================================================
-
-        # Footer navigation link to the About page
-        footer_about: About
-
-        # Footer navigation link to the Help centre
-        footer_help: Help
-
-        # Footer navigation link to the community Forum
-        footer_forum: Forum
-
-        # Footer navigation link to Press resources
-        footer_press: Press
-
-        # Footer navigation link to the Jobs / careers page
-        footer_jobs: Jobs
-
-        # Footer navigation link to the iNaturalist blog
-        footer_blog: Our Blog
-
-        # Footer navigation link to Community Guidelines
-        footer_community_guidelines: Community Guidelines
-
-        # Footer navigation link to the Terms of Use
-        footer_terms: Terms of Use
-
-        # Footer navigation link to the Privacy policy
-        footer_privacy: Privacy
 
         # Footer attribution line noting iNaturalist's membership in its wider network
         footer_network_member: Member of the iNaturalist Network
