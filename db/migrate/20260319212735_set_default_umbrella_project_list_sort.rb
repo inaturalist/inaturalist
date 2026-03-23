@@ -2,7 +2,7 @@
 
 class SetDefaultUmbrellaProjectListSort < ActiveRecord::Migration[6.1]
   def up
-    umbrellas = Project.umbrella.all.each do | project |
+    umbrellas = Project.where( project_type: "umbrella" ).each do | project |
       next unless project.prefers_umbrella_project_list_sort.nil?
 
       project.skip_indexing = true

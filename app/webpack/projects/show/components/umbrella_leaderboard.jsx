@@ -8,7 +8,7 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
   if ( _.isEmpty( projectStats ) ) { return ( <span /> ); }
   const limit = config.umbrellaLeaderboardLimit || 8;
   const sort = config.umbrellaLeaderboardSort || "observations";
-  const order = project.umbrella_project_list_sort || config.umbrellaLeaderboardOrder || "descending";
+  const order = config.umbrellaLeaderboardOrder || project.umbrella_project_list_sort || "descending";
   let sortField = "observation_count";
   if ( sort === "species" ) {
     sortField = "species_count";
