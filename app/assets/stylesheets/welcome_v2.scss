@@ -1,0 +1,535 @@
+// Welcome v2 stylesheet
+// Design tokens from Figma (iNaturalist-Web / FINAL DESIGN / Home Screen - 1280px)
+//
+// Fonts referenced: Libre Baskerville (headlines), Lato (body), Courier Prime (credits/subtext)
+// Lato is already bundled. Libre Baskerville + Courier Prime need a web font source.
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime&display=swap");
+
+// ── Variables ────────────────────────────────────────────────────────────────
+
+$green:        #74ac00;
+$dark-gray:    #454545;
+$light-bg:     #ebf2e1;
+$border-color: #d5e2c3;
+$white:        #ffffff;
+
+$font-serif:   "Libre Baskerville", Georgia, serif;
+$font-sans:    "Lato", sans-serif;
+$font-mono:    "Courier Prime", "Courier New", monospace;
+
+// ── Section shell ────────────────────────────────────────────────────────────
+
+.wv2-section {
+  position: relative;
+  padding: 60px 0;
+
+  &--light { background-color: $light-bg; }
+  &--white { background-color: $white; }
+  &--dark  { background-color: #000; color: $white; }
+}
+
+// ── Shared button variants ────────────────────────────────────────────────────
+
+.wv2-btn--green {
+  background-color: $green;
+  color: $white;
+  border: none;
+  border-radius: 10px;
+  font-family: $font-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.04em;
+  padding: 12px 25px;
+  &:hover, &:focus { background-color: darken($green, 8%); color: $white; }
+}
+
+.wv2-btn--white {
+  background-color: $white;
+  color: $dark-gray;
+  border: none;
+  border-radius: 10px;
+  font-family: $font-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.04em;
+  padding: 12px 25px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  &:hover, &:focus { background-color: darken($white, 5%); color: $dark-gray; }
+}
+
+.wv2-btn--dark {
+  background-color: $dark-gray;
+  color: $white;
+  border: none;
+  border-radius: 10px;
+  font-family: $font-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.04em;
+  padding: 12px 25px;
+  &:hover, &:focus { background-color: lighten($dark-gray, 10%); color: $white; }
+}
+
+// ── Section headings (h2) ─────────────────────────────────────────────────────
+
+.wv2 h2 {
+  font-family: $font-serif;
+  font-weight: 700;
+  font-size: 23px;
+  color: $dark-gray;
+  letter-spacing: -0.03em;
+  margin-bottom: 30px;
+}
+
+// ── Hero ─────────────────────────────────────────────────────────────────────
+
+.wv2-hero {
+  background: $dark-gray center/cover no-repeat;
+  // TODO: replace with real hero background image
+  padding: 100px 0;
+  color: $white;
+
+  h1 {
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 43px;
+    color: $white;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .wv2-hero__sub {
+    font-family: $font-sans;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: $white;
+    max-width: 600px;
+    margin: 0 auto 25px;
+  }
+
+  .wv2-hero__tagline {
+    font-family: $font-mono;
+    font-size: 17px;
+    color: $white;
+    margin-top: 20px;
+  }
+}
+
+// ── Features ─────────────────────────────────────────────────────────────────
+
+.wv2-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px 60px;
+  padding: 25px 0;
+}
+
+.wv2-feature {
+  text-align: center;
+  width: 144px;
+
+  .wv2-feature__icon {
+    height: 100px;
+    margin-bottom: 16px;
+    // TODO: swap in actual SVG icons per feature
+    background: $border-color;
+    border-radius: 8px;
+  }
+
+  h3 {
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-family: $font-sans;
+    font-weight: 600;
+    font-size: 17px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+}
+
+// ── Stories ───────────────────────────────────────────────────────────────────
+
+.wv2-story {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid $border-color;
+  margin-bottom: 20px;
+
+  .wv2-story__image {
+    position: relative;
+    height: 229px;
+    background: $border-color center/cover no-repeat;
+    // TODO: set per-story background-image in HAML style attr or per-class override
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 20px;
+
+    h3 {
+      font-family: $font-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: $white;
+      letter-spacing: -0.03em;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      margin: 0;
+      padding: 0 15px;
+    }
+  }
+
+  .wv2-story__body {
+    background: $white;
+    padding: 20px;
+
+    p {
+      font-family: $font-sans;
+      font-size: 14px;
+      font-weight: 500;
+      color: $dark-gray;
+      margin-bottom: 8px;
+    }
+  }
+
+  .wv2-story__credit {
+    font-family: $font-mono;
+    font-size: 12px;
+    color: $dark-gray;
+    margin: 0;
+  }
+}
+
+// ── Observation sample ────────────────────────────────────────────────────────
+
+.wv2-observation {
+  dt {
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+  }
+
+  dd {
+    font-family: $font-sans;
+    font-size: 17px;
+    font-weight: 500;
+    color: $dark-gray;
+    margin-bottom: 20px;
+  }
+}
+
+// ── Stats ─────────────────────────────────────────────────────────────────────
+
+.wv2-stat__number {
+  font-family: $font-serif;
+  font-weight: 700;
+  font-size: 43px;
+  color: $dark-gray;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.wv2-stat__plus {
+  color: $green;
+}
+
+// ── How it works ──────────────────────────────────────────────────────────────
+
+.wv2-step {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+
+  .wv2-step__num {
+    font-family: $font-serif;
+    font-weight: 400;
+    font-size: 100px;
+    color: $green;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 62px;
+    text-align: center;
+  }
+
+  h3 {
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 23px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-family: $font-sans;
+    font-weight: 600;
+    font-size: 17px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+  }
+}
+
+// ── Why ───────────────────────────────────────────────────────────────────────
+
+.wv2-why {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  max-width: 700px;
+  margin: 0 auto;
+
+  .wv2-why__label {
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+    flex-shrink: 0;
+    text-decoration: underline;
+  }
+
+  .wv2-why__body {
+    font-family: $font-sans;
+    font-weight: 700;
+    font-size: 20px;
+    color: $dark-gray;
+    letter-spacing: -0.04em;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+// ── Testimonials ──────────────────────────────────────────────────────────────
+
+.wv2-testimonials {
+  display: flex;
+  gap: 40px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.wv2-testimonial {
+  flex-shrink: 0;
+  width: 342px;
+
+  .wv2-testimonial__quote {
+    background: $light-bg;
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 23px;
+
+    p {
+      font-family: $font-sans;
+      font-size: 15px;
+      font-weight: 500;
+      color: $dark-gray;
+      margin: 0;
+    }
+  }
+
+  .wv2-testimonial__byline {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .wv2-testimonial__avatar {
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    background: $border-color;
+    flex-shrink: 0;
+    // TODO: set user avatar image
+  }
+
+  strong {
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-family: $font-mono;
+    font-size: 12px;
+    color: $dark-gray;
+    margin: 0;
+  }
+}
+
+// ── Everyone ──────────────────────────────────────────────────────────────────
+
+.wv2-everyone {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.wv2-everyone__point {
+  h3 {
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 23px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-family: $font-sans;
+    font-weight: 600;
+    font-size: 17px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+}
+
+// ── Download ──────────────────────────────────────────────────────────────────
+
+.wv2-download {
+  h2 { font-size: 23px; }
+
+  p {
+    font-family: $font-sans;
+    font-size: 17px;
+    font-weight: 500;
+    color: $dark-gray;
+    line-height: 1.3;
+  }
+}
+
+.wv2-download__count {
+  font-family: $font-mono;
+  font-size: 15px;
+  color: $dark-gray;
+}
+
+// ── Seek ──────────────────────────────────────────────────────────────────────
+
+.wv2-seek {
+  p {
+    font-family: $font-sans;
+    font-size: 14px;
+    font-weight: 500;
+    color: $dark-gray;
+  }
+}
+
+.wv2-seek__reviews {
+  font-family: $font-mono;
+  font-size: 15px;
+  color: $dark-gray;
+}
+
+// ── Newsletter ────────────────────────────────────────────────────────────────
+
+.wv2-section--dark {
+  h2 {
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 23px;
+    color: $white;
+    letter-spacing: -0.03em;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-family: $font-sans;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: $white;
+    max-width: 500px;
+    margin: 0 auto 20px;
+  }
+}
+
+// ── Donate ────────────────────────────────────────────────────────────────────
+
+.wv2-donate__headline {
+  font-family: $font-serif;
+  font-weight: 700;
+  font-size: 23px;
+  color: $dark-gray;
+  letter-spacing: -0.03em;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.3;
+}
+
+// ── FAQ ───────────────────────────────────────────────────────────────────────
+
+.wv2-faq {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.wv2-faq__item {
+  border-top: 1px solid $border-color;
+
+  &:last-child { border-bottom: 1px solid $border-color; }
+
+  summary {
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+    padding: 15px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &::-webkit-details-marker { display: none; }
+
+    &::after {
+      content: "∨";
+      font-family: $font-sans;
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-left: 20px;
+    }
+  }
+
+  &[open] summary::after { content: "∧"; }
+
+  p {
+    font-family: $font-sans;
+    font-weight: 600;
+    font-size: 17px;
+    color: $dark-gray;
+    letter-spacing: -0.03em;
+    padding-bottom: 15px;
+    margin: 0;
+  }
+}

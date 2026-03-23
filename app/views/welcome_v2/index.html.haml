@@ -2,170 +2,215 @@
 -# Welcome v2 wireframe
 -# t("views.welcome_v2.index.key")  => views.welcome_v2.index.*
 -# t(:key)     => top-level shared label
+-# Section backgrounds alternate: dark (hero), light (#ebf2e1), white, light, white…
 -# ============================================================
 - content_for(:title) { t(:a_community_for_naturalist) }
 - content_for(:extracss) { stylesheet_link_tag "welcome_v2" }
 
 .wv2
   -# ── Hero ──────────────────────────────────────────────────
+  -# Dark nature photo bg, all text white, centred
   .wv2-hero
-    .container
+    .container.text-center
       %h1= t("views.welcome_v2.index.hero_headline")
-      %p.lead= t("views.welcome_v2.index.hero_subheadline")
-      = link_to t("views.welcome_v2.index.hero_cta_join"), signup_path, class: "btn btn-primary btn-lg"
+      %p.wv2-hero__sub= t("views.welcome_v2.index.hero_subheadline")
+      = link_to t("views.welcome_v2.index.hero_cta_join"), signup_path, class: "btn wv2-btn--white btn-lg"
       %p.wv2-hero__tagline= t("views.welcome_v2.index.hero_tagline")
 
   -# ── "With iNaturalist you can" features ───────────────────
-  .wv2-features
-    .container
+  -# bg: light green
+  .wv2-section.wv2-section--light
+    .container.text-center
       %h2= t("views.welcome_v2.index.features_intro")
-      .row
-        .col-xs-6.col-sm-4
-          %h3= t(:identify)
-          %p= t("views.welcome_v2.index.feature_identify_desc")
-        .col-xs-6.col-sm-4
-          %h3= t(:track)
-          %p= t("views.welcome_v2.index.feature_track_desc")
-        .col-xs-6.col-sm-4
-          %h3= t(:contribute)
-          %p= t("views.welcome_v2.index.feature_contribute_desc")
-        .col-xs-6.col-sm-4
-          %h3= t(:discover)
-          %p= t("views.welcome_v2.index.feature_discover_desc")
-        .col-xs-6.col-sm-4
-          %h3= t(:learn)
-          %p= t("views.welcome_v2.index.feature_learn_desc")
+      .wv2-features
+        - [[:identify, "feature_identify_desc"], [:track, "feature_track_desc"], [:contribute, "feature_contribute_desc"], [:discover, "feature_discover_desc"], [:learn, "feature_learn_desc"]].each do |label_key, desc_key|
+          .wv2-feature
+            .wv2-feature__icon
+            %h3= t(label_key)
+            %p= t("views.welcome_v2.index.#{desc_key}")
 
   -# ── Community science stories ─────────────────────────────
-  .wv2-stories
-    .container
+  -# bg: white, 3 cards side-by-side, photo top with title overlay, text + credit below
+  .wv2-section.wv2-section--white
+    .container.text-center
       %h2= t("views.welcome_v2.index.stories_heading")
-      -# TODO: pass story data (user, place, moth common name) from controller
-      .wv2-story
-        %h3= t("views.welcome_v2.index.story_moth_heading")
-        %p= t("views.welcome_v2.index.story_moth_body", moth_common_name: "Frosted Phoenix") # TODO: replace with translated moth common name
-        %p.wv2-story__credit= t("views.welcome_v2.index.story_observation_credit", user: "pav_johnsson", place: "New Zealand")
-      .wv2-story
-        %h3= t("views.welcome_v2.index.story_mantis_heading")
-        %p= t("views.welcome_v2.index.story_mantis_body")
-        %p.wv2-story__credit= t("views.welcome_v2.index.story_observation_credit", user: "glendawalter", place: "Australia")
-      .wv2-story
-        %h3= t("views.welcome_v2.index.story_amphibian_heading")
-        %p= t("views.welcome_v2.index.story_amphibian_body")
-        %p.wv2-story__credit= t("views.welcome_v2.index.story_observation_credit", user: "tcuriel", place: "United States")
-      = link_to t("views.welcome_v2.index.stories_read_more"), "#"
+      .row
+        - [["story_moth_heading", "story_moth_body", "pav_johnsson", "New Zealand", {moth_common_name: "Frosted Phoenix"}], ["story_mantis_heading", "story_mantis_body", "glendawalter", "Australia", {}], ["story_amphibian_heading", "story_amphibian_body", "tcuriel", "United States", {}]].each do |heading, body, user, place, interp|
+          .col-sm-4
+            .wv2-story
+              .wv2-story__image
+                %h3= t("views.welcome_v2.index.#{heading}")
+              .wv2-story__body
+                %p= t("views.welcome_v2.index.#{body}", interp)
+                %p.wv2-story__credit= t("views.welcome_v2.index.story_observation_credit", user: user, place: place)
+      = link_to t("views.welcome_v2.index.stories_read_more"), "#", class: "btn wv2-btn--green"
 
   -# ── Sample observation ────────────────────────────────────
-  .wv2-observation
-    .container
+  -# bg: light green, two columns: Who/What left, Where/When right
+  -# TODO: wire up @sample_observation from controller (photo, map, fields)
+  .wv2-section.wv2-section--light
+    .container.text-center
       %h2= t("views.welcome_v2.index.observation_heading")
-      -# TODO: pass a real sample observation (@sample_observation) from controller
-      %dl.dl-horizontal
-        %dt= t(:who)
-        %dd [login]
-        %dt= t(:what)
-        %dd
-          [taxon common name]
-          %br
-          %em [scientific name]
-        %dt= t(:where)
-        %dd [place name]
-        %dt= t(:when)
-        %dd [formatted date]
+      .row.wv2-observation
+        .col-sm-6
+          %dl.dl-horizontal
+            %dt= t(:who)
+            %dd
+              [observer avatar]
+              [login]
+            %dt= t(:what)
+            %dd
+              [observation photo]
+              %br
+              [taxon icon] [common name]
+              %br
+              %em [scientific name]
+        .col-sm-6
+          %dl.dl-horizontal
+            %dt= t(:where)
+            %dd
+              [map]
+              %br
+              [place name]
+            %dt= t(:when)
+            %dd [formatted date]
 
   -# ── Impact statistics ─────────────────────────────────────
-  .wv2-stats
-    .container
+  -# bg: white, 2×2 grid, big number + green "+" + label
+  .wv2-section.wv2-section--white
+    .container.text-center
       .row
-        .col-xs-6.col-sm-3.text-center
-          %strong
-            = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true,
-                units: { thousand: "K", million: "M", billion: "B" }, format: "%n%u") + "+"
+        .col-xs-6.col-sm-3
+          %p.wv2-stat__number
+            = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true, units: { thousand: "K", million: "M", billion: "B" }, format: "%n%u")
+            %span.wv2-stat__plus +
           %p= t("views.welcome_v2.index.stats_observations_label")
-        .col-xs-6.col-sm-3.text-center
-          %strong= "#{number_with_delimiter(550_000)}+"
+        .col-xs-6.col-sm-3
+          %p.wv2-stat__number
+            = number_with_delimiter(550_000)
+            %span.wv2-stat__plus +
           %p= t("views.welcome_v2.index.stats_species_label")
-        .col-xs-6.col-sm-3.text-center
-          %strong= "#{number_with_delimiter(7_000)}+"
+        .col-xs-6.col-sm-3
+          %p.wv2-stat__number
+            = number_with_delimiter(7_000)
+            %span.wv2-stat__plus +
           %p= t("views.welcome_v2.index.stats_papers_label")
-        .col-xs-6.col-sm-3.text-center
-          %strong= "#{number_with_delimiter(500)}+"
+        .col-xs-6.col-sm-3
+          %p.wv2-stat__number
+            = number_with_delimiter(500)
+            %span.wv2-stat__plus +
           %p= t("views.welcome_v2.index.stats_discoveries_label")
 
   -# ── How it works ──────────────────────────────────────────
-  .wv2-how
+  -# bg: light green, 3 columns, large green step number + title + body
+  .wv2-section.wv2-section--light
     .container
-      - [[:observe, "how_step1_body"], [:identify, "how_step2_body"], [:contribute, "how_step3_body"]].each_with_index do |(label_key, body_key), i|
-        .wv2-step
-          %span.wv2-step__num= i + 1
-          %h3= t(label_key)
-          %p= t("views.welcome_v2.index.#{body_key}")
-      %p.wv2-why= t("views.welcome_v2.index.how_why_note_html")
+      .row
+        - [[:observe, "how_step1_body"], [:identify, "how_step2_body"], [:contribute, "how_step3_body"]].each_with_index do |(label_key, body_key), i|
+          .col-sm-4.wv2-step
+            %span.wv2-step__num= i + 1
+            %h3= t(label_key)
+            %p= t("views.welcome_v2.index.#{body_key}")
+
+  -# ── Why ───────────────────────────────────────────────────
+  -# bg: white, "Why?" label left, bold quote right
+  .wv2-section.wv2-section--white
+    .container
+      .wv2-why
+        %strong.wv2-why__label Why?
+        %p.wv2-why__body= t("views.welcome_v2.index.how_why_note_html")
 
   -# ── Testimonials ──────────────────────────────────────────
-  .wv2-testimonials
+  -# bg: white, 5 cards in a scrollable row, green-tinted quote box + avatar/name/title below
+  .wv2-section.wv2-section--white
     .container
-      - %w[gube kratzer sumanapala fachetti velazco].each do |key|
-        .wv2-testimonial
-          %blockquote= t("views.welcome_v2.index.#{key}_testimonial_quote")
-          %footer
-            %strong= t("views.welcome_v2.index.#{key}_testimonial_name")
-            \—
-            = t("views.welcome_v2.index.#{key}_testimonial_title")
+      .wv2-testimonials
+        - %w[gube kratzer sumanapala fachetti velazco].each do |key|
+          .wv2-testimonial
+            .wv2-testimonial__quote
+              %p= t("views.welcome_v2.index.#{key}_testimonial_quote")
+            .wv2-testimonial__byline
+              .wv2-testimonial__avatar
+              %div
+                %strong= t("views.welcome_v2.index.#{key}_testimonial_name")
+                %p= t("views.welcome_v2.index.#{key}_testimonial_title")
 
   -# ── Everyone is a naturalist ──────────────────────────────
-  .wv2-everyone
-    .container
-      %h2= t("views.welcome_v2.index.everyone_heading")
-      %p= t("views.welcome_v2.index.everyone_body")
-      %h3= t("views.welcome_v2.index.impact_heading")
-      %p= t("views.welcome_v2.index.impact_body")
-      %h3= t("views.welcome_v2.index.community_heading")
-      %p= t("views.welcome_v2.index.community_body")
+  -# bg: light green, centred, 3 sub-points
+  .wv2-section.wv2-section--light
+    .container.text-center
+      .wv2-everyone
+        .wv2-everyone__point
+          %h3= t("views.welcome_v2.index.everyone_heading")
+          %p= t("views.welcome_v2.index.everyone_body")
+        .wv2-everyone__point
+          %h3= t("views.welcome_v2.index.impact_heading")
+          %p= t("views.welcome_v2.index.impact_body")
+        .wv2-everyone__point
+          %h3= t("views.welcome_v2.index.community_heading")
+          %p= t("views.welcome_v2.index.community_body")
 
   -# ── App download ──────────────────────────────────────────
-  .wv2-download
+  -# bg: white, left: text + app store badges + download count; right: 2 tilted phone screenshots
+  .wv2-section.wv2-section--white
     .container
-      %h2= t("views.welcome_v2.index.download_heading")
-      %p= t("views.welcome_v2.index.download_subheading")
-      %p.wv2-download__count= t("views.welcome_v2.index.download_count_label", count: number_with_delimiter(700_000))
-      -# TODO: App Store / Google Play badge links
+      .row.wv2-download
+        .col-sm-6.text-center
+          %h2= t("views.welcome_v2.index.download_heading")
+          %p= t("views.welcome_v2.index.download_subheading")
+          -# TODO: App Store / Google Play badge links
+          %p.wv2-download__count= t("views.welcome_v2.index.download_count_label", count: number_with_delimiter(700_000))
+        .col-sm-6
+          -# TODO: tilted phone screenshot images
 
   -# ── Explore species ───────────────────────────────────────
-  .wv2-explore
-    .container
+  -# bg: light green, scrollable row of observation cards + "Explore now" button
+  -# TODO: wire up @explore_observations from static JSON (config/welcome_v2/explore_observations.json)
+  .wv2-section.wv2-section--light
+    .container.text-center
       %h2= t("views.welcome_v2.index.explore_heading")
-      -# TODO: species cards from static JSON
-      = link_to t("views.welcome_v2.index.explore_button"), taxa_path, class: "btn btn-default"
+      .wv2-explore__cards
+        -# observation cards go here
+      = link_to t("views.welcome_v2.index.explore_button"), observations_path, class: "btn wv2-btn--dark"
 
   -# ── Seek ──────────────────────────────────────────────────
-  .wv2-seek
+  -# bg: white, left: 2 tilted phone screenshots; right: text + badges + review count
+  .wv2-section.wv2-section--white
     .container
-      %h2= t("views.welcome_v2.index.seek_heading")
-      %p= t("views.welcome_v2.index.seek_body")
-      %p.wv2-seek__reviews= t("views.welcome_v2.index.seek_review_tagline")
-      -# TODO: Seek app store badges
+      .row.wv2-seek
+        .col-sm-6
+          -# TODO: tilted Seek phone screenshot images
+        .col-sm-6.text-center
+          %h2= t("views.welcome_v2.index.seek_heading")
+          %p= t("views.welcome_v2.index.seek_body")
+          -# TODO: App Store / Google Play badge links
+          %p.wv2-seek__reviews= t("views.welcome_v2.index.seek_review_tagline")
 
   -# ── Newsletter ────────────────────────────────────────────
-  .wv2-newsletter
-    .container
+  -# bg: dark photo with black overlay, white text, white "Sign up" button
+  .wv2-section.wv2-section--dark
+    .container.text-center
       %h2= t("views.welcome_v2.index.newsletter_heading")
       %p= t("views.welcome_v2.index.newsletter_body")
-      = link_to t(:sign_up).capitalize, "#newsletter-form", class: "btn btn-primary"
+      = link_to t(:sign_up).capitalize, "/pages/newsletter", class: "btn wv2-btn--white"
 
   -# ── Donate ────────────────────────────────────────────────
-  .wv2-donate
-    .container
-      %p= t("views.welcome_v2.index.donate_heading")
+  -# bg: white, centred, green "Donate now" button
+  .wv2-section.wv2-section--white
+    .container.text-center
+      %p.wv2-donate__headline= t("views.welcome_v2.index.donate_heading")
       %p= t("views.welcome_v2.index.donate_subheading")
-      = link_to t("views.welcome_v2.index.donate_cta"), donate_path, class: "btn btn-primary"
+      = link_to t("views.welcome_v2.index.donate_cta"), donate_path, class: "btn wv2-btn--green"
 
   -# ── FAQ ───────────────────────────────────────────────────
-  .wv2-faq
+  -# bg: light green, accordion — divider line above each item, question + answer
+  .wv2-section.wv2-section--light
     .container
-      %h2= t("views.welcome_v2.index.faq_heading")
-      - %w[upload_existing who_can_use research_grade no_knowledge need_app].each do |key|
-        %details.wv2-faq__item
-          %summary= t("views.welcome_v2.index.faq_#{key}_question")
-          %p= t("views.welcome_v2.index.faq_#{key}_answer")
+      %h2.text-center= t("views.welcome_v2.index.faq_heading")
+      .wv2-faq
+        - %w[upload_existing who_can_use research_grade no_knowledge need_app].each do |key|
+          %details.wv2-faq__item
+            %summary= t("views.welcome_v2.index.faq_#{key}_question")
+            %p= t("views.welcome_v2.index.faq_#{key}_answer")
 
+  = render "shared/footer"
