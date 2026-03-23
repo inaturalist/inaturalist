@@ -1,0 +1,171 @@
+-# ============================================================
+-# Welcome v2 wireframe
+-# t("views.welcome_v2.index.key")  => views.welcome_v2.index.*
+-# t(:key)     => top-level shared label
+-# ============================================================
+- content_for(:title) { t(:a_community_for_naturalist) }
+- content_for(:extracss) { stylesheet_link_tag "welcome_v2" }
+
+.wv2
+  -# ── Hero ──────────────────────────────────────────────────
+  .wv2-hero
+    .container
+      %h1= t("views.welcome_v2.index.hero_headline")
+      %p.lead= t("views.welcome_v2.index.hero_subheadline")
+      = link_to t("views.welcome_v2.index.hero_cta_join"), signup_path, class: "btn btn-primary btn-lg"
+      %p.wv2-hero__tagline= t("views.welcome_v2.index.hero_tagline")
+
+  -# ── "With iNaturalist you can" features ───────────────────
+  .wv2-features
+    .container
+      %h2= t("views.welcome_v2.index.features_intro")
+      .row
+        .col-xs-6.col-sm-4
+          %h3= t(:identify)
+          %p= t("views.welcome_v2.index.feature_identify_desc")
+        .col-xs-6.col-sm-4
+          %h3= t(:track)
+          %p= t("views.welcome_v2.index.feature_track_desc")
+        .col-xs-6.col-sm-4
+          %h3= t(:contribute)
+          %p= t("views.welcome_v2.index.feature_contribute_desc")
+        .col-xs-6.col-sm-4
+          %h3= t(:discover)
+          %p= t("views.welcome_v2.index.feature_discover_desc")
+        .col-xs-6.col-sm-4
+          %h3= t(:learn)
+          %p= t("views.welcome_v2.index.feature_learn_desc")
+
+  -# ── Community science stories ─────────────────────────────
+  .wv2-stories
+    .container
+      %h2= t("views.welcome_v2.index.stories_heading")
+      -# TODO: pass story data (user, place, moth common name) from controller
+      .wv2-story
+        %h3= t("views.welcome_v2.index.story_moth_heading")
+        %p= t("views.welcome_v2.index.story_moth_body", moth_common_name: "Frosted Phoenix") # TODO: replace with translated moth common name
+        %p.wv2-story__credit= t("views.welcome_v2.index.story_observation_credit", user: "pav_johnsson", place: "New Zealand")
+      .wv2-story
+        %h3= t("views.welcome_v2.index.story_mantis_heading")
+        %p= t("views.welcome_v2.index.story_mantis_body")
+        %p.wv2-story__credit= t("views.welcome_v2.index.story_observation_credit", user: "glendawalter", place: "Australia")
+      .wv2-story
+        %h3= t("views.welcome_v2.index.story_amphibian_heading")
+        %p= t("views.welcome_v2.index.story_amphibian_body")
+        %p.wv2-story__credit= t("views.welcome_v2.index.story_observation_credit", user: "tcuriel", place: "United States")
+      = link_to t("views.welcome_v2.index.stories_read_more"), "#"
+
+  -# ── Sample observation ────────────────────────────────────
+  .wv2-observation
+    .container
+      %h2= t("views.welcome_v2.index.observation_heading")
+      -# TODO: pass a real sample observation (@sample_observation) from controller
+      %dl.dl-horizontal
+        %dt= t(:who)
+        %dd [login]
+        %dt= t(:what)
+        %dd
+          [taxon common name]
+          %br
+          %em [scientific name]
+        %dt= t(:where)
+        %dd [place name]
+        %dt= t(:when)
+        %dd [formatted date]
+
+  -# ── Impact statistics ─────────────────────────────────────
+  .wv2-stats
+    .container
+      .row
+        .col-xs-6.col-sm-3.text-center
+          %strong
+            = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true,
+                units: { thousand: "K", million: "M", billion: "B" }, format: "%n%u") + "+"
+          %p= t("views.welcome_v2.index.stats_observations_label")
+        .col-xs-6.col-sm-3.text-center
+          %strong= "#{number_with_delimiter(550_000)}+"
+          %p= t("views.welcome_v2.index.stats_species_label")
+        .col-xs-6.col-sm-3.text-center
+          %strong= "#{number_with_delimiter(7_000)}+"
+          %p= t("views.welcome_v2.index.stats_papers_label")
+        .col-xs-6.col-sm-3.text-center
+          %strong= "#{number_with_delimiter(500)}+"
+          %p= t("views.welcome_v2.index.stats_discoveries_label")
+
+  -# ── How it works ──────────────────────────────────────────
+  .wv2-how
+    .container
+      - [[:observe, "how_step1_body"], [:identify, "how_step2_body"], [:contribute, "how_step3_body"]].each_with_index do |(label_key, body_key), i|
+        .wv2-step
+          %span.wv2-step__num= i + 1
+          %h3= t(label_key)
+          %p= t("views.welcome_v2.index.#{body_key}")
+      %p.wv2-why= t("views.welcome_v2.index.how_why_note_html")
+
+  -# ── Testimonials ──────────────────────────────────────────
+  .wv2-testimonials
+    .container
+      - %w[gube kratzer sumanapala fachetti velazco].each do |key|
+        .wv2-testimonial
+          %blockquote= t("views.welcome_v2.index.#{key}_testimonial_quote")
+          %footer
+            %strong= t("views.welcome_v2.index.#{key}_testimonial_name")
+            \—
+            = t("views.welcome_v2.index.#{key}_testimonial_title")
+
+  -# ── Everyone is a naturalist ──────────────────────────────
+  .wv2-everyone
+    .container
+      %h2= t("views.welcome_v2.index.everyone_heading")
+      %p= t("views.welcome_v2.index.everyone_body")
+      %h3= t("views.welcome_v2.index.impact_heading")
+      %p= t("views.welcome_v2.index.impact_body")
+      %h3= t("views.welcome_v2.index.community_heading")
+      %p= t("views.welcome_v2.index.community_body")
+
+  -# ── App download ──────────────────────────────────────────
+  .wv2-download
+    .container
+      %h2= t("views.welcome_v2.index.download_heading")
+      %p= t("views.welcome_v2.index.download_subheading")
+      %p.wv2-download__count= t("views.welcome_v2.index.download_count_label", count: number_with_delimiter(700_000))
+      -# TODO: App Store / Google Play badge links
+
+  -# ── Explore species ───────────────────────────────────────
+  .wv2-explore
+    .container
+      %h2= t("views.welcome_v2.index.explore_heading")
+      -# TODO: species cards from static JSON
+      = link_to t("views.welcome_v2.index.explore_button"), taxa_path, class: "btn btn-default"
+
+  -# ── Seek ──────────────────────────────────────────────────
+  .wv2-seek
+    .container
+      %h2= t("views.welcome_v2.index.seek_heading")
+      %p= t("views.welcome_v2.index.seek_body")
+      %p.wv2-seek__reviews= t("views.welcome_v2.index.seek_review_tagline")
+      -# TODO: Seek app store badges
+
+  -# ── Newsletter ────────────────────────────────────────────
+  .wv2-newsletter
+    .container
+      %h2= t("views.welcome_v2.index.newsletter_heading")
+      %p= t("views.welcome_v2.index.newsletter_body")
+      = link_to t(:sign_up).capitalize, "#newsletter-form", class: "btn btn-primary"
+
+  -# ── Donate ────────────────────────────────────────────────
+  .wv2-donate
+    .container
+      %p= t("views.welcome_v2.index.donate_heading")
+      %p= t("views.welcome_v2.index.donate_subheading")
+      = link_to t("views.welcome_v2.index.donate_cta"), donate_path, class: "btn btn-primary"
+
+  -# ── FAQ ───────────────────────────────────────────────────
+  .wv2-faq
+    .container
+      %h2= t("views.welcome_v2.index.faq_heading")
+      - %w[upload_existing who_can_use research_grade no_knowledge need_app].each do |key|
+        %details.wv2-faq__item
+          %summary= t("views.welcome_v2.index.faq_#{key}_question")
+          %p= t("views.welcome_v2.index.faq_#{key}_answer")
+
