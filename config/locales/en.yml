@@ -1311,7 +1311,7 @@ en:
     %{user} unhid this %{item} because "%{reason}"
   continue: Continue
   continue_to_site: Continue to %{site_name}
-  # verb, e.g. "Who contributes to iNaturalist?"
+  # verb, call to action, e.g. "Contribute to real science"
   contribute: Contribute
   contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
@@ -1957,7 +1957,7 @@ en:
   devise_unlock_instructions_click_the_link: |
     Click the link below to unlock your account
   devise_unlock_instructions_unlock: Unlock Your Account
-  # verb, e.g. "I will use iNaturalist to discover new species."
+  # verb, call to action, e.g. "Discover nature nearby"
   discover: Discover
   discoveries: Discoveries
   did_you_mean: 'Did you mean'
@@ -2621,6 +2621,8 @@ en:
   identify_observations: "Identify Observations"
   identify_observations_by_these_users: Identify Observations By These Users
   identify_title: "Identify"
+  # verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identify
   identification: identification
   identification_by_user: Identification by %{user}
   # Notification when an identification has been deleted
@@ -2876,6 +2878,7 @@ en:
     identifications_in_month_year: Most identifications in %{month_year}
     identifications_in_year: Most identifications in %{year}
   leading: Leading
+  # verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
@@ -3694,6 +3697,7 @@ en:
   obscured_description: |
     Public coordinates shown as a random point within the 0.2 degree lat/lon
     cell that contains the true coordinates.
+  # verb, call to action, e.g. "Observe nature nearby"
   observe: Observe
   observation: Observation
   observation_: observation
@@ -5341,6 +5345,7 @@ en:
   sign_in_with_google: Sign in with Google
   sign_out: Sign Out
   sign_up: Sign Up
+  sign_up_sentence_case: Sign up
   similar_species: Similar Species
   similar_taxa: Similar Taxa
   # Journal post formatting option
@@ -6201,7 +6206,7 @@ en:
   total_observations_caps: TOTAL OBSERVATIONS
   total_species_observed_caps: TOTAL SPECIES OBSERVED
   total_unique_observers: Total unique observers
-  # Verb (e.g. keeping track of species you've seen).
+  # Verb, call to action, e.g. "Track species you've seen worldwide"
   track: Track
   translated_languages: Translated Languages
   'true': 'True'
