@@ -17,6 +17,21 @@ $font-serif:   "Libre Baskerville", Georgia, serif;
 $font-sans:    "Lato", sans-serif;
 $font-mono:    "Courier Prime", "Courier New", monospace;
 
+// ── All component rules scoped under .wv2 to beat .bootstrap p specificity ───
+
+.wv2 {
+
+// ── Mobile breakpoint ────────────────────────────────────────────────────────
+
+@media (max-width: 767px) {
+  // Newsletter and donate use 50px vertical padding on mobile
+  .wv2-section--newsletter,
+  .wv2-section--donate {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
 // ── Section shell ────────────────────────────────────────────────────────────
 
 .wv2-section {
@@ -72,7 +87,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 
 // ── Section headings (h2) ─────────────────────────────────────────────────────
 
-.wv2 h2 {
+h2 {
   font-family: $font-serif;
   font-weight: 700;
   font-size: 23px;
@@ -163,15 +178,24 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 
 // ── Stories ───────────────────────────────────────────────────────────────────
 
+.wv2-stories-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
 .wv2-story {
   border-radius: 20px;
   overflow: hidden;
   border: 3px solid $border-color;
-  margin-bottom: 20px;
+  width: 330px;
+  height: 330px;
 
   .wv2-story__image {
     position: relative;
-    height: 229px;
+    height: 63%;
     background: $border-color center/cover no-repeat;
     // TODO: set per-story background-image in HAML style attr or per-class override
     display: flex;
@@ -194,6 +218,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   .wv2-story__body {
     background: $white;
     padding: 20px;
+    text-align: left;
 
     p {
       font-family: $font-sans;
@@ -201,14 +226,16 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
       font-weight: 500;
       color: $dark-gray;
       margin-bottom: 8px;
+      line-height: 1.2em;
     }
-  }
 
-  .wv2-story__credit {
-    font-family: $font-mono;
-    font-size: 12px;
-    color: $dark-gray;
-    margin: 0;
+    .wv2-story__credit {
+      font-family: $font-mono;
+      font-size: 12px;
+      font-weight: 400;
+      color: $dark-gray;
+      margin: 0;
+    }
   }
 }
 
@@ -237,7 +264,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 .wv2-stat__number {
   font-family: $font-serif;
   font-weight: 700;
-  font-size: 43px;
+  font-size: 30px;
   color: $dark-gray;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -246,6 +273,15 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 
 .wv2-stat__plus {
   color: $green;
+}
+
+.wv2-stat__label {
+  font-family: $font-sans;
+  font-weight: 600;
+  font-size: 15px;
+  color: $dark-gray;
+  letter-spacing: -0.03em;
+  margin: 0;
 }
 
 // ── How it works ──────────────────────────────────────────────────────────────
@@ -267,13 +303,20 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
     text-align: center;
   }
 
+  .wv2-step__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   h3 {
     font-family: $font-serif;
     font-weight: 700;
     font-size: 23px;
     color: $dark-gray;
     letter-spacing: -0.03em;
-    margin-bottom: 10px;
+    margin: 0;
   }
 
   p {
@@ -282,6 +325,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
     font-size: 17px;
     color: $dark-gray;
     letter-spacing: -0.03em;
+    margin: 0;
   }
 }
 
@@ -428,6 +472,120 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   color: $dark-gray;
 }
 
+// ── Explore species ───────────────────────────────────────────────────────────
+
+.wv2-explore__cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0 30px;
+}
+
+.wv2-obs-card {
+  background: $white;
+  border-radius: 10px;
+  width: 232px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 10px 15px;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: $border-color;
+    flex-shrink: 0;
+  }
+
+  &__username {
+    font-family: $font-sans;
+    font-size: 14px;
+    font-weight: 500;
+    color: $dark-gray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__photo {
+    width: 100%;
+    height: 175px;
+    background: $border-color center/cover no-repeat;
+    border-radius: 4px;
+  }
+
+  &__taxon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__taxon-thumb {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: $border-color center/cover no-repeat;
+    flex-shrink: 0;
+  }
+
+  &__taxon-names {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__common {
+    font-family: $font-sans;
+    font-size: 14px;
+    font-weight: 500;
+    color: $dark-gray;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__sci {
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    color: $dark-gray;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 500;
+    color: $dark-gray;
+    letter-spacing: -0.25px;
+  }
+
+  &__location-icon {
+    font-size: 15px;
+    color: $dark-gray;
+    flex-shrink: 0;
+  }
+}
+
 // ── Seek ──────────────────────────────────────────────────────────────────────
 
 .wv2-seek {
@@ -533,3 +691,5 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
     margin: 0;
   }
 }
+
+} // end .wv2

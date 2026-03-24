@@ -31,15 +31,14 @@
   .wv2-section.wv2-section--white
     .container.text-center
       %h2= t("#{s}.stories.heading")
-      .row
+      .wv2-stories-row
         - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", {moth_common_name: "Frosted Phoenix"}], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", {}], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", {}]].each do |heading, body, user, place, interp|
-          .col-sm-4
-            .wv2-story
-              .wv2-story__image
-                %h3= t("#{s}.stories.#{heading}")
-              .wv2-story__body
-                %p= t("#{s}.stories.#{body}", interp)
-                %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
+          .wv2-story
+            .wv2-story__image
+              %h3= t("#{s}.stories.#{heading}")
+            .wv2-story__body
+              %p= t("#{s}.stories.#{body}", interp)
+              %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
       = link_to t("#{s}.stories.read_more"), "#", class: "btn wv2-btn--green"
 
   -# ── Sample observation ────────────────────────────────────
@@ -79,22 +78,22 @@
           %p.wv2-stat__number
             = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true, units: { thousand: "K", million: "M", billion: "B" }, format: "%n%u")
             %span.wv2-stat__plus +
-          %p= t("#{s}.stats.observations_label")
+          %p.wv2-stat__label= t("#{s}.stats.observations_label")
         .col-xs-6.col-sm-3
           %p.wv2-stat__number
             = number_with_delimiter(550_000)
             %span.wv2-stat__plus +
-          %p= t("#{s}.stats.species_label")
+          %p.wv2-stat__label= t("#{s}.stats.species_label")
         .col-xs-6.col-sm-3
           %p.wv2-stat__number
             = number_with_delimiter(7_000)
             %span.wv2-stat__plus +
-          %p= t("#{s}.stats.papers_label")
+          %p.wv2-stat__label= t("#{s}.stats.papers_label")
         .col-xs-6.col-sm-3
           %p.wv2-stat__number
             = number_with_delimiter(500)
             %span.wv2-stat__plus +
-          %p= t("#{s}.stats.discoveries_label")
+          %p.wv2-stat__label= t("#{s}.stats.discoveries_label")
 
   -# ── How it works ──────────────────────────────────────────
   .wv2-section.wv2-section--light
@@ -103,8 +102,9 @@
         - [[:observe, "step1_body"], [:identify, "step2_body"], [:contribute, "step3_body"]].each_with_index do |(label_key, body_key), i|
           .col-sm-4.wv2-step
             %span.wv2-step__num= i + 1
-            %h3= t(label_key)
-            %p= t("#{s}.how.#{body_key}")
+            .wv2-step__content
+              %h3= t(label_key)
+              %p= t("#{s}.how.#{body_key}")
 
   -# ── Why ───────────────────────────────────────────────────
   .wv2-section.wv2-section--white
@@ -158,7 +158,21 @@
     .container.text-center
       %h2= t("#{s}.explore.heading")
       .wv2-explore__cards
-        -# observation cards go here
+        - [ {username: "sea-kangaroo",   common: "Light-blue Soldier Crab", sci: "Mictyris longicarpus",    location: "Urangan, Queensland, Australia"} ].each do |obs|
+          .wv2-obs-card
+            .wv2-obs-card__header
+              .wv2-obs-card__avatar
+              %span.wv2-obs-card__username= obs[:username]
+            .wv2-obs-card__photo
+            .wv2-obs-card__taxon
+              .wv2-obs-card__taxon-thumb
+              .wv2-obs-card__taxon-names
+                - if obs[:common]
+                  %p.wv2-obs-card__common= obs[:common]
+                %p.wv2-obs-card__sci= obs[:sci]
+            .wv2-obs-card__location
+              %span.wv2-obs-card__location-icon ⌖
+              %span= obs[:location]
       = link_to t("#{s}.explore.button"), observations_path, class: "btn wv2-btn--dark"
 
   -# ── Seek ──────────────────────────────────────────────────
@@ -174,14 +188,14 @@
           %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
 
   -# ── Newsletter ────────────────────────────────────────────
-  .wv2-section.wv2-section--dark
+  .wv2-section.wv2-section--dark.wv2-section--newsletter
     .container.text-center
       %h2= t("#{s}.newsletter.heading")
       %p= t("#{s}.newsletter.body")
       = link_to t(:sign_up).capitalize, "/pages/newsletter", class: "btn wv2-btn--white"
 
   -# ── Donate ────────────────────────────────────────────────
-  .wv2-section.wv2-section--white
+  .wv2-section.wv2-section--white.wv2-section--donate
     .container.text-center
       %p.wv2-donate__headline= t("#{s}.donate.heading")
       %p= t("#{s}.donate.subheading")
