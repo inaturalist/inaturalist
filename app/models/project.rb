@@ -30,6 +30,7 @@ class Project < ApplicationRecord
   before_save :remove_times_from_non_bioblitzes
   before_save :set_observation_requirements_updated_at
   after_create :create_the_project_list
+  before_create :set_default_umbrella_sort
   after_save :add_owner_as_project_user
   after_save :notify_trusting_members_about_changes_if_rules_changed
   before_update :set_updated_at_if_preferences_changed
@@ -95,6 +96,7 @@ class Project < ApplicationRecord
   preference :banner_contain, :boolean, default: false
   preference :hide_title, :boolean, default: false
   preference :hide_umbrella_map_flags, :boolean, default: false
+  preference :umbrella_project_list_sort, :string
   preference :rule_quality_grade, :string, default: "research,needs_id"
   preference :rule_photos, :boolean
   preference :rule_sounds, :boolean
@@ -225,6 +227,7 @@ class Project < ApplicationRecord
   PROJECT_TYPES = [ASSESSMENT_TYPE, BIOBLITZ_TYPE]
   RESERVED_TITLES = PROJECTS_CONTROLLER_ACTION_METHODS
   MAP_TYPES = %w(roadmap terrain satellite hybrid)
+  SORT_TYPES = %w(alphabetical descending ascending)
   validates_exclusion_of :title, in: RESERVED_TITLES + %w(user)
   validates_uniqueness_of :title
   validates_inclusion_of :map_type, in: MAP_TYPES
@@ -1333,4 +1336,10 @@ class Project < ApplicationRecord
     }
   end
 
+  #setting the default using a callback so that we can have nil values for old projects so they will default to `descending`
+  def set_default_umbrella_sort
+    if project_type == "umbrella" && prefers_umbrella_project_list_sort.nil?
+      self.prefers_umbrella_project_list_sort = "alphabetical"
+    end
+  end
 end

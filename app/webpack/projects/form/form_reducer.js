@@ -83,7 +83,8 @@ export function createNewProject( type, copyProject ) {
       project_type: type,
       user_id: config.currentUser.id,
       admins: [{ user: config.currentUser, role: "manager" }],
-      rule_quality_grade: { research: true, needs_id: true }
+      rule_quality_grade: { research: true, needs_id: true },
+      umbrella_project_list_sort: type === "umbrella" ? "alphabetical" : undefined
     };
     if ( copyProject ) {
       const attributesToInherit = [
@@ -388,6 +389,7 @@ export function submitProject( ) {
         description: project.description,
         preferred_banner_color: project.banner_color,
         prefers_hide_title: !!project.hide_title,
+        prefers_umbrella_project_list_sort: project.umbrella_project_list_sort,
         prefers_hide_umbrella_map_flags: !!project.hide_umbrella_map_flags,
         prefers_banner_contain: !!project.header_image_contain,
         prefers_rule_quality_grade: project.rule_quality_grade
