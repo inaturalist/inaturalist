@@ -290,6 +290,22 @@ $(document).ready(function() {
     }
   } );
 
+  $( "#header #narrow-menu .submenu > a" ).on( "click", function ( e ) {
+    e.preventDefault( );
+    e.stopPropagation( );
+    var submenu = $( e.target ).parents( ".submenu" );
+    var submenuToggleIndicator = submenu.find( ".submenu-toggle-indicator" );
+    submenu.toggleClass( "closed" );
+    if ( submenu.hasClass( "closed" ) ) {
+      submenuToggleIndicator.removeClass( "fa-angle-down" );
+      submenuToggleIndicator.addClass( "fa-angle-right" );
+    } else {
+      submenuToggleIndicator.removeClass( "fa-angle-right" );
+      submenuToggleIndicator.addClass( "fa-angle-down" );
+    }
+    return false;
+  } );
+
   $( "body" ).on( "click", function ( e ) {
     if (
       !$( "#header #messagesnav .dropdown" ).is( e.target ) &&

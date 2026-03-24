@@ -15,105 +15,108 @@ import TaxonChangeAlertContainer from "../containers/taxon_change_alert_containe
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
-import TestGroupToggle from "../../../shared/components/test_group_toggle";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 
-const App = ( { taxon, showNewTaxon, config } ) => (
-  <div id="TaxonDetail">
-    <Grid>
-      <TaxonChangeAlertContainer />
-      <Row className="preheader">
-        <Col xs={8}>
-          <TaxonCrumbsContainer />
-          <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.replace( /[^a-zA-Z0-9]/g, "-" )}`}>
-            <i className="icon-link" />
-          </a>
-        </Col>
-        <Col xs={4}>
-          <div className="pull-right">
-            <TaxonAutocomplete
-              inputClassName="input-sm"
-              bootstrapClear
-              placeholder={I18n.t( "search_species_" )}
-              searchExternal={false}
-              afterSelect={result => showNewTaxon( result.item )}
-              position={{ my: "right top", at: "right bottom", collision: "none" }}
-              config={config}
-            />
-          </div>
-        </Col>
-      </Row>
-      <Row id="TaxonHeader">
-        <Col xs={12}>
-          <div className="inner">
-            <h1>
-              <SplitTaxon
-                taxon={taxon}
-                user={config.currentUser}
+const App = ( { taxon, showNewTaxon, config } ) => {
+  const responsive = config.currentUser?.isAdmin
+    && config.currentUser?.isInTestGroup( "responsive-taxon-detail" );
+  return (
+    <div id="TaxonDetail">
+      <Grid>
+        <TaxonChangeAlertContainer />
+        <Row className="preheader">
+          <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
+            <TaxonCrumbsContainer />
+            <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.replace( /[^a-zA-Z0-9]/g, "-" )}`}>
+              <i className="icon-link" />
+            </a>
+          </Col>
+          <Col xs={responsive ? null : 4} sm={responsive ? 4 : null}>
+            <div className="pull-right">
+              <TaxonAutocomplete
+                inputClassName="input-sm"
+                bootstrapClear
+                placeholder={I18n.t( "search_species_" )}
+                searchExternal={false}
+                afterSelect={result => showNewTaxon( result.item )}
+                position={{ my: "right top", at: "right bottom", collision: "none" }}
+                config={config}
               />
-              {
-                config.currentUser
-                && config.currentUser.roles
-                && (
-                  config.currentUser.roles.indexOf( "curator" ) >= 0
-                  || config.currentUser.roles.indexOf( "admin" ) >= 0
-                )
-                && taxon.flag_counts
-                && taxon.flag_counts.unresolved
-                && taxon.flag_counts.unresolved > 0
-                  ? (
-                    <a href={`/taxa/${taxon.id}/flags`} className="btn btn-default btn-flags">
-                      <i className="fa fa-flag" />
-                      { " " }
-                      { I18n.t( "flags_with_count", { count: taxon.flag_counts.unresolved } ) }
-                    </a>
-                  )
-                  : null
-              }
-            </h1>
-            <div id="place-chooser-container">
-              <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
             </div>
-          </div>
-        </Col>
-        <Col xs={12}>
-          <AkaNamesContainer />
-        </Col>
-      </Row>
-    </Grid>
-    <Grid fluid>
-      <Row id="hero">
-        <Col xs={12}>
-          <Grid>
-            <StatusRow
-              conservationStatus={taxon.conservationStatus}
-              establishmentMeans={taxon.establishment_means}
-            />
-            <Row>
-              <Col xs={6}>
-                <PhotoPreviewContainer />
-              </Col>
-              <Col xs={6}>
-                <Leaders taxon={taxon} />
-                <Row>
-                  <Col xs={12}>
-                    <ErrorBoundary>
-                      <ChartsContainer />
-                    </ErrorBoundary>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Grid>
-        </Col>
-      </Row>
-    </Grid>
-    <TaxonPageTabsContainer />
-    <PhotoModalContainer />
-    <PhotoChooserModalContainer />
-    <RtlTestGroupToggle config={config} />
-  </div>
-);
+          </Col>
+        </Row>
+        <Row id="TaxonHeader">
+          <Col xs={12}>
+            <div className="inner">
+              <h1>
+                <SplitTaxon
+                  taxon={taxon}
+                  user={config.currentUser}
+                />
+                {
+                  config.currentUser
+                  && config.currentUser.roles
+                  && (
+                    config.currentUser.roles.indexOf( "curator" ) >= 0
+                    || config.currentUser.roles.indexOf( "admin" ) >= 0
+                  )
+                  && taxon.flag_counts
+                  && taxon.flag_counts.unresolved
+                  && taxon.flag_counts.unresolved > 0
+                    ? (
+                      <a href={`/taxa/${taxon.id}/flags`} className="btn btn-default btn-flags">
+                        <i className="fa fa-flag" />
+                        { " " }
+                        { I18n.t( "flags_with_count", { count: taxon.flag_counts.unresolved } ) }
+                      </a>
+                    )
+                    : null
+                }
+              </h1>
+              <div id="place-chooser-container">
+                <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
+              </div>
+            </div>
+          </Col>
+          <Col xs={12}>
+            <AkaNamesContainer />
+          </Col>
+        </Row>
+      </Grid>
+      <Grid fluid>
+        <Row id="hero">
+          <Col xs={12}>
+            <Grid>
+              <StatusRow
+                conservationStatus={taxon.conservationStatus}
+                establishmentMeans={taxon.establishment_means}
+              />
+              <Row>
+                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                  <PhotoPreviewContainer />
+                </Col>
+                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                  <Leaders taxon={taxon} />
+                  <Row>
+                    <Col xs={12}>
+                      <ErrorBoundary>
+                        <ChartsContainer />
+                      </ErrorBoundary>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Grid>
+          </Col>
+        </Row>
+      </Grid>
+      <TaxonPageTabsContainer />
+      <PhotoModalContainer />
+      <PhotoChooserModalContainer />
+      <RtlTestGroupToggle config={config} />
+    </div>
+  );
+};
 
 App.propTypes = {
   taxon: PropTypes.object,

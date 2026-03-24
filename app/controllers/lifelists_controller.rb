@@ -19,15 +19,4 @@ class LifelistsController < ApplicationController
       render_404 if @user.blank?
     end
   end
-
-
-  private
-
-  def admin_or_test_group_required
-    unless logged_in? && ( current_user.is_admin? || current_user.in_test_group?( "lifelists" ) )
-      only_admins_failure_state
-    end
-  end
-
-
 end

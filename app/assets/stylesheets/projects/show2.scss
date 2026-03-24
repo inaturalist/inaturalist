@@ -47,6 +47,14 @@ body {
   }
 }
 
+body.responsive {
+  min-width: auto;
+  #wrapper {
+    min-width: 980px;
+    background: $page-background-grey;
+  }
+}
+
 .no-padding {
   padding: 0 !important;
 }

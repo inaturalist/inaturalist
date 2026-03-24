@@ -1475,6 +1475,40 @@ ALTER SEQUENCE public.email_suppressions_id_seq OWNED BY public.email_suppressio
 
 
 --
+-- Name: exemplar_identifications; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.exemplar_identifications (
+    id bigint NOT NULL,
+    identification_id integer NOT NULL,
+    nominated_by_user_id integer,
+    nominated_at timestamp without time zone,
+    active boolean DEFAULT true,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: exemplar_identifications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.exemplar_identifications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: exemplar_identifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.exemplar_identifications_id_seq OWNED BY public.exemplar_identifications.id;
+
+
+--
 -- Name: exploded_atlas_places; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6557,6 +6591,13 @@ ALTER TABLE ONLY public.email_suppressions ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: exemplar_identifications id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exemplar_identifications ALTER COLUMN id SET DEFAULT nextval('public.exemplar_identifications_id_seq'::regclass);
+
+
+--
 -- Name: exploded_atlas_places id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7680,6 +7721,14 @@ ALTER TABLE ONLY public.deleted_users
 
 ALTER TABLE ONLY public.email_suppressions
     ADD CONSTRAINT email_suppressions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: exemplar_identifications exemplar_identifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exemplar_identifications
+    ADD CONSTRAINT exemplar_identifications_pkey PRIMARY KEY (id);
 
 
 --
@@ -9203,6 +9252,13 @@ CREATE INDEX index_email_suppressions_on_email_and_suppression_type ON public.em
 --
 
 CREATE INDEX index_email_suppressions_on_user_id ON public.email_suppressions USING btree (user_id);
+
+
+--
+-- Name: index_exemplar_identifications_on_identification_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_exemplar_identifications_on_identification_id ON public.exemplar_identifications USING btree (identification_id);
 
 
 --
@@ -12120,6 +12176,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251010205509'),
 ('20251014130528'),
 ('20251014130547'),
+('20251014211456'),
 ('20251119043443'),
 ('20251119130558'),
 ('20251202224705'),

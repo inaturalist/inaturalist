@@ -493,7 +493,7 @@ following requirements:
 #{ "* released under one of the following licenses: #{OPTS.licenses.join( ", " )}" if OPTS.licenses}
 
 For more about some of these iNat-specific quality terms, see 
-http://www.inaturalist.org/pages/help#quality
+http://help.inaturalist.org/support/solutions/articles/151000169936
 
 Species are partitioned into Species Groups based on the number of users that
 observed them:
@@ -564,7 +564,7 @@ Data about photos, including
     long edge.
   quality_grade
     iNaturalist quality grade. For definitions of quality grades, see
-    http://www.inaturalist.org/pages/help#quality
+      http://help.inaturalist.org/support/solutions/articles/151000169936
   photo_license
     URL for the license applied to this image, if any license.
   obs_license

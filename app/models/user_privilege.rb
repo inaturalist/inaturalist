@@ -28,8 +28,10 @@ class UserPrivilege < ApplicationRecord
   end
 
   def self.earned_organizer?( user )
-    user.confirmed? &&
-      user.observations.verifiable.limit( 50 ).count == 50
+    return false unless user.confirmed?
+
+    ( user.observations.verifiable.limit( 50 ).count == 50 ) ||
+      ( user.identifications.current.for_others.limit( 100 ).count == 100 )
   end
 
   def self.earned_coordinate_access?( user )

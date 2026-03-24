@@ -19,6 +19,8 @@ class Identification < ApplicationRecord
   belongs_to :taxon_change
   belongs_to :previous_observation_taxon, class_name: "Taxon"
   has_many :project_observations, foreign_key: :curator_identification_id, dependent: :nullify
+  has_one :exemplar_identification, dependent: :destroy
+
   validates_presence_of :observation, :user
   validates_presence_of :taxon,
     message: "for an ID must be something we recognize"
@@ -38,6 +40,8 @@ class Identification < ApplicationRecord
     :update_quality_metrics
   after_update :update_curator_identification,
     :update_quality_metrics
+  after_save :create_exemplar_identification_association,
+    :update_exemplar_identification
 
   # NOTE: update_categories must run last, or at least after update_observation,
   # b/c it relies on the community taxon being up to date
@@ -66,7 +70,7 @@ class Identification < ApplicationRecord
   acts_as_votable
   SUBSCRIBABLE = false
   attr_accessor :skip_observation, :html, :captive_flag, :skip_set_previous_observation_taxon, :skip_set_disagreement,
-    :bulk_delete, :wait_for_obs_index_refresh
+    :bulk_delete, :wait_for_obs_index_refresh, :nominate
 
   preference :vision, :boolean, default: false
 
@@ -197,6 +201,29 @@ class Identification < ApplicationRecord
     end
     scope.update_all( current: false )
     true
+  end
+
+  def create_exemplar_identification_association
+    return if exemplar_identification
+    return if body.nil? || body.strip.blank?
+
+    create_exemplar_identification(
+      skip_indexing: skip_indexing,
+      wait_for_index_refresh: wait_for_index_refresh
+    )
+  end
+
+  def update_exemplar_identification
+    return unless exemplar_identification
+
+    if body.nil? || body&.strip&.blank?
+      exemplar_identification.identification_body_recently_emptied = true
+      exemplar_identification.destroy
+      return
+    end
+
+    exemplar_identification.wait_for_index_refresh = wait_for_index_refresh
+    exemplar_identification.save
   end
 
   def set_previous_observation_taxon
@@ -541,6 +568,9 @@ class Identification < ApplicationRecord
     obs.reload
     obs.wait_for_index_refresh ||= !options[:wait_for_obs_index_refresh].nil?
     obs.elastic_index!
+    ExemplarIdentification.elastic_index!(
+      ids: ExemplarIdentification.where( identification_id: idents.map( &:id ) )
+    )
   end
 
   def update_categories
@@ -555,10 +585,12 @@ class Identification < ApplicationRecord
         skip_indexing: skip_indexing
       } )
       # update_categories_for_observation will reindex all the observation's
-      # identifications, so we both do not need to re-index this individual
-      # identification after that happens, and in fact that may result in
-      # indexing stale data, e.g. a blank category
-      self.skip_indexing = true
+      # identifications, so, except when the identification has been deleted,
+      # we both do not need to re-index this individual identification after
+      # that happens, and in fact that may result in indexing stale data,
+      # e.g. a blank category. If the Identification has been deleted, it must
+      # not enable `skip_indexing` so its doc gets removed from Elasticsearch
+      self.skip_indexing = persisted?
     end
     true
   end
@@ -583,6 +615,27 @@ class Identification < ApplicationRecord
 
   def taxon_rank
     taxon.try( :rank )
+  end
+
+  def nominate_as_exemplar_by( nominating_user )
+    return unless exemplar_identification
+    return unless nominating_user.is_a?( User )
+
+    exemplar_identification.update(
+      nominated_by_user: nominating_user,
+      wait_for_index_refresh: wait_for_index_refresh
+    )
+  end
+
+  def unnominate_as_exemplar
+    return unless exemplar_identification
+
+    exemplar_identification.votes_for.destroy_all
+    exemplar_identification.update(
+      nominated_by_user: nil,
+      nominated_at: nil,
+      wait_for_index_refresh: wait_for_index_refresh
+    )
   end
 
   def observation_unsubscribe_enabled?

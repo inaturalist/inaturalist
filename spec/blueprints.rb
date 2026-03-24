@@ -109,6 +109,11 @@ DeletedSound.blueprint do
   user { User.make! }
 end
 
+ExemplarIdentification.blueprint do
+  identification { Identification.make!( body: Faker::Lorem.sentence ) }
+  nominated_by_user { User.make! }
+end
+
 ExplodedAtlasPlace.blueprint do
   atlas { Atlas.make! }
   place { make_place_with_geom }

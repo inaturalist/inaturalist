@@ -85,12 +85,14 @@ class VotesController < ApplicationController
 
   private
   def load_votable
-    klass = Object.const_get(params[:resource_type].singularize.underscore.camelcase) rescue nil
-    unless klass && (@record = klass.find_by_uuid(params[:resource_id]) ||
-                               klass.find(params[:resource_id]) rescue nil)
-      render_404
-      return false
+    klass = Object.const_get( params[:resource_type].singularize.underscore.camelcase ) rescue nil
+    return render_404 unless klass
+
+    if klass.column_names.include?( "uuid" )
+      @record ||= klass.find_by_uuid( params[:resource_id] ) rescue nil
     end
+    @record ||= klass.find_by_id( params[:resource_id] ) rescue nil
+    render_404 unless @record
   end
 
   def load_vote

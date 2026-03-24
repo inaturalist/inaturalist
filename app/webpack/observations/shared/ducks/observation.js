@@ -59,15 +59,30 @@ function callAPI(
   fetchObservation,
   options = { }
 ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
     const opts = { ...options };
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    const originalApiUrl = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
+    if ( !testingApiV2 && options.useApiV2 ) {
+      inatjs.setConfig( {
+        apiURL: originalApiUrl.replace( "/v1", "/v2" ),
+        writeApiURL: originalApiUrl.replace( "/v1", "/v2" )
+      } );
+    }
     opts.actionTime = getActionTime( );
-    method( payload ).then( ( ) => {
+    method( payload, opts ).then( ( ) => {
       dispatch( afterAPICall( observation, fetchObservation, opts ) );
     } ).catch( e => {
       opts.error = e;
       dispatch( afterAPICall( observation, fetchObservation, opts ) );
     } );
+    if ( !testingApiV2 && options.useApiV2 ) {
+      inatjs.setConfig( {
+        apiURL: originalApiUrl,
+        writeApiURL: originalApiUrl
+      } );
+    }
   };
 }
 
@@ -309,5 +324,65 @@ export function removeObservationFieldValue(
       fetchObservation,
       { callback }
     ) );
+  };
+}
+
+export function nominateIdentification( observation, id, setAttributes, fetchObservation ) {
+  return dispatch => {
+    const payload = { id };
+    dispatch(
+      callAPI(
+        observation,
+        inatjs.identifications.nominate,
+        payload,
+        fetchObservation,
+        { same_origin: true }
+      )
+    );
+  };
+}
+
+export function unnominateIdentification( observation, id, setAttributes, fetchObservation ) {
+  return dispatch => {
+    const payload = { id };
+    dispatch(
+      callAPI(
+        observation,
+        inatjs.identifications.unnominate,
+        payload,
+        fetchObservation,
+        { same_origin: true }
+      )
+    );
+  };
+}
+
+export function voteIdentification( observation, id, voteValue, setAttributes, fetchObservation ) {
+  return dispatch => {
+    const payload = { id, vote: voteValue };
+    dispatch(
+      callAPI(
+        observation,
+        inatjs.exemplar_identifications.vote,
+        payload,
+        fetchObservation,
+        { useApiV2: true }
+      )
+    );
+  };
+}
+
+export function unvoteIdentification( observation, id, setAttributes, fetchObservation ) {
+  return dispatch => {
+    const payload = { id };
+    dispatch(
+      callAPI(
+        observation,
+        inatjs.exemplar_identifications.unvote,
+        payload,
+        fetchObservation,
+        { useApiV2: true }
+      )
+    );
   };
 }

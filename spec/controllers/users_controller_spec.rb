@@ -509,3 +509,71 @@ describe UsersController, "moderation" do
     end
   end
 end
+
+describe UsersController, "join_test" do
+  it "does not allow unauthenticated requests" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    another_user = User.make!
+    put :join_test, params: { test: "test-group", id: another_user.id }
+    expect( response ).not_to be_successful
+    expect( response.response_code ).to eq 302
+    expect( response.location ).to eq new_user_session_url
+  end
+
+  it "allows logged-in users to join test groups" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    sign_in user
+    expect( user.test_groups ).to be_blank
+    put :join_test, params: { test: "test-group", id: user.id }
+    expect( response ).to be_redirect
+    user.reload
+    expect( user.test_groups ).not_to be_blank
+    expect( user.test_groups ).to include( "test-group" )
+  end
+
+  it "does not allow non-admins to join admin test groups" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    sign_in user
+    expect( user.test_groups ).to be_blank
+    expect do
+      put :join_test, params: { test: User::ADMIN_ONLY_TEST_GROUPS.first, id: user.id }
+    end.to throw_symbol( :abort )
+    expect( flash[:error] ).to eq "Only administrators may access that page"
+    expect( user.test_groups ).to be_blank
+  end
+
+  it "allows admins to join admin test groups" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = make_admin
+    sign_in user
+    expect( user.test_groups ).to be_blank
+    put :join_test, params: { test: User::ADMIN_ONLY_TEST_GROUPS.first, id: user.id }
+    expect( response ).to be_redirect
+    user.reload
+    expect( user.test_groups ).not_to be_blank
+    expect( user.test_groups ).to include( User::ADMIN_ONLY_TEST_GROUPS.first )
+  end
+
+  it "does not allow unpermitted users to join the helpful IDs test group" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    sign_in user
+    expect( user.test_groups ).to be_blank
+    put :join_test, params: { test: User::HELPFUL_ID_TIPS_TEST_GROUP, id: user.id }
+    user.reload
+    expect( user.test_groups ).to be_blank
+  end
+
+  it "allows permitted users to join the helpful IDs test group" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    user.update_columns( test_groups: User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+    sign_in user
+    expect( user.test_groups ).to include( User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+    put :join_test, params: { test: User::HELPFUL_ID_TIPS_TEST_GROUP, id: user.id }
+    user.reload
+    expect( user.test_groups ).to include( User::HELPFUL_ID_TIPS_TEST_GROUP )
+  end
+end

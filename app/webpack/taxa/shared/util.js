@@ -227,7 +227,8 @@ const TABS = {
   taxonomy: "taxonomy",
   status: "status",
   similar: "similar",
-  curation: "curation"
+  curation: "curation",
+  identifications: "identifications"
 };
 
 const RANK_LEVELS = {
@@ -269,7 +270,7 @@ const RANK_LEVELS = {
 
 const getChosenTab = ( tab, rankLevel ) => {
   const speciesTabsSet = new Set( [TABS.map, TABS.articles, TABS.interactions,
-    TABS.taxonomy, TABS.status, TABS.similar] );
+    TABS.taxonomy, TABS.status, TABS.similar, TABS.identifications] );
   const genusTabsSet = new Set( [TABS.map, TABS.articles,
     TABS.highlights, TABS.taxonomy, TABS.similar] );
   const aboveGenusTabsSet = new Set( [TABS.map, TABS.articles, TABS.highlights, TABS.taxonomy] );
