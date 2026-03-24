@@ -1798,7 +1798,7 @@ en:
   # d2" if "to" might be translated differently for different values of d1 and
   # d2
   date_to_date: "%{d1} - %{d2}"
-  # Express a single date with a time range. Better to use a flexabile form
+  # Express a single date with a time range. Better to use a flexible form
   # here, e.g. not something like "start_time to end_time" if "to" might be
   # translated differently for different values of start_time and end_time
   date_time_to_time: "%{date}, %{start_time} - %{end_time}"
