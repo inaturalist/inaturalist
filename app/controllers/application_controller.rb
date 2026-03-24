@@ -932,6 +932,10 @@ class ApplicationController < ActionController::Base
     super
     payload.merge!(Logstasher.payload_from_request( request ))
     payload.merge!( { session: session } )
+    sec_rule = response.get_header( "X-Sec-Rule" )
+    sec_rule_uid = response.get_header( "X-Sec-Rule-Marker-Uid" )
+    payload[:sec_rule] = sec_rule if sec_rule.present?
+    payload[:sec_rule_uid] = sec_rule_uid if sec_rule_uid.present?
     if logged_in?
       payload.merge!(Logstasher.payload_from_user( current_user ))
     end
