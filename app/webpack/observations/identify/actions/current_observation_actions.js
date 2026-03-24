@@ -271,6 +271,9 @@ function showNextObservation( ) {
 function showPrevObservation( ) {
   return ( dispatch, getState ) => {
     const { observations, currentObservation } = getState();
+    if ( currentObservation.observation === null ) {
+      return false;
+    }
     if ( !currentObservation.visible ) {
       dispatch( hideFinishedModal( ) );
       dispatch( showCurrentObservation( currentObservation.observation ) );
