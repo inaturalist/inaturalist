@@ -1,6 +1,6 @@
 {
   "name": "inaturalist",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "iNaturalist npm package for managing node dependencies.",
   "scripts": {
     "webpack": "webpack --config config/webpack.config.js",
@@ -29,6 +29,7 @@
     "EasyZoom": "github:inaturalist/EasyZoom#click-toggle",
     "es6-promise-pool": "^2.5.0",
     "eslint-plugin-ignore-erb": "0.1.1",
+    "exifreader": "^4.32.0",
     "h3-js": "^4.1.0",
     "heic-to": "^1.1.11",
     "html-truncate": "^1.2.1",
@@ -50,7 +51,6 @@
     "moment-timezone": "^0.5.35",
     "mousetrap": "^1.6.2",
     "onscreen": "^1.2.0",
-    "exifreader": "^4.32.0",
     "prop-types": "^15.6.2",
     "ramda": "^0.20.1",
     "rc-pagination": "^1.17.3",
@@ -76,7 +76,7 @@
     "serialize-javascript": ">=3.1.0",
     "tinycolor2": "^1.4.1",
     "topojson-client": "^3.0.0",
-    "underscore": "^1.12.1",
+    "underscore": "^1.13.8",
     "utf8": "^3.0.0",
     "uuid": "^8.3",
     "wavesurfer.js": "^7.9.5"
@@ -95,7 +95,7 @@
     "eslint-utils": "^3.0.0",
     "punycode": "^2.3.1",
     "querystring-es3": "^0.2.1",
-    "webpack": "^5.94.0",
+    "webpack": "^5.105.2",
     "webpack-cli": "^5.1.4"
   },
   "repository": {

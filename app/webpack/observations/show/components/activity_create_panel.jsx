@@ -39,7 +39,12 @@ class ActivityCreatePanel extends React.Component {
   }
 
   postIdentification( ) {
-    const { addID, content, updateEditorContent } = this.props;
+    const {
+      addID,
+      content,
+      updateEditorContent,
+      setNominateOnSubmit
+    } = this.props;
     const input = $( ".id_tab input[name='taxon_name']" );
     const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
     if ( selectedTaxon ) {
@@ -49,6 +54,7 @@ class ActivityCreatePanel extends React.Component {
       input.data( "uiAutocomplete" ).selectedItem = null;
 
       updateEditorContent( "activity", "" );
+      setNominateOnSubmit( false );
     }
   }
 
@@ -115,7 +121,9 @@ class ActivityCreatePanel extends React.Component {
       observation,
       content,
       updateEditorContent,
-      confirmResendConfirmation
+      confirmResendConfirmation,
+      setNominateOnSubmit,
+      nominate
     } = this.props;
     if ( !( config && config.currentUser ) ) {
       return (
@@ -128,6 +136,7 @@ class ActivityCreatePanel extends React.Component {
         />
       );
     }
+    const { currentUser } = config;
     if ( config?.currentUserCanInteractWithResource( observation ) ) {
       // attempting to match the logic in the computervision/score_observation endpoint
       // so we don't attempt to fetch vision results for obs which will have no results
@@ -166,10 +175,38 @@ class ActivityCreatePanel extends React.Component {
               className="upstacked"
               textareaClassName="form-control"
               onBlur={e => updateEditorContent( "activity", e.target.value )}
+              onChange={e => {
+                const textLength = _.size( e.target.value );
+                if ( textLength === 0 ) {
+                  // TODO: fingure out a better way to avoid the React controlled input error
+                  $( ".nomination input[type='checkbox']" ).prop( "checked", false );
+                  setNominateOnSubmit( false );
+                }
+                $( ".nomination input[type='checkbox']" ).prop( "disabled", textLength === 0 );
+              }}
               content={content}
               maxLength={5000}
               showCharsRemainingAt={4000}
             />
+            { currentUser?.canViewHelpfulIDTips( ) && (
+              <div className="nomination">
+                <input
+                  type="checkbox"
+                  id="nominate-id"
+                  defaultChecked={nominate}
+                  disabled={_.size( content ) === 0}
+                  onChange={e => {
+                    setNominateOnSubmit( e.target.checked );
+                  }}
+                />
+                <label
+                  className="identificationNomination"
+                  htmlFor="nominate-id"
+                >
+                  Nominate as an ID Tip (diagnostic characteristics that teach others to identify this organism)
+                </label>
+              </div>
+            ) }
           </div>
         </div>
       );
@@ -233,9 +270,11 @@ ActivityCreatePanel.propTypes = {
   observation: PropTypes.object,
   config: PropTypes.object,
   activeTab: PropTypes.string,
+  nominate: PropTypes.bool,
   addID: PropTypes.func,
   content: PropTypes.string,
   setActiveTab: PropTypes.func,
+  setNominateOnSubmit: PropTypes.func,
   updateEditorContent: PropTypes.func,
   confirmResendConfirmation: PropTypes.func
 };

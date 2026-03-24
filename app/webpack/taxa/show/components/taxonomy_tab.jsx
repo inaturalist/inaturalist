@@ -24,6 +24,8 @@ const TaxonomyTab = ( {
   const viewerIsCurator = currentUser && currentUser.roles && (
     currentUser.roles.indexOf( "admin" ) >= 0 || currentUser.roles.indexOf( "curator" ) >= 0
   );
+  const responsive = currentUser?.isAdmin
+    && currentUser?.isInTestGroup( "responsive-taxon-detail" );
   const sortedNames = _.sortBy( names, [
     n => I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ),
     n => n.position
@@ -48,7 +50,7 @@ const TaxonomyTab = ( {
       <Row className="tab-section">
         <Col xs={12}>
           <Row>
-            <Col xs={8}>
+            <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
               <h3>{ I18n.t( "taxonomy" ) }</h3>
               <TaxonomicBranch
                 taxon={taxon}
@@ -61,7 +63,7 @@ const TaxonomyTab = ( {
                 tabular
               />
             </Col>
-            <Col xs={4}>
+            <Col xs={responsive ? null : 4} sm={responsive ? 4 : null}>
               <ul className="tab-links list-group">
                 <li className="list-group-item internal">
                   <a
@@ -98,7 +100,7 @@ const TaxonomyTab = ( {
       <Row className="tab-section">
         <Col xs={12}>
           <Row>
-            <Col xs={8}>
+            <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
               <h3>{ I18n.t( "names" ) }</h3>
               <table className="table table-striped">
                 <thead>
@@ -190,7 +192,7 @@ const TaxonomyTab = ( {
                 <i className="fa fa-refresh fa-spin" />
               </h3>
             </Col>
-            <Col xs={4}>
+            <Col xs={responsive ? null : 4} sm={responsive ? 4 : null}>
               { currentUser ? (
                 <ul className="tab-links list-group">
                   { viewerIsCurator ? (

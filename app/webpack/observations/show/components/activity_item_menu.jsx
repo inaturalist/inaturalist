@@ -18,7 +18,9 @@ const ActivityItemMenu = ( {
   untrustUser,
   hideContent,
   unhideContent,
-  performOrOpenConfirmationModal
+  performOrOpenConfirmationModal,
+  nominateIdentification,
+  unnominateIdentification
 } ) => {
   if ( !item ) { return ( <div /> ); }
   if ( item.api_status ) {
@@ -111,6 +113,27 @@ const ActivityItemMenu = ( {
         ) );
       }
     }
+    if ( config?.currentUser?.canUnnominateIdentification( item ) ) {
+      menuItems.push( (
+        <MenuItem
+          key="id-unnominate"
+          eventKey="unnominate"
+          title="Remove nomination"
+        >
+          Remove Nomination
+        </MenuItem>
+      ) );
+    } else if ( config?.currentUser?.canNominateIdentification( item ) ) {
+      menuItems.push( (
+        <MenuItem
+          key="id-nominate"
+          eventKey="nominate"
+        >
+          Nominate
+        </MenuItem>
+      ) );
+    }
+
     if ( item.flags && item.flags.length > 0 ) {
       menuItems.push( (
         <MenuItem
@@ -345,6 +368,10 @@ const ActivityItemMenu = ( {
               hideContent( item );
             } else if ( key === "unhide-comment" || key === "unhide-identification" ) {
               unhideContent( item );
+            } else if ( key === "nominate" ) {
+              nominateIdentification( item.uuid );
+            } else if ( key === "unnominate" ) {
+              unnominateIdentification( item.uuid );
             }
           }}
           disabled={_.isEmpty( menuItems )}
@@ -376,7 +403,9 @@ ActivityItemMenu.propTypes = {
   untrustUser: PropTypes.func,
   hideContent: PropTypes.func,
   unhideContent: PropTypes.func,
-  performOrOpenConfirmationModal: PropTypes.func
+  performOrOpenConfirmationModal: PropTypes.func,
+  nominateIdentification: PropTypes.func,
+  unnominateIdentification: PropTypes.func
 };
 
 export default ActivityItemMenu;

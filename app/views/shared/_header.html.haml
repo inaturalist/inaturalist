@@ -1,6 +1,49 @@
 - site = @site || CONFIG
 - header_search_open = session[:header_search_open].yesish? || ( logged_in? && session[:header_search_open] != false )
 #header.bootstrap{ class: header_search_open ? "search-open" : nil }
+  #narrow-menu.navtabs
+    .dropdown
+      #header-narrow-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
+        %i.fa.fa-bars
+      %ul.dropdown-menu{ aria: { labelledby: "header-narrow-dropdown-toggle" } }
+        %li= link_to t( :search ), search_path
+        %li= link_to t( :explore ), observations_path
+        - if logged_in?
+          %li= link_to t( :your_observations ), observations_path( user_id: current_user.login, verifiable: "any", place_id: "any" )
+        %li.submenu.community.closed
+          %a{ href: people_path }
+            = t( :community )
+            %i.submenu-toggle-indicator.fa.fa-angle-right
+          %ul
+            %li= link_to t( :people ), people_path
+            %li= link_to t( :projects ), projects_path
+            %li= link_to t( :journal_posts ), journals_path
+            - if @site && !@site.discourse_url.blank? && @site.discourse_url && !@skip_external_connections
+              %li= link_to t(:forum), @site.discourse_url
+        - if logged_in?
+          %li= link_to t( :identify ), identify_observations_path
+        %li.submenu.community.closed
+          %a{ href: @site.help_url }
+            = t( :more )
+            %i.submenu-toggle-indicator.fa.fa-angle-right
+          %ul
+            %li= link_to t( :taxa_info ), taxa_path
+            %li= link_to t( :guides ), guides_path
+            %li= link_to t( :places ), places_path
+            - if @site.blank? || @site.place_id.blank?
+              %li= link_to t( :site_stats ), stats_path
+            %li= link_to t( :help ), @site.help_url
+            - if !@site&.getting_started_url.blank?
+              %li= link_to t( :getting_started ), @site.getting_started_url
+            - if !@site&.understanding_projects_url.blank?
+              %li= link_to t( :understanding_projects ), @site.understanding_projects_url
+            - if !@site&.educators_guide_url.blank?
+              %li= link_to t( :educators_guide ), @site.educators_guide_url
+            - if !@site&.video_tutorials_url.blank?
+              %li= link_to t( :video_tutorials ), @site.video_tutorials_url
+            - if !@site&.curator_guide_url.blank?
+              %li= link_to t( :curator_guide ), @site.curator_guide_url
+
   #logonav.navtabs
     - if site && !site.custom_logo.blank?
       =raw site.custom_logo

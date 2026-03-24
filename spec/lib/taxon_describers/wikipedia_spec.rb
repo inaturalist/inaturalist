@@ -14,7 +14,7 @@ describe "TaxonDescribers" do
       expect(endpoint.description).to eq nil
       expect(endpoint.documentation_url).to eq "https://en.wikipedia.org/w/api.php"
       expect(endpoint.base_url).to eq "https://en.wikipedia.org/w/api.php?"
-      expect(endpoint.cache_hours).to eq 168
+      expect(endpoint.cache_hours).to eq 720
     end
 
     it "creates the endpoint based on locale" do

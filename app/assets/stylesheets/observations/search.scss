@@ -22,6 +22,14 @@ body {
 #wrapper {
   margin-bottom: 0px;
 }
+
+body.responsive {
+  min-width: auto;
+  #wrapper {
+    min-width: 980px;
+  }
+}
+
 #results {
   width: 100%;
   background: #eee;

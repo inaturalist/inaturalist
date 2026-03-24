@@ -381,6 +381,8 @@ class User < ApplicationRecord
   validate :validate_email_domain_exists
   validate :validate_canonical_email_not_shared_with_suspended_account
   validate :validate_faved_project_ids
+  validate :validate_new_admin_only_test_groups, if: -> { test_groups_changed? }
+  validate :validate_joining_helpful_id_tips_test_group, if: -> { test_groups_changed? }
 
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -390,6 +392,15 @@ class User < ApplicationRecord
   scope :admins, -> { joins( :roles ).where( "roles.name = 'admin'" ) }
   scope :active, -> { where( "suspended_at IS NULL" ) }
   scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
+
+  HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP = "helpful-id-tips-reviewer"
+  HELPFUL_ID_TIPS_TEST_GROUP = "helpful-id-tips"
+  ADMIN_ONLY_TEST_GROUPS = %w(
+    responsive-header
+    responsive-obs-detail
+    responsive-taxon-detail
+    helpful-id-tips-reviewer
+  ).freeze
 
   def login_must_not_contain_reserved_words
     return unless new_record? || login_changed?
@@ -474,6 +485,28 @@ class User < ApplicationRecord
     @faved_project_ids_errors.each do | err |
       errors.add :faved_project_ids, err
     end
+  end
+
+  def validate_new_admin_only_test_groups
+    return if is_admin?
+
+    previous_test_groups = test_groups_was.to_s.split( "|" )
+    new_test_groups = test_groups_array - previous_test_groups
+    return unless new_test_groups.intersect?( User::ADMIN_ONLY_TEST_GROUPS )
+
+    errors.add( :test_groups, :invalid )
+  end
+
+  def validate_joining_helpful_id_tips_test_group
+    return if is_admin?
+    return unless in_test_group?( HELPFUL_ID_TIPS_TEST_GROUP )
+
+    previous_test_groups = test_groups_was.to_s.split( "|" )
+    # it is required that non-admins were previously added to the reviewer
+    # test group in order to join the HELPFUL_ID_TIPS_TEST_GROUP
+    return if previous_test_groups.include?( HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+
+    errors.add( :test_groups, :invalid )
   end
 
   def icon_url_provided?
