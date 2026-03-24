@@ -936,6 +936,10 @@ class ApplicationController < ActionController::Base
     sec_rule_uid = response.get_header( "X-Sec-Rule-Marker-Uid" )
     payload[:sec_rule] = sec_rule if sec_rule.present?
     payload[:sec_rule_uid] = sec_rule_uid if sec_rule_uid.present?
+    payload[:signed_in_traffic_cookie_incoming] =
+      request.cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].present?
+    payload[:signed_in_traffic_cookie_outgoing] =
+      cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].present?
     if logged_in?
       payload.merge!(Logstasher.payload_from_user( current_user ))
     end
