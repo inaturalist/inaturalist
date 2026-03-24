@@ -341,12 +341,11 @@ class SharedForm extends React.Component {
           { project.project_type === "collection" && (
             <Row className="first-row">
               <Col xs={4}>
-                <label htmlFor="project-bgcolor">
-                  Leaderboard
+                <label>
+                  { I18n.t( "views.projects.edit.leaderboard" ) }
                 </label>
                 <div className="help-text">
-                  The leaderboard panel displays users with the most observations, users with the
-                  most species, and the top observed species. It can be optionally hidden.
+                  { I18n.t( "views.projects.edit.leaderboard_description" ) }
                 </div>
                 <div className="input-group">
                   <input
@@ -356,7 +355,7 @@ class SharedForm extends React.Component {
                     onChange={e => updateProject( { hide_leaderboard: e.target.checked } )}
                   />
                   <label className="inline" htmlFor="project-hide-leaderboard">
-                    Hide Leaderboard
+                    { I18n.t( "views.projects.edit.hide_leaderboard" ) }
                   </label>
                 </div>
               </Col>
