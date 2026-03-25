@@ -9,91 +9,86 @@
 
 .wv2
   -# ── Hero ──────────────────────────────────────────────────
-  .wv2-section.wv2-section--hero
-    .text-center
-      %h1= t("#{s}.hero.headline")
-      %p.wv2-hero__sub= t("#{s}.hero.subheadline")
-      = link_to t("#{s}.hero.cta_join"), signup_path, class: "btn wv2-btn--white btn-lg"
-      %p.wv2-hero__tagline= t("#{s}.hero.tagline")
+  .wv2-section.wv2-section--hero.text-center
+    %h1= t("#{s}.hero.headline")
+    %p.wv2-hero__sub= t("#{s}.hero.subheadline")
+    = link_to t("#{s}.hero.cta_join"), signup_path, class: "btn wv2-btn--white btn-lg"
+    %p.wv2-hero__tagline= t("#{s}.hero.tagline")
 
   -# ── "With iNaturalist you can" features ───────────────────
-  .wv2-section.wv2-section--light
-    .text-center
-      %h2= t("#{s}.features.intro")
-      .wv2-features
-        - [[:identify, "identify_desc"], [:track, "track_desc"], [:discover, "discover_desc"], [:contribute, "contribute_desc"], [:learn, "learn_desc"]].each do |label_key, desc_key|
-          .wv2-feature
-            .wv2-feature__icon
-            %h3= t(label_key)
-            %p= t("#{s}.features.#{desc_key}")
+  .wv2-section.wv2-section--light.text-center
+    %h2= t("#{s}.features.intro")
+    .wv2-features
+      - [[:identify, "identify_desc"], [:track, "track_desc"], [:discover, "discover_desc"], [:contribute, "contribute_desc"], [:learn, "learn_desc"]].each do |label_key, desc_key|
+        .wv2-feature
+          .wv2-feature__icon
+          %h3= t(label_key)
+          %p= t("#{s}.features.#{desc_key}")
 
   -# ── Community science stories ─────────────────────────────
-  .wv2-section.wv2-section--white
-    .text-center
-      %h2= t("#{s}.stories.heading")
-      .wv2-stories-row
-        - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", {moth_common_name: "Frosted Phoenix"}], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", {}], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", {}]].each do |heading, body, user, place, interp|
-          .wv2-story
-            .wv2-story__image
-              %h3= t("#{s}.stories.#{heading}")
-            .wv2-story__body
-              %p= t("#{s}.stories.#{body}", interp)
-              %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
-      = link_to t("#{s}.stories.read_more"), "#", class: "btn wv2-btn--green"
+  .wv2-section.wv2-section--white.text-center
+    %h2= t("#{s}.stories.heading")
+    .wv2-stories-row
+      - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", {moth_common_name: "Frosted Phoenix"}], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", {}], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", {}]].each do |heading, body, user, place, interp|
+        .wv2-story
+          .wv2-story__image
+            %h3= t("#{s}.stories.#{heading}")
+          .wv2-story__body
+            %p= t("#{s}.stories.#{body}", interp)
+            %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
+    = link_to t("#{s}.stories.read_more"), "#", class: "btn wv2-btn--green"
 
   -# ── Sample observation ────────────────────────────────────
   -# TODO: wire up @sample_observation from controller (photo, map, who/what/where/when)
-  .wv2-section.wv2-section--light
-    .text-center
-      %h2= t("#{s}.observation.heading")
-      .wv2-observation
-        .wv2-observation__col
-          %dl.dl-horizontal
-            %dt= t(:who)
-            %dd
-              [observer avatar]
-              [login]
-            %dt= t(:what)
-            %dd
-              [observation photo]
-              %br
-              [taxon icon] [common name]
-              %br
-              %em [scientific name]
-        .wv2-observation__col
-          %dl.dl-horizontal
-            %dt= t(:where)
-            %dd
-              [map]
-              %br
-              [place name]
-            %dt= t(:when)
-            %dd [formatted date]
+  .wv2-section.wv2-section--light.text-center
+    %h2= t("#{s}.observation.heading")
+    .wv2-observation
+      .wv2-observation__col
+        %dl.dl-horizontal
+          %dt= t(:who)
+          %dd
+            [observer avatar]
+            [login]
+          %dt= t(:what)
+          %dd
+            [observation photo]
+            %br
+            [taxon icon] [common name]
+            %br
+            %em [scientific name]
+      .wv2-observation__col
+        %dl.dl-horizontal
+          %dt= t(:where)
+          %dd
+            [map]
+            %br
+            [place name]
+          %dt= t(:when)
+          %dd [formatted date]
 
   -# ── Impact statistics ─────────────────────────────────────
-  .wv2-section.wv2-section--white.wv2-section--stats
-    .text-center
-      .wv2-stats
-        .wv2-stats__cell
-          %p.wv2-stat__number
-            = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true, units: { thousand: "K", million: "M", billion: "B" }, format: "%n%u")
-            %span.wv2-stat__plus +
-          %p.wv2-stat__label= t("#{s}.stats.observations_label")
-        .wv2-stats__cell
-          %p.wv2-stat__number
-            = number_with_delimiter(550_000)
-            %span.wv2-stat__plus +
-          %p.wv2-stat__label= t("#{s}.stats.species_label")
-        .wv2-stats__cell
-          %p.wv2-stat__number
-            = number_with_delimiter(7_000)
-            %span.wv2-stat__plus +
-          %p.wv2-stat__label= t("#{s}.stats.papers_label")
-        .wv2-stats__cell
-          %p.wv2-stat__number
-            = number_with_delimiter(500)
-            %span.wv2-stat__plus +
-          %p.wv2-stat__label= t("#{s}.stats.discoveries_label")
+  .wv2-section.wv2-section--white.wv2-section--stats.text-center
+    .wv2-stats
+      .wv2-stats__cell
+        %p.wv2-stat__number
+          = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true, units: { thousand: "K", million: "M", billion: "B" }, format: "%n%u")
+          %span.wv2-stat__plus +
+        %p.wv2-stat__label= t("#{s}.stats.observations_label")
+      .wv2-stats__cell
+        %p.wv2-stat__number
+          = number_with_delimiter(550_000)
+          %span.wv2-stat__plus +
+        %p.wv2-stat__label= t("#{s}.stats.species_label")
+      .wv2-stats__cell
+        %p.wv2-stat__number
+          = number_with_delimiter(7_000)
+          %span.wv2-stat__plus +
+        %p.wv2-stat__label= t("#{s}.stats.papers_label")
+      .wv2-stats__cell
+        %p.wv2-stat__number
+          = number_with_delimiter(500)
+          %span.wv2-stat__plus +
+        %p.wv2-stat__label= t("#{s}.stats.discoveries_label")
 
   -# ── How it works ──────────────────────────────────────────
   .wv2-section.wv2-section--light.wv2-section--how
@@ -150,26 +145,25 @@
 
   -# ── Explore species ───────────────────────────────────────
   -# TODO: wire up @explore_observations from static JSON (config/welcome_v2/explore_observations.json)
-  .wv2-section.wv2-section--light
-    .text-center
-      %h2= t("#{s}.explore.heading")
-      .wv2-explore__cards
-        - [ {username: "sea-kangaroo",   common: "Light-blue Soldier Crab", sci: "Mictyris longicarpus",    location: "Urangan, Queensland, Australia"} ].each do |obs|
-          .wv2-obs-card
-            .wv2-obs-card__header
-              .wv2-obs-card__avatar
-              %span.wv2-obs-card__username= obs[:username]
-            .wv2-obs-card__photo
-            .wv2-obs-card__taxon
-              .wv2-obs-card__taxon-thumb
-              .wv2-obs-card__taxon-names
-                - if obs[:common]
-                  %p.wv2-obs-card__common= obs[:common]
-                %p.wv2-obs-card__sci= obs[:sci]
-            .wv2-obs-card__location
-              %span.wv2-obs-card__location-icon ⌖
-              %span= obs[:location]
-      = link_to t("#{s}.explore.button"), observations_path, class: "btn wv2-btn--dark"
+  .wv2-section.wv2-section--light.text-center
+    %h2= t("#{s}.explore.heading")
+    .wv2-explore__cards
+      - [ {username: "sea-kangaroo",   common: "Light-blue Soldier Crab", sci: "Mictyris longicarpus",    location: "Urangan, Queensland, Australia"} ].each do |obs|
+        .wv2-obs-card
+          .wv2-obs-card__header
+            .wv2-obs-card__avatar
+            %span.wv2-obs-card__username= obs[:username]
+          .wv2-obs-card__photo
+          .wv2-obs-card__taxon
+            .wv2-obs-card__taxon-thumb
+            .wv2-obs-card__taxon-names
+              - if obs[:common]
+                %p.wv2-obs-card__common= obs[:common]
+              %p.wv2-obs-card__sci= obs[:sci]
+          .wv2-obs-card__location
+            %span.wv2-obs-card__location-icon ⌖
+            %span= obs[:location]
+    = link_to t("#{s}.explore.button"), observations_path, class: "btn wv2-btn--dark"
 
   -# ── Seek ──────────────────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--spacious
@@ -183,18 +177,16 @@
         %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
 
   -# ── Newsletter ────────────────────────────────────────────
-  .wv2-section.wv2-section--dark.wv2-section--spacious
-    .text-center
-      %h2= t("#{s}.newsletter.heading")
-      %p= t("#{s}.newsletter.body")
-      = link_to t(:sign_up_sentence_case), "/pages/newsletter", class: "btn wv2-btn--white"
+  .wv2-section.wv2-section--dark.wv2-section--spacious.text-center
+    %h2= t("#{s}.newsletter.heading")
+    %p= t("#{s}.newsletter.body")
+    = link_to t(:sign_up_sentence_case), "/pages/newsletter", class: "btn wv2-btn--white"
 
   -# ── Donate ────────────────────────────────────────────────
-  .wv2-section.wv2-section--white.wv2-section--spacious
-    .text-center
-      %p.wv2-donate__headline= t("#{s}.donate.heading")
-      %p= t("#{s}.donate.subheading")
-      = link_to t("#{s}.donate.cta"), donate_path, class: "btn wv2-btn--green"
+  .wv2-section.wv2-section--white.wv2-section--spacious.text-center
+    %p.wv2-donate__headline= t("#{s}.donate.heading")
+    %p= t("#{s}.donate.subheading")
+    = link_to t("#{s}.donate.cta"), donate_path, class: "btn wv2-btn--green"
 
   -# ── FAQ ───────────────────────────────────────────────────
   .wv2-section.wv2-section--light
