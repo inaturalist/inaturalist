@@ -117,14 +117,15 @@
   .wv2-section.wv2-section--white
     .container
       .wv2-testimonials
-        - %w[gube kratzer sumanapala fachetti velazco].each do |key|
+        - {gube: "Dzivula Gube", kratzer: "Chris Alice \"Alie\" Kratzer", sumanapala: "Amila Sumanapala", fachetti: "Nagyla Fachetti", velazco: "Carlos G. Velazco Macias"}.each do |key, name|
           .wv2-testimonial
             .wv2-testimonial__quote
               %p= t("#{s}.testimonials.#{key}_quote")
             .wv2-testimonial__byline
               .wv2-testimonial__avatar
               %div
-                %p= t("#{s}.testimonials.#{key}_title")
+                %p.wv2-testimonial__name= name
+                %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
 
   -# ── Everyone is a naturalist ──────────────────────────────
   .wv2-section.wv2-section--light

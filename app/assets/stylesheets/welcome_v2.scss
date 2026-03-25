@@ -404,14 +404,21 @@ h2 {
     // TODO: set user avatar image
   }
 
-  strong {
+  .wv2-testimonial__name {
     font-family: $font-serif;
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
     letter-spacing: -0.03em;
-    display: block;
-    margin-bottom: 5px;
+    margin: 0 0 5px;
+  }
+
+  .wv2-testimonial__title {
+    font-family: $font-mono;
+    font-weight: 400;
+    font-size: 12px;
+    color: $dark-gray;
+    margin: 0;
   }
 
   p {
