@@ -21,7 +21,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 
 .wv2 {
 
-// ── Mobile breakpoint ────────────────────────────────────────────────────────
+// ── Mobile breakpoint TODO - do these do anything? or are they overwritten? ──
 
 @media (max-width: 767px) {
   // Newsletter and donate use 50px vertical padding on mobile
@@ -29,6 +29,9 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   .wv2-section--donate {
     padding-top: 50px;
     padding-bottom: 50px;
+  }
+  .wv2-hero {
+    padding: 60px 0;
   }
 }
 
@@ -85,6 +88,11 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   &:hover, &:focus { background-color: lighten($dark-gray, 10%); color: $white; }
 }
 
+// ── Inline HTML span helpers (used in _html locale keys) ─────────────────────
+
+.italic   { font-style: italic; }
+.underline { text-decoration: underline; }
+
 // ── Section headings (h2) ─────────────────────────────────────────────────────
 
 h2 {
@@ -109,12 +117,17 @@ h2 {
     font-weight: 700;
     font-size: 43px;
     color: $white;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.86px;
     line-height: 1;
     margin-bottom: 25px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+
+    @media (max-width: 767px) {
+      font-size: 28px;
+      letter-spacing: -0.56px;
+    }
   }
 
   .wv2-hero__sub {
