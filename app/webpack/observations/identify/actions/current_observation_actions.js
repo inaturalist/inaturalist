@@ -242,13 +242,16 @@ function showNextObservation( ) {
   return ( dispatch, getState ) => {
     const { observations, currentObservation, config } = getState();
     let nextObservation;
+    let nextIndex = _.findIndex( observations.results, o => (
+      o.id === currentObservation.observation.id
+    ) );
+    nextIndex += 1;
+
     if ( currentObservation.visible ) {
-      let nextIndex = _.findIndex( observations.results, o => (
-        o.id === currentObservation.observation.id
-      ) );
       if ( nextIndex === null || nextIndex === undefined ) { return; }
-      nextIndex += 1;
       nextObservation = observations.results[nextIndex];
+    } else if ( nextIndex === observations.results.length ) {
+      return;
     } else {
       nextObservation = currentObservation.observation || observations.results[0];
     }
