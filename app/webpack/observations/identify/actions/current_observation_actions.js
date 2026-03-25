@@ -250,7 +250,7 @@ function showNextObservation( ) {
       nextIndex += 1;
       nextObservation = observations.results[nextIndex];
     } else {
-      return;
+      nextObservation = currentObservation.observation || observations.results[0];
     }
     if ( nextObservation ) {
       dispatch( setControlledTermsForTaxon( nextObservation.taxon ) );
