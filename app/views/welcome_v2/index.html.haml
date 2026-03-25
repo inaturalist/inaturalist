@@ -9,8 +9,8 @@
 
 .wv2
   -# ── Hero ──────────────────────────────────────────────────
-  .wv2-hero
-    .container.text-center
+  .wv2-section.wv2-section--hero
+    .text-center
       %h1= t("#{s}.hero.headline")
       %p.wv2-hero__sub= t("#{s}.hero.subheadline")
       = link_to t("#{s}.hero.cta_join"), signup_path, class: "btn wv2-btn--white btn-lg"
@@ -18,7 +18,7 @@
 
   -# ── "With iNaturalist you can" features ───────────────────
   .wv2-section.wv2-section--light
-    .container.text-center
+    .text-center
       %h2= t("#{s}.features.intro")
       .wv2-features
         - [[:identify, "identify_desc"], [:track, "track_desc"], [:discover, "discover_desc"], [:contribute, "contribute_desc"], [:learn, "learn_desc"]].each do |label_key, desc_key|
@@ -29,7 +29,7 @@
 
   -# ── Community science stories ─────────────────────────────
   .wv2-section.wv2-section--white
-    .container.text-center
+    .text-center
       %h2= t("#{s}.stories.heading")
       .wv2-stories-row
         - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", {moth_common_name: "Frosted Phoenix"}], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", {}], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", {}]].each do |heading, body, user, place, interp|
@@ -44,10 +44,10 @@
   -# ── Sample observation ────────────────────────────────────
   -# TODO: wire up @sample_observation from controller (photo, map, who/what/where/when)
   .wv2-section.wv2-section--light
-    .container.text-center
+    .text-center
       %h2= t("#{s}.observation.heading")
-      .row.wv2-observation
-        .col-sm-6
+      .wv2-observation
+        .wv2-observation__col
           %dl.dl-horizontal
             %dt= t(:who)
             %dd
@@ -60,7 +60,7 @@
               [taxon icon] [common name]
               %br
               %em [scientific name]
-        .col-sm-6
+        .wv2-observation__col
           %dl.dl-horizontal
             %dt= t(:where)
             %dd
@@ -71,92 +71,87 @@
             %dd [formatted date]
 
   -# ── Impact statistics ─────────────────────────────────────
-  .wv2-section.wv2-section--white
-    .container.text-center
-      .row
-        .col-xs-6.col-sm-3
+  .wv2-section.wv2-section--white.wv2-section--stats
+    .text-center
+      .wv2-stats
+        .wv2-stats__cell
           %p.wv2-stat__number
             = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true, units: { thousand: "K", million: "M", billion: "B" }, format: "%n%u")
             %span.wv2-stat__plus +
           %p.wv2-stat__label= t("#{s}.stats.observations_label")
-        .col-xs-6.col-sm-3
+        .wv2-stats__cell
           %p.wv2-stat__number
             = number_with_delimiter(550_000)
             %span.wv2-stat__plus +
           %p.wv2-stat__label= t("#{s}.stats.species_label")
-        .col-xs-6.col-sm-3
+        .wv2-stats__cell
           %p.wv2-stat__number
             = number_with_delimiter(7_000)
             %span.wv2-stat__plus +
           %p.wv2-stat__label= t("#{s}.stats.papers_label")
-        .col-xs-6.col-sm-3
+        .wv2-stats__cell
           %p.wv2-stat__number
             = number_with_delimiter(500)
             %span.wv2-stat__plus +
           %p.wv2-stat__label= t("#{s}.stats.discoveries_label")
 
   -# ── How it works ──────────────────────────────────────────
-  .wv2-section.wv2-section--light
-    .container
-      .row
-        - [[:observe, "step1_body"], [:identify, "step2_body"], [:contribute, "step3_body"]].each_with_index do |(label_key, body_key), i|
-          .col-sm-4.wv2-step
-            %span.wv2-step__num= i + 1
-            .wv2-step__content
-              %h3= t(label_key)
-              %p= t("#{s}.how.#{body_key}")
+  .wv2-section.wv2-section--light.wv2-section--how
+    .wv2-steps
+      - [[:observe, "step1_body"], [:identify, "step2_body"], [:contribute, "step3_body"]].each_with_index do |(label_key, body_key), i|
+        .wv2-step
+          %span.wv2-step__num= i + 1
+          .wv2-step__content
+            %h3= t(label_key)
+            %p= t("#{s}.how.#{body_key}")
 
   -# ── Why ───────────────────────────────────────────────────
   .wv2-section.wv2-section--white
-    .container
-      .wv2-why
-        %strong.wv2-why__label Why?
-        %p.wv2-why__body= t("#{s}.how.why_note_html")
+    .wv2-why
+      %strong.wv2-why__label Why?
+      %p.wv2-why__body= t("#{s}.how.why_note_html")
 
   -# ── Testimonials ──────────────────────────────────────────
   .wv2-section.wv2-section--white
-    .container
-      .wv2-testimonials
-        - {gube: "Dzivula Gube", kratzer: "Chris Alice \"Alie\" Kratzer", sumanapala: "Amila Sumanapala", fachetti: "Nágyla Fachetti", velazco: "Carlos G. Velazco Macias"}.each do |key, name|
-          .wv2-testimonial
-            .wv2-testimonial__quote
-              %p= t("#{s}.testimonials.#{key}_quote")
-            .wv2-testimonial__byline
-              .wv2-testimonial__avatar
-              %div
-                %p.wv2-testimonial__name= name
-                %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
+    .wv2-testimonials
+      - {gube: "Dzivula Gube", kratzer: "Chris Alice \"Alie\" Kratzer", sumanapala: "Amila Sumanapala", fachetti: "Nágyla Fachetti", velazco: "Carlos G. Velazco Macias"}.each do |key, name|
+        .wv2-testimonial
+          .wv2-testimonial__quote
+            %p= t("#{s}.testimonials.#{key}_quote")
+          .wv2-testimonial__byline
+            .wv2-testimonial__avatar
+            %div
+              %p.wv2-testimonial__name= name
+              %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
 
   -# ── Everyone is a naturalist ──────────────────────────────
   .wv2-section.wv2-section--light
-    .container.text-center
-      .wv2-everyone
-        .wv2-everyone__point
-          %h3= t("#{s}.everyone.heading")
-          %p= t("#{s}.everyone.body")
-        .wv2-everyone__point
-          %h3= t("#{s}.everyone.impact_heading")
-          %p= t("#{s}.everyone.impact_body")
-        .wv2-everyone__point
-          %h3= t("#{s}.everyone.community_heading")
-          %p= t("#{s}.everyone.community_body")
+    .wv2-everyone
+      .wv2-everyone__point
+        %h3= t("#{s}.everyone.heading")
+        %p= t("#{s}.everyone.body")
+      .wv2-everyone__point
+        %h3= t("#{s}.everyone.impact_heading")
+        %p= t("#{s}.everyone.impact_body")
+      .wv2-everyone__point
+        %h3= t("#{s}.everyone.community_heading")
+        %p= t("#{s}.everyone.community_body")
 
   -# ── App download ──────────────────────────────────────────
-  .wv2-section.wv2-section--white
-    .container
-      .row.wv2-download
-        .col-sm-6.text-center
-          %h2= t("#{s}.download.heading")
-          %p= t("#{s}.download.subheading")
-          -# TODO: App Store / Google Play badge links
-          %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
-        .col-sm-6
-          -# TODO: tilted phone screenshot images
+  .wv2-section.wv2-section--white.wv2-section--spacious
+    .wv2-download
+      .wv2-download__copy.text-center
+        %h2= t("#{s}.download.heading")
+        %p= t("#{s}.download.subheading")
+        -# TODO: App Store / Google Play badge links
+        %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
+      .wv2-download__images
+        -# TODO: tilted phone screenshot images
 
   -# ── Explore species ───────────────────────────────────────
   -# TODO: wire up @explore_observations from static JSON (config/welcome_v2/explore_observations.json)
   .wv2-section.wv2-section--light
-    .container.text-center
+    .text-center
       %h2= t("#{s}.explore.heading")
       .wv2-explore__cards
         - [ {username: "sea-kangaroo",   common: "Light-blue Soldier Crab", sci: "Mictyris longicarpus",    location: "Urangan, Queensland, Australia"} ].each do |obs|
@@ -177,37 +172,35 @@
       = link_to t("#{s}.explore.button"), observations_path, class: "btn wv2-btn--dark"
 
   -# ── Seek ──────────────────────────────────────────────────
-  .wv2-section.wv2-section--white
-    .container
-      .row.wv2-seek
-        .col-sm-6
-          -# TODO: tilted Seek phone screenshot images
-        .col-sm-6.text-center
-          %h2= t("#{s}.seek.heading")
-          %p= t("#{s}.seek.body")
-          -# TODO: App Store / Google Play badge links
-          %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
+  .wv2-section.wv2-section--white.wv2-section--spacious
+    .wv2-seek
+      .wv2-seek__images
+        -# TODO: tilted Seek phone screenshot images
+      .wv2-seek__copy.text-center
+        %h2= t("#{s}.seek.heading")
+        %p= t("#{s}.seek.body")
+        -# TODO: App Store / Google Play badge links
+        %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
 
   -# ── Newsletter ────────────────────────────────────────────
-  .wv2-section.wv2-section--dark.wv2-section--newsletter
-    .container.text-center
+  .wv2-section.wv2-section--dark.wv2-section--spacious
+    .text-center
       %h2= t("#{s}.newsletter.heading")
       %p= t("#{s}.newsletter.body")
       = link_to t(:sign_up_sentence_case), "/pages/newsletter", class: "btn wv2-btn--white"
 
   -# ── Donate ────────────────────────────────────────────────
-  .wv2-section.wv2-section--white.wv2-section--donate
-    .container.text-center
+  .wv2-section.wv2-section--white.wv2-section--spacious
+    .text-center
       %p.wv2-donate__headline= t("#{s}.donate.heading")
       %p= t("#{s}.donate.subheading")
       = link_to t("#{s}.donate.cta"), donate_path, class: "btn wv2-btn--green"
 
   -# ── FAQ ───────────────────────────────────────────────────
   .wv2-section.wv2-section--light
-    .container
-      %h2.text-center= t("#{s}.faq.heading")
-      .wv2-faq
-        - %w[upload_existing who_can_use research_grade no_knowledge need_app].each do |key|
-          %details.wv2-faq__item
-            %summary= t("#{s}.faq.#{key}_question")
-            %p= t("#{s}.faq.#{key}_answer")
+    %h2.text-center= t("#{s}.faq.heading")
+    .wv2-faq
+      - %w[upload_existing who_can_use research_grade no_knowledge need_app].each do |key|
+        %details.wv2-faq__item
+          %summary= t("#{s}.faq.#{key}_question")
+          %p= t("#{s}.faq.#{key}_answer")

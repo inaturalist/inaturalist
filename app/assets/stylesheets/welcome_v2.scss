@@ -21,29 +21,17 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 
 .wv2 {
 
-// ── Mobile breakpoint TODO - do these do anything? or are they overwritten? ──
-
-@media (max-width: 767px) {
-  // Newsletter and donate use 50px vertical padding on mobile
-  .wv2-section--newsletter,
-  .wv2-section--donate {
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-  .wv2-hero {
-    padding: 60px 0;
-  }
-}
-
 // ── Section shell ────────────────────────────────────────────────────────────
 
 .wv2-section {
   position: relative;
-  padding: 60px 0;
+  padding: 40px;
 
   &--light { background-color: $light-bg; }
   &--white { background-color: $white; }
   &--dark  { background-color: #000; color: $white; }
+
+  @media (max-width: 767px) { padding: 30px; }
 }
 
 // ── Shared button variants ────────────────────────────────────────────────────
@@ -102,11 +90,15 @@ h2 {
 
 // ── Hero ─────────────────────────────────────────────────────────────────────
 
-.wv2-hero {
-  background: $dark-gray center/cover no-repeat;
+.wv2-section--hero {
   // TODO: replace with real hero background image
-  padding: 100px 0;
+  background: $dark-gray center/cover no-repeat;
   color: $white;
+
+  @media (min-width: 768px) {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
 
   h1 {
     font-family: $font-serif;
@@ -146,6 +138,25 @@ h2 {
 
     @media (max-width: 767px) { font-size: 14px; }
   }
+}
+
+// ── Section padding modifiers ────────────────────────────────────────────────
+
+.wv2-section--stats {
+  padding: 30px 20px;
+
+  @media (min-width: 768px) { padding: 40px 20px; }
+}
+
+.wv2-section--how {
+  padding: 30px 35px;
+
+  @media (min-width: 768px) { padding: 40px 75px; }
+}
+
+.wv2-section--spacious {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 // ── Features ─────────────────────────────────────────────────────────────────
@@ -199,6 +210,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 20px;
   margin-bottom: 30px;
 
@@ -208,16 +220,23 @@ h2 {
   }
 }
 
+.wv2-inner-stories {
+  @media (max-width: 405px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .wv2-story {
   border-radius: 20px;
   overflow: hidden;
   border: 3px solid $border-color;
-  width: 330px;
-  height: 330px;
+  max-width: 345px;
+  height: 345px;
 
   .wv2-story__image {
     position: relative;
-    height: 63%;
+    height: 66%;
     background: $border-color center/cover no-repeat;
     // TODO: set per-story background-image in HAML style attr or per-class override
     display: flex;
@@ -264,6 +283,14 @@ h2 {
 // ── Observation sample ────────────────────────────────────────────────────────
 
 .wv2-observation {
+  display: flex;
+  gap: 50px;
+  text-align: left;
+
+  @media (max-width: 767px) { flex-direction: column; gap: 20px; }
+
+  &__col { flex: 1; }
+
   dt {
     font-family: $font-serif;
     font-weight: 700;
@@ -286,6 +313,20 @@ h2 {
 }
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
+
+.wv2-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px 20px;
+
+  @media (max-width: 767px) { gap: 20px 10px; }
+}
+
+.wv2-stats__cell {
+  width: calc(50% - 20px);
+  min-width: 160px;
+}
 
 .wv2-stat__number {
   font-family: $font-serif;
@@ -315,6 +356,16 @@ h2 {
 }
 
 // ── How it works ──────────────────────────────────────────────────────────────
+
+.wv2-steps {
+  display: flex;
+  gap: 60px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
 
 .wv2-step {
   display: flex;
@@ -509,6 +560,15 @@ h2 {
 // ── Download ──────────────────────────────────────────────────────────────────
 
 .wv2-download {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+
+  @media (max-width: 767px) { flex-direction: column; gap: 30px; }
+
+  &__copy { flex: 1; }
+  &__images { flex: 1; }
+
   h2 {
     font-size: 23px;
     @media (max-width: 767px) { font-size: 20px; }
@@ -520,7 +580,6 @@ h2 {
     font-weight: 500;
     color: $dark-gray;
     line-height: 1.3;
-
     @media (max-width: 767px) { font-size: 14px; }
   }
 }
@@ -529,6 +588,27 @@ h2 {
   font-family: $font-mono;
   font-size: 15px;
   color: $dark-gray;
+}
+
+// ── Seek ──────────────────────────────────────────────────────────────────────
+
+.wv2-seek {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+
+  @media (max-width: 767px) { flex-direction: column-reverse; gap: 30px; }
+
+  &__images { flex: 1; }
+  &__copy { flex: 1; }
+
+  p {
+    font-family: $font-sans;
+    font-size: 17px;
+    font-weight: 500;
+    color: $dark-gray;
+    @media (max-width: 767px) { font-size: 14px; }
+  }
 }
 
 // ── Explore species ───────────────────────────────────────────────────────────
@@ -642,19 +722,6 @@ h2 {
     font-size: 15px;
     color: $dark-gray;
     flex-shrink: 0;
-  }
-}
-
-// ── Seek ──────────────────────────────────────────────────────────────────────
-
-.wv2-seek {
-  p {
-    font-family: $font-sans;
-    font-size: 17px;
-    font-weight: 500;
-    color: $dark-gray;
-
-    @media (max-width: 767px) { font-size: 14px; }
   }
 }
 
