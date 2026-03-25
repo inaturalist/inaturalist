@@ -48,9 +48,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 
 // ── Shared button variants ────────────────────────────────────────────────────
 
-.wv2-btn--green {
-  background-color: $green;
-  color: $white;
+%wv2-btn-base {
   border: none;
   border-radius: 10px;
   font-family: $font-serif;
@@ -58,33 +56,29 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   font-size: 20px;
   letter-spacing: -0.04em;
   padding: 12px 25px;
+
+  @media (max-width: 767px) { font-size: 17px; }
+}
+
+.wv2-btn--green {
+  @extend %wv2-btn-base;
+  background-color: $green;
+  color: $white;
   &:hover, &:focus { background-color: darken($green, 8%); color: $white; }
 }
 
 .wv2-btn--white {
+  @extend %wv2-btn-base;
   background-color: $white;
   color: $dark-gray;
-  border: none;
-  border-radius: 10px;
-  font-family: $font-serif;
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.04em;
-  padding: 12px 25px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   &:hover, &:focus { background-color: darken($white, 5%); color: $dark-gray; }
 }
 
 .wv2-btn--dark {
+  @extend %wv2-btn-base;
   background-color: $dark-gray;
   color: $white;
-  border: none;
-  border-radius: 10px;
-  font-family: $font-serif;
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.04em;
-  padding: 12px 25px;
   &:hover, &:focus { background-color: lighten($dark-gray, 10%); color: $white; }
 }
 
@@ -102,6 +96,8 @@ h2 {
   color: $dark-gray;
   letter-spacing: -0.03em;
   margin-bottom: 30px;
+
+  @media (max-width: 767px) { font-size: 20px; }
 }
 
 // ── Hero ─────────────────────────────────────────────────────────────────────
@@ -138,6 +134,8 @@ h2 {
     color: $white;
     max-width: 600px;
     margin: 0 auto 25px;
+
+    @media (max-width: 767px) { font-size: 17px; }
   }
 
   .wv2-hero__tagline {
@@ -145,6 +143,8 @@ h2 {
     font-size: 17px;
     color: $white;
     margin-top: 20px;
+
+    @media (max-width: 767px) { font-size: 14px; }
   }
 }
 
@@ -177,6 +177,8 @@ h2 {
     color: $dark-gray;
     letter-spacing: -0.03em;
     margin-bottom: 4px;
+
+    @media (max-width: 767px) { font-size: 18px; }
   }
 
   p {
@@ -186,6 +188,8 @@ h2 {
     color: $dark-gray;
     letter-spacing: -0.03em;
     margin: 0;
+
+    @media (max-width: 767px) { font-size: 15px; }
   }
 }
 
@@ -197,6 +201,11 @@ h2 {
   justify-content: center;
   gap: 20px;
   margin-bottom: 30px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .wv2-story {
@@ -261,6 +270,8 @@ h2 {
     font-size: 20px;
     color: $dark-gray;
     letter-spacing: -0.03em;
+
+    @media (max-width: 767px) { font-size: 18px; }
   }
 
   dd {
@@ -269,6 +280,8 @@ h2 {
     font-weight: 500;
     color: $dark-gray;
     margin-bottom: 20px;
+
+    @media (max-width: 767px) { font-size: 14px; }
   }
 }
 
@@ -277,11 +290,13 @@ h2 {
 .wv2-stat__number {
   font-family: $font-serif;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 43px;
   color: $dark-gray;
   letter-spacing: -0.03em;
   line-height: 1;
   margin-bottom: 10px;
+
+  @media (max-width: 767px) { font-size: 30px; }
 }
 
 .wv2-stat__plus {
@@ -291,10 +306,12 @@ h2 {
 .wv2-stat__label {
   font-family: $font-sans;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
   color: $dark-gray;
   letter-spacing: -0.03em;
   margin: 0;
+
+  @media (max-width: 767px) { font-size: 15px; }
 }
 
 // ── How it works ──────────────────────────────────────────────────────────────
@@ -330,6 +347,8 @@ h2 {
     color: $dark-gray;
     letter-spacing: -0.03em;
     margin: 0;
+
+    @media (max-width: 767px) { font-size: 20px; }
   }
 
   p {
@@ -339,6 +358,8 @@ h2 {
     color: $dark-gray;
     letter-spacing: -0.03em;
     margin: 0;
+
+    @media (max-width: 767px) { font-size: 15px; }
   }
 }
 
@@ -352,6 +373,11 @@ h2 {
   max-width: 700px;
   margin: 0 auto;
 
+  @media (max-width: 767px) {
+    flex-direction: column;
+    text-align: center;
+  }
+
   .wv2-why__label {
     font-family: $font-serif;
     font-weight: 700;
@@ -360,6 +386,8 @@ h2 {
     letter-spacing: -0.03em;
     flex-shrink: 0;
     text-decoration: underline;
+
+    @media (max-width: 767px) { font-size: 18px; }
   }
 
   .wv2-why__body {
@@ -370,6 +398,8 @@ h2 {
     letter-spacing: -0.04em;
     text-align: center;
     margin: 0;
+
+    @media (max-width: 767px) { font-size: 17px; }
   }
 }
 
@@ -460,6 +490,8 @@ h2 {
     color: $dark-gray;
     letter-spacing: -0.03em;
     margin-bottom: 10px;
+
+    @media (max-width: 767px) { font-size: 20px; }
   }
 
   p {
@@ -469,13 +501,18 @@ h2 {
     color: $dark-gray;
     letter-spacing: -0.03em;
     margin: 0;
+
+    @media (max-width: 767px) { font-size: 15px; }
   }
 }
 
 // ── Download ──────────────────────────────────────────────────────────────────
 
 .wv2-download {
-  h2 { font-size: 23px; }
+  h2 {
+    font-size: 23px;
+    @media (max-width: 767px) { font-size: 20px; }
+  }
 
   p {
     font-family: $font-sans;
@@ -483,6 +520,8 @@ h2 {
     font-weight: 500;
     color: $dark-gray;
     line-height: 1.3;
+
+    @media (max-width: 767px) { font-size: 14px; }
   }
 }
 
@@ -611,9 +650,11 @@ h2 {
 .wv2-seek {
   p {
     font-family: $font-sans;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 500;
     color: $dark-gray;
+
+    @media (max-width: 767px) { font-size: 14px; }
   }
 }
 
@@ -636,6 +677,8 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
+
+    @media (max-width: 767px) { font-size: 20px; }
   }
 
   p {
@@ -646,6 +689,8 @@ h2 {
     color: $white;
     max-width: 500px;
     margin: 0 auto 20px;
+
+    @media (max-width: 767px) { font-size: 14px; }
   }
 }
 
@@ -661,6 +706,8 @@ h2 {
   margin-left: auto;
   margin-right: auto;
   line-height: 1.3;
+
+  @media (max-width: 767px) { font-size: 20px; }
 }
 
 // ── FAQ ───────────────────────────────────────────────────────────────────────
@@ -688,6 +735,8 @@ h2 {
     justify-content: space-between;
     align-items: center;
 
+    @media (max-width: 767px) { font-size: 16px; }
+
     &::-webkit-details-marker { display: none; }
 
     &::after {
@@ -709,6 +758,8 @@ h2 {
     letter-spacing: -0.03em;
     padding-bottom: 15px;
     margin: 0;
+
+    @media (max-width: 767px) { font-size: 15px; }
   }
 }
 
