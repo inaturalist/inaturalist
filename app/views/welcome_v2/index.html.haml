@@ -5,6 +5,7 @@
 -# ============================================================
 - content_for(:title) { t(:a_community_for_naturalist) }
 - content_for(:extracss) { stylesheet_link_tag "welcome_v2" }
+- content_for(:extrahead) { tag.link rel: "preload", href: asset_path("welcome_v2/home_screen_fallback.webp"), as: "image", type: "image/webp" }
 - s = "views.welcome_v2.index"
 
 .wv2
