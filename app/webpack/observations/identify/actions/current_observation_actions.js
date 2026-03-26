@@ -274,7 +274,7 @@ function showNextObservation( ) {
 function showPrevObservation( ) {
   return ( dispatch, getState ) => {
     const { observations, currentObservation } = getState();
-    if ( currentObservation.observation === null ) {
+    if ( _.isEmpty( currentObservation.observation ) ) {
       return false;
     }
     if ( !currentObservation.visible ) {
