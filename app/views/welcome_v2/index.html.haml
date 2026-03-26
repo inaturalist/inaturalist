@@ -5,7 +5,7 @@
 -# ============================================================
 - content_for(:title) { t(:a_community_for_naturalist) }
 - content_for(:extracss) { stylesheet_link_tag "welcome_v2" }
-- content_for(:extrahead) { tag.link rel: "preload", href: asset_path("welcome_v2/home_screen_fallback.webp"), as: "image", type: "image/webp" }
+- content_for(:extrahead) { tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp" }
 - s = "views.welcome_v2.index"
 
 .wv2
@@ -61,14 +61,14 @@
         .wv2-observation__row
           %dt= t(:who)
           %dd.wv2-observation__who
-            .wv2-observation__avatar
-            %span [login]
+            = image_tag "welcome_v2/tiwane.webp", class: "wv2-observation__avatar", alt: ""
+            %span tiwane
         .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:what)
           %dd
             = image_tag "welcome_v2/emerald_glass_frog.webp", class: "wv2-observation__photo", alt: ""
             .wv2-observation__taxon
-              .wv2-observation__taxon-thumb
+              = image_tag "welcome_v2/little_emerald_glass_frog.webp", class: "wv2-observation__taxon-thumb", alt: ""
               .wv2-observation__taxon-names
                 %p Emerald Glass Frog
                 %em Espadarana prosoblepon
@@ -76,7 +76,7 @@
         .wv2-observation__row
           %dt= t(:where)
           %dd
-            = image_tag "welcome_v2/observation_example_map.png", class: "wv2-observation__map", alt: ""
+            = image_tag "welcome_v2/observation_example_map.webp", class: "wv2-observation__map", alt: ""
             .wv2-observation__place
               = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-observation__icon", alt: ""
               %span [place name]

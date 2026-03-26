@@ -26,6 +26,9 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 .wv2-section {
   position: relative;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &--light { background-color: $light-bg; }
   &--white { background-color: $white; }
@@ -95,7 +98,7 @@ h2 {
 // ── Hero ─────────────────────────────────────────────────────────────────────
 
 .wv2-section--hero {
-  background: image-url("welcome_v2/home_screen_fallback.webp") center/cover no-repeat;
+  background: image-url("welcome_v2/hero_video_fallback.webp") center/cover no-repeat;
   color: $white;
   position: relative;
   overflow: hidden;
@@ -371,7 +374,7 @@ h2 {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: $border-color center/cover no-repeat;
+    object-fit: cover;
     flex-shrink: 0;
   }
 
@@ -401,7 +404,7 @@ h2 {
     width: 36px;
     height: 36px;
     border-radius: 8px;
-    background: $border-color center/cover no-repeat;
+    object-fit: cover;
     flex-shrink: 0;
   }
 
@@ -435,6 +438,7 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px 20px;
+  max-width: 700px;
 
   @media (max-width: 767px) { gap: 20px 10px; }
 }
@@ -476,6 +480,7 @@ h2 {
 .wv2-steps {
   display: flex;
   gap: 60px;
+  max-width: 1130px;
 
   @media (max-width: 767px) {
     flex-direction: column;
