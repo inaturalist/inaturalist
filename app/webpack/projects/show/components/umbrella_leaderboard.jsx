@@ -35,7 +35,8 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
           <span
             className={`sort-option ${sort === "observations" && "active"}`}
             onClick={() => setConfig(
-              { umbrellaLeaderboardSort: "observations", umbrellaLeaderboardLimit: 8 } )}
+              { umbrellaLeaderboardSort: "observations", umbrellaLeaderboardLimit: 8 }
+            )}
           >
             { I18n.t( "observations" ) }
           </span>
@@ -43,7 +44,8 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
           <span
             className={`sort-option ${sort === "species" && "active"}`}
             onClick={() => setConfig(
-              { umbrellaLeaderboardSort: "species", umbrellaLeaderboardLimit: 8 } )}
+              { umbrellaLeaderboardSort: "species", umbrellaLeaderboardLimit: 8 }
+            )}
           >
             { I18n.t( "species" ) }
           </span>
@@ -51,7 +53,8 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
           <span
             className={`sort-option ${sort === "observers" && "active"}`}
             onClick={() => setConfig(
-              { umbrellaLeaderboardSort: "observers", umbrellaLeaderboardLimit: 8 } )}
+              { umbrellaLeaderboardSort: "observers", umbrellaLeaderboardLimit: 8 }
+            )}
           >
             { I18n.t( "observers" ) }
           </span>
