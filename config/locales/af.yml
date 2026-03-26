@@ -29,6 +29,9 @@ af:
   x_species_html:
     one: "<span class='count'>%{count}</span> Spesies"
     other: "<span class='count'>%{count}</span> Spesies"
+  x_sounds:
+    one: "%{count} geluid"
+    other: "%{count} geluide"
   _100_day_trends: 100-dae neiging
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -522,6 +525,7 @@ af:
   large: groot
   latitude: Breedtegraad
   leaderboards: Ranglyste
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Leer
   learn_more: Leer meer
   lexicons:
