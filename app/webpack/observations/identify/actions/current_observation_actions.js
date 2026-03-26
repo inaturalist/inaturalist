@@ -243,7 +243,7 @@ function showNextObservation( ) {
     const { observations, currentObservation, config } = getState();
     let nextObservation;
     let nextIndex = _.findIndex( observations.results, o => (
-      o.id === currentObservation.observation.id
+      o.id === currentObservation?.observation?.id
     ) );
     nextIndex += 1;
 
