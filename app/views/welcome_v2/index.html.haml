@@ -10,10 +10,23 @@
 .wv2
   -# ── Hero ──────────────────────────────────────────────────
   .wv2-section.wv2-section--hero.text-center
-    %h1= t("#{s}.hero.headline")
-    %p.wv2-hero__sub= t("#{s}.hero.subheadline")
-    = link_to t("#{s}.hero.cta_join"), signup_path, class: "btn wv2-btn--white btn-lg"
-    %p.wv2-hero__tagline= t("#{s}.hero.tagline")
+    %video.wv2-hero__video{autoplay: true, loop: true, muted: true, playsinline: true, preload: "none", aria: {hidden: "true"}, poster: asset_path("welcome_v2/home_screen_fallback.webp")}
+      %source{data: {src: asset_path("welcome_v2/home_screen_720p_15fps.webm")}, type: "video/webm"}
+    :javascript
+      (function() {
+        var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        console.log(conn);
+        if (conn && (conn.saveData || /slow-2g|2g|3g/.test(conn.effectiveType))) return;
+        var video = document.currentScript.previousElementSibling;
+        if (!video) return;
+        var source = video.querySelector("source");
+        if (source && source.dataset.src) { source.src = source.dataset.src; video.load(); }
+      })();
+    .wv2-hero__content
+      %h1= t("#{s}.hero.headline")
+      %p.wv2-hero__sub= t("#{s}.hero.subheadline")
+      = link_to t("#{s}.hero.cta_join"), signup_path, class: "btn wv2-btn--white btn-lg"
+      %p.wv2-hero__tagline= t("#{s}.hero.tagline")
 
   -# ── "With iNaturalist you can" features ───────────────────
   .wv2-section.wv2-section--light.text-center
