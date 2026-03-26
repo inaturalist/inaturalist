@@ -32,6 +32,10 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   &--dark  { background-color: #000; color: $white; }
 
   @media (max-width: 767px) { padding: 30px; }
+
+  &--stories {
+    @media (max-width: 405px) { padding-left: 0; padding-right: 0; }
+  }
 }
 
 // ── Shared button variants ────────────────────────────────────────────────────
@@ -245,12 +249,6 @@ h2 {
   }
 }
 
-.wv2-inner-stories {
-  @media (max-width: 405px) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
 
 .wv2-story {
   border-radius: 20px;
@@ -263,7 +261,6 @@ h2 {
     position: relative;
     height: 66%;
     background: $border-color center/cover no-repeat;
-    // TODO: set per-story background-image in HAML style attr or per-class override
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -310,30 +307,124 @@ h2 {
 .wv2-observation {
   display: flex;
   gap: 50px;
+  align-items: flex-start;
   text-align: left;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 0;
 
   @media (max-width: 767px) { flex-direction: column; gap: 20px; }
 
-  &__col { flex: 1; }
+  &__col {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__row {
+    display: flex;
+    gap: 33px;
+    align-items: flex-start;
+
+    &--sep {
+      border-top: 1px solid $border-color;
+      padding-top: 20px;
+    }
+  }
 
   dt {
+    min-width: 57px;
+    text-align: center;
     font-family: $font-serif;
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
     letter-spacing: -0.03em;
+    flex-shrink: 0;
+    padding-top: 2px;
 
     @media (max-width: 767px) { font-size: 18px; }
   }
 
   dd {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     font-family: $font-sans;
     font-size: 17px;
     font-weight: 500;
     color: $dark-gray;
-    margin-bottom: 20px;
+    margin: 0;
 
     @media (max-width: 767px) { font-size: 14px; }
+  }
+
+  &__who {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: $border-color center/cover no-repeat;
+    flex-shrink: 0;
+  }
+
+  &__photo {
+    width: 252px;
+    height: 175px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  &__map {
+    width: 245px;
+    height: 175px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  &__taxon {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &__taxon-thumb {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: $border-color center/cover no-repeat;
+    flex-shrink: 0;
+  }
+
+  &__taxon-names {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 17px;
+
+    em { font-size: 14px; }
+  }
+
+  &__place, &__date {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  &__icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
   }
 }
 
@@ -414,6 +505,18 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .wv2-step__heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .wv2-step__icon {
+    width: 26px;
+    height: auto;
+    flex-shrink: 0;
   }
 
   h3 {
@@ -587,12 +690,32 @@ h2 {
 .wv2-download {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 50px;
 
   @media (max-width: 767px) { flex-direction: column; gap: 30px; }
 
-  &__copy { flex: 1; }
-  &__images { flex: 1; }
+  &__copy {
+    // flex: 0 1 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  &__images {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+  }
 
   h2 {
     font-size: 23px;
@@ -607,12 +730,18 @@ h2 {
     line-height: 1.3;
     @media (max-width: 767px) { font-size: 14px; }
   }
-}
 
-.wv2-download__count {
-  font-family: $font-mono;
-  font-size: 15px;
-  color: $dark-gray;
+  .wv2-download__count {
+    font-family: $font-mono;
+    font-size: 15px;
+    color: $dark-gray;
+  }
+
+  .wv2-download__phone {
+    width: 300px;
+    height: auto;
+    max-width: 100%;
+  }
 }
 
 // ── Seek ──────────────────────────────────────────────────────────────────────
@@ -620,12 +749,38 @@ h2 {
 .wv2-seek {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 50px;
 
   @media (max-width: 767px) { flex-direction: column-reverse; gap: 30px; }
 
-  &__images { flex: 1; }
-  &__copy { flex: 1; }
+  &__images {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__copy {
+    flex: 0 1 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .wv2-seek__phone {
+    width: 300px;
+    height: auto;
+    max-width: 100%;
+  }
 
   p {
     font-family: $font-sans;
@@ -633,6 +788,12 @@ h2 {
     font-weight: 500;
     color: $dark-gray;
     @media (max-width: 767px) { font-size: 14px; }
+  }
+
+  .wv2-seek__reviews {
+    font-family: $font-mono;
+    font-size: 15px;
+    color: $dark-gray;
   }
 }
 
@@ -744,16 +905,25 @@ h2 {
   }
 
   &__location-icon {
-    font-size: 15px;
-    color: $dark-gray;
+    width: 15px;
+    height: 15px;
     flex-shrink: 0;
   }
 }
 
-.wv2-seek__reviews {
-  font-family: $font-mono;
-  font-size: 15px;
-  color: $dark-gray;
+// ── Store badges (shared by download + seek) ─────────────────────────────────
+
+.wv2-store-badges {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 5px 0;
+}
+
+.wv2-store-badge {
+  height: 39px;
+  width: auto;
 }
 
 // ── Newsletter ────────────────────────────────────────────────────────────────
@@ -832,15 +1002,19 @@ h2 {
     &::-webkit-details-marker { display: none; }
 
     &::after {
-      content: "∨";
-      font-family: $font-sans;
-      font-size: 14px;
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: image-url("welcome_v2/icon-carat-closed.svg") center/contain no-repeat;
       flex-shrink: 0;
       margin-left: 20px;
     }
   }
 
-  &[open] summary::after { content: "∧"; }
+  &[open] summary::after {
+    background-image: image-url("welcome_v2/icon-carat-open.svg");
+  }
 
   p {
     font-family: $font-sans;

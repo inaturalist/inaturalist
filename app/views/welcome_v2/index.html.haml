@@ -40,12 +40,12 @@
           %p= t("#{s}.features.#{desc_key}")
 
   -# ── Community science stories ─────────────────────────────
-  .wv2-section.wv2-section--white.text-center
+  .wv2-section.wv2-section--white.wv2-section--stories.text-center
     %h2= t("#{s}.stories.heading")
     .wv2-stories-row
-      - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", {moth_common_name: "Frosted Phoenix"}], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", {}], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", {}]].each do |heading, body, user, place, interp|
+      - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", {moth_common_name: "Frosted Phoenix"}, "frosted_phoenix"], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", {}, "inat"], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", {}, "california_newt"]].each do |heading, body, user, place, interp, img|
         .wv2-story
-          .wv2-story__image
+          .wv2-story__image{style: "background-image: url(#{asset_path("welcome_v2/#{img}.webp")})"}
             %h3= t("#{s}.stories.#{heading}")
           .wv2-story__body
             %p= t("#{s}.stories.#{body}", interp)
@@ -58,27 +58,34 @@
     %h2= t("#{s}.observation.heading")
     .wv2-observation
       .wv2-observation__col
-        %dl.dl-horizontal
+        .wv2-observation__row
           %dt= t(:who)
-          %dd
-            [observer avatar]
-            [login]
+          %dd.wv2-observation__who
+            .wv2-observation__avatar
+            %span [login]
+        .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:what)
           %dd
-            [observation photo]
-            %br
-            [taxon icon] [common name]
-            %br
-            %em [scientific name]
+            = image_tag "welcome_v2/emerald_glass_frog.webp", class: "wv2-observation__photo", alt: ""
+            .wv2-observation__taxon
+              .wv2-observation__taxon-thumb
+              .wv2-observation__taxon-names
+                %p Emerald Glass Frog
+                %em Espadarana prosoblepon
       .wv2-observation__col
-        %dl.dl-horizontal
+        .wv2-observation__row
           %dt= t(:where)
           %dd
-            [map]
-            %br
-            [place name]
+            = image_tag "welcome_v2/observation_example_map.png", class: "wv2-observation__map", alt: ""
+            .wv2-observation__place
+              = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-observation__icon", alt: ""
+              %span [place name]
+        .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:when)
-          %dd [formatted date]
+          %dd
+            .wv2-observation__date
+              = image_tag "welcome_v2/icon-datetime.svg", class: "wv2-observation__icon", alt: ""
+              %span [formatted date]
 
   -# ── Impact statistics ─────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--stats.text-center
@@ -107,11 +114,13 @@
   -# ── How it works ──────────────────────────────────────────
   .wv2-section.wv2-section--light.wv2-section--how
     .wv2-steps
-      - [[:observe, "step1_body"], [:identify, "step2_body"], [:contribute, "step3_body"]].each_with_index do |(label_key, body_key), i|
+      - [[:observe, "step1_body", "camera"], [:identify, "step2_body", "identify"], [:contribute, "step3_body", "globe"]].each_with_index do |(label_key, body_key, icon), i|
         .wv2-step
           %span.wv2-step__num= i + 1
           .wv2-step__content
-            %h3= t(label_key)
+            .wv2-step__heading
+              %h3= t(label_key)
+              = image_tag "welcome_v2/icon-#{icon}.svg", class: "wv2-step__icon", alt: ""
             %p= t("#{s}.how.#{body_key}")
 
   -# ── Why ───────────────────────────────────────────────────
@@ -151,11 +160,16 @@
     .wv2-download
       .wv2-download__copy.text-center
         %h2= t("#{s}.download.heading")
-        %p= t("#{s}.download.subheading")
-        -# TODO: App Store / Google Play badge links
-        %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
+        .wv2-download__body
+          %p= t("#{s}.download.subheading")
+          .wv2-store-badges
+            = link_to "https://itunes.apple.com/app/inaturalist/id6475737561", target: "_blank", rel: "noopener" do
+              = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Download on the App Store", class: "wv2-store-badge"
+            = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android", target: "_blank", rel: "noopener" do
+              = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Get it on Google Play", class: "wv2-store-badge"
+          %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
       .wv2-download__images
-        -# TODO: tilted phone screenshot images
+        = image_tag "welcome_v2/inaturalist.webp", class: "wv2-download__phone", alt: "iNaturalist app"
 
   -# ── Explore species ───────────────────────────────────────
   -# TODO: wire up @explore_observations from static JSON (config/welcome_v2/explore_observations.json)
@@ -175,7 +189,7 @@
                 %p.wv2-obs-card__common= obs[:common]
               %p.wv2-obs-card__sci= obs[:sci]
           .wv2-obs-card__location
-            %span.wv2-obs-card__location-icon ⌖
+            = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-obs-card__location-icon", alt: ""
             %span= obs[:location]
     = link_to t("#{s}.explore.button"), observations_path, class: "btn wv2-btn--dark"
 
@@ -183,12 +197,17 @@
   .wv2-section.wv2-section--white.wv2-section--spacious
     .wv2-seek
       .wv2-seek__images
-        -# TODO: tilted Seek phone screenshot images
+        = image_tag "welcome_v2/seek.webp", class: "wv2-seek__phone", alt: "Seek app"
       .wv2-seek__copy.text-center
         %h2= t("#{s}.seek.heading")
-        %p= t("#{s}.seek.body")
-        -# TODO: App Store / Google Play badge links
-        %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
+        .wv2-seek__body
+          %p= t("#{s}.seek.body")
+          .wv2-store-badges
+            = link_to "https://itunes.apple.com/app/seek-by-inaturalist/id1353224144", target: "_blank", rel: "noopener" do
+              = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Download on the App Store", class: "wv2-store-badge"
+            = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.seek", target: "_blank", rel: "noopener" do
+              = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Get it on Google Play", class: "wv2-store-badge"
+          %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
 
   -# ── Newsletter ────────────────────────────────────────────
   .wv2-section.wv2-section--dark.wv2-section--spacious.text-center
