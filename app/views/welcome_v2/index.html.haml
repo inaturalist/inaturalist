@@ -11,8 +11,8 @@
 .wv2
   -# ── Hero ──────────────────────────────────────────────────
   .wv2-section.wv2-section--hero.text-center
-    %video.wv2-hero__video{autoplay: true, loop: true, muted: true, playsinline: true, preload: "none", aria: {hidden: "true"}, poster: asset_path("welcome_v2/home_screen_fallback.webp")}
-      %source{data: {src: asset_path("welcome_v2/home_screen_720p_15fps.webm")}, type: "video/webm"}
+    %video.wv2-hero__video{autoplay: true, loop: true, muted: true, playsinline: true, preload: "none", aria: {hidden: "true"}}
+      %source{data: {src: asset_path("welcome_v2/hero_video.webm")}, type: "video/webm"}
     :javascript
       (function() {
         var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
@@ -35,7 +35,7 @@
     .wv2-features
       - [[:identify, "identify_desc"], [:track, "track_desc"], [:discover, "discover_desc"], [:contribute, "contribute_desc"], [:learn, "learn_desc"]].each do |label_key, desc_key|
         .wv2-feature
-          .wv2-feature__icon
+          = image_tag "welcome_v2/#{label_key}.svg", class: "wv2-feature__icon", alt: ""
           %h3= t(label_key)
           %p= t("#{s}.features.#{desc_key}")
 

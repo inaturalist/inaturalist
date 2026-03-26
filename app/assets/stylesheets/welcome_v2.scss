@@ -202,10 +202,8 @@ h2 {
 
   .wv2-feature__icon {
     height: 100px;
+    width: auto;
     margin-bottom: 16px;
-    // TODO: swap in actual SVG icons per feature
-    background: $border-color;
-    border-radius: 8px;
   }
 
   h3 {
