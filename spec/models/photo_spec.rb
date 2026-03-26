@@ -9,7 +9,7 @@ describe Photo do
   it { is_expected.to have_many(:taxa).through :taxon_photos }
 
   elastic_models( Observation )
-  let( :stable_image_url ) { "https://www.inaturalist.org/assets/logo-small.png" }
+  let( :stable_image_url ) { "https://static.inaturalist.org/logo-small-border.png" }
   describe "creation" do
     it "should not allow native_realname to be too big" do
       txt = <<-TXT
