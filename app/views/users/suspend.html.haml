@@ -4,12 +4,85 @@
       %h1=t :suspend_user_html, user: link_to_user( @user )
       = form_for @moderator_action, builder: BootstrapFormBuilder do | f |
         = f.text_area :reason, description: t( :suspend_user_reason_instructions_html, link_start_tag: "<a href=\"/pages/community+guidelines\">".html_safe, link_end_tag: "</a>".html_safe ), required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: ModeratorAction::MAXIMUM_REASON_LENGTH
-        = f.form_field :suspended_until, label: t( :suspend_until ) do
-          = f.datetime_field :suspended_until, class: "form-control"
-          %p.help-block= t( :suspend_until_blank_means_indefinite )
+        = f.form_field :suspension_duration, label: t( :suspension_duration ) do
+          = select_tag :suspension_duration, options_for_select( [[t( :suspension_duration_1_day ), "1_day"], [t( :suspension_duration_3_days ), "3_days"], [t( :suspension_duration_1_week ), "1_week"], [t( :suspension_duration_1_month ), "1_month"], [t( :suspension_duration_2_months ), "2_months"], [t( :suspension_duration_indefinite ), "indefinite"], [t( :suspension_duration_custom ), "custom"]], "1_day" ), class: "form-control", id: "suspension_duration"
+        .custom-suspended-until-field{ style: "display: none;" }
+          = f.form_field :suspended_until, label: t( :suspend_until ) do
+            %input.form-control{ type: "datetime-local", id: "suspended_until_local" }
+            %p.help-block= t( :suspend_until_local_timezone_note )
+        = f.hidden_field :suspended_until, id: "suspended_until_utc"
         = f.hidden_field :user_id
         = f.hidden_field :resource_type
         = f.hidden_field :resource_id
         = f.hidden_field :action
         = f.submit t(:suspend_user), class: "btn btn-primary"
         = link_to t(:cancel), :back, class: "btn btn-default"
+
+- content_for :extrajs do
+  :javascript
+    (function() {
+      var durationSelect = document.getElementById('suspension_duration');
+      var customField = document.querySelector('.custom-suspended-until-field');
+      var hiddenUtc = document.getElementById('suspended_until_utc');
+      var localPicker = document.getElementById('suspended_until_local');
+
+      function toISOString(date) {
+        return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
+      }
+
+      function computeUtcFromDuration(duration) {
+        var now = new Date();
+        switch(duration) {
+          case '1_day':
+            return toISOString(new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000));
+          case '3_days':
+            return toISOString(new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000));
+          case '1_week':
+            return toISOString(new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000));
+          case '1_month':
+            var d = new Date(now);
+            d.setMonth(d.getMonth() + 1);
+            return toISOString(d);
+          case '2_months':
+            var d = new Date(now);
+            d.setMonth(d.getMonth() + 2);
+            return toISOString(d);
+          case 'indefinite':
+            return '';
+          case 'custom':
+            return '';
+          default:
+            return '';
+        }
+      }
+
+      function updateSuspendedUntil() {
+        var duration = durationSelect.value;
+        if (duration === 'custom') {
+          customField.style.display = '';
+          if (localPicker.value) {
+            var localDate = new Date(localPicker.value);
+            hiddenUtc.value = toISOString(localDate);
+          } else {
+            hiddenUtc.value = '';
+          }
+        } else {
+          customField.style.display = 'none';
+          localPicker.value = '';
+          hiddenUtc.value = computeUtcFromDuration(duration);
+        }
+      }
+
+      durationSelect.addEventListener('change', updateSuspendedUntil);
+      localPicker.addEventListener('change', function() {
+        if (localPicker.value) {
+          var localDate = new Date(localPicker.value);
+          hiddenUtc.value = toISOString(localDate);
+        } else {
+          hiddenUtc.value = '';
+        }
+      });
+
+      // Set initial value for the default selection (1 day)
+      updateSuspendedUntil();
+    })();
