@@ -93,6 +93,7 @@ class UsersController < ApplicationController
       user: current_user,
       action: ModeratorAction::UNSUSPEND
     )
+    @current_suspend_action = ModeratorAction.where( resource: @user, action: ModeratorAction::SUSPEND ).last
     render layout: "bootstrap"
   end
   

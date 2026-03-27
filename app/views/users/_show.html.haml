@@ -25,6 +25,10 @@
                 - else
                   %li
                     = link_to t(:unsuspend_user), unsuspend_user_path(@user)
+                  - current_suspend_action = ModeratorAction.where( resource: @user, action: ModeratorAction::SUSPEND ).last
+                  - if current_suspend_action&.editable_by?( current_user )
+                    %li
+                      = link_to t(:edit_suspension), edit_moderator_action_path( current_suspend_action )
               - if current_user.is_site_admin_of?( @user.site ) && !@user.is_admin?
                 - if @user.is_curator?
                   %li
