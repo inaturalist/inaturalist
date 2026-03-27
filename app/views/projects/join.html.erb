@@ -1,6 +1,7 @@
 <%- content_for(:title) do -%>
   <%= t(:confirm_membership) %>
 <%- end -%>
+<% content_for(:extracss) { stylesheet_link_tag "projects/join" } %>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
     <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, class: "crumb" %></strong>
@@ -8,4 +9,6 @@
   <h2><%=t :join_project?, project: @project.title %></h2>
 </div>
 
-<%= render "join" %>
+<div class="project-join">
+  <%= render "join" %>
+</div>

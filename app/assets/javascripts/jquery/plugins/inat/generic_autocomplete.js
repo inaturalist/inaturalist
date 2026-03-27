@@ -152,7 +152,13 @@ $.fn.genericAutocomplete = function ( acOptions ) {
     position: options.position,
     classes: options.classes,
     open: function ( ) {
-      $( $( this ).data( ).uiAutocomplete.menu.element ).addClass( "open" );
+      var { menu } = $( this ).data( ).uiAutocomplete;
+      $( menu.element ).addClass( "open" );
+      // when selectFirstMatch is enabled, activate the first menu item as
+      // soon as results appear, replaces previous keydown based selection
+      if ( options.selectFirstMatch ) {
+        menu.focus( null, $( menu.element ).children( ".ui-menu-item" ).first( ) );
+      }
     }
   } ).data( "uiAutocomplete" );
   field.on( "autocompleteclose", function ( ) {
@@ -226,8 +232,6 @@ $.fn.genericAutocomplete = function ( acOptions ) {
         // option when the menu is open but not submit the form, and if the menu
         // is closed and the input has focus, ENTER *will* submit the form
         if ( options.preventEnterSubmit ) { return false; }
-        // can be configured to select the top result when hitting enter
-        if ( options.selectFirstMatch ) { field.selectFirst( ); }
         if ( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) ) {
           return true;
         }
