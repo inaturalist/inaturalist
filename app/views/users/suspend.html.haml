@@ -4,9 +4,6 @@
       %h1=t :suspend_user_html, user: link_to_user( @user )
       = form_for @moderator_action, builder: BootstrapFormBuilder do | f |
         = f.text_area :reason, description: t( :suspend_user_reason_instructions_html, link_start_tag: "<a href=\"/pages/community+guidelines\">".html_safe, link_end_tag: "</a>".html_safe ), required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: ModeratorAction::MAXIMUM_REASON_LENGTH
-        = f.form_field :suspended_until, label: t( :suspend_until ) do
-          = f.datetime_field :suspended_until, class: "form-control"
-          %p.help-block= t( :suspend_until_blank_means_indefinite )
         = f.hidden_field :user_id
         = f.hidden_field :resource_type
         = f.hidden_field :resource_id
