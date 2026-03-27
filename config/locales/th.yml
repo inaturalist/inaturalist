@@ -672,6 +672,9 @@ th:
   back_to_your_observations: กลับไปที่การสังเกตของคุณ
   back_to_your_profile: กลับไปที่โปรไฟล์ของคุณ
   badges: รางวัล
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    จากหลักฐานที่มี การสังเกตนี้ยังจำแนกย่อยลงไปอีกได้หรือไม่?
   batch_edit: แก้ไขหลายรายการ
   be_the_first_to_fave_this_observation: ชอบการสังเกตนี้เป็นคนแรก!
   bg_color: สีพื้นหลัง
@@ -991,7 +994,7 @@ th:
     การสังเกตส่วนบุคคล
   curator_identification: การจำแนกโดย Curator
   #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
-  current_community_id: "อนุกรมวิธานชุมชนปัจจุบัน: %{taxon}"
+  current_community_id: "หน่วยฯ ที่ชุมชนเห็นพ้องกันขณะนี้: %{taxon}"
   custom_project_was_successfully_created: เพิ่มการปรับแต่งโครงการแล้ว
   custom_project_was_successfully_updated: อัปเดตการปรับแต่งโครงการแล้ว
   #Button to customize projects that appear in the header
@@ -1251,6 +1254,7 @@ th:
   evidence_of_organism: มีหลักฐานของสิ่งมีชีวิต
   evidence_related_to_single_subject: หลักฐานแสดงถึงสิ่งมีชีวิตเพียงชนิดเดียว
   facebook: เฟซบุ๊ก
+  failed_to_save_record: "บันทึกไม่สำเร็จ โปรดลองอีกครั้ง"
   'false': 'เท็จ'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: รายการโปรด
@@ -1448,6 +1452,8 @@ th:
   identification_withdrawn: ถอนการจำแนกแล้ว
   identifications: การจำแนก
   inaturalist_global_year_in_review: "ภาพรวม iNaturalist ทั่วโลกในปี %{year}"
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist อัปเดตการจำแนกชนิดโดย %{user}
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
   computer_vision_suggestion_desc: |
     การจำแนกภาพด้วยคอมพิวเตอร์ คือกระบวนการสอนให้คอมพิวเตอร์จดจำรูปแบบในภาพ เราใช้โมเดลจำแนกภาพด้วยคอมพิวเตอร์มาฝึกฝนกับรูปถ่ายของทุกคนแล้วนำมาสร้างเครื่องมือช่วยจำแนกชนิด เช่น การแนะนำชนิดที่ใกล้เคียงโดยอัตโนมัติ และการเปรียบเทียบภาพสิ่งมีชีวิตที่คล้ายกัน สัญลักษณ์นี้จะปรากฏขึ้นมาเมื่อผู้ใช้งานจำแนกชนิดด้วยเครื่องมือนี้โดยไม่ได้จำแนกด้วยตนเอง
@@ -1592,6 +1598,7 @@ th:
     hawaiian: ภาษาฮาวาย
     hebrew: ภาษาฮีบรู
     hiligaynon: ภาษาฮีลีไกโนน
+    hokkien: ฮกเกี้ยน
     hungarian: ภาษาฮังการี
     icelandic: ภาษาไอซ์แลนด์
     ilokano: ภาษาอีโลกาโน
@@ -1904,6 +1911,7 @@ th:
   new_and_noteworthy: ใหม่ & น่าสนใจ
   new_check_list: รายการตรวจสอบใหม่
   new_check_list_for: "สร้างรายการตรวจสอบใหม่สำหรับ %{place} &raquo;"
+  new_comment_on_a_parent_by_user_link: มีความคิดเห็นใหม่ใน @vow_or_con{vow:an|a} %{parent} โดย %{user_link}
   new_journal_post: โพสต์วารสารใหม่
   new_lexicon: ภาษา/ศัพท์เฉพาะใหม่
   new_list: รายการใหม่
@@ -2847,6 +2855,7 @@ th:
   subscriptions: การติดตาม
   suggest_an_identification: แนะนำว่าเป็น
   suitable_for_the_global_biodiversity_information_facility: เหมาะสำหรับ Global Biodiversity Information Facility
+  summary: สรุป
   supporting: สนับสนุน
   sync_obs_with_photo_metadata: "ซิงก์การสังเกตกับข้อมูลอภิพันธุ์?"
   synonyms: ชื่อซ้ำ
@@ -4103,6 +4112,7 @@ th:
         name: ชื่อ
         #External source of the taxon, e.g. Catalogue of Life
         name_provider: ที่มาของชื่อ
+        wikipedia_summary: สรุปวิกิพีเดีย
         wikipedia_title: หัวข้อวิกิพีเดีย
       taxon_name:
         lexicon: ภาษา/ศัพท์เฉพาะ
@@ -4278,6 +4288,9 @@ th:
         tribe: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         variety: "@n"
+  id_summary_dqa:
+    public_metrics:
+      identification: "มีประโยชน์ต่อการจำแนก"
   #Title of a section warning the user about something
   warning_title: คำเตือน
   wikimedia: วิกิมีเดีย
