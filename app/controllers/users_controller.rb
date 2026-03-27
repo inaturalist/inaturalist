@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       resource: @user,
       user: current_user,
       action: ModeratorAction::SUSPEND,
-      suspended_until: 1.day.from_now
+      suspended_until: params[:suspend_until]
     )
     render layout: "bootstrap"
   end
