@@ -283,6 +283,31 @@ describe ModeratorAction do
         expect( u.spammer? ).to be false
         expect( u ).not_to be_suspended
       end
+      describe "auto_unsuspend query" do
+        it "finds users with expired timed suspensions" do
+          u = create( :user )
+          u.update_columns( suspended_at: 2.days.ago, suspended_until: 1.second.ago )
+          expect(
+            User.where( "suspended_at IS NOT NULL AND suspended_until < ?", Time.zone.now )
+          ).to include( u )
+        end
+
+        it "does not find indefinitely suspended users" do
+          u = create( :user )
+          u.suspend!
+          expect(
+            User.where( "suspended_at IS NOT NULL AND suspended_until < ?", Time.zone.now )
+          ).not_to include( u )
+        end
+
+        it "does not find users with an active timed suspension" do
+          u = create( :user )
+          u.update_columns( suspended_at: 1.day.ago, suspended_until: 1.day.from_now )
+          expect(
+            User.where( "suspended_at IS NOT NULL AND suspended_until < ?", Time.zone.now )
+          ).not_to include( u )
+        end
+      end
     end
     describe "RENAME" do
       

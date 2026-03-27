@@ -33,6 +33,28 @@ namespace :inaturalist do
     end
   end
 
+  desc "Unsuspend users whose timed suspension has expired"
+  task auto_unsuspend: :environment do
+    User.where( "suspended_at IS NOT NULL AND suspended_until < ?", Time.zone.now ).find_each do |user|
+      actor = user.suspended_by_user || User.admins.first
+      unless actor
+        Rails.logger.error "[ERROR] inaturalist:auto_unsuspend: no actor found for user #{user.id}, skipping"
+        next
+      end
+      action = ModeratorAction.new(
+        action: ModeratorAction::UNSUSPEND,
+        resource: user,
+        user: actor,
+        reason: "Timed suspension expired automatically"
+      )
+      unless action.save
+        Rails.logger.error(
+          "[ERROR] inaturalist:auto_unsuspend: failed for user #{user.id}: #{action.errors.full_messages.join( ", " )}"
+        )
+      end
+    end
+  end
+
   desc "Delete content from spmmer accounts."
   task :delete_spam_content => :environment do
     spammer_ids = User.where(spammer: true).
