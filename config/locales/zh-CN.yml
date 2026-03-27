@@ -103,7 +103,7 @@ zh-CN:
   a_default_taxon_name_will_automatically_created: |
     一个来自归属于此分类的学名的默认分类名称将被创建。
     当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
-  a_flag_for_x: "用于%{x}的旗帜"
+  a_flag_for_x: "用于%{x}的标记"
   a_member_of_taxon_html: "%{taxon} 的成员"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -571,6 +571,8 @@ zh-CN:
     对您的计划有疑问，我们保留以任何理由拒绝申请的权利。
   app_owner_application_inelligible: |
     在提交申请前，您的账户注册时间需至少已有2个月，并在过去的一个月里完成了10次改进鉴定（Improving identifications）。
+  app_owner_application_inelligible2: |
+    提交申请时，您的账户必须注册满两个月，且必须在过去一个月里至少为其他用户做了10次正在改进的鉴定。
   app_owner_application_fields_explanation_html: 描述您的应用将具有的功能以及您计划如何使用它。
   app_owner_application_success: 应用程序所有者的申请已提交
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -2494,6 +2496,7 @@ zh-CN:
     identifications_in_month_year: 在%{month_year}做出了最多的鉴定
     identifications_in_year: 在%{year}年做出了最多的鉴定
   leading: 领先的意见
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: 学习
   learn_about_the_species_live_in: 了解有关居住于此的物种
   learn_more: 了解更多
