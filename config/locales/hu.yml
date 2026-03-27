@@ -933,6 +933,7 @@ hu:
   clear: eltávolítás
   clear_filters: Szűrők törlése
   clear_search: Keresés törlése
+  click_the_map: "<strong>Kattints a térképre</strong>, hogy adj egy helyet hozzá."
   close: Bezárás
   code: Kód
   #People who have contributed code to iNat open-source software projects
@@ -968,6 +969,9 @@ hu:
   committed_taxon_changes_cannot_be_deleted: A végrehajtott taxonmódosítások nem törölhetőek
   #Status message while a taxon change is being committed
   committing: Végrehajtás...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: A végrehajtás nem kívánt nézeteltérésekhez vezethet. Kérlek, először elemezd őket, ami eltarthat egy ideig.
   common_name: Köznyelvi név
   community: Közösség
   community_curated: A közösségtől
@@ -2316,6 +2320,7 @@ hu:
     identifications_in_month_year: Legtöbb meghatározás %{month_year} hónapban
     identifications_in_year: Legtöbb meghatározás %{year} évben
   leading: Vezető
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Tanulás
   learn_about_the_species_live_in: 'Az itt élő fajok megismerése:'
   learn_more: További információ
