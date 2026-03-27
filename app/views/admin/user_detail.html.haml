@@ -56,7 +56,7 @@
     .col-xs-8
       %h3 Basics
       %table.table
-        - basic_attrs = %w(id login name email created_at updated_at time_zone description last_ip last_active locale site_id place_id search_place_id spammer spam_count suspended_at suspension_reason suspended_by_user_id)
+        - basic_attrs = %w(id login name email created_at updated_at time_zone description last_ip last_active locale site_id place_id search_place_id spammer spam_count suspended_at suspended_until suspension_reason suspended_by_user_id)
         - for user_attr in basic_attrs
           %tr
             %th= user_attr
@@ -69,6 +69,13 @@
                 - if @geoip_location
                   &nbsp;
                   = link_to @geoip_location, observations_path( user_id: @display_user.id, lat: @geoip_latitude, lng: @geoip_longitude )
+              - elsif user_attr == "suspended_until"
+                = @display_user.suspended_until
+                - if @display_user.suspended_at && @display_user.suspended_until
+                  &nbsp;
+                  %span.text-muted
+                    = surround "(", ")" do
+                      = distance_of_time_in_words( @display_user.suspended_at, @display_user.suspended_until )
               - elsif user_attr == "email"
                 = @display_user.send( user_attr ).to_s.html_safe
                 - if @display_user.confirmed?

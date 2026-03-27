@@ -70,6 +70,15 @@
             = link_to_user( record.user )
         %td
           = truncate_with_more formatted_user_text( record.try_methods( :body, :flag, :description, :reason ) ), length: 512
+          - if record.is_a?( ModeratorAction ) && record.action == ModeratorAction::SUSPEND
+            - if record.suspended_until
+              %div.text-muted
+                Until:
+                %time.datetime{ datetime: record.suspended_until.iso8601, title: record.suspended_until.iso8601 }= l record.suspended_until, format: :long
+                %span= surround "(", ")" do
+                  = distance_of_time_in_words( record.created_at, record.suspended_until )
+            - else
+              %div.text-muted Suspended indefinitely
         %td.nobr
           - if record.is_a?( ModeratorNote )
             - if record.editable_by?( current_user )
