@@ -767,7 +767,7 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
-  resources :moderator_actions, only: [:create] do
+  resources :moderator_actions, only: [:create, :edit, :update] do
     member do
       get :resource_url, constraints: ->( req ) { req.format == :json }
     end

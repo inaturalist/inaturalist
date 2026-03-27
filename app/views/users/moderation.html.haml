@@ -79,12 +79,19 @@
                   = distance_of_time_in_words( record.created_at, record.suspended_until )
             - else
               %div.text-muted Suspended indefinitely
+            - if record.last_edited_by_user
+              %div.text-muted
+                = "#{t( :last_edited_by )} "
+                = link_to_user( record.last_edited_by_user )
+                %time.datetime{ datetime: record.updated_at.iso8601, title: record.updated_at.iso8601 }= l record.updated_at, format: :long
         %td.nobr
           - if record.is_a?( ModeratorNote )
             - if record.editable_by?( current_user )
               = link_to t(:edit), edit_moderator_note_path( record ), class: "btn btn-sm btn-default"
               = link_to t(:delete), moderator_note_path( record ), method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-sm btn-danger"
           - elsif record.is_a?( ModeratorAction )
+            - if record.action == ModeratorAction::SUSPEND && record.editable_by?( current_user )
+              = link_to t(:edit), edit_moderator_action_path( record ), class: "btn btn-sm btn-default"
             - if record.resource
               = link_to t(:view), record.resource, class: "btn btn-sm btn-link"
             - elsif record.resource_parent
