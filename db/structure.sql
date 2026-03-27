@@ -2782,7 +2782,8 @@ CREATE TABLE public.moderator_actions (
     resource_parent_id integer,
     resource_parent_type character varying,
     resource_content text,
-    suspended_until timestamp without time zone
+    suspended_until timestamp without time zone,
+    last_edited_by_user_id integer
 );
 
 
