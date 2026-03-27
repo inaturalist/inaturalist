@@ -8,11 +8,16 @@
       = form_for @moderator_action, builder: BootstrapFormBuilder do |f|
         = f.text_area :reason, required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: ModeratorAction::MAXIMUM_REASON_LENGTH
         = f.datetime_local_field :suspended_until, label: t( :suspended_until ), description: t( :suspended_until_desc )
-        - if @moderator_action.last_edited_by_user
-          .form-group
+        .form-group
+          - if @moderator_action.last_edited_by_user
             %label= t( :last_edited_by )
             = link_to_user( @moderator_action.last_edited_by_user )
             %time.datetime{ datetime: @moderator_action.updated_at.iso8601, title: @moderator_action.updated_at.iso8601 }
               = l @moderator_action.updated_at, format: :long
+          - else
+            %label= t( :created_by )
+            = link_to_user( @moderator_action.user )
+            %time.datetime{ datetime: @moderator_action.created_at.iso8601, title: @moderator_action.created_at.iso8601 }
+              = l @moderator_action.created_at, format: :long
         = f.submit t( :update ), class: "btn btn-primary"
         = link_to t( :cancel ), moderation_person_path( @moderator_action.resource ), class: "btn btn-default"
