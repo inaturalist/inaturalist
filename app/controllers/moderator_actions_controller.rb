@@ -87,8 +87,7 @@ class ModeratorActionsController < ApplicationController
   end
 
   def update
-    @moderator_action.last_edited_by_user = current_user
-    if @moderator_action.update( approved_update_params )
+    if @moderator_action.update( approved_update_params.merge( last_edited_by_user_id: current_user.id ) )
       flash[:notice] = t( :updated )
       redirect_to moderation_person_path( @moderator_action.resource )
     else
