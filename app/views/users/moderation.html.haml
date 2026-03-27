@@ -75,7 +75,7 @@
               %div.text-muted
                 Until:
                 %time.datetime{ datetime: record.suspended_until.iso8601, title: record.suspended_until.iso8601 }= l record.suspended_until, format: :long
-                %span= surround "(", ")" do
+                = surround "(", ")" do
                   = distance_of_time_in_words( record.created_at, record.suspended_until )
             - else
               %div.text-muted Suspended indefinitely
