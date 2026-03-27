@@ -118,6 +118,14 @@ class ModeratorAction < ApplicationRecord
     errors.add( :base, :staff_cannot_be_suspended )
   end
 
+  def editable_by?( editor )
+    return false if editor.blank?
+    return false unless action == SUSPEND
+    return true if editor.is_admin?
+
+    editor == user
+  end
+
   def check_accepted_actions
     if resource &&
         resource.class.respond_to?( :accepted_moderator_actions ) &&

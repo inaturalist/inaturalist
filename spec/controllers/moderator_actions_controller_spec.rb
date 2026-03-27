@@ -43,6 +43,115 @@ describe ModeratorActionsController do
     end
   end
 
+  let( :suspended_user ) { User.make! }
+  let!( :suspend_action ) do
+    ma = ModeratorAction.new(
+      resource: suspended_user,
+      action: ModeratorAction::SUSPEND,
+      reason: generic_reason
+    )
+    ma.user = make_curator
+    ma.save!
+    ma
+  end
+
+  describe "edit" do
+    it "renders for admin" do
+      sign_in make_admin
+      get :edit, params: { id: suspend_action.id }
+      expect( response ).to be_successful
+    end
+
+    it "renders for the curator who created the action" do
+      sign_in suspend_action.user
+      get :edit, params: { id: suspend_action.id }
+      expect( response ).to be_successful
+    end
+
+    it "redirects for a different curator" do
+      sign_in make_curator
+      get :edit, params: { id: suspend_action.id }
+      expect( response ).to redirect_to( root_url )
+    end
+
+    it "redirects for a signed-in regular user" do
+      sign_in User.make!
+      get :edit, params: { id: suspend_action.id }
+      expect( response ).to redirect_to( root_url )
+    end
+
+    it "does not allow editing non-SUSPEND actions" do
+      admin = make_admin
+      sign_in admin
+      hide_action = ModeratorAction.new(
+        resource: Comment.make!,
+        action: ModeratorAction::HIDE,
+        reason: generic_reason
+      )
+      hide_action.user = admin
+      hide_action.save!
+      get :edit, params: { id: hide_action.id }
+      expect( response ).to redirect_to( root_url )
+    end
+  end
+
+  describe "update" do
+    it "updates the reason" do
+      sign_in suspend_action.user
+      new_reason = "New reason for suspension #{Faker::Lorem.sentence}"
+      patch :update, params: { id: suspend_action.id, moderator_action: { reason: new_reason } }
+      suspend_action.reload
+      expect( suspend_action.reason ).to eq new_reason
+    end
+
+    it "updates suspended_until" do
+      sign_in suspend_action.user
+      new_date = 30.days.from_now
+      patch :update, params: { id: suspend_action.id, moderator_action: { suspended_until: new_date } }
+      suspend_action.reload
+      expect( suspend_action.suspended_until ).to be_within( 1.second ).of( new_date )
+    end
+
+    it "sets last_edited_by_user to the current user" do
+      editor = make_admin
+      sign_in editor
+      patch :update, params: { id: suspend_action.id, moderator_action: { reason: generic_reason } }
+      suspend_action.reload
+      expect( suspend_action.last_edited_by_user ).to eq editor
+    end
+
+    it "syncs suspended_until to the suspended user" do
+      sign_in suspend_action.user
+      new_date = 21.days.from_now
+      patch :update, params: { id: suspend_action.id, moderator_action: { suspended_until: new_date } }
+      suspended_user.reload
+      expect( suspended_user.suspended_until ).to be_within( 1.second ).of( new_date )
+    end
+
+    it "does not reset the user's suspended_at" do
+      sign_in suspend_action.user
+      suspended_user.reload
+      original_suspended_at = suspended_user.suspended_at
+      patch :update, params: { id: suspend_action.id, moderator_action: { suspended_until: 7.days.from_now } }
+      suspended_user.reload
+      expect( suspended_user.suspended_at ).to eq original_suspended_at
+    end
+
+    it "redirects to moderation page on success" do
+      sign_in make_admin
+      patch :update, params: { id: suspend_action.id, moderator_action: { reason: generic_reason } }
+      expect( response ).to redirect_to( moderation_person_path( suspended_user ) )
+    end
+
+    it "does not allow updates from unauthorized users" do
+      sign_in make_curator
+      original_reason = suspend_action.reason
+      patch :update, params: { id: suspend_action.id, moderator_action: { reason: "New unauthorized reason here" } }
+      suspend_action.reload
+      expect( suspend_action.reason ).to eq original_reason
+    end
+  end
+
   shared_examples_for "resource_url" do
     let( :non_private_moderator_action ) do
       ModeratorAction.make!(
