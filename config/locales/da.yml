@@ -9241,7 +9241,60 @@ da:
             Det har virkelig hjulpet mig med artsidentifikation samt givet mig mulighed for at interagere med forskellige folk verden over.
           #Job title and location of the testimonial author (last name Gube)
           gube_title: Havbevaringsekspert og undervandsfotograf, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist åbner døren for så meget ny og spændende forskning i understuderede taxa. Efter min mening er denne platform den førende del af økologisk videnskab.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Feltguideforfatter hos Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist og dets dedikerede fællesskab af identifikatorer blev en uvurderlig ressource i mine udforskninger. Det hjalp med at lægge fundamentet til mit nuværende arbejde.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversitetsforsker, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist er et kraftfuldt værktøj, der forbinder personer, natur og viden. Jeg kan fotografere en sjælden art, eller endda én, der endnu ikke er beskrevet, og samtidig bidrager jeg til at bevare vores naturlige arv.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Miljøtekniker og hobbyfotograf, Brasilien
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Uanset hvor i verden du befinder dig, om du har en ph.d. eller bare elsker naturen, vil iNaturalist bringe dig tættere på naturen og mange andre naturforskere.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biolog, Mexico
+        everyone:
+          #Heading for the broad audience section
+          heading: Alle er naturentusiaster
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Hvis du nogensinde har kigget nærmere på noget levende og undret dig over, hvad det var, er iNaturalist noget for dig.
+          #Heading for the impact sub-section
+          impact_heading: Du kan gøre en forskel
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Hvert foto, der deles, bliver en del af en global videnskabelig dokumentation, som forskere verden over er afhængige af.
+          #Heading for the community reputation sub-section
+          community_heading: '"Det dejligste sted online"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Kom for identifikationerne, bliv for fællesskabet og for at få indflydelse på videnskaben.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Download iNaturalist-appen
+          #Subheading describing the two core benefits of the app
+          subheading: Få realtidsidentifikationer og bidrag til videnskaben
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ downloads"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Udforsk arter verden over
+          #Button / link to browse species without downloading
+          button: Udforsk nu
         seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Under 13? Download Seek!"
+          #Description of Seek's badge and challenge features
+          body: Optjen badges og deltag i udfordringer med at observere arter!
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ 5-stjernede anmeldelser"
