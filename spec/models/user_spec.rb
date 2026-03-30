@@ -700,6 +700,43 @@ describe User do
     expect( user ).to be_suspended
   end
 
+  describe "suspended?" do
+    it "returns true when suspended_at is set and suspended_until is nil (indefinite)" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: nil )
+      expect( user ).to be_suspended
+    end
+
+    it "returns true when suspended_at is set and suspended_until is in the future" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: 1.day.from_now )
+      expect( user ).to be_suspended
+    end
+
+    it "returns false when suspended_at is set but suspended_until is in the past" do
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      expect( user ).not_to be_suspended
+    end
+
+    it "returns false when suspended_at is nil" do
+      user = User.make!
+      expect( user ).not_to be_suspended
+    end
+  end
+
+  describe "unsuspend!" do
+    it "clears suspended_until in addition to suspended_at" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: 7.days.from_now )
+      user.reload
+      expect( user ).to be_suspended
+      user.unsuspend!
+      expect( user ).not_to be_suspended
+      expect( user.suspended_until ).to be_nil
+    end
+  end
+
   describe "moderated_with" do
     it "renames the user when given a RENAME action" do
       user = User.make!( login: "old_login" )

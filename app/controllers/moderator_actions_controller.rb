@@ -103,7 +103,8 @@ class ModeratorActionsController < ApplicationController
       :action,
       :resource_type,
       :resource_id,
-      :private
+      :private,
+      :suspended_until
     )
   end
 
