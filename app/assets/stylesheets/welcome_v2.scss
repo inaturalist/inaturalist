@@ -1,9 +1,28 @@
-// Welcome v2 stylesheet
-// Design tokens from Figma (iNaturalist-Web / FINAL DESIGN / Home Screen - 1280px)
-//
-// Fonts referenced: Libre Baskerville (headlines), Lato (body), Courier Prime (credits/subtext)
-// Lato is already bundled. Libre Baskerville + Courier Prime need a web font source.
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime&display=swap");
+// ── Fonts ───────────────────────────────────────────────────────────────────
+
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("/fonts/LibreBaskerville/LibreBaskerville-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("/fonts/LibreBaskerville/LibreBaskerville-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  src: url("/fonts/CourierPrime/CourierPrime-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 // ── Variables ────────────────────────────────────────────────────────────────
 
@@ -30,12 +49,12 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   flex-direction: column;
   align-items: center;
 
+  @media (max-width: 767px) { padding: 30px; }
+
   &--light { background-color: $light-bg; }
   &--white { background-color: $white; }
   &--dark  { background-color: #000; color: $white; }
-
-  @media (max-width: 767px) { padding: 30px; }
-
+  &--no-horizontal-padding { padding-left: 0; padding-right: 0; }
   &--stories {
     @media (max-width: 405px) { padding-left: 0; padding-right: 0; }
   }
@@ -589,15 +608,94 @@ h2 {
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
 
+// ── Reusable carousel ─────────────────────────────────────────────────────────
+
+.wv2-carousel {
+  width: 100%;
+
+  &__stage {
+    position: relative;
+    width: 100%;
+  }
+
+  &__track {
+    width: 100%;
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px; // prevent clipping box-shadows
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  &__item {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba($white, 0.9);
+    border: 1.5px solid $border-color;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $dark-gray;
+    font-size: 18px;
+    line-height: 1;
+    transition: border-color 0.15s, background 0.15s;
+    padding: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+
+    &::before { display: block; }
+    &--prev { left: 8px; &::before { content: "‹"; } }
+    &--next { right: 8px; &::before { content: "›"; } }
+
+    &:hover, &:focus {
+      border-color: $green;
+      background: $white;
+      outline: none;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 20px;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid $green;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &.active { background: $green; }
+  }
+}
+
+// ── Testimonials ──────────────────────────────────────────────────────────────
+
 .wv2-testimonials {
-  display: flex;
-  gap: 40px;
-  overflow-x: auto;
-  padding-bottom: 10px;
+  width: 100%;
 }
 
 .wv2-testimonial {
-  flex-shrink: 0;
   width: 342px;
 
   .wv2-testimonial__quote {
@@ -641,14 +739,6 @@ h2 {
   }
 
   .wv2-testimonial__title {
-    font-family: $font-mono;
-    font-weight: 400;
-    font-size: 12px;
-    color: $dark-gray;
-    margin: 0;
-  }
-
-  p {
     font-family: $font-mono;
     font-size: 12px;
     color: $dark-gray;
@@ -805,11 +895,15 @@ h2 {
 // ── Explore species ───────────────────────────────────────────────────────────
 
 .wv2-explore__cards {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 100%;
   margin: 20px 0 30px;
+}
+
+a.wv2-carousel__item {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover, &:focus { text-decoration: none; color: inherit; }
 }
 
 .wv2-obs-card {
@@ -837,6 +931,14 @@ h2 {
     flex-shrink: 0;
   }
 
+  &__avatar-img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
   &__username {
     font-family: $font-sans;
     font-size: 14px;
@@ -854,6 +956,14 @@ h2 {
     border-radius: 4px;
   }
 
+  &__photo-img {
+    width: 212px;
+    height: 175px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+
   &__taxon {
     display: flex;
     align-items: center;
@@ -865,6 +975,14 @@ h2 {
     height: 36px;
     border-radius: 8px;
     background: $border-color center/cover no-repeat;
+    flex-shrink: 0;
+  }
+
+  &__taxon-thumb-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    object-fit: cover;
     flex-shrink: 0;
   }
 
@@ -907,6 +1025,13 @@ h2 {
     font-weight: 500;
     color: $dark-gray;
     letter-spacing: -0.25px;
+    min-width: 0;
+
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   &__location-icon {

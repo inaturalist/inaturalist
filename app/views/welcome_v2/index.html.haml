@@ -130,17 +130,28 @@
       %p.wv2-why__body= t("#{s}.how.why_note_html")
 
   -# ── Testimonials ──────────────────────────────────────────
-  .wv2-section.wv2-section--white
+  - testimonials = {gube: "Dzivula Gube", kratzer: "Chris Alice \"Alie\" Kratzer", sumanapala: "Amila Sumanapala", fachetti: "Nágyla Fachetti", velazco: "Carlos G. Velazco Macias"}
+  .wv2-section.wv2-section--white.wv2-section--no-horizontal-padding
     .wv2-testimonials
-      - {gube: "Dzivula Gube", kratzer: "Chris Alice \"Alie\" Kratzer", sumanapala: "Amila Sumanapala", fachetti: "Nágyla Fachetti", velazco: "Carlos G. Velazco Macias"}.each do |key, name|
-        .wv2-testimonial
-          .wv2-testimonial__quote
-            %p= t("#{s}.testimonials.#{key}_quote")
-          .wv2-testimonial__byline
-            .wv2-testimonial__avatar
-            %div
-              %p.wv2-testimonial__name= name
-              %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
+      .wv2-carousel{ data: { carousel: true } }
+        .wv2-carousel__stage
+          %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
+          .wv2-carousel__track
+            - testimonials.each do |key, name|
+              .wv2-carousel__item
+                .wv2-testimonial
+                  .wv2-testimonial__quote
+                    %p= t("#{s}.testimonials.#{key}_quote")
+                  .wv2-testimonial__byline
+                    .wv2-testimonial__avatar
+                    %div
+                      %p.wv2-testimonial__name= name
+                      %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
+          %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
+        .wv2-carousel__dots
+          - t_mid = testimonials.length / 2
+          - testimonials.each_with_index do |(key, _), i|
+            %button.wv2-carousel__dot{ class: (i == t_mid ? "active" : nil), "aria-label": "Testimonial #{i + 1}" }
 
   -# ── Everyone is a naturalist ──────────────────────────────
   .wv2-section.wv2-section--light
@@ -172,25 +183,40 @@
         = image_tag "welcome_v2/inaturalist.webp", class: "wv2-download__phone", alt: "iNaturalist app"
 
   -# ── Explore species ───────────────────────────────────────
-  -# TODO: wire up @explore_observations from static JSON (config/welcome_v2/explore_observations.json)
-  .wv2-section.wv2-section--light.text-center
+  .wv2-section.wv2-section--light.wv2-section--no-horizontal-padding.text-center
     %h2= t("#{s}.explore.heading")
     .wv2-explore__cards
-      - [ {username: "sea-kangaroo",   common: "Light-blue Soldier Crab", sci: "Mictyris longicarpus",    location: "Urangan, Queensland, Australia"} ].each do |obs|
-        .wv2-obs-card
-          .wv2-obs-card__header
-            .wv2-obs-card__avatar
-            %span.wv2-obs-card__username= obs[:username]
-          .wv2-obs-card__photo
-          .wv2-obs-card__taxon
-            .wv2-obs-card__taxon-thumb
-            .wv2-obs-card__taxon-names
-              - if obs[:common]
-                %p.wv2-obs-card__common= obs[:common]
-              %p.wv2-obs-card__sci= obs[:sci]
-          .wv2-obs-card__location
-            = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-obs-card__location-icon", alt: ""
-            %span= obs[:location]
+      .wv2-carousel{ data: { carousel: true } }
+        .wv2-carousel__stage
+          %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
+          .wv2-carousel__track
+            - locale_key = I18n.locale.to_s
+            - locale_base = locale_key.split("-").first
+            - @explore_observations.each do |obs|
+              - common = obs["common_names"][locale_key] || obs["common_names"][locale_base] || obs["common_names"]["en"]
+              = link_to "/observations/#{obs["id"]}", class: "wv2-carousel__item" do
+                .wv2-obs-card
+                  .wv2-obs-card__header
+                    - if obs["user_icon_file"]
+                      = image_tag obs["user_icon_file"].sub("app/assets/images/", ""), class: "wv2-obs-card__avatar-img", alt: ""
+                    - else
+                      .wv2-obs-card__avatar
+                    %span.wv2-obs-card__username= obs["user_name"]
+                  = image_tag obs["observation_photo_file"].sub("app/assets/images/", ""), class: "wv2-obs-card__photo-img", alt: ""
+                  .wv2-obs-card__taxon
+                    = image_tag obs["taxon_thumbnail_file"].sub("app/assets/images/", ""), class: "wv2-obs-card__taxon-thumb-img", alt: ""
+                    .wv2-obs-card__taxon-names
+                      - if common.present?
+                        %p.wv2-obs-card__common= common
+                      %p.wv2-obs-card__sci= obs["scientific_name"]
+                  .wv2-obs-card__location
+                    = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-obs-card__location-icon", alt: ""
+                    %span= obs["place_guess"].presence || "—"
+          %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
+        .wv2-carousel__dots
+          - obs_mid = @explore_observations.length / 2
+          - @explore_observations.each_with_index do |_, i|
+            %button.wv2-carousel__dot{ class: (i == obs_mid ? "active" : nil), "aria-label": "Observation #{i + 1}" }
     = link_to t("#{s}.explore.button"), observations_path, class: "btn wv2-btn--dark"
 
   -# ── Seek ──────────────────────────────────────────────────
@@ -229,3 +255,64 @@
         %details.wv2-faq__item
           %summary= t("#{s}.faq.#{key}_question")
           %p= t("#{s}.faq.#{key}_answer")
+
+- content_for :extrajs do
+  :javascript
+    (function () {
+      document.querySelectorAll("[data-carousel]").forEach(function (carousel) {
+        var track   = carousel.querySelector(".wv2-carousel__track");
+        var dots    = Array.from(carousel.querySelectorAll(".wv2-carousel__dot"));
+        var items   = Array.from(track.querySelectorAll(".wv2-carousel__item"));
+        var prevBtn = carousel.querySelector(".wv2-carousel__arrow--prev");
+        var nextBtn = carousel.querySelector(".wv2-carousel__arrow--next");
+        if (!track || !items.length) return;
+
+        function activeDotIndex() {
+          var trackRect = track.getBoundingClientRect();
+          var center = trackRect.left + trackRect.width / 2;
+          var best = 0, bestDist = Infinity;
+          items.forEach(function (item, i) {
+            var r = item.getBoundingClientRect();
+            var dist = Math.abs(r.left + r.width / 2 - center);
+            if (dist < bestDist) { bestDist = dist; best = i; }
+          });
+          return best;
+        }
+
+        function scrollToIndex(idx) {
+          idx = Math.max(0, Math.min(items.length - 1, idx));
+          var item = items[idx];
+          var itemRect = item.getBoundingClientRect();
+          var trackRect = track.getBoundingClientRect();
+          var offset = track.scrollLeft + itemRect.left - trackRect.left - (trackRect.width - itemRect.width) / 2;
+          track.scrollTo({ left: offset, behavior: "smooth" });
+        }
+
+        function syncDots() {
+          var idx = activeDotIndex();
+          dots.forEach(function (d, i) { d.classList.toggle("active", i === idx); });
+        }
+
+        var raf;
+        track.addEventListener("scroll", function () {
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(syncDots);
+        }, { passive: true });
+
+        dots.forEach(function (dot, i) {
+          dot.addEventListener("click", function () { scrollToIndex(i); });
+        });
+
+        if (prevBtn) prevBtn.addEventListener("click", function () { scrollToIndex(activeDotIndex() - 1); });
+        if (nextBtn) nextBtn.addEventListener("click", function () { scrollToIndex(activeDotIndex() + 1); });
+
+        requestAnimationFrame(function () {
+          var initIdx = Math.floor(items.length / 2);
+          var item = items[initIdx];
+          var itemRect = item.getBoundingClientRect();
+          var trackRect = track.getBoundingClientRect();
+          track.scrollLeft = track.scrollLeft + itemRect.left - trackRect.left - (trackRect.width - itemRect.width) / 2;
+          syncDots();
+        });
+      });
+    })();
