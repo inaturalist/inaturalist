@@ -132,7 +132,9 @@ class ModeratorActionsController < ApplicationController
   end
 
   def approved_update_params
-    params.require( :moderator_action ).permit( :reason, :suspended_until )
+    permitted = [:reason]
+    permitted << :suspended_until if current_user.is_admin?
+    params.require( :moderator_action ).permit( *permitted )
   end
 
   def resource_must_be_viewable_by_logged_in_user
