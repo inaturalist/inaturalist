@@ -1889,7 +1889,9 @@ en:
         Please check your email and click the link in the email you received
         to confirm your account.
       user:
-        suspended: Your account has been suspended
+        suspended: Your account has been suspended.
+        suspended_until: "Your suspension will be lifted on %{until}."
+        suspension_reason: "Reason: %{reason}"
       # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid:
         The reset password token is invalid. Please use the link in the most recently sent
@@ -6464,6 +6466,7 @@ en:
     The observer has chosen to trust you with the hidden coordinates of all
     their observations.
   user_updated_an_observation_field_html: '%{user} updated a value for "%{field_name}" on an observation by %{owner}'
+  user_unsuspended_email_subject: "%{prefix} Your account has been unsuspended"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
   username: Username
   username_description: This is the username you will use to log in, and other users can use to identify you on iNaturalist
@@ -8501,6 +8504,10 @@ en:
             iNaturalist account using the Seek app so that they can be seen on
             iNaturalist.org.
           </p>
+      user_unsuspended:
+        message: Your account on %{site_name} has been unsuspended and you can use the site again.
+        reason: "Your account was suspended for the following reason: %{reason}"
+        login_prompt: '<a href="%{login_url}">Log in to your account</a> to continue using the site.'
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended

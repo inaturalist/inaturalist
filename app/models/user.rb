@@ -303,6 +303,7 @@ class User < ApplicationRecord
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
   after_save :send_messages_by_unsuspended_user
+  after_save :send_unsuspended_email, if: :saved_change_to_suspended_at?
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_save :update_taxon_name_priorities
@@ -577,6 +578,31 @@ class User < ApplicationRecord
     return true if anonymous?
 
     super
+  end
+
+  # Override devise_suspendable's inactive_message to include suspension
+  # duration and reason for timed suspensions. Indefinite suspensions only
+  # show the base message to avoid exposing historical reasons from before
+  # timed suspensions were implemented.
+  def inactive_message
+    if suspended?
+      parts = [I18n.t( "devise.failure.user.suspended" )]
+      if suspended_until.present?
+        parts << I18n.t(
+          "devise.failure.user.suspended_until",
+          until: I18n.l( suspended_until, format: :long )
+        )
+        if suspension_reason.present?
+          parts << I18n.t(
+            "devise.failure.user.suspension_reason",
+            reason: suspension_reason
+          )
+        end
+      end
+      parts.join( " " )
+    else
+      super
+    end
   end
 
   def download_remote_icon
@@ -1535,6 +1561,18 @@ class User < ApplicationRecord
     Message.
       delay( priority: USER_INTEGRITY_PRIORITY ).
       resend_unsent_for_user( id )
+  end
+
+  def send_unsuspended_email
+    old_suspended_at = saved_change_to_suspended_at.first
+    return unless old_suspended_at.present? && suspended_at.nil?
+
+    # Only include the reason for timed suspensions to avoid exposing
+    # historical reasons from before timed suspensions were implemented
+    old_suspended_until = saved_change_to_suspended_until&.first
+    reason = old_suspended_until.present? ? saved_change_to_suspension_reason&.first : nil
+
+    Emailer.user_unsuspended( self, reason: reason ).deliver_now
   end
 
   def revoke_access_tokens_by_suspended_user
