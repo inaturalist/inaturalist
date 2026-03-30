@@ -7,7 +7,8 @@
       %p= link_to_user( @moderator_action.resource )
       = form_for @moderator_action, builder: BootstrapFormBuilder do |f|
         = f.text_area :reason, required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: ModeratorAction::MAXIMUM_REASON_LENGTH
-        = f.datetime_local_field :suspended_until, label: t( :suspended_until ), description: t( :suspended_until_desc )
+        - if current_user.is_admin?
+          = f.datetime_local_field :suspended_until, label: t( :suspended_until ), description: t( :suspended_until_desc )
         .form-group
           - if @moderator_action.last_edited_by_user
             %label= t( :last_edited_by )
