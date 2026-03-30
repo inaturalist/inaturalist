@@ -338,6 +338,29 @@ class SharedForm extends React.Component {
               </div>
             </Col>
           </Row>
+          { project.project_type === "collection" && (
+            <Row className="first-row">
+              <Col xs={4}>
+                <label>
+                  { I18n.t( "views.projects.edit.leaderboard" ) }
+                </label>
+                <div className="help-text">
+                  { I18n.t( "views.projects.edit.leaderboard_description" ) }
+                </div>
+                <div className="input-group">
+                  <input
+                    type="checkbox"
+                    id="project-hide-leaderboard"
+                    defaultChecked={project.hide_leaderboard}
+                    onChange={e => updateProject( { hide_leaderboard: e.target.checked } )}
+                  />
+                  <label className="inline" htmlFor="project-hide-leaderboard">
+                    { I18n.t( "views.projects.edit.hide_leaderboard" ) }
+                  </label>
+                </div>
+              </Col>
+            </Row>
+          ) }
           <Row className="separator-row">
             <Col xs={12}>
               <div className="separator" />

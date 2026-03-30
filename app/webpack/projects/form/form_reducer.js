@@ -392,6 +392,7 @@ export function submitProject( ) {
         prefers_umbrella_project_list_sort: project.umbrella_project_list_sort,
         prefers_hide_umbrella_map_flags: !!project.hide_umbrella_map_flags,
         prefers_banner_contain: !!project.header_image_contain,
+        prefers_hide_leaderboard: !!project.hide_leaderboard,
         prefers_rule_quality_grade: project.rule_quality_grade
           ? _.keys( project.rule_quality_grade ).join( "," ) : "",
         prefers_rule_photos: _.isEmpty( project.rule_photos ) ? "" : project.rule_photos,
