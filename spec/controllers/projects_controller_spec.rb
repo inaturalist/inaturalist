@@ -1,81 +1,81 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require File.dirname( __FILE__ ) + "/../spec_helper"
 
 describe ProjectsController, "spam" do
-  let(:spammer_content) {
+  let( :spammer_content ) do
     p = Project.make!
-    p.user.update(spammer: true)
+    p.user.update( spammer: true )
     p
-  }
-  let(:flagged_content) {
+  end
+  let( :flagged_content ) do
     p = Project.make!
-    Flag.make!(flaggable: p, flag: Flag::SPAM)
+    Flag.make!( flaggable: p, flag: Flag::SPAM )
     p
-  }
+  end
 
   it "should render 403 when the owner is a spammer" do
     get :show, params: { id: spammer_content.id }
-    expect(response.response_code).to eq 403
+    expect( response.response_code ).to eq 403
   end
 
   it "should render 403 when content is flagged as spam" do
     get :show, params: { id: spammer_content.id }
-    expect(response.response_code).to eq 403
+    expect( response.response_code ).to eq 403
   end
 end
 
 describe ProjectsController, "add" do
-  let(:user) { User.make! }
-  let(:project_user) { ProjectUser.make!(user: user) }
-  let(:project) { project_user.project }
+  let( :user ) { User.make! }
+  let( :project_user ) { ProjectUser.make!( user: user ) }
+  let( :project ) { project_user.project }
   before do
     sign_in user
   end
   it "should add to the project" do
-    o = Observation.make!(user: user)
+    o = Observation.make!( user: user )
     post :add, params: { id: project.id, observation_id: o.id }
     o.reload
-    expect( o.projects ).to include(project)
+    expect( o.projects ).to include( project )
   end
   it "should set the project observation's user_id" do
-    o = Observation.make!(user: user)
+    o = Observation.make!( user: user )
     post :add, params: { id: project.id, observation_id: o.id }
     o.reload
-    expect( o.projects ).to include(project)
+    expect( o.projects ).to include( project )
     expect( o.project_observations.last.user_id ).to eq user.id
   end
 end
 
 describe ProjectsController, "join" do
-  let(:user) { User.make! }
-  let(:project) { Project.make! }
+  let( :user ) { User.make! }
+  let( :project ) { Project.make! }
   before do
     sign_in user
   end
   it "should create a project user" do
     post :join, params: { id: project.id }
-    expect( project.project_users.where(user_id: user.id).count ).to eq 1
+    expect( project.project_users.where( user_id: user.id ).count ).to eq 1
   end
   it "should accept project user parameters" do
     post :join, params: { id: project.id, project_user: { preferred_updates: false } }
-    pu = project.project_users.where(user_id: user.id).first
+    pu = project.project_users.where( user_id: user.id ).first
     expect( pu ).not_to be_prefers_updates
   end
 end
 
 describe ProjectsController, "leave" do
-  let(:user) { User.make! }
-  let(:project) { Project.make! }
+  let( :user ) { User.make! }
+  let( :project ) { Project.make! }
   before do
     sign_in user
   end
   it "should destroy the project user" do
-    pu = ProjectUser.make!(user: user, project: project)
+    pu = ProjectUser.make!( user: user, project: project )
     delete :leave, params: { id: project.id }
-    expect( ProjectUser.find_by_id(pu.id) ).to be_blank
+    expect( ProjectUser.find_by_id( pu.id ) ).to be_blank
   end
   describe "routes" do
     it "should accept DELETE requests" do
-      expect(delete: "/projects/#{project.slug}/leave").to be_routable
+      expect( delete: "/projects/#{project.slug}/leave" ).to be_routable
     end
   end
 end
@@ -84,12 +84,12 @@ describe ProjectsController, "search" do
   elastic_models( Project, Place )
 
   describe "for site with a place" do
-    let(:place) { make_place_with_geom }
-    before { Site.default.update(place_id: place.id) }
+    let( :place ) { make_place_with_geom }
+    before { Site.default.update( place_id: place.id ) }
 
     it "should filter by place" do
-      with_place = Project.make!(place: place)
-      without_place = Project.make!(title: "#{with_place.title} without place")
+      with_place = Project.make!( place: place )
+      without_place = Project.make!( title: "#{with_place.title} without place" )
       response_json = <<-JSON
         {
           "results": [
@@ -101,19 +101,19 @@ describe ProjectsController, "search" do
           ]
         }
       JSON
-      stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
+      stub_request( :get, /#{INatAPIService::ENDPOINT}/ ).to_return(
         status: 200,
         body: response_json,
         headers: { "Content-Type" => "application/json" }
       )
       get :search, params: { q: with_place.title }
-      expect( assigns(:projects) ).to include with_place
-      expect( assigns(:projects) ).not_to include without_place
+      expect( assigns( :projects ) ).to include with_place
+      expect( assigns( :projects ) ).not_to include without_place
     end
 
     it "should allow removal of the place filter" do
-      with_place = Project.make!(place: place)
-      without_place = Project.make!(title: "#{with_place.title} without place")
+      with_place = Project.make!( place: place )
+      without_place = Project.make!( title: "#{with_place.title} without place" )
       response_json = <<-JSON
         {
           "results": [
@@ -130,14 +130,14 @@ describe ProjectsController, "search" do
           ]
         }
       JSON
-      stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
+      stub_request( :get, /#{INatAPIService::ENDPOINT}/ ).to_return(
         status: 200,
         body: response_json,
         headers: { "Content-Type" => "application/json" }
       )
       get :search, params: { q: with_place.title, everywhere: true }
-      expect( assigns(:projects) ).to include with_place
-      expect( assigns(:projects) ).to include without_place
+      expect( assigns( :projects ) ).to include with_place
+      expect( assigns( :projects ) ).to include without_place
     end
   end
 end
@@ -177,17 +177,17 @@ describe ProjectsController, "create" do
 end
 
 describe ProjectsController, "update" do
-  let(:project) { Project.make! }
-  let(:user) { project.user }
+  let( :project ) { Project.make! }
+  let( :user ) { project.user }
   elastic_models( Observation )
   before { sign_in user }
   it "should work for the owner" do
-    put :update, params: { id: project.id, project: {title: "the new title"} }
+    put :update, params: { id: project.id, project: { title: "the new title" } }
     project.reload
     expect( project.title ).to eq "the new title"
   end
   it "allows bioblitz project to turn on aggregation" do
-    project.update(place: make_place_with_geom)
+    project.update( place: make_place_with_geom )
     expect( project ).to be_aggregation_allowed
     expect( project ).not_to be_prefers_aggregation
     put :update, params: { id: project.id, project: { prefers_aggregation: true } }
@@ -196,13 +196,13 @@ describe ProjectsController, "update" do
     expect( project ).not_to be_prefers_aggregation
     put :update, params: { id: project.id, project: {
       prefers_aggregation: true, project_type: Project::BIOBLITZ_TYPE,
-      start_time: 5.minutes.ago, end_time: Time.now }
-    }
+      start_time: 5.minutes.ago, end_time: Time.now
+    } }
     project.reload
     expect( project ).to be_prefers_aggregation
   end
   it "should not allow a non-curator to turn on observation aggregation" do
-    project.update(place: make_place_with_geom)
+    project.update( place: make_place_with_geom )
     expect( project ).to be_aggregation_allowed
     expect( project ).not_to be_prefers_aggregation
     put :update, params: { id: project.id, project: { prefers_aggregation: true } }
@@ -210,10 +210,10 @@ describe ProjectsController, "update" do
     expect( project ).not_to be_prefers_aggregation
   end
   it "should not allow a non-curator to turn off observation aggregation" do
-    project.update(place: make_place_with_geom, prefers_aggregation: true)
+    project.update( place: make_place_with_geom, prefers_aggregation: true )
     expect( project ).to be_aggregation_allowed
     expect( project ).to be_prefers_aggregation
-    put :update, params: { id: project.id, project: {prefers_aggregation: false} }
+    put :update, params: { id: project.id, project: { prefers_aggregation: false } }
     project.reload
     expect( project ).to be_prefers_aggregation
   end
@@ -245,8 +245,8 @@ describe ProjectsController, "destroy" do
   end
   it "should queue a job to destroy the project" do
     delete :destroy, params: { id: project.id }
-    expect( Delayed::Job.where("handler LIKE '%sane_destroy%'").count ).to eq 1
-    expect( Delayed::Job.where("unique_hash = '{:\"Project::sane_destroy\"=>#{project.id}}'").
+    expect( Delayed::Job.where( "handler LIKE '%sane_destroy%'" ).count ).to eq 1
+    expect( Delayed::Job.where( "unique_hash = '{:\"Project::sane_destroy\"=>#{project.id}}'" ).
       count ).to eq 1
   end
 end
