@@ -8,7 +8,7 @@ import {
   decrementReviewed
 } from "./observations_stats_actions";
 import { updateObservationInCollection, OBSERVATION_FIELDS } from "./observations_actions";
-import { showFinishedModal } from "./finished_modal_actions";
+import { hideFinishedModal, showFinishedModal } from "./finished_modal_actions";
 import {
   fetchSuggestions,
   updateWithObservation as updateSuggestionsWithObservation,
@@ -242,13 +242,16 @@ function showNextObservation( ) {
   return ( dispatch, getState ) => {
     const { observations, currentObservation, config } = getState();
     let nextObservation;
+    let nextIndex = _.findIndex( observations.results, o => (
+      o.id === currentObservation?.observation?.id
+    ) );
+    nextIndex += 1;
+
     if ( currentObservation.visible ) {
-      let nextIndex = _.findIndex( observations.results, o => (
-        o.id === currentObservation.observation.id
-      ) );
       if ( nextIndex === null || nextIndex === undefined ) { return; }
-      nextIndex += 1;
       nextObservation = observations.results[nextIndex];
+    } else if ( nextIndex === observations.results.length ) {
+      return;
     } else {
       nextObservation = currentObservation.observation || observations.results[0];
     }
@@ -271,7 +274,12 @@ function showNextObservation( ) {
 function showPrevObservation( ) {
   return ( dispatch, getState ) => {
     const { observations, currentObservation } = getState();
+    if ( _.isEmpty( currentObservation.observation ) ) {
+      return false;
+    }
     if ( !currentObservation.visible ) {
+      dispatch( hideFinishedModal( ) );
+      dispatch( showCurrentObservation( currentObservation.observation ) );
       return;
     }
     let prevIndex = _.findIndex( observations.results, o => (
