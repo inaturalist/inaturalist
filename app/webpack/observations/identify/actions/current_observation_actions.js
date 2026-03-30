@@ -429,15 +429,18 @@ function stopLoadingDiscussionItem( item ) {
 export function addAnnotation( controlledAttribute, controlledValue, options = {} ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    const { config } = state;
     const newAnnotations = ( state.currentObservation.observation.annotations || [] ).concat( [{
       controlled_attribute: controlledAttribute,
       controlled_value: controlledValue,
       user: state.config.currentUser,
       api_status: "saving"
     }] );
-    dispatch( updateSession( {
-      prefers_hide_identify_annotations: false
-    } ) );
+    if ( config.currentUser?.prefers_hide_identify_annotations ) {
+      dispatch( updateSession( {
+        prefers_hide_identify_annotations: false
+      } ) );
+    }
     dispatch( updateCurrentObservation(
       { annotations: newAnnotations },
       { observation_id: state.currentObservation.observation.id }
