@@ -577,3 +577,41 @@ describe UsersController, "join_test" do
     expect( user.test_groups ).to include( User::HELPFUL_ID_TIPS_TEST_GROUP )
   end
 end
+
+describe UsersController, "unsuspend" do
+  let( :curator ) { make_curator }
+  let( :suspended_user ) do
+    user = User.make!
+    user.update_columns( suspended_at: 1.day.ago, suspended_until: 1.day.from_now )
+    user
+  end
+
+  before do
+    sign_in curator
+    request.env["HTTP_REFERER"] = "/"
+  end
+
+  it "sets suspended_at to nil" do
+    expect( suspended_user.suspended_at ).not_to be_nil
+    ModeratorAction.create!(
+      resource: suspended_user,
+      user: curator,
+      action: ModeratorAction::UNSUSPEND,
+      reason: "Unsuspending this user"
+    )
+    suspended_user.reload
+    expect( suspended_user.suspended_at ).to be_nil
+  end
+
+  it "sets suspended_until to nil" do
+    expect( suspended_user.suspended_until ).not_to be_nil
+    ModeratorAction.create!(
+      resource: suspended_user,
+      user: curator,
+      action: ModeratorAction::UNSUSPEND,
+      reason: "Unsuspending this user"
+    )
+    suspended_user.reload
+    expect( suspended_user.suspended_until ).to be_nil
+  end
+end
