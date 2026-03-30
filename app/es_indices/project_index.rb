@@ -135,6 +135,7 @@ class Project < ApplicationRecord
       end
       indexes :slug, analyzer: "keyword_analyzer"
       indexes :slug_keyword, type: "keyword"
+      indexes :umbrella_project_list_sort, type: "keyword"
       indexes :spam, type: "boolean"
       indexes :subproject_ids, type: "integer"
       indexes :terms, type: "text", index: false
@@ -276,6 +277,7 @@ class Project < ApplicationRecord
     }
     if project_type == "umbrella"
       json[:hide_umbrella_map_flags] = !!prefers_hide_umbrella_map_flags
+      json[:umbrella_project_list_sort] = prefers_umbrella_project_list_sort
     end
     json
   end
