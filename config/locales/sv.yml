@@ -289,6 +289,8 @@ sv:
   add_a_new_change_group: Lägg till en ny ändringsgrupp
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Lägg till en numrerad lista
+  #Placeholder for a project autocomplete field
+  add_a_project: Lägg till ett projekt
   add_a_single_observation: Lägg till ett enskilt fynd.
   add_a_taxon: Lägg till ett taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -638,6 +640,9 @@ sv:
   app_owner_application_inelligible: |
     För att kunna skicka in en ansökan måste ditt konto vara minst 2 månader gammalt och
     ha gjort minst 10 förbättringsbestämningar under den senaste månaden.
+  app_owner_application_inelligible2: |
+    För att kunna skicka in en ansökan måste ditt konto vara minst 2 månader gammalt och måste
+    har gjort minst 10 förbättrade identifieringar för andra användare under den senaste månaden.
   app_owner_application_fields_explanation_html: Beskriv vilken funktionalitet din app kommer att ha och hur du planerar att använda den.
   app_owner_application_success: Appägares ansökan inskickad
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -839,6 +844,9 @@ sv:
     other: |
       Baserat på ett urval om %{percent}% av dessa bestämningar, uppskattar vi att detta
       kommer att resultera i <strong>%{count} oavsiktliga oenigheter</strong> för bestämningar av %{child}.
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Baserat på bevisen, kan Community Taxon förbättras?
   batch: Batch
   batch_edit: Redigera flera i taget
   #Where x is the title of a list of taxa
@@ -1125,6 +1133,10 @@ sv:
   confirmation_email_sent_at_datetime: Bekräftelsemejl skickat vid %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Bekräftat den %{date}
+  confirming_ids: Bekräftande best.
+  confirming_ids_description: |
+    Om du stänger av detta, kommer du inte längre att aviseras om bestämningar
+    som håller med dig såvida de inte har fler kommentarer.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Koppla
@@ -1360,6 +1372,7 @@ sv:
   curating: Hanterar
   curation: Hantera
   curator: Förvaltare
+  curators_with_most_ids_of_the_input_taxon: "Kuratorer med flest ID-värden för ingående taxon"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     Förvaltare av iNaturalists webbplats är betrodda volontärer som har möjlighet att redigera iNaturalists taxonomi och moderera användarinnehåll.
@@ -1481,6 +1494,11 @@ sv:
   curators: Förvaltare
   curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
   curator_coordinate_access: Åtkomst till kuratorns koordinater
+  curator_coordinate_access_desc: |
+    Förvaltarens koordinatåtkomst för traditionella projekt beror på vem som la till
+    fyndet till projektet. Detta är helt enkelt standardinställningen för
+    fynd i projekt. Observatörer kan också välja att ändra detta för
+    enskilda fynd.
   curator_identification: Förvaltarbestämning
   #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Nuvarande gemenskapstaxon: %{taxon}"
@@ -1500,8 +1518,58 @@ sv:
   dashboard_pilots:
     #button asking to participate in a pilot
     pilot_participate: "Ja! Jag vill gärna delta."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Sluta delta"
+    #link to a blog post
+    pilot_read_more: "Läs mer på vår blogg"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Identifiering av luckor Pilot: Behov, ID Sökt Art,"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Hjälp oss att fylla luckor genom att delta för att få en daglig länk till observationer:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "Ännu inte inkluderad i bildigenkänningsmodellen"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_id_pilot_condition_2: "Vi tror att du kan artbestämma"
+    #instructions once people have participated explaining the list of observations
+    gaps_id_pilot_current_intro: "Här är en länk till fynd av arter som ännu inte ingår i bildigenkänningsmodellen som vi tror att du kan bestämma."
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_id_pilot_check_back: "Titta in igen imorgon för en länk till fynd av arter som ännu inte ingår i bildigenkänningsmodellen som vi tror att du kan bestämma. Du kommer att visas arter där du har gjort minst 3 förbättrande bestämningar."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Om du inte ser en länk, kanske det inte finns några fynd som uppfyller dessa kriterier och behöver bestämmas. Det kommer att kollas en gång om dagen."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Pilotprojekt Fyndluckor: Eftersökta arter i närheten"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Imorgon får du en lista över arter som:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Ännu inte finns i bildigenkänningsmodellen"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Har observerats denna årstid nära ditt senaste fynd"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "Drivs av ett urval av upp till 200 fynd av upp till 300 arter huvudsakligen växter"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Genom att observera dessa arter hjälper du till att förbättra modellen och fylla kunskapsluckor för biologisk mångfald. Denna lista kommer att uppdateras när modellen uppdateras. Du kan lämna när som helst."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Här är din nuvarande lista över arter som är:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "Ännu inte inkluderad i bildigenkänningsmodellen"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Observerad nära din senaste plats den här årstiden"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Genom att observera dessa hjälper du till att förbättra artigenkänningen och fylla kritiska luckor."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Bläddra bland arter"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Kom tillbaka imorgon för en personlig lista över arter som ännu inte ingår i bildigenkänningsmodellen, observerade denna årstid. Den personliga listan kommer att använda platsen för ditt senaste fynd."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Om du inte ser någon koppling kanske det inte finns några arter som uppfyller dessa kriterier i närheten."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Artbestämningspilot: Få med nya användare"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "Från och med imorgon kan du få upp till 30 fynd dagligen som matchar dina bestämningskunskaper, vilket underlättar att få med nya användare. Du kan välja bort det här när som helst."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Nedan finns upp till 30 fynd som matchar dina bestämningsfärdigheter."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Kom tillbaka imorgon för en länk till fynd som matchar dina bestämningsfärdigheter."
   data_deficient: Kunskapsbrist
   data_quality: Datakvalitet
   data_quality_assessment: Bedömning av datakvalitet
@@ -1721,6 +1789,8 @@ sv:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Meningsskiljaktigheter
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Visa fynd som har oeniga bestämningar
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Koppla ifrån
@@ -1957,6 +2027,7 @@ sv:
   external_taxon_including_children: Externt taxon (inklusive barn)
   extinct: utdöd
   extinct_in_the_wild: Utdöd i vilt tillstånd
+  provisional_taxon: Provisoriskt
   extra_properties: Ytterligare egenskaper
   evidence_accurately_depicts_organism_or_scene: Bevisen avbildar en organism eller scen på ett korrekt sätt
   evidence_of_organism: Belägg för organism
@@ -2048,6 +2119,8 @@ sv:
   flag_deleted: Flagga raderad
   flag_description: Flagga detta innehåll så att förvaltarna får reda på att det är något fel med det.
   flag_comment_description: Lägg till en valfri kommentar till denna flagga som ytterligare förklarar varför du lägger till den och länkar till bevis som stöd.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Flaggor som hänvisar till en källa har större chans att lösas snabbt av våra ideella förvaltare.
   flag_for_check_list_title_html: |
     Flagga för checklista: %{title}
   flag_for_comment_id_html: Flagga för <a href="%{url}">kommentar %{id}</a>
@@ -2081,6 +2154,7 @@ sv:
   flag_marked_as_unresolved_html: '<span class="meta">Flagga markerad som</span> <strong>olöst.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
+  flag_reason2: "Jag flaggar detta %{record} eftersom"
   flag_resolution: Lösning
   flag_saved: Flagga sparad
   flag_saved_thanks_html: Flagga sparad. Tack! <a href="%{url}" class="readmore">Visa flagga</a>
@@ -2292,6 +2366,8 @@ sv:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Dölj fynd med privata platser
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Dölj provisoriska taxa
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Dölj löpande total
   hide_uncountable_species: Dölj arter som inte kan räknas
@@ -2454,6 +2530,7 @@ sv:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inaktivt
   inactive_taxon_concepts_are: Inaktiva taxonkoncept är antingen taxonomiskt föråldrade eller förbereds för en taxonändring. Föråldrade koncept behålls för att upprätthålla historik samt för kompatibilitet med vissa partnerwebbplatser.
+  provisional_taxa_are_not_published: 'Provisoriska taxa publiceras inte och kan komma att genomgå större förändringar. De är för närvarande endast tillåtna för svampar och måste kopplas till ett fynd med en DNA-sekvens. Vänligen länka till detta fynd i fältet "Varför gör du denna ändring?".'
   inappropriate_content: Olämpligt innehåll?
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} anser att detta är en fullständig lista över detta taxon på denna fyndplats."
@@ -2463,6 +2540,18 @@ sv:
   inaturalist_applications: "iNaturalist-applikationer"
   inaturalist_places: "%{site_name}-fyndplatser"
   info: Info
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infraartbestämningar
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Om du stänger av detta, kommer du inte längre att meddelas om bestämningar
+    för taxa under artnivån (som underarter och varieteter) som håller med dig i din
+    bestämning till art. Du kommer att meddelas om de inte håller med din bestämning
+    eller om de innehåller ytterligare anmärkningar.
   input_taxon: Ingångstaxon
   insects: insekter
   insect_life_stage: Insektsstadium
@@ -2572,6 +2661,7 @@ sv:
     identifications_in_month_year: Flest bestämningar i %{month_year}
     identifications_in_year: Flest bestämningar %{year}
   leading: Leder
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
   learn_more: Läs mer
@@ -3314,6 +3404,19 @@ sv:
   noble_curators: "%{site}s ädla förvaltare"
   #A user who is not a curator
   non_curator: Icke-förvaltare
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Bestämningar på högre nivå som inte går emot
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Om du stänger av detta kommer du inte längre att bli meddelad när någon
+    lägger till en bestämning för ett överliggande taxon till din bestämning som
+    samtidigt inte uttryckligen går emot communityns taxon. Du kommer att bli
+    meddelad om bestämningen har fler kommentarer.
   non_human?: Icke-mänsklig?
   #A user who does not admin any projects
   non_project_admin: Icke-projektadministratör
@@ -3531,6 +3634,7 @@ sv:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: DNA
   observation_fields: Fyndfält
+  observation_fields_for_projects: Fyndegenskaper för projekt
   observation_fields_are_additional: Fyndfält är extra datafält som kan läggas till fynd.
   observation_fields_by_preferences_description: |
     Fyndfält är lite som taggningar, förutom att vem som helst normalt kan lägga dem till ditt fynd. Ändra det om du föredrar att bara du, eller bara webbplatsens förvaltare, ska kunna göra det.
@@ -4923,6 +5027,8 @@ sv:
   show_running_total: Visa ackumulerat
   show_taxa_from_both: (visa taxa från båda listorna)
   show_taxa_from_everywhere: "Visa taxa från alla ställen"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Visa provisoriska taxa
   show_taxa_from_place: "Visa taxa från %{place}"
   show_total_counts: Visa totalt antal
   show_uncountable_species: Visa arter som inte räknas
@@ -5770,6 +5876,10 @@ sv:
   upcoming_bioblitzes: Kommande bioblitzer
   update: Uppdatera
   update_existing_observations_with_new_license: Uppdatera befintliga fynd med nya licensval
+  update_existing_observations_with_new_license_desc: |
+    Om du väljer detta alternativ kommer ditt nya licensval att tillämpas
+    på alla dina befintliga fynd. Detta kan ta några timmar om du har
+    många fynd.
   update_existing_photos_with_new_license: Uppdatera befintliga bilder med nya licensval
   update_existing_photos_with_new_license_desc: |
     Om du väljer det här alternativet tillämpas ditt nya licensval på alla dina
@@ -5812,6 +5922,7 @@ sv:
   uploader:
     errors:
       file_too_big: Filen måste vara mindre än %{megabytes} MB
+      unsupported_file_type: Filtypen stöds inte. Vi accepterar JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3 och MP4 (endast ljud)
     resize_tip: |
       Om dina bildfiler är för stora, prova att beskära dem till max 2048 x 2048 pixlar. Detta kommer ändå att ske med alla bilder på servern, och dessutom göra uppladdningen snabbare.
     tooltips:
@@ -5931,6 +6042,12 @@ sv:
   user_trusts_this_project_for_taxon: |
     Användaren litar bara på detta projekt tillräckligt för att dela dolda koordinater som diffuserats
     på grund av hotade taxa.
+  user_trusts_this_project_when_added_by_any: |
+    Användaren anförtror projektförvaltare med dolda koordinater för fynd som lagts till
+    i projektet av vem som helst.
+  user_trusts_this_project_when_added_by_observer: |
+    Användaren anförtror projektförvaltare med dolda koordinater för fynd som lagts till
+    i projektet av observatören.
   user_trusts_this_project_when_added_by_none: |
     Användaren litar inte på projektkuratorer med dolda koordinater.
   user_trusts_you_with_their_private_coordinates: "%{user} litar på dig med sina dolda koordinater"
@@ -6032,6 +6149,8 @@ sv:
   view_more_observations_of_x_project: "Visa fler fynd från %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Visa fler fynd av %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Visa fler ogranskade"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Se dina berörda bestämningar
   view_observation: Visa fynd
   view_observations: Visa fynd
   view_observation_flags: Visa fyndflaggor
@@ -6477,6 +6596,14 @@ sv:
         Tid i tidszonen för ditt konto då detta meddelande börjar
         visas. Gäller över tidszoner, så alla börjar se
         det samtidigt, inte relativt deras lokala tid.
+      include_virtuous_tags_desc: |
+        CMD- eller SHIFT-klicka för att välja flera. Att välja "Någon" eller inte göra
+        ett val visar tillkännagivandet för alla användare oavsett
+        deras Virtuous-taggar.
+      exclude_virtuous_tags_desc: |
+        CMD- eller SHIFT-klicka för att välja flera. Att välja "Ingen" eller inte göra
+        ett val visar tillkännagivandet för alla användare oavsett
+        deras Virtuous-taggar.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Användarmålgrupp efter givarbeteende
@@ -6498,14 +6625,37 @@ sv:
           Atlaser förmedlar den globala utbredningen av ett taxon. Kuratorer gör
           atlaser genom att definiera strukturen för en atlas och kurera
           listade taxa som driver den.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Dela upp denna plats
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Slå ihop denna plats igen
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Inga ändringar i denna atlas ännu
         #Title for a section showing recent alterations to an atlas
         recent_atlas_alterations: Senaste ändringar av Atlas
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Senaste ändringarna av listade taxa
         #Label for a button that shows taxa on checklists for a place
         show_listed_taxa: Visa listade taxa
         #Notice when an atlas is not active
         this_atlas_is_not_currently_active: Den här atlasen är för närvarande inte aktiv
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Detta kommer att ta bort detta taxon och alla dess underliggande taxa
+          från checklistor kopplade till denna plats och alla Standardplatser den
+          innehåller. Det kan inte göras ogjort. Är du säker på att du vill göra det här?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Varning: det finns fynd som inte representeras av denna atlas
     content_freeze:
       content_freeze: Låsning av innehåll
       during_this_time: |
@@ -6675,6 +6825,11 @@ sv:
         flaggable_content: Flaggat innehåll
         flaggable_content_desc: |
           Det innehåll som kan flaggas är det primära textattributet för det flaggade objektet när flaggan skapades. Endast förvaltare och personal kan se detta. Endast personal kan se detta för meddelanden.
+        flags_that_should_not_be_resolved_desc2_html: |
+          Var snäll och lös flaggor för <code>skräppost</code>,
+          <code>upphovsrättsintrång</code>och <code>AI-genererat
+          innehåll</code> bara om innehållet verkligen inte är spam,
+          upphovsrättsintrång,eller inte AI-genererat, respektive.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -7007,6 +7162,9 @@ sv:
       #to keep it under 20 characters
       help_us_improve: Hjälp oss att bli bättre
       to_help_us_improve: För att hjälpa oss att förbättra denna modell skulle vi vilja veta vilka av bilderna på denna sida som är relevanta för din sökning &quot;%{searched_term}&quot;. Markera varje bild som relevant %{thumbs_up_icon} om den matchar din sökning och inte relevant %{thumbs_down_icon} om den inte gör det. När du är klar, klicka på skicka. #text for a button where a user can mark images as relevant to their search term
+      mark_as_relevant: Markera som relevant
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_as_not_relevant: Markera som ej relevant
       #text for a button where a user can mark images as relevant to their search term
       mark_remaining_as_relevant: Markera resterande som relevant
       #text for a button where a user can mark images as not relevant to their search term
@@ -7291,6 +7449,9 @@ sv:
           Universellt unik identifierare för fyndet. Se
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Lär dig hur du använder den här sidan och bidrar med bestämningar på iNaturalist!
         review_all_tooltip: "Markera alla fynd på denna sida som granskade"
         you_reviewed_message: "Du granskade %{reviewed} av %{pageTotal} fynd på denna sida av %{total} matchande fynd."
         unreview_all_tooltip: "Ta bort granskad status för alla fynd på sidan"
@@ -7969,6 +8130,20 @@ sv:
         recent_w_7_obs_desc: Gick med under 7 föreg. d. och lagt till >= 7 obs
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Skapad via <a href="%{url}">Seek</a>
+        today_identified_by_others: Fynd bestämda av andra (1 dag)
+        today_identified_by_others_by_iconic_taxon: Fynd bestämda av andra (1 dag)
+        observations_unknown: Fynd Okänd efter 30 dagar
+        observations_total_unknown_ratio: Fynd Okänd Andel (30 dagar)
+        observations_total_unknown_ratio_desc: Förhållande mellan okända fynd och alla fynd
+        for_others: För andra
+        ids_last_7_days: Bestämningar (7 dagar)
+        ids_last_7_days_desc: Bestämningar skapade under de föregående 7 dagarna
+        ids_today: Bestämningar (1 dag)
+        ids_today_desc: Bestämningar skapade på en enstaka dag
+        ids_last_7_days_for_others: Bestämningar för andra (7 dagar)
+        ids_last_7_days_for_others_desc: Identifieringar lades till andras observationer under de föregående sju dagarna
+        ids_today_for_others: Bestämningar för andra (1 dag)
+        ids_today_for_others_desc: Bestämningar som lagts till andras fynd på en enstaka dag
         time_to_id_desc: Tid till bestämning (timmar, 1 löpande vecka)
         TTCID: TTGB
         TTCID_desc: Tid till bestämning från någon annan som matchar communityns taxon.
@@ -8256,13 +8431,31 @@ sv:
       something_went_wrong_tags: |
         Något gick fel när jag försökte posta dessa taggar: %{message}
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Är du säker på att du vill återställa denna taxonändring?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Är du säker på att du vill dra tillbaka denna taxonändring?
       move_children_desc: |
         Barn till valt taxon som är släkten eller högre kommer att flyttas till utdata; arter, underarter, varieteter etc. kommer att bytas ut mot motsvarande
         med det nya släkt- eller artnamnet.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Återställ
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: återställer
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Återkalla
+      #state of an abandoned taxon change
+      withdrawn: återkallad
+      #state of a committed taxon change
+      committed: bekräftad
       #state of a pending taxon change
       pending: avvaktan
       #state of a approved taxon change
       approved: godkänd
+      #state of a draft taxon change
+      draft: utkast
+      #the status of a taxon change: draft, withdrawn or committed
+      status: status
       form:
         move_children_desc2_html: |
           Om du markerar denna ruta kommer barn till indatataxon att flyttas till
@@ -8416,6 +8609,45 @@ sv:
           Du måste ange "%{confirmation_code}" i formuläret för att radera ditt konto
       edit:
         about_third_party_tracking: Om spårning av tredjepart
+        block_desc_blocking_someone_prevents: |
+          Att blockera någon hindrar dem från att skicka meddelanden till dig, kommentera dina
+          fynd, bestämma dina fynd och på andra sätt interagera
+          med dig på %{site_name}. Det tar också bort deras fynd från dina
+          sökresultat samt tar bort dina fynd från deras sökresultat
+          resultat. Det gör dig däremot inte osynlig för dem. De kan ändå dina
+          fynd och titta på din profil, de kan bara inte interagera med dig.
+        block_desc_blocking_is_for_situations: |
+          Blockering är till för situationer där du helt enkelt inte kan komma överens
+          med någon och de lämnar dig inte ensam trots dina ärliga ansträngningar
+          att lösa tvisten på ett civiliserat sätt. Det är inte ett sätt att gömma sig från
+          människor för att förhindra bestämningar från människor vars åsikter du
+          inte litar på, eller för att välja bort community-bestämning (det finns en annan
+          inställning för det). Således fungerar blockering åt båda hållen: om du
+          blockerar kan de inte interagera med dig, men du kan inte heller interagera
+          med dem. Om du missbrukar detta för att hindra någon från att bestämma
+          dina fynd hindrar du också dig själv från att bestämma deras fynd.
+        block_desc_you_can_only_block_html: |
+          Du kan bara blockera tre personer. Vi anser att detta är ett rimligt
+          nummer som fungerar för de människor som behöver blockera
+          samtidigt som det förhindra missbruk av blockering. Om du känner
+          att du behöver blockera fler personer, är du välkommen att
+          <a href="mailto:%{help_email}">kontakta oss</a>.
+        block_desc_there_are_two_exceptions: |
+          Det finns två fall där blockering inte förhindrar interaktion:
+        block_desc_comments_on_taxon_flags: Kommentarer på taxonflaggor skapade av dig
+        block_desc_comments_on_taxon_changes: Kommentarer om taxonändringar skapade av dig
+        block_desc_unlike_more_personal: |
+          Till skillnad från mer personliga former av innehåll som fynd och
+          dagboksinlägg, delas taxa med alla och bör vara öppna för
+          diskussion för alla. Blockering kommer ändå att förhindra dig från att
+          ta emot aviseringar om kommentarer på denna typ av innehåll från 
+          personen du blockerade.
+        block_desc_if_harassing_html: |
+          Om någon trakasserar eller förföljer dig på %{site_name},
+          <a href="mailto:%{help_email}">meddela oss</a>. Om
+          det är ett brott mot våra användarvillkor, eller utgörs av
+          annat beteende vi anser olämpligt på vår sajt, kommer vi
+          undersöka saken.
         common_scientific_name_display_order: Visningsordning för vardagligt / vetenskapligt namn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
@@ -8536,6 +8768,11 @@ sv:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Max 3 vardagsnamnslexikon har redan lagts till
+        this_only_applies_to_traditional_projects2: |
+          Det här gäller endast traditionella projekt. Du kan inte utesluta fynd från
+          samlings- eller paraplyprojekt, som i grund och botten är sparade sökningar.
+          Du kan läsa mer
+          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">här</a>.
       recent:
         about_recent_users: Om
         definitions_html: <dl> <dt>Antagligen spam</dt> <dd> Användare som förmodligen är spammare vilket innebär att de inte har några fynd eller bestämningar, men har en profilbeskrivning. </dd> <dt>Autospam</dt> <dd> Spammare som automatiskt markerades som en spammare av systemet. </dd> <dt>Manuellt spam</dt> <dd> Spammare som manuellt markerades som en spammare av en webbplatsförvaltare. </dd> <dt>Falsklarm</dt> <dd> Användare som flaggades som spammare men flaggorna lyftes av webbplatsens förvaltare eftersom den faktiskt inte var spammare. </dd> </dl>
@@ -9367,6 +9604,11 @@ sv:
               infra_epithet_similar: "Infraspecifika epitet måste vara liknande (endast mindre stavfel/kön)"
               #Error message trying make major changes to the ssp epithet
               first_letter_of_epithet_cannot_change: "Första bokstaven i något epitet kan inte ändras."
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Taxon Liv kan inte involveras i taxonändringar
         taxon_name:
           attributes:
             lexicon:
@@ -9610,6 +9852,98 @@ sv:
         Protozoa: Protozoa
         Mollusca: Mollusca
         Chromista: Chromista
+  id_summary_dqa:
+    public_metrics:
+      true: "Sant uttalande"
+      identification: "Användbar för artbestämning"
+      references: "Stöds upp av referenser"
+      distinct: "Avviker från andra sammanfattningar"
+      clear: "Kort, vardagligt, och tydligt skrivet"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "Kommentaren är relevant för sammanfattningen"
+      true: "Kommentaren är ett sant påstående"
+      matches_taxon: "Kommentaren syftar på %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "Demo av bestämningssammanfattningar"
+        info_line_one: "Denna demo utforskar användningen av AI för att sammanfatta kommentarer på iNaturalist med målet att"
+        info_line_two: "göra bestämningskunskap mer tillgänglig."
+        blog_link_text: "Läs mer på vår blogg"
+        missing_identifier: "Sammanfattningsbestämmare för taxon saknas"
+        service_unavailable: "Detaljer kring bestämningssammanfattning är för tillfället otillgängliga"
+        no_summary_data: "Inga sammanfattningsdata kunde hittas för detta taxon."
+        load_failed: "Kunde inte ladda taxonsammanfattning"
+      filters:
+        active_only: "Visa endast aktiva sammanfattningar"
+        run_label: "Kör namn"
+        run_placeholder: "Välj en körning"
+        run_loading: "Laddar körningar..."
+        photo_tips_toggle: "Visa bildtips"
+        language_label: "Språk"
+      summary_list:
+        loading: "Laddar bestämningssammanfattningar..."
+        empty: "Inga bestämningssammanfattningar tillgängliga för denna art."
+        refreshing: "Uppdaterar sammanfattningar..."
+        heading: "Bestämningssammanfattningar"
+        feedback_toggle: "Feedback på bestämningssammanfattningar"
+        feedback_unavailable: "Feedback är inte tillgänglig för denna sammanfattning."
+        sign_in_required: "Logga in för att rösta på feedback av bestämningssammanfattningar."
+        service_unavailable: "Feedback-tjänsten är inte tillgänglig för tillfället."
+        submit_failed: "Kunde inte skicka in feedback."
+      summary_feedback:
+        loading: "Laddar feedback..."
+        explainer: "Din feedback kommer att användas för att förbättra bestämningssammanfattningar i framtiden"
+        sign_in_tooltip: "Logga in för att rösta på denna sammanfattning"
+        submitting_tooltip: "Skickar feedback..."
+        aria_helpful: "%{label}: hjälpsam"
+        aria_not_helpful: "%{label}: inte hjälpsam"
+      summary_item:
+        disclaimer: "Denna sammanfattning av användarkommentarer på iNaturalist har genererats av AI och kan vara felaktig. Du kan hjälpa oss att förbättra denna sammanfattning genom att ge feedback."
+        default_label: "SAMMANFATTNING"
+        default_title: "Sammanfattning"
+        copy_link: "Kopiera länken till denna sammanfattning"
+        photo_tip_label: "BILDTIPS"
+        photo_tip_aria: "Bildtips: %{tip}"
+        references_toggle: "Referenser till användarkommentar på iNaturalist"
+        user_fallback: "iNaturalist-användare"
+        reference_commented: "kommenterad"
+        view_comment: "Visa kommentar"
+        view_reference_feedback: "Visa feedback på referens"
+      reference_feedback:
+        loading: "Laddar referens-feedback..."
+        sign_in_required: "Logga in för att rösta på referens-feedback."
+        unavailable: "Referens-feedback är inte tillgänglig just nu."
+        service_unavailable: "Tjänsten för referens-feedback är inte tillgänglig just nu."
+        submit_failed: "Det gick inte att skicka referens-feedback."
+        sign_in_tooltip: "Logga in för att rösta på den här referensen"
+        submitting_tooltip: "Skickar feedback..."
+        aria_helpful: "%{label}: hjälpsam"
+        aria_not_helpful: "%{label}: inte hjälpsam"
+      taxon_detail:
+        select_species: "Välj en art för att visa bestämningssammanfattningar."
+        last_updated: "Senast uppdaterad"
+        no_image: "Ingen bild tillgänglig"
+        photo_tips_heading: "Bildtips"
+        summary_uuid: "Taxon ID-sammanfattning UUID"
+      taxa_list:
+        group_labels:
+          animalia: "Andra djur"
+          actinopterygii: "Strålfeniga fiskar"
+          aves: "Fåglar"
+          reptilia: "Reptiler"
+          amphibia: "Amfibier"
+          mammalia: "Däggdjur"
+          arachnida: "Spindeldjur"
+          insecta: "Insekter"
+          plantae: "Växter"
+          fungi: "Svampar"
+          protozoa: "Protozoer"
+          mollusca: "Blötdjur"
+          chromista: "Kromister"
+        other_group: "Övriga"
+        empty: "Inga arter tillgängliga."
   #Title of a section warning the user about something
   warning_title: Varning
   wikimedia: Wikimedia

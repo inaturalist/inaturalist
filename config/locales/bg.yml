@@ -1070,6 +1070,8 @@ bg:
     Да четат личните съобщения на други хора.
   #Title of a page where people apply to become a curator
   curator_application_title: Кандидатстване за кураторство
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Ръководство за куратори
   curators: Куратори
   curators_can_remove_observations_from: Кураторите могат да премахват наблюдения от проекта и техните разпознавания се показват до наблюденията в определени изгледи специфични за проектите. Кураторите могат също да виждат истинските координати на поверителни или замаскирани наблюдения добавени в проекта.
   curator_coordinate_access: Координационен достъп на куратора
@@ -1417,6 +1419,8 @@ bg:
   editing_taxon_link: Редактиране на таксономична препратка
   editing_taxon_name_for_taxon_html: Редактиране на име „%{name}“ за таксон %{taxon}
   editors: Редактори
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Ръководство за преподаватели
   either_that_user_doesnt_exist_or: "Или потребителят не съществува или вече го следвате."
   eligible_for_research_grade: Годно за „Изследователско качество“
   email: Електронна поща
@@ -1557,6 +1561,8 @@ bg:
   flag_created: Маркерът е създаден на
   flag_description: Маркирайте това съдържание за да уведомите кураторите, че нещо не е наред с него.
   flag_comment_description: Можете да напишете коментар към маркера, за да обясните по-подробно защо сте го добавили и да предоставите препратки към подкрепящи доказателства.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Маркери, които цитират източник, е по-вероятно да бъдат разрешени бързо от нашите куратори доброволци.
   flag_for_check_list_title_html: |
     Маркер за видов списък: %{title}
   flag_for_comment_id_html: Маркер за <a href="%{url}">коментар %{id}</a>
@@ -1650,6 +1656,8 @@ bg:
   geoprivacy_is_obscured_desc: Наблюдателят е решил да замаскира координатите.
   geoprivacy_is_private_desc: Наблюдателят е решил да скрие координатите.
   get_started: Започни
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Начални стъпки
   getting_started_guide: Ръководство за начинаещи
   #Prompt to donate money on a montly basis
   give_monthly_caps: ДАРЯВАЙ ЕЖЕМЕСЕЧНО
@@ -1877,6 +1885,7 @@ bg:
     observations_in_year: Най-много наблюдения за %{year}
     identifications_in_month_year: Най-много разпознавания за %{month_year}
     identifications_in_year: Най-много разпознавания за %{year}
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Научете
   learn_about_the_species_live_in: Научи за видовете живеещи в
   learn_more: Научете повече
@@ -3428,10 +3437,16 @@ bg:
     form: Форма
     infrahybrid: Инфрахибрид
     leaves: Листа
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: форма на материята
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
   ranks_lowercase_kingdom: царство
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
   ranks_lowercase_subkingdom: подцарство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: тип
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: подтип
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
   ranks_lowercase_superclass: надклас
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
@@ -3464,8 +3479,36 @@ bg:
   ranks_lowercase_family: семейство
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
   ranks_lowercase_subfamily: подсемейство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: надтрибус
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: трибус
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: подтрибус
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: род
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: родов хибрид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: подрод
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: секция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: подсекция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: комплекс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: вид
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
   ranks_lowercase_hybrid: хибрид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: подвид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: вариетет
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: форма
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: инфрахибрид
   ranges: Граници
   ray_finned_fishes: лъчеперки
   re_order_photos: "Размести снимките &raquo;"
@@ -4182,6 +4225,8 @@ bg:
   uicn_red_list_status: "Статут според черв. списък на IUCN:"
   umbrella_projects: Обединителни проекти
   unblock: Отблокиране
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Информация за проектите
   unique_observers: различни наблюдатели
   unknown: Неизвестен
   unknown_error: Незнайна грешка
@@ -4723,11 +4768,14 @@ bg:
     devise:
       mailer:
         confirmation_instructions:
-          are_you_planning_on_using_in_the_classroom: Планирате ли да използвате %{site_name} в класната стая?
+          are_you_planning_on_using_in_the_classroom: Планираш ли да използваш %{site_name} в класната стая?
           community_guidelines_html: |
-            <a href="%{url}">Погледнете Правилата на общността</a> за съвети как да запазим iNaturalist дружелюбен и гостоприемен.
+            <a href="%{url}">Погледни Правилата на общността</a> за съвети как да запазим iNaturalist дружелюбен и гостоприемен.
           please_read_the_teachers_guide_html: |
-            Ако е така, моля прочетете нашето <a href="%{url}">Ръководство за учители</a> за съвети как да използвате %{site_name} с ученици и студенти.
+            Ако е така, моля прочети нашето <a href="%{url}">Ръководство за учители</a> за съвети как да използваш %{site_name} с ученици и студенти.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Ако е така, моля прочети нашето <a href="%{url}">Ръководство за учители</a> за съвети как да използваш %{site_name} с ученици.
     donate:
       donate_short_desc: "Дарете и покажете своята подкрепа!"
       donate_desc_moore_html: |
@@ -4761,7 +4809,7 @@ bg:
         <strong>iNaturalist е една от най-големите общности в света посветени на изследването на биоразнообразието. Благодарим ти, че си част от нея!</strong>
         </p>
         <p class="lead">
-        Ако вярваш в способността на тази глобална общност от природолюбители да споделя знания и да генерира незаменими данни за биоразнообразието – моля, обмисли възможността да станеш еднократен или редовен дарител или разгледай<a
+        Ако вярваш в способността на тази глобална общност от природолюбители да споделя знания и да генерира незаменими данни за биоразнообразието – моля, обмисли възможността да станеш еднократен или редовен дарител или разгледай <a
         href="https://www.inaturalist.org/pages/giving">други начини за даряване</a>.
         </p>
         <p class="lead">
@@ -4953,6 +5001,7 @@ bg:
         updated_at: Дата и час на последното обновяване на наблюдението
         url: Уебадрес на наблюдението
         tag_list: Списък с етикети разделени със запетая
+        place_admin2_name: Име на административната единица с два ранга под нивото на цялата страна
         positioning_method: Как са били определени координатите
         positioning_device: Устройство използвано за определяне на координатите
       identify:
@@ -6015,6 +6064,10 @@ bg:
             name:
               bad_format: |
                 може да съдържа единствено стандартни латински символи, тирета, интервали и ×; имайте предвид, че предполагаеми таксони и култивари не са позволени
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "промяната на име не е позволена за рангове по-високи от вид"
+              #Error message trying make major changes to a species part of ssp
+              only_infra_may_change: "само подвидовият епитет може да се промени за подвидови рангове"
         taxon_change:
           attributes:
             base:
