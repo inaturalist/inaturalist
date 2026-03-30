@@ -15,6 +15,7 @@ class ModeratorAction < ApplicationRecord
   ].freeze
   MINIMUM_REASON_LENGTH = 10
   MAXIMUM_REASON_LENGTH = 2048
+  MAXIMUM_SUSPEND_REASON_LENGTH = 100
 
   PRIVATE_MEDIA_RETENTION_TIME = 2.months
 
@@ -28,6 +29,7 @@ class ModeratorAction < ApplicationRecord
     inverse_of: :moderator_actions_as_resource_user
   validates :action, inclusion: ACTIONS
   validates :reason, length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH }
+  validates :reason, length: { maximum: MAXIMUM_SUSPEND_REASON_LENGTH }, if: -> { action == SUSPEND }
   validate :only_curators_and_staff_can_hide, on: :create
   validate :only_staff_can_make_private
   validate :only_staff_can_rename, on: :create
@@ -35,6 +37,7 @@ class ModeratorAction < ApplicationRecord
   validate :only_staff_and_hiding_curator_can_unhide, on: :create
   validate :check_accepted_actions, on: :create
   validate :cannot_suspend_staff
+  validate :suspended_until_must_be_in_future
 
   before_create :set_resource_user_id
   before_create :set_resource_content
@@ -100,6 +103,13 @@ class ModeratorAction < ApplicationRecord
     return if user&.is_admin?
 
     errors.add( :base, :only_staff_can_rename )
+  end
+
+  def suspended_until_must_be_in_future
+    return unless action == SUSPEND
+    return unless suspended_until.present?
+
+    errors.add( :suspended_until, :must_be_in_the_future ) if suspended_until <= Time.current
   end
 
   def cannot_suspend_staff

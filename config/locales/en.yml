@@ -10847,6 +10847,7 @@ en:
           attributes:
             action:
               not_supported_for_this_kind_of_content: is not supported for this kind of content
+              must_be_in_the_future: Must be in the future
             base:
               # Error saying that the private attribute of a ModeratorAction can only be applied
               # if the moderated resource is also marked as hidden
