@@ -187,7 +187,7 @@ describe Emailer, "user_unsuspended" do
   end
 
   it "should include reason when provided" do
-    mail = Emailer.user_unsuspended( user, reason: "spamming" )
+    mail = Emailer.user_unsuspended( user, "spamming" )
     expect( mail.body ).to match( /spamming/ )
   end
 

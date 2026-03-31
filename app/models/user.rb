@@ -1572,7 +1572,7 @@ class User < ApplicationRecord
     old_suspended_until = saved_change_to_suspended_until&.first
     reason = old_suspended_until.present? ? saved_change_to_suspension_reason&.first : nil
 
-    Emailer.user_unsuspended( self, reason: reason ).deliver_now
+    Emailer.user_unsuspended( self, reason ).deliver_now
   end
 
   def revoke_access_tokens_by_suspended_user
