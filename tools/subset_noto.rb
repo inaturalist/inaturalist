@@ -193,7 +193,7 @@ SCRIPTS = {
 # ── CLI options ───────────────────────────────────────────────────────────────
 
 options = {
-  keys:       "views.welcome_v2",
+  keys:       "*",
   weights:    [400, 700],
   output_dir: DEFAULT_OUTPUT,
   dry_run:    false,
@@ -203,7 +203,7 @@ OptionParser.new do |opts|
   opts.banner = "Usage: ruby tools/subset_noto.rb [options]"
 
   opts.on("--keys PATH",
-    "Dot-separated YAML key path to scan (default: views.welcome_v2). Use '*' for entire file.") \
+    "Dot-separated YAML key path to scan (default: *). Use '*' for entire file.") \
     { |k| options[:keys] = k }
 
   opts.on("--weights LIST",

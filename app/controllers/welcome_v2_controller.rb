@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class WelcomeV2Controller < ApplicationController
+  # TODO: load and freeze observations as constant on controller initialization?
+
   def index
     @responsive = true
     @skip_external_connections = true
