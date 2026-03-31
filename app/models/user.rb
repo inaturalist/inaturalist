@@ -550,6 +550,39 @@ class User < ApplicationRecord
     save( validate: false ) if self.changed?
   end
 
+  # Unsuspend this user if their timed suspension has expired.
+  # Login-time equivalent of the inaturalist:auto_unsuspend rake task.
+  # Idempotent: no-op for users who are not suspended, have indefinite
+  # suspensions, or whose timed suspension has not yet expired.
+  def unsuspend_if_timed_suspension_expired!
+    return unless suspended_at?
+    return if suspended_until.nil?
+    return if suspended_until > Time.zone.now
+
+    actor = suspended_by_user || User.admins.first
+    if actor
+      action = ModeratorAction.new(
+        action: ModeratorAction::UNSUSPEND,
+        resource: self,
+        user: actor,
+        reason: "Timed suspension expired automatically"
+      )
+      unless action.save
+        Rails.logger.error(
+          "[ERROR] User#unsuspend_if_timed_suspension_expired!: " \
+          "ModeratorAction save failed for user #{id}: #{action.errors.full_messages.join( ', ' )}"
+        )
+        unsuspend!
+      end
+    else
+      Rails.logger.error(
+        "[ERROR] User#unsuspend_if_timed_suspension_expired!: " \
+        "no actor found for user #{id}, falling back to direct unsuspend!"
+      )
+      unsuspend!
+    end
+  end
+
   def active?
     !suspended?
   end

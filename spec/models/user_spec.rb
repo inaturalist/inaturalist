@@ -737,6 +737,83 @@ describe User do
     end
   end
 
+  describe "unsuspend_if_timed_suspension_expired!" do
+    it "is a no-op when user is not suspended" do
+      user = User.make!
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+      expect( user ).not_to be_suspended
+    end
+
+    it "is a no-op for indefinite suspensions" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: nil )
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+      expect( user.reload ).to be_suspended
+    end
+
+    it "is a no-op when timed suspension is still active" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: 1.day.from_now )
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+      expect( user.reload ).to be_suspended
+    end
+
+    it "unsuspends and creates a ModeratorAction when timed suspension has expired" do
+      make_admin
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      expect { user.unsuspend_if_timed_suspension_expired! }.to change( ModeratorAction, :count ).by( 1 )
+      user.reload
+      expect( user ).not_to be_suspended
+      expect( user.suspended_at ).to be_nil
+      expect( user.suspended_until ).to be_nil
+      ma = ModeratorAction.last
+      expect( ma.action ).to eq ModeratorAction::UNSUSPEND
+      expect( ma.resource ).to eq user
+    end
+
+    it "uses suspended_by_user as actor when available" do
+      make_admin
+      suspender = User.make!
+      user = User.make!
+      user.update_columns(
+        suspended_at: 2.days.ago,
+        suspended_until: 1.day.ago,
+        suspended_by_user_id: suspender.id
+      )
+      user.unsuspend_if_timed_suspension_expired!
+      ma = ModeratorAction.last
+      expect( ma.user ).to eq suspender
+    end
+
+    it "falls back to first admin as actor" do
+      admin = make_admin
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      user.unsuspend_if_timed_suspension_expired!
+      ma = ModeratorAction.last
+      expect( ma.user ).to eq admin
+    end
+
+    it "falls back to direct unsuspend when no actor is available" do
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      allow( User ).to receive( :admins ).and_return( User.none )
+      user.unsuspend_if_timed_suspension_expired!
+      user.reload
+      expect( user ).not_to be_suspended
+      expect( user.suspended_at ).to be_nil
+    end
+
+    it "is idempotent" do
+      make_admin
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      user.unsuspend_if_timed_suspension_expired!
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+    end
+  end
+
   describe "moderated_with" do
     it "renames the user when given a RENAME action" do
       user = User.make!( login: "old_login" )

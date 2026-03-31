@@ -12,6 +12,7 @@ module Users
       resource ||= User.authenticate( params[:login], params[:password] ) if params[:login] && params[:password]
       resource ||= warden.authenticate!( auth_options )
       throw( :warden ) unless resource
+      resource.unsuspend_if_timed_suspension_expired!
       set_flash_message( :notice, :signed_in ) if is_navigational_format?
       sign_in( resource_name, resource )
       resource.update( last_ip: Logstasher.ip_from_request_env( request.env ) )
