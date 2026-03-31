@@ -735,6 +735,91 @@ describe User do
       expect( user ).not_to be_suspended
       expect( user.suspended_until ).to be_nil
     end
+
+    it "sends an unsuspended email" do
+      user = User.make!
+      user.update_columns(
+        suspended_at: Time.zone.now,
+        suspended_until: 7.days.from_now,
+        suspension_reason: "spamming"
+      )
+      user.reload
+      user.unsuspend!
+      mail = ActionMailer::Base.deliveries.last
+      expect( mail ).not_to be_nil
+      expect( mail.to ).to include user.email
+      expect( mail.subject ).to match( /unsuspended/ )
+    end
+
+    it "includes reason in unsuspended email for timed suspensions" do
+      user = User.make!
+      user.update_columns(
+        suspended_at: Time.zone.now,
+        suspended_until: 7.days.from_now,
+        suspension_reason: "spamming"
+      )
+      user.reload
+      user.unsuspend!
+      mail = ActionMailer::Base.deliveries.last
+      expect( mail.body ).to match( /spamming/ )
+    end
+
+    it "does not include reason in unsuspended email for indefinite suspensions" do
+      user = User.make!
+      user.update_columns(
+        suspended_at: Time.zone.now,
+        suspended_until: nil,
+        suspension_reason: "historical reason"
+      )
+      user.reload
+      user.unsuspend!
+      mail = ActionMailer::Base.deliveries.last
+      expect( mail.body ).not_to match( /historical reason/ )
+    end
+  end
+
+  describe "inactive_message" do
+    it "returns base suspension message for indefinite suspensions" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: nil )
+      user.reload
+      msg = user.inactive_message
+      expect( msg ).to include I18n.t( "devise.failure.user.suspended" )
+      expect( msg ).not_to include "Reason"
+    end
+
+    it "includes duration for timed suspensions" do
+      user = User.make!
+      suspended_until = 7.days.from_now
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: suspended_until )
+      user.reload
+      msg = user.inactive_message
+      expect( msg ).to include I18n.l( suspended_until, format: :long )
+    end
+
+    it "includes reason for timed suspensions with a reason" do
+      user = User.make!
+      user.update_columns(
+        suspended_at: Time.zone.now,
+        suspended_until: 7.days.from_now,
+        suspension_reason: "posting spam"
+      )
+      user.reload
+      msg = user.inactive_message
+      expect( msg ).to include "posting spam"
+    end
+
+    it "does not include reason for indefinite suspensions even if one is set" do
+      user = User.make!
+      user.update_columns(
+        suspended_at: Time.zone.now,
+        suspended_until: nil,
+        suspension_reason: "old reason"
+      )
+      user.reload
+      msg = user.inactive_message
+      expect( msg ).not_to include "old reason"
+    end
   end
 
   describe "moderated_with" do
