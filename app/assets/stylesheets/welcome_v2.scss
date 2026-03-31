@@ -32,6 +32,7 @@ $light-bg:     #ebf2e1;
 $border-color: #d5e2c3;
 $white:        #ffffff;
 
+// TODO: Noto Serif fallback for when we have translations for non-Latin scripts
 $font-serif:   "Libre Baskerville", Georgia, serif;
 $font-sans:    "Lato", sans-serif;
 $font-mono:    "Courier Prime", "Courier New", monospace;
@@ -1105,8 +1106,12 @@ a.wv2-carousel__item {
 // ── FAQ ───────────────────────────────────────────────────────────────────────
 
 .wv2-faq {
-  max-width: 700px;
+  width: 700px;
   margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .wv2-faq { width: calc(100% - 40px); }
 }
 
 .wv2-faq__item {
