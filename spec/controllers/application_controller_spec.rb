@@ -253,6 +253,31 @@ describe ApplicationController do
     end
   end
 
+  describe WelcomeController do
+    describe "sign_out_suspended_users" do
+      it "signs out a suspended user" do
+        user = User.make!( suspended_at: Time.now )
+        sign_in( user )
+        get :index
+        expect( controller.send( :current_user ) ).to be_nil
+      end
+
+      it "does not sign out a non-suspended user" do
+        user = User.make!
+        sign_in( user )
+        get :index
+        expect( controller.send( :current_user ) ).to eq user
+      end
+
+      it "does not sign out a user whose timed suspension has expired" do
+        user = User.make!( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+        sign_in( user )
+        get :index
+        expect( controller.send( :current_user ) ).to eq user
+      end
+    end
+  end
+
   describe "allow_external_iframes" do
     describe ObservationsController do
       describe "Content-Security-Policy header" do

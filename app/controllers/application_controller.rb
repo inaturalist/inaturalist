@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
   before_action :check_preferred_place
   before_action :check_preferred_site
   before_action :sign_out_spammers
+  before_action :sign_out_suspended_users
   before_action :set_session_oauth_application_id
 
   # /ping should skip all before filters and just render
@@ -279,6 +280,12 @@ class ApplicationController < ActionController::Base
 
   def sign_out_spammers
     if current_user && current_user.spammer?
+      sign_out current_user
+    end
+  end
+
+  def sign_out_suspended_users
+    if current_user && current_user.suspended?
       sign_out current_user
     end
   end
