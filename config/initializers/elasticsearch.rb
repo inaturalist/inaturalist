@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # configure the Rails gem
 es_config = { transport_options: { request: { timeout: 60 } } }
 if CONFIG.elasticsearch_hosts
@@ -7,8 +9,14 @@ if CONFIG.elasticsearch_hosts
 else
   es_config[:host] = CONFIG.elasticsearch_host
 end
-Elasticsearch::Model.client = Elasticsearch::Client.new(es_config)
+es_config[:api_key] = CONFIG.elasticsearch_api_key
+if CONFIG.elasticsearch_tls_allow_unauthorized
+  es_config[:transport_options][:ssl] = {
+    verify: false
+  }
+end
+Elasticsearch::Model.client = Elasticsearch::Client.new( es_config )
 # load our own Elasticsearch logic
 require "elastic_model"
 
-ActiveRecord::Base.send( :include, ActsAsElasticModel )
+ActiveRecord::Base.include( ActsAsElasticModel )

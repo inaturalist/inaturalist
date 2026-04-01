@@ -40,6 +40,8 @@ base: &base
 
     elasticsearch_hosts:
         - http://<%= ENV.fetch("INAT_ES_HOST") { "es" } %>:9200
+    elasticsearch_api_key: <%= ENV.fetch("INAT_ES_API_KEY") { "INAT_ES_API_KEY" } %>
+    elasticsearch_tls_allow_unauthorized: true
 
     node_api_url: <%= ENV.fetch("INAT_API_URL") { "http://localhost:4000/v1" } %>
 

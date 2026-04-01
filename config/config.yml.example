@@ -103,6 +103,8 @@ base: &base
     # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format 
     # for more details
     elasticsearch_host: http://localhost:9200
+    elasticsearch_api_key: <%= ENV.fetch("INAT_ES_API_KEY") { "09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af" } %>
+    elasticsearch_tls_allow_unauthorized: true
 
     # An instance of https://github.com/inaturalist/iNaturalistAPI, the
     # same code running at CONFIG.tile_servers.elasticsearch
