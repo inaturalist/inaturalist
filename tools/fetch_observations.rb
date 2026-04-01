@@ -48,8 +48,6 @@ RATE_LIMIT_S  = 1.0  # seconds between API requests
 MAX_RETRIES   = 3    # retries on 429
 
 # Fields for the initial observation fetch.
-# We include preferred_common_name (English) so we can filter out taxa with no
-# common name before running the per-locale pass.
 OBS_FIELDS = (
   "(id:!t," \
   "user:(login:!t,icon_url:!t)," \
@@ -62,6 +60,20 @@ OBS_FIELDS = (
 # Fields for the per-locale common-name pass.
 NAME_FIELDS = "(id:!t,taxon:(preferred_common_name:!t))".freeze
 
+# Fields for the sample observation (same as OBS_FIELDS plus observed_on).
+SAMPLE_OBS_FIELDS = (
+  "(id:!t," \
+  "user:(login:!t,icon_url:!t)," \
+  "taxon:(name:!t,preferred_common_name:!t,default_photo:(square_url:!t))," \
+  "photos:(url:!t)," \
+  "place_guess:!t," \
+  "location:!t," \
+  "observed_on:!t)"
+).freeze
+
+# Fields for story observations (taxon common names only).
+STORY_OBS_FIELDS = "(id:!t,taxon:(preferred_common_name:!t))".freeze
+
 # ── CLI options ───────────────────────────────────────────────────────────────
 
 options = {
@@ -73,6 +85,9 @@ options = {
   base_url:    BASE_URL,
   rate_limit:  RATE_LIMIT_S,
   dry_run:     false,
+  wipe:        false,
+  sample_id:   nil,
+  story_ids:   [],
 }
 
 OptionParser.new do |opts|
@@ -106,6 +121,17 @@ OptionParser.new do |opts|
 
   opts.on("--dry-run", "Show configuration and locale list without fetching") \
     { options[:dry_run] = true }
+
+  opts.on("--wipe", "Delete all files in --output-dir before downloading") \
+    { options[:wipe] = true }
+
+  opts.on("--sample-id ID", Integer,
+    "Observation ID for the sample observation section") \
+    { |v| options[:sample_id] = v }
+
+  opts.on("--story-ids IDs",
+    "Comma-separated observation IDs for story card backgrounds (in display order)") \
+    { |v| options[:story_ids] = v.split( "," ).map( &:to_i ) }
 end.parse!
 
 abort "Error: --project is required. Run with --help for usage." unless options[:project]
@@ -248,6 +274,10 @@ def build_record(obs)
   }
 end
 
+def build_sample_record(obs)
+  build_record(obs).merge("observed_on" => obs["observed_on"])
+end
+
 # ── Fetch observations ────────────────────────────────────────────────────────
 
 target     = options[:count]
@@ -256,7 +286,7 @@ seen_ids   = Set.new
 named_obs  = []
 page       = 1
 
-warn "Fetching observations from project #{options[:project]} (target: #{target} with common names)..."
+warn "Fetching observations from project #{options[:project]} (target: #{target})..."
 
 until named_obs.size >= target
   sleep options[:rate_limit] if page > 1
@@ -274,32 +304,67 @@ until named_obs.size >= target
   results = JSON.parse(body)["results"] || []
 
   if results.empty?
-    warn "Warning: project pool exhausted on page #{page} — only #{named_obs.size} of #{target} observations had common names."
+    warn "Warning: project pool exhausted on page #{page} — only #{named_obs.size} of #{target} observations found."
     break
   end
 
   # Deduplicate in case of any overlap between pages.
-  fresh = results.reject { |obs| seen_ids.include?(obs["id"]) }
+  fresh  = results.reject { |obs| seen_ids.include?(obs["id"]) }
   seen_ids.merge(results.map { |obs| obs["id"] })
 
-  named  = fresh.select { |obs| obs.dig("taxon", "preferred_common_name") }
   needed = target - named_obs.size
-  named_obs.concat(named.first(needed))
+  named_obs.concat(fresh.first(needed))
 
-  skipped = fresh.size - named.size
-  warn "  Page #{page}: #{fresh.size} observations, #{named.size} named, #{skipped} skipped" \
+  warn "  Page #{page}: #{fresh.size} observations" \
        "#{named_obs.size < target ? ", #{target - named_obs.size} still needed" : ""}"
 
   page += 1
 end
 
-warn "Retrieved #{named_obs.size} observations with common names."
+warn "Retrieved #{named_obs.size} observations."
 
-records       = named_obs.map { |obs| build_record(obs) }
-records_by_id = records.each_with_object({}) { |r, h| h[r["id"]] = r }
-obs_ids       = records.map { |r| r["id"] }.compact
+records = named_obs.map { |obs| build_record(obs) }
+
+# ── Fetch sample observation ──────────────────────────────────────────────────
+
+sample_record = nil
+if options[:sample_id]
+  warn "Fetching sample observation #{options[:sample_id]}..."
+  params = URI.encode_www_form( id: options[:sample_id], fields: SAMPLE_OBS_FIELDS, locale: "en" )
+  body   = http_get( "#{options[:base_url]}/observations?#{params}" )
+  obs    = JSON.parse( body )["results"]&.first
+  if obs
+    sample_record = build_sample_record( obs )
+    warn "  Got: #{sample_record["scientific_name"]} by #{sample_record["user_name"]}"
+  else
+    warn "  Warning: observation #{options[:sample_id]} not found."
+  end
+end
+
+# ── Fetch story observations ──────────────────────────────────────────────────
+
+story_records = []
+if options[:story_ids].any?
+  warn "Fetching #{options[:story_ids].size} story observation(s)..."
+  params  = URI.encode_www_form( id: options[:story_ids].join( "," ), fields: STORY_OBS_FIELDS )
+  body    = http_get( "#{options[:base_url]}/observations?#{params}" )
+  by_id   = ( JSON.parse( body )["results"] || [] ).each_with_object( {} ) { |obs, h| h[obs["id"]] = obs }
+  # Preserve the caller-specified display order.
+  story_records = options[:story_ids].map do |id|
+    next unless ( obs = by_id[id] )
+
+    en_name = obs.dig( "taxon", "preferred_common_name" )
+    { "id" => id, "en_name" => en_name, "common_names" => { "en" => en_name } }
+  end.compact
+  warn "  Got #{story_records.size} of #{options[:story_ids].size} story observation(s)."
+end
 
 # ── Fetch common names per locale ─────────────────────────────────────────────
+
+# Include the sample observation in the locale pass so it gets common names too.
+locale_records = records + [sample_record].compact + story_records
+records_by_id  = locale_records.each_with_object( {} ) { |r, h| h[r["id"]] = r }
+obs_ids        = locale_records.map { |r| r["id"] }.compact
 
 if obs_ids.any?
   warn "Fetching common names for #{locales.size} locales..."
@@ -326,6 +391,10 @@ end
 # ── Download images ───────────────────────────────────────────────────────────
 
 if options[:output_dir]
+  if options[:wipe] && Dir.exist?(options[:output_dir])
+    Dir.glob(File.join(options[:output_dir], "*.webp")).each { |f| File.delete(f) }
+    warn "Wiped *.webp from #{options[:output_dir]}"
+  end
   FileUtils.mkdir_p(options[:output_dir])
   warn "Downloading images to #{options[:output_dir]}..."
 
@@ -346,15 +415,44 @@ if options[:output_dir]
       rec[file_key] = download_as_webp(img_url, path, resize_width: resize_width)
     end
   end
+
+  # Sample observation images (larger photo for prominence).
+  if sample_record
+    id = sample_record["id"]
+    [
+      ["user_icon_url",         "user_icon_file",          "sample_#{id}_user.webp",        nil],
+      ["taxon_thumbnail_url",   "taxon_thumbnail_file",    "sample_#{id}_taxon.webp",        nil],
+      ["observation_photo_url", "observation_photo_file",  "sample_#{id}_observation.webp",  600],
+    ].each do |url_key, file_key, filename, resize_width|
+      img_url = sample_record[url_key]
+      next unless img_url
+
+      path = File.join(options[:output_dir], filename)
+      warn "  #{filename}"
+      sample_record[file_key] = download_as_webp(img_url, path, resize_width: resize_width)
+    end
+  end
+
 end
 
 # ── Output ────────────────────────────────────────────────────────────────────
 
-json_output = JSON.pretty_generate(records)
+# Build stories as a hash keyed by English common name for easy locale lookup.
+stories_output = story_records.each_with_object( {} ) do |rec, h|
+  h[rec["en_name"]] = rec["common_names"]
+end
+
+output = {
+  "explore" => records,
+  "sample"  => sample_record,
+  "stories" => stories_output,
+}
+
+json_output = JSON.pretty_generate(output)
 
 if options[:output]
   File.write(options[:output], json_output, encoding: "utf-8")
-  warn "Wrote #{records.size} records to #{options[:output]}"
+  warn "Wrote #{records.size} explore + sample + #{story_records.size} story record(s) to #{options[:output]}"
 else
   puts json_output
 end

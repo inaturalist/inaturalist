@@ -47,6 +47,12 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   flex: 1 0 0;
   background-color: $white;
   padding: 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 0;
+
+  #logonav { min-width: max-content; }
 
   .donate-cta .btn-focus {
     background-color: $white;
@@ -63,7 +69,15 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
     .header-lg { display: inline; }
   }
 
+  &.header-donate-icon-only .donate-cta {
+    .header-md,
+    .header-lg { display: none; }
+    padding: 7px 7px !important;
+  }
+
   .navtabs {
+    margin: 0;
+
     .signin_link {
       padding-inline: 2px !important;
     }
@@ -135,6 +149,56 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   background-color: $dark-gray;
   color: $white;
   &:hover, &:focus { background-color: lighten($dark-gray, 10%); color: $white; }
+}
+
+// ── Taxon block (shared by obs-card and observation sample) ──────────────────
+
+.wv2-taxon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wv2-taxon__thumb {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.wv2-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.wv2-location__icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.wv2-taxon__names {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+
+  p, em {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    line-height: 1;
+  }
+
+  em {
+    font-size: 12px;
+
+    &:only-child { font-size: 14px; }
+  }
 }
 
 // ── Inline HTML span helpers (used in _html locale keys) ─────────────────────
@@ -389,7 +453,6 @@ h2 {
   &__row {
     display: flex;
     gap: 33px;
-    align-items: flex-start;
 
     &--sep {
       border-top: 1px solid $border-color;
@@ -415,6 +478,7 @@ h2 {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 10px;
     font-family: $font-sans;
     font-size: 17px;
@@ -423,12 +487,14 @@ h2 {
     margin: 0;
 
     @media (max-width: 767px) { font-size: 14px; }
+
+    &.wv2-observation__who {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
   }
 
-  &__who {
-    flex-direction: row;
-    align-items: center;
-  }
 
   &__avatar {
     width: 25px;
@@ -454,41 +520,6 @@ h2 {
     flex-shrink: 0;
   }
 
-  &__taxon {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  &__taxon-thumb {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-
-  &__taxon-names {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: 17px;
-
-    em { font-size: 14px; }
-  }
-
-  &__place, &__date {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    font-size: 14px;
-  }
-
-  &__icon {
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-  }
 }
 
 // ── Stats ─────────────────────────────────────────────────────────────────────
@@ -514,7 +545,7 @@ h2 {
   font-size: 43px;
   color: $dark-gray;
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.2em;
   margin-bottom: 10px;
 
   @media (max-width: 767px) { font-size: 30px; }
@@ -701,6 +732,8 @@ h2 {
     &::before { display: block; }
     &--prev { left: 8px; &::before { content: "‹"; } }
     &--next { right: 8px; &::before { content: "›"; } }
+
+    @media (pointer: coarse) { display: none; }
 
     &:hover, &:focus {
       border-color: $green;
@@ -1005,35 +1038,6 @@ a.wv2-carousel__item {
     display: block;
   }
 
-  &__taxon {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  &__taxon-thumb {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: $border-color center/cover no-repeat;
-    flex-shrink: 0;
-  }
-
-  &__taxon-thumb-img {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-
-  &__taxon-names {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-
   &__common {
     font-family: $font-sans;
     font-size: 14px;
@@ -1057,29 +1061,12 @@ a.wv2-carousel__item {
     text-overflow: ellipsis;
   }
 
-  &__location {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: $font-sans;
-    font-size: 12px;
-    font-weight: 500;
-    color: $dark-gray;
-    letter-spacing: -0.25px;
-    min-width: 0;
-
-    span {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .wv2-location span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  &__location-icon {
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-  }
 }
 
 // ── Store badges (shared by download + seek) ─────────────────────────────────

@@ -43,49 +43,57 @@
   .wv2-section.wv2-section--white.wv2-section--stories.text-center
     %h2= t("#{s}.stories.heading")
     .wv2-stories-row
-      - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", {moth_common_name: "Frosted Phoenix"}, "frosted_phoenix"], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", {}, "inat"], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", {}, "california_newt"]].each do |heading, body, user, place, interp, img|
+      - locale_key = I18n.locale.to_s
+      - locale_base = locale_key.split( "-" ).first
+      - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", "Frosted Phoenix", "frosted_phoenix"], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", nil, "inat"], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", nil, "california_newt"]].each do |heading, body, user, place, en_name, fallback_img|
+        - names = en_name && @story_common_names&.dig( en_name )
+        - interp = en_name ? { moth_common_name: names&.dig( locale_key ) || names&.dig( locale_base ) || names&.dig( "en" ) || en_name } : {}
         .wv2-story
-          .wv2-story__image{style: "background-image: url(#{asset_path("welcome_v2/#{img}.webp")})"}
+          .wv2-story__image{style: "background-image: url(#{asset_path("welcome_v2/#{fallback_img}.webp")})"}
             %h3= t("#{s}.stories.#{heading}")
           .wv2-story__body
-            %p= t("#{s}.stories.#{body}", interp)
+            %p= t("#{s}.stories.#{body}", **interp)
             %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
     = link_to t("#{s}.stories.read_more"), "#", class: "btn wv2-btn--green"
 
   -# ── Sample observation ────────────────────────────────────
-  -# TODO: wire up @sample_observation from controller (photo, map, who/what/where/when)
   .wv2-section.wv2-section--light.text-center
     %h2= t("#{s}.observation.heading")
+    - s_obs = @sample_observation
+    - locale_key = I18n.locale.to_s
+    - locale_base = locale_key.split( "-" ).first
+    - s_common = ( s_obs["common_names"] || {} ).then { |cn| cn[locale_key] || cn[locale_base] || cn["en"] }
     .wv2-observation
       .wv2-observation__col
         .wv2-observation__row
           %dt= t(:who)
           %dd.wv2-observation__who
-            = image_tag "welcome_v2/tiwane.webp", class: "wv2-observation__avatar", alt: ""
-            %span tiwane
+            = image_tag s_obs["user_icon_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__avatar", alt: ""
+            %span= s_obs["user_name"]
         .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:what)
           %dd
-            = image_tag "welcome_v2/emerald_glass_frog.webp", class: "wv2-observation__photo", alt: ""
-            .wv2-observation__taxon
-              = image_tag "welcome_v2/little_emerald_glass_frog.webp", class: "wv2-observation__taxon-thumb", alt: ""
-              .wv2-observation__taxon-names
-                %p Emerald Glass Frog
-                %em Espadarana prosoblepon
+            = image_tag s_obs["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: ""
+            .wv2-taxon
+              = image_tag s_obs["taxon_thumbnail_file"].sub( "app/assets/images/", "" ), class: "wv2-taxon__thumb", alt: ""
+              .wv2-taxon__names
+                - if s_common
+                  %p= s_common
+                %em= s_obs["scientific_name"]
       .wv2-observation__col
         .wv2-observation__row
           %dt= t(:where)
           %dd
             = image_tag "welcome_v2/observation_example_map.webp", class: "wv2-observation__map", alt: ""
-            .wv2-observation__place
-              = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-observation__icon", alt: ""
-              %span [place name]
+            .wv2-location
+              = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-location__icon", alt: ""
+              %span= s_obs["place_guess"]
         .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:when)
           %dd
-            .wv2-observation__date
-              = image_tag "welcome_v2/icon-datetime.svg", class: "wv2-observation__icon", alt: ""
-              %span [formatted date]
+            .wv2-location
+              = image_tag "welcome_v2/icon-datetime.svg", class: "wv2-location__icon", alt: ""
+              %span= s_obs["observed_on"]
 
   -# ── Impact statistics ─────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--stats.text-center
@@ -203,14 +211,14 @@
                       .wv2-obs-card__avatar
                     %span.wv2-obs-card__username= obs["user_name"]
                   = image_tag obs["observation_photo_file"].sub("app/assets/images/", ""), class: "wv2-obs-card__photo-img", alt: ""
-                  .wv2-obs-card__taxon
-                    = image_tag obs["taxon_thumbnail_file"].sub("app/assets/images/", ""), class: "wv2-obs-card__taxon-thumb-img", alt: ""
-                    .wv2-obs-card__taxon-names
+                  .wv2-taxon
+                    = image_tag obs["taxon_thumbnail_file"].sub("app/assets/images/", ""), class: "wv2-taxon__thumb", alt: ""
+                    .wv2-taxon__names
                       - if common.present?
                         %p.wv2-obs-card__common= common
-                      %p.wv2-obs-card__sci= obs["scientific_name"]
-                  .wv2-obs-card__location
-                    = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-obs-card__location-icon", alt: ""
+                      %em.wv2-obs-card__sci= obs["scientific_name"]
+                  .wv2-location
+                    = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-location__icon", alt: ""
                     %span= obs["place_guess"].presence || "—"
           %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
         .wv2-carousel__dots
@@ -315,4 +323,17 @@
           syncDots();
         });
       });
+    })();
+
+    (function () {
+      var header = document.getElementById("header");
+      if (!header) return;
+      function updateDonateText() {
+        header.classList.remove("header-donate-icon-only");
+        if (header.scrollWidth > header.clientWidth) {
+          header.classList.add("header-donate-icon-only");
+        }
+      }
+      new ResizeObserver(updateDonateText).observe(header);
+      updateDonateText();
     })();
