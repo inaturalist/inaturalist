@@ -1084,6 +1084,8 @@ pt:
   contain_all_descendants?: Esta checklist contém todos os representantes deste taxon que ocorrem na área?
   content_and_display: Conteúdo & Exibição
   continue: Continuar
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribui
   contributor_cannot_be_found: O participante não pode ser encontrado
   contributors_to_project: "Participantes em %{project}"
   controlled_term_labels:
@@ -1452,6 +1454,8 @@ pt:
   devise_unlock_instructions_click_the_link: |
     Clique na hiperligação abaixo para desbloquear a sua conta:
   devise_unlock_instructions_unlock: Desbloquear a sua conta
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Descobrir
   discoveries: Descobertas
   did_you_mean: 'Será que quis dizer'
   did_you_photos_flickr?: Carregou algumas fotografias no Flickr?
@@ -1839,6 +1843,8 @@ pt:
   identify: Identificar
   identify_observations: "Identificar as observações"
   identify_title: "Identificar"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificar
   identification: Identificação
   identification_by_user: Identificação por %{user}
   #Notification when an identification has been deleted
@@ -2497,6 +2503,8 @@ pt:
   obscured_or_private: oculta ou privada
   obscured_description: |
     Coordenadas públicas mostram um raio de um ponto aproximado de 10km das coordenadas verdadeiras. As coordenadas verdadeiras somente são visíveis para si e para os coordenadores dos projetos a que adiciona as suas observações.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observar
   observation: Observação
   observation_: observação
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
@@ -3317,6 +3325,7 @@ pt:
   sign_in_with_provider: "Iniciar sessão com %{provider}"
   sign_out: Terminar Sessão
   sign_up: Registar-se
+  sign_up_sentence_case: Inscreva-se
   similar_species: Espécies semelhantes
   #Journal post formatting option
   simple: Simples
@@ -3542,6 +3551,8 @@ pt:
   total_members: Número total de membros
   total_observations: Número total de observações
   total_unique_observers: Número total de observadores únicos
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Pegada
   translated_languages: Idiomas traduzidos
   'true': 'Verdadeiro'
   trends: Tendências
