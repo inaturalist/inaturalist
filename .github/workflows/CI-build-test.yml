@@ -92,6 +92,7 @@ jobs:
         PGUSER: postgres
         PGPASSWORD: postgres
         RAILS_ENV: test
+        INAT_ES_URL: https://localhost:9200
         TRAVIS: true
         CI: true
 
@@ -102,6 +103,7 @@ jobs:
         PGUSER: postgres
         PGPASSWORD: postgres
         RAILS_ENV: test
+        INAT_ES_URL: https://localhost:9200
         TRAVIS: true
         TRAVIS_CI: true
         CI: true

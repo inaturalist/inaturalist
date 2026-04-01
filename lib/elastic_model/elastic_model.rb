@@ -293,7 +293,9 @@ module ElasticModel
     begin
       response = Net::HTTP.get( URI.parse( elasticsearch_url ) )
       return JSON.parse( response )["tagline"] == "You Know, for Search"
-    rescue
+    rescue Exception => e
+      pp e
+      pp CONFIG
     end
     false
   end
