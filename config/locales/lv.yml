@@ -6984,6 +6984,191 @@ lv:
         who_uses_site_name: "Kas lieto %{site_name}?"
         what_are_you_waiting_for: Kāpēc vēl vilcinies?
         join_today: Pievienojies jau šodien!
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Kur jūsu zinātkāre veicina zinātni.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Identificējiet augus, dzīvniekus, sēnes un daudz ko citu, vienlaikus papildinot dzīvo dzīvības atlantu uz Zemes.
+          #Primary call-to-action button in the hero section
+          cta_join: Pievienojieties kopienai
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Bezmaksas, bezpeļņas, kopienas darbināts.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Izmantojot iNaturalist, jūs varat:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Augi, dzīvnieki, sēnes un daudz kas cits
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Sugas, ko esat redzējis visā pasaulē
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: uz reālu zinātni
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: daba tuvumā
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: no globālas dabaszinātnieku kopienas
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Kopienas zinātnes spēks
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Redzēja %{user} Rīgā %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Sen pazudušo sugu atklāšana no jauna
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Uz %{moth_common_name} kodes nebija pamanītas gadu desmitiem un kādreiz tika uzskatītas par izmirušām - līdz brīdim, kad tūrists Jaunzēlandē to nejauši pamanīja.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Zinātnē jaunu sugu atklāšana
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — saīsināts ar <span class="italic">I. nat</span> - ir jauna zinātnes dievnama suga, ko atradusi sieviete Austrālijā, staigājot pa savu apkārtni.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Vietējo ekosistēmu aizsardzība
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Vietējo brīvprātīgo grupa Kalifornijā apvienojās, izmantojot iNaturalist, lai aizsargātu migrējošos abiniekus, kas šķērso aizņemtu ceļu.
+          #Link below the stories to read more community science stories
+          read_more: Lasīt vairāk stāstu
+        observation:
+          #Heading for the sample observation section
+          heading: Katrs novērojums stāsta stāstu
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: novērojumi, kas veicina bioloģiskās daudzveidības zinātni
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Visā pasaulē dokumentētās sugas
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: dokumenti, kuros citēti iNaturalist dati
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Kopienas zinātnieku atklātas vai atkārtoti atklātas sugas
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Atveriet lietotni un nofotografējiet jebkuru savvaļas augu, dzīvnieku, sēnīti vai citu organismu — no apkārtnes vai jebkuras vietas pasaulē.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Lietotne uzreiz iesaka identifikāciju, un globāla dabaszinātnieku kopiena to apstiprina vai pilnveido.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Jūsu novērojums kļūst par atvērtiem datiem, ko izmanto zinātnieki, dabas aizsardzības speciālisti un pētnieki visā pasaulē.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Daba mainās straujāk nekā jebkad agrāk, tāpēc mums ir nepieciešams <span class="underline">jūs</span> lai palīdzētu reģistrēt, kas kur dzīvo.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Tas man patiešām ir palīdzējis identificēt sugas, papildus dodot man iespēju mijiedarboties ar dažādiem cilvēkiem visā pasaulē.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Jūras aizsardzības speciālists un zemūdens fotogrāfs, Kenija
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist paver durvis tik daudz jaunu un aizraujošu pētījumu par nepietiekami izpētītiem taksoniem. Manuprāt, šī platforma ir ekoloģiskās zinātnes avangards.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Lauka ceļveža autors vietnē Owlfly LLC, ASV
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist un tā īpašā identifikatoru kopiena kļuva par nenovērtējamu resursu manos pētījumos. Tas palīdzēja likt pamatu manam pašreizējam darbam.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Bioloģiskās daudzveidības pētnieks, Šrilanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist ir spēcīgs rīks, kas savieno cilvēkus, dabu un zināšanas. Es varu fotografēt retu sugu vai pat tādu, kas vēl nav aprakstīta, un tajā pašā laikā es veicinu mūsu dabas mantojuma saglabāšanu.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Vides tehniķis un hobiju fotogrāfs, Brazīlija
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Neatkarīgi no tā, kur pasaulē atrodaties, neatkarīgi no tā, vai jums ir doktora grāds vai vienkārši patīk brīvā dabā, iNaturalist tuvinās jūs dabai un daudziem kolēģiem dabaszinātniekiem.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biologs, Meksika
+        everyone:
+          #Heading for the broad audience section
+          heading: Ikviens ir dabaszinātnieks
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Ja jūs kādreiz esat rūpīgi apskatījis kaut ko dzīvu un domājis, kas tas ir, iNaturalist ir domāts jums.
+          #Heading for the impact sub-section
+          impact_heading: Jūs varat ietekmēt
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Katrs kopīgotais fotoattēls kļūst par daļu no globāla zinātniskā ieraksta, no kura ir atkarīgi pētnieki visā pasaulē.
+          #Heading for the community reputation sub-section
+          community_heading: '"Jaukākā vieta tiešsaistē"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Nāciet pēc identifikācijas, palieciet kopienai un ietekmējiet zinātni.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Lejupielādējiet lietotni iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Iegūstiet reāllaika identifikāciju un veiciniet zinātni
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Lejupielādes"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Izpētiet sugas visā pasaulē
+          #Button / link to browse species without downloading
+          button: Izpētiet tūlīt
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Jaunāki par 13 gadiem? Lejupielādēt meklēt!"
+          #Description of Seek's badge and challenge features
+          body: Nopelniet nozīmītes un piedalieties izaicinājumos, lai novērotu sugas!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 zvaigžņu atsauksmes"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Saņemiet mūsu ikmēneša biļetenu!
+          #Description of the newsletter's content
+          body: Uzturiet sakarus ar stāstiem un atklājumiem no iNaturalist kopienas.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist ir bezpeļņas organizācija, kas atbalsta zinātni un saglabāšanu.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Jūsu atbalsts to padara iespējamu.
+          #Call-to-action button for the donation section
+          cta: Ziedot tūlīt
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Bieži uzdotie jautājumi
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Vai es varu augšupielādēt fotoattēlus, kas man jau ir?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Jā! Ja vien jūs zināt, kad un kur fotogrāfija tika uzņemta, vecāki fotoattēli ir laipni gaidīti.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Kas var nodarboties ar iNaturalist novērojumiem?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Ikviens! Visi iNaturalist novērojumi ir atvērti un brīvi pieejami gan pētniekiem, gan dabas aizsardzības speciālistiem, gan ziņkārīgiem indivīdiem.
+          #FAQ: research grade definition — question
+          research_grade_question: Ko nozīmē "pētniecības pakāpe"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Kad kopiena vienojas par identifikāciju, novērojums kļūst par "pētniecības pakāpi" un nonāk globālajā zinātniskajā ierakstā. Katra identifikācija var palīdzēt to sasniegt.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Vai man ir jāzina, ko es skatos?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Nepavisam! Kopīgojiet fotoattēlu, un globāla dabaszinātnieku kopiena var palīdzēt jums to identificēt.
+          #FAQ: whether the app is required — question
+          need_app_question: Vai man ir jāizmanto lietotne?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Darbvirsmā iNaturalist.org darbojas lieliski. Mobilajā ierīcē lietotne sniedz vislabāko pieredzi, it īpaši, lai identificētu sugas ceļā.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Saglabāt un rediģēt, lai pievienotu pielikumus

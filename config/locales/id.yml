@@ -7476,11 +7476,21 @@ id:
         end_time_desc: "Waktu bioblitz Anda tamat. Harus kurang dari setahun sejak waktu mulai"
         event_url_desc: |
           URL dari layanan pendaftaran acara yang Anda gunakan untuk bioblitz Anda. Jika ini adalah URL Eventbrite yang mencakup ID numerik, kami akan memasukkan widget pendaftaran pada halaman proyek Anda sampai bioblitz Anda dimulai.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Sembunyikan Papan Peringkat
         icon_desc: "Akan dipotong menjadi persegi"
         it_looks_like_this_project_can_be_converted: |
           Sepertinya proyek ini dapat dikonversi menjadi <a href="%{url}">Proyek Koleksi</a> baru.
         last_aggregated_at_desc: |
           Waktu saat agregator terakhir kali selesai menambahkan pengamatan ke proyek ini
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Papan peringkat
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Panel papan peringkat menampilkan pengguna dengan pengamatan terbanyak, pengguna dengan spesies terbanyak, serta spesies yang paling banyak diamati. Panel ini dapat disembunyikan.
         #Label for button to make another user the owner of a project
         make_owner: Jadikan Pemilik
         no_curators: |

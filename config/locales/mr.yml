@@ -1489,6 +1489,191 @@ mr:
         who_uses_site_name: "%{site_name} कोण वापरते?"
         what_are_you_waiting_for: कसली वाट पाहताय?
         join_today: आजच सहभागी व्हा
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: जिथे तुमची जिज्ञासा विज्ञानात योगदान देते.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            पृथ्वीवरील जीवनाच्या जिवंत ऍटलासमध्ये भर घालताना वनस्पती, प्राणी, बुरशी आणि बरेच काही ओळखा.
+          #Primary call-to-action button in the hero section
+          cta_join: समुदायात सामील व्हा
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: विनामूल्य, ना-नफा, समुदाय-संचालित.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalist सह, आपण हे करू शकता:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: वनस्पती, प्राणी, बुरशी आणि बरेच काही
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: आपण जगभरात पाहिलेल्या प्रजाती
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: वास्तविक विज्ञानाकडे
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: निसर्ग जवळपासचा
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: निसर्गवाद्यांच्या जागतिक समुदायाकडून
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: समुदाय विज्ञानाची शक्ती
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: द्वारे पाहिले %{user} मध्ये %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: दीर्घकाळापासून हरवलेल्या प्रजाती पुन्हा शोधणे
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            हे %{moth_common_name} मॉथ अनेक दशकांमध्ये दिसला नव्हता आणि एकदा नामशेष झाला होता - न्यूझीलंडमधील एका पर्यटकाने अपघाताने तो शोधला नाही.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: नवीन-ते-विज्ञान प्रजातींचा शोध
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">इनिमिया नॅट</span> — संक्षिप्त <span class="italic">I. नॅट</span> - ऑस्ट्रेलियातील एका महिलेला तिच्या शेजारी फिरताना सापडलेली एक नवीन-टू-सायन्स मेंटिस प्रजाती आहे.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: स्थानिक परिसंस्थेचे संरक्षण
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            कॅलिफोर्नियामधील स्थानिक स्वयंसेवकांचा एक गट व्यस्त रस्ता ओलांडणार् या स्थलांतरित उभयचरांचे संरक्षण करण्यासाठी iNaturalist द्वारे एकत्र आला.
+          #Link below the stories to read more community science stories
+          read_more: अधिक कथा वाचा
+        observation:
+          #Heading for the sample observation section
+          heading: प्रत्येक निरीक्षण एक कथा सांगते
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: जैवविविधता विज्ञानात योगदान देणारी निरीक्षणे
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: जगभरात दस्तऐवजीकरण केलेल्या प्रजाती
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: iNaturalist डेटाचा हवाला देणारी कागदपत्रे
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: समुदाय शास्त्रज्ञांनी शोधलेल्या किंवा पुन्हा शोधलेल्या प्रजाती
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            अ ॅप उघडा आणि आपल्या शेजारील किंवा जगात कोठेही कोणत्याही वन्य वनस्पती, प्राणी, बुरशी किंवा इतर जीवांचे छायाचित्र घ्या.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            अ ॅप त्वरित ओळख सुचवितो आणि निसर्गवाद्यांचा जागतिक समुदाय त्याची पुष्टी करतो किंवा परिष्कृत करतो.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            आपले निरीक्षण मुक्त डेटा बनते - जगभरातील शास्त्रज्ञ, संवर्धनवादी आणि संशोधकांद्वारे वापरले जाते.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            निसर्ग नेहमीपेक्षा वेगाने बदलत आहे, म्हणून आपल्याला गरज आहे <span class="underline">आपण</span> कुठे राहते हे नोंदवण्यात मदत करण्यासाठी.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            जगभरातील वेगवेगळ्या लोकांशी संवाद साधण्याची संधी देण्याव्यतिरिक्त, यामुळे मला प्रजाती ओळखण्यात खरोखर मदत झाली आहे.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: सागरी संवर्धनवादी आणि पाण्याखालील छायाचित्रकार, केनिया
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist अंडरस्टडेड टॅक्सावरील बर् याच नवीन आणि रोमांचक संशोधनाचे दार उघडते. माझ्या मते, हे व्यासपीठ पर्यावरणीय विज्ञानाची अत्याधुनिक धार आहे.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: आऊलफ्लाय एलएलसी, यूएसए येथे फील्ड मार्गदर्शक लेखक
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist आणि त्याच्या अभिज्ञापकांचा समर्पित समुदाय माझ्या अन्वेषणात एक अमूल्य स्त्रोत बनला. यामुळे माझ्या सध्याच्या कार्याचा पाया घालण्यास मदत झाली.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: जैवविविधता संशोधक, श्रीलंका
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist हे एक शक्तिशाली साधन आहे जे लोक, निसर्ग आणि ज्ञान यांना जोडते. मी एखाद्या दुर्मिळ प्रजातीचे छायाचित्र घेऊ शकतो, किंवा ज्याचे अद्याप वर्णन केले गेले नाही आणि त्याच वेळी, मी आपला नैसर्गिक वारसा जतन करण्यात योगदान देतो.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: पर्यावरण तंत्रज्ञ आणि छंद छायाचित्रकार, ब्राझील
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            आपण जगात कोठेही असलात तरीही, आपल्याकडे पीएचडी आहे किंवा फक्त घराबाहेर प्रेम आहे, आयनॅचरलिस्ट आपल्याला निसर्गाच्या आणि बर् याच सहकारी निसर्गवाद्यांच्या जवळ आणेल.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: जीवविज्ञानी, मेक्सिको
+        everyone:
+          #Heading for the broad audience section
+          heading: प्रत्येक जण निसर्गवादी आहे
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            जर आपण कधीही एखाद्या जिवंत गोष्टीकडे बारकाईने पाहिले असेल आणि ते काय आहे याचा विचार केला असेल तर iNaturalist तुमच्यासाठी आहे.
+          #Heading for the impact sub-section
+          impact_heading: आपण प्रभाव टाकू शकता
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            आपण सामायिक केलेला प्रत्येक फोटो जागतिक वैज्ञानिक रेकॉर्डचा भाग बनतो ज्यावर जगभरातील संशोधक अवलंबून असतात.
+          #Heading for the community reputation sub-section
+          community_heading: '"ऑनलाइन सर्वात चांगली जागा"'
+          #Description of the welcoming community aspect
+          community_body: >
+            ओळखीसाठी या, समुदायासाठी रहा आणि विज्ञानावर परिणाम करा.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: iNaturalist अ ॅप डाउनलोड करा
+          #Subheading describing the two core benefits of the app
+          subheading: वास्तविक ओळख मिळवा आणि विज्ञानात योगदान द्या
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ डाउनलोड"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: जगभरातील प्रजाती एक्सप्लोर करा
+          #Button / link to browse species without downloading
+          button: आता एक्सप्लोर करा
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 वर्षांखालील? शोधा डाउनलोड करा!"
+          #Description of Seek's badge and challenge features
+          body: बॅज मिळवा आणि प्रजातींचे निरीक्षण करण्याच्या आव्हानांमध्ये भाग घ्या!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-स्टार पुनरावलोकने"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: आमचे मासिक वृत्तपत्र मिळवा!
+          #Description of the newsletter's content
+          body: iNaturalist समुदायाच्या कथा आणि शोधांशी जोडलेले रहा.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist ही एक ना-नफा संस्था आहे जी विज्ञान आणि संवर्धनास समर्थन देते.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: तुमच्या पाठिंब्यामुळे ते शक्य झाले.
+          #Call-to-action button for the donation section
+          cta: आता देणगी द्या
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: वारंवार विचारले जाणारे प्रश्न
+          #FAQ: uploading existing photos — question
+          upload_existing_question: मी माझ्याकडे आधीपासून असलेले फोटो अपलोड करू शकतो?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            होय! जोपर्यंत आपल्याला फोटो कधी आणि कोठे घेतला गेला हे अंदाजे माहित आहे, तोपर्यंत जुन्या फोटोंचे स्वागत आहे.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: iNaturalist निरीक्षणांसह विज्ञान कोण करू शकते?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            कोणीही! सर्व iNaturalist निरीक्षणे खुली आणि मुक्तपणे उपलब्ध आहेत - संशोधक, संवर्धन अभ्यासक आणि जिज्ञासू व्यक्तींसाठी.
+          #FAQ: research grade definition — question
+          research_grade_question: '"रिसर्च ग्रेड" म्हणजे काय?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            जेव्हा समुदाय एखाद्या ओळखीवर सहमत होतो, तेव्हा एक निरीक्षण "संशोधन ग्रेड" बनते आणि जागतिक वैज्ञानिक रेकॉर्डमध्ये प्रवेश करते. प्रत्येक ओळख तेथे पोहोचण्यास मदत करू शकते.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: मी काय पहात आहे हे मला माहित असणे आवश्यक आहे का?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            मुळीच नाही! एक फोटो सामायिक करा आणि निसर्गवाद्यांचा जागतिक समुदाय आपल्याला ते ओळखण्यास मदत करू शकेल.
+          #FAQ: whether the app is required — question
+          need_app_question: मला अ ॅप वापरण्याची आवश्यकता आहे का?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            डेस्कटॉपवर, iNaturalist.org उत्तम कार्य करते. मोबाइल डिव्हाइसवर, अॅप आपल्याला सर्वोत्तम अनुभव देते - विशेषत: जाता जाता प्रजाती ओळखण्यासाठी.
   datetime:
     countdown_x_days:
       one: दिवस

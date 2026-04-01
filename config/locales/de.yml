@@ -7403,9 +7403,19 @@ de:
           Wenn dies eine Eventbrite URL ist, die eine numerische ID enthält, 
           fügen wir ein Anmelde-Widget auf Ihrer Projektseite ein, bis Ihr Bioblitz
           beginnt.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Rangliste verbergen
         icon_desc: "Wird auf ein Quadrat zugeschnitten"
         it_looks_like_this_project_can_be_converted: |
           Es sieht so aus, als könne dieses Projekt in ein neues <a href="%{url}">Sammel-Projekt</a> umgewandelt werden.
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Rangliste
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Die Rangliste zeigt Nutzer mit den meisten Beobachtungen, Nutzer mit den meisten Arten und die am häufigsten beobachtete Arten. Sie kann optional verborgen werden
         #Label for button to make another user the owner of a project
         make_owner: zum Eigentümer machen
         no_curators: |

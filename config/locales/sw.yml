@@ -376,6 +376,191 @@ sw:
           kutoka kwa miradi ya ukusanyaji au mwavuli, ambayo kimsingi ni utaftaji uliohifadhiwa.
           Unaweza kusoma zaidi
           <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Hapa</a>.
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Ambapo udadisi wako unachangia sayansi.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Tambua mimea, wanyama, kuvu, na zaidi huku ukiongeza kwenye atlasi hai ya maisha Duniani.
+          #Primary call-to-action button in the hero section
+          cta_join: Jiunge na jamii
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Bure, isiyo ya faida, inayoendeshwa na jamii.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Ukiwa na iNaturalist, unaweza:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: mimea, wanyama, kuvu, na zaidi
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Spishi ambazo umeona ulimwenguni kote
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: kwa sayansi halisi
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Asili karibu
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: kutoka kwa jumuiya ya kimataifa ya wataalamu wa asili
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Nguvu ya sayansi ya jamii
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Imeonekana na %{user} katika %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Kugundua tena spishi zilizopotea kwa muda mrefu
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Sehemu ya %{moth_common_name} nondo haikuwa imeonekana kwa miongo kadhaa na wakati mmoja ilifikiriwa kutoweka - hadi mtalii huko New Zealand alipoiona kwa bahati mbaya.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Kugundua spishi mpya kwa sayansi
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> - imefupishwa kwa <span class="italic">I. nat</span> - ni spishi mpya ya mantis inayopatikana na mwanamke huko Australia akitembea katika mtaa wake.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Kulinda mifumo ya ikolojia ya ndani
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Kundi la watu wa kujitolea huko California walikusanyika kupitia iNaturalist ili kulinda amfibia wanaohama wanaovuka barabara yenye shughuli nyingi.
+          #Link below the stories to read more community science stories
+          read_more: Soma hadithi zaidi
+        observation:
+          #Heading for the sample observation section
+          heading: Kila uchunguzi unasimulia hadithi
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: uchunguzi unaochangia sayansi ya bioanuwai
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Spishi zilizorekodiwa kote ulimwenguni
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: karatasi zinazonukuu data ya iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Spishi zilizogunduliwa au kugunduliwa tena na wanasayansi wa jamii
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Fungua programu na upige picha mmea wowote wa porini, mnyama, fangasi, au kiumbe kingine - kutoka kwa mtaa wako au popote duniani.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Programu inapendekeza kitambulisho papo hapo, na jumuiya ya kimataifa ya wataalamu wa asili huthibitisha au kuiboresha.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Uchunguzi wako unakuwa data wazi - inayotumiwa na wanasayansi, wahifadhi, na watafiti ulimwenguni kote.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Asili inabadilika haraka kuliko hapo awali, kwa hivyo tunahitaji <span class="underline">Wewe</span> kusaidia kurekodi kile kinachoishi wapi.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Imenisaidia sana na utambuzi wa spishi, pamoja na kunipa fursa ya kuingiliana na watu tofauti ulimwenguni kote.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Mhifadhi wa Bahari na Mpiga Picha wa Chini ya Maji, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist inafungua mlango wa utafiti mpya na wa kusisimua juu ya taxa ambayo haijasomwa. Kwa maoni yangu, jukwaa hili ni makali ya sayansi ya ikolojia.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Mwandishi wa Mwongozo wa Shamba katika Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist na jumuiya yake ya kujitolea ya vitambulisho ikawa rasilimali muhimu sana katika uchunguzi wangu. Ilisaidia kuweka msingi wa kazi yangu ya sasa.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Mtafiti wa Bioanuwai, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist ni zana yenye nguvu inayounganisha watu, asili, na maarifa. Ninaweza kupiga picha spishi adimu, au hata moja ambayo bado haijaelezewa, na wakati huo huo, ninachangia kuhifadhi urithi wetu wa asili.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Fundi wa Mazingira na mpiga picha wa hobby, Brazili
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Haijalishi uko wapi ulimwenguni, iwe una PhD au unapenda tu nje, iNaturalist itakuleta karibu na maumbile na wanaasili wenzako wengi.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Mwanabiolojia, Mexico
+        everyone:
+          #Heading for the broad audience section
+          heading: Kila mtu ni mtaalam wa asili
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Ikiwa umewahi kuangalia kwa karibu kitu kilicho hai na kujiuliza ni nini, iNaturalist ni kwa ajili yako.
+          #Heading for the impact sub-section
+          impact_heading: Unaweza kuleta athari
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Kila picha unayoshiriki inakuwa sehemu ya rekodi ya kisayansi ya kimataifa ambayo watafiti duniani kote hutegemea.
+          #Heading for the community reputation sub-section
+          community_heading: '"Mahali pazuri zaidi mtandaoni"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Njoo kwa vitambulisho, kaa kwa jamii na athari kwa sayansi.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Pakua programu ya iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Pata vitambulisho vya wakati halisi na uchangie sayansi
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Vipakuliwa"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Chunguza spishi duniani kote
+          #Button / link to browse species without downloading
+          button: Chunguza sasa
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Chini ya miaka 13? Pakua Tafuta!"
+          #Description of Seek's badge and challenge features
+          body: Pata beji na ushiriki katika changamoto za kuchunguza spishi!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Maoni ya Nyota 5"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Pata jarida letu la kila mwezi!
+          #Description of the newsletter's content
+          body: Endelea kuwasiliana na hadithi na uvumbuzi kutoka kwa jumuiya ya iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist ni shirika lisilo la faida ambalo linasaidia sayansi na uhifadhi.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Msaada wako hufanya hilo liwezekane.
+          #Call-to-action button for the donation section
+          cta: Changia sasa
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Maswali yanayoulizwa mara kwa mara
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Je, ninaweza kupakia picha ambazo tayari ninazo?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ndiyo! Kwa muda mrefu kama unajua takriban lini na wapi picha ilipigwa, picha za zamani zinakaribishwa.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Nani anaweza kufanya sayansi na uchunguzi wa iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Mtu yeyote! Uchunguzi wote wa iNaturalist uko wazi na unapatikana kwa uhuru - kwa watafiti, watendaji wa uhifadhi, na watu wadadisi sawa.
+          #FAQ: research grade definition — question
+          research_grade_question: '"Daraja la utafiti" linamaanisha nini?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Wakati jamii inakubaliana juu ya kitambulisho, uchunguzi unakuwa "daraja la utafiti" na huingia kwenye rekodi ya kisayansi ya ulimwengu. Kila kitambulisho kinaweza kusaidia kuifikisha hapo.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Je, ninahitaji kujua ninachoangalia?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Sivyo kabisa! Shiriki picha, na jumuiya ya kimataifa ya wataalamu wa asili inaweza kukusaidia kuitambua.
+          #FAQ: whether the app is required — question
+          need_app_question: Je, ninahitaji kutumia programu?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Kwenye eneo-kazi, iNaturalist.org inafanya kazi vizuri. Kwenye kifaa cha rununu, programu hukupa uzoefu bora zaidi - haswa kwa kutambua spishi popote ulipo.
   number:
     format:
       significant: false
