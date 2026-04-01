@@ -835,6 +835,8 @@ th:
     %{user} ซ่อน%{item}นี้ เนื่องจาก "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} เลิกซ่อน%{item}นี้ เนื่องจาก "%{reason}"
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: มีส่วนร่วม
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: ไม่ระบุ
@@ -1118,6 +1120,8 @@ th:
     โปรดคลิกลิงก์ด้านล่างเพื่อยืนยันที่อยู่อีเมลของคุณ หากคุณไม่ยืนยันอีเมลของคุณ
     คุณจะไม่สามารถโต้ตอบกับเนื้อหาของผู้ใช้รายอื่นได้
   devise_reset_password_instructions_hello_email: สวัสดี %{email}
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: ค้นพบ
   did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
   #Checkbox controlling whether to show observations that have disagreeing
@@ -1441,6 +1445,8 @@ th:
   identify_observations: "จำแนกการสังเกต"
   identify_observations_by_these_users: จำแนกการสังเกตโดยผู้ใช้งานเหล่านี้
   identify_title: "จำแนกชนิด"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: ระบุ
   identification: การจำแนก
   identification_by_user: การจำแนกโดย %{user}
   #Notification when an identification has been deleted
@@ -1551,6 +1557,8 @@ th:
     identifications_in_month_year: จำนวนการจำแนกสูงสุดใน%{month_year}
     identifications_in_year: จำนวนการจำแนกสูงสุดใน %{year}
   leading: เข้าใกล้คำตอบ
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  learn: เรียนรู้
   learn_more: เรียน​รู้​เพิ่ม​เติม
   learn_more_raquo: "เรียนรู้เพิ่มเติม &raquo;"
   least_concern: เป็นกังวลน้อยที่สุด
@@ -2003,6 +2011,8 @@ th:
   obscured_or_private: ถูกพรางหรือส่วนตัว
   obscured_description: |
     พิกัดที่แสดงให้ผู้อื่นเห็นเป็นจุดที่ถูกสุ่มภายในกรอบสี่เหลี่ยมขนาด 0.2 องศา โดยมีพิกัดจริงซ่อนอยู่ในกรอบนั้น
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: สังเกต
   observation_accuracy_experiment_research_grade_results: "ผลระดับงานวิจัย"
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
@@ -2745,6 +2755,7 @@ th:
   showing_x_of_y_listings: "แสดง %{x} จาก %{y} รายการ"
   sign_out: ออกจากระบบ
   sign_up: ลงทะเบียน
+  sign_up_sentence_case: ลงทะเบียน
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
   single_observation: การสังเกตเดียว
@@ -3103,6 +3114,8 @@ th:
   total_observations: การสังเกตทั้งหมด
   total_observations_caps: การสังเกตทั้งหมด
   total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: รอย
   translated_languages: ภาษาที่แปล
   'true': 'จริง'
   trends: แนวโน้ม
