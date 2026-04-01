@@ -297,6 +297,8 @@ mi:
   conservation_status_updated: I whakahou te tūnga whāomoomo
   continue: Haere tonu
   continue_to_site: Haere tonu ki %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Tāpae
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Katoa
@@ -452,6 +454,8 @@ mi:
     wāhitau, kāore e taea e koe te tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi.
   devise_confirmation_instructions_send_confirmation_email: Tukuna te īmera whakamana
   devise_reset_password_instructions_hello_email: Kia ora %{email}
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Tūhura
   disagree_: Whakahē
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
@@ -647,6 +651,8 @@ mi:
   id_withdrawn: Kua maunuhia te tautuhi
   identify: Tautuhitia
   identify_title: "Tautuhitia"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Tautohu
   identification: tautuhi
   identification_by_user: Tautuhi nā %{user}
   #Notification when an identification has been deleted
@@ -884,6 +890,8 @@ mi:
   notes: Kupu tīpoka
   number_of_observers_value: "E hia ngā kaimātaki: %{number}"
   number_of_observers: "E hia ngā kaimātaki"
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: mātakitaki
   observation: Mauhanga
   observation_: mauhanga
   observation_accuracy_experiment_continent: "Paparahi"
@@ -1366,6 +1374,7 @@ mi:
   sign_in_with_google: Takiuru mai ki Kūkara
   sign_out: Takiputa
   sign_up: Rēhita
+  sign_up_sentence_case: Takiuru
   similar_species: Momo rite
   similar_taxa: Rōpū rite
   small: iti
@@ -1474,6 +1483,8 @@ mi:
   tos_privacy_guidelines_label: |
     Kei te whakaae au i ngā <a href="/terms" target="_blank">Tikanga whakamahi</a> me te <a href="/privacy" target="_blank">Kaupapahere tūmataiti</a>. Kua arotake au i ngā <a href="/pages/community+guidelines" target="_blank">Aratohu hapori</a>.
   total: Tapeke
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Riu
   'true': 'Pono'
   trending: Ee rōpū te haere
   two_thirds: 2/3
