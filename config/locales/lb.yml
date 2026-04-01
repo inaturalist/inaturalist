@@ -614,6 +614,8 @@ lb:
   content: Inhalt
   continue: Virufueren
   continue_to_site: Virun op %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Bäidroen
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Belibeg
@@ -1072,6 +1074,8 @@ lb:
   identify: Bestëmmen
   identify_observations: "Observatiounen bestëmmen"
   identify_title: "Bestëmmen"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Bestemmen
   identification: Identifikatioun
   identification_by_user: Idendifikatioun duerch de(n) %{user}
   #Notification when an identification has been deleted
@@ -2493,6 +2497,8 @@ lb:
   total_observations: Total Observatiounen
   total_observations_caps: TOTAL OBSERVATIOUNEN
   total_species_observed_caps: TOTAL AARTEN BEOBACHT
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Spuer
   translated_languages: Iwwersat Sproochen
   'true': 'Wouer'
   trends: Tendenzen
