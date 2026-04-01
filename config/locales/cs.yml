@@ -1302,6 +1302,8 @@ cs:
     %{user} odkryl %{item} protože "%{reason}"
   continue: Pokračovat
   continue_to_site: Pokračovat na %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Přispívej
   contributor_cannot_be_found: Přispěvatel nebyl nalezen
   contributors_to_project: "Přispěvatelé do %{project}"
   controlled_term_labels:
@@ -1885,6 +1887,8 @@ cs:
   devise_unlock_instructions_click_the_link: |
     Svůj účet odemknete kliknutím na odkaz níže
   devise_unlock_instructions_unlock: Odemknout účet
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Objevte
   discoveries: Objevy
   did_you_mean: 'Mysleli jste'
   did_you_photos_flickr?: Nahráli jste nějaké fotografie na Flickr?
@@ -2511,6 +2515,8 @@ cs:
   identify_observations: "Identifikovat pozorování"
   identify_observations_by_these_users: Identifikace pozorování těmito uživateli
   identify_title: "Identifikovat"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifikovat
   identification: identifikace
   identification_by_user: Identifikace uživatelem %{user}
   #Notification when an identification has been deleted
@@ -3548,6 +3554,8 @@ cs:
   obscured_or_private: přibližný nebo soukromý
   obscured_description: |
     Veřejné souřadnice zobrazené jako náhodný bod v prostoru velikosti 0,2 x 0,2 stupně zeměpisné šířky/délky okolo skutečných souřadnic.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Pozorujte
   observation: Pozorování
   observation_: pozorování
   observation_accuracy_experiment_the_sample_for: "Vzorek pro tento experiment ještě nebyl vytvořen."
@@ -5137,6 +5145,7 @@ cs:
   sign_in_with_google: Registrovat přes Google
   sign_out: Odhlásit se
   sign_up: Zaregistrovat se
+  sign_up_sentence_case: Registrace
   similar_species: Podobné druhy
   similar_taxa: Podobné taxony
   #Journal post formatting option
@@ -5926,6 +5935,8 @@ cs:
   total_observations_caps: CELKEM POZOROVÁNÍ
   total_species_observed_caps: CELKEM POZOROVÁNO DRUHŮ
   total_unique_observers: Celkový počet jednotlivých pozorovatelů
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Dráha
   translated_languages: Přeložené jazyky
   'true': 'Pravda'
   trending: Populární
