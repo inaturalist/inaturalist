@@ -8845,7 +8845,42 @@ nl:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
           observations_label: waarnemingen die bijdragen aan biodiversiteitswetenschap
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Soorten die wereldwijd zijn gedocumenteerd
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: artikelen die iNaturalist-gegevens citeren
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: soorten ontdekt of herontdekt door gemeenschapswetenschappers
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Open de app en fotografeer elke wilde plant, dier, schimmel of ander organisme — uit je buurt of waar dan ook ter wereld.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            De app stelt direct een identificatie voor, en een wereldwijde gemeenschap van natuuronderzoekers bevestigt of verfijnt dit.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Uw observatie wordt open data — gebruikt door wetenschappers, natuurbeschermers en onderzoekers wereldwijd.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            De natuur verandert sneller dan ooit, dus we hebben het nodig <span class="underline">jij</span> om te helpen vastleggen wat waar leeft.
         testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Het heeft me echt geholpen bij het identificeren van soorten, naast de mogelijkheid om met verschillende mensen over de hele wereld te communiceren.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Mariene natuurbeschermer en onderwaterfotograaf, Kenia
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist opent de deur naar zoveel nieuw en spannend onderzoek naar onderbestudeerde taxa. Naar mijn mening is dit platform de voorhoede van de ecologische wetenschap.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Veldgids-auteur bij Owlfly LLC, VS
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist en de toegewijde gemeenschap van identificaties werden een onschatbare bron in mijn verkenningen. Het heeft de basis gelegd voor mijn huidige werk.
           #Job title and location of the testimonial author (last name Sumanapala)
           sumanapala_title: Biodiversiteitsonderzoeker, Sri Lanka
           #Quote from the testimonial author (last name Fachetti)
@@ -8895,14 +8930,43 @@ nl:
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ 5-sterren recensies"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Ontvang onze maandelijkse nieuwsbrief!
+          #Description of the newsletter's content
+          body: Blijf verbonden met verhalen en ontdekkingen uit de iNaturalist-gemeenschap.
         donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist is een non-profitorganisatie die wetenschap en natuurbehoud ondersteunt.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Jouw steun maakt dat mogelijk.
           #Call-to-action button for the donation section
           cta: Doneer nu
         faq:
           #Section heading for the Frequently Asked Questions block
           heading: Veelgestelde vragen
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Kan ik foto's uploaden die ik al heb?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ja! Zolang je ongeveer weet wanneer en waar een foto is genomen, zijn oudere foto's welkom.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Wie kan wetenschap bedrijven met iNaturalist-observaties?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Iemand! Alle iNaturalist-observaties zijn open en vrij beschikbaar — voor onderzoekers, natuurbeschermers en nieuwsgierige individuen.
           #FAQ: research grade definition — question
           research_grade_question: Wat betekent "Onderzoekskwaliteit"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Wanneer de gemeenschap het eens is over een identificatie, wordt een observatie "onderzoeksniveau" en komt het in het wereldwijde wetenschappelijke archief terecht. Elke identificatie kan helpen om het daar te krijgen.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Moet ik weten waar ik naar kijk?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Helemaal niet! Deel een foto, en een wereldwijde gemeenschap van natuurliefhebbers kan je helpen deze te identificeren.
+          #FAQ: whether the app is required — question
+          need_app_question: Moet ik de app gebruiken?
           #FAQ: whether the app is required — answer; references both the website and mobile app
           need_app_answer: >
             Op een desktop werkt iNaturalist.org fantastisch. Op een mobiel apparaat biedt de app je de beste ervaring — vooral voor het determineren van soorten onderweg.
