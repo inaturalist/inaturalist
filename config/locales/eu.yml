@@ -1004,6 +1004,8 @@ eu:
     %{user} erabiltzaileak %{item} hori ikusgai utzi du arrazoi honengatik: %{reason}"
   continue: Jarraitu
   continue_to_site: '%{site_name}(e)ra jarraitu'
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Ekarpena
   contributor_cannot_be_found: Ezin izan da proiektuko ekarlea topatu
   contributors_to_project: "%{project}proiektuko parte-hartzaileak: Proiektuko parte-hartzaileak"
   controlled_term_labels:
@@ -1284,6 +1286,8 @@ eu:
     Klik egin hurrengo estekan zure helbide elektronikoa baieztatzeko. Zure posta elektronikoa baieztatzen ez baduzu
     helbidea, ezingo du beste erabiltzaile batzuen edukiarekin interaktuatu.
   devise_reset_password_instructions_hello_email: Kaixo, %{email}
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Aurkitu
   did_you_mean: 'Honi buruz ari zara?'
   did_you_photos_flickr?: Argazkiak jarri dituzu Flickr-en?
   disable_comments: Galarazi iruzkinak
@@ -1591,6 +1595,8 @@ eu:
   identify: Identifikatu
   identify_observations: "Oharrak identifikatu"
   identify_title: "Identifikatu"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifikatu
   identification: identifikazioa
   #Notification when an identification has been deleted
   identification_deleted: Identifikazioa ezabatuta.
@@ -1997,6 +2003,8 @@ eu:
   obscured: Lausoa
   obscured_description: |
     Koordenatu publikoak ausazko puntuan azaltzen dira, benetako koordenatuetatik 0,2 gradu lat/lon zelda tamainako errorearekin.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Behatu
   observation: Behaketa
   observation_: behaketa
   observation_added_to_the_project: "%{project} proiektuari gehitutako oharra"
@@ -2519,6 +2527,7 @@ eu:
   sign_in_with_provider: "Hasi saioa honekin: %{provider}"
   sign_out: Irten
   sign_up: Izena eman
+  sign_up_sentence_case: Eman izena
   similar_species: Antzeko espezieak
   single_observation: Behaketa arrunta
   sizes: Tamainak
@@ -2763,6 +2772,8 @@ eu:
   total_members: Kideak guztira
   total_observations: Behaketak guztira
   total_unique_observers: Aparteko behatzaileak guztira
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Pista
   'true': 'Egia'
   trusted_project?: Egiaztatutako proiektua al da?
   try_adding_species_form: Saiatu espezieren bat gehitzen orrialde honetako formularioa erabilita.
