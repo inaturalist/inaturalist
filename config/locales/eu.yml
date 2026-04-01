@@ -3329,6 +3329,191 @@ eu:
           bilduma- edo aterki-proiektuenak, funtsean gordetako bilaketak direnak.
           Gehiago irakur dezakezu
           <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">hemen</a>.
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Zure jakin-minak zientziari laguntzen dio.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Identifikatu landareak, animaliak, onddoak eta gehiago Lurreko bizitzaren atlas bizia gehitzen duzun bitartean.
+          #Primary call-to-action button in the hero section
+          cta_join: Sartu komunitatean
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Doakoa, irabazi asmorik gabea, komunitatearen boterea.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Naturalist-ekin, honako hauek egin ditzakezu:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Landareak, animaliak, onddoak eta gehiago
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Mundu osoan ikusi dituzun espezieak
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: Benetako zientzia
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Inguruko natura
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Naturalisten komunitate globala
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Zientzia komunitarioaren indarra
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: 'Ikusita: %{user} in %{place}'
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Aspalditik galdutako espezieak berreskuratzea
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Izenburua %{moth_common_name} Moth ez zen hamarkadetan ikusi eta behin desagertuta zegoela uste zen, Zeelanda Berriko turista batek ustekabean ikusi zuen arte.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Espezie berriak ezagutzea
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — Laburtua <span class="italic">I. nat</span> - Zientziarako mantis espezie berria da, Australiako emakume batek bere auzoan ibiltzen aurkitu zuena.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Tokiko ekosistemak babestea
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Kaliforniako tokiko boluntario talde bat iNaturalist bidez bildu zen errepide okupatu bat zeharkatzen duten anfibio migratzaileak babesteko.
+          #Link below the stories to read more community science stories
+          read_more: Irakurri istorio gehiago
+        observation:
+          #Heading for the sample observation section
+          heading: Behaketa bakoitzak istorio bat kontatzen du
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Biodibertsitatearen zientzian laguntzen duten behaketak
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Mundu osoan dokumentatutako espezieak
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: iNaturalist-en datuak aipatzen dituzten artikuluak
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Espezieak aurkitu edo berreskuratu dituzten zientzialariek
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Ireki aplikazioa eta argazkiak atera landare, animalia, onddo edo beste organismo basati, zure auzotik edo munduko edozein lekutan.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Aplikazioak berehala identifikazioa iradokitzen du, eta naturalisten komunitate global batek berretsi edo findu egiten du.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Zure behaketa datu ireki bihurtzen da, mundu osoko zientzialariek, kontserbazionistek eta ikertzaileek erabiltzen dituztenak.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Natura inoiz baino azkarrago aldatzen ari da, beraz, beharrezkoa da <span class="underline">Zuk</span> Non bizi dena erregistratzen laguntzea.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Espezieak identifikatzen lagundu dit, mundu osoko pertsona desberdinekin elkarreragiteko aukera eman dit.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Itsas kontserbazionista eta urpeko argazkilaria, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist-ek atea irekitzen du gutxi aztertutako taxoei buruzko ikerketa berri eta zirraragarri askotarako. Nire ustez, plataforma hau zientzia ekologikoaren abangoardista da.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Field Guide Author at Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist eta bere identifikatzaileen komunitate dedikatua baliabide baliotsua bihurtu ziren nire esplorazioetan. Nire egungo lanaren oinarriak ezartzen lagundu zuen.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodibertsitatearen ikertzailea, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist pertsonak, natura eta ezagutza konektatzen dituen tresna indartsua da. Espezie arraro bati argazkiak atera ditzaket, edo oraindik deskribatu ez dena, eta, aldi berean, gure ondare naturala kontserbatzen laguntzen dut.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Ingurumen teknikaria eta hobby argazkilaria, Brasil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Ez dio axola non zauden munduan, doktoretza baduzu edo aire zabala maite duzun ala ez, iNaturalist naturara eta beste naturalista askorengana hurbilduko zaitu.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biologoa, Mexiko
+        everyone:
+          #Heading for the broad audience section
+          heading: Denak dira naturalistak
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Inoiz zerbait bizia arretaz begiratu baduzu eta zer zen galdetzen baduzu, iNaturalist zuretzat da.
+          #Heading for the impact sub-section
+          impact_heading: Eragina izan dezakezu
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Partekatzen duzun argazki bakoitza mundu osoko ikertzaileen mende dagoen erregistro zientifiko globalaren parte bihurtzen da.
+          #Heading for the community reputation sub-section
+          community_heading: '"Interneten lekurik politena"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Zatoz identifikazioetara, egon komunitatearen alde eta zientzian eragina.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Deskargatu iNaturalist aplikazioa
+          #Subheading describing the two core benefits of the app
+          subheading: Denbora errealeko identifikazioak lortu eta zientziari lagundu
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Deskargak"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Espezieak mundu osoan esploratzea
+          #Button / link to browse species without downloading
+          button: Arakatu orain
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 urtetik beherakoak? Deskargatu Bilatu!"
+          #Description of Seek's badge and challenge features
+          body: Irabazi ikurrak eta parte hartu espezieak behatzeko erronketan!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 izarreko berrikuspenak"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Eskuratu gure hileroko buletina!
+          #Description of the newsletter's content
+          body: Jarrai ezazu iNaturalist komunitatearen istorio eta aurkikuntzekin konektatuta.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist irabazi asmorik gabeko erakundea da, zientzia eta kontserbazioa sustatzen dituena.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Zure laguntzak hori posible egiten du.
+          #Call-to-action button for the donation section
+          cta: Egin dohaintza orain
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: FAQs
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Dagoeneko ditudan argazkiak igo ditzaket?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Bai! Argazki bat noiz eta non atera den gutxi gorabehera badakizu, argazki zaharragoak ongi etorriak dira.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Nork egin dezake zientzia iNaturalist behaketekin?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Edozein! iNaturalist behaketa guztiak irekiak eta libreki eskuragarri daude - ikertzaileentzat, kontserbazio-profesionalentzat eta pertsona bitxientzat.
+          #FAQ: research grade definition — question
+          research_grade_question: Zer esan nahi du "ikerketa-maila"-k?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Komunitateak identifikazio bat adosten duenean, behaketa bat "ikerketa maila" bihurtzen da eta erregistro zientifiko globalean sartzen da. Identifikazio bakoitzak lagundu dezake bertara iristen.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Zeri begira nagoen jakin behar al dut?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Inondik inora ere ez! Partekatu argazki bat, eta naturalisten komunitate global batek identifikatzen lagunduko dizu.
+          #FAQ: whether the app is required — question
+          need_app_question: Aplikazioa erabili behar al dut?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Mahaigainean, iNaturalist.org primeran funtzionatzen du. Gailu mugikor batean, aplikazioak esperientzia onena eskaintzen dizu, batez ere espezieak mugimenduan identifikatzeko.
   date:
     abbr_day_names:
       - ig.
