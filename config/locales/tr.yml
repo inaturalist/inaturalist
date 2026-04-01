@@ -1137,6 +1137,8 @@ tr:
     %{user} kullanıcısı "%{reason}" nedeniyle şunu gizlemeyi bıraktı: %{item}
   continue: Devam et
   continue_to_site: '%{site_name} sayfasına devam et'
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Katkıda bulun
   contributor_cannot_be_found: Katılımcı bulunamadı
   contributors_to_project: "%{project} katılımcıları"
   controlled_term_labels:
@@ -1703,6 +1705,8 @@ tr:
   devise_unlock_instructions_click_the_link: |
     Hesabını etkinleştirmek için aşağıdaki bağlantıya tıkla
   devise_unlock_instructions_unlock: Hesabının Kilidini Aç
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Keşfet
   discoveries: Keşifler
   did_you_mean: 'Bunu mu demek istedin'
   did_you_photos_flickr?: Flickr'a hiç fotoğraf koydun mu?
@@ -2313,6 +2317,8 @@ tr:
   identify_observations: "Gözlemleri Tanımla"
   identify_observations_by_these_users: Bu Kullanıcıların Gözlemlerini Tanımla
   identify_title: "Tanımla"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Tanımlama
   identification: tanımlama
   identification_by_user: '%{user} tarafından tanımlama'
   #Notification when an identification has been deleted
@@ -3323,6 +3329,8 @@ tr:
   obscured_or_private: gizlenmiş veya özel
   obscured_description: |
     Açık koordinatlar, gerçek koordinatları içeren 0.2 derece enlem/boylam hücresinde rastgele bir nokta olarak gösterilir.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Gözlemleyin
   observation: Gözlem
   observation_: gözlem
   observation_accuracy_experiment_the_sample_for: "Bu deney için henüz örnek oluşturulmamıştır"
@@ -4860,6 +4868,7 @@ tr:
   sign_in_with_google: Google ile giriş yap
   sign_out: Çıkış Yap
   sign_up: Üye Ol
+  sign_up_sentence_case: Kayıt olun
   similar_species: Benzer Türler
   similar_taxa: Benzer Taksonlar
   #Journal post formatting option
@@ -5576,6 +5585,8 @@ tr:
   total_observations_caps: TOPLAM GÖZLEM
   total_species_observed_caps: GÖZLEMLENEN TOPLAM TÜR
   total_unique_observers: Toplam benzersiz gözlemci
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: İz
   translated_languages: Çevrilmiş Diller
   'true': 'Doğru'
   trending: Öne Çıkanlar
