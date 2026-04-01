@@ -1060,6 +1060,8 @@ hu:
     %{user} újra megjelenítette %{item}t "%{reason}" miatt
   continue: Folytatás
   continue_to_site: 'Tovább ide: %{site_name}'
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Hozzájárulás
   contributor_cannot_be_found: A közreműködő nem található
   contributors_to_project: "%{project} közreműködők"
   controlled_term_labels:
@@ -1563,6 +1565,8 @@ hu:
   devise_unlock_instructions_click_the_link: |
     Katt a linkre a fiók feloldáshoz!
   devise_unlock_instructions_unlock: Fiók zárolásának feloldása
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Fedezd fel
   discoveries: Felfedezések
   did_you_mean: 'Erre gondolsz?'
   did_you_photos_flickr?: Töltöttél fel bármilyen fotót a Flickr-re?
@@ -2113,6 +2117,8 @@ hu:
   identify_observations: "Megfigyelések azonosítása"
   identify_observations_by_these_users: E felhasználók megfigyeléseinek azonosítása
   identify_title: "Azonosítás"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Azonosítás
   identification: meghatározás
   identification_by_user: '%{user} meghatározásai'
   #Notification when an identification has been deleted
@@ -3027,6 +3033,8 @@ hu:
   obscured_or_private: Kitakart vagy privát
   obscured_description: |
     A nyílvános koordinátákat egy véletlenszerű pontként mutatjuk egy 0.2 fokos szél/hossz területen belül ami tartalmazza a valódi koordinátákat.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Figyeld meg
   observation: Megfigyelés
   observation_: megfigyelés
   observation_accuracy_experiment_the_sample_for: "A minta erre a kísérletre még nem készült el"
@@ -4398,6 +4406,7 @@ hu:
   sign_in_with_google: Bejelentkezés Google-fiókkal
   sign_out: Kijelentkezés
   sign_up: Regisztráció
+  sign_up_sentence_case: Feliratkozz
   similar_species: Hasonló fajok
   similar_taxa: Hasonló taxonok
   #Journal post formatting option
@@ -4948,6 +4957,8 @@ hu:
   total_observations_caps: Minden megfigyelés
   total_species_observed_caps: Minden megfigyelt faj
   total_unique_observers: Összes egyedi megfigyelő
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Nyom
   translated_languages: Célnyelv
   'true': 'Igen'
   trending: Népszerű
