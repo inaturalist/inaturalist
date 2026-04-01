@@ -283,7 +283,7 @@ module ElasticModel
   def self.elasticsearch_url
     url = Taxon.__elasticsearch__.client.transport.instance_variable_get( "@options" )[:host] ||
       Taxon.__elasticsearch__.client.transport.instance_variable_get( "@options" )[:hosts].try( :first )
-    unless url.starts_with?( "http://" )
+    unless url.starts_with?( "http" )
       url = "http://#{url}"
     end
     url
@@ -295,7 +295,9 @@ module ElasticModel
       return JSON.parse( response )["tagline"] == "You Know, for Search"
     rescue Exception => e
       pp e
-      pp CONFIG
+      pp CONFIG[:elasticsearch_host]
+      pp CONFIG[:elasticsearch_hosts]
+      pp CONFIG[:elasticsearch_api_key]
     end
     false
   end
