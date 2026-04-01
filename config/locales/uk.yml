@@ -1107,6 +1107,8 @@ uk:
     %{user} розкрив цей %{item} через те, що "%{reason}"
   continue: Продовжити
   continue_to_site: Продовжити на %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Внести внесок
   contributor_cannot_be_found: Не вдалося знайти учасника
   contributors_to_project: "Учасники %{project}"
   controlled_term_labels:
@@ -1584,6 +1586,8 @@ uk:
   devise_unlock_instructions_click_the_link: |
     Натисніть на посилання нижче, щоб розблокувати ваш обліковий запис
   devise_unlock_instructions_unlock: Розблокувати ваш обліковий запис
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Відкрийте
   discoveries: Відкриття
   did_you_mean: 'Можливо, ви мали на увазі'
   did_you_photos_flickr?: Чи завантажували ви якісь фото на Flickr?
@@ -2086,6 +2090,8 @@ uk:
   identify_observations: "Визначити спостереження"
   identify_observations_by_these_users: Визначити спостереження цих користувачів
   identify_title: "Визначити"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Ідентифікація
   identification: Визначення
   identification_by_user: 'Визначили: %{user}'
   #Notification when an identification has been deleted
@@ -2892,6 +2898,8 @@ uk:
   obscured_or_private: розмите або приватне
   obscured_description: |
     Загальновидимі координати відображені у вигляді випадкової точки в межах діапазону в 0,2 градуса широти/довготи, що містить справжні координати.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Спостерігайте
   observation: Спостереження
   observation_: спостереження
   observation_added_to_the_project: "Спостереження додано до проєкту \"%{project}\""
@@ -4269,6 +4277,7 @@ uk:
   sign_in_with_google: Увійти через Google
   sign_out: Вийти
   sign_up: Зареєструватися
+  sign_up_sentence_case: Зареєструватися
   similar_species: Схожі види
   similar_taxa: Схожі таксони
   #Journal post formatting option
@@ -4796,6 +4805,8 @@ uk:
   total_observations_caps: УСЬОГО СПОСТЕРЕЖЕНЬ
   total_species_observed_caps: УСЬОГО СПОСТЕРЕЖЕНИХ ВИДІВ
   total_unique_observers: Всього унікальних спостерігачів
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Сліди
   translated_languages: Перекладено мовами
   'true': 'Вірно'
   trending: Популярне
