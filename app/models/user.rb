@@ -528,6 +528,28 @@ class User < ApplicationRecord
     "#{ApplicationController.helpers.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
+  # Override devise_suspendable's suspended? to support timed suspensions.
+  # A user is considered suspended if suspended_at is set AND either:
+  #   - suspended_until is nil (indefinite suspension), or
+  #   - suspended_until is in the future (timed suspension still active)
+  def suspended?
+    return false unless suspended_at?
+
+    suspended_until.nil? || suspended_until > Time.zone.now
+  end
+
+  # Override devise_suspendable's unsuspend! to also clear suspended_until.
+  # We check suspended_at? directly (rather than suspended?) so that unsuspending
+  # a user whose timed suspension has already expired still clears suspended_at.
+  def unsuspend!
+    return unless suspended_at?
+
+    self.suspended_at = nil
+    self.suspension_reason = nil
+    self.suspended_until = nil
+    save( validate: false ) if self.changed?
+  end
+
   def active?
     !suspended?
   end
@@ -1737,6 +1759,7 @@ class User < ApplicationRecord
   def moderated_with( moderator_action )
     if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
       self.suspended_by_user = moderator_action.user
+      self.suspended_until = moderator_action.suspended_until
       suspend!
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
       self.spammer = false

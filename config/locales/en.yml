@@ -1476,6 +1476,10 @@ en:
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
   couldnt_find_that_taxon: Could't find that taxon.
+  # Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Count Descending
+  # Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Count Ascending
   create: Create
   create_a_guide: Create a Guide
   create_a_new_field: Create a New Field
@@ -5531,6 +5535,7 @@ en:
   sorry_you_need_to_be_signed_in_and: Sorry, you need to be signed in and have a linked Flickr account to post tags directly to Flickr.
   sort: Sort
   sort_by: Sort By
+  sort_included_projects_on_leaderboard_by: Sort included projects on leaderboard by
   sorting_by: Sorting by
   soundcloud_needs_to_confirm: "SoundCloud needs to confirm that you want your account connected to %{site_name}."
   sounds:
@@ -8604,11 +8609,22 @@ en:
           If this is an Eventbrite URL that includes a numerical ID, we'll
           include a sign-up widget on your project page until your bioblitz
           begins.
+        # label for a form field setting allowing the editor to toggle display
+        # of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Hide Leaderboard
         icon_desc: "Will be cropped to a square"
         it_looks_like_this_project_can_be_converted: |
           It looks like this project can be converted to a new <a href="%{url}">Collection Project</a>.
         last_aggregated_at_desc: |
           Time when the aggregator last finished adding observations to this project
+        # label for a heading for section allowing the editor to toggle
+        # display of the Leaderboard panel showing top observers and species
+        leaderboard: Leaderboard
+        # description of the project Leaderboard panel, to be shown next to a
+        # form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          The leaderboard panel displays users with the most observations, users with the
+          most species, and the top observed species. It can be optionally hidden.
         # Label for button to make another user the owner of a project
         make_owner: Make Owner
         no_curators: |

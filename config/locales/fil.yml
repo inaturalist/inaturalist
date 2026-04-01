@@ -253,6 +253,191 @@ fil:
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         May mali sa pagsisikap na i-post ang mga tag na iyon: %{message}
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Kung saan ang iyong pagkamausisa ay nag-aambag sa agham.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Kilalanin ang mga halaman, hayop, fungi, at iba pa habang nagdaragdag sa isang buhay na atlas ng buhay sa Earth.
+          #Primary call-to-action button in the hero section
+          cta_join: Sumali sa komunidad
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Libre, hindi pangkalakal, pinalakas ng komunidad.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Gamit ang iNaturalist, maaari mong:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Mga halaman, hayop, fungi, at marami pa
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Mga Uri ng Hayop na Nakita Mo Sa Buong Mundo
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: sa tunay na agham
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: kalikasan na malapit
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Mula sa isang pandaigdigang komunidad ng mga naturalista
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Ang kapangyarihan ng agham ng komunidad
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Nakita sa pamamagitan ng %{user} sa %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Muling pagtuklas ng mga species na matagal nang nawala
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Ang %{moth_common_name} Ang moth ay hindi nakita sa mga dekada at minsan ay naisip na extinct - hanggang sa nakita ito ng isang turista sa New Zealand nang hindi sinasadya.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Pagtuklas ng Mga Bagong Species ng Agham
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — pinaikli sa <span class="italic">I. nat</span> - ay isang bagong-sa-agham na species ng mantis na natagpuan ng isang babae sa Australia na naglalakad sa kanyang kapitbahayan.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Protektahan ang mga lokal na ecosystem
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Ang isang pangkat ng mga lokal na boluntaryo sa California ay nagsama-sama sa pamamagitan ng iNaturalist upang protektahan ang mga migrating amphibian na tumatawid sa isang abalang kalsada.
+          #Link below the stories to read more community science stories
+          read_more: Magbasa ng higit pang mga kuwento
+        observation:
+          #Heading for the sample observation section
+          heading: Bawat pag-uusap ay nagsasabi ng isang kuwento
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Mga obserbasyon na nag-aambag sa agham ng biodiversity
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Mga species na naitala sa buong mundo
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: mga papel na binabanggit ang data ng iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Mga species na natuklasan o muling natuklasan ng mga siyentipiko ng komunidad
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Buksan ang app at kunan ng larawan ang anumang ligaw na halaman, hayop, fungi, o iba pang organismo - mula sa iyong kapitbahayan o kahit saan sa mundo.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Ang app ay nagmumungkahi ng isang pagkakakilanlan kaagad, at isang pandaigdigang komunidad ng mga naturalista ang nagkukumpirma o pinuhin ito.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Ang iyong obserbasyon ay nagiging bukas na data - ginagamit ng mga siyentipiko, conservationist, at mananaliksik sa buong mundo.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Ang kalikasan ay nagbabago nang mas mabilis kaysa dati, kaya kailangan natin <span class="underline">Ikaw</span> Upang makatulong na maitala kung ano ang nakatira kung saan.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Talagang nakatulong ito sa akin sa pagkakakilanlan ng mga species, bukod pa sa pagbibigay sa akin ng pagkakataong makihalubilo sa iba't ibang tao sa buong mundo.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Marine Conservationist & Underwater Photographer, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            Binubuksan ng iNaturalist ang pinto sa napakaraming bago at kapana-panabik na pananaliksik sa mga taxa na hindi pinag-aralan. Sa aking palagay, ang platform na ito ay ang pagputol ng gilid ng agham ng ekolohiya.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: May-akda ng Gabay sa Patlang sa Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            Ang iNaturalist at ang dedikadong komunidad ng mga identifier nito ay naging isang napakahalagang mapagkukunan sa aking mga paggalugad. Nakatulong ito sa pag-aayos ng pundasyon ng aking kasalukuyang trabaho.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Mananaliksik sa Biodiversity, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            Ang iNaturalist ay isang mabisang tool na nag-uugnay sa mga tao, kalikasan, at kaalaman. Maaari kong kunan ng larawan ang isang bihirang species, o kahit isa na hindi pa inilarawan, at sa parehong oras, nag-aambag ako sa pangangalaga ng ating likas na pamana.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Environmental Technician at libangan photographer, Brazil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Hindi mahalaga kung nasaan ka sa mundo, kung mayroon kang PhD o mahilig lamang sa labas, ang iNaturalist ay magdadala sa iyo ng mas malapit sa kalikasan at maraming kapwa naturalista.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biologist, Mexico
+        everyone:
+          #Heading for the broad audience section
+          heading: Lahat ng tao ay naturalista
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Kung tumingin ka nang mabuti sa isang bagay na nabubuhay at nagtataka kung ano ito, ang iNaturalist ay para sa iyo.
+          #Heading for the impact sub-section
+          impact_heading: Maaari kang gumawa ng isang epekto
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Ang bawat larawan na ibinabahagi mo ay nagiging bahagi ng isang pandaigdigang pang-agham na rekord na nakasalalay sa mga mananaliksik sa buong mundo.
+          #Heading for the community reputation sub-section
+          community_heading: '"Ang Pinakamagandang Lugar sa Online"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Halika para sa mga pagkakakilanlan, manatili para sa komunidad at epekto sa agham.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: I-download ang iNaturalist app
+          #Subheading describing the two core benefits of the app
+          subheading: Kumuha ng mga real-time na pagkakakilanlan at mag-ambag sa agham
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Mga Pag-download"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Galugarin ang mga species sa buong mundo
+          #Button / link to browse species without downloading
+          button: Tuklasin ngayon
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Sa ilalim ng 13? I-download ang Hanapin!"
+          #Description of Seek's badge and challenge features
+          body: Kumita ng mga badge at makilahok sa mga hamon upang obserbahan ang mga species!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-Star Mga Review"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Kunin ang aming buwanang newsletter!
+          #Description of the newsletter's content
+          body: Manatiling konektado sa mga kuwento at natuklasan mula sa komunidad ng iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: Ang iNaturalist ay isang nonprofit na organisasyon na sumusuporta sa agham at konserbasyon.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Ang iyong suporta ay ginagawang posible iyon.
+          #Call-to-action button for the donation section
+          cta: 'Email:'
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Mga FAQ
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Maaari ba akong mag-upload ng mga larawan na mayroon na ako?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Oo! Hangga't alam mo kung kailan at saan kinunan ang isang larawan, malugod na tinatanggap ang mga lumang larawan.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Sino ang maaaring gumawa ng agham gamit ang mga obserbasyon ng iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Sinuman! Ang lahat ng mga obserbasyon ng iNaturalist ay bukas at malayang magagamit - sa mga mananaliksik, conservation practitioner, at mausisa na mga indibidwal.
+          #FAQ: research grade definition — question
+          research_grade_question: Ano ang kahulugan ng "grado ng pananaliksik"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Kapag ang komunidad ay sumang-ayon sa isang pagkakakilanlan, ang isang obserbasyon ay nagiging "grado ng pananaliksik" at pumapasok sa pandaigdigang pang-agham na talaan. Ang bawat pagkakakilanlan ay maaaring makatulong na makarating doon.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Kailangan ko bang malaman kung ano ang tinitingnan ko?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Hindi sa lahat! Magbahagi ng isang larawan, at ang isang pandaigdigang komunidad ng mga naturalista ay maaaring makatulong sa iyo na makilala ito.
+          #FAQ: whether the app is required — question
+          need_app_question: Kailangan ko bang gamitin ang app?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Sa isang desktop, gumagana iNaturalist.org nang mahusay. Sa isang mobile device, ang app ay nagbibigay sa iyo ng pinakamahusay na karanasan - lalo na para sa pagtukoy ng mga species on the go.
   number:
     format:
       significant: false

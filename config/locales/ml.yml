@@ -910,6 +910,191 @@ ml:
     welcome:
       index:
         run_a_bioblitz: ഒരു Bioblitz സംഘടിപ്പിക്കുക
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: നിങ്ങളുടെ ജിജ്ഞാസ ശാസ്ത്രത്തിന് സംഭാവന ചെയ്യുന്ന സ്ഥലം.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            ഭൂമിയിലെ ജീവജാലങ്ങളുടെ ജീവനുള്ള അറ്റ്ലസിലേക്ക് ചേർക്കുമ്പോൾ സസ്യങ്ങൾ, മൃഗങ്ങൾ, ഫംഗസ് എന്നിവയും അതിലേറെയും തിരിച്ചറിയുക.
+          #Primary call-to-action button in the hero section
+          cta_join: കമ്മ്യൂണിറ്റിയിൽ ചേരുക
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: സ്വതന്ത്ര, ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന, കമ്മ്യൂണിറ്റി പവർഡ്.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalist ഉപയോഗിച്ച്, നിങ്ങൾക്ക് കഴിയും:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: സസ്യങ്ങൾ, മൃഗങ്ങൾ, ഫംഗസുകൾ എന്നിവയും അതിലേറെയും
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: ലോകമെമ്പാടും നിങ്ങൾ കണ്ട സ്പീഷീസുകൾ
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: യഥാര് ത്ഥ ശാസ്ത്രത്തിലേക്ക്
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: സമീപത്തെ പ്രകൃതി
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: പ്രകൃതിശാസ്ത്രജ്ഞരുടെ ഒരു ആഗോള സമൂഹത്തിൽ നിന്ന്
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: കമ്മ്യൂണിറ്റി സയൻസിന്റെ ശക്തി
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: കണ്ടത് %{user} ൽ %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: ദീർഘകാലമായി നഷ്ടപ്പെട്ട ജീവിവർഗ്ഗങ്ങൾ വീണ്ടും കണ്ടെത്തുന്നു
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            ദി %{moth_common_name} പതിറ്റാണ്ടുകളായി നിശാശലഭത്തെ കണ്ടെത്തിയിട്ടില്ല, ഒരിക്കൽ വംശനാശം സംഭവിച്ചതായി കരുതിയിരുന്നു - ന്യൂസിലാൻഡിലെ ഒരു ടൂറിസ്റ്റ് ആകസ്മികമായി ഇത് കണ്ടെത്തുന്നതുവരെ.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: പുതിയ-ശാസ്ത്ര ഇനങ്ങളെ കണ്ടെത്തുന്നു
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">ഇനിമിയ നാറ്റ്</span> - ചുരുക്കത്തിൽ <span class="italic">ഐ. നാറ്റ്</span> - ഓസ് ട്രേലിയയിലെ ഒരു സ്ത്രീ തന്റെ അയൽപക്കത്ത് നടക്കുമ്പോൾ കണ്ടെത്തിയ ഒരു പുതിയ ശാസ്ത്ര മാന്റിസ് ഇനമാണ്.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: പ്രാദേശിക ആവാസവ്യവസ്ഥ സംരക്ഷിക്കൽ
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            തിരക്കേറിയ റോഡ് മുറിച്ചുകടക്കുന്ന കുടിയേറുന്ന ഉഭയജീവികളെ സംരക്ഷിക്കാൻ കാലിഫോർണിയയിലെ ഒരു കൂട്ടം പ്രാദേശിക സന്നദ്ധപ്രവർത്തകർ ഐനാച്ചുറലിസ്റ്റ് വഴി ഒത്തുചേർന്നു.
+          #Link below the stories to read more community science stories
+          read_more: കൂടുതൽ കഥകൾ വായിക്കുക
+        observation:
+          #Heading for the sample observation section
+          heading: ഓരോ നിരീക്ഷണവും ഓരോ കഥ പറയുന്നു
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: ജൈവവൈവിധ്യ ശാസ്ത്രത്തിന് സംഭാവന ചെയ്യുന്ന നിരീക്ഷണങ്ങൾ
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: ലോകമെമ്പാടും രേഖപ്പെടുത്തിയ സ്പീഷീസുകൾ
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: ഐനാച്ചുറലിസ്റ്റ് ഡാറ്റ ഉദ്ധരിച്ചുള്ള പേപ്പറുകൾ
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: കമ്മ്യൂണിറ്റി ശാസ്ത്രജ്ഞർ കണ്ടെത്തിയ അല്ലെങ്കിൽ വീണ്ടും കണ്ടെത്തിയ സ്പീഷീസുകൾ
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            അപ്ലിക്കേഷൻ തുറന്ന് ഏതെങ്കിലും വന്യ സസ്യങ്ങൾ, മൃഗങ്ങൾ, ഫംഗസ് അല്ലെങ്കിൽ മറ്റ് ജീവികൾ - നിങ്ങളുടെ അയൽപക്കത്ത് നിന്നോ ലോകത്തെവിടെയെങ്കിലുമോ ഫോട്ടോ എടുക്കുക.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            അപ്ലിക്കേഷൻ തൽക്ഷണം ഒരു തിരിച്ചറിയൽ നിർദ്ദേശിക്കുന്നു, പ്രകൃതിശാസ്ത്രജ്ഞരുടെ ഒരു ആഗോള സമൂഹം അത് സ്ഥിരീകരിക്കുകയോ പരിഷ്കരിക്കുകയോ ചെയ്യുന്നു.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            നിങ്ങളുടെ നിരീക്ഷണം ഓപ്പൺ ഡാറ്റയായി മാറുന്നു - ലോകമെമ്പാടുമുള്ള ശാസ്ത്രജ്ഞരും സംരക്ഷണവാദികളും ഗവേഷകരും ഉപയോഗിക്കുന്നു.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            പ്രകൃതി എന്നത്തേക്കാളും വേഗത്തിൽ മാറിക്കൊണ്ടിരിക്കുകയാണ്, അതിനാൽ നമുക്ക് ആവശ്യമാണ് <span class="underline">നീ</span> എവിടെയാണ് ജീവിക്കുന്നതെന്ന് രേഖപ്പെടുത്താൻ സഹായിക്കുന്നതിന്.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            ലോകമെമ്പാടുമുള്ള വ്യത്യസ്ത ആളുകളുമായി ഇടപഴകാനുള്ള അവസരം നൽകുന്നതിനു പുറമേ, സ്പീഷീസുകൾ തിരിച്ചറിയുന്നതിൽ ഇത് എന്നെ ശരിക്കും സഹായിച്ചു.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: മറൈൻ കൺസർവേഷനിസ്റ്റ് & അണ്ടർവാട്ടർ ഫോട്ടോഗ്രാഫർ, കെനിയ
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            പഠനവിധേയമല്ലാത്ത ടാക്സയെക്കുറിച്ചുള്ള പുതിയതും ആവേശകരവുമായ ഗവേഷണത്തിന് ഐനാച്ചുറലിസ്റ്റ് വാതിൽ തുറക്കുന്നു. എന്റെ അഭിപ്രായത്തിൽ, ഈ പ്ലാറ്റ്ഫോം പാരിസ്ഥിതിക ശാസ്ത്രത്തിന്റെ കട്ടിംഗ് എഡ്ജ് ആണ്.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: ഫീൽഡ് ഗൈഡ് രചയിതാവ് ഓൾഫ്ലി എൽഎൽസി, യുഎസ്എ
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist ഉം അതിന്റെ സമർപ്പിത ഐഡന്റിഫയറുകളുടെ കമ്മ്യൂണിറ്റിയും എന്റെ പര്യവേക്ഷണങ്ങളിൽ വിലമതിക്കാനാവാത്ത വിഭവമായി മാറി. എന്റെ ഇപ്പോഴത്തെ ജോലിയുടെ അടിത്തറ പാകാൻ ഇത് സഹായിച്ചു.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: ജൈവവൈവിധ്യ ഗവേഷകൻ, ശ്രീലങ്ക
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            ആളുകൾ, പ്രകൃതി, അറിവ് എന്നിവയെ ബന്ധിപ്പിക്കുന്ന ശക്തമായ ഉപകരണമാണ് ഐനാച്ചുറലിസ്റ്റ്. എനിക്ക് ഒരു അപൂർവ ഇനത്തിന്റെ ഫോട്ടോ എടുക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഇതുവരെ വിവരിക്കപ്പെടാത്ത ഒന്ന്, അതേ സമയം, നമ്മുടെ പ്രകൃതി പൈതൃകം സംരക്ഷിക്കുന്നതിന് ഞാൻ സംഭാവന ചെയ്യുന്നു.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: പരിസ്ഥിതി സാങ്കേതിക വിദഗ്ദ്ധനും ഹോബി ഫോട്ടോഗ്രാഫറും, ബ്രസീൽ
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            നിങ്ങൾ ലോകത്ത് എവിടെയായിരുന്നാലും, നിങ്ങൾക്ക് പിഎച്ച്ഡി ഉണ്ടെങ്കിലും, അല്ലെങ്കിൽ ഔട്ട് ഡോർ ഇഷ്ടപ്പെട്ടാലും, iNaturalist നിങ്ങളെ പ്രകൃതിയുമായും നിരവധി സഹ പ്രകൃതിവാദികളുമായും അടുപ്പിക്കും.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: ജീവശാസ്ത്രജ്ഞൻ, മെക്സിക്കോ
+        everyone:
+          #Heading for the broad audience section
+          heading: എല്ലാവരും പ്രകൃതിശാസ്ത്രജ്ഞരാണ്
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            നിങ്ങൾ എപ്പോഴെങ്കിലും ജീവനുള്ള എന്തെങ്കിലും സൂക്ഷ്മമായി നോക്കുകയും അത് എന്താണെന്ന് ആശ്ചര്യപ്പെടുകയും ചെയ്തിട്ടുണ്ടെങ്കിൽ, iNaturalist നിങ്ങൾക്കുള്ളതാണ്.
+          #Heading for the impact sub-section
+          impact_heading: നിങ്ങൾക്ക് ഒരു സ്വാധീനം ചെലുത്താൻ കഴിയും
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            നിങ്ങൾ പങ്കിടുന്ന ഓരോ ഫോട്ടോയും ലോകമെമ്പാടുമുള്ള ഗവേഷകർ ആശ്രയിക്കുന്ന ഒരു ആഗോള ശാസ്ത്രീയ റെക്കോർഡിന്റെ ഭാഗമായി മാറുന്നു.
+          #Heading for the community reputation sub-section
+          community_heading: '"ഓൺലൈനിലെ ഏറ്റവും നല്ല സ്ഥലം"'
+          #Description of the welcoming community aspect
+          community_body: >
+            തിരിച്ചറിയലുകൾക്കായി വരൂ, കമ്മ്യൂണിറ്റിക്കായി തുടരുക, ശാസ്ത്രത്തിൽ സ്വാധീനം ചെലുത്തുക.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: ഐനാച്ചുറലിസ്റ്റ് അപ്ലിക്കേഷൻ ഡൗൺലോഡ് ചെയ്യുക
+          #Subheading describing the two core benefits of the app
+          subheading: തത്സമയ തിരിച്ചറിയൽ രേഖകൾ നേടുകയും ശാസ്ത്രത്തിന് സംഭാവന നൽകുകയും ചെയ്യുക
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ ഡൗൺലോഡുകൾ"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: ലോകമെമ്പാടുമുള്ള ജീവിവർഗ്ഗങ്ങൾ പര്യവേക്ഷണം ചെയ്യുക
+          #Button / link to browse species without downloading
+          button: ഇപ്പോൾ പര്യവേക്ഷണം ചെയ്യുക
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 വയസ്സിന് താഴെ? സീക്ക് ഡൗൺലോഡ് ചെയ്യുക!"
+          #Description of Seek's badge and challenge features
+          body: ബാഡ്ജുകൾ നേടുക, സ്പീഷീസുകളെ നിരീക്ഷിക്കുന്നതിനുള്ള വെല്ലുവിളികളിൽ പങ്കെടുക്കുക!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 നക്ഷത്ര അവലോകനങ്ങൾ"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: ഞങ്ങളുടെ പ്രതിമാസ വാർത്താക്കുറിപ്പ് നേടുക!
+          #Description of the newsletter's content
+          body: iNaturalist കമ്മ്യൂണിറ്റിയിൽ നിന്നുള്ള കഥകളുമായും കണ്ടെത്തലുകളുമായും ബന്ധം പുലർത്തുക.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: ശാസ്ത്രത്തെയും സംരക്ഷണത്തെയും പിന്തുണയ്ക്കുന്ന ലാഭേച്ഛയില്ലാത്ത സംഘടനയാണ് ഐനാച്ചുറലിസ്റ്റ്.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: നിങ്ങളുടെ പിന്തുണ അത് സാധ്യമാക്കുന്നു.
+          #Call-to-action button for the donation section
+          cta: ഇപ്പോൾ സംഭാവന ചെയ്യുക
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: പതിവുചോദ്യങ്ങൾ
+          #FAQ: uploading existing photos — question
+          upload_existing_question: എന്റെ കൈവശമുള്ള ഫോട്ടോകൾ അപ് ലോഡ് ചെയ്യാൻ കഴിയുമോ?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            യെസ്! ഒരു ഫോട്ടോ എപ്പോൾ, എവിടെയാണ് എടുത്തതെന്ന് നിങ്ങൾക്ക് ഏകദേശം അറിയാവുന്നിടത്തോളം, പഴയ ഫോട്ടോകൾ സ്വാഗതം ചെയ്യുന്നു.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: ഐനാച്ചുറലിസ്റ്റ് നിരീക്ഷണങ്ങൾ ഉപയോഗിച്ച് ആർക്കാണ് ശാസ്ത്രം ചെയ്യാൻ കഴിയുക?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            ആരെങ്കിലും! എല്ലാ ഐനാച്ചുറലിസ്റ്റ് നിരീക്ഷണങ്ങളും തുറന്നതും സൌജന്യമായി ലഭ്യവുമാണ് - ഗവേഷകർക്കും സംരക്ഷണ പ്രാക്ടീഷണർമാർക്കും ജിജ്ഞാസയുള്ള വ്യക്തികൾക്കും ഒരുപോലെ.
+          #FAQ: research grade definition — question
+          research_grade_question: '"ഗവേഷണ ഗ്രേഡ്" എന്നതിന്റെ അർത്ഥമെന്താണ്?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            ഒരു ഐഡന്റിഫിക്കേഷനിൽ കമ്മ്യൂണിറ്റി അംഗീകരിക്കുമ്പോൾ, ഒരു നിരീക്ഷണം "ഗവേഷണ ഗ്രേഡ്" ആയി മാറുകയും ആഗോള ശാസ്ത്രീയ രേഖയിലേക്ക് പ്രവേശിക്കുകയും ചെയ്യുന്നു. ഓരോ തിരിച്ചറിയലും അത് അവിടെ എത്തിക്കാൻ സഹായിക്കും.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: ഞാൻ എന്താണ് നോക്കുന്നതെന്ന് അറിയേണ്ടതുണ്ടോ?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            ഒരിക്കലുമില്ല! ഒരു ഫോട്ടോ പങ്കിടുക, പ്രകൃതിശാസ്ത്രജ്ഞരുടെ ഒരു ആഗോള കമ്മ്യൂണിറ്റി അത് തിരിച്ചറിയാൻ നിങ്ങളെ സഹായിക്കും.
+          #FAQ: whether the app is required — question
+          need_app_question: ഞാൻ ആപ്പ് ഉപയോഗിക്കേണ്ടതുണ്ടോ?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            ഒരു ഡെസ്ക്ടോപ്പിൽ, iNaturalist.org നന്നായി പ്രവർത്തിക്കുന്നു. ഒരു മൊബൈൽ ഉപകരണത്തിൽ, അപ്ലിക്കേഷൻ നിങ്ങൾക്ക് മികച്ച അനുഭവം നൽകുന്നു - പ്രത്യേകിച്ചും യാത്രയിൽ ജീവികളെ തിരിച്ചറിയുന്നതിന്.
   date:
     day_names:
       - ഞായറാഴ്ച

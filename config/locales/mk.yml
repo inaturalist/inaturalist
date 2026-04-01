@@ -832,6 +832,7 @@ mk:
     observations_in_year: Највеќе набљудувања во %{year} г.
     identifications_in_month_year: Највеќе препознавања во %{month_year} г.
     identifications_in_year: Највеќе препознавања во %{year} г.
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Научете
   learn_about_the_species_live_in: Научете за видовите што живеат во
   learn_more: Дознајте повеќе
@@ -2073,6 +2074,191 @@ mk:
         who_uses_site_name: "Koj go koristi %{site_name}?"
         what_are_you_waiting_for: Што чекате?
         join_today: Приклучете се денес
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Каде што вашата љубопитност придонесува за науката.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Идентификувајте растенија, животни, габи и повеќе додека придонесувате во живиот атлас на животот на Земјата.
+          #Primary call-to-action button in the hero section
+          cta_join: Придружете се на заедницата
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Бесплатно, непрофитно, заедничко поттикнато.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Со iNaturalist, можете:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: растенија, животни, габи и уште многу
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Вид што сте ги виделе низ целиот свет
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: кон вистинската наука
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Природа во близина
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Од глобална заедница на природонаучници
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Моќта на заедничката наука
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Видено од %{user} во %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Повторно откривање на одамна изгубени видови
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} Молецот не бил забележан со децении и некогаш се сметал за изумрен — сè додека еден турист во Нов Зеланд случајно не го забележал.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Откривање на нови за науката видови
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — скратено во <span class="italic">I. nat</span> — е нов во науката вид богомолка, пронајден од жена во Австралија која шета низ своето соседство.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Заштита на локалните екосистеми
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Група локални волонтери во Калифорнија се здружија преку iNaturalist за да заштитат мигрирачки водоземци кои преминуваат низ прометен пат.
+          #Link below the stories to read more community science stories
+          read_more: Прочитајте повеќе приказни
+        observation:
+          #Heading for the sample observation section
+          heading: Секоја забелешка раскажува приказна
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Набљудувањата кои придонесуваат за науката за биодиверзитетот
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: видови документирани низ целиот свет
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: трудови кои цитираат податоци од iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Видови откриени или повторно откриени од научници од заедницата
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Отворете ја апликацијата и фотографирајте било кое диво растение, животно, габа или друг организам — од вашето соседство или било каде во светот.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Апликацијата веднаш сугерира идентификација, а глобалната заедница на природонаучници ја потврдува или усовршува.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Вашето набљудување станува отворени податоци — користени од научници, заштитници на природата и истражувачи ширум светот.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Природата се менува побрзо од кога било, па ни треба <span class="underline">ти</span> за да помогне во евидентирање што живее каде.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Навистина ми помогна со идентификацијата на видови, покрај тоа што ми даде можност да комуницирам со различни луѓе ширум светот.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Морски конзерватор и подводен фотограф, Кенија
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist отвора врата за толку многу нови и возбудливи истражувања за недоволно проучени таксони. По мое мислење, оваа платформа е врвот на еколошката наука.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Автор на теренски водич во Owlfly LLC, САД
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist и неговата посветена заедница на идентификатори станаа непроценлив ресурс во моите истражувања. Тоа ми помогна да се постават темелите на мојата сегашна работа.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Истражувач на биодиверзитет, Шри Ланка
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist е моќен алат што ги поврзува луѓето, природата и знаењето. Можам да фотографирам редок вид, или дури и таков што сè уште не е опишан, а истовремено придонесувам за зачувување на нашето природно наследство.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Техничар за животна средина и хоби фотограф, Бразил
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Без разлика каде се наоѓате во светот, без разлика дали имате докторат или едноставно го сакате природата, iNaturalist ќе ве приближи до природата и до многу други природонаучници.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Биолог, Мексико
+        everyone:
+          #Heading for the broad audience section
+          heading: Секој е природонаучник
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Ако некогаш сте погледнале нешто живо и сте се запрашале што е тоа, iNaturalist е за вас.
+          #Heading for the impact sub-section
+          impact_heading: Можеш да оставиш впечаток
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Секоја фотографија што ја споделувате станува дел од глобален научен запис на кој се потпираат истражувачите ширум светот.
+          #Heading for the community reputation sub-section
+          community_heading: '"Најубавото место онлајн"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Дојдете за идентификациите, останете за заедницата и влијанието врз науката.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Преземете ја апликацијата iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Добијте идентификации во реално време и придонесете во науката
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Преземања"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Истражете ги видовите ширум светот
+          #Button / link to browse species without downloading
+          button: Истражете сега
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Под 13 години? Преземете Seek!"
+          #Description of Seek's badge and challenge features
+          body: Заработувајте значки и учествувајте во предизвици за набљудување на видови!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-ѕвездени рецензии"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Добијте го нашиот месечен билтен!
+          #Description of the newsletter's content
+          body: Останете поврзани со приказни и откритија од заедницата iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist е непрофитна организација која ја поддржува науката и заштитата на природата.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Вашата поддршка го прави тоа возможно.
+          #Call-to-action button for the donation section
+          cta: Донирајте сега
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: ЧПП
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Можам ли да поставам фотографии што веќе ги имам?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Да! Сè додека знаете приближно кога и каде е направена фотографијата, постарите фотографии се добредојдени.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Кој може да прави наука со iNaturalist набљудувања?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Некој! Сите iNaturalist набљудувања се отворени и слободно достапни — за истражувачи, практичари за заштита и љубопитни личности.
+          #FAQ: research grade definition — question
+          research_grade_question: Што значи "оценка за истражување"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Кога заедницата се согласува за идентификација, набљудувањето станува "истражувачко ниво" и влегува во глобалниот научен запис. Секоја идентификација може да помогне да се стигне таму.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Дали треба да знам што гледам?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Не воопшто! Споделете фотографија, и глобална заедница на природонаучници може да ви помогне да ја идентификувате.
+          #FAQ: whether the app is required — question
+          need_app_question: Дали треба да ја користам апликацијата?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            На десктоп, iNaturalist.org работи одлично. На мобилен уред, апликацијата ви дава најдобро искуство — особено за идентификување на видови во движење.
   date:
     abbr_day_names:
       - нед

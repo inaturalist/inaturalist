@@ -2325,6 +2325,7 @@ et:
     identifications_in_month_year: 'Enim määratlusi: %{month_year}'
     identifications_in_year: 'Enim määratlusi: %{year}'
   leading: Suunaja
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Õpi
   learn_about_the_species_live_in: Õpi liikide kohta, mis leiduvad kohas
   learn_more: Lisateave
@@ -6054,6 +6055,191 @@ et:
         who_uses_site_name: "Kes on %{site_name} kasutajad?"
         what_are_you_waiting_for: Mida sa veel ootad?
         join_today: Liitu täna
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Kus sinu uudishimu panustab teadusse.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Tuvastage taimi, loomi, seeni ja palju muud, lisades samal ajal elavasse atlase Maal.
+          #Primary call-to-action button in the hero section
+          cta_join: Liitu kogukonnaga
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Tasuta, mittetulunduslik, kogukonna jõul.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalisti abil saad:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Taimed, loomad, seened ja palju muud
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Liigid, keda oled näinud üle maailma
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: Tõelise teaduse juurde
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Loodus lähedal
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: ülemaailmsest loodusteadlaste kogukonnast
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Kogukonnateaduse jõud
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Nähtud %{user} sees %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Ammu kadunud liikide taasavastamine
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} Ööliblikat polnud aastakümneid nähtud ja teda peeti kunagi välja surnuks — kuni üks turist Uus-Meremaal selle juhuslikult märkas.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Teadusele uute liikide avastamine
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — lühendatult <span class="italic">I. nat</span> — on teadusele uus mantisliik, keda leidis Austraalias naine oma naabruskonnas jalutades.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Kohalike ökosüsteemide kaitsmine
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Kohalike vabatahtlike grupp Californias tuli kokku iNaturalisti kaudu, et kaitsta rändavaid kahepaikseid, kes ületasid tiheda liiklusega teed.
+          #Link below the stories to read more community science stories
+          read_more: Loe rohkem lugusid
+        observation:
+          #Heading for the sample observation section
+          heading: Iga tähelepanek räägib loo
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Vaatlused aitavad kaasa bioloogilise mitmekesisuse teadusele
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Liigid, mis on dokumenteeritud üle kogu maailma
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: artiklid, mis viitavad iNaturalisti andmetele
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Kogukonna teadlaste poolt avastatud või taasavastatud liigid
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Ava rakendus ja pildista kõiki metsikuid taimi, loomi, seeni või muid organisme — kas oma naabruskonnast või ükskõik kust maailmast.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Rakendus pakub kohest identifitseerimist ning ülemaailmne loodusteadlaste kogukond kinnitab või täpsustab seda.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Sinu vaatlus muutub avalikuks andmeks — mida kasutavad teadlased, looduskaitsjad ja teadlased üle kogu maailma.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Loodus muutub kiiremini kui kunagi varem, seega vajame <span class="underline">sina</span> et aidata salvestada, millised elud kus on.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            See on mind tõesti aidanud liikide tuvastamisel ning andnud võimaluse suhelda erinevate inimestega üle maailma.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Merekaitsja ja veealune fotograaf, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist avab ukse paljudele uutele ja põnevatele uurimistöödele alahinnatud taksonite kohta. Minu arvates on see platvorm ökoloogiateaduse tipptasemel.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Välijuhendi autor Owlfly LLC-s, USA-s
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist ja selle pühendunud identifikaatorite kogukond said hindamatuks ressursiks minu uurimistes. See aitas panna aluse minu praegusele tööle.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Bioloogilise mitmekesisuse uurija, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist on võimas tööriist, mis ühendab inimesi, loodust ja teadmisi. Ma saan pildistada haruldast liiki, või isegi sellist, mida pole veel kirjeldatud, ning samal ajal panustan meie loodusliku pärandi säilitamisse.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Keskkonnatehnik ja hobifotograaf, Brasiilia
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Pole tähtis, kus maailmas sa oled, kas sul on doktorikraad või armastad lihtsalt loodust – iNaturalist toob sind lähemale loodusele ja paljudele teistele loodusteadlastele.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Bioloog, Mehhiko
+        everyone:
+          #Heading for the broad audience section
+          heading: Kõik on loodusteadlased
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Kui oled kunagi midagi elavat lähemalt vaadanud ja mõelnud, mis see võiks olla, siis iNaturalist on just sulle.
+          #Heading for the impact sub-section
+          impact_heading: Sa suudad mõju avaldada
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Iga foto, mida jagad, saab osaks ülemaailmsest teaduslikust arhiivist, millele teadlased üle maailma toetuvad.
+          #Heading for the community reputation sub-section
+          community_heading: '"Kõige ilusam koht internetis"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Tule identifitseerimiseks, jää kogukonna ja teaduse mõju pärast.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Laadi alla iNaturalist rakendus
+          #Subheading describing the two core benefits of the app
+          subheading: Hangi reaalajas identifitseerimisi ja panusta teadusesse
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Allalaadimised"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Avastage liike üle maailma
+          #Button / link to browse species without downloading
+          button: Avasta kohe
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Alla 13? Laadi alla Seek!"
+          #Description of Seek's badge and challenge features
+          body: Teeni märke ja osale väljakutsetes liikide vaatlemiseks!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-tärni arvustused"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Telli meie igakuine uudiskiri!
+          #Description of the newsletter's content
+          body: Hoia end kursis iNaturalisti kogukonna lugude ja avastustega.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist on mittetulundusühing, mis toetab teadust ja looduskaitset.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Sinu toetus teeb selle võimalikuks.
+          #Call-to-action button for the donation section
+          cta: Annetage kohe
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: KKK-d
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Kas ma saan üles laadida fotosid, mis mul juba olemas on?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Jah! Kui tead umbkaudu, millal ja kus foto tehti, on vanemad fotod teretulnud.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Kes suudab teadust teha iNaturalisti vaatlustega?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Keegi! Kõik iNaturalisti tähelepanekud on avatud ja vabalt kättesaadavad — nii teadlastele, looduskaitse praktikutele kui ka uudishimulikele inimestele.
+          #FAQ: research grade definition — question
+          research_grade_question: Mida tähendab "uurimishinne"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Kui kogukond leppib kokku identifitseerimises, muutub vaatlus "uurimiskvaliteediks" ja kantakse ülemaailmsesse teaduslikku registrisse. Iga tuvastus aitab selle sinna jõuda.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Kas ma pean teadma, mida ma vaatan?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Üldse mitte! Jaga fotot ja ülemaailmne loodusteadlaste kogukond aitab sul selle ära tunda.
+          #FAQ: whether the app is required — question
+          need_app_question: Kas ma pean rakendust kasutama?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Lauaarvutis töötab iNaturalist.org suurepäraselt. Mobiilseadmes pakub rakendus parimat kogemust — eriti liikide tuvastamiseks liikvel olles.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Manuste lisamiseks salvesta ja seejärel muuda

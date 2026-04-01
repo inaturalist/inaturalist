@@ -2781,7 +2781,9 @@ CREATE TABLE public.moderator_actions (
     resource_user_id integer,
     resource_parent_id integer,
     resource_parent_type character varying,
-    resource_content text
+    resource_content text,
+    suspended_until timestamp without time zone,
+    last_edited_by_user_id integer
 );
 
 
@@ -6118,7 +6120,8 @@ CREATE TABLE public.users (
     virtuous_donor_contact_id integer,
     fundraiseup_plan_frequency character varying,
     fundraiseup_plan_status character varying,
-    fundraiseup_plan_started_at date
+    fundraiseup_plan_started_at date,
+    suspended_until timestamp without time zone
 );
 
 
@@ -12180,6 +12183,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251119043443'),
 ('20251119130558'),
 ('20251202224705'),
-('20260119093529');
+('20260119093529'),
+('20260319212735'),
+('20260326000001'),
+('20260326000002');
 
 

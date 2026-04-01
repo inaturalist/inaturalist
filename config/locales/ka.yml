@@ -262,6 +262,191 @@ ka:
           ხალხი, გთხოვთ <a href="mailto:%{help_email}">დაგვიკავშირდით</a>.
         block_desc_there_are_two_exceptions: |
           არსებობს ორი სიტუაცია, როდესაც დაბლოკვა ხელს არ უშლის ურთიერთქმედებას:
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: სადაც თქვენი ცნობისმოყვარეობა ხელს უწყობს მეცნიერებას.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            ამოიცნეთ მცენარეები, ცხოველები, სოკოები და სხვა, ხოლო დედამიწაზე სიცოცხლის ცოცხალ ატლასს დაამატეთ.
+          #Primary call-to-action button in the hero section
+          cta_join: შეუერთდით საზოგადოებას
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: უფასო, არაკომერციული, საზოგადოების მიერ მომუშავე.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalist-ით შეგიძლიათ:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: მცენარეები, ცხოველები, სოკოები და სხვა
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: სახეობები, რომლებიც მსოფლიოში გინახავთ
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: რეალურ მეცნიერებაში
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: ბუნება ახლომდებარე
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: ნატურალისტთა გლობალური საზოგადოებისგან
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: სათემო მეცნიერების ძალა
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: ნანახი %{user} in %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: დიდი ხნის დაკარგული სახეობების ხელახლა აღმოჩენა
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            ეს %{moth_common_name} ჩრჩილი ათწლეულების განმავლობაში არ ყოფილა დაფიქსირებული და ოდესღაც გადაშენებული ითვლებოდა - სანამ ახალ ზელანდიაში ტურისტმა შემთხვევით არ შენიშნა.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: მეცნიერებისთვის ახალი სახეობების აღმოჩენა
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">ინიმია ნატი</span> - შემოკლებით <span class="italic">I. nat</span> - არის ახალი მეცნიერული მანტისის სახეობა, რომელიც ავსტრალიაში ქალმა იპოვა, რომელიც თავის სამეზობლოში სეირნობდა.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: ადგილობრივი ეკოსისტემების დაცვა
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            კალიფორნიაში ადგილობრივი მოხალისეების ჯგუფი შეიკრიბა iNaturalist– ის საშუალებით, რათა დაიცვან მიგრირებადი ამფიბიები, რომლებიც გადაკვეთენ დატვირთულ გზას.
+          #Link below the stories to read more community science stories
+          read_more: წაიკითხეთ მეტი ისტორიები
+        observation:
+          #Heading for the sample observation section
+          heading: ყოველი დაკვირვება მოგვითხრობს ისტორიას
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: ბიომრავალფეროვნების მეცნიერებაში ხელშემწყობი დაკვირვებები
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: სახეობები, რომლებიც დოკუმენტირებულია მთელს მსოფლიოში
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: ნაშრომები iNaturalist მონაცემების ციტირებით
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: საზოგადოების მეცნიერების მიერ აღმოჩენილი ან ხელახლა აღმოჩენილი სახეობები
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            გახსენით აპლიკაცია და გადაიღეთ ნებისმიერი გარეული მცენარე, ცხოველი, სოკო ან სხვა ორგანიზმი - თქვენი სამეზობლოდან ან მსოფლიოს ნებისმიერი ადგილიდან.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            აპლიკაცია მყისიერად გვთავაზობს იდენტიფიკაციას და ნატურალისტების გლობალური საზოგადოება ადასტურებს ან აუმჯობესებს მას.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            თქვენი დაკვირვება ხდება ღია მონაცემები - რომელსაც იყენებენ მეცნიერები, კონსერვატორები და მკვლევარები მთელ მსოფლიოში.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            ბუნება უფრო სწრაფად იცვლება, ვიდრე ოდესმე, ამიტომ ჩვენ გვჭირდება <span class="underline">თქვენ</span> დამეხმარეთ იმის ჩაწერაში, თუ რა ცხოვრობს სად ცხოვრობს.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            ეს ნამდვილად დამეხმარა სახეობების იდენტიფიკაციაში, გარდა იმისა, რომ მომცა შესაძლებლობა მქონოდა სხვადასხვა ადამიანებთან ურთიერთობა მთელს მსოფლიოში.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: საზღვაო კონსერვატორი და წყალქვეშა ფოტოგრაფი, კენია
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist ხსნის კარს ამდენი ახალი და საინტერესო კვლევისთვის შესწავლილი ტაქსების შესახებ. ჩემი აზრით, ეს პლატფორმა ეკოლოგიური მეცნიერების უახლესი ზღვარია.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: საველე გზამკვლევი ავტორი შპს Owlfly-ში, აშშ
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist და მისი იდენტიფიკატორების თავდადებული საზოგადოება გახდა ფასდაუდებელი რესურსი ჩემს გამოკვლევებში. ამან ხელი შეუწყო ჩემი ამჟამინდელი მუშაობის საფუძველს.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: ბიომრავალფეროვნების მკვლევარი, შრი-ლანკა
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist არის ძლიერი ინსტრუმენტი, რომელიც აკავშირებს ადამიანებს, ბუნებასა და ცოდნას. მე შემიძლია გადავიღო იშვიათი სახეობა, ან თუნდაც ის, რომელიც ჯერ არ არის აღწერილი და ამავე დროს, ხელს ვუწყობ ჩვენი ბუნებრივი მემკვიდრეობის შენარჩუნებას.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: გარემოსდაცვითი ტექნიკოსი და ჰობი ფოტოგრაფი, ბრაზილია
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            არ აქვს მნიშვნელობა სად იმყოფებით მსოფლიოში, გაქვთ თუ არა დოქტორის ხარისხი თუ უბრალოდ გიყვართ გარეთ, iNaturalist მიგიყვანთ ბუნებასთან და ბევრ თანამემამულე ნატურალისტთან.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: ბიოლოგი, მექსიკა
+        everyone:
+          #Heading for the broad audience section
+          heading: ყველა ნატურალისტია
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            თუ ოდესმე ყურადღებით დააკვირდით რაღაც ცოცხალს და გაინტერესებთ რა იყო ეს, iNaturalist თქვენთვისაა.
+          #Heading for the impact sub-section
+          impact_heading: თქვენ შეგიძლიათ გავლენა მოახდინოთ
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            ყოველი ფოტო, რომელსაც თქვენ აზიარებთ, ხდება გლობალური სამეცნიერო ჩანაწერის ნაწილი, რომელზეც მკვლევარები მთელ მსოფლიოში არიან დამოკიდებული.
+          #Heading for the community reputation sub-section
+          community_heading: '"ყველაზე ლამაზი ადგილი ონლაინში"'
+          #Description of the welcoming community aspect
+          community_body: >
+            მოდი იდენტიფიკაციისთვის, დარჩით საზოგადოებისთვის და გავლენა მეცნიერებაზე.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: ჩამოტვირთეთ iNaturalist აპი
+          #Subheading describing the two core benefits of the app
+          subheading: მიიღეთ რეალურ დროში იდენტიფიკაცია და წვლილი შეიტანეთ მეცნიერებაში
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ ჩამოტვირთვები"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: გამოიკვლიეთ სახეობები მთელ მსოფლიოში
+          #Button / link to browse species without downloading
+          button: გამოიკვლიეთ ახლავე
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 წლამდე? ჩამოტვირთეთ Seek!"
+          #Description of Seek's badge and challenge features
+          body: მიიღეთ სამკერდე ნიშნები და მიიღეთ მონაწილეობა სახეობებზე დაკვირვების გამოწვევებში!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 ვარსკვლავიანი მიმოხილვები"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: მიიღეთ ჩვენი ყოველთვიური ბიულეტენი!
+          #Description of the newsletter's content
+          body: იყავით დაკავშირებული iNaturalist საზოგადოების ისტორიებთან და აღმოჩენებთან.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist არის არაკომერციული ორგანიზაცია, რომელიც მხარს უჭერს მეცნიერებას და კონსერვაციას.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: თქვენი მხარდაჭერა ამას შესაძლებელს ხდის.
+          #Call-to-action button for the donation section
+          cta: შემოწირულობა ახლავე
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: ხშირად დასმული კითხვები
+          #FAQ: uploading existing photos — question
+          upload_existing_question: შემიძლია ავტვირთო ფოტოები, რომლებიც უკვე მაქვს?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            დიახ! სანამ იცით უხეშად როდის და სად იქნა გადაღებული ფოტო, ძველი ფოტოები მისასალმებელია.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: ვის შეუძლია მეცნიერების გაკეთება iNaturalist დაკვირვებებით?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            ნწკჲი! ყველა iNaturalist დაკვირვება ღია და თავისუფლად ხელმისაწვდომია - მკვლევარებისთვის, კონსერვაციის პრაქტიკოსებისთვის და ცნობისმოყვარე პირებისთვის.
+          #FAQ: research grade definition — question
+          research_grade_question: რას ნიშნავს "კვლევის შეფასება"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            როდესაც საზოგადოება თანხმდება იდენტიფიკაციაზე, დაკვირვება ხდება "კვლევის კლასი" და შედის გლობალურ სამეცნიერო ჩანაწერში. ყველა იდენტიფიკაცია დაგეხმარებათ იქ მოხვედრაში.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: უნდა ვიცოდე რას ვუყურებ?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            სულაც არა! გააზიარეთ ფოტო და ნატურალისტთა გლობალური საზოგადოება დაგეხმარებათ მის ამოცნობაში.
+          #FAQ: whether the app is required — question
+          need_app_question: მჭირდება აპლიკაციის გამოყენება?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            სამუშაო მაგიდაზე iNaturalist.org მშვენივრად მუშაობს. მობილურ მოწყობილობაზე აპლიკაცია გაძლევთ საუკეთესო გამოცდილებას - განსაკუთრებით სახეობების იდენტიფიცირებისთვის.
   number:
     format:
       significant: false

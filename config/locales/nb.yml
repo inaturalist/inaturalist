@@ -2391,6 +2391,7 @@ nb:
     identifications_in_month_year: Flest identifikasjoner i %{month_year}
     identifications_in_year: Flest identifikasjoner i %{year}
   leading: Leder
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Lær
   learn_about_the_species_live_in: Lær om artene som forekommer i
   learn_more: Lær mer
@@ -7464,6 +7465,191 @@ nb:
         who_uses_site_name: "Hvem bruker %{site_name}?"
         what_are_you_waiting_for: Hva venter du på?
         join_today: Bli med idag
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Hvor nysgjerrigheten din bidrar til vitenskapen.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Identifiser planter, dyr, sopp og mer, samtidig som du legger til et levende atlas over liv på jorden.
+          #Primary call-to-action button in the hero section
+          cta_join: Bli med i fellesskapet
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Gratis, ideelt, drevet av lokalsamfunnet.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Med iNaturalist kan du:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: planter, dyr, sopp og mer
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: arter du har sett over hele verden
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: Til ekte vitenskap
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Natur i nærheten
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Fra et globalt miljø av naturforskere
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Kraften i samfunnsvitenskap
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Sett av %{user} i %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Gjenoppdagelse av lenge tapte arter
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Den %{moth_common_name} Møll hadde ikke blitt sett på flere tiår og ble en gang antatt utdødd — helt til en turist i New Zealand oppdaget den ved et uhell.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Oppdagelse av arter som er nye for vitenskapen
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — forkortet til <span class="italic">I. nat</span> — er en ny knelerart funnet av en kvinne i Australia som gikk i nabolaget sitt.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Beskyttelse av lokale økosystemer
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            En gruppe lokale frivillige i California samlet seg gjennom iNaturalist for å beskytte migrerende amfibier som krysser en travel vei.
+          #Link below the stories to read more community science stories
+          read_more: Les flere historier
+        observation:
+          #Heading for the sample observation section
+          heading: Hver observasjon forteller en historie
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Observasjoner som bidrar til biologisk mangfoldsvitenskap
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: arter dokumentert over hele verden
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: artikler som siterer iNaturalist-data
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: arter oppdaget eller gjenoppdaget av samfunnsforskere
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Åpne appen og fotografer enhver vill plante, dyr, sopp eller annen organisme – fra nabolaget ditt eller hvor som helst i verden.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Appen foreslår en identifikasjon umiddelbart, og et globalt miljø av naturforskere bekrefter eller forbedrer den.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Observasjonen din blir åpne data — brukt av forskere, naturvernere og forskere over hele verden.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Naturen endrer seg raskere enn noen gang, så vi trenger <span class="underline">Du</span> for å hjelpe til med å registrere hva som bor hvor.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Det har virkelig hjulpet meg med artsidentifikasjon, i tillegg til å gi meg muligheten til å samhandle med ulike mennesker rundt om i verden.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Marin naturverner og undervannsfotograf, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist åpner døren for så mye ny og spennende forskning på underutforskede taksa. Etter min mening er denne plattformen det nyeste innen økologisk vitenskap.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Feltguideforfatter hos Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist og dets dedikerte fellesskap av identifikatorer ble en uvurderlig ressurs i mine utforskninger. Det bidro til å legge grunnlaget for mitt nåværende arbeid.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversitetsforsker, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist er et kraftfullt verktøy som knytter mennesker, natur og kunnskap sammen. Jeg kan fotografere en sjelden art, eller til og med en som ennå ikke er beskrevet, og samtidig bidrar jeg til å bevare vår naturarv.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Miljøtekniker og hobbyfotograf, Brasil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Uansett hvor i verden du er, enten du har en doktorgrad eller bare elsker friluftsliv, vil iNaturalist bringe deg nærmere naturen og mange andre naturforskere.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biolog, Mexico
+        everyone:
+          #Heading for the broad audience section
+          heading: Alle er naturvitere
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Hvis du noen gang har sett nøye på noe levende og lurt på hva det var, er iNaturalist noe for deg.
+          #Heading for the impact sub-section
+          impact_heading: Du kan gjøre en forskjell
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Hvert bilde du deler blir en del av en global vitenskapelig arkiv som forskere over hele verden er avhengige av.
+          #Heading for the community reputation sub-section
+          community_heading: '"Det fineste stedet på nettet"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Kom for identifikasjonene, bli for fellesskapet og påvirkningen på vitenskapen.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Last ned iNaturalist-appen
+          #Subheading describing the two core benefits of the app
+          subheading: Få identifikasjoner i sanntid og bidra til vitenskapen
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Nedlastinger"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Utforsk arter over hele verden
+          #Button / link to browse species without downloading
+          button: Utforsk nå
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Under 13? Last ned Seek!"
+          #Description of Seek's badge and challenge features
+          body: Tjen merker og delta i utfordringer for å observere arter!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-stjerners anmeldelser"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Få vårt månedlige nyhetsbrev!
+          #Description of the newsletter's content
+          body: Hold kontakten med historier og oppdagelser fra iNaturalist-miljøet.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist er en ideell organisasjon som støtter vitenskap og bevaring.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Din støtte gjør det mulig.
+          #Call-to-action button for the donation section
+          cta: Doner nå
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Ofte stilte spørsmål
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Kan jeg laste opp bilder jeg allerede har?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ja! Så lenge du vet omtrent når og hvor et bilde ble tatt, er eldre bilder velkomne.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Hvem kan drive vitenskap med iNaturalist-observasjoner?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Noen! Alle iNaturalist-observasjoner er åpne og fritt tilgjengelige — for forskere, naturvernpraktikere og nysgjerrige individer.
+          #FAQ: research grade definition — question
+          research_grade_question: Hva betyr «forskningsgrad»?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Når fellesskapet blir enige om en identifikasjon, blir en observasjon «forskningsgrad» og kommer inn i det globale vitenskapelige arkivet. Hver identifikasjon kan hjelpe med å få den dit.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Trenger jeg å vite hva jeg ser på?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Ikke i det hele tatt! Del et bilde, og et globalt miljø av naturforskere kan hjelpe deg å identifisere det.
+          #FAQ: whether the app is required — question
+          need_app_question: Må jeg bruke appen?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            På en stasjonær PC fungerer iNaturalist.org utmerket. På en mobil enhet gir appen deg den beste opplevelsen – spesielt for å identifisere arter på farten.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Lagre og rediger for å legge til vedlegg
