@@ -312,6 +312,8 @@ af:
     %{user} het hierdie %{item} weggesteek want "%{reason}"
   continue: Gaan Voort
   continue_to_site: Gaan voort na %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Dra by
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Enige een
@@ -433,6 +435,8 @@ af:
     Klik asseblief op die skakel hieronder om jou e-posadres te bevestig. As jy nie jou e-pos bevestig nie
     adres, sal jy nie met ander gebruikers se inhoud kan kommunikeer nie.
   devise_reset_password_instructions_hello_email: Hallo %{email}
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Ontdek
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Meningsverskille
@@ -487,6 +491,8 @@ af:
   icon: Ikoon
   id: ID
   identify: Identifiseer
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifiseer
   identifications: Identifikasie
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist het die ID wat voorgestel is deur opgedateer %{user}
@@ -640,6 +646,8 @@ af:
   #A user who does not admin any projects
   non_project_admin: Nie-projek admin
   none: Geen
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Let op
   observation: Waarneming
   observation_: waarneming
   observation_accuracy_experiment_year: "Jaar"
@@ -863,6 +871,7 @@ af:
   share_colon: "Deel:"
   sign_out: Teken af
   sign_up: Registreer
+  sign_up_sentence_case: Teken in
   small: klein
   site_stats: Webwerf Statistieke
   some_rights_reserved: sommige regte voorbehou
@@ -909,6 +918,8 @@ af:
     <a href="/privacy" target="_blank">Privaatheidsbeleid</a>, en ek het hersien
     Die <a href="/pages/community+guidelines" target="_blank">Gemeenskap riglyne</a>.
   total: Totaal
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Baan
   'true': 'Waar'
   unblock: Deblokkeer
   unknown: Onbekend
