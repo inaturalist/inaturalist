@@ -53,6 +53,8 @@ fil:
   confirming_ids_description: |
     Kung i-off mo ito, hindi ka na aabisuhan tungkol sa mga ID na sumasang-ayon
     Maliban na lang kung may mga karagdagang komento sila.
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Mag-ambag
   curator_coordinate_access: Pag-access sa Coordinate ng Curator
   curator_coordinate_access_desc: |
     Ang pag-access sa coordinate ng curator para sa mga tradisyunal na proyekto ay nakasalalay sa kung sino ang nagdagdag
@@ -71,6 +73,8 @@ fil:
   devise_confirmation_instructions_please_click2: |
     Mangyaring i click ang link sa ibaba upang kumpirmahin ang iyong email address. Kung hindi mo kumpirmahin ang iyong email
     address, hindi ka magagawang upang makihalubilo sa iba pang mga gumagamit 'nilalaman.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Tuklasin
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Hindi pagkakasundo
@@ -89,10 +93,14 @@ fil:
   file_url: File URL
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "Tagalog Example Sentence: Ang tunog na ito ay na-flag na."
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Kilalanin
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: Mga ID ng Infraspecies
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  learn: Matuto
   #Adjectival phrase describing state of being logged in
   logged_in: Email Address *
   #Adjectival phrase describing state of being logged out
@@ -103,6 +111,8 @@ fil:
   non_curator: Hindi tagapangasiwa
   #A user who does not admin any projects
   non_project_admin: Admin ng di-proyekto
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Obserbahan
   observation_fields_for_projects: Mga patlang ng pagmamasid para sa mga proyekto
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Maaaring tumagal ng hanggang isang araw bago maiugnay ang mga obserbasyon sa lugar na ito.
@@ -132,6 +142,7 @@ fil:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: Subspecies / Iba't-ibang / Anyo
+  sign_up_sentence_case: Email Address *
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Tunog %{id}, %{attribution}
@@ -141,6 +152,8 @@ fil:
     sound_hidden: Nakatago ang tunog
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Tunog na hindi nakatago
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Subaybayan
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Na-update na tunog
   user_trusts_this_project_when_added_by_any: |
