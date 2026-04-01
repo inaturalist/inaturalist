@@ -13,7 +13,7 @@ Doorkeeper.configure do
     if username && params[:password]
       raise INat::Auth::BadUsernamePasswordError unless ( user = User.find_for_authentication( email: username ) )
       raise INat::Auth::BadUsernamePasswordError unless user.valid_password?( params[:password] )
-      raise INat::Auth::SuspendedError if user.suspended?
+      raise INat::Auth::SuspendedError, user.inactive_message if user.suspended?
       raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
 
       user

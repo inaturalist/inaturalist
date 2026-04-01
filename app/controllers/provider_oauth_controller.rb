@@ -51,10 +51,10 @@ class ProviderOauthController < ApplicationController
         error_description: t( :provider_without_email_error_generic ).to_s.gsub( /\s+/, " " )
       }
       return
-    rescue INat::Auth::SuspendedError
-      return render status: :bad_request, json: {
-        error: "invalid_grant",
-        error_description: t( :this_user_has_been_suspended )
+    rescue INat::Auth::SuspendedError => e
+      return render status: :forbidden, json: {
+        error: "suspended",
+        error_description: e.message.presence || t( :this_user_has_been_suspended )
       }
     rescue INat::Auth::ChildWithoutPermissionError
       render status: :bad_request, json: {
@@ -267,7 +267,7 @@ class ProviderOauthController < ApplicationController
 
   def assertion_access_token_for_client_and_user( client, user )
     unless user.active_for_authentication?
-      raise INat::Auth::SuspendedError if user.suspended?
+      raise INat::Auth::SuspendedError, user.inactive_message if user.suspended?
       raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
     end
     access_token = Doorkeeper::AccessToken.
