@@ -548,6 +548,8 @@ mr:
       या स्थितीद्वारे सूचित केले जाते. जर ते "कमीतकमी" असेल तर हे भूगोपनीयतेवर मात करेल
       चिंता" किंवा खाली, म्हणून जर आपल्याला याची निरीक्षणे अस्पष्ट करायची असतील तर
       टॅक्सन, हे "नियर थ्रेट" किंवा त्यापेक्षा जास्त सेट करा.
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: योगदान द्या
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: कोणताही
@@ -632,6 +634,8 @@ mr:
   devise_confirmation_instructions_please_click2: |
     आपला ईमेल पत्ता निश्चित करण्यासाठी कृपया खालील लिंकवर क्लिक करा. आपण आपल्या ईमेलची पुष्टी न केल्यास
     पत्ता, आपण इतर वापरकर्त्यांच्या सामग्रीशी संवाद साधू शकणार नाही.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: शोधा
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: मतभेद
@@ -697,6 +701,8 @@ mr:
     तुम्ही तुमची परवाना प्राधान्ये बदलू शकता
     <a class="linky" href="/users/edit#content">खाते सेटिंग्ज</a>.
   identify: ओळखा
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: ओळखा
   identifications: ओळखलेली निरीक्षणे
   inaturalist_global_year_in_review: "iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन"
   #As in a reason to flag something
@@ -828,6 +834,8 @@ mr:
   non_project_admin: नॉन-प्रोजेक्ट अॅडमिन
   #Filter for observations not in a particular place
   not_in_place: याठिकाणी नाही
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: निरीक्षण करा
   #Basic observation export fields
   observation_export_column_type_basic: सामान्य
   #Geographic observation export fields
@@ -958,6 +966,7 @@ mr:
   show_more_login_options: अधिक लॉगिन पर्याय दाखवा
   sign_out: साइन आउट करा
   sign_up: साइन अप करा
+  sign_up_sentence_case: साइन अप करा
   #@vow_or_con should work with %{site}
   site_year_in_review: "%{site} चे %{year} पुनरावलोकनाचे वर्ष"
   site_stats: साइट आकडेवारी
@@ -1120,6 +1129,8 @@ mr:
     मी <a href="/terms" target="_blank">वापराच्या अटींना</a> सहमत आहे आणि
     <a href="/privacy" target="_blank">गोपनीयता धोरण</a> आणि मी पुनरावलोकन केले आहे
     <a href="/pages/community+guidelines" target="_blank">समुदाय मार्गदर्शक तत्त्वे</a>.
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: मार्ग दुवा / मागोवा 
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: ध्वनी अद्ययावत करणे
   upload: अपलोड करा
