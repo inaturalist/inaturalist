@@ -1065,6 +1065,8 @@ zh-TW:
     %{user} 取消隱藏此%{item}，因為"%{reason}"
   continue: 繼續
   continue_to_site: 繼續 %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: 貢獻
   contributor_cannot_be_found: 查無貢獻者
   contributors_to_project: "貢獻至 %{project}"
   controlled_term_labels:
@@ -1580,6 +1582,8 @@ zh-TW:
   devise_unlock_instructions_click_the_link: |
     點選以下連結來解鎖您的帳號
   devise_unlock_instructions_unlock: 解鎖您的帳號
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: 探索
   discoveries: 發現
   did_you_mean: '您是指'
   did_you_photos_flickr?: 您有上傳任何圖片在 Flickr 上嗎？
@@ -2173,6 +2177,8 @@ zh-TW:
   identify_observations: "鑑定觀察"
   identify_observations_by_these_users: 由這些使用者所鑑定的觀察
   identify_title: "鑑定"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: 識別
   identification: 鑑定
   identification_by_user: 由 %{user} 做的鑑定
   #Notification when an identification has been deleted
@@ -3121,6 +3127,8 @@ zh-TW:
   obscured_or_private: 遮蔽或私有
   obscured_description: |
     公共座標是以包含實際座標所在的 0.2 度緯/經度單元範圍內，來顯示出的隨機點。
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: 觀察
   observation: 觀察
   observation_: 觀察
   observation_accuracy_experiment_research_grade_results: "研究等級結果"
@@ -4495,6 +4503,7 @@ zh-TW:
   sign_in_with_google: 使用 Google 帳號登入
   sign_out: 登出
   sign_up: 註冊
+  sign_up_sentence_case: 註冊
   similar_species: 相似物種
   similar_taxa: 相似分類
   #Journal post formatting option
@@ -5144,6 +5153,8 @@ zh-TW:
   total_observations_caps: 觀察紀錄總數
   total_species_observed_caps: 已觀察到的物種總數
   total_unique_observers: 唯一觀察者總計
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: 足跡
   translated_languages: 已翻譯語言
   'true': '是'
   trending: 趨勢

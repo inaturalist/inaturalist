@@ -860,6 +860,8 @@ kk:
     %{user} осы %{item} жасырды, себебі "%{reason}"
   continue: Жалғастыру
   continue_to_site: '%{site_name} сайтына өту'
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Үлес қосыңыз
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Кез келген
@@ -1194,6 +1196,8 @@ kk:
   devise_unlock_instructions_click_the_link: |
     Аккаунтыңыздың құлпын ашу үшін төмендегі сілтемені басыңыз
   devise_unlock_instructions_unlock: Аккаунтыңызды ашыңыз
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Ашу
   discoveries: Ашулар
   disable: Өшіру
   disable_comments: Пікірлерді өшіру
@@ -1449,6 +1453,8 @@ kk:
   identify: Анықтау
   identify_observations: "Бақылауларды анықтау"
   identify_title: "Анықтау"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Анықтау
   identification: идентификация
   identifications: Идентификациялар
   identotron: Идентотрон
@@ -1921,6 +1927,8 @@ kk:
   notifications: Хабарландырулар
   notify_me_of_mentions: Маған ескертулер туралы хабарлау (мысалы, @username)
   notify_me_of_mentions_description: "Мұны өшірсеңіз, %{site_name} сайтында біреу сізді атап өткенде, сіз ешқандай хабарландыру алмайсыз."
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Бақылау
   observation: Бақылау
   observation_: бақылау
   observations_by_app: Қолданба бойынша бақылаулар
@@ -3047,6 +3055,7 @@ kk:
   sign_in_with_google: Google арқылы жүйеге кіру
   sign_out: Шығу
   sign_up: Тіркелу
+  sign_up_sentence_case: Тіркелу
   similar_species: Ұқсас түрлер
   similar_taxa: Ұқсас таксондар
   #Journal post formatting option
@@ -3342,6 +3351,8 @@ kk:
   total_observations: Жалпы бақылаулар
   total_observations_caps: ЖАЛПЫ БАҚЫЛАУЛАР
   total_species_observed_caps: ЖАЛПЫ БАҚЫЛАНҒАН ТҮРЛЕР
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Із
   translated_languages: Аударылған тілдер
   trust_with_private_coordinates: Жасырын координаттармен бөлісу
   twitter: Твиттер

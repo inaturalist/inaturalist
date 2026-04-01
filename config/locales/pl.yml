@@ -1283,6 +1283,8 @@ pl:
     %{user} przywrócił widoczność %{item}, ponieważ "%{reason}"
   continue: Kontynuuj
   continue_to_site: Przejdź do %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Przyczyn
   contributor_cannot_be_found: Współautor nie został odnaleziony
   contributors_to_project: "Współautorzy %{project}"
   controlled_term_labels:
@@ -1864,6 +1866,8 @@ pl:
   devise_unlock_instructions_click_the_link: |
     Kliknij w poniższy link, aby odblokować konto
   devise_unlock_instructions_unlock: Odblokuj swoje konto
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Odkryj
   discoveries: Odkrycia
   did_you_mean: 'Czy chodziło ci o'
   did_you_photos_flickr?: Czy dodałeś zdjęcia na Flickr?
@@ -2505,6 +2509,8 @@ pl:
   identify_observations: "Oznaczaj obserwacje"
   identify_observations_by_these_users: Oznaczaj obserwacje od tych użytkowników
   identify_title: "Oznaczaj"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identyfikacja
   identification: oznaczenie
   identification_by_user: Oznaczenie użytkownika %{user}
   #Notification when an identification has been deleted
@@ -3330,6 +3336,8 @@ pl:
   obscured_or_private: ukryta lub prywatna
   obscured_description: |
     Ogólnodostępne współrzędne dostępne jako losowy punkt w obrębie 0.2 stopnia dł./szer. od prawdziwych współrzędnych.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Obserwuj
   observation: Obserwacja
   observation_: obserwacja
   observation_added_to_the_project: "Obserwacja dodana do projektu \"%{project}\""
@@ -4364,6 +4372,7 @@ pl:
   sign_in_with_google: Zaloguj się z Google
   sign_out: Wyloguj się
   sign_up: Zarejestruj się
+  sign_up_sentence_case: Zapisz się
   similar_species: Podobne gatunki
   similar_taxa: Podobne taksony
   #Journal post formatting option
@@ -4734,6 +4743,8 @@ pl:
   total_members: Członków łącznie
   total_observations: Obserwacji łącznie
   total_unique_observers: Całkowita liczba unikalnych obserwatorów
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Trop
   translated_languages: Przetłumaczone języki
   'true': 'Prawda'
   trusted: Zaufani

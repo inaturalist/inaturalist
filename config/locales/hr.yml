@@ -1196,6 +1196,8 @@ hr:
     %{user} je otkrio %{item} zbog "%{reason}"
   continue: Nastavi
   continue_to_site: Nastavi na %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Doprinesi
   contributor_cannot_be_found: Doprinositelj se ne može pronaći
   contributors_to_project: "Doprinositelji projektu %{project}"
   controlled_term_labels:
@@ -1738,6 +1740,8 @@ hr:
   devise_unlock_instructions_click_the_link: |
     Kliknite na donju poveznicu za otključavanje računa
   devise_unlock_instructions_unlock: Otključajte svoj račun
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Otkrijte
   discoveries: Otkrića
   did_you_mean: 'Jeste li mislili'
   did_you_photos_flickr?: Jeste li stavili neke fotografije na Flickr?
@@ -2345,6 +2349,8 @@ hr:
   identify_observations: "Identificiraj opažanja"
   identify_observations_by_these_users: Identificiraj opažanja ovih korisnika
   identify_title: "Identificiraj"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificirajte se
   identification: identifikacija
   identification_by_user: Identifikacija od strane %{user}
   #Notification when an identification has been deleted
@@ -3337,6 +3343,8 @@ hr:
   obscured_or_private: skriveno ili privatno
   obscured_description: |
     Javne koordinate prikazane kao slučajna točka unutar ćelije od 0,2 stupnja širine/dužine koja sadrži prave koordinate.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Promatraj
   observation: Opažanje
   observation_: opažanje
   observation_accuracy_experiment_the_sample_for: "Uzorak za ovaj eksperiment još nije generiran"
@@ -4932,6 +4940,7 @@ hr:
   sign_in_with_google: Prijavi se s Googleom
   sign_out: Odjavi se
   sign_up: Registriraj se
+  sign_up_sentence_case: Prijavite se
   similar_species: Slične vrste
   similar_taxa: Slična taksa
   #Journal post formatting option
@@ -5758,6 +5767,8 @@ hr:
   total_observations_caps: UKUPNO OPAŽANJA
   total_species_observed_caps: UKUPNO VRSTA ZABILJEŽENO
   total_unique_observers: Ukupno jedinstvenih promatrača
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Trag
   translated_languages: Prevedeni jezici
   'true': 'Istina'
   trending: Popularno

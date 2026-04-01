@@ -992,6 +992,8 @@ gl:
     %{user} desvelou este %{item} porque "%{reason}"
   continue: Continuar
   continue_to_site: Continuar a %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribuír
   contributor_cannot_be_found: Non se puido atopar ao contribuidor do proxecto
   contributors_to_project: "Contribuíntes a %{project}: Contribuíntes ao proxecto"
   controlled_term_labels:
@@ -1419,6 +1421,8 @@ gl:
   devise_unlock_instructions_click_the_link: |
     Preme no vencello de abaixo para desbloquear a túa conta.
   devise_unlock_instructions_unlock: Desbloquea A Tua Conta
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Descubrir
   discoveries: Descubertas
   did_you_mean: 'Refíreste a?'
   did_you_photos_flickr?: Colocaches fotos en Flickr?
@@ -1904,6 +1908,8 @@ gl:
   identify_observations: "Identificar Observacións"
   identify_observations_by_these_users: Identificar Observacións Destes Usuarios
   identify_title: "Identificar"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificar
   identification: identificación
   identification_by_user: Identificación feita por %{user}
   #Notification when an identification has been deleted
@@ -2692,6 +2698,8 @@ gl:
   obscured_or_private: escurecido ou privado
   obscured_description: |
     As coordenadas públicas móstranse nun punto ao chou dentro dun radio de 10 km das verdadeiras coordenadas. As coordenadas reais só podes velas ti e os administradores dos proxectos ós cales foron engadidos á observación.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observa
   observation: Observación
   observation_: observación
   observation_added_to_the_project: "Observación engadida ao proxecto %{project}"
@@ -4008,6 +4016,7 @@ gl:
   sign_in_with_google: Iniciar sesión con Google
   sign_out: Saír
   sign_up: Rexístrate
+  sign_up_sentence_case: Apúntate
   similar_species: Especies similares
   similar_taxa: Taxons Semellantes
   #Journal post formatting option
@@ -4488,6 +4497,8 @@ gl:
   total_observations_caps: OBSERVACIÓNS TOTAIS
   total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Pegadas
   translated_languages: Línguas Traducidas
   'true': 'Si'
   trending: Tendencias

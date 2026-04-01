@@ -1139,6 +1139,8 @@ ca:
     %{user} ha deixat d'ocultar aquest %{item} perquè "%{reason}"
   continue: Continua
   continue_to_site: Continueu a %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribueix
   contributor_cannot_be_found: No s'ha pogut trobar al contribuïdor del projecte
   contributors_to_project: "Col·laboradors de %{project}"
   controlled_term_labels:
@@ -1678,6 +1680,8 @@ ca:
   devise_unlock_instructions_click_the_link: |
     Feu clic a l'enllaç següent per desbloquejar el teu compte
   devise_unlock_instructions_unlock: Desbloqueu el vostre compte
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Descobreix
   discoveries: Descobriments
   did_you_mean: 'Es refereix a'
   did_you_photos_flickr?: Heu pujat fotos a Flickr?
@@ -2290,6 +2294,8 @@ ca:
   identify_observations: "Identifiqueu observacions"
   identify_observations_by_these_users: Identificar Observacions d'aquests Usuaris
   identify_title: "Identificar"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificació
   identification: identificació
   identification_by_user: Identificació de %{user}
   #Notification when an identification has been deleted
@@ -3314,6 +3320,8 @@ ca:
   obscured_or_private: enfosquit o privat
   obscured_description: |
     Les coordenades públiques es mostren en un punt triat a l'atzar  dins la cel·la  de 0,2 graus de latitud i longitud que conté les coordenades reals.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observa
   observation: Observació
   observation_: observació
   observation_accuracy_experiment_the_sample_for: "La mostra d'aquest experiment no ha estat generada"
@@ -4851,6 +4859,7 @@ ca:
   sign_in_with_google: Entrar amb Google
   sign_out: Surtiu
   sign_up: Registreu-vos
+  sign_up_sentence_case: Inscriu-te
   similar_species: Espècie similar
   similar_taxa: Tàxon semblant
   #Journal post formatting option
@@ -5581,6 +5590,8 @@ ca:
   total_observations_caps: OBSERVACIONS TOTALS
   total_species_observed_caps: ESPÈCIES OBSERVADES EN TOTAL
   total_unique_observers: Nombre total d'observadors únics
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Pista
   translated_languages: Idiomes traduïts
   'true': 'Cert'
   trending: Tendències

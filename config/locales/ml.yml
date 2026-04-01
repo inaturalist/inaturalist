@@ -172,6 +172,8 @@ ml:
   confirming_ids_description: |
     നിങ്ങൾ ഇത് ഓഫാക്കുകയാണെങ്കിൽ, സമ്മതിക്കുന്ന ഐഡികളെക്കുറിച്ച് നിങ്ങളെ ഇനി അറിയിക്കില്ല
     അവര് ക്ക് കൂടുതല് പരാമര് ശങ്ങള് ഉണ്ടായില്ലെങ്കില് നിങ്ങളുടേതായിരിക്കും.
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: സംഭാവന ചെയ്യുക
   controlled_term_labels:
     subimago: സുബിമാഗോ
   creative_commons_unless_otherwise_noted: "ക്രിയേറ്റീവ് കോമൺസ്, വേറെ അടച്ചുപൊരുത്തി രേഖപ്പെടുത്തിയില്ലെങ്കിൽ."
@@ -237,6 +239,8 @@ ml:
   devise_confirmation_instructions_please_click2: |
     നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കാൻ ചുവടെയുള്ള ലിങ്കിൽ ക്ലിക്കുചെയ്യുക. നിങ്ങളുടെ ഇമെയിൽ സ്ഥിരീകരിക്കുന്നില്ലെങ്കിൽ
     വിലാസം, നിങ്ങൾക്ക് മറ്റ് ഉപയോക്താക്കളുടെ ഉള്ളടക്കവുമായി സംവദിക്കാൻ കഴിയില്ല.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: കണ്ടെത്തുക
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: അഭിപ്രായവ്യത്യാസങ്ങൾ
@@ -298,6 +302,8 @@ ml:
   heads_up_this_sound_has_been_flagged: "ഹെഡ്സ് അപ്: ഈ ശബ്ദം ഫ്ലാഗ് ചെയ്തു."
   here_are_our_top_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ നിർദ്ദേശങ്ങൾ
   here_are_our_top_species_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ സ്പീഷീസ് നിർദ്ദേശങ്ങൾ
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: തിരിച്ചറിയുക
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist നിർദ്ദേശിച്ച ID അപ് ഡേറ്റുചെയ് തു %{user}
   if_this_is_a_scientific_name: ഇതൊരു ശാസ്ത്രീയ നാമമാണെങ്കിൽ, ഇത് നിലവിൽ അംഗീകരിക്കപ്പെട്ടിട്ടുണ്ടോ?
@@ -317,6 +323,8 @@ ml:
     അവയിൽ കൂടുതൽ പരാമർശങ്ങൾ ഉണ്ടെങ്കിൽ.
   #Error message shown when a date format is invalid
   invalid_date: അസാധുവായ തീയതി
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  learn: പഠിക്കുക
   lexicons:
     japanese: ജാപ്പനീസ്
     kannada: കന്നഡ
@@ -424,6 +432,8 @@ ml:
   notify_me_of_mentions: മെൻഷനുകളെ കുറിച്ച് എന്നെ അറിയിക്കുക (ഉദാ, @username)
   obscured_description: |
     സാമൂഹ്യ കോർഡിനേറ്റുകൾ യഥാർത്ഥ കോർഡിനേറ്റുകൾ ഉൾക്കൊള്ളുന്ന 0.2 ഡിഗ്രി ലാറ്റിറ്റ്യൂഡ്/ലോംഗിറ്റ്യൂഡ് സെലിന്റെ അകത്ത് ഒരു യാദൃശ്ചിക പോയിന്റ് ആയി കാണിക്കുന്നു.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: നിരീക്ഷിക്കുക
   observation_accuracy_validator_email_with_gratitude: കൃതജ്ഞതയോടെ,
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
@@ -580,6 +590,7 @@ ml:
   settings: കോമ്പിനേഷനുകൾ
   short_or_abbreviated_title_for_display: പരിമിതമായ ഇടങ്ങളിൽ പ്രദർശിപ്പിക്കാൻ ഹ്രസ്വമോ ചുരുക്കിയതോ ആയ ശീർഷകങ്ങൾ. പരമാവധി 10 പ്രതീകങ്ങൾ.
   sign_in_with_provider: "%{provider} ഉപയോഗിച്ച് ലോഗിൻ ചെയ്യുക"
+  sign_up_sentence_case: സൈൻ അപ്പ് ചെയ്യുക
   sites_network_your_username: |
     നിങ്ങളുടെ ഉപയോക്തൃനാമവും രഹസ്യപദവും iNaturalist Network-ന്റെ ഭാഗമായ എല്ലാ സൈറ്റുകളിലും പ്രവർത്തിക്കുന്നു. Network സൈറ്റുമായി ബന്ധപ്പെടുകയാണെങ്കിൽ, ഓരോ സൈറ്റിനെയും പിന്തുണയ്ക്കുന്ന പ്രാദേശിക സ്ഥാപനങ്ങൾ നിങ്ങളുടെ ഇമെയിൽ വിലാസത്തിലേക്ക് (പ്രവർത്തനങ്ങൾക്കായുള്ള ബന്ധം മാത്രം) കൂടാതെ നിങ്ങൾ പൊതുവാക്കുന്നതായി അവക്തമായ അല്ലെങ്കിൽ സ്വകാര്യമാക്കിയ നിരീക്ഷണങ്ങൾക്കായുള്ള യഥാർത്ഥ നിശ്ചിതാങ്കങ്ങൾക്കുമായി പ്രവേശനം നേടും.
   sorry_how_about_we_try_repeat: "ക്ഷമിക്കണം! സ്പീഷിസ് പേരുകളിൽ മറ്റെല്ലാ ഡാറ്റാബേസുകളിൽ നിങ്ങളുടെ തിരച്ചിൽ ആവർത്തിക്കാമോ? എന്തെങ്കിലും കണ്ടെത്തിയാൽ, അത് സംരക്ഷിക്കും, അപ്പോൾ അടുത്ത തവണ നിങ്ങൾക്ക് കണ്ടെത്താൻ കഴിയുന്നു."
@@ -621,6 +632,8 @@ ml:
   time_zone_america_chicago: കേന്ദ്രിയ സമയം (യു. എസ്. ഒപ്പം കനഡ)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: ന്യൂസിലാൻഡ് സമയം
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: ട്രാക്ക്
   type_species_name: "സ്പീഷീസ് പേര് ടൈപ്പ് ചെയ്യുക"
   update_existing_observations_with_new_license_desc: |
     ഈ ഓപ്ഷൻ തിരഞ്ഞെടുക്കുന്നത് നിങ്ങളുടെ പുതിയ ലൈസൻസ് ചോയ്സ് നിങ്ങളുടെ എല്ലാവർക്കും ബാധകമാക്കും

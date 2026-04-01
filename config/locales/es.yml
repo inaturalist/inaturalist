@@ -1163,6 +1163,8 @@ es:
     %{user} reveló este %{item} porque «%{reason}»
   continue: Continua
   continue_to_site: Continuar a %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribuir
   contributor_cannot_be_found: El contribuidor no se pudo encontrar
   contributors_to_project: "Contribuyentes de %{project}"
   controlled_term_labels:
@@ -1735,6 +1737,8 @@ es:
   devise_unlock_instructions_click_the_link: |
     Haz clic en el enlace de abajo para desbloquear tu cuenta
   devise_unlock_instructions_unlock: Desbloquear tu cuenta
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Descubre
   discoveries: Descubrimientos
   did_you_mean: '¿Te refieres a'
   did_you_photos_flickr?: '¿Has colocado fotos en Flickr?'
@@ -2357,6 +2361,8 @@ es:
   identify_observations: "Identificar observaciones"
   identify_observations_by_these_users: Identificar observaciones de estos usuarios
   identify_title: "Identificar"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificar
   identification: identificación
   identification_by_user: Identificación por %{user}
   #Notification when an identification has been deleted
@@ -3385,6 +3391,8 @@ es:
   obscured_or_private: oculta o privada
   obscured_description: |
     Las coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas. Las coordenadas reales sólo son visibles para ti y los curadores de los proyectos a los que se agrega la observación.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observa
   observation: Observación
   observation_: observación
   observation_accuracy_experiment_the_sample_for: "La muestra de este experimento aún no ha sido generada"
@@ -4925,6 +4933,7 @@ es:
   sign_in_with_google: Iniciar sesión con Google
   sign_out: Salir
   sign_up: Crear una cuenta
+  sign_up_sentence_case: Regístrate
   similar_species: Especies similares
   similar_taxa: Taxones similares
   #Journal post formatting option
@@ -5663,6 +5672,8 @@ es:
   total_observations_caps: TOTAL DE OBSERVACIONES
   total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Pista
   translated_languages: Lenguajes traducidos
   'true': 'Verdadero'
   trending: Tendencias

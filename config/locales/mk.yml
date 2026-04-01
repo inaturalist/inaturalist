@@ -495,6 +495,8 @@ mk:
       имплицирани од овој статус. Ова ќе ја отфрли геоприватноста ако е "Најмалку
       Загриженост" или подолу, па ако сакате да ги прикриете набљудувањата на ова
       таксон, поставете го на "Речиси загрозен" или погоре.
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Придонеси
   controlled_term_labels:
     sex: Пол
     male: Машки
@@ -617,6 +619,8 @@ mk:
   devise_confirmation_instructions_please_click2: |
     Моля, кликнете на линкот подолу за да ја потврдите вашата е-маил адреса. Ако не го потврдите својот е-маил
     адреса, нема да можете да комуницирате со содржината на другите корисници.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Откријте
   did_you_mean: 'Дали мислевте на'
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
@@ -772,6 +776,8 @@ mk:
   home: Почетна
   icon_size: Големина на иконата
   iconic_taxon: Иконски таксон
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Идентификација
   #Notification when an identification has been deleted
   identification_deleted: Препознавањето е избришано.
   identification_saved: "Препознавањето е зачувано!"
@@ -1173,6 +1179,8 @@ mk:
   note_you_can_modify_the_height_attribute: "Напомена: Можете да го менувате атрибутот за висина за да се вклопи во расположивиот простор на вашата страница."
   number_of_observations: Број на набљудувања
   obscured: затскриено
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Набљудувај
   observation_date: Датум
   observation_date?: Датум?
   observation_fields_for_projects: Полиња за набљудување на проекти
@@ -1560,6 +1568,7 @@ mk:
   sign_in_with_google: Најавете се со Google
   sign_out: Одјава
   sign_up: Пријава
+  sign_up_sentence_case: Регистрирај се
   similar_species: Слични видови
   single_observation: Едно набљудување
   sizes: Големини
@@ -1693,6 +1702,8 @@ mk:
   total_observations: Вкупно набљудувања
   total_species_observed_caps: ВКУПНО НАБЉУДУВАНИ ВИДОВИ
   total_unique_observers: Вкупно посебни набљудувачи
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Патека
   #As in a category, not as in a keyboard
   type: Внесете
   type_authority: Внесете орган...

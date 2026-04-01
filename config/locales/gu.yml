@@ -34,6 +34,8 @@ gu:
       આ સ્થિતિ દ્વારા સૂચિત. જો તે "ઓછામાં ઓછું" હોય તો આ ભૌગોલિકપ્રિસ્થિતિને ઓવરરાઇડ કરશે
       ચિંતા" અથવા નીચે, તેથી જો તમે આના નિરીક્ષણોને અસ્પષ્ટ કરવા માંગતા હોવ તો
       ટેક્સન, આને "નિયર થ્રેટ" અથવા તેથી વધુ પર સેટ કરો.
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: યોગદાન આપો
   curator_coordinate_access: ક્યુરેટર યામાક્ષ પ્રવેશ
   curator_coordinate_access_desc: |
     પરંપરાગત પ્રોજેક્ટ્સ માટે ક્યુરેટર કોઓર્ડિનેટ એક્સેસ કોણે ઉમેર્યું તેના પર આધાર રાખે છે
@@ -107,6 +109,8 @@ gu:
   devise_confirmation_instructions_please_click2: |
     તમારા ઇમેઇલ એડ્રેસની ખાત્રી કરવા માટે કૃપા કરીને નીચેની લિંક પર ક્લિક કરો. જો તમે તમારા ઇમેઇલની પુષ્ટિ ન કરો તો
     સરનામું, તમે અન્ય વપરાશકર્તાઓની સામગ્રી સાથે ક્રિયાપ્રતિક્રિયા કરવા માટે સમર્થ હશો નહીં.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: શોધો
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: મતભેદ
@@ -131,6 +135,8 @@ gu:
   file_url: ફાઇલ URL
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "હેડ્સ અપ: આ અવાજને ફ્લેગ કરવામાં આવ્યો છે."
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: ઓળખો
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaururalist એ આના દ્વારા સૂચવેલ ID ને અપડેટ કર્યું %{user}
   #Title for a preference to control whether you receive notifications about
@@ -147,6 +153,8 @@ gu:
     જો તેમાં વધારાની ટીપ્પણીઓ હોય તો.
   #Error message shown when a date format is invalid
   invalid_date: અયોગ્ય તારીખ
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  learn: જાણો
   #Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: યાદી થયેલ
   #Adjective describing removal of a taxon from a list
@@ -174,6 +182,8 @@ gu:
     આઇડીમાં વધારાની ટીપ્પણીઓ છે.
   #A user who does not admin any projects
   non_project_admin: બિન-પ્રોજેક્ટ સંચાલક
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: અવલોકન કરો
   observation_fields_for_projects: પ્રોજેક્ટો માટે નિરીક્ષણ ક્ષેત્રો
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: નિરીક્ષણોને આ સ્થાન સાથે સાંકળવામાં એક દિવસ સુધીનો સમય લાગી શકે છે.
@@ -206,6 +216,7 @@ gu:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: ઉપપ્રજાતિઓ/વિવિધતા /ફોર્મ
+  sign_up_sentence_case: સાઇન અપ કરો
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: અવાજ %{id}, %{attribution}
@@ -218,6 +229,8 @@ gu:
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: ઉમેદવારી નોંધાવો
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: ટ્રેક
   update_existing_observations_with_new_license_desc: |
     આ વિકલ્પને પસંદ કરવાનું તમારા બધા માટે તમારી નવી લાઇસન્સ પસંદગીને લાગુ કરશે
     પ્રવર્તમાન અવલોકનો. જો તમારી પાસે ઘણું બધું હોય તો આમાં થોડા કલાકો લાગી શકે છે

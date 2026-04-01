@@ -885,6 +885,8 @@ bg:
   content_type: Тип на съдържанието
   continue: Продължи
   continue_to_site: Продължи към %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Допринесе
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Без значение
@@ -1313,6 +1315,8 @@ bg:
   devise_unlock_instructions_click_the_link: |
     Щракнете препратката по-долу, за да отключите акаунта си
   devise_unlock_instructions_unlock: Отключете акаунта си
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Открийте
   discoveries: Открития
   did_you_mean: 'Може би имахте предвид'
   did_you_photos_flickr?: Качихте ли някакви снимки на Flickr?
@@ -1733,6 +1737,8 @@ bg:
   identify_observations: "Разпознай наблюдения"
   identify_observations_by_these_users: Разпознайте наблюдения от тези потребители
   identify_title: "Разпознай"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Идентифициране
   identification: разпознаване
   identification_by_user: Разпознаване от %{user}
   #Notification when an identification has been deleted
@@ -2494,6 +2500,8 @@ bg:
   obscured_or_private: замаскирано или поверително
   obscured_description: |
     Координатите се показват като произволна точка в рамките на правоъгълник с размери 0,2 градуса геогр. дължина и ширина, който съдържа реалните координати на неопределено място в себе си.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Наблюдавайте
   observation: Наблюдение
   observation_: наблюдение
   observation_accuracy_experiment_continent: "Континент"
@@ -3731,6 +3739,7 @@ bg:
   sign_in_with_google: Влез чрез Google
   sign_out: Излизане
   sign_up: Регистриране
+  sign_up_sentence_case: Запишете се
   similar_species: Подобни видове
   similar_taxa: Подобни таксони
   #Journal post formatting option
@@ -4202,6 +4211,8 @@ bg:
   total_observations: Общо наблюдения
   total_observations_caps: ОБЩО НАБЛЮДЕНИЯ
   total_unique_observers: Общо различни наблюдатели
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Писта
   translated_languages: Преводни езици
   'true': 'Вярно'
   trending: Тенденции

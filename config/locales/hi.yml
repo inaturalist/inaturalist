@@ -26,6 +26,8 @@ hi:
   confirming_ids_description: |
     अगर आप इसे बंद कर देते हैं, तो आपको सहमति देने वाली आईडी के बारे में सूचित नहीं किया जाएगा
     आपके साथ जब तक कि उनके पास अतिरिक्त टिप्पणी न हो।
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: योगदान
   curator_coordinate_access: क्यूरेटर समन्वय पहुंच
   curator_coordinate_access_desc: |
     पारंपरिक परियोजनाओं के लिए क्यूरेटर समन्वय पहुंच इस बात पर निर्भर करता है कि किसने जोड़ा
@@ -44,6 +46,8 @@ hi:
   devise_confirmation_instructions_please_click2: |
     कृपया अपने ईमेल पते की पुष्टि करने के लिए नीचे दिए गए लिंक पर क्लिक करें। यदि आप अपने ईमेल की पुष्टि नहीं करते हैं
     पता, आप अन्य उपयोगकर्ताओं की सामग्री के साथ बातचीत करने में सक्षम नहीं होंगे।
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: खोज करना
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: असहमति
@@ -62,10 +66,14 @@ hi:
   file_url: फ़ाइल URL
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "हेड्स अप: इस ध्वनि को ध्वजांकित किया गया है।"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: पहचानें
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: इन्फ्रास्पीशीज आईडी
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  learn: सीखें
   lexicons:
     malayalam: मलयाळम
     tamil: तमिऴ्
@@ -79,6 +87,8 @@ hi:
   non_curator: नॉन-क्यूरेटर
   #A user who does not admin any projects
   non_project_admin: गैर-परियोजना व्यवस्थापक
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: निरीक्षण करें
   observation_fields_for_projects: परियोजनाओं के लिए अवलोकन क्षेत्र
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: इस जगह से जुड़े होने में एक दिन तक का समय लग सकता है।
@@ -108,6 +118,7 @@ hi:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: उप-प्रजाति / विविधता / रूप
+  sign_up_sentence_case: नाम लिखो
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: ध्वनि %{id}, %{attribution}
@@ -120,6 +131,8 @@ hi:
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: सदस्यता लें
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: संकरा रास्ता
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: अद्यतन ध्वनि
   user_trusts_this_project_when_added_by_any: |

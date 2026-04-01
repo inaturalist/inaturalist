@@ -1161,6 +1161,8 @@ es-MX:
     %{user} reveló este %{item} porque «%{reason}»
   continue: Continuar
   continue_to_site: Continua a %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribuye
   contributor_cannot_be_found: El contribuidor del proyecto no pudo ser encontrado
   contributors_to_project: "Contribuciones a %{project}"
   controlled_term_labels:
@@ -2367,6 +2369,8 @@ es-MX:
   identify_observations: "Identificar observaciones"
   identify_observations_by_these_users: Identificar observaciones de estos usuarios
   identify_title: "Identifica"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifica
   identification: Identificación
   identification_by_user: Identificación por %{user}
   #Notification when an identification has been deleted
@@ -5699,6 +5703,8 @@ es-MX:
   total_observations_caps: TOTAL DE OBSERVACIONES
   total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Huella(s)
   translated_languages: Lenguajes traducidos
   'true': 'Sí'
   trending: Tendencias

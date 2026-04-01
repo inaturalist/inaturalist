@@ -1096,6 +1096,8 @@ fi:
     %{user} poisti piilotuksen tältä %{item}lta, koska: "%{reason}"
   continue: Jatka
   continue_to_site: Jatka %{site_name}iin
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Osallistu
   contributor_cannot_be_found: Osallistujaa ei löydy
   contributors_to_project: "Projektin %{project} osallistujat"
   controlled_term_labels:
@@ -1653,6 +1655,8 @@ fi:
   devise_unlock_instructions_click_the_link: |
     Poista tilisi lukitus alla olevasta linkistä:
   devise_unlock_instructions_unlock: Poista tilin lukitus
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Tutustu
   discoveries: Löydöt
   did_you_mean: 'Tarkoititko'
   did_you_photos_flickr?: Laitoitko mitään kuvia Flickr'iin?
@@ -2208,6 +2212,8 @@ fi:
   identify_observations: "Tunnista havaintoja"
   identify_observations_by_these_users: Tunnista havaintoja, joita nämä havainnoijat ovat tehneet
   identify_title: "Tunnistus"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Tunnista
   identification: tunnistus
   identification_by_user: Käyttäjän %{user} tunnistus
   #Notification when an identification has been deleted
@@ -3154,6 +3160,8 @@ fi:
   obscured_or_private: karkeistettu tai yksityinen
   obscured_description: |
     Julkiset koordinaatit näytetään satunnaisena pisteenä 0,2 asteen lat/lon -solussa, joka sisältää todelliset koordinaatit.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Katso
   observation: Havainto
   observation_: havainto
   observation_accuracy_experiment_year: "Vuosi"
@@ -4508,6 +4516,7 @@ fi:
   sign_in_with_google: Kirjaudu sisään Google-tilillä
   sign_out: Kirjaudu ulos
   sign_up: Rekisteröidy
+  sign_up_sentence_case: Kiinnittää
   similar_species: Samanlaiset ​​lajit
   similar_taxa: Samankaltaisia taksoneita
   #Journal post formatting option
@@ -5086,6 +5095,8 @@ fi:
   total_observations_caps: HAVAINTOJA YHTEENSÄ
   total_species_observed_caps: LAJEJA HAVAITTU YHTEENSÄ
   total_unique_observers: Yksilölliset havainnoijat yhteensä
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Rata
   translated_languages: Käännetyt kielet
   'true': 'Kyllä'
   trending: Nousussa

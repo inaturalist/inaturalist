@@ -613,6 +613,8 @@ ar:
     %{user} أظهر هذا %{item} بسبب "%{reason}"
   continue: استمرار
   continue_to_site: المواصلة إلى %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: المساهمة
   contributor_cannot_be_found: لا يمكن العثور على المساهم
   contributors_to_project: "المساهمون في %{project}"
   controlled_term_labels:
@@ -830,6 +832,8 @@ ar:
   devise_confirmation_instructions_please_click2: |
     يرجى النقر فوق الرابط أدناه لتأكيد عنوان بريدك الإلكتروني. إذا لم تؤكد بريدك الإلكتروني
     ، لن تتمكن من التفاعل مع محتوى المستخدمين الآخرين.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: اكتشف
   discoveries: اكتشافات
   did_you_mean: 'هل تقصد'
   did_you_photos_flickr?: هل وضعت أي صور على فليكر؟
@@ -1225,6 +1229,8 @@ ar:
   identify_observations: "تحديد الملاحظات"
   identify_observations_by_these_users: تحديد الملاحظات من قبل هؤلاء المستخدمين
   identify_title: "تحديد"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: تحديد الهوية
   identification: الهوية
   identification_by_user: التحديد بواسطة %{user}
   #Notification when an identification has been deleted
@@ -1891,6 +1897,8 @@ ar:
   obscured_description: |
     الإحداثيات العامة تظهر كنقطة عشوائية داخل خلية 
     lat/lon 0.2 درجة والتي تحتوي على الإحداثيات الحقيقية.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: راقب
   observation: الملاحظة
   observation_: الملاحظة
   observation_added_to_the_project: "تمت إضافة الملاحظة إلى المشروع \"%{project}\""
@@ -2952,6 +2960,7 @@ ar:
   sign_in_with_provider: "تسجيل الدخول باستخدام %{provider}"
   sign_out: تسجيل الخروج
   sign_up: أنشئ حسابًا
+  sign_up_sentence_case: سجل
   similar_species: أنواع مماثلة
   similar_taxa: الأصناف المشابهة
   #Journal post formatting option
@@ -3356,6 +3365,8 @@ ar:
   total_observations: مجموع الملاحظات
   total_observations_caps: إجمالي الملاحظات
   total_unique_observers: مجموع المراقبين الفريدين
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: المضمار
   translated_languages: اللغات المترجمة
   'true': 'صحيح'
   trending: الشائع

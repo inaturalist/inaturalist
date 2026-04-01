@@ -1055,6 +1055,8 @@ ja:
     %{user}さんは%{item} を表示しました。理由："%{reason} "
   continue: 続行
   continue_to_site: '%{site_name} に進む'
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: 貢献
   contributor_cannot_be_found: 提供者が見つかりません
   contributors_to_project: "%{project}への貢献者"
   controlled_term_labels:
@@ -1572,6 +1574,8 @@ ja:
   devise_unlock_instructions_click_the_link: |
     アカウントのロックを解除するには、下のリンクをクリックしてください
   devise_unlock_instructions_unlock: アカウントのロックを解除
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: 発見
   discoveries: 発見
   did_you_mean: 'もしかして:'
   did_you_photos_flickr?: Flickrに写真をアップしていませんか？
@@ -2151,6 +2155,8 @@ ja:
   identify_observations: "観察記録を同定"
   identify_observations_by_these_users: ユーザーによる観察記録の同定
   identify_title: "同定"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: 識別
   identification: 同定
   identification_by_user: '%{user}さんの同定'
   #Notification when an identification has been deleted
@@ -3103,6 +3109,8 @@ ja:
   obscured_or_private: 不明瞭または非公開
   obscured_description: |
     公開座標は、真の座標を含む 0.2 度の緯度・経度のセル内のランダムな点として表示されます。
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: 見てみろ
   observation: 観察記録
   observation_: 観察記録
   observation_accuracy_experiment_the_sample_for: "この実験のサンプルはまだ作成されていません"
@@ -4528,6 +4536,7 @@ ja:
   sign_in_with_google: Googleでサインイン
   sign_out: ログアウト
   sign_up: ユーザー登録
+  sign_up_sentence_case: サインアップ
   similar_species: 近縁種
   similar_taxa: 類似分類群
   #Journal post formatting option
@@ -5136,6 +5145,8 @@ ja:
   total_observations_caps: 合計観察記録数
   total_species_observed_caps: 合計観察種数
   total_unique_observers: 総投稿者数
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: 陸上競技
   translated_languages: 翻訳言語：
   'true': '真'
   trending: トレンド入り：

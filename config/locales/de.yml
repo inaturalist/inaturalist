@@ -1140,6 +1140,8 @@ de:
     %{user} unhid this %{item} because "%{reason}"
   continue: Fortfahren
   continue_to_site: Weiter zu %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Beitrag leisten
   contributor_cannot_be_found: Mitwirkender kann nicht gefunden werden
   contributors_to_project: "Teilnehmer vom Projekt %{project}"
   controlled_term_labels:
@@ -1720,6 +1722,8 @@ de:
   devise_unlock_instructions_click_the_link: |
     Klicke auf untenstehenden Link, um Dein Konto zu entsperren
   devise_unlock_instructions_unlock: Konto entsperren
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Entdecke
   discoveries: Entdeckungen
   did_you_mean: 'Meintest du'
   did_you_photos_flickr?: Hast du Bilder auf Flickr hinzugefügt?
@@ -2308,6 +2312,8 @@ de:
   identify_observations: "Beobachtungen bestimmen"
   identify_observations_by_these_users: Identifiziere Beobachtungen dieser Benutzer
   identify_title: "ID-Modul"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifizieren
   identification: ID
   identification_by_user: Bestimmung durch %{user}
   #Notification when an identification has been deleted
@@ -3319,6 +3325,8 @@ de:
   obscured_or_private: verdeckt oder privat
   obscured_description: |
     Öffentliche Koordinaten werden als Zufallspunkt innerhalb der 0.2 Grad-Zelle (Längen-/Breitengrad) angezeigt, die die wahren Koordinaten enthält.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Beobachten Sie
   observation: Beobachtung
   observation_: Beobachtung
   observation_accuracy_experiment_the_sample_for: "Die Stichprobe für dieses Experiment wurde noch nicht erstellt"
@@ -4864,6 +4872,7 @@ de:
   sign_in_with_google: Mit Google anmelden
   sign_out: Abmelden
   sign_up: Registrieren
+  sign_up_sentence_case: Melden Sie sich an
   similar_species: Ähnliche Arten
   similar_taxa: Ähnliche Taxa
   #Journal post formatting option
@@ -5611,6 +5620,8 @@ de:
   total_observations_caps: BEOBACHTUNGEN INSGESAMT
   total_species_observed_caps: ANZAHL BEOBACHTETER ARTEN
   total_unique_observers: Gesamtzahl Einzelbeobachter
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Leichtathletik
   translated_languages: Übersetzte Sprachen
   'true': 'Wahr'
   trending: Im Trend
@@ -8335,6 +8346,31 @@ de:
         who_uses_site_name: "Wer verwendet %{site_name}?"
         what_are_you_waiting_for: Worauf wartest du?
         join_today: Jetzt beitreten
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Wo deine Neugier zur Wissenschaft beiträgt.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Pflanzen, Tiere, Pilze und mehr identifizieren und gleichzeitig einen lebendigen Lebensatlas auf der Erde ergänzen.
+          #Primary call-to-action button in the hero section
+          cta_join: Tritt der Gemeinschaft bei
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Kostenlos, gemeinnützig, gemeinschaftsorientiert.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Mit iNaturalist können Sie:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Pflanzen, Tiere, Pilze und mehr
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Arten, die du weltweit gesehen hast
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: Zur realen Wissenschaft
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Speichern und bearbeiten um Anhang hinzuzufügen
