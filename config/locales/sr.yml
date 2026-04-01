@@ -988,6 +988,8 @@ sr:
     %{user} je otkrio/la %{item} zbog "%{reason}"
   continue: Nastavi
   continue_to_site: Nastavi do %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Doprineti
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Sve
@@ -1426,6 +1428,8 @@ sr:
   devise_unlock_instructions_your_account_has_been_locked: |
     Tvoj nalog je blokiran zbog previše neuspelih pokušaja logovanja.
   devise_unlock_instructions_unlock: Otključaj profil
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Otkrijte
   discoveries: Nalazi
   did_you_mean: 'Da li si mislio/la'
   disable: Onemogući
@@ -1865,6 +1869,8 @@ sr:
   identify: Identifikuj
   identify_observations: "Identifikuj opservacije"
   identify_title: "Identifikuj"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifikovati
   identification: identifikacija
   identification_by_user: Identifikacija korisnika %{user}
   #Notification when an identification has been deleted
@@ -2659,6 +2665,8 @@ sr:
   obs_id_d: Ops. sa ID-jem
   obscured: Prikriveno
   obscured_or_private: prikriveno ili privatno
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Posmatrajte
   observation: Opservacija
   observation_: opservacija
   observation_accuracy_experiment_continent: "Kontinent"
@@ -3901,6 +3909,7 @@ sr:
   sign_in_with_google: Prijavi se putem Google-a
   sign_out: Odjavi se
   sign_up: Registruj se
+  sign_up_sentence_case: Prijavite se
   similar_species: Slične vrste
   similar_taxa: Slični taksoni
   #Journal post formatting option
@@ -4396,6 +4405,8 @@ sr:
   total_observations: Ukupno opservacija
   total_observations_caps: UKUPNO OPSERVACIJA
   total_species_observed_caps: UKUPNO ZABELEŽENO VRSTA
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Otisak
   translated_languages: Prevedeni jezici
   'true': 'Tačno'
   trending: Popularno
