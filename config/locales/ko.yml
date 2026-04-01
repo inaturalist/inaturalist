@@ -3161,6 +3161,191 @@ ko:
         who_uses_site_name: "사용자 %{site_name}?"
         what_are_you_waiting_for: 더 망설일 필요 있나요?
         join_today: 지금 가입하기
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: 당신의 호기심이 과학에 기여하는 곳.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            식물, 동물, 균류 등을 식별하며 지구상의 살아있는 생명 지도에 더해보세요.
+          #Primary call-to-action button in the hero section
+          cta_join: 커뮤니티에 참여하세요
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: 무료, 비영리, 지역사회 주도.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalist를 통해 다음과 같은 기능을 할 수 있습니다:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: 식물, 동물, 균류 등 다양한 주제
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: 전 세계에서 본 종들
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: 진짜 과학으로
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: 자연 근처
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: 전 세계 자연주의자 공동체로부터
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: 커뮤니티 과학의 힘
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: 본 사람 %{user} %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: 오랫동안 잃어버린 종의 재발견
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            그 %{moth_common_name} 나방은 수십 년간 목격되지 않았고 한때 멸종된 것으로 여겨졌으나, 뉴질랜드의 한 관광객이 우연히 발견했다.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: 과학에 새로 들어온 종을 발견하다
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — 약칭: <span class="italic">I. 내셔널</span> — 이 종은 호주에서 한 여성이 동네를 걷다가 발견한 과학에 새롭게 소개된 사마귀 종입니다.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: 지역 생태계 보호
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            캘리포니아의 지역 자원봉사자 그룹이 iNaturalist를 통해 번화한 도로를 건너는 이주하는 양서류를 보호하기 위해 모였습니다.
+          #Link below the stories to read more community science stories
+          read_more: 더 많은 이야기를 읽어보세요
+        observation:
+          #Heading for the sample observation section
+          heading: 모든 관찰은 하나의 이야기를 전합니다
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: 생물다양성 과학에 기여하는 관찰
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: 전 세계적으로 기록된 종들
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: iNaturalist 데이터를 인용한 논문들
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: 지역 과학자들이 발견하거나 재발견한 종들
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            앱을 열고 동네나 전 세계 어디에서든 야생 식물, 동물, 균류 또는 기타 생물을 사진으로 찍으세요.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            앱은 즉시 식별을 제안하고, 전 세계 자연학자 커뮤니티가 이를 확인하거나 정밀하게 만듭니다.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            당신의 관찰은 전 세계 과학자, 보전가, 연구자들이 사용하는 오픈 데이터가 됩니다.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            자연은 그 어느 때보다 빠르게 변하고 있으니 우리는 <span class="underline">너</span> 무엇이 어디에 사는지 기록하는 데 도움을 주기 위해서입니다.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            이 경험은 종 식별에 큰 도움이 되었고, 전 세계 다양한 사람들과 교류할 기회를 주었습니다.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: 해양 보존가 및 수중 사진작가, 케냐
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist는 연구가 부족한 분류군에 관한 새롭고 흥미로운 연구의 문을 열어줍니다. 제 생각에 이 플랫폼은 생태학 과학의 최첨단입니다.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: 미국 Owlfly LLC의 현장 안내서 저자
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist와 그 헌신적인 식별자 커뮤니티는 제 탐구에 매우 귀중한 자원이 되었습니다. 이 경험이 현재 제 작업의 기초를 다지는 데 도움이 되었습니다.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: 스리랑카 생물다양성 연구원
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist는 사람, 자연, 지식을 연결하는 강력한 도구입니다. 희귀종이나 아직 기술되지 않은 종도 사진으로 담을 수 있고, 동시에 자연 유산 보존에도 기여하고 있습니다.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: 환경 기술자이자 취미 사진가, 브라질
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            세계 어디에 있든, 박사 학위가 있든 자연을 사랑하든, iNaturalist는 자연과 많은 동료 자연주의자들과 더 가까워지게 해줄 것입니다.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: 생물학자, 멕시코
+        everyone:
+          #Heading for the broad audience section
+          heading: 모든 사람은 자연주의자입니다
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            살아있는 무언가를 자세히 보고 그것이 무엇인지 궁금해했다면, iNaturalist가 바로 당신을 위한 것입니다.
+          #Heading for the impact sub-section
+          impact_heading: 당신은 영향력을 발휘할 수 있습니다
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            여러분이 공유하는 모든 사진은 전 세계 연구자들이 의존하는 전 세계 과학 기록의 일부가 됩니다.
+          #Heading for the community reputation sub-section
+          community_heading: '"온라인에서 가장 좋은 곳"'
+          #Description of the welcoming community aspect
+          community_body: >
+            신원 확인을 위해 오고, 커뮤니티와 과학에 영향을 미치기 위해 머무르세요.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: iNaturalist 앱을 다운로드하세요
+          #Subheading describing the two core benefits of the app
+          subheading: 실시간 식별 정보를 얻고 과학에 기여하세요
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ 다운로드"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: 전 세계 종을 탐험하세요
+          #Button / link to browse species without downloading
+          button: 지금 바로 탐색해 보세요
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13세 미만? 다운로드하세요!"
+          #Description of Seek's badge and challenge features
+          body: 배지를 획득하고 종을 관찰하는 챌린지에 참여하세요!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5성 리뷰"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: 월간 뉴스레터를 받아보세요!
+          #Description of the newsletter's content
+          body: iNaturalist 커뮤니티의 이야기와 발견을 계속 소식하세요.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist는 과학과 보전을 지원하는 비영리 단체입니다.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: 여러분의 지원이 가능하게 합니다.
+          #Call-to-action button for the donation section
+          cta: 지금 기부하세요
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: 자주 묻는 질문
+          #FAQ: uploading existing photos — question
+          upload_existing_question: 이미 가지고 있는 사진을 업로드할 수 있나요?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            네! 사진이 언제 어디서 찍혔는지 대략 알고 있다면, 오래된 사진도 환영합니다.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: iNaturalist 관찰을 바탕으로 누가 과학을 할 수 있을까요?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            누구든! 모든 iNaturalist 관찰은 연구자, 보전 실무자, 그리고 호기심 많은 개인에게 공개되어 있고 자유롭게 제공됩니다.
+          #FAQ: research grade definition — question
+          research_grade_question: '"연구 등급"이란 무엇을 의미하나요?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            커뮤니티가 식별에 합의하면, 그 관측은 '연구 등급'이 되어 전 세계 과학 기록에 포함됩니다. 모든 식별 정보가 그 자리에 도달하는 데 도움이 될 수 있습니다.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: 제가 뭘 보고 있는지 알아야 하나요?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            전혀 그렇지 않습니다! 사진을 공유하면 전 세계 자연주의자 커뮤니티가 이를 식별하는 데 도움을 줄 수 있습니다.
+          #FAQ: whether the app is required — question
+          need_app_question: 앱을 꼭 써야 하나요?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            데스크톱에서는 iNaturalist.org 아주 잘 작동합니다. 모바일 기기에서는 특히 이동 중 종을 식별하는 데 최고의 경험을 제공합니다.
   date:
     abbr_day_names:
       - 일
