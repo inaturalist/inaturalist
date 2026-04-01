@@ -311,6 +311,191 @@ fa:
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         در تلاش برای ارسال این برچسب ها مشکلی پیش آمد: %{message}
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: جایی که کنجکاوی شما به علم کمک می کند.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            گیاهان، جانوران، قارچ ها و موارد دیگر را شناسایی کنید و در عین حال به اطلس زنده حیات روی زمین اضافه کنید.
+          #Primary call-to-action button in the hero section
+          cta_join: به جامعه بپیوندید
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: رایگان، غیرانتفاعی و مبتنی بر جامعه.
+        features:
+          #Section label introducing the three core user actions
+          intro: "با iNaturalist می توانید:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: گیاهان، حیوانات، قارچ ها و بیشتر
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: گونه هایی که در سراسر جهان دیده اید
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: به علم واقعی
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: طبیعت نزدیک
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: از جامعه جهانی طبیعت شناسان
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: قدرت علم جامعه
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: دیده شده توسط %{user} در %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: بازکشف گونه های گمشده
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            این %{moth_common_name} پروانه شب پره دهه ها دیده نشده بود و زمانی تصور می شد منقرض شده است — تا اینکه یک گردشگر در نیوزیلند به طور تصادفی آن را دید.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: کشف گونه های جدید علم
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">اینیمیا نات</span> — به اختصار <span class="italic">آی. نات</span> — گونه ای تازه وارد به علم مانتیس است که توسط زنی در استرالیا هنگام قدم زدن در محله اش پیدا شده است.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: حفاظت از اکوسیستم های محلی
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            گروهی از داوطلبان محلی در کالیفرنیا از طریق iNaturalist گرد هم آمدند تا از دوزیستان مهاجر که از جاده ای شلوغ عبور می کردند محافظت کنند.
+          #Link below the stories to read more community science stories
+          read_more: داستان های بیشتری بخوانید
+        observation:
+          #Heading for the sample observation section
+          heading: هر مشاهده داستانی را روایت می کند
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: مشاهداتی که به علم تنوع زیستی کمک می کنند
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: گونه های مستند شده در سراسر جهان
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: مقالات با استناد به داده های iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: گونه هایی که توسط دانشمندان جامعه کشف یا مجددا کشف شدند
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            اپلیکیشن را باز کنید و از هر گیاه، حیوان، قارچ یا موجود وحشی دیگر — چه از محله خود و چه در هر نقطه ای از جهان — عکس بگیرید.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            اپلیکیشن فورا شناسایی را پیشنهاد می کند و جامعه جهانی طبیعت شناسان آن را تأیید یا اصلاح می کند.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            مشاهده شما به داده های باز تبدیل می شود — که توسط دانشمندان، فعالان محیط زیست و پژوهشگران سراسر جهان استفاده می شود.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            طبیعت سریع تر از همیشه در حال تغییر است، پس ما نیاز داریم <span class="underline">تو</span> برای کمک به ثبت آنچه کجا زندگی می کند.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            این تجربه واقعا به من در شناسایی گونه ها کمک کرده و همچنین فرصت تعامل با افراد مختلف در سراسر جهان را به من داده است.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: فعال محیط زیست دریایی و عکاس زیرآبی، کنیا
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist در را به روی تحقیقات جدید و هیجان انگیز زیادی درباره تاکسون های کمتر مطالعه شده باز می کند. به نظر من، این پلتفرم خط مقدم علم بوم شناسی است.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: نویسنده راهنمای میدانی در شرکت Owlfly LLC، ایالات متحده آمریکا
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist و جامعه اختصاصی شناسه هایش به منبعی ارزشمند در کاوش های من تبدیل شدند. این به پایه گذاری کار فعلی من کمک کرد.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: پژوهشگر تنوع زیستی، سری لانکا
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist ابزاری قدرتمند است که مردم، طبیعت و دانش را به هم متصل می کند. می توانم از گونه ای نادر یا حتی گونه ای که هنوز توصیف نشده عکس بگیرم و در عین حال به حفظ میراث طبیعی مان کمک کنم.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: تکنسین محیط زیست و عکاس سرگرمی، برزیل
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            فرقی نمی کند کجای دنیا باشید، چه دکترا داشته باشید و چه فقط عاشق طبیعت باشید، iNaturalist شما را به طبیعت و بسیاری از طبیعت دوستان دیگر نزدیک تر می کند.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: زیست شناس، مکزیک
+        everyone:
+          #Heading for the broad audience section
+          heading: همه طبیعت گرا هستند
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            اگر تا به حال به چیزی زنده با دقت نگاه کرده اید و کنجکاو بوده اید که چیست، iNaturalist برای شماست.
+          #Heading for the impact sub-section
+          impact_heading: شما می توانید تأثیرگذار باشید
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            هر عکسی که به اشتراک می گذارید بخشی از یک رکورد علمی جهانی می شود که پژوهشگران سراسر جهان به آن وابسته اند.
+          #Heading for the community reputation sub-section
+          community_heading: '"بهترین مکان آنلاین"'
+          #Description of the welcoming community aspect
+          community_body: >
+            برای شناسایی ها بیایید، برای جامعه و تأثیر بر علم بمانید.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: اپلیکیشن iNaturalist را دانلود کنید
+          #Subheading describing the two core benefits of the app
+          subheading: شناسایی های لحظه ای دریافت کنید و به علم کمک کنید
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ دانلودها"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: کاوش گونه ها در سراسر جهان
+          #Button / link to browse species without downloading
+          button: همین حالا کاوش کنید
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "زیر ۱۳ سال؟ دانلود Seek!"
+          #Description of Seek's badge and challenge features
+          body: نشان کسب کنید و در چالش هایی برای مشاهده گونه ها شرکت کنید!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ نقدهای ۵ ستاره"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: خبرنامه ماهانه ما را دریافت کنید!
+          #Description of the newsletter's content
+          body: با داستان ها و کشفیات جامعه iNaturalist در ارتباط بمانید.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist یک سازمان غیرانتفاعی است که از علم و حفاظت حمایت می کند.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: حمایت شما این امکان را فراهم می کند.
+          #Call-to-action button for the donation section
+          cta: همین حالا اهدا کنید
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: سوالات متداول
+          #FAQ: uploading existing photos — question
+          upload_existing_question: آیا می توانم عکس هایی را که قبلا دارم آپلود کنم؟
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            بله! تا زمانی که تقریبا بدانید عکس چه زمانی و کجا گرفته شده، عکس های قدیمی تر خوش آمد هستند.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: چه کسی می تواند با مشاهدات iNaturalist علم انجام دهد؟
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            هر کسی! تمام مشاهدات iNaturalist برای پژوهشگران، فعالان حفاظت محیط زیست و افراد کنجکاو به طور یکسان باز و در دسترس هستند.
+          #FAQ: research grade definition — question
+          research_grade_question: '«نمره پژوهشی» یعنی چه؟'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            وقتی جامعه بر سر شناسایی توافق می کند، مشاهده به «درجه پژوهشی» تبدیل می شود و وارد سوابق علمی جهانی می گردد. هر مدرک شناسایی می تواند کمک کند تا آن را به آنجا برسانیم.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: آیا لازم است بدانم دارم به چه چیزی نگاه می کنم؟
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            اصلا! یک عکس به اشتراک بگذارید و یک جامعه جهانی از طبیعت شناسان می تواند به شما در شناسایی آن کمک کند.
+          #FAQ: whether the app is required — question
+          need_app_question: آیا باید از اپلیکیشن استفاده کنم؟
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            روی دسکتاپ، iNaturalist.org خیلی خوب کار می کند. در دستگاه های موبایل، این اپلیکیشن بهترین تجربه را به شما می دهد — به ویژه برای شناسایی گونه ها در حین حرکت.
   number:
     format:
       significant: false
