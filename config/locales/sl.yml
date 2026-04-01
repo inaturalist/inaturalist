@@ -1076,6 +1076,8 @@ sl:
     %{user} je razkril ta %{item} zaradi "%{reason}"
   continue: Nadaljuj
   continue_to_site: Nadaljuj v %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Prispevajte
   contributor_cannot_be_found: Sodelavca ni mogoče najti
   contributors_to_project: "Sodelavci projekta %{project}"
   controlled_term_labels:
@@ -1492,6 +1494,8 @@ sl:
   devise_unlock_instructions_click_the_link: |
     Za odklepanje svojega računa kliknite spodnjo povezavo:
   devise_unlock_instructions_unlock: Odkleni svoj račun
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Odkrijte
   discoveries: Odkritja
   did_you_mean: 'Ali ste mislili'
   did_you_photos_flickr?: Ali ste naložili katero od fotografij na Flickr?
@@ -2019,6 +2023,8 @@ sl:
   identify_observations: "Določi opazovanja"
   identify_observations_by_these_users: Določi opazovanja teh uporabnikov
   identify_title: "Določi"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificiraj
   identification: določitev
   identification_by_user: Določitev %{user}
   #Notification when an identification has been deleted
@@ -2949,6 +2955,8 @@ sl:
   obscured_or_private: zakrito ali zasebno
   obscured_description: |
     Javne koordinate prikažejo naključno točko znotraj 0.2 stopinj zamljepisne širine in dolžine kvadrata, ki vsebuje prave koordinate.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Opazujte
   observation: Opazovanje
   observation_: opazovanje
   observation_accuracy_experiment_the_sample_for: "Vzorec za ta eksperiment še ni bil generiran"
@@ -4268,6 +4276,7 @@ sl:
   sign_in_with_google: Vpiši se z Googlom
   sign_out: Odjava
   sign_up: Registracija
+  sign_up_sentence_case: Prijavite se
   similar_species: Podobne vrste
   similar_taxa: Podobni taksoni
   #Journal post formatting option
@@ -4772,6 +4781,8 @@ sl:
   total_observations_caps: VSA OPAZOVANJA
   total_species_observed_caps: VSE OPAZOVANE VRSTE
   total_unique_observers: Skupnih edinstvenih določevalcev
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Sled
   translated_languages: Prevedeni jeziki
   'true': 'Pravilno'
   trending: Popularno
