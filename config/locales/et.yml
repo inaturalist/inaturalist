@@ -1085,6 +1085,8 @@ et:
     Kasutaja %{user} taasavalikustas objekti "%{item}" põhjusel "%{reason}"
   continue: Jätka
   continue_to_site: Mine edasi lehele %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Panustage
   contributor_cannot_be_found: Täjendajat ei leita
   contributors_to_project: "Projekti %{project} täjendajad"
   controlled_term_labels:
@@ -1570,6 +1572,8 @@ et:
   devise_unlock_instructions_click_the_link: |
     Oma konto taasavamiseks kasuta allolevat linki
   devise_unlock_instructions_unlock: Konto taasavamine
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Avasta
   discoveries: Avastused
   did_you_mean: 'Kas mõtlesid'
   did_you_photos_flickr?: Kas sa panid mõned fotod ka Flickr kontole?
@@ -2129,6 +2133,8 @@ et:
   identify_observations: "Määra vaatlusi"
   identify_observations_by_these_users: Määratle nende kasutajate vaatluseid
   identify_title: "Määra"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Tuvasta
   identification: määratlus
   identification_by_user: Kasutaja %{user} määratlus
   #Notification when an identification has been deleted
@@ -3032,6 +3038,8 @@ et:
   obscured_or_private: varjatud või privaatne
   obscured_description: |
     Avalike koordinaatidena näidatakse juhuslikku punkti 0,2 pikkus/laiuskraadi suurusel alal, kus paikneb tõeline asukoht.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Vaata
   observation: Vaatlus
   observation_: vaatlus
   observation_accuracy_experiment_as_observations: "Selle valimi vaatluste kinnitamise käigus väheneb ebamääraste protsent ning õigete ja valede protsent suureneb."
@@ -4103,6 +4111,7 @@ et:
   sign_in_with_provider: "Logi sisse %{provider} kontoga"
   sign_out: Logi välja
   sign_up: Registreeru!
+  sign_up_sentence_case: Registreeru
   similar_species: Sarnased liigid
   #Journal post formatting option
   simple: Lihtne
@@ -4568,6 +4577,8 @@ et:
   total_observations: Vaatluseid kokku
   total_observations_caps: VAATLUSEID KOKKU
   total_unique_observers: Kokku erinevaid vaatlejaid
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Jälg
   translated_languages: Tõlgitud keeled
   'true': 'Tõene'
   trending: Trend
