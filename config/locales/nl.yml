@@ -7749,11 +7749,22 @@ nl:
           URL van een evenementregistratieservice die je gebruikt voor je bioblitz.
           Als dit een Eventbrite-URL met een numerieke ID is, voegen we een aanmeld-widget toe aan je projectpagina tot je bioblitz
           begint.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Verberg Klassement
         icon_desc: "Wordt opeengepakt tot een vierkant"
         it_looks_like_this_project_can_be_converted: |
           Het lijkt erop dat dit project kan worden geconverteerd naar een nieuw <a href="%{url}">verzamelproject</a>.
         last_aggregated_at_desc: |
           Tijd dat de aggregator voor het laatst klaar was met het toevoegen van waarnemingen aan dit project
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Klassement
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Het Klassement-paneel toont gebruikers met de meeste waarnemingen, met de
+          de meeste soorten en de best waargenomen soort. Het kan optioneel verborgen worden.
         #Label for button to make another user the owner of a project
         make_owner: Eigenaar maken
         no_curators: |
@@ -8793,6 +8804,108 @@ nl:
           #Description of what users can Identify
           #Read as "{Identify} plants, animals, fungi, & more"
           identify_desc: Planten, dieren, schimmels & meer
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: soorten die je wereldwijd hebt gezien
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: naar echte wetenschap
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: natuur in de buurt
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: van een wereldwijde gemeenschap van natuuronderzoekers
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: De kracht van gemeenschapswetenschap
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Gezien door %{user} in %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Herontdekking van lang verloren soorten
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            De nachtvlinder %{moth_common_name} was al decennia niet meer gezien en werd als uitgestorven beschouwd — totdat een toerist in Nieuw-Zeeland hem per ongeluk zag.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Soorten ontdekken die nieuw zijn voor de wetenschap
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — afgekort tot <span class="italic">I. nat</span> — is een bidsprinkhaansoort die nieuw voor de wetenschap is, is gevonden door een vrouw in Australië die in haar buurt wandelt.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Bescherming van lokale ecosystemen
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Een groep lokale vrijwilligers in Californië kwam via iNaturalist samen om migrerende amfibieën die een drukke weg overstaken te beschermen.
+          #Link below the stories to read more community science stories
+          read_more: Lees meer verhalen
+        observation:
+          #Heading for the sample observation section
+          heading: Elke waarneming vertelt een verhaal
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: waarnemingen die bijdragen aan biodiversiteitswetenschap
+        testimonials:
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversiteitsonderzoeker, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist is een krachtig hulpmiddel dat mensen, natuur en kennis verbindt. Ik kan een zeldzame soort fotograferen of zelfs een die nog niet is beschreven en tegelijkertijd draag ik bij aan het behoud van ons natuurlijk erfgoed.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Milieutechnicus en hobbyfotograaf, Brazilië
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Waar ter wereld je ook bent, of je nu een PhD hebt of gewoon van de natuur houdt, iNaturalist brengt je dichter bij de natuur en vele andere natuurliefhebbers.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Bioloog, Mexico
+        everyone:
+          #Heading for the broad audience section
+          heading: Iedereen is een natuurliefhebber
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Als je ooit goed hebt gekeken naar iets dat leefde en je vroeg je af wat het was, dan is iNaturalist voor jou.
+          #Heading for the impact sub-section
+          impact_heading: Je kunt impact maken
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Elke foto die je deelt wordt onderdeel van een wereldwijd wetenschappelijk archief waarop onderzoekers wereldwijd vertrouwen.
+          #Heading for the community reputation sub-section
+          community_heading: '"De mooiste plek online"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Kom voor de determinaties, blijf voor de gemeenschap en impact op de wetenschap.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Download de iNaturalist app
+          #Subheading describing the two core benefits of the app
+          subheading: Krijg real-time determinaties & draag bij aan de wetenschap
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Downloads"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Ontdek soorten wereldwijd
+          #Button / link to browse species without downloading
+          button: Ontdek het nu
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Onder de 13? Download Seek!"
+          #Description of Seek's badge and challenge features
+          body: Verdien badges en doe mee aan uitdagingen om soorten te vinden!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-sterren recensies"
+        donate:
+          #Call-to-action button for the donation section
+          cta: Doneer nu
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Veelgestelde vragen
+          #FAQ: research grade definition — question
+          research_grade_question: Wat betekent "Onderzoekskwaliteit"?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Op een desktop werkt iNaturalist.org fantastisch. Op een mobiel apparaat biedt de app je de beste ervaring — vooral voor het determineren van soorten onderweg.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Opslaan en bewerken om bijlagen toe te voegen
