@@ -917,6 +917,8 @@ kn:
     "%{reason}" ನ ಕಾರಣದಿಂದಾಗಿ ಈ %{item} ಅನ್ನು %{user} ಅವರು ಮರುಪ್ರದರ್ಶಿಸಿದ್ದಾರೆ
   continue: ಮುಂದುವರಿಸಿ
   continue_to_site: '%{site_name} ಗೆ ಮುಂದುವರೆಯಿರಿ'
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: ಕೊಡುಗೆ ನೀಡಿ
   contributor_cannot_be_found: ಕೊಡುಗೆದಾರರು ಕಂಡುಬಂದಿಲ್ಲ
   contributors_to_project: "%{project} ಗೆ ನೆರವಾದವರು"
   controlled_term_labels:
@@ -1305,6 +1307,8 @@ kn:
   devise_unlock_instructions_click_the_link: |
     ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅನಿರ್ಬಂಧಿಸಲು ಈ ಕೆಳಗಿನ ಲಿಂಕನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ
   devise_unlock_instructions_unlock: ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅನಿರ್ಬಂಧಿಸಿ
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: ಅನ್ವೇಷಿಸಿ
   discoveries: ಅನ್ವೇಷಣೆಗಳು
   did_you_mean: 'ನಿಮ್ಮ ಪ್ರಕಾರ'
   did_you_photos_flickr?: ನಿಮ್ಮ ಚಿತ್ರಗಳನ್ನು Flickr ನಲ್ಲಿ ಹಾಕಿರುವಿರಾ?
@@ -1724,6 +1728,8 @@ kn:
   identify_observations: "ವೀಕ್ಷಣೆಗಳನ್ನು ಗುರುತಿಸಿ"
   identify_observations_by_these_users: ಈ ಬಳಕೆದಾರರ ವೀಕ್ಷಣೆಗಳನ್ನು ಗುರುತಿಸಿ
   identify_title: "ಗುರುತಿಸಿ"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: ಗುರುತಿಸಿ
   identification: ಗುರುತಿಸುವಿಕೆ
   identification_by_user: '%{user} ರಿಂದ ಗುರುತಿಸುವಿಕೆ'
   #Notification when an identification has been deleted
@@ -2559,6 +2565,8 @@ kn:
   obs: ವೀಕ್ಷಣೆಗಳು
   obscured: ಮಸುಕಾಗಿಸಲಾಗಿದೆ
   obscured_or_private: ಮಸುಕಾಗಿಸಲಾಗಿದೆ ಅಥವಾ ಖಾಸಗಿಯಾಗಿದೆ
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: ಗಮನಿಸಿ
   observation: ವೀಕ್ಷಣೆ
   observation_: ವೀಕ್ಷಣೆ
   observation_accuracy_experiment_precision: "കൃത്യത"
@@ -3862,6 +3870,7 @@ kn:
   sign_in_with_google: Google ನೊಂದಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ
   sign_out: ಸೈನೌಟ್ ಆಗಿ
   sign_up: ನೋಂದಾಯಿಸಿ
+  sign_up_sentence_case: ಸೈನ್ ಅಪ್ ಮಾಡಿ
   similar_species: ಸಮಾನರೂಪಿನ ಪ್ರಭೇದಗಳು
   similar_taxa: ಸಮಾನ ಜೀವಿವರ್ಗಗಳು
   #Journal post formatting option
@@ -4425,6 +4434,8 @@ kn:
   total_observations_caps: ಒಟ್ಟು ವೀಕ್ಷಣೆಗಳು
   total_species_observed_caps: ವೀಕ್ಷಿಸಿದ ಒಟ್ಟು ಪ್ರಭೇದಗಳು
   total_unique_observers: ಒಟ್ಟು ಅನನ್ಯ ವೀಕ್ಷಕರು
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: ಹೆಜ್ಜೆಗುರುತು
   translated_languages: ಅನುವಾದಗೊಂಡ ಭಾಷೆಗಳು
   'true': 'ಸರಿ'
   trending: ಜನಪ್ರಿಯ
