@@ -6339,9 +6339,19 @@ fi:
         change_owner_alert: |
           Tämän jälkeen et voi enää poistaa projektia tai siirtää sen omistajuutta uudelleen. Haluatko jatkaa?
         cover_desc: "Valinnainen kansikuva, joka tulee näkyviin projektisivusi yläreunaan. Pitää olla 950px leveä, alle 400px pitkä."
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Piilota tulostaulukko
         icon_desc: "Rajataan neliöksi"
         it_looks_like_this_project_can_be_converted: |
           Näyttää siltä että tämä projekti voidaan muuntaa uudeksi <a href="%{url}">koontiprojektiksi</a>.
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Tulostaulukko
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Tulostaulukko näyttää käyttäjät, joilla on eniten havaintoja ja eniten lajeja sekä eniten havaitut lajit. Se voidaan halutessasi piilottaa.
         #Label for button to make another user the owner of a project
         make_owner: Tee käyttäjästä omistaja
         no_curators: |
