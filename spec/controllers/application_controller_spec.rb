@@ -253,6 +253,115 @@ describe ApplicationController do
     end
   end
 
+  describe WelcomeController do
+    describe "sign_out_suspended_users" do
+      it "signs out a suspended user" do
+        user = User.make!( suspended_at: Time.now )
+        sign_in( user )
+        get :index
+        expect( controller.send( :current_user ) ).to be_nil
+      end
+
+      it "does not sign out a non-suspended user" do
+        user = User.make!
+        sign_in( user )
+        get :index
+        expect( controller.send( :current_user ) ).to eq user
+      end
+
+      it "does not sign out a user whose timed suspension has expired" do
+        user = User.make!( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+        sign_in( user )
+        get :index
+        expect( controller.send( :current_user ) ).to eq user
+      end
+    end
+  end
+
+  describe ObservationsController do
+    describe "sign_out_suspended_users" do
+      elastic_models( Observation )
+
+      describe "for JSON requests" do
+        it "returns 401 with suspension details for a suspended user" do
+          user = User.make!( suspended_at: Time.now, suspension_reason: "spam", suspended_until: 1.week.from_now )
+          sign_in( user )
+          get :index, format: :json
+          expect( response.status ).to eq 401
+          json = JSON.parse( response.body )
+          expect( json["error"] ).not_to be_blank
+        end
+
+        it "includes suspension reason in error for timed suspension" do
+          user = User.make!( suspended_at: Time.now, suspension_reason: "spam", suspended_until: 1.week.from_now )
+          sign_in( user )
+          get :index, format: :json
+          json = JSON.parse( response.body )
+          expect( json["error"] ).to match( /spam/ )
+        end
+
+        it "does not include reason for indefinite suspension" do
+          user = User.make!( suspended_at: Time.now, suspension_reason: "spam" )
+          sign_in( user )
+          get :index, format: :json
+          json = JSON.parse( response.body )
+          expect( json["error"] ).not_to match( /spam/ )
+        end
+
+        it "does not return an error for a non-suspended user" do
+          user = User.make!
+          sign_in( user )
+          get :index, format: :json
+          expect( response ).to be_successful
+        end
+
+        it "does not return an error for a user whose timed suspension has expired" do
+          user = User.make!( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+          sign_in( user )
+          get :index, format: :json
+          expect( response ).to be_successful
+        end
+      end
+
+      describe "for OAuth requests" do
+        let( :user ) { User.make! }
+        let( :app ) { OauthApplication.make! }
+        before do
+          ActionController::Base.allow_forgery_protection = true
+        end
+        after { ActionController::Base.allow_forgery_protection = false }
+
+        it "returns 403 with suspension details for a suspended OAuth user" do
+          user.update!( suspended_at: Time.now, suspension_reason: "spam", suspended_until: 1.week.from_now )
+          # Create the token after suspension to simulate a token that was not
+          # revoked by the after_save callback
+          token = Doorkeeper::AccessToken.create!(
+            application: app,
+            resource_owner_id: user.id,
+            scopes: Doorkeeper.configuration.default_scopes
+          )
+          request.env["HTTP_AUTHORIZATION"] = "Bearer #{token.token}"
+          get :index, format: :json
+          expect( response.status ).to eq 403
+          json = JSON.parse( response.body )
+          expect( json["error"] ).to eq "suspended"
+          expect( json["error_description"] ).to match( /spam/ )
+        end
+
+        it "does not return 403 for a non-suspended OAuth user" do
+          token = Doorkeeper::AccessToken.create!(
+            application: app,
+            resource_owner_id: user.id,
+            scopes: Doorkeeper.configuration.default_scopes
+          )
+          request.env["HTTP_AUTHORIZATION"] = "Bearer #{token.token}"
+          get :index, format: :json
+          expect( response ).to be_successful
+        end
+      end
+    end
+  end
+
   describe "allow_external_iframes" do
     describe ObservationsController do
       describe "Content-Security-Policy header" do
