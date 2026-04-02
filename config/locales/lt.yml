@@ -1212,6 +1212,8 @@ lt:
     Skaityti kitų žmonių žinučių.
   #Title of a page where people apply to become a curator
   curator_application_title: Kuratoriaus paraiška
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuratoriaus vadovas
   curators_changed_for_x_html: "Kuratoriai keičiami kas %{x}"
   curators: Kuratoriai
   curator_coordinate_access: Kuratorius koordinuoja prieigą
@@ -1756,6 +1758,8 @@ lt:
   geoprivacy_is_private: Vietos privatumas yra privatus
   geoprivacy_is_private_desc: Stebėtojas koordinates padarė privačiomis.
   get_started: Pradėti
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Darbo pradžia
   getting_started_guide: Darbo Pradžios Vadovas
   #Prompt to donate money on a montly basis
   give_monthly_caps: AUKOTI KARTĄ PER MĖNESĮ
@@ -1946,6 +1950,7 @@ lt:
   italic_text: pakreiptas tekstas
   item_flagged_notice_html: |
     Tai buvo pažymėta kaip šlamštas ir nebėra viešai matoma. Jūs tai galite matyti, nes sukūrėte tai, arba esate tinklalapio kuratorius. Jeigu manote, kai tai yra klaida, prašome <a href="mailto:%{help_email}" class="contact">susisiekite su mumis</a>. <a href="%{manage_flags_path}">Valdykite žymes</a>
+  jobs: Darbas
   join: Jungtis
   join_and_add_an_observation_to_project_html: Prisijuk ir pridėk stebėjimą į %{project}
   join_project: Prisijunkite prie šio projekto
@@ -3191,6 +3196,7 @@ lt:
   posted_by: Paskelbė
   posts: Įrašai
   potential_disagreement: Galimas nesutarimas
+  powered_by_inaturalist_open_source_software_html: 'Parengta pagal <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist atvirojo kodo programinė įranga</a>'
   press: Spauda
   preview: Peržiūra
   preview_observations_with_these_observation_requirements: Peržiūrėti stebėjimus su šiais stebėjimų reikalavimais
@@ -4080,6 +4086,8 @@ lt:
   umbrella_projects: Skėtiniai projektai
   unblock: Atblokuoti
   unclassified: Neklasifikuotas
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Projektų supratimas
   unhide_content: Nebeslėpti turinio
   unique_observers: skirtingi stebėtojai
   unknown: Nežinoma
