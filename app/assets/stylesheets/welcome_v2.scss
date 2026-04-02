@@ -783,9 +783,8 @@ h2 {
     width: 51px;
     height: 51px;
     border-radius: 50%;
-    background: $border-color;
     flex-shrink: 0;
-    // TODO: set user avatar image
+    object-fit: cover;
   }
 
   .wv2-testimonial__name {

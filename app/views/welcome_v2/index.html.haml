@@ -138,22 +138,23 @@
       %p.wv2-why__body= t("#{s}.how.why_note_html")
 
   -# ── Testimonials ──────────────────────────────────────────
-  - testimonials = {gube: "Dzivula Gube", kratzer: "Chris Alice \"Alie\" Kratzer", sumanapala: "Amila Sumanapala", fachetti: "Nágyla Fachetti", velazco: "Carlos G. Velazco Macias"}
+  - testimonials = {gube: {name: "Dzivula Gube", people_path: "/people/dzivulajr_03"}, kratzer: {name: "Chris Alice \"Alie\" Kratzer", people_path: "/people/humanbyweight"}, sumanapala: {name: "Amila Sumanapala", people_path: "/people/amila_sumanapala"}, fachetti: {name: "Nágyla Fachetti Coser", people_path: "/people/nah_fachetti19"}, velazco: {name: "Carlos G. Velazco-Macias", people_path: "/people/aztekium"}}
   .wv2-section.wv2-section--white.wv2-section--no-horizontal-padding
     .wv2-testimonials
       .wv2-carousel{ data: { carousel: true } }
         .wv2-carousel__stage
           %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
           .wv2-carousel__track
-            - testimonials.each do |key, name|
+            - testimonials.each do |key, person|
               .wv2-carousel__item
                 .wv2-testimonial
                   .wv2-testimonial__quote
                     %p= t("#{s}.testimonials.#{key}_quote")
                   .wv2-testimonial__byline
-                    .wv2-testimonial__avatar
+                    = link_to person[:people_path], target: "_blank", rel: "noopener" do
+                      = image_tag "welcome_v2/testimonial_#{key}.webp", class: "wv2-testimonial__avatar", alt: person[:name]
                     %div
-                      %p.wv2-testimonial__name= name
+                      %p.wv2-testimonial__name= person[:name]
                       %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
           %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
         .wv2-carousel__dots
