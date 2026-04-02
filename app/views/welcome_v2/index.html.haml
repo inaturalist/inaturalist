@@ -265,6 +265,14 @@
           %summary= t("#{s}.faq.#{key}_question")
           %p= t("#{s}.faq.#{key}_answer")
 
+-# ── iOS app banner ───────────────────────────────────────────
+= link_to "https://itunes.apple.com/app/inaturalist/id6475737561", class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
+  = image_tag "welcome_v2/app-icon.webp", class: "wv2-app-banner__icon", alt: ""
+  .wv2-app-banner__text
+    = image_tag "welcome_v2/inat-wordmark.webp", class: "wv2-app-banner__wordmark", alt: "iNaturalist"
+    %p.wv2-app-banner__tagline Discover nature around you
+  %span.wv2-app-banner__cta Use app
+
 - content_for :extrajs do
   :javascript
     (function () {
