@@ -4743,6 +4743,8 @@ sr:
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Zašto praviš ovu promenu? (opciono)
   why_are_you_making_this_change_cite_source_required: Zašto želiš da napraviš ovu promenu? Molimo te da objaniš i navedeš izvore ako je to moguće. (Obavezno)
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Ko
   who_can_add_observation_fields_to_my_obs: Ko može da doda opservaciona polja na mojim opservacijama?
   who_can_add_observations_to_this_project?: Ko može dodati opservacije u ovaj projekat?
   who_can_see_the_coordinates: Ko može videti koordinate
@@ -4751,6 +4753,8 @@ sr:
   who_can_see_the_coordinates_trusted: Osobe kojima je posmatrač poverio/la skrivene koordinate
   who_helped_user_the_most: "Ko je najviše pomogao korisniku %{user}"
   who_user_helped_the_most: "Kome je %{user} najviše pomogao/la"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Zašto?
   why_the_coordinates_are_obscured: Zašto su koordinate sakrivene?
   with_annotation: Sa pribeleškom
   without_annotation: Bez pribeleške

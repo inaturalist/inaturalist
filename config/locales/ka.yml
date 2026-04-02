@@ -1,4 +1,5 @@
 ka:
+  about: ჩვენს შესახებ
   #Label for an option to show any place
   any_place: ყველა
   app_owner_application_about_p2_html: |
@@ -13,6 +14,8 @@ ka:
   are_you_sure_you_want_to_delete_this_sound?: დარწმუნებული ხართ, რომ გსურთ ამ ხმის წაშლა?
   artificially_generated_content: ხელოვნურად გენერირებული კონტენტი
   artificially_generated_content_desc: შეიცავს შინაარსს, რომელიც ძირითადად ან მთლიანად გენერირებულია ხელოვნური ინტელექტის საშუალებით.
+  community: საზოგადოება
+  community_guidelines: საზოგადოების სახელმძღვანელო მითითებები
   community_taxon_matches_observation_taxon: საზოგადოების ტაქსონი ემთხვევა დაკვირვების ტაქსონს
   confirming_ids: ID- ების დადასტურება
   confirming_ids_description: |
@@ -27,6 +30,8 @@ ka:
       ტაქსონი, დააყენეთ ეს "ახლოს საფრთხეში" ან ზემოთ.
   #verb, call to action, e.g. "Contribute to real science"
   contribute: წვლილი შეიტანეთ
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: კურატორის გზამკვლევი
   curator_coordinate_access: კურატორის კოორდინატული წვდომა
   curator_coordinate_access_desc: |
     კურატორი კოორდინაციას უწევს ტრადიციულ პროექტებზე წვდომას, დამოკიდებულია იმაზე, თუ ვინ დაამატა
@@ -57,31 +62,50 @@ ka:
   disagreements: უთანხმოებები
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: აჩვენეთ დაკვირვებები, რომლებსაც არ აქვთ არ ეთანხმებით იდენტიფიკაცია
+  documentation_for_developers_html: დოკუმენტაცია <a href="/pages/developers">დეველოპერები</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: შემოწირულობა
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: შემოწირულობა
   #Title for a page to edit an announcement
   editing_announcement_x: განცხადების რედაქტირება %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "ხმის განახლების შეცდომა: %{sound_errors}"
+  explore: გამოიკვლიეთ
   evidence_accurately_depicts_organism_or_scene: მტკიცებულებები ზუსტად ასახავს ორგანიზმს ან სცენას
+  facebook: ფეისბუქი
+  feedback: უკუკავშირი
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: ფაილის ფორმატი
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: ფაილის URL
+  forum: ფორუმი
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: დაწყება
+  guides: გიდები
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "თამარ ჩუგოშვილი: ეს ხმა გაისმა."
+  help: დახმარება
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: იდენტიფიცირება
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: ინფრასტრუქტურული სსეკიტების შესახებ
+  instagram: ინსტაგრამი
+  jobs: ვაკანსიები
+  journal_posts: ჟურნალის პოსტები
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: სწავლა
+  log_in: შესვლა
   #Adjectival phrase describing state of being logged in
   logged_in: შესული ხართ
   #Adjectival phrase describing state of being logged out
   logged_out: შესული ხართ
+  member_of_the_inaturalist_network_html: |
+    წევრი <a href="%{url}">iNaturalist ქსელი</a>
+  more: ვრცლად
   #Label for a button or section that shows additional options
   more_options: დამატებითი დეტალები
   #A user who is not a curator
@@ -91,8 +115,12 @@ ka:
   #verb, call to action, e.g. "Observe nature nearby"
   observe: დააკვირდით
   observation_fields_for_projects: დაკვირვების სფეროები პროექტებისთვის
+  or: ან
+  our_blog: ჩვენი ბლოგი
+  people: ხალხი
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: შეიძლება დასჭირდეს დღე, რომ დაკვირვებები ამ ადგილთან იყოს დაკავშირებული.
+  places: ადგილები
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     ადგილები არ შეიძლება იყოს 700,000 კვადრატულ კილომეტრზე მეტი.
@@ -107,8 +135,12 @@ ka:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     ადგილები არ შეიძლება შეიცავდეს 10,000-ზე მეტ დაკვირვებას.
+  powered_by_inaturalist_open_source_software_html: 'დამზადებულია <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist ღია კოდის პროგრამული უზრუნველყოფა</a>'
+  press: პრესა
+  privacy: კონფიდენციალურობა
   #A user who admin's a project
   project_admin: პროექტის ადმინისტრატორი
+  projects: 2019 - 2019
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -123,6 +155,7 @@ ka:
   sign_out: გამოსვლა
   sign_up: რეგისტრაცია
   sign_up_sentence_case: რეგისტრაცია
+  site_stats: საიტის სტატისტიკა
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: ხმა %{id}, %{attribution}
@@ -132,8 +165,16 @@ ka:
     sound_hidden: ჟღერადობა დამალული
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: დაუმალავი ჟღერს
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: მაღაზია
+  store_caps: მაღაზია
+  taxa_info: ტაქსების ინფორმაცია
+  terms_service: მოხმარების პირობები
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: სიმღერა
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: პროექტების გაგება
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: განახლებული ხმა
   user_trusts_this_project_when_added_by_any: |
@@ -145,8 +186,16 @@ ka:
   user_trusts_this_project_when_added_by_none: |
     მომხმარებელი არ ენდობა პროექტის კურატორებს ფარული კოორდინატებით.
   username: მომხმარებელი
+  video_tutorials: ვიდეო გაკვეთილები
   we_also_support3: |
     ჩვენ ასევე მხარს ვუჭერთ ფოტოების იმპორტს <a href="http://flickr.com">Flickr</a>.
+  what: რა
+  when: როდის
+  where: სად
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: ვინ
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: რატომ?
   views:
     announcements:
       locales_desc: |

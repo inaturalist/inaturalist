@@ -286,6 +286,8 @@ ta:
     attribution_noncommercial_sharealike_license: குறிப்பிடுதல் - வர்த்தக நோக்கமற்ற - அதே மாதிரிப் பகிர்தல் உரிமம்
     attribution_noncommercial_license: குறிப்பிடுதல் - வர்த்தக நோக்கமற்ற உரிமம்
     attribution_license: குறிப்பிடுதல் மட்டும் உரிமம்
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: கியூரேட்டர் கையேடு
   curator_coordinate_access: கியூரேட்டர் ஒருங்கிணைப்பு அணுகல்
   curator_coordinate_access_desc: |
     பாரம்பரிய திட்டங்களுக்கான கியூரேட்டர் ஒருங்கிணைப்பு அணுகல் யார் சேர்க்கப்பட்டது என்பதைப் பொறுத்தது
@@ -324,6 +326,10 @@ ta:
   disagreements: கருத்து வேறுபாடுகள்
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: உடன்படாத அடையாளங்களைக் கொண்ட அவதானிப்புகளைக் காட்டு
+  documentation_for_developers_html: இதற்கான ஆவணங்கள் <a href="/pages/developers">டெவலப்பர்கள்</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: நன்கொடை
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: நன்கொடை
   edit_project: திட்டம் திருத்தவும்
@@ -344,10 +350,12 @@ ta:
   exclude_taxa: இனங்கள் விலக்கு
   explore: ஆராயுங்கள்
   evidence_accurately_depicts_organism_or_scene: சான்றுகள் உயிரினம் அல்லது காட்சியை துல்லியமாக சித்தரிக்கின்றன
+  facebook: பேஸ்புக்
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: பிடித்தவை
   favorite_taxa: பிடித்தது இனங்கள்
   favorites: "பிடித்தவை"
+  feedback: பின்னூட்டம்
   #Button to show fewer places
   fewer__context_places: குறைவான
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
@@ -358,6 +366,8 @@ ta:
   forum_categories:
     bug_reports: இடும்பை அறிக்கைகள்
   Genus: பேரினம்
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: தொடங்குதல்
   got_it!: சரி!
   grid: கட்டம்
   guides: வழிகாட்டுகிறது
@@ -366,6 +376,7 @@ ta:
   header_your_favorites: உங்கள் பிடித்தவை
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "ஹெட்ஸ் அப்: இந்த ஒலி கொடியிடப்பட்டுள்ளது."
+  help: உதவி
   help_translate!: மொழிபெயர் உதவி செய்க!
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: அடையாளம் காணவும்
@@ -374,6 +385,8 @@ ta:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: இன்ஃப்ராஸ்பீசிஸ் ஐடிகள்
+  instagram: இன்ஸ்டாகிராம்
+  jobs: வேலைகள்
   'joined!': சேர்ந்தார்!
   joined_projects: சேர்ந்தது கணிப்புகள்
   joined_with_date: "சேர்ந்தார்: %{date}"
@@ -422,6 +435,8 @@ ta:
   #If a single word won't work, a symbol like "+" would be fine.
   media_and: மற்றும்
   meet: சந்திக்கவும்
+  member_of_the_inaturalist_network_html: |
+    உறுப்பினர் <a href="%{url}">iNaturalist நெட்வொர்க்</a>
   more: மேலும்
   #Button to show more places
   more__context_places: இன்னும்
@@ -465,6 +480,7 @@ ta:
   onboarding:
     observe_panel_body_p2: வெளியே சென்று ஒரு தனிப்பட்ட உயிரினத்தைக் கவனியுங்கள். காட்டுத்தனமான ஒன்றைத் தேர்ந்தெடுத்து தெளிவான, முழு பிரேம் புகைப்படத்தை எடுக்கவும். உங்களிடம் ஏற்கனவே காட்டுத்தனமான ஒன்றின் புகைப்படம் இருந்தால்.<a href="%{new_observation_path}">அதை இப்போது சேர்க்கவும்</a>. கவனிப்புகளை பதிவு செய்ய %{site_name} செயலிகளைப் பயன்படுத்தலாம்.
   or: அல்லது
+  our_blog: எங்கள் வலைப்பதிவு
   people: மக்கள்
   pi_consent_label: |
     நான் என் கணக்கை நிர்வகிக்க iNaturalist எனது சில வகையான தனிப்பட்ட தகவல்களைச் சேமித்து செயல்படுத்த அனுமதிக்கிறேன்
@@ -521,6 +537,8 @@ ta:
     இடங்கள் 10,000 க்கும் மேற்பட்ட அவதானிப்புகளைக் கொண்டிருக்கக்கூடாது.
   #Title to a section warning a user to exercise caution
   please_be_careful!: தயவுசெய்து கவனமாக இருங்கள்!
+  powered_by_inaturalist_open_source_software_html: 'மூலம் இயக்கப்படுகிறது <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist திறந்த மூல மென்பொருள்</a>'
+  press: பிரஸ்
   privacy: தனியுரிமை
   profile: தனியமைப்பு
   #A user who admin's a project
@@ -571,6 +589,7 @@ ta:
   sign_out: வெளியேறு
   sign_up: பதிவு செய்யுங்கள்
   sign_up_sentence_case: பதிவு செய்க
+  site_stats: தள புள்ளிவிவரங்கள்
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: ஒலி %{id}, %{attribution}
@@ -589,9 +608,11 @@ ta:
   #comments on a journal post
   subscribe: சந்தா செலுத்து
   suitable_for_the_global_biodiversity_information_facility: Global Biodiversity Information Facilityக்கு ஏற்றது
+  taxa_info: டாக்சா தகவல்
   taxonomy_settings: உயிரியல் வகைப்பாடு அமைப்புகள்
   teachers_guide: ஆசிரியர் வழிகாட்டி
   tell_the_world_a_little_about_yourself: உங்களைப் பற்றி எங்களிடம் கூறுங்கள்
+  terms_service: பயன்பாட்டு விதிமுறைகள்
   terrain: நிலப்பரப்பு
   thanks!: நன்றி!
   thanks_from_all_of_us_here_at: இல் இருந்து உங்கள் அனைவருக்கும் நன்றி
@@ -600,6 +621,8 @@ ta:
     உலகம் அதிகமான சுவாரஸ்யமான இடங்களில் நிறைந்துள்ளது, ஒவ்வொன்றும் விசித்திரமான மற்றும் அற்புதமான உயிரினங்கள் நிறைந்துள்ளன. சில உலகத்தின் மறுபக்கம் உள்ளன, மற்றவை அடியோரத்தில் இருக்கின்றன! %{site_name} இடங்கள் உங்களுக்கு உலகம் முழுவதும் உள்ள உயிரினங்களைப் பார்வையிட அனுமதிக்கிறது. ஆராயத் தொடங்குங்கள்!
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: டிராக்
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: திட்டங்களைப் புரிந்துகொள்வது
   update_existing_observations_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள கவனிப்புகளைப் புதுப்பிக்கவும்
   update_existing_photos_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள புகைப்படங்களைப் புதுப்பிக்கவும்
   update_existing_sounds_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள ஒலிகளைப் புதுப்பிக்கவும்
@@ -618,6 +641,7 @@ ta:
     பார்வையாளரால் திட்டத்திற்கு.
   user_trusts_this_project_when_added_by_none: |
     மறைக்கப்பட்ட ஆயத்தொலைவுகளுடன் திட்ட கியூரேட்டர்களை பயனர் நம்பவில்லை.
+  video_tutorials: வீடியோ பயிற்சிகள்
   view_license: உரிமம் காண்க
   view_post: இடுகை பார்க்க
   we_also_support3: |
@@ -630,6 +654,13 @@ ta:
   were_pretty_sure_this_is_in_the_order: இதுவே வரிசையில் இருக்க வாய்ப்பு
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
   were_pretty_sure_this_is_in_the_subfamily: இதுவே துணைக்குடும்பத்தில் இருக்க வாய்ப்பு
+  what: என்ன
+  when: எப்போது
+  where: எங்கே
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: யார்
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: ஏன்?
   year_in_review: "மதிப்பாய்வில் ஆண்டு %{year}"
   year_in_review2: "மதிப்பாய்வில் ஆண்டு %{year}"
   year_in_review_caps: "மதிப்பாய்வில் ஆண்டு %{year}"

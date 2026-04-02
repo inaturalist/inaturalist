@@ -155,6 +155,8 @@ ro:
   #constituent places were removed and now the atlas just contains this
   #place
   atlas_alteration_action_unexploded: Neexplodat
+  community: Comunitate
+  community_guidelines: Ghiduri comunitare
   community_taxon_matches_observation_taxon: Taxonul comunitar se potrivește cu taxonul de observare
   confirming_ids: Confirmarea actelor de identitate
   confirming_ids_description: |
@@ -169,6 +171,8 @@ ro:
       taxon, setați acest lucru la "Aproape amenințat" sau mai sus.
   #verb, call to action, e.g. "Contribute to real science"
   contribute: Contribuie
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Ghidul curatorului
   curator_coordinate_access: Acces coordonat curator
   curator_coordinate_access_desc: |
     Accesul coordonatorului pentru proiectele tradiționale depinde de cine a adăugat
@@ -201,25 +205,37 @@ ro:
   disagreements: Dezacorduri
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Afișați observații care au identificări în dezacord
+  documentation_for_developers_html: Documentație pentru <a href="/pages/developers">Dezvoltatori</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DONEAZĂ
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: A dona
   #Title for a page to edit an announcement
   editing_announcement_x: Editarea anunțului %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Eroare la actualizarea sunetului: %{sound_errors}"
+  explore: Explorează
   evidence_accurately_depicts_organism_or_scene: Dovezile descriu cu acuratețe organismul sau scena
+  facebook: Facebook
   #Header for a section showing the user's favorite projects
   favorite_projects: Proiecte preferate
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Alegeți până la șapte proiecte care apar ca linkuri în antet. Actualizări
     va apărea după reîmprospătarea paginii.
+  feedback: Feedback
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Formatul fișierului
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: Adresa URL a fișierului
+  forum: Forum
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Începutul
+  guides: Ghiduri
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "ATENȚIE: acest sunet a fost semnalat."
+  help: Ajutor
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: Identificare
   #Title of identification that was automatically added by a taxon change
@@ -236,18 +252,25 @@ ro:
     sub nivel de specie (cum ar fi subspecii și soiuri) care sunt de acord cu
     ID la nivel de specie. Veți fi notificat dacă nu sunt de acord cu actul dvs. de identitate sau
     dacă acestea conțin observații suplimentare.
+  instagram: Instagram
   #Error message shown when a date format is invalid
   invalid_date: Data nevalidă
+  jobs: Locuri de muncă
+  journal_posts: Postări în reviste
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Învață
   #Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Enumerate
   #Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: Nelistate
+  log_in: Conectează-te
   #Adjectival phrase describing state of being logged in
   logged_in: Conectat
   #Adjectival phrase describing state of being logged out
   logged_out: Deconectat
+  member_of_the_inaturalist_network_html: |
+    Membru al <a href="%{url}">Rețeaua iNaturalist</a>
+  more: Mai mult
   #Label for a button or section that shows additional options
   more_options: Mai multe opțiuni
   #A user who is not a curator
@@ -270,8 +293,12 @@ ro:
   #verb, call to action, e.g. "Observe nature nearby"
   observe: Observă
   observation_fields_for_projects: Câmpuri de observare pentru proiecte
+  or: sau
+  our_blog: Blogul nostru
+  people: Persoane
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Poate dura până la o zi pentru ca observațiile să fie asociate cu acest loc.
+  places: Locuri
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     Locurile nu pot fi mai mari de 700.000 de kilometri pătrați.
@@ -286,11 +313,15 @@ ro:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Locurile nu pot conține mai mult de 10.000 de observații.
+  powered_by_inaturalist_open_source_software_html: 'Propulsat de <a href="https://github.com/inaturalist/inaturalist" target="_new" >Software open source iNaturalist</a>'
+  press: Presă
+  privacy: Confidențialitate
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Tip de fișier imagine de profil
   #A user who admin's a project
   project_admin: Administrator de proiect
+  projects: Proiecte
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -305,7 +336,10 @@ ro:
   #e.g. for languages like Arabic and Hebrew. Could also be translated
   #as "You have joined..."
   rtl_test_joined_status: S-a alăturat testului de aspect dreapta-stânga
+  search: Căutare
+  sign_up: Înscrie-te
   sign_up_sentence_case: Înscrie-te
+  site_stats: Statistici ale site-ului
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Sunet %{id}, %{attribution}
@@ -315,11 +349,19 @@ ro:
     sound_hidden: Sunet ascuns
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Sunet neascuns
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Magazin
+  store_caps: MAGAZIN
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Abona
+  taxa_info: Informații despre taxoni
+  terms_service: Termeni de utilizare
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: Pistă
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Înțelegerea proiectelor
   update_existing_observations_with_new_license_desc: |
     Selectarea acestei opțiuni va aplica noua opțiune de licență tuturor
     observațiile existente. Acest lucru poate dura câteva ore dacă aveți o mulțime de
@@ -342,10 +384,18 @@ ro:
     proiectului de către observator.
   user_trusts_this_project_when_added_by_none: |
     Utilizatorul nu are încredere în curatorii de proiect cu coordonate ascunse.
+  video_tutorials: Tutoriale video
   #Link to view identifications affected by a taxon change
   view_your_affected_ids: Vizualizarea ID-urilor afectate
   we_also_support3: |
     De asemenea, acceptăm importul de fotografii din <a href="http://flickr.com">Flickr</a>.
+  what: Ce
+  when: Când
+  where: Unde
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Cine
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: De ce?
   views:
     announcements:
       locales_desc: |

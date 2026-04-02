@@ -1266,6 +1266,7 @@ th:
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
   favorites: "รายการโปรด"
   featured: แนะนำ
+  feedback: ข้อเสนอแนะ
   fields: ข้อมูลเสริม
   fields_: ข้อมูลเสริม
   fields_merged: ข้อมูลเสริมถูกรวม
@@ -1733,6 +1734,7 @@ th:
   location_is_obscured: ตำแหน่งถูกพราง
   location_is_private: สถานที่นี้เป็นส่วนตัว
   location_specified: มีการระบุตำแหน่ง
+  log_in: เข้าสู่ระบบ
   log_scale_label: ล็อก
   #Adjectival phrase describing state of being logged in
   logged_in: เข้าสู่ระบบ
@@ -3315,16 +3317,21 @@ th:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: เราค่อนข้างแน่ใจว่าอยู่ใน %{rank}
+  what: อะไร
   what_did_you_see: คุณเห็นอะไร?
   what_did_you_see?: คุณเห็น<em>อะไร</em>?
   whats_this?: นี่คืออะไร?
+  when: เมื่อ
   when_did_you_see_it?: คุณเห็นเมื่อไหร่?
+  where: ที่ไหน
   where_were_you?: คุณอยู่ที่ไหน?
   which_projects_can_add_your_observations?: อนุญาตให้ผู้อื่นเพิ่มการสังเกตของคุณเข้าโครงการแบบดั้งเดิมใดบ้าง?
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: เปลี่ยนแปลงชื่อเพราะเหตุใด? (ไม่บังคับ)
   why_are_you_making_this_change_cite_source_required: โปรดอธิบายเหตุผลที่เปลี่ยนแปลงชื่อ และหากเป็นไปได้ควรอ้างอิงแหล่งที่มาด้วย (จำเป็น)
   why_you_can_see_the_coordinates: คุณมองเห็นพิกัดได้เพราะว่า
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: ใคร
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
   who_can_see_the_coordinates: ใครมองเห็นพิกัดนี้ได้บ้าง?
   who_can_see_the_coordinates_observer: ผู้ที่สร้างการสังเกตนี้
@@ -3332,6 +3339,8 @@ th:
   who_can_see_the_coordinates_trusted: ผู้ที่ได้รับอนุญาตจากผู้สังเกตให้มองเห็นพิกัด
   who_helped_user_the_most: "คนที่ช่วย %{user} มากที่สุด"
   who_user_helped_the_most: "คนที่ %{user} ช่วยมากที่สุด"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: ทําไม?
   why_the_coordinates_are_obscured: พิกัดนี้ถูกพรางเนื่องจาก
   with_annotation: พร้อมหมายเหตุนี้
   without_annotation: ไม่รวมหมายเหตุนี้

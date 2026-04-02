@@ -5496,6 +5496,7 @@ ja:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 下の%{rank}だと確信しています
   were_sorry_but_your_bulk_import_of_filename_has_failed: "申し訳ありません。%{filename}の一括インポートが失敗しました。"
+  what: 何だって
   what_did_you_see: 何を見ましたか？
   what_did_you_see?: <em>何を</em>見ましたか？
   what_do_you_think: どう思いますか？
@@ -5513,6 +5514,8 @@ ja:
   why_are_you_making_this_change_optional: 変更理由(任意)
   why_are_you_making_this_change_cite_source_required: なぜこの変更を行うのですか？可能であれば出典を挙げて説明してください。(必須)
   why_you_can_see_the_coordinates: あなたがこの座標を見ることができる理由
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: 誰が
   who_can_add_observation_fields_to_my_obs: 他のユーザーが自分の観察記録へ観察記録フィールドを追加することを許可しますか？
   who_can_add_observations_to_this_project?: このプロジェクトに観察記録を追加できるのは誰ですか？
   who_can_see_the_coordinates: 正確な座標を見ることができる人
@@ -5521,6 +5524,8 @@ ja:
   who_can_see_the_coordinates_trusted: 設定で「信頼して正確な位置情報を共有する」を選択した相手
   who_helped_user_the_most: "%{user} さんの同定を最も助けたユーザー"
   who_user_helped_the_most: "%{user} さんが最も同定を助けたユーザー"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: なぜでしょうか?
   why_the_coordinates_are_obscured: 座標が不明瞭な理由
   with_annotation: 注釈付き
   without_annotation: 注釈なし

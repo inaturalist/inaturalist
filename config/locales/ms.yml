@@ -70,12 +70,15 @@ ms:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A hingga Z"
+  about: Mengenai
   #Label for an option to show any place
   any_place: Sebarang
   #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: Adakah anda pasti mahu memadamkan bunyi ini?
   artificially_generated_content: Kandungan yang dijana secara buatan
   artificially_generated_content_desc: Mengandungi kandungan yang kebanyakannya atau sepenuhnya dijana melalui kecerdasan buatan.
+  community: Komuniti
+  community_guidelines: Garis Panduan Komuniti
   community_taxon_matches_observation_taxon: Takson Komuniti sepadan dengan Takson Pemerhatian
   confirming_ids: Mengesahkan ID
   confirming_ids_description: |
@@ -83,6 +86,8 @@ ms:
     dengan anda melainkan mereka mempunyai kenyataan tambahan.
   #verb, call to action, e.g. "Contribute to real science"
   contribute: Menyumbang
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Panduan Kurator
   curator_coordinate_access: Kurator Menyelaraskan Akses
   curator_coordinate_access_desc: |
     Kurator menyelaraskan akses untuk projek tradisional bergantung kepada siapa yang menambah
@@ -108,31 +113,50 @@ ms:
   disagreements: Perselisihan faham
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Tunjukkan pemerhatian yang mempunyai pengenalan yang tidak bersetuju
+  documentation_for_developers_html: Dokumentasi untuk <a href="/pages/developers">Pemaju</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: MENDERMA
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Menderma
   #Title for a page to edit an announcement
   editing_announcement_x: Pengumuman penyuntingan %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Ralat mengemas kini bunyi: %{sound_errors}"
+  explore: Terokai
   evidence_accurately_depicts_organism_or_scene: Bukti dengan tepat menggambarkan organisma atau tempat kejadian
+  facebook: Facebook
+  feedback: Maklum balas
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Format fail
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL fail
+  forum: Forum
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Bermula
+  guides: Panduan
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "PERHATIAN: bunyi ini telah dibenderakan."
+  help: Bantuan
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: Kenal pasti
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: ID Infraspesies
+  instagram: Instagram
+  jobs: Pekerjaan
+  journal_posts: Catatan Jurnal
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Belajar
+  log_in: Log masuk
   #Adjectival phrase describing state of being logged in
   logged_in: Log masuk
   #Adjectival phrase describing state of being logged out
   logged_out: Dilog keluar
+  member_of_the_inaturalist_network_html: |
+    Ahli <a href="%{url}">Rangkaian iNaturalist</a>
+  more: Lagi
   #Label for a button or section that shows additional options
   more_options: Lebih Banyak Pilihan
   #A user who is not a curator
@@ -142,8 +166,12 @@ ms:
   #verb, call to action, e.g. "Observe nature nearby"
   observe: Perhatikan
   observation_fields_for_projects: Bidang Pemerhatian untuk Projek
+  or: atau
+  our_blog: Blog Kami
+  people: Orang ramai
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Ia mungkin mengambil masa sehingga sehari untuk pemerhatian dikaitkan dengan tempat ini.
+  places: Tempat
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     Tempat tidak boleh lebih besar daripada 700,000 kilometer persegi.
@@ -158,8 +186,12 @@ ms:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Tempat tidak boleh mengandungi lebih daripada 10,000 pemerhatian.
+  powered_by_inaturalist_open_source_software_html: 'Dijanakan oleh <a href="https://github.com/inaturalist/inaturalist" target="_new" >Perisian sumber terbuka iNaturalist</a>'
+  press: Akhbar
+  privacy: Privasi
   #A user who admin's a project
   project_admin: Pentadbir projek
+  projects: Projek
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -170,7 +202,10 @@ ms:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: Subspesies / Varieti / Bentuk
+  search: Carian
+  sign_up: Daftar
   sign_up_sentence_case: Daftar
+  site_stats: Statistik Tapak
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Bunyi %{id}, %{attribution}
@@ -180,11 +215,19 @@ ms:
     sound_hidden: Bunyi tersembunyi
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Bunyi tidak tersembunyi
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Kedai
+  store_caps: KEDAI
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Melanggan
+  taxa_info: Maklumat Taksa
+  terms_service: Terma Penggunaan
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: Trek
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Memahami Projek
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Bunyi yang dikemas kini
   user_trusts_this_project_when_added_by_any: |
@@ -195,8 +238,16 @@ ms:
     kepada projek oleh pemerhati.
   user_trusts_this_project_when_added_by_none: |
     Pengguna tidak mempercayai kurator projek dengan koordinat tersembunyi.
+  video_tutorials: Tutorial Video
   we_also_support3: |
     Kami juga menyokong pengimportan foto daripada <a href="http://flickr.com">Flickr</a>.
+  what: Apa
+  when: Apabila
+  where: Di mana
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Siapa
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Kenapa?
   views:
     announcements:
       locales_desc: |

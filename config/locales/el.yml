@@ -1145,6 +1145,8 @@ el:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Μπορείτε να υιοθετήσετε ένα μοντέλο από κατάλληλες συμπεριφορές στο iNaturalist και να συμμορφωθείτε με τις οδηγίες της Κοινότητας. Εκτός από το στάτους του επιμελητή και την εξουσία που έρχεται μαζί με αυτό, προσδοκούμε ότι θα είστε ένας υποδειγματικός χρήστης του iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Οδηγός επιμελητή
   curators_changed_for_x_html: "Οι επιμελητές για %{x} άλλαξαν"
   curators: Επιμελητές
   curators_can_remove_observations_from: Οι επιμελητές μπορούν να αφαιρούν παρατηρήσεις από το πρότζεκτ και οι ταυτοποιήσεις τους φαίνονται μαζί με τις παρατηρήσεις πάνω στις προβολές που αφορούν το πρότζεκτ. Οι επιμελητές μπορούν επίσης να βλέπουν τις πραγματικές συντεταγμένες ιδιωτικών και κρυμμένων συνεισφορών σε αυτό το έργο.
@@ -1718,6 +1720,8 @@ el:
   geoprivacy_is_private_desc: Ο παρατηρητής έχει επιλέξει να αποκρύψει τις γεωγραφικές συντεταγμένες.
   georeferenced: Έχει Γεωγραφική Αναφορά?
   get_started: Ξεκινήστε
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Ξεκινώντας
   getting_started_guide: Οδηγός για το πως να ξεκινήσετε
   #Prompt to donate money on a montly basis
   give_monthly_caps: ΔΩΣΤΕ ΜΗΝΙΑΙΑ
@@ -1938,6 +1942,7 @@ el:
   italic_text: Πλάγια γραμματοσειρά
   item_flagged_notice_html: |
     Αυτό έχει αναφερθεί ως σπαμ και δεν είναι πια διαθέσιμο δημόσια. Μπορείτε να το δείτε γιατί το δημιουργήσατε, ή είστε ο επιμελητής της σελίδας. Αν πιστεύετε ότι αυτό είναι λάθος, παρακαλούμε <a href="mailto:%{help_email}" class="contact">επικοινωνήστε μαζί μας</a>. <a href="%{manage_flags_path}">Διαχείριση Αναφορών</a>
+  jobs: Θέσεις εργασίας
   join: μπείτε
   join_and_add_an_observation_to_project_html: Εγγραφείτε και Προσθέστε μια Παρατήρηση στο %{project}
   join_project: Εγγραφείτε σε αυτό το πρότζεκτ
@@ -4319,6 +4324,8 @@ el:
   umbrella_projects: Πρότζεκτ Ομπρέλας
   unblock: Ακύρωση μπλοκαρίσματος
   unclassified: Μη ταξινομημένο
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Κατανόηση Έργων
   unhide_content: Επανεμφάνιση Περιεχομένου
   unhide_desc: |
     Η επανεμφάνιση θα αποκαλύψει το περιεχόμενο σε όλους για να το δουν. Οι επιμελητές μπορούν ακόμα να επιλέξουν να το κρύψουν στο μέλλον.
@@ -4627,6 +4634,8 @@ el:
   where_were_you?: Πού βρισκόσασταν;
   which_projects_can_add_your_observations?: Ποιά παραδοσιακά πρότζεκτ μπορούν να προσθέσουν τις παρατηρήσεις σας;
   why_you_can_see_the_coordinates: Γιατί Μπορείτε να Δείτε τις Συντεταγμένες
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Ποιος
   who_can_add_observation_fields_to_my_obs: Ποιος μπορεί να προσθέσει πεδία παρατήρησης στις παρατηρήσεις μου;
   who_can_add_observations_to_this_project?: Ποιος μπορεί να προσθέσει παρατηρήσεις σε αυτό πρότζεκτ;
   who_can_see_the_coordinates: Ποιος Μπορεί να Δει τις Συντεταγμένες
@@ -4635,6 +4644,8 @@ el:
   who_can_see_the_coordinates_trusted: Άτομα που ο παρατηρητής τους εμπιστεύτηκε τις κρυμμένες συντεταγμένες
   who_helped_user_the_most: "Ποιος Βοήθησε το %{user} Περισσότερο"
   who_user_helped_the_most: "Ποιος %{user} Βοήθησε Περισσότερο"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Γιατί;
   why_the_coordinates_are_obscured: Γιατί δεν εμφανίζονται οι συντεταγμένες
   with_annotation: Με σχολιασμό
   without_annotation: Χωρίς υποσημείωση

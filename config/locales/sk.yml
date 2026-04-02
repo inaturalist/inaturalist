@@ -680,6 +680,8 @@ sk:
   curating: Spravovanie
   curation: Správa
   curator: Kurátor
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Príručka kurátora
   curators_changed_for_x_html: "Správcovia zmenený na %{x}"
   curators: Kurátori
   curators_can_remove_observations_from: Kurátori môžu odstrániť pozorovania z projektu a ich identifikácie sú uvedené pri pozorovaniach v náhľadoch projektu. Kurátori tiež vidia skutočné súradnice súkromných a skrytých príspevkov do tohto projektu.
@@ -831,6 +833,9 @@ sk:
   doesnt_have_default_photo: nemá ešte štandardnú fotku.
   doh_something_went_wrong: Och, niečo je zle.
   doh_something_went_wrong_error: "Och, niečo sa pokazilo: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DARUJTE
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Darovať
   done: Hotovo
@@ -967,6 +972,7 @@ sk:
   extra_properties: Ďalšie vlastnosti
   evidence_accurately_depicts_organism_or_scene: Dôkazy presne zobrazujú organizmus alebo scénu
   evidence_of_organism: Dôkaz o organizme
+  facebook: Facebook
   failed_to_find_your_location: Vaša lokalita nebola nájdená.
   failed_to_repair_photo: "Oprava fotky sa nepodarila: %{errors}"
   failed_to_save_record: "Nepodarilo sa uložiť záznam. Skúste to prosím znova."
@@ -1109,6 +1115,8 @@ sk:
   geoprivacy_is_private_desc: Pozorovateľ sa rozhodol skryť súradnice.
   georeferenced: Georeferenčný?
   get_started: Začnite
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Začiatky
   getting_started_guide: Príručka pre nováčikov
   global_names: Globálne názvy
   globally: Globálne
@@ -1250,6 +1258,7 @@ sk:
   input_taxon: Vstupný taxón
   insects: hmyz
   insect_life_stage: Štádium života hmyzu
+  instagram: Instagram
   interactions: Interakcie
   internal_server_error: Interná chyba serveru
   internal_taxon_including_descendants: Interný taxón (vrátane potomkov)
@@ -1274,6 +1283,7 @@ sk:
     Toto bolo označené ako spam a teraz nie je viditeľné. Vám sa text zobrazuje, pretože ste jeho autorom, alebo kurátor stránok.
     Ak si myslíte, že ide o chybu, <a href="mailto:%{help_email}" class="contact">napíšte nám</a>.
     <a href="%{manage_flags_path}">Správa značiek</a>
+  jobs: Pracovné miesta
   join: Pridať sa
   join_project: Zapojiť sa do tohto projektu
   join_the_largest_group_of_naturalists_in_the_world: Pripojte sa k najväčšej skupine prírodovedcov na svete!
@@ -2832,6 +2842,10 @@ sk:
   stop_following_user: "Nesledovať používateľa %{user}"
   stop_testing: Prestať testovať
   stop_trusting_this_person_with_your_private_coordinates: Prestať veriť tejto osobe so skrytými súradnicami
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Obchod
+  store_caps: OBCHOD
   studies_that_used_inaturalist_data_in_year: Štúdie používajúce iNaturalist dáta v %{year}
   stuff_just_added: "Materiál, ktorý ste práve pridali..."
   subject_resolved_noun_html: "%{subject} vyriešil %{noun}"
@@ -3009,6 +3023,8 @@ sk:
   uicn_red_list_status: "Status na Červenom zozname IUCN:"
   unblock: Odblokovať
   unclassified: Nezaradené
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Pochopenie projektov
   ungrafted_taxa: Nepriradené taxóny
   unhide_content: Odkryť obsah
   unique_identifier_of_this_taxon: Jedinečný identifikátor tohto taxónu v databáze zdrojov.
@@ -3070,6 +3086,7 @@ sk:
   username_or_email: Používateľské meno alebo email
   username_or_user_id: Používateľské meno alebo používateľské ID
   value: Hodnota
+  video_tutorials: Video návody
   view: Zobraziť
   view_all: Zobraziť všetko
   view_all_flags: Pozri všetky značky
@@ -3118,6 +3135,13 @@ sk:
   welcome_back!: Vitajte späť!
   welcome_to_inat: "Vitajte na %{site_name}!"
   welcome_to_x_project: "Vitajte v projekte %{project}"
+  what: Čo
+  when: Keď
+  where: Kde
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Kto
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Prečo?
   x_flagged: "%{x} označené"
   x_flagged_as_flag: "%{x} označené ako %{flag}"
   x_of_y: "%{x} z %{y}"

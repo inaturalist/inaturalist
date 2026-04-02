@@ -804,6 +804,8 @@ ko:
     다음을 만족하는 경우에만 큐레이터를 신청하시기 바랍니다:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     지난 몇 개월간 관찰 기록 및 동정을 등록하였으며 앞으로도 계속 활동하고자 함
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: 큐레이터 가이드
   curators_changed_for_x_html: "%{x} 큐레이터 변경됨"
   curators: 큐레이터
   curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트에서 수정된 좌표와 관찰에서 숨겨진 위치의 원래 좌표를 볼 수 있습니다.
@@ -1195,6 +1197,8 @@ ko:
   Genus: 속
   geoprivacy: 지역 개인 정보
   get_started: 시작하기
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: 시작하기
   global_names: 세계적 이름들
   globally: 세계적으로
   go: 가기
@@ -1302,6 +1306,7 @@ ko:
   info: 정보
   insects: 곤충
   insect_life_stage: 곤충 성장 단계
+  instagram: 인스타그램
   internal_server_error: 내부 서버 오류
   introduced: 도입종
   introduced_in_place: "%{place} 에 도입됨"
@@ -1325,6 +1330,7 @@ ko:
     스팸이 실수라고 생각되신다면
     <a href="mailto:%{help_email}" class="contact">저희에게 연락하십시오</a>.
     <a href="%{manage_flags_path}">표시 관리</a>
+  jobs: 직업
   join: 가입하기
   join_project: 이 프로젝트 가입하기
   join_the_largest_group_of_naturalists_in_the_world: 세계에서 가장 큰 박물학자 그룹에 가입하세요!
@@ -2248,6 +2254,7 @@ ko:
   please_explain_why_you_want_to_unhide_this: 이것의 숨김을 해제하려는 이유를 설명해 주십시오
   please_hold_on_while_the_file: 파일이 생성될 때까지 잠시 기다려 주세요. 관찰이 많을 경우 몇 분 걸릴 수 있습니다.
   position: 위치
+  powered_by_inaturalist_open_source_software_html: '구동 <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist 오픈 소스 소프트웨어</a>'
   press: 보도
   prev: 이전
   previous_observation: 이전 관찰
@@ -2540,6 +2547,7 @@ ko:
   teachers_guide: 교사용 가이드
   tell_the_world_a_little_about_yourself: 자기소개하기
   tell_us_why: 이유를 말해주세요...
+  terms_service: 이용 약관
   terrain: 지형
   text: 텍스트
   thanks!: 감사합니다!
@@ -2574,6 +2582,8 @@ ko:
   translated_languages: 번역된 언어
   twitter: 트위터
   unblock: 차단 해제
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: 프로젝트 이해하기
   unknown: 알 수 없음
   unknown_error: 알 수 없는 오류
   unmute: 알림 제외를 해제
@@ -2694,6 +2704,7 @@ ko:
   welcome_to_inat: "%{site_name}에 오신 것을 환영합니다!"
   welcome_to_guides: "%{site_name} 가이드에 오신 것을 환영합니다!"
   welcome_to_x_project: "%{project}에 오신 것을 환영합니다."
+  what: 뭐야
   what_were_you_looking_for?: "찾으시는 것이 무엇이었습니까? (대상 목록)"
   whats_this?: 이것은 무엇입니까?
   when: 날짜
@@ -2702,7 +2713,11 @@ ko:
   where: 위치
   which_projects_can_add_your_observations?: 내 관찰을 추가할 수 있는 전통적인 프로젝트는 무엇입니까?
   why_you_can_see_the_coordinates: 좌표를 볼 수 있는 이유
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: 누구
   who_can_add_observations_to_this_project?: 이 프로젝트에 관찰을 추가할 수 있는 사람은 누구입니까?
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: 왜?
   widget: 위젯
   widget_code: 위젯 코드
   wikipedia_attribution_cc_by_sa_3: |
