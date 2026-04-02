@@ -1,28 +1,4 @@
-// ── Fonts ───────────────────────────────────────────────────────────────────
-
-@font-face {
-  font-family: "Libre Baskerville";
-  src: url("/fonts/LibreBaskerville/LibreBaskerville-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Libre Baskerville";
-  src: url("/fonts/LibreBaskerville/LibreBaskerville-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Courier Prime";
-  src: url("/fonts/CourierPrime/CourierPrime-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+@import "welcome_v2_fonts";
 
 // ── Variables ────────────────────────────────────────────────────────────────
 
@@ -32,8 +8,16 @@ $light-bg:     #ebf2e1;
 $border-color: #d5e2c3;
 $white:        #ffffff;
 
-// TODO: Noto Serif fallback for when we have translations for non-Latin scripts
-$font-serif:   "Libre Baskerville", Georgia, serif;
+$font-serif:   "Libre Baskerville", "Noto Serif", Georgia, serif;
+
+// CJK: override --font-serif at the container level per locale.
+// All serif elements use var(--font-serif) so this one override covers everything.
+:lang(zh-CN)      .wv2 { --font-serif: "Noto Serif SC", Georgia, serif; }
+:lang(zh-TW) .wv2,
+:lang(zh-HK) .wv2      { --font-serif: "Noto Serif TC", Georgia, serif; }
+:lang(ja) .wv2,
+:lang(ja-phonetic) .wv2 { --font-serif: "Noto Serif JP", Georgia, serif; }
+:lang(ko)         .wv2  { --font-serif: "Noto Serif KR", Georgia, serif; }
 $font-sans:    "Lato", sans-serif;
 $font-mono:    "Courier Prime", "Courier New", monospace;
 
@@ -94,6 +78,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 // ── All component rules scoped under .wv2 to beat .bootstrap p specificity ───
 
 .wv2 {
+  --font-serif: #{$font-serif};
 
 // ── Section shell ────────────────────────────────────────────────────────────
 
@@ -120,7 +105,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 %wv2-btn-base {
   border: none;
   border-radius: 10px;
-  font-family: $font-serif;
+  font-family: var(--font-serif);
   font-weight: 700;
   font-size: 20px;
   letter-spacing: -0.04em;
@@ -209,7 +194,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
 // ── Section headings (h2) ─────────────────────────────────────────────────────
 
 h2 {
-  font-family: $font-serif;
+  font-family: var(--font-serif);
   font-weight: 700;
   font-size: 23px;
   color: $dark-gray;
@@ -259,7 +244,7 @@ h2 {
   }
 
   h1 {
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 43px;
     color: $white;
@@ -329,21 +314,23 @@ h2 {
 
 .wv2-feature {
   text-align: center;
-  width: 144px;
+  width: 130px;
 
   .wv2-feature__icon {
     height: 100px;
     width: auto;
+    max-width: 130px;
     margin-bottom: 16px;
   }
 
   h3 {
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
     letter-spacing: -0.03em;
     margin-bottom: 4px;
+    margin-top: 0;
 
     @media (max-width: 767px) { font-size: 18px; }
   }
@@ -394,7 +381,7 @@ h2 {
     padding-bottom: 20px;
 
     h3 {
-      font-family: $font-serif;
+      font-family: var(--font-serif);
       font-weight: 700;
       font-size: 20px;
       color: $white;
@@ -463,7 +450,7 @@ h2 {
   dt {
     min-width: 57px;
     text-align: center;
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
@@ -540,7 +527,7 @@ h2 {
 }
 
 .wv2-stat__number {
-  font-family: $font-serif;
+  font-family: var(--font-serif);
   font-weight: 700;
   font-size: 43px;
   color: $dark-gray;
@@ -585,7 +572,7 @@ h2 {
   align-items: flex-start;
 
   .wv2-step__num {
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 400;
     font-size: 100px;
     color: $green;
@@ -616,7 +603,7 @@ h2 {
   }
 
   h3 {
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 23px;
     color: $dark-gray;
@@ -654,7 +641,7 @@ h2 {
   }
 
   .wv2-why__label {
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
@@ -698,7 +685,7 @@ h2 {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 4px; // prevent clipping box-shadows
+    padding: 0 30px 4px 30px;
 
     &::-webkit-scrollbar { display: none; }
   }
@@ -804,7 +791,7 @@ h2 {
   }
 
   .wv2-testimonial__name {
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
@@ -832,7 +819,7 @@ h2 {
 
 .wv2-everyone__point {
   h3 {
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 23px;
     color: $dark-gray;
@@ -1088,7 +1075,7 @@ a.wv2-carousel__item {
 
 .wv2-section--dark {
   h2 {
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 23px;
     color: $white;
@@ -1117,7 +1104,7 @@ a.wv2-carousel__item {
 // ── Donate ────────────────────────────────────────────────────────────────────
 
 .wv2-donate__headline {
-  font-family: $font-serif;
+  font-family: var(--font-serif);
   font-weight: 700;
   font-size: 23px;
   color: $dark-gray;
@@ -1147,7 +1134,7 @@ a.wv2-carousel__item {
   &:last-child { border-bottom: 1px solid $border-color; }
 
   summary {
-    font-family: $font-serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 18px;
     color: $dark-gray;

@@ -18,6 +18,8 @@
 # Examples:
 #   ruby tools/subset_noto.rb --dry-run
 #   ruby tools/subset_noto.rb --weights 400,700 --keys views.welcome_v2
+#   ruby tools/subset_noto.rb --weights 400,700 --keys views.welcome_v2,views.shared
+#   ruby tools/subset_noto.rb --keys views.welcome_v2 --keys views.shared
 #   ruby tools/subset_noto.rb --weights 400,700 --output-dir public/fonts/noto
 
 require "yaml"
@@ -193,7 +195,7 @@ SCRIPTS = {
 # ── CLI options ───────────────────────────────────────────────────────────────
 
 options = {
-  keys:       "*",
+  keys:       ["*"],
   weights:    [400, 700],
   output_dir: DEFAULT_OUTPUT,
   dry_run:    false,
@@ -202,9 +204,14 @@ options = {
 OptionParser.new do |opts|
   opts.banner = "Usage: ruby tools/subset_noto.rb [options]"
 
-  opts.on("--keys PATH",
-    "Dot-separated YAML key path to scan (default: *). Use '*' for entire file.") \
-    { |k| options[:keys] = k }
+  opts.on("--keys PATH[,PATH...]",
+    "Comma-separated YAML key paths to scan (default: *). Use '*' for entire file.",
+    "May be specified multiple times to accumulate paths.",
+    "Example: --keys views.welcome_v2,views.shared") \
+    do |k|
+      new_keys = k.split(",").map(&:strip)
+      options[:keys] = (options[:keys] == ["*"] ? [] : options[:keys]) + new_keys
+    end
 
   opts.on("--weights LIST",
     "Comma-separated font weights to download and subset (default: 400,700)") \
@@ -234,16 +241,18 @@ def flatten_strings(obj)
   end
 end
 
-def extract_chars(locale_code, key_path)
+def extract_chars(locale_code, key_paths)
   path = File.join(LOCALES_DIR, "#{locale_code}.yml")
   return Set.new unless File.exist?(path)
 
-  data    = YAML.load_file(path, permitted_classes: [Symbol], symbolize_names: false)
-  root    = data.values.first
-  subtree = dig_keys(root, key_path)
-  return Set.new unless subtree
+  data = YAML.load_file(path, permitted_classes: [Symbol], symbolize_names: false)
+  root = data.values.first
 
-  flatten_strings(subtree).each_with_object(Set.new) { |s, set| s.each_char { |c| set << c } }
+  Array(key_paths).each_with_object(Set.new) do |key_path, set|
+    subtree = dig_keys(root, key_path)
+    next unless subtree
+    flatten_strings(subtree).each { |s| s.each_char { |c| set << c } }
+  end
 rescue => e
   warn "  Warning: could not parse #{locale_code}.yml: #{e.message}"
   Set.new
@@ -323,7 +332,7 @@ end
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
-key_desc = options[:keys] == "*" ? "entire locale files" : %("#{options[:keys]}")
+key_desc = options[:keys] == ["*"] ? "entire locale files" : options[:keys].map { |k| %("#{k}") }.join(", ")
 puts "Scanning locale files (#{key_desc}) for non-Latin characters...\n\n"
 
 needed = SCRIPTS.filter_map do |script, config|
