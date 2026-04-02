@@ -528,6 +528,8 @@ mk:
   curate_taxa: Згрижи таксони
   curation: Згрижување
   curator: Кустос
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Водич за куратори
   curators: Кустоси
   curator_coordinate_access: Координационен пристап на кураторот
   curator_coordinate_access_desc: |
@@ -690,10 +692,12 @@ mk:
   extinct_in_the_wild: изумрен во дивина
   extra_properties: Дополнителни својства
   evidence_accurately_depicts_organism_or_scene: Доказите точно го прикажуваат организмот или сцената
+  facebook: Фејсбук
   Family: Семејство
   favorite_taxa: омилени таксони
   favorites: "Омилени"
   featured: истакнат
+  feedback: Повратни информации
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Тековници'
   field_note: |
@@ -751,6 +755,8 @@ mk:
   Genus: Род
   geoprivacy: Геоприватност
   georeferenced: Геоозначено?
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Започнување
   getting_started_guide: Напатствие како да започнете
   grid: Решетка
   grid_tooltip: Дај решетест поглед
@@ -815,6 +821,7 @@ mk:
   infraspecies_ids: Идентификатори на инфравидови
   input_taxon: Влезен таксон
   insects: Инсекти
+  instagram: Инстаграм
   introduced: Доведен
   invitation: Покана
   invite: покани
@@ -1709,6 +1716,8 @@ mk:
   type_authority: Внесете орган...
   uicn_red_list_status: "Статус на Црвениот список на МСЗП:"
   unclassified: некласифициран
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Разбирање на проекти
   unique_identifier_of_this_taxon: Единствена назнака на таксонов во изворната база.
   unique_observers: поединечни набљудувачи
   unknown: непознато
@@ -1799,6 +1808,7 @@ mk:
   welcome_to_inat: "Добре дојдовте на %{site_name}!"
   welcome_to_guides: "Добре дојдовте на Водичите на %{site_name}!"
   welcome_to_x_project: "Добре дојдовте на %{project}"
+  what: Што
   what_do_you_think: Што мислите?
   when: Кога
   when_did_you_see_it?: Кога го видовте?
@@ -1806,6 +1816,10 @@ mk:
   where: Каде
   where_were_they?: Каде беа?
   where_were_you?: Каде бевте?
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Кој
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Зошто?
   widget: Елемент
   widget_code: Код на елементот
   widget_for: Елемент за

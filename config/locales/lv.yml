@@ -1325,6 +1325,8 @@ lv:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Esi spējīgs mudināt iNaturalist kopienu uz kopienas vadlīniju ievērošanu un atbilstošu izturēšanos. Ja iegūsi pārziņa statusu, tev jārāda piemērs citiem un jābūt apzinīgam iNaturalist lietotājam.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuratora ceļvedis
   curators_changed_for_x_html: "Pārziņu maiņa iekš %{x}"
   curators: Pārziņi
   curators_can_remove_observations_from: Pārziņiem ir atļauja izņemt novērojumus no projekta. Projektu skatījuma režīmā pārziņu identifikācijas tiek rādītas blakus novērojumiem. Turklāt pārziņiem ir pieeja pie privātā un noslēptā satura faktiskajām koordinātām.
@@ -1968,6 +1970,8 @@ lv:
   geoprivacy_is_private_desc: Novērotājs ir apslēpis koordinātas
   georeferenced: Pievienota ģeogrāfiskā atsauce?
   get_started: Sākt
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Darba sākšana
   getting_started_guide: Padomi jauniem lietotājiem
   #Prompt to donate money on a montly basis
   give_monthly_caps: ZIEDOT KATRU MĒNESI
@@ -5036,6 +5040,8 @@ lv:
   unable_to_save_comment: Diemžēl neizdevās saglabāt komentāru.
   unblock: Atbloķēt
   unclassified: Neklasificēts
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Izpratne par projektiem
   ungrafted_taxa: Nepievienoti taksoni
   unhide_content: Rādīt saturu
   unhide_desc: |
@@ -5359,6 +5365,8 @@ lv:
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Kādēļ veic šīs izmaiņas? (pēc izvēles)
   why_you_can_see_the_coordinates: Kāpēc vari redzēt koordinātas
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Kas
   who_can_add_observation_fields_to_my_obs: Kam atļauts pievienot novērojumu laukus taviem novērojumiem?
   who_can_add_observations_to_this_project?: Kam atļauts pievienot novērojumus šim projektam?
   who_can_see_the_coordinates: Kas var redzēt koordinātas
@@ -5367,6 +5375,8 @@ lv:
   who_can_see_the_coordinates_trusted: Lietotāji, kuriem novērotājs uzticas ar savām noslēptajām koordinātām
   who_helped_user_the_most: "Kas palīdzēja lietotājam %{user} visvairāk"
   who_user_helped_the_most: "Kam lietotājs %{user} palīdzēja visvairāk"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Kāpēc?
   why_the_coordinates_are_obscured: Kādēļ koordinātas ir noslēptas
   with_annotation: Ar piezīmēm
   without_annotation: Bez piezīmēm

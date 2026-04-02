@@ -695,6 +695,8 @@ sq:
   curating: Duke kuruar
   curation: Kurimi
   curator: Kurator
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Udhëzues për kuratorin
   curators_changed_for_x_html: "Kuratorët ndryshuan %{x}"
   curators: Kuratorët
   curators_can_remove_observations_from: Kuratorët mund të heqin vëzhgimet nga projekti, dhe identifikimet e tyre shfaqen krahas vëzhgimeve në pamje specifike të projektit. Po ashtu, kuratorët mund të shohin koordinatat e vërteta të kontributeve private dhe të errësuara në projekt.
@@ -839,6 +841,9 @@ sq:
     Studioni krimbat? Jeni eksperti më i madh i klasës së karavidheve? Ju pëlqen të sodisni lulet? Plotësimi i profilit tuaj i jep personalitet dhe rrit besueshmërinë tuaj kur ndihmoni të tjerët të bëjnë identifikime.
   doesnt_have_default_photo: ende nuk ka një foto të paracaktuar.
   doh_something_went_wrong: D'oh, diçka shkoi keq.
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DHURO
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Dhuroni
   done: U krye
@@ -968,6 +973,7 @@ sq:
   extra_properties: Karakteristikat ekstra
   evidence_accurately_depicts_organism_or_scene: Provat përshkruajnë me saktësi organizmin ose skenën
   evidence_of_organism: Dëshmia e organizmit
+  facebook: Në Facebook
   failed_to_find_your_location: Dështoi në gjetjen e vendndodhjes tënde.
   failed_to_repair_photo: "Dështoi në riparimin e fotos: %{errors}"
   failed_to_save_record: "Dështoi në ruajtjen e regjistrimit. Ju lutem provoni përsëri më vonë."
@@ -1070,6 +1076,7 @@ sq:
   for_a_taxon: per një taxon
   formatting: Formatimi
   forgot_your_password: Keni harruar fjalëkalimin?
+  forum: Forumi
   frequency: Shpeshtësia
   from_a_place: nga një vend
   from_eol_collection: Nga koleksioni EOL
@@ -1087,6 +1094,8 @@ sq:
   geoprivacy: Privatësia e Gjeografike
   georeferenced: Referuar sipas vendit?
   get_started: Filloni
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Fillimi
   getting_started_guide: Udhëzuesi i fillimit
   global_names: Emrat globalë
   globally: globalisht
@@ -1236,6 +1245,7 @@ sq:
   input_taxon: Fut taxon
   insects: Insektet
   insect_life_stage: Etapat e jetës së insektit
+  instagram: Instagrami
   interactions: Ndërveprime
   internal_server_error: Gabim në serverin e brendshëm
   introduced: E sjellë
@@ -1258,6 +1268,7 @@ sq:
     Kjo është etiketuar si spam më nuk është publikisht e dukshme. Ju mund ta shihni sepse e keni krijuar, ose ju jeni rregulluesi i faqes. Nëse mendoni se ky është gabim, ju lutem
     <a href="mailto:%{help_email}" class="contact">na kontaktoni</a>.
     <a href="%{manage_flags_path}">Menaxhoni shënimet</a>
+  jobs: Punë
   join: Bashkangjitu
   join_project: Bashkangjitju projektit
   join_this_project: Bashkangjju ketij projekti
@@ -2595,6 +2606,10 @@ sq:
   still_working_on_classifying_taxon: Ende po punon për klasifikimin e këtij taxon. Kontrolloni më vonë
   stop_editing: Ndalo redaktimin
   stop_following_user: "Ndërpre ndjekjen e %{user}"
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Dyqan
+  store_caps: DYQAN
   stuff_just_added: "Gjërat që ju sapo i keni shtuar..."
   subject_resolved_noun_html: "%{subject} u zgjidh nga %{noun}"
   submission_model: Modeli i parashtrimit
@@ -2621,6 +2636,7 @@ sq:
   tag: Etiketo
   tagging: 'Duke etiketuar...'
   tags: Etiketat
+  taxa_info: Informacioni i taksonave
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} është një %{rank} në %{iconic_taxon} me 1 vëzhgim"
     other: "%{taxon} është një %{rank} në %{iconic_taxon} me %{count} vëzhgimet"
@@ -2658,6 +2674,7 @@ sq:
   taxon_split: ndarje e taxon
   taxonomic_order: Rendi Taksonomik
   taxonomy_settings: Cilësimet e taksonomisë
+  terms_service: Kushtet e përdorimit
   the_world: Bota
   the_world_is_full_of_interesting_places: |
     Bota është e mbushur me vende interesante, çdonjëra e mbushur me forma të çuditshme dhe të mrekullueshme. Disa janë në anën tjetër të botës, ndërsa të tjera aty poshtë rrugës! Vendet e %{site_name} ju mundësojnë të kërkoni për jetën anekënd planetit. Fillo të hulumtosh!
@@ -2666,6 +2683,8 @@ sq:
   try_adding_species_form: Provo te shtosh ca specje duke përdorur formularin në këtë faqe.
   type_species_name: "Shkruaj emrin e specjeve"
   type_taxon_name: "Lloji i emrit të taxon"
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Kuptimi i projekteve
   update_existing_observations_with_new_license_desc: |
     Zgjedhja e këtij opsioni do të aplikojë zgjedhjen tuaj të re të licencës për të gjithë
     vëzhgimet ekzistuese. Kjo mund të zgjasë disa orë nëse keni shumë
@@ -2697,6 +2716,7 @@ sq:
     projektit nga vëzhguesi.
   user_trusts_this_project_when_added_by_none: |
     Përdoruesi nuk u beson kuratorëve të projektit me koordinata të fshehura.
+  video_tutorials: Mësime video
   #Link to view identifications affected by a taxon change
   view_your_affected_ids: Shikoni ID-të tuaja të prekura
   view_observation: Shiko vëzhgimin
@@ -2706,6 +2726,13 @@ sq:
   welcome: mirë se vini
   welcome_to_inat: "Mirë se vini në %{site_name}"
   welcome_to_x_project: "Mirë se vini në %{project}"
+  what: Çfarë
+  when: Kur
+  where: Ku
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Kush
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Pse?
   worldwide: Në mbarë botën
   your_comment_was_saved: Përmbajtja juaj u ruajt
   your_content: Përmbajtja Juaj

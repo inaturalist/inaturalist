@@ -1,4 +1,5 @@
 sw:
+  about: Kuhusu
   #Placeholder for a project autocomplete field
   add_a_project: Ongeza mradi
   #Label for an option to show any place
@@ -14,6 +15,8 @@ sw:
   #constituent places were removed and now the atlas just contains this
   #place
   atlas_alteration_action_unexploded: Haijalipuka
+  community: Jumuiya
+  community_guidelines: Miongozo ya Jumuiya
   community_taxon_matches_observation_taxon: Taxon ya Jumuiya inalingana na Taxon ya Uchunguzi
   confirming_ids: Kuthibitisha vitambulisho
   confirming_ids_description: |
@@ -21,6 +24,8 @@ sw:
     na yako isipokuwa wana maoni ya ziada.
   #verb, call to action, e.g. "Contribute to real science"
   contribute: Changia
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Mwongozo wa Mtunzaji
   curator_coordinate_access: Upatikanaji wa Kuratibu wa Mtunzaji
   curator_coordinate_access_desc: |
     Curator kuratibu ufikiaji wa miradi ya jadi inategemea ni nani aliyeongeza
@@ -48,25 +53,37 @@ sw:
   disagreements: Kutokubaliana
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Onyesha uchunguzi ambao una vitambulisho visivyokubaliana
+  documentation_for_developers_html: Nyaraka za <a href="/pages/developers">watengenezaji</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: CHANGIA
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Kuchangia
   #Title for a page to edit an announcement
   editing_announcement_x: Tangazo la kuhariri %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Hitilafu ya kusasisha sauti: %{sound_errors}"
+  explore: Chunguza
   evidence_accurately_depicts_organism_or_scene: Ushahidi unaonyesha kwa usahihi kiumbe au eneo
+  facebook: Facebook
   #Header for a section showing the user's favorite projects
   favorite_projects: Miradi inayopendwa
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Chagua hadi miradi saba inayoonekana kama viungo kwenye kichwa. Sasishi
     itaonekana baada ya kuonyesha upya ukurasa.
+  feedback: Maoni
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Umbizo la faili
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL ya faili
+  forum: Jukwaa
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Kuanza
+  guides: Miongozo
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "VICHWA JUU: sauti hii imewekwa alamishwa."
+  help: Msaada
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: Tambua
   #Title of identification that was automatically added by a taxon change
@@ -83,18 +100,25 @@ sw:
     chini ya kiwango cha spishi (kama spishi ndogo na aina) ambazo zinakubaliana na yako
     Kitambulisho cha kiwango cha spishi. Utaarifiwa ikiwa hawakubaliani na kitambulisho chako au
     ikiwa zina maoni ya ziada.
+  instagram: Mtandao
   #Error message shown when a date format is invalid
   invalid_date: Tarehe batili
+  jobs: Kazi
+  journal_posts: Machapisho ya Jarida
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Jifunze
   #Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Zilizoorodheshwa
   #Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: Haijaorodheshwa
+  log_in: Ingia
   #Adjectival phrase describing state of being logged in
   logged_in: Imeingia
   #Adjectival phrase describing state of being logged out
   logged_out: Imeondoka
+  member_of_the_inaturalist_network_html: |
+    Mwanachama wa <a href="%{url}">Mtandao wa iNaturalist</a>
+  more: Zaidi
   #Label for a button or section that shows additional options
   more_options: Chaguzi zaidi
   #A user who is not a curator
@@ -117,8 +141,12 @@ sw:
   #verb, call to action, e.g. "Observe nature nearby"
   observe: Angalia
   observation_fields_for_projects: Sehemu za Uchunguzi kwa Miradi
+  or: au
+  our_blog: Blogi yetu
+  people: Watu
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Inaweza kuchukua hadi siku moja kwa uchunguzi kuhusishwa na mahali hapa.
+  places: Maeneo
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     Maeneo hayawezi kuwa makubwa kuliko kilomita za mraba 700,000.
@@ -133,11 +161,15 @@ sw:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Maeneo hayawezi kuwa na uchunguzi zaidi ya 10,000.
+  powered_by_inaturalist_open_source_software_html: 'Inaendeshwa na <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist programu ya chanzo wazi</a>'
+  press: Vyombo vya habari
+  privacy: Faragha
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Aina ya faili ya Picha ya Wasifu
   #A user who admin's a project
   project_admin: Msimamizi wa mradi
+  projects: Miradi
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -148,7 +180,10 @@ sw:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: Aina ndogo / Aina / Fomu
+  search: Tafuta
+  sign_up: Jisajili
   sign_up_sentence_case: Jisajili
+  site_stats: Takwimu za Tovuti
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Sauti %{id}, %{attribution}
@@ -158,11 +193,19 @@ sw:
     sound_hidden: Sauti imefichwa
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Sauti haijafichwa
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Hifadhi
+  store_caps: HIFADHI
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Kujiunga
+  taxa_info: Maelezo ya Taxa
+  terms_service: Masharti ya Matumizi
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: Njiya
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Kuelewa miradi
   update_existing_observations_with_new_license_desc: |
     Kuchagua chaguo hili kutatumia chaguo lako jipya la leseni kwa wote wako
     uchunguzi uliopo. Hii inaweza kuchukua masaa machache ikiwa una mengi
@@ -185,10 +228,18 @@ sw:
     kwa mradi na mwangalizi.
   user_trusts_this_project_when_added_by_none: |
     Mtumiaji haamini wasimamizi wa mradi na kuratibu zilizofichwa.
+  video_tutorials: Mafunzo ya Video
   #Link to view identifications affected by a taxon change
   view_your_affected_ids: Tazama vitambulisho vyako vilivyoathiriwa
   we_also_support3: |
     Pia tunaunga mkono kuagiza picha kutoka <a href="http://flickr.com">Flickr</a>.
+  what: Nini
+  when: Wakati
+  where: Wapi
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Nani
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Kwa nini?
   views:
     announcements:
       locales_desc: |

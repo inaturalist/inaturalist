@@ -1352,6 +1352,8 @@ et:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Suudad näidata iNaturalisti leheküljel head eeskuju ning juhinduda kogukonna reeglitest. Kuraatorivõimetega kaasneb ka eeldus, et oled eeskujulik iNaturalisti kasutaja.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuraatori juhend
   curators_changed_for_x_html: "%{x} kuraator muutus"
   curators: Kuraatorid
   curators_can_remove_observations_from: Kuraatorid võivad projektist vaatlusi eemaldada ja nende tehtud määratlused on projektipõhistel lehtedel vaatluse kõrval eraldi ära toodud. Kuraatorid näevad ka selle projekti alla lisatud vaatluste privaatseid ja varjatud tõeliseid koordinaate.
@@ -1995,6 +1997,8 @@ et:
   geoprivacy_is_private_desc: Vaatleja soovib koordinaate peita.
   georeferenced: Asukoha andmetega?
   get_started: Alusta
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Alustamine
   getting_started_guide: Alustamisjuhis
   #Prompt to donate money on a montly basis
   give_monthly_caps: ANNETA IGAKUISELT
@@ -4603,6 +4607,8 @@ et:
   umbrella_projects: Ülemprojektid
   unblock: Tühista blokeering
   unclassified: Liigitamata
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Projektide mõistmine
   ungrafted_taxa: Pookimata taksonid
   unique_identifier_of_this_taxon: Selle taksoni unikaalne identifikaator allika andmebaasis.
   unique_observers: unikaalseid vaatleid
@@ -4897,6 +4903,8 @@ et:
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Miks soovid seda muudatust teha? (valikuline)
   why_you_can_see_the_coordinates: Miks sa koordinaate näed
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Kes
   who_can_add_observation_fields_to_my_obs: Kes saavad lisada minu vaatlustele vaatlusvälju?
   who_can_add_observations_to_this_project?: Kes saavad sellele projektile vaatluseid lisada?
   who_can_see_the_coordinates: Kes näevad koordinaate
@@ -4905,6 +4913,8 @@ et:
   who_can_see_the_coordinates_trusted: Isikud, kellele vaatleja on oma peidetud koordinaate usaldanud
   who_helped_user_the_most: "Kes aitas kõige enam kasutajat %{user}"
   who_user_helped_the_most: "Keda kasutaja %{user} kõige enam abistas"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Miks?
   why_the_coordinates_are_obscured: Miks on koordinaadid varjatud
   with_annotation: Märkega
   without_annotation: Märketa

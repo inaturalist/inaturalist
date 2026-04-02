@@ -597,6 +597,8 @@ mr:
     साइट क्युरेटर होण्यासाठी अर्ज करण्यासाठी तुमचे खाते ६० दिवस किंवा त्यापेक्षा अधिक काळ आस्तित्वात असणे, तुम्ही किमान ५ निशाण जोडलेले असणे आणि तुमच्यासह इतर कोणाच्याही १०० हुन अधिक निरीक्षणांमध्ये सुधारित ओळख जोडलेली असणे आवश्यक आहे.
   curator_application_you_should_apply_if_you_have_added_flags: |
     तुम्ही काही निशाण जोडून क्युरेशन प्रक्रिया समजून घेतल्याचे दर्शविलेले आहे.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: क्युरेटर मार्गदर्शक
   curator_coordinate_access: क्यूरेटर कोऑर्डिनेट अॅक्सेस
   curator_coordinate_access_desc: |
     पारंपारिक प्रकल्पांसाठी क्युरेटर समन्वय प्रवेश कोणी जोडला यावर अवलंबून असतो
@@ -643,6 +645,10 @@ mr:
   disagreements_show_observations_that: असहमत ओळख असलेली निरीक्षणे दाखवा
   #Label for a button that dismisses an alert or popup
   dismiss: बाद करा
+  documentation_for_developers_html: यासाठी दस्तऐवजीकरण <a href="/pages/developers">विकासक[संपादन]</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: देणगी द्या
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: देणगी देणे
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -669,7 +675,9 @@ mr:
     इनपुट वर्गापैकी कोणती निरीक्षणे आऊटपुट वर्गात बदलली जातील आणि कोणती विभक्त झाल्यानंतर सामाईक पूर्वजापर्यंत सीमित केली जातील याचा अंदाज लावा. या संगणनास थोडा वेळ लागू शकतो. निरीक्षणांसाठीचे दुवे २०० च्या उपसंचांमध्ये विभागले आहेत.
   explore: सर्वेक्षण
   evidence_accurately_depicts_organism_or_scene: पुरावा जीव किंवा दृश्य अचूकपणे दर्शवितो
+  facebook: फेसबुक
   favorites: "आवडते"
+  feedback: अभिप्राय
   #Button to show fewer places
   fewer__context_places: कमी
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
@@ -683,6 +691,8 @@ mr:
   geomodel_expected_nearby_label_is_derived: |
     "अपेक्षित जवळपास" तर्क जिओमॉडेलवरून घेतला आहे.
     <a href="%{url}">येथे जिओमॉडेलबद्दल अधिक जाणून घ्या</a>.
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: प्रारंभ करणे
   grid: ओळखलेली निरीक्षणे
   guides: मार्गदर्शक
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
@@ -717,6 +727,8 @@ mr:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: इन्फ्रास्पिसिज आयडी
+  instagram: इन्स्टाग्राम
+  jobs: जॉब्स
   join_the_largest_group_of_naturalists_in_the_world: जगातील निसर्गशास्त्रज्ञांच्या सर्वात मोठ्या गटात सामील व्हा!
   journal: नोंदवही
   journal_posts: नोंदवहीतील नोंदी
@@ -810,6 +822,8 @@ mr:
   #If a single word won't work, a symbol like "+" would be fine.
   media_and: आणि
   meet: भेटा
+  member_of_the_inaturalist_network_html: |
+    सदस्य[संपादन] <a href="%{url}">iNaturalist नेटवर्क</a>
   #title for section describing people who donate to iNat every month
   monthly_supporters: मासिक समर्थक
   more: अधिक
@@ -857,6 +871,7 @@ mr:
     एक किंवा अधिक अंतर्भूत वर्ग १००० पेक्षा जास्त निरीक्षणांशी संबंधित आहेत, म्हणून निश्चिती प्रक्रियेसाठी काहीसा वेळ लागू शकतो. तुम्हाला खात्री आहे की हा वर्ग बदलला जाणे आवश्यक आहे? लक्षात ठेवा की वर्गातील बदल हे पूर्ववत केले जाऊ शकत नाहीत.
   options: पर्याय
   or: किंवा
+  our_blog: आमचा ब्लॉग
   password: परवलीचा शब्द (पासवर्ड)
   password_confirmation: 'पासवर्ड पुष्टी'
   password_change_description: तुमचा पासवर्ड बदलल्याने तुम्ही तुमच्या डिव्हाइसवरील सर्व सक्रिय iNaturalist सत्रांमधून लॉग आउट कराल
@@ -931,6 +946,8 @@ mr:
   posted_on_date_html: पोस्ट केले रोजी %{date}
   #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
   posted_on_date_by_user_html: पोस्ट केले रोजी %{date} द्वारे %{user}
+  powered_by_inaturalist_open_source_software_html: 'द्वारे समर्थित <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist ओपन सोर्स सॉफ्टवेअर</a>'
+  press: दाबा
   privacy: गोपनीयता
   profile: प्रोफाइल
   #A user who admin's a project
@@ -992,6 +1009,9 @@ mr:
   #applied from a taxon that contains the current taxon
   status_applied_from_higher_level_taxon_html: |
     <strong>उच्च-स्तरीय वर्गीकरणातून लागू करण्यात आलेला संवर्धन दर्जा:</strong>%{taxon}
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: स्टोअर
   store_caps: स्टोअर
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
@@ -1004,6 +1024,7 @@ mr:
     वर्ग बदल निश्चिती प्रक्रिया चालू असल्याने कदाचित काही नोंदी अद्ययावत झालेल्या नसतील हे ध्यानात घ्या.
   taxon_history_notice: वर्ग-इतिहास हा बदल फेब्रुवारी २०२२ पासून अमलात आणला गेला, त्यामुळे त्याआधीच्या तारखांसाठी वर्ग-इतिहास उपलब्ध नाही.
   teachers_guide: शिक्षकांसाठी मार्गदर्शक
+  terms_service: वापराच्या अटी
   terrain: भूभाग
   this_taxon_has_more_than_1000_alt: |
     या वर्गाशी संबंधित १००० हून अधिक निरीक्षणे आहेत, म्हणून ह्या बदल प्रक्रियेसाठी काही वेळ लागू शकतो. तुम्हाला खात्री आहे की ते आवश्यक आहेत?
@@ -1131,6 +1152,8 @@ mr:
     <a href="/pages/community+guidelines" target="_blank">समुदाय मार्गदर्शक तत्त्वे</a>.
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: मार्ग दुवा / मागोवा 
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: प्रकल्प समजून घेणे
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: ध्वनी अद्ययावत करणे
   upload: अपलोड करा
@@ -1181,8 +1204,15 @@ mr:
   view_your_personal_year_in_review_caps: "तुमचे वैयक्तिक %{year} वार्षिक पुनरावलोकन पहा"
   we_also_support3: |
     आम्ही फोटो आयात करण्यास देखील समर्थन देतो <a href="http://flickr.com">फ्लिकर</a>.
+  what: काय आहे
+  when: जेव्हा
+  where: कुठे
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: आपण हा बदल का घडवत आहात? (ऐच्छिक)
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: कोण
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: का?
   #Filter for observations not in a particular taxon
   without_taxon: टॅक्सन मध्ये नसलेले
   year_in_review2: "वार्षिक पुनरावलोकन %{year}"

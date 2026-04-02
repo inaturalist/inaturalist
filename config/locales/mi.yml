@@ -364,6 +364,8 @@ mi:
   curator: Kairauhī
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: He aha koe i pirangi ai hei kairauhī?
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Aratohu Kaitiaki
   curators: Kairauhī
   curator_coordinate_access: Āheitanga Taururuku Kaitiaki
   curator_coordinate_access_desc: |
@@ -620,6 +622,8 @@ mi:
     other: hekaheka
   generate_your_stats: Tatauhia tāu tauanga
   Genus: Puninga
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Te Tīmatanga
   go: Hoake
   go_back: E hoki
   google: Kūkara
@@ -687,6 +691,7 @@ mi:
   join: Hono mai
   join_the_largest_group_of_naturalists_in_the_world: E kuhu mai koe i te rōpū nui o kaitaiao i te ao!
   journal: Rangitaki
+  journal_posts: Ngā Whakairinga Tuhitaka
   jpg_png_or_gif: "JPG, PNG, GIF rānei"
   kml: KML
   label_colon: "%{label}:"
@@ -940,6 +945,7 @@ mi:
   observer_short: Kaimātaki
   of_places: wāhi
   only_view_nearby_suggestions: Tirohia ngā marohi tātata noa iho
+  or: ranei
   our_blog: Rangitaki tō mātou
   overview: Tirohanga Whānui
   password: Kupuhipa
@@ -1169,6 +1175,7 @@ mi:
   play_first_sound: Pureingia te oro tuatahi
   #Title to a section warning a user to exercise caution
   please_be_careful!: Kia tūpato!
+  powered_by_inaturalist_open_source_software_html: 'E āheitia ana e <a href="https://github.com/inaturalist/inaturalist" target="_new" >pūmanawa pūtake tuwhera iNaturalist</a>'
   press: Arapāho
   preview: Huritao takamua
   print_verb: Tā
@@ -1489,6 +1496,8 @@ mi:
   trending: Ee rōpū te haere
   two_thirds: 2/3
   type_species_name: "Patopatohia te ingoa momo"
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Te Mārama ki ngā Kaupapa
   updating: E whakahou ana...
   unsubscribe: Ohauru kore
   update: Whakahou
@@ -1604,6 +1613,10 @@ mi:
   when_did_you_see_it?: Inahea?
   where: I hea
   where_were_you?: I hea i a koe?
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Ko wai
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: He aha?
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Maunuhia

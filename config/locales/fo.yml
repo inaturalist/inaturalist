@@ -1,17 +1,70 @@
 fo:
+  about: Um
+  community: Samfelag
+  community_guidelines: Samfelagsleiðbeiningar
   #verb, call to action, e.g. "Contribute to real science"
   contribute: Geva sítt íkast
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuratorvegleiðing
   #verb, call to action, e.g. "Discover nature nearby"
   discover: Uppdaga
+  documentation_for_developers_html: Dokumentatión fyri <a href="/pages/developers">Mennarar</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: GEVA GÁVU
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Geva gávu
+  explore: Kanna
+  facebook: Facebook
+  feedback: Afturmelding
+  forum: Forum
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: At byrja
+  guides: Vegleiðingar
+  help: Hjálp
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: Eyðkenn
+  instagram: Instagram
+  jobs: Starv
+  journal_posts: Dagbókargreinar
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Lær
+  log_in: Rita inn
+  member_of_the_inaturalist_network_html: |
+    Limur í <a href="%{url}">iNaturalist Network</a>
+  more: Meira
   #verb, call to action, e.g. "Observe nature nearby"
   observe: Hygg eftir
+  or: ella
+  our_blog: Bloggurin okkara
+  people: Fólk
+  places: Staðir
+  powered_by_inaturalist_open_source_software_html: 'Rikið við <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source forrit</a>'
+  press: Fjølmiðlar
+  privacy: Privatleiki
+  projects: Verkætlanir
+  search: Leita
+  sign_up: Melda til
   sign_up_sentence_case: Melda til
+  site_stats: Heimasíðustatistikkur
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Handil
+  store_caps: HANDIL
+  taxa_info: Taxa Upplýsingar
+  terms_service: Brúkaratreytir
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: Spor
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: At skilja verkætlanir
+  video_tutorials: Video-vegleiðingar
+  what: Hvat
+  when: Tá
+  where: Har
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Hvør
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Hví?
   views:
     welcome_v2:
       index:

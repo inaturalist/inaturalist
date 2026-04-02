@@ -305,10 +305,14 @@ fr-CA:
   check_this_box_if_html: |
     Cochez cette case si vous voulez appliquer une
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licence Creative Commons d’attribution non commerciale</a> au contenu téléversé. Ceci veut dire que quiconque peut copier et réutiliser vos photos ou vos observations sans demander la permission, du moment qu’ils vous en donnent le crédit et n'utilisent pas les œuvres commercialement. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s'agit de la meilleure licence pour échanger avec les chercheurs.
+  community: Communauté
+  community_guidelines: Directives communautaires
   configure_a_widget_to_show: "Configurez un widget pour afficher les observations\nd’%{site_name} sur votre site Web ou votre blogue. Vous devrez peut-être inclure\nle CSS intégré dans le <code>&lt;head&gt;</code> de votre HTML. N’hésitez pas\nà réécrire le CSS."
   #verb, call to action, e.g. "Contribute to real science"
   contribute: Contribuer
   copy_and_paste_the_following_code_to: Copiez et collez le code suivant pour inclure cette évaluation dans une autre page Web.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Guide du conservateur
   devise:
     failure:
       invalid: 'Courriel ou mot de passe invalide.'
@@ -343,6 +347,12 @@ fr-CA:
   devise_unlock_instructions_unlock: Déverrouiller votre compte
   #verb, call to action, e.g. "Discover nature nearby"
   discover: Découvrir
+  documentation_for_developers_html: Documentation pour <a href="/pages/developers">Développeurs</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: FAIRE DON
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Faire un don
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Le déposer
@@ -355,17 +365,26 @@ fr-CA:
   #name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: Cher/chère %{user},
   embed_widget_project: Intégrer un widget pour ce projet sur votre site Web
+  explore: Explorer
+  facebook: Facebook
+  feedback: Retour d’information
+  forum: Forum
   forum_categories:
     bug_reports: Signalements de bogue
   forum_desc: |
     Le forum est un endroit pour discuter de iNat lui-même, y compris pour l’aide et le soutien, les demandes de fonctionnalité, les rapports de bogues, les annonces, et autres.
   #E.g GENERATE YOUR 2023 YEAR IN REVIEW
   generate_your_year_in_review_caps: GÉNÉRER VOTRE RÉTROSPECTIVE DE L'ANNÉE %{year}
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Commencer
+  guides: Guides
+  help: À l’aide
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Masquer « Pas d'annotation »
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: Identifier
+  instagram: Instagram
   #Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Insérer une citation
   it_can_now_be_used_for_research: Elle peut maintenant être utilisée pour la recherche et mise en vedette sur d’autres sites Web
@@ -377,6 +396,8 @@ fr-CA:
     responsable du site. Si vous pensez que c’est une erreur, veuillez
     <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
     <a href="%{manage_flags_path}">Gérer les signalements</a>
+  jobs: Emplois
+  journal_posts: Publications dans la revue
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Apprendre
   legacy_authentication_notice_html: |
@@ -384,43 +405,63 @@ fr-CA:
     Souvenez-vous de <a href="%{url}">modifier votre mot de passe</a> aux fins de la nouvelle version.
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: texte lié
+  log_in: Connexion
   log_in_or_sign_up_to_add_comments_html: |
     <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
+  member_of_the_inaturalist_network_html: |
+    Membre de la <a href="%{url}">Réseau iNaturalist</a>
   #Label shown when a date has not been entered
   missing_date: Date manquante
+  more: Plus
   no_more_mail_from_site: "Vous ne voulez pas recevoir de courriel d’%{site_name}?  Modifiez vos paramètres de courriel à"
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l'attribut 'height' pour l’adapter à l'espace disponible sur votre page Web."
   #verb, call to action, e.g. "Observe nature nearby"
   observe: Observez
   official_blog: Blogue officiel
+  or: ou
   our_blog: Notre blogue
   parental_consent:
     must_specify_email: Vous devez spécifier une adresse courriel
     invalid_email: Format de courriel invalide
+  people: Population
   people_added:
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
       with_observation: a ajouté une <strong>identification</strong> à une %{observation_link} de %{user_link}
+  places: Lieux
+  powered_by_inaturalist_open_source_software_html: 'Propulsé par <a href="https://github.com/inaturalist/inaturalist" target="_new" >Logiciel open source iNaturalist</a>'
+  press: Presse
+  privacy: Vie privée
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
+  projects: Projets
+  search: Recherche
   search_by_name_or_email: Rechercher par nom ou par courriel
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Afficher « Pas d'annotation »
   show_off_your_recent_observations: Mettez en valeur vos observations récentes sur votre propre blogue ou site Web!
+  sign_up: Inscrivez-vous
   sign_up_sentence_case: Inscrivez-vous
+  site_stats: Statistiques du site
   some_observations_are_missing_media_or_identifications: |
     Certaines observations n'ont pas de photo/son ou d'identification
   some_observations_are_missing_media_or_identifications_desc: |
     Les observations sans média ne seront pas visibles par défaut dans les recherches, et celles sans identifications pourraient ne pas être vues par des experts qui recherchent des taxons spécifiques. Même une identification très approximative comme "Plantes" peut aider les experts à trouver votre observation.
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Magasin
+  store_caps: MAGASIN
   subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Abonnez-vous%{tag_end} aux commentaires sur l'activation de ce taxon."
   subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Abonnez-vous%{tag_end} aux commentaires sur le remplacement de ce taxon."
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonnez-vous%{tag_end} aux commentaires sur cette fusion de taxons."
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonnez-vous%{tag_end} aux commentaires sur la division de ce taxon."
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonnez-vous%{tag_end} aux commentaires sur l'élimination de ce taxon."
+  taxa_info: Infos sur les taxons
+  terms_service: Conditions d’utilisation
   these_are_items_people_on: |
     Il y a des articles que les personnes membres de ce site ont signalés aux fins d’organisation. Le pourriel doit être supprimé et les utilisateurs responsables doivent être suspendus (allez sur leur page de profil et cliquez sur « Suspendez l’utilisateur » en bas à droite pour les empêcher de se connecter). Les autres articles qui font l’objet d’un drapeau doivent seulement être supprimés s’ils sont clairement haineux, illégaux, etc. La grossièreté, les insultes, etc., doivent être gérées au moyen d’un commentaire poli. Les récidivistes doivent être signalés à un administrateur du site ou %{email}
   these_observations_have_not_been_uploaded_yet: |
@@ -432,6 +473,8 @@ fr-CA:
   title: titre
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: Piste
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Comprendre les projets
   updates_notification_email_subject: "%{prefix} Nouvelles mises à jour du %{date}"
   updates_suspension_email_subject: "%{prefix} Vos abonnements sont en attente"
   unsubscribe_from_emails_like_this: Se désabonner des courriels comme celui-ci
@@ -464,9 +507,17 @@ fr-CA:
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
   use_unique_file_names_for_separate_uploads: Utilisez des noms de fichier uniques pour les téléversements séparés
   username_or_email: Nom d’utilisateur ou courriel
+  video_tutorials: Tutoriels vidéo
   view_inaturalist_global_year_in_review_caps: VOIR LA RÉTROSPECTIVE DE L'ANNÉE %{year} DE LA COMMUNAUTÉ MONDIALE D'INATURALIST
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse courriel.
   website: Site Web
+  what: Quoi
+  when: Quand
+  where: Où
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Qui
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Pourquoi?
   x_blog: "Blogue de %{x}"
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"

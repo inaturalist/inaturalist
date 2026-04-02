@@ -6314,6 +6314,8 @@ da:
   who_can_see_the_coordinates_trusted: Personer som observatøren har betroet sine skjulte koordinater til
   who_helped_user_the_most: "Hvem hjalp %{user} mest"
   who_user_helped_the_most: "Hvem %{user} hjalp mest"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Hvorfor?
   why_the_coordinates_are_obscured: Hvorfor koordinaterne er sløret
   with_annotation: Med anmærkning
   without_annotation: Uden note
@@ -7986,11 +7988,21 @@ da:
           URL til den event registreringstjeneste, du bruger til din bioblitz.
           Hvis dette er en Eventbrite URL, der indeholder et numerisk ID, vil vi indsætte en tilmeldings widget på din projektside indtil din bioblitz
           begynder.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Skjul Rangliste
         icon_desc: "Beskæres til kvadrat"
         it_looks_like_this_project_can_be_converted: |
           Det ser ud til at dette projekt kan konverteres til et nyt <a href="%{url}">samlingsprojekt</a>.
         last_aggregated_at_desc: |
           Tidspunkt, hvor samleren sidst var færdig med at tilføje observationer til dette projekt
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Rangliste
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Ranglistepanelet viser brugere med flest observationer, brugere med fleste arter og den mest observerede art. Det kan valgfrit skjules.
         #Label for button to make another user the owner of a project
         make_owner: Gør til Ejer
         no_curators: |

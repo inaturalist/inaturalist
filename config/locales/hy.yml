@@ -1,4 +1,5 @@
 hy:
+  about: Այս մասին
   #Placeholder for a project autocomplete field
   add_a_project: Ավելացնել նախագիծ
   #Label for an option to show any place
@@ -22,6 +23,8 @@ hy:
   #constituent places were removed and now the atlas just contains this
   #place
   atlas_alteration_action_unexploded: Չպայթած
+  community: Համայնք
+  community_guidelines: Համայնքային ուղեցույցներ
   community_taxon_matches_observation_taxon: Կոմունալ տաքսոնը համապատասխանում է դիտարկման տաքսոնին
   confirming_ids: ID-ների հաստատում
   confirming_ids_description: |
@@ -36,6 +39,8 @@ hy:
       տաքսոն, սահմանեք սա «Մոտ սպառնալիք» կամ ավելի բարձր։
   #verb, call to action, e.g. "Contribute to real science"
   contribute: Նպաստել
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Կուրատորի ուղեցույց
   curator_coordinate_access: Կոորդինատային մուտք
   curator_coordinate_access_desc: |
     Ավանդական նախագծերի համար կուրատորի համակարգման հասանելիությունը կախված է նրանից, թե ով է ավելացրել
@@ -68,25 +73,37 @@ hy:
   disagreements: Տարաձայնություններ
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Ցույց տալ դիտարկումներ, որոնք ունեն հակասական նույնականացումներ
+  documentation_for_developers_html: Փաստաթղթեր <a href="/pages/developers">Մշակողներ</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: ՆՎԻՐԱԲԵՐԵԼ
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Նվիրաբերել
   #Title for a page to edit an announcement
   editing_announcement_x: ՀայտարարությունԽմբագրել %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Ձայնի թարմացման սխալ. %{sound_errors}"
+  explore: Ուսումնասիրել
   evidence_accurately_depicts_organism_or_scene: Ապացույցները ճշգրիտ պատկերում են օրգանիզմը կամ տեսարանը
+  facebook: Ֆեյսբուք
   #Header for a section showing the user's favorite projects
   favorite_projects: Սիրված նախագծեր
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Ընտրեք մինչեւ յոթ նախագիծ, որոնք հայտնվում են որպես հղումներ վերնագրում: Թարմացումներ
     կհայտնվի էջը թարմացնելուց հետո:
+  feedback: Հետադարձ կապ
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Ֆայլի ձեւաչափը
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: File URL
+  forum: Ֆորում
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Getting Started
+  guides: Ուղեցույցներ
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "Այս ձայնը դրոշմվել է։"
+  help: Օգնություն
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: Բնութագիր
   #Title of identification that was automatically added by a taxon change
@@ -103,18 +120,25 @@ hy:
     ցածր տեսակների մակարդակով (օրինակ՝ ենթատեսակների եւ սորտերի), որոնք համաձայն են ձեր
     տեսակների մակարդակի ID. Դուք կտեղեկացվեք, եթե նրանք համաձայն չեն ձեր ID-ի կամ
     եթե դրանք պարունակում են լրացուցիչ դիտողություններ:
+  instagram: Instagram-ում
   #Error message shown when a date format is invalid
   invalid_date: Անվավեր ամսաթիվ
+  jobs: Աշխատանք
+  journal_posts: Journal Posts
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Սովորել
   #Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Ցուցակագրված
   #Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: Չցանկացված
+  log_in: Մուտք գործել
   #Adjectival phrase describing state of being logged in
   logged_in: Logged in
   #Adjectival phrase describing state of being logged out
   logged_out: Դուրս է եկել
+  member_of_the_inaturalist_network_html: |
+    Պատգամավորի անդամ <a href="%{url}">iNaturalist Network</a>
+  more: Ավելին
   #Label for a button or section that shows additional options
   more_options: More Options
   #A user who is not a curator
@@ -137,8 +161,12 @@ hy:
   #verb, call to action, e.g. "Observe nature nearby"
   observe: Դիտարկել
   observation_fields_for_projects: Նախագծերի դիտարկման դաշտեր
+  or: կամ
+  our_blog: Our Blog
+  people: Մարդիկ
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Կարող է տեւել մինչեւ մեկ օր, որպեսզի դիտարկումները կապված լինեն այս վայրի հետ։
+  places: Վայրեր
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     Տեղերը չեն կարող լինել ավելի մեծ քան 700,000 քառակուսի կիլոմետր։
@@ -153,11 +181,15 @@ hy:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Վայրերը չեն կարող պարունակել ավելի քան 10,000 դիտարկումներ։
+  powered_by_inaturalist_open_source_software_html: 'Սնուցվում է <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist բաց կոդով ծրագրային ապահովում</a>'
+  press: Մամուլ
+  privacy: Գաղտնիություն
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Պրոֆիլի նկարի ֆայլի տիպ
   #A user who admin's a project
   project_admin: Նախագծի ադմին
+  projects: Նախագծեր
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -168,7 +200,10 @@ hy:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: Ենթատեսակ / Բազմազանություն / Ձեւ
+  search: Որոնում
+  sign_up: Գրանցվել
   sign_up_sentence_case: Գրանցվել
+  site_stats: Կայքի վիճակագրությունը
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Հնչյուն %{id}, %{attribution}
@@ -178,11 +213,19 @@ hy:
     sound_hidden: Թաքնված հնչյուն
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Ձայնը չթաքնված
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Խանութ
+  store_caps: ԼՐԱՀՈՍ
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Բաժանորդագրվել
+  taxa_info: Taxa Info
+  terms_service: Օգտագործման պայմաններ
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: Հետապնդում
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Նախագծերի հասկացողություն
   update_existing_observations_with_new_license_desc: |
     Ընտրելով այս դրույթը կկիրառվի ձեր նոր լիցենզիայի ընտրությունը ձեր բոլոր
     գոյություն ունեցող դիտարկումները: Սա կարող է տեւել մի քանի ժամ, եթե դուք ունեք շատ
@@ -205,10 +248,18 @@ hy:
     դիտորդի կողմից նախագծին:
   user_trusts_this_project_when_added_by_none: |
     Օգտատերը չի վստահում թաքնված կոորդինատներով նախագծի կուրատորներին։
+  video_tutorials: Video Tutorials
   #Link to view identifications affected by a taxon change
   view_your_affected_ids: Դիտել ձեր տուժած ID-ները
   we_also_support3: |
     Մենք նաեւ աջակցում ենք լուսանկարների ներմուծմանը <a href="http://flickr.com">Flickr</a>.
+  what: Ինչի՞
+  when: Երբ
+  where: Որտեղ
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Ով
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Ինչու՞
   views:
     announcements:
       locales_desc: |
