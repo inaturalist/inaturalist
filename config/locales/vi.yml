@@ -27,6 +27,8 @@ vi:
   are_you_sure_you_want_to_delete_this_sound?: Bạn có chắc chắn muốn xóa âm thanh này không?
   artificially_generated_content: Nội dung được tạo giả tạo
   artificially_generated_content_desc: Chứa nội dung chủ yếu hoặc hoàn toàn được tạo ra thông qua trí tuệ nhân tạo.
+  community: Cộng đồng
+  community_guidelines: Nguyên tắc cộng đồng
   community_taxon_matches_observation_taxon: Đơn vị phân loại cộng đồng phù hợp với Đơn vị phân loại quan sát
   confirming_ids: Xác nhận ID
   confirming_ids_description: |
@@ -41,6 +43,8 @@ vi:
       đơn vị phân loại, đặt thành "Gần bị đe dọa" trở lên.
   #verb, call to action, e.g. "Contribute to real science"
   contribute: Đóng góp
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Hướng dẫn giám tuyển
   curator_coordinate_access: Truy cập tọa độ người phụ trách
   curator_coordinate_access_desc: |
     Người quản lý điều phối quyền truy cập cho các dự án truyền thống phụ thuộc vào người đã thêm
@@ -71,34 +75,53 @@ vi:
   disagreements: Bất đồng
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Hiển thị các quan sát có nhận dạng không đồng nhất
+  documentation_for_developers_html: Tài liệu cho <a href="/pages/developers">Nhà phát triển</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: QUYÊN GÓP
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Góp
   #Title for a page to edit an announcement
   editing_announcement_x: Chỉnh sửa thông báo %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Lỗi cập nhật âm thanh: %{sound_errors}"
+  explore: Khám phá
   evidence_accurately_depicts_organism_or_scene: Bằng chứng mô tả chính xác sinh vật hoặc cảnh
+  facebook: Trang Facebook
+  feedback: Phản hồi
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Định dạng tệp
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL tệp
+  forum: Diễn đàn
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Bắt đầu
+  guides: Hướng dẫn
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "CẢNH BÁO: âm thanh này đã được gắn cờ."
+  help: Trợ giúp
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: Xác định
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: ID Hạ chủng
+  instagram: Instagram
+  jobs: Việc làm
+  journal_posts: Bài viết trên tạp chí
   language_slash_locale: Ngôn ngữ/Địa phương
   language_slash_locale_description: Điều này đặt tùy chọn định dạng ngôn ngữ và ngày của bạn trên iNaturalist dựa trên ngôn ngữ của bạn. Các thay đổi sẽ có hiệu lực sau khi trang được làm mới.
   language_slash_type: Ngôn ngữ / Loại
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Học
+  log_in: Đăng nhập
   #Adjectival phrase describing state of being logged in
   logged_in: Đã đăng nhập
   #Adjectival phrase describing state of being logged out
   logged_out: Đã đăng xuất
+  member_of_the_inaturalist_network_html: |
+    Thành viên của <a href="%{url}">Mạng iNaturalist</a>
+  more: Xem thêm
   #Label for a button or section that shows additional options
   more_options: Nhiều lựa chọn hơn
   #A user who is not a curator
@@ -108,8 +131,12 @@ vi:
   #verb, call to action, e.g. "Observe nature nearby"
   observe: Quan sát
   observation_fields_for_projects: Lĩnh vực quan sát cho các dự án
+  or: hoặc
+  our_blog: Blog của chúng tôi
+  people: Con người
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Có thể mất đến một ngày để các quan sát được liên kết với nơi này.
+  places: Địa điểm
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     Các địa điểm không được lớn hơn 700.000 km vuông.
@@ -124,8 +151,12 @@ vi:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Các địa điểm không được chứa nhiều hơn 10.000 quan sát.
+  powered_by_inaturalist_open_source_software_html: 'Được cung cấp bởi <a href="https://github.com/inaturalist/inaturalist" target="_new" >Phần mềm mã nguồn mở iNaturalist</a>'
+  press: Ấn Bản
+  privacy: Quyền riêng tư
   #A user who admin's a project
   project_admin: Quản trị viên dự án
+  projects: Dự án
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -136,7 +167,10 @@ vi:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: Phân loài / Giống / Hình thức
+  search: Tìm kiếm
+  sign_up: Đăng ký
   sign_up_sentence_case: Đăng ký
+  site_stats: Số liệu thống kê trang web
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Âm thanh %{id}, %{attribution}
@@ -146,6 +180,12 @@ vi:
     sound_hidden: Âm thanh ẩn
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Âm thanh không ẩn
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Cửa hàng
+  store_caps: CỬA HÀNG
+  taxa_info: Thông tin Taxa
+  terms_service: Điều khoản sử dụng
   these_are_items_people_on: |
     Đây là những mục mà mọi người trên trang web đã gắn cờ để quản lý. Thư rác
      nhận xét sẽ bị xóa và những người dùng thêm thư rác sẽ bị tạm ngừng (đi
@@ -157,6 +197,8 @@ vi:
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: Theo dõi
   translated_languages: Ngôn ngữ đã dịch
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Tìm hiểu về các dự án
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Âm thanh được cập nhật
   user_trusts_this_project_when_added_by_any: |
@@ -167,6 +209,7 @@ vi:
     cho dự án của quan sát viên.
   user_trusts_this_project_when_added_by_none: |
     Người dùng không tin tưởng người quản lý dự án với tọa độ ẩn.
+  video_tutorials: Video hướng dẫn
   we_also_support3: |
     Chúng tôi cũng hỗ trợ nhập ảnh từ <a href="http://flickr.com">Flickr</a>.
   what: Cái gì
