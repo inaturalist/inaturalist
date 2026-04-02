@@ -331,7 +331,7 @@ describe ApplicationController do
         end
         after { ActionController::Base.allow_forgery_protection = false }
 
-        it "returns 403 with suspension details for a suspended OAuth user" do
+        it "returns 401 with suspension details for a suspended OAuth user" do
           user.update!( suspended_at: Time.now, suspension_reason: "spam", suspended_until: 1.week.from_now )
           # Create the token after suspension to simulate a token that was not
           # revoked by the after_save callback
@@ -342,13 +342,13 @@ describe ApplicationController do
           )
           request.env["HTTP_AUTHORIZATION"] = "Bearer #{token.token}"
           get :index, format: :json
-          expect( response.status ).to eq 403
+          expect( response.status ).to eq 401
           json = JSON.parse( response.body )
           expect( json["error"] ).to eq "suspended"
           expect( json["error_description"] ).to match( /spam/ )
         end
 
-        it "does not return 403 for a non-suspended OAuth user" do
+        it "does not return 401 for a non-suspended OAuth user" do
           token = Doorkeeper::AccessToken.create!(
             application: app,
             resource_owner_id: user.id,

@@ -52,7 +52,7 @@ class ProviderOauthController < ApplicationController
       }
       return
     rescue INat::Auth::SuspendedError => e
-      return render status: :forbidden, json: {
+      return render status: :unauthorized, json: {
         error: "suspended",
         error_description: e.message.presence || t( :this_user_has_been_suspended )
       }
