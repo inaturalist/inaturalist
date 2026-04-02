@@ -1153,6 +1153,8 @@ eu:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_lose_ignore_policies: |
     Ez ditu Arduradunen Gidako politikak kontuan hatzen.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Komisarioaren gida
   curators_changed_for_x_html: "%{x}-(e)rako administrariak aldatuta"
   curators: Administratzaileak
   curators_can_remove_observations_from: Administratzaileek behaketak ken ditzakete proiektutik eta identifikazioak zenbait ikuspegitan azaltzen dira (erreferentzia gisa). Gainera, proiektuko ilundutako koordenatuak edo koordenatu pribatuak ikus ditzakete.
@@ -1303,6 +1305,9 @@ eu:
     Nematodoak aztertzen al dituzu? Lanpernen taxonomian munduko adituena al zara? Lore politei soilik gustatzen al zaizu begiratzea? Profila osatzeak nortasuna ematen dizu eta zure sinesgarritasuna indartzen du, beste batzuei identifikazioekin laguntzen diezunean.
   doesnt_have_default_photo: oraindik ez duzu lehenetsitako argazkirik.
   doh_something_went_wrong: Zerbait ez da ondo atera.
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DOHAINTZA
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Dohaintza
   done: Eginda
@@ -1527,6 +1532,8 @@ eu:
   geoprivacy: Geopribatutasuna
   georeferenced: Geolokalizazioa?
   get_started: Hasi
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Erabiltzen hastea
   getting_started_guide: Erabiltzen hasteko gida
   global_names: Izen globalak
   globally: Globalki
@@ -1660,6 +1667,7 @@ eu:
     IHi espezie mailan. Identifikazioarekin ados ez dauden edo
     ohar gehigarririk ba ote duten.
   insects: intsektuak
+  instagram: Instagram
   introduced: sartu zuen
   #Error message shown when a date format is invalid
   invalid_date: Baliorik gabeko data
@@ -1667,6 +1675,7 @@ eu:
   invite_people: Gonbidatu jendea
   is_not_following_anyone: Ez zara inor jarraitzen ari
   is_this_place_a_duplicate: Leku hau bikoiztuta al dago?
+  jobs: Lanpostuak
   join: Bat egin
   join_project: Proiektu honekin bat egin
   join_this_project: gehitu behar duzu.
@@ -2287,6 +2296,7 @@ eu:
   powered_by: 'Honek garatua:'
   powered_by_inaturalist_open_source_software_html: 'Kode irekiko softwareak garatua <a href="https://github.com/inaturalist/inaturalist" target="_new">iNaturalist</a>'
   present: bertakoa
+  press: Sakatu
   preview: Aurrebista
   preview_of_synced_observation: "Behaketaren <strong>aurrekoa</strong>.  <a href=\"%{url}\">Itzuli?</a>"
   previewing: "Aurrebistaratzen..."
@@ -2533,6 +2543,7 @@ eu:
   sizes: Tamainak
   small: txikia
   site_name_place: "Hemengo lekuak: %{site_name}"
+  site_stats: Gunearen estatistikak
   some_agree: Batzuk beren laguntza ematen dute
   some_of_those_photos_couldnt_be_saved: "Zenbait argazki ezin izan dira gorde: %{error}"
   some_other_reason: Ondoren azal dezakezun beste arrazoi bat.
@@ -2621,6 +2632,10 @@ eu:
   still_working_on_classifying_taxon: Oraindik taxon honen sailkapenean lanean ari gara. Berrikusi aurrerago.
   stop_editing: Aldaketa eten
   stop_following_user: "Honi jarraitzeari utzi: %{user}"
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Biltegi
+  store_caps: BILTEGIA
   stuff_just_added: "Gehitu berri duzuna..."
   subject_resolved_noun_html: "%{subject} ebazten du %{noun}"
   submitted: Bidalita
@@ -2649,6 +2664,7 @@ eu:
   tags_are_a_way: 'Behaketei gehi daitezkeen hitz gakoak dira etiketak, topatzen errazagoak izan daitezen.'
   take_me_flickr!: Bai, Flickr-era joan
   taxa: Taxonak
+  taxa_info: Taxonen informazioa
   taxa_needing_curation: Administrazioa behar duten taxonak
   taxa_observed: behatutako espezieak edo taldeak
   taxon: Taxona
@@ -2787,6 +2803,8 @@ eu:
   uicn_red_list_status: "NKNBko Zerrenda Gorriaren egoera"
   umbrella_projects: Aterki-proiektua
   unclassified: Sailkatu gabe
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Proiektuak ulertzea
   ungrafted_taxa: Taxonak txertatu gabe
   unique_identifier_of_this_taxon: Identifikatzaile bakarra datu-basean espezie edo talde horretarako.
   unique_observers: behatzaile bakarrak
@@ -2864,6 +2882,7 @@ eu:
   users_profile: "Honen profila: %{user}"
   value: Balioa
   values: Balioak
+  video_tutorials: Bideo-tutorialak
   view: Ikusi
   view_all: Denak ikusi
   view_all_members: Kide guztiak ikusi
