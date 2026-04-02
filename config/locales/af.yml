@@ -36,6 +36,7 @@ af:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A tot Z"
+  about: Oor
   about_conservation_status: Oor Bewaringstatus
   about_licenses: Aangaande lisensies
   #Header for a section describing taxon names
@@ -372,6 +373,8 @@ af:
   created_by: Geskep deur
   created_by_user_on_date: Geskep deur %{user} op %{date}
   created_on: Geskep op
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuratorgids
   curator_coordinate_access: Kurator koördinaat toegang
   curator_coordinate_access_desc: |
     Kurator-koördinaattoegang vir tradisionele projekte hang af van wie bygevoeg het
@@ -442,6 +445,10 @@ af:
   disagreements: Meningsverskille
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Wys waarnemings wat nie saamstem nie
+  documentation_for_developers_html: Dokumentasie vir <a href="/pages/developers">Ontwikkelaars</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: SKENK
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Skenk
   edit_observations: Redigeer waarnemings
@@ -464,6 +471,7 @@ af:
     Kies tot sewe projekte wat as skakels in die opskrif verskyn. Bywerkings
     sal verskyn nadat die bladsy verfris is.
   favorites: "Gunstelinge"
+  feedback: Terugvoer
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Lêerformaat
   #Label for the URL to a file (i.e. to a sound file, image file)
@@ -478,6 +486,8 @@ af:
   forum: Forum
   gbif: GBIF
   Genus: Genus
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Begin
   go: Gaan
   google: Google
   grid: Rooster
@@ -523,6 +533,7 @@ af:
   #Error message shown when a date format is invalid
   invalid_date: Ongeldige datum
   iphone: iPhone
+  jobs: Werksgeleenthede
   join_the_largest_group_of_naturalists_in_the_world: Sluit aan by die grootste groep natuurkundiges ter wêreld!
   journal: Joernaal
   journal_posts: Tydskrif Poste
@@ -603,6 +614,8 @@ af:
   #If a single word won't work, a symbol like "+" would be fine.
   media_and: en
   meet: Ontmoet
+  member_of_the_inaturalist_network_html: |
+    Lid van die <a href="%{url}">iNaturalist Network</a>
   merge: Kombineer
   message: Boodskap
   messages: Boodskape
@@ -669,6 +682,7 @@ af:
   of_places: plekke
   or: Of
   organisms: Organisme
+  our_blog: Ons Blog
   owner: Eienaar
   password: Wagwoord
   password_confirmation: 'Wagwoord bevestiging'
@@ -823,6 +837,8 @@ af:
   plants: plante
   position: Posisie
   posts: Plasings
+  powered_by_inaturalist_open_source_software_html: 'Aangevuur deur <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist oopbron-sagteware</a>'
+  press: Pers
   privacy: Privaatheid
   private_: Privaat
   profile: Profiel
@@ -896,6 +912,10 @@ af:
   start: Begin
   stats: Statistieke
   status: Status
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Winkel
+  store_caps: WINKEL
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Inteken
@@ -922,6 +942,8 @@ af:
   track: Baan
   'true': 'Waar'
   unblock: Deblokkeer
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Begrip van Projekte
   unknown: Onbekend
   update: Opdateer
   update_existing_observations_with_new_license_desc: |
