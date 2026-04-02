@@ -665,8 +665,6 @@ h2 {
   }
 }
 
-// ── Testimonials ──────────────────────────────────────────────────────────────
-
 // ── Reusable carousel ─────────────────────────────────────────────────────────
 
 .wv2-carousel {
@@ -685,7 +683,7 @@ h2 {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding: 0 30px 4px 30px;
+    padding: 0 calc(100vw / 2) 4px calc(100vw / 2);
 
     &::-webkit-scrollbar { display: none; }
   }
