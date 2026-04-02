@@ -75,17 +75,28 @@ describe ProviderOauthController do
         expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
       end
 
-      it "should not return a token for a confirmed suspended user" do
+      it "should return a 403 with suspension details for a confirmed suspended user" do
         u = create :user, email: google_response[:email], confirmed_at: Time.now
         u.suspend!
         expect( u ).to be_confirmed
         expect( u ).to be_suspended
         post :assertion, format: :json, params: assertion_params
-        expect( response ).not_to be_successful
+        expect( response.status ).to eq 403
         response_json = JSON.parse( response.body )
         expect( response_json["access_token"] ).to be_blank
-        expect( response_json["error"] ).to eq "invalid_grant"
+        expect( response_json["error"] ).to eq "suspended"
         expect( response_json["error_description"] ).not_to be_blank
+      end
+
+      it "should include suspension reason for a timed suspension" do
+        u = create :user, email: google_response[:email], confirmed_at: Time.now
+        u.update!( suspended_at: Time.now, suspension_reason: "policy violation", suspended_until: 1.week.from_now )
+        expect( u ).to be_suspended
+        post :assertion, format: :json, params: assertion_params
+        expect( response.status ).to eq 403
+        response_json = JSON.parse( response.body )
+        expect( response_json["error"] ).to eq "suspended"
+        expect( response_json["error_description"] ).to match( /policy violation/ )
       end
 
       it "should not return a token for a confirmed child without permission" do

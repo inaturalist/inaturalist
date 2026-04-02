@@ -7,11 +7,23 @@ shared_examples_for "a token creator that blocks suspended users" do
     json = JSON.parse( response.body )
     expect( json["access_token"] ).not_to be_blank
   end
-  it "should return a 400 for a suspended user" do
+  it "should return a 403 for a suspended user" do
     user.suspend!
     expect( user ).to be_suspended
     post :create, format: :json, params: default_params_for_strategy
-    expect( response.code ).to eq "400"
+    expect( response.code ).to eq "403"
+    json = JSON.parse( response.body )
+    expect( json["error"] ).to eq "suspended"
+    expect( json["error_description"] ).not_to be_blank
+  end
+  it "should include suspension details for a timed suspension" do
+    user.update!( suspended_at: Time.now, suspension_reason: "policy violation", suspended_until: 1.week.from_now )
+    expect( user ).to be_suspended
+    post :create, format: :json, params: default_params_for_strategy
+    expect( response.code ).to eq "403"
+    json = JSON.parse( response.body )
+    expect( json["error"] ).to eq "suspended"
+    expect( json["error_description"] ).to match( /policy violation/ )
   end
   it "should return a token and unsuspend a user with an expired timed suspension" do
     admin = make_admin
