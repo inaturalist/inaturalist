@@ -1233,6 +1233,8 @@ gl:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Podes ter un comportamento modelo en iNaturalist e seguir as Directrices da Comunidade. Cós poderes administrativos, vén a expectativa de que sexas un usuario exemplar de iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Guía para curadores
   curators_changed_for_x_html: "Administracións cambiadas para %{x}"
   curators: Administradores
   curators_can_remove_observations_from: Os Administradores poden quitar observacións do proxecto e as súas identificacións móstranse en certas vistas (como referencia). Ademais poden ver as coordenadas escurecidas ou privadas do proxecto.
@@ -1807,6 +1809,8 @@ gl:
   geoprivacy_is_private_desc: O Observador decidiu ocultar as coordenadas
   georeferenced: Xeolocalización?
   get_started: Comeza
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Comezando
   getting_started_guide: Cómo comezar
   #Prompt to donate money on a montly basis
   give_monthly_caps: DOA MENSUALMENTE
@@ -2023,6 +2027,7 @@ gl:
   italic_text: letra itálica
   item_flagged_notice_html: |
     Isto foi marcado como spam e xa non pode ser visto públicamente. Podes velo porque ti o creaches, ou eres un conservador da páxina. Se pensas que isto é un erro, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.<a href="%{manage_flags_path}">xestionar marcas</a>
+  jobs: Empregos
   join: '¡Únete a'
   join_and_add_an_observation_to_project_html: Únete e engade unha observación a %{project}
   join_project: Unirse a este proxecto
@@ -4350,6 +4355,7 @@ gl:
   terms: Termos
   terms_and_rules_html: "Termos & Regras"
   terms_new_users: "Os novos usuarios deben aceptar estes termos antes de unirse ao proxecto."
+  terms_service: Termos de uso
   terrain: Terreo
   text: Texto
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4527,6 +4533,8 @@ gl:
   umbrella_projects: Proxectos Paraugas
   unblock: Desbloquear
   unclassified: Sen clasificar
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Comprendendo os proxectos
   ungrafted_taxa: Taxóns sen introducir
   unhide_content: Desvelar Contido
   unhide_desc: |
