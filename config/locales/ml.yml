@@ -179,6 +179,8 @@ ml:
   creative_commons_unless_otherwise_noted: "ക്രിയേറ്റീവ് കോമൺസ്, വേറെ അടച്ചുപൊരുത്തി രേഖപ്പെടുത്തിയില്ലെങ്കിൽ."
   curate_taxa: ടാക്സ മേൽനോട്ടം ചെയ്യുക
   curate_user: ഉപയോക്താവ് മേൽനോട്ടം ചെയ്യുക
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: ക്യൂറേറ്റർ ഗൈഡ്
   curator_coordinate_access: ക്യൂറേറ്റർ കോർഡിനേറ്റ് ആക്സസ്
   curator_coordinate_access_desc: |
     പരമ്പരാഗത പ്രോജക്റ്റുകൾക്കായുള്ള ക്യൂറേറ്റർ ഏകോപന ആക്സസ് ആരാണ് ചേർത്തത് എന്നതിനെ ആശ്രയിച്ചിരിക്കുന്നു
@@ -246,8 +248,12 @@ ml:
   disagreements: അഭിപ്രായവ്യത്യാസങ്ങൾ
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: വിയോജിപ്പുള്ള ഐഡന്റിഫിക്കേഷനുകൾ ഉള്ള നിരീക്ഷണങ്ങൾ കാണിക്കുക
+  documentation_for_developers_html: ഡോക്യുമെന്റേഷൻ <a href="/pages/developers">ഡവലപ്പർമാർ</a>
   doh_something_went_wrong: അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്.
   doh_something_went_wrong_error: "അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: സംഭാവന ചെയ്യുക
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: സംഭാവന ചെയ്യുക
   donate_again_today_caps: ഇന്ന് വീണ്ടും ദാനം നൽകുക
@@ -265,7 +271,9 @@ ml:
   email_dear_user: പ്രിയപ്പെട്ട %{user},
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "ശബ്ദം അപ് ഡേറ്റ് ചെയ്യുന്നതിൽ പിശക്: %{sound_errors}"
+  explore: പര്യവേക്ഷണം ചെയ്യുക
   evidence_accurately_depicts_organism_or_scene: തെളിവുകൾ ജീവിയെയോ രംഗത്തെയോ കൃത്യമായി ചിത്രീകരിക്കുന്നു
+  facebook: ഫേസ്ബുക്ക്
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: പ്രിയപ്പെട്ടവ
   #Header for a section showing the user's favorite projects
@@ -276,6 +284,7 @@ ml:
     പേജ് പുതുക്കിയ ശേഷം ദൃശ്യമാകും.
   favorite_taxa: പ്രിയപ്പെട്ട ടാക്സ
   favorites: "പ്രിയപ്പെട്ടവ"
+  feedback: ഫീഡ്ബാക്ക്
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: ഫയല് ഫോര് മാറ്റ്
   #Label for the URL to a file (i.e. to a sound file, image file)
@@ -294,12 +303,16 @@ ml:
     tutorials: പഠന സാമഗ്രികൾ
   gbif_occurrences: GBIF സാന്നിധ്യങ്ങൾ
   Genus: ജീനസ്സ്
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: ആരംഭിക്കുന്നു
+  guides: ഗൈഡുകൾ
   header_your_observations: നിങ്ങളുടെ നിരീക്ഷണങ്ങൾ
   header_your_calendar: നിങ്ങളുടെ കലണ്ടർ
   header_your_favorites: നിങ്ങളുടെ പ്രിയപ്പെട്ടവ
   header_your_profile: നിങ്ങളുടെ പരിചയ
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "ഹെഡ്സ് അപ്: ഈ ശബ്ദം ഫ്ലാഗ് ചെയ്തു."
+  help: സഹായം
   here_are_our_top_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ നിർദ്ദേശങ്ങൾ
   here_are_our_top_species_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ സ്പീഷീസ് നിർദ്ദേശങ്ങൾ
   #verb, call to action, e.g. "Identify nature nearby"
@@ -321,8 +334,11 @@ ml:
     നിങ്ങളുടെ അഭിപ്രായത്തോട് യോജിക്കുന്ന സ്പീഷീസ്-ലെവലിന് താഴെ (ഉപജാതികളും ഇനങ്ങളും പോലെ)
     സ്പീഷീസ് ലെവൽ ഐഡി. നിങ്ങളുടെ ഐഡിയുമായി അവർ വിയോജിക്കുന്നുവെങ്കിൽ നിങ്ങളെ അറിയിക്കും അല്ലെങ്കിൽ
     അവയിൽ കൂടുതൽ പരാമർശങ്ങൾ ഉണ്ടെങ്കിൽ.
+  instagram: ഇൻസ്റ്റാഗ്രാം
   #Error message shown when a date format is invalid
   invalid_date: അസാധുവായ തീയതി
+  jobs: ജോലികൾ
+  journal_posts: ജേണൽ പോസ്റ്റുകൾ
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: പഠിക്കുക
   lexicons:
@@ -384,6 +400,8 @@ ml:
       all_observations: എല്ലാം നിരീക്ഷണം
       place_boundary: സ്ഥലത്തിന്റെ അതിരുകൾ
   meet: കണ്ടുമുട്ടുക
+  member_of_the_inaturalist_network_html: |
+    അംഗം[തിരുത്തുക] <a href="%{url}">ഐനാച്ചുറലിസ്റ്റ് നെറ്റ് വർക്ക്</a>
   momentjs:
     shortRelativeTime:
       #Short text representing 1 day in the past
@@ -454,6 +472,7 @@ ml:
     observe_panel_body_p1_global: പ്രചോദനം വേണോ? ഇവിടേക്ക് ചില ജീവികൾ നിരീക്ഷിക്കപ്പെടുന്നു...
   only_view_nearby_suggestions: മാത്രം സമീപത്ത് ഉള്ള നിർദ്ദേശങ്ങൾ കാണുക
   or: അഥവാ
+  our_blog: ഞങ്ങളുടെ ബ്ലോഗ്
   password: രഹസ്യപദം
   password_confirmation: 'രഹസ്യപദം സ്ഥിരീകരണം'
   people: ആളുകൾ
@@ -526,6 +545,7 @@ ml:
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: ഈ സ്ഥലവുമായി ബന്ധപ്പെട്ട നിരീക്ഷണങ്ങൾക്ക് ഒരു ദിവസം വരെ എടുത്തേക്കാം.
   place_must_have_a_boundary_defined: സ്ഥലത്തിന് ഒരു അതിരുകൾ നിർവചിക്കപ്പെട്ടിരിക്കണം.
+  places: സ്ഥലങ്ങൾ
   places_name:
     afghanistan: അഫ്ഗാനിസ്ഥാൻ
     china: ചൈന
@@ -552,6 +572,9 @@ ml:
   places_warning_observation_count_during_content_freeze: |
     സ്ഥലങ്ങളിൽ 10,000 നിരീക്ഷണങ്ങളിൽ കൂടുതൽ പാടില്ല.
   please_confirm_your_inat_username: "ദയവായി നിങ്ങളുടെ %{site_name} ഉപയോക്തൃനാമം സ്ഥിരീകരിക്കുക."
+  powered_by_inaturalist_open_source_software_html: 'പവർഡ് <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist ഓപ്പൺ സോഴ്സ് സോഫ്റ്റ്വെയർ</a>'
+  press: അമർത്തുക
+  privacy: സ്വകാര്യത
   profile: പരിചയ
   profile_picture: പരിചയയുടെ ചിത്രങ്ങൾ
   #A user may attempt to upload a profile picture with an unsupported content type, and this
@@ -559,6 +582,7 @@ ml:
   profile_picture_file_type: പ്രൊഫൈൽ ചിത്രം ഫയൽ തരം
   #A user who admin's a project
   project_admin: Project admin
+  projects: പ്രോജക്ടുകൾ
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -587,10 +611,13 @@ ml:
   relationships_user_settings: ബന്ധങ്ങൾ
   replace_boundary_with_kml: അതിരുകൾ KML-ൽ മാറ്റുക.
   save_settings_caps: കോമ്പിനേഷനുകൾ സംരക്ഷിക്കുക
+  search: തിരയുക
   settings: കോമ്പിനേഷനുകൾ
   short_or_abbreviated_title_for_display: പരിമിതമായ ഇടങ്ങളിൽ പ്രദർശിപ്പിക്കാൻ ഹ്രസ്വമോ ചുരുക്കിയതോ ആയ ശീർഷകങ്ങൾ. പരമാവധി 10 പ്രതീകങ്ങൾ.
   sign_in_with_provider: "%{provider} ഉപയോഗിച്ച് ലോഗിൻ ചെയ്യുക"
+  sign_up: സൈൻ അപ്പ് ചെയ്യുക
   sign_up_sentence_case: സൈൻ അപ്പ് ചെയ്യുക
+  site_stats: സൈറ്റ് സ്ഥിതിവിവരക്കണക്കുകൾ
   sites_network_your_username: |
     നിങ്ങളുടെ ഉപയോക്തൃനാമവും രഹസ്യപദവും iNaturalist Network-ന്റെ ഭാഗമായ എല്ലാ സൈറ്റുകളിലും പ്രവർത്തിക്കുന്നു. Network സൈറ്റുമായി ബന്ധപ്പെടുകയാണെങ്കിൽ, ഓരോ സൈറ്റിനെയും പിന്തുണയ്ക്കുന്ന പ്രാദേശിക സ്ഥാപനങ്ങൾ നിങ്ങളുടെ ഇമെയിൽ വിലാസത്തിലേക്ക് (പ്രവർത്തനങ്ങൾക്കായുള്ള ബന്ധം മാത്രം) കൂടാതെ നിങ്ങൾ പൊതുവാക്കുന്നതായി അവക്തമായ അല്ലെങ്കിൽ സ്വകാര്യമാക്കിയ നിരീക്ഷണങ്ങൾക്കായുള്ള യഥാർത്ഥ നിശ്ചിതാങ്കങ്ങൾക്കുമായി പ്രവേശനം നേടും.
   sorry_how_about_we_try_repeat: "ക്ഷമിക്കണം! സ്പീഷിസ് പേരുകളിൽ മറ്റെല്ലാ ഡാറ്റാബേസുകളിൽ നിങ്ങളുടെ തിരച്ചിൽ ആവർത്തിക്കാമോ? എന്തെങ്കിലും കണ്ടെത്തിയാൽ, അത് സംരക്ഷിക്കും, അപ്പോൾ അടുത്ത തവണ നിങ്ങൾക്ക് കണ്ടെത്താൻ കഴിയുന്നു."
@@ -613,14 +640,20 @@ ml:
   species_name_cap: സ്പീഷീസ് പേര്
   species_names: സ്പീഷീസ് പേരുകൾ
   still_no_luck?: ഇനി ഭാഗ്യം എങ്ങനെയുമില്ല?
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: സ്റ്റോർ
+  store_caps: സ്റ്റോർ
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: സബ് സ് ക്രൈബ്
   suggestions: നിർദ്ദേശങ്ങൾ
+  taxa_info: ടാക്സ വിവരങ്ങൾ
   taxon_map:
     gbif_occurrences: GBIF സാന്നിധ്യങ്ങൾ
   taxonomy_settings: ജൈവവർഗ്ഗീകരണശാസ്ത്രം കോമ്പിനേഷനുകൾ
   tell_the_world_a_little_about_yourself: നിങ്ങളുടെ കുറിച്ച് പറയുക
+  terms_service: ഉപയോഗ നിബന്ധനകൾ
   thank_you!: നന്ദി!
   thanks!: നന്ദി!
   thats_not_a_real_date: അത് യാഥാർത്ഥികമായ തീയതി അല്ല!
@@ -635,6 +668,8 @@ ml:
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: ട്രാക്ക്
   type_species_name: "സ്പീഷീസ് പേര് ടൈപ്പ് ചെയ്യുക"
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: പ്രോജക്ടുകൾ മനസ്സിലാക്കൽ
   update_existing_observations_with_new_license_desc: |
     ഈ ഓപ്ഷൻ തിരഞ്ഞെടുക്കുന്നത് നിങ്ങളുടെ പുതിയ ലൈസൻസ് ചോയ്സ് നിങ്ങളുടെ എല്ലാവർക്കും ബാധകമാക്കും
     നിലവിലുള്ള നിരീക്ഷണങ്ങൾ. നിങ്ങൾക്ക് ധാരാളം ഉണ്ടെങ്കിൽ ഇത് കുറച്ച് മണിക്കൂറുകൾ എടുത്തേക്കാം
@@ -681,6 +716,7 @@ ml:
   username_or_email: ഉപയോക്തൃനാമം അല്ലെങ്കിൽ ഇമെയിൽ
   username_or_user_id: ഉപയോക്തൃനാമം അല്ലെങ്കിൽ ഉപയോക്തൃ ID
   users_profile: "%{user} അവരുടെ പരിചയത്തിന്"
+  video_tutorials: വീഡിയോ ട്യൂട്ടോറിയലുകൾ
   view_license: അനുമതി കാണുക
   view_moderation_history: മോഡറേഷൻ ചരിത്രം കാണുക
   view_moderation_history_for_this_comment: ഈ അഭിപ്രായത്തിൻ്റെ മോഡറേഷൻ ചരിത്രം കാണുക
