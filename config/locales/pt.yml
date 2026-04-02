@@ -1317,6 +1317,8 @@ pt:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Você pode ser um modelo de comportamentos apropriados no iNaturalist e seguir as diretrizes da comunidade. Juntamente com os poderes curatoriais vem a expectativa de que você seja um utilizador exemplar do iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Guia do Curador
   curators_changed_for_x_html: "Curadores mudaram para %{x}"
   curators: Curadores
   curators_can_remove_observations_from: Coordenadores podem remover observações dos projetos e as identificações deles são apresentadas junto das observações dos projetos (em pontos específicos). Coordenadores também podem ver as coordenadas privadas ou contribuições ocultas neste projeto.
@@ -1483,6 +1485,9 @@ pt:
   doesnt_have_default_photo: ainda não tem uma foto pré-definida
   doh_something_went_wrong: Ups, algo correu mal.
   doh_something_went_wrong_error: "Ocorreu algo de errado: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DOAR
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Doações
   done: Concluído
@@ -1618,6 +1623,7 @@ pt:
   existing_flags: Sinalizadores existentes
   exit_full_screen: "Sair do modo de ecrã inteiro"
   examples_of_ranking_organizations: Exemplos de Organizações de Classificação
+  explore: Explorar
   export: Exportar
   export_observations: Exportar observações
   export_with_private_coordinates: Exportar com as coordenadas privadas
@@ -1632,6 +1638,7 @@ pt:
   extra_properties: Propriedades Extra
   evidence_accurately_depicts_organism_or_scene: As evidências retratam com precisão o organismo ou a cena
   evidence_of_organism: Evidência de organismo
+  facebook: Facebook
   failed_to_find_your_location: Falha ao procurar a sua localização.
   failed_to_repair_photo: "Não foi possível reparar a fotografia: %{errors}"
   failed_to_save_record: "Não foi possível gravar o registo. Por favor, tente novamente mais tarde."
@@ -1763,6 +1770,8 @@ pt:
   geoprivacy_is_private_desc: O Observador escolheu ocultar as coordenadas.
   georeferenced: Georreferenciado?
   get_started: Começar
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Começar
   getting_started_guide: Manual de introdução
   global_names: Nomes globais
   globally: Globalmente
@@ -1931,6 +1940,7 @@ pt:
   input_taxon: Introduzir táxon
   insects: insetos
   insect_life_stage: Estádios da Vida dos Insetos
+  instagram: Instagram
   interactions: Interações
   internal_server_error: Erro interno do servidor
   introduced: introduzido
@@ -1953,6 +1963,7 @@ pt:
     Isto foi sinalizado como spam e não está mais visível publicamente. Pode vê-lo porque o criou, ou você é um curador do site. Se acha que foi um erro, por favor
     <a href="mailto:%{help_email}" class="contact">contacte-nos</a>.
     <a href="%{manage_flags_path}">Gerir sinalizadores</a>
+  jobs: Empregos
   join: Participe
   join_project: Entre neste projeto
   join_the_largest_group_of_naturalists_in_the_world: Junte-se ao maior grupo de naturalistas do mundo!
@@ -3432,6 +3443,10 @@ pt:
   still_working_on_classifying_taxon: Ainda estamos a trabalhar na classificação deste táxon. Volte a verificar mais tarde
   stop_editing: Pare de Editar
   stop_testing: Parar Teste
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Loja
+  store_caps: LOJA
   submission_model_description: Quem pode adicionar observações ao seu projeto?
   submit_observations:
     one: Submeter 1 observação
@@ -3453,6 +3468,7 @@ pt:
   tagging: 'A etiquetar...'
   tags: Etiquetas
   tags_are_a_way: 'As etiquetas permitem organizar as suas observações. Por exemplo, pode marcar todas as observações de poças com a etiqueta "poças" para facilitar a sua localização posterior.'
+  taxa_info: Informação sobre Táxons
   taxa_needing_curation: Táxons que necessitam da supervisão pelo curador
   taxonomy: Taxonomia
   taxon_deleted: Táxon eliminado.
@@ -3573,6 +3589,8 @@ pt:
   uicn_red_list_status: "Estatutos da Lista Vermelha do UICNː"
   umbrella_projects: Projetos Umbrella
   unclassified: Sem classificação
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Compreender os Projetos
   unknown: Desconhecido
   unknown_error: Erro desconhecido
   unknown_rank: '(Classificação Desconhecida)'
@@ -3655,6 +3673,7 @@ pt:
   users_profile: "Perfil de %{user}"
   users_projects: "Projetos de %{user}"
   verifiable_observations_by_observation_date: Observações verificáveis por data de observação
+  video_tutorials: Tutoriais em vídeo
   view_flag: Ver sinalizador
   view_flags: Ver sinalizadores
   view_flags_for_x_html: "Ver sinalizadores para %{x}"
