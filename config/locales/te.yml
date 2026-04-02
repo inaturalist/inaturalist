@@ -2,6 +2,7 @@ te:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A నుండి Z"
+  about: గురించి
   all_updates: అన్ని నవీకరణలు
   #Label for an option to show content from any date
   any_date: ఏదైనా
@@ -12,6 +13,8 @@ te:
   artificially_generated_content: కృత్రిమంగా రూపొందించిన కంటెంట్
   artificially_generated_content_desc: కృత్రిమ మేధస్సు ద్వారా ఎక్కువగా లేదా పూర్తిగా జనరేట్ చేయబడ్డ కంటెంట్ ని కలిగి ఉంటుంది.
   casual_tooltip_html: '"అప్పుడప్పుడు" వీక్షణలు మీడియా, స్థానం లేదా తేదీలను కలిగి ఉండవు లేదా ఇతర కారణాల వల్ల అవి "పరిశోధన గ్రేడ్" లేదా "ID అవసరం" అవసరాలకు అనుగుణంగా లేవు. <a href="https://www.inaturalist.org/pages/help#qualitty">నాణ్యత గ్రేడ్‌ల గురించి మరింత తెలుసుకోండి</a>.'
+  community: కమ్యూనిటీ
+  community_guidelines: కమ్యూనిటీ మార్గదర్శకాలు
   community_taxon_matches_observation_taxon: కమ్యూనిటీ టాక్సాన్ అబ్జర్వేషన్ టాక్సాన్ తో జత అవుతుంది
   confirming_ids: ఐడిలను ధృవీకరించడం
   confirming_ids_description: |
@@ -19,6 +22,8 @@ te:
     వారికి అదనపు వ్యాఖ్యలు ఉంటే తప్ప మీతో.
   #verb, call to action, e.g. "Contribute to real science"
   contribute: సహకరించండి
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: క్యూరేటర్ గైడ్
   curator_coordinate_access: క్యూరేటర్ కోఆర్డినేట్ యాక్సెస్
   curator_coordinate_access_desc: |
     సంప్రదాయ ప్రాజెక్టులకు క్యూరేటర్ కోఆర్డినేట్ యాక్సెస్ ఎవరు జోడించారనే దానిపై ఆధారపడి ఉంటుంది
@@ -76,19 +81,31 @@ te:
   disagreements: భిన్నాభిప్రాయాలు[మార్చు
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: విభేదించే గుర్తింపులను కలిగి ఉన్న పరిశీలనలను చూపించండి
+  documentation_for_developers_html: కోసం డాక్యుమెంటేషన్ <a href="/pages/developers">డెవలపర్లు</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: విరాళం ఇవ్వండి
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: బహూకరించు
   #Title for a page to edit an announcement
   editing_announcement_x: ఎడిటింగ్ ప్రకటన %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "ధ్వనిని నవీకరించడంలో దోషం: %{sound_errors}"
+  explore: అన్వేషించండి
   evidence_accurately_depicts_organism_or_scene: సాక్ష్యం జీవి లేదా దృశ్యాన్ని ఖచ్చితంగా వర్ణిస్తుంది
+  facebook: ఫేస్ బుక్
+  feedback: అభిప్రాయం
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: ఫైల్ ఫార్మాట్
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: ఫైల్ URL
+  forum: ఫోరమ్
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: ప్రారంభించడం
+  guides: గైడ్స్
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "హెడ్స్ అప్: ఈ ధ్వని ఫ్లాగ్ చేయబడింది."
+  help: సహాయం
   hi_user: "నమస్తే %{user}"
   identify: గుర్తించండి
   identify_observations: "వీక్షణలను గుర్తించండి"
@@ -99,6 +116,9 @@ te:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: ఇన్ ఫ్రాస్పెసిటీ ఐడీలు
+  instagram: ఇన్ స్టాగ్రామ్
+  jobs: ఉద్యోగాలు
+  journal_posts: జర్నల్ పోస్ట్ లు
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: స్థానం ప్రైవేట్
   #Label shown when a location has not been entered. Originally "unknown" in
@@ -117,10 +137,14 @@ te:
   location_is_public: స్థానం పబ్లిక్
   location_is_obscured: స్థానం అస్పష్టంగా ఉంది
   location_is_private: స్థానం ప్రైవేట్
+  log_in: లాగిన్ చేయండి
   #Adjectival phrase describing state of being logged in
   logged_in: లాగిన్ చేయబడింది
   #Adjectival phrase describing state of being logged out
   logged_out: లాగ్ అవుట్ చేయబడింది
+  member_of_the_inaturalist_network_html: |
+    సభ్యుడు[మార్చు] <a href="%{url}">ఐనేచురలిస్ట్ నెట్ వర్క్</a>
+  more: మరిన్ని
   more_from_x: '%{x} నుండి మరిన్ని'
   #Label for a button or section that shows additional options
   more_options: మరిన్ని ఎంపికలు
@@ -132,8 +156,12 @@ te:
   #verb, call to action, e.g. "Observe nature nearby"
   observe: గమనించండి
   observation_fields_for_projects: ప్రాజెక్టుల కొరకు పరిశీలనా క్షేత్రాలు
+  or: లేదా
+  our_blog: మా బ్లాగ్
+  people: ప్రజలు
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: ఈ ప్రదేశానికి సంబంధించిన పరిశీలనలకు ఒక రోజు పట్టవచ్చు.
+  places: ప్రదేశాలు[మార్చు]
   places_name:
     british_indian_ocean_territory: బ్రిటిష్ ఇండియన్ ఓషన్ టెర్రిటరీ
     india: ఇండియా
@@ -152,8 +180,12 @@ te:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     ప్రదేశాలు 10,000 కంటే ఎక్కువ పరిశీలనలను కలిగి ఉండకూడదు.
+  powered_by_inaturalist_open_source_software_html: 'ద్వారా ఆధారితం <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist ఓపెన్ సోర్స్ సాఫ్ట్ వేర్</a>'
+  press: నొక్కండి
+  privacy: గోప్యత
   #A user who admin's a project
   project_admin: ప్రాజెక్ట్ అడ్మిన్
+  projects: ప్రాజెక్టులు
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -164,7 +196,10 @@ te:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: ఉపజాతులు / రకాలు / రూపం
+  search: శోధన
+  sign_up: సైన్ అప్ చేయండి
   sign_up_sentence_case: సైన్ అప్ చేయండి
+  site_stats: సైట్ గణాంకాలు
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: ధ్వని %{id}, %{attribution}
@@ -174,12 +209,20 @@ te:
     sound_hidden: ధ్వని దాచబడింది
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: దాచబడని ధ్వని
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: స్టోర్
+  store_caps: స్టోర్
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: సబ్ స్క్రైబ్
+  taxa_info: టాక్సా సమాచారం
+  terms_service: వినియోగ నిబంధనలు
   the_world: మన ప్రపంచం
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: ట్రాక్
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: ప్రాజెక్టులను అర్థం చేసుకోవడం
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: నవీకరించబడిన ధ్వని
   user_trusts_this_project_when_added_by_any: |
@@ -190,6 +233,7 @@ te:
     పరిశీలకుడి ద్వారా ప్రాజెక్టుకు.
   user_trusts_this_project_when_added_by_none: |
     దాచిన కోఆర్డినేట్ లతో ప్రాజెక్ట్ క్యూరేటర్లను యూజర్ విశ్వసించడు.
+  video_tutorials: వీడియో ట్యుటోరియల్స్
   view_more_observations_from_this_place: ఈ ప్రాంతం నుండి మరిన్ని వీక్షణలను చూడండి
   view_more_observations_of_x_project: "<nobr>%{site_name} &raquo;</nobr> వద్ద %{project} నుండి మరిన్ని వీక్షణలను చూడండి"
   we_also_support3: |
