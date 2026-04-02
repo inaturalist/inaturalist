@@ -1356,6 +1356,8 @@ uk:
   curator_application_you_should_apply_if_you_can_behave: |
     Ви можете регулювати належну поведінку на iNaturalist задля дотримання Правил спільноти. Поспіль з повноваженнями куратора очікується, що ви самі
     будете зразковим користувачем iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Путівник куратора
   curators_changed_for_x_html: "Кураторів змінено для %{x}"
   curators: Куратори
   curators_can_remove_observations_from: Куратори можуть вилучати спостереження з проєкту, а також ті їхні визначення, що відображаються разом із спостереженнями під час перегляду проєкту. Куратори також можуть бачити справжні координати для тих спостережень проєкту, які були приховані налаштуваннями приватності місцезнаходження.
@@ -1987,6 +1989,8 @@ uk:
   geoprivacy_is_private_desc: Спостерігачі вирішили приховати координати.
   georeferenced: З геоприв'язкою?
   get_started: Розпочати
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Початок
   getting_started_guide: Посібник для початківця
   #Prompt to donate money on a montly basis
   give_monthly_caps: РОБИТИ ДОНАТ ЩОМІСЯЧНО
@@ -2212,6 +2216,7 @@ uk:
     куратором сайту. Якщо вважаєте, що це помилка, будь ласка,
     <a href="mailto:%{help_email}" class="contact">зв'яжіться з нами</a>.
     <a href="%{manage_flags_path}">Керувати прапорцями</a>
+  jobs: Вакансії
   join: Долучитися
   join_and_add_an_observation_to_project_html: Долучитися і додати спостереження до проєкту %{project}
   join_project: Долучитися до цього проєкту
@@ -4645,6 +4650,7 @@ uk:
   terms: Умови
   terms_and_rules_html: "Умови &amp; Правила"
   terms_new_users: "Якщо ви додаєте умови, нові користувачі повинні погодитись з ними перед долученням до цього проєкту."
+  terms_service: Умови використання
   terrain: місцевість
   text: Текст
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4835,6 +4841,8 @@ uk:
   umbrella_projects: Парасолькові проєкти
   unblock: Розблокувати
   unclassified: Не класифіковано
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Розуміння проєктів
   ungrafted_taxa: Неприв'язані таксони
   unhide_content: Показувати вміст
   unhide_desc: |
