@@ -94,6 +94,8 @@ fa:
   are_you_sure_you_want_to_delete_this_sound?: آیا مطمئن هستید که می خواهید این صدا را حذف کنید؟
   artificially_generated_content: محتوای تولید شده مصنوعی
   artificially_generated_content_desc: حاوی محتوایی است که عمدتا یا به طور کامل از طریق هوش مصنوعی تولید می شود.
+  community: جامعه
+  community_guidelines: راهنمایی های جامعه
   community_taxon_matches_observation_taxon: تاکسون جامعه با تاکسون مشاهده مطابقت دارد
   confirming_ids: تایید شناسه ها
   confirming_ids_description: |
@@ -108,6 +110,8 @@ fa:
       taxon، این را روی "Near Threatened" یا بالاتر تنظیم کنید.
   #verb, call to action, e.g. "Contribute to real science"
   contribute: مشارکت
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: راهنمای کیوریتور
   curator_coordinate_access: دسترسی مختصات متصدی
   curator_coordinate_access_desc: |
     دسترسی هماهنگ کننده برای پروژه های سنتی بستگی به این دارد که چه کسی اضافه کرده است
@@ -138,31 +142,50 @@ fa:
   disagreements: اختلاف نظرها
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: مشاهداتی را نشان دهید که دارای هویت های مخالف هستند
+  documentation_for_developers_html: مستندات برای <a href="/pages/developers">توسعه دهندگان</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: اهدا کنید
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: اهدا
   #Title for a page to edit an announcement
   editing_announcement_x: اطلاعیه ویرایش %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "خطا در به روز رسانی صدا: %{sound_errors}"
+  explore: کاوش
   evidence_accurately_depicts_organism_or_scene: شواهد ارگانیسم یا صحنه را به طور دقیق به تصویر می کشد
+  facebook: فیسبوک
+  feedback: بازخورد
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: فرمت فایل
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL فایل
+  forum: انجمن
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: شروع کار
+  guides: راهنماها
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "سر بالا: این صدا پرچم گذاری شده است."
+  help: کمک
   #verb, call to action, e.g. "Identify nature nearby"
   identify_verb: شناسایی
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: شناسه های زیرگونه ای
+  instagram: اینستاگرام
+  jobs: شغل ها
+  journal_posts: پست های ژورنال
   #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: یادگیری
+  log_in: ورود
   #Adjectival phrase describing state of being logged in
   logged_in: وارد سیستم شده اید
   #Adjectival phrase describing state of being logged out
   logged_out: از سیستم خارج شده اید
+  member_of_the_inaturalist_network_html: |
+    عضو <a href="%{url}">شبکه iNaturalist</a>
+  more: بیشتر
   #Label for a button or section that shows additional options
   more_options: گزینه های بیشتر
   #A user who is not a curator
@@ -172,8 +195,12 @@ fa:
   #verb, call to action, e.g. "Observe nature nearby"
   observe: مشاهده کن
   observation_fields_for_projects: زمینه های مشاهده برای پروژه ها
+  or: یا
+  our_blog: وبلاگ ما
+  people: افراد
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: ممکن است تا یک روز طول بکشد تا مشاهدات با این مکان مرتبط شود.
+  places: مکان ها
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     مکان ها نمی توانند بزرگتر از 700000 کیلومتر مربع باشند.
@@ -188,8 +215,12 @@ fa:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     مکان ها نمی توانند بیش از 10,000 مشاهده داشته باشند.
+  powered_by_inaturalist_open_source_software_html: 'قدرت گرفته شده توسط <a href="https://github.com/inaturalist/inaturalist" target="_new" >نرم افزار متن باز iNaturalist</a>'
+  press: مطبوعات
+  privacy: حریم خصوصی
   #A user who admin's a project
   project_admin: مدیر پروژه
+  projects: پروژه ها
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -200,7 +231,10 @@ fa:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: زیرگونه / تنوع / فرم
+  search: جستجو
+  sign_up: ثبت نام
   sign_up_sentence_case: ثبت نام کنید
+  site_stats: آمار سایت
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: صدا %{id}, %{attribution}
@@ -210,8 +244,16 @@ fa:
     sound_hidden: صدا پنهان است
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: صدا پنهان نیست
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: فروشگاه
+  store_caps: فروشگاه
+  taxa_info: اطلاعات تاکسا
+  terms_service: شرایط استفاده
   #Verb, call to action, e.g. "Track species you've seen worldwide"
   track: ردپا
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: درک پروژه ها
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: صدای به روز شده
   user_trusts_this_project_when_added_by_any: |
@@ -222,6 +264,7 @@ fa:
     به پروژه توسط ناظر.
   user_trusts_this_project_when_added_by_none: |
     کاربر به متصدیان پروژه با مختصات پنهان اعتماد ندارد.
+  video_tutorials: آموزش های ویدیویی
   we_also_support3: |
     ما همچنین از وارد کردن عکس ها از <a href="http://flickr.com">Flickr</a>.
   what: چی
