@@ -695,6 +695,11 @@ ml:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: ഞങ്ങൾ ഇത് %{rank}ൽ ആണെന്ന് ഉറപ്പാണ്
+  what: എന്താ
+  when: എപ്പോൾ
+  where: എവിടെ
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: ആരാണ്
   yir_email_with_gratitude: കൃതജ്ഞതയോടെ,
   #@vow_or_con works on %{username}. %{created_date} will use the date.long
   #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
