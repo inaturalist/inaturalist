@@ -1198,9 +1198,14 @@ a.wv2-carousel__item {
   }
 }
 
-// Needs higher specificity than Bootstrap's `.bootstrap a { background-color: transparent }`
+// Needs higher specificity than Bootstrap's `.bootstrap a` and `.bootstrap p` rules
 .bootstrap .wv2-app-banner {
   background-color: $white;
+
+  p {
+    margin: 0;
+    line-height: normal;
+  }
 }
 
 .wv2-app-banner__icon {
@@ -1228,6 +1233,10 @@ a.wv2-carousel__item {
   font-weight: 500;
   color: #000;
   margin: 0;
+
+  p {
+    margin: 0;
+  }
 }
 
 .wv2-app-banner__cta {
