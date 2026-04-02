@@ -602,6 +602,8 @@ sk:
     %{user} toto odkryl %{item} pretože "%{reason}"
   continue: Pokračovať
   continue_to_site: Pokračovať na %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Prispievajte
   contributor_cannot_be_found: Prispievateľ sa nenašiel
   contributors_to_project: "Prispievateľ do %{project}"
   controlled_term_labels:
@@ -808,6 +810,8 @@ sk:
   devise_confirmation_instructions_please_click2: |
     Kliknutím na odkaz nižšie potvrďte svoju e-mailovú adresu. Ak nepotvrdíte svoj e-mail
     nebudete môcť interagovať s obsahom iných používateľov.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Objavte
   discoveries: Objavy
   did_you_mean: 'Mali ste na mysli'
   did_you_photos_flickr?: Nahrali ste nejaké fotografie na Flickr?
@@ -1170,6 +1174,8 @@ sk:
   identify_observations: "Identifikovať pozorovania"
   identify_observations_by_these_users: Identifikovať pozorovania týmito užívateľmi
   identify_title: "Identifikovať"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifikujte sa
   identification: identifikáciu
   identification_by_user: Identifikácia užívateľa %{user}
   #Notification when an identification has been deleted
@@ -1783,6 +1789,8 @@ sk:
   obs_id_d: ID pozorovaní
   obscured: Skrytý
   obscured_or_private: skrytý alebo súkromný
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Pozorujte
   observation: Pozorovanie
   observation_: pozorovanie
   observation_added_to_the_project: "Pozorovanie pridané k projektu \"%{project}\""
@@ -2703,6 +2711,7 @@ sk:
   sign_in_with_provider: "Prihlásiť sa cez %{provider}"
   sign_out: Odhlásiť sa
   sign_up: Zaregistrovať sa
+  sign_up_sentence_case: Prihláste sa
   similar_species: Podobné druhy
   similar_taxa: Podobné taxóny
   #Journal post formatting option
@@ -2980,6 +2989,8 @@ sk:
   total_members: Celkový počet členov
   total_observations: Celkový počet pozorovaní
   total_unique_observers: Celkový počet jednotlivých pozorovateľov
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Stopa
   translated_languages: Preložené jazyky
   'true': 'Pravda'
   trending: Populárne

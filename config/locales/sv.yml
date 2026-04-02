@@ -1188,6 +1188,8 @@ sv:
     %{user} tog fram detta %{item} på grund av "%{reason}"
   continue: Fortsätt
   continue_to_site: Fortsätt till %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Bidra
   contributor_cannot_be_found: Bidragsgivare kan inte hittas
   contributors_to_project: "Bidragsgivare till %{project}"
   controlled_term_labels:
@@ -1779,6 +1781,8 @@ sv:
   devise_unlock_instructions_click_the_link: |
     Klicka på länken nedan för att låsa upp ditt konto
   devise_unlock_instructions_unlock: Lås upp ditt konto
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Upptäck
   discoveries: Upptäckter
   did_you_mean: 'Menade du'
   did_you_photos_flickr?: Har du lagt några bilder på Flickr?
@@ -2422,6 +2426,8 @@ sv:
   identify_observations: "Bestäm fynd"
   identify_observations_by_these_users: Bestäm dessa användares fynd
   identify_title: "Bestäm"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifiera
   identification: bestämning
   identification_by_user: Bestämning av %{user}
   #Notification when an identification has been deleted
@@ -3459,6 +3465,8 @@ sv:
   obscured_or_private: diffuserad eller privat
   obscured_description: |
     Publika koordinater visas som en slumpmässig punkt inom en 0,2 grader stor lat/long-cell som innehåller de exakta koordinaterna.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observera
   observation: Fynd
   observation_: fynd
   observation_accuracy_experiment_the_sample_for: "Urvalet för detta experiment har ännu inte genererats"
@@ -5046,6 +5054,7 @@ sv:
   sign_in_with_google: Logga in med Google
   sign_out: Logga ut
   sign_up: Registrera
+  sign_up_sentence_case: Anmäl dig
   similar_species: Liknande arter
   similar_taxa: Liknande taxa
   #Journal post formatting option
@@ -5813,6 +5822,8 @@ sv:
   total_observations_caps: ANTAL FYND
   total_species_observed_caps: OBSERVERADE ARTER TOTALT
   total_unique_observers: Totalt antal unika observatörer
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Spår
   translated_languages: Översatta språk
   'true': 'Sant'
   trending: Trender

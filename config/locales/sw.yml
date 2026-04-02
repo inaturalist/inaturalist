@@ -19,6 +19,8 @@ sw:
   confirming_ids_description: |
     Ukizima hii, hutaarifiwa tena kuhusu vitambulisho vinavyokubali
     na yako isipokuwa wana maoni ya ziada.
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Changia
   curator_coordinate_access: Upatikanaji wa Kuratibu wa Mtunzaji
   curator_coordinate_access_desc: |
     Curator kuratibu ufikiaji wa miradi ya jadi inategemea ni nani aliyeongeza
@@ -39,6 +41,8 @@ sw:
   devise_confirmation_instructions_please_click2: |
     Tafadhali bonyeza kiungo hapa chini ili kuthibitisha anwani yako ya barua pepe. Kama huna email yako
     Anwani, hautaweza kuingiliana na maudhui ya watumiaji wengine.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Gundua
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Kutokubaliana
@@ -63,6 +67,8 @@ sw:
   file_url: URL ya faili
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "VICHWA JUU: sauti hii imewekwa alamishwa."
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Tambua
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist ilisasisha kitambulisho kilichopendekezwa na %{user}
   #Title for a preference to control whether you receive notifications about
@@ -79,6 +85,8 @@ sw:
     ikiwa zina maoni ya ziada.
   #Error message shown when a date format is invalid
   invalid_date: Tarehe batili
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  learn: Jifunze
   #Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Zilizoorodheshwa
   #Adjective describing removal of a taxon from a list
@@ -106,6 +114,8 @@ sw:
     Kitambulisho kina maoni ya ziada.
   #A user who does not admin any projects
   non_project_admin: Msimamizi asiye wa mradi
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Angalia
   observation_fields_for_projects: Sehemu za Uchunguzi kwa Miradi
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Inaweza kuchukua hadi siku moja kwa uchunguzi kuhusishwa na mahali hapa.
@@ -138,6 +148,7 @@ sw:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: Aina ndogo / Aina / Fomu
+  sign_up_sentence_case: Jisajili
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Sauti %{id}, %{attribution}
@@ -150,6 +161,8 @@ sw:
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Kujiunga
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Njiya
   update_existing_observations_with_new_license_desc: |
     Kuchagua chaguo hili kutatumia chaguo lako jipya la leseni kwa wote wako
     uchunguzi uliopo. Hii inaweza kuchukua masaa machache ikiwa una mengi

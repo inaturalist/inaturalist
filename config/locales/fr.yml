@@ -1163,6 +1163,8 @@ fr:
     %{user} a affiché ce %{item} car «&nbsp;%{reason}&nbsp;»
   continue: Continuer
   continue_to_site: Continuer vers %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribuer
   contributor_cannot_be_found: Le collaborateur est introuvable
   contributors_to_project: "Collaborateurs à %{project}"
   controlled_term_labels:
@@ -1732,6 +1734,8 @@ fr:
   devise_unlock_instructions_click_the_link: |
     Cliquez sur le lien ci-dessous pour débloquer votre compte :
   devise_unlock_instructions_unlock: Déverrouiller votre compte
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Découvrir
   discoveries: Découvertes
   did_you_mean: 'Voulez-vous dire'
   did_you_photos_flickr?: Avez-vous mis des photos sur Flickr ?
@@ -2344,6 +2348,8 @@ fr:
   identify_observations: "Identifier les observations"
   identify_observations_by_these_users: Identifier les observations par ces utilisateurs
   identify_title: "Identifier"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifier
   identification: identification
   identification_by_user: Identification par %{user}
   #Notification when an identification has been deleted
@@ -3369,6 +3375,8 @@ fr:
   obscured_or_private: masqué ou privé
   obscured_description: |
     Les coordonnées qui sont visibles pour tout le monde sont montrées comme un point au hasard dans les 0,2 degrés de latitude/longitude contenant les vraies coordonnées.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observez
   observation: Observation
   observation_: observation
   observation_accuracy_experiment_the_sample_for: "L'échantillon pour cette expérience n'a pas encore été généré"
@@ -4928,6 +4936,7 @@ fr:
   sign_in_with_google: Connectez-vous avec Google
   sign_out: Déconnexion
   sign_up: Inscrivez-vous
+  sign_up_sentence_case: Inscrivez-vous
   similar_species: Espèces similaires
   similar_taxa: Taxons similaires
   #Journal post formatting option
@@ -5665,6 +5674,8 @@ fr:
   total_observations_caps: NOMBRE D'OBSERVATIONS
   total_species_observed_caps: NOMBRE D'ESPÈCES OBSERVÉES
   total_unique_observers: Total des observateurs uniques
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Piste
   translated_languages: Langues traduites
   'true': 'Oui'
   trending: Tendance

@@ -1283,6 +1283,8 @@ ru:
     %{user} открыл это %{item}, поскольку "%{reason}"
   continue: Продолжить
   continue_to_site: Переходим к %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Внести вклад
   contributor_cannot_be_found: Не удаётся найти поставщика данных
   contributors_to_project: "Участники %{project}"
   controlled_term_labels:
@@ -1848,6 +1850,8 @@ ru:
   devise_unlock_instructions_click_the_link: |
     Нажмите на ссылку ниже, чтобы разблокировать свой аккаунт:
   devise_unlock_instructions_unlock: Разблокировать аккаунт
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Откройте для себя
   discoveries: Открытия
   did_you_mean: 'Возможно, вы имеете в виду'
   did_you_photos_flickr?: Размещаете ли вы фото на Flickr?
@@ -2470,6 +2474,8 @@ ru:
   identify_observations: "Идентифицируйте наблюдения"
   identify_observations_by_these_users: Идентифицируйте наблюдения этих пользователей
   identify_title: "Идентифицируйте"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Идентифицировать
   identification: идентификация
   identification_by_user: Идентификация %{user}
   #Notification when an identification has been deleted
@@ -3486,6 +3492,8 @@ ru:
   obscured_or_private: скрытое или конфиденциальное
   obscured_description: |
     Публичные координаты показываются как произвольная точка, лежащая в пределах ячейки в 0,2 градуса шир/долг от истинных координат.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Наблюдать
   observation: Наблюдение
   observation_: наблюдение
   observation_accuracy_experiment_the_sample_for: "Выборка наблюдений для этого эксперимента ещё не сгенерирована"
@@ -5051,6 +5059,7 @@ ru:
   sign_in_with_google: Войти через Google
   sign_out: Выйти
   sign_up: Регистрация
+  sign_up_sentence_case: Зарегистрируйтесь
   similar_species: Аналогичные виды
   similar_taxa: Похожие таксоны
   #Journal post formatting option
@@ -5818,6 +5827,8 @@ ru:
   total_observations_caps: ВСЕГО НАБЛЮДЕНИЙ
   total_species_observed_caps: ВСЕГО НАБЛЮДАЕМЫХ ВИДОВ
   total_unique_observers: Итого уникальных наблюдателей
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: След
   translated_languages: Переведенные языки
   'true': 'Да'
   trending: Анализ тенденций

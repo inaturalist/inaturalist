@@ -1244,6 +1244,8 @@ he:
     %{user} חשף %{item} זה בגלל %{reason}
   continue: להמשיך
   continue_to_site: להמשיך ל%{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: תרומה
   contributor_cannot_be_found: לא ניתן למצוא את התורמים
   contributors_to_project: "התורמים ל%{project}"
   controlled_term_labels:
@@ -1808,6 +1810,8 @@ he:
   devise_unlock_instructions_click_the_link: |
     יש ללחוץ על הקישור מטה כדי לפתוח את חשבונך
   devise_unlock_instructions_unlock: ביטול נעילת החשבון שלך
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: גלה
   discoveries: תגליות
   did_you_mean: 'האם התכוונת ל'
   did_you_photos_flickr?: האם העלית תמונות ל Flickr?
@@ -2422,6 +2426,8 @@ he:
   identify_observations: "זיהוי תצפיות"
   identify_observations_by_these_users: זיהוי תצפיות של המשתמשים הבאים
   identify_title: "זיהוי"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: זיהוי
   identification: זיהוי
   identification_by_user: זיהוי על ידי %{user}
   #Notification when an identification has been deleted
@@ -3436,6 +3442,8 @@ he:
   obscured_or_private: מוסתר או פרטי
   obscured_description: |
     קואורדינטות גלויות מוצגות כנקודה אקראית בתוך תא של 0.2x0.2 מעלות אורך/רוחב שמכיל את הקואורדינטות האמיתיות
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: התבונן
   observation: תצפית
   observation_: תצפית
   observation_accuracy_experiment_the_sample_for: "הדגימה עבור ניסוי זה עוד לא יוצרה"
@@ -4993,6 +5001,7 @@ he:
   sign_in_with_google: כניסה באמצעות חשבון גוגל
   sign_out: התנתקות
   sign_up: הרשמה
+  sign_up_sentence_case: הירשמו
   similar_species: מינים דומים
   similar_taxa: טקסונים דומים
   #Journal post formatting option
@@ -5745,6 +5754,8 @@ he:
   total_observations_caps: סה"כ תצפיות
   total_species_observed_caps: סה"כ מינים שנצפו
   total_unique_observers: סה"כ מתצפתים יחודיים
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: מסלול
   translated_languages: שפות מתורגמות
   'true': 'נכון'
   trending: טרנדיים

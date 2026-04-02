@@ -1082,6 +1082,8 @@ nb:
     %{item} gjort synlig igjen av %{user} fordi "%{reason}"
   continue: Fortsett
   continue_to_site: Fortsett til %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Bidra
   contributor_cannot_be_found: Finner ikke bidragsyteren
   contributors_to_project: "Bidragsytere til %{project}"
   controlled_term_labels:
@@ -1584,6 +1586,8 @@ nb:
   devise_unlock_instructions_click_the_link: |
     Klikk på linken nedenfor for å låse opp din konto
   devise_unlock_instructions_unlock: Lås opp kontoen din
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Oppdag
   discoveries: Oppdagelser
   did_you_mean: 'Mente du'
   did_you_photos_flickr?: Har du lagt noen bilder på Flickr?
@@ -2162,6 +2166,8 @@ nb:
   identify_observations: "Identifiser observasjoner"
   identify_observations_by_these_users: Identifiser observasjoner av disse brukere
   identify_title: "Identifiser"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifiser
   identification: identifikasjon
   identification_by_user: Identifikasjon av %{user}
   #Notification when an identification has been deleted
@@ -3155,6 +3161,8 @@ nb:
   obscured_or_private: tilslørt eller privat
   obscured_description: |
     Offentlige koordinater vist som et vilkårlig punkt innen den 0,2 graders høyde/bredde ruten som inneholder de egentlige koordinatene.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Se på
   observation: Observasjon
   observation_: observasjon
   observation_accuracy_experiment_the_sample_for: "Prøven til dette eksperimentet har ikke blitt generert ennå"
@@ -4589,6 +4597,7 @@ nb:
   sign_in_with_google: Logg inn med Google
   sign_out: Logg ut
   sign_up: Register
+  sign_up_sentence_case: Meld deg på
   similar_species: Lignende arter
   similar_taxa: Lignende taksa
   #Journal post formatting option
@@ -5224,6 +5233,8 @@ nb:
   total_observations_caps: ANTALL OBSERVASJONER
   total_species_observed_caps: ANTALL ARTER OBSERVERT
   total_unique_observers: Samlet antall unike observatører
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Spor
   translated_languages: Oversatte språk
   'true': 'Sant'
   trending: Populær

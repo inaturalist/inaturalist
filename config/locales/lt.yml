@@ -1049,6 +1049,8 @@ lt:
     %{user} nebeslepia %{item}, nes „%{reason}“
   continue: Tęsti
   continue_to_site: Tęsti į %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Prisidėti
   contributor_cannot_be_found: Įnašai negali būti rasti
   contributors_to_project: "%{project} įnašai"
   controlled_term_labels:
@@ -1388,6 +1390,8 @@ lt:
   devise_reset_password_instructions_your_password_wont_change_until: |
     Jūsų slaptažodis nepasikeis tol, kol nesukursite naujo paspausite aukščiau esančią nuorodą.
   devise_unlock_instructions_unlock: Atblokuoti paskyrą
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Atraskite
   discoveries: Atradimai
   did_you_mean: 'Ar turėjote omenyje'
   did_you_photos_flickr?: Ar įkėlėte nuotraukų į Flickr?
@@ -1840,6 +1844,8 @@ lt:
   identify_observations: "Identifikuoti stebėjimus"
   identify_observations_by_these_users: Identifikuoti šių vartotojų stebėjimus
   identify_title: "Identifikuoti"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifikuoti
   identification: identifikaciją
   identification_by_user: Identifikuota %{user}
   #Notification when an identification has been deleted
@@ -2547,6 +2553,8 @@ lt:
   obs_id_d: Stb ID
   obscured: Paslėptas
   obscured_or_private: paslėptas arba privatus
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Stebėti
   observation: Stebėjimas
   observation_: stebėjimas
   observation_added_to_the_project: "Stebėjimas pridėtas prie šio projekto \"%{project}\""
@@ -3616,6 +3624,7 @@ lt:
   sign_in_with_google: Prisijungti su Google paskyra
   sign_out: Atsijungti
   sign_up: Registruotis
+  sign_up_sentence_case: Užsiregistruoti, užsiregistruok
   similar_species: Panašios rūšys
   similar_taxa: Panašūs taksonai
   #Journal post formatting option
@@ -4046,6 +4055,8 @@ lt:
   total_observations_caps: IŠ VISO STEBĖJIMŲ
   total_species_observed_caps: IŠ VISO STEBĖTA RŪŠIŲ
   total_unique_observers: Iš viso skirtingų stebėtojų
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Sekti
   translated_languages: Išverstos kalbos
   'true': 'Taip'
   trending: Populiariausia

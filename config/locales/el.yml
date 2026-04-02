@@ -933,6 +933,8 @@ el:
     Ο %{user} ξαναεμφάνισε το %{item} διότι %{reason}
   continue: Συνέχεια
   continue_to_site: Συνεχίστε στο %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Συνεισφέρετε
   contributor_cannot_be_found: ο συντάκτης δεν μπορεί να βρεθεί
   contributors_to_project: "Συνεισφέροντες στο %{project}"
   controlled_term_labels:
@@ -1328,6 +1330,8 @@ el:
   devise_unlock_instructions_click_the_link: |
     Κάντε κλικ στον παρακάτω σύνδεσμο για να ξεκλειδώσετε το λογαριασμό σας
   devise_unlock_instructions_unlock: Ξεκλειδώστε Το Λογαριασμό Σας
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Ανακαλύψτε
   discoveries: Ανακαλύψεις
   did_you_mean: 'Μήπως εννοείτε'
   did_you_photos_flickr?: Έχετε βάλει κάποια φωτογραφία στο Flickr;
@@ -1811,6 +1815,8 @@ el:
   identify_observations: "Ταυτοποιήστε Παρατηρήσεις"
   identify_observations_by_these_users: Ταυτοποιήστε Παρατηρήσεις Αυτών των Χρηστών
   identify_title: "Ταυτοποιήστε"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Προσδιορίστε
   identification: ταυτοποίηση
   identification_by_user: Ταυτοποίηση από %{user}
   #Notification when an identification has been deleted
@@ -2581,6 +2587,8 @@ el:
   obscured_or_private: αποκρύφτηκε ή είναι απόρρητο
   obscured_description: |
     Οι δημόσιες συντεταγμένες φαίνονται σαν ένα αυθαίρετο σημείο μέσα στο κελί των 0.2 βαθμών Γεωγρ. πλάτους και μήκους που περιέχει τις πραγματικές συντεταγμένες.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Παρατηρώ
   observation: Παρατήρηση
   observation_: παρατήρηση
   observation_added_to_the_project: "Η Παρατήρηση προστέθηκε στο πρότζεκτ \"%{project}\""
@@ -3803,6 +3811,7 @@ el:
   sign_in_with_google: Σύνδεση μέσω Google
   sign_out: Έξοδος
   sign_up: Εγγραφή
+  sign_up_sentence_case: Εγγραφή
   similar_species: Παρόμοια είδη
   similar_taxa: Παρόμοια taxa
   #Journal post formatting option
@@ -4281,6 +4290,8 @@ el:
   total_members: Συνολικά μέλη
   total_observations: Συνολικές παρατηρήσεις
   total_unique_observers: Σύνολο μοναδικών παρατηρητών
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Πίστα
   translated_languages: Μεταφρασμένες γλώσσες
   'true': 'Αληθές'
   trending: Τα πιο δημοφιλή

@@ -1081,6 +1081,8 @@ lv:
     %{user} atcēla %{item} slēpšanas funkciju, jo "%{reason}"
   continue: Turpināt
   continue_to_site: Turpināt %{site_name} tīmekļa vietnē
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Ieguldījums
   contributor_cannot_be_found: Atbalstītājs netika atrasts
   contributors_to_project: "%{project} projekta atbalstītāji"
   controlled_term_labels:
@@ -1563,6 +1565,8 @@ lv:
   devise_unlock_instructions_click_the_link: |
     Nospied uz zemāk redzamās saites, lai atbloķētu kontu.
   devise_unlock_instructions_unlock: Atbloķēt kontu
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Atklājiet
   discoveries: Atklājumi
   did_you_mean: 'Vai domāji šo?'
   did_you_photos_flickr?: Vai publicēji fotogrāfijas Flickr vietnē?
@@ -2091,6 +2095,8 @@ lv:
   identify_observations: "Identificēt novērojumus"
   identify_observations_by_these_users: Identificēt šo lietotāju novērojumus
   identify_title: "Identificēt"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificēt
   identification: ID
   identification_by_user: Lietotāja %{user} identifikācija
   #Notification when an identification has been deleted
@@ -2955,6 +2961,8 @@ lv:
   obscured_or_private: noslēpts vai privāts
   obscured_description: |
     Publiski pieejamas koordinātas, kas attēlotas, kā nejauši izvēlēts punkts 0,2 grādu rādiusā, kura robežās ir patiesās koordinātas.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Ievērot
   observation: Novērojums
   observation_: novērojums
   observation_added_to_the_project: "Novērojums pievienots \"%{project}\" projektam"
@@ -4306,6 +4314,7 @@ lv:
   sign_in_with_google: Pierakstīties ar Google
   sign_out: Izrakstīties
   sign_up: Reģistrēties
+  sign_up_sentence_case: Reģistrēties
   similar_species: Līdzīgas sugas
   similar_taxa: Līdzīgi taksoni
   #Journal post formatting option
@@ -4996,6 +5005,8 @@ lv:
   total_observations_caps: KOPĒJAIS NOVĒROJUMU SKAITS
   total_species_observed_caps: KOPĒJAIS NOVĒROTO SUGU SKAITS
   total_unique_observers: Kopējais vienīgo novērotāju skaits
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Izsekot
   translated_languages: Tulkojumu valodas
   'true': 'Jā'
   trending: Tendences
