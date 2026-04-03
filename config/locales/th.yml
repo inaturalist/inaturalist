@@ -835,7 +835,7 @@ th:
     %{user} ซ่อน%{item}นี้ เนื่องจาก "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} เลิกซ่อน%{item}นี้ เนื่องจาก "%{reason}"
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: มีส่วนร่วม
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -1120,7 +1120,7 @@ th:
     โปรดคลิกลิงก์ด้านล่างเพื่อยืนยันที่อยู่อีเมลของคุณ หากคุณไม่ยืนยันอีเมลของคุณ
     คุณจะไม่สามารถโต้ตอบกับเนื้อหาของผู้ใช้รายอื่นได้
   devise_reset_password_instructions_hello_email: สวัสดี %{email}
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: ค้นพบ
   did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
@@ -1446,7 +1446,7 @@ th:
   identify_observations: "จำแนกการสังเกต"
   identify_observations_by_these_users: จำแนกการสังเกตโดยผู้ใช้งานเหล่านี้
   identify_title: "จำแนกชนิด"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: ระบุ
   identification: การจำแนก
   identification_by_user: การจำแนกโดย %{user}
@@ -1558,7 +1558,7 @@ th:
     identifications_in_month_year: จำนวนการจำแนกสูงสุดใน%{month_year}
     identifications_in_year: จำนวนการจำแนกสูงสุดใน %{year}
   leading: เข้าใกล้คำตอบ
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: เรียนรู้
   learn_more: เรียน​รู้​เพิ่ม​เติม
   learn_more_raquo: "เรียนรู้เพิ่มเติม &raquo;"
@@ -3116,7 +3116,7 @@ th:
   total_observations: การสังเกตทั้งหมด
   total_observations_caps: การสังเกตทั้งหมด
   total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: รอย
   translated_languages: ภาษาที่แปล
   'true': 'จริง'
@@ -3317,12 +3317,15 @@ th:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: เราค่อนข้างแน่ใจว่าอยู่ใน %{rank}
+  #e.g. "What was observed?"
   what: อะไร
   what_did_you_see: คุณเห็นอะไร?
   what_did_you_see?: คุณเห็น<em>อะไร</em>?
   whats_this?: นี่คืออะไร?
+  #e.g. "When was it observed?"
   when: เมื่อ
   when_did_you_see_it?: คุณเห็นเมื่อไหร่?
+  #e.g. "Where was it observed?"
   where: ที่ไหน
   where_were_you?: คุณอยู่ที่ไหน?
   which_projects_can_add_your_observations?: อนุญาตให้ผู้อื่นเพิ่มการสังเกตของคุณเข้าโครงการแบบดั้งเดิมใดบ้าง?
@@ -3330,7 +3333,7 @@ th:
   why_are_you_making_this_change_optional: เปลี่ยนแปลงชื่อเพราะเหตุใด? (ไม่บังคับ)
   why_are_you_making_this_change_cite_source_required: โปรดอธิบายเหตุผลที่เปลี่ยนแปลงชื่อ และหากเป็นไปได้ควรอ้างอิงแหล่งที่มาด้วย (จำเป็น)
   why_you_can_see_the_coordinates: คุณมองเห็นพิกัดได้เพราะว่า
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: ใคร
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
   who_can_see_the_coordinates: ใครมองเห็นพิกัดนี้ได้บ้าง?
@@ -3339,7 +3342,7 @@ th:
   who_can_see_the_coordinates_trusted: ผู้ที่ได้รับอนุญาตจากผู้สังเกตให้มองเห็นพิกัด
   who_helped_user_the_most: "คนที่ช่วย %{user} มากที่สุด"
   who_user_helped_the_most: "คนที่ %{user} ช่วยมากที่สุด"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: ทําไม?
   why_the_coordinates_are_obscured: พิกัดนี้ถูกพรางเนื่องจาก
   with_annotation: พร้อมหมายเหตุนี้
