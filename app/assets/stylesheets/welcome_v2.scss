@@ -21,6 +21,9 @@ $font-serif:   "Libre Baskerville", "Noto Serif", Georgia, serif;
 $font-sans:    "Lato", sans-serif;
 $font-mono:    "Courier Prime", "Courier New", monospace;
 
+// Match sticky footer spacer to the negative margin so no dead zone appears
+#bodywrapper:after { height: 196px; }
+
 
 // ── Header overwrites, incorporate into main header styles once ready ────────
 
