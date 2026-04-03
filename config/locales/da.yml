@@ -1197,7 +1197,7 @@ da:
     %{user} valgte af vise %{item} igen fordi "%{reason}"
   continue: Fortsæt
   continue_to_site: Fortsæt til %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Bidrag
   contributor_cannot_be_found: Bidragsyder findes ikke
   contributors_to_project: "Bidragsydere til %{project}"
@@ -1792,7 +1792,7 @@ da:
   devise_unlock_instructions_click_the_link: |
     Klik på linket nedenfor, for at oplåse din konto:
   devise_unlock_instructions_unlock: Oplås din konto
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Opdag
   discoveries: Opdagelser
   did_you_mean: 'Mente du'
@@ -2426,7 +2426,7 @@ da:
   identify_observations: "Identificér observationer"
   identify_observations_by_these_users: Identificér observationer af disse brugere
   identify_title: "Identificér"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identificér
   identification: identifikation
   identification_by_user: Identifikation af %{user}
@@ -2662,7 +2662,7 @@ da:
     identifications_in_month_year: Fleste identifikationer i %{month_year}
     identifications_in_year: Fleste identifikationer i %{year}
   leading: Førende
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Lære
   learn_about_the_species_live_in: Lær om de arter, der lever i
   learn_more: Lær mere
@@ -5868,7 +5868,7 @@ da:
   total_observations_caps: OBSERVATIONER I ALT
   total_species_observed_caps: OBSERVEREDE ARTER I ALT
   total_unique_observers: Samlet antal unikke observatører
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Spor
   translated_languages: Oversatte sprog
   'true': 'Sandt'
@@ -6285,6 +6285,7 @@ da:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Vi er ret sikre på, at dette er i %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklager, men din multiimport af %{filename} har fejlet."
+  #e.g. "What was observed?"
   what: Hvad
   what_did_you_see: Hvad observerede du?
   what_did_you_see?: <em>Hvad</em> så du?
@@ -6293,9 +6294,11 @@ da:
   what_want_to_list?: Hvad ønsker du vist?
   what_were_you_looking_for?: "Hvad ledte du efter? (målliste)"
   whats_this?: Hvad er dette?
+  #e.g. "When was it observed?"
   when: Hvornår
   when_did_you_see_it?: Hvornår observerede du den?
   when_did_you_see_them?: <em>Hvornår</em> så du dem?
+  #e.g. "Where was it observed?"
   where: Hvor
   where_were_they?: Hvor var de?
   where_were_you?: Hvor observerede du den?
@@ -6304,7 +6307,7 @@ da:
   why_are_you_making_this_change_optional: Hvorfor foretages denne ændring? (valgfrit)
   why_are_you_making_this_change_cite_source_required: Hvorfor foretages denne ændring? Forklar venligst og angiv om muligt en kilde. (Obligatorisk)
   why_you_can_see_the_coordinates: Hvorfor du kan se koordinaterne
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Hvem
   who_can_add_observation_fields_to_my_obs: Hvem kan tilføje observationsfelter til mine observationer?
   who_can_add_observations_to_this_project?: Hvem kan tilføje observationer til dette projekt?
@@ -6314,7 +6317,7 @@ da:
   who_can_see_the_coordinates_trusted: Personer som observatøren har betroet sine skjulte koordinater til
   who_helped_user_the_most: "Hvem hjalp %{user} mest"
   who_user_helped_the_most: "Hvem %{user} hjalp mest"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Hvorfor?
   why_the_coordinates_are_obscured: Hvorfor koordinaterne er sløret
   with_annotation: Med anmærkning
