@@ -1084,7 +1084,7 @@ pt:
   contain_all_descendants?: Esta checklist contém todos os representantes deste taxon que ocorrem na área?
   content_and_display: Conteúdo & Exibição
   continue: Continuar
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Contribui
   contributor_cannot_be_found: O participante não pode ser encontrado
   contributors_to_project: "Participantes em %{project}"
@@ -1456,7 +1456,7 @@ pt:
   devise_unlock_instructions_click_the_link: |
     Clique na hiperligação abaixo para desbloquear a sua conta:
   devise_unlock_instructions_unlock: Desbloquear a sua conta
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Descobrir
   discoveries: Descobertas
   did_you_mean: 'Será que quis dizer'
@@ -1852,7 +1852,7 @@ pt:
   identify: Identificar
   identify_observations: "Identificar as observações"
   identify_title: "Identificar"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identificar
   identification: Identificação
   identification_by_user: Identificação por %{user}
@@ -2007,7 +2007,7 @@ pt:
   leaderboard_for_x: "Os colaboradores mais ativos de %{x}"
   leaderboards: Colaboradores mais ativos
   leading: Principal
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre as espécies que vivem em
   learn_more: Saiba mais
@@ -3567,7 +3567,7 @@ pt:
   total_members: Número total de membros
   total_observations: Número total de observações
   total_unique_observers: Número total de observadores únicos
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Pegada
   translated_languages: Idiomas traduzidos
   'true': 'Verdadeiro'
@@ -3702,13 +3702,16 @@ pt:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Nós temos certeza que isto está em %{rank}
+  #e.g. "What was observed?"
   what: O quê
+  #e.g. "When was it observed?"
   when: Quando
+  #e.g. "Where was it observed?"
   where: Onde
   which_projects_can_add_your_observations?: Quais projetos podem adicionar suas observações?
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Quem
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Porquê?
   wondering_what_to_do_next: Seguem algumas dicas para o ajudar a começar a observar e identificar o mundo natural
   x_flagged: "%{x} sinalizado(a)"
