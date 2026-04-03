@@ -748,11 +748,11 @@ describe User do
 
   describe "inactive_message" do
     it "returns base suspension message for indefinite suspensions" do
-      user = User.make!( suspended_at: Time.zone.now, suspended_until: nil )
+      user = User.make!( suspended_at: Time.zone.now, suspended_until: nil, suspension_reason: "They were very bad" )
       user.reload
       msg = user.inactive_message
       expect( msg ).to include I18n.t( "devise.failure.user.suspended" )
-      expect( msg ).not_to include "Reason"
+      expect( msg ).not_to include "They were very bad"
     end
 
     it "includes relative duration for timed suspensions" do
