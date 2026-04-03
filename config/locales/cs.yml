@@ -1302,7 +1302,7 @@ cs:
     %{user} odkryl %{item} protože "%{reason}"
   continue: Pokračovat
   continue_to_site: Pokračovat na %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Přispívej
   contributor_cannot_be_found: Přispěvatel nebyl nalezen
   contributors_to_project: "Přispěvatelé do %{project}"
@@ -1887,7 +1887,7 @@ cs:
   devise_unlock_instructions_click_the_link: |
     Svůj účet odemknete kliknutím na odkaz níže
   devise_unlock_instructions_unlock: Odemknout účet
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Objevte
   discoveries: Objevy
   did_you_mean: 'Mysleli jste'
@@ -2515,7 +2515,7 @@ cs:
   identify_observations: "Identifikovat pozorování"
   identify_observations_by_these_users: Identifikace pozorování těmito uživateli
   identify_title: "Identifikovat"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifikovat
   identification: identifikace
   identification_by_user: Identifikace uživatelem %{user}
@@ -2755,7 +2755,7 @@ cs:
     identifications_in_month_year: Nejvíce identifikací v %{month_year}
     identifications_in_year: Nejvíce identifikací v %{year}
   leading: Nejlepší
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Učit se
   learn_about_the_species_live_in: Naučte se o druzích, které žijí v
   learn_more: Více informací
@@ -5935,7 +5935,7 @@ cs:
   total_observations_caps: CELKEM POZOROVÁNÍ
   total_species_observed_caps: CELKEM POZOROVÁNO DRUHŮ
   total_unique_observers: Celkový počet jednotlivých pozorovatelů
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Dráha
   translated_languages: Přeložené jazyky
   'true': 'Pravda'
@@ -6357,6 +6357,7 @@ cs:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Jsme si celkem jistí, že toto je v %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Omlouváme se, ale váš hromadný import z %{filename} se nezdařil."
+  #e.g. "What was observed?"
   what: Co
   what_did_you_see: Co jste viděli?
   what_did_you_see?: <em>Co</em> jste viděli?
@@ -6365,9 +6366,11 @@ cs:
   what_want_to_list?: Co chcete zapsat na seznam?
   what_were_you_looking_for?: "Co jste hledali? (cílový seznam)"
   whats_this?: Co je to?
+  #e.g. "When was it observed?"
   when: Kdy
   when_did_you_see_it?: Kdy jste to viděli?
   when_did_you_see_them?: <em>Kdy</em> jste je viděli?
+  #e.g. "Where was it observed?"
   where: Kde
   where_were_they?: Kde byli?
   where_were_you?: Kde jste byli?
@@ -6376,7 +6379,7 @@ cs:
   why_are_you_making_this_change_optional: Proč provádíte tuto změnu? (volitelné)
   why_are_you_making_this_change_cite_source_required: Proč provádíte tuto změnu? Vysvětlete prosím a citujte zdroj, pokud je to možné. (Požadované)
   why_you_can_see_the_coordinates: Proč můžete vidět souřadnice
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Kdo
   who_can_add_observation_fields_to_my_obs: Kdo může přidat pole pozorování do mých pozorování?
   who_can_add_observations_to_this_project?: Kdo může přidávat pozorování k vašemu projektu?
@@ -6386,7 +6389,7 @@ cs:
   who_can_see_the_coordinates_trusted: Jednotlivci, kterým pozorovatel důvěřoval, se svými skrytými souřadnicemi
   who_helped_user_the_most: "Kdo uživateli %{user} nejvíce pomohl"
   who_user_helped_the_most: "Komu uživatel %{user} nejvíce pomohl"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Proč?
   why_the_coordinates_are_obscured: Proč jsou souřadnice přibližné
   with_annotation: S anotací
