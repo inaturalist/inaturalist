@@ -777,6 +777,8 @@ h2 {
     display: flex;
     gap: 15px;
     align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
   }
 
   .wv2-testimonial__avatar {
@@ -812,6 +814,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  text-align: center;
 }
 
 .wv2-everyone__point {
@@ -824,6 +827,13 @@ h2 {
     margin-bottom: 10px;
 
     @media (max-width: 767px) { font-size: 20px; }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+
+      &:hover { opacity: 0.7; }
+    }
   }
 
   p {

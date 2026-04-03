@@ -26,6 +26,7 @@
     .wv2-hero__content
       %h1= t("#{s}.hero.headline")
       %p.wv2-hero__sub= t("#{s}.hero.subheadline")
+      // TODO: add UTM code
       = link_to t("#{s}.hero.cta_join"), signup_path, class: "btn wv2-btn--white btn-lg"
       %p.wv2-hero__tagline= t("#{s}.hero.tagline")
 
@@ -33,7 +34,7 @@
   .wv2-section.wv2-section--light.text-center
     %h2= t("#{s}.features.intro")
     .wv2-features
-      - [[:identify, "identify_desc"], [:track, "track_desc"], [:discover, "discover_desc"], [:contribute, "contribute_desc"], [:learn, "learn_desc"]].each do |label_key, desc_key|
+      - [[:identify_verb, "identify_desc"], [:track, "track_desc"], [:discover, "discover_desc"], [:contribute, "contribute_desc"], [:learn, "learn_desc"]].each do |label_key, desc_key|
         .wv2-feature
           = image_tag "welcome_v2/#{label_key}.svg", class: "wv2-feature__icon", alt: ""
           %h3= t(label_key)
@@ -150,9 +151,8 @@
                 .wv2-testimonial
                   .wv2-testimonial__quote
                     %p= t("#{s}.testimonials.#{key}_quote")
-                  .wv2-testimonial__byline
-                    = link_to person[:people_path], target: "_blank", rel: "noopener" do
-                      = image_tag "welcome_v2/testimonial_#{key}.webp", class: "wv2-testimonial__avatar", alt: person[:name]
+                  = link_to person[:people_path], class: "wv2-testimonial__byline", target: "_blank", rel: "noopener" do
+                    = image_tag "welcome_v2/testimonial_#{key}.webp", class: "wv2-testimonial__avatar", alt: person[:name]
                     %div
                       %p.wv2-testimonial__name= person[:name]
                       %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
@@ -172,7 +172,7 @@
         %h3= t("#{s}.everyone.impact_heading")
         %p= t("#{s}.everyone.impact_body")
       .wv2-everyone__point
-        %h3= t("#{s}.everyone.community_heading")
+        %h3= link_to t("#{s}.everyone.community_heading"), "https://www.sfgate.com/local/article/inaturalist-app-bay-area-22092747.php", target: "_blank", rel: "noopener"
         %p= t("#{s}.everyone.community_body")
 
   -# ── App download ──────────────────────────────────────────
@@ -254,6 +254,7 @@
   .wv2-section.wv2-section--white.wv2-section--spacious.text-center
     %p.wv2-donate__headline= t("#{s}.donate.heading")
     %p= t("#{s}.donate.subheading")
+    // TODO: add UTM code
     = link_to t("#{s}.donate.cta"), donate_path, class: "btn wv2-btn--green"
 
   -# ── FAQ ───────────────────────────────────────────────────
