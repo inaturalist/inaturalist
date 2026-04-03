@@ -1889,8 +1889,13 @@ en:
         Please check your email and click the link in the email you received
         to confirm your account.
       user:
+        # Error message displayed when a suspended user logs in, telling them their account has been suspended.
         suspended: Your account has been suspended.
+        # Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        # with a variable containing relative time (e.g. 1 day, 1 week.)
         suspended_until: "Your suspension will be lifted in %{until}."
+        # Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        # an arbitrary string.
         suspension_reason: "Reason: %{reason}"
       # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid:
@@ -6466,6 +6471,7 @@ en:
     The observer has chosen to trust you with the hidden coordinates of all
     their observations.
   user_updated_an_observation_field_html: '%{user} updated a value for "%{field_name}" on an observation by %{owner}'
+  # An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Your account has been unsuspended"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
   username: Username
@@ -8505,8 +8511,11 @@ en:
             iNaturalist.org.
           </p>
       user_unsuspended:
+        # A line in an email telling a user their account suspension is being lifted lifted.
         message: Your account on %{site_name} has been unsuspended and you can use the site again.
+        # A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Your account was suspended for the following reason: %{reason}"
+        # A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Log in to your account</a> to continue using the site.'
       users_updates_suspended:
         message: |
