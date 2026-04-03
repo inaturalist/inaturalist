@@ -14,6 +14,10 @@ module BuildTestUser
 
   Result = Struct.new( :success, :message, :user, :details, keyword_init: true )
 
+  def self.enabled?
+    CONFIG.build_test_user_enabled == true
+  end
+
   def self.build_user( *args, login: nil, password: nil, observations_count: nil,
                        identifications_for_others_count: nil )
     if args.length == 1 && args.first.is_a?( Hash )
@@ -23,6 +27,13 @@ module BuildTestUser
       observations_count = payload[:observations_count]
       identifications_for_others_count = payload[:identifications_for_others_count]
     end
+
+    unless enabled?
+      message = "Build test user is disabled by configuration"
+      update_progress( login, status: "failed", progress: 100, message: message ) if login.present?
+      return Result.new( success: false, message: message )
+    end
+
     raise ArgumentError, "login is required" if login.blank?
     raise ArgumentError, "password is required" if password.blank?
     raise ArgumentError, "observations_count is required" if observations_count.nil?
@@ -236,6 +247,10 @@ module BuildTestUser
   end
 
   def self.apply_updates( target_user_id:, update_action:, count: )
+    unless enabled?
+      return Result.new( success: false, message: "Build test user updates are disabled by configuration" )
+    end
+
     target_user = User.find_by_id( target_user_id )
     unless target_user
       return Result.new( success: false, message: "Please select a valid user" )

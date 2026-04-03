@@ -88,7 +88,7 @@ class AdminController < ApplicationController
   end
 
   def build_test_users
-    @staging_enabled = staging_environment?
+    @build_test_user_enabled = build_test_user_enabled?
     @test_group_name = BuildTestUser::TEST_GROUP_NAME
     @test_group_users = User.
       where( "test_groups LIKE ?", "%#{@test_group_name}%" ).
@@ -103,8 +103,8 @@ class AdminController < ApplicationController
   end
 
   def build_test_user
-    unless staging_environment?
-      flash[:error] = "Test user creation is only allowed on staging"
+    unless build_test_user_enabled?
+      flash[:error] = "Test user creation is disabled by configuration"
       return redirect_back_or_default( build_test_users_admin_path )
     end
 
@@ -147,8 +147,8 @@ class AdminController < ApplicationController
   end
 
   def build_test_user_updates
-    unless staging_environment?
-      flash[:error] = "Test user updates are only allowed on staging"
+    unless build_test_user_enabled?
+      flash[:error] = "Test user updates are disabled by configuration"
       return redirect_back_or_default( build_test_users_admin_path )
     end
 
@@ -167,8 +167,8 @@ class AdminController < ApplicationController
 
   private
 
-  def staging_environment?
-    request.host.to_s.include?( "staging" )
+  def build_test_user_enabled?
+    BuildTestUser.enabled?
   end
 
   def user_content
