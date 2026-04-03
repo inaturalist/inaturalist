@@ -1004,7 +1004,7 @@ eu:
     %{user} erabiltzaileak %{item} hori ikusgai utzi du arrazoi honengatik: %{reason}"
   continue: Jarraitu
   continue_to_site: '%{site_name}(e)ra jarraitu'
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Ekarpena
   contributor_cannot_be_found: Ezin izan da proiektuko ekarlea topatu
   contributors_to_project: "%{project}proiektuko parte-hartzaileak: Proiektuko parte-hartzaileak"
@@ -1288,7 +1288,7 @@ eu:
     Klik egin hurrengo estekan zure helbide elektronikoa baieztatzeko. Zure posta elektronikoa baieztatzen ez baduzu
     helbidea, ezingo du beste erabiltzaile batzuen edukiarekin interaktuatu.
   devise_reset_password_instructions_hello_email: Kaixo, %{email}
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Aurkitu
   did_you_mean: 'Honi buruz ari zara?'
   did_you_photos_flickr?: Argazkiak jarri dituzu Flickr-en?
@@ -1602,7 +1602,7 @@ eu:
   identify: Identifikatu
   identify_observations: "Oharrak identifikatu"
   identify_title: "Identifikatu"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifikatu
   identification: identifikazioa
   #Notification when an identification has been deleted
@@ -1703,7 +1703,7 @@ eu:
   layout: Antolamendua
   leaderboard_for_x: "Honetako aktiboenak: %{x}"
   leaderboards: Aktiboenak
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Ikasi
   learn_about_the_species_live_in: 'Ikasi hemen bizi diren espezieei buruz:'
   learn_more: Ikasi gehiago
@@ -2788,7 +2788,7 @@ eu:
   total_members: Kideak guztira
   total_observations: Behaketak guztira
   total_unique_observers: Aparteko behatzaileak guztira
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Pista
   'true': 'Egia'
   trusted_project?: Egiaztatutako proiektua al da?
@@ -2947,21 +2947,24 @@ eu:
   welcome: Ongi etorri
   welcome_to_inat: "Ongi etorri %{site_name}-(e)ra!"
   welcome_to_x_project: "Ongi etorri %{project} proiektura"
+  #e.g. "What was observed?"
   what: Zer
   what_did_you_see: Zer ikusi zenuen?
   what_did_you_see?: <em>Zer</em> ikusi zenuen?
   what_do_you_think: Zer iruditzen zaizu
   what_to_keep: Zer mantendu
   what_want_to_list?: Zer jarri nahi duzu zerrendan?
+  #e.g. "When was it observed?"
   when: Noiz
   when_did_you_see_it?: Noiz ikusi zenuen?
   when_did_you_see_them?: <em>Noiz</em> ikusi zenituen?
+  #e.g. "Where was it observed?"
   where: Non
   where_were_they?: <em>Non</em> zeuden?
   where_were_you?: <em>Non</em> zeunden zu?
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Nork
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Zergatik?
   with_annotation: Oharrekin
   without_annotation: Oharrik gabe
