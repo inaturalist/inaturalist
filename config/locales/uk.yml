@@ -1107,7 +1107,7 @@ uk:
     %{user} розкрив цей %{item} через те, що "%{reason}"
   continue: Продовжити
   continue_to_site: Продовжити на %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Внести внесок
   contributor_cannot_be_found: Не вдалося знайти учасника
   contributors_to_project: "Учасники %{project}"
@@ -1588,7 +1588,7 @@ uk:
   devise_unlock_instructions_click_the_link: |
     Натисніть на посилання нижче, щоб розблокувати ваш обліковий запис
   devise_unlock_instructions_unlock: Розблокувати ваш обліковий запис
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Відкрийте
   discoveries: Відкриття
   did_you_mean: 'Можливо, ви мали на увазі'
@@ -2094,7 +2094,7 @@ uk:
   identify_observations: "Визначити спостереження"
   identify_observations_by_these_users: Визначити спостереження цих користувачів
   identify_title: "Визначити"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Ідентифікація
   identification: Визначення
   identification_by_user: 'Визначили: %{user}'
@@ -2282,7 +2282,7 @@ uk:
     identifications_in_month_year: Більшість визначень за %{month_year}
     identifications_in_year: Більшість визначень за %{year}
   leading: Провідна
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Ознайомитися
   learn_about_the_species_live_in: Дізнайтеся, які види живуть у
   learn_more: Дізнатися більше
@@ -4811,7 +4811,7 @@ uk:
   total_observations_caps: УСЬОГО СПОСТЕРЕЖЕНЬ
   total_species_observed_caps: УСЬОГО СПОСТЕРЕЖЕНИХ ВИДІВ
   total_unique_observers: Всього унікальних спостерігачів
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Сліди
   translated_languages: Перекладено мовами
   'true': 'Вірно'
@@ -5130,6 +5130,7 @@ uk:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Скидається на те, що це належить до %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Нам шкода, але ваш пакетний імпорт %{filename} не вдався."
+  #e.g. "What was observed?"
   what: Що
   what_did_you_see: Що ви бачили?
   what_did_you_see?: <em>Що</em> ви бачили?
@@ -5138,15 +5139,17 @@ uk:
   what_want_to_list?: Який список ви хочете укласти?
   what_were_you_looking_for?: "Що ви шукали? (цільовий список)"
   whats_this?: Що це?
+  #e.g. "When was it observed?"
   when: Коли
   when_did_you_see_it?: Коли ви це бачили?
   when_did_you_see_them?: <em>Коли</em> ви їх бачили?
+  #e.g. "Where was it observed?"
   where: Де
   where_were_they?: Де вони були?
   where_were_you?: Де ви були?
   which_projects_can_add_your_observations?: Які традиційні проєкти можуть додавати ваші спостереження?
   why_you_can_see_the_coordinates: Чому ви можете бачити координати
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Хто
   who_can_add_observation_fields_to_my_obs: Хто може додавати поля спостереження до моїх спостережень?
   who_can_add_observations_to_this_project?: Хто може додавати спостереження до цього проєкту?
@@ -5156,7 +5159,7 @@ uk:
   who_can_see_the_coordinates_trusted: Люди, яким спостерігач довірив свої приховані координати
   who_helped_user_the_most: "Хто допомагав %{user} найбільше"
   who_user_helped_the_most: "Кому %{user} допомагав найбільше"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Чому?
   why_the_coordinates_are_obscured: Чому координати розмиті?
   with_annotation: З примітками
