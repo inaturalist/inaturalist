@@ -254,7 +254,7 @@ ta:
       இந்த அந்தஸ்தால் உணர்த்தப்படுகிறது. இது புவிசார் தனியுரிமையை மீறும் "குறைந்தது
       கவலை" அல்லது கீழே, எனவே இதைப் பற்றிய அவதானிப்புகளை நீங்கள் மறைக்க விரும்பினால்
       டேக்ஸன், இதை "அருகிலுள்ள அச்சுறுத்தல்" அல்லது அதற்கு மேல் அமைக்கவும்.
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: பங்களிக்கவும்
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -318,7 +318,7 @@ ta:
   devise_confirmation_instructions_please_click2: |
     உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்த கீழேயுள்ள இணைப்பைக் கிளிக் செய்யவும். உங்கள் மின்னஞ்சலை உறுதிப்படுத்தவில்லை என்றால்
     முகவரி, பிற பயனர்களின் உள்ளடக்கத்துடன் நீங்கள் தொடர்பு கொள்ள முடியாது.
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: கண்டறியவும்
   disagree_: எதிர்மனப்படு
   #Checkbox controlling whether to show observations that have disagreeing
@@ -378,7 +378,7 @@ ta:
   heads_up_this_sound_has_been_flagged: "ஹெட்ஸ் அப்: இந்த ஒலி கொடியிடப்பட்டுள்ளது."
   help: உதவி
   help_translate!: மொழிபெயர் உதவி செய்க!
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: அடையாளம் காணவும்
   include_places: இடங்களைச் சேர்க்கவும்
   #Title for a preference to control whether you receive notifications about
@@ -393,7 +393,7 @@ ta:
   journal: இதழ்
   journal_posts: இதழ் இடுகைகள்
   labels: சிட்டைகள்
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: அறிக
   learn_more: மேலும் அறிக
   leave_a_comment: கருத்து தெரிவிக்கவும்
@@ -619,7 +619,7 @@ ta:
   the_world: நம்ம உலகம்
   the_world_is_full_of_interesting_places: |
     உலகம் அதிகமான சுவாரஸ்யமான இடங்களில் நிறைந்துள்ளது, ஒவ்வொன்றும் விசித்திரமான மற்றும் அற்புதமான உயிரினங்கள் நிறைந்துள்ளன. சில உலகத்தின் மறுபக்கம் உள்ளன, மற்றவை அடியோரத்தில் இருக்கின்றன! %{site_name} இடங்கள் உங்களுக்கு உலகம் முழுவதும் உள்ள உயிரினங்களைப் பார்வையிட அனுமதிக்கிறது. ஆராயத் தொடங்குங்கள்!
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: டிராக்
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: திட்டங்களைப் புரிந்துகொள்வது
@@ -654,12 +654,15 @@ ta:
   were_pretty_sure_this_is_in_the_order: இதுவே வரிசையில் இருக்க வாய்ப்பு
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
   were_pretty_sure_this_is_in_the_subfamily: இதுவே துணைக்குடும்பத்தில் இருக்க வாய்ப்பு
+  #e.g. "What was observed?"
   what: என்ன
+  #e.g. "When was it observed?"
   when: எப்போது
+  #e.g. "Where was it observed?"
   where: எங்கே
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: யார்
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: ஏன்?
   year_in_review: "மதிப்பாய்வில் ஆண்டு %{year}"
   year_in_review2: "மதிப்பாய்வில் ஆண்டு %{year}"
