@@ -297,7 +297,7 @@ mi:
   conservation_status_updated: I whakahou te tūnga whāomoomo
   continue: Haere tonu
   continue_to_site: Haere tonu ki %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Tāpae
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -456,7 +456,7 @@ mi:
     wāhitau, kāore e taea e koe te tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi.
   devise_confirmation_instructions_send_confirmation_email: Tukuna te īmera whakamana
   devise_reset_password_instructions_hello_email: Kia ora %{email}
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Tūhura
   disagree_: Whakahē
   #Checkbox controlling whether to show observations that have disagreeing
@@ -655,7 +655,7 @@ mi:
   id_withdrawn: Kua maunuhia te tautuhi
   identify: Tautuhitia
   identify_title: "Tautuhitia"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Tautohu
   identification: tautuhi
   identification_by_user: Tautuhi nā %{user}
@@ -706,7 +706,7 @@ mi:
   latitude_in_decimals: 'Te ahopae i roto i nga tohu-a-ira, e.g. 38.123'
   latitude_value: "Ahopae: %{latitude}"
   leading: Whakamua
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Ako
   learn_more: Akohia tonuhia
   learn_more_raquo: "Akohia tonuhia &raquo;"
@@ -1490,7 +1490,7 @@ mi:
   tos_privacy_guidelines_label: |
     Kei te whakaae au i ngā <a href="/terms" target="_blank">Tikanga whakamahi</a> me te <a href="/privacy" target="_blank">Kaupapahere tūmataiti</a>. Kua arotake au i ngā <a href="/pages/community+guidelines" target="_blank">Aratohu hapori</a>.
   total: Tapeke
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Riu
   'true': 'Pono'
   trending: Ee rōpū te haere
@@ -1604,18 +1604,21 @@ mi:
   welcome_back!: Hoki mai anō!
   welcome_to_inat: "Nau mai, haere mai ki %{site_name}!"
   welcome_to_x_project: "Nau mai, haere mai ki %{project}!"
+  #e.g. "What was observed?"
   what: He aha
   what_did_you_see: He aha i mātaki koe?
   what_do_you_think: He aha e whakaaro koe?
   what_were_you_looking_for?: "He aha i kimi koe? (tūtira ūnga)"
   whats_this?: He aha tēnei?
+  #e.g. "When was it observed?"
   when: Inawhea
   when_did_you_see_it?: Inahea?
+  #e.g. "Where was it observed?"
   where: I hea
   where_were_you?: I hea i a koe?
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Ko wai
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: He aha?
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
