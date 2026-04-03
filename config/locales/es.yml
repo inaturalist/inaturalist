@@ -1163,7 +1163,7 @@ es:
     %{user} reveló este %{item} porque «%{reason}»
   continue: Continua
   continue_to_site: Continuar a %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Contribuir
   contributor_cannot_be_found: El contribuidor no se pudo encontrar
   contributors_to_project: "Contribuyentes de %{project}"
@@ -1737,7 +1737,7 @@ es:
   devise_unlock_instructions_click_the_link: |
     Haz clic en el enlace de abajo para desbloquear tu cuenta
   devise_unlock_instructions_unlock: Desbloquear tu cuenta
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Descubre
   discoveries: Descubrimientos
   did_you_mean: '¿Te refieres a'
@@ -2361,8 +2361,10 @@ es:
   identify_observations: "Identificar observaciones"
   identify_observations_by_these_users: Identificar observaciones de estos usuarios
   identify_title: "Identificar"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identificar
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identificar
   identification: identificación
   identification_by_user: Identificación por %{user}
   #Notification when an identification has been deleted
@@ -2597,7 +2599,7 @@ es:
     identifications_in_month_year: La mayoría de las identificaciones de %{month_year}
     identifications_in_year: La mayoría de las identificaciones de %{year}
   leading: Principal
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
   learn_more: Aprende más
@@ -5672,7 +5674,7 @@ es:
   total_observations_caps: TOTAL DE OBSERVACIONES
   total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Pista
   translated_languages: Lenguajes traducidos
   'true': 'Verdadero'
@@ -6076,6 +6078,7 @@ es:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que está en el %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Lo sentimos, pero tu importación masiva de %{filename} ha fallado."
+  #e.g. "What was observed?"
   what: Qué
   what_did_you_see: '¿Qué viste?'
   what_did_you_see?: <em>¿Qué</em> viste?
@@ -6084,9 +6087,11 @@ es:
   what_want_to_list?: '¿Qué desea colocar en la lista?'
   what_were_you_looking_for?: "Qué estabas buscando? (Lista de objetivo)"
   whats_this?: '¿Qué es esto?'
+  #e.g. "When was it observed?"
   when: Cuando
   when_did_you_see_it?: '¿Cuándo lo viste?'
   when_did_you_see_them?: <em>¿Cuándo</em> los viste?
+  #e.g. "Where was it observed?"
   where: Donde
   where_were_they?: <em>¿Dónde</em> se encontraban?
   where_were_you?: <em>¿Dónde</em> estabas?
@@ -6095,7 +6100,7 @@ es:
   why_are_you_making_this_change_optional: '¿Por qué estás haciendo este cambio? (opcional)'
   why_are_you_making_this_change_cite_source_required: '¿Por qué quiere efectuar este cambio? Explíquelo y cite una fuente de ser posible. (Obligatorio)'
   why_you_can_see_the_coordinates: Por qué Puedes Ver las Coordenadas
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: '¿Quién'
   who_can_add_observation_fields_to_my_obs: '¿Quién puede añadir campos de observación a mis observaciones?'
   who_can_add_observations_to_this_project?: '¿Quiénes pueden añadir observaciones a este proyecto?'
@@ -6105,7 +6110,7 @@ es:
   who_can_see_the_coordinates_trusted: Personas en las que el observador ha confiado con sus coordenadas ocultas.
   who_helped_user_the_most: "Quién ayudó a %{user} más"
   who_user_helped_the_most: "Quien %{user} ayudó más"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: '¿Por qué?'
   why_the_coordinates_are_obscured: Por qué las Coordenadas Están Ocultas
   with_annotation: Con anotación

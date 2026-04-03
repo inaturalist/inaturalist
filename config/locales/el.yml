@@ -933,7 +933,7 @@ el:
     Ο %{user} ξαναεμφάνισε το %{item} διότι %{reason}
   continue: Συνέχεια
   continue_to_site: Συνεχίστε στο %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Συνεισφέρετε
   contributor_cannot_be_found: ο συντάκτης δεν μπορεί να βρεθεί
   contributors_to_project: "Συνεισφέροντες στο %{project}"
@@ -1332,7 +1332,7 @@ el:
   devise_unlock_instructions_click_the_link: |
     Κάντε κλικ στον παρακάτω σύνδεσμο για να ξεκλειδώσετε το λογαριασμό σας
   devise_unlock_instructions_unlock: Ξεκλειδώστε Το Λογαριασμό Σας
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Ανακαλύψτε
   discoveries: Ανακαλύψεις
   did_you_mean: 'Μήπως εννοείτε'
@@ -1819,8 +1819,10 @@ el:
   identify_observations: "Ταυτοποιήστε Παρατηρήσεις"
   identify_observations_by_these_users: Ταυτοποιήστε Παρατηρήσεις Αυτών των Χρηστών
   identify_title: "Ταυτοποιήστε"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Προσδιορίστε
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Προσδιορίστε
   identification: ταυτοποίηση
   identification_by_user: Ταυτοποίηση από %{user}
   #Notification when an identification has been deleted
@@ -2000,7 +2002,7 @@ el:
   leaderboard_for_x: "Λίστα κατάταξης για %{x}"
   leaderboards: Λίστες κατάταξης
   leading: Κορυφαίος
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Μάθετε
   learn_about_the_species_live_in: Μάθετε σχετικά με τα είδη που ζουν εκεί
   learn_more: Μάθετε περισσότερα
@@ -4295,7 +4297,7 @@ el:
   total_members: Συνολικά μέλη
   total_observations: Συνολικές παρατηρήσεις
   total_unique_observers: Σύνολο μοναδικών παρατηρητών
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Πίστα
   translated_languages: Μεταφρασμένες γλώσσες
   'true': 'Αληθές'
@@ -4618,6 +4620,7 @@ el:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Είμαστε αρκετά σίγουροι ότι αυτό ανήκει στα %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Λυπούμαστε αλλά η μαζική εισαγωγή του %{filename} έχει αποτύχει."
+  #e.g. "What was observed?"
   what: Τι
   what_did_you_see: Τι είδατε;
   what_did_you_see?: <em>Τι</em> είδατε?
@@ -4626,15 +4629,17 @@ el:
   what_want_to_list?: Τι θέλετε να κάνετε λίστα?
   what_were_you_looking_for?: "Τ ψάχνετε? (στοχευμένη λίστα)"
   whats_this?: Τι είναι αυτό;
+  #e.g. "When was it observed?"
   when: Πότε
   when_did_you_see_it?: Πότε το είδατε;
   when_did_you_see_them?: <em>Πότε</em> τα εντοπίσατε;
+  #e.g. "Where was it observed?"
   where: Πού
   where_were_they?: Πού βρίσκονταν;
   where_were_you?: Πού βρισκόσασταν;
   which_projects_can_add_your_observations?: Ποιά παραδοσιακά πρότζεκτ μπορούν να προσθέσουν τις παρατηρήσεις σας;
   why_you_can_see_the_coordinates: Γιατί Μπορείτε να Δείτε τις Συντεταγμένες
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Ποιος
   who_can_add_observation_fields_to_my_obs: Ποιος μπορεί να προσθέσει πεδία παρατήρησης στις παρατηρήσεις μου;
   who_can_add_observations_to_this_project?: Ποιος μπορεί να προσθέσει παρατηρήσεις σε αυτό πρότζεκτ;
@@ -4644,7 +4649,7 @@ el:
   who_can_see_the_coordinates_trusted: Άτομα που ο παρατηρητής τους εμπιστεύτηκε τις κρυμμένες συντεταγμένες
   who_helped_user_the_most: "Ποιος Βοήθησε το %{user} Περισσότερο"
   who_user_helped_the_most: "Ποιος %{user} Βοήθησε Περισσότερο"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Γιατί;
   why_the_coordinates_are_obscured: Γιατί δεν εμφανίζονται οι συντεταγμένες
   with_annotation: Με σχολιασμό

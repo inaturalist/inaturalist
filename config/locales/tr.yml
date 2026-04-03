@@ -1137,7 +1137,7 @@ tr:
     %{user} kullanıcısı "%{reason}" nedeniyle şunu gizlemeyi bıraktı: %{item}
   continue: Devam et
   continue_to_site: '%{site_name} sayfasına devam et'
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Katkıda bulun
   contributor_cannot_be_found: Katılımcı bulunamadı
   contributors_to_project: "%{project} katılımcıları"
@@ -1705,7 +1705,7 @@ tr:
   devise_unlock_instructions_click_the_link: |
     Hesabını etkinleştirmek için aşağıdaki bağlantıya tıkla
   devise_unlock_instructions_unlock: Hesabının Kilidini Aç
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Keşfet
   discoveries: Keşifler
   did_you_mean: 'Bunu mu demek istedin'
@@ -2317,8 +2317,10 @@ tr:
   identify_observations: "Gözlemleri Tanımla"
   identify_observations_by_these_users: Bu Kullanıcıların Gözlemlerini Tanımla
   identify_title: "Tanımla"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Tanımlama
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Tanımlama
   identification: tanımlama
   identification_by_user: '%{user} tarafından tanımlama'
   #Notification when an identification has been deleted
@@ -2548,7 +2550,7 @@ tr:
     identifications_in_month_year: '%{month_year} tarihindeki en çok tanımlama'
     identifications_in_year: '%{year} yılındaki en çok tanımlama'
   leading: Öncü
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Öğren
   learn_about_the_species_live_in: 'Burada yaşayan türler hakkında bilgi edin:'
   learn_more: Daha Çok Bilgi
@@ -5585,7 +5587,7 @@ tr:
   total_observations_caps: TOPLAM GÖZLEM
   total_species_observed_caps: GÖZLEMLENEN TOPLAM TÜR
   total_unique_observers: Toplam benzersiz gözlemci
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: İz
   translated_languages: Çevrilmiş Diller
   'true': 'Doğru'
@@ -5980,6 +5982,7 @@ tr:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Bunun %{rank} içinde olduğundan oldukça eminiz
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Üzgünüz ancak %{filename} toplu içe aktarma işlemin başarısız oldu."
+  #e.g. "What was observed?"
   what: Ne
   what_did_you_see: Ne gördün?
   what_did_you_see?: <em>Ne</em> gördün?
@@ -5988,9 +5991,11 @@ tr:
   what_want_to_list?: Ne listelemek istiyorsun?
   what_were_you_looking_for?: "Ne arıyordun? (hedef listesi)"
   whats_this?: Bu nedir?
+  #e.g. "When was it observed?"
   when: Ne zaman
   when_did_you_see_it?: Onu ne zaman gördün?
   when_did_you_see_them?: Onları <em>ne zaman</em> gördün?
+  #e.g. "Where was it observed?"
   where: Nerede
   where_were_they?: Neredeydiler?
   where_were_you?: Neredeydin?
@@ -5999,7 +6004,7 @@ tr:
   why_are_you_making_this_change_optional: Bu değişikliği neden yapıyorsunuz? (isteğe bağlı)
   why_are_you_making_this_change_cite_source_required: Neden bu değişikliği yapıyorsun? Lütfen açıkla ve mümkün ise bir kaynağa atıf yap. (Gerekli)
   why_you_can_see_the_coordinates: Koordinatları Neden Görebiliyorsun
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Kim
   who_can_add_observation_fields_to_my_obs: Gözlemlerime kimler gözlem alanı ekleyebilir?
   who_can_add_observations_to_this_project?: Bu projeye kim gözlem ekleyebilir?
@@ -6009,7 +6014,7 @@ tr:
   who_can_see_the_coordinates_trusted: Gözlemcinin gizli koordinatları konusunda güvendiği kişiler
   who_helped_user_the_most: "%{user} Kullanıcısına En Çok Yardım Edenler"
   who_user_helped_the_most: "%{user} Kullanıcısının En Çok Yardım Ettikleri"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Neden?
   why_the_coordinates_are_obscured: Koordinatlar Neden Gizlenmiş
   with_annotation: Açıklamayla

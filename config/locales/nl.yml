@@ -1181,7 +1181,7 @@ nl:
     %{user} heeft @gender{n:dit|deze} %{item} weer zichtbaar gemaakt omdat "%{reason}"
   continue: Doorgaan
   continue_to_site: Ga door naar %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Bijdragen
   contributor_cannot_be_found: Medewerker kan niet gevonden worden
   contributors_to_project: "Medewerkers aan %{project}"
@@ -1775,7 +1775,7 @@ nl:
   devise_unlock_instructions_click_the_link: |
     Klik op onderstaande link om je account te deblokkeren
   devise_unlock_instructions_unlock: Deblokkeer je account
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Ontdek
   discoveries: Ontdekkingen
   did_you_mean: 'Bedoelde u'
@@ -2407,8 +2407,10 @@ nl:
   identify_observations: "Determineer waarnemingen"
   identify_observations_by_these_users: Determineer waarnemingen van deze gebruikers
   identify_title: "Determineer"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Determineer
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identificeer
   identification: determinatie
   identification_by_user: Determinatie door %{user}
   #Notification when an identification has been deleted
@@ -2648,7 +2650,7 @@ nl:
     identifications_in_month_year: Meeste determinaties in %{month_year}
     identifications_in_year: Meeste determinaties in %{year}
   leading: Leidend
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
   learn_more: Meer informatie
@@ -5813,7 +5815,7 @@ nl:
   total_observations_caps: TOTAAL AANTAL WAARNEMINGEN
   total_species_observed_caps: TOTAAL AANTAL WAARGENOMEN SOORTEN
   total_unique_observers: Totaal aantal unieke waarnemers
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Volg
   translated_languages: Vertaalde Talen
   'true': 'Waar'
@@ -6219,6 +6221,7 @@ nl:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Het spijt ons, maar je bulkimport van %{filename} is mislukt."
+  #e.g. "What was observed?"
   what: Wat
   what_did_you_see: Wat heb je gezien?
   what_did_you_see?: <em>Wat</em> zag je?
@@ -6227,9 +6230,11 @@ nl:
   what_want_to_list?: Waar wil je een lijst van maken?
   what_were_you_looking_for?: "Waar heb je naar gezocht? (doellijst)"
   whats_this?: Wat is dit?
+  #e.g. "When was it observed?"
   when: Wanneer
   when_did_you_see_it?: Wanneer heb je het gezien??
   when_did_you_see_them?: <em>Wanneer</em> zag je hen?
+  #e.g. "Where was it observed?"
   where: Waar
   where_were_they?: Waar waren ze?
   where_were_you?: Waar was je?
@@ -6238,7 +6243,7 @@ nl:
   why_are_you_making_this_change_optional: Waarom maak je deze wijziging? (optioneel)
   why_are_you_making_this_change_cite_source_required: Waarom maakt u deze wijziging? Gelieve uit te leggen, en indien mogelijk een bron te citeren. (verplicht)
   why_you_can_see_the_coordinates: Waarom u de coördinaten kunt zien
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Wie
   who_can_add_observation_fields_to_my_obs: Wie kan waarnemingsvelden toevoegen aan mijn waarnemingen?
   who_can_add_observations_to_this_project?: Wie kan waarnemingen aan dit project toevoegen?
@@ -6248,7 +6253,7 @@ nl:
   who_can_see_the_coordinates_trusted: Individuen die de waarnemer hun verborgen coördinaten heeft toevertrouwd
   who_helped_user_the_most: "Wie bood %{user} het meeste hulp"
   who_user_helped_the_most: "Aan wie bood %{user} het meeste hulp"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Waarom?
   why_the_coordinates_are_obscured: Waarom de coördinaten worden vervaagd
   with_annotation: Met aantekening
@@ -8862,17 +8867,17 @@ nl:
             Open de app en fotografeer elke wilde plant, dier, schimmel of ander organisme — uit je buurt of waar dan ook ter wereld.
           #Step 2 description — explaining AI and community identification
           step2_body: >
-            De app stelt direct een identificatie voor, en een wereldwijde gemeenschap van natuuronderzoekers bevestigt of verfijnt dit.
+            De app stelt onmiddellijk een determinatie voor en een wereldwijde gemeenschap van naturalisten bevestigt of verfijnt.
           #Step 3 description — explaining how observations become open scientific data
           step3_body: >
-            Uw observatie wordt open data — gebruikt door wetenschappers, natuurbeschermers en onderzoekers wereldwijd.
+            Je waarneming wordt open data — en kan worden gebruikt door wetenschappers, natuurbeschermers en onderzoekers wereldwijd.
           #Explanatory note below the three steps giving the "why" behind contributing
           why_note_html: >
             De natuur verandert sneller dan ooit, dus we hebben het nodig <span class="underline">jij</span> om te helpen vastleggen wat waar leeft.
         testimonials:
           #Quote from the testimonial author (last name Gube)
           gube_quote: >
-            Het heeft me echt geholpen bij het identificeren van soorten, naast de mogelijkheid om met verschillende mensen over de hele wereld te communiceren.
+            Het heeft mij echt geholpen bij de determinatie van soorten, naast de mogelijkheid om met verschillende mensen over de hele wereld te communiceren.
           #Job title and location of the testimonial author (last name Gube)
           gube_title: Mariene natuurbeschermer en onderwaterfotograaf, Kenia
           #Quote from the testimonial author (last name Kratzer)
@@ -8966,7 +8971,7 @@ nl:
           no_knowledge_question: Moet ik weten waar ik naar kijk?
           #FAQ: whether prior knowledge is needed — answer
           no_knowledge_answer: >
-            Helemaal niet! Deel een foto, en een wereldwijde gemeenschap van natuurliefhebbers kan je helpen deze te identificeren.
+            Helemaal niet! Deel een foto en een wereldwijde gemeenschap van natuurliefhebbers kan helpen om het te determineren.
           #FAQ: whether the app is required — question
           need_app_question: Moet ik de app gebruiken?
           #FAQ: whether the app is required — answer; references both the website and mobile app

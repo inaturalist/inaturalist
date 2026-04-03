@@ -1085,7 +1085,7 @@ et:
     Kasutaja %{user} taasavalikustas objekti "%{item}" põhjusel "%{reason}"
   continue: Jätka
   continue_to_site: Mine edasi lehele %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Panustage
   contributor_cannot_be_found: Täjendajat ei leita
   contributors_to_project: "Projekti %{project} täjendajad"
@@ -1574,7 +1574,7 @@ et:
   devise_unlock_instructions_click_the_link: |
     Oma konto taasavamiseks kasuta allolevat linki
   devise_unlock_instructions_unlock: Konto taasavamine
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Avasta
   discoveries: Avastused
   did_you_mean: 'Kas mõtlesid'
@@ -2137,8 +2137,10 @@ et:
   identify_observations: "Määra vaatlusi"
   identify_observations_by_these_users: Määratle nende kasutajate vaatluseid
   identify_title: "Määra"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Tuvasta
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Tuvasta
   identification: määratlus
   identification_by_user: Kasutaja %{user} määratlus
   #Notification when an identification has been deleted
@@ -2335,7 +2337,7 @@ et:
     identifications_in_month_year: 'Enim määratlusi: %{month_year}'
     identifications_in_year: 'Enim määratlusi: %{year}'
   leading: Suunaja
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Õpi
   learn_about_the_species_live_in: Õpi liikide kohta, mis leiduvad kohas
   learn_more: Lisateave
@@ -4581,7 +4583,7 @@ et:
   total_observations: Vaatluseid kokku
   total_observations_caps: VAATLUSEID KOKKU
   total_unique_observers: Kokku erinevaid vaatlejaid
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Jälg
   translated_languages: Tõlgitud keeled
   'true': 'Tõene'
@@ -4886,6 +4888,7 @@ et:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Oleme päris kindlad, et see on kategoorias %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Meil on kahju, kuid faili %{filename} massimport kukkus läbi."
+  #e.g. "What was observed?"
   what: Mis
   what_did_you_see: Mida sa nägid?
   what_did_you_see?: <em>Mida</em> sa nägid?
@@ -4893,9 +4896,11 @@ et:
   what_to_keep: Mida alles hoida
   what_want_to_list?: Mida sa soovid lisada?
   whats_this?: Mis see on?
+  #e.g. "When was it observed?"
   when: Kunas
   when_did_you_see_it?: Kunas sa seda nägid?
   when_did_you_see_them?: <em>Kunas</em> sa neid nägid?
+  #e.g. "Where was it observed?"
   where: Kus
   where_were_they?: Kus need olid?
   where_were_you?: Kus sa olid?
@@ -4903,7 +4908,7 @@ et:
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Miks soovid seda muudatust teha? (valikuline)
   why_you_can_see_the_coordinates: Miks sa koordinaate näed
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Kes
   who_can_add_observation_fields_to_my_obs: Kes saavad lisada minu vaatlustele vaatlusvälju?
   who_can_add_observations_to_this_project?: Kes saavad sellele projektile vaatluseid lisada?
@@ -4913,7 +4918,7 @@ et:
   who_can_see_the_coordinates_trusted: Isikud, kellele vaatleja on oma peidetud koordinaate usaldanud
   who_helped_user_the_most: "Kes aitas kõige enam kasutajat %{user}"
   who_user_helped_the_most: "Keda kasutaja %{user} kõige enam abistas"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Miks?
   why_the_coordinates_are_obscured: Miks on koordinaadid varjatud
   with_annotation: Märkega

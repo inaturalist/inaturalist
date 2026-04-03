@@ -615,7 +615,7 @@ sq:
       takson, vendoseni këtë në "Afër kërcënuar" ose më lart.
   contain_all_descendants?: A përmban kjo listë të gjithë pasardhësit e këtij taxon që paraqiten këtu?
   continue: Vazhdo
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Kontribuo
   contributor_cannot_be_found: Kontribuesi nuk mund të gjendet
   contributors_to_project: "Kontribuesit në %{project}"
@@ -822,7 +822,7 @@ sq:
   devise_confirmation_instructions_please_click2: |
     Ju lutemi kliko linkun më poshtë për të konfirmuar adresën tuaj të emailit. Nëse nuk e konfirmoni emailin tuaj
     Adresa, ju nuk do të jeni në gjendje të ndërveproni me përmbajtjen e përdoruesve të tjerë.
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Zbulo
   discoveries: Zbulimet
   did_you_mean: 'Kishit në mendje'
@@ -1167,8 +1167,10 @@ sq:
   identify: Identifiko
   identify_observations: "Identifiko vëzhgimet"
   identify_title: "Identifiko"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifikoni
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identifikoni
   identification: identifikim
   identification_by_user: identifikim nga %{user}
   #Notification when an identification has been deleted
@@ -1309,7 +1311,7 @@ sq:
   leaderboard_for_x: "Fituesi per %{x}"
   leaderboards: FItuesit
   leading: Duke udhëhequr
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Mëso
   learn_about_the_species_live_in: Mëso për speciet që jetojnë në
   learn_more: Mëso më shumë
@@ -2678,7 +2680,7 @@ sq:
   the_world: Bota
   the_world_is_full_of_interesting_places: |
     Bota është e mbushur me vende interesante, çdonjëra e mbushur me forma të çuditshme dhe të mrekullueshme. Disa janë në anën tjetër të botës, ndërsa të tjera aty poshtë rrugës! Vendet e %{site_name} ju mundësojnë të kërkoni për jetën anekënd planetit. Fillo të hulumtosh!
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Pista
   try_adding_species_form: Provo te shtosh ca specje duke përdorur formularin në këtë faqe.
   type_species_name: "Shkruaj emrin e specjeve"
@@ -2726,12 +2728,15 @@ sq:
   welcome: mirë se vini
   welcome_to_inat: "Mirë se vini në %{site_name}"
   welcome_to_x_project: "Mirë se vini në %{project}"
+  #e.g. "What was observed?"
   what: Çfarë
+  #e.g. "When was it observed?"
   when: Kur
+  #e.g. "Where was it observed?"
   where: Ku
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Kush
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Pse?
   worldwide: Në mbarë botën
   your_comment_was_saved: Përmbajtja juaj u ruajt

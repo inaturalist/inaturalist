@@ -1060,7 +1060,7 @@ hu:
     %{user} újra megjelenítette %{item}t "%{reason}" miatt
   continue: Folytatás
   continue_to_site: 'Tovább ide: %{site_name}'
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Hozzájárulás
   contributor_cannot_be_found: A közreműködő nem található
   contributors_to_project: "%{project} közreműködők"
@@ -1565,7 +1565,7 @@ hu:
   devise_unlock_instructions_click_the_link: |
     Katt a linkre a fiók feloldáshoz!
   devise_unlock_instructions_unlock: Fiók zárolásának feloldása
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Fedezd fel
   discoveries: Felfedezések
   did_you_mean: 'Erre gondolsz?'
@@ -2117,8 +2117,10 @@ hu:
   identify_observations: "Megfigyelések azonosítása"
   identify_observations_by_these_users: E felhasználók megfigyeléseinek azonosítása
   identify_title: "Azonosítás"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Azonosítás
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Azonosítás
   identification: meghatározás
   identification_by_user: '%{user} meghatározásai'
   #Notification when an identification has been deleted
@@ -2326,7 +2328,7 @@ hu:
     identifications_in_month_year: Legtöbb meghatározás %{month_year} hónapban
     identifications_in_year: Legtöbb meghatározás %{year} évben
   leading: Vezető
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Tanulás
   learn_about_the_species_live_in: 'Az itt élő fajok megismerése:'
   learn_more: További információ
@@ -4957,7 +4959,7 @@ hu:
   total_observations_caps: Minden megfigyelés
   total_species_observed_caps: Minden megfigyelt faj
   total_unique_observers: Összes egyedi megfigyelő
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Nyom
   translated_languages: Célnyelv
   'true': 'Igen'
@@ -5308,14 +5310,17 @@ hu:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Nagy bizonyossággal e %{rank} tagja
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Sajnáljuk, de %{filename} tömeges importálása sikertelen."
+  #e.g. "What was observed?"
   what: Mi
   what_did_you_see: Mit láttál?
   what_did_you_see?: <em>Mit</em> láttál?
   what_do_you_think: Mire gondolsz?
   whats_this?: Mi ez?
+  #e.g. "When was it observed?"
   when: Mikor
   when_did_you_see_it?: Mikor láttad?
   when_did_you_see_them?: <em>Mikor</em> láttad?
+  #e.g. "Where was it observed?"
   where: Hol
   where_were_they?: Hol vannak?
   where_were_you?: Hol voltál?
@@ -5324,7 +5329,7 @@ hu:
   why_are_you_making_this_change_optional: Mi a módosítás oka? (opcionális)
   why_are_you_making_this_change_cite_source_required: Mi a módosítás oka? Kérjük, hogy adj magyarázatot, lehetőleg forrásmegjelöléssel. (Kötelező)
   why_you_can_see_the_coordinates: Miért láthatod a koordinátákat
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Ki
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
   who_can_add_observations_to_this_project?: Ki adhat hozzá megfigyeléseket ehhez a projekthez?
@@ -5333,7 +5338,7 @@ hu:
   who_can_see_the_coordinates_trusted: Egyének akikben a megfigyelő megbízik és számukra láthatóvá tette koordinátáit
   who_helped_user_the_most: "%{user} tőlük kapott a legtöbb segítséget"
   who_user_helped_the_most: "%{user} nekik segített a legtöbbet"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Miért?
   why_the_coordinates_are_obscured: Miért rejtettek a koordináták
   with_annotation: Attribútum

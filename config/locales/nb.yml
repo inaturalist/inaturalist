@@ -1082,7 +1082,7 @@ nb:
     %{item} gjort synlig igjen av %{user} fordi "%{reason}"
   continue: Fortsett
   continue_to_site: Fortsett til %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Bidra
   contributor_cannot_be_found: Finner ikke bidragsyteren
   contributors_to_project: "Bidragsytere til %{project}"
@@ -1586,7 +1586,7 @@ nb:
   devise_unlock_instructions_click_the_link: |
     Klikk på linken nedenfor for å låse opp din konto
   devise_unlock_instructions_unlock: Lås opp kontoen din
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Oppdag
   discoveries: Oppdagelser
   did_you_mean: 'Mente du'
@@ -2166,8 +2166,10 @@ nb:
   identify_observations: "Identifiser observasjoner"
   identify_observations_by_these_users: Identifiser observasjoner av disse brukere
   identify_title: "Identifiser"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifiser
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identifiser
   identification: identifikasjon
   identification_by_user: Identifikasjon av %{user}
   #Notification when an identification has been deleted
@@ -2397,7 +2399,7 @@ nb:
     identifications_in_month_year: Flest identifikasjoner i %{month_year}
     identifications_in_year: Flest identifikasjoner i %{year}
   leading: Leder
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Lær
   learn_about_the_species_live_in: Lær om artene som forekommer i
   learn_more: Lær mer
@@ -5233,7 +5235,7 @@ nb:
   total_observations_caps: ANTALL OBSERVASJONER
   total_species_observed_caps: ANTALL ARTER OBSERVERT
   total_unique_observers: Samlet antall unike observatører
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Spor
   translated_languages: Oversatte språk
   'true': 'Sant'
@@ -5600,6 +5602,7 @@ nb:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Vi er ganske sikker på at dette er i %{rank}@gender{n:et|en}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Beklager, men din masseimport av %{filename} mislykkes."
+  #e.g. "What was observed?"
   what: Hva
   what_did_you_see: Hva så du?
   what_did_you_see?: <em>Hva</em> så du?
@@ -5608,9 +5611,11 @@ nb:
   what_want_to_list?: Hva vil du ha på lista?
   what_were_you_looking_for?: "Hva lette du etter? (målliste)"
   whats_this?: Hva er dette?
+  #e.g. "When was it observed?"
   when: Når
   when_did_you_see_it?: Når så du den?
   when_did_you_see_them?: <em>Når</em> så du de?
+  #e.g. "Where was it observed?"
   where: Hvor
   where_were_they?: Hvor var de?
   where_were_you?: Hvor var du?
@@ -5619,7 +5624,7 @@ nb:
   why_are_you_making_this_change_optional: Hvorfor gjør du denne endringen? (valgfritt)
   why_are_you_making_this_change_cite_source_required: Hvorfor gjør du denne endringen? Vennligst forklar og siter en kilde om mulig. (Påkrevd)
   why_you_can_see_the_coordinates: Hvorfor du kan se koordinatene
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Hvem
   who_can_add_observation_fields_to_my_obs: Hvem kan legge til observasjonsfelt til mine observasjoner?
   who_can_add_observations_to_this_project?: Hvem kan legge til observasjoner til dette prosjektet?
@@ -5629,7 +5634,7 @@ nb:
   who_can_see_the_coordinates_trusted: Individer som observatøren har stolt med sine skjulte koordinater
   who_helped_user_the_most: "Hvem har hjulpet %{user} mest"
   who_user_helped_the_most: "Hvem %{user} har hjulpet mest"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Hvorfor?
   why_the_coordinates_are_obscured: Hvorfor koordinatene er tilslørt
   with_annotation: Med merknad

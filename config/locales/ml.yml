@@ -172,7 +172,7 @@ ml:
   confirming_ids_description: |
     നിങ്ങൾ ഇത് ഓഫാക്കുകയാണെങ്കിൽ, സമ്മതിക്കുന്ന ഐഡികളെക്കുറിച്ച് നിങ്ങളെ ഇനി അറിയിക്കില്ല
     അവര് ക്ക് കൂടുതല് പരാമര് ശങ്ങള് ഉണ്ടായില്ലെങ്കില് നിങ്ങളുടേതായിരിക്കും.
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: സംഭാവന ചെയ്യുക
   controlled_term_labels:
     subimago: സുബിമാഗോ
@@ -241,7 +241,7 @@ ml:
   devise_confirmation_instructions_please_click2: |
     നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കാൻ ചുവടെയുള്ള ലിങ്കിൽ ക്ലിക്കുചെയ്യുക. നിങ്ങളുടെ ഇമെയിൽ സ്ഥിരീകരിക്കുന്നില്ലെങ്കിൽ
     വിലാസം, നിങ്ങൾക്ക് മറ്റ് ഉപയോക്താക്കളുടെ ഉള്ളടക്കവുമായി സംവദിക്കാൻ കഴിയില്ല.
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: കണ്ടെത്തുക
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
@@ -315,8 +315,10 @@ ml:
   help: സഹായം
   here_are_our_top_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ നിർദ്ദേശങ്ങൾ
   here_are_our_top_species_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ സ്പീഷീസ് നിർദ്ദേശങ്ങൾ
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: തിരിച്ചറിയുക
+  #e.g. "Identify using iNaturalist"
+  identify_cta: തിരിച്ചറിയുക
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist നിർദ്ദേശിച്ച ID അപ് ഡേറ്റുചെയ് തു %{user}
   if_this_is_a_scientific_name: ഇതൊരു ശാസ്ത്രീയ നാമമാണെങ്കിൽ, ഇത് നിലവിൽ അംഗീകരിക്കപ്പെട്ടിട്ടുണ്ടോ?
@@ -339,7 +341,7 @@ ml:
   invalid_date: അസാധുവായ തീയതി
   jobs: ജോലികൾ
   journal_posts: ജേണൽ പോസ്റ്റുകൾ
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: പഠിക്കുക
   lexicons:
     japanese: ജാപ്പനീസ്
@@ -665,7 +667,7 @@ ml:
   time_zone_america_chicago: കേന്ദ്രിയ സമയം (യു. എസ്. ഒപ്പം കനഡ)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: ന്യൂസിലാൻഡ് സമയം
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: ട്രാക്ക്
   type_species_name: "സ്പീഷീസ് പേര് ടൈപ്പ് ചെയ്യുക"
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
@@ -731,12 +733,15 @@ ml:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: ഞങ്ങൾ ഇത് %{rank}ൽ ആണെന്ന് ഉറപ്പാണ്
+  #e.g. "What was observed?"
   what: എന്താ
+  #e.g. "When was it observed?"
   when: എപ്പോൾ
+  #e.g. "Where was it observed?"
   where: എവിടെ
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: ആരാണ്
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: എന്തിന്?
   yir_email_with_gratitude: കൃതജ്ഞതയോടെ,
   #@vow_or_con works on %{username}. %{created_date} will use the date.long

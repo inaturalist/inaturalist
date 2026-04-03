@@ -1076,7 +1076,7 @@ sl:
     %{user} je razkril ta %{item} zaradi "%{reason}"
   continue: Nadaljuj
   continue_to_site: Nadaljuj v %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Prispevajte
   contributor_cannot_be_found: Sodelavca ni mogoče najti
   contributors_to_project: "Sodelavci projekta %{project}"
@@ -1496,7 +1496,7 @@ sl:
   devise_unlock_instructions_click_the_link: |
     Za odklepanje svojega računa kliknite spodnjo povezavo:
   devise_unlock_instructions_unlock: Odkleni svoj račun
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Odkrijte
   discoveries: Odkritja
   did_you_mean: 'Ali ste mislili'
@@ -2027,8 +2027,10 @@ sl:
   identify_observations: "Določi opazovanja"
   identify_observations_by_these_users: Določi opazovanja teh uporabnikov
   identify_title: "Določi"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identificiraj
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identificiraj
   identification: določitev
   identification_by_user: Določitev %{user}
   #Notification when an identification has been deleted
@@ -2226,7 +2228,7 @@ sl:
     identifications_in_month_year: Največ določitev v %{month_year}
     identifications_in_year: Največ določitev v %{year}
   leading: Vodilna
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Izvedi
   learn_about_the_species_live_in: Izvedi več o vrstah, ki živijo v
   learn_more: Izvedi več
@@ -4785,7 +4787,7 @@ sl:
   total_observations_caps: VSA OPAZOVANJA
   total_species_observed_caps: VSE OPAZOVANE VRSTE
   total_unique_observers: Skupnih edinstvenih določevalcev
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Sled
   translated_languages: Prevedeni jeziki
   'true': 'Pravilno'
@@ -5122,6 +5124,7 @@ sl:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Precej prepričani smo, da pripada %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Žal, uvoz datoteke %{filename} ni uspel."
+  #e.g. "What was observed?"
   what: Kaj
   what_did_you_see: Kaj ste videli?
   what_did_you_see?: <em>Kaj</em> ste videli?
@@ -5130,9 +5133,11 @@ sl:
   what_want_to_list?: Kaj želite našteti?
   what_were_you_looking_for?: "Kaj ste iskali? (seznam ciljev)"
   whats_this?: Kaj je to?
+  #e.g. "When was it observed?"
   when: Kdaj
   when_did_you_see_it?: Kdaj ste videli?
   when_did_you_see_them?: <em>Kdaj</em> ste jih videli?
+  #e.g. "Where was it observed?"
   where: Kje
   where_were_they?: Kje so bili?
   where_were_you?: Kje ste bili?
@@ -5141,7 +5146,7 @@ sl:
   why_are_you_making_this_change_optional: Zakaj delate to spremembo? (opcijsko)
   why_are_you_making_this_change_cite_source_required: Zakaj delate to spremembo? Prosimo pojasnite in dodajte vir, če je mogoče. (Obvezno)
   why_you_can_see_the_coordinates: Zakaj lahko vidite koordinate?
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Kdo
   who_can_add_observation_fields_to_my_obs: Kdo lahko dodaja opazovalna polja mojemu opazovanju?
   who_can_add_observations_to_this_project?: Kdo lahko dodaja opazovanja temu projektu?
@@ -5151,7 +5156,7 @@ sl:
   who_can_see_the_coordinates_trusted: Posamezniki, ki jim je opazovalec zaupal z njihovimi skritimi koordinatami
   who_helped_user_the_most: "Kdo je uporabniku %{user} najbolj pomagal"
   who_user_helped_the_most: "Komu je %{user} najbolj pomagal"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Zakaj?
   why_the_coordinates_are_obscured: Zakaj so koordinate skrite
   with_annotation: Z zaznamkom
