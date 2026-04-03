@@ -702,20 +702,17 @@ describe User do
 
   describe "suspended?" do
     it "returns true when suspended_at is set and suspended_until is nil (indefinite)" do
-      user = User.make!
-      user.update_columns( suspended_at: Time.zone.now, suspended_until: nil )
+      user = User.make!( suspended_at: Time.zone.now, suspended_until: nil )
       expect( user ).to be_suspended
     end
 
     it "returns true when suspended_at is set and suspended_until is in the future" do
-      user = User.make!
-      user.update_columns( suspended_at: Time.zone.now, suspended_until: 1.day.from_now )
+      user = User.make!( suspended_at: Time.zone.now, suspended_until: 1.day.from_now )
       expect( user ).to be_suspended
     end
 
     it "returns false when suspended_at is set but suspended_until is in the past" do
-      user = User.make!
-      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      user = User.make!( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
       expect( user ).not_to be_suspended
     end
 
@@ -727,8 +724,7 @@ describe User do
 
   describe "unsuspend!" do
     it "clears suspended_until in addition to suspended_at" do
-      user = User.make!
-      user.update_columns( suspended_at: Time.zone.now, suspended_until: 7.days.from_now )
+      user = User.make!( suspended_at: Time.zone.now, suspended_until: 7.days.from_now )
       user.reload
       expect( user ).to be_suspended
       user.unsuspend!
@@ -752,8 +748,7 @@ describe User do
 
   describe "inactive_message" do
     it "returns base suspension message for indefinite suspensions" do
-      user = User.make!
-      user.update_columns( suspended_at: Time.zone.now, suspended_until: nil )
+      user = User.make!( suspended_at: Time.zone.now, suspended_until: nil )
       user.reload
       msg = user.inactive_message
       expect( msg ).to include I18n.t( "devise.failure.user.suspended" )
@@ -770,8 +765,7 @@ describe User do
     end
 
     it "includes reason for timed suspensions with a reason" do
-      user = User.make!
-      user.update_columns(
+      user = User.make!(
         suspended_at: Time.zone.now,
         suspended_until: 7.days.from_now,
         suspension_reason: "posting spam"
@@ -782,8 +776,7 @@ describe User do
     end
 
     it "does not include reason for indefinite suspensions even if one is set" do
-      user = User.make!
-      user.update_columns(
+      user = User.make!(
         suspended_at: Time.zone.now,
         suspended_until: nil,
         suspension_reason: "old reason"
@@ -803,8 +796,7 @@ describe User do
     end
 
     it "sends an unsuspended email when moderated_with is called" do
-      user = User.make!
-      user.update_columns(
+      user = User.make!(
         suspended_at: Time.zone.now,
         suspended_until: 7.days.from_now,
         suspension_reason: "spamming"
@@ -818,8 +810,7 @@ describe User do
     end
 
     it "includes reason in unsuspended email for timed suspensions" do
-      user = User.make!
-      user.update_columns(
+      user = User.make!(
         suspended_at: Time.zone.now,
         suspended_until: 7.days.from_now,
         suspension_reason: "spamming"
@@ -831,8 +822,7 @@ describe User do
     end
 
     it "does not include reason in unsuspended email for indefinite suspensions" do
-      user = User.make!
-      user.update_columns(
+      user = User.make!(
         suspended_at: Time.zone.now,
         suspended_until: nil,
         suspension_reason: "historical reason"
