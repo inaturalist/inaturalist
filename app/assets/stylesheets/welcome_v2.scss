@@ -21,6 +21,23 @@ $font-serif:   "Libre Baskerville", "Noto Serif", Georgia, serif;
 $font-sans:    "Lato", sans-serif;
 $font-mono:    "Courier Prime", "Courier New", monospace;
 
+$letter-spacing-tight: -0.03em;
+$breakpoint-mobile:    767px;
+
+%truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+%avatar-25 {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 // Match sticky footer spacer to the negative margin so no dead zone appears
 #bodywrapper:after { height: 196px; }
 
@@ -92,7 +109,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   flex-direction: column;
   align-items: center;
 
-  @media (max-width: 767px) { padding: 30px; }
+  @media (max-width: $breakpoint-mobile) { padding: 30px; }
 
   &--light { background-color: $light-bg; }
   &--white { background-color: $white; }
@@ -114,7 +131,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   letter-spacing: -0.04em;
   padding: 12px 25px;
 
-  @media (max-width: 767px) { font-size: 17px; }
+  @media (max-width: $breakpoint-mobile) { font-size: 17px; }
 }
 
 .wv2-btn--green {
@@ -175,9 +192,7 @@ $font-mono:    "Courier Prime", "Courier New", monospace;
   min-width: 0;
 
   p, em {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @extend %truncate;
     margin: 0;
     line-height: 1;
   }
@@ -201,10 +216,10 @@ h2 {
   font-weight: 700;
   font-size: 23px;
   color: $dark-gray;
-  letter-spacing: -0.03em;
+  letter-spacing: $letter-spacing-tight;
   margin-bottom: 30px;
 
-  @media (max-width: 767px) { font-size: 20px; }
+  @media (max-width: $breakpoint-mobile) { font-size: 20px; }
 }
 
 // ── Hero ─────────────────────────────────────────────────────────────────────
@@ -258,7 +273,7 @@ h2 {
     margin-left: auto;
     margin-right: auto;
 
-    @media (max-width: 767px) {
+    @media (max-width: $breakpoint-mobile) {
       font-size: 28px;
       letter-spacing: -0.56px;
     }
@@ -273,7 +288,7 @@ h2 {
     max-width: 600px;
     margin: 0 auto 25px;
 
-    @media (max-width: 767px) { font-size: 17px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 17px; }
   }
 
   .wv2-hero__tagline {
@@ -282,7 +297,7 @@ h2 {
     color: $white;
     margin-top: 20px;
 
-    @media (max-width: 767px) { font-size: 14px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 14px; }
   }
 }
 
@@ -331,11 +346,11 @@ h2 {
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     margin-bottom: 4px;
     margin-top: 0;
 
-    @media (max-width: 767px) { font-size: 18px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 18px; }
   }
 
   p {
@@ -343,10 +358,10 @@ h2 {
     font-weight: 600;
     font-size: 17px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     margin: 0;
 
-    @media (max-width: 767px) { font-size: 15px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 15px; }
   }
 }
 
@@ -360,7 +375,7 @@ h2 {
   gap: 20px;
   margin-bottom: 30px;
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
     align-items: center;
   }
@@ -372,11 +387,11 @@ h2 {
   overflow: hidden;
   border: 3px solid $border-color;
   max-width: 345px;
-  height: 345px;
+  min-height: 345px;
 
   .wv2-story__image {
     position: relative;
-    height: 66%;
+    height: 228px;
     background: $border-color center/cover no-repeat;
     display: flex;
     align-items: flex-end;
@@ -388,7 +403,7 @@ h2 {
       font-weight: 700;
       font-size: 20px;
       color: $white;
-      letter-spacing: -0.03em;
+      letter-spacing: $letter-spacing-tight;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
       margin: 0;
       padding: 0 15px;
@@ -431,7 +446,7 @@ h2 {
   margin: 0 auto;
   padding: 20px 0;
 
-  @media (max-width: 767px) { flex-direction: column; gap: 20px; }
+  @media (max-width: $breakpoint-mobile) { flex-direction: column; gap: 20px; }
 
   &__col {
     flex: 1 0 0;
@@ -457,11 +472,11 @@ h2 {
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     flex-shrink: 0;
     padding-top: 2px;
 
-    @media (max-width: 767px) { font-size: 18px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 18px; }
   }
 
   dd {
@@ -476,7 +491,7 @@ h2 {
     color: $dark-gray;
     margin: 0;
 
-    @media (max-width: 767px) { font-size: 14px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 14px; }
 
     &.wv2-observation__who {
       flex-direction: row;
@@ -487,11 +502,7 @@ h2 {
 
 
   &__avatar {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
+    @extend %avatar-25;
   }
 
   &__photo {
@@ -521,7 +532,7 @@ h2 {
   gap: 40px 20px;
   max-width: 700px;
 
-  @media (max-width: 767px) { gap: 20px 10px; }
+  @media (max-width: $breakpoint-mobile) { gap: 20px 10px; }
 }
 
 .wv2-stats__cell {
@@ -534,11 +545,11 @@ h2 {
   font-weight: 700;
   font-size: 43px;
   color: $dark-gray;
-  letter-spacing: -0.03em;
+  letter-spacing: $letter-spacing-tight;
   line-height: 1.2em;
   margin-bottom: 10px;
 
-  @media (max-width: 767px) { font-size: 30px; }
+  @media (max-width: $breakpoint-mobile) { font-size: 30px; }
 }
 
 .wv2-stat__plus {
@@ -550,10 +561,10 @@ h2 {
   font-weight: 600;
   font-size: 17px;
   color: $dark-gray;
-  letter-spacing: -0.03em;
+  letter-spacing: $letter-spacing-tight;
   margin: 0;
 
-  @media (max-width: 767px) { font-size: 15px; }
+  @media (max-width: $breakpoint-mobile) { font-size: 15px; }
 }
 
 // ── How it works ──────────────────────────────────────────────────────────────
@@ -563,7 +574,7 @@ h2 {
   gap: 60px;
   max-width: 1130px;
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
     gap: 40px;
   }
@@ -579,7 +590,7 @@ h2 {
     font-weight: 400;
     font-size: 100px;
     color: $green;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     line-height: 1;
     flex-shrink: 0;
     width: 62px;
@@ -610,10 +621,10 @@ h2 {
     font-weight: 700;
     font-size: 23px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     margin: 0;
 
-    @media (max-width: 767px) { font-size: 20px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 20px; }
   }
 
   p {
@@ -621,10 +632,10 @@ h2 {
     font-weight: 600;
     font-size: 17px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     margin: 0;
 
-    @media (max-width: 767px) { font-size: 15px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 15px; }
   }
 }
 
@@ -638,7 +649,7 @@ h2 {
   max-width: 700px;
   margin: 0 auto;
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
     text-align: center;
   }
@@ -648,11 +659,11 @@ h2 {
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     flex-shrink: 0;
     text-decoration: underline;
 
-    @media (max-width: 767px) { font-size: 18px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 18px; }
   }
 
   .wv2-why__body {
@@ -664,7 +675,7 @@ h2 {
     text-align: center;
     margin: 0;
 
-    @media (max-width: 767px) { font-size: 17px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 17px; }
   }
 }
 
@@ -797,7 +808,7 @@ h2 {
     font-weight: 700;
     font-size: 20px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     margin: 0 0 5px;
   }
 
@@ -826,10 +837,10 @@ h2 {
     font-weight: 700;
     font-size: 23px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     margin-bottom: 10px;
 
-    @media (max-width: 767px) { font-size: 20px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 20px; }
 
     a {
       color: inherit;
@@ -844,57 +855,81 @@ h2 {
     font-weight: 600;
     font-size: 17px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     margin: 0;
 
-    @media (max-width: 767px) { font-size: 15px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 15px; }
   }
+}
+
+// ── Download / Seek shared patterns ───────────────────────────────────────────
+
+%product-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+%product-section__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+%product-section__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+%product-section__images {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+
+%product-section__phone {
+  width: 300px;
+  height: auto;
+  max-width: 100%;
+}
+
+%product-section__p {
+  font-family: $font-sans;
+  font-size: 17px;
+  font-weight: 500;
+  color: $dark-gray;
+  @media (max-width: $breakpoint-mobile) { font-size: 14px; }
 }
 
 // ── Download ──────────────────────────────────────────────────────────────────
 
 .wv2-download {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
+  @extend %product-section;
 
-  @media (max-width: 767px) { flex-direction: column; gap: 30px; }
+  @media (max-width: $breakpoint-mobile) { flex-direction: column; gap: 30px; }
 
   &__copy {
+    @extend %product-section__copy;
     // flex: 0 1 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
   }
 
-  &__body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-  }
+  &__body { @extend %product-section__body; }
 
-  &__images {
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-  }
+  &__images { @extend %product-section__images; }
 
   h2 {
     font-size: 23px;
-    @media (max-width: 767px) { font-size: 20px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 20px; }
   }
 
   p {
-    font-family: $font-sans;
-    font-size: 17px;
-    font-weight: 500;
-    color: $dark-gray;
+    @extend %product-section__p;
     line-height: 1.3;
-    @media (max-width: 767px) { font-size: 14px; }
   }
 
   .wv2-download__count {
@@ -903,58 +938,28 @@ h2 {
     color: $dark-gray;
   }
 
-  .wv2-download__phone {
-    width: 300px;
-    height: auto;
-    max-width: 100%;
-  }
+  .wv2-download__phone { @extend %product-section__phone; }
 }
 
 // ── Seek ──────────────────────────────────────────────────────────────────────
 
 .wv2-seek {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
+  @extend %product-section;
 
-  @media (max-width: 767px) { flex-direction: column-reverse; gap: 30px; }
+  @media (max-width: $breakpoint-mobile) { flex-direction: column-reverse; gap: 30px; }
 
-  &__images {
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-  }
+  &__images { @extend %product-section__images; }
 
   &__copy {
+    @extend %product-section__copy;
     flex: 0 1 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
   }
 
-  &__body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-  }
+  &__body { @extend %product-section__body; }
 
-  .wv2-seek__phone {
-    width: 300px;
-    height: auto;
-    max-width: 100%;
-  }
+  .wv2-seek__phone { @extend %product-section__phone; }
 
-  p {
-    font-family: $font-sans;
-    font-size: 17px;
-    font-weight: 500;
-    color: $dark-gray;
-    @media (max-width: 767px) { font-size: 14px; }
-  }
+  p { @extend %product-section__p; }
 
   .wv2-seek__reviews {
     font-family: $font-mono;
@@ -995,29 +1000,20 @@ a.wv2-carousel__item {
   }
 
   &__avatar {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
+    @extend %avatar-25;
     background: $border-color;
-    flex-shrink: 0;
   }
 
   &__avatar-img {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
+    @extend %avatar-25;
   }
 
   &__username {
+    @extend %truncate;
     font-family: $font-sans;
     font-size: 14px;
     font-weight: 500;
     color: $dark-gray;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   &__photo {
@@ -1036,32 +1032,26 @@ a.wv2-carousel__item {
   }
 
   &__common {
+    @extend %truncate;
     font-family: $font-sans;
     font-size: 14px;
     font-weight: 500;
     color: $dark-gray;
     margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   &__sci {
+    @extend %truncate;
     font-family: $font-sans;
     font-size: 12px;
     font-weight: 500;
     font-style: italic;
     color: $dark-gray;
     margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .wv2-location span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @extend %truncate;
   }
 
 }
@@ -1089,13 +1079,13 @@ a.wv2-carousel__item {
     font-weight: 700;
     font-size: 23px;
     color: $white;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
 
-    @media (max-width: 767px) { font-size: 20px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 20px; }
   }
 
   p {
@@ -1107,7 +1097,7 @@ a.wv2-carousel__item {
     max-width: 500px;
     margin: 0 auto 20px;
 
-    @media (max-width: 767px) { font-size: 14px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 14px; }
   }
 }
 
@@ -1118,13 +1108,13 @@ a.wv2-carousel__item {
   font-weight: 700;
   font-size: 23px;
   color: $dark-gray;
-  letter-spacing: -0.03em;
+  letter-spacing: $letter-spacing-tight;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.3;
 
-  @media (max-width: 767px) { font-size: 20px; }
+  @media (max-width: $breakpoint-mobile) { font-size: 20px; }
 }
 
 // ── FAQ ───────────────────────────────────────────────────────────────────────
@@ -1134,7 +1124,7 @@ a.wv2-carousel__item {
   margin: 0 auto;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $breakpoint-mobile) {
   .wv2-faq { width: calc(100% - 40px); }
 }
 
@@ -1148,7 +1138,7 @@ a.wv2-carousel__item {
     font-weight: 700;
     font-size: 18px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     padding: 15px 0;
     cursor: pointer;
     list-style: none;
@@ -1156,7 +1146,7 @@ a.wv2-carousel__item {
     justify-content: space-between;
     align-items: center;
 
-    @media (max-width: 767px) { font-size: 16px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 16px; }
 
     &::-webkit-details-marker { display: none; }
 
@@ -1180,11 +1170,11 @@ a.wv2-carousel__item {
     font-weight: 600;
     font-size: 17px;
     color: $dark-gray;
-    letter-spacing: -0.03em;
+    letter-spacing: $letter-spacing-tight;
     padding-bottom: 15px;
     margin: 0;
 
-    @media (max-width: 767px) { font-size: 15px; }
+    @media (max-width: $breakpoint-mobile) { font-size: 15px; }
   }
 }
 

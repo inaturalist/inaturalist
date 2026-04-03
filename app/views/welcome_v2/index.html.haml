@@ -1,5 +1,4 @@
 -# ============================================================
--# Welcome v2 wireframe
 -# All t() calls use full paths: views.welcome_v2.index.<section>.<key>
 -# t(:key) for top-level shared labels (who, what, where, when, identify, etc.)
 -# ============================================================
@@ -14,6 +13,7 @@
     %video.wv2-hero__video{autoplay: true, loop: true, muted: true, playsinline: true, preload: "none", aria: {hidden: "true"}}
       %source{data: {src: asset_path("welcome_v2/hero_video.webm")}, type: "video/webm"}
     :javascript
+      // Connectivity check to prevent video from playing on slow networks
       (function() {
         var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
         console.log(conn);
@@ -44,13 +44,11 @@
   .wv2-section.wv2-section--white.wv2-section--stories.text-center
     %h2= t("#{s}.stories.heading")
     .wv2-stories-row
-      - locale_key = I18n.locale.to_s
-      - locale_base = locale_key.split( "-" ).first
-      - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", "Frosted Phoenix", "frosted_phoenix"], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", nil, "inat"], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", nil, "california_newt"]].each do |heading, body, user, place, en_name, fallback_img|
+      - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", "Frosted Phoenix", "frosted_phoenix"], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", nil, "inat"], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", nil, "california_newt"]].each do |heading, body, user, place, en_name, img|
         - names = en_name && @story_common_names&.dig( en_name )
-        - interp = en_name ? { moth_common_name: names&.dig( locale_key ) || names&.dig( locale_base ) || names&.dig( "en" ) || en_name } : {}
+        - interp = en_name ? { moth_common_name: names&.dig( @locale_key ) || names&.dig( @locale_base ) || names&.dig( "en" ) || en_name } : {}
         .wv2-story
-          .wv2-story__image{style: "background-image: url(#{asset_path("welcome_v2/#{fallback_img}.webp")})"}
+          .wv2-story__image{style: "background-image: url(#{asset_path("welcome_v2/#{img}.webp")})"}
             %h3= t("#{s}.stories.#{heading}")
           .wv2-story__body
             %p= t("#{s}.stories.#{body}", **interp)
@@ -61,9 +59,7 @@
   .wv2-section.wv2-section--light.text-center
     %h2= t("#{s}.observation.heading")
     - s_obs = @sample_observation
-    - locale_key = I18n.locale.to_s
-    - locale_base = locale_key.split( "-" ).first
-    - s_common = ( s_obs["common_names"] || {} ).then { |cn| cn[locale_key] || cn[locale_base] || cn["en"] }
+    - s_common = ( s_obs["common_names"] || {} ).then { |cn| cn[@locale_key] || cn[@locale_base] || cn["en"] }
     .wv2-observation
       .wv2-observation__col
         .wv2-observation__row
@@ -101,7 +97,7 @@
     .wv2-stats
       .wv2-stats__cell
         %p.wv2-stat__number
-          = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true, units: { thousand: "K", million: "M", billion: "B" }, format: "%n%u")
+          = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true, units: :"number.human.compact_units", format: "%n%u")
           %span.wv2-stat__plus +
         %p.wv2-stat__label= t("#{s}.stats.observations_label")
       .wv2-stats__cell
@@ -199,10 +195,8 @@
         .wv2-carousel__stage
           %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
           .wv2-carousel__track
-            - locale_key = I18n.locale.to_s
-            - locale_base = locale_key.split("-").first
             - @explore_observations.each do |obs|
-              - common = obs["common_names"][locale_key] || obs["common_names"][locale_base] || obs["common_names"]["en"]
+              - common = obs["common_names"][@locale_key] || obs["common_names"][@locale_base] || obs["common_names"]["en"]
               = link_to "/observations/#{obs["id"]}", class: "wv2-carousel__item" do
                 .wv2-obs-card
                   .wv2-obs-card__header
