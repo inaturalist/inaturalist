@@ -988,7 +988,7 @@ sr:
     %{user} je otkrio/la %{item} zbog "%{reason}"
   continue: Nastavi
   continue_to_site: Nastavi do %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Doprineti
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -1428,7 +1428,7 @@ sr:
   devise_unlock_instructions_your_account_has_been_locked: |
     Tvoj nalog je blokiran zbog previše neuspelih pokušaja logovanja.
   devise_unlock_instructions_unlock: Otključaj profil
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Otkrijte
   discoveries: Nalazi
   did_you_mean: 'Da li si mislio/la'
@@ -1869,7 +1869,7 @@ sr:
   identify: Identifikuj
   identify_observations: "Identifikuj opservacije"
   identify_title: "Identifikuj"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifikovati
   identification: identifikacija
   identification_by_user: Identifikacija korisnika %{user}
@@ -2055,7 +2055,7 @@ sr:
     identifications_in_month_year: Najviše identifikacija u %{month_year}
     identifications_in_year: Najviše identifikacija u %{year}
   leading: Vodeći
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Istraži
   learn_about_the_species_live_in: Saznaj više o vrstama koje žive u
   learn_more: Saznaj više
@@ -4405,7 +4405,7 @@ sr:
   total_observations: Ukupno opservacija
   total_observations_caps: UKUPNO OPSERVACIJA
   total_species_observed_caps: UKUPNO ZABELEŽENO VRSTA
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Otisak
   translated_languages: Prevedeni jezici
   'true': 'Tačno'
@@ -4727,15 +4727,18 @@ sr:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Prilično smo sigurni da pripada %{rank}
+  #e.g. "What was observed?"
   what: Šta
   what_did_you_see: Šta si video/la?
   what_did_you_see?: <em>Šta</em> si video/la?
   what_do_you_think: Šta misliš?
   what_to_keep: Šta zadržati
   whats_this?: Šta je ovo?
+  #e.g. "When was it observed?"
   when: Kada
   when_did_you_see_it?: Kada je to bilo?
   when_did_you_see_them?: <em>Kada</em> si ih video/la?
+  #e.g. "Where was it observed?"
   where: Gde
   where_were_they?: Gde je bilo?
   where_were_you?: Gde je to bilo?
@@ -4743,7 +4746,7 @@ sr:
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Zašto praviš ovu promenu? (opciono)
   why_are_you_making_this_change_cite_source_required: Zašto želiš da napraviš ovu promenu? Molimo te da objaniš i navedeš izvore ako je to moguće. (Obavezno)
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Ko
   who_can_add_observation_fields_to_my_obs: Ko može da doda opservaciona polja na mojim opservacijama?
   who_can_add_observations_to_this_project?: Ko može dodati opservacije u ovaj projekat?
@@ -4753,7 +4756,7 @@ sr:
   who_can_see_the_coordinates_trusted: Osobe kojima je posmatrač poverio/la skrivene koordinate
   who_helped_user_the_most: "Ko je najviše pomogao korisniku %{user}"
   who_user_helped_the_most: "Kome je %{user} najviše pomogao/la"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Zašto?
   why_the_coordinates_are_obscured: Zašto su koordinate sakrivene?
   with_annotation: Sa pribeleškom
