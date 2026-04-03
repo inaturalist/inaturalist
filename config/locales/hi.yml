@@ -29,7 +29,7 @@ hi:
   confirming_ids_description: |
     अगर आप इसे बंद कर देते हैं, तो आपको सहमति देने वाली आईडी के बारे में सूचित नहीं किया जाएगा
     आपके साथ जब तक कि उनके पास अतिरिक्त टिप्पणी न हो।
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: योगदान
   #Label for a menu item linking to a help page aimed at curators
   curator_guide: क्यूरेटर गाइड
@@ -51,7 +51,7 @@ hi:
   devise_confirmation_instructions_please_click2: |
     कृपया अपने ईमेल पते की पुष्टि करने के लिए नीचे दिए गए लिंक पर क्लिक करें। यदि आप अपने ईमेल की पुष्टि नहीं करते हैं
     पता, आप अन्य उपयोगकर्ताओं की सामग्री के साथ बातचीत करने में सक्षम नहीं होंगे।
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: खोज करना
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
@@ -83,7 +83,7 @@ hi:
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "हेड्स अप: इस ध्वनि को ध्वजांकित किया गया है।"
   help: मदद
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: पहचानें
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
@@ -92,7 +92,7 @@ hi:
   instagram: इंस्टाग्राम
   jobs: नौकरियां
   journal_posts: जर्नल पोस्ट
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: सीखें
   lexicons:
     malayalam: मलयाळम
@@ -172,7 +172,7 @@ hi:
   subscribe: सदस्यता लें
   taxa_info: टैक्सा जानकारी
   terms_service: उपयोग की शर्तें
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: संकरा रास्ता
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: परियोजनाओं को समझना
@@ -189,12 +189,15 @@ hi:
   video_tutorials: वीडियो ट्यूटोरियल
   we_also_support3: |
     हम से तस्वीरें आयात करने का भी समर्थन करते हैं <a href="http://flickr.com">फ़्लिकर</a>.
+  #e.g. "What was observed?"
   what: क्या
+  #e.g. "When was it observed?"
   when: कब
+  #e.g. "Where was it observed?"
   where: कहां है
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: कौन
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: क्यों?
   views:
     announcements:
