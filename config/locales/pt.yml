@@ -1084,6 +1084,8 @@ pt:
   contain_all_descendants?: Esta checklist contém todos os representantes deste taxon que ocorrem na área?
   content_and_display: Conteúdo & Exibição
   continue: Continuar
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribui
   contributor_cannot_be_found: O participante não pode ser encontrado
   contributors_to_project: "Participantes em %{project}"
   controlled_term_labels:
@@ -1315,6 +1317,8 @@ pt:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Você pode ser um modelo de comportamentos apropriados no iNaturalist e seguir as diretrizes da comunidade. Juntamente com os poderes curatoriais vem a expectativa de que você seja um utilizador exemplar do iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Guia do Curador
   curators_changed_for_x_html: "Curadores mudaram para %{x}"
   curators: Curadores
   curators_can_remove_observations_from: Coordenadores podem remover observações dos projetos e as identificações deles são apresentadas junto das observações dos projetos (em pontos específicos). Coordenadores também podem ver as coordenadas privadas ou contribuições ocultas neste projeto.
@@ -1452,6 +1456,8 @@ pt:
   devise_unlock_instructions_click_the_link: |
     Clique na hiperligação abaixo para desbloquear a sua conta:
   devise_unlock_instructions_unlock: Desbloquear a sua conta
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Descobrir
   discoveries: Descobertas
   did_you_mean: 'Será que quis dizer'
   did_you_photos_flickr?: Carregou algumas fotografias no Flickr?
@@ -1479,6 +1485,9 @@ pt:
   doesnt_have_default_photo: ainda não tem uma foto pré-definida
   doh_something_went_wrong: Ups, algo correu mal.
   doh_something_went_wrong_error: "Ocorreu algo de errado: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DOAR
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Doações
   done: Concluído
@@ -1614,6 +1623,7 @@ pt:
   existing_flags: Sinalizadores existentes
   exit_full_screen: "Sair do modo de ecrã inteiro"
   examples_of_ranking_organizations: Exemplos de Organizações de Classificação
+  explore: Explorar
   export: Exportar
   export_observations: Exportar observações
   export_with_private_coordinates: Exportar com as coordenadas privadas
@@ -1628,6 +1638,7 @@ pt:
   extra_properties: Propriedades Extra
   evidence_accurately_depicts_organism_or_scene: As evidências retratam com precisão o organismo ou a cena
   evidence_of_organism: Evidência de organismo
+  facebook: Facebook
   failed_to_find_your_location: Falha ao procurar a sua localização.
   failed_to_repair_photo: "Não foi possível reparar a fotografia: %{errors}"
   failed_to_save_record: "Não foi possível gravar o registo. Por favor, tente novamente mais tarde."
@@ -1759,6 +1770,8 @@ pt:
   geoprivacy_is_private_desc: O Observador escolheu ocultar as coordenadas.
   georeferenced: Georreferenciado?
   get_started: Começar
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Começar
   getting_started_guide: Manual de introdução
   global_names: Nomes globais
   globally: Globalmente
@@ -1839,6 +1852,8 @@ pt:
   identify: Identificar
   identify_observations: "Identificar as observações"
   identify_title: "Identificar"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificar
   identification: Identificação
   identification_by_user: Identificação por %{user}
   #Notification when an identification has been deleted
@@ -1925,6 +1940,7 @@ pt:
   input_taxon: Introduzir táxon
   insects: insetos
   insect_life_stage: Estádios da Vida dos Insetos
+  instagram: Instagram
   interactions: Interações
   internal_server_error: Erro interno do servidor
   introduced: introduzido
@@ -1947,6 +1963,7 @@ pt:
     Isto foi sinalizado como spam e não está mais visível publicamente. Pode vê-lo porque o criou, ou você é um curador do site. Se acha que foi um erro, por favor
     <a href="mailto:%{help_email}" class="contact">contacte-nos</a>.
     <a href="%{manage_flags_path}">Gerir sinalizadores</a>
+  jobs: Empregos
   join: Participe
   join_project: Entre neste projeto
   join_the_largest_group_of_naturalists_in_the_world: Junte-se ao maior grupo de naturalistas do mundo!
@@ -1990,6 +2007,7 @@ pt:
   leaderboard_for_x: "Os colaboradores mais ativos de %{x}"
   leaderboards: Colaboradores mais ativos
   leading: Principal
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre as espécies que vivem em
   learn_more: Saiba mais
@@ -2496,6 +2514,8 @@ pt:
   obscured_or_private: oculta ou privada
   obscured_description: |
     Coordenadas públicas mostram um raio de um ponto aproximado de 10km das coordenadas verdadeiras. As coordenadas verdadeiras somente são visíveis para si e para os coordenadores dos projetos a que adiciona as suas observações.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observar
   observation: Observação
   observation_: observação
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
@@ -3316,6 +3336,7 @@ pt:
   sign_in_with_provider: "Iniciar sessão com %{provider}"
   sign_out: Terminar Sessão
   sign_up: Registar-se
+  sign_up_sentence_case: Inscreva-se
   similar_species: Espécies semelhantes
   #Journal post formatting option
   simple: Simples
@@ -3422,6 +3443,10 @@ pt:
   still_working_on_classifying_taxon: Ainda estamos a trabalhar na classificação deste táxon. Volte a verificar mais tarde
   stop_editing: Pare de Editar
   stop_testing: Parar Teste
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Loja
+  store_caps: LOJA
   submission_model_description: Quem pode adicionar observações ao seu projeto?
   submit_observations:
     one: Submeter 1 observação
@@ -3443,6 +3468,7 @@ pt:
   tagging: 'A etiquetar...'
   tags: Etiquetas
   tags_are_a_way: 'As etiquetas permitem organizar as suas observações. Por exemplo, pode marcar todas as observações de poças com a etiqueta "poças" para facilitar a sua localização posterior.'
+  taxa_info: Informação sobre Táxons
   taxa_needing_curation: Táxons que necessitam da supervisão pelo curador
   taxonomy: Taxonomia
   taxon_deleted: Táxon eliminado.
@@ -3541,6 +3567,8 @@ pt:
   total_members: Número total de membros
   total_observations: Número total de observações
   total_unique_observers: Número total de observadores únicos
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Pegada
   translated_languages: Idiomas traduzidos
   'true': 'Verdadeiro'
   trends: Tendências
@@ -3561,6 +3589,8 @@ pt:
   uicn_red_list_status: "Estatutos da Lista Vermelha do UICNː"
   umbrella_projects: Projetos Umbrella
   unclassified: Sem classificação
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Compreender os Projetos
   unknown: Desconhecido
   unknown_error: Erro desconhecido
   unknown_rank: '(Classificação Desconhecida)'
@@ -3643,6 +3673,7 @@ pt:
   users_profile: "Perfil de %{user}"
   users_projects: "Projetos de %{user}"
   verifiable_observations_by_observation_date: Observações verificáveis por data de observação
+  video_tutorials: Tutoriais em vídeo
   view_flag: Ver sinalizador
   view_flags: Ver sinalizadores
   view_flags_for_x_html: "Ver sinalizadores para %{x}"
@@ -3671,7 +3702,14 @@ pt:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Nós temos certeza que isto está em %{rank}
+  what: O quê
+  when: Quando
+  where: Onde
   which_projects_can_add_your_observations?: Quais projetos podem adicionar suas observações?
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Quem
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Porquê?
   wondering_what_to_do_next: Seguem algumas dicas para o ajudar a começar a observar e identificar o mundo natural
   x_flagged: "%{x} sinalizado(a)"
   x_flagged_as_flag: "%{x} sinalizado(a) como %{flag}"
@@ -4133,6 +4171,191 @@ pt:
         record_your_observations: Registre suas observações
         crowdsource_identifications: Identificações pela comunidade
         join_today: Aderir hoje
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Onde a tua curiosidade contribui para a ciência.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Identifique plantas, animais, fungos e muito mais, acrescentando a um atlas vivo da vida na Terra.
+          #Primary call-to-action button in the hero section
+          cta_join: Junte-se à comunidade
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Livre, sem fins lucrativos, impulsionado pela comunidade.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Com o iNaturalist, pode:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: plantas, animais, fungos e muito mais
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: espécies que já viste em todo o mundo
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: à ciência real
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Natureza Próxima
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: De uma comunidade global de naturalistas
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: O poder da ciência comunitária
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Visto por %{user} em %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Redescoberta de espécies há muito perdidas
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            O %{moth_common_name} A traça não era vista há décadas e pensava-se que estava extinta — até que um turista na Nova Zelândia a viu por acaso.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Descoberta de espécies novas para a ciência
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — abreviado para <span class="italic">I. nat</span> — é uma espécie de louva-a-deus nova na ciência encontrada por uma mulher na Austrália que caminhava no seu bairro.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Proteção dos ecossistemas locais
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Um grupo de voluntários locais na Califórnia uniu-se através do iNaturalist para proteger os anfíbios migratórios que atravessavam uma estrada movimentada.
+          #Link below the stories to read more community science stories
+          read_more: Leia mais histórias
+        observation:
+          #Heading for the sample observation section
+          heading: Cada observação conta uma história
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Observações que contribuem para a ciência da biodiversidade
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Espécies documentadas em todo o mundo
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: artigos que citam dados do iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Espécies descobertas ou redescobertas por cientistas comunitários
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Abra a aplicação e fotografe qualquer planta, animal, fungo ou outro organismo selvagem — do seu bairro ou de qualquer lugar do mundo.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            A aplicação sugere uma identificação instantânea, e uma comunidade global de naturalistas confirma-a ou refina-a.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            A sua observação torna-se dados abertos — usados por cientistas, conservacionistas e investigadores em todo o mundo.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            A natureza está a mudar mais depressa do que nunca, por isso precisamos <span class="underline">Tu</span> para ajudar a registar o que vive e onde.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Ajudou-me muito na identificação de espécies, além de me dar a oportunidade de interagir com diferentes pessoas em todo o mundo.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Conservacionista Marinho e Fotógrafo Subaquático, Quénia
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            O iNaturalist abre a porta a muita investigação nova e entusiasmante sobre táxons pouco estudados. Na minha opinião, esta plataforma é a vanguarda da ciência ecológica.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Autor de Guias de Campo na Owlfly LLC, EUA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            O iNaturalist e a sua dedicada comunidade de identificadores tornaram-se um recurso inestimável nas minhas explorações. Ajudou a lançar as bases do meu trabalho atual.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Investigador em Biodiversidade, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            O iNaturalist é uma ferramenta poderosa que liga pessoas, natureza e conhecimento. Consigo fotografar uma espécie rara, ou até uma que ainda não foi descrita, e ao mesmo tempo contribuo para a conservação do nosso património natural.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Técnico Ambiental e fotógrafo amador, Brasil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Não importa onde estejas no mundo, quer tenhas um doutoramento ou simplesmente gostes de estar ao ar livre, o iNaturalist aproxima-te-á da natureza e de muitos outros naturalistas.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biólogo, México
+        everyone:
+          #Heading for the broad audience section
+          heading: Toda a gente é naturalista
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Se alguma vez olhou atentamente para algo vivo e se perguntou o que era, o iNaturalist é para si.
+          #Heading for the impact sub-section
+          impact_heading: Pode causar impacto
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Cada fotografia que partilha torna-se parte de um registo científico global do qual os investigadores de todo o mundo dependem.
+          #Heading for the community reputation sub-section
+          community_heading: '"O lugar mais agradável online"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Venha pelas identificações, fique pela comunidade e pelo impacto na ciência.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Descarregue a aplicação iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Obtenha identificações em tempo real e contribua para a ciência
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Downloads"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Explorar espécies em todo o mundo
+          #Button / link to browse species without downloading
+          button: Explore agora
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Menos de 13 anos? Descarregue o Seek!"
+          #Description of Seek's badge and challenge features
+          body: Ganhe distintivos e participe em desafios para observar espécies!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Críticas de 5 Estrelas"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Receba a nossa newsletter mensal!
+          #Description of the newsletter's content
+          body: Mantenha-se ligado às histórias e descobertas da comunidade iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: A iNaturalist é uma organização sem fins lucrativos que apoia a ciência e a conservação.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: O teu apoio torna isso possível.
+          #Call-to-action button for the donation section
+          cta: Doe agora
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Perguntas Frequentes
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Posso carregar fotos que já tenho?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Sim! Desde que saiba mais ou menos quando e onde uma foto foi tirada, as fotos mais antigas são bem-vindas.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Quem pode fazer ciência com as observações do iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Alguém! Todas as observações do iNaturalist são abertas e disponíveis gratuitamente — para investigadores, praticantes de conservação e curiosos igualmente.
+          #FAQ: research grade definition — question
+          research_grade_question: O que significa "grau de investigação"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Quando a comunidade concorda com uma identificação, uma observação torna-se "grau de investigação" e entra no registo científico global. Qualquer identificação pode ajudar a chegar lá.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Preciso de saber o que estou a ver?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            De todo! Partilhe uma fotografia e uma comunidade global de naturalistas pode ajudá-lo a identificá-la.
+          #FAQ: whether the app is required — question
+          need_app_question: Preciso de usar a aplicação?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Num ambiente de secretária, iNaturalist.org funciona muito bem. Num dispositivo móvel, a aplicação proporciona-lhe a melhor experiência — especialmente para identificar espécies em movimento.
   date:
     abbr_day_names:
       - Dom

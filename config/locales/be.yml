@@ -1113,6 +1113,8 @@ be:
     %{user} выкрыў %{item}, таму што "%{reason}"
   continue: Працягнуць
   continue_to_site: Перайсці да %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Дапамагчы
   contributor_cannot_be_found: Не атрымалася знайсці ўдзельніка
   contributors_to_project: "Удзельнікі %{project}"
   controlled_term_labels:
@@ -2049,6 +2051,8 @@ be:
   identify_observations: "Вызначыць назіранні"
   identify_observations_by_these_users: Вызначэнне назіранняў гэтых карыстальнікаў
   identify_title: "Вызначыць"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Вызначайце
   identification: вызначэнне
   identification_by_user: Вызначэнне карыстальніка %{user}
   #Notification when an identification has been deleted
@@ -2225,6 +2229,7 @@ be:
     identifications_in_month_year: Больш за ўсё вызначэнняў у %{month_year}
     identifications_in_year: Больш за ўсё вызначэнняў у %{year}
   leading: Вядучы
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Вывучайце
   learn_about_the_species_live_in: Даведайцеся пра віды, якія жывуць у
   learn_more: Даведацца больш
@@ -4055,6 +4060,8 @@ be:
   top_identifiers_of_taxon: Лепшыя вызначальнікі таксону %{taxon}
   top_observer_caps: ЛЕПШЫ НАЗІРАЛЬНІК
   top_observers: Лепшыя назіральнікі
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Сляды
   twitter: Twitter
   unreview_all: Удмяніць прагляд усяго
   update_observations: Абнавіць назіранні

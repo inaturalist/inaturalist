@@ -1196,6 +1196,8 @@ hr:
     %{user} je otkrio %{item} zbog "%{reason}"
   continue: Nastavi
   continue_to_site: Nastavi na %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Doprinesi
   contributor_cannot_be_found: Doprinositelj se ne može pronaći
   contributors_to_project: "Doprinositelji projektu %{project}"
   controlled_term_labels:
@@ -1738,6 +1740,8 @@ hr:
   devise_unlock_instructions_click_the_link: |
     Kliknite na donju poveznicu za otključavanje računa
   devise_unlock_instructions_unlock: Otključajte svoj račun
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Otkrijte
   discoveries: Otkrića
   did_you_mean: 'Jeste li mislili'
   did_you_photos_flickr?: Jeste li stavili neke fotografije na Flickr?
@@ -2345,6 +2349,8 @@ hr:
   identify_observations: "Identificiraj opažanja"
   identify_observations_by_these_users: Identificiraj opažanja ovih korisnika
   identify_title: "Identificiraj"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificirajte se
   identification: identifikacija
   identification_by_user: Identifikacija od strane %{user}
   #Notification when an identification has been deleted
@@ -2562,6 +2568,7 @@ hr:
     identifications_in_month_year: Najviše identifikacija u %{month_year}
     identifications_in_year: Najviše identifikacija u %{year}
   leading: Vodeći
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Saznaj
   learn_about_the_species_live_in: Saznaj više o vrstama koje žive u
   learn_more: Saznaj više
@@ -3336,6 +3343,8 @@ hr:
   obscured_or_private: skriveno ili privatno
   obscured_description: |
     Javne koordinate prikazane kao slučajna točka unutar ćelije od 0,2 stupnja širine/dužine koja sadrži prave koordinate.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Promatraj
   observation: Opažanje
   observation_: opažanje
   observation_accuracy_experiment_the_sample_for: "Uzorak za ovaj eksperiment još nije generiran"
@@ -4931,6 +4940,7 @@ hr:
   sign_in_with_google: Prijavi se s Googleom
   sign_out: Odjavi se
   sign_up: Registriraj se
+  sign_up_sentence_case: Prijavite se
   similar_species: Slične vrste
   similar_taxa: Slična taksa
   #Journal post formatting option
@@ -5757,6 +5767,8 @@ hr:
   total_observations_caps: UKUPNO OPAŽANJA
   total_species_observed_caps: UKUPNO VRSTA ZABILJEŽENO
   total_unique_observers: Ukupno jedinstvenih promatrača
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Trag
   translated_languages: Prevedeni jezici
   'true': 'Istina'
   trending: Popularno
@@ -6175,6 +6187,8 @@ hr:
   why_are_you_making_this_change_optional: Zašto unosite ovu promjenu? (opcionalno)
   why_are_you_making_this_change_cite_source_required: Zašto unosite ovu promjenu? Molimo objasnite i navedite izvor ako je moguće. (Obavezno)
   why_you_can_see_the_coordinates: Zašto možete vidjeti koordinate
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Tko
   who_can_add_observation_fields_to_my_obs: Tko može dodavati polja opažanja mojim opažanjima?
   who_can_add_observations_to_this_project?: Tko može dodavati opažanja ovom projektu?
   who_can_see_the_coordinates: Tko može vidjeti koordinate
@@ -6183,6 +6197,8 @@ hr:
   who_can_see_the_coordinates_trusted: Osobe kojima je promatrač povjerio svoje skrivene koordinate
   who_helped_user_the_most: "Tko je najviše pomogao korisniku %{user}"
   who_user_helped_the_most: "Kome je %{user} najviše pomogao"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Zašto?
   why_the_coordinates_are_obscured: Zašto su koordinate skrivene
   with_annotation: S oznakom
   without_annotation: Bez oznake
@@ -8841,6 +8857,191 @@ hr:
         who_uses_site_name: "Tko koristi %{site_name}?"
         what_are_you_waiting_for: Pa, što čekaš?
         join_today: Pridruži se danas
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Gdje vaša znatiželja doprinosi znanosti.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Prepoznajte biljke, životinje, gljive i još mnogo toga dok doprinosite živom atlasu života na Zemlji.
+          #Primary call-to-action button in the hero section
+          cta_join: Pridružite se zajednici
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Besplatna, neprofitna, pokretana zajednicom.
+        features:
+          #Section label introducing the three core user actions
+          intro: "S iNaturalistom možete:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: biljke, životinje, gljive i još mnogo toga
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: vrste koje ste vidjeli širom svijeta
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: do prave znanosti
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Priroda u blizini
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: iz globalne zajednice prirodoslovaca
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Moć znanosti o zajednici
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Pogledao %{user} u %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Ponovno otkrivanje davno izgubljenih vrsta
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} moljac nije viđen desetljećima i nekada se smatralo da je izumro — sve dok ga jedan turist na Novom Zelandu nije slučajno ugledao.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Otkrivanje vrsta novih za znanost
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — skraćeno kao <span class="italic">I. nat</span> — je nova u znanosti vrsta bogomoljke koju je pronašla žena u Australiji dok je šetala svojim susjedstvom.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Zaštita lokalnih ekosustava
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Grupa lokalnih volontera u Kaliforniji okupila se putem iNaturalista kako bi zaštitila migrirajuće vodozemce koji prelaze prometnu cestu.
+          #Link below the stories to read more community science stories
+          read_more: Pročitajte više priča
+        observation:
+          #Heading for the sample observation section
+          heading: Svaka opservacija priča priču
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Promatranja koja doprinose znanosti o bioraznolikosti
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Vrste dokumentirane diljem svijeta
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: radovi koji citiraju podatke iNaturalista
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: vrste koje su otkrili ili ponovno otkrili znanstvenici iz zajednice
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Otvorite aplikaciju i fotografirajte bilo koju divlju biljku, životinju, gljivu ili drugi organizam — iz vašeg susjedstva ili bilo gdje u svijetu.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Aplikacija odmah predlaže identifikaciju, a globalna zajednica prirodoslovaca to potvrđuje ili usavršava.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Vaša opažanja postaju otvoreni podaci — koriste ih znanstvenici, zaštitari prirode i istraživači diljem svijeta.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Priroda se mijenja brže nego ikad, pa nam je potrebno <span class="underline">Ti</span> kako bi se zabilježilo što gdje živi.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            To mi je zaista pomoglo u identifikaciji vrsta, uz priliku da komuniciram s različitim ljudima diljem svijeta.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Morski konzervator i podvodni fotograf, Kenija
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist otvara vrata mnogim novim i uzbudljivim istraživanjima o nedovoljno proučavanim taksonima. Po mom mišljenju, ova platforma je na samom vrhu ekološke znanosti.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Autor terenskog vodiča u Owlfly LLC, SAD
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist i njegova posvećena zajednica identifikatora postali su neprocjenjiv izvor u mojim istraživanjima. To je pomoglo postaviti temelje mog sadašnjeg rada.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Istraživač bioraznolikosti, Šri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist je moćan alat koji povezuje ljude, prirodu i znanje. Mogu fotografirati rijetku vrstu, pa čak i onu koja još nije opisana, a istovremeno doprinosim očuvanju naše prirodne baštine.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Ekološki tehničar i hobistički fotograf, Brazil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Bez obzira gdje se nalazite u svijetu, imate li doktorat ili jednostavno volite prirodu, iNaturalist će vas približiti prirodi i mnogim drugim prirodoslovcima.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biolog, Meksiko
+        everyone:
+          #Heading for the broad audience section
+          heading: Svi su prirodoslovci
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Ako ste ikada pažljivo promatrali nešto živo i pitali se što je to, iNaturalist je za vas.
+          #Heading for the impact sub-section
+          impact_heading: Možeš ostaviti trag
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Svaka fotografija koju podijelite postaje dio globalnog znanstvenog zapisa na koji se istraživači diljem svijeta oslanjaju.
+          #Heading for the community reputation sub-section
+          community_heading: '"Najljepše mjesto na internetu"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Dođite zbog identifikacija, ostanite zbog zajednice i utjecaja na znanost.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Preuzmite aplikaciju iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Dobivajte identifikacije u stvarnom vremenu i doprinosite znanosti
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Preuzimanja"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Istražite vrste širom svijeta
+          #Button / link to browse species without downloading
+          button: Istražite sada
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Ispod 13? Preuzmite Seek!"
+          #Description of Seek's badge and challenge features
+          body: Zaradite značke i sudjelujte u izazovima za promatranje vrsta!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 zvjezdica Recenzije"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Pretplatite se na naš mjesečni newsletter!
+          #Description of the newsletter's content
+          body: Ostanite povezani s pričama i otkrićima iz iNaturalist zajednice.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist je neprofitna organizacija koja podržava znanost i očuvanje.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Vaša podrška to omogućuje.
+          #Call-to-action button for the donation section
+          cta: Donirajte sada
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Često postavljana pitanja
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Mogu li učitati fotografije koje već imam?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Da! Sve dok otprilike znate kada i gdje je fotografija snimljena, starije fotografije su dobrodošle.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Tko može raditi znanost s iNaturalist opažanjima?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Netko! Sva opažanja iNaturalista otvorena su i slobodno dostupna — istraživačima, praktičarima zaštite prirode i znatiželjnim pojedincima podjednako.
+          #FAQ: research grade definition — question
+          research_grade_question: Što znači "istraživački stupanj"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Kada se zajednica složi oko identifikacije, opažanje postaje "istraživačke razine" i ulazi u globalni znanstveni zapis. Svaka identifikacija može pomoći da se tamo stigne.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Trebam li znati što gledam?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Nimalo! Podijelite fotografiju, a globalna zajednica prirodoslovaca može vam pomoći da je prepoznate.
+          #FAQ: whether the app is required — question
+          need_app_question: Trebam li koristiti aplikaciju?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Na desktopu iNaturalist.org radi odlično. Na mobilnom uređaju, aplikacija vam pruža najbolje iskustvo — posebno za prepoznavanje vrsta u pokretu.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Spremi i uredi za dodavanje privitaka

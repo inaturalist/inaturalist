@@ -1055,6 +1055,8 @@ ja:
     %{user}さんは%{item} を表示しました。理由："%{reason} "
   continue: 続行
   continue_to_site: '%{site_name} に進む'
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: 貢献
   contributor_cannot_be_found: 提供者が見つかりません
   contributors_to_project: "%{project}への貢献者"
   controlled_term_labels:
@@ -1572,6 +1574,8 @@ ja:
   devise_unlock_instructions_click_the_link: |
     アカウントのロックを解除するには、下のリンクをクリックしてください
   devise_unlock_instructions_unlock: アカウントのロックを解除
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: 発見
   discoveries: 発見
   did_you_mean: 'もしかして:'
   did_you_photos_flickr?: Flickrに写真をアップしていませんか？
@@ -2151,6 +2155,8 @@ ja:
   identify_observations: "観察記録を同定"
   identify_observations_by_these_users: ユーザーによる観察記録の同定
   identify_title: "同定"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: 識別
   identification: 同定
   identification_by_user: '%{user}さんの同定'
   #Notification when an identification has been deleted
@@ -2362,6 +2368,7 @@ ja:
     identifications_in_month_year: '%{month_year}において最も多数の同定を追加'
     identifications_in_year: '%{year}において最も多数の同定を追加'
   leading: 主導
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: 学習
   learn_about_the_species_live_in: 次の場所で生息する生き物について学ぶ：
   learn_more: もっと詳しく
@@ -3102,6 +3109,8 @@ ja:
   obscured_or_private: 不明瞭または非公開
   obscured_description: |
     公開座標は、真の座標を含む 0.2 度の緯度・経度のセル内のランダムな点として表示されます。
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: 見てみろ
   observation: 観察記録
   observation_: 観察記録
   observation_accuracy_experiment_the_sample_for: "この実験のサンプルはまだ作成されていません"
@@ -4527,6 +4536,7 @@ ja:
   sign_in_with_google: Googleでサインイン
   sign_out: ログアウト
   sign_up: ユーザー登録
+  sign_up_sentence_case: サインアップ
   similar_species: 近縁種
   similar_taxa: 類似分類群
   #Journal post formatting option
@@ -5135,6 +5145,8 @@ ja:
   total_observations_caps: 合計観察記録数
   total_species_observed_caps: 合計観察種数
   total_unique_observers: 総投稿者数
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: 陸上競技
   translated_languages: 翻訳言語：
   'true': '真'
   trending: トレンド入り：
@@ -5484,6 +5496,7 @@ ja:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 下の%{rank}だと確信しています
   were_sorry_but_your_bulk_import_of_filename_has_failed: "申し訳ありません。%{filename}の一括インポートが失敗しました。"
+  what: 何だって
   what_did_you_see: 何を見ましたか？
   what_did_you_see?: <em>何を</em>見ましたか？
   what_do_you_think: どう思いますか？
@@ -5501,6 +5514,8 @@ ja:
   why_are_you_making_this_change_optional: 変更理由(任意)
   why_are_you_making_this_change_cite_source_required: なぜこの変更を行うのですか？可能であれば出典を挙げて説明してください。(必須)
   why_you_can_see_the_coordinates: あなたがこの座標を見ることができる理由
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: 誰が
   who_can_add_observation_fields_to_my_obs: 他のユーザーが自分の観察記録へ観察記録フィールドを追加することを許可しますか？
   who_can_add_observations_to_this_project?: このプロジェクトに観察記録を追加できるのは誰ですか？
   who_can_see_the_coordinates: 正確な座標を見ることができる人
@@ -5509,6 +5524,8 @@ ja:
   who_can_see_the_coordinates_trusted: 設定で「信頼して正確な位置情報を共有する」を選択した相手
   who_helped_user_the_most: "%{user} さんの同定を最も助けたユーザー"
   who_user_helped_the_most: "%{user} さんが最も同定を助けたユーザー"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: なぜでしょうか?
   why_the_coordinates_are_obscured: 座標が不明瞭な理由
   with_annotation: 注釈付き
   without_annotation: 注釈なし
@@ -6951,6 +6968,191 @@ ja:
         who_uses_site_name: "誰が%{site_name}を使うのか？"
         what_are_you_waiting_for: 今すぐ始めませんか？
         join_today: 今すぐ新規ユーザー登録を
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: あなたの好奇心が科学に貢献する場所。
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            植物、動物、菌類などを特定し、地球上の生きた生命の地図帳に加わりましょう。
+          #Primary call-to-action button in the hero section
+          cta_join: コミュニティに参加しよう
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: 無料で、非営利で、コミュニティが運営する。
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalistを使えば、以下のことができます:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: 植物、動物、菌類など
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: 世界中で見てきた種たち
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: 真の科学へ
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: 近くの自然
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: 世界中の自然主義者コミュニティより
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: コミュニティサイエンスの力
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: 見た人 %{user} において %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: 長らく失われた種の再発見
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            その %{moth_common_name} 蛾は何十年も目撃されておらず、絶滅したと考えられていましたが、ニュージーランドの観光客が偶然発見しました。
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: 科学に新たに登場する種の発見
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">イニミア・ナット</span> — 略して <span class="italic">I. ナット</span> — はオーストラリアの女性が近所を歩いていた際に発見した、科学に初めて触れたカマキリの種です。
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: 地域の生態系の保護
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            カリフォルニアの地元ボランティアグループがiNaturalistを通じて、交通量の多い道路を渡る渡りの両生類を保護するために集まりました。
+          #Link below the stories to read more community science stories
+          read_more: さらに多くのストーリーを読む
+        observation:
+          #Heading for the sample observation section
+          heading: すべての観察が物語を語っている
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: 生物多様性科学に寄与する観察
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: 世界中で記録されている種
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: iNaturalistのデータを引用した論文
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: コミュニティ科学者によって発見または再発見された種
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            アプリを開き、近所や世界中の野生の植物、動物、菌類、その他の生物を撮影してください。
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            アプリは即座に識別を提案し、世界中の自然学者コミュニティがそれを確認または精緻化します。
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            あなたの観察はオープンデータとなり、世界中の科学者、保全活動家、研究者によって利用されます。
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            自然はかつてないほど速く変化しているので、私たちは必要としています <span class="underline">お前だ</span> 何がどこに住んでいるかを記録するために。
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            種の識別にも大いに役立ち、世界中のさまざまな人々と交流する機会も得られました。
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: 海洋保護活動家および水中写真家、ケニア
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalistは、あまり研究されていない分類群に関する多くの新しく刺激的な研究の扉を開きます。私の意見では、このプラットフォームこそが生態学科学の最先端です。
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Owlfly LLCのフィールドガイド著者(米国)
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalistとその献身的な識別子コミュニティは、私の探求においてかけがえのない資源となりました。それが現在の仕事の基盤を築くのに役立ちました。
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: スリランカ生物多様性研究者
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalistは、人々、自然、知識をつなぐ強力なツールです。希少種や、まだ記載されていない種を撮影できますし、同時に自然遺産の保全にも貢献できます。
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: ブラジルの環境技術者兼趣味写真家
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            世界のどこにいても、博士号を持っている人も、アウトドアが好きな人でも、iNaturalistは自然や多くの仲間とより近づくことを可能にします。
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: 生物学者、メキシコ
+        everyone:
+          #Heading for the broad audience section
+          heading: 誰もが自然主義者です
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            生きているものをじっくりと見て、それが何か気になったことがあるなら、iNaturalistはあなたのためのものです。
+          #Heading for the impact sub-section
+          impact_heading: あなたは影響を与えることができます
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            あなたが共有するすべての写真は、世界中の研究者が依存する世界的な科学記録の一部となります。
+          #Heading for the community reputation sub-section
+          community_heading: '「オンラインで一番素敵な場所」'
+          #Description of the welcoming community aspect
+          community_body: >
+            身元確認のために来て、コミュニティと科学への影響のためにここに留まりましょう。
+        download:
+          #Heading prompting users to download the mobile app
+          heading: iNaturalistアプリをダウンロードしてください
+          #Subheading describing the two core benefits of the app
+          subheading: リアルタイムの識別を手に入れ、科学に貢献しましょう
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ ダウンロード"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: 世界中の種を探求しよう
+          #Button / link to browse species without downloading
+          button: 今すぐ探検
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13歳未満?ダウンロード:シーク!"
+          #Description of Seek's badge and challenge features
+          body: バッジを獲得し、種を観察するチャレンジに参加しましょう!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5つ星レビュー"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: 月刊ニュースレターをどうぞ!
+          #Description of the newsletter's content
+          body: iNaturalistコミュニティからのストーリーや発見を常にお届けしましょう。
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalistは科学と保全を支援する非営利団体です。
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: 皆さんの支援がそれを可能にします。
+          #Call-to-action button for the donation section
+          cta: 今すぐ寄付を
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: よくある質問
+          #FAQ: uploading existing photos — question
+          upload_existing_question: すでに持っている写真をアップロードできますか?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            はい!写真がいつどこで撮られたかおおよそのまま分かっていれば、古い写真も歓迎します。
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: iNaturalistの観察で科学を行うことができる人はいますか?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            誰でもいい!iNaturalistの観察はすべて、研究者、保全関係者、好奇心旺盛な個人に公開され、無料で利用可能です。
+          #FAQ: research grade definition — question
+          research_grade_question: '「研究等級」とはどういう意味ですか?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            コミュニティが同定に合意すると、その観察は「研究等級」となり、世界の科学記録に残ります。どんな識別も、そこに届く手助けになる。
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: 何を見ているのか知っている必要がありますか?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            全然そんなことない!写真を共有すれば、世界中の自然愛好家コミュニティがその特定を手助けしてくれます。
+          #FAQ: whether the app is required — question
+          need_app_question: アプリを使う必要がありますか?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            デスクトップでは iNaturalist.org 問題なく動作します。モバイル端末では、特に外出先で種を識別する際に最高の体験を提供します。
   date:
     abbr_day_names:
       - 日

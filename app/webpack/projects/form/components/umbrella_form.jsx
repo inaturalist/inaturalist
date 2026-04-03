@@ -4,7 +4,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import ProjectSelector from "./project_selector";
 
 class UmbrellaForm extends React.Component {
-  render( ) {
+  render() {
     const {
       project,
       updateProject
@@ -14,9 +14,9 @@ class UmbrellaForm extends React.Component {
         <Grid>
           <Row className="text">
             <Col xs={12}>
-              <h2>{ I18n.t( "observation_requirements" ) }</h2>
+              <h2>{I18n.t( "observation_requirements" )}</h2>
               <div className="help-text">
-                { I18n.t( "views.projects.new.please_specify_the_requirements" ) }
+                {I18n.t( "views.projects.new.please_specify_the_requirements" )}
               </div>
             </Col>
           </Row>
@@ -34,8 +34,25 @@ class UmbrellaForm extends React.Component {
                 onChange={e => updateProject( { hide_umbrella_map_flags: !e.target.checked } )}
               />
               <label className="inline" htmlFor="project-umbrella-flags">
-                { I18n.t( "views.projects.new.show_projects_as_flags" )}
+                {I18n.t( "views.projects.new.show_projects_as_flags" )}
               </label>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={4}>
+              <label htmlFor="project-sort">
+                {I18n.t( "sort_included_projects_on_leaderboard_by" )}
+              </label>
+              <select
+                id="project-sort"
+                className="form-control"
+                value={project.umbrella_project_list_sort || "descending"}
+                onChange={e => updateProject( { umbrella_project_list_sort: e.target.value } )}
+              >
+                <option value="alphabetical">{I18n.t( "alphabetical" )}</option>
+                <option value="descending">{I18n.t( "count_descending" )}</option>
+                <option value="ascending">{I18n.t( "count_ascending" )}</option>
+              </select>
             </Col>
           </Row>
         </Grid>

@@ -1,4 +1,5 @@
 gu:
+  about: વિશે
   #Placeholder for a project autocomplete field
   add_a_project: પ્રોજેક્ટ ને ઉમેરો
   #Label for an option to show any place
@@ -22,6 +23,8 @@ gu:
   #constituent places were removed and now the atlas just contains this
   #place
   atlas_alteration_action_unexploded: એક્સ્પ્લોડ થયેલ નથી
+  community: સમુદાય
+  community_guidelines: સમુદાય માર્ગદર્શિકાઓ
   community_taxon_matches_observation_taxon: કોમ્યુનિટી ટેક્સન અવલોકન ટેક્સોન સાથે મેળ ખાય છે
   confirming_ids: IDs ની ખાતરી કરી રહ્યા છે
   confirming_ids_description: |
@@ -34,6 +37,10 @@ gu:
       આ સ્થિતિ દ્વારા સૂચિત. જો તે "ઓછામાં ઓછું" હોય તો આ ભૌગોલિકપ્રિસ્થિતિને ઓવરરાઇડ કરશે
       ચિંતા" અથવા નીચે, તેથી જો તમે આના નિરીક્ષણોને અસ્પષ્ટ કરવા માંગતા હોવ તો
       ટેક્સન, આને "નિયર થ્રેટ" અથવા તેથી વધુ પર સેટ કરો.
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: યોગદાન આપો
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: ક્યુરેટર માર્ગદર્શિકા
   curator_coordinate_access: ક્યુરેટર યામાક્ષ પ્રવેશ
   curator_coordinate_access_desc: |
     પરંપરાગત પ્રોજેક્ટ્સ માટે ક્યુરેટર કોઓર્ડિનેટ એક્સેસ કોણે ઉમેર્યું તેના પર આધાર રાખે છે
@@ -107,30 +114,46 @@ gu:
   devise_confirmation_instructions_please_click2: |
     તમારા ઇમેઇલ એડ્રેસની ખાત્રી કરવા માટે કૃપા કરીને નીચેની લિંક પર ક્લિક કરો. જો તમે તમારા ઇમેઇલની પુષ્ટિ ન કરો તો
     સરનામું, તમે અન્ય વપરાશકર્તાઓની સામગ્રી સાથે ક્રિયાપ્રતિક્રિયા કરવા માટે સમર્થ હશો નહીં.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: શોધો
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: મતભેદ
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: નિરીક્ષણો બતાવો કે જેમને અસંમત ઓળખાણો છે
+  documentation_for_developers_html: માટે દસ્તાવેજીકરણ <a href="/pages/developers">ડેવલપર્સ</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: દાન કરો
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: દાન કરો
   #Title for a page to edit an announcement
   editing_announcement_x: સંપાદન જાહેરાત %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "ધ્વનિ સુધારી રહ્યા હોય ત્યારે ભૂલ: %{sound_errors}"
+  explore: અન્વેષણ કરો
   evidence_accurately_depicts_organism_or_scene: પુરાવા સજીવ અથવા દ્રશ્યને સચોટ રીતે દર્શાવે છે
+  facebook: ફેસબુક
   #Header for a section showing the user's favorite projects
   favorite_projects: મનગમતા પ્રોજેક્ટો
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     હેડરમાં લિંક્સ તરીકે દેખાતા સાત પ્રોજેક્ટ્સ પસંદ કરો. અપડેટ
     પૃષ્ઠને રિફ્રેશ કર્યા પછી દેખાશે.
+  feedback: પ્રતિસાદ
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: ફાઇલ બંધારણ
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: ફાઇલ URL
+  forum: ફોરમ
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: શરૂ કરી રહ્યા છીએ
+  guides: માર્ગદર્શનો
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "હેડ્સ અપ: આ અવાજને ફ્લેગ કરવામાં આવ્યો છે."
+  help: મદદ
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: ઓળખો
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaururalist એ આના દ્વારા સૂચવેલ ID ને અપડેટ કર્યું %{user}
   #Title for a preference to control whether you receive notifications about
@@ -145,16 +168,25 @@ gu:
     પ્રજાતિ-સ્તરથી નીચે (જેમ કે ઉપજાતિઓ અને જાતો) જે તમારી સાથે સંમત થાય છે
     પ્રજાતિ-સ્તર ID. જો તેઓ તમારા આઈડી સાથે અસંમત હોય તો તમને જાણ કરવામાં આવશે અથવા
     જો તેમાં વધારાની ટીપ્પણીઓ હોય તો.
+  instagram: ઇન્સ્ટાગ્રામ
   #Error message shown when a date format is invalid
   invalid_date: અયોગ્ય તારીખ
+  jobs: નોકરીઓ
+  journal_posts: જર્નલ પોસ્ટ્સ
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  learn: જાણો
   #Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: યાદી થયેલ
   #Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: યાદી ન થયેલ
+  log_in: પ્રવેશ કરો
   #Adjectival phrase describing state of being logged in
   logged_in: પ્રવેશેલ છે
   #Adjectival phrase describing state of being logged out
   logged_out: લૉગ આઉટ થયેલ
+  member_of_the_inaturalist_network_html: |
+    સભ્ય[ફેરફાર કરો] <a href="%{url}">iNaturalist નેટવર્ક</a>
+  more: વધુ
   #Label for a button or section that shows additional options
   more_options: વધારે વિકલ્પો
   #A user who is not a curator
@@ -174,9 +206,15 @@ gu:
     આઇડીમાં વધારાની ટીપ્પણીઓ છે.
   #A user who does not admin any projects
   non_project_admin: બિન-પ્રોજેક્ટ સંચાલક
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: અવલોકન કરો
   observation_fields_for_projects: પ્રોજેક્ટો માટે નિરીક્ષણ ક્ષેત્રો
+  or: અથવા
+  our_blog: અમારો બ્લોગ
+  people: લોકો
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: નિરીક્ષણોને આ સ્થાન સાથે સાંકળવામાં એક દિવસ સુધીનો સમય લાગી શકે છે.
+  places: સ્થાનો
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     7,00,000 ચોરસ કિલોમીટરથી મોટા સ્થળો ન હોઈ શકે.
@@ -191,11 +229,15 @@ gu:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     સ્થળોએ 10,000 થી વધુ અવલોકનો હોઈ શકતા નથી.
+  powered_by_inaturalist_open_source_software_html: 'આના દ્વારા પાવર થયેલ છે <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist ઓપન સોર્સ સોફ્ટવેર</a>'
+  press: દબાવો
+  privacy: ગોપનીયતા
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: પ્રોફાઇલ ચિત્ર ફાઇલ પ્રકાર
   #A user who admin's a project
   project_admin: પ્રોજેક્ટ સંચાલક
+  projects: પ્રોજેક્ટ્સ
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -206,6 +248,10 @@ gu:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: ઉપપ્રજાતિઓ/વિવિધતા /ફોર્મ
+  search: શોધો
+  sign_up: સાઇન અપ કરો
+  sign_up_sentence_case: સાઇન અપ કરો
+  site_stats: સાઇટ પરિસ્થિતિઓ
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: અવાજ %{id}, %{attribution}
@@ -215,9 +261,19 @@ gu:
     sound_hidden: સાઉન્ડ છુપાયેલ છે
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: છુપાયેલ અવાજ
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: સ્ટોર
+  store_caps: સ્ટોર
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: ઉમેદવારી નોંધાવો
+  taxa_info: Taxa જાણકારી
+  terms_service: ઉપયોગની શરતો[ફેરફાર કરો]
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: ટ્રેક
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: પ્રોજેક્ટ્સને સમજવું
   update_existing_observations_with_new_license_desc: |
     આ વિકલ્પને પસંદ કરવાનું તમારા બધા માટે તમારી નવી લાઇસન્સ પસંદગીને લાગુ કરશે
     પ્રવર્તમાન અવલોકનો. જો તમારી પાસે ઘણું બધું હોય તો આમાં થોડા કલાકો લાગી શકે છે
@@ -240,10 +296,18 @@ gu:
     નિરીક્ષક દ્વારા પ્રોજેક્ટ માટે.
   user_trusts_this_project_when_added_by_none: |
     વપરાશકર્તા છુપાયેલા કોઓર્ડિનેટ્સવાળા પ્રોજેક્ટ ક્યુરેટર્સ પર વિશ્વાસ કરતો નથી.
+  video_tutorials: વીડિયો ટ્યુટોરિયલ્સ
   #Link to view identifications affected by a taxon change
   view_your_affected_ids: તમારી અસર પામેલ આઇડી જુઓ
   we_also_support3: |
     અમે તેમાંથી ફોટાને આયાત કરવાનું પણ સમર્થન કરીએ છીએ <a href="http://flickr.com">Flickr</a>.
+  what: શું
+  when: જ્યારે
+  where: ક્યાં
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: કોણ
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: શા માટે?
   views:
     announcements:
       locales_desc: |
@@ -483,6 +547,191 @@ gu:
           સંગ્રહ અથવા છત્રી પ્રોજેક્ટ્સમાંથી, જે આવશ્યકપણે સાચવવામાં આવે છે.
           તમે વધુ વાંચી શકો છો
           <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">અહીં</a>.
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: જ્યાં તમારી જિજ્ઞાસા વિજ્ઞાનમાં ફાળો આપે છે.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            પૃથ્વી પરના જીવનના જીવંત એટલાસમાં ઉમેરતી વખતે છોડ, પ્રાણીઓ, ફૂગ અને વધુને ઓળખો.
+          #Primary call-to-action button in the hero section
+          cta_join: સમુદાયમાં જોડાઓ
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: મફત, બિનનફાકારક, સમુદાય-સંચાલિત.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalist સાથે, તમે કરી શકો છો:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: છોડ, પ્રાણીઓ, ફૂગ અને વધુ
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: તમે વિશ્વભરમાં જોયેલી પ્રજાતિઓ
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: વાસ્તવિક વિજ્ઞાન તરફ
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: નજીકની પ્રકૃતિ
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: પ્રકૃતિવાદીઓના વૈશ્વિક સમુદાય તરફથી
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: સામુદાયિક વિજ્ઞાનની શક્તિ
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: દ્વારા જોયેલ %{user} માં %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: લાંબા સમયથી ખોવાયેલી પ્રજાતિઓને ફરીથી શોધી રહ્યા છે
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            ધ %{moth_common_name} શલભ દાયકાઓથી જોવા મળ્યો ન હતો અને એક સમયે લુપ્ત થઈ ગયો હોવાનું માનવામાં આવતું હતું - જ્યાં સુધી ન્યુઝીલેન્ડના એક પ્રવાસીએ તેને અકસ્માત દ્વારા શોધી કાઢ્યો ન હતો.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: નવી વિજ્ઞાન પ્રજાતિઓની શોધ
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">ઈનિમિયા નાટ</span> - સંક્ષિપ્તમાં <span class="italic">I. nat</span> - ઓસ્ટ્રેલિયામાં એક મહિલા દ્વારા તેના પડોશમાં ચાલતી એક નવી વિજ્ઞાન મેન્ટિસ પ્રજાતિ છે.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: સ્થાનિક ઇકોસિસ્ટમનું રક્ષણ કરવું
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            કેલિફોર્નિયામાં સ્થાનિક સ્વયંસેવકોનું એક જૂથ વ્યસ્ત રસ્તાને પાર કરતા સ્થળાંતર કરતા ઉભયજીવીઓને બચાવવા માટે iNaturalist દ્વારા ભેગા થયું હતું.
+          #Link below the stories to read more community science stories
+          read_more: વધુ વાર્તાઓ વાંચો
+        observation:
+          #Heading for the sample observation section
+          heading: દરેક અવલોકન એક વાર્તા કહે છે
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: જૈવવિવિધતા વિજ્ઞાનમાં યોગદાન આપતા અવલોકનો
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: વિશ્વભરમાં દસ્તાવેજીકરણ થયેલ પ્રજાતિઓ
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: આઇનેચરલિસ્ટ ડેટાને ટાંકતા કાગળો
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: સમુદાયના વૈજ્ઞાનિકો દ્વારા શોધાયેલી અથવા ફરીથી શોધાયેલી પ્રજાતિઓ
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            એપ્લિકેશન ખોલો અને કોઈપણ જંગલી છોડ, પ્રાણી, ફૂગ અથવા અન્ય સજીવનો ફોટોગ્રાફ કરો - તમારા પડોશમાંથી અથવા વિશ્વમાં ક્યાંય.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            એપ્લિકેશન તરત જ ઓળખ સૂચવે છે, અને પ્રકૃતિવાદીઓનો વૈશ્વિક સમુદાય તેની પુષ્ટિ કરે છે અથવા શુદ્ધ કરે છે.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            તમારું અવલોકન ખુલ્લા ડેટા બની જાય છે - વિશ્વભરના વૈજ્ઞાનિકો, સંરક્ષણવાદીઓ અને સંશોધકો દ્વારા ઉપયોગમાં લેવાય છે.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            પ્રકૃતિ પહેલા કરતા વધુ ઝડપથી બદલાઈ રહી છે, તેથી આપણે જરૂર છે <span class="underline">તમે</span> શું રહે છે તે રેકોર્ડ કરવામાં મદદ કરવા માટે.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            તે મને વિશ્વભરના વિવિધ લોકો સાથે વાતચીત કરવાની તક આપવા ઉપરાંત, પ્રજાતિઓની ઓળખમાં ખરેખર મદદ કરી છે.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: દરિયાઇ સંરક્ષણવાદી અને અંડરવોટર ફોટોગ્રાફર, કેન્યા
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            આઇનેચરલિસ્ટ અન્ડરસ્ટડી ટેક્સા પર ઘણા નવા અને આકર્ષક સંશોધનનો દરવાજો ખોલે છે. મારા મતે, આ પ્લેટફોર્મ ઇકોલોજીકલ સાયન્સની કટીંગ ધાર છે.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: ઓવફ્લી એલએલસી, યુએસએ ખાતે ફીલ્ડ માર્ગદર્શિકા લેખક
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist અને ઓળખકર્તાઓનો સમર્પિત સમુદાય મારા સંશોધનમાં અમૂલ્ય સંસાધન બન્યો. તેણે મારા વર્તમાન કાર્યનો પાયો નાખવામાં મદદ કરી.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: જૈવવિવિધતા સંશોધક, શ્રીલંકા
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist એ એક શક્તિશાળી સાધન છે જે લોકો, પ્રકૃતિ અને જ્ઞાનને જોડે છે. હું એક દુર્લભ પ્રજાતિનો ફોટોગ્રાફ કરી શકું છું, અથવા તે પણ એક કે જેનું હજી સુધી વર્ણન કરવામાં આવ્યું નથી, અને તે જ સમયે, હું આપણા કુદરતી વારસાને બચાવવામાં ફાળો આપું છું.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: એન્વાયર્નમેન્ટલ ટેકનિશિયન અને શોખ ફોટોગ્રાફર, બ્રાઝિલ
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            તમે વિશ્વમાં ક્યાં હોવ તે મહત્વનું નથી, પછી ભલે તમારી પાસે પીએચડી હોય અથવા ફક્ત બહારના પ્રેમને પ્રેમ કરો, આઇનેચરલિસ્ટ તમને પ્રકૃતિ અને ઘણા સાથી પ્રકૃતિવાદીઓની નજીક લાવશે.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: જીવવિજ્ઞાની, મેક્સિકો
+        everyone:
+          #Heading for the broad audience section
+          heading: દરેક વ્યક્તિ પ્રકૃતિવાદી છે
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            જો તમે ક્યારેય જીવંત વસ્તુને નજીકથી જોઈ છે અને આશ્ચર્ય પામ્યું છે કે તે શું છે, તો iNaturalist તમારા માટે છે.
+          #Heading for the impact sub-section
+          impact_heading: તમે પ્રભાવ પાડી શકો છો
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            તમે શેર કરો છો તે દરેક ફોટો વૈશ્વિક વૈજ્ઞાનિક રેકોર્ડનો ભાગ બની જાય છે જેના પર વિશ્વભરના સંશોધકો આધાર રાખે છે.
+          #Heading for the community reputation sub-section
+          community_heading: '"ઓનલાઇન સૌથી સરસ સ્થળ"'
+          #Description of the welcoming community aspect
+          community_body: >
+            ઓળખ માટે આવો, સમુદાય માટે રહો અને વિજ્ઞાન પર અસર કરો.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: આઇનેચરલિસ્ટ એપ્લિકેશન ડાઉનલોડ કરો
+          #Subheading describing the two core benefits of the app
+          subheading: વાસ્તવિક સમયની ઓળખ મેળવો અને વિજ્ઞાનમાં યોગદાન આપો
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ ડાઉનલોડ્સ"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: વિશ્વભરમાં પ્રજાતિઓનું અન્વેષણ કરો
+          #Button / link to browse species without downloading
+          button: હવે અન્વેષણ કરો
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 વર્ષથી નીચે? સીક ડાઉનલોડ કરો!"
+          #Description of Seek's badge and challenge features
+          body: બેજ કમાય અને પ્રજાતિઓનું અવલોકન કરવા માટે પડકારોમાં ભાગ લો!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-સ્ટાર સમીક્ષાઓ"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: અમારું માસિક ન્યૂઝલેટર મેળવો!
+          #Description of the newsletter's content
+          body: આઇનેચરલિસ્ટ સમુદાયની વાર્તાઓ અને શોધો સાથે જોડાયેલા રહો.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist એ એક બિનનફાકારક સંસ્થા છે જે વિજ્ઞાન અને સંરક્ષણને ટેકો આપે છે.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: તમારો ટેકો તે શક્ય બનાવે છે.
+          #Call-to-action button for the donation section
+          cta: હવે દાન કરો
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: FAQs
+          #FAQ: uploading existing photos — question
+          upload_existing_question: શું હું મારી પાસે પહેલાથી જ ફોટા અપલોડ કરી શકું છું?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            હા! જ્યાં સુધી તમે લગભગ જાણો છો કે ફોટો ક્યારે અને ક્યાં લેવામાં આવ્યો હતો, જૂના ફોટા આવકાર્ય છે.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: આઇનેચરલિસ્ટ નિરીક્ષણો સાથે વિજ્ઞાન કોણ કરી શકે છે?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            કોઈપણ! બધા iNaturalist નિરીક્ષણો ખુલ્લા અને મુક્ત રીતે ઉપલબ્ધ છે - સંશોધકો, સંરક્ષણ પ્રેક્ટિશનરો અને જિજ્ઞાસુ વ્યક્તિઓ માટે.
+          #FAQ: research grade definition — question
+          research_grade_question: '"સંશોધન ગ્રેડ" નો અર્થ શું છે?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            જ્યારે સમુદાય ઓળખ પર સંમત થાય છે, ત્યારે અવલોકન "સંશોધન ગ્રેડ" બની જાય છે અને વૈશ્વિક વૈજ્ઞાનિક રેકોર્ડમાં પ્રવેશ કરે છે. દરેક ઓળખ તેને ત્યાં પહોંચવામાં મદદ કરી શકે છે.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: શું મારે જાણવાની જરૂર છે કે હું શું જોઈ રહ્યો છું?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            બિલકુલ નહીં! એક ફોટો શેર કરો, અને પ્રકૃતિવાદીઓનો વૈશ્વિક સમુદાય તમને તેને ઓળખવામાં મદદ કરી શકે છે.
+          #FAQ: whether the app is required — question
+          need_app_question: શું મારે એપ્લિકેશનનો ઉપયોગ કરવાની જરૂર છે?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            ડેસ્કટોપ પર, iNaturalist.org સરસ કામ કરે છે. મોબાઇલ ઉપકરણ પર, એપ્લિકેશન તમને શ્રેષ્ઠ અનુભવ આપે છે - ખાસ કરીને સફરમાં પ્રજાતિઓને ઓળખવા માટે.
   number:
     format:
       significant: false

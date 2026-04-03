@@ -95,7 +95,7 @@ fr:
   x_people_html:
     one: '<span class="count">%{count}</span> personne'
     other: '<span class="count">%{count}</span> personnes'
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} personne(s)</strong> a/ont aidé %{user} sur <strong>%{y} IDs</strong>"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} personne(s)</strong> a/ont aidé %{user} avec <strong>%{y} ID</strong>"
   x_photos:
     one: "%{count} photo"
     other: "%{count} photos"
@@ -802,7 +802,7 @@ fr:
   back_to_suggestions: Retourner aux propositions
   back_to_taxon: "Retourner à %{defaulttaxon}"
   back_to_taxon_changes: "Retourner aux modifications taxinomiques"
-  back_to_taxon_framework_for_x: "Retourner au cadre taxinomique pour %{taxon_name}"
+  back_to_taxon_framework_for_x: "Retourner à la structure taxinomique pour %{taxon_name}"
   back_to_users_calendar: "Retourner au calendrier @vow_or_con{vow:d'|de }%{user}"
   back_to_users_lists: "Retourner aux listes @vow_or_con{vow:d'|de }%{user}"
   back_to_viewing: "Retourner à <i>%{taxon}</i>"
@@ -1163,6 +1163,8 @@ fr:
     %{user} a affiché ce %{item} car «&nbsp;%{reason}&nbsp;»
   continue: Continuer
   continue_to_site: Continuer vers %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribuer
   contributor_cannot_be_found: Le collaborateur est introuvable
   contributors_to_project: "Collaborateurs à %{project}"
   controlled_term_labels:
@@ -1314,7 +1316,7 @@ fr:
   copyright_infringement: Violation de droit d’auteur
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne autre que l’observateur et attribution manquante
   covered_by_a_taxon_framework_html: "Couvert par un %{link}"
-  covered_by_a_taxon_framework_link: "Cadre taxinomique pour %{taxon_framework_rank} %{taxon_framework_name}"
+  covered_by_a_taxon_framework_link: "Structure taxinomique pour %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "Impossible de modifier votre mot de passe : %{e}"
   couldnt_find_a_user_matching_x_param: "Impossible de trouver un utilisateur correspondant à %{id}"
   couldnt_find_that_taxon: Impossible de trouver ce taxon.
@@ -1614,7 +1616,7 @@ fr:
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
   #As in the definition of a word
   definition: Définition
-  defines_a_taxon_framework_for: 'Définit un cadre taxinomique pour : %{taxon_name}'
+  defines_a_taxon_framework_for: 'Définit une structure taxinomique pour : %{taxon_name}'
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Définit un cadre taxinomique pour %{taxon} provenant de %{source}
   definitions: Définitions
   delete: Supprimer
@@ -1732,6 +1734,8 @@ fr:
   devise_unlock_instructions_click_the_link: |
     Cliquez sur le lien ci-dessous pour débloquer votre compte :
   devise_unlock_instructions_unlock: Déverrouiller votre compte
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Découvrir
   discoveries: Découvertes
   did_you_mean: 'Voulez-vous dire'
   did_you_photos_flickr?: Avez-vous mis des photos sur Flickr ?
@@ -1844,7 +1848,7 @@ fr:
   edit_source: Modifier la source
   edit_taxa: Modifier les taxons
   edit_taxon: Modifier le taxon
-  edit_taxon_framework: Modifier le cadre taxinomique
+  edit_taxon_framework: Modifier la structure taxinomique
   edit_taxon_link: Modifier le lien relatif au taxon
   edit_taxon_range: Modifier l'aire de répartition du taxon
   edit_the_observation: Modifier l’observation
@@ -2064,7 +2068,7 @@ fr:
   flag_created: Signalement créé
   flag_deleted: Indicateur supprimé
   flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
-  flag_comment_description: Ajoutez un commentaire facultatif à cet indication pour expliquer plus en détail pourquoi vous l'ajoutez et pour fournir des liens vers des données qui étayent votre point de vue.
+  flag_comment_description: Ajoutez un commentaire facultatif à ce signalement pour expliquer plus en détail pourquoi vous l'ajoutez et pour fournir des liens vers des données qui étayent votre point de vue.
   #Text reminding the user to cite sources
   flag_comment_taxon_description: Les drapeaux qui citent une source ont plus de chances d’être résolus rapidement par nos conservateurs bénévoles.
   flag_for_check_list_title_html: |
@@ -2262,9 +2266,9 @@ fr:
   heads_up_automatable_split_notice_html: |
     <strong>Avertissement :</strong> Certaines ou toutes les identifications affectées par cette division peuvent avoir été remplacées par des identifications de %{taxon}. Ceci se produit lorsque nous ne pouvons pas assigner automatiquement une identification à l'un des taxons de sortie.
   heads_up_observose_taxon_change_html: |
-    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée impliqués dans cette modification a plus de %{observose_taxon_threshold} observations en aval. Seuls les administrateurs ou les responsables de ce cadre taxinomique peuvent valider cette modification.
+    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée impliqués dans cette modification a plus de %{observose_taxon_threshold} observations en aval. Seuls les administrateurs ou les responsables de cette structure taxinomique peuvent valider cette modification.
   heads_up_taxon_change_inputs_covered_by_framework_html: |
-    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée touchés par cette modification sont dans un <a href="%{framework_url}">cadre taxinomique</a>. Seuls les administrateurs ou les responsables de ce cadre taxinomique peuvent valider des modifications qui touchent les taxons couverts. Adressez-vous à l'un des responsables de ce taxon pour valider cette modification.
+    <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée touchés par cette modification sont dans une <a href="%{framework_url}">structure taxinomique</a>. Seuls les administrateurs ou les responsables de cette structure taxinomique peuvent valider des modifications qui touchent les taxons couverts. Adressez-vous à l'un des responsables de ce taxon pour valider cette modification.
   heads_up_there_are_other_draft_taxon_changes_html:
     one: "<strong>Avertissement :</strong> Il y a %{count} autre projet de modification de taxon avec les mêmes taxons d'entrée :"
     other: "<strong>Avertissement :</strong> Il y a %{count} autres projets de modification de taxon avec les mêmes taxons d'entrée :"
@@ -2296,7 +2300,7 @@ fr:
   hide_observations_with_private_locations: Cacher les observations avec des emplacements privés
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Masquer le total actuel
-  hide_uncountable_species: Masquer les espèces indénombrables
+  hide_uncountable_species: Masquer les espèces non comptabilisables
   high: Haut
   #Highest taxonomic rank to filter by, where the "highest" possible rank is
   #kingdom
@@ -2339,11 +2343,13 @@ fr:
   #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
   id_two_of_taxon_swap_html: "L'ID 2 du taxon <strong>E</strong> sera un désaccord involontaire avec l'ID 1 du taxon <strong>B</strong> après l'échange de taxon"
   id_withdrawn: ID supprimé
-  ids_by_taxon: IDs par taxon
+  ids_by_taxon: ID par taxon
   identify: Identifier
   identify_observations: "Identifier les observations"
   identify_observations_by_these_users: Identifier les observations par ces utilisateurs
   identify_title: "Identifier"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifier
   identification: identification
   identification_by_user: Identification par %{user}
   #Notification when an identification has been deleted
@@ -2558,7 +2564,7 @@ fr:
   last_observation: Dernière observation
   last_observation_caps: DERNIÈRE OBSERVATION
   last_seen: Vu la dernière fois
-  last_year: Année dernière
+  last_year: An dernier
   lat: Lat.
   #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
   latlon: Lat./Long.
@@ -2580,6 +2586,7 @@ fr:
     identifications_in_month_year: Le plus d'identifications en %{month_year}
     identifications_in_year: Le plus d'identifications en %{year}
   leading: En tête
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Apprendre
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent dans
   learn_more: En savoir plus
@@ -2859,7 +2866,7 @@ fr:
   log_out_caps: SE DECONNECTER
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Se déconnecter de %{site_name}?"
-  log_scale_label: Trace
+  log_scale_label: Logarithmique
   #Adjectival phrase describing state of being logged in
   logged_in: Connecté
   #Adjectival phrase describing state of being logged out
@@ -3309,7 +3316,7 @@ fr:
   no_taxa_listed: Aucun taxon répertorié
   no_taxa_selected: Aucun taxon sélectionné !
   no_taxa_with_unknown_relationships: Aucun taxon avec des relations inconnues
-  no_taxon_framework_relationships: aucune relation de cadre taxinomique
+  no_taxon_framework_relationships: aucun lien de structure taxinomique
   no_taxonomic_changes_match_those_criteria: Aucune modification taxinomique ne correspond à ces critères
   no_users_found_with_those_filters: Pas d'utilisateurs trouvés ave ces filtres
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
@@ -3368,6 +3375,8 @@ fr:
   obscured_or_private: masqué ou privé
   obscured_description: |
     Les coordonnées qui sont visibles pour tout le monde sont montrées comme un point au hasard dans les 0,2 degrés de latitude/longitude contenant les vraies coordonnées.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observez
   observation: Observation
   observation_: observation
   observation_accuracy_experiment_the_sample_for: "L'échantillon pour cette expérience n'a pas encore été généré"
@@ -3594,7 +3603,7 @@ fr:
   observations_specifying_this_field_with_value: Observations spécifiant ce champ avec « %{value} »
   observations_text_search_warning: |
     Les recherches textuelles peuvent produire des résultats bizarres quand elles sont combinées avec d’autres filtres. Si vous voulez trouver l’observation d’une espèce particulière, utilisez le filtre de taxon.
-  observations_this_year_vs_last_year: Observations de cette année vs. l’année dernière
+  observations_this_year_vs_last_year: Observations cette année par rapport à l’année dernière
   observations_total: Total des observations
   observations_w: Observations avec /
   observations_w_field: Observations w/champ
@@ -4912,7 +4921,7 @@ fr:
   show_taxa_from_everywhere: "Afficher les taxons de partout"
   show_taxa_from_place: "Afficher les taxons de %{place}"
   show_total_counts: Afficher les compteurs totaux
-  show_uncountable_species: Afficher les espèces indénombrables
+  show_uncountable_species: Afficher les espèces non comptabilisables
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: Affichage des %{x} premiers
@@ -4927,6 +4936,7 @@ fr:
   sign_in_with_google: Connectez-vous avec Google
   sign_out: Déconnexion
   sign_up: Inscrivez-vous
+  sign_up_sentence_case: Inscrivez-vous
   similar_species: Espèces similaires
   similar_taxa: Taxons similaires
   #Journal post formatting option
@@ -5168,7 +5178,7 @@ fr:
   suitable_for_the_global_biodiversity_information_facility: Convient au Système Mondial d'Information sur la Biodiversité (GBIF)
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Convient à Wikipédia et aux autres projets de la Fondation Wikimédia
   summary: Résumé
-  supporting: Soutenir
+  supporting: Soutien
   suspend_user: Suspendre l’utilisateur
   suspend_user_html: Suspendre %{user}
   suspend_user_reason_instructions_html: |
@@ -5283,14 +5293,14 @@ fr:
   taxon_curators: Responsables des taxons
   taxon_framework_complete: "Complet : vrai"
   taxon_framework_deviations_with_count_html: "Déviations : %{count}"
-  taxon_framework_relationships_with_count_html: "Relations du cadre taxinomique : %{count}"
+  taxon_framework_relationships_with_count_html: "Liens de la structure taxinomique : %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "Taxons couverts signalés : %{count}"
-  taxon_framework_notes: Notes du cadre taxinomique
-  taxon_framework_relationship: Relation du cadre taxinomique
+  taxon_framework_notes: Notes de la structure taxinomique
+  taxon_framework_relationship: Lien avec la structure taxinomique
   taxon_framework_relationship_number: "Relation du cadre taxinomique %{number}"
   taxon_framework_relationship_unknown_count_html: "Nombre de relations inconnues : %{count}"
-  taxon_framework_relationships: Relations du cadre taxinomique
+  taxon_framework_relationships: Liens de la structure taxinomique
   taxon_framework_taxon: Taxon du cadre taxinomique
   taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
   taxon_merge: fusion de taxon
@@ -5664,6 +5674,8 @@ fr:
   total_observations_caps: NOMBRE D'OBSERVATIONS
   total_species_observed_caps: NOMBRE D'ESPÈCES OBSERVÉES
   total_unique_observers: Total des observateurs uniques
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Piste
   translated_languages: Langues traduites
   'true': 'Oui'
   trending: Tendance
@@ -5864,7 +5876,7 @@ fr:
     pour supprimer complètement le contenu associé)
   user_has_opted_out_of_community_id: L’utilisateur a refusé le Taxon Communautaire
   user_hasnt_joined_any_projects: "%{user} n'a rejoint aucun projet"
-  user_helped_x_people_with_y_ids_html: "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} IDs</strong>"
+  user_helped_x_people_with_y_ids_html: "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} ID</strong>"
   user_invite_observation_to_project: '%{user} aimerait obtenir votre observation « %{observation} » dans le projet %{project}.'
   user_invited_you_to_join_html: "%{user} vous a invité à vous joindre"
   user_invited_you_to_join_project: "%{user} vous a invité à vvous joindre à %{project}"
@@ -6001,7 +6013,7 @@ fr:
   view_stats: Afficher les statistiques
   view_taxon_change: Afficher la modification du taxon
   view_taxon_changes: Afficher les modifications de taxon
-  view_taxon_framework_relationship: Afficher la relation du cadre taxinomique
+  view_taxon_framework_relationship: Afficher le lien de la structure taxinomique
   view_taxon_page: Afficher la page de taxon
   view_taxon_page_for_this_x: "Afficher la page de taxon pour ce %{x}"
   view_taxononomy_details_for_taxon: "Afficher les détails de la taxinomie pour %{taxon}"
@@ -6037,7 +6049,7 @@ fr:
   we_support_flickr: Pour le moment, nous prenons en charge ''Flickr'' pour l’hébergement d’images et espérons ajouter d’autres hébergeurs prochainement.
   weather: Météo
   website: Site web
-  week_of_date: "Semaine de %{date}"
+  week_of_date: "Semaine du %{date}"
   welcome: bienvenue
   welcome_back!: Re-bonjour !
   welcome_to_inat: "Bienvenue sur %{site_name} !"
@@ -6078,6 +6090,8 @@ fr:
   why_are_you_making_this_change_optional: Pourquoi faites-vous ce changement ? (Facultatif)
   why_are_you_making_this_change_cite_source_required: Pourquoi apportez-vous ce changement ? Veuillez expliquer et, si possible, citer une source. (Obligatoire)
   why_you_can_see_the_coordinates: Pourquoi vous pouvez voir les coordonnées
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Qui
   who_can_add_observation_fields_to_my_obs: Qui peut ajouter des champs d’observation à mes observations ?
   who_can_add_observations_to_this_project?: Qui peut ajouter des observations à ce projet ?
   who_can_see_the_coordinates: Qui peut voir les coordonnées
@@ -6086,6 +6100,8 @@ fr:
   who_can_see_the_coordinates_trusted: Personnes à qui l’observateur a donné l'accès à ses coordonnées masquées
   who_helped_user_the_most: "Qui a le plus aidé %{user}"
   who_user_helped_the_most: "Qui %{user} a le plus aidé"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Pourquoi ?
   why_the_coordinates_are_obscured: Pourquoi les coordonnées sont masquées
   with_annotation: Avec annotation
   without_annotation: Sans annotation
@@ -8050,11 +8066,11 @@ fr:
         broader_impacts_desc: |
           Plusieurs partenaires externes importent régulièrement des observations iNaturalist pour soutenir la science et la conservation. Vos observations, vos identifications et vos choix de licences ouvertes permettent à ces organisations de fournir des informations sur la biodiversité utiles aux personnes qui en ont besoin dans le monde.
         compare_desc: |
-          Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle.
+          Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle. La barre verte représente cette année, la barre verticale blanche représente l'année dernière, et les zones grises représentent l'année du maximum et celle du minimum d'activité, ainsi que la moyenne toutes années confondues. Les statistiques n'incluent pas les années où le nombre était zéro.
         compare_site_desc: |
           Comment cette année s'est-elle déroulée par rapport aux précédentes ? La barre verte représente l'année en cours, la barre blanche l'année dernière, et les zones de fond gris les années les plus basses et les plus élevées, ainsi que la moyenne de toutes les années.
-        compared_to_previous_years: Comparer aux années précédentes
-        donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
+        compared_to_previous_years: Comparaison avec les années précédentes
+        donate_title: "À tous nos soutiens : merci !"
         donate_desc2_html: |
           Merci de la générosité dont vous faites preuve en offrant votre temps, votre attention, votre expertise et vos dons ! iNaturalist est une organisation 501(c)3 sans but lucratif, basée aux États-Unis. Le projet est porté par une <a href="%{team_url}">petite équipe</a> qui s'occupe de toute la conception et du génie logiciel pour le web, la plateforme mobile et <a href="%{seek_url}">Seek by iNaturalist</a>, et qui gère l'aide à la communauté, les collaborations et les intégrations qui sont la clé du succès (et d'un développement rapide !). Le programme est rendu possible par de nombreux dons et subventions, entre autres les dons d'une infime partie des utilisateurs. Nous sommes particulièrement reconnaissants aux personnes qui font un don chaque mois. Ces dons récurrents nous aident à préparer l'avenir. Vous pouvez faire un don dans différentes devises pour soutenir les activités de base d'iNaturalist. Grâce à vous, %{year} sera la meilleure année qu'aura connu iNaturalist à ce jour !
         donors: Donateurs
@@ -8064,14 +8080,14 @@ fr:
           Consultez la rétrospective de l'année des membres du réseau iNaturalist.
         include_usa: Inclure les États-Unis
         growth_by_country_desc_html: |
-          Où y-a-t-il croissance ? Cette carte et ce graphe essaient de partager cette information par pays, ce qui est compliqué parce que la croissance par pays peut être très déséquilibrée. Ici nous avons choisi d'omettre les États-Unis et d'utiliser une échelle logarithmique par défaut pour accentuer les différences avec les autres pays. Si un pays apparaît en noir cela signifie qu'il n'a pas contribué significativement au pourcentage, ou qu'il n'a pas présenté de croissance cette année, ou il n'a pas eu plus d'observations cet année que l'année dernière (passer le curseur sur un pays pour avoir plus de détails). <strong>"% de la croissance totale"</strong> signifie la part de la croissance mondiale provenant d'un pays particulier, par exemple s'il y a 20 observations en 2018 et 10 en 2017, cela représente 10 observations de croissance, et si 5 d'entre elles concernent le Bénin, alors le Bénin a contribué à 50% du total de la croissance. <strong>"% de croissance"</strong> représente le pourcentage d'observations de cette année dans ce pays par rapport aux observations de l'année dernière dans ce pays, donc si il a eu 10 observations sur le Laos l'an passé et 20 cette année, cela représente une croissance de 100%, et s'il y en a eu 0 l'an passé et 1 cette année, cela représente un pourcentage de croissance infinie.
+          Où y a-t-il croissance ? Cette carte et ce graphe essaient de présenter cette information par pays, ce qui est compliqué parce que la croissance par pays peut être très déséquilibrée. Ici, nous avons choisi d'omettre les États-Unis et d'utiliser une échelle logarithmique par défaut pour accentuer les différences avec les autres pays. Si un pays apparaît en noir, cela signifie qu'il n'a pas contribué significativement au pourcentage, ou qu'il n'a pas présenté de croissance cette année, ou qu'il n'a pas eu plus d'observations cette année que l'année dernière (passer le curseur sur un pays pour avoir plus de détails). <strong>"% de la croissance totale"</strong> signifie la part de la croissance mondiale provenant d'un pays particulier, par exemple s'il y avait 20 observations en 2018 et 10 en 2017, cela représente 10 observations de croissance, et si 5 d'entre elles concernent le Bénin, alors le Bénin a contribué à 50% du total de la croissance. <strong>"% de croissance"</strong> représente le pourcentage d'observations de cette année dans ce pays par rapport aux observations de l'année dernière dans ce pays. Donc, s'il y a eu 10 observations au Laos l'an passé et 20 cette année, cela représente une croissance de 100%, et s'il y en a eu 0 l'an passé et 1 cette année, cela représente un pourcentage de croissance infinie.
         growth_by_country_title: Croissance par pays
         growth_desc: |
           Les graphiques « Observations » et « Taxons » peuvent inclure des données visibles sur
           %{site_name} fournies par des personnes qui ne sont pas affiliées à
           %{site_name}, alors que le graphique "Utilisateurs" ne montre que les dates où les utilisateurs
           actuellement affiliés à %{site_name} ont rejoint iNaturalist.
-        growth_in_year_obs: "Croissance pendant %{year} (obs)"
+        growth_in_year_obs: "Croissance en %{year} (obs)"
         growth_title: Croissance
         #Label when a mark on a chart has a value that is too small to
         #visualize. low_value is the value (usually a number), low_desc is
@@ -8245,7 +8261,7 @@ fr:
           qui sont très rarement observés, mais c’est également vrai du nombre total
           d’observations.
         complete_taxon_desc: |
-          Les taxons « complets » ont tous leurs taxons descendants encore en vie à un rang particulier présents dans la base de données du site. Quand un taxon est complet pour les espèces,par exemple, nous pouvons dire combien de ses espèces ont été observées et combien doivent encore l’être. Le nombre des espèces pour les taxons complets pour les espèces ne comprend pas les espèces « indénombrables » comme les espèces éteintes ou les concepts d’espèce inactifs, et incluent seulement les espèces, non les taxons de niveau spécifique inférieur, comme les sous-espèces ou les variétés.
+          Les taxons « complets » ont tous leurs taxons descendants encore en vie à un rang particulier présents dans la base de données du site. Quand un taxon est complet pour les espèces, par exemple, on peut dire combien de ses espèces ont été observées et combien doivent encore l’être. Le nombre d'espèces pour les taxons complets pour les espèces ne comprend pas les espèces « non comptabilisables », comme les espèces éteintes ou les concepts d’espèce inactifs, et inclut seulement les espèces et non les taxons de niveau infraspécifique, comme les sous-espèces ou les variétés.
         discoveries_desc: "Espèces nouvellement identifiées les plus récentes dans ce taxon"
         frequency:
           research: Qualité Recherche
@@ -8729,6 +8745,191 @@ fr:
         who_uses_site_name: "Qui utilise %{site_name} ?"
         what_are_you_waiting_for: Qu’attendez-vous ?
         join_today: Inscrivez-vous
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Votre curiosité au service de la science.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Identifiez plantes, animaux, champignons et bien plus encore, tout en contribuant à un atlas vivant de la vie sur Terre.
+          #Primary call-to-action button in the hero section
+          cta_join: Rejoignez la communauté
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Gratuit, à but non lucratif, porté par la communauté.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Avec iNaturalist, vous pouvez :"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: les plantes, animaux, champignons, et plus encore
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: les espèces que vous avez vues dans le monde entier
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: à la vraie science
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Nature à proximité
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: d’une communauté mondiale de naturalistes
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: La force de la science participative
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Vu par %{user} dans %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Redécouverte d’espèces disparues depuis longtemps
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Le papillon de nuit %{moth_common_name} n’avait pas été observé depuis des décennies et était autrefois considéré comme éteint — jusqu’à ce qu’un touriste en Nouvelle-Zélande le repère par hasard.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Découverte d’espèces nouvelles pour la science
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — abrégé en <span class="italic">I. nat</span> — est une espèce de mante religieuse nouvelle pour la science, découverte par une femme en Australie qui se promenait dans son quartier.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Protection des écosystèmes locaux
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Un groupe de bénévoles locaux en Californie s’est réuni via iNaturalist pour protéger les amphibiens migrateurs traversant une route très fréquentée.
+          #Link below the stories to read more community science stories
+          read_more: Lire plus d’histoires
+        observation:
+          #Heading for the sample observation section
+          heading: Chaque observation raconte une histoire
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Observations contribuant à la science de la biodiversité
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: espèces documentées à travers le monde
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: articles citant des données iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: espèces découvertes ou redécouvertes grâce à la science participative
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Ouvrez l’application et photographiez n’importe quelle plante, animal, champignon ou autre organisme sauvage — dans votre quartier ou n’importe où dans le monde.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            L’application suggère une identification instantanée, et la communauté mondiale de naturalistes la confirme ou l’affine.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Votre observation devient une donnée ouverte — utilisées par des scientifiques, des spécialistes de la conservation et des chercheurs du monde entier.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            La nature change plus vite que jamais, donc nous avons besoin de <span class="underline">vous</span> pour aider à recenser les espèces et leur répartition.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Cela m’a vraiment aidé à identifier les espèces, en plus de me donner l’opportunité d’interagir avec différentes personnes à travers le monde.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Spécialiste de la conservation marine et photographe sous-marin, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist ouvre la porte à tant de recherches nouvelles et passionnantes sur des taxons peu étudiés. À mon avis, cette plateforme est à la pointe de la science écologique.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Auteur de guide naturaliste chez Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist et sa communauté dévouée d’identificateurs sont devenus une ressource inestimable dans mes explorations. Cela a contribué à poser les bases de mon travail actuel.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Chercheur en biodiversité, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist est un outil puissant qui relie les personnes, la nature et la connaissance. Je peux photographier une espèce rare, ou même une qui n’a pas encore été décrite, tout en contribuant à la protection de notre patrimoine naturel.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Technicien en environnement et photographe amateur, Brésil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Peu importe où vous êtes dans le monde, que vous ayez un doctorat ou que vous aimiez simplement la nature, iNaturalist vous rapprochera de la nature et de nombreux autres naturalistes.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biologiste, Mexique
+        everyone:
+          #Heading for the broad audience section
+          heading: Tout le monde est naturaliste
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Si vous avez déjà regardé de près quelque chose de vivant et vous êtes demandé ce que c’était, iNaturalist est fait pour vous.
+          #Heading for the impact sub-section
+          impact_heading: Vous pouvez faire la différence.
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Chaque photo que vous partagez devient une partie intégrante des données scientifiques mondiales sur lesquelles les chercheurs du monde entier s’appuient.
+          #Heading for the community reputation sub-section
+          community_heading: '« Le plus bel endroit en ligne »'
+          #Description of the welcoming community aspect
+          community_body: >
+            Venez pour les identifications, restez pour la communauté et pour avoir un impact sur la science.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Téléchargez l’application iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Obtenez des identifications en temps réel et contribuez à la science
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Téléchargements"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Explorez des espèces dans le monde entier
+          #Button / link to browse species without downloading
+          button: Explorez maintenant
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Moins de 13 ans ? Téléchargez Seek !"
+          #Description of Seek's badge and challenge features
+          body: Gagnez des badges et participez à des défis pour observer des espèces !
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Avis 5 étoiles"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Recevez notre newsletter mensuelle !
+          #Description of the newsletter's content
+          body: Restez connecté aux histoires et découvertes de la communauté iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist est une organisation à but non lucratif qui soutient la science et la protection de la nature.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Votre soutien rend cela possible.
+          #Call-to-action button for the donation section
+          cta: Faites un don
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: FAQs
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Puis-je partager des photos que j'ai déjà ?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Oui ! Tant que vous savez à peu près quand et où une photo a été prise, les anciennes photos sont les bienvenues.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Qui peut contribuer à la science avec les observations iNaturalist ?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Tout le monde ! Les observations d'iNaturalist sont ouvertes et librement accessibles aux chercheurs, aux acteurs de la protection de la nature, comme aux personnes curieuses.
+          #FAQ: research grade definition — question
+          research_grade_question: Que signifie « qualité recherche » ?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Lorsque la communauté est d'accord sur une identification, une observation devient « qualité recherche » et rejoint les données scientifiques mondiales. Chaque identification aide à y parvenir.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Dois-je savoir ce que j'observe ?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Pas du tout ! Partagez une photo, et la communauté mondiale de naturalistes peut vous aider à l’identifier.
+          #FAQ: whether the app is required — question
+          need_app_question: Dois-je utiliser l’application ?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Sur un ordinateur de bureau, iNaturalist.org fonctionne parfaitement. Sur un appareil mobile, l'application vous offre la meilleure expérience, en particulier pour identifier les espèces sur le terrain.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Enregistrez et modifiez pour ajouter des pièces jointes
@@ -9174,7 +9375,7 @@ fr:
         source_url: URL source
         #Identifier of the taxon framework relationship record associated
         #with this taxon
-        taxon_framework_relationship_id: ID du type de relation avec le cadre taxinomique
+        taxon_framework_relationship_id: ID du type de lien avec la structure taxinomique
         wikipedia_summary: Résumé Wikipédia
         wikipedia_title: Titre de l'article Wikipédia
       taxon_name:

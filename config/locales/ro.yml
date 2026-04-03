@@ -155,6 +155,8 @@ ro:
   #constituent places were removed and now the atlas just contains this
   #place
   atlas_alteration_action_unexploded: Neexplodat
+  community: Comunitate
+  community_guidelines: Ghiduri comunitare
   community_taxon_matches_observation_taxon: Taxonul comunitar se potrivește cu taxonul de observare
   confirming_ids: Confirmarea actelor de identitate
   confirming_ids_description: |
@@ -167,6 +169,10 @@ ro:
       implicat de acest statut. Acest lucru va anula geoconfidențialitatea dacă este "Cel mai puțin
       Concern" sau mai jos, deci dacă doriți să ascundeți observațiile acestui lucru
       taxon, setați acest lucru la "Aproape amenințat" sau mai sus.
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribuie
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Ghidul curatorului
   curator_coordinate_access: Acces coordonat curator
   curator_coordinate_access_desc: |
     Accesul coordonatorului pentru proiectele tradiționale depinde de cine a adăugat
@@ -192,30 +198,46 @@ ro:
   devise_confirmation_instructions_please_click2: |
     Vă rugăm să faceți clic pe linkul de mai jos pentru a vă confirma adresa de e-mail. Dacă nu confirmați adresa de e-mail
     adresă, nu veți putea interacționa cu conținutul altor utilizatori.
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Descoperă
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Dezacorduri
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Afișați observații care au identificări în dezacord
+  documentation_for_developers_html: Documentație pentru <a href="/pages/developers">Dezvoltatori</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DONEAZĂ
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: A dona
   #Title for a page to edit an announcement
   editing_announcement_x: Editarea anunțului %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Eroare la actualizarea sunetului: %{sound_errors}"
+  explore: Explorează
   evidence_accurately_depicts_organism_or_scene: Dovezile descriu cu acuratețe organismul sau scena
+  facebook: Facebook
   #Header for a section showing the user's favorite projects
   favorite_projects: Proiecte preferate
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Alegeți până la șapte proiecte care apar ca linkuri în antet. Actualizări
     va apărea după reîmprospătarea paginii.
+  feedback: Feedback
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Formatul fișierului
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: Adresa URL a fișierului
+  forum: Forum
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Începutul
+  guides: Ghiduri
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "ATENȚIE: acest sunet a fost semnalat."
+  help: Ajutor
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificare
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist a actualizat ID-ul sugerat de %{user}
   #Title for a preference to control whether you receive notifications about
@@ -230,16 +252,25 @@ ro:
     sub nivel de specie (cum ar fi subspecii și soiuri) care sunt de acord cu
     ID la nivel de specie. Veți fi notificat dacă nu sunt de acord cu actul dvs. de identitate sau
     dacă acestea conțin observații suplimentare.
+  instagram: Instagram
   #Error message shown when a date format is invalid
   invalid_date: Data nevalidă
+  jobs: Locuri de muncă
+  journal_posts: Postări în reviste
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  learn: Învață
   #Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Enumerate
   #Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: Nelistate
+  log_in: Conectează-te
   #Adjectival phrase describing state of being logged in
   logged_in: Conectat
   #Adjectival phrase describing state of being logged out
   logged_out: Deconectat
+  member_of_the_inaturalist_network_html: |
+    Membru al <a href="%{url}">Rețeaua iNaturalist</a>
+  more: Mai mult
   #Label for a button or section that shows additional options
   more_options: Mai multe opțiuni
   #A user who is not a curator
@@ -259,9 +290,15 @@ ro:
     ID are observații suplimentare.
   #A user who does not admin any projects
   non_project_admin: Non-administrator de proiect
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observă
   observation_fields_for_projects: Câmpuri de observare pentru proiecte
+  or: sau
+  our_blog: Blogul nostru
+  people: Persoane
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Poate dura până la o zi pentru ca observațiile să fie asociate cu acest loc.
+  places: Locuri
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     Locurile nu pot fi mai mari de 700.000 de kilometri pătrați.
@@ -276,11 +313,15 @@ ro:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Locurile nu pot conține mai mult de 10.000 de observații.
+  powered_by_inaturalist_open_source_software_html: 'Propulsat de <a href="https://github.com/inaturalist/inaturalist" target="_new" >Software open source iNaturalist</a>'
+  press: Presă
+  privacy: Confidențialitate
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Tip de fișier imagine de profil
   #A user who admin's a project
   project_admin: Administrator de proiect
+  projects: Proiecte
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -295,6 +336,10 @@ ro:
   #e.g. for languages like Arabic and Hebrew. Could also be translated
   #as "You have joined..."
   rtl_test_joined_status: S-a alăturat testului de aspect dreapta-stânga
+  search: Căutare
+  sign_up: Înscrie-te
+  sign_up_sentence_case: Înscrie-te
+  site_stats: Statistici ale site-ului
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Sunet %{id}, %{attribution}
@@ -304,9 +349,19 @@ ro:
     sound_hidden: Sunet ascuns
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Sunet neascuns
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Magazin
+  store_caps: MAGAZIN
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Abona
+  taxa_info: Informații despre taxoni
+  terms_service: Termeni de utilizare
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Pistă
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Înțelegerea proiectelor
   update_existing_observations_with_new_license_desc: |
     Selectarea acestei opțiuni va aplica noua opțiune de licență tuturor
     observațiile existente. Acest lucru poate dura câteva ore dacă aveți o mulțime de
@@ -329,10 +384,18 @@ ro:
     proiectului de către observator.
   user_trusts_this_project_when_added_by_none: |
     Utilizatorul nu are încredere în curatorii de proiect cu coordonate ascunse.
+  video_tutorials: Tutoriale video
   #Link to view identifications affected by a taxon change
   view_your_affected_ids: Vizualizarea ID-urilor afectate
   we_also_support3: |
     De asemenea, acceptăm importul de fotografii din <a href="http://flickr.com">Flickr</a>.
+  what: Ce
+  when: Când
+  where: Unde
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Cine
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: De ce?
   views:
     announcements:
       locales_desc: |
@@ -545,6 +608,191 @@ ro:
           din proiecte de colecție sau umbrelă, care sunt în esență căutări salvate.
           Puteți citi mai multe
           <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">aici</a>.
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Unde curiozitatea ta contribuie la știință.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Identifică plante, animale, ciuperci și altele, adăugând în același timp la un atlas viu al vieții de pe Pământ.
+          #Primary call-to-action button in the hero section
+          cta_join: Alătură-te comunității
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Gratuit, nonprofit, alimentat de comunitate.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Cu iNaturalist, poți:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: plante, animale, ciuperci și altele
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: specii pe care le-ai văzut în întreaga lume
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: către știința adevărată
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Natură din apropiere
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Dintr-o comunitate globală de naturaliști
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Puterea științei comunitare
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Văzut de %{user} în %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Redescoperirea speciilor pierdute de mult
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} Molia nu mai fusese observată de decenii și odată se credea dispărută — până când un turist din Noua Zeelandă a observat-o din întâmplare.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Descoperirea unor specii noi pentru știință
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — prescurtat ca <span class="italic">I. nat</span> — este o specie nouă pentru știință de mantis descoperită de o femeie din Australia care se plimba prin cartierul ei.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Protejarea ecosistemelor locale
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Un grup de voluntari locali din California s-a reunit prin iNaturalist pentru a proteja amfibienii migratori care traversează un drum aglomerat.
+          #Link below the stories to read more community science stories
+          read_more: Citește mai multe povești
+        observation:
+          #Heading for the sample observation section
+          heading: Fiecare observație spune o poveste
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: observațiile care contribuie la știința biodiversității
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Specii documentate la nivel global
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: lucrări care citează date iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: specii descoperite sau redescoperite de oamenii de știință comunitari
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Deschide aplicația și fotografiază orice plantă, animal, ciupercă sau alt organism sălbatic — din cartierul tău sau de oriunde în lume.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Aplicația sugerează o identificare instantanee, iar o comunitate globală de naturaliști o confirmă sau o rafinează.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Observația ta devine date deschise — folosite de oameni de știință, conservatori și cercetători din întreaga lume.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Natura se schimbă mai repede ca niciodată, așa că avem nevoie <span class="underline">Tu</span> pentru a ajuta la înregistrarea a ceea ce trăiește și unde.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            M-a ajutat cu adevărat în identificarea speciilor, pe lângă faptul că mi-a oferit oportunitatea de a interacționa cu diferite persoane din întreaga lume.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Conservator marin și fotograf subacvatic, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist deschide ușa către atât de multe cercetări noi și interesante despre taxonii substudiați. În opinia mea, această platformă este de avangardă în știința ecologică.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Autor de ghiduri de teren la Owlfly LLC, SUA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist și comunitatea sa dedicată de identificatori au devenit o resursă de neprețuit în explorările mele. A ajutat la punerea bazelor muncii mele actuale.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Cercetător în biodiversitate, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist este un instrument puternic care conectează oamenii, natura și cunoașterea. Pot fotografia o specie rară, sau chiar una care încă nu a fost descrisă, și, în același timp, contribui la conservarea patrimoniului nostru natural.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Tehnician de mediu și fotograf amator, Brazilia
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Indiferent unde în lume te afli, fie că ai un doctorat sau pur și simplu iubești natura, iNaturalist te va apropia de natură și de mulți alți naturaliști.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biolog, Mexic
+        everyone:
+          #Heading for the broad audience section
+          heading: Toată lumea este naturalistă
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Dacă te-ai uitat vreodată cu atenție la ceva viu și te-ai întrebat ce este, iNaturalist este pentru tine.
+          #Heading for the impact sub-section
+          impact_heading: Poți avea un impact
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Fiecare fotografie pe care o împărtășești devine parte dintr-o evidență științifică globală pe care cercetătorii din întreaga lume se bazează.
+          #Heading for the community reputation sub-section
+          community_heading: '"Cel mai frumos loc online"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Vino pentru identificări, rămâi pentru comunitate și pentru impactul asupra științei.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Descarcă aplicația iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Obține identificări în timp real și contribuie la știință
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Descărcări"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Explorează specii la nivel mondial
+          #Button / link to browse species without downloading
+          button: Explorează acum
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Sub 13 ani? Descarcă Seek!"
+          #Description of Seek's badge and challenge features
+          body: Câștigă insigne și participă la provocări pentru a observa specii!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Recenzii de 5 stele"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Înscrieți-vă newsletterul nostru lunar!
+          #Description of the newsletter's content
+          body: Rămâi conectat cu poveștile și descoperirile comunității iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist este o organizație nonprofit care susține știința și conservarea.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Sprijinul tău face asta posibil.
+          #Call-to-action button for the donation section
+          cta: Donează acum
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Întrebări frecvente
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Pot să încarc fotografii pe care le am deja?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Da! Atâta timp cât știi aproximativ când și unde a fost făcută o fotografie, fotografiile mai vechi sunt binevenite.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Cine poate face știință cu observațiile iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Oricine! Toate observațiile iNaturalist sunt deschise și disponibile gratuit — pentru cercetători, practicieni în conservare și persoane curioase deopotrivă.
+          #FAQ: research grade definition — question
+          research_grade_question: Ce înseamnă "grad de cercetare"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Când comunitatea este de acord asupra unei identificări, o observație devine "de grad de cercetare" și intră în evidența științifică globală. Orice identificare poate ajuta la obținerea acestuia.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Trebuie să știu la ce mă uit?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Deloc! Distribuie o fotografie și o comunitate globală de naturaliști te poate ajuta să o identifici.
+          #FAQ: whether the app is required — question
+          need_app_question: Trebuie să folosesc aplicația?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Pe desktop, iNaturalist.org funcționează foarte bine. Pe un dispozitiv mobil, aplicația îți oferă cea mai bună experiență — mai ales pentru identificarea speciilor în mișcare.
   number:
     format:
       significant: false

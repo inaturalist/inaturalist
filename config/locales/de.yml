@@ -424,7 +424,7 @@ de:
   added_by_user_on_date_html: "Von %{user} am %{date} hinzugefügt"
   added_on_datetime: "Hinzugefügt am %{datetime}"
   #Message displayed after a project user changes role, e.g. they become a manager or a curator
-  added_role: Hinzugefügte Rolle
+  added_role: Rolle hinzugefügt
   added_to_favorites_html: |
     Zu <a href="%{url}">Favoriten</a> hinzugefügt
   adding: "Füge hinzu…"
@@ -838,8 +838,8 @@ de:
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
     Weil wir davon ausgehen, dass diese Änderung zu mehr als 10 unbeabsichtigten
-    Ablehnungen führen wird, <strong>empfehlen wir Ihnen auch eine Taxonänderung mit
-    %{old_parent}, wie zum Beispiel der Trennung von %{new_parent} von %{old_parent}</strong>.
+    Widersprüchen führen wird, <strong>empfehlen wir dir auch eine Taxonänderung von
+    %{old_parent} durchzuführen, wie zum Beispiel der Trennung von %{new_parent} und %{old_parent}</strong>.
   become_a_donor_caps: Unterstützer werden
   become_a_donor_today_caps: Werde heute ein Unterstützer
   before_importing_photos: vor dem Importieren von Bildern verlinken
@@ -893,6 +893,7 @@ de:
   casual: Hobbyqualität
   casual_: Hobbyqualität
   casual_tooltip_html: 'Den "Hobbyqualität"-Beobachtungen fehlen Medien, Koordinaten oder ein Datum oder erfüllen aus anderen Gründen nicht die Anforderungen der Stufen "Forschungsqualität" oder "benötigt ID". <a href="https://www.inaturalist.org/pages/help#quality">Hier gibt es weitere Infos zu den Qualitätsstufen</a>'
+  casual_tooltip_html2: 'Den "Hobbyqualität"-Beobachtungen fehlen Medien, Koordinaten oder ein Datum oder erfüllen aus anderen Gründen nicht die Anforderungen der Stufen "Forschungsqualität" oder "benötigt ID". <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Hier gibt es weitere Infos zu den Qualitätsstufen</a>'
   categories: Kategorien
   cc_0_description: "Diese Lizenz gibt dein Werk frei, so dass andere dein Werk kopieren, modifizieren, verbreiten und \"ausführen\" können, auch für kommerzielle Zwecke, alles dies ohne dich um Erlaubnis oder Anerkennung zu bitten. Dies ist die entgegenkommendste der angebotenen Lizenzen. Empfohlen für die maximale Verbreitung und Nutzung von lizenziertem Material."
   cc_0_name: Kein Copyright (CC0)
@@ -1139,6 +1140,8 @@ de:
     %{user} unhid this %{item} because "%{reason}"
   continue: Fortfahren
   continue_to_site: Weiter zu %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Beitrag leisten
   contributor_cannot_be_found: Mitwirkender kann nicht gefunden werden
   contributors_to_project: "Teilnehmer vom Projekt %{project}"
   controlled_term_labels:
@@ -1296,6 +1299,10 @@ de:
   couldnt_change_your_password: "Konnte das Passwort nicht ändern: %{e}"
   couldnt_find_a_user_matching_x_param: "Konnte keinen passenden Benutzer finden: %{id}"
   couldnt_find_that_taxon: Konnte das Taxon nicht finden.
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Anzahl absteigend
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Anzahl aufsteigend
   create: Erstellung
   create_a_guide: Erzeuge einen Guide
   create_a_new_field: Ein neues Feld erstellen
@@ -1446,6 +1453,8 @@ de:
   curators: Kuratoren
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Des Weiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
   curator_coordinate_access: Kurator Koordinieren Sie den Zugriff
+  curator_coordinate_access_desc: |
+    Die Sichtbarkeit der Koordinaten durch Kuratoren für traditionelle Projekte hängt davon ab, wer die Beobachtung hinzugefügt hat. Dies ist einfach die Standardeinstellung für Beobachtungen in Projekten. Beobachter können dies auch für individuelle Beobachtungen ändern.
   curator_identification: Bestimmung des Kurators
   #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
   current_community_id: "Aktuelles Community-Taxon: %{taxon}"
@@ -1480,7 +1489,7 @@ de:
     #instructions once people have participated explaining the list of observations
     gaps_id_pilot_current_intro: "Hier ist ein Link zu Beobachtungen von Arten, die noch nicht im Computer-Vision-Modell enthalten sind und von denen wir glauben, dass Sie sie identifizieren können."
     #instructions once people have participated if the list of observaitons is not ready
-    gaps_id_pilot_check_back: "Schauen Sie morgen wieder vorbei, um einen Link zu Beobachtungen von Arten zu erhalten, die noch nicht im Computer-Vision-Modell enthalten sind und von denen wir glauben, dass Sie sie identifizieren können. Ihnen werden Arten angezeigt, bei denen Sie mindestens 3 verbessernde Identifizierungen vorgenommen haben."
+    gaps_id_pilot_check_back: "Schau morgen wieder vorbei, um einen Link zu Beobachtungen von Arten zu erhalten, die noch nicht im Computer-Vision-Modell enthalten sind und von denen wir glauben, dass du sie identifizieren kannst. Dir werden Arten angezeigt, bei denen du mindestens 3 verbessernde Identifizierungen vorgenommen hast."
     #instructions once people have participated if the list of observaitons is not ready explaining why
     gaps_id_pilot_check_back_body: "Wenn kein Link angezeigt wird, gibt es möglicherweise keine Beobachtungen, die diesen Kriterien entsprechen und eine ID benötigen. Es wird einmal pro Tag überprüft."
     #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
@@ -1496,27 +1505,27 @@ de:
     #instructions showing the benefit of participating in the pilot
     gaps_obs_pilot_body: "Durch die Beobachtung dieser Arten tragen Sie dazu bei, das Modell zu verbessern und Datenlücken zur Biodiversität zu schließen. Diese Liste wird aktualisiert, wenn das Modell aktualisiert wird. Sie können sich jederzeit abmelden."
     #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
-    gaps_obs_pilot_current_intro: "Hier ist Ihre aktuelle Liste von Arten, die:"
+    gaps_obs_pilot_current_intro: "Hier ist deine aktuelle Liste von Arten, die:"
     #instructions once people have participated explaining the list of observations, the first condition for observations in the list
     gaps_obs_pilot_current_condition_1: "Noch nicht im Modell für maschinelles Sehen enthalten"
     #instructions once people have participated explaining the list of observations, the second condition for observations in the list
-    gaps_obs_pilot_current_condition_2: "Beobachtet in der Nähe Ihres letzten Standorts in dieser Saison"
+    gaps_obs_pilot_current_condition_2: "Beobachtet in der Nähe deines letzten Standorts in dieser Saison"
     #instructions showing the benefit of participating in the pilot
     gaps_obs_pilot_current_body: "Indem Sie diese beobachten, tragen Sie dazu bei, die Artenerkennung zu verbessern und kritische Lücken zu schließen."
     #label of link to explore species view
     gaps_obs_pilot_browse: "Arten durchsuchen"
     #instructions once people have participated if the list of observaitons is not ready
-    gaps_obs_pilot_check_back: "Schauen Sie morgen wieder vorbei, um eine personalisierte Liste von Arten zu erhalten, die noch nicht im Computer-Vision-Modell enthalten sind, das in dieser Saison beobachtet wurde. Die personalisierte Liste verwendet den Ort Ihrer letzten Beobachtung."
+    gaps_obs_pilot_check_back: "Schau morgen wieder vorbei, um eine personalisierte Liste von Arten zu erhalten, die in dieser Saison beobachtet wurden und noch nicht im Computer-Vision-Modell enthalten sind. Die personalisierte Liste verwendet den Ort deiner letzten Beobachtung."
     #instructions once people have participated if the list of observaitons is not ready explaining why
-    gaps_obs_pilot_check_back_body: "Wenn Sie keinen Zusammenhang sehen, gibt es möglicherweise keine Art in Ihrer Nähe, die diesen Kriterien entspricht."
+    gaps_obs_pilot_check_back_body: "Wenn du keinen Link siehst, gibt es möglicherweise keine Art in deiner Nähe, die diesen Kriterien entspricht."
     #title for a pilot asking users to help onboard new users by identifying their obs
     identification_pilot_title: "Identification Pilot: Onboarding neuer Benutzer"
     #instructions explaining the pilot
-    identification_pilot_body_intro: "Ab morgen erhalten Sie täglich bis zu 30 Beobachtungen, die Ihren Bestimmungsfähigkeiten entsprechen und Ihnen beim Onboarding neuer Benutzer helfen. Sie können sich jederzeit abmelden."
+    identification_pilot_body_intro: "Ab morgen erhältst du täglich bis zu 30 Beobachtungen, die deinen Bestimmungsfähigkeiten entsprechen, um beim Onboarding neuer Benutzer zu helfen. Du kannst dich jederzeit abmelden."
     #instructions for people participating in the pilot if the list is ready
-    identification_pilot_current_intro: "Im Folgenden finden Sie bis zu 30 Beobachtungen, die Ihren Bestimmungsfähigkeiten entsprechen."
+    identification_pilot_current_intro: "Im Folgenden findest du bis zu 30 Beobachtungen, die deinen Bestimmungsfähigkeiten entsprechen."
     #instructions for people participating in the pilot if the list is not ready
-    identification_pilot_check_back: "Schauen Sie morgen wieder vorbei, um einen Link zu Beobachtungen zu erhalten, die Ihren Bestimmungsfähigkeiten entsprechen."
+    identification_pilot_check_back: "Schau morgen wieder vorbei, um einen Link zu Beobachtungen zu erhalten, die deinen Bestimmungsfähigkeiten entsprechen."
   data_deficient: ungenügende Datengrundlage
   data_quality: Datenqualität
   data_quality_assessment: Bewertung der Datenqualität
@@ -1713,6 +1722,8 @@ de:
   devise_unlock_instructions_click_the_link: |
     Klicke auf untenstehenden Link, um Dein Konto zu entsperren
   devise_unlock_instructions_unlock: Konto entsperren
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Entdecke
   discoveries: Entdeckungen
   did_you_mean: 'Meintest du'
   did_you_photos_flickr?: Hast du Bilder auf Flickr hinzugefügt?
@@ -1723,6 +1734,8 @@ de:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Unstimmigkeiten
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Zeige Beobachtungen mit widersprüchlichen Bestimmungen
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Verbindung trennen
@@ -2179,7 +2192,7 @@ de:
   globally: Global
   go: Los
   go_back: Zurück gehen
-  going_to_your_observations: Gehe zu Deinen Beobachtungen...
+  going_to_your_observations: Gehe zu deinen Beobachtungen...
   good_choice_for_sharing: Gute Wahl zum Teilen für wissenschaftliche Zwecke
   google: Google
   google_maps_not_loaded_error: |
@@ -2299,6 +2312,8 @@ de:
   identify_observations: "Beobachtungen bestimmen"
   identify_observations_by_these_users: Identifiziere Beobachtungen dieser Benutzer
   identify_title: "ID-Modul"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identifizieren
   identification: ID
   identification_by_user: Bestimmung durch %{user}
   #Notification when an identification has been deleted
@@ -2515,6 +2530,7 @@ de:
     identifications_in_month_year: Die meisten Bestimmungen in %{month_year}
     identifications_in_year: Die meisten Bestimmungen in %{year}
   leading: initiativ
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Lernen
   learn_about_the_species_live_in: 'Lerne mehr über die Arten, die hier leben:'
   learn_more: Mehr erfahren
@@ -2928,6 +2944,8 @@ de:
   misleading_or_illegal_content_html: |
     Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von "angemessen", bitte in die 
     <a href="/help#inappropriate">FAQs</a> schauen.
+  misleading_or_illegal_content_html2: |
+    Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Weitere Informationen zu unserer Definition von „angemessen“ findest du in den <a href="https://help.inaturalist.org/en/support/solutions/articles/151000169915">FAQ</a>.
   #Label shown when a date has not been entered
   missing_date: Fehlendes Datum
   mobile: Mobil
@@ -3093,6 +3111,7 @@ de:
   needs_id_: benötigt ID
   needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
   needs_id_tooltip_html: '"Benötigt ID"-Beobachtungen enthalten Medien, Koordinaten und ein Datum; es bedarf aber einer gemeinschaftlichen Bestimmung auf (normalerweise) Artniveau, um "Forschungsqualität" zu erreichen. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
+  needs_id_tooltip_html2: '"Benötigt ID"-Beobachtungen enthalten Medien, Koordinaten und ein Datum; es bedarf aber einer gemeinschaftlichen Bestimmung auf (normalerweise) Artniveau, um "Forschungsqualität" zu erreichen. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Erfahre mehr über Qualitätsstufen</a>'
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, Teil des internationalen iNaturalist-Netzwerks, mit dem Fokus auf Artenvielfalt und Personen in %{place}. Möchtest du die Zugehörigkeit deines
@@ -3306,6 +3325,8 @@ de:
   obscured_or_private: verdeckt oder privat
   obscured_description: |
     Öffentliche Koordinaten werden als Zufallspunkt innerhalb der 0.2 Grad-Zelle (Längen-/Breitengrad) angezeigt, die die wahren Koordinaten enthält.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Beobachten Sie
   observation: Beobachtung
   observation_: Beobachtung
   observation_accuracy_experiment_the_sample_for: "Die Stichprobe für dieses Experiment wurde noch nicht erstellt"
@@ -3519,7 +3540,7 @@ de:
   observed: Beobachtet
   observed_by: Beobachtet von
   observed_on: Gesehen am
-  observer: beob. von
+  observer: Beobachter
   observers: Beobachter
   observer_prefers_addition_to_traditional_projects_joined: |
     Es ist anderen Personen nur gestattet, diese Beobachtungen zu solchen traditionellen Projekten hinzuzufügen, bei denen der Beobachter/die Beobachterin Mitglied ist.
@@ -4626,7 +4647,7 @@ de:
   removed: Entfernt
   removed_project_user: Projektbenutzer entfernen
   #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
-  removed_role: Entfernte Rolle
+  removed_role: Rolle entfernt
   removing: "Entferne…"
   reorder_by_taxonomy: Neuordnen nach Taxonomie
   repair_broken_urls: Fehlerhafte URLs reparieren
@@ -4646,6 +4667,7 @@ de:
   research_grade: Forschungsqualität
   research_grade_short_html: "F<span class='full'>orschungs</span>Q<span class='full'>ualität</span>"
   research_grade_tooltip_html: '"Forschungsqualität (FQ)"-Beobachtungen erfüllen die Anforderungen: <br>- Koordinaten <br>- Datum <br>-Medien (Foto/Audio) <br> und die Community stimmt der genauen Bestimmung (gewöhnlich auf Artniveau) zu. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
+  research_grade_tooltip_html2: '"Forschungsqualität (FQ)"-Beobachtungen erfüllen die Anforderungen: <br>- Koordinaten <br>- Datum <br>-Medien (Foto/Audio) <br> und die Community stimmt der genauen Bestimmung (normalerweise auf Artniveau) zu. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Erfahre hier mehr über Qualitätsstufen</a>'
   research_grade_observations_have: 'Beobachtungen mit <em>Forschungsqualität</em> enthalten ein Datum, Bild- oder Tonaufnahmen, Koordinaten und eine mehrheitliche Bestimmung (ID) durch die Community. Durch Anklicken wird die Bewertung der Datenqualität angezeigt.'
   research_grade_qualification: Kriterien für Forschungsqualität
   #Label for a button that re-sends the account confirmation email and signs
@@ -4850,6 +4872,7 @@ de:
   sign_in_with_google: Mit Google anmelden
   sign_out: Abmelden
   sign_up: Registrieren
+  sign_up_sentence_case: Melden Sie sich an
   similar_species: Ähnliche Arten
   similar_taxa: Ähnliche Taxa
   #Journal post formatting option
@@ -4966,6 +4989,7 @@ de:
   sorry_you_need_to_be_signed_in_and: Sorry, du musst angemeldet sein und einen verlinkten Flickr-Account haben, um Tags direkt auf Flickr zu posten.
   sort: Sortieren
   sort_by: Sortieren nach
+  sort_included_projects_on_leaderboard_by: Sortiere die enthaltenen Projekte auf der Rangliste nach
   sorting_by: Sortieren nach
   soundcloud_needs_to_confirm: "SoundCloud möchte nur bestätigt haben, dass dein Account mit %{site_name} verbunden sein soll."
   sounds:
@@ -5327,7 +5351,7 @@ de:
   that_observation_hasnt_been_added_this_project: Diese Beobachtung wurde nicht zu diesem Projekt hinzugefügt.
   that_observation_no_longer_exists: Diese Beobachtung existiert nicht mehr.
   that_project_doesnt_exist: "Dieses Projekt existiert nicht."
-  that_role_doesnt_exist: Dieses Rolle existiert nicht.
+  that_role_doesnt_exist: Diese Rolle existiert nicht.
   that_was_the_last_observation_matching_the_current_filters: Das war die letzte Beobachtung, die dem aktuellen Filter entsprach.
   thats_not_a_real_date: Das ist kein echtes Datum!
   the_admin_is_the_person_who: |
@@ -5356,7 +5380,7 @@ de:
   the_species_listed_below_were_not_found_in_the_site_database: |
     Die unten aufgeführten Arten wurden in der %{site_name}-Datenbank nicht gefunden.
   the_title_of_the_wikipedia_article_we_use: |
-    Der Titel des Wikipediaartikels, welchen für die Beschreibung benutzt wird. Wenn die Wikipedia URL <code>https://de.wikipedia.org/wiki/Vögel</code> ist, dann sollte dieser Wert <code>Vögel</code> sein. Wenn der Wert frei gelassen wird, wird der wissenschaftliche Name des Taxons benutzt (das funktioniert normalerweise).
+    Der Titel des Wikipedia-Artikels, der für die Beschreibung benutzt wird. Wenn die Wikipedia URL <code>https://de.wikipedia.org/wiki/Vögel</code> ist, dann sollte dieser Wert <code>Vögel</code> sein. Wenn der Wert frei gelassen wird, wird der wissenschaftliche Name des Taxons benutzt (das funktioniert normalerweise).
   the_user_x_has_been_suspended: "Der Benutzer %{user} wurde gesperrt."
   the_user_x_has_been_unsuspended: "Der Benutzer %{user} wurde entsperrt."
   the_world: Die Welt
@@ -5596,6 +5620,8 @@ de:
   total_observations_caps: BEOBACHTUNGEN INSGESAMT
   total_species_observed_caps: ANZAHL BEOBACHTETER ARTEN
   total_unique_observers: Gesamtzahl Einzelbeobachter
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Leichtathletik
   translated_languages: Übersetzte Sprachen
   'true': 'Wahr'
   trending: Im Trend
@@ -5659,14 +5685,14 @@ de:
   update: Aktualisierung
   update_existing_observations_with_new_license: Bestehende Beobachtungen mit der neuen Lizenzauswahl aktualisieren
   update_existing_observations_with_new_license_desc: |
-    Wenn Sie diese Option auswählen, wird Ihre neue Lizenzauswahl auf alle Ihre
-    Beobachtungen zu berücksichtigen. Dies kann einige Stunden dauern, wenn Sie viele
-    Beobachtungen.
+    Wenn du diese Option auswählst, wird die neue Lizenzeinstellung auf alle deine
+    Beobachtungen angewendet. Dies kann einige Stunden dauern, wenn du viele
+    Beobachtungen hast.
   update_existing_photos_with_new_license: Bestehende Bilder mit der neuen Lizenzauswahl aktualisieren
   update_existing_photos_with_new_license_desc: |
-    Wenn Sie diese Option auswählen, wird Ihre neue Lizenzauswahl auf alle Ihre
-    vorhandene Fotos. Dies kann einige Stunden dauern, wenn Sie viele
-    Fotos.
+    Wenn du diese Option auswählst, wird deine neue Lizenzauswahl auf alle deine
+    vorhandenen Fotos angewendet. Dies kann einige Stunden dauern, falls du viele
+    Fotos hast.
   update_existing_sounds_with_new_license: Bestehende Sounds mit der neuen Lizenzauswahl aktualisieren
   update_existing_sounds_with_new_license_desc: |
     Wenn diese Option ausgewählt wird, wird die neue Lizenzauswahl auf alle bereits existierenden Audios übertragen. Das kann eine Weile dauern, wenn viele Audios hinterlegt sind.
@@ -5808,14 +5834,18 @@ de:
     Von %{user} beobachtet am %{date} in %{place}
   user_said_comment_html: <span class="meta">%{user} schrieb,</span> "%{comment}"
   user_suggested_an_id: "%{user} hat eine Bestimmung (ID) vorgeschlagen"
-  user_trusts_this_project_for_none: Der Benutzer vertraut diesem Projekt nicht die verborgenen Koordinaten an.
+  user_trusts_this_project_for_none: Der Benutzer vertraut diesem Projekt nicht die verdeckten Koordinaten von Beobachtungen an.
   user_trusts_this_project_for_any: |
     Benutzer vertraut diesem Projekt Beobachtungen mit verborgenen Koordinaten an, egal auf welchem Grund die Verschleierung basiert.
   user_trusts_this_project_for_taxon: |
     Benutzer vertraut diesem Projekt Beobachtungen mit verborgenen Koordinaten an, die aufgrund von Schutzkategorien verschleiert wurden
+  user_trusts_this_project_when_added_by_any: |
+    Der Nutzer vertraut den Projektkuratoren die verdeckten Koordinaten eigener Beobachtungen an, egal wer sie zum Projekt hinzugefügt hat.
+  user_trusts_this_project_when_added_by_observer: |
+    Der Nutzer vertraut den Projektkuratoren die verdeckten Koordinaten von solchen Beobachtungen an, die durch den Beobachter dem Projekt hinzugefügt wurden.
   user_trusts_this_project_when_added_by_none: |
-    Der Benutzer vertraut den Projektkuratoren nicht mit versteckten Koordinaten.
-  user_trusts_you_with_their_private_coordinates: "%{user} vertraut dir seine/ihre verborgenen Koordinaten an"
+    Der Benutzer vertraut den Projektkuratoren nicht die verdeckten Koordinaten an.
+  user_trusts_you_with_their_private_coordinates: "%{user} vertraut dir die Koordinaten von verdeckten Beobachtungen an"
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat dir die verborgenen Koordinaten all seiner Beobachtungen anvertraut.
   user_updated_an_observation_field_html: 'Von %{user} wurde ein Wert für "%{field_name}" zu einer Beobachtung von %{owner} aktualisiert'
@@ -6000,6 +6030,8 @@ de:
   why_are_you_making_this_change_optional: Warum diese Änderung? (optional)
   why_are_you_making_this_change_cite_source_required: Bitte erläutere den Grund für die Änderung und zitiere eine Quelle, falls möglich. (Erforderlich)
   why_you_can_see_the_coordinates: Warum Du die Koordinaten sehen kannst
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Wer
   who_can_add_observation_fields_to_my_obs: Wer kann Beobachtungsfelder zu meinen Beobachtungen hinzufügen?
   who_can_add_observations_to_this_project?: Wer kann diesem Projekt Beobachtungen hinzufügen?
   who_can_see_the_coordinates: Wer kann die Koordinaten sehen
@@ -6008,6 +6040,8 @@ de:
   who_can_see_the_coordinates_trusted: Personen, denen der Beobachter die versteckten Koordinaten anvertraut hat
   who_helped_user_the_most: "Wer half %{user} am meisten"
   who_user_helped_the_most: "Wem %{user} am meisten geholfen hat"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Warum?
   why_the_coordinates_are_obscured: Warum die Koordinaten verdeckt sind
   with_annotation: Mit Annotation
   without_annotation: Ohne Annotation
@@ -6057,7 +6091,7 @@ de:
   x_is_the_root_of_the_tree: "%{rank} %{name} ist die Basis des Stammbaums"
   x_project_journal: "%{project}'s %{name}"
   x_project_stats: "Statistiken für %{project}"
-  x_sent_you_a_new_message_on_y_html: "%{x} hat Ihnen eine neue Nachricht gesendet am %{y}:"
+  x_sent_you_a_new_message_on_y_html: "%{x} hat dir am %{y} eine neue Nachricht gesendet: "
   x_site_is_a_social_network_for_naturalist: |
     %{site} ist ein soziales Netzwerk für Naturbeobachter! Erfasse Deine Beobachtungen von Pflanzen und Tieren, teile sie mit Freunden und Wissenschaftlern und erfahre mehr über die Welt der Natur.
   x_wrote_a_new_post_html: "%{x} hat einen neuen Eintrag geschrieben"
@@ -6298,9 +6332,8 @@ de:
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
         Kunde.
       excludes_non_site_desc: |
-        Wenn Ihre Ankündigung auf eine Website abzielt (was die Standardeinstellung ist, wenn Sie ein
-        Site-Admin), werden Ankündigungen ausgeschlossen, die auf alle Websites in
-        diese Platzierung.
+        Wenn deine Ankündigung auf eine Website abzielt (was die Standardeinstellung ist, wenn du ein
+        Site-Admin bist), werden Ankündigungen ausgeschlossen, die auf alle Websiten abzielen
       ip_countries_desc: |
         CMD- oder SHIFT-Klick, um mehrere auszuwählen. "Alle" auswählen oder nicht machen
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
@@ -6320,7 +6353,7 @@ de:
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
         Zugehörigkeit zur Website.
       include_virtuous_tags_desc: |
-        CMD- oder SHIFT-Klick, um mehrere auszuwählen. Auswahl von "Beliebig" oder Nichtmachen
+        CTRL- oder SHIFT-Klick, um mehrere auszuwählen. Auswahl von "Beliebig" oder Nichtmachen
         Eine Auswahl zeigt die Ankündigung allen Benutzern an, unabhängig davon, ob
         ihre tugendhaften Etiketten.
       exclude_virtuous_tags_desc: |
@@ -7385,9 +7418,19 @@ de:
           Wenn dies eine Eventbrite URL ist, die eine numerische ID enthält, 
           fügen wir ein Anmelde-Widget auf Ihrer Projektseite ein, bis Ihr Bioblitz
           beginnt.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Rangliste verbergen
         icon_desc: "Wird auf ein Quadrat zugeschnitten"
         it_looks_like_this_project_can_be_converted: |
           Es sieht so aus, als könne dieses Projekt in ein neues <a href="%{url}">Sammel-Projekt</a> umgewandelt werden.
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Rangliste
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Die Rangliste zeigt Nutzer mit den meisten Beobachtungen, Nutzer mit den meisten Arten und die am häufigsten beobachtete Arten. Sie kann optional verborgen werden
         #Label for button to make another user the owner of a project
         make_owner: zum Eigentümer machen
         no_curators: |
@@ -7448,15 +7491,15 @@ de:
         description_html: |
           <h3>Über Einladungen</h3>
           <p class="ui">
-          Das Einladen von Personen zu deinem Projekt ist etwas anderes als das Einladen einzelner Beobachtungen. Das Einladen von Leuten wird
+          Das Einladen von Personen zu deinem Projekt ist etwas anderes als das Einladen einzelner Beobachtungen. Das Einladen von Benutzern wird
           </p>
           <ol>
-          <li>Ihnen eine E-Mail schicken, die sie einlädt, an deinem Projekt teilzunehmen.
+          <li>ihnen eine E-Mail schicken, die sie einlädt, an deinem Projekt teilzunehmen.
           <li>Eine Einladung auf deren Dashboard anzeigen </li>
-          <li>Sie zur Teilnahme an deinem Projekt berechtigen, wenn es auf "invite-only"</li> eingestellt ist.
+          <li>sie zur Teilnahme an deinem Projekt berechtigen, wenn es auf "invite-only"</li> eingestellt ist.
           </ol>
           <p class="ui">
-          Nur Projektkuratoren können Personen zu einem Projekt einladen. Du solltest in der Lage sein, nach Personen anhand deren iNat-Benutzernamen zu suchen oder deren <em>vollständigen</em> E-Mail-Adresse.
+          Nur Projektkuratoren können Personen zu einem Projekt einladen. Du solltest in der Lage sein, nach Personen anhand deren iNat-Benutzernamen oder <em>vollständigen</em> E-Mail-Adresse zu suchen.
           </p>
       join:
         invite_only_description: |
@@ -8060,13 +8103,9 @@ de:
       edit:
         about_third_party_tracking: Über das Tracking von Drittanbietern
         block_desc_blocking_someone_prevents: |
-          Wenn Sie jemanden blockieren, hindert ihn er daran, Ihnen Nachrichten zu senden, Ihre
-          Beobachtungen, die Identifizierung Ihrer Beobachtungen und die anderweitige Interaktion
-          mit Ihnen auf %{site_name}. Es entfernt auch ihre Beobachtungen aus Ihren
-          Suchergebnisse und entfernt Ihre Beobachtungen aus ihrer Suche
-          Befund. Es macht Sie jedoch nicht unsichtbar für sie. Sie können
-          Finden Sie immer noch Ihre Beobachtungen und sehen Sie sich Ihr Profil an, sie können es einfach nicht
-          interagiere mit dir.
+          Benutzer zu blocken verhindert das Senden von Nachrichten, deine Beobachtungen zu kommentieren, die Bestimmung deiner Beobachtungen und anderweitige Interaktionen
+          mit dir auf %{site_name}. Es entfernt auch deren Beobachtungen aus deinen
+          Suchergebnissen und entfernt deine Beobachtungen aus deren Suchergebnissen. Es macht dich jedoch nicht unsichtbar für sie. Sie können immer noch deine Beobachtungen und dein Profil ansehen, sie können nur nicht mehr mit dir interagieren.
         block_desc_blocking_is_for_situations: |
           Blockieren ist für Situationen, mit denen du einfach nicht zurechtkommst
           Jemand und sie werden dich nicht in Ruhe lassen, trotz deiner besten Bemühungen,
@@ -8202,6 +8241,9 @@ de:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Es wurde bereits das Maximum von 3 Trivialnamen-Lexika hinzugefügt
+        this_only_applies_to_traditional_projects2: |
+          Dies gilt nur für traditionelle Projekte. Beobachtungen aus Sammlungs- oder Dach-Projekten können nicht ausgeschlossen werden. 
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Hier</a> gibt es weitere Infos.
       recent:
         about_recent_users: Über
         definitions_html: <dl> <dt>Wahrscheinlich Spam</dt> <dd> Benutzer, der wahrscheinlich ein Spammer ist - was bedeutet, dass er keine Beobachtungen oder Bestimmungen hat, aber eine Profilbeschreibung. </dd> <dt>Auto Spam</dt> <dd> Spammer, der vom System automatisch als Spammer markiert wurde. </dd> <dt>Manueller Spam</dt> <dd> Spammer, der manuell von einem Website-Kurator als Spammer markiert wurde. </dd> <dt>Falsche Positive</dt> <dd> Benutzer, die als Spammer markiert wurden, aber die Meldungen von Kuratoren der Website aufgelöst wurden, weil sie nicht wirklich Spammer waren. </dd> </dl>
@@ -8308,6 +8350,191 @@ de:
         who_uses_site_name: "Wer verwendet %{site_name}?"
         what_are_you_waiting_for: Worauf wartest du?
         join_today: Jetzt beitreten
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Wo deine Neugier zur Wissenschaft beiträgt.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Pflanzen, Tiere, Pilze und mehr identifizieren und gleichzeitig einen lebendigen Lebensatlas auf der Erde ergänzen.
+          #Primary call-to-action button in the hero section
+          cta_join: Tritt der Gemeinschaft bei
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Kostenlos, gemeinnützig, gemeinschaftsorientiert.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Mit iNaturalist können Sie:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Pflanzen, Tiere, Pilze und mehr
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Arten, die du weltweit gesehen hast
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: Zur realen Wissenschaft
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Natur in der Nähe
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Aus einer globalen Gemeinschaft von Naturforschern
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Die Kraft der Gemeinschaftswissenschaft
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Gesehen von %{user} in %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Wiederentdeckung längst verlorener Arten
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Die %{moth_common_name} Der Falter war seit Jahrzehnten nicht mehr gesehen worden und galt einst als ausgestorben – bis ein Tourist in Neuseeland ihn zufällig entdeckte.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Entdeckung wissenschaftlich neuer Arten
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — abgekürzt zu <span class="italic">I. Nat</span> – ist eine wissenschaftlich neue Gottesanbeterin, die von einer Frau in Australien entdeckt wurde, die in ihrer Nachbarschaft spazieren geht.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Schutz lokaler Ökosysteme
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Eine Gruppe lokaler Freiwilliger in Kalifornien kam über iNaturalist zusammen, um wandernde Amphibien zu schützen, die eine stark befahrene Straße überquerten.
+          #Link below the stories to read more community science stories
+          read_more: Lesen Sie weitere Geschichten
+        observation:
+          #Heading for the sample observation section
+          heading: Jede Beobachtung erzählt eine Geschichte
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Beobachtungen, die zur Biodiversitätswissenschaft beitragen
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Arten, die weltweit dokumentiert sind
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: Arbeiten, die iNaturalist-Daten zitieren
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Arten, die von Gemeinschaftswissenschaftlern entdeckt oder wiederentdeckt wurden
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Öffnen Sie die App und fotografieren Sie jede wilde Pflanze, jedes Tier, jeden Pilz oder ein anderes Organismus – aus Ihrer Nachbarschaft oder irgendwo auf der Welt.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Die App schlägt sofort eine Identifikation vor, und eine globale Gemeinschaft von Naturforschern bestätigt oder verfeinert sie.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Ihre Beobachtung wird zu offenen Daten – die von Wissenschaftlern, Naturschützern und Forschern weltweit genutzt werden.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Die Natur verändert sich schneller denn je, also brauchen wir <span class="underline">Du</span> um zu dokumentieren, was wo lebt.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Es hat mir wirklich bei der Artenerkennung geholfen und mir die Möglichkeit gegeben, mit verschiedenen Menschen auf der ganzen Welt in Kontakt zu treten.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Meeresschützer und Unterwasserfotograf, Kenia
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist öffnet die Tür für so viele neue und spannende Forschungen zu wenig erforschten Taxa. Meiner Meinung nach ist diese Plattform die Spitze der ökologischen Wissenschaft.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Feldführer-Autor bei Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist und seine engagierte Community von Identifikatoren wurden zu einer unschätzbaren Ressource bei meinen Erkundungen. Es hat geholfen, das Fundament für meine jetzige Arbeit zu legen.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversitätsforscher, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist ist ein mächtiges Werkzeug, das Menschen, Natur und Wissen verbindet. Ich kann eine seltene Art fotografieren oder sogar eine, die noch nicht beschrieben wurde, und gleichzeitig trage ich zum Schutz unseres natürlichen Erbes bei.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Umwelttechniker und Hobbyfotograf, Brasilien
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Egal, wo auf der Welt Sie sich befinden, ob Sie einen Doktortitel haben oder einfach nur die Natur lieben – iNaturalist bringt Sie der Natur und vielen anderen Naturforschern näher.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biologe, Mexiko
+        everyone:
+          #Heading for the broad audience section
+          heading: Jeder ist Naturforscher
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Wenn Sie sich jemals etwas Lebendiges genau angesehen und sich gefragt haben, was es ist, ist iNaturalist genau das Richtige für Sie.
+          #Heading for the impact sub-section
+          impact_heading: Du kannst einen Unterschied machen
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Jedes Foto, das Sie teilen, wird Teil eines globalen wissenschaftlichen Archivs, auf das Forscher weltweit angewiesen sind.
+          #Heading for the community reputation sub-section
+          community_heading: '"Der schönste Ort online"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Kommt wegen der Identifikationen, bleibt für die Gemeinschaft und den Einfluss auf die Wissenschaft.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Lade die iNaturalist-App herunter
+          #Subheading describing the two core benefits of the app
+          subheading: Erhalte Echtzeit-Identifikationen und trage zur Wissenschaft bei
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Downloads"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Entdecken Sie Arten weltweit
+          #Button / link to browse species without downloading
+          button: Entdecken Sie jetzt
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Unter 13? Download Suche!"
+          #Description of Seek's badge and challenge features
+          body: Verdiene Abzeichen und nimm an Herausforderungen teil, um Arten zu beobachten!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-Sterne-Bewertungen"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Erhalten Sie unseren monatlichen Newsletter!
+          #Description of the newsletter's content
+          body: Bleiben Sie mit Geschichten und Entdeckungen aus der iNaturalist-Community in Kontakt.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist ist eine gemeinnützige Organisation, die Wissenschaft und Naturschutz unterstützt.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Deine Unterstützung macht das möglich.
+          #Call-to-action button for the donation section
+          cta: Jetzt spenden
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: FAQs
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Kann ich Fotos hochladen, die ich bereits habe?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ja! Solange man ungefähr weiß, wann und wo ein Foto aufgenommen wurde, sind ältere Fotos willkommen.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Wer kann mit iNaturalist-Beobachtungen Wissenschaft betreiben?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Irgendjemand! Alle iNaturalist-Beobachtungen sind offen und frei zugänglich – sowohl für Forscher, Naturschutzexperten als auch für neugierige Personen.
+          #FAQ: research grade definition — question
+          research_grade_question: Was bedeutet "Forschungsbewertung"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Wenn die Gemeinschaft sich auf eine Identifikation einigt, wird eine Beobachtung "Forschungsqualität" und tritt in den globalen wissenschaftlichen Bericht ein. Jede Identifikation kann helfen, sie dorthin zu bringen.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Muss ich wissen, was ich hier sehe?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Überhaupt nicht! Teilen Sie ein Foto, und eine globale Gemeinschaft von Naturforschern kann Ihnen helfen, es zu identifizieren.
+          #FAQ: whether the app is required — question
+          need_app_question: Muss ich die App benutzen?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Auf einem Desktop funktioniert iNaturalist.org super. Auf einem mobilen Gerät bietet die App das beste Erlebnis – besonders beim Identifizieren von Arten unterwegs.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Speichern und bearbeiten um Anhang hinzuzufügen
@@ -8564,6 +8791,8 @@ de:
         include_observation_oauth_application_ids: Einschließen von Beobachtern mit Apps
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP-Länder
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Datum der letzten Beobachtung
         #Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: Maximale Beobachtungen
         #Minimum number of observations the viewer must have added for others to see the announcement
@@ -8704,7 +8933,7 @@ de:
         rank: Taxonomischer Rang
         rank_level: Rangstufe
         #Boolean attribute that controls whether Wikipedia content is shown for this taxon
-        shows_wikipedia: Zeigt Wikipedia
+        shows_wikipedia: Verwendung des Wikipedia-Artikels
         source_id: Quellen-ID
         source_identifier: Quellbezeichner
         source_url: Quell-URL

@@ -1085,6 +1085,8 @@ es-AR:
     %{user} reveló este %{item} porque «%{reason}»
   continue: Continua
   continue_to_site: Continuar a %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Contribuir
   contributor_cannot_be_found: El contribuidor no se pudo encontrar
   contributors_to_project: "Contribuyentes de %{project}"
   controlled_term_labels:
@@ -2144,6 +2146,8 @@ es-AR:
   identify_observations: "Identificar observaciones"
   identify_observations_by_these_users: Identificar observaciones de estos usuarios
   identify_title: "Identificar"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identificar
   identification: identificación
   identification_by_user: Identificación por %{user}
   #Notification when an identification has been deleted
@@ -2350,6 +2354,7 @@ es-AR:
     identifications_in_month_year: La mayoría de las identificaciones de %{month_year}
     identifications_in_year: La mayoría de las identificaciones de %{year}
   leading: Principal
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
   learn_more: Aprende más
@@ -5272,6 +5277,8 @@ es-AR:
   total_observations_caps: TOTAL DE OBSERVACIONES
   total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Huellas
   translated_languages: Lenguajes traducidos
   'true': 'Verdadero'
   trending: Tendencias
@@ -7113,6 +7120,11 @@ es-AR:
         who_uses_site_name: "¿Quién utiliza %{site_name}?"
         what_are_you_waiting_for: '¿Qué estás esperando?'
         join_today: Únete hoy
+    welcome_v2:
+      index:
+        donate:
+          #Call-to-action button for the donation section
+          cta: Donar ahora
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Guardar y editar para agregar datos adjuntos

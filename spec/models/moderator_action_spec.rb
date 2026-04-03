@@ -224,6 +224,19 @@ describe ModeratorAction do
         u.reload
         expect( u.suspended_by_user ).to eq ma.user
       end
+      it "copies suspended_until to user when set" do
+        u = create :user
+        future = 7.days.from_now
+        create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u, suspended_until: future )
+        u.reload
+        expect( u.suspended_until ).to be_within( 1.second ).of( future )
+      end
+      it "leaves suspended_until nil on user when not set" do
+        u = create :user
+        create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        u.reload
+        expect( u.suspended_until ).to be_nil
+      end
     end
 
     describe "UNSUSPEND" do
@@ -234,6 +247,15 @@ describe ModeratorAction do
         create( :moderator_action, action: ModeratorAction::UNSUSPEND, resource: u )
         u.reload
         expect( u ).not_to be_suspended
+      end
+      it "clears suspended_until on unsuspend" do
+        u = create :user
+        u.update_columns( suspended_at: Time.zone.now, suspended_until: 7.days.from_now )
+        expect( u ).to be_suspended
+        create( :moderator_action, action: ModeratorAction::UNSUSPEND, resource: u )
+        u.reload
+        expect( u ).not_to be_suspended
+        expect( u.suspended_until ).to be_nil
       end
 
       it "marks spam users as non-spammers" do

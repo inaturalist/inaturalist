@@ -555,4 +555,25 @@ describe UsersController, "join_test" do
     expect( user.test_groups ).not_to be_blank
     expect( user.test_groups ).to include( User::ADMIN_ONLY_TEST_GROUPS.first )
   end
+
+  it "does not allow unpermitted users to join the helpful IDs test group" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    sign_in user
+    expect( user.test_groups ).to be_blank
+    put :join_test, params: { test: User::HELPFUL_ID_TIPS_TEST_GROUP, id: user.id }
+    user.reload
+    expect( user.test_groups ).to be_blank
+  end
+
+  it "allows permitted users to join the helpful IDs test group" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    user.update_columns( test_groups: User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+    sign_in user
+    expect( user.test_groups ).to include( User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+    put :join_test, params: { test: User::HELPFUL_ID_TIPS_TEST_GROUP, id: user.id }
+    user.reload
+    expect( user.test_groups ).to include( User::HELPFUL_ID_TIPS_TEST_GROUP )
+  end
 end

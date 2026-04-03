@@ -433,6 +433,8 @@ eo:
   connecting_flickr: "Konektanta Flickr..."
   continue: Daŭrigi
   continue_to_site: Daŭrigi al %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Kontribui
   contributor_cannot_be_found: Kontribuinto ne troviĝas
   contributors_to_project: "Kontribuintoj al %{project}"
   controlled_term_labels:
@@ -740,6 +742,8 @@ eo:
   id: ID
   identify: Identigi
   identify_title: "Identigi"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Identigi
   identification: Identigo
   identification_by_user: Identigo far %{user}
   #Notification when an identification has been deleted
@@ -786,6 +790,7 @@ eo:
   leaderboard: Ĉampionejo
   leaderboard_for_x: "Ĉampionejo por %{x}"
   leaderboards: Ĉampionejoj
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Lerni
   learn_more: Lerni Plu
   learn_more_raquo: "Lerni plu &raquo;"
@@ -1903,6 +1908,11 @@ eo:
         who_uses_site_name: "Kiu Uzas %{site_name}?"
         what_are_you_waiting_for: Kial vi hezitus?
         join_today: Aliĝu Hodiaŭ
+    welcome_v2:
+      index:
+        donate:
+          #Call-to-action button for the donation section
+          cta: Donacu nun
   date:
     abbr_day_names:
       - Dim

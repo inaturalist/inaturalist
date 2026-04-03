@@ -633,6 +633,9 @@ nl:
     vragen over jouw plan en we behouden ons het recht voor om aanvragen om welke reden dan ook af te wijzen.
   app_owner_application_inelligible: |
     Om een toepassing in te kunnen dienen moet je account minimaal 2 maanden oud zijn en moet minstens 10 verbeterende determinaties hebben gedaan in de afgelopen maand.
+  app_owner_application_inelligible2: |
+    Om een aanvraag in te dienen moet je account minstens 2 maanden oud zijn en tenminste 
+    10 verbeterende determinaties voor andere gebruikers gedaan hebben in de afgelopen maand.
   app_owner_application_fields_explanation_html: Beschrijf de functionaliteit van je app en hoe je deze gaat gebruiken.
   app_owner_application_success: App eigenaar aanvraag ingediend
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -904,6 +907,7 @@ nl:
   casual: onvolledig
   casual_: Onvolledig
   casual_tooltip_html: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig"- . <a href="https://www.inaturalist.org/pages/help#quality"> Meer informatie over kwaliteitsbeoordelingen</a>'
+  casual_tooltip_html2: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig". <a href="https://help.inaturalist.org/nl/support/solutions/articles/151000169936"> Meer informatie over kwaliteitsbeoordelingen</a>'
   categories: Categorieën
   cc_0_description: "Deze licentie geeft je werk vrij in het publieke domein, zodat anderen je werk kunnen kopiëren, wijzigen, distribueren en uitvoeren, zelfs voor commerciële doeleinden, allemaal zonder toestemming te vragen of jouw naam te vermelden. Dit is de meest inschikkelijke licentie die wordt aangeboden. Aanbevolen voor maximale verspreiding en gebruik van het materiaal."
   cc_0_name: Geen auteursrecht (CC0)
@@ -1177,6 +1181,8 @@ nl:
     %{user} heeft @gender{n:dit|deze} %{item} weer zichtbaar gemaakt omdat "%{reason}"
   continue: Doorgaan
   continue_to_site: Ga door naar %{site_name}
+  #verb, call to action, e.g. "Contribute to real science"
+  contribute: Bijdragen
   contributor_cannot_be_found: Medewerker kan niet gevonden worden
   contributors_to_project: "Medewerkers aan %{project}"
   controlled_term_labels:
@@ -1337,6 +1343,10 @@ nl:
   couldnt_change_your_password: "Je wachtwoord kon niet gewijzigd worden: %{e}"
   couldnt_find_a_user_matching_x_param: "Kon geen gebruiker vinden die overeenstemt met %{id}"
   couldnt_find_that_taxon: Taxon niet gevonden.
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Aantal Aflopend
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Aantal Oplopend
   create: Aanmaken
   create_a_guide: Maak een gids aan
   create_a_new_field: Nieuw veld aanmaken
@@ -1662,7 +1672,7 @@ nl:
   delete_user: Gebruiker verwijderen
   delete_your_account: Verwijder je account
   deleted_synonyms: Verwijderde synoniemen
-  deleted_user: Gebruiker verwijderen
+  deleted_user: Gebruiker verwijderd
   deleted_vote: Verwijderde stem
   deleting: Aan het verwijderen...
   deleting_verb: Aan het verwijderen
@@ -1765,6 +1775,8 @@ nl:
   devise_unlock_instructions_click_the_link: |
     Klik op onderstaande link om je account te deblokkeren
   devise_unlock_instructions_unlock: Deblokkeer je account
+  #verb, call to action, e.g. "Discover nature nearby"
+  discover: Ontdek
   discoveries: Ontdekkingen
   did_you_mean: 'Bedoelde u'
   did_you_photos_flickr?: Heb je foto's geplaatst op Flickr?
@@ -2395,6 +2407,8 @@ nl:
   identify_observations: "Determineer waarnemingen"
   identify_observations_by_these_users: Determineer waarnemingen van deze gebruikers
   identify_title: "Determineer"
+  #verb, call to action, e.g. "Identify nature nearby"
+  identify_verb: Determineer
   identification: determinatie
   identification_by_user: Determinatie door %{user}
   #Notification when an identification has been deleted
@@ -2634,6 +2648,7 @@ nl:
     identifications_in_month_year: Meeste determinaties in %{month_year}
     identifications_in_year: Meeste determinaties in %{year}
   leading: Leidend
+  #verb, call to action, e.g. "Learn from a global community of naturalists"
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
   learn_more: Meer informatie
@@ -3046,6 +3061,9 @@ nl:
   misleading_or_illegal_content_html: |
     Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van "geschikt", zie de
     <a href="/help#inappropriate">Veelgestelde vragen (FAQ)</a>.
+  misleading_or_illegal_content_html2: |
+    Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van "geschikt", zie de
+    <a href="https://help.inaturalist.org/nl/support/solutions/articles/151000169936">Veelgestelde vragen (FAQ)</a>.
   #Label shown when a date has not been entered
   missing_date: Datum ontbreekt
   mobile: Mobiel
@@ -3216,6 +3234,7 @@ nl:
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
   needs_id_tooltip_html: '"ID nodig"-waarnemingen hebben media, locatie en een datum maar er is nog steeds een gemeenschapsconsensus nodig voor een nauwkeurige determinatie. <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
+  needs_id_tooltip_html2: '"ID nodig"-waarnemingen hebben media, locatie en een datum maar er is nog steeds een gemeenschapsconsensus nodig voor een nauwkeurige determinatie. <a href="https://help.inaturalist.org/nl/support/solutions/articles/151000169936">Meer informatie over kwaliteitsbeoordelingen</a>'
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, onderdeel van het internationale iNaturalist
@@ -3430,6 +3449,8 @@ nl:
   obscured_or_private: vervaagd of verborgen
   obscured_description: |
     Openbare coördinaten worden weergegeven als een willekeurig punt in de 0.2 graden lat/lon cel die de werkelijke coördinaten omvat.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Waarnemen
   observation: Waarneming
   observation_: waarneming
   observation_accuracy_experiment_the_sample_for: "De steekproef voor dit experiment is nog niet gegenereerd"
@@ -4808,6 +4829,7 @@ nl:
   research_grade: Onderzoekskwaliteit
   research_grade_short_html: "O<span class='full'>nderzoeks</span>k<span class='full'>waliteit</span>"
   research_grade_tooltip_html: '"Onderzoekskwaliteit"-waarnemingen hebben media, locatie, een datum en een gemeenschapsconsensus over een nauwkeurige determinatie (meestal op soortniveau). <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
+  research_grade_tooltip_html2: '"Onderzoekskwaliteit"-waarnemingen hebben media, locatie, een datum en een gemeenschapsconsensus over een nauwkeurige determinatie (meestal op soortniveau). <a href="https://help.inaturalist.org/nl/support/solutions/articles/151000169936">Meer informatie over kwaliteitsbeoordelingen</a>'
   research_grade_observations_have: 'Waarnemingen van "onderzoekskwaliteit" hebben een datum, foto, coördinaten en een door de gemeenschap ondersteunde determinatie. Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.'
   research_grade_qualification: Kwalificatie onderzoekskwaliteit
   #Label for a button that re-sends the account confirmation email and signs
@@ -5014,6 +5036,7 @@ nl:
   sign_in_with_google: Inloggen met Google
   sign_out: Afmelden
   sign_up: Registreren
+  sign_up_sentence_case: Aanmelden
   similar_species: Gelijkende soorten
   similar_taxa: Soortgelijke Taxa
   #Journal post formatting option
@@ -5144,6 +5167,7 @@ nl:
   sorry_you_need_to_be_signed_in_and: Sorry, je moet ingelogd zijn en een gelinked Flickr-account hebben om tags direct op Flickr te plaatsen.
   sort: Sorteren
   sort_by: Sorteren op
+  sort_included_projects_on_leaderboard_by: Sorteer inclusief projecten op scorebord op
   sorting_by: Sorteren op
   soundcloud_needs_to_confirm: "SoundCloud wil dat je bevestigt dat je wilt dat je account is verbonden met %{site_name}."
   sounds:
@@ -5789,6 +5813,8 @@ nl:
   total_observations_caps: TOTAAL AANTAL WAARNEMINGEN
   total_species_observed_caps: TOTAAL AANTAL WAARGENOMEN SOORTEN
   total_unique_observers: Totaal aantal unieke waarnemers
+  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  track: Volg
   translated_languages: Vertaalde Talen
   'true': 'Waar'
   trending: Trending
@@ -6212,6 +6238,8 @@ nl:
   why_are_you_making_this_change_optional: Waarom maak je deze wijziging? (optioneel)
   why_are_you_making_this_change_cite_source_required: Waarom maakt u deze wijziging? Gelieve uit te leggen, en indien mogelijk een bron te citeren. (verplicht)
   why_you_can_see_the_coordinates: Waarom u de coördinaten kunt zien
+  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  who: Wie
   who_can_add_observation_fields_to_my_obs: Wie kan waarnemingsvelden toevoegen aan mijn waarnemingen?
   who_can_add_observations_to_this_project?: Wie kan waarnemingen aan dit project toevoegen?
   who_can_see_the_coordinates: Wie kan de coördinaten zien
@@ -6220,6 +6248,8 @@ nl:
   who_can_see_the_coordinates_trusted: Individuen die de waarnemer hun verborgen coördinaten heeft toevertrouwd
   who_helped_user_the_most: "Wie bood %{user} het meeste hulp"
   who_user_helped_the_most: "Aan wie bood %{user} het meeste hulp"
+  #Question mark added to the end of the word "Why" to make it a question.
+  why_question: Waarom?
   why_the_coordinates_are_obscured: Waarom de coördinaten worden vervaagd
   with_annotation: Met aantekening
   without_annotation: Zonder aantekening
@@ -7721,11 +7751,22 @@ nl:
           URL van een evenementregistratieservice die je gebruikt voor je bioblitz.
           Als dit een Eventbrite-URL met een numerieke ID is, voegen we een aanmeld-widget toe aan je projectpagina tot je bioblitz
           begint.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Verberg Klassement
         icon_desc: "Wordt opeengepakt tot een vierkant"
         it_looks_like_this_project_can_be_converted: |
           Het lijkt erop dat dit project kan worden geconverteerd naar een nieuw <a href="%{url}">verzamelproject</a>.
         last_aggregated_at_desc: |
           Tijd dat de aggregator voor het laatst klaar was met het toevoegen van waarnemingen aan dit project
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Klassement
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Het Klassement-paneel toont gebruikers met de meeste waarnemingen, met de
+          de meeste soorten en de best waargenomen soort. Het kan optioneel verborgen worden.
         #Label for button to make another user the owner of a project
         make_owner: Eigenaar maken
         no_curators: |
@@ -8746,6 +8787,191 @@ nl:
         who_uses_site_name: "Wie gebruikt %{site_name}?"
         what_are_you_waiting_for: Waar wacht je op?
         join_today: Word nu lid
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Waar je nieuwsgierigheid bijdraagt aan de wetenschap.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Determineer planten, dieren, schimmels en meer, terwijl je ze toevoegt aan een levende atlas van het leven op aarde.
+          #Primary call-to-action button in the hero section
+          cta_join: Sluit je aan bij de gemeenschap
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Gratis, non-profit, gemeenschapsgedreven.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Met iNaturalist kun je:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Planten, dieren, schimmels & meer
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: soorten die je wereldwijd hebt gezien
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: naar echte wetenschap
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: natuur in de buurt
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: van een wereldwijde gemeenschap van natuuronderzoekers
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: De kracht van gemeenschapswetenschap
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Gezien door %{user} in %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Herontdekking van lang verloren soorten
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            De nachtvlinder %{moth_common_name} was al decennia niet meer gezien en werd als uitgestorven beschouwd — totdat een toerist in Nieuw-Zeeland hem per ongeluk zag.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Soorten ontdekken die nieuw zijn voor de wetenschap
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — afgekort tot <span class="italic">I. nat</span> — is een bidsprinkhaansoort die nieuw voor de wetenschap is, is gevonden door een vrouw in Australië die in haar buurt wandelt.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Bescherming van lokale ecosystemen
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Een groep lokale vrijwilligers in Californië kwam via iNaturalist samen om migrerende amfibieën die een drukke weg overstaken te beschermen.
+          #Link below the stories to read more community science stories
+          read_more: Lees meer verhalen
+        observation:
+          #Heading for the sample observation section
+          heading: Elke waarneming vertelt een verhaal
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: waarnemingen die bijdragen aan biodiversiteitswetenschap
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Soorten die wereldwijd zijn gedocumenteerd
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: artikelen die iNaturalist-gegevens citeren
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: soorten ontdekt of herontdekt door gemeenschapswetenschappers
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Open de app en fotografeer elke wilde plant, dier, schimmel of ander organisme — uit je buurt of waar dan ook ter wereld.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            De app stelt direct een identificatie voor, en een wereldwijde gemeenschap van natuuronderzoekers bevestigt of verfijnt dit.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Uw observatie wordt open data — gebruikt door wetenschappers, natuurbeschermers en onderzoekers wereldwijd.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            De natuur verandert sneller dan ooit, dus we hebben het nodig <span class="underline">jij</span> om te helpen vastleggen wat waar leeft.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Het heeft me echt geholpen bij het identificeren van soorten, naast de mogelijkheid om met verschillende mensen over de hele wereld te communiceren.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Mariene natuurbeschermer en onderwaterfotograaf, Kenia
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist opent de deur naar zoveel nieuw en spannend onderzoek naar onderbestudeerde taxa. Naar mijn mening is dit platform de voorhoede van de ecologische wetenschap.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Veldgids-auteur bij Owlfly LLC, VS
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist en de toegewijde gemeenschap van experts werden een onschatbare bron in mijn ontdekkingen. Het heeft de basis gelegd voor mijn huidige werk.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversiteitsonderzoeker, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist is een krachtig hulpmiddel dat mensen, natuur en kennis verbindt. Ik kan een zeldzame soort fotograferen of zelfs een die nog niet is beschreven en tegelijkertijd draag ik bij aan het behoud van ons natuurlijk erfgoed.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Milieutechnicus en hobbyfotograaf, Brazilië
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Waar ter wereld je ook bent, of je nu een PhD hebt of gewoon van de natuur houdt, iNaturalist brengt je dichter bij de natuur en vele andere natuurliefhebbers.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Bioloog, Mexico
+        everyone:
+          #Heading for the broad audience section
+          heading: Iedereen is een natuurliefhebber
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Als je ooit goed hebt gekeken naar iets dat leefde en je vroeg je af wat het was, dan is iNaturalist voor jou.
+          #Heading for the impact sub-section
+          impact_heading: Je kunt impact maken
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Elke foto die je deelt wordt onderdeel van een wereldwijd wetenschappelijk archief waarop onderzoekers wereldwijd vertrouwen.
+          #Heading for the community reputation sub-section
+          community_heading: '"De mooiste plek online"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Kom voor de determinaties, blijf voor de gemeenschap en impact op de wetenschap.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Download de iNaturalist app
+          #Subheading describing the two core benefits of the app
+          subheading: Krijg real-time determinaties & draag bij aan de wetenschap
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Downloads"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Ontdek soorten wereldwijd
+          #Button / link to browse species without downloading
+          button: Ontdek het nu
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Onder de 13? Download Seek!"
+          #Description of Seek's badge and challenge features
+          body: Verdien badges en doe mee aan uitdagingen om soorten te vinden!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-sterren recensies"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Ontvang onze maandelijkse nieuwsbrief!
+          #Description of the newsletter's content
+          body: Blijf verbonden met verhalen en ontdekkingen uit de iNaturalist-gemeenschap.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist is een non-profitorganisatie die wetenschap en natuurbehoud ondersteunt.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Jouw steun maakt dat mogelijk.
+          #Call-to-action button for the donation section
+          cta: Doneer nu
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Veelgestelde vragen
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Kan ik foto's uploaden die ik al heb?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ja! Zolang je ongeveer weet wanneer en waar een foto is genomen, zijn oudere foto's welkom.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Wie kan wetenschap bedrijven met iNaturalist-waarnemingen?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Iedereen! Alle iNaturalist waarnemingen zijn open en vrij beschikbaar — voor onderzoekers, natuurbeschermers en nieuwsgierige individuen.
+          #FAQ: research grade definition — question
+          research_grade_question: Wat betekent "Onderzoekskwaliteit"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Wanneer de gemeenschap het eens wordt over een determinatie, wordt een waarneming "Onderzoekskwaliteit" en wordt ze opgenomen in het wereldwijde wetenschappelijke archief. Elke determinatie kan daar toe bijdragen.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Moet ik weten waar ik naar kijk?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Helemaal niet! Deel een foto, en een wereldwijde gemeenschap van natuurliefhebbers kan je helpen deze te identificeren.
+          #FAQ: whether the app is required — question
+          need_app_question: Moet ik de app gebruiken?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Op een desktop werkt iNaturalist.org fantastisch. Op een mobiel apparaat biedt de app je de beste ervaring — vooral voor het determineren van soorten onderweg.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Opslaan en bewerken om bijlagen toe te voegen
@@ -9755,6 +9981,9 @@ nl:
   id_summaries:
     demo:
       app:
+        header_link: "ID-samenvattingen Demo"
+        info_line_one: "Deze demo onderzoekt het gebruik van AI om opmerkingen op iNaturalist samen te vatten met als doel"
+        info_line_two: "waardoor determinatie-expertise toegankelijker wordt."
         blog_link_text: "Lees meer op onze blog"
         missing_identifier: "Ontbrekende overzicht van de determinatie van dit taxon"
         service_unavailable: "De gegevens van het ID-overzicht zijn tijdelijk niet beschikbaar."
@@ -9772,12 +10001,26 @@ nl:
         empty: "Er zijn geen ID-overzichten beschikbaar voor deze soort."
         refreshing: "Samenvattingen verversen..."
         heading: "ID-samenvattingen"
+        feedback_toggle: "Feedback over ID-samenvattingen"
         feedback_unavailable: "Feedback is niet beschikbaar voor deze samenvatting."
+        sign_in_required: "Log in om te stemmen op feedback over het ID-overzicht."
+        service_unavailable: "De feedbackservice is momenteel niet beschikbaar."
+        submit_failed: "Kan geen feedback geven."
       summary_feedback:
         loading: "Feedback laden..."
         explainer: "Uw feedback wordt gebruikt om ID-overzichten in de toekomst te verbeteren"
+        sign_in_tooltip: "Meld je aan om op dit overzicht te stemmen"
+        submitting_tooltip: "Feedback indienen..."
+        aria_helpful: "%{label}: nuttig"
+        aria_not_helpful: "%{label}: niet nuttig"
       summary_item:
+        disclaimer: "Deze samenvatting van iNaturalist-gebruikersopmerkingen is gegenereerd door AI en is mogelijk onjuist. U kunt ons helpen dit overzicht te verbeteren door feedback te geven."
+        default_label: "SAMENVATTING"
+        default_title: "Samenvatting"
+        copy_link: "Kopieer link naar deze samenvatting"
+        photo_tip_label: "FOTO TIP"
         photo_tip_aria: "Foto Tip: %{tip}"
+        references_toggle: "iNaturalist Opmerkingen van gebruikers Referenties"
         user_fallback: "iNaturalist gebruiker"
         reference_commented: "gereageerd"
         view_comment: "Opmerking bekijken"
@@ -9787,7 +10030,15 @@ nl:
         sign_in_required: "Meld je aan om te stemmen op feedback over referenties."
         unavailable: "Referentiefeedback is momenteel niet beschikbaar."
         service_unavailable: "Referentie feedback service is momenteel niet beschikbaar."
+        submit_failed: "Kan geen referentiefeedback verzenden."
+        sign_in_tooltip: "Meld u aan om op deze referentie te stemmen"
+        submitting_tooltip: "Feedback indienen..."
+        aria_helpful: "%{label}: nuttig"
+        aria_not_helpful: "%{label}: niet nuttig"
       taxon_detail:
+        select_species: "Selecteer een soort om ID-samenvattingen te bekijken."
+        last_updated: "Laatst bijgewerkt"
+        no_image: "Geen afbeelding beschikbaar"
         photo_tips_heading: "Fototips"
         summary_uuid: "Taxon-ID samenvatting UUID"
       taxa_list:

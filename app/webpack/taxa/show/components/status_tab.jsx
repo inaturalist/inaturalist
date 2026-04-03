@@ -121,7 +121,7 @@ const StatusTab = ( {
             );
             return (
               <tr
-                key={`statuses-${status.authority}-${status.place ? status.place.id : "global"}`}
+                key={`statuses-${status.id}-${status.authority}-${status.place ? status.place.id : "global"}`}
               >
                 <td>
                   <div className="media">
