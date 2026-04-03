@@ -53,7 +53,7 @@
           .wv2-story__body
             %p= t("#{s}.stories.#{body}", **interp)
             %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
-    = link_to t("#{s}.stories.read_more"), "#", class: "btn wv2-btn--green"
+    = link_to t("#{s}.stories.read_more"), "/pages/impact", class: "btn wv2-btn--green"
 
   -# ── Sample observation ────────────────────────────────────
   .wv2-section.wv2-section--light.text-center
