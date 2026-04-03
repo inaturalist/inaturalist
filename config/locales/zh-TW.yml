@@ -1065,7 +1065,7 @@ zh-TW:
     %{user} 取消隱藏此%{item}，因為"%{reason}"
   continue: 繼續
   continue_to_site: 繼續 %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: 貢獻
   contributor_cannot_be_found: 查無貢獻者
   contributors_to_project: "貢獻至 %{project}"
@@ -1582,7 +1582,7 @@ zh-TW:
   devise_unlock_instructions_click_the_link: |
     點選以下連結來解鎖您的帳號
   devise_unlock_instructions_unlock: 解鎖您的帳號
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: 探索
   discoveries: 發現
   did_you_mean: '您是指'
@@ -2177,7 +2177,7 @@ zh-TW:
   identify_observations: "鑑定觀察"
   identify_observations_by_these_users: 由這些使用者所鑑定的觀察
   identify_title: "鑑定"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: 識別
   identification: 鑑定
   identification_by_user: 由 %{user} 做的鑑定
@@ -2388,7 +2388,7 @@ zh-TW:
     identifications_in_month_year: 在 %{month_year} 內做出最多的鑑定
     identifications_in_year: 在 %{year} 內做出最多的鑑定
   leading: 優先
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: 學習
   learn_about_the_species_live_in: 了較有關物種存活於
   learn_more: 了解更多
@@ -5153,7 +5153,7 @@ zh-TW:
   total_observations_caps: 觀察紀錄總數
   total_species_observed_caps: 已觀察到的物種總數
   total_unique_observers: 唯一觀察者總計
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: 足跡
   translated_languages: 已翻譯語言
   'true': '是'
@@ -5474,6 +5474,7 @@ zh-TW:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 我們認為應是在 %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "很抱歉，您的%{filename}大量匯入失敗。"
+  #e.g. "What was observed?"
   what: 什麼
   what_did_you_see: 您看到了什麼？
   what_did_you_see?: 您看到了<em>什麼</em>？
@@ -5482,15 +5483,17 @@ zh-TW:
   what_want_to_list?: 您想要列出什麼？
   what_were_you_looking_for?: "您在找什麼呢？（目標清單）"
   whats_this?: 這是什麼？
+  #e.g. "When was it observed?"
   when: 何時
   when_did_you_see_it?: 您何時看到它？
   when_did_you_see_them?: 您在<em>何時</em>看到它們？
+  #e.g. "Where was it observed?"
   where: 哪裡
   where_were_they?: 它們在何處？
   where_were_you?: 您在何處？
   which_projects_can_add_your_observations?: 哪個傳統專案可以添加您的觀察？
   why_you_can_see_the_coordinates: 為何您可以看到座標
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: 誰
   who_can_add_observation_fields_to_my_obs: 誰能夠新增觀察欄位到我的觀察紀錄中？
   who_can_add_observations_to_this_project?: 誰可以添加觀察至此專案？
@@ -5500,7 +5503,7 @@ zh-TW:
   who_can_see_the_coordinates_trusted: 觀察者以他的隱藏座標所信任的個人
   who_helped_user_the_most: "誰協助過 %{user} 最多"
   who_user_helped_the_most: "%{user} 協助過最多次"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: 為什麼？
   why_the_coordinates_are_obscured: 為何座標為隱蔽
   with_annotation: 帶有註解
