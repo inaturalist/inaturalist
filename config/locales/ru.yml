@@ -1283,7 +1283,7 @@ ru:
     %{user} открыл это %{item}, поскольку "%{reason}"
   continue: Продолжить
   continue_to_site: Переходим к %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Внести вклад
   contributor_cannot_be_found: Не удаётся найти поставщика данных
   contributors_to_project: "Участники %{project}"
@@ -1850,7 +1850,7 @@ ru:
   devise_unlock_instructions_click_the_link: |
     Нажмите на ссылку ниже, чтобы разблокировать свой аккаунт:
   devise_unlock_instructions_unlock: Разблокировать аккаунт
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Откройте для себя
   discoveries: Открытия
   did_you_mean: 'Возможно, вы имеете в виду'
@@ -2474,7 +2474,7 @@ ru:
   identify_observations: "Идентифицируйте наблюдения"
   identify_observations_by_these_users: Идентифицируйте наблюдения этих пользователей
   identify_title: "Идентифицируйте"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Идентифицировать
   identification: идентификация
   identification_by_user: Идентификация %{user}
@@ -2709,7 +2709,7 @@ ru:
     identifications_in_month_year: Наибольшее число идентификаций за %{month_year}
     identifications_in_year: Наибольшее число идентификаций за %{year}
   leading: Ведущий
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Изучайте
   learn_about_the_species_live_in: Узнать о видах, которые обитают в
   learn_more: Узнать больше
@@ -5827,7 +5827,7 @@ ru:
   total_observations_caps: ВСЕГО НАБЛЮДЕНИЙ
   total_species_observed_caps: ВСЕГО НАБЛЮДАЕМЫХ ВИДОВ
   total_unique_observers: Итого уникальных наблюдателей
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: След
   translated_languages: Переведенные языки
   'true': 'Да'
@@ -6234,6 +6234,7 @@ ru:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Извините, но ваш массовый импорт %{filename} не удался."
+  #e.g. "What was observed?"
   what: Что
   what_did_you_see: Что вы видели?
   what_did_you_see?: <em>Что</em> вы видели?
@@ -6242,9 +6243,11 @@ ru:
   what_want_to_list?: Какой список вы хотите составить?
   what_were_you_looking_for?: "Что вы ищете? (целевой список)"
   whats_this?: Что это?
+  #e.g. "When was it observed?"
   when: Когда
   when_did_you_see_it?: Когда вы это видели?
   when_did_you_see_them?: <em>Когда</em> вы это видели?
+  #e.g. "Where was it observed?"
   where: Где
   where_were_they?: Где они находились?
   where_were_you?: Где вы были?
@@ -6253,7 +6256,7 @@ ru:
   why_are_you_making_this_change_optional: Почему вы вносите это изменение? (опционально)
   why_are_you_making_this_change_cite_source_required: Почему вы вносите это изменение? Пожалуйста, объясните и укажите источник, если это возможно. (Требование)
   why_you_can_see_the_coordinates: Почему вы можете видеть координаты
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Кто
   who_can_add_observation_fields_to_my_obs: Кто может добавлять поля наблюдения к моим наблюдениям?
   who_can_add_observations_to_this_project?: Кто может добавлять наблюдения к этому проекту?
@@ -6263,7 +6266,7 @@ ru:
   who_can_see_the_coordinates_trusted: Лица, которым наблюдатель доверил свои скрытые координаты
   who_helped_user_the_most: "Кто больше всего помогал %{user}"
   who_user_helped_the_most: "Кому %{user} помогал больше всего"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Почему?
   why_the_coordinates_are_obscured: Почему координаты скрыты
   with_annotation: Со значением
