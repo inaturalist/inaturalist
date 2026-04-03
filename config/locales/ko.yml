@@ -676,7 +676,7 @@ ko:
   contain_all_descendants?: 이 체크리스트가 여기 존재하는 하위 분류군을 모두 포함하고 있나요?
   continue: 계속
   continue_to_site: '%{site_name}(으)로 계속하기'
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: 기여하기
   contributor_cannot_be_found: 기여자 찾을 수 없음
   contributors_to_project: "%{project}의 기여자들"
@@ -929,7 +929,7 @@ ko:
   devise_confirmation_instructions_please_click2: |
     아래 링크를 클릭하여 이메일 주소를 확인하십시오. 이메일을 확인하지 않은 경우
     주소가 없으면 다른 사용자의 콘텐츠와 상호 작용할 수 없습니다.
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: 발견하기
   did_you_mean: '이것을 찾으셨나요:'
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
@@ -1261,7 +1261,7 @@ ko:
   iconic_taxon: 특정 분류군
   identify: 동정하기
   identify_title: "동정하기"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: 식별
   identification: 동정
   #Notification when an identification has been deleted
@@ -1363,7 +1363,7 @@ ko:
   latitude: 위도
   latitude_value: "위도: %{latitude}"
   layout: 배치 (레이아웃)
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: 배우다
   learn_more: 더 알아보기
   least_concern: 관심 대상
@@ -2577,7 +2577,7 @@ ko:
   total: 합계
   total_observations: 총 관찰
   total_observations_caps: 전체 관찰 수
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: 트랙
   translated_languages: 번역된 언어
   twitter: 트위터
@@ -2704,19 +2704,22 @@ ko:
   welcome_to_inat: "%{site_name}에 오신 것을 환영합니다!"
   welcome_to_guides: "%{site_name} 가이드에 오신 것을 환영합니다!"
   welcome_to_x_project: "%{project}에 오신 것을 환영합니다."
+  #e.g. "What was observed?"
   what: 뭐야
   what_were_you_looking_for?: "찾으시는 것이 무엇이었습니까? (대상 목록)"
   whats_this?: 이것은 무엇입니까?
+  #e.g. "When was it observed?"
   when: 날짜
   when_did_you_see_it?: 언제 봤나요?
   when_did_you_see_them?: <em>언제</em> 그것을 봤나요?
+  #e.g. "Where was it observed?"
   where: 위치
   which_projects_can_add_your_observations?: 내 관찰을 추가할 수 있는 전통적인 프로젝트는 무엇입니까?
   why_you_can_see_the_coordinates: 좌표를 볼 수 있는 이유
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: 누구
   who_can_add_observations_to_this_project?: 이 프로젝트에 관찰을 추가할 수 있는 사람은 누구입니까?
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: 왜?
   widget: 위젯
   widget_code: 위젯 코드
