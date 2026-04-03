@@ -80,6 +80,7 @@ module BuildTestUser
           cloned_obs = obs.dup
           cloned_obs.user_id = user.id
           cloned_obs.skip_indexing = true
+          cloned_obs.skip_updates = true if cloned_obs.respond_to?( :skip_updates= )
           cloned_obs.uuid = nil if cloned_obs.respond_to?( :uuid )
           clone_note = "Cloned from obs #{obs.id} by user #{original_user_id}"
           if cloned_obs.description.to_s.strip.empty?
@@ -114,6 +115,7 @@ module BuildTestUser
             cloned_ofv = ofv.dup
             cloned_ofv.observation_id = cloned_obs.id
             cloned_ofv.user_id = ( ( ofv.user_id == original_user_id ) ? user.id : ofv.user_id )
+            cloned_ofv.skip_updates = true if cloned_ofv.respond_to?( :skip_updates= )
             cloned_ofv.uuid = nil if cloned_ofv.respond_to?( :uuid )
             cloned_ofv.save!
           end
@@ -132,6 +134,7 @@ module BuildTestUser
             cloned_ident.observation_id = cloned_obs.id
             cloned_ident.user_id = ( ( ident.user_id == original_user_id ) ? user.id : ident.user_id )
             cloned_ident.skip_indexing = true
+            cloned_ident.skip_updates = true if cloned_ident.respond_to?( :skip_updates= )
             cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
             cloned_ident.save!
             cloned_identification_ids << cloned_ident.id
@@ -143,6 +146,7 @@ module BuildTestUser
             cloned_comment = comment.dup
             cloned_comment.parent = cloned_obs
             cloned_comment.user_id = ( ( comment.user_id == original_user_id ) ? user.id : comment.user_id )
+            cloned_comment.skip_updates = true if cloned_comment.respond_to?( :skip_updates= )
             cloned_comment.uuid = nil if cloned_comment.respond_to?( :uuid )
             cloned_comment.save!
           end
@@ -165,6 +169,7 @@ module BuildTestUser
           cloned_ident = ident.dup
           cloned_ident.user_id = user.id
           cloned_ident.skip_indexing = true
+          cloned_ident.skip_updates = true if cloned_ident.respond_to?( :skip_updates= )
           cloned_ident.uuid = nil if cloned_ident.respond_to?( :uuid )
           cloned_ident.save!
           cloned_identification_ids << cloned_ident.id
