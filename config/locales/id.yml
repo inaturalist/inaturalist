@@ -1091,7 +1091,7 @@ id:
     %{user} memperlihatkan %{item} ini karena "%{reason}"
   continue: Lanjutkan
   continue_to_site: Lanjutkan ke %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Berkontribusi
   contributor_cannot_be_found: Kontributor tidak dapat ditemukan
   contributors_to_project: "Kontributor di %{project}"
@@ -1686,7 +1686,7 @@ id:
   devise_unlock_instructions_click_the_link: |
     Klik tautan di bawah ini untuk membuka akun Anda
   devise_unlock_instructions_unlock: Buka Akun Anda
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Temukan
   discoveries: Penemuan
   did_you_mean: 'Apakah maksud Anda'
@@ -2299,7 +2299,7 @@ id:
   identify_observations: "Kenali Pengamatan"
   identify_observations_by_these_users: Kenali Pengamatan Oleh Pengguna Ini
   identify_title: "Kenali"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifikasi
   identification: identifikasi
   identification_by_user: Identifikasi oleh %{user}
@@ -2536,7 +2536,7 @@ id:
     identifications_in_month_year: Identifikasi terbanyak pada %{month_year}
     identifications_in_year: Identifikasi terbanyak pada %{year}
   leading: Memimpin
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Belajar
   learn_about_the_species_live_in: Pelajari tentang spesies yang hidup di
   learn_more: Pelajari lebih lanjut
@@ -5594,7 +5594,7 @@ id:
   total_observations_caps: TOTAL PENGAMATAN
   total_species_observed_caps: TOTAL SPESIES YANG DIAMATI
   total_unique_observers: Total pengamat yang unik
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Lacak
   translated_languages: Bahasa Yang Diterjemahkan
   'true': 'Benar'
@@ -5995,6 +5995,7 @@ id:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Kami cukup yakin ini berada dalam %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Maaf tapi impor sekaligus %{filename} Anda gagal."
+  #e.g. "What was observed?"
   what: Apa
   what_did_you_see: Apa yang Anda lihat?
   what_did_you_see?: <em>Apa</em> yang Anda lihat?
@@ -6003,9 +6004,11 @@ id:
   what_want_to_list?: Apa yang ingin Anda daftarkan?
   what_were_you_looking_for?: "Apa yang sedang Anda cari? (daftar target)"
   whats_this?: Apa ini?
+  #e.g. "When was it observed?"
   when: Kapan
   when_did_you_see_it?: Kapan Anda melihatnya?
   when_did_you_see_them?: <em>Kapan</em> Anda melihatnya?
+  #e.g. "Where was it observed?"
   where: Di mana
   where_were_they?: Di manakah mereka berada?
   where_were_you?: Di manakah Anda berada?
@@ -6014,7 +6017,7 @@ id:
   why_are_you_making_this_change_optional: Mengapa Anda membuat perubahan ini? (opsional)
   why_are_you_making_this_change_cite_source_required: Mengapa Anda membuat perubahan ini? Tolong jelaskan dan sertakan sebuah sumber jika ada. (Wajib)
   why_you_can_see_the_coordinates: Mengapa Anda Bisa Melihat Koordinatnya
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Siapa
   who_can_add_observation_fields_to_my_obs: Siapa yang dapat menambahkan bidang pengamatan ke pengamatan saya?
   who_can_add_observations_to_this_project?: Siapa yang dapat menambahkan pengamatan ke proyek ini?
@@ -6024,7 +6027,7 @@ id:
   who_can_see_the_coordinates_trusted: Orang yang dipercayakan oleh pengamat dengan koordinat tersembunyi mereka
   who_helped_user_the_most: "Yang Membantu %{user} Paling Sering"
   who_user_helped_the_most: "Yang %{user} Bantu Paling Sering"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Mengapa?
   why_the_coordinates_are_obscured: Mengapa Koordinat Dikaburkan
   with_annotation: Dengan Catatan
