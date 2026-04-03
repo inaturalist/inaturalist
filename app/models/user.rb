@@ -303,7 +303,6 @@ class User < ApplicationRecord
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
   after_save :send_messages_by_unsuspended_user
-  after_save :send_unsuspended_email, if: :saved_change_to_suspended_at?
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_save :update_taxon_name_priorities
@@ -545,6 +544,8 @@ class User < ApplicationRecord
   def unsuspend!
     return unless suspended_at?
 
+    self.spammer = false
+    self.suspended_by_user = nil
     self.suspended_at = nil
     self.suspension_reason = nil
     self.suspended_until = nil
@@ -1823,11 +1824,10 @@ class User < ApplicationRecord
     if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
       self.suspended_by_user = moderator_action.user
       self.suspended_until = moderator_action.suspended_until
-      suspend!
+      suspend!( reason: moderator_action.reason )
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
-      self.spammer = false
-      self.suspended_by_user = nil
       unsuspend!
+      send_unsuspended_email
     elsif moderator_action.action == ModeratorAction::RENAME
       new_login = User.suggest_login( User::DEFAULT_LOGIN )
       self.login = new_login
