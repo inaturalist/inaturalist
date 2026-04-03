@@ -1244,7 +1244,7 @@ he:
     %{user} חשף %{item} זה בגלל %{reason}
   continue: להמשיך
   continue_to_site: להמשיך ל%{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: תרומה
   contributor_cannot_be_found: לא ניתן למצוא את התורמים
   contributors_to_project: "התורמים ל%{project}"
@@ -1810,7 +1810,7 @@ he:
   devise_unlock_instructions_click_the_link: |
     יש ללחוץ על הקישור מטה כדי לפתוח את חשבונך
   devise_unlock_instructions_unlock: ביטול נעילת החשבון שלך
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: גלה
   discoveries: תגליות
   did_you_mean: 'האם התכוונת ל'
@@ -2426,7 +2426,7 @@ he:
   identify_observations: "זיהוי תצפיות"
   identify_observations_by_these_users: זיהוי תצפיות של המשתמשים הבאים
   identify_title: "זיהוי"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: זיהוי
   identification: זיהוי
   identification_by_user: זיהוי על ידי %{user}
@@ -2658,7 +2658,7 @@ he:
     identifications_in_month_year: הכי הרבה זיהויים ב%{month_year}
     identifications_in_year: הכי הרבה זיהויים ב-%{year}
   leading: מוביל.ה
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: למדו
   learn_about_the_species_live_in: הכירו את המינים שחיים ב
   learn_more: מידע נוסף
@@ -5754,7 +5754,7 @@ he:
   total_observations_caps: סה"כ תצפיות
   total_species_observed_caps: סה"כ מינים שנצפו
   total_unique_observers: סה"כ מתצפתים יחודיים
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: מסלול
   translated_languages: שפות מתורגמות
   'true': 'נכון'
@@ -6166,6 +6166,7 @@ he:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: להערכתנו זה בתוך ה%{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "סליחה, הייבוא בצובר של %{filename} נכשל."
+  #e.g. "What was observed?"
   what: מה
   what_did_you_see: מה ראית?
   what_did_you_see?: <em>מה</em> ראית?
@@ -6174,9 +6175,11 @@ he:
   what_want_to_list?: מה ברצונך לרשום?
   what_were_you_looking_for?: "מה חיפשת? (רשימת יעד)"
   whats_this?: מה זה?
+  #e.g. "When was it observed?"
   when: מתי
   when_did_you_see_it?: מתי ראית את זה?
   when_did_you_see_them?: <em>מתי</em> ראית אותם?
+  #e.g. "Where was it observed?"
   where: איפה
   where_were_they?: היכן הם היו?
   where_were_you?: היכן היית?
@@ -6185,7 +6188,7 @@ he:
   why_are_you_making_this_change_optional: למה החלטת לבצע שינוי זה? (אופציונאלי)
   why_are_you_making_this_change_cite_source_required: למה החלטת לבצע שינוי זה? נא להסביר, תוך ציטוט מקור אם אפשר. (חובה)
   why_you_can_see_the_coordinates: למה את.ה יכול.ה לראות את הקואורדינטות
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: מי
   who_can_add_observation_fields_to_my_obs: מי יכול.ה להוסיף שדות תצפית לתצפיות שלי?
   who_can_add_observations_to_this_project?: מי יכולים להוסיף תצפיות לפרוייקט?
@@ -6195,7 +6198,7 @@ he:
   who_can_see_the_coordinates_trusted: א.נשים שהמתצפת.ת בוטחת בהם עם הקואורדינטות המוסתרות שלה
   who_helped_user_the_most: "מי עזר.ה הכי הרבה ל%{user}"
   who_user_helped_the_most: "למי %{user} עזר.ה הכי הרבה"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: למה?
   why_the_coordinates_are_obscured: הסיבה שבגללה הקואורדינטות מוסתרות
   with_annotation: עם תווית
