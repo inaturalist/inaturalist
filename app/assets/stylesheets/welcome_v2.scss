@@ -915,7 +915,6 @@ h2 {
 
   &__copy {
     @extend %product-section__copy;
-    // flex: 0 1 350px;
   }
 
   &__body { @extend %product-section__body; }
@@ -952,7 +951,6 @@ h2 {
 
   &__copy {
     @extend %product-section__copy;
-    flex: 0 1 350px;
   }
 
   &__body { @extend %product-section__body; }
