@@ -1055,7 +1055,7 @@ ja:
     %{user}さんは%{item} を表示しました。理由："%{reason} "
   continue: 続行
   continue_to_site: '%{site_name} に進む'
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: 貢献
   contributor_cannot_be_found: 提供者が見つかりません
   contributors_to_project: "%{project}への貢献者"
@@ -1574,7 +1574,7 @@ ja:
   devise_unlock_instructions_click_the_link: |
     アカウントのロックを解除するには、下のリンクをクリックしてください
   devise_unlock_instructions_unlock: アカウントのロックを解除
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: 発見
   discoveries: 発見
   did_you_mean: 'もしかして:'
@@ -2155,7 +2155,7 @@ ja:
   identify_observations: "観察記録を同定"
   identify_observations_by_these_users: ユーザーによる観察記録の同定
   identify_title: "同定"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: 識別
   identification: 同定
   identification_by_user: '%{user}さんの同定'
@@ -2368,7 +2368,7 @@ ja:
     identifications_in_month_year: '%{month_year}において最も多数の同定を追加'
     identifications_in_year: '%{year}において最も多数の同定を追加'
   leading: 主導
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: 学習
   learn_about_the_species_live_in: 次の場所で生息する生き物について学ぶ：
   learn_more: もっと詳しく
@@ -5145,7 +5145,7 @@ ja:
   total_observations_caps: 合計観察記録数
   total_species_observed_caps: 合計観察種数
   total_unique_observers: 総投稿者数
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: 陸上競技
   translated_languages: 翻訳言語：
   'true': '真'
@@ -5496,6 +5496,7 @@ ja:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 下の%{rank}だと確信しています
   were_sorry_but_your_bulk_import_of_filename_has_failed: "申し訳ありません。%{filename}の一括インポートが失敗しました。"
+  #e.g. "What was observed?"
   what: 何だって
   what_did_you_see: 何を見ましたか？
   what_did_you_see?: <em>何を</em>見ましたか？
@@ -5503,9 +5504,11 @@ ja:
   what_want_to_list?: リストにまとめたいものは？
   what_were_you_looking_for?: "何をお探しですか？（ターゲットリスト）"
   whats_this?: もっと詳しく
+  #e.g. "When was it observed?"
   when: いつ？
   when_did_you_see_it?: いつ見ましたか？
   when_did_you_see_them?: <em>いつ</em>見ましたか？
+  #e.g. "Where was it observed?"
   where: どこ
   where_were_they?: 場所は？
   where_were_you?: 場所は？
@@ -5514,7 +5517,7 @@ ja:
   why_are_you_making_this_change_optional: 変更理由(任意)
   why_are_you_making_this_change_cite_source_required: なぜこの変更を行うのですか？可能であれば出典を挙げて説明してください。(必須)
   why_you_can_see_the_coordinates: あなたがこの座標を見ることができる理由
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: 誰が
   who_can_add_observation_fields_to_my_obs: 他のユーザーが自分の観察記録へ観察記録フィールドを追加することを許可しますか？
   who_can_add_observations_to_this_project?: このプロジェクトに観察記録を追加できるのは誰ですか？
@@ -5524,7 +5527,7 @@ ja:
   who_can_see_the_coordinates_trusted: 設定で「信頼して正確な位置情報を共有する」を選択した相手
   who_helped_user_the_most: "%{user} さんの同定を最も助けたユーザー"
   who_user_helped_the_most: "%{user} さんが最も同定を助けたユーザー"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: なぜでしょうか?
   why_the_coordinates_are_obscured: 座標が不明瞭な理由
   with_annotation: 注釈付き
