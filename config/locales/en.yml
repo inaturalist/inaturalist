@@ -10358,6 +10358,18 @@ en:
       x_seconds:
         one: "%{count} second"
         other: '%{count} seconds'
+      # the number of hours for distance in time from now
+      x_hours:
+        # a singular hour
+        one: "%{count} hour"
+        # multiple hours (plural)
+        other: "%{count} hours"
+      # the number of years for distance in time from now
+      x_years:
+        # a singular year
+        one: "%{count} year"
+        # multiple years (plural)
+        other: "%{count} years"
     countdown_x_days:
       one: DAY
       other: DAYS
