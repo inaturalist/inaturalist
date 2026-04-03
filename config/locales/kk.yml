@@ -860,7 +860,7 @@ kk:
     %{user} осы %{item} жасырды, себебі "%{reason}"
   continue: Жалғастыру
   continue_to_site: '%{site_name} сайтына өту'
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Үлес қосыңыз
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -1196,7 +1196,7 @@ kk:
   devise_unlock_instructions_click_the_link: |
     Аккаунтыңыздың құлпын ашу үшін төмендегі сілтемені басыңыз
   devise_unlock_instructions_unlock: Аккаунтыңызды ашыңыз
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Ашу
   discoveries: Ашулар
   disable: Өшіру
@@ -1454,7 +1454,7 @@ kk:
   identify: Анықтау
   identify_observations: "Бақылауларды анықтау"
   identify_title: "Анықтау"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Анықтау
   identification: идентификация
   identifications: Идентификациялар
@@ -1514,7 +1514,7 @@ kk:
     observations_in_month_year: '%{month_year} бойынша ең көп бақылаулар'
     observations_in_year: '%{year} бойынша ең көп бақылаулар'
   leading: Жетекші
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Үйрену
   learn_more: Толығырақ ақпарат
   learn_more_raquo: "Көбірек білу үшін &raquo;"
@@ -3352,7 +3352,7 @@ kk:
   total_observations: Жалпы бақылаулар
   total_observations_caps: ЖАЛПЫ БАҚЫЛАУЛАР
   total_species_observed_caps: ЖАЛПЫ БАҚЫЛАНҒАН ТҮРЛЕР
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Із
   translated_languages: Аударылған тілдер
   trust_with_private_coordinates: Жасырын координаттармен бөлісу
@@ -3526,17 +3526,20 @@ kk:
   welcome: қош келдіңіз
   welcome_back!: Қайтадан қош келдіңіз!
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Кешіріңіз, бірақ %{filename} файлын жаппай импорттау сәтсіз аяқталды."
+  #e.g. "What was observed?"
   what: Не
   what_did_you_see: Сіз не көрдіңіз?
   what_did_you_see?: <em>Сіз</em> не көрдіңіз?
   what_do_you_think: Сіз қалай ойлайсыз?
   what_to_keep: Нені сақтау керек
   whats_this?: Бұл не?
+  #e.g. "When was it observed?"
   when: Қашан
   when_did_you_see_it?: Сіз оны қашан көрдіңіз?
+  #e.g. "Where was it observed?"
   where: Мұнда
   where_were_you?: Сіз қайда болдыңыз?
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Кім
   who_can_add_observations_to_this_project?: Бұл жобаға бақылауларды кім қоса алады?
   who_can_see_the_coordinates: Координаттарды кім көре алады
@@ -3545,7 +3548,7 @@ kk:
   who_can_see_the_coordinates_trusted: Бақылаушы жасырын координаталарына сенген адамдар
   who_helped_user_the_most: "%{user} кім көбірек көмектесті"
   who_user_helped_the_most: "%{user} кімге көбірек көмектесті"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Неге?
   why_the_coordinates_are_obscured: Неліктен координаттар жасырын
   with_annotation: Аңдатпа арқылы
