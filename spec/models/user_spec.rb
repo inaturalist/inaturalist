@@ -788,13 +788,13 @@ describe User do
       expect( msg ).not_to include "Reason"
     end
 
-    it "includes duration for timed suspensions" do
+    it "includes relative duration for timed suspensions" do
       user = User.make!
       suspended_until = 7.days.from_now
       user.update_columns( suspended_at: Time.zone.now, suspended_until: suspended_until )
       user.reload
       msg = user.inactive_message
-      expect( msg ).to include I18n.l( suspended_until, format: :long )
+      expect( msg ).to include I18n.t( "datetime.distance_in_words.x_days", count: 7 )
     end
 
     it "includes reason for timed suspensions with a reason" do
