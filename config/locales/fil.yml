@@ -56,7 +56,7 @@ fil:
   confirming_ids_description: |
     Kung i-off mo ito, hindi ka na aabisuhan tungkol sa mga ID na sumasang-ayon
     Maliban na lang kung may mga karagdagang komento sila.
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Mag-ambag
   #Label for a menu item linking to a help page aimed at curators
   curator_guide: Gabay sa Curator
@@ -78,7 +78,7 @@ fil:
   devise_confirmation_instructions_please_click2: |
     Mangyaring i click ang link sa ibaba upang kumpirmahin ang iyong email address. Kung hindi mo kumpirmahin ang iyong email
     address, hindi ka magagawang upang makihalubilo sa iba pang mga gumagamit 'nilalaman.
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Tuklasin
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
@@ -110,8 +110,10 @@ fil:
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "Tagalog Example Sentence: Ang tunog na ito ay na-flag na."
   help: Tulong
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Kilalanin
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Kilalanin
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
@@ -119,7 +121,7 @@ fil:
   instagram: Instagram
   jobs: Mga Trabaho
   journal_posts: Mga Post sa Journal
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Matuto
   log_in: Email Address *
   #Adjectival phrase describing state of being logged in
@@ -193,7 +195,7 @@ fil:
   store_caps: TINDAHAN
   taxa_info: Impormasyon ng Taxa
   terms_service: Mga Tuntunin ng Paggamit
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Subaybayan
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: Pag-unawa sa Mga Proyekto
@@ -210,12 +212,15 @@ fil:
   video_tutorials: Mga Tutorial sa Video
   we_also_support3: |
     Sinusuportahan din namin ang pag-import ng mga larawan mula sa <a href="http://flickr.com">Flickr</a>.
+  #e.g. "What was observed?"
   what: Ano ang
+  #e.g. "When was it observed?"
   when: Kapag
+  #e.g. "Where was it observed?"
   where: Kung saan
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Sino
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Bakit?
   views:
     announcements:

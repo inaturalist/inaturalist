@@ -308,7 +308,7 @@ fr-CA:
   community: Communauté
   community_guidelines: Directives communautaires
   configure_a_widget_to_show: "Configurez un widget pour afficher les observations\nd’%{site_name} sur votre site Web ou votre blogue. Vous devrez peut-être inclure\nle CSS intégré dans le <code>&lt;head&gt;</code> de votre HTML. N’hésitez pas\nà réécrire le CSS."
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Contribuer
   copy_and_paste_the_following_code_to: Copiez et collez le code suivant pour inclure cette évaluation dans une autre page Web.
   #Label for a menu item linking to a help page aimed at curators
@@ -345,7 +345,7 @@ fr-CA:
   devise_unlock_instructions_click_the_link: |
     Cliquez sur le lien ci-dessous pour débloquer votre compte :
   devise_unlock_instructions_unlock: Déverrouiller votre compte
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Découvrir
   documentation_for_developers_html: Documentation pour <a href="/pages/developers">Développeurs</a>
   #Button text to donate to iNaturalist. Please try to keep translations as
@@ -382,8 +382,10 @@ fr-CA:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Masquer « Pas d'annotation »
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifier
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identifier
   instagram: Instagram
   #Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Insérer une citation
@@ -398,7 +400,7 @@ fr-CA:
     <a href="%{manage_flags_path}">Gérer les signalements</a>
   jobs: Emplois
   journal_posts: Publications dans la revue
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Apprendre
   legacy_authentication_notice_html: |
     Il semble que vous utilisez un mot de passe d'une ancienne version de ce site Web.
@@ -471,7 +473,7 @@ fr-CA:
     Si c’est votre compte et que vous pensez que ceci a été fait par erreur, veuillez <a href="mailto:%{email}">nous contacter</a>.
   #As in the title of a book or a blog post
   title: titre
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Piste
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: Comprendre les projets
@@ -511,12 +513,15 @@ fr-CA:
   view_inaturalist_global_year_in_review_caps: VOIR LA RÉTROSPECTIVE DE L'ANNÉE %{year} DE LA COMMUNAUTÉ MONDIALE D'INATURALIST
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse courriel.
   website: Site Web
+  #e.g. "What was observed?"
   what: Quoi
+  #e.g. "When was it observed?"
   when: Quand
+  #e.g. "Where was it observed?"
   where: Où
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Qui
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Pourquoi?
   x_blog: "Blogue de %{x}"
   #This might be shown if there is a character limit in a text field, in which

@@ -885,7 +885,7 @@ bg:
   content_type: Тип на съдържанието
   continue: Продължи
   continue_to_site: Продължи към %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Допринесе
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -1315,7 +1315,7 @@ bg:
   devise_unlock_instructions_click_the_link: |
     Щракнете препратката по-долу, за да отключите акаунта си
   devise_unlock_instructions_unlock: Отключете акаунта си
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Открийте
   discoveries: Открития
   did_you_mean: 'Може би имахте предвид'
@@ -1737,8 +1737,10 @@ bg:
   identify_observations: "Разпознай наблюдения"
   identify_observations_by_these_users: Разпознайте наблюдения от тези потребители
   identify_title: "Разпознай"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Идентифициране
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Идентифициране
   identification: разпознаване
   identification_by_user: Разпознаване от %{user}
   #Notification when an identification has been deleted
@@ -1891,7 +1893,7 @@ bg:
     observations_in_year: Най-много наблюдения за %{year}
     identifications_in_month_year: Най-много разпознавания за %{month_year}
     identifications_in_year: Най-много разпознавания за %{year}
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Научете
   learn_about_the_species_live_in: Научи за видовете живеещи в
   learn_more: Научете повече
@@ -4211,7 +4213,7 @@ bg:
   total_observations: Общо наблюдения
   total_observations_caps: ОБЩО НАБЛЮДЕНИЯ
   total_unique_observers: Общо различни наблюдатели
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Писта
   translated_languages: Преводни езици
   'true': 'Вярно'
@@ -4495,21 +4497,24 @@ bg:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Почти сигурни сме, че това е от %{rank}
+  #e.g. "What was observed?"
   what: Какво
   what_did_you_see: Какво наблюдавахте?
   what_did_you_see?: <em>Какво</em> видяхте?
   what_do_you_think: Какво мислите?
   what_want_to_list?: Какво искате да включите в списъка?
   whats_this?: Какво е това?
+  #e.g. "When was it observed?"
   when: Кога
   when_did_you_see_it?: Кога го наблюдавахте?
   when_did_you_see_them?: <em>Кога</em> ги видяхте?
+  #e.g. "Where was it observed?"
   where: Къде
   where_were_they?: Къде ги видяхте?
   where_were_you?: Къде се намирахте?
   which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   why_are_you_making_this_change_cite_source_required: Защо правите тази промяна? Обяснете, цитирайте източник, ако може. (изисква се)
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Кой
   who_can_add_observation_fields_to_my_obs: Кой може да добавя полета за наблюдения към моите наблюдения?
   who_can_add_observations_to_this_project?: Кой може да добавя наблюдения към проекта?
@@ -4519,7 +4524,7 @@ bg:
   who_can_see_the_coordinates_trusted: Хора, на които наблюдателят е доверил скритите си координати
   who_helped_user_the_most: "Кой е помогнал най-много на %{user}"
   who_user_helped_the_most: "На кого е помогнал най-много %{user}"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Защо?
   why_the_coordinates_are_obscured: Защо координатите са замаскирани
   with_annotation: С анотация

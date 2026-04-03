@@ -495,7 +495,7 @@ mk:
       имплицирани од овој статус. Ова ќе ја отфрли геоприватноста ако е "Најмалку
       Загриженост" или подолу, па ако сакате да ги прикриете набљудувањата на ова
       таксон, поставете го на "Речиси загрозен" или погоре.
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Придонеси
   controlled_term_labels:
     sex: Пол
@@ -621,7 +621,7 @@ mk:
   devise_confirmation_instructions_please_click2: |
     Моля, кликнете на линкот подолу за да ја потврдите вашата е-маил адреса. Ако не го потврдите својот е-маил
     адреса, нема да можете да комуницирате со содржината на другите корисници.
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Откријте
   did_you_mean: 'Дали мислевте на'
   #Checkbox controlling whether to show observations that have disagreeing
@@ -782,8 +782,10 @@ mk:
   home: Почетна
   icon_size: Големина на иконата
   iconic_taxon: Иконски таксон
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Идентификација
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Идентификација
   #Notification when an identification has been deleted
   identification_deleted: Препознавањето е избришано.
   identification_saved: "Препознавањето е зачувано!"
@@ -845,7 +847,7 @@ mk:
     observations_in_year: Највеќе набљудувања во %{year} г.
     identifications_in_month_year: Највеќе препознавања во %{month_year} г.
     identifications_in_year: Највеќе препознавања во %{year} г.
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Научете
   learn_about_the_species_live_in: Научете за видовите што живеат во
   learn_more: Дознајте повеќе
@@ -1709,7 +1711,7 @@ mk:
   total_observations: Вкупно набљудувања
   total_species_observed_caps: ВКУПНО НАБЉУДУВАНИ ВИДОВИ
   total_unique_observers: Вкупно посебни набљудувачи
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Патека
   #As in a category, not as in a keyboard
   type: Внесете
@@ -1808,17 +1810,20 @@ mk:
   welcome_to_inat: "Добре дојдовте на %{site_name}!"
   welcome_to_guides: "Добре дојдовте на Водичите на %{site_name}!"
   welcome_to_x_project: "Добре дојдовте на %{project}"
+  #e.g. "What was observed?"
   what: Што
   what_do_you_think: Што мислите?
+  #e.g. "When was it observed?"
   when: Кога
   when_did_you_see_it?: Кога го видовте?
   when_did_you_see_them?: <em>Кога</em> ги видовте?
+  #e.g. "Where was it observed?"
   where: Каде
   where_were_they?: Каде беа?
   where_were_you?: Каде бевте?
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Кој
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Зошто?
   widget: Елемент
   widget_code: Код на елементот

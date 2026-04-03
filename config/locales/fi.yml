@@ -1096,7 +1096,7 @@ fi:
     %{user} poisti piilotuksen tältä %{item}lta, koska: "%{reason}"
   continue: Jatka
   continue_to_site: Jatka %{site_name}iin
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Osallistu
   contributor_cannot_be_found: Osallistujaa ei löydy
   contributors_to_project: "Projektin %{project} osallistujat"
@@ -1655,7 +1655,7 @@ fi:
   devise_unlock_instructions_click_the_link: |
     Poista tilisi lukitus alla olevasta linkistä:
   devise_unlock_instructions_unlock: Poista tilin lukitus
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Tutustu
   discoveries: Löydöt
   did_you_mean: 'Tarkoititko'
@@ -2212,8 +2212,10 @@ fi:
   identify_observations: "Tunnista havaintoja"
   identify_observations_by_these_users: Tunnista havaintoja, joita nämä havainnoijat ovat tehneet
   identify_title: "Tunnistus"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Tunnista
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Tunnista
   identification: tunnistus
   identification_by_user: Käyttäjän %{user} tunnistus
   #Notification when an identification has been deleted
@@ -2433,7 +2435,7 @@ fi:
     identifications_in_month_year: Eniten tunnistuksia %{month_year}
     identifications_in_year: Eniten tunnistuksia %{year}
   leading: Johtava
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Opi
   learn_about_the_species_live_in: Opi lajeista, jotka elävät paikassa
   learn_more: Lue lisää
@@ -5095,7 +5097,7 @@ fi:
   total_observations_caps: HAVAINTOJA YHTEENSÄ
   total_species_observed_caps: LAJEJA HAVAITTU YHTEENSÄ
   total_unique_observers: Yksilölliset havainnoijat yhteensä
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Rata
   translated_languages: Käännetyt kielet
   'true': 'Kyllä'
@@ -5426,6 +5428,7 @@ fi:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Olemme melko varmoja, että se on osa %{rank}a
+  #e.g. "What was observed?"
   what: Mitä
   what_did_you_see: Mitä näet?
   what_did_you_see?: <em>Mitä</em> näet?
@@ -5433,16 +5436,18 @@ fi:
   what_to_keep: Mitä pitää
   what_want_to_list?: Mitä haluat luetteloida?
   whats_this?: Mikä tämä on?
+  #e.g. "When was it observed?"
   when: Milloin
   when_did_you_see_it?: Milloin havaitsit sen?
   when_did_you_see_them?: <em>Milloin</em> näit ne?
+  #e.g. "Where was it observed?"
   where: Missä
   where_were_they?: Missä he olivat?
   where_were_you?: Missä olit?
   which_projects_can_add_your_observations?: Mitkä perinteiset projektit voivat lisätä havaintojasi ko. projektiin?
   why_are_you_making_this_change_cite_source_required: Miksi teet tämän muutoksen? Ole hyvä ja selitä, ja mainitse lähde jos mahdollista. (Pakollinen)
   why_you_can_see_the_coordinates: Miksi näet koordinaatit
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Kuka
   who_can_add_observation_fields_to_my_obs: Kuka voi lisätä havaintokenttiä havaintoihini?
   who_can_add_observations_to_this_project?: Kuka voi lisätä havaintoja tähän projektiin?
@@ -5450,7 +5455,7 @@ fi:
   who_can_see_the_coordinates_observer: Henkilö, joka teki havainnon
   who_helped_user_the_most: "Kuka auttoi käyttäjää %{user} eniten"
   who_user_helped_the_most: "Keitä %{user} auttoi eniten"
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Miksi?
   why_the_coordinates_are_obscured: Miksi koordinaatit on karkeistettu
   with_annotation: Merkinnällä
