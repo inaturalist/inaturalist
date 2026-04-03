@@ -41,7 +41,7 @@ vi:
       được ngụ ý bởi trạng thái này. Điều này sẽ ghi đè quyền riêng tư địa lý nếu nó là "Ít nhất
       Mối quan tâm" hoặc thấp hơn, vì vậy nếu bạn muốn che khuất các quan sát về điều này
       đơn vị phân loại, đặt thành "Gần bị đe dọa" trở lên.
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Đóng góp
   #Label for a menu item linking to a help page aimed at curators
   curator_guide: Hướng dẫn giám tuyển
@@ -68,7 +68,7 @@ vi:
   devise_confirmation_instructions_please_click2: |
     Vui lòng nhấp vào liên kết bên dưới để xác nhận địa chỉ email của bạn. Nếu bạn không xác nhận email của mình
     địa chỉ, bạn sẽ không thể tương tác với nội dung của người dùng khác.
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Khám phá
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
@@ -100,7 +100,7 @@ vi:
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "CẢNH BÁO: âm thanh này đã được gắn cờ."
   help: Trợ giúp
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Xác định
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
@@ -112,7 +112,7 @@ vi:
   language_slash_locale: Ngôn ngữ/Địa phương
   language_slash_locale_description: Điều này đặt tùy chọn định dạng ngôn ngữ và ngày của bạn trên iNaturalist dựa trên ngôn ngữ của bạn. Các thay đổi sẽ có hiệu lực sau khi trang được làm mới.
   language_slash_type: Ngôn ngữ / Loại
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Học
   log_in: Đăng nhập
   #Adjectival phrase describing state of being logged in
@@ -194,7 +194,7 @@ vi:
      nếu chúng rõ ràng là gây thù hận, bất hợp pháp, v.v. Thô lỗ, ngôn từ xúc phạm,
      vv, nên được xử lý bằng một nhận xét lịch sự. Người tái phạm phải được
      đã báo cáo cho quản trị viên trang web hoặc %{email}
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Theo dõi
   translated_languages: Ngôn ngữ đã dịch
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
@@ -212,12 +212,15 @@ vi:
   video_tutorials: Video hướng dẫn
   we_also_support3: |
     Chúng tôi cũng hỗ trợ nhập ảnh từ <a href="http://flickr.com">Flickr</a>.
+  #e.g. "What was observed?"
   what: Cái gì
+  #e.g. "When was it observed?"
   when: Khi nào
+  #e.g. "Where was it observed?"
   where: Trong đó
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Ai
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Tại sao?
   views:
     announcements:
