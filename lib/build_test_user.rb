@@ -485,5 +485,8 @@ module BuildTestUser
     Rails.cache.read( "build_test_user_progress_log" ) || []
   end
 
-  private_class_method :ensure_notifier_users
+  private_class_method :randomize_observations,
+    :randomize_identifications,
+    :ensure_notifier_users,
+    :progress_key
 end
