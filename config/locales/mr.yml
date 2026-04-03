@@ -548,7 +548,7 @@ mr:
       या स्थितीद्वारे सूचित केले जाते. जर ते "कमीतकमी" असेल तर हे भूगोपनीयतेवर मात करेल
       चिंता" किंवा खाली, म्हणून जर आपल्याला याची निरीक्षणे अस्पष्ट करायची असतील तर
       टॅक्सन, हे "नियर थ्रेट" किंवा त्यापेक्षा जास्त सेट करा.
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: योगदान द्या
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -636,7 +636,7 @@ mr:
   devise_confirmation_instructions_please_click2: |
     आपला ईमेल पत्ता निश्चित करण्यासाठी कृपया खालील लिंकवर क्लिक करा. आपण आपल्या ईमेलची पुष्टी न केल्यास
     पत्ता, आपण इतर वापरकर्त्यांच्या सामग्रीशी संवाद साधू शकणार नाही.
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: शोधा
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
@@ -711,7 +711,7 @@ mr:
     तुम्ही तुमची परवाना प्राधान्ये बदलू शकता
     <a class="linky" href="/users/edit#content">खाते सेटिंग्ज</a>.
   identify: ओळखा
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: ओळखा
   identifications: ओळखलेली निरीक्षणे
   inaturalist_global_year_in_review: "iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन"
@@ -733,7 +733,7 @@ mr:
   journal: नोंदवही
   journal_posts: नोंदवहीतील नोंदी
   labels: खूण चिट्ठी
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: जाणून घ्या
   learn_more: अधिक जाणून घ्या
   lexicons:
@@ -1150,7 +1150,7 @@ mr:
     मी <a href="/terms" target="_blank">वापराच्या अटींना</a> सहमत आहे आणि
     <a href="/privacy" target="_blank">गोपनीयता धोरण</a> आणि मी पुनरावलोकन केले आहे
     <a href="/pages/community+guidelines" target="_blank">समुदाय मार्गदर्शक तत्त्वे</a>.
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: मार्ग दुवा / मागोवा 
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: प्रकल्प समजून घेणे
@@ -1204,14 +1204,17 @@ mr:
   view_your_personal_year_in_review_caps: "तुमचे वैयक्तिक %{year} वार्षिक पुनरावलोकन पहा"
   we_also_support3: |
     आम्ही फोटो आयात करण्यास देखील समर्थन देतो <a href="http://flickr.com">फ्लिकर</a>.
+  #e.g. "What was observed?"
   what: काय आहे
+  #e.g. "When was it observed?"
   when: जेव्हा
+  #e.g. "Where was it observed?"
   where: कुठे
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: आपण हा बदल का घडवत आहात? (ऐच्छिक)
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: कोण
-  #Question mark added to the end of the word "Why" to make it a question.
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: का?
   #Filter for observations not in a particular taxon
   without_taxon: टॅक्सन मध्ये नसलेले
