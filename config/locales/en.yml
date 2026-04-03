@@ -1890,7 +1890,7 @@ en:
         to confirm your account.
       user:
         suspended: Your account has been suspended.
-        suspended_until: "Your suspension will be lifted on %{until}."
+        suspended_until: "Your suspension will be lifted in %{until}."
         suspension_reason: "Reason: %{reason}"
       # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid:
