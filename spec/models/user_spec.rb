@@ -736,45 +736,17 @@ describe User do
       expect( user.suspended_until ).to be_nil
     end
 
-    it "sends an unsuspended email" do
-      user = User.make!
-      user.update_columns(
-        suspended_at: Time.zone.now,
-        suspended_until: 7.days.from_now,
-        suspension_reason: "spamming"
-      )
-      user.reload
-      user.unsuspend!
-      mail = ActionMailer::Base.deliveries.last
-      expect( mail ).not_to be_nil
-      expect( mail.to ).to include user.email
-      expect( mail.subject ).to match( /unsuspended/ )
-    end
+    describe "emailing" do
+      it "does not send a unsuspended email when #unsuspend! is called" do
+        user = User.make!
+        user.update_columns(
+          suspended_at: Time.zone.now,
+          suspended_until: nil,
+          suspension_reason: "historical reason"
+        )
 
-    it "includes reason in unsuspended email for timed suspensions" do
-      user = User.make!
-      user.update_columns(
-        suspended_at: Time.zone.now,
-        suspended_until: 7.days.from_now,
-        suspension_reason: "spamming"
-      )
-      user.reload
-      user.unsuspend!
-      mail = ActionMailer::Base.deliveries.last
-      expect( mail.body ).to match( /spamming/ )
-    end
-
-    it "does not include reason in unsuspended email for indefinite suspensions" do
-      user = User.make!
-      user.update_columns(
-        suspended_at: Time.zone.now,
-        suspended_until: nil,
-        suspension_reason: "historical reason"
-      )
-      user.reload
-      user.unsuspend!
-      mail = ActionMailer::Base.deliveries.last
-      expect( mail.body ).not_to match( /historical reason/ )
+        expect { user.unsuspend! }.not_to( change { ActionMailer::Base.deliveries.count } )
+      end
     end
   end
 
@@ -828,6 +800,47 @@ describe User do
       moderator_action = build :moderator_action, action: ModeratorAction::RENAME, resource: user
       user.moderated_with( moderator_action )
       expect( user.login ).not_to eq "old_login"
+    end
+
+    it "sends an unsuspended email when moderated_with is called" do
+      user = User.make!
+      user.update_columns(
+        suspended_at: Time.zone.now,
+        suspended_until: 7.days.from_now,
+        suspension_reason: "spamming"
+      )
+      user.reload
+      ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user )
+      mail = ActionMailer::Base.deliveries.last
+      expect( mail ).not_to be_nil
+      expect( mail.to ).to include user.email
+      expect( mail.subject ).to match( /unsuspended/ )
+    end
+
+    it "includes reason in unsuspended email for timed suspensions" do
+      user = User.make!
+      user.update_columns(
+        suspended_at: Time.zone.now,
+        suspended_until: 7.days.from_now,
+        suspension_reason: "spamming"
+      )
+      user.reload
+      ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user )
+      mail = ActionMailer::Base.deliveries.last
+      expect( mail.body ).to match( /spamming/ )
+    end
+
+    it "does not include reason in unsuspended email for indefinite suspensions" do
+      user = User.make!
+      user.update_columns(
+        suspended_at: Time.zone.now,
+        suspended_until: nil,
+        suspension_reason: "historical reason"
+      )
+      user.reload
+      ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user )
+      mail = ActionMailer::Base.deliveries.last
+      expect( mail.body ).not_to match( /historical reason/ )
     end
   end
 
