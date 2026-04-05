@@ -235,11 +235,18 @@ class App extends React.Component {
       : observation.quality_grade;
     let qualityGradeTooltipHtml;
     if ( qualityGrade === "casual" ) {
-      qualityGradeTooltipHtml = I18n.t( "casual_tooltip_html" );
+      qualityGradeTooltipHtml = I18n.t( "casual_tooltip_html2", {
+        defaultValuePreFallback: I18n.t( "casual_tooltip_html" )
+      } );
     } else if ( qualityGrade === "needs_id" ) {
-      qualityGradeTooltipHtml = I18n.t( "needs_id_tooltip_html" );
+      qualityGradeTooltipHtml = I18n.t( "needs_id_tooltip_html2", {
+        defaultValuePreFallback: I18n.t( "needs_id_tooltip_html" )
+      } );
+
     } else {
-      qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html" );
+      qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html2", {
+        defaultValuePreFallback: I18n.t( "research_grade_tooltip_html" )
+      } );
     }
 
     return (

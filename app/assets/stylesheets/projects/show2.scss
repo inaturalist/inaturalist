@@ -698,7 +698,10 @@ a {
       display: flex;
     }
   }
-  margin-bottom: 20px;
+}
+
+.OverviewTab .info-grid {
+  margin-top: 20px;
 }
 
 .LeaderboardPanel {
@@ -859,12 +862,24 @@ a {
 
 .UmbrellaOverviewTab {
   .UmbrellaLeaderboard {
-    h2, .sort {
-      display: inline-block;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     .sort {
+      flex: 1;
       color: #888;
       margin-left: 20px;
+      display: flex;
+      align-items: center;
+      > span {
+        display: inline-flex;
+        align-items: center;
+      }
+      .sort-order {
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+      }
       span {
         padding: 0px 2px;
       }
@@ -875,8 +890,14 @@ a {
         color: #333;
         font-weight: 700;
       }
+      select.form-control {
+        display: inline-block;
+        width: auto;
+        margin-left: 4px;
+      }
     }
     .leaders-panel {
+      width: 100%;
       border: 1px solid $border-grey;
       background: white;
       table {

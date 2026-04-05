@@ -933,6 +933,8 @@ el:
     Ο %{user} ξαναεμφάνισε το %{item} διότι %{reason}
   continue: Συνέχεια
   continue_to_site: Συνεχίστε στο %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Συνεισφέρετε
   contributor_cannot_be_found: ο συντάκτης δεν μπορεί να βρεθεί
   contributors_to_project: "Συνεισφέροντες στο %{project}"
   controlled_term_labels:
@@ -1143,6 +1145,8 @@ el:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Μπορείτε να υιοθετήσετε ένα μοντέλο από κατάλληλες συμπεριφορές στο iNaturalist και να συμμορφωθείτε με τις οδηγίες της Κοινότητας. Εκτός από το στάτους του επιμελητή και την εξουσία που έρχεται μαζί με αυτό, προσδοκούμε ότι θα είστε ένας υποδειγματικός χρήστης του iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Οδηγός επιμελητή
   curators_changed_for_x_html: "Οι επιμελητές για %{x} άλλαξαν"
   curators: Επιμελητές
   curators_can_remove_observations_from: Οι επιμελητές μπορούν να αφαιρούν παρατηρήσεις από το πρότζεκτ και οι ταυτοποιήσεις τους φαίνονται μαζί με τις παρατηρήσεις πάνω στις προβολές που αφορούν το πρότζεκτ. Οι επιμελητές μπορούν επίσης να βλέπουν τις πραγματικές συντεταγμένες ιδιωτικών και κρυμμένων συνεισφορών σε αυτό το έργο.
@@ -1328,6 +1332,8 @@ el:
   devise_unlock_instructions_click_the_link: |
     Κάντε κλικ στον παρακάτω σύνδεσμο για να ξεκλειδώσετε το λογαριασμό σας
   devise_unlock_instructions_unlock: Ξεκλειδώστε Το Λογαριασμό Σας
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Ανακαλύψτε
   discoveries: Ανακαλύψεις
   did_you_mean: 'Μήπως εννοείτε'
   did_you_photos_flickr?: Έχετε βάλει κάποια φωτογραφία στο Flickr;
@@ -1714,6 +1720,8 @@ el:
   geoprivacy_is_private_desc: Ο παρατηρητής έχει επιλέξει να αποκρύψει τις γεωγραφικές συντεταγμένες.
   georeferenced: Έχει Γεωγραφική Αναφορά?
   get_started: Ξεκινήστε
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Ξεκινώντας
   getting_started_guide: Οδηγός για το πως να ξεκινήσετε
   #Prompt to donate money on a montly basis
   give_monthly_caps: ΔΩΣΤΕ ΜΗΝΙΑΙΑ
@@ -1811,6 +1819,10 @@ el:
   identify_observations: "Ταυτοποιήστε Παρατηρήσεις"
   identify_observations_by_these_users: Ταυτοποιήστε Παρατηρήσεις Αυτών των Χρηστών
   identify_title: "Ταυτοποιήστε"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Προσδιορίστε
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Προσδιορίστε
   identification: ταυτοποίηση
   identification_by_user: Ταυτοποίηση από %{user}
   #Notification when an identification has been deleted
@@ -1932,6 +1944,7 @@ el:
   italic_text: Πλάγια γραμματοσειρά
   item_flagged_notice_html: |
     Αυτό έχει αναφερθεί ως σπαμ και δεν είναι πια διαθέσιμο δημόσια. Μπορείτε να το δείτε γιατί το δημιουργήσατε, ή είστε ο επιμελητής της σελίδας. Αν πιστεύετε ότι αυτό είναι λάθος, παρακαλούμε <a href="mailto:%{help_email}" class="contact">επικοινωνήστε μαζί μας</a>. <a href="%{manage_flags_path}">Διαχείριση Αναφορών</a>
+  jobs: Θέσεις εργασίας
   join: μπείτε
   join_and_add_an_observation_to_project_html: Εγγραφείτε και Προσθέστε μια Παρατήρηση στο %{project}
   join_project: Εγγραφείτε σε αυτό το πρότζεκτ
@@ -1989,6 +2002,7 @@ el:
   leaderboard_for_x: "Λίστα κατάταξης για %{x}"
   leaderboards: Λίστες κατάταξης
   leading: Κορυφαίος
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Μάθετε
   learn_about_the_species_live_in: Μάθετε σχετικά με τα είδη που ζουν εκεί
   learn_more: Μάθετε περισσότερα
@@ -2580,6 +2594,8 @@ el:
   obscured_or_private: αποκρύφτηκε ή είναι απόρρητο
   obscured_description: |
     Οι δημόσιες συντεταγμένες φαίνονται σαν ένα αυθαίρετο σημείο μέσα στο κελί των 0.2 βαθμών Γεωγρ. πλάτους και μήκους που περιέχει τις πραγματικές συντεταγμένες.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Παρατηρώ
   observation: Παρατήρηση
   observation_: παρατήρηση
   observation_added_to_the_project: "Η Παρατήρηση προστέθηκε στο πρότζεκτ \"%{project}\""
@@ -3802,6 +3818,7 @@ el:
   sign_in_with_google: Σύνδεση μέσω Google
   sign_out: Έξοδος
   sign_up: Εγγραφή
+  sign_up_sentence_case: Εγγραφή
   similar_species: Παρόμοια είδη
   similar_taxa: Παρόμοια taxa
   #Journal post formatting option
@@ -4280,6 +4297,8 @@ el:
   total_members: Συνολικά μέλη
   total_observations: Συνολικές παρατηρήσεις
   total_unique_observers: Σύνολο μοναδικών παρατηρητών
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Πίστα
   translated_languages: Μεταφρασμένες γλώσσες
   'true': 'Αληθές'
   trending: Τα πιο δημοφιλή
@@ -4307,6 +4326,8 @@ el:
   umbrella_projects: Πρότζεκτ Ομπρέλας
   unblock: Ακύρωση μπλοκαρίσματος
   unclassified: Μη ταξινομημένο
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Κατανόηση Έργων
   unhide_content: Επανεμφάνιση Περιεχομένου
   unhide_desc: |
     Η επανεμφάνιση θα αποκαλύψει το περιεχόμενο σε όλους για να το δουν. Οι επιμελητές μπορούν ακόμα να επιλέξουν να το κρύψουν στο μέλλον.
@@ -4599,6 +4620,7 @@ el:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Είμαστε αρκετά σίγουροι ότι αυτό ανήκει στα %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Λυπούμαστε αλλά η μαζική εισαγωγή του %{filename} έχει αποτύχει."
+  #e.g. "What was observed?"
   what: Τι
   what_did_you_see: Τι είδατε;
   what_did_you_see?: <em>Τι</em> είδατε?
@@ -4607,14 +4629,18 @@ el:
   what_want_to_list?: Τι θέλετε να κάνετε λίστα?
   what_were_you_looking_for?: "Τ ψάχνετε? (στοχευμένη λίστα)"
   whats_this?: Τι είναι αυτό;
+  #e.g. "When was it observed?"
   when: Πότε
   when_did_you_see_it?: Πότε το είδατε;
   when_did_you_see_them?: <em>Πότε</em> τα εντοπίσατε;
+  #e.g. "Where was it observed?"
   where: Πού
   where_were_they?: Πού βρίσκονταν;
   where_were_you?: Πού βρισκόσασταν;
   which_projects_can_add_your_observations?: Ποιά παραδοσιακά πρότζεκτ μπορούν να προσθέσουν τις παρατηρήσεις σας;
   why_you_can_see_the_coordinates: Γιατί Μπορείτε να Δείτε τις Συντεταγμένες
+  #e.g. "Who observed it?"
+  who: Ποιος
   who_can_add_observation_fields_to_my_obs: Ποιος μπορεί να προσθέσει πεδία παρατήρησης στις παρατηρήσεις μου;
   who_can_add_observations_to_this_project?: Ποιος μπορεί να προσθέσει παρατηρήσεις σε αυτό πρότζεκτ;
   who_can_see_the_coordinates: Ποιος Μπορεί να Δει τις Συντεταγμένες
@@ -4623,6 +4649,8 @@ el:
   who_can_see_the_coordinates_trusted: Άτομα που ο παρατηρητής τους εμπιστεύτηκε τις κρυμμένες συντεταγμένες
   who_helped_user_the_most: "Ποιος Βοήθησε το %{user} Περισσότερο"
   who_user_helped_the_most: "Ποιος %{user} Βοήθησε Περισσότερο"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Γιατί;
   why_the_coordinates_are_obscured: Γιατί δεν εμφανίζονται οι συντεταγμένες
   with_annotation: Με σχολιασμό
   without_annotation: Χωρίς υποσημείωση
@@ -6414,6 +6442,191 @@ el:
         who_uses_site_name: "Ποιός χρησιμοποιεί το %{site_name};"
         what_are_you_waiting_for: Τι περιμένετε;
         join_today: Εγγραφείτε Σήμερα
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Όπου η περιέργειά σας συμβάλλει στην επιστήμη.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            Προσδιορίστε φυτά, ζώα, μύκητες και πολλά άλλα, ενώ προσθέτετε σε έναν ζωντανό άτλαντα ζωής στη Γη.
+          #Primary call-to-action button in the hero section
+          cta_join: Γίνετε μέλος της κοινότητας
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Δωρεάν, μη κερδοσκοπικό, με την υποστήριξη της κοινότητας.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Με το iNaturalist, μπορείτε:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: φυτά, ζώα, μύκητες και άλλα
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: είδη που έχετε δει σε όλο τον κόσμο
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: στην πραγματική επιστήμη
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Η φύση σε κοντινή απόσταση
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: από μια παγκόσμια κοινότητα φυσιολατρών
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Η δύναμη της κοινοτικής επιστήμης
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Το είδαν %{user} Σε %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Ανακαλύπτοντας ξανά είδη που έχουν χαθεί εδώ και καιρό
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Η %{moth_common_name} Ο σκόρος δεν είχε εντοπιστεί εδώ και δεκαετίες και κάποτε θεωρούνταν εξαφανισμένος - μέχρι που ένας τουρίστας στη Νέα Ζηλανδία τον εντόπισε τυχαία.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Ανακαλύπτοντας νέα είδη στην επιστήμη
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — συντομογραφία <span class="italic">Ι. νατ</span> — είναι ένα νέο στην επιστήμη είδος mantis που βρέθηκε από μια γυναίκα στην Αυστραλία που περπατούσε στη γειτονιά της.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Προστασία των τοπικών οικοσυστημάτων
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Μια ομάδα ντόπιων εθελοντών στην Καλιφόρνια συγκεντρώθηκε μέσω του iNaturalist για να προστατεύσει τα μεταναστευτικά αμφίβια που διασχίζουν έναν πολυσύχναστο δρόμο.
+          #Link below the stories to read more community science stories
+          read_more: Διαβάστε περισσότερες ιστορίες
+        observation:
+          #Heading for the sample observation section
+          heading: Κάθε παρατήρηση λέει μια ιστορία
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Παρατηρήσεις που συμβάλλουν στην επιστήμη της βιοποικιλότητας
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Είδη που έχουν καταγραφεί σε όλο τον κόσμο
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: έγγραφα που αναφέρουν δεδομένα iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: είδη που ανακαλύφθηκαν ή ανακαλύφθηκαν εκ νέου από επιστήμονες της κοινότητας
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Ανοίξτε την εφαρμογή και φωτογραφίστε οποιοδήποτε άγριο φυτό, ζώο, μύκητες ή άλλο οργανισμό — από τη γειτονιά σας ή οπουδήποτε στον κόσμο.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Η εφαρμογή προτείνει μια αναγνώριση αμέσως και μια παγκόσμια κοινότητα φυσιοδίφες την επιβεβαιώνει ή τη βελτιώνει.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Η παρατήρησή σας γίνεται ανοιχτά δεδομένα — χρησιμοποιούνται από επιστήμονες, οικολόγους και ερευνητές σε όλο τον κόσμο.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Η φύση αλλάζει πιο γρήγορα από ποτέ, γι' αυτό χρειαζόμαστε <span class="underline">εσείς</span> για να βοηθήσει στην καταγραφή αυτού που ζει πού.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Με βοήθησε πραγματικά στην αναγνώριση των ειδών, εκτός από το ότι μου έδωσε την ευκαιρία να αλληλεπιδράσω με διαφορετικούς ανθρώπους σε όλο τον κόσμο.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Θαλάσσιος Οικολόγος & Υποβρύχιος Φωτογράφος, Κένυα
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            Το iNaturalist ανοίγει την πόρτα σε τόσες πολλές νέες και συναρπαστικές έρευνες σχετικά με τα υπομελετημένα taxa. Κατά τη γνώμη μου, αυτή η πλατφόρμα είναι η αιχμή της οικολογικής επιστήμης.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Συγγραφέας οδηγού πεδίου στην Owlfly LLC, ΗΠΑ
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            Το iNaturalist και η αφοσιωμένη κοινότητα αναγνωριστικών του έγιναν ένας ανεκτίμητος πόρος στις εξερευνήσεις μου. Βοήθησε να τεθούν τα θεμέλια της τρέχουσας δουλειάς μου.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Ερευνήτρια Βιοποικιλότητας, Σρι Λάνκα
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            Το iNaturalist είναι ένα ισχυρό εργαλείο που συνδέει ανθρώπους, φύση και γνώση. Μπορώ να φωτογραφίσω ένα σπάνιο είδος, ή ακόμα και ένα που δεν έχει ακόμη περιγραφεί, και ταυτόχρονα, συμβάλλω στη διατήρηση της φυσικής μας κληρονομιάς.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Τεχνικός περιβάλλοντος και ερασιτέχνης φωτογράφος, Βραζιλία
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Όπου κι αν βρίσκεστε στον κόσμο, είτε έχετε διδακτορικό είτε απλά αγαπάτε την ύπαιθρο, το iNaturalist θα σας φέρει πιο κοντά στη φύση και σε πολλούς συναδέλφους φυσιοδίφες.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Βιολόγος, Μεξικό
+        everyone:
+          #Heading for the broad audience section
+          heading: Όλοι είναι φυσιοδίφες
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Αν έχετε κοιτάξει ποτέ προσεκτικά κάτι ζωντανό και αναρωτηθήκατε τι ήταν, το iNaturalist είναι για εσάς.
+          #Heading for the impact sub-section
+          impact_heading: Μπορείτε να έχετε αντίκτυπο
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Κάθε φωτογραφία που μοιράζεστε γίνεται μέρος ενός παγκόσμιου επιστημονικού αρχείου από το οποίο εξαρτώνται οι ερευνητές σε όλο τον κόσμο.
+          #Heading for the community reputation sub-section
+          community_heading: '"Το ωραιότερο μέρος στο διαδίκτυο"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Ελάτε για τις ταυτοποιήσεις, μείνετε για την κοινότητα και τον αντίκτυπο στην επιστήμη.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Κατεβάστε την εφαρμογή iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Λάβετε ταυτοποιήσεις σε πραγματικό χρόνο και συνεισφέρετε στην επιστήμη
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Λήψεις"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Εξερευνήστε είδη σε όλο τον κόσμο
+          #Button / link to browse species without downloading
+          button: Εξερευνήστε τώρα
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Κάτω των 13; Κατεβάστε το Seek!"
+          #Description of Seek's badge and challenge features
+          body: Κερδίστε κονκάρδες και λάβετε μέρος σε προκλήσεις για την παρατήρηση ειδών!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Κριτικές 5 αστέρων"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Λάβετε το μηνιαίο ενημερωτικό μας δελτίο!
+          #Description of the newsletter's content
+          body: Μείνετε συνδεδεμένοι με ιστορίες και ανακαλύψεις από την κοινότητα του iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: Το iNaturalist είναι ένας μη κερδοσκοπικός οργανισμός που υποστηρίζει την επιστήμη και τη διατήρηση.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Η υποστήριξή σας το καθιστά δυνατό.
+          #Call-to-action button for the donation section
+          cta: Δωρίστε τώρα
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Συχνές ερωτήσεις
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Μπορώ να ανεβάσω φωτογραφίες που έχω ήδη;
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ναί! Εφόσον γνωρίζετε περίπου πότε και πού τραβήχτηκε μια φωτογραφία, οι παλαιότερες φωτογραφίες είναι ευπρόσδεκτες.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Ποιος μπορεί να κάνει επιστήμη με τις παρατηρήσεις του iNaturalist;
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Οποιοσδήποτε! Όλες οι παρατηρήσεις του iNaturalist είναι ανοιχτές και ελεύθερα διαθέσιμες — σε ερευνητές, επαγγελματίες διατήρησης και περίεργα άτομα.
+          #FAQ: research grade definition — question
+          research_grade_question: Τι σημαίνει «βαθμός έρευνας»;
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Όταν η κοινότητα συμφωνεί σε μια ταυτοποίηση, μια παρατήρηση γίνεται «ερευνητικός βαθμός» και μπαίνει στο παγκόσμιο επιστημονικό αρχείο. Κάθε ταυτότητα μπορεί να βοηθήσει να φτάσει εκεί.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Πρέπει να ξέρω τι κοιτάζω;
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Καθόλου! Μοιραστείτε μια φωτογραφία και μια παγκόσμια κοινότητα φυσιοδίφες μπορεί να σας βοηθήσει να την αναγνωρίσετε.
+          #FAQ: whether the app is required — question
+          need_app_question: Πρέπει να χρησιμοποιήσω την εφαρμογή;
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Σε έναν επιτραπέζιο υπολογιστή, iNaturalist.org λειτουργεί εξαιρετικά. Σε μια κινητή συσκευή, η εφαρμογή σάς προσφέρει την καλύτερη εμπειρία — ειδικά για την αναγνώριση ειδών εν κινήσει.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Αποθήκευση και επεξεργασία για προσθήκη συνημμένων

@@ -27,7 +27,6 @@
               Replica
           %li{ class: ("active" if %w(users user_detail).include?( action_name ) ) }
             = link_to t(:users), users_admin_path
-          %li= link_to t(:blocked_ips), admin_blocked_ips_path
           %li{ class: ("active" if action_name == "deleted_users") }
             = link_to t(:deleted_users), deleted_users_admin_path
           %li= link_to t(:curate_observations), curate_observations_path
@@ -36,6 +35,7 @@
           %li= link_to t(:app_build_info), admin_app_build_info_path
           %li= link_to t(:stats), stats_path
           %li= link_to "Redirect Links", redirect_links_path
+          %li= link_to "Blocked IPs", admin_blocked_ips_path
           %li= link_to t( :username_reserved_words ), admin_username_reserved_words_path
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
         = yield

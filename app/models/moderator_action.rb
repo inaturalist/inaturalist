@@ -19,6 +19,7 @@ class ModeratorAction < ApplicationRecord
   PRIVATE_MEDIA_RETENTION_TIME = 2.months
 
   belongs_to :user, inverse_of: :moderator_actions
+  belongs_to :last_edited_by_user, class_name: "User"
   belongs_to :resource, polymorphic: true, inverse_of: :moderator_actions
   belongs_to :resource_parent, polymorphic: true
   belongs_to :resource_user,

@@ -245,7 +245,7 @@ class TaxonPageTabs extends React.Component {
                     { speciesOrLower ? I18n.t( "similar_species" ) : I18n.t( "similar_taxa" ) }
                   </a>
                 </li>
-                { isAdmin && currentUser.isInTestGroup( "helpful-id-tips" ) && (
+                { currentUser?.canViewHelpfulIDTips( ) && (
                   <li
                     role="presentation"
                     className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "identifications" ? "active" : ""}`}
@@ -329,7 +329,7 @@ class TaxonPageTabs extends React.Component {
           </div>
           <div
             role="tabpanel"
-            className={`tab-pane ${genusOrSpecies ? "" : "hidden"} ${chosenTab === "identifications" ? "active" : ""}`}
+            className={`tab-pane ${speciesOrLower ? "" : "hidden"} ${chosenTab === "identifications" ? "active" : ""}`}
             id="identifications-tab"
           >
             <IdentificationsTabContainer />

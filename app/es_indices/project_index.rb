@@ -47,6 +47,7 @@ class Project < ApplicationRecord
       indexes :header_image_file_name, type: "keyword", index: false
       indexes :header_image_url, type: "keyword", index: false
       indexes :hide_title, type: "boolean", index: false
+      indexes :hide_leaderboard, type: "boolean", index: false
       indexes :icon, type: "keyword", index: false
       indexes :icon_file_name, type: "keyword", index: false
       indexes :id, type: "integer" do
@@ -134,6 +135,7 @@ class Project < ApplicationRecord
       end
       indexes :slug, analyzer: "keyword_analyzer"
       indexes :slug_keyword, type: "keyword"
+      indexes :umbrella_project_list_sort, type: "keyword"
       indexes :spam, type: "boolean"
       indexes :subproject_ids, type: "integer"
       indexes :terms, type: "text", index: false
@@ -197,6 +199,7 @@ class Project < ApplicationRecord
       title_autocomplete: title,
       title_exact: title,
       hide_title: !!prefers_hide_title,
+      hide_leaderboard: !!prefers_hide_leaderboard,
       description: description,
       slug: slug,
       slug_keyword: slug,
@@ -274,6 +277,7 @@ class Project < ApplicationRecord
     }
     if project_type == "umbrella"
       json[:hide_umbrella_map_flags] = !!prefers_hide_umbrella_map_flags
+      json[:umbrella_project_list_sort] = prefers_umbrella_project_list_sort
     end
     json
   end

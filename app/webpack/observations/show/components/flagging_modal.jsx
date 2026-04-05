@@ -166,7 +166,9 @@ class FlaggingModal extends Component {
           <div
             className="help-block"
             dangerouslySetInnerHTML={{
-              __html: I18n.t( "misleading_or_illegal_content_html" )
+              __html: I18n.t( "misleading_or_illegal_content_html2", {
+                defaultValuePreFallback: I18n.t( "misleading_or_illegal_content_html" )
+              } )
             }}
           />
         </div>

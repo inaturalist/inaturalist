@@ -254,6 +254,8 @@ ta:
       இந்த அந்தஸ்தால் உணர்த்தப்படுகிறது. இது புவிசார் தனியுரிமையை மீறும் "குறைந்தது
       கவலை" அல்லது கீழே, எனவே இதைப் பற்றிய அவதானிப்புகளை நீங்கள் மறைக்க விரும்பினால்
       டேக்ஸன், இதை "அருகிலுள்ள அச்சுறுத்தல்" அல்லது அதற்கு மேல் அமைக்கவும்.
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: பங்களிக்கவும்
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_flowers_and_fruits: ஏதாவது
@@ -284,6 +286,8 @@ ta:
     attribution_noncommercial_sharealike_license: குறிப்பிடுதல் - வர்த்தக நோக்கமற்ற - அதே மாதிரிப் பகிர்தல் உரிமம்
     attribution_noncommercial_license: குறிப்பிடுதல் - வர்த்தக நோக்கமற்ற உரிமம்
     attribution_license: குறிப்பிடுதல் மட்டும் உரிமம்
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: கியூரேட்டர் கையேடு
   curator_coordinate_access: கியூரேட்டர் ஒருங்கிணைப்பு அணுகல்
   curator_coordinate_access_desc: |
     பாரம்பரிய திட்டங்களுக்கான கியூரேட்டர் ஒருங்கிணைப்பு அணுகல் யார் சேர்க்கப்பட்டது என்பதைப் பொறுத்தது
@@ -314,12 +318,18 @@ ta:
   devise_confirmation_instructions_please_click2: |
     உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்த கீழேயுள்ள இணைப்பைக் கிளிக் செய்யவும். உங்கள் மின்னஞ்சலை உறுதிப்படுத்தவில்லை என்றால்
     முகவரி, பிற பயனர்களின் உள்ளடக்கத்துடன் நீங்கள் தொடர்பு கொள்ள முடியாது.
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: கண்டறியவும்
   disagree_: எதிர்மனப்படு
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: கருத்து வேறுபாடுகள்
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: உடன்படாத அடையாளங்களைக் கொண்ட அவதானிப்புகளைக் காட்டு
+  documentation_for_developers_html: இதற்கான ஆவணங்கள் <a href="/pages/developers">டெவலப்பர்கள்</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: நன்கொடை
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: நன்கொடை
   edit_project: திட்டம் திருத்தவும்
@@ -340,10 +350,12 @@ ta:
   exclude_taxa: இனங்கள் விலக்கு
   explore: ஆராயுங்கள்
   evidence_accurately_depicts_organism_or_scene: சான்றுகள் உயிரினம் அல்லது காட்சியை துல்லியமாக சித்தரிக்கின்றன
+  facebook: பேஸ்புக்
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: பிடித்தவை
   favorite_taxa: பிடித்தது இனங்கள்
   favorites: "பிடித்தவை"
+  feedback: பின்னூட்டம்
   #Button to show fewer places
   fewer__context_places: குறைவான
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
@@ -354,6 +366,8 @@ ta:
   forum_categories:
     bug_reports: இடும்பை அறிக்கைகள்
   Genus: பேரினம்
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: தொடங்குதல்
   got_it!: சரி!
   grid: கட்டம்
   guides: வழிகாட்டுகிறது
@@ -362,18 +376,26 @@ ta:
   header_your_favorites: உங்கள் பிடித்தவை
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "ஹெட்ஸ் அப்: இந்த ஒலி கொடியிடப்பட்டுள்ளது."
+  help: உதவி
   help_translate!: மொழிபெயர் உதவி செய்க!
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: அடையாளம் காணவும்
+  #e.g. "Identify using iNaturalist"
+  identify_cta: அடையாளம் காணவும்
   include_places: இடங்களைச் சேர்க்கவும்
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: இன்ஃப்ராஸ்பீசிஸ் ஐடிகள்
+  instagram: இன்ஸ்டாகிராம்
+  jobs: வேலைகள்
   'joined!': சேர்ந்தார்!
   joined_projects: சேர்ந்தது கணிப்புகள்
   joined_with_date: "சேர்ந்தார்: %{date}"
   journal: இதழ்
   journal_posts: இதழ் இடுகைகள்
   labels: சிட்டைகள்
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: அறிக
   learn_more: மேலும் அறிக
   leave_a_comment: கருத்து தெரிவிக்கவும்
@@ -415,6 +437,8 @@ ta:
   #If a single word won't work, a symbol like "+" would be fine.
   media_and: மற்றும்
   meet: சந்திக்கவும்
+  member_of_the_inaturalist_network_html: |
+    உறுப்பினர் <a href="%{url}">iNaturalist நெட்வொர்க்</a>
   more: மேலும்
   #Button to show more places
   more__context_places: இன்னும்
@@ -435,6 +459,8 @@ ta:
   non_curator: அல்லாத கியூரேட்டர்
   #A user who does not admin any projects
   non_project_admin: திட்டம் அல்லாத நிர்வாகம்
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: உற்று நோக்குங்கள்
   #Attributes an observation to a user and specifies that copyright is retained
   #(though a license may be applied). %{user} can be a username or a full name.
   #@vow_or_con will work here and use the first letter of the name used. &copy;
@@ -456,6 +482,7 @@ ta:
   onboarding:
     observe_panel_body_p2: வெளியே சென்று ஒரு தனிப்பட்ட உயிரினத்தைக் கவனியுங்கள். காட்டுத்தனமான ஒன்றைத் தேர்ந்தெடுத்து தெளிவான, முழு பிரேம் புகைப்படத்தை எடுக்கவும். உங்களிடம் ஏற்கனவே காட்டுத்தனமான ஒன்றின் புகைப்படம் இருந்தால்.<a href="%{new_observation_path}">அதை இப்போது சேர்க்கவும்</a>. கவனிப்புகளை பதிவு செய்ய %{site_name} செயலிகளைப் பயன்படுத்தலாம்.
   or: அல்லது
+  our_blog: எங்கள் வலைப்பதிவு
   people: மக்கள்
   pi_consent_label: |
     நான் என் கணக்கை நிர்வகிக்க iNaturalist எனது சில வகையான தனிப்பட்ட தகவல்களைச் சேமித்து செயல்படுத்த அனுமதிக்கிறேன்
@@ -512,6 +539,8 @@ ta:
     இடங்கள் 10,000 க்கும் மேற்பட்ட அவதானிப்புகளைக் கொண்டிருக்கக்கூடாது.
   #Title to a section warning a user to exercise caution
   please_be_careful!: தயவுசெய்து கவனமாக இருங்கள்!
+  powered_by_inaturalist_open_source_software_html: 'மூலம் இயக்கப்படுகிறது <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist திறந்த மூல மென்பொருள்</a>'
+  press: பிரஸ்
   privacy: தனியுரிமை
   profile: தனியமைப்பு
   #A user who admin's a project
@@ -561,6 +590,8 @@ ta:
   settings: அமைப்புகள்
   sign_out: வெளியேறு
   sign_up: பதிவு செய்யுங்கள்
+  sign_up_sentence_case: பதிவு செய்க
+  site_stats: தள புள்ளிவிவரங்கள்
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: ஒலி %{id}, %{attribution}
@@ -579,15 +610,21 @@ ta:
   #comments on a journal post
   subscribe: சந்தா செலுத்து
   suitable_for_the_global_biodiversity_information_facility: Global Biodiversity Information Facilityக்கு ஏற்றது
+  taxa_info: டாக்சா தகவல்
   taxonomy_settings: உயிரியல் வகைப்பாடு அமைப்புகள்
   teachers_guide: ஆசிரியர் வழிகாட்டி
   tell_the_world_a_little_about_yourself: உங்களைப் பற்றி எங்களிடம் கூறுங்கள்
+  terms_service: பயன்பாட்டு விதிமுறைகள்
   terrain: நிலப்பரப்பு
   thanks!: நன்றி!
   thanks_from_all_of_us_here_at: இல் இருந்து உங்கள் அனைவருக்கும் நன்றி
   the_world: நம்ம உலகம்
   the_world_is_full_of_interesting_places: |
     உலகம் அதிகமான சுவாரஸ்யமான இடங்களில் நிறைந்துள்ளது, ஒவ்வொன்றும் விசித்திரமான மற்றும் அற்புதமான உயிரினங்கள் நிறைந்துள்ளன. சில உலகத்தின் மறுபக்கம் உள்ளன, மற்றவை அடியோரத்தில் இருக்கின்றன! %{site_name} இடங்கள் உங்களுக்கு உலகம் முழுவதும் உள்ள உயிரினங்களைப் பார்வையிட அனுமதிக்கிறது. ஆராயத் தொடங்குங்கள்!
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: டிராக்
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: திட்டங்களைப் புரிந்துகொள்வது
   update_existing_observations_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள கவனிப்புகளைப் புதுப்பிக்கவும்
   update_existing_photos_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள புகைப்படங்களைப் புதுப்பிக்கவும்
   update_existing_sounds_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள ஒலிகளைப் புதுப்பிக்கவும்
@@ -606,6 +643,7 @@ ta:
     பார்வையாளரால் திட்டத்திற்கு.
   user_trusts_this_project_when_added_by_none: |
     மறைக்கப்பட்ட ஆயத்தொலைவுகளுடன் திட்ட கியூரேட்டர்களை பயனர் நம்பவில்லை.
+  video_tutorials: வீடியோ பயிற்சிகள்
   view_license: உரிமம் காண்க
   view_post: இடுகை பார்க்க
   we_also_support3: |
@@ -618,6 +656,16 @@ ta:
   were_pretty_sure_this_is_in_the_order: இதுவே வரிசையில் இருக்க வாய்ப்பு
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
   were_pretty_sure_this_is_in_the_subfamily: இதுவே துணைக்குடும்பத்தில் இருக்க வாய்ப்பு
+  #e.g. "What was observed?"
+  what: என்ன
+  #e.g. "When was it observed?"
+  when: எப்போது
+  #e.g. "Where was it observed?"
+  where: எங்கே
+  #e.g. "Who observed it?"
+  who: யார்
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: ஏன்?
   year_in_review: "மதிப்பாய்வில் ஆண்டு %{year}"
   year_in_review2: "மதிப்பாய்வில் ஆண்டு %{year}"
   year_in_review_caps: "மதிப்பாய்வில் ஆண்டு %{year}"
@@ -839,6 +887,191 @@ ta:
         who_uses_site_name: "%{site_name} ஐ யார் பயன்படுத்துகிறார்கள்?"
         what_are_you_waiting_for: நீங்கள் எதற்காகக் காத்திருக்கிறீர்கள்?
         join_today: இன்று சேரவும்
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: உங்கள் ஆர்வம் அறிவியலுக்கு பங்களிக்கிறது.
+          #Hero subheadline describing the core value proposition
+          #TODO: test that line break here doesn't cause line break
+          subheadline: >
+            பூமியில் உள்ள உயிரினங்களின் உயிருள்ள வரைபடத்தில் சேர்க்கும் போது தாவரங்கள், விலங்குகள், பூஞ்சைகள் மற்றும் பலவற்றை அடையாளம் காணவும்.
+          #Primary call-to-action button in the hero section
+          cta_join: சமூகத்தில் சேருங்கள்
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: இலவசம், இலாப நோக்கற்ற, சமூகம் சார்ந்தது.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalist மூலம், நீங்கள் முடியும்:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: தாவரங்கள், விலங்குகள், பூஞ்சைகள் மற்றும் பல
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: உலகளவில் நீங்கள் பார்த்த இனங்கள்
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: உண்மையான அறிவியலுக்கு
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: அருகிலுள்ள இயற்கை
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: இயற்கை ஆர்வலர்களின் உலகளாவிய சமூகத்திலிருந்து
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: சமூக அறிவியலின் சக்தி
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: பார்த்தவர் %{user} இல் %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: நீண்ட காலமாக இழந்த உயிரினங்களை மீண்டும் கண்டறிதல்
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            தி %{moth_common_name} அந்துப்பூச்சி பல தசாப்தங்களாக காணப்படவில்லை மற்றும் ஒரு முறை அழிந்துவிட்டதாக கருதப்பட்டது - நியூசிலாந்தில் ஒரு சுற்றுலாப் பயணி தற்செயலாக அதைக் கண்டுபிடிக்கும் வரை.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: புதிய அறிவியல் இனங்களைக் கண்டறிதல்
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">இனிமியா நாட்</span> - சுருக்கமாக <span class="italic">ஐ. நாட்</span> - ஆஸ்திரேலியாவில் ஒரு பெண் தனது சுற்றுப்புறத்தில் நடந்து செல்வதால் கண்டுபிடிக்கப்பட்ட ஒரு புதிய அறிவியல் மாண்டிஸ் இனமாகும்.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: உள்ளூர் சுற்றுச்சூழல் அமைப்புகளைப் பாதுகாத்தல்
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            கலிபோர்னியாவில் உள்ள உள்ளூர் தன்னார்வலர்களின் குழு ஒரு பரபரப்பான சாலையைக் கடக்கும் புலம்பெயர்ந்த நீர்வீழ்ச்சிகளைப் பாதுகாக்க iNaturalist மூலம் ஒன்றிணைந்தது.
+          #Link below the stories to read more community science stories
+          read_more: மேலும் கதைகளைப் படிக்கவும்
+        observation:
+          #Heading for the sample observation section
+          heading: ஒவ்வொரு அவதானிப்பும் ஒரு கதையைச் சொல்கிறது
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: பல்லுயிர் அறிவியலுக்கு பங்களிக்கும் அவதானிப்புகள்
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: உலகம் முழுவதும் ஆவணப்படுத்தப்பட்ட இனங்கள்
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: iNaturalist தரவை மேற்கோள் காட்டும் ஆவணங்கள்
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: சமூக விஞ்ஞானிகளால் கண்டுபிடிக்கப்பட்ட அல்லது மீண்டும் கண்டுபிடிக்கப்பட்ட இனங்கள்
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            பயன்பாட்டைத் திறந்து, எந்தவொரு காட்டு தாவரம், விலங்கு, பூஞ்சை அல்லது பிற உயிரினங்களையும் புகைப்படம் எடுக்கவும் - உங்கள் சுற்றுப்புறத்தில் அல்லது உலகில் எங்கிருந்தும்.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            பயன்பாடு உடனடியாக ஒரு அடையாளத்தை பரிந்துரைக்கிறது, மேலும் இயற்கையியல்களின் உலகளாவிய சமூகம் அதை உறுதிப்படுத்துகிறது அல்லது செம்மைப்படுத்துகிறது.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            உங்கள் அவதானிப்பு திறந்த தரவாக மாறும் - உலகெங்கிலும் உள்ள விஞ்ஞானிகள், பாதுகாவலர்கள் மற்றும் ஆராய்ச்சியாளர்களால் பயன்படுத்தப்படுகிறது.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            இயற்கை முன்னெப்போதையும் விட வேகமாக மாறி வருகிறது, எனவே நமக்கு தேவை <span class="underline">நீங்கள்</span> எங்கே வாழ்கிறார் என்பதை பதிவு செய்ய உதவ.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            இது உண்மையில் இனங்களை அடையாளம் காண எனக்கு உதவியது, கூடுதலாக உலகெங்கிலும் உள்ள பல்வேறு நபர்களுடன் தொடர்பு கொள்ள எனக்கு வாய்ப்பளித்தது.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: கடல் பாதுகாவலர் மற்றும் நீருக்கடியில் புகைப்படக் கலைஞர், கென்யா
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist ஆய்வு செய்யப்படாத டாக்சா பற்றிய புதிய மற்றும் அற்புதமான ஆராய்ச்சிக்கான கதவைத் திறக்கிறது. என் கருத்துப்படி, இந்த தளம் சுற்றுச்சூழல் அறிவியலின் வெட்டு விளிம்பாகும்.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Owlfly LLC, USA இல் கள வழிகாட்டி ஆசிரியர்
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist மற்றும் அதன் அர்ப்பணிப்பு அடையாளங்காட்டிகளின் சமூகம் எனது ஆய்வுகளில் விலைமதிப்பற்ற வளமாக மாறியது. இது எனது தற்போதைய வேலைக்கு அடித்தளம் அமைக்க உதவியது.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: பல்லுயிர் பல்லுயிர் ஆராய்ச்சியாளர், இலங்கை
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist என்பது மக்கள், இயற்கை மற்றும் அறிவை இணைக்கும் ஒரு சக்திவாய்ந்த கருவியாகும். நான் ஒரு அரிய இனத்தை புகைப்படம் எடுக்க முடியும், அல்லது இன்னும் விவரிக்கப்படாத ஒன்று, அதே நேரத்தில், எங்கள் இயற்கை பாரம்பரியத்தைப் பாதுகாக்க நான் பங்களிக்கிறேன்.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: சுற்றுச்சூழல் தொழில்நுட்ப வல்லுநர் மற்றும் பொழுதுபோக்கு புகைப்படக் கலைஞர், பிரேசில்
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            நீங்கள் உலகில் எங்கிருந்தாலும், நீங்கள் PhD பெற்றிருந்தாலும் அல்லது வெளிப்புறங்களை நேசித்தாலும், iNaturalist உங்களை இயற்கையுடனும் பல சக இயற்கைவாதிகளுடனும் நெருக்கமாகக் கொண்டு வரும்.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: உயிரியலாளர், மெக்சிகோ
+        everyone:
+          #Heading for the broad audience section
+          heading: எல்லோரும் இயற்கைவாதிகள்
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            நீங்கள் எப்போதாவது வாழும் ஒன்றை நெருக்கமாகப் பார்த்திருந்தால், அது என்னவென்று யோசித்திருந்தால், iNaturalist உங்களுக்கானது.
+          #Heading for the impact sub-section
+          impact_heading: நீங்கள் ஒரு தாக்கத்தை ஏற்படுத்த முடியும்
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            நீங்கள் பகிரும் ஒவ்வொரு புகைப்படமும் உலகெங்கிலும் உள்ள ஆராய்ச்சியாளர்கள் நம்பியிருக்கும் உலகளாவிய அறிவியல் பதிவின் ஒரு பகுதியாக மாறும்.
+          #Heading for the community reputation sub-section
+          community_heading: '"ஆன்லைனில் சிறந்த இடம்"'
+          #Description of the welcoming community aspect
+          community_body: >
+            அடையாளங்களுக்காக வாருங்கள், சமூகத்திற்காக இருங்கள் மற்றும் அறிவியலில் தாக்கம்.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: iNaturalist பயன்பாட்டைப் பதிவிறக்கவும்
+          #Subheading describing the two core benefits of the app
+          subheading: நிகழ்நேர அடையாளங்களைப் பெற்று அறிவியலுக்கு பங்களிக்கவும்
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ பதிவிறக்கங்கள்"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: உலகெங்கிலும் உள்ள உயிரினங்களை ஆராயுங்கள்
+          #Button / link to browse species without downloading
+          button: இப்போது ஆராயுங்கள்
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 வயதுக்குட்பட்டவரா? பதிவிறக்க தேடு!"
+          #Description of Seek's badge and challenge features
+          body: பேட்ஜ்களைப் பெறுங்கள் மற்றும் இனங்களைக் கவனிக்க சவால்களில் பங்கேற்கவும்!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 நட்சத்திர விமர்சனங்கள்"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: எங்கள் மாதாந்திர செய்திமடலைப் பெறுங்கள்!
+          #Description of the newsletter's content
+          body: iNaturalist சமூகத்தின் கதைகள் மற்றும் கண்டுபிடிப்புகளுடன் இணைந்திருங்கள்.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist என்பது அறிவியல் மற்றும் பாதுகாப்பை ஆதரிக்கும் ஒரு இலாப நோக்கற்ற அமைப்பாகும்.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: உங்கள் ஆதரவு அதை சாத்தியமாக்குகிறது.
+          #Call-to-action button for the donation section
+          cta: இப்போதே நன்கொடை
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: அடிக்கடி கேட்கப்படும் கேள்விகள்
+          #FAQ: uploading existing photos — question
+          upload_existing_question: என்னிடம் ஏற்கனவே உள்ள புகைப்படங்களை பதிவேற்ற முடியுமா?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            ஆம்! ஒரு புகைப்படம் எப்போது, எங்கு எடுக்கப்பட்டது என்பதை நீங்கள் தோராயமாக அறிந்திருக்கும் வரை, பழைய புகைப்படங்கள் வரவேற்கப்படுகின்றன.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: iNaturalist அவதானிப்புகளுடன் அறிவியலை யார் செய்ய முடியும்?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            யாரும்! அனைத்து iNaturalist அவதானிப்புகளும் திறந்த மற்றும் இலவசமாகக் கிடைக்கின்றன - ஆராய்ச்சியாளர்கள், பாதுகாப்பு பயிற்சியாளர்கள் மற்றும் ஆர்வமுள்ள நபர்களுக்கு.
+          #FAQ: research grade definition — question
+          research_grade_question: '"ஆராய்ச்சி தரம்" என்றால் என்ன?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            சமூகம் ஒரு அடையாளத்தை ஒப்புக்கொள்ளும்போது, ஒரு அவதானிப்பு "ஆராய்ச்சி தரம்" ஆகி உலகளாவிய அறிவியல் பதிவில் நுழைகிறது. ஒவ்வொரு அடையாளமும் அதை அங்கு பெற உதவும்.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: நான் எதைப் பார்க்கிறேன் என்பதை நான் தெரிந்து கொள்ள வேண்டுமா?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            இல்லவே இல்லை! ஒரு புகைப்படத்தைப் பகிரவும், இயற்கையியல்களின் உலகளாவிய சமூகம் அதை அடையாளம் காண உங்களுக்கு உதவும்.
+          #FAQ: whether the app is required — question
+          need_app_question: நான் பயன்பாட்டைப் பயன்படுத்த வேண்டுமா?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            டெஸ்க்டாப்பில், iNaturalist.org நன்றாக வேலை செய்கிறது. மொபைல் சாதனத்தில், பயன்பாடு உங்களுக்கு சிறந்த அனுபவத்தை வழங்குகிறது - குறிப்பாக பயணத்தின்போது உயிரினங்களை அடையாளம் காண.
   date:
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

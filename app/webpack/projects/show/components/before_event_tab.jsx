@@ -11,7 +11,7 @@ import OverviewMap from "./overview_map";
 const BeforeEventTab = props => {
   const { project, config, updateCurrentUser, fetchPosts } = props;
   return (
-    <div className="OverviewTab">
+    <div>
       <Grid className="info-grid">
         <Row>
           <Col xs={4}>

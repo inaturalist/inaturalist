@@ -43,8 +43,7 @@ const CurrentUser = class CurrentUser {
       || identification.hidden
       || !this.loggedIn
       || _.isEmpty( _.trim( identification.body ) )
-      || !this.isAdmin
-      || !this.isInTestGroup( "helpful-id-tips" )
+      || !this.canViewHelpfulIDTips( )
     ) {
       return false;
     }
@@ -55,12 +54,19 @@ const CurrentUser = class CurrentUser {
     if (
       !this.loggedIn
       || !identification.exemplar_identification?.nominated_by_user
-      || !this.isAdmin
-      || !this.isInTestGroup( "helpful-id-tips" )
+      || !this.canViewHelpfulIDTips( )
     ) {
       return false;
     }
     return true;
+  }
+
+  canViewHelpfulIDTips( ) {
+    return ( this.isAdmin && this.isInTestGroup( "helpful-id-tips" ) )
+      || (
+        this.isInTestGroup( "helpful-id-tips-reviewer" )
+        && this.isInTestGroup( "helpful-id-tips" )
+      );
   }
 
   isInTestGroup( testGroup ) {

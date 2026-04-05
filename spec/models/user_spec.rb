@@ -700,6 +700,43 @@ describe User do
     expect( user ).to be_suspended
   end
 
+  describe "suspended?" do
+    it "returns true when suspended_at is set and suspended_until is nil (indefinite)" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: nil )
+      expect( user ).to be_suspended
+    end
+
+    it "returns true when suspended_at is set and suspended_until is in the future" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: 1.day.from_now )
+      expect( user ).to be_suspended
+    end
+
+    it "returns false when suspended_at is set but suspended_until is in the past" do
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      expect( user ).not_to be_suspended
+    end
+
+    it "returns false when suspended_at is nil" do
+      user = User.make!
+      expect( user ).not_to be_suspended
+    end
+  end
+
+  describe "unsuspend!" do
+    it "clears suspended_until in addition to suspended_at" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: 7.days.from_now )
+      user.reload
+      expect( user ).to be_suspended
+      user.unsuspend!
+      expect( user ).not_to be_suspended
+      expect( user.suspended_until ).to be_nil
+    end
+  end
+
   describe "moderated_with" do
     it "renames the user when given a RENAME action" do
       user = User.make!( login: "old_login" )
@@ -2058,6 +2095,104 @@ describe User do
       expect( user.prefers_hide_identify_webinar_banner ).to be true
       user.set_webinar_banner_default_preference
       expect( user.prefers_hide_identify_webinar_banner ).to be true
+    end
+  end
+
+  describe "test_groups" do
+    describe "validate_new_admin_only_test_groups" do
+      it "does not let non-admins join admin-only test groups" do
+        u = User.make!
+        u.update( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+        expect( u.errors["test_groups"] ).not_to be_blank
+
+        u.update( test_groups: ["group1", User::ADMIN_ONLY_TEST_GROUPS[0]].join( "|" ) )
+        expect( u.errors["test_groups"] ).not_to be_blank
+
+        u.update( test_groups: [User::ADMIN_ONLY_TEST_GROUPS[0], "group2"].join( "|" ) )
+        expect( u.errors["test_groups"] ).not_to be_blank
+
+        u.update( test_groups: ["group1", "group2"].join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+
+      it "allows non-admins to add new non-admin-only test groups" do
+        u = User.make!
+        # start the user in an admin-only test group which would not be allowed
+        # without directly updating the attribute with update_columns
+        u.update_columns( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+
+        # adding non-admin-only test groups is allowed
+        u.update( test_groups: ( u.test_groups_array + ["group1"] ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        # attemping to add another admin-only test group is not allowed
+        u.update( test_groups: (
+          u.test_groups_array + [User::ADMIN_ONLY_TEST_GROUPS[1]]
+        ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).not_to be_blank
+      end
+
+      it "allows non-admins leave test groups" do
+        u = User.make!
+        # start the user in an admin-only test group which would not be allowed
+        # without directly updating the attribute with update_columns
+        u.update_columns( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+
+        # adding non-admin-only test groups is allowed
+        u.update( test_groups: ( u.test_groups_array + ["group1"] ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        # leaving non-admin-only test groups is allowed
+        u.update( test_groups: ( u.test_groups_array - ["group1"] ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        # leaving the admin-only test group is allowed
+        u.update( test_groups: nil )
+      end
+
+      it "allows admins to join admin-only test groups" do
+        u = make_admin
+        u.update( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: ["group1", User::ADMIN_ONLY_TEST_GROUPS[0]].join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: [User::ADMIN_ONLY_TEST_GROUPS[0], "group2"].join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+    end
+
+    describe "validate_joining_helpful_id_tips_test_group" do
+      it "allows admins to join and leave the helpful IDs test group" do
+        u = make_admin
+        u.update( test_groups: User::HELPFUL_ID_TIPS_TEST_GROUP )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: nil )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+
+      it "does not allow non-admins to join the helpful IDs test group" do
+        u = User.make!
+        u.update( test_groups: User::HELPFUL_ID_TIPS_TEST_GROUP )
+        expect( u.errors["test_groups"] ).not_to be_blank
+      end
+
+      it "allows reviewers to join and leave the helpful IDs test group" do
+        u = User.make!
+        # start the user in an admin-only test group which would not be allowed
+        # without directly updating the attribute with update_columns
+        u.update_columns( test_groups: User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+
+        u.update( test_groups: (
+          u.test_groups_array + [User::HELPFUL_ID_TIPS_TEST_GROUP]
+        ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
     end
   end
 
