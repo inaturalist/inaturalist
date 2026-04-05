@@ -428,8 +428,17 @@ describe TaxonName, "choose_common_name" do
 end
 
 describe TaxonName, "provisional taxa scientific name validation" do
-  let( :cortinariaceae ) { Taxon.make!( id: 48_705, name: "Cortinariaceae", rank: Taxon::FAMILY ) }
-  let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
+  before( :all ) do
+    load_test_taxa( iconic: true )
+  end
+
+  let( :fungi ) { Taxon::ICONIC_TAXA_BY_NAME["Fungi"] }
+  let( :cortinariaceae ) do
+    Taxon.make!( name: "Cortinariaceae", rank: Taxon::FAMILY, parent: fungi, iconic_taxon: fungi )
+  end
+  let( :cortinarius ) do
+    Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae, iconic_taxon: fungi )
+  end
   let( :provisional_taxon ) do
     Taxon.make!(
       name: "Cortinarius sp. 'test'",
