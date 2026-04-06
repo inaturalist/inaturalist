@@ -1,9 +1,11 @@
 - content_for(:title) { t(:a_community_for_naturalist) }
 - content_for(:extracss) { stylesheet_link_tag "welcome_v2" }
-- content_for(:extrahead) { tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp" }
+- content_for(:extrahead) do
+  = tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp"
+  %meta{name: "description", content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name)}
 - s = "views.welcome_v2.index"
 
-.wv2
+%main.wv2
   -# ── Hero ──────────────────────────────────────────────────
   .wv2-section.wv2-section--hero.text-center
     %video.wv2-hero__video{autoplay: true, loop: true, muted: true, playsinline: true, preload: "none", aria: {hidden: "true"}}
@@ -42,7 +44,7 @@
   .wv2-section.wv2-section--light.text-center
     %h2= t("#{s}.observation.heading")
     - s_obs = @sample_observation
-    .wv2-observation
+    %dl.wv2-observation
       .wv2-observation__col
         .wv2-observation__row
           %dt= t(:who)
@@ -160,12 +162,12 @@
           %p= t("#{s}.download.subheading")
           .wv2-store-badges
             = link_to "https://itunes.apple.com/app/inaturalist/id6475737561", target: "_blank", rel: "noopener" do
-              = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Download on the App Store", class: "wv2-store-badge"
+              = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Download on the App Store", class: "wv2-store-badge", width: 304, height: 90
             = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android", target: "_blank", rel: "noopener" do
-              = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Get it on Google Play", class: "wv2-store-badge"
+              = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Get it on Google Play", class: "wv2-store-badge", width: 304, height: 90
           %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
       .wv2-download__images
-        = image_tag "welcome_v2/inaturalist.webp", class: "wv2-download__phone", alt: "iNaturalist app"
+        = image_tag "welcome_v2/inaturalist.webp", class: "wv2-download__phone", alt: "iNaturalist app", width: 600, height: 604
 
   -# ── Explore species ───────────────────────────────────────
   .wv2-section.wv2-section--light.wv2-section--no-horizontal-padding.text-center
@@ -206,16 +208,16 @@
   .wv2-section.wv2-section--white.wv2-section--spacious
     .wv2-seek
       .wv2-seek__images
-        = image_tag "welcome_v2/seek.webp", class: "wv2-seek__phone", alt: "Seek app"
+        = image_tag "welcome_v2/seek.webp", class: "wv2-seek__phone", alt: "Seek app", width: 600, height: 605
       .wv2-seek__copy.text-center
         %h2= t("#{s}.seek.heading")
         .wv2-seek__body
           %p= t("#{s}.seek.body")
           .wv2-store-badges
             = link_to "https://itunes.apple.com/app/seek-by-inaturalist/id1353224144", target: "_blank", rel: "noopener" do
-              = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Download on the App Store", class: "wv2-store-badge"
+              = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Download on the App Store", class: "wv2-store-badge", width: 304, height: 90
             = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.seek", target: "_blank", rel: "noopener" do
-              = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Get it on Google Play", class: "wv2-store-badge"
+              = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Get it on Google Play", class: "wv2-store-badge", width: 304, height: 90
           %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
 
   -# ── Newsletter ────────────────────────────────────────────

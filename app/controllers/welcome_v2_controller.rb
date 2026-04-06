@@ -31,11 +31,12 @@ class WelcomeV2Controller < ApplicationController
     @responsive = true
     @skip_external_connections = true
     @skip_react = true
-    @locale_key           = I18n.locale.to_s
-    @locale_base          = @locale_key.split( "-" ).first
-    @steps_data           = STEPS_DATA
-    @testimonials         = TESTIMONIALS_DATA
-    @story_data           = build_story_data
+    @skip_font_awesome = true
+    @locale_key = I18n.locale.to_s
+    @locale_base = @locale_key.split( "-" ).first
+    @steps_data = STEPS_DATA
+    @testimonials = TESTIMONIALS_DATA
+    @story_data = build_story_data
     @sample_observation = build_sample_observation
     @explore_observations = OBSERVATIONS_DATA["explore"] || []
 
@@ -46,21 +47,16 @@ class WelcomeV2Controller < ApplicationController
 
   def build_story_data
     story_common_names = OBSERVATIONS_DATA["stories"] || {}
-    STORY_DATA.map do | heading, body, user, place, en_name, img |
-      names = en_name && story_common_names[en_name]
-      interp = if en_name
-        {
-          # TODO: Ideally we'd use common_name to make this more generic,
-          # but the translations are already using moth_common_name.
-          moth_common_name: names&.dig( @locale_key ) ||
-            names&.dig( @locale_base ) ||
-            names&.dig( "en" ) ||
-            en_name
-        }
+    STORY_DATA.map do |heading, body, user, place, en_name, img|
+      # TODO: Ideally we'd use common_name to make this more generic,
+      # but the translations are already using moth_common_name.
+      interpolationInput = if en_name
+        names = story_common_names[en_name]
+        { moth_common_name: names&.dig( @locale_key ) || names&.dig( @locale_base ) || names&.dig( "en" ) || en_name }
       else
         {}
       end
-      [heading, body, user, place, img, interp]
+      [heading, body, user, place, img, interpolationInput]
     end
   end
 
