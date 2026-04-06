@@ -9,7 +9,7 @@
             = select_tag :suspension_duration, options_for_select( [[t( :suspension_duration_1_day ), "1_day"], [t( :suspension_duration_3_days ), "3_days"], [t( :suspension_duration_1_week ), "1_week"], [t( :suspension_duration_1_month ), "1_month"], [t( :suspension_duration_2_months ), "2_months"], [t( :suspension_duration_indefinite ), "indefinite"], [t( :suspension_duration_custom ), "custom"]], "1_day" ), class: "form-control", id: "suspension_duration"
           .custom-suspended-until-field{ style: "display: none;" }
             = f.form_field :suspended_until, label: t( :suspend_until ) do
-              %input.form-control{ type: "datetime-local", id: "suspended_until_local" }
+              %input.form-control{ type: "datetime-local", id: "suspended_until_local", min: Time.now.strftime("%Y-%m-%dT%H:%M") }
               %p.help-block= t( :suspend_until_local_timezone_note )
           = f.hidden_field :suspended_until, id: "suspended_until_utc"
         = f.hidden_field :user_id
