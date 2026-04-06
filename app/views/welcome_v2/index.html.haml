@@ -1,7 +1,3 @@
--# ============================================================
--# All t() calls use full paths: views.welcome_v2.index.<section>.<key>
--# t(:key) for top-level shared labels (who, what, where, when, identify, etc.)
--# ============================================================
 - content_for(:title) { t(:a_community_for_naturalist) }
 - content_for(:extracss) { stylesheet_link_tag "welcome_v2" }
 - content_for(:extrahead) { tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp" }
@@ -11,18 +7,7 @@
   -# ── Hero ──────────────────────────────────────────────────
   .wv2-section.wv2-section--hero.text-center
     %video.wv2-hero__video{autoplay: true, loop: true, muted: true, playsinline: true, preload: "none", aria: {hidden: "true"}}
-      %source{data: {src: asset_path("welcome_v2/hero_video.webm")}, type: "video/webm"}
-    :javascript
-      // Connectivity check to prevent video from playing on slow networks
-      (function() {
-        var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-        console.log(conn);
-        if (conn && (conn.saveData || /slow-2g|2g|3g/.test(conn.effectiveType))) return;
-        var video = document.currentScript.previousElementSibling;
-        if (!video) return;
-        var source = video.querySelector("source");
-        if (source && source.dataset.src) { source.src = source.dataset.src; video.load(); }
-      })();
+      %source{src: asset_path("welcome_v2/hero_video.webm"), type: "video/webm"}
     .wv2-hero__content
       %h1= t("#{s}.hero.headline")
       %p.wv2-hero__sub= t("#{s}.hero.subheadline")
@@ -44,9 +29,7 @@
   .wv2-section.wv2-section--white.wv2-section--stories.text-center
     %h2= t("#{s}.stories.heading")
     .wv2-stories-row
-      - [["moth_heading", "moth_body", "pav_johnsson", "New Zealand", "Frosted Phoenix", "frosted_phoenix"], ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", nil, "inat"], ["amphibian_heading", "amphibian_body", "tcuriel", "United States", nil, "california_newt"]].each do |heading, body, user, place, en_name, img|
-        - names = en_name && @story_common_names&.dig( en_name )
-        - interp = en_name ? { moth_common_name: names&.dig( @locale_key ) || names&.dig( @locale_base ) || names&.dig( "en" ) || en_name } : {}
+      - @story_data.each do |heading, body, user, place, img, interp|
         .wv2-story
           .wv2-story__image{style: "background-image: url(#{asset_path("welcome_v2/#{img}.webp")})"}
             %h3= t("#{s}.stories.#{heading}")
@@ -59,7 +42,6 @@
   .wv2-section.wv2-section--light.text-center
     %h2= t("#{s}.observation.heading")
     - s_obs = @sample_observation
-    - s_common = ( s_obs["common_names"] || {} ).then { |cn| cn[@locale_key] || cn[@locale_base] || cn["en"] }
     .wv2-observation
       .wv2-observation__col
         .wv2-observation__row
@@ -74,8 +56,7 @@
             .wv2-taxon
               = image_tag s_obs["taxon_thumbnail_file"].sub( "app/assets/images/", "" ), class: "wv2-taxon__thumb", alt: ""
               .wv2-taxon__names
-                - if s_common
-                  %p= s_common
+                %p= s_obs["common_name"]
                 %em= s_obs["scientific_name"]
       .wv2-observation__col
         .wv2-observation__row
@@ -119,7 +100,7 @@
   -# ── How it works ──────────────────────────────────────────
   .wv2-section.wv2-section--light.wv2-section--how
     .wv2-steps
-      - [[:observe, "step1_body", "camera"], [:identify_cta, "step2_body", "identify"], [:contribute, "step3_body", "globe"]].each_with_index do |(label_key, body_key, icon), i|
+      - @steps_data.each_with_index do |(label_key, body_key, icon), i|
         .wv2-step
           %span.wv2-step__num= i + 1
           .wv2-step__content
@@ -135,14 +116,13 @@
       %p.wv2-why__body= t("#{s}.how.why_note_html")
 
   -# ── Testimonials ──────────────────────────────────────────
-  - testimonials = {gube: {name: "Dzivula Gube", people_path: "/people/dzivulajr_03"}, kratzer: {name: "Chris Alice \"Alie\" Kratzer", people_path: "/people/humanbyweight"}, sumanapala: {name: "Amila Sumanapala", people_path: "/people/amila_sumanapala"}, fachetti: {name: "Nágyla Fachetti Coser", people_path: "/people/nah_fachetti19"}, velazco: {name: "Carlos G. Velazco-Macias", people_path: "/people/aztekium"}}
   .wv2-section.wv2-section--white.wv2-section--no-horizontal-padding
     .wv2-testimonials
       .wv2-carousel{ data: { carousel: true } }
         .wv2-carousel__stage
           %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
           .wv2-carousel__track
-            - testimonials.each do |key, person|
+            - @testimonials.each do |key, person|
               .wv2-carousel__item
                 .wv2-testimonial
                   .wv2-testimonial__quote
@@ -154,8 +134,8 @@
                       %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
           %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
         .wv2-carousel__dots
-          - t_mid = testimonials.length / 2
-          - testimonials.each_with_index do |(key, _), i|
+          - t_mid = @testimonials.length / 2
+          - @testimonials.each_with_index do |(key, _), i|
             %button.wv2-carousel__dot{ class: (i == t_mid ? "active" : nil), "aria-label": "Testimonial #{i + 1}" }
 
   -# ── Everyone is a naturalist ──────────────────────────────
@@ -270,6 +250,7 @@
 
 - content_for :extrajs do
   :javascript
+    // Carousel logic
     (function () {
       document.querySelectorAll("[data-carousel]").forEach(function (carousel) {
         var track   = carousel.querySelector(".wv2-carousel__track");
@@ -281,14 +262,17 @@
 
         function activeDotIndex() {
           var trackRect = track.getBoundingClientRect();
-          var center = trackRect.left + trackRect.width / 2;
-          var best = 0, bestDist = Infinity;
+          var center = trackRect.width / 2;
+          var centeredIdx = 0, closestDistanceToCenter = Infinity;
           items.forEach(function (item, i) {
             var r = item.getBoundingClientRect();
-            var dist = Math.abs(r.left + r.width / 2 - center);
-            if (dist < bestDist) { bestDist = dist; best = i; }
+            var distanceToCenter = Math.abs(r.left + r.width / 2 - center);
+            if (distanceToCenter < closestDistanceToCenter) {
+              closestDistanceToCenter = distanceToCenter;
+              centeredIdx = i;
+            }
           });
-          return best;
+          return centeredIdx;
         }
 
         function scrollToIndex(idx) {
@@ -329,6 +313,7 @@
       });
     })();
 
+    // Header donate icon resizing logic
     (function () {
       var header = document.getElementById("header");
       if (!header) return;
