@@ -35,23 +35,18 @@ namespace :inaturalist do
 
   desc "Unsuspend users whose timed suspension has expired"
   task auto_unsuspend: :environment do
-    User.where( "suspended_at IS NOT NULL AND suspended_until < ?", Time.now ).find_each do | user |
-      actor = nil
-      unless actor
-        Rails.logger.error "[ERROR] inaturalist:auto_unsuspend: no actor found for user #{user.id}, skipping"
-        next
-      end
+    User.suspension_expired.each do | user |
       action = ModeratorAction.new(
         action: ModeratorAction::UNSUSPEND,
         resource: user,
-        user: actor,
+        user: nil,
         reason: "Timed suspension expired automatically"
       )
-      unless action.save
-        Rails.logger.error(
-          "[ERROR] inaturalist:auto_unsuspend: failed for user #{user.id}: #{action.errors.full_messages.join( ", " )}"
-        )
-      end
+      next if action.save
+
+      Rails.logger.error(
+        "[ERROR] inaturalist:auto_unsuspend: failed for user #{user.id}: #{action.errors.full_messages.join( ', ' )}"
+      )
     end
   end
 
