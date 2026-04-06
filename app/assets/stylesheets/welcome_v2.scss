@@ -660,8 +660,15 @@ h2 {
     font-size: 20px;
     color: $dark-gray;
     letter-spacing: $letter-spacing-tight;
+    line-height: 0.9;
     flex-shrink: 0;
-    text-decoration: underline;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 9px;
+      background: image-url("welcome_v2/why-underline.svg") left/contain no-repeat;
+    }
 
     @media (max-width: $breakpoint-mobile) { font-size: 18px; }
   }
