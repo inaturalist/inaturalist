@@ -8,6 +8,10 @@ $( function () {
     return date.toISOString().replace( /\.\d{3}Z$/, "Z" );
   }
 
+  var minDate = new Date();
+  var localISO = new Date( minDate.getTime() - minDate.getTimezoneOffset() * 60000 );
+  localPicker.min = localISO.toISOString().slice( 0, 16 );
+
   function computeUtcFromDuration( duration ) {
     var now = new Date();
     switch ( duration ) {
