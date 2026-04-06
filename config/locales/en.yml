@@ -3317,6 +3317,8 @@ en:
     <strong>only visible to curators</strong> and <strong>curators cannot view
     their own history</strong>, so notes about a person should never be visible
     to that person.
+  # Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Suspension expired
   # Action a moderator can take to hide content; verb
   moderator_actions_hide: Hide
   # Action a moderator can take to unhide content, i.e. undo hiding; verb
