@@ -3,7 +3,7 @@
 #header.bootstrap{ class: header_search_open ? "search-open" : nil }
   #narrow-menu.navtabs
     .dropdown
-      #header-narrow-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
+      #header-narrow-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, role: "button", tabindex: "0", aria: { label: t(:toggle_navigation, default: "Toggle navigation"), haspopup: "menu", expanded: "false" } }
         %i.fa.fa-bars
       %ul.dropdown-menu{ aria: { labelledby: "header-narrow-dropdown-toggle" } }
         %li= link_to t( :search ), search_path

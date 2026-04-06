@@ -31,7 +31,6 @@ class WelcomeV2Controller < ApplicationController
     @responsive = true
     @skip_external_connections = true
     @skip_react = true
-    @skip_font_awesome = true
     @locale_key = I18n.locale.to_s
     @locale_base = @locale_key.split( "-" ).first
     @steps_data = STEPS_DATA
