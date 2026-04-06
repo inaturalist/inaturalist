@@ -85,22 +85,6 @@
           }
         });
 
-        // Validate suspend_until is in the future on form submit
-        var form = durationSelect.closest('form');
-        form.addEventListener('submit', function(e) {
-          var duration = durationSelect.value;
-          if (duration !== 'indefinite' && hiddenUtc.value) {
-            var suspendUntil = new Date(hiddenUtc.value);
-            if (suspendUntil <= new Date()) {
-              e.preventDefault();
-              alert('Suspension end date must be in the future.');
-            }
-          } else if (duration === 'custom' && !hiddenUtc.value) {
-            e.preventDefault();
-            alert('Please select a suspension end date.');
-          }
-        });
-
         // Set initial value for the default selection (1 day)
         updateSuspendedUntil();
       })();
