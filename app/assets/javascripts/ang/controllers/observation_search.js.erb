@@ -1075,9 +1075,10 @@ var SearchController = function (
         $scope.pagination.stopped = true;
       }
       var appendedObservations = ObservationsFactory.responseToInstances( response );
-      var existingObservationIDs = _.object( _.map( $scope.observations, function ( observation ) {
-        return [observation.id, true];
-      } ) );
+      var existingObservationIDs = { };
+      _.each( $scope.observations, function ( observation ) {
+        existingObservationIDs[observation.id] = true;
+      } );
       $scope.observations = $scope.observations.concat( _.filter(
         appendedObservations,
         function ( observation ) {
