@@ -74,6 +74,9 @@ class UsersController < ApplicationController
       flash[:error] = "You cannot suspend someone who is already suspended"
       return redirect_back_or_default person_path( @user )
     end
+
+    unsuspend_if_timed_suspension_expired!
+
     @moderator_action = ModeratorAction.new(
       resource: @user,
       user: current_user,
