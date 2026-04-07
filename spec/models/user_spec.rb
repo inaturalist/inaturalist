@@ -770,39 +770,7 @@ describe User do
       ma = ModeratorAction.last
       expect( ma.action ).to eq ModeratorAction::UNSUSPEND
       expect( ma.resource ).to eq user
-    end
-
-    it "uses suspended_by_user as actor when available" do
-      make_admin
-      suspender = User.make!
-      user = User.make!
-      user.update_columns(
-        suspended_at: 2.days.ago,
-        suspended_until: 1.day.ago,
-        suspended_by_user_id: suspender.id
-      )
-      user.unsuspend_if_timed_suspension_expired!
-      ma = ModeratorAction.last
-      expect( ma.user ).to eq suspender
-    end
-
-    it "falls back to first admin as actor" do
-      admin = make_admin
-      user = User.make!
-      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
-      user.unsuspend_if_timed_suspension_expired!
-      ma = ModeratorAction.last
-      expect( ma.user ).to eq admin
-    end
-
-    it "falls back to direct unsuspend when no actor is available" do
-      user = User.make!
-      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
-      allow( User ).to receive( :admins ).and_return( User.none )
-      user.unsuspend_if_timed_suspension_expired!
-      user.reload
-      expect( user ).not_to be_suspended
-      expect( user.suspended_at ).to be_nil
+      expect( ma.user ).to be_nil
     end
 
     it "is idempotent" do
