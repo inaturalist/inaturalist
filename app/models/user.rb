@@ -559,28 +559,18 @@ class User < ApplicationRecord
     return if suspended_until.nil?
     return if suspended_until > Time.zone.now
 
-    actor = suspended_by_user || User.admins.first
-    if actor
-      action = ModeratorAction.new(
-        action: ModeratorAction::UNSUSPEND,
-        resource: self,
-        user: actor,
-        reason: "Timed suspension expired automatically"
-      )
-      unless action.save
-        Rails.logger.error(
-          "[ERROR] User#unsuspend_if_timed_suspension_expired!: " \
-          "ModeratorAction save failed for user #{id}: #{action.errors.full_messages.join( ', ' )}"
-        )
-        unsuspend!
-      end
-    else
-      Rails.logger.error(
-        "[ERROR] User#unsuspend_if_timed_suspension_expired!: " \
-        "no actor found for user #{id}, falling back to direct unsuspend!"
-      )
-      unsuspend!
-    end
+    action = ModeratorAction.new(
+      action: ModeratorAction::UNSUSPEND,
+      resource: self,
+      user: nil,
+      reason: "Timed suspension expired automatically"
+    )
+    return if action.save
+
+    Rails.logger.error(
+      "[ERROR] User#unsuspend_if_timed_suspension_expired!: " \
+        "ModeratorAction save failed for user #{id}: #{action.errors.full_messages.join( ', ' )}"
+    )
   end
 
   def active?
