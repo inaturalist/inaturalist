@@ -129,7 +129,7 @@
                 .wv2-testimonial
                   .wv2-testimonial__quote
                     %p= t("#{s}.testimonials.#{key}_quote")
-                  = link_to person[:people_path], class: "wv2-testimonial__byline", target: "_blank", rel: "noopener" do
+                  = link_to person[:people_path], class: "wv2-testimonial__byline", target: "_blank" do
                     = image_tag "welcome_v2/testimonial_#{key}.webp", class: "wv2-testimonial__avatar", alt: person[:name]
                     %div
                       %p.wv2-testimonial__name= person[:name]
@@ -156,7 +156,7 @@
   -# ── App download ──────────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--spacious
     .wv2-download
-      .wv2-download__copy.text-center
+      .wv2-download__copy
         %h2= t("#{s}.download.heading")
         .wv2-download__body
           %p= t("#{s}.download.subheading")
@@ -179,7 +179,7 @@
           .wv2-carousel__track
             - @explore_observations.each do |obs|
               - common = obs["common_names"][@locale_key] || obs["common_names"][@locale_base] || obs["common_names"]["en"]
-              = link_to "/observations/#{obs["id"]}", class: "wv2-carousel__item" do
+              = link_to "/observations/#{obs["id"]}", target: "_blank", class: "wv2-carousel__item" do
                 .wv2-obs-card
                   .wv2-obs-card__header
                     - if obs["user_icon_file"]

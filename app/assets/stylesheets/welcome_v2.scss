@@ -583,7 +583,7 @@ h2 {
 .wv2-step {
   display: flex;
   gap: 30px;
-  align-items: flex-start;
+  align-items: center;
 
   .wv2-step__num {
     font-family: var(--font-serif);
@@ -759,8 +759,8 @@ h2 {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: transparent;
-    border: 1.5px solid $green;
+    background: #D5E2C3;
+    border: none;
     padding: 0; // Accessibility concerns with small touch target?
     cursor: pointer;
     transition: background 0.2s;
