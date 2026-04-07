@@ -12,6 +12,14 @@ $( function () {
   var localISO = new Date( minDate.getTime() - minDate.getTimezoneOffset() * 60000 );
   localPicker.min = localISO.toISOString().slice( 0, 16 );
 
+  // Pre-populate local picker from existing UTC value (e.g. when editing)
+  var { initialUtc } = localPicker.dataset;
+  if ( initialUtc ) {
+    var initialDate = new Date( initialUtc );
+    var initialLocal = new Date( initialDate.getTime() - initialDate.getTimezoneOffset() * 60000 );
+    localPicker.value = initialLocal.toISOString().slice( 0, 16 );
+  }
+
   function computeUtcFromDuration( duration ) {
     var now = new Date();
     switch ( duration ) {
