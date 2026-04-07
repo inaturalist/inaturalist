@@ -1792,7 +1792,7 @@ class User < ApplicationRecord
     if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
       self.suspended_by_user = moderator_action.user
       self.suspended_until = moderator_action.suspended_until
-      suspend!( reason: moderator_action.reason )
+      suspend!( moderator_action.reason )
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
       unsuspend!
       send_unsuspended_email( moderator_action.reason )

@@ -815,7 +815,9 @@ describe User do
         suspended_until: 7.days.from_now
       )
       user.reload
-      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user, reason: "spamming" ) }
+      without_delay do
+        ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user, reason: "they were spamming" )
+      end
       mail = ActionMailer::Base.deliveries.last
       expect( mail.body ).to match( /spamming/ )
     end
