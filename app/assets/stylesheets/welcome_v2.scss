@@ -41,6 +41,11 @@ $breakpoint-mobile:    767px;
 // Match sticky footer spacer to the negative margin so no dead zone appears
 #bodywrapper:after { height: 196px; }
 
+// Extra footer clearance for the sticky app banner on iOS
+@supports (-webkit-touch-callout: none) {
+  body.responsive #inatnotice { padding-bottom: 80px; }
+}
+
 
 // ── Header overwrites, incorporate into main header styles once ready ────────
 
@@ -219,7 +224,10 @@ h2 {
   letter-spacing: $letter-spacing-tight;
   margin-bottom: 30px;
 
-  @media (max-width: $breakpoint-mobile) { font-size: 20px; }
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 // ── Hero ─────────────────────────────────────────────────────────────────────
@@ -455,7 +463,14 @@ h2 {
     gap: 20px;
     max-width: 475px;
 
-    @media (max-width: $breakpoint-mobile) { width: 100%; }
+    @media (max-width: $breakpoint-mobile) {
+      width: 100%;
+
+      &:nth-child(2) {
+        border-top: 1px solid $border-color;
+        padding-top: 20px;
+      }
+    }
   }
 
   &__row {
@@ -586,6 +601,7 @@ h2 {
   @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
     gap: 40px;
+    padding: 15px 0;
   }
 }
 
@@ -657,11 +673,6 @@ h2 {
   gap: 30px;
   max-width: 700px;
   margin: 0 auto;
-
-  @media (max-width: $breakpoint-mobile) {
-    flex-direction: column;
-    text-align: center;
-  }
 
   .wv2-why__label {
     font-family: var(--font-serif);
@@ -1150,7 +1161,10 @@ a.wv2-carousel__item {
 }
 
 @media (max-width: $breakpoint-mobile) {
-  .wv2-faq { width: calc(100% - 40px); }
+  .wv2-faq {
+    width: 100%;
+    padding: 15px 0;
+  }
 }
 
 .wv2-faq__item {
@@ -1210,6 +1224,8 @@ a.wv2-carousel__item {
 .wv2-app-banner {
   display: none;
 
+  &:hover { opacity: 1; }
+
   @supports (-webkit-touch-callout: none) {
     display: flex;
     align-items: center;
@@ -1229,6 +1245,8 @@ a.wv2-carousel__item {
 // Needs higher specificity than Bootstrap's `.bootstrap a` and `.bootstrap p` rules
 .bootstrap .wv2-app-banner {
   background-color: $white;
+
+  &:hover { opacity: 1; }
 
   p {
     margin: 0;

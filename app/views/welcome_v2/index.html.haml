@@ -10,6 +10,7 @@
   .wv2-section.wv2-section--hero.text-center
     %video.wv2-hero__video{autoplay: true, loop: true, muted: true, playsinline: true, preload: "none", aria: {hidden: "true"}}
       %source{src: asset_path("welcome_v2/hero_video.webm"), type: "video/webm"}
+      %source{src: asset_path("welcome_v2/hero_video.mp4"), type: "video/mp4"}
     .wv2-hero__content
       %h1= t("#{s}.hero.headline")
       %p.wv2-hero__sub= t("#{s}.hero.subheadline")
@@ -250,7 +251,7 @@
     %p.wv2-app-banner__tagline Discover nature around you
   %span.wv2-app-banner__cta Use app
 
-- content_for :delayed_js do
+- content_for :extrajs do
   :javascript
     // Carousel logic
     (function () {
