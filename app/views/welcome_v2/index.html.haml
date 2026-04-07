@@ -279,13 +279,27 @@
         }
 
         function scrollToIndex(idx) {
-          idx = Math.max(0, Math.min(items.length - 1, idx));
+          idx = ((idx % items.length) + items.length) % items.length;
           var item = items[idx];
           var itemRect = item.getBoundingClientRect();
           var trackRect = track.getBoundingClientRect();
           var offset = track.scrollLeft + itemRect.left - trackRect.left - (trackRect.width - itemRect.width) / 2;
           track.scrollTo({ left: offset, behavior: "smooth" });
         }
+
+        var touchStartX = 0;
+        var touchStartScrollLeft = 0;
+        track.addEventListener("touchstart", function (e) {
+          touchStartX = e.touches[0].clientX;
+          touchStartScrollLeft = track.scrollLeft;
+        }, { passive: true });
+        track.addEventListener("touchend", function (e) {
+          var swipeDistance = e.changedTouches[0].clientX - touchStartX;
+          var scrollMoved = Math.abs(track.scrollLeft - touchStartScrollLeft);
+          if (Math.abs(swipeDistance) > 30 && scrollMoved < 5) {
+            scrollToIndex(swipeDistance > 0 ? items.length - 1 : 0);
+          }
+        }, { passive: true });
 
         function syncDots() {
           var idx = activeDotIndex();
