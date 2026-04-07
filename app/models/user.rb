@@ -29,6 +29,7 @@ class User < ApplicationRecord
   attr_accessor :make_observation_licenses_same,
     :make_photo_licenses_same,
     :make_sound_licenses_same,
+    :skip_welcome_email,
     :html,
     :pi_consent,
     :data_transfer_consent,
@@ -308,6 +309,7 @@ class User < ApplicationRecord
   after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_create :send_welcome_email, if: lambda {| user |
+    return false if user.skip_welcome_email
     # Can't send emails to addresses that don't exist
     return false if user.email.blank?
 
@@ -1658,7 +1660,7 @@ class User < ApplicationRecord
     User.where(id: user_id).update_all(identifications_count: count)
   end
 
-  def self.update_observations_counter_cache(user_id)
+  def self.update_observations_counter_cache( user_id, options = {} )
     return unless user = User.find_by_id( user_id )
     result = Observation.elastic_search(
       filters: [
@@ -1671,6 +1673,8 @@ class User < ApplicationRecord
     )
     count = (result && result.response) ? result.response.hits.total.value : 0
     User.where( id: user_id ).update_all( observations_count: count )
+    return if options[:skip_indexing]
+
     user.reload
     user.elastic_index!
   end

@@ -1,0 +1,105 @@
+%h2 Build Test Users
+
+%p Create a confirmed user and attach existing content for testing.
+- unless @build_test_user_enabled
+  .alert.alert-warning
+    This tool is disabled by configuration.
+
+= form_tag build_test_user_admin_path, method: :post, class: "form-horizontal" do
+  .form-group
+    %label.control-label.col-sm-3{ for: "build_test_login" } Login
+    .col-sm-6
+      %input.form-control{ type: "text", name: "build_test_login", id: "build_test_login",
+        value: @form_defaults[:login], disabled: !@build_test_user_enabled,
+        autocomplete: "off" }
+  .form-group
+    %label.control-label.col-sm-3{ for: "build_test_password" } Password
+    .col-sm-6
+      %input.form-control{ type: "password", name: "build_test_password", id: "build_test_password",
+        disabled: !@build_test_user_enabled, autocomplete: "new-password" }
+  .form-group
+    %label.control-label.col-sm-3{ for: "observations_count" } Number of observations
+    .col-sm-3
+      %input.form-control{ type: "number", name: "observations_count",
+        id: "observations_count", min: 0, value: @form_defaults[:observations_count] || 0,
+        disabled: !@build_test_user_enabled }
+  .form-group
+    %label.control-label.col-sm-3{ for: "identifications_for_others_count" } Number of identifications for others
+    .col-sm-3
+      %input.form-control{ type: "number", name: "identifications_for_others_count",
+        id: "identifications_for_others_count", min: 0,
+        value: @form_defaults[:identifications_for_others_count] || 0,
+        disabled: !@build_test_user_enabled }
+  .form-group
+    .col-sm-offset-3.col-sm-6
+      %button.btn.btn-primary{ type: "submit", disabled: !@build_test_user_enabled } Create test user
+
+%p
+  = link_to "Monitor progress", build_test_user_progress_log_admin_path
+
+%hr
+
+%h3 Test Users
+- if @test_group_users.blank?
+  %p None yet.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th ID
+        %th Login
+        %th Observations
+        %th Identifications
+        %th Created
+        %th Link
+    %tbody
+      - @test_group_users.each do |u|
+        %tr
+          %td= u.id
+          %td= u.login
+          %td= u.observations_count
+          %td= u.identifications_count
+          %td= l( u.created_at, format: :long )
+          %td= link_to "View", user_detail_admin_path( id: u.id )
+
+%hr
+
+%h3 Trigger updates for a user
+= form_tag build_test_user_updates_admin_path, method: :post, class: "form-horizontal" do
+  .form-group
+    %label.control-label.col-sm-3{ for: "target_user_login" } User login
+    .col-sm-6
+      %input.form-control{ type: "text", name: "target_user_login", id: "target_user_login",
+        placeholder: "user login", disabled: !@build_test_user_enabled,
+        autocomplete: "off" }
+  .form-group
+    %label.control-label.col-sm-3 Action
+    .col-sm-6
+      .radio
+        %label
+          %input{ type: "radio", name: "update_action", value: "messages",
+            checked: true, disabled: !@build_test_user_enabled }
+          Add messages
+      .radio
+        %label
+          %input{ type: "radio", name: "update_action", value: "observation_comments",
+            disabled: !@build_test_user_enabled }
+          Add observation comments
+      .radio
+        %label
+          %input{ type: "radio", name: "update_action", value: "confirming_identifications",
+            disabled: !@build_test_user_enabled }
+          Add confirming identifications
+      .radio
+        %label
+          %input{ type: "radio", name: "update_action", value: "conflicting_identifications",
+            disabled: !@build_test_user_enabled }
+          Add conflicting identifications
+  .form-group
+    %label.control-label.col-sm-3{ for: "count" } Number
+    .col-sm-3
+      %input.form-control{ type: "number", name: "count", id: "count", min: 1, value: 1,
+        disabled: !@build_test_user_enabled }
+  .form-group
+    .col-sm-offset-3.col-sm-6
+      %button.btn.btn-primary{ type: "submit", disabled: !@build_test_user_enabled } Run
