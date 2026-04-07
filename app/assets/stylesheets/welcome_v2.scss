@@ -441,7 +441,7 @@ h2 {
   gap: 50px;
   align-items: flex-start;
   text-align: left;
-  max-width: 1000px;
+  max-width: 900px;
   width: 100%;
   margin: 0 auto;
   padding: 20px 0;
@@ -453,6 +453,9 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-width: 475px;
+
+    @media (max-width: $breakpoint-mobile) { width: 100%; }
   }
 
   &__row {
@@ -506,16 +509,14 @@ h2 {
   }
 
   &__photo {
-    width: 252px;
-    height: 175px;
+    width: 100%;
     object-fit: cover;
     border-radius: 4px;
     flex-shrink: 0;
   }
 
   &__map {
-    width: 245px;
-    height: 175px;
+    width: 100%;
     object-fit: cover;
     border-radius: 4px;
     flex-shrink: 0;
@@ -526,18 +527,26 @@ h2 {
 // ── Stats ─────────────────────────────────────────────────────────────────────
 
 .wv2-stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, fit-content(100%));
+  column-gap: 20px;
+  row-gap: 40px;
+  padding: 15px 0;
   max-width: 700px;
 
-  @media (max-width: $breakpoint-mobile) { gap: 20px 10px; }
+  @media (max-width: $breakpoint-mobile) {
+    column-gap: 10px;
+    row-gap: 20px;
+  }
 }
 
 .wv2-stats__cell {
-  width: calc(50% - 20px);
-  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .wv2-stat__number {
@@ -545,9 +554,9 @@ h2 {
   font-weight: 700;
   font-size: 43px;
   color: $dark-gray;
-  letter-spacing: $letter-spacing-tight;
-  line-height: 1.2em;
-  margin-bottom: 10px;
+  letter-spacing: -1.29px;
+  line-height: 1;
+  margin: 0;
 
   @media (max-width: $breakpoint-mobile) { font-size: 30px; }
 }
@@ -883,6 +892,12 @@ h2 {
   flex-direction: column;
   align-items: center;
   gap: 15px;
+
+  @media (max-width: $breakpoint-mobile) { gap: 20px; }
+
+  h2 {
+    margin: 0;
+  }
 }
 
 %product-section__body {
@@ -891,6 +906,10 @@ h2 {
   align-items: center;
   gap: 20px;
   width: 100%;
+
+  p {
+    margin: 0;
+  }
 }
 
 %product-section__images {
@@ -1079,6 +1098,7 @@ a.wv2-carousel__item {
 // ── Newsletter ────────────────────────────────────────────────────────────────
 
 .wv2-section--dark {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%), image-url("welcome_v2/dragonfly.webp") lightgray 50% / cover no-repeat;
   h2 {
     font-family: var(--font-serif);
     font-weight: 700;

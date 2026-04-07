@@ -250,7 +250,7 @@
     %p.wv2-app-banner__tagline Discover nature around you
   %span.wv2-app-banner__cta Use app
 
-- content_for :extrajs do
+- content_for :delayed_js do
   :javascript
     // Carousel logic
     (function () {
@@ -328,3 +328,4 @@
       new ResizeObserver(updateDonateText).observe(header);
       updateDonateText();
     })();
+
