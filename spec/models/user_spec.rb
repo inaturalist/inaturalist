@@ -809,19 +809,18 @@ describe User do
       expect( mail.subject ).to match( /unsuspended/ )
     end
 
-    it "includes reason in unsuspended email for timed suspensions" do
+    it "includes unsuspension reason in unsuspended email for timed suspensions" do
       user = User.make!(
         suspended_at: Time.zone.now,
-        suspended_until: 7.days.from_now,
-        suspension_reason: "spamming"
+        suspended_until: 7.days.from_now
       )
       user.reload
-      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user ) }
+      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user, reason: "spamming" ) }
       mail = ActionMailer::Base.deliveries.last
       expect( mail.body ).to match( /spamming/ )
     end
 
-    it "does not include reason in unsuspended email for indefinite suspensions" do
+    it "does not include reason in unsuspended email from user reason" do
       user = User.make!(
         suspended_at: Time.zone.now,
         suspended_until: nil,

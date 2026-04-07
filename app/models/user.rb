@@ -1565,15 +1565,7 @@ class User < ApplicationRecord
       resend_unsent_for_user( id )
   end
 
-  def send_unsuspended_email
-    old_suspended_at = saved_change_to_suspended_at.first
-    return unless old_suspended_at.present? && suspended_at.nil?
-
-    # Only include the reason for timed suspensions to avoid exposing
-    # historical reasons from before timed suspensions were implemented
-    old_suspended_until = saved_change_to_suspended_until&.first
-    reason = old_suspended_until.present? ? saved_change_to_suspension_reason&.first : nil
-
+  def send_unsuspended_email( reason = nil )
     Emailer.user_unsuspended( self, reason ).deliver_later
   end
 
@@ -1803,7 +1795,7 @@ class User < ApplicationRecord
       suspend!( reason: moderator_action.reason )
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
       unsuspend!
-      send_unsuspended_email
+      send_unsuspended_email( moderator_action.reason )
     elsif moderator_action.action == ModeratorAction::RENAME
       new_login = User.suggest_login( User::DEFAULT_LOGIN )
       self.login = new_login
