@@ -802,7 +802,7 @@ describe User do
         suspension_reason: "spamming"
       )
       user.reload
-      ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user )
+      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user ) }
       mail = ActionMailer::Base.deliveries.last
       expect( mail ).not_to be_nil
       expect( mail.to ).to include user.email
@@ -816,7 +816,7 @@ describe User do
         suspension_reason: "spamming"
       )
       user.reload
-      ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user )
+      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user ) }
       mail = ActionMailer::Base.deliveries.last
       expect( mail.body ).to match( /spamming/ )
     end
@@ -828,7 +828,7 @@ describe User do
         suspension_reason: "historical reason"
       )
       user.reload
-      ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user )
+      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user ) }
       mail = ActionMailer::Base.deliveries.last
       expect( mail.body ).not_to match( /historical reason/ )
     end
