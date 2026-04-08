@@ -786,6 +786,9 @@ hu:
   back_to_your_profile: Vissza a profilodhoz
   badges: Jelvények
   base_map_copyright_openstreetmap_html: Alaptérkép © %{startTag}OpenStreetMap%{endTag}
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    A bizonyíték alapján lehet még javítani a közösségi taxonon?
   batch: Köteg
   batch_edit: Tömeges szerkesztés
   #Where x is the title of a list of taxa
@@ -3908,7 +3911,7 @@ hu:
   posts: Bejegyzések
   potential_disagreement: Lehetséges konfliktus
   powered_by: 'Működteti:'
-  powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
+  powered_by_inaturalist_open_source_software_html: 'Működteti az <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist nyílt forrású szoftver</a>'
   present: jelen van
   press: Sajtó
   preview: Előnézet
@@ -4433,6 +4436,19 @@ hu:
     Automatikusan rejtett koordináták (kitakart vagy rejtett a "taxon helyvédelme" miatt)
   sites_affiliation_more_user_hidden_coordinates: |
     Felhasználó által rejtett koordináták (kitakarva vagy rejtve a helyvédelmi beállítások miatt)
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    Az %{start_tag_network}iNaturalist Hálózat%{end_tag_network} helyi tapasztalatot ad a %{start_tag_global}globális iNaturalist közösségben%{end_tag_global}.
+  sites_network_agreements_html: |
+    Az iNaturalist hivatalos megállapodásokat kötött ezeken a földrajzi területeken levő szervezetekkel, hogy támogassák az iNaturalist felület használatát.
+    <strong>Ha a szervezeted szeretne az iNaturalist Hálózathoz csatlakozni további részleteket találsz
+    %{start_tag_join}itt%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    Az iNaturalist hivatalos megállapodásokat kötött ezeken a földrajzi területeken levő szervezetekkel, hogy támogassák az iNaturalist felület használatát. 2024 óta egy leegyszerűsített változatot vezetünk be a hálozatban való részvételhez.
+    <strong>Ha a szervezeted szeretne az iNaturalist Hálózathoz csatlakozni további részleteket találsz
+    %{start_tag_join}itt%{end_tag_join}.</strong>
+  sites_network_consists_of: "Az iNaturalist Hálózat több szervezetből áll:"
+  sites_network_inaturalist_network_collection2: |
+    Az iNaturalist Hálózat egy helyi élmény amely teljesen a globális iNaturalist közösséghez van kapcsolva. A hálózat tagjai helyi intézmények, amelyek elősegítik a helyi használatot és az iNaturalist adatok felhasználását a helyi biodiverzitás javára. Hozzáférnek az igazi koordinátákhoz a földrajzi területeikön belül amelyek automatikusan el vannak rejtve a nyilvánosság számára, hogy jobban védjék a veszélyeztetett fajokat.
   sites_network_your_username: |
     A felhasználóneved és a jelszavad minden honlapon működik ami az iNaturalist Hálózat tagja. Ha csatlakozol a Hálózat egyik honlapjához, a helyi intézmények amelyek e helyi honlapot támogatják elérhetik az email címedet (csak azért, hogy a honlap tevékenységeiről értesítsenek) és hozzáférhetnek az olyan megfigyelések valós koordinátáihoz, ahol a koordinátáknál a kitakart vagy privát beállításokat használtad.
   some_agree: néhányan egyetértenek
