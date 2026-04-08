@@ -122,7 +122,7 @@
   -# ── Testimonials ──────────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--no-horizontal-padding
     .wv2-testimonials
-      .wv2-carousel{ data: { carousel: true } }
+      .wv2-carousel{ data: { carousel: true, initial_index: 0 } }
         .wv2-carousel__stage
           %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
           .wv2-carousel__track
@@ -138,9 +138,8 @@
                       %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
           %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
         .wv2-carousel__dots
-          - t_mid = @testimonials.length / 2
           - @testimonials.each_with_index do |(key, _), i|
-            %button.wv2-carousel__dot{ class: (i == t_mid ? "active" : nil), "aria-label": "Testimonial #{i + 1}" }
+            %button.wv2-carousel__dot{ class: (i == 0 ? "active" : nil), "aria-label": "Testimonial #{i + 1}" }
 
   -# ── Everyone is a naturalist ──────────────────────────────
   .wv2-section.wv2-section--light
@@ -286,6 +285,38 @@
           dots.forEach(function (d, i) { d.classList.toggle("active", i === idx); });
         }
 
+        // Touch handling — require 60px swipe to advance, otherwise snap back
+        var touchStartX = 0, touchStartY = 0, touchStartScrollLeft = 0, isTouching = false;
+        track.addEventListener("touchstart", function (e) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartScrollLeft = track.scrollLeft;
+          isTouching = true;
+          track.style.scrollSnapType = "none";
+        }, { passive: true });
+        track.addEventListener("touchmove", function (e) {
+          if (!isTouching) return;
+          var dx = touchStartX - e.touches[0].clientX;
+          var dy = touchStartY - e.touches[0].clientY;
+          if (Math.abs(dx) > Math.abs(dy)) {
+            e.preventDefault();
+            track.scrollLeft = touchStartScrollLeft + dx;
+          }
+        }, { passive: false });
+        track.addEventListener("touchend", function (e) {
+          if (!isTouching) return;
+          isTouching = false;
+          track.style.scrollSnapType = "";
+          var dx = touchStartX - e.changedTouches[0].clientX;
+          var threshold = 60;
+          var currentIdx = activeDotIndex();
+          if (Math.abs(dx) >= threshold) {
+            scrollToIndex(dx > 0 ? currentIdx + 1 : currentIdx - 1);
+          } else {
+            scrollToIndex(currentIdx);
+          }
+        }, { passive: true });
+
         var raf;
         track.addEventListener("scroll", function () {
           cancelAnimationFrame(raf);
@@ -308,7 +339,7 @@
           if (!fits && wasStatic) {
             // Re-center after switching back to carousel mode
             requestAnimationFrame(function () {
-              var initIdx = Math.floor(items.length / 2);
+              var initIdx = carousel.dataset.initialIndex != null ? parseInt(carousel.dataset.initialIndex, 10) : Math.floor(items.length / 2);
               var item = items[initIdx];
               var itemRect = item.getBoundingClientRect();
               var trackRect = track.getBoundingClientRect();
@@ -319,7 +350,7 @@
         }
 
         requestAnimationFrame(function () {
-          var initIdx = Math.floor(items.length / 2);
+          var initIdx = carousel.dataset.initialIndex != null ? parseInt(carousel.dataset.initialIndex, 10) : Math.floor(items.length / 2);
           var item = items[initIdx];
           var itemRect = item.getBoundingClientRect();
           var trackRect = track.getBoundingClientRect();

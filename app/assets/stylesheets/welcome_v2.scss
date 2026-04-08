@@ -783,7 +783,7 @@ h2 {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding: 10px;
+    padding: 0 30px;
 
     &::-webkit-scrollbar { display: none; }
   }
