@@ -10048,7 +10048,6 @@ en:
           # Main hero headline on the home page
           headline: Where your curiosity contributes to science.
           # Hero subheadline describing the core value proposition
-          # TODO: test that line break here doesn't cause line break
           subheadline: >
             Identify plants, animals, fungi, and more while adding to a living
             atlas of life on Earth.
@@ -10178,7 +10177,7 @@ en:
             Every photo you share becomes part of a global scientific record that
             researchers worldwide depend on.
           # Heading for the community reputation sub-section
-          community_heading: “The nicest place online”
+          community_heading: The nicest place online
           # Description of the welcoming community aspect
           community_body: >
             Come for the identifications, stay for the community and impact on
@@ -10409,6 +10408,11 @@ en:
         # 10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      # Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:
