@@ -24,6 +24,15 @@ shared_examples_for "a token creator that blocks suspended users" do
     json = JSON.parse( response.body )
     expect( json["error"] ).to eq "suspended"
     expect( json["error_description"] ).to match( /policy violation/ )
+    expect( json["suspended_until"] ).not_to be_blank
+    expect( Time.parse( json["suspended_until"] ) ).to be_within( 1.minute ).of( 1.week.from_now )
+  end
+  it "should return null suspended_until for an indefinite suspension" do
+    user.suspend!
+    post :create, format: :json, params: default_params_for_strategy
+    json = JSON.parse( response.body )
+    expect( json ).to have_key( "suspended_until" )
+    expect( json["suspended_until"] ).to be_nil
   end
 end
 

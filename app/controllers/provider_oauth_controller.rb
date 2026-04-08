@@ -54,7 +54,8 @@ class ProviderOauthController < ApplicationController
     rescue INat::Auth::SuspendedError => e
       return render status: :unauthorized, json: {
         error: "suspended",
-        error_description: e.message.presence || t( :this_user_has_been_suspended )
+        error_description: e.message.presence || t( :this_user_has_been_suspended ),
+        suspended_until: e.suspended_until&.iso8601
       }
     rescue INat::Auth::ChildWithoutPermissionError
       render status: :bad_request, json: {
@@ -267,7 +268,9 @@ class ProviderOauthController < ApplicationController
 
   def assertion_access_token_for_client_and_user( client, user )
     unless user.active_for_authentication?
-      raise INat::Auth::SuspendedError, user.inactive_message if user.suspended?
+      if user.suspended?
+        raise INat::Auth::SuspendedError.new( user.inactive_message, suspended_until: user.suspended_until )
+      end
       raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
     end
     access_token = Doorkeeper::AccessToken.
