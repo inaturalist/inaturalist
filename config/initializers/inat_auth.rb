@@ -10,7 +10,14 @@ module INat
     class MissingEmailError < StandardError; end
 
     # User is suspended
-    class SuspendedError < StandardError; end
+    class SuspendedError < StandardError
+      attr_reader :suspended_until
+
+      def initialize( message = nil, suspended_until: nil )
+        super( message )
+        @suspended_until = suspended_until
+      end
+    end
 
     # User is a known child without parental permission
     class ChildWithoutPermissionError < StandardError; end

@@ -97,6 +97,17 @@ describe ProviderOauthController do
         response_json = JSON.parse( response.body )
         expect( response_json["error"] ).to eq "suspended"
         expect( response_json["error_description"] ).to match( /policy violation/ )
+        expect( response_json["suspended_until"] ).not_to be_blank
+        expect( Time.parse( response_json["suspended_until"] ) ).to be_within( 1.minute ).of( 1.week.from_now )
+      end
+
+      it "should return null suspended_until for an indefinite suspension" do
+        u = create :user, email: google_response[:email], confirmed_at: Time.now
+        u.suspend!
+        post :assertion, format: :json, params: assertion_params
+        response_json = JSON.parse( response.body )
+        expect( response_json ).to have_key( "suspended_until" )
+        expect( response_json["suspended_until"] ).to be_nil
       end
 
       it "should not return a token for a confirmed child without permission" do

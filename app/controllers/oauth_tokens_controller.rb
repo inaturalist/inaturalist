@@ -13,7 +13,9 @@ class OauthTokensController < Doorkeeper::TokensController
     user = User.find_by_id( resource_owner_id ) unless resource_owner_id.blank?
     user&.unsuspend_if_timed_suspension_expired!
     # A suspended user might have a valid access token
-    raise INat::Auth::SuspendedError, user.inactive_message if user&.suspended?
+    if user&.suspended?
+      raise INat::Auth::SuspendedError.new( user.inactive_message, suspended_until: user.suspended_until )
+    end
   rescue INat::Auth::BadUsernamePasswordError
     headers.delete "WWW-Authenticate"
     self.status = 400
@@ -25,8 +27,9 @@ class OauthTokensController < Doorkeeper::TokensController
     headers.delete "WWW-Authenticate"
     self.status = 401
     self.response_body = {
-      error: "invalid_grant",
-      error_description: "#{I18n.t( :this_user_has_been_suspended )} #{e.message.presence}"
+      error: "suspended",
+      error_description: e.message.presence || I18n.t( :this_user_has_been_suspended ),
+      suspended_until: e.suspended_until&.iso8601
     }.to_json
   rescue INat::Auth::ChildWithoutPermissionError
     headers.delete "WWW-Authenticate"
