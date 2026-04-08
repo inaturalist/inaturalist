@@ -75,7 +75,7 @@ class UsersController < ApplicationController
       return redirect_back_or_default person_path( @user )
     end
 
-    unsuspend_if_timed_suspension_expired!
+    @user.unsuspend_if_timed_suspension_expired!
 
     @moderator_action = ModeratorAction.new(
       resource: @user,
