@@ -22,9 +22,9 @@ class WelcomeV2Controller < ApplicationController
   }.freeze
 
   STORY_DATA = [
-    ["moth_heading", "moth_body", "pav_johnsson", "New Zealand", "Frosted Phoenix", "frosted_phoenix"],
-    ["mantis_heading", "mantis_body_html", "glendawalter", "Australia", nil, "inat"],
-    ["amphibian_heading", "amphibian_body", "tcuriel", "United States", nil, "california_newt"]
+    ["moth_heading",      "moth_body",        "pav_johnsson", "New Zealand",  "Frosted Phoenix", "frosted_phoenix", "https://tr.ee/FYNsVb"],
+    ["mantis_heading",    "mantis_body_html", "glendawalter", "Australia",    nil,               "inat",            "https://tr.ee/j29kgK"],
+    ["amphibian_heading", "amphibian_body",   "tcuriel",      "United States", nil,              "california_newt", "https://tr.ee/hQZIFH"]
   ].freeze
 
   def index
@@ -46,7 +46,7 @@ class WelcomeV2Controller < ApplicationController
 
   def build_story_data
     story_common_names = OBSERVATIONS_DATA["stories"] || {}
-    STORY_DATA.map do |heading, body, user, place, en_name, img|
+    STORY_DATA.map do |heading, body, user, place, en_name, img, url|
       # TODO: Ideally we'd use common_name to make this more generic,
       # but the translations are already using moth_common_name.
       interpolationInput = if en_name
@@ -55,7 +55,7 @@ class WelcomeV2Controller < ApplicationController
       else
         {}
       end
-      [heading, body, user, place, img, interpolationInput]
+      [heading, body, user, place, img, interpolationInput, url]
     end
   end
 

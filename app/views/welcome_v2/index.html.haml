@@ -14,8 +14,7 @@
     .wv2-hero__content
       %h1= t("#{s}.hero.headline")
       %p.wv2-hero__sub= t("#{s}.hero.subheadline")
-      // TODO: add UTM code
-      = link_to t("#{s}.hero.cta_join"), signup_path, class: "btn wv2-btn--white btn-lg"
+      = link_to t("#{s}.hero.cta_join"), "https://www.inaturalist.org/signup?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=hero_join_cta", class: "btn wv2-btn--white btn-lg"
       %p.wv2-hero__tagline= t("#{s}.hero.tagline")
 
   -# ── "With iNaturalist you can" features ───────────────────
@@ -33,14 +32,14 @@
   .wv2-section.wv2-section--white.wv2-section--stories.text-center
     %h2= t("#{s}.stories.heading")
     .wv2-stories-row
-      - @story_data.each do |heading, body, user, place, img, interp|
-        .wv2-story
+      - @story_data.each do |heading, body, user, place, img, interp, url|
+        = link_to url, class: "wv2-story", target: "_blank", rel: "noopener" do
           .wv2-story__image{style: "background-image: url(#{asset_path("welcome_v2/#{img}.webp")})"}
             %h3= t("#{s}.stories.#{heading}")
           .wv2-story__body
             %p= t("#{s}.stories.#{body}", **interp)
             %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
-    = link_to t("#{s}.stories.read_more"), "/pages/impact", class: "btn wv2-btn--green"
+    = link_to t("#{s}.stories.read_more"), "https://www.inaturalist.org/pages/impact?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=impact_stories_cta", class: "btn wv2-btn--green"
 
   -# ── Sample observation ────────────────────────────────────
   .wv2-section.wv2-section--light.text-center
@@ -163,9 +162,9 @@
         .wv2-download__body
           %p= t("#{s}.download.subheading")
           .wv2-store-badges
-            = link_to "https://itunes.apple.com/app/inaturalist/id6475737561", target: "_blank", rel: "noopener" do
+            = link_to "https://apps.apple.com/app/apple-store/id6475737561?pt=475606&ct=homepage&mt=8?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=app_download_ios", target: "_blank", rel: "noopener" do
               = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Download on the App Store", class: "wv2-store-badge", width: 304, height: 90
-            = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android", target: "_blank", rel: "noopener" do
+            = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android&hl=en_US?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=app_download_android", target: "_blank", rel: "noopener" do
               = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Get it on Google Play", class: "wv2-store-badge", width: 304, height: 90
           %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
       .wv2-download__images
@@ -226,14 +225,13 @@
   .wv2-section.wv2-section--dark.wv2-section--spacious.text-center
     %h2= t("#{s}.newsletter.heading")
     %p= t("#{s}.newsletter.body")
-    = link_to t(:sign_up_sentence_case), "/pages/newsletter", class: "btn wv2-btn--white"
+    = link_to t(:sign_up_sentence_case), "https://www.inaturalist.org/pages/newsletter?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=newsletter_signup", class: "btn wv2-btn--white"
 
   -# ── Donate ────────────────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--spacious.text-center
     %p.wv2-donate__headline= t("#{s}.donate.heading")
     %p= t("#{s}.donate.subheading")
-    // TODO: add UTM code
-    = link_to t("#{s}.donate.cta"), donate_path, class: "btn wv2-btn--green"
+    = link_to t("#{s}.donate.cta"), "https://www.inaturalist.org/donate?redirect=true&segment=gmHome?utm_source=inaturalist_homepage&utm_medium=webmobile&utm_campaign=homepage_redesign_2026&utm_content=donate_cta", class: "btn wv2-btn--green"
 
   -# ── FAQ ───────────────────────────────────────────────────
   .wv2-section.wv2-section--light
@@ -245,7 +243,7 @@
           %p= t("#{s}.faq.#{key}_answer")
 
 -# ── iOS app banner ───────────────────────────────────────────
-= link_to "https://itunes.apple.com/app/inaturalist/id6475737561", class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
+= link_to "https://www.inaturalist.org/redirect_links/31?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=sticky_footer_cta", class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
   = image_tag "welcome_v2/app-icon.webp", class: "wv2-app-banner__icon", alt: ""
   .wv2-app-banner__text
     = image_tag "welcome_v2/inat-wordmark.webp", class: "wv2-app-banner__wordmark", alt: "iNaturalist"
