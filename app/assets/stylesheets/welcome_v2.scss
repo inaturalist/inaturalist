@@ -336,17 +336,52 @@ h2 {
   justify-content: center;
   gap: 25px 60px;
   padding: 25px 0;
+
+  @media (max-width: $breakpoint-mobile) {
+    gap: 25px 30px;
+    padding: 10px 0;
+  }
 }
 
 .wv2-feature {
   text-align: center;
-  width: 130px;
+  width: 144px;
+
+  &:has([src*="learn"]) { width: 177px; }
+
+  @media (max-width: $breakpoint-mobile) {
+    &:has([src*="learn"]) { width: 155px; }
+  }
+
+  .wv2-feature__icon-wrap {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+
+    @media (max-width: $breakpoint-mobile) {
+      height: 70px;
+      margin-bottom: 17px;
+    }
+  }
 
   .wv2-feature__icon {
-    height: 100px;
-    width: auto;
-    max-width: 130px;
-    margin-bottom: 16px;
+    display: block;
+
+    &[src*="identify_verb"] { width: 80px;  height: 80px;  }
+    &[src*="track"]         { width: 109px; height: 100px; }
+    &[src*="discover"]      { width: 130px; height: 81px;  }
+    &[src*="contribute"]    { width: 93px;  height: 115px; }
+    &[src*="learn"]         { width: 138px; height: 100px; }
+
+    @media (max-width: $breakpoint-mobile) {
+      &[src*="identify_verb"] { width: 56px; height: 56px; }
+      &[src*="track"]         { width: 76px; height: 70px; }
+      &[src*="discover"]      { width: 95px; height: 61px; }
+      &[src*="contribute"]    { width: 70px; height: 85px; }
+      &[src*="learn"]         { width: 97px; height: 70px; }
+    }
   }
 
   h3 {

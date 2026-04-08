@@ -24,7 +24,8 @@
     .wv2-features
       - [[:identify_verb, "identify_desc"], [:track, "track_desc"], [:discover, "discover_desc"], [:contribute, "contribute_desc"], [:learn, "learn_desc"]].each do |label_key, desc_key|
         .wv2-feature
-          = image_tag "welcome_v2/#{label_key}.svg", class: "wv2-feature__icon", alt: ""
+          .wv2-feature__icon-wrap
+            = image_tag "welcome_v2/#{label_key}.svg", class: "wv2-feature__icon", alt: ""
           %h3= t(label_key)
           %p= t("#{s}.features.#{desc_key}")
 
@@ -287,19 +288,7 @@
           track.scrollTo({ left: offset, behavior: "smooth" });
         }
 
-        var touchStartX = 0;
-        var touchStartScrollLeft = 0;
-        track.addEventListener("touchstart", function (e) {
-          touchStartX = e.touches[0].clientX;
-          touchStartScrollLeft = track.scrollLeft;
-        }, { passive: true });
-        track.addEventListener("touchend", function (e) {
-          var swipeDistance = e.changedTouches[0].clientX - touchStartX;
-          var scrollMoved = Math.abs(track.scrollLeft - touchStartScrollLeft);
-          if (Math.abs(swipeDistance) > 30 && scrollMoved < 5) {
-            scrollToIndex(swipeDistance > 0 ? items.length - 1 : 0);
-          }
-        }, { passive: true });
+        
 
         function syncDots() {
           var idx = activeDotIndex();
