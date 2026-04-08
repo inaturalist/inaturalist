@@ -268,7 +268,7 @@ h2 {
     z-index: 2;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-mobile) {
     padding-top: 100px;
     padding-bottom: 100px;
   }
@@ -318,13 +318,13 @@ h2 {
 .wv2-section--stats {
   padding: 30px 20px;
 
-  @media (min-width: 768px) { padding: 40px 20px; }
+  @media (min-width: $breakpoint-mobile) { padding: 40px 20px; }
 }
 
 .wv2-section--how {
   padding: 30px 35px;
 
-  @media (min-width: 768px) { padding: 40px 75px; }
+  @media (min-width: $breakpoint-mobile) { padding: 40px 75px; }
 }
 
 .wv2-section--spacious {
@@ -626,6 +626,7 @@ h2 {
   font-size: 17px;
   color: $dark-gray;
   letter-spacing: $letter-spacing-tight;
+  line-height: normal;
   margin: 0;
 
   @media (max-width: $breakpoint-mobile) { font-size: 15px; }
@@ -957,81 +958,70 @@ h2 {
 
 // ── Download / Seek shared patterns ───────────────────────────────────────────
 
-%product-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-}
-
-%product-section__copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-
-  @media (max-width: $breakpoint-mobile) { gap: 20px; }
-
-  h2 {
-    margin: 0;
-  }
-}
-
-%product-section__body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-
-  p {
-    margin: 0;
-  }
-}
-
-%product-section__images {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-}
-
 %product-section__phone {
   width: 300px;
   height: auto;
   max-width: 100%;
 }
 
-%product-section__p {
-  font-family: $font-sans;
-  font-size: 17px;
-  font-weight: 500;
-  color: $dark-gray;
-  @media (max-width: $breakpoint-mobile) { font-size: 14px; }
-}
-
-// ── Download ──────────────────────────────────────────────────────────────────
-
-.wv2-download {
-  @extend %product-section;
-
-  @media (max-width: $breakpoint-mobile) { flex-direction: column; gap: 30px; }
-
-  &__copy {
-    @extend %product-section__copy;
-  }
-
-  &__body { @extend %product-section__body; }
-
-  &__images { @extend %product-section__images; }
+%product-section__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
 
   h2 {
+    margin: 0;
     font-size: 23px;
     @media (max-width: $breakpoint-mobile) { font-size: 20px; }
   }
 
   p {
-    @extend %product-section__p;
+    font-family: $font-sans;
+    font-weight: 500;
+    font-size: 17px;
     line-height: 1.3;
+    color: $dark-gray;
+    margin: 0;
+    @media (max-width: $breakpoint-mobile) { font-size: 14px; }
+  }
+}
+
+%product-section__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+// ── Download ──────────────────────────────────────────────────────────────────
+
+.wv2-download {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  grid-template-areas:
+    "text   images"
+    "cta    images";
+  column-gap: 50px;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "text" "images" "cta";
+    row-gap: 25px;
+  }
+
+  &__text   { grid-area: text;   @extend %product-section__text; }
+  &__images { grid-area: images; align-self: center; display: flex; justify-content: center; }
+  &__cta    {
+    grid-area: cta;
+    margin-top: -90px;
+    
+    @media (max-width: $breakpoint-mobile) { margin-top: 0; }
+    @extend %product-section__cta;
   }
 
   .wv2-download__count {
@@ -1046,27 +1036,40 @@ h2 {
 // ── Seek ──────────────────────────────────────────────────────────────────────
 
 .wv2-seek {
-  @extend %product-section;
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  grid-template-areas:
+    "images text"
+    "images cta";
+  column-gap: 50px;
+  justify-content: center;
+  align-items: center;
 
-  @media (max-width: $breakpoint-mobile) { flex-direction: column-reverse; gap: 30px; }
-
-  &__images { @extend %product-section__images; }
-
-  &__copy {
-    @extend %product-section__copy;
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "text" "images" "cta";
+    row-gap: 25px;
   }
 
-  &__body { @extend %product-section__body; }
+  &__text   { grid-area: text;   @extend %product-section__text; }
+  &__images { grid-area: images; align-self: center; display: flex; justify-content: center; }
+  &__cta    {
+    grid-area: cta;
+    margin-top: -90px;
+    
+    @media (max-width: $breakpoint-mobile) { margin-top: 0; }
+    @extend %product-section__cta;
+  }
 
   .wv2-seek__phone { @extend %product-section__phone; }
-
-  p { @extend %product-section__p; }
 
   .wv2-seek__reviews {
     font-family: $font-mono;
     font-size: 15px;
     color: $dark-gray;
   }
+
+  .wv2-seek__text p { font-size: 14px; }
 }
 
 // ── Explore species ───────────────────────────────────────────────────────────
