@@ -578,6 +578,27 @@ describe UsersController, "join_test" do
   end
 end
 
+describe UsersController, "suspend" do
+  let( :curator ) { make_curator }
+  let( :user_with_expired_suspension ) do
+    user = User.make!
+    user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+    user
+  end
+
+  before do
+    sign_in curator
+    request.env["HTTP_REFERER"] = "/"
+  end
+
+  it "unsuspends a user whose timed suspension has expired" do
+    expect( user_with_expired_suspension.suspended_at ).not_to be_nil
+    get :suspend, params: { id: user_with_expired_suspension.id }
+    user_with_expired_suspension.reload
+    expect( user_with_expired_suspension ).not_to be_suspended
+  end
+end
+
 describe UsersController, "unsuspend" do
   let( :curator ) { make_curator }
   let( :suspended_user ) do
