@@ -48,6 +48,14 @@ PYFTSUBSET = begin
     or abort("pyftsubset not found. Run: pip install fonttools brotli")
 end
 
+LATIN_RANGES = [
+  0x0020..0x007E,   # Basic Latin
+  0x00A0..0x00FF,   # Latin-1 Supplement
+  0x0100..0x017F,   # Latin Extended-A
+  0x0180..0x024F,   # Latin Extended-B
+  0x2000..0x206F,   # General Punctuation
+].freeze
+
 WEIGHT_NAMES = {
   100 => "Thin",
   200 => "ExtraLight",
@@ -80,9 +88,9 @@ SCRIPTS = {
     family_slug: "NotoSerifJP",
     font_family: "Noto Serif JP",
     locales:     %w[ja ja-phonetic],
-    ranges:      [0x3000..0x303F, 0x3040..0x309F, 0x30A0..0x30FF,
-                  0x31F0..0x31FF, 0x4E00..0x9FFF, 0xF900..0xFAFF,
-                  0xFF00..0xFFEF],
+    ranges:      LATIN_RANGES + [0x3000..0x303F, 0x3040..0x309F, 0x30A0..0x30FF,
+                               0x31F0..0x31FF, 0x4E00..0x9FFF, 0xF900..0xFAFF,
+                               0xFF00..0xFFEF],
   },
   "KR" => {
     source:      :cjk,
@@ -91,8 +99,8 @@ SCRIPTS = {
     family_slug: "NotoSerifKR",
     font_family: "Noto Serif KR",
     locales:     %w[ko],
-    ranges:      [0x1100..0x11FF, 0x3130..0x318F, 0xA960..0xA97F,
-                  0xAC00..0xD7AF, 0xD7B0..0xD7FF],
+    ranges:      LATIN_RANGES + [0x1100..0x11FF, 0x3130..0x318F, 0xA960..0xA97F,
+                               0xAC00..0xD7AF, 0xD7B0..0xD7FF],
   },
   "SC" => {
     source:      :cjk,
@@ -101,7 +109,7 @@ SCRIPTS = {
     family_slug: "NotoSerifSC",
     font_family: "Noto Serif SC",
     locales:     %w[zh-CN],
-    ranges:      [0x3400..0x4DBF, 0x4E00..0x9FFF, 0xF900..0xFAFF],
+    ranges:      LATIN_RANGES + [0x3400..0x4DBF, 0x4E00..0x9FFF, 0xF900..0xFAFF],
   },
   "TC" => {
     source:      :cjk,
@@ -110,7 +118,7 @@ SCRIPTS = {
     family_slug: "NotoSerifTC",
     font_family: "Noto Serif TC",
     locales:     %w[zh-TW zh-HK],
-    ranges:      [0x3400..0x4DBF, 0x4E00..0x9FFF, 0xF900..0xFAFF],
+    ranges:      LATIN_RANGES + [0x3400..0x4DBF, 0x4E00..0x9FFF, 0xF900..0xFAFF],
   },
   "Arabic" => {
     source:      :monorepo,
