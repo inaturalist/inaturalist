@@ -5707,6 +5707,20 @@ en:
   suspension_duration_indefinite: Indefinite
   # a select form option to select a custom date when a user will be unsuspended
   suspension_duration_custom: Custom
+  # label for the suspension reason dropdown
+  suspension_reason_label: Reason for suspension
+  # option for entering a custom suspension reason
+  suspension_reason_custom: Custom
+  # note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Please note this reason will be displayed to the suspended user.
+  # suspension reason options
+  suspension_reasons:
+    hate_speech: Hate speech
+    insults_or_threats: Insults or threats
+    sexually_explicit_content: Sexually explicit content
+    sockpuppet_accounts: Sockpuppet accounts
+    false_ids_or_dqa_votes: Intentionally adding false IDs or DQA votes
+    machine_generated_content: Machine generated observations, identifications and comments
   # the time at which a users suspension ends
   suspend_until: Suspend until
   # a note telling users to select the time in their local time zone

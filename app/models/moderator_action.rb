@@ -17,6 +17,15 @@ class ModeratorAction < ApplicationRecord
   MAXIMUM_REASON_LENGTH = 2048
   MAXIMUM_SUSPEND_REASON_LENGTH = 100
 
+  SUSPENSION_REASONS = {
+    "hate_speech" => { default_duration: "1_day" },
+    "insults_or_threats" => { default_duration: "1_day" },
+    "sexually_explicit_content" => { default_duration: "1_day" },
+    "sockpuppet_accounts" => { default_duration: "1_day" },
+    "false_ids_or_dqa_votes" => { default_duration: "1_day" },
+    "machine_generated_content" => { default_duration: "1_day" }
+  }.freeze
+
   PRIVATE_MEDIA_RETENTION_TIME = 2.months
 
   belongs_to :user, inverse_of: :moderator_actions

@@ -5,7 +5,8 @@
     .col-md-6.col-md-offset-3
       %h2= @title
       %p= link_to_user( @moderator_action.resource )
-      = render "moderator_actions/suspension_form", moderator_action: @moderator_action, default_duration: @moderator_action.suspended_until.present? ? "custom" : "indefinite", suspended_until_value: @moderator_action.suspended_until, submit_text: t( :update ), cancel_path: moderation_person_path( @moderator_action.resource )
+      - matched_reason = ModeratorAction::SUSPENSION_REASONS.keys.find { |key| I18n.t( "suspension_reasons.#{key}" ) == @moderator_action.reason }
+      = render "moderator_actions/suspension_form", moderator_action: @moderator_action, default_duration: @moderator_action.suspended_until.present? ? "custom" : "indefinite", suspended_until_value: @moderator_action.suspended_until, selected_reason: matched_reason || "custom", submit_text: t( :update ), cancel_path: moderation_person_path( @moderator_action.resource )
       .form-group
         - if @moderator_action.last_edited_by_user
           %label= t( :last_edited_by )

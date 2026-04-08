@@ -3,22 +3,16 @@ $( function () {
   var customField = document.querySelector( ".custom-suspended-until-field" );
   var hiddenUtc = document.getElementById( "suspended_until_utc" );
   var localPicker = document.getElementById( "suspended_until_local" );
+  var reasonSelect = document.getElementById( "suspension_reason" );
+  var customReasonField = document.querySelector( ".custom-reason-field" );
+  var reasonTextArea = document.getElementById( "moderator_action_reason" );
+  var hiddenReason = document.getElementById( "hidden_reason" );
 
   function toISOString( date ) {
     return date.toISOString().replace( /\.\d{3}Z$/, "Z" );
   }
 
-  var minDate = new Date();
-  var localISO = new Date( minDate.getTime() - minDate.getTimezoneOffset() * 60000 );
-  localPicker.min = localISO.toISOString().slice( 0, 16 );
-
-  // Pre-populate local picker from existing UTC value (e.g. when editing)
-  var { initialUtc } = localPicker.dataset;
-  if ( initialUtc ) {
-    var initialDate = new Date( initialUtc );
-    var initialLocal = new Date( initialDate.getTime() - initialDate.getTimezoneOffset() * 60000 );
-    localPicker.value = initialLocal.toISOString().slice( 0, 16 );
-  }
+  // --- Duration handling (admin-only elements) ---
 
   function computeUtcFromDuration( duration ) {
     var now = new Date();
@@ -47,6 +41,8 @@ $( function () {
   }
 
   function updateSuspendedUntil() {
+    if ( !durationSelect ) return;
+
     var duration = durationSelect.value;
     if ( duration === "custom" ) {
       customField.style.display = "";
@@ -63,16 +59,71 @@ $( function () {
     }
   }
 
-  durationSelect.addEventListener( "change", updateSuspendedUntil );
-  localPicker.addEventListener( "change", function () {
-    if ( localPicker.value ) {
-      var localDate = new Date( localPicker.value );
-      hiddenUtc.value = toISOString( localDate );
-    } else {
-      hiddenUtc.value = "";
-    }
-  } );
+  if ( localPicker ) {
+    var minDate = new Date();
+    var localISO = new Date( minDate.getTime() - minDate.getTimezoneOffset() * 60000 );
+    localPicker.min = localISO.toISOString().slice( 0, 16 );
 
-  // Set initial value for the default selection (1 day)
+    // Pre-populate local picker from existing UTC value (e.g. when editing)
+    var { initialUtc } = localPicker.dataset;
+    if ( initialUtc ) {
+      var initialDate = new Date( initialUtc );
+      var offset = initialDate.getTimezoneOffset() * 60000;
+      var initialLocal = new Date( initialDate.getTime() - offset );
+      localPicker.value = initialLocal.toISOString().slice( 0, 16 );
+    }
+
+    localPicker.addEventListener( "change", function () {
+      if ( localPicker.value ) {
+        var localDate = new Date( localPicker.value );
+        hiddenUtc.value = toISOString( localDate );
+      } else {
+        hiddenUtc.value = "";
+      }
+    } );
+  }
+
+  if ( durationSelect ) {
+    durationSelect.addEventListener( "change", updateSuspendedUntil );
+  }
+
+  // --- Suspension reason handling ---
+
+  function getReasonLabel( reasonKey ) {
+    var option = reasonSelect.querySelector( "option[value=\"" + reasonKey + "\"]" );
+    return option ? option.textContent : "";
+  }
+
+  function updateSuspensionReason() {
+    var selectedReason = reasonSelect.value;
+    if ( selectedReason === "custom" ) {
+      customReasonField.style.display = "";
+      hiddenReason.disabled = true;
+      reasonTextArea.disabled = false;
+      reasonTextArea.required = true;
+    } else {
+      customReasonField.style.display = "none";
+      reasonTextArea.disabled = true;
+      reasonTextArea.required = false;
+      hiddenReason.disabled = false;
+      hiddenReason.value = getReasonLabel( selectedReason );
+
+      // Update duration to the default for this reason
+      // eslint-disable-next-line no-undef
+      if ( durationSelect && typeof SUSPENSION_REASON_DURATIONS !== "undefined" ) {
+        // eslint-disable-next-line no-undef
+        var defaultDuration = SUSPENSION_REASON_DURATIONS[selectedReason];
+        if ( defaultDuration ) {
+          durationSelect.value = defaultDuration;
+          updateSuspendedUntil();
+        }
+      }
+    }
+  }
+
+  reasonSelect.addEventListener( "change", updateSuspensionReason );
+
+  // Set initial values
+  updateSuspensionReason();
   updateSuspendedUntil();
 }() );
