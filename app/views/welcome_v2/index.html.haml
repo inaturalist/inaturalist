@@ -55,13 +55,13 @@
         .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:what)
           %dd
-            = link_to "/observations/#{s_obs["id"]}", target: "_blank", rel: "noopener" do
-              = image_tag s_obs["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: ""
+            = image_tag s_obs["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: ""
             .wv2-taxon
               = image_tag s_obs["taxon_thumbnail_file"].sub( "app/assets/images/", "" ), class: "wv2-taxon__thumb", alt: ""
               .wv2-taxon__names
                 %p= s_obs["common_name"]
                 %em= s_obs["scientific_name"]
+          = link_to "", "/observations/#{s_obs["id"]}", target: "_blank", rel: "noopener", class: "wv2-observation__row-link", aria: { label: t(:view_observation) }
       .wv2-observation__col
         .wv2-observation__row
           %dt= t(:where)

@@ -525,9 +525,17 @@ h2 {
     gap: 33px;
 
     &--sep {
+      position: relative;
       border-top: 1px solid $border-color;
       padding-top: 20px;
     }
+  }
+
+  &__row-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
   }
 
   dt {
