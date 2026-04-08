@@ -34,7 +34,7 @@
     .wv2-stories-row
       - @story_data.each do |heading, body, user, place, img, interp, url|
         = link_to url, class: "wv2-story", target: "_blank", rel: "noopener" do
-          .wv2-story__image{style: "background-image: url(#{asset_path("welcome_v2/#{img}.webp")})"}
+          .wv2-story__image{style: "background: linear-gradient(180deg, rgba(0,0,0,0) 50.22%, rgba(0,0,0,0.50) 89.74%), url(#{asset_path("welcome_v2/#{img}.webp")}) lightgray 50% / cover no-repeat;"}
             %h3= t("#{s}.stories.#{heading}")
           .wv2-story__body
             %p= t("#{s}.stories.#{body}", **interp)
@@ -55,7 +55,8 @@
         .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:what)
           %dd
-            = image_tag s_obs["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: ""
+            = link_to "/observations/#{s_obs["id"]}", target: "_blank", rel: "noopener" do
+              = image_tag s_obs["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: ""
             .wv2-taxon
               = image_tag s_obs["taxon_thumbnail_file"].sub( "app/assets/images/", "" ), class: "wv2-taxon__thumb", alt: ""
               .wv2-taxon__names
@@ -224,13 +225,13 @@
   -# ── Newsletter ────────────────────────────────────────────
   .wv2-section.wv2-section--dark.wv2-section--spacious.text-center
     %h2= t("#{s}.newsletter.heading")
-    %p= t("#{s}.newsletter.body")
+    %p.wv2-section__body= t("#{s}.newsletter.body")
     = link_to t(:sign_up_sentence_case), "https://www.inaturalist.org/pages/newsletter?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=newsletter_signup", class: "btn wv2-btn--white"
 
   -# ── Donate ────────────────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--spacious.text-center
     %p.wv2-donate__headline= t("#{s}.donate.heading")
-    %p= t("#{s}.donate.subheading")
+    %p.wv2-section__body= t("#{s}.donate.subheading")
     = link_to t("#{s}.donate.cta"), "https://www.inaturalist.org/donate?redirect=true&segment=gmHome?utm_source=inaturalist_homepage&utm_medium=webmobile&utm_campaign=homepage_redesign_2026&utm_content=donate_cta", class: "btn wv2-btn--green"
 
   -# ── FAQ ───────────────────────────────────────────────────
@@ -306,6 +307,25 @@
         if (prevBtn) prevBtn.addEventListener("click", function () { scrollToIndex(activeDotIndex() - 1); });
         if (nextBtn) nextBtn.addEventListener("click", function () { scrollToIndex(activeDotIndex() + 1); });
 
+        function updateStaticMode() {
+          // Temporarily remove overflow clip so scrollWidth reflects natural content width
+          var wasStatic = carousel.classList.contains("wv2-carousel--static");
+          carousel.classList.remove("wv2-carousel--static");
+          var fits = track.scrollWidth <= track.clientWidth;
+          carousel.classList.toggle("wv2-carousel--static", fits);
+          if (!fits && wasStatic) {
+            // Re-center after switching back to carousel mode
+            requestAnimationFrame(function () {
+              var initIdx = Math.floor(items.length / 2);
+              var item = items[initIdx];
+              var itemRect = item.getBoundingClientRect();
+              var trackRect = track.getBoundingClientRect();
+              track.scrollLeft = track.scrollLeft + itemRect.left - trackRect.left - (trackRect.width - itemRect.width) / 2;
+              syncDots();
+            });
+          }
+        }
+
         requestAnimationFrame(function () {
           var initIdx = Math.floor(items.length / 2);
           var item = items[initIdx];
@@ -313,7 +333,10 @@
           var trackRect = track.getBoundingClientRect();
           track.scrollLeft = track.scrollLeft + itemRect.left - trackRect.left - (trackRect.width - itemRect.width) / 2;
           syncDots();
+          updateStaticMode();
         });
+
+        new ResizeObserver(updateStaticMode).observe(carousel);
       });
     })();
 

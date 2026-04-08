@@ -32,6 +32,7 @@
 #     --output out.json --output-dir ./images
 #   ruby tools/fetch_observations.rb --project 29905 --dry-run
 
+require "date"
 require "json"
 require "net/http"
 require "optparse"
@@ -39,6 +40,7 @@ require "fileutils"
 require "set"
 require "shellwords"
 require "tempfile"
+require "time"
 require "uri"
 
 LOCALES_DIR   = File.expand_path("../config/locales", __dir__).freeze
@@ -60,7 +62,7 @@ OBS_FIELDS = (
 # Fields for the per-locale common-name pass.
 NAME_FIELDS = "(id:!t,taxon:(preferred_common_name:!t))".freeze
 
-# Fields for the sample observation (same as OBS_FIELDS plus observed_on).
+# Fields for the sample observation (same as OBS_FIELDS plus observed_on/time).
 SAMPLE_OBS_FIELDS = (
   "(id:!t," \
   "user:(login:!t,icon_url:!t)," \
@@ -68,8 +70,34 @@ SAMPLE_OBS_FIELDS = (
   "photos:(url:!t)," \
   "place_guess:!t," \
   "location:!t," \
-  "observed_on:!t)"
+  "observed_on:!t," \
+  "time_observed_at:!t," \
+  "observed_time_zone:!t)"
 ).freeze
+
+# Standard-time offsets and abbreviations for common IANA timezone names.
+# DST is intentionally ignored — the sample observation is in Costa Rica (no DST).
+TIMEZONE_INFO = {
+  "America/New_York"       => { offset: -5, abbr: "EST"  },
+  "America/Chicago"        => { offset: -6, abbr: "CST"  },
+  "America/Denver"         => { offset: -7, abbr: "MST"  },
+  "America/Phoenix"        => { offset: -7, abbr: "MST"  },
+  "America/Los_Angeles"    => { offset: -8, abbr: "PST"  },
+  "America/Anchorage"      => { offset: -9, abbr: "AKST" },
+  "Pacific/Honolulu"       => { offset: -10, abbr: "HST" },
+  "America/Costa_Rica"     => { offset: -6, abbr: "CST"  },
+  "America/Mexico_City"    => { offset: -6, abbr: "CST"  },
+  "America/Bogota"         => { offset: -5, abbr: "COT"  },
+  "America/Sao_Paulo"      => { offset: -3, abbr: "BRT"  },
+  "America/Buenos_Aires"   => { offset: -3, abbr: "ART"  },
+  "Europe/London"          => { offset: 0,  abbr: "GMT"  },
+  "Europe/Paris"           => { offset: 1,  abbr: "CET"  },
+  "Europe/Berlin"          => { offset: 1,  abbr: "CET"  },
+  "Asia/Tokyo"             => { offset: 9,  abbr: "JST"  },
+  "Asia/Shanghai"          => { offset: 8,  abbr: "CST"  },
+  "Asia/Kolkata"           => { offset: 5,  abbr: "IST"  },
+  "UTC"                    => { offset: 0,  abbr: "UTC"  },
+}.freeze
 
 # Fields for story observations (taxon common names only).
 STORY_OBS_FIELDS = "(id:!t,taxon:(preferred_common_name:!t))".freeze
@@ -254,6 +282,22 @@ def parse_location(location)
 end
 
 
+def format_observed_on(observed_on, time_observed_at, observed_time_zone)
+  date_part = Date.parse(observed_on).strftime("%b %-d, %Y")
+  return date_part unless time_observed_at
+
+  tz = TIMEZONE_INFO[observed_time_zone]
+  return date_part unless tz
+
+  utc = Time.parse(time_observed_at).utc
+  local = utc + tz[:offset] * 3600
+  h, m = local.hour, local.min
+  ampm = h >= 12 ? "PM" : "AM"
+  h12 = h % 12
+  h12 = 12 if h12.zero?
+  "#{date_part} · #{h12}:#{m.to_s.rjust(2, "0")} #{ampm} #{tz[:abbr]}"
+end
+
 def build_record(obs)
   user  = obs["user"]  || {}
   taxon = obs["taxon"] || {}
@@ -275,7 +319,9 @@ def build_record(obs)
 end
 
 def build_sample_record(obs)
-  build_record(obs).merge("observed_on" => obs["observed_on"])
+  build_record(obs).merge(
+    "observed_on" => format_observed_on(obs["observed_on"], obs["time_observed_at"], obs["observed_time_zone"])
+  )
 end
 
 # ── Fetch observations ────────────────────────────────────────────────────────

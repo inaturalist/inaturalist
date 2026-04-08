@@ -182,6 +182,10 @@ $breakpoint-mobile:    767px;
   align-items: center;
   gap: 6px;
   min-width: 0;
+
+  span {
+    font-size: 14px;
+  }
 }
 
 .wv2-location__icon {
@@ -199,7 +203,7 @@ $breakpoint-mobile:    767px;
   p, em {
     @extend %truncate;
     margin: 0;
-    line-height: 1;
+    line-height: 130%;
   }
 
   em {
@@ -436,6 +440,7 @@ h2 {
     position: relative;
     height: 228px;
     background: $border-color center/cover no-repeat;
+    background-blend-mode: multiply, normal;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -662,6 +667,17 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    p {
+      font-size: 17px;
+      line-height: normal;
+      letter-spacing: $letter-spacing-tight;
+
+      @media (max-width: $breakpoint-mobile) {
+        font-size: 15px;
+        letter-spacing: -0.45px;
+      }
+    }
   }
 
   .wv2-step__heading {
@@ -736,6 +752,7 @@ h2 {
     letter-spacing: -0.04em;
     text-align: center;
     margin: 0;
+    max-width: 500px;
 
     @media (max-width: $breakpoint-mobile) { font-size: 17px; }
   }
@@ -759,7 +776,7 @@ h2 {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding: 0 calc(100vw / 2) 4px calc(100vw / 2);
+    padding: 10px;
 
     &::-webkit-scrollbar { display: none; }
   }
@@ -822,6 +839,20 @@ h2 {
 
     &.active { background: $green; }
   }
+}
+
+.wv2-carousel--static {
+  .wv2-carousel__arrow,
+  .wv2-carousel__dots { display: none !important; }
+
+  .wv2-carousel__track {
+    overflow-x: visible;
+    scroll-snap-type: none;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .wv2-carousel__item { scroll-snap-align: none; }
 }
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
@@ -1143,8 +1174,20 @@ a.wv2-carousel__item {
 
 // ── Newsletter ────────────────────────────────────────────────────────────────
 
+.wv2-section__body {
+  font-family: $font-sans;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.3;
+  max-width: 500px;
+  margin: 0 auto 20px;
+
+  @media (max-width: $breakpoint-mobile) { font-size: 14px; }
+}
+
 .wv2-section--dark {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%), image-url("welcome_v2/dragonfly.webp") lightgray 50% / cover no-repeat;
+
   h2 {
     font-family: var(--font-serif);
     font-weight: 700;
@@ -1159,17 +1202,7 @@ a.wv2-carousel__item {
     @media (max-width: $breakpoint-mobile) { font-size: 20px; }
   }
 
-  p {
-    font-family: $font-sans;
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.3;
-    color: $white;
-    max-width: 500px;
-    margin: 0 auto 20px;
-
-    @media (max-width: $breakpoint-mobile) { font-size: 14px; }
-  }
+  .wv2-section__body { color: $white; }
 }
 
 // ── Donate ────────────────────────────────────────────────────────────────────
