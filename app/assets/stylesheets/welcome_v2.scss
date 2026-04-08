@@ -46,6 +46,12 @@ $breakpoint-mobile:    767px;
   body.responsive #inatnotice { padding-bottom: 80px; }
 }
 
+// TODO REMOVE
+#header .logolink img {
+  width: 121px;
+  height: 22px;
+}
+
 
 // ── Header overwrites, incorporate into main header styles once ready ────────
 
@@ -356,6 +362,7 @@ h2 {
   @media (max-width: $breakpoint-mobile) {
     &:has([src*="learn"]) { width: 155px; }
   }
+  @media (max-width: 380px) { width: 100px; }
 
   .wv2-feature__icon-wrap {
     height: 100px;
@@ -601,7 +608,6 @@ h2 {
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  justify-content: center;
 }
 
 .wv2-stat__number {

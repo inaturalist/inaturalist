@@ -164,11 +164,7 @@
       .wv2-download__images
         = image_tag "welcome_v2/inaturalist.webp", class: "wv2-download__phone", alt: "iNaturalist app", width: 600, height: 604
       .wv2-download__cta
-        .wv2-store-badges
-          = link_to "https://apps.apple.com/app/apple-store/id6475737561?pt=475606&ct=homepage&mt=8?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=app_download_ios", target: "_blank", rel: "noopener" do
-            = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Download on the App Store", class: "wv2-store-badge", width: 304, height: 90
-          = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.android&hl=en_US?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=app_download_android", target: "_blank", rel: "noopener" do
-            = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Get it on Google Play", class: "wv2-store-badge", width: 304, height: 90
+        = render "store_badges", ios_url: "https://apps.apple.com/app/apple-store/id6475737561?pt=475606&ct=homepage&mt=8?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=app_download_ios", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.android&hl=en_US?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=app_download_android"
         %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
 
   -# ── Explore species ───────────────────────────────────────
@@ -215,11 +211,7 @@
       .wv2-seek__images
         = image_tag "welcome_v2/seek.webp", class: "wv2-seek__phone", alt: "Seek app", width: 600, height: 605
       .wv2-seek__cta
-        .wv2-store-badges
-          = link_to "https://itunes.apple.com/app/seek-by-inaturalist/id1353224144", target: "_blank", rel: "noopener" do
-            = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Download on the App Store", class: "wv2-store-badge", width: 304, height: 90
-          = link_to "https://play.google.com/store/apps/details?id=org.inaturalist.seek", target: "_blank", rel: "noopener" do
-            = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Get it on Google Play", class: "wv2-store-badge", width: 304, height: 90
+        = render "store_badges", ios_url: "https://itunes.apple.com/app/seek-by-inaturalist/id1353224144", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.seek"
         %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
 
   -# ── Newsletter ────────────────────────────────────────────
@@ -344,8 +336,21 @@
     (function () {
       var header = document.getElementById("header");
       if (!header) return;
+      var signinLink = header.querySelector(".signin_link");
+      var orSpan = signinLink && signinLink.nextElementSibling && signinLink.nextElementSibling.tagName === "SPAN"
+        ? signinLink.nextElementSibling
+        : null;
       function updateDonateText() {
+        // Reset
         header.classList.remove("header-donate-icon-only");
+        if (signinLink) signinLink.style.display = "";
+        if (orSpan) orSpan.style.display = "";
+        // Step 1: hide signin + or if overflowing
+        if (header.scrollWidth > header.clientWidth) {
+          if (signinLink) signinLink.style.display = "none";
+          if (orSpan) orSpan.style.display = "none";
+        }
+        // Step 2: shrink donate button if still overflowing
         if (header.scrollWidth > header.clientWidth) {
           header.classList.add("header-donate-icon-only");
         }
