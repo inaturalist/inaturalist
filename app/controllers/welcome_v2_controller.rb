@@ -27,17 +27,26 @@ class WelcomeV2Controller < ApplicationController
     ["amphibian_heading", "amphibian_body",   "tcuriel",      "United States", nil,              "california_newt", "https://tr.ee/hQZIFH"]
   ].freeze
 
+  HEADER_UTM = "utm_source=inaturalist_homepage&utm_campaign=homepage_redesign_2026".freeze
+
   def index
     @responsive = true
     @skip_external_connections = true
     @skip_react = true
+
+    @header_utm = HEADER_UTM
+    @header_donate_url = "https://www.inaturalist.org/donate?redirect=true&segment=gmHome&#{HEADER_UTM}&utm_medium=webmobile&utm_content=header_donate_cta"
+    @header_login_url  = "https://www.inaturalist.org/login?#{HEADER_UTM}&utm_medium=owned_web&utm_content=header_login_cta"
+    @header_signup_url = "https://www.inaturalist.org/signup?#{HEADER_UTM}&utm_medium=owned_web&utm_content=header_signup_cta"
+
     @locale_key = I18n.locale.to_s
     @locale_base = @locale_key.split( "-" ).first
+
     @steps_data = STEPS_DATA
-    @testimonials = TESTIMONIALS_DATA
+    @testimonials_data = TESTIMONIALS_DATA
     @story_data = build_story_data
-    @sample_observation = build_sample_observation
-    @explore_observations = OBSERVATIONS_DATA["explore"] || []
+    @sample_observation_data = build_sample_observation
+    @explore_observations_data = OBSERVATIONS_DATA["explore"] || []
 
     render layout: "bootstrap"
   end

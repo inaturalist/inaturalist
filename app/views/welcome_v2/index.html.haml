@@ -14,7 +14,7 @@
     .wv2-hero__content
       %h1= t("#{s}.hero.headline")
       %p.wv2-hero__sub= t("#{s}.hero.subheadline")
-      = link_to t("#{s}.hero.cta_join"), "https://www.inaturalist.org/signup?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=hero_join_cta", class: "btn wv2-btn--white btn-lg"
+      = link_to t("#{s}.hero.cta_join"), "https://www.inaturalist.org/signup?#{@header_utm}&utm_medium=owned_web&utm_content=hero_join_cta", class: "btn wv2-btn--white btn-lg"
       %p.wv2-hero__tagline= t("#{s}.hero.tagline")
 
   -# ── "With iNaturalist you can" features ───────────────────
@@ -34,17 +34,18 @@
     .wv2-stories-row
       - @story_data.each do |heading, body, user, place, img, interp, url|
         = link_to url, class: "wv2-story", target: "_blank", rel: "noopener" do
-          .wv2-story__image{style: "background: linear-gradient(180deg, rgba(0,0,0,0) 50.22%, rgba(0,0,0,0.50) 89.74%), url(#{asset_path("welcome_v2/#{img}.webp")}) lightgray 50% / cover no-repeat;"}
+          .wv2-story__image
+            = image_tag "welcome_v2/#{img}.webp", alt: t("#{s}.stories.#{heading}")
             %h3= t("#{s}.stories.#{heading}")
           .wv2-story__body
             %p= t("#{s}.stories.#{body}", **interp)
             %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
-    = link_to t("#{s}.stories.read_more"), "https://www.inaturalist.org/pages/impact?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=impact_stories_cta", class: "btn wv2-btn--green"
+    = link_to t("#{s}.stories.read_more"), "https://www.inaturalist.org/pages/impact?#{@header_utm}&utm_medium=owned_web&utm_content=impact_stories_cta", class: "btn wv2-btn--green"
 
   -# ── Sample observation ────────────────────────────────────
   .wv2-section.wv2-section--light.text-center
     %h2= t("#{s}.observation.heading")
-    - s_obs = @sample_observation
+    - s_obs = @sample_observation_data
     %dl.wv2-observation
       .wv2-observation__col
         .wv2-observation__row
@@ -126,7 +127,7 @@
         .wv2-carousel__stage
           %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
           .wv2-carousel__track
-            - @testimonials.each do |key, person|
+            - @testimonials_data.each do |key, person|
               .wv2-carousel__item
                 .wv2-testimonial
                   .wv2-testimonial__quote
@@ -138,7 +139,7 @@
                       %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
           %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
         .wv2-carousel__dots
-          - @testimonials.each_with_index do |(key, _), i|
+          - @testimonials_data.each_with_index do |(key, _), i|
             %button.wv2-carousel__dot{ class: (i == 0 ? "active" : nil), "aria-label": "Testimonial #{i + 1}" }
 
   -# ── Everyone is a naturalist ──────────────────────────────
@@ -174,7 +175,7 @@
         .wv2-carousel__stage
           %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
           .wv2-carousel__track
-            - @explore_observations.each do |obs|
+            - @explore_observations_data.each do |obs|
               - common = obs["common_names"][@locale_key] || obs["common_names"][@locale_base] || obs["common_names"]["en"]
               = link_to "/observations/#{obs["id"]}", target: "_blank", class: "wv2-carousel__item" do
                 .wv2-obs-card
@@ -196,8 +197,8 @@
                     %span= obs["place_guess"].presence || "—"
           %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
         .wv2-carousel__dots
-          - obs_mid = @explore_observations.length / 2
-          - @explore_observations.each_with_index do |_, i|
+          - obs_mid = @explore_observations_data.length / 2
+          - @explore_observations_data.each_with_index do |_, i|
             %button.wv2-carousel__dot{ class: (i == obs_mid ? "active" : nil), "aria-label": "Observation #{i + 1}" }
     = link_to t("#{s}.explore.button"), observations_path, class: "btn wv2-btn--dark"
 
@@ -217,13 +218,13 @@
   .wv2-section.wv2-section--dark.wv2-section--spacious.text-center
     %h2= t("#{s}.newsletter.heading")
     %p.wv2-section__body= t("#{s}.newsletter.body")
-    = link_to t(:sign_up_sentence_case), "https://www.inaturalist.org/pages/newsletter?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=newsletter_signup", class: "btn wv2-btn--white"
+    = link_to t(:sign_up_sentence_case), "https://www.inaturalist.org/pages/newsletter?#{@header_utm}&utm_medium=owned_web&utm_content=newsletter_signup", class: "btn wv2-btn--white"
 
   -# ── Donate ────────────────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--spacious.text-center
     %p.wv2-donate__headline= t("#{s}.donate.heading")
     %p.wv2-section__body= t("#{s}.donate.subheading")
-    = link_to t("#{s}.donate.cta"), "https://www.inaturalist.org/donate?redirect=true&segment=gmHome?utm_source=inaturalist_homepage&utm_medium=webmobile&utm_campaign=homepage_redesign_2026&utm_content=donate_cta", class: "btn wv2-btn--green"
+    = link_to t("#{s}.donate.cta"), "https://www.inaturalist.org/donate?redirect=true&segment=gmHome&#{@header_utm}&utm_medium=webmobile&utm_content=donate_cta", class: "btn wv2-btn--green"
 
   -# ── FAQ ───────────────────────────────────────────────────
   .wv2-section.wv2-section--light
@@ -235,7 +236,7 @@
           %p= t("#{s}.faq.#{key}_answer")
 
 -# ── iOS app banner ───────────────────────────────────────────
-= link_to "https://www.inaturalist.org/redirect_links/31?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=sticky_footer_cta", class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
+= link_to "https://www.inaturalist.org/redirect_links/31?#{@header_utm}&utm_medium=owned_web&utm_content=sticky_footer_cta", class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
   = image_tag "welcome_v2/app-icon.webp", class: "wv2-app-banner__icon", alt: ""
   .wv2-app-banner__text
     = image_tag "welcome_v2/inat-wordmark.webp", class: "wv2-app-banner__wordmark", alt: "iNaturalist"
