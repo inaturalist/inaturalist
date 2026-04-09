@@ -2302,7 +2302,7 @@ id:
   #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifikasi
   #e.g. "Identify using iNaturalist"
-  identify_cta: Mengidentifikasi
+  identify_cta: Identifikasi
   identification: identifikasi
   identification_by_user: Identifikasi oleh %{user}
   #Notification when an identification has been deleted
@@ -8402,7 +8402,6 @@ id:
           #Main hero headline on the home page
           headline: Tempat keingintahuan Anda berkontribusi pada ilmu pengetahuan.
           #Hero subheadline describing the core value proposition
-          #TODO: test that line break here doesn't cause line break
           subheadline: >
             Identifikasi tumbuhan, hewan, jamur, dan lebih banyak lagi sembari berkontribusi bagi atlas kehidupan di Bumi.
           #Primary call-to-action button in the hero section
@@ -8517,6 +8516,7 @@ id:
             Setiap gambar yang Anda bagikan menjadi bagian dari catatan ilmiah global yang diandalkan oleh para peneliti di seluruh dunia.
           #Heading for the community reputation sub-section
           community_heading: '"Tempat online teramah"'
+          community_heading_2: Tempat online terbaik
           #Description of the welcoming community aspect
           community_body: >
             Datang untuk identifikasinya, tinggal untuk komunitasnya dan berdampak bagi sains.

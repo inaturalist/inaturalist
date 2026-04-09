@@ -87,6 +87,90 @@ class AdminController < ApplicationController
     end
   end
 
+  def build_test_users
+    @build_test_user_enabled = build_test_user_enabled?
+    @test_group_name = BuildTestUser::TEST_GROUP_NAME
+    @test_group_users = User.
+      where( "test_groups LIKE ?", "%#{@test_group_name}%" ).
+      order( "id desc" ).
+      limit( 200 )
+    @form_defaults = {
+      login: params[:login],
+      observations_count: params[:observations_count],
+      identifications_for_others_count: params[:identifications_for_others_count]
+    }
+    render layout: "admin"
+  end
+
+  def build_test_user
+    unless build_test_user_enabled?
+      flash[:error] = "Test user creation is disabled by configuration"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+
+    login = params[:build_test_login].to_s.strip
+    password = params[:build_test_password].to_s
+    observations_count = [params[:observations_count].to_i, 0].max
+    identifications_for_others_count = [params[:identifications_for_others_count].to_i, 0].max
+
+    if login.blank? || password.blank?
+      flash[:error] = "Login and password are required"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+
+    BuildTestUser.update_progress( login, status: "queued", progress: 0 )
+    BuildTestUser.delay(
+      priority: INTEGRITY_PRIORITY,
+      queue: "slow"
+    ).build_user(
+      {
+        login: login,
+        password: password,
+        observations_count: observations_count,
+        identifications_for_others_count: identifications_for_others_count
+      }
+    )
+    flash[:notice] = "Build test user job queued for #{login}"
+    redirect_to build_test_users_admin_path
+  end
+
+  def build_test_user_progress
+    login = params[:login].to_s.strip
+    progress = login.present? ? BuildTestUser.progress( login ) : nil
+    progress ||= { status: "not_found" }
+    render json: progress
+  end
+
+  def build_test_user_progress_log
+    @progress_log = BuildTestUser.progress_log
+    render layout: "admin"
+  end
+
+  def build_test_user_updates
+    unless build_test_user_enabled?
+      flash[:error] = "Test user updates are disabled by configuration"
+      return redirect_back_or_default( build_test_users_admin_path )
+    end
+
+    target_user_login = params[:target_user_login].to_s.strip
+    target_user = User.where( "lower(login) = ?", target_user_login.downcase ).first unless target_user_login.blank?
+    update_action = params[:update_action].to_s
+    count = [params[:count].to_i, 0].max
+    result = BuildTestUser.apply_updates(
+      target_user_id: target_user&.id,
+      update_action: update_action,
+      count: count
+    )
+    flash[result.success ? :notice : :error] = result.message
+    redirect_to build_test_users_admin_path
+  end
+
+  private
+
+  def build_test_user_enabled?
+    BuildTestUser.enabled?
+  end
+
   def user_content
     return unless load_user_content_info
 

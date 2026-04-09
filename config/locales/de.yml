@@ -2315,7 +2315,7 @@ de:
   #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifizieren
   #e.g. "Identify using iNaturalist"
-  identify_cta: Identifizieren
+  identify_cta: Identifiziere
   identification: ID
   identification_by_user: Bestimmung durch %{user}
   #Notification when an identification has been deleted
@@ -8361,7 +8361,6 @@ de:
           #Main hero headline on the home page
           headline: Wo deine Neugier zur Wissenschaft beiträgt.
           #Hero subheadline describing the core value proposition
-          #TODO: test that line break here doesn't cause line break
           subheadline: >
             Pflanzen, Tiere, Pilze und mehr identifizieren und gleichzeitig einen lebendigen Lebensatlas auf der Erde ergänzen.
           #Primary call-to-action button in the hero section
@@ -8476,6 +8475,7 @@ de:
             Jedes Foto, das Sie teilen, wird Teil eines globalen wissenschaftlichen Archivs, auf das Forscher weltweit angewiesen sind.
           #Heading for the community reputation sub-section
           community_heading: '"Der schönste Ort online"'
+          community_heading_2: Der schönste Ort online
           #Description of the welcoming community aspect
           community_body: >
             Kommt wegen der Identifikationen, bleibt für die Gemeinschaft und den Einfluss auf die Wissenschaft.
