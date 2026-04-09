@@ -1161,6 +1161,8 @@ es-MX:
     %{user} reveló este %{item} porque «%{reason}»
   continue: Continuar
   continue_to_site: Continua a %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Contribuye
   contributor_cannot_be_found: El contribuidor del proyecto no pudo ser encontrado
   contributors_to_project: "Contribuciones a %{project}"
   controlled_term_labels:
@@ -2367,6 +2369,8 @@ es-MX:
   identify_observations: "Identificar observaciones"
   identify_observations_by_these_users: Identificar observaciones de estos usuarios
   identify_title: "Identifica"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identifica
   identification: Identificación
   identification_by_user: Identificación por %{user}
   #Notification when an identification has been deleted
@@ -2604,7 +2608,7 @@ es-MX:
     identifications_in_month_year: Mayor número de identificaciones en %{month_year}
     identifications_in_year: Mayor cantidad de identificaciones en %{year}
   leading: Principal
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
   learn_more: Aprende más
@@ -5699,6 +5703,8 @@ es-MX:
   total_observations_caps: TOTAL DE OBSERVACIONES
   total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Huella(s)
   translated_languages: Lenguajes traducidos
   'true': 'Sí'
   trending: Tendencias
@@ -6102,6 +6108,7 @@ es-MX:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que está en el %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Lo sentimos, pero tu importación masiva de %{filename} ha fallado."
+  #e.g. "What was observed?"
   what: Qué
   what_did_you_see: '¿Qué viste?'
   what_did_you_see?: <em>¿Qué</em> viste?
@@ -6110,9 +6117,11 @@ es-MX:
   what_want_to_list?: '¿Que quieres poner en la lista?'
   what_were_you_looking_for?: "¿Qué estabas buscando? (lista de objetivos)"
   whats_this?: '¿Qué es esto?'
+  #e.g. "When was it observed?"
   when: Cuándo
   when_did_you_see_it?: '¿Cuándo lo viste?'
   when_did_you_see_them?: <em>¿Cuándo</em> los viste?
+  #e.g. "Where was it observed?"
   where: Dónde
   where_were_they?: <em>¿Dónde</em> se encontraban?
   where_were_you?: <em>¿Dónde</em> estabas?
@@ -8348,6 +8357,11 @@ es-MX:
         who_uses_site_name: "¿Quién utiliza %{site_name}?"
         what_are_you_waiting_for: '¿Qué estás esperando?'
         join_today: Únete hoy
+    welcome_v2:
+      index:
+        donate:
+          #Call-to-action button for the donation section
+          cta: Donar ahora
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Guardar y editar para agregar datos adjuntos

@@ -433,6 +433,8 @@ eo:
   connecting_flickr: "Konektanta Flickr..."
   continue: Daŭrigi
   continue_to_site: Daŭrigi al %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Kontribui
   contributor_cannot_be_found: Kontribuinto ne troviĝas
   contributors_to_project: "Kontribuintoj al %{project}"
   controlled_term_labels:
@@ -740,6 +742,8 @@ eo:
   id: ID
   identify: Identigi
   identify_title: "Identigi"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identigi
   identification: Identigo
   identification_by_user: Identigo far %{user}
   #Notification when an identification has been deleted
@@ -786,7 +790,7 @@ eo:
   leaderboard: Ĉampionejo
   leaderboard_for_x: "Ĉampionejo por %{x}"
   leaderboards: Ĉampionejoj
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Lerni
   learn_more: Lerni Plu
   learn_more_raquo: "Lerni plu &raquo;"
@@ -1737,11 +1741,14 @@ eo:
   welcome_back!: Rean Bonvenon!
   welcome_to_inat: "Bonvenon al %{site_name}!"
   welcome_to_x_project: "Bonvenon al %{project}"
+  #e.g. "What was observed?"
   what: Kiu
   what_did_you_see: Kion vi vidis?
   what_did_you_see?: <em>Kion</em> vi vidis?
   whats_this?: Kio estas ĉi tio?
+  #e.g. "When was it observed?"
   when: Kiam
+  #e.g. "Where was it observed?"
   where: Kie
   where_were_they?: Kie ili estis?
   where_were_you?: Kie vi estis?
@@ -1904,6 +1911,11 @@ eo:
         who_uses_site_name: "Kiu Uzas %{site_name}?"
         what_are_you_waiting_for: Kial vi hezitus?
         join_today: Aliĝu Hodiaŭ
+    welcome_v2:
+      index:
+        donate:
+          #Call-to-action button for the donation section
+          cta: Donacu nun
   date:
     abbr_day_names:
       - Dim

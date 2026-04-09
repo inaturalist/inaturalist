@@ -66,6 +66,8 @@
         %td
           - if record.user_id == 0 && record.is_a?( Flag )
             = @site.site_name_short
+          - if record.user_id == nil && record.is_a?( ModeratorAction )
+            = t( :moderator_actions_suspension_expired )
           - else
             = link_to_user( record.user )
         %td

@@ -23,7 +23,7 @@ class Observation < ApplicationRecord
     )
   }
 
-  settings index: { number_of_shards: Rails.env.production? ? 12 : 4, analysis: ElasticModel::ANALYSIS } do
+  settings index: { number_of_shards: Rails.env.production? ? 24 : 4, analysis: ElasticModel::ANALYSIS } do
     mappings( dynamic: true ) do
       indexes :annotations, type: :nested do
         indexes :concatenated_attr_val, type: "keyword"
@@ -277,11 +277,13 @@ class Observation < ApplicationRecord
         indexes :parent_id, type: "integer" do
           indexes :keyword, type: "keyword"
         end
+        indexes :provisional, type: "boolean"
         indexes :rank, type: "keyword"
         indexes :rank_level, type: "scaled_float", scaling_factor: 100
         indexes :statuses, type: :nested do
           indexes :authority, type: "keyword"
           indexes :geoprivacy, type: "keyword"
+          indexes :id, type: "integer"
           indexes :iucn, type: "byte"
           indexes :place_id, type: "keyword"
           indexes :source_id, type: "short"

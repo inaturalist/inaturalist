@@ -43,6 +43,8 @@ base: &base
 
     node_api_url: <%= ENV.fetch("INAT_API_URL") { "http://localhost:4000/v1" } %>
 
+    build_test_user_enabled: <%= ENV.fetch("INAT_BUILD_TEST_USER_ENABLED") { false } %>
+
     google:
         browser_api_key: <%= ENV.fetch("INAT_GOOGLE_BROWSER_API_KEY") { "INAT_GOOGLE_BROWSER_API_KEY" } %>
         client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") { "INAT_GOOGLE_CLIENT_ID" } %>

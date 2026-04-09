@@ -615,6 +615,8 @@ sq:
       takson, vendoseni këtë në "Afër kërcënuar" ose më lart.
   contain_all_descendants?: A përmban kjo listë të gjithë pasardhësit e këtij taxon që paraqiten këtu?
   continue: Vazhdo
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Kontribuo
   contributor_cannot_be_found: Kontribuesi nuk mund të gjendet
   contributors_to_project: "Kontribuesit në %{project}"
   controlled_term_labels:
@@ -693,6 +695,8 @@ sq:
   curating: Duke kuruar
   curation: Kurimi
   curator: Kurator
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Udhëzues për kuratorin
   curators_changed_for_x_html: "Kuratorët ndryshuan %{x}"
   curators: Kuratorët
   curators_can_remove_observations_from: Kuratorët mund të heqin vëzhgimet nga projekti, dhe identifikimet e tyre shfaqen krahas vëzhgimeve në pamje specifike të projektit. Po ashtu, kuratorët mund të shohin koordinatat e vërteta të kontributeve private dhe të errësuara në projekt.
@@ -818,6 +822,8 @@ sq:
   devise_confirmation_instructions_please_click2: |
     Ju lutemi kliko linkun më poshtë për të konfirmuar adresën tuaj të emailit. Nëse nuk e konfirmoni emailin tuaj
     Adresa, ju nuk do të jeni në gjendje të ndërveproni me përmbajtjen e përdoruesve të tjerë.
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Zbulo
   discoveries: Zbulimet
   did_you_mean: 'Kishit në mendje'
   did_you_photos_flickr?: A keni hedhur ndonjë fotografi në Flickr?
@@ -835,6 +841,9 @@ sq:
     Studioni krimbat? Jeni eksperti më i madh i klasës së karavidheve? Ju pëlqen të sodisni lulet? Plotësimi i profilit tuaj i jep personalitet dhe rrit besueshmërinë tuaj kur ndihmoni të tjerët të bëjnë identifikime.
   doesnt_have_default_photo: ende nuk ka një foto të paracaktuar.
   doh_something_went_wrong: D'oh, diçka shkoi keq.
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DHURO
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Dhuroni
   done: U krye
@@ -964,6 +973,7 @@ sq:
   extra_properties: Karakteristikat ekstra
   evidence_accurately_depicts_organism_or_scene: Provat përshkruajnë me saktësi organizmin ose skenën
   evidence_of_organism: Dëshmia e organizmit
+  facebook: Në Facebook
   failed_to_find_your_location: Dështoi në gjetjen e vendndodhjes tënde.
   failed_to_repair_photo: "Dështoi në riparimin e fotos: %{errors}"
   failed_to_save_record: "Dështoi në ruajtjen e regjistrimit. Ju lutem provoni përsëri më vonë."
@@ -1066,6 +1076,7 @@ sq:
   for_a_taxon: per një taxon
   formatting: Formatimi
   forgot_your_password: Keni harruar fjalëkalimin?
+  forum: Forumi
   frequency: Shpeshtësia
   from_a_place: nga një vend
   from_eol_collection: Nga koleksioni EOL
@@ -1083,6 +1094,8 @@ sq:
   geoprivacy: Privatësia e Gjeografike
   georeferenced: Referuar sipas vendit?
   get_started: Filloni
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Fillimi
   getting_started_guide: Udhëzuesi i fillimit
   global_names: Emrat globalë
   globally: globalisht
@@ -1154,6 +1167,10 @@ sq:
   identify: Identifiko
   identify_observations: "Identifiko vëzhgimet"
   identify_title: "Identifiko"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identifikoni
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identifikoni
   identification: identifikim
   identification_by_user: identifikim nga %{user}
   #Notification when an identification has been deleted
@@ -1230,6 +1247,7 @@ sq:
   input_taxon: Fut taxon
   insects: Insektet
   insect_life_stage: Etapat e jetës së insektit
+  instagram: Instagrami
   interactions: Ndërveprime
   internal_server_error: Gabim në serverin e brendshëm
   introduced: E sjellë
@@ -1252,6 +1270,7 @@ sq:
     Kjo është etiketuar si spam më nuk është publikisht e dukshme. Ju mund ta shihni sepse e keni krijuar, ose ju jeni rregulluesi i faqes. Nëse mendoni se ky është gabim, ju lutem
     <a href="mailto:%{help_email}" class="contact">na kontaktoni</a>.
     <a href="%{manage_flags_path}">Menaxhoni shënimet</a>
+  jobs: Punë
   join: Bashkangjitu
   join_project: Bashkangjitju projektit
   join_this_project: Bashkangjju ketij projekti
@@ -1292,7 +1311,7 @@ sq:
   leaderboard_for_x: "Fituesi per %{x}"
   leaderboards: FItuesit
   leading: Duke udhëhequr
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Mëso
   learn_about_the_species_live_in: Mëso për speciet që jetojnë në
   learn_more: Mëso më shumë
@@ -1740,6 +1759,8 @@ sq:
   obscured_or_private: E fshehur ose private
   obscured_description: |
     Koordinatat publike shfaqen si pikë e rastësishme brenda një rreze 10 km prej koordinatave të vërteta. Koordinatat e vërteta vërehen vetëm prej jush dhe kuratorëve të projektit tek i cili shtoni vëzhgimin.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Vëzhgoni
   observation: Vëzhgim
   observation_: vëzhgim
   observation_added_to_the_project: "Vëzhgimi u shtua tek projekti %{project}"
@@ -2483,6 +2504,7 @@ sq:
   sign_in_with_provider: "kyçu përmes %{provider}"
   sign_out: Shkyçu
   sign_up: Regjistrohu!
+  sign_up_sentence_case: Regjistrohu
   similar_species: Specjet e ngjajshme
   #Journal post formatting option
   simple: Thjeshtë
@@ -2586,6 +2608,10 @@ sq:
   still_working_on_classifying_taxon: Ende po punon për klasifikimin e këtij taxon. Kontrolloni më vonë
   stop_editing: Ndalo redaktimin
   stop_following_user: "Ndërpre ndjekjen e %{user}"
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Dyqan
+  store_caps: DYQAN
   stuff_just_added: "Gjërat që ju sapo i keni shtuar..."
   subject_resolved_noun_html: "%{subject} u zgjidh nga %{noun}"
   submission_model: Modeli i parashtrimit
@@ -2612,6 +2638,7 @@ sq:
   tag: Etiketo
   tagging: 'Duke etiketuar...'
   tags: Etiketat
+  taxa_info: Informacioni i taksonave
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} është një %{rank} në %{iconic_taxon} me 1 vëzhgim"
     other: "%{taxon} është një %{rank} në %{iconic_taxon} me %{count} vëzhgimet"
@@ -2649,12 +2676,17 @@ sq:
   taxon_split: ndarje e taxon
   taxonomic_order: Rendi Taksonomik
   taxonomy_settings: Cilësimet e taksonomisë
+  terms_service: Kushtet e përdorimit
   the_world: Bota
   the_world_is_full_of_interesting_places: |
     Bota është e mbushur me vende interesante, çdonjëra e mbushur me forma të çuditshme dhe të mrekullueshme. Disa janë në anën tjetër të botës, ndërsa të tjera aty poshtë rrugës! Vendet e %{site_name} ju mundësojnë të kërkoni për jetën anekënd planetit. Fillo të hulumtosh!
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Pista
   try_adding_species_form: Provo te shtosh ca specje duke përdorur formularin në këtë faqe.
   type_species_name: "Shkruaj emrin e specjeve"
   type_taxon_name: "Lloji i emrit të taxon"
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Kuptimi i projekteve
   update_existing_observations_with_new_license_desc: |
     Zgjedhja e këtij opsioni do të aplikojë zgjedhjen tuaj të re të licencës për të gjithë
     vëzhgimet ekzistuese. Kjo mund të zgjasë disa orë nëse keni shumë
@@ -2686,6 +2718,7 @@ sq:
     projektit nga vëzhguesi.
   user_trusts_this_project_when_added_by_none: |
     Përdoruesi nuk u beson kuratorëve të projektit me koordinata të fshehura.
+  video_tutorials: Mësime video
   #Link to view identifications affected by a taxon change
   view_your_affected_ids: Shikoni ID-të tuaja të prekura
   view_observation: Shiko vëzhgimin
@@ -2695,6 +2728,16 @@ sq:
   welcome: mirë se vini
   welcome_to_inat: "Mirë se vini në %{site_name}"
   welcome_to_x_project: "Mirë se vini në %{project}"
+  #e.g. "What was observed?"
+  what: Çfarë
+  #e.g. "When was it observed?"
+  when: Kur
+  #e.g. "Where was it observed?"
+  where: Ku
+  #e.g. "Who observed it?"
+  who: Kush
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Pse?
   worldwide: Në mbarë botën
   your_comment_was_saved: Përmbajtja juaj u ruajt
   your_content: Përmbajtja Juaj
@@ -2910,6 +2953,191 @@ sq:
           nga projektet e koleksionit ose ombrellë, të cilat janë në thelb kërkime të ruajtura.
           Ju mund të lexoni më shumë
           <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">këtu</a>.
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Ku kurioziteti juaj kontribuon në shkencë.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Identifikoni bimët, kafshët, kërpudhat dhe më shumë duke shtuar një atlas të gjallë të jetës në Tokë.
+          #Primary call-to-action button in the hero section
+          cta_join: Bashkohuni me komunitetin
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Falas, jofitimprurëse, me fuqi nga komuniteti.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Me iNaturalist, ju mund të:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: bimët, kafshët, kërpudhat dhe më shumë
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: specie që keni parë në mbarë botën
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: në shkencën e vërtetë
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: natyra aty pranë
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: nga një komunitet global natyralistësh
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Fuqia e shkencës së komunitetit
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Parë nga %{user} në %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Rizbulimi i specieve të humbura prej kohësh
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Në %{moth_common_name} mola nuk ishte parë për dekada dhe dikur mendohej se ishte zhdukur – derisa një turist në Zelandën e Re e pikasi atë aksidentalisht.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Zbulimi i specieve të reja në shkencë
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — shkurtuar në <span class="italic">I. nat</span> - është një specie e re në shkencë e gjetur nga një grua në Australi duke ecur në lagjen e saj.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Mbrojtja e ekosistemeve lokale
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Një grup vullnetarësh lokalë në Kaliforni u bashkuan përmes iNaturalist për të mbrojtur amfibët migrues që kalojnë një rrugë të ngarkuar.
+          #Link below the stories to read more community science stories
+          read_more: Lexo më shumë histori
+        observation:
+          #Heading for the sample observation section
+          heading: Çdo vëzhgim tregon një histori
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Vëzhgimet që kontribuojnë në shkencën e biodiversitetit
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Specie të dokumentuara në të gjithë globin
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: letrat që citojnë të dhënat e iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Speciet e zbuluara ose rizbuluara nga shkencëtarët e komunitetit
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Hapni aplikacionin dhe fotografoni çdo bimë të egër, kafshë, kërpudha ose organizëm tjetër - nga lagjja juaj ose kudo në botë.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Aplikacioni sugjeron një identifikim menjëherë dhe një komunitet global natyralistësh e konfirmon ose e rafinon atë.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Vëzhgimi juaj bëhet të dhëna të hapura - të përdorura nga shkencëtarët, konservatorët dhe studiuesit në mbarë botën.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Natyra po ndryshon më shpejt se kurrë, kështu që ne kemi nevojë <span class="underline">ju</span> për të ndihmuar në regjistrimin e asaj që jeton ku.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Më ka ndihmuar vërtet me identifikimin e specieve, përveçse më ka dhënë mundësinë të ndërveproj me njerëz të ndryshëm në mbarë botën.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Konservator Detar dhe Fotograf Nënujor, Kenia
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist hap derën për kaq shumë kërkime të reja dhe emocionuese mbi taksonat e pastudiuara. Sipas mendimit tim, kjo platformë është avantazhi i shkencës ekologjike.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Autor i udhëzuesit në terren në Owlfly LLC, SHBA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist dhe komuniteti i tij i përkushtuar i identifikuesve u bë një burim i paçmuar në eksplorimet e mia. Ndihmoi në hedhjen e themeleve të punës sime aktuale.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Studiues i biodiversitetit, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist është një mjet i fuqishëm që lidh njerëzit, natyrën dhe njohuritë. Unë mund të fotografoj një specie të rrallë, apo edhe një që nuk është përshkruar ende, dhe në të njëjtën kohë, kontribuoj në ruajtjen e trashëgimisë sonë natyrore.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Teknik mjedisor dhe fotograf hobi, Brazil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Pavarësisht se ku në botë jeni, nëse keni një doktoraturë ose thjesht e doni natyrën, iNaturalist do t'ju afrojë më afër natyrës dhe shumë kolegëve natyralistë.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biolog, Meksikë
+        everyone:
+          #Heading for the broad audience section
+          heading: Të gjithë janë natyralist
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Nëse keni parë ndonjëherë nga afër diçka të gjallë dhe keni pyetur veten se çfarë ishte, iNaturalist është për ju.
+          #Heading for the impact sub-section
+          impact_heading: Ju mund të bëni një ndikim
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Çdo foto që ndani bëhet pjesë e një rekordi shkencor global nga i cili varen studiuesit në mbarë botën.
+          #Heading for the community reputation sub-section
+          community_heading: '"Vendi më i bukur në internet"'
+          community_heading_2: Vendi më i bukur në internet
+          #Description of the welcoming community aspect
+          community_body: >
+            Ejani për identifikimet, qëndroni për komunitetin dhe ndikimin në shkencë.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Shkarkoni aplikacionin iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Merrni identifikime në kohë reale dhe kontribuoni në shkencë
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Shkarkime"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Eksploroni speciet në mbarë botën
+          #Button / link to browse species without downloading
+          button: Eksploroni tani
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Nën 13 vjeç? Shkarkoni Seek!"
+          #Description of Seek's badge and challenge features
+          body: Fitoni distinktivë dhe merrni pjesë në sfida për të vëzhguar speciet!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Shqyrtime me 5 yje"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Merrni buletinin tonë mujor!
+          #Description of the newsletter's content
+          body: Qëndroni të lidhur me histori dhe zbulime nga komuniteti iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist është një organizatë jofitimprurëse që mbështet shkencën dhe ruajtjen.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Mbështetja juaj e bën të mundur këtë.
+          #Call-to-action button for the donation section
+          cta: Dhuroni tani
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Pyetjet e shpeshta
+          #FAQ: uploading existing photos — question
+          upload_existing_question: A mund të ngarkoj foto që kam tashmë?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Po! Për sa kohë që e dini përafërsisht se kur dhe ku është bërë një foto, fotot e vjetra janë të mirëseardhura.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Kush mund të bëjë shkencë me vëzhgimet iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Kushdo! Të gjitha vëzhgimet e iNaturalist janë të hapura dhe të disponueshme lirisht - për studiuesit, praktikuesit e ruajtjes dhe individët kureshtarë.
+          #FAQ: research grade definition — question
+          research_grade_question: Çfarë do të thotë "notë kërkimi"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Kur komuniteti bie dakord për një identifikim, një vëzhgim bëhet "nota kërkimore" dhe hyn në të dhënat shkencore globale. Çdo identifikim mund të ndihmojë në arritjen e tij atje.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: A duhet të di se çfarë po shikoj?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Aspak! Ndani një foto dhe një komunitet global natyralistësh mund t'ju ndihmojë ta identifikoni atë.
+          #FAQ: whether the app is required — question
+          need_app_question: A duhet të përdor aplikacionin?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Në një desktop, iNaturalist.org funksionon shkëlqyeshëm. Në një pajisje celulare, aplikacioni ju jep përvojën më të mirë - veçanërisht për identifikimin e specieve në lëvizje.
   datetime:
     prompts:
       day: Dita

@@ -1,4 +1,5 @@
 hy:
+  about: Այս մասին
   #Placeholder for a project autocomplete field
   add_a_project: Ավելացնել նախագիծ
   #Label for an option to show any place
@@ -22,6 +23,8 @@ hy:
   #constituent places were removed and now the atlas just contains this
   #place
   atlas_alteration_action_unexploded: Չպայթած
+  community: Համայնք
+  community_guidelines: Համայնքային ուղեցույցներ
   community_taxon_matches_observation_taxon: Կոմունալ տաքսոնը համապատասխանում է դիտարկման տաքսոնին
   confirming_ids: ID-ների հաստատում
   confirming_ids_description: |
@@ -34,6 +37,10 @@ hy:
       ենթադրվում է այս կարգավիճակով: Սա կգերակշիռ լինի գեոգաղտնիությունը, եթե այն «Նվազագույն
       Մտահոգություն» կամ ներքեւում, այնպես որ, եթե ուզում եք մթագնել այս դիտարկումները
       տաքսոն, սահմանեք սա «Մոտ սպառնալիք» կամ ավելի բարձր։
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Նպաստել
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Կուրատորի ուղեցույց
   curator_coordinate_access: Կոորդինատային մուտք
   curator_coordinate_access_desc: |
     Ավանդական նախագծերի համար կուրատորի համակարգման հասանելիությունը կախված է նրանից, թե ով է ավելացրել
@@ -59,30 +66,48 @@ hy:
   devise_confirmation_instructions_please_click2: |
     Խնդրում ենք սեղմել ներքեւի հղումը հաստատելու համար Ձեր էլփոստի հասցեն: Եթե չհաստատեք ձեր էլփոստը
     հասցեն, դուք չեք կարողանա շփվել այլ օգտագործողների բովանդակության հետ:
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Բացահայտում
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Տարաձայնություններ
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Ցույց տալ դիտարկումներ, որոնք ունեն հակասական նույնականացումներ
+  documentation_for_developers_html: Փաստաթղթեր <a href="/pages/developers">Մշակողներ</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: ՆՎԻՐԱԲԵՐԵԼ
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Նվիրաբերել
   #Title for a page to edit an announcement
   editing_announcement_x: ՀայտարարությունԽմբագրել %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Ձայնի թարմացման սխալ. %{sound_errors}"
+  explore: Ուսումնասիրել
   evidence_accurately_depicts_organism_or_scene: Ապացույցները ճշգրիտ պատկերում են օրգանիզմը կամ տեսարանը
+  facebook: Ֆեյսբուք
   #Header for a section showing the user's favorite projects
   favorite_projects: Սիրված նախագծեր
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Ընտրեք մինչեւ յոթ նախագիծ, որոնք հայտնվում են որպես հղումներ վերնագրում: Թարմացումներ
     կհայտնվի էջը թարմացնելուց հետո:
+  feedback: Հետադարձ կապ
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Ֆայլի ձեւաչափը
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: File URL
+  forum: Ֆորում
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Getting Started
+  guides: Ուղեցույցներ
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "Այս ձայնը դրոշմվել է։"
+  help: Օգնություն
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Բնութագիր
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Բնութագիր
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist-ը թարմացրել է ID-ն առաջարկել է %{user}
   #Title for a preference to control whether you receive notifications about
@@ -97,16 +122,25 @@ hy:
     ցածր տեսակների մակարդակով (օրինակ՝ ենթատեսակների եւ սորտերի), որոնք համաձայն են ձեր
     տեսակների մակարդակի ID. Դուք կտեղեկացվեք, եթե նրանք համաձայն չեն ձեր ID-ի կամ
     եթե դրանք պարունակում են լրացուցիչ դիտողություններ:
+  instagram: Instagram-ում
   #Error message shown when a date format is invalid
   invalid_date: Անվավեր ամսաթիվ
+  jobs: Աշխատանք
+  journal_posts: Journal Posts
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
+  learn: Սովորել
   #Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Ցուցակագրված
   #Adjective describing removal of a taxon from a list
   listed_taxon_alteration_action_unlisted: Չցանկացված
+  log_in: Մուտք գործել
   #Adjectival phrase describing state of being logged in
   logged_in: Logged in
   #Adjectival phrase describing state of being logged out
   logged_out: Դուրս է եկել
+  member_of_the_inaturalist_network_html: |
+    Պատգամավորի անդամ <a href="%{url}">iNaturalist Network</a>
+  more: Ավելին
   #Label for a button or section that shows additional options
   more_options: More Options
   #A user who is not a curator
@@ -126,9 +160,15 @@ hy:
     ID-ն ունի լրացուցիչ դիտողություններ։
   #A user who does not admin any projects
   non_project_admin: Ոչ նախագծի ադմինիստրատոր
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Դիտարկել
   observation_fields_for_projects: Նախագծերի դիտարկման դաշտեր
+  or: կամ
+  our_blog: Our Blog
+  people: Մարդիկ
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Կարող է տեւել մինչեւ մեկ օր, որպեսզի դիտարկումները կապված լինեն այս վայրի հետ։
+  places: Վայրեր
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     Տեղերը չեն կարող լինել ավելի մեծ քան 700,000 քառակուսի կիլոմետր։
@@ -143,11 +183,15 @@ hy:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Վայրերը չեն կարող պարունակել ավելի քան 10,000 դիտարկումներ։
+  powered_by_inaturalist_open_source_software_html: 'Սնուցվում է <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist բաց կոդով ծրագրային ապահովում</a>'
+  press: Մամուլ
+  privacy: Գաղտնիություն
   #A user may attempt to upload a profile picture with an unsupported content type, and this
   #text will be the first part of an error message displayed to the user describing that error
   profile_picture_file_type: Պրոֆիլի նկարի ֆայլի տիպ
   #A user who admin's a project
   project_admin: Նախագծի ադմին
+  projects: Նախագծեր
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -158,6 +202,10 @@ hy:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: Ենթատեսակ / Բազմազանություն / Ձեւ
+  search: Որոնում
+  sign_up: Գրանցվել
+  sign_up_sentence_case: Գրանցվել
+  site_stats: Կայքի վիճակագրությունը
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Հնչյուն %{id}, %{attribution}
@@ -167,9 +215,19 @@ hy:
     sound_hidden: Թաքնված հնչյուն
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Ձայնը չթաքնված
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Խանութ
+  store_caps: ԼՐԱՀՈՍ
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Բաժանորդագրվել
+  taxa_info: Taxa Info
+  terms_service: Օգտագործման պայմաններ
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Հետապնդում
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Նախագծերի հասկացողություն
   update_existing_observations_with_new_license_desc: |
     Ընտրելով այս դրույթը կկիրառվի ձեր նոր լիցենզիայի ընտրությունը ձեր բոլոր
     գոյություն ունեցող դիտարկումները: Սա կարող է տեւել մի քանի ժամ, եթե դուք ունեք շատ
@@ -192,10 +250,21 @@ hy:
     դիտորդի կողմից նախագծին:
   user_trusts_this_project_when_added_by_none: |
     Օգտատերը չի վստահում թաքնված կոորդինատներով նախագծի կուրատորներին։
+  video_tutorials: Video Tutorials
   #Link to view identifications affected by a taxon change
   view_your_affected_ids: Դիտել ձեր տուժած ID-ները
   we_also_support3: |
     Մենք նաեւ աջակցում ենք լուսանկարների ներմուծմանը <a href="http://flickr.com">Flickr</a>.
+  #e.g. "What was observed?"
+  what: Ինչի՞
+  #e.g. "When was it observed?"
+  when: Երբ
+  #e.g. "Where was it observed?"
+  where: Որտեղ
+  #e.g. "Who observed it?"
+  who: Ով
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Ինչու՞
   views:
     announcements:
       locales_desc: |
@@ -408,6 +477,191 @@ hy:
           հավաքածուներից կամ անձրեւանոցային նախագծերից, որոնք, ըստ էության, պահպանված որոնումներ են:
           Դուք կարող եք կարդալ ավելին
           <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">այստեղ</a>.
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: 'Որտեղ ձեր հետաքրքրասիրությունը նպաստում է գիտությանը:'
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Բացահայտեք բույսերը, կենդանիները, սնկերը եւ այլն՝ ավելացնելով Երկրի վրա կյանքի կենդանի ատլասը։
+          #Primary call-to-action button in the hero section
+          cta_join: Միացի՛ր համայնքին
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Անվճար, շահույթ չհետապնդող, համայնքային ուժով։
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalist-ի միջոցով դուք կարող եք՝"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: բույսեր, կենդանիներ, սնկեր եւ ավելին
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: տեսակներ, որոնք դուք տեսել եք ամբողջ աշխարհում
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: դեպի իրական գիտություն
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Մոտակայքում գտնվող բնությունը
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: բնագետների համաշխարհային համայնքից
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Համայնքային գիտության ուժը
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Տեսել է %{user} %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Վաղուց կորցրած տեսակների վերահայտնաբերում
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} ցեցը տասնամյակներ շարունակ չէր նկատվել եւ մի ժամանակ համարվում էր անհետացած, մինչեւ որ Նոր Զելանդիայում զբոսաշրջիկը պատահաբար նկատեց այն։
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Գիտության նոր տեսակների բացահայտում
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — կրճատվում է <span class="italic">I. nat</span> - Նոր գիտության մանտիսի տեսակ է, որը հայտնաբերվել է Ավստրալիայում մի կնոջ կողմից, որը զբոսնում է իր հարեւանությամբ։
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Տեղական էկոհամակարգերի պաշտպանություն
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Կալիֆորնիայում տեղի կամավորների մի խումբ հավաքվել է iNaturalist-ի միջոցով՝ պաշտպանելու մարդաշատ ճանապարհով անցնող երկկենցաղներին։
+          #Link below the stories to read more community science stories
+          read_more: Կարդալ ավելին պատմություններ
+        observation:
+          #Heading for the sample observation section
+          heading: Յուրաքանչյուր դիտարկում պատմում է մի պատմություն
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Կենսաբազմազանության գիտությանը նպաստող դիտարկումներ
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Տեսակներ, որոնք փաստագրված են ամբողջ աշխարհում
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: հոդվածներ, որոնք վկայակոչում են iNaturalist-ի տվյալները
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Համայնքի գիտնականների կողմից հայտնաբերված կամ վերահայտնաբերված տեսակներ
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Բացեք հավելվածը եւ լուսանկարեք ցանկացած վայրի բույս, կենդանի, սնկ կամ այլ օրգանիզմ՝ ձեր հարեւանությամբ կամ աշխարհի ցանկացած կետից:
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Հավելվածը միանգամից առաջարկում է նույնականացում, եւ բնագետների համաշխարհային համայնքը հաստատում կամ կատարելագործում է այն։
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Ձեր դիտարկումը դառնում է բաց տվյալներ, որոնք օգտագործվում են գիտնականների, բնապահպանների եւ հետազոտողների կողմից ամբողջ աշխարհում։
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Բնությունը փոխվում է ավելի արագ, քան երբեւէ, ուստի մենք կարիք ունենք <span class="underline">դու</span> օգնել արձանագրել, թե ինչ է ապրում, որտեղ։
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Այն իսկապես օգնել է ինձ տեսակների նույնականացման հարցում, բացի այն բանից, որ ինձ հնարավորություն է ընձեռել շփվել աշխարհի տարբեր մարդկանց հետ։
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Ծովային բնապահպան եւ ստորջրյա լուսանկարիչ, Քենիա
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist-ը դուռ է բացում այդքան շատ նոր եւ հետաքրքիր հետազոտությունների համար։ Իմ կարծիքով, այս հարթակը էկոլոգիական գիտության առաջատարն է։
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Field Guide Author at Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist-ը եւ նրա նվիրված համայնքը դարձան անգնահատելի ռեսուրս իմ հետազոտություններում։ Այն օգնեց հիմք դնել իմ ներկայիս աշխատանքի համար։
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Կենսաբազմազանության հետազոտող, Շրի Լանկա
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist-ը հզոր գործիք է, որը կապում է մարդկանց, բնությունը եւ գիտելիքը: Ես կարող եմ լուսանկարել հազվագյուտ տեսակ, կամ նույնիսկ մեկը, որը դեռ չի նկարագրվել, եւ միեւնույն ժամանակ նպաստում եմ մեր բնական ժառանգության պահպանմանը:
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Բնապահպանական տեխնիկ եւ հոբբի լուսանկարիչ, Բրազիլիա
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Անկախ նրանից, թե որտեղ եք գտնվում աշխարհում, անկախ նրանից, թե դուք ունեք դոկտորական աստիճան, թե պարզապես սիրում եք դրսում, iNaturalist-ը ձեզ ավելի կմոտեցնի բնությանը եւ շատ բնագետներին:
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Կենսաբան (Մեքսիկա)
+        everyone:
+          #Heading for the broad audience section
+          heading: Բոլորը բնագետ են
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Եթե երբեւէ ուշադիր նայել եք ինչ-որ կենդանի բանի եւ մտածել եք, թե ինչ է դա, iNaturalist-ը ձեզ համար է։
+          #Heading for the impact sub-section
+          impact_heading: Դուք կարող եք ազդեցություն ունենալ
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Յուրաքանչյուր լուսանկար, որով կիսվում եք, դառնում է համաշխարհային գիտական արձանագրության մի մասը, որից կախված են ամբողջ աշխարհում հետազոտողները։
+          #Heading for the community reputation sub-section
+          community_heading: '«Ամենագեղեցիկ վայրն առցանց»'
+          community_heading_2: Ամենագեղեցիկ վայրը օնլայն
+          #Description of the welcoming community aspect
+          community_body: >
+            Եկեք նույնականացման, մնացեք համայնքի եւ գիտության վրա ազդեցության համար։
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Ներբեռնեք iNaturalist հավելվածը
+          #Subheading describing the two core benefits of the app
+          subheading: Ստացեք իրական ժամանակում նույնականացումներ եւ նպաստեք գիտությանը
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Ներբեռնումներ"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Ուսումնասիրեք տեսակները ամբողջ աշխարհում
+          #Button / link to browse species without downloading
+          button: Ուսումնասիրեք հիմա
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 տարեկանից ցածր։ Ներբեռնել Seek!"
+          #Description of Seek's badge and challenge features
+          body: 'Վաստակեք կրծքանշաններ եւ մասնակցեք տեսակների դիտարկման մարտահրավերներին:'
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-աստղանի ակնարկներ"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: 'Ստացեք մեր ամսական տեղեկագիրը:'
+          #Description of the newsletter's content
+          body: Կապ պահպանեք iNaturalist համայնքի պատմությունների եւ հայտնագործությունների հետ։
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist-ը շահույթ չհետապնդող կազմակերպություն է, որն աջակցում է գիտությանը եւ բնապահպանությանը։
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Ձեր աջակցությունը հնարավոր է դարձնում դա ։
+          #Call-to-action button for the donation section
+          cta: Նվիրաբերեք հիմա
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: ՀՏՀ-ներ
+          #FAQ: uploading existing photos — question
+          upload_existing_question: 'Կարո՞ղ եմ վերբեռնել իմ արդեն ունեցած լուսանկարները:'
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Այո։ Քանի դեռ մոտավորապես գիտեք, թե երբ եւ որտեղ է լուսանկարվել, հին լուսանկարները ողջունելի են։
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Ո՞վ կարող է գիտություն անել iNaturalist դիտարկումներով։
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Որեւէ մեկը։ Բոլոր iNaturalist-ի դիտարկումները բաց են եւ ազատ հասանելի՝ հետազոտողների, բնապահպանների եւ հետաքրքրասեր անհատների համար։
+          #FAQ: research grade definition — question
+          research_grade_question: Ի՞նչ է նշանակում «հետազոտական գնահատական»։
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Երբ համայնքը համաձայնության է գալիս նույնականացման հետ, դիտարկումը դառնում է «հետազոտական գնահատական» եւ մտնում է համաշխարհային գիտական արձանագրություն։ Յուրաքանչյուր նույնականացում կարող է օգնել հասնել դրան ։
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: 'Արդյո՞ք ես պետք է իմանամ, թե ինչ եմ նայում:'
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Ամենեւին էլ ոչ! Կիսվեք լուսանկարով, եւ բնագետների համաշխարհային համայնքը կօգնի ձեզ ճանաչել այն։
+          #FAQ: whether the app is required — question
+          need_app_question: 'Արդյո՞ք ես պետք է օգտվեմ հավելվածից:'
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Աշխատասեղանի վրա iNaturalist.org հիանալի է աշխատում։ Բջջային սարքում հավելվածը ձեզ տալիս է լավագույն փորձը, հատկապես ճանապարհին տեսակների նույնականացման համար:
   number:
     format:
       significant: false

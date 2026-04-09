@@ -1188,6 +1188,8 @@ sv:
     %{user} tog fram detta %{item} på grund av "%{reason}"
   continue: Fortsätt
   continue_to_site: Fortsätt till %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Bidra
   contributor_cannot_be_found: Bidragsgivare kan inte hittas
   contributors_to_project: "Bidragsgivare till %{project}"
   controlled_term_labels:
@@ -1779,6 +1781,8 @@ sv:
   devise_unlock_instructions_click_the_link: |
     Klicka på länken nedan för att låsa upp ditt konto
   devise_unlock_instructions_unlock: Lås upp ditt konto
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Upptäck
   discoveries: Upptäckter
   did_you_mean: 'Menade du'
   did_you_photos_flickr?: Har du lagt några bilder på Flickr?
@@ -2422,6 +2426,10 @@ sv:
   identify_observations: "Bestäm fynd"
   identify_observations_by_these_users: Bestäm dessa användares fynd
   identify_title: "Bestäm"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identifiera
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identifiera
   identification: bestämning
   identification_by_user: Bestämning av %{user}
   #Notification when an identification has been deleted
@@ -2661,7 +2669,7 @@ sv:
     identifications_in_month_year: Flest bestämningar i %{month_year}
     identifications_in_year: Flest bestämningar %{year}
   leading: Leder
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
   learn_more: Läs mer
@@ -3459,6 +3467,8 @@ sv:
   obscured_or_private: diffuserad eller privat
   obscured_description: |
     Publika koordinater visas som en slumpmässig punkt inom en 0,2 grader stor lat/long-cell som innehåller de exakta koordinaterna.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observera
   observation: Fynd
   observation_: fynd
   observation_accuracy_experiment_the_sample_for: "Urvalet för detta experiment har ännu inte genererats"
@@ -5046,6 +5056,7 @@ sv:
   sign_in_with_google: Logga in med Google
   sign_out: Logga ut
   sign_up: Registrera
+  sign_up_sentence_case: Anmäl dig
   similar_species: Liknande arter
   similar_taxa: Liknande taxa
   #Journal post formatting option
@@ -5813,6 +5824,8 @@ sv:
   total_observations_caps: ANTAL FYND
   total_species_observed_caps: OBSERVERADE ARTER TOTALT
   total_unique_observers: Totalt antal unika observatörer
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Spår
   translated_languages: Översatta språk
   'true': 'Sant'
   trending: Trender
@@ -6228,6 +6241,7 @@ sv:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Vi är ganska säkra på att detta tillhör %{rank}@gender{n:t|en}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklagar, men din bulkimport av %{filename} misslyckades."
+  #e.g. "What was observed?"
   what: Vad
   what_did_you_see: Vad såg du?
   what_did_you_see?: <em>Vad</em> såg du?
@@ -6236,9 +6250,11 @@ sv:
   what_want_to_list?: Vad vill du lista?
   what_were_you_looking_for?: "Vad letade du efter? (mållista)"
   whats_this?: Vad är det här?
+  #e.g. "When was it observed?"
   when: När
   when_did_you_see_it?: När såg du det?
   when_did_you_see_them?: <em>När</em> såg du dem?
+  #e.g. "Where was it observed?"
   where: Var
   where_were_they?: Var befann de sig?
   where_were_you?: Var var du?
@@ -6247,6 +6263,8 @@ sv:
   why_are_you_making_this_change_optional: Varför gör du denna förändring? (valfritt)
   why_are_you_making_this_change_cite_source_required: Varför gör du denna förändring? Förklara och citera en källa om möjligt. (Obligatoriskt)
   why_you_can_see_the_coordinates: Därför kan du se koordinaterna
+  #e.g. "Who observed it?"
+  who: Vem
   who_can_add_observation_fields_to_my_obs: Vem kan lägga till fyndfält till mina fynd?
   who_can_add_observations_to_this_project?: Vem kan lägga till fynd i detta projekt?
   who_can_see_the_coordinates: Vem kan se koordinaterna
@@ -6255,6 +6273,8 @@ sv:
   who_can_see_the_coordinates_trusted: Individer som observatören har anförtrott sina dolda koordinater med
   who_helped_user_the_most: "Vem hjälpte %{user} mest"
   who_user_helped_the_most: "Vem %{user} hjälpte mest"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Varför?
   why_the_coordinates_are_obscured: Därför är koordinaterna diffuserade
   with_annotation: Med anteckning
   without_annotation: Utan anteckning
@@ -8862,6 +8882,191 @@ sv:
         who_uses_site_name: "Vem använder %{site_name}?"
         what_are_you_waiting_for: Vad väntar du på?
         join_today: Gå med idag
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Där din nyfikenhet bidrar till vetenskapen.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Identifiera växter, djur, svampar och mer samtidigt som du lägger till en levande atlas över livet på jorden.
+          #Primary call-to-action button in the hero section
+          cta_join: Gå med i gemenskapen
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Gratis, ideell, samhällsdriven.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Med iNaturalist kan du:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: växter, djur, svampar och mer
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: arter du har sett världen över
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: Till verklig vetenskap
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Natur i närheten
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Från en global gemenskap av naturforskare
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Kraften i samhällsvetenskap
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Sedd av %{user} i %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Återupptäckt av sedan länge förlorade arter
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} Fjärilen hade inte setts på årtionden och ansågs en gång vara utdöd – tills en turist i Nya Zeeland av en slump upptäckte den.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Upptäckt av arter som är nya för vetenskapen
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — förkortat till <span class="italic">I. nat</span> — är en ny bönsyrsart som hittats av en kvinna i Australien som promenerar i sitt kvarter.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Skydd av lokala ekosystem
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            En grupp lokala volontärer i Kalifornien samlades via iNaturalist för att skydda migrerande amfibier som korsar en trafikerad väg.
+          #Link below the stories to read more community science stories
+          read_more: Läs fler artiklar
+        observation:
+          #Heading for the sample observation section
+          heading: Varje iakttagelse berättar en historia
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Observationer som bidrar till biologisk mångfaldsvetenskap
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: arter dokumenterade över hela världen
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: artiklar som citerar iNaturalist-data
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: arter upptäckta eller återupptäckta av samhällsforskare
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Öppna appen och fotografera vilken vild växt, djur, svamp eller annan organism som helst – från ditt område eller var som helst i världen.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Appen föreslår en identifiering omedelbart, och en global gemenskap av naturforskare bekräftar eller förfinar den.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Din observation blir öppen data – använd av forskare, naturvårdare och forskare världen över.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Naturen förändras snabbare än någonsin, så vi behöver <span class="underline">Du</span> för att hjälpa till att dokumentera vad som lever var.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Det har verkligen hjälpt mig med artidentifiering, utöver att ge mig möjlighet att interagera med olika människor runt om i världen.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Marin naturvårdare och undervattensfotograf, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist öppnar dörren för så mycket ny och spännande forskning om understuderade taxa. Enligt min mening är denna plattform den ledande delen av ekologisk vetenskap.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Fältguideförfattare på Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist och dess dedikerade community av identifierare blev en ovärderlig resurs i mina utforskningar. Det hjälpte till att lägga grunden för mitt nuvarande arbete.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversitetsforskare, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist är ett kraftfullt verktyg som kopplar samman människor, natur och kunskap. Jag kan fotografera en sällsynt art, eller till och med en som ännu inte har beskrivits, och samtidigt bidrar jag till att bevara vårt naturarv.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Miljötekniker och hobbyfotograf, Brasilien
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Oavsett var i världen du befinner dig, oavsett om du har en doktorsexamen eller bara älskar naturen, kommer iNaturalist att föra dig närmare naturen och många andra naturforskare.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biolog, Mexiko
+        everyone:
+          #Heading for the broad audience section
+          heading: Alla är naturvetare
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Om du någonsin har tittat noga på något levande och undrat vad det var, är iNaturalist något för dig.
+          #Heading for the impact sub-section
+          impact_heading: Du kan göra skillnad
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Varje foto du delar blir en del av ett globalt vetenskapligt arkiv som forskare världen över är beroende av.
+          #Heading for the community reputation sub-section
+          community_heading: '"Det trevligaste stället online"'
+          community_heading_2: Den trevligaste platsen online
+          #Description of the welcoming community aspect
+          community_body: >
+            Kom för identifieringarna, stanna för gemenskapen och påverkan på vetenskapen.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Ladda ner appen iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Få identifieringar i realtid och bidra till vetenskapen
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Nedladdningar"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Utforska arter världen över
+          #Button / link to browse species without downloading
+          button: Utforska nu
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Under 13? Download Seek!"
+          #Description of Seek's badge and challenge features
+          body: Tjäna märken och delta i utmaningar för att observera arter!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-stjärniga recensioner"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Ta del av vårt månatliga nyhetsbrev!
+          #Description of the newsletter's content
+          body: Håll kontakten med berättelser och upptäckter från iNaturalist-gemenskapen.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist är en ideell organisation som stödjer vetenskap och naturvård.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Ditt stöd gör det möjligt.
+          #Call-to-action button for the donation section
+          cta: Donera nu
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Vanliga frågor
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Kan jag ladda upp bilder jag redan har?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ja! Så länge du vet ungefär när och var ett foto togs är äldre bilder välkomna.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Vem kan bedriva vetenskap med iNaturalist-observationer?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Någon! Alla iNaturalist-observationer är öppna och fritt tillgängliga – för forskare, naturvårdspraktiker och nyfikna individer.
+          #FAQ: research grade definition — question
+          research_grade_question: Vad betyder "forskningsbetyg"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            När gemenskapen enas om en identifiering blir en observation "forskningsklass" och går in i den globala vetenskapliga dokumentationen. Varje identifiering kan hjälpa till att få den dit.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Behöver jag veta vad jag tittar på?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Inte alls! Dela ett foto, så kan en global gemenskap av naturvetare hjälpa dig att identifiera det.
+          #FAQ: whether the app is required — question
+          need_app_question: Behöver jag använda appen?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            På en stationär dator fungerar iNaturalist.org utmärkt. På en mobil enhet ger appen dig den bästa upplevelsen – särskilt för att identifiera arter när du är på språng.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Spara och redigera för att lägga till bilagor

@@ -1049,6 +1049,8 @@ lt:
     %{user} nebeslepia %{item}, nes „%{reason}“
   continue: Tęsti
   continue_to_site: Tęsti į %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Prisidėti
   contributor_cannot_be_found: Įnašai negali būti rasti
   contributors_to_project: "%{project} įnašai"
   controlled_term_labels:
@@ -1210,6 +1212,8 @@ lt:
     Skaityti kitų žmonių žinučių.
   #Title of a page where people apply to become a curator
   curator_application_title: Kuratoriaus paraiška
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuratoriaus vadovas
   curators_changed_for_x_html: "Kuratoriai keičiami kas %{x}"
   curators: Kuratoriai
   curator_coordinate_access: Kuratorius koordinuoja prieigą
@@ -1388,6 +1392,8 @@ lt:
   devise_reset_password_instructions_your_password_wont_change_until: |
     Jūsų slaptažodis nepasikeis tol, kol nesukursite naujo paspausite aukščiau esančią nuorodą.
   devise_unlock_instructions_unlock: Atblokuoti paskyrą
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Atraskite
   discoveries: Atradimai
   did_you_mean: 'Ar turėjote omenyje'
   did_you_photos_flickr?: Ar įkėlėte nuotraukų į Flickr?
@@ -1752,6 +1758,8 @@ lt:
   geoprivacy_is_private: Vietos privatumas yra privatus
   geoprivacy_is_private_desc: Stebėtojas koordinates padarė privačiomis.
   get_started: Pradėti
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Darbo pradžia
   getting_started_guide: Darbo Pradžios Vadovas
   #Prompt to donate money on a montly basis
   give_monthly_caps: AUKOTI KARTĄ PER MĖNESĮ
@@ -1840,6 +1848,10 @@ lt:
   identify_observations: "Identifikuoti stebėjimus"
   identify_observations_by_these_users: Identifikuoti šių vartotojų stebėjimus
   identify_title: "Identifikuoti"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identifikuoti
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identifikuoti
   identification: identifikaciją
   identification_by_user: Identifikuota %{user}
   #Notification when an identification has been deleted
@@ -1940,6 +1952,7 @@ lt:
   italic_text: pakreiptas tekstas
   item_flagged_notice_html: |
     Tai buvo pažymėta kaip šlamštas ir nebėra viešai matoma. Jūs tai galite matyti, nes sukūrėte tai, arba esate tinklalapio kuratorius. Jeigu manote, kai tai yra klaida, prašome <a href="mailto:%{help_email}" class="contact">susisiekite su mumis</a>. <a href="%{manage_flags_path}">Valdykite žymes</a>
+  jobs: Darbas
   join: Jungtis
   join_and_add_an_observation_to_project_html: Prisijuk ir pridėk stebėjimą į %{project}
   join_project: Prisijunkite prie šio projekto
@@ -1988,7 +2001,7 @@ lt:
   leaderboard_for_x: "%{x} pirmaujančiųjų sąrašas"
   leaderboards: Pirmaujančiųjų sąrašai
   leading: Vedantis
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Sužinoti
   learn_about_the_species_live_in: Sužinokite apie rūšis, kurios gyvena
   learn_more: Sužinokite daugiau
@@ -2547,6 +2560,8 @@ lt:
   obs_id_d: Stb ID
   obscured: Paslėptas
   obscured_or_private: paslėptas arba privatus
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Stebėti
   observation: Stebėjimas
   observation_: stebėjimas
   observation_added_to_the_project: "Stebėjimas pridėtas prie šio projekto \"%{project}\""
@@ -3183,6 +3198,7 @@ lt:
   posted_by: Paskelbė
   posts: Įrašai
   potential_disagreement: Galimas nesutarimas
+  powered_by_inaturalist_open_source_software_html: 'Parengta pagal <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist atvirojo kodo programinė įranga</a>'
   press: Spauda
   preview: Peržiūra
   preview_observations_with_these_observation_requirements: Peržiūrėti stebėjimus su šiais stebėjimų reikalavimais
@@ -3616,6 +3632,7 @@ lt:
   sign_in_with_google: Prisijungti su Google paskyra
   sign_out: Atsijungti
   sign_up: Registruotis
+  sign_up_sentence_case: Užsiregistruoti, užsiregistruok
   similar_species: Panašios rūšys
   similar_taxa: Panašūs taksonai
   #Journal post formatting option
@@ -4046,6 +4063,8 @@ lt:
   total_observations_caps: IŠ VISO STEBĖJIMŲ
   total_species_observed_caps: IŠ VISO STEBĖTA RŪŠIŲ
   total_unique_observers: Iš viso skirtingų stebėtojų
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Sekti
   translated_languages: Išverstos kalbos
   'true': 'Taip'
   trending: Populiariausia
@@ -4069,6 +4088,8 @@ lt:
   umbrella_projects: Skėtiniai projektai
   unblock: Atblokuoti
   unclassified: Neklasifikuotas
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Projektų supratimas
   unhide_content: Nebeslėpti turinio
   unique_observers: skirtingi stebėtojai
   unknown: Nežinoma
@@ -4298,21 +4319,26 @@ lt:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Mes įsitikinę, kad šis organizmas priklauso %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Atsiprašome, tačiau grupinis %{filename} importas nepavyko."
+  #e.g. "What was observed?"
   what: Kas
   what_did_you_see: Ką pamatėte?
   what_did_you_see?: <em>Ką</em> pamatėte?
   what_do_you_think: Ką manote?
   what_to_keep: Ką palikti
   whats_this?: Kas tai?
+  #e.g. "When was it observed?"
   when: Kada
   when_did_you_see_it?: Kada tai pamatėte?
   when_did_you_see_them?: <em>Kada</em> juos pamatėte?
+  #e.g. "Where was it observed?"
   where: Kur
   where_were_they?: Kur jie?
   where_were_you?: Kur buvote?
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Kodėl darote šį pakeitimą? (neprivaloma)
   why_you_can_see_the_coordinates: Kodėl galite matyti koordinates
+  #e.g. "Who observed it?"
+  who: Kas
   who_can_add_observations_to_this_project?: Kas gali pridėti stebėjimų prie šio projekto?
   who_can_see_the_coordinates: Kas gali matyti koordinates
   who_can_see_the_coordinates_observer: Žmogus, kuris sukūrė stebėjimą
@@ -4320,6 +4346,8 @@ lt:
   who_can_see_the_coordinates_trusted: Žmonės, kuriems stebėtojas patiki paslėptas koordinates
   who_helped_user_the_most: "Kas Daugiausiai Padėjo %{user}"
   who_user_helped_the_most: "Kam %{user} Daugiausiai Padėjo"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Kodėl?
   why_the_coordinates_are_obscured: Kodėl koordinatės paslėptos
   with_annotation: Su papildoma informacija
   without_annotation: Su papildoma informacija
@@ -5010,6 +5038,191 @@ lt:
         who_uses_site_name: "Kas naudoja %{site_name}?"
         what_are_you_waiting_for: Ko dar lauki?
         join_today: Prisijunk šiandien
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Kur jūsų smalsumas prisideda prie mokslo.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Atpažinkite augalus, gyvūnus, grybus ir dar daugiau, papildydami gyvą gyvybės Žemėje atlasą.
+          #Primary call-to-action button in the hero section
+          cta_join: Prisijunkite prie bendruomenės
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Nemokama, ne pelno siekianti, bendruomenės valdoma.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Naudodami \"iNaturalist\" galite:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: augalai, gyvūnai, grybai ir kt.
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Rūšys, kurias matėte visame pasaulyje
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: į tikrąjį mokslą
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: gamta netoliese
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: iš pasaulinės gamtininkų bendruomenės
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Bendruomenės mokslo galia
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Žiūrėjo %{user} Į %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Seniai prarastų rūšių atradimas iš naujo
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Į %{moth_common_name} kandis nebuvo pastebėtas dešimtmečius ir kadaise buvo laikomas išnykusiu, kol turistas Naujojoje Zelandijoje jį pastebėjo atsitiktinai.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Naujų mokslo rūšių atradimas
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — sutrumpintai <span class="italic">I. nat</span> – tai nauja mokslo mantijos rūšis, kurią rado moteris Australijoje, vaikščiodama savo kaimynystėje.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Vietos ekosistemų apsauga
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Vietinių savanorių grupė Kalifornijoje susibūrė per "iNaturalist", kad apsaugotų migruojančius varliagyvius, kertančius judrų kelią.
+          #Link below the stories to read more community science stories
+          read_more: Skaityti daugiau istorijų
+        observation:
+          #Heading for the sample observation section
+          heading: Kiekvienas stebėjimas pasakoja istoriją
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: stebėjimai, prisidedantys prie biologinės įvairovės mokslo
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Rūšys, dokumentuotos visame pasaulyje
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: dokumentai, kuriuose cituojami "iNaturalist" duomenys
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Bendruomenės mokslininkų atrastos arba iš naujo atrastos rūšys
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Atidarykite programą ir nufotografuokite bet kokį laukinį augalą, gyvūną, grybus ar kitą organizmą – iš savo kaimynystės ar bet kurios pasaulio vietos.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Programėlė akimirksniu pasiūlo identifikaciją, o pasaulinė gamtininkų bendruomenė ją patvirtina arba patobulina.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Jūsų stebėjimas tampa atvirais duomenimis, kuriuos naudoja mokslininkai, gamtosaugininkai ir tyrėjai visame pasaulyje.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Gamta keičiasi greičiau nei bet kada, todėl mums reikia <span class="underline">jūs</span> padėti užfiksuoti, kas kur gyvena.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Tai tikrai padėjo man identifikuoti rūšis, be to, suteikė man galimybę bendrauti su skirtingais žmonėmis visame pasaulyje.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Jūrų apsaugos specialistas ir povandeninis fotografas, Kenija
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            "iNaturalist" atveria duris daugybei naujų ir įdomių tyrimų apie nepakankamai ištirtus taksonus. Mano nuomone, ši platforma yra pažangiausia ekologijos mokslas.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Lauko vadovo autorius Owlfly LLC, JAV
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            "iNaturalist" ir jos atsidavusi identifikatorių bendruomenė tapo neįkainojamu mano tyrinėjimų šaltiniu. Tai padėjo pamatus mano dabartiniam darbui.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biologinės įvairovės tyrėjas, Šri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            "iNaturalist" yra galingas įrankis, jungiantis žmones, gamtą ir žinias. Galiu fotografuoti retą ar net dar neaprašytą rūšį ir tuo pačiu prisidedu prie mūsų gamtos paveldo išsaugojimo.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Aplinkosaugos technikas ir fotografas mėgėjas, Brazilija
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Nesvarbu, kurioje pasaulio vietoje esate, ar turite daktaro laipsnį, ar tiesiog mėgstate gamtą, "iNaturalist" priartins jus prie gamtos ir daugelio kolegų gamtininkų.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biologas, Meksika
+        everyone:
+          #Heading for the broad audience section
+          heading: Visi yra gamtininkai
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Jei kada nors atidžiai pažvelgėte į ką nors gyvo ir susimąstėte, kas tai yra, "iNaturalist" kaip tik jums.
+          #Heading for the impact sub-section
+          impact_heading: Galite padaryti poveikį
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Kiekviena jūsų bendrinama nuotrauka tampa pasaulinio mokslo įrašo dalimi, nuo kurios priklauso mokslininkai visame pasaulyje.
+          #Heading for the community reputation sub-section
+          community_heading: '"Gražiausia vieta internete"'
+          community_heading_2: Gražiausia vieta internete
+          #Description of the welcoming community aspect
+          community_body: >
+            Ateikite dėl identifikacijų, pasilikti dėl bendruomenės ir poveikio mokslui.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Atsisiųskite "iNaturalist" programėlę
+          #Subheading describing the two core benefits of the app
+          subheading: Gaukite identifikavimą realiuoju laiku ir prisidėkite prie mokslo
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Atsisiuntimai"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Tyrinėkite rūšis visame pasaulyje
+          #Button / link to browse species without downloading
+          button: Naršykite dabar
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Iki 13 metų? Parsisiųsti Ieškoti!"
+          #Description of Seek's badge and challenge features
+          body: Uždirbkite ženkliukus ir dalyvaukite rūšių stebėjimo iššūkiuose!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 žvaigždučių atsiliepimai"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Gaukite mūsų mėnesinį naujienlaiškį!
+          #Description of the newsletter's content
+          body: Palaikykite ryšį su iNaturalist bendruomenės istorijomis ir atradimais.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: '"iNaturalist" yra ne pelno siekianti organizacija, remianti mokslą ir gamtosaugą.'
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Jūsų parama leidžia tai padaryti.
+          #Call-to-action button for the donation section
+          cta: Paaukokite dabar
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: DUK
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Ar galiu įkelti jau turimas nuotraukas?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Taip! Jei apytiksliai žinote, kada ir kur buvo padaryta nuotrauka, laukiamos senesnės nuotraukos.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Kas gali daryti mokslą su "iNaturalist" stebėjimais?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Bet kas! Visi "iNaturalist" stebėjimai yra atviri ir laisvai prieinami tyrėjams, gamtosaugos specialistams ir smalsiems asmenims.
+          #FAQ: research grade definition — question
+          research_grade_question: Ką reiškia "mokslinis įvertinimas"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Kai bendruomenė susitaria dėl identifikavimo, stebėjimas tampa "mokslinių tyrimų laipsniu" ir patenka į pasaulinį mokslinį įrašą. Kiekvienas identifikavimas gali padėti jį pasiekti.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Ar turiu žinoti, į ką žiūriu?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Visiškai ne! Pasidalinkite nuotrauka ir pasaulinė gamtininkų bendruomenė gali padėti ją atpažinti.
+          #FAQ: whether the app is required — question
+          need_app_question: Ar man reikia naudotis programėle?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Staliniame kompiuteryje iNaturalist.org veikia puikiai. Mobiliajame įrenginyje programėlė suteikia geriausią patirtį, ypač atpažįstant rūšis keliaujant.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Išsaugokite ir redaguokite, kad pridėtumėte priedų
