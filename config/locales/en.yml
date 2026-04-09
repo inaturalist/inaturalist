@@ -1889,7 +1889,7 @@ en:
         Please check your email and click the link in the email you received
         to confirm your account.
       user:
-        suspended: Your account has been suspended
+        suspended: Your account has been suspended.
         # Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
         # with a variable containing relative time (e.g. 1 day, 1 week.)
         suspended_until: "Your suspension will be lifted in %{until}."
