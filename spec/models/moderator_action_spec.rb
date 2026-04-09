@@ -263,6 +263,13 @@ describe ModeratorAction do
         u.reload
         expect( u.suspended_until ).to be_nil
       end
+      it "copies a predefined reason key to the user's suspension_reason" do
+        u = create :user
+        create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u,
+          reason: "hate_speech", suspended_until: 1.day.from_now )
+        u.reload
+        expect( u.suspension_reason ).to eq "hate_speech"
+      end
     end
 
     describe "UNSUSPEND" do
@@ -616,6 +623,23 @@ describe ModeratorAction do
     describe "Sounds" do
       let( :resource ) { Sound.make! }
       it_behaves_like "media"
+    end
+  end
+
+  describe "translated_reason" do
+    it "translates a predefined suspension reason key" do
+      ma = build( :moderator_action, action: ModeratorAction::SUSPEND, reason: "hate_speech" )
+      expect( ma.translated_reason ).to eq I18n.t( "suspension_reasons.hate_speech" )
+    end
+
+    it "returns custom reason text unchanged" do
+      ma = build( :moderator_action, action: ModeratorAction::SUSPEND, reason: "posting spam links" )
+      expect( ma.translated_reason ).to eq "posting spam links"
+    end
+
+    it "returns nil for blank reason" do
+      ma = build( :moderator_action, action: ModeratorAction::SUSPEND, reason: nil )
+      expect( ma.translated_reason ).to be_nil
     end
   end
 end
