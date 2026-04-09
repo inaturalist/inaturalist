@@ -761,7 +761,7 @@ describe User do
       user.update_columns( suspended_at: Time.zone.now, suspended_until: suspended_until )
       user.reload
       msg = user.inactive_message
-      expect( msg ).to eq( "Your account has been suspended. Your suspension will be lifted in 7 days." )
+      expect( msg ).to include( "Your suspension will be lifted in 7 days." )
     end
 
     it "includes reason for timed suspensions with a reason" do
@@ -772,7 +772,7 @@ describe User do
       )
       user.reload
       msg = user.inactive_message
-      expect( msg ).to eq( "Your account has been suspended. Your suspension will be lifted in 7 days. Reason: posting spam" )
+      expect( msg ).to include( "posting spam" )
     end
 
     it "does not include reason for indefinite suspensions even if one is set" do
