@@ -2410,7 +2410,7 @@ nl:
   #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Determineer
   #e.g. "Identify using iNaturalist"
-  identify_cta: Identificeer
+  identify_cta: Determineer
   identification: determinatie
   identification_by_user: Determinatie door %{user}
   #Notification when an identification has been deleted
@@ -8798,7 +8798,6 @@ nl:
           #Main hero headline on the home page
           headline: Waar je nieuwsgierigheid bijdraagt aan de wetenschap.
           #Hero subheadline describing the core value proposition
-          #TODO: test that line break here doesn't cause line break
           subheadline: >
             Determineer planten, dieren, schimmels en meer, terwijl je ze toevoegt aan een levende atlas van het leven op aarde.
           #Primary call-to-action button in the hero section
@@ -8913,6 +8912,7 @@ nl:
             Elke foto die je deelt wordt onderdeel van een wereldwijd wetenschappelijk archief waarop onderzoekers wereldwijd vertrouwen.
           #Heading for the community reputation sub-section
           community_heading: '"De mooiste plek online"'
+          community_heading_2: De mooiste plek online
           #Description of the welcoming community aspect
           community_body: >
             Kom voor de determinaties, blijf voor de gemeenschap en impact op de wetenschap.
@@ -8971,7 +8971,7 @@ nl:
           no_knowledge_question: Moet ik weten waar ik naar kijk?
           #FAQ: whether prior knowledge is needed — answer
           no_knowledge_answer: >
-            Helemaal niet! Deel een foto en een wereldwijde gemeenschap van natuurliefhebbers kan helpen om het te determineren.
+            Helemaal niet! Deel een foto en de wereldwijde gemeenschap van natuurliefhebbers kan je helpen om het te determineren.
           #FAQ: whether the app is required — question
           need_app_question: Moet ik de app gebruiken?
           #FAQ: whether the app is required — answer; references both the website and mobile app
