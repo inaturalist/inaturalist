@@ -75,7 +75,12 @@ class ModeratorActionsController < ApplicationController
             redirect_to hide_sound_path( @moderator_action.resource )
             return
           end
-          redirect_back_or_default @moderator_action.resource
+          if @moderator_action.resource_type == "User" && @moderator_action.action == ModeratorAction::SUSPEND
+            @user = @moderator_action.resource
+            render "users/suspend", layout: "bootstrap"
+            return
+          end
+          redirect_back( fallback_location: @moderator_action.resource )
         end
       end
     end
