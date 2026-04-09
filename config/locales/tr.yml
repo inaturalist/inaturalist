@@ -1137,6 +1137,8 @@ tr:
     %{user} kullanıcısı "%{reason}" nedeniyle şunu gizlemeyi bıraktı: %{item}
   continue: Devam et
   continue_to_site: '%{site_name} sayfasına devam et'
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Katkıda bulun
   contributor_cannot_be_found: Katılımcı bulunamadı
   contributors_to_project: "%{project} katılımcıları"
   controlled_term_labels:
@@ -1703,6 +1705,8 @@ tr:
   devise_unlock_instructions_click_the_link: |
     Hesabını etkinleştirmek için aşağıdaki bağlantıya tıkla
   devise_unlock_instructions_unlock: Hesabının Kilidini Aç
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Keşfet
   discoveries: Keşifler
   did_you_mean: 'Bunu mu demek istedin'
   did_you_photos_flickr?: Flickr'a hiç fotoğraf koydun mu?
@@ -2313,6 +2317,10 @@ tr:
   identify_observations: "Gözlemleri Tanımla"
   identify_observations_by_these_users: Bu Kullanıcıların Gözlemlerini Tanımla
   identify_title: "Tanımla"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Tanımlama
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Tanımlama
   identification: tanımlama
   identification_by_user: '%{user} tarafından tanımlama'
   #Notification when an identification has been deleted
@@ -2542,7 +2550,7 @@ tr:
     identifications_in_month_year: '%{month_year} tarihindeki en çok tanımlama'
     identifications_in_year: '%{year} yılındaki en çok tanımlama'
   leading: Öncü
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Öğren
   learn_about_the_species_live_in: 'Burada yaşayan türler hakkında bilgi edin:'
   learn_more: Daha Çok Bilgi
@@ -3323,6 +3331,8 @@ tr:
   obscured_or_private: gizlenmiş veya özel
   obscured_description: |
     Açık koordinatlar, gerçek koordinatları içeren 0.2 derece enlem/boylam hücresinde rastgele bir nokta olarak gösterilir.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Gözlemleyin
   observation: Gözlem
   observation_: gözlem
   observation_accuracy_experiment_the_sample_for: "Bu deney için henüz örnek oluşturulmamıştır"
@@ -4860,6 +4870,7 @@ tr:
   sign_in_with_google: Google ile giriş yap
   sign_out: Çıkış Yap
   sign_up: Üye Ol
+  sign_up_sentence_case: Kayıt olun
   similar_species: Benzer Türler
   similar_taxa: Benzer Taksonlar
   #Journal post formatting option
@@ -5576,6 +5587,8 @@ tr:
   total_observations_caps: TOPLAM GÖZLEM
   total_species_observed_caps: GÖZLEMLENEN TOPLAM TÜR
   total_unique_observers: Toplam benzersiz gözlemci
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: İz
   translated_languages: Çevrilmiş Diller
   'true': 'Doğru'
   trending: Öne Çıkanlar
@@ -5969,6 +5982,7 @@ tr:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Bunun %{rank} içinde olduğundan oldukça eminiz
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Üzgünüz ancak %{filename} toplu içe aktarma işlemin başarısız oldu."
+  #e.g. "What was observed?"
   what: Ne
   what_did_you_see: Ne gördün?
   what_did_you_see?: <em>Ne</em> gördün?
@@ -5977,9 +5991,11 @@ tr:
   what_want_to_list?: Ne listelemek istiyorsun?
   what_were_you_looking_for?: "Ne arıyordun? (hedef listesi)"
   whats_this?: Bu nedir?
+  #e.g. "When was it observed?"
   when: Ne zaman
   when_did_you_see_it?: Onu ne zaman gördün?
   when_did_you_see_them?: Onları <em>ne zaman</em> gördün?
+  #e.g. "Where was it observed?"
   where: Nerede
   where_were_they?: Neredeydiler?
   where_were_you?: Neredeydin?
@@ -5988,6 +6004,8 @@ tr:
   why_are_you_making_this_change_optional: Bu değişikliği neden yapıyorsunuz? (isteğe bağlı)
   why_are_you_making_this_change_cite_source_required: Neden bu değişikliği yapıyorsun? Lütfen açıkla ve mümkün ise bir kaynağa atıf yap. (Gerekli)
   why_you_can_see_the_coordinates: Koordinatları Neden Görebiliyorsun
+  #e.g. "Who observed it?"
+  who: Kim
   who_can_add_observation_fields_to_my_obs: Gözlemlerime kimler gözlem alanı ekleyebilir?
   who_can_add_observations_to_this_project?: Bu projeye kim gözlem ekleyebilir?
   who_can_see_the_coordinates: Koordinatları Kimler Görebilir
@@ -5996,6 +6014,8 @@ tr:
   who_can_see_the_coordinates_trusted: Gözlemcinin gizli koordinatları konusunda güvendiği kişiler
   who_helped_user_the_most: "%{user} Kullanıcısına En Çok Yardım Edenler"
   who_user_helped_the_most: "%{user} Kullanıcısının En Çok Yardım Ettikleri"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Neden?
   why_the_coordinates_are_obscured: Koordinatlar Neden Gizlenmiş
   with_annotation: Açıklamayla
   without_annotation: Açıklamasız
@@ -8304,6 +8324,191 @@ tr:
         who_uses_site_name: "%{site_name}'i Kimler Kullanıyor?"
         what_are_you_waiting_for: Daha fazla bekleme!
         join_today: Bugün Katıl
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Merakınızın bilime katkıda bulunduğu yer.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Bitkileri, hayvanları, mantarları ve daha fazlasını tanımlayarak Dünya'daki yaşam atlasına katkı sağlayın.
+          #Primary call-to-action button in the hero section
+          cta_join: Topluluğa katılın
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Ücretsiz, kar amacı gütmeyen, topluluk destekli.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalist ile şunları yapabilirsiniz:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: bitkiler, hayvanlar, mantarlar ve daha fazlası
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: dünya çapında gördüğün türler
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: gerçek bilime
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: yakındaki doğa
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Küresel bir doğa bilimci topluluğundan
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Topluluk biliminin gücü
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Görülen %{user} içinde %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Uzun zamandır kayıp türleri yeniden keşfetmek
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} Güve onlarca yıldır fark edilmemişti ve bir zamanlar nesli tükenmiş sanıyordu — ta ki Yeni Zelanda'da bir turist onu tesadüfen fark edene kadar.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Bilime yeni gelen türlerin keşfi
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — kısaltılmış olarak <span class="italic">I. nat</span> — Avustralya'da bir kadının mahallesinde yürürken keşfettiği bilime yeni giren bir mantis türü.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Yerel ekosistemlerin korunması
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Kaliforniya'daki yerel gönüllülerden oluşan bir grup, iNaturalist aracılığıyla yoğun bir yolu geçen göç eden amfibileri korumak için bir araya geldi.
+          #Link below the stories to read more community science stories
+          read_more: Daha fazla hikaye okuyun
+        observation:
+          #Heading for the sample observation section
+          heading: Her gözlem bir hikaye anlatır
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Biyolojik çeşitlilik bilimine katkıda bulunan gözlemler
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Dünya genelinde belgelenmiş türler
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: iNaturalist verilerine atıfta bulunan makaleler
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Topluluk bilimcileri tarafından keşfedilen veya yeniden keşfedilen türler
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Uygulamayı açın ve mahallenizden veya dünyanın herhangi bir yerinden herhangi bir yabani bitki, hayvan, mantar veya başka bir organizmanın fotoğrafını çekin.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Uygulama anında tanımlama öneriyor ve küresel bir doğa bilimci topluluğu bunu doğrular veya iyileştirir.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Gözleminiz açık veri haline gelir — bilim insanları, korumacılar ve dünya çapında araştırmacılar tarafından kullanılır.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Doğa her zamankinden daha hızlı değişiyor, bu yüzden <span class="underline">Sen</span> Nerede yaşadığını kaydetmeye yardımcı olmak için.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Bu, bana tür tanımlama konusunda gerçekten yardımcı oldu, ayrıca dünyanın dört bir yanındaki farklı insanlarla etkileşim kurma fırsatı da verdi.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Deniz Koruma Uzmanı ve Sualtı Fotoğrafçısı, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist, az incelenen taksonlar üzerine çok sayıda yeni ve heyecan verici araştırmanın kapısını açıyor. Bence bu platform ekoloji bilimin öncüsüdür.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Owlfly LLC, ABD'de Saha Rehberi Yazarı
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist ve ona bağlı tanımlayıcılar topluluğu, keşiflerimde paha biçilmez bir kaynak haline geldi. Bu, mevcut çalışmalarımın temelini atmaya yardımcı oldu.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biyolojik Çeşitlilik Araştırmacısı, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist, insanları, doğayı ve bilgiyi birbirine bağlayan güçlü bir araçtır. Nadir bir türü fotoğraflayabilirim, hatta henüz tanımlanmamış bir türü fotoğraflayabilirim ve aynı zamanda doğal mirasımızın korunmasına katkıda bulunuyorum.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Çevre Teknisyeni ve hobi fotoğrafçısı, Brezilya
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Dünyanın neresinde olursanız olun, ister doktora dereceniz olsun ister sadece doğayı sevin, iNaturalist sizi doğaya ve birçok doğa uzmanına daha da yakınlaştıracak.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biyolog, Meksika
+        everyone:
+          #Heading for the broad audience section
+          heading: Herkes doğa bilimcidir
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Eğer yaşayan bir şeye yakından baktıysanız ve ne olduğunu merak ettiyseniz, iNaturalist sizin için.
+          #Heading for the impact sub-section
+          impact_heading: Etki yaratabilirsiniz
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Paylaştığınız her fotoğraf, araştırmacıların dünya çapındaki güvendiği küresel bir bilimsel kaydın parçası haline gelir.
+          #Heading for the community reputation sub-section
+          community_heading: '"Çevrimiçi en güzel yer"'
+          community_heading_2: Çevrimiçi en güzel yer
+          #Description of the welcoming community aspect
+          community_body: >
+            Kimlikler için gelin, topluluk için ve bilime etki için kalın.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: iNaturalist uygulamasını indirin
+          #Subheading describing the two core benefits of the app
+          subheading: Gerçek zamanlı kimlik bilgilerini alın ve bilime katkıda bulunun
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ İndirmeler"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Dünya çapında türleri keşfedin
+          #Button / link to browse species without downloading
+          button: Şimdi keşfedin
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 yaş altı mı? Seek! İndirin"
+          #Description of Seek's badge and challenge features
+          body: Rozetler kazanın ve türleri gözlemlemek için yarışmalara katılın!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 Yıldızlı İncelemeler"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Aylık bültenimizi alın!
+          #Description of the newsletter's content
+          body: iNaturalist topluluğundan gelen hikayeler ve keşiflerle bağlantıda kalın.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist, bilim ve korumayı destekleyen kar amacı gütmeyen bir kuruluştur.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Desteğiniz bunu mümkün kılıyor.
+          #Call-to-action button for the donation section
+          cta: Şimdi bağış yapın
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: SSS
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Zaten sahip olduğum fotoğrafları yükleyebilir miyim?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Evet! Fotoğrafın ne zaman ve nerede çekildiğini yaklaşık olarak bildiğiniz sürece, eski fotoğraflar da memnuniyetle karşılanır.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: iNaturalist gözlemleriyle kim bilim yapabilir?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Herkes! Tüm iNaturalist gözlemleri açık ve ücretsiz olarak erişilebilir — hem araştırmacılar, koruma uygulayıcıları hem de meraklı bireyler için.
+          #FAQ: research grade definition — question
+          research_grade_question: '"Araştırma notu" ne anlama geliyor?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Topluluk bir tanımlama konusunda anlaştığında, bir gözlem "araştırma derecesi" olur ve küresel bilimsel kayda girer. Her kimlik onu oraya götürmeye yardımcı olabilir.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Ne gördüğümü bilmem mi gerekiyor?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Hiç de hayır! Bir fotoğraf paylaşın, küresel bir doğa bilimci topluluğu bunu tanımlamanıza yardımcı olabilir.
+          #FAQ: whether the app is required — question
+          need_app_question: Uygulamayı kullanmam gerekiyor mu?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Masaüstü bilgisayarda iNaturalist.org harika çalışıyor. Mobil cihazda, uygulama size en iyi deneyimi sunuyor — özellikle hareket halindeyken türleri tanımlamak için.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Ek eklemek için kaydet ve düzenle

@@ -1,0 +1,52 @@
+%h2 Build Test Users Progress
+
+%p
+  This page shows all progress updates retained in cache (expires after 2 hours).
+
+%table.table.table-striped#progress-log
+  %thead
+    %tr
+      %th Time (UTC)
+      %th Login
+      %th Status
+      %th Progress
+      %th Message
+  %tbody
+    - @progress_log.each do |entry|
+      %tr
+        %td= entry[:updated_at]
+        %td= entry[:login]
+        %td= entry[:status]
+        %td= "#{entry[:progress]}%"
+        %td= entry[:message]
+
+:javascript
+  (function( ) {
+    var tableBody = document.querySelector( "#progress-log tbody" );
+    if ( !tableBody ) { return; }
+    function renderRows( entries ) {
+      tableBody.innerHTML = "";
+      entries.forEach( function( entry ) {
+        var row = document.createElement( "tr" );
+        row.innerHTML = "<td>" + entry.updated_at + "</td>" +
+          "<td>" + entry.login + "</td>" +
+          "<td>" + entry.status + "</td>" +
+          "<td>" + entry.progress + "%</td>" +
+          "<td>" + ( entry.message || "" ) + "</td>";
+        tableBody.appendChild( row );
+      } );
+    }
+    function poll( ) {
+      fetch( "/admin/build_test_user_progress_log" ).
+        then( function( response ) { return response.text( ); } ).
+        then( function( html ) {
+          var temp = document.createElement( "div" );
+          temp.innerHTML = html;
+          var newBody = temp.querySelector( "#progress-log tbody" );
+          if ( newBody ) {
+            tableBody.innerHTML = newBody.innerHTML;
+          }
+        } );
+    }
+    setInterval( poll, 3000 );
+  } )( );

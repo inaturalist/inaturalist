@@ -860,6 +860,8 @@ kk:
     %{user} осы %{item} жасырды, себебі "%{reason}"
   continue: Жалғастыру
   continue_to_site: '%{site_name} сайтына өту'
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Үлес қосыңыз
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Кез келген
@@ -1194,6 +1196,8 @@ kk:
   devise_unlock_instructions_click_the_link: |
     Аккаунтыңыздың құлпын ашу үшін төмендегі сілтемені басыңыз
   devise_unlock_instructions_unlock: Аккаунтыңызды ашыңыз
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Ашу
   discoveries: Ашулар
   disable: Өшіру
   disable_comments: Пікірлерді өшіру
@@ -1344,6 +1348,7 @@ kk:
   Family: Отбасы
   favorite_taxa: Таңдаулы таксондар
   favorites: "Таңдаулылар"
+  feedback: Кері байланыс
   fields: өрістер
   fields_: Өрістер
   file: Файл
@@ -1449,6 +1454,10 @@ kk:
   identify: Анықтау
   identify_observations: "Бақылауларды анықтау"
   identify_title: "Анықтау"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Анықтау
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Анықтау
   identification: идентификация
   identifications: Идентификациялар
   identotron: Идентотрон
@@ -1507,7 +1516,7 @@ kk:
     observations_in_month_year: '%{month_year} бойынша ең көп бақылаулар'
     observations_in_year: '%{year} бойынша ең көп бақылаулар'
   leading: Жетекші
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Үйрену
   learn_more: Толығырақ ақпарат
   learn_more_raquo: "Көбірек білу үшін &raquo;"
@@ -1921,6 +1930,8 @@ kk:
   notifications: Хабарландырулар
   notify_me_of_mentions: Маған ескертулер туралы хабарлау (мысалы, @username)
   notify_me_of_mentions_description: "Мұны өшірсеңіз, %{site_name} сайтында біреу сізді атап өткенде, сіз ешқандай хабарландыру алмайсыз."
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Бақылау
   observation: Бақылау
   observation_: бақылау
   observations_by_app: Қолданба бойынша бақылаулар
@@ -3047,6 +3058,7 @@ kk:
   sign_in_with_google: Google арқылы жүйеге кіру
   sign_out: Шығу
   sign_up: Тіркелу
+  sign_up_sentence_case: Тіркелу
   similar_species: Ұқсас түрлер
   similar_taxa: Ұқсас таксондар
   #Journal post formatting option
@@ -3342,6 +3354,8 @@ kk:
   total_observations: Жалпы бақылаулар
   total_observations_caps: ЖАЛПЫ БАҚЫЛАУЛАР
   total_species_observed_caps: ЖАЛПЫ БАҚЫЛАНҒАН ТҮРЛЕР
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Із
   translated_languages: Аударылған тілдер
   trust_with_private_coordinates: Жасырын координаттармен бөлісу
   twitter: Твиттер
@@ -3514,13 +3528,21 @@ kk:
   welcome: қош келдіңіз
   welcome_back!: Қайтадан қош келдіңіз!
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Кешіріңіз, бірақ %{filename} файлын жаппай импорттау сәтсіз аяқталды."
+  #e.g. "What was observed?"
+  what: Не
   what_did_you_see: Сіз не көрдіңіз?
   what_did_you_see?: <em>Сіз</em> не көрдіңіз?
   what_do_you_think: Сіз қалай ойлайсыз?
   what_to_keep: Нені сақтау керек
   whats_this?: Бұл не?
+  #e.g. "When was it observed?"
+  when: Қашан
   when_did_you_see_it?: Сіз оны қашан көрдіңіз?
+  #e.g. "Where was it observed?"
+  where: Мұнда
   where_were_you?: Сіз қайда болдыңыз?
+  #e.g. "Who observed it?"
+  who: Кім
   who_can_add_observations_to_this_project?: Бұл жобаға бақылауларды кім қоса алады?
   who_can_see_the_coordinates: Координаттарды кім көре алады
   who_can_see_the_coordinates_observer: Бақылауды жасаған адам
@@ -3528,6 +3550,8 @@ kk:
   who_can_see_the_coordinates_trusted: Бақылаушы жасырын координаталарына сенген адамдар
   who_helped_user_the_most: "%{user} кім көбірек көмектесті"
   who_user_helped_the_most: "%{user} кімге көбірек көмектесті"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Неге?
   why_the_coordinates_are_obscured: Неліктен координаттар жасырын
   with_annotation: Аңдатпа арқылы
   without_annotation: Аңдатпасыз
@@ -4103,6 +4127,191 @@ kk:
         who_uses_site_name: "%{site_name} кім пайдаланады?"
         what_are_you_waiting_for: Сіз не күтіп тұрсыз?
         join_today: Бүгін қосылыңыз
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Мұнда сенің қызығушылығың ғылымға үлес қосады.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Өсімдіктерді, жануарларды, саңырауқұлақтарды және тағы басқаларды анықтап, Жердегі тірі өмірдің атласын толықтырыңыз.
+          #Primary call-to-action button in the hero section
+          cta_join: Қауымдастыққа қосылыңыз
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Тегін, коммерциялық емес, қауымдастыққа негізделген.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalist көмегімен сіз:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: өсімдіктер, жануарлар, саңырауқұлақтар және тағы басқалар
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Әлемде көрген түрлер
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: Шынайы ғылымға
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Табиғат жақын маңда
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: жаһандық табиғаттанушылар қауымдастығынан
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Қауымдастық ғылымының күші
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Көрген %{user} ішінде %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Ұзақ жоғалған түрлерді қайта табу
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} Көбелек ондаған жылдар бойы байқалмаған және бір кездері жойылып кеткен деп есептелген — бірақ Жаңа Зеландиядағы турист оны кездейсоқ байқап қалған.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Ғылымға жаңа түрлерді ашу
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — қысқартылып <span class="italic">I. nat</span> — ғылымға жаңадан шыққан богомол түрі, оны Австралияда әйел өз ауданында жүргенде тапқан.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Жергілікті экожүйелерді қорғау
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Калифорниядағы жергілікті еріктілер тобы iNaturalist арқылы бірігіп, қарбалас жолдан өтіп бара жатқан амфибияларды қорғауға кірісті.
+          #Link below the stories to read more community science stories
+          read_more: Қосымша мақалаларды оқыңыз
+        observation:
+          #Heading for the sample observation section
+          heading: Әр байқау өз оқиғасын айтады
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Биологиялық әртүрлілік ғылымына үлес қосқан бақылаулар
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Әлем бойынша құжатталған түрлер
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: iNaturalist деректеріне сілтеме жасайтын мақалалар
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Қауымдастық ғалымдары ашқан немесе қайта ашқан түрлер
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Қосымшаны ашып, кез келген жабайы өсімдік, жануар, саңырауқұлақ немесе басқа организмдерді — өз ауданыңыздан немесе әлемнің кез келген жерінен суретке түсіріңіз.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Қосымша анықтауды бірден ұсынады, ал жаһандық табиғаттанушылар қауымдастығы оны растайды немесе нақтылайды.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Сіздің бақылауыңыз ашық деректерге айналады — оны ғалымдар, табиғатты қорғаушылар және зерттеушілер әлем бойынша қолданады.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Табиғат бұрынғыдан да жылдам өзгеріп жатыр, сондықтан бізге <span class="underline">сен</span> Қайда тұратынын жазуға көмектесу үшін.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Бұл маған түрлерді анықтауда үлкен көмек берді, сонымен қатар әлемдегі әртүрлі адамдармен араласуға мүмкіндік берді.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Теңізді қорғаушы және су асты фотографы, Кения
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist зерттелмеген таксондар туралы көптеген жаңа әрі қызықты зерттеулерге жол ашады. Менің ойымша, бұл платформа экологиялық ғылымның ең озық кезеңі.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Owlfly LLC, АҚШ-та далалық нұсқаулық авторы
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist және оның арнайы идентификаторлар қауымдастығы менің зерттеулерімде баға жетпес ресурсқа айналды. Бұл менің қазіргі жұмысымның негізін қалауға көмектесті.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Биоалуантүрлілік зерттеушісі, Шри-Ланка
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist — адамдарды, табиғатты және білімді байланыстыратын қуатты құрал. Мен сирек кездесетін түрді, тіпті әлі сипатталмағанын да суретке түсіре аламын, сонымен қатар табиғи мұрамызды сақтауға үлес қосамын.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Қоршаған орта технигі және хобби фотограф, Бразилия
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Әлемнің қай жерінде болсаңыз да, PhD дәрежеңіз болса да, табиғатты жақсы көрсеңіз де, iNaturalist сізді табиғатқа және көптеген табиғатшыларға жақындатады.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Биолог, Мексика
+        everyone:
+          #Heading for the broad audience section
+          heading: Барлығы табиғаттанушы
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Егер сіз тірі нәрсеге мұқият қарап, оның не екенін ойлаған болсаңыз, iNaturalist сізге арналған.
+          #Heading for the impact sub-section
+          impact_heading: Сен әсер ете аласың
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Сіз бөліскен әрбір фотосурет әлемдегі зерттеушілер сүйенетін жаһандық ғылыми жазбаның бір бөлігіне айналады.
+          #Heading for the community reputation sub-section
+          community_heading: '"Интернеттегі ең жақсы орын"'
+          community_heading_2: Интернеттегі ең жақсы орын
+          #Description of the welcoming community aspect
+          community_body: >
+            Жеке куәліктер үшін келіңіздер, қоғам үшін және ғылымға әсер ету үшін болыңыздар.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: iNaturalist қосымшасын жүктеңіз
+          #Subheading describing the two core benefits of the app
+          subheading: Нақты уақыттағы идентификациялар алып, ғылымға үлес қосыңыз
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Жүктеулер"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Әлем бойынша түрлерді зерттеңіз
+          #Button / link to browse species without downloading
+          button: Қазір зерттеңіз
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 жасқа дейін? Seek-ті жүктеп алыңыз!"
+          #Description of Seek's badge and challenge features
+          body: Төсбелгілер алып, түрлерді бақылау үшін сынақтарға қатысыңыз!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 жұлдызды пікірлер"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Ай сайынғы ақпараттық бюллетеньімізді алыңыз!
+          #Description of the newsletter's content
+          body: iNaturalist қауымдастығының оқиғалары мен жаңалықтарымен байланыста болыңыз.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist — ғылым мен табиғатты қорғауды қолдайтын коммерциялық емес ұйым.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Сіздің қолдауыңыз осыны мүмкін етеді.
+          #Call-to-action button for the donation section
+          cta: Қазір қайырымдылық жасау
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Жиі қойылатын сұрақтар
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Менде бар фотоларды жүктей аламын ба?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Иә! Суреттің шамамен қашан және қайда түсірілгенін білсеңіз, ескі фотолар да қабылданады.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: iNaturalist бақылауларымен ғылымды кім жасай алады?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Кім болса да! Барлық iNaturalist бақылаулары зерттеушілерге, табиғатты қорғау мамандарына және қызығушылық танытқан адамдарға ашық және тегін қолжетімді.
+          #FAQ: research grade definition — question
+          research_grade_question: '"Зерттеу дәрежесі" деген не?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Қауымдастық анықтауға келіскенде, бақылау «зерттеу деңгейіне» айналып, жаһандық ғылыми жазбаларға енеді. Әрбір идентификация оны сонда жеткізуге көмектеседі.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Мен не қарап тұрғанымды білуім керек пе?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Оқасы жоқ! Фотосуретті бөліссеңіз, жаһандық табиғат зерттеушілері қауымдастығы оны анықтауға көмектеседі.
+          #FAQ: whether the app is required — question
+          need_app_question: Қосымшаны қолдануым керек пе?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Десктопта iNaturalist.org өте жақсы жұмыс істейді. Мобильді құрылғыда бұл қосымша ең жақсы тәжірибе береді — әсіресе жолда түрлерді анықтау үшін.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Тіркемелерді қосу үшін сақтаңыз және өңдеңіз

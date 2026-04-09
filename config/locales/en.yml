@@ -1311,7 +1311,7 @@ en:
     %{user} unhid this %{item} because "%{reason}"
   continue: Continue
   continue_to_site: Continue to %{site_name}
-  # verb, call to action, e.g. "Contribute to real science"
+  # e.g. "With iNaturalist, you can contribute to real science"
   contribute: Contribute
   contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
@@ -1961,7 +1961,7 @@ en:
   devise_unlock_instructions_click_the_link: |
     Click the link below to unlock your account
   devise_unlock_instructions_unlock: Unlock Your Account
-  # verb, call to action, e.g. "Discover nature nearby"
+  # e.g. "With iNaturalist, you can discover nature nearby"
   discover: Discover
   discoveries: Discoveries
   did_you_mean: 'Did you mean'
@@ -2625,8 +2625,10 @@ en:
   identify_observations: "Identify Observations"
   identify_observations_by_these_users: Identify Observations By These Users
   identify_title: "Identify"
-  # verb, call to action, e.g. "Identify nature nearby"
+  # e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identify
+  # e.g. "Identify using iNaturalist"
+  identify_cta: Identify
   identification: identification
   identification_by_user: Identification by %{user}
   # Notification when an identification has been deleted
@@ -2882,7 +2884,7 @@ en:
     identifications_in_month_year: Most identifications in %{month_year}
     identifications_in_year: Most identifications in %{year}
   leading: Leading
-  # verb, call to action, e.g. "Learn from a global community of naturalists"
+  # e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
@@ -3317,6 +3319,8 @@ en:
     <strong>only visible to curators</strong> and <strong>curators cannot view
     their own history</strong>, so notes about a person should never be visible
     to that person.
+  # Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Suspension expired
   # Action a moderator can take to hide content; verb
   moderator_actions_hide: Hide
   # Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -6211,7 +6215,7 @@ en:
   total_observations_caps: TOTAL OBSERVATIONS
   total_species_observed_caps: TOTAL SPECIES OBSERVED
   total_unique_observers: Total unique observers
-  # Verb, call to action, e.g. "Track species you've seen worldwide"
+  # e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Track
   translated_languages: Translated Languages
   'true': 'True'
@@ -6643,6 +6647,7 @@ en:
   # higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: We're pretty sure this is in the %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "We're sorry but your bulk import of %{filename} has failed."
+  # e.g. "What was observed?"
   what: What
   what_did_you_see: What did you see?
   what_did_you_see?: <em>What</em> did you see?
@@ -6651,9 +6656,11 @@ en:
   what_want_to_list?: What do you want to list?
   what_were_you_looking_for?: "What were you looking for? (target list)"
   whats_this?: What's this?
+  # e.g. "When was it observed?"
   when: When
   when_did_you_see_it?: When did you see it?
   when_did_you_see_them?: <em>When</em> did you see them?
+  # e.g. "Where was it observed?"
   where: Where
   where_were_they?: Where were they?
   where_were_you?: Where were you?
@@ -6662,7 +6669,7 @@ en:
   why_are_you_making_this_change_optional: Why are you making this change? (optional)
   why_are_you_making_this_change_cite_source_required: Why are you making this change? Please explain, and cite a source if possible. (Required)
   why_you_can_see_the_coordinates: Why You Can See the Coordinates
-  # What or which person or persons, e.g. "Who uses iNaturalist?"
+  # e.g. "Who observed it?"
   who: Who
   who_can_add_observation_fields_to_my_obs: Who can add observation fields to my observations?
   who_can_add_observations_to_this_project?: Who can add observations to this project?
@@ -6672,6 +6679,8 @@ en:
   who_can_see_the_coordinates_trusted: Individuals who the observer has trusted with their hidden coordinates
   who_helped_user_the_most: "Who Helped %{user} the Most"
   who_user_helped_the_most: "Who %{user} Helped the Most"
+  # Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Why?
   why_the_coordinates_are_obscured: Why the Coordinates Are Obscured
   with_annotation: With Annotation
   without_annotation: Without Annotation
@@ -10041,7 +10050,6 @@ en:
           # Main hero headline on the home page
           headline: Where your curiosity contributes to science.
           # Hero subheadline describing the core value proposition
-          # TODO: test that line break here doesn't cause line break
           subheadline: >
             Identify plants, animals, fungi, and more while adding to a living
             atlas of life on Earth.
@@ -10172,6 +10180,7 @@ en:
             researchers worldwide depend on.
           # Heading for the community reputation sub-section
           community_heading: “The nicest place online”
+          community_heading_2: The nicest place online
           # Description of the welcoming community aspect
           community_body: >
             Come for the identifications, stay for the community and impact on
@@ -10402,6 +10411,11 @@ en:
         # 10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      # Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:

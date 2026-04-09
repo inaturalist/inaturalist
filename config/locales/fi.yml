@@ -1096,6 +1096,8 @@ fi:
     %{user} poisti piilotuksen tältä %{item}lta, koska: "%{reason}"
   continue: Jatka
   continue_to_site: Jatka %{site_name}iin
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Osallistu
   contributor_cannot_be_found: Osallistujaa ei löydy
   contributors_to_project: "Projektin %{project} osallistujat"
   controlled_term_labels:
@@ -1653,6 +1655,8 @@ fi:
   devise_unlock_instructions_click_the_link: |
     Poista tilisi lukitus alla olevasta linkistä:
   devise_unlock_instructions_unlock: Poista tilin lukitus
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Tutustu
   discoveries: Löydöt
   did_you_mean: 'Tarkoititko'
   did_you_photos_flickr?: Laitoitko mitään kuvia Flickr'iin?
@@ -2208,6 +2212,10 @@ fi:
   identify_observations: "Tunnista havaintoja"
   identify_observations_by_these_users: Tunnista havaintoja, joita nämä havainnoijat ovat tehneet
   identify_title: "Tunnistus"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Tunnista
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Tunnista
   identification: tunnistus
   identification_by_user: Käyttäjän %{user} tunnistus
   #Notification when an identification has been deleted
@@ -2427,7 +2435,7 @@ fi:
     identifications_in_month_year: Eniten tunnistuksia %{month_year}
     identifications_in_year: Eniten tunnistuksia %{year}
   leading: Johtava
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Opi
   learn_about_the_species_live_in: Opi lajeista, jotka elävät paikassa
   learn_more: Lue lisää
@@ -3154,6 +3162,8 @@ fi:
   obscured_or_private: karkeistettu tai yksityinen
   obscured_description: |
     Julkiset koordinaatit näytetään satunnaisena pisteenä 0,2 asteen lat/lon -solussa, joka sisältää todelliset koordinaatit.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Katso
   observation: Havainto
   observation_: havainto
   observation_accuracy_experiment_year: "Vuosi"
@@ -4508,6 +4518,7 @@ fi:
   sign_in_with_google: Kirjaudu sisään Google-tilillä
   sign_out: Kirjaudu ulos
   sign_up: Rekisteröidy
+  sign_up_sentence_case: Kiinnittää
   similar_species: Samanlaiset ​​lajit
   similar_taxa: Samankaltaisia taksoneita
   #Journal post formatting option
@@ -5086,6 +5097,8 @@ fi:
   total_observations_caps: HAVAINTOJA YHTEENSÄ
   total_species_observed_caps: LAJEJA HAVAITTU YHTEENSÄ
   total_unique_observers: Yksilölliset havainnoijat yhteensä
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Rata
   translated_languages: Käännetyt kielet
   'true': 'Kyllä'
   trending: Nousussa
@@ -5415,6 +5428,7 @@ fi:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Olemme melko varmoja, että se on osa %{rank}a
+  #e.g. "What was observed?"
   what: Mitä
   what_did_you_see: Mitä näet?
   what_did_you_see?: <em>Mitä</em> näet?
@@ -5422,21 +5436,27 @@ fi:
   what_to_keep: Mitä pitää
   what_want_to_list?: Mitä haluat luetteloida?
   whats_this?: Mikä tämä on?
+  #e.g. "When was it observed?"
   when: Milloin
   when_did_you_see_it?: Milloin havaitsit sen?
   when_did_you_see_them?: <em>Milloin</em> näit ne?
+  #e.g. "Where was it observed?"
   where: Missä
   where_were_they?: Missä he olivat?
   where_were_you?: Missä olit?
   which_projects_can_add_your_observations?: Mitkä perinteiset projektit voivat lisätä havaintojasi ko. projektiin?
   why_are_you_making_this_change_cite_source_required: Miksi teet tämän muutoksen? Ole hyvä ja selitä, ja mainitse lähde jos mahdollista. (Pakollinen)
   why_you_can_see_the_coordinates: Miksi näet koordinaatit
+  #e.g. "Who observed it?"
+  who: Kuka
   who_can_add_observation_fields_to_my_obs: Kuka voi lisätä havaintokenttiä havaintoihini?
   who_can_add_observations_to_this_project?: Kuka voi lisätä havaintoja tähän projektiin?
   who_can_see_the_coordinates: Kuka voi nähdä koordinaatit
   who_can_see_the_coordinates_observer: Henkilö, joka teki havainnon
   who_helped_user_the_most: "Kuka auttoi käyttäjää %{user} eniten"
   who_user_helped_the_most: "Keitä %{user} auttoi eniten"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Miksi?
   why_the_coordinates_are_obscured: Miksi koordinaatit on karkeistettu
   with_annotation: Merkinnällä
   without_annotation: Ilman merkintää
@@ -6339,9 +6359,19 @@ fi:
         change_owner_alert: |
           Tämän jälkeen et voi enää poistaa projektia tai siirtää sen omistajuutta uudelleen. Haluatko jatkaa?
         cover_desc: "Valinnainen kansikuva, joka tulee näkyviin projektisivusi yläreunaan. Pitää olla 950px leveä, alle 400px pitkä."
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Piilota tulostaulukko
         icon_desc: "Rajataan neliöksi"
         it_looks_like_this_project_can_be_converted: |
           Näyttää siltä että tämä projekti voidaan muuntaa uudeksi <a href="%{url}">koontiprojektiksi</a>.
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Tulostaulukko
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Tulostaulukko näyttää käyttäjät, joilla on eniten havaintoja ja eniten lajeja sekä eniten havaitut lajit. Se voidaan halutessasi piilottaa.
         #Label for button to make another user the owner of a project
         make_owner: Tee käyttäjästä omistaja
         no_curators: |
@@ -6998,6 +7028,191 @@ fi:
         who_uses_site_name: "Ketkä käyttävät %{site_name}ia?"
         what_are_you_waiting_for: Mitä vielä odotat?
         join_today: Liity tänään
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Missä uteliaisuutesi vaikuttaa tieteeseen.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Tunnista kasveja, eläimiä, sieniä ja paljon muuta samalla kun lisäät elävää atlasta elämästä Maassa.
+          #Primary call-to-action button in the hero section
+          cta_join: Liity yhteisöön
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Ilmainen, voittoa tavoittelematon, yhteisölähtöinen.
+        features:
+          #Section label introducing the three core user actions
+          intro: "iNaturalistin avulla voit:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Kasvit, eläimet, sienet ja paljon muuta
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: lajeja, joita olet nähnyt ympäri maailmaa
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: todelliseen tieteeseen
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Luonto lähellä
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Globaalista luonnontieteilijäyhteisöstä
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Yhteisötieteen voima
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Nähty %{user} sisään %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Kadonneiden lajien uudelleenlöytäminen
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Se %{moth_common_name} Yöperhosta ei oltu nähty vuosikymmeniin ja sen uskottiin joskus sukupuuttoon kuolleena — kunnes eräs turisti Uudessa-Seelannissa huomasi sen vahingossa.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Uusien lajien löytäminen tieteelle
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — lyhennettynä <span class="italic">I. nat</span> — on tieteelle uusi mantis-laji, jonka australialainen nainen löysi kävellessään naapurustossaan.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Paikallisten ekosysteemien suojeleminen
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Paikallisten vapaaehtoisten ryhmä Kaliforniassa kokoontui iNaturalistin kautta suojelemaan vilkkaan tien ylittäjiä muuttavia sammakkoeläimiä.
+          #Link below the stories to read more community science stories
+          read_more: Lue lisää tarinoita
+        observation:
+          #Heading for the sample observation section
+          heading: Jokainen havainto kertoo tarinan
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Havainnot, jotka edistävät biodiversiteettitutkimusta
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Lajeja dokumentoitu ympäri maailmaa
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: Artikkelit, joissa viitataan iNaturalist-aineistoihin
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Yhteisötutkijoiden löytämät tai uudelleen löytämät lajit
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Avaa sovellus ja kuvaa kaikki villikasvit, eläimet, sienet tai muut eliöt — omasta naapurustostasi tai mistä päin maailmaa tahansa.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Sovellus ehdottaa tunnistautumista välittömästi, ja maailmanlaajuinen luonnontieteilijäyhteisö vahvistaa tai tarkentaa sitä.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Havaintosi muuttuu avoimeksi dataksi — jota käyttävät tutkijat, luonnonsuojelijat ja tutkijat ympäri maailmaa.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Luonto muuttuu nopeammin kuin koskaan, joten meidän täytyy <span class="underline">sinä</span> auttaakseen kirjaamaan, missä elävät.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Se on todella auttanut minua lajien tunnistamisessa, ja lisäksi antanut mahdollisuuden olla vuorovaikutuksessa eri ihmisten kanssa ympäri maailmaa.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Merensuojelija ja vedenalainen valokuvaaja, Kenia
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist avaa oven monelle uudelle ja jännittävälle tutkimukselle alitutkituista taksoneista. Mielestäni tämä alusta on ekologisen tieteen kärki.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Kenttäoppaan kirjoittaja Owlfly LLC:ssä, USA:ssa
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist ja sen omistautunut tunnisteyhteisö muodostuivat korvaamattomaksi resurssiksi tutkimuksissani. Se auttoi luomaan perustan nykyiselle työlleni.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversiteettitutkija, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist on voimakas työkalu, joka yhdistää ihmiset, luonnon ja tiedon. Voin valokuvata harvinaisen lajin tai jopa sellaisen, jota ei ole vielä kuvattu, ja samalla osallistun luonnonperintömme säilyttämiseen.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Ympäristöteknikko ja harrastusvalokuvaaja, Brasilia
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Missä päin maailmaa oletkin, olitpa sitten tohtori tai rakastat vain ulkoilmaa, iNaturalist tuo sinut lähemmäs luontoa ja monia muita luonnontutkijoita.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biologi, Meksiko
+        everyone:
+          #Heading for the broad audience section
+          heading: Kaikki ovat luonnontieteilijöitä
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Jos olet koskaan tarkastellut jotain elävää ja miettinyt, mitä se on, iNaturalist on sinua varten.
+          #Heading for the impact sub-section
+          impact_heading: Voit tehdä vaikutuksen
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Jokainen jakamasi valokuva muodostuu osaksi globaalia tieteellistä aineistoa, johon tutkijat ympäri maailmaa luottavat.
+          #Heading for the community reputation sub-section
+          community_heading: '"Mukavin paikka netissä"'
+          community_heading_2: Mukavin paikka netissä
+          #Description of the welcoming community aspect
+          community_body: >
+            Tule hakemaan henkilöllisyystodistusta, pysy yhteisön ja tieteen vaikutuksen vuoksi.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Lataa iNaturalist-sovellus
+          #Subheading describing the two core benefits of the app
+          subheading: Hanki reaaliaikaiset tunnistukset ja osallistu tieteeseen
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Lataukset"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Tutustu lajeihin maailmanlaajuisesti
+          #Button / link to browse species without downloading
+          button: Tutustu nyt
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Alle 13-vuotiaita? Lataa Seek!"
+          #Description of Seek's badge and challenge features
+          body: Ansaitse merkkejä ja osallistu lajien tarkkailuhaasteisiin!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-tähden arvostelut"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Tilaa kuukausittainen uutiskirjeemme!
+          #Description of the newsletter's content
+          body: Pysy ajan tasalla iNaturalist-yhteisön tarinoiden ja löytöjen kanssa.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist on voittoa tavoittelematon järjestö, joka tukee tiedettä ja luonnonsuojelua.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Tukesi tekee sen mahdolliseksi.
+          #Call-to-action button for the donation section
+          cta: Lahjoita nyt
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: UKK
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Voinko ladata kuvia, jotka minulla jo on?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Kyllä! Kunhan tiedät suunnilleen, milloin ja missä kuva on otettu, vanhemmat kuvat ovat tervetulleita.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Kuka voi tehdä tiedettä iNaturalist-havainnoilla?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Kuka tahansa! Kaikki iNaturalistin havainnot ovat avoimia ja vapaasti saatavilla — tutkijoille, luonnonsuojelun ammattilaisille ja uteliaille henkilöille.
+          #FAQ: research grade definition — question
+          research_grade_question: Mitä "tutkimusarvosana" tarkoittaa?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Kun yhteisö sopii tunnistuksesta, havainto muuttuu "tutkimustasoiseksi" ja se siirtyy maailmanlaajuiseen tieteelliseen rekisteriin. Jokainen tunnistus voi auttaa pääsemään sinne.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Tarvitseeko minun tietää, mitä katson?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Ei todellakaan! Jaa kuva, niin maailmanlaajuinen luonnontieteilijäyhteisö voi auttaa sinua tunnistamaan sen.
+          #FAQ: whether the app is required — question
+          need_app_question: Tarvitseeko minun käyttää sovellusta?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Pöytäkoneella iNaturalist.org toimii erinomaisesti. Mobiililaitteella sovellus tarjoaa parhaan kokemuksen — erityisesti lajien tunnistamiseen liikkeellä ollessa.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Tallenna ja muokkaa liitteiden lisäämiseksi

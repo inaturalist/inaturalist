@@ -11477,6 +11477,13 @@ CREATE INDEX index_users_on_state ON public.users USING btree (state);
 
 
 --
+-- Name: index_users_on_suspended_until; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_suspended_until ON public.users USING btree (suspended_until);
+
+
+--
 -- Name: index_users_on_unconfirmed_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12186,6 +12193,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260119093529'),
 ('20260319212735'),
 ('20260326000001'),
-('20260326000002');
+('20260326000002'),
+('20260406164708');
 
 
