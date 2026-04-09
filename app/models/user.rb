@@ -394,6 +394,7 @@ class User < ApplicationRecord
   scope :admins, -> { joins( :roles ).where( "roles.name = 'admin'" ) }
   scope :active, -> { where( "suspended_at IS NULL" ) }
   scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
+  scope :suspension_expired, -> { where( "suspended_at IS NOT NULL AND suspended_until < ?", Time.now ) }
 
   HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP = "helpful-id-tips-reviewer"
   HELPFUL_ID_TIPS_TEST_GROUP = "helpful-id-tips"
