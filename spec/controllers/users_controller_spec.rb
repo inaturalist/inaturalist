@@ -188,7 +188,7 @@ describe UsersController, "delete" do
 
   it "redirects to the user details page if destroyed by an admin" do
     controller.request.host = URI.parse( Site.default.url ).host
-    admin_user = make_admin
+    admin_user = make_admin( locale: "en" )
     user = User.make!
     sign_in admin_user
     delete :destroy, params: { id: user.id, confirmation: user.login, confirmation_code: user.login }
