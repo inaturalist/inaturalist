@@ -5713,13 +5713,20 @@ en:
   suspension_reason_custom: Custom
   # note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Please note this reason will be displayed to the suspended user.
-  # suspension reason options
+  # predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
+    # reason displayed to users who have been suspended for posting hate speech
     hate_speech: Hate speech
+    # reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Insults or threats
+    # reason displayed to users who have been suspended for posting sexually explicit content
     sexually_explicit_content: Sexually explicit content
+    # reason displayed to users who are creating false accounts to circumvent suspensions,
+    # https://en.wikipedia.org/wiki/Sock_puppet_account
     sockpuppet_accounts: Sockpuppet accounts
+    # reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
     false_ids_or_dqa_votes: Intentionally adding false IDs or DQA votes
+    # reason displayed to users who have been suspended for posting machine generated content
     machine_generated_content: Machine generated observations, identifications and comments
   # the time at which a users suspension ends
   suspend_until: Suspend until
