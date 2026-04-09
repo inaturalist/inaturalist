@@ -5,14 +5,17 @@
 - reason_opts[:description] = reason_description if local_assigns[:reason_description]
 - selected_reason = local_assigns.fetch( :selected_reason, nil )
 = form_for moderator_action, builder: BootstrapFormBuilder do |f|
-  - reason_options = ModeratorAction::SUSPENSION_REASONS.keys.map { |key| [t( "suspension_reasons.#{key}" ), key] }
-  - reason_options << [t( :suspension_reason_custom ), "custom"]
-  = f.form_field :suspension_reason, label: t( :suspension_reason_label ) do
-    = select_tag :suspension_reason, options_for_select( reason_options, selected_reason || reason_options.first[1] ), class: "form-control", id: "suspension_reason"
-  .custom-reason-field{ style: selected_reason == "custom" ? "" : "display: none;" }
+  - if current_user.is_admin?
+    - reason_options = ModeratorAction::SUSPENSION_REASONS.keys.map { |key| [t( "suspension_reasons.#{key}" ), key] }
+    - reason_options << [t( :suspension_reason_custom ), "custom"]
+    = f.form_field :suspension_reason, label: t( :suspension_reason_label ) do
+      = select_tag :suspension_reason, options_for_select( reason_options, selected_reason || reason_options.first[1] ), class: "form-control", id: "suspension_reason"
+    .custom-reason-field{ style: selected_reason == "custom" ? "" : "display: none;" }
+      = f.text_area :reason, reason_opts
+      %p.help-block= t( :suspension_reason_custom_note )
+    = f.hidden_field :reason, id: "hidden_reason"
+  - else
     = f.text_area :reason, reason_opts
-    %p.help-block= t( :suspension_reason_custom_note )
-  = f.hidden_field :reason, id: "hidden_reason"
   - if current_user.is_admin?
     = f.form_field :suspension_duration, label: t( :suspension_duration ) do
       = select_tag :suspension_duration, options_for_select( [[t( :suspension_duration_1_day ), "1_day"], [t( :suspension_duration_3_days ), "3_days"], [t( :suspension_duration_1_week ), "1_week"], [t( :suspension_duration_1_month ), "1_month"], [t( :suspension_duration_2_months ), "2_months"], [t( :suspension_duration_indefinite ), "indefinite"], [t( :suspension_duration_custom ), "custom"]], default_duration ), class: "form-control", id: "suspension_duration"
@@ -27,7 +30,8 @@
   = f.submit submit_text, class: "btn btn-primary"
   = link_to t( :cancel ), cancel_path, class: "btn btn-default"
 
-- content_for :extrajs do
-  :javascript
-    var SUSPENSION_REASON_DURATIONS = #{ModeratorAction::SUSPENSION_REASONS.transform_values { |v| v[:default_duration] }.to_json.html_safe};
-  = javascript_include_tag 'users/suspend'
+- if current_user.is_admin?
+  - content_for :extrajs do
+    :javascript
+      var SUSPENSION_REASON_DURATIONS = #{ModeratorAction::SUSPENSION_REASONS.transform_values { |v| v[:default_duration] }.to_json.html_safe};
+    = javascript_include_tag 'users/suspend'

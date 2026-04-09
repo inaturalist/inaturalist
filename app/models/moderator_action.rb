@@ -144,6 +144,17 @@ class ModeratorAction < ApplicationRecord
     end
   end
 
+  def self.translate_reason( reason )
+    return reason if reason.blank?
+    return I18n.t( "suspension_reasons.#{reason}" ) if SUSPENSION_REASONS.key?( reason )
+
+    reason
+  end
+
+  def translated_reason
+    self.class.translate_reason( reason )
+  end
+
   def as_indexed_json
     {
       id: id,

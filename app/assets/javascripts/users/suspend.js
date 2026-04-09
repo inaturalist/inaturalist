@@ -87,14 +87,9 @@ $( function () {
     durationSelect.addEventListener( "change", updateSuspendedUntil );
   }
 
-  // --- Suspension reason handling ---
+  // --- Suspension reason handling (admin-only) ---
 
-  function getReasonLabel( reasonKey ) {
-    var option = reasonSelect.querySelector( "option[value=\"" + reasonKey + "\"]" );
-    return option ? option.textContent : "";
-  }
-
-  function updateSuspensionReason() {
+  var updateSuspensionReason = function () {
     var selectedReason = reasonSelect.value;
     if ( selectedReason === "custom" ) {
       customReasonField.style.display = "";
@@ -106,24 +101,28 @@ $( function () {
       reasonTextArea.disabled = true;
       reasonTextArea.required = false;
       hiddenReason.disabled = false;
-      hiddenReason.value = getReasonLabel( selectedReason );
+      hiddenReason.value = selectedReason;
 
       // Update duration to the default for this reason
-      // eslint-disable-next-line no-undef
-      if ( durationSelect && typeof SUSPENSION_REASON_DURATIONS !== "undefined" ) {
-        // eslint-disable-next-line no-undef
+      /* eslint-disable no-undef */
+      if ( durationSelect
+        && typeof SUSPENSION_REASON_DURATIONS !== "undefined"
+      ) {
         var defaultDuration = SUSPENSION_REASON_DURATIONS[selectedReason];
+        /* eslint-enable no-undef */
         if ( defaultDuration ) {
           durationSelect.value = defaultDuration;
           updateSuspendedUntil();
         }
       }
     }
+  };
+
+  if ( reasonSelect ) {
+    reasonSelect.addEventListener( "change", updateSuspensionReason );
+    updateSuspensionReason();
   }
 
-  reasonSelect.addEventListener( "change", updateSuspensionReason );
-
-  // Set initial values
-  updateSuspensionReason();
+  // Set initial duration value
   updateSuspendedUntil();
 }() );

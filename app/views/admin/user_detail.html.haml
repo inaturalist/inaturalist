@@ -76,6 +76,8 @@
                   %span.text-muted
                     = surround "(", ")" do
                       = distance_of_time_in_words( @display_user.suspended_at, @display_user.suspended_until )
+              - elsif user_attr == "suspension_reason"
+                = ModeratorAction.translate_reason( @display_user.suspension_reason )
               - elsif user_attr == "email"
                 = @display_user.send( user_attr ).to_s.html_safe
                 - if @display_user.confirmed?

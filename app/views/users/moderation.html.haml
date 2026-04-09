@@ -71,7 +71,10 @@
           - else
             = link_to_user( record.user )
         %td
-          = truncate_with_more formatted_user_text( record.try_methods( :body, :flag, :description, :reason ) ), length: 512
+          - if record.is_a?( ModeratorAction ) && record.respond_to?( :translated_reason )
+            = truncate_with_more formatted_user_text( record.translated_reason ), length: 512
+          - else
+            = truncate_with_more formatted_user_text( record.try_methods( :body, :flag, :description, :reason ) ), length: 512
           - if record.is_a?( ModeratorAction ) && record.action == ModeratorAction::SUSPEND
             - if record.suspended_until
               %div.text-muted
