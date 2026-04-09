@@ -1265,18 +1265,18 @@ a.wv2-carousel__item {
   details.closing summary ~ * {
     animation: sweep-closed 0.4s ease-in-out;
   }
+}
 
-  @keyframes sweep-open {
-    0%    { opacity: 0; margin-top: var(--content-height, -50px); }
-    50%   { opacity: 0; }
-    100%  { opacity: 1; margin-top: 0; }
-  }
+@keyframes sweep-open {
+  0%    { opacity: 0; margin-top: var(--content-height, -50px); }
+  50%   { opacity: 0; }
+  100%  { opacity: 1; margin-top: 0; }
+}
 
-  @keyframes sweep-closed {
-    0%    { opacity: 1; margin-top: 0; }
-    50%   { opacity: 0; }
-    100%  { opacity: 0; margin-top: var(--content-height, -50px); }
-  }
+@keyframes sweep-closed {
+  0%    { opacity: 1; margin-top: 0; }
+  50%   { opacity: 0; }
+  100%  { opacity: 0; margin-top: var(--content-height, -50px); }
 }
 
 @media (max-width: $breakpoint-mobile) {
