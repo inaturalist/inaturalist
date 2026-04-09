@@ -390,3 +390,23 @@
       updateDonateText();
     })();
 
+    // Override standard details functionality of setting display: none when closing summary
+    (function () {
+      document.querySelectorAll(".wv2-faq details").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          if (!el.open) return;
+          e.preventDefault();
+          el.classList.add("closing");
+          el.addEventListener("transitionend", function () {
+            el.classList.remove("closing");
+            el.removeAttribute("open");
+          }, { once: true });
+        });
+      });
+    })();
+
+    // Calculate content height for FAQ animations
+    document.querySelectorAll('.wv2-faq details').forEach(detail => {
+      const p = detail.querySelector('p');
+      if (p) detail.style.setProperty('--content-height', `-${p.offsetHeight}px`);
+    });

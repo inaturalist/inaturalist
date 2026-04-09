@@ -1243,6 +1243,40 @@ a.wv2-carousel__item {
 .wv2-faq {
   width: 700px;
   margin: 0 auto;
+
+  details {
+    display: grid;
+    grid-template-rows: auto 0fr;
+    transition: grid-template-rows 0.4s ease-in-out;
+  }
+
+  details[open], details.closing {
+    grid-template-rows: auto 1fr;
+  }
+
+  details.closing {
+    grid-template-rows: auto 0fr;
+  }
+
+  details[open] summary ~ * {
+    animation: sweep-open 0.4s ease-in-out;
+  }
+
+  details.closing summary ~ * {
+    animation: sweep-closed 0.4s ease-in-out;
+  }
+
+  @keyframes sweep-open {
+    0%    { opacity: 0; margin-top: var(--content-height, -50px); }
+    50%   { opacity: 0; }
+    100%  { opacity: 1; margin-top: 0; }
+  }
+
+  @keyframes sweep-closed {
+    0%    { opacity: 1; margin-top: 0; }
+    50%   { opacity: 0; }
+    100%  { opacity: 0; margin-top: var(--content-height, -50px); }
+  }
 }
 
 @media (max-width: $breakpoint-mobile) {
@@ -1295,6 +1329,7 @@ a.wv2-carousel__item {
     font-size: 17px;
     color: $dark-gray;
     letter-spacing: $letter-spacing-tight;
+    line-height: normal;
     padding-bottom: 15px;
     margin: 0;
 
