@@ -165,12 +165,6 @@ class AdminController < ApplicationController
     redirect_to build_test_users_admin_path
   end
 
-  private
-
-  def build_test_user_enabled?
-    BuildTestUser.enabled?
-  end
-
   def user_content
     return unless load_user_content_info
 
@@ -334,6 +328,10 @@ class AdminController < ApplicationController
   end
 
   private
+
+  def build_test_user_enabled?
+    BuildTestUser.enabled?
+  end
 
   def load_user_content_info
     user_id = params[:id] || params[:user_id]

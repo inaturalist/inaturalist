@@ -201,7 +201,11 @@ class UsersController < ApplicationController
         )
         # Mobile clients that handle account deletion in a webview need this
         # parameter to detect if deletion was successful
-        redirect_to root_path( account_deleted: true )
+        if current_user == @user
+          redirect_to root_path( account_deleted: true )
+        else
+          redirect_to user_path( @user )
+        end
       end
       format.json { head :no_content }
     end
