@@ -111,6 +111,8 @@ $breakpoint-mobile:    767px;
 .wv2 {
   --font-serif: #{$font-serif};
 
+  p { line-height: normal; }
+
 // ── Section shell ────────────────────────────────────────────────────────────
 
 .wv2-section {
@@ -128,6 +130,13 @@ $breakpoint-mobile:    767px;
   &--no-horizontal-padding { padding-left: 0; padding-right: 0; }
   &--stories {
     @media (max-width: 405px) { padding-left: 0; padding-right: 0; }
+  }
+
+  h2 {
+    margin: 0;
+    margin-bottom: 30px;
+
+    @media (max-width: $breakpoint-mobile) { margin-bottom: 20px; }
   }
 }
 
@@ -285,15 +294,15 @@ h2 {
     font-size: 43px;
     color: $white;
     letter-spacing: -0.86px;
-    line-height: 1;
+    line-height: normal;
     margin-bottom: 25px;
     max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 25px;
 
     @media (max-width: $breakpoint-mobile) {
       font-size: 28px;
       letter-spacing: -0.56px;
+      margin-bottom: 20px;
     }
   }
 
@@ -313,9 +322,14 @@ h2 {
     font-family: $font-mono;
     font-size: 17px;
     color: $white;
-    margin-top: 20px;
+    margin-top: 29px;
+    margin-bottom: 0;
 
-    @media (max-width: $breakpoint-mobile) { font-size: 14px; }
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 14px;
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
   }
 }
 
@@ -345,7 +359,7 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 25px 60px;
-  padding: 25px 0;
+  padding: 15px 0;
 
   @media (max-width: $breakpoint-mobile) {
     gap: 25px 30px;
@@ -426,12 +440,13 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   margin-bottom: 30px;
 
   @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
   }
 }
 
@@ -518,7 +533,7 @@ h2 {
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 10px 0;
 
   @media (max-width: $breakpoint-mobile) { flex-direction: column; gap: 20px; }
 
@@ -659,7 +674,6 @@ h2 {
   font-size: 17px;
   color: $dark-gray;
   letter-spacing: $letter-spacing-tight;
-  line-height: normal;
   margin: 0;
 
   @media (max-width: $breakpoint-mobile) { font-size: 15px; }
@@ -704,7 +718,7 @@ h2 {
 
     p {
       font-size: 17px;
-      line-height: normal;
+
       letter-spacing: $letter-spacing-tight;
 
       @media (max-width: $breakpoint-mobile) {
@@ -825,8 +839,8 @@ h2 {
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: rgba($white, 0.9);
     border: 1.5px solid $border-color;
@@ -834,16 +848,19 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $dark-gray;
-    font-size: 18px;
-    line-height: 1;
     transition: border-color 0.15s, background 0.15s;
     padding: 0;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 
-    &::before { display: block; }
-    &--prev { left: 8px; &::before { content: "‹"; } }
-    &--next { right: 8px; &::before { content: "›"; } }
+    &::before {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 16px;
+      background: image-url("welcome_v2/icon-carat-closed.svg") center/contain no-repeat;
+    }
+    &--prev { left: 8px; &::before { transform: rotate(180deg); } }
+    &--next { right: 8px; }
 
     @media (pointer: coarse) { display: none; }
 
@@ -877,7 +894,9 @@ h2 {
 
 .wv2-carousel--static {
   .wv2-carousel__arrow,
-  .wv2-carousel__dots { display: none !important; }
+  .wv2-carousel__dots { 
+    display: none !important;
+  }
 
   .wv2-carousel__track {
     overflow-x: visible;
@@ -909,6 +928,7 @@ h2 {
       font-family: $font-sans;
       font-size: 15px;
       font-weight: 500;
+
       color: $dark-gray;
       margin: 0;
     }
@@ -956,6 +976,7 @@ h2 {
   flex-direction: column;
   gap: 40px;
   text-align: center;
+  padding: 15px 0;
 }
 
 .wv2-everyone__point {
@@ -966,6 +987,7 @@ h2 {
     color: $dark-gray;
     letter-spacing: $letter-spacing-tight;
     margin-bottom: 10px;
+    margin-top: 0;
 
     @media (max-width: $breakpoint-mobile) { font-size: 20px; }
 
@@ -1004,6 +1026,10 @@ h2 {
   gap: 15px;
   text-align: center;
 
+  @media (max-width: $breakpoint-mobile) {
+    gap: 20px;
+  }
+
   h2 {
     margin: 0;
     font-size: 23px;
@@ -1030,6 +1056,7 @@ h2 {
 }
 
 // ── Download ──────────────────────────────────────────────────────────────────
+// TODO: more to merge with seek section
 
 .wv2-download {
   display: grid;
@@ -1040,11 +1067,15 @@ h2 {
   column-gap: 50px;
   justify-content: center;
   align-items: center;
+  row-gap: 20px;
+
+  @media (min-width: $breakpoint-mobile) {
+    padding: 10px 0;
+  }
 
   @media (max-width: $breakpoint-mobile) {
     grid-template-columns: 1fr;
     grid-template-areas: "text" "images" "cta";
-    row-gap: 25px;
   }
 
   &__text   { grid-area: text;   @extend %product-section__text; }
@@ -1077,11 +1108,15 @@ h2 {
   column-gap: 50px;
   justify-content: center;
   align-items: center;
+  row-gap: 20px;
+
+  @media (min-width: $breakpoint-mobile) {
+    padding: 10px 0;
+  }
 
   @media (max-width: $breakpoint-mobile) {
     grid-template-columns: 1fr;
     grid-template-areas: "text" "images" "cta";
-    row-gap: 25px;
   }
 
   &__text   { grid-area: text;   @extend %product-section__text; }
@@ -1109,7 +1144,12 @@ h2 {
 
 .wv2-explore__cards {
   width: 100%;
-  margin: 20px 0 30px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+
+  @media (max-width: $breakpoint-mobile) {
+    margin-bottom: 20px;
+  }
 }
 
 a.wv2-carousel__item {
@@ -1301,7 +1341,6 @@ a.wv2-carousel__item {
 @media (max-width: $breakpoint-mobile) {
   .wv2-faq {
     width: 100%;
-    padding: 15px 0;
   }
 }
 
@@ -1348,7 +1387,6 @@ a.wv2-carousel__item {
     font-size: 17px;
     color: $dark-gray;
     letter-spacing: $letter-spacing-tight;
-    line-height: normal;
     padding-bottom: 15px;
     margin: 0;
 
@@ -1389,7 +1427,6 @@ a.wv2-carousel__item {
 
   p {
     margin: 0;
-    line-height: normal;
   }
 }
 

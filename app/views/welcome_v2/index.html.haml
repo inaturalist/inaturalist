@@ -156,7 +156,7 @@
         %p= t("#{s}.everyone.community_body")
 
   -# ── App download ──────────────────────────────────────────
-  .wv2-section.wv2-section--white.wv2-section--spacious
+  .wv2-section.wv2-section--white
     .wv2-download
       .wv2-download__text
         %h2= t("#{s}.download.heading")
@@ -171,7 +171,7 @@
   .wv2-section.wv2-section--light.wv2-section--no-horizontal-padding.text-center
     %h2= t("#{s}.explore.heading")
     .wv2-explore__cards
-      .wv2-carousel{ data: { carousel: true } }
+      .wv2-carousel{ data: { carousel: true, initial_index: 0 } }
         .wv2-carousel__stage
           %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
           .wv2-carousel__track
@@ -203,7 +203,7 @@
     = link_to t("#{s}.explore.button"), observations_path, class: "btn wv2-btn--dark"
 
   -# ── Seek ──────────────────────────────────────────────────
-  .wv2-section.wv2-section--white.wv2-section--spacious
+  .wv2-section.wv2-section--white
     .wv2-seek
       .wv2-seek__text
         %h2= t("#{s}.seek.heading")
@@ -282,7 +282,9 @@
         
 
         function syncDots() {
-          var idx = activeDotIndex();
+          var atStart = track.scrollLeft <= 1;
+          var atEnd   = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
+          var idx = atStart ? 0 : atEnd ? items.length - 1 : activeDotIndex();
           dots.forEach(function (d, i) { d.classList.toggle("active", i === idx); });
         }
 
