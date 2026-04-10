@@ -1,4 +1,5 @@
 .container
   .row
     .col-md-6.col-md-offset-3
+      %h1=t :suspend_user_html, user: link_to_user( @user )
       = render "moderator_actions/suspension_form", moderator_action: @moderator_action, reason_description: t( :suspend_user_reason_instructions_html, link_start_tag: "<a href=\"/pages/community+guidelines\">".html_safe, link_end_tag: "</a>".html_safe ), reason_maxlength: ModeratorAction::MAXIMUM_SUSPEND_REASON_LENGTH, default_duration: "1_day", hidden_fields: [:user_id, :resource_type, :resource_id, :action], submit_text: t( :suspend_user ), cancel_path: :back

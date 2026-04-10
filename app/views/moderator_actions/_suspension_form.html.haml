@@ -1,4 +1,3 @@
-%h1=t :suspend_user_html, user: link_to_user( @user )
 - default_duration = local_assigns.fetch( :default_duration, "1_day" )
 - existing_suspended_until = local_assigns[:suspended_until_value]
 - reason_opts = { required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: local_assigns.fetch( :reason_maxlength, ModeratorAction::MAXIMUM_REASON_LENGTH ) }
