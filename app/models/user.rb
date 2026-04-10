@@ -1566,7 +1566,7 @@ class User < ApplicationRecord
   end
 
   def send_unsuspended_email( reason = nil )
-    Emailer.user_unsuspended( self, reason ).deliver_later
+    Emailer.delay.user_unsuspended( self, reason )
   end
 
   def revoke_access_tokens_by_suspended_user
