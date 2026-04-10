@@ -83,7 +83,8 @@
                 = surround "(", ")" do
                   = distance_of_time_in_words( record.created_at, record.suspended_until )
             - else
-              %div.text-muted Suspended indefinitely
+              %div.text-muted
+                =t( :suspended_indefinitely )
             %div.text-muted
               - if record.last_edited_by_user
                 = "#{t( :last_edited_by )} "
