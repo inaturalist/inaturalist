@@ -12,8 +12,6 @@ $( function () {
     return date.toISOString().replace( /\.\d{3}Z$/, "Z" );
   }
 
-  // --- Duration handling (admin-only elements) ---
-
   function computeUtcFromDuration( duration ) {
     var now = new Date();
     switch ( duration ) {
@@ -87,8 +85,6 @@ $( function () {
     durationSelect.addEventListener( "change", updateSuspendedUntil );
   }
 
-  // --- Suspension reason handling (admin-only) ---
-
   var updateSuspensionReason = function () {
     var selectedReason = reasonSelect.value;
     if ( selectedReason === "custom" ) {
@@ -123,6 +119,5 @@ $( function () {
     updateSuspensionReason();
   }
 
-  // Set initial duration value
   updateSuspendedUntil();
 }() );
