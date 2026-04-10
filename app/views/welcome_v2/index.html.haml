@@ -3,9 +3,17 @@
 - content_for(:extrahead) do
   = tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp"
   %meta{name: "description", content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name)}
+  - unless @google_webmaster_verification.blank?
+    - @google_webmaster_verification.split( ";" ).each do |verification|
+      %meta{content: verification.strip, name: "google-site-verification"}
 - s = "views.welcome_v2.index"
 
 %main.wv2
+  -# ── Announcements ─────────────────────────────────────────
+  - @announcements.each do |announcement|
+    .announcement
+      = render "announcements/announcement", announcement: announcement
+
   -# ── Hero ──────────────────────────────────────────────────
   .wv2-section.wv2-section--hero.text-center
     %video.wv2-hero__video{autoplay: true, loop: true, muted: true, playsinline: true, preload: "none", aria: {hidden: "true"}}
@@ -278,8 +286,6 @@
           var offset = track.scrollLeft + itemRect.left - trackRect.left - (trackRect.width - itemRect.width) / 2;
           track.scrollTo({ left: offset, behavior: "smooth" });
         }
-
-        
 
         function syncDots() {
           var atStart = track.scrollLeft <= 1;

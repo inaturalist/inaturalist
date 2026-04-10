@@ -38,21 +38,6 @@ $breakpoint-mobile:    767px;
   flex-shrink: 0;
 }
 
-// Match sticky footer spacer to the negative margin so no dead zone appears
-#bodywrapper:after { height: 196px; }
-
-// Extra footer clearance for the sticky app banner on iOS
-@supports (-webkit-touch-callout: none) {
-  body.responsive #inatnotice { padding-bottom: 80px; }
-}
-
-// TODO REMOVE
-#header .logolink img {
-  width: 121px;
-  height: 22px;
-}
-
-
 // ── Header overwrites, incorporate into main header styles once ready ────────
 
 #header {
@@ -884,7 +869,7 @@ h2 {
     border-radius: 50%;
     background: #D5E2C3;
     border: none;
-    padding: 0; // Accessibility concerns with small touch target?
+    padding: 0;
     cursor: pointer;
     transition: background 0.2s;
 
@@ -1056,7 +1041,6 @@ h2 {
 }
 
 // ── Download ──────────────────────────────────────────────────────────────────
-// TODO: more to merge with seek section
 
 .wv2-download {
   display: grid;
@@ -1396,8 +1380,18 @@ a.wv2-carousel__item {
 
 } // end .wv2
 
+// Match sticky footer spacer to the negative margin so no dead zone appears
+#bodywrapper:after { height: 196px; }
+
+
 // iOS-only sticky app download banner
 // @supports (-webkit-touch-callout: none) matches iOS Safari only
+
+// Extra footer clearance for the sticky app banner on iOS
+@supports (-webkit-touch-callout: none) {
+  body.responsive #inatnotice { padding-bottom: 80px; }
+}
+
 .wv2-app-banner {
   display: none;
 

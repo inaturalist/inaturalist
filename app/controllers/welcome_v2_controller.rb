@@ -34,8 +34,8 @@ class WelcomeV2Controller < ApplicationController
     @skip_external_connections = true
     @skip_react = true
 
-    @header_utm = HEADER_UTM
     @store_url = "https://tr.ee/MymHMn"
+    @header_utm = HEADER_UTM
     @header_donate_url = "#{donate_path}?redirect=true&segment=gmHome&#{HEADER_UTM}&utm_medium=webmobile&utm_content=header_donate_cta"
     @header_login_url  = "#{login_path}?#{HEADER_UTM}&utm_medium=owned_web&utm_content=header_login_cta"
     @header_signup_url = "#{signup_path}?#{HEADER_UTM}&utm_medium=owned_web&utm_content=header_signup_cta"
@@ -43,6 +43,8 @@ class WelcomeV2Controller < ApplicationController
     @locale_key = I18n.locale.to_s
     @locale_base = @locale_key.split( "-" ).first
 
+    @announcements = Announcement.active_in_placement( Announcement::WELCOME_INDEX, site: @site )
+    @google_webmaster_verification = @site.google_webmaster_verification if @site
     @steps_data = STEPS_DATA
     @testimonials_data = TESTIMONIALS_DATA
     @story_data = build_story_data
