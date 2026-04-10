@@ -725,6 +725,22 @@ describe User do
     end
   end
 
+  describe "suspension_expired" do
+    it "includes users whose suspended_until is in the past" do
+      user1 = User.make!( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      user2 = User.make!( suspended_at: 1.day.ago, suspended_until: 1.day.from_now )
+      user3 = User.make!( suspended_at: 1.day.ago, suspended_until: nil )
+      user4 = User.make!
+
+      suspension_expired_users = User.suspension_expired
+
+      expect( suspension_expired_users ).to include user1
+      expect( suspension_expired_users ).not_to include user2
+      expect( suspension_expired_users ).not_to include user3
+      expect( suspension_expired_users ).not_to include user4
+    end
+  end
+
   describe "unsuspend!" do
     it "clears suspended_until in addition to suspended_at" do
       user = User.make!

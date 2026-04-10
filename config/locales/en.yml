@@ -3319,6 +3319,8 @@ en:
     <strong>only visible to curators</strong> and <strong>curators cannot view
     their own history</strong>, so notes about a person should never be visible
     to that person.
+  # Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Suspension expired
   # Action a moderator can take to hide content; verb
   moderator_actions_hide: Hide
   # Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -5685,6 +5687,26 @@ en:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Suitable for Wikipedia and other Wikimedia Foundation projects
   summary: Summary
   supporting: Supporting
+  # label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Suspension duration
+  # a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 day
+  # a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 days
+  # a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 week
+  # a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 month
+  # a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 months
+  # a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Indefinite
+  # a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Custom
+  # the time at which a users suspension ends
+  suspend_until: Suspend until
+  # a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Date and time in your browser's local timezone.
   suspend_user: Suspend user
   suspend_user_html: Suspend %{user}
   suspend_user_reason_instructions_html: |
@@ -10863,6 +10885,10 @@ en:
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
+            suspended_until:
+              # Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Must be in the future
+
         moderator_note:
           attributes:
             user:

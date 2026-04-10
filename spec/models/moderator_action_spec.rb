@@ -217,6 +217,32 @@ describe ModeratorAction do
         u.reload
         expect( u ).not_to be_suspended
       end
+      it "should not allow a suspend reason longer than #{ModeratorAction::MAXIMUM_SUSPEND_REASON_LENGTH} characters" do
+        u = create :user
+        long_reason = "a" * ( ModeratorAction::MAXIMUM_SUSPEND_REASON_LENGTH + 1 )
+        ma = build( :moderator_action, action: ModeratorAction::SUSPEND, resource: u, reason: long_reason )
+        expect( ma ).not_to be_valid
+        expect( ma.errors[:reason] ).to be_present
+      end
+      it "should allow a suspend reason up to #{ModeratorAction::MAXIMUM_SUSPEND_REASON_LENGTH} characters" do
+        u = create :user
+        reason = "a" * ModeratorAction::MAXIMUM_SUSPEND_REASON_LENGTH
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u, reason: reason )
+        expect( ma ).to be_persisted
+      end
+      it "should not allow suspended_until in the past" do
+        u = create :user
+        ma = build( :moderator_action, action: ModeratorAction::SUSPEND, resource: u,
+          suspended_until: 1.day.ago )
+        expect( ma ).not_to be_valid
+        expect( ma.errors[:suspended_until] ).to be_present
+      end
+      it "should allow suspended_until in the future" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u,
+          suspended_until: 7.days.from_now )
+        expect( ma ).to be_persisted
+      end
       it "sets suspended_by_user" do
         u = create :user
         expect( u ).not_to be_suspended
