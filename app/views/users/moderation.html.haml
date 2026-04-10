@@ -85,12 +85,13 @@
             - else
               %div.text-muted
                 =t( :suspended_indefinitely )
-            %div.text-muted
-              - if record.last_edited_by_user
+            - if record.last_edited_by_user
+              %div.text-muted
                 = "#{t( :last_edited_by )} "
                 = link_to_user( record.last_edited_by_user )
                 %time.datetime{ datetime: record.updated_at.iso8601, title: record.updated_at.iso8601 }= l record.updated_at, format: :long
-              - if record.user
+            - if record.user
+              %div.text-muted
                 = "#{t( :created_by )} "
                 = link_to_user( record.user )
                 %time.datetime{ datetime: record.created_at.iso8601, title: record.created_at.iso8601 }= l record.created_at, format: :long
