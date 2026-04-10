@@ -78,7 +78,7 @@
           - if record.is_a?( ModeratorAction ) && record.action == ModeratorAction::SUSPEND
             - if record.suspended_until
               %div.text-muted
-                Until:
+                = t( :suspended_until )
                 %time.datetime{ datetime: record.suspended_until.iso8601, title: record.suspended_until.iso8601 }= l record.suspended_until, format: :long
                 = surround "(", ")" do
                   = distance_of_time_in_words( record.created_at, record.suspended_until )
