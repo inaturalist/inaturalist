@@ -12,4 +12,4 @@
         = link_to t(:cancel), :back, class: "btn btn-default"
       - if @current_suspend_action&.editable_by?( current_user )
         .alert.alert-info{ style: "margin-top: 1em" }
-          = t( :edit_suspension_alternative_html, edit_link: link_to( t( :edit_suspension ).downcase, edit_moderator_action_path( @current_suspend_action ) ) )
+          = t( :edit_suspension_alternative_html, edit_link: edit_moderator_action_path( @current_suspend_action ) )

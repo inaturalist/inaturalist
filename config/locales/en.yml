@@ -2055,7 +2055,7 @@ en:
   # Text on a button allowing you to edit the suspension reason or end date for a user
   edit_suspension: Edit Suspension
   # Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
-  edit_suspension_alternative_html: "If you only need to update the reason or expiration date, you can %{edit_link} instead."
+  edit_suspension_alternative_html: If you only need to update the reason or expiration date, you can <a href="%{edit_link}">edit the suspension</a> instead.
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
   edit_assessment: Edit Assessment
