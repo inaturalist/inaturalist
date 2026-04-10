@@ -118,6 +118,7 @@ class Emailer < ActionMailer::Base
 
   def user_unsuspended( user, reason = nil )
     return if user.blank?
+    return if user.suspended?
 
     @user = user
     return if @user.email.blank?
