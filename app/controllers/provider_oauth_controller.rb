@@ -266,6 +266,7 @@ class ProviderOauthController < ApplicationController
   end
 
   def assertion_access_token_for_client_and_user( client, user )
+    user.unsuspend_if_timed_suspension_expired!
     unless user.active_for_authentication?
       raise INat::Auth::SuspendedError if user.suspended?
       raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
