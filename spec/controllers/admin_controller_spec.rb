@@ -8,7 +8,7 @@ describe AdminController do
   describe "user_content" do
     render_views
 
-    it "should show an error about account age if user signed up in the last 60 days" do
+    it "should load correctly for the requested user id" do
       user = User.make!
       sign_in admin_user
       get :user_content, params: { id: user.id }
