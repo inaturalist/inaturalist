@@ -760,6 +760,87 @@ describe User do
       user.moderated_with( moderator_action )
       expect( user.login ).not_to eq "old_login"
     end
+
+    it "suspends the user when given a SUSPEND action" do
+      user = User.make!
+      curator = make_curator
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: user,
+        user: curator,
+        reason: "hate_speech",
+        suspended_until: 3.days.from_now
+      user.moderated_with( moderator_action )
+      expect( user.suspended_at ).not_to be_nil
+      expect( user.suspension_reason ).to eq "hate_speech"
+      expect( user.suspended_by_user ).to eq curator
+      expect( user.suspended_until ).to be_within( 1.second ).of( 3.days.from_now )
+    end
+
+    it "does not suspend admin users" do
+      admin = make_admin
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: admin,
+        user: make_curator,
+        reason: "hate_speech"
+      admin.moderated_with( moderator_action )
+      expect( admin.suspended_at ).to be_nil
+    end
+
+    it "updates reason and duration when editing a suspension on an already-suspended user" do
+      user = User.make!
+      curator = make_curator
+      user.suspended_by_user = curator
+      user.suspend!( "insults_or_threats" )
+      user.update( suspended_until: 1.day.from_now )
+      expect( user ).to be_suspended
+
+      new_moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: user,
+        user: curator,
+        reason: "hate_speech",
+        suspended_until: 7.days.from_now
+      user.moderated_with( new_moderator_action )
+      user.reload
+      expect( user.suspension_reason ).to eq "hate_speech"
+      expect( user.suspended_until ).to be_within( 1.second ).of( 7.days.from_now )
+      expect( user.suspended_at ).not_to be_nil
+    end
+
+    it "does not change suspended_by_user when editing an existing suspension" do
+      user = User.make!
+      original_curator = make_curator
+      user.suspended_by_user = original_curator
+      user.suspend!( "insults_or_threats" )
+
+      different_curator = make_curator
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: user,
+        user: different_curator,
+        reason: "hate_speech",
+        suspended_until: 3.days.from_now
+      user.moderated_with( moderator_action )
+      user.reload
+      expect( user.suspended_by_user ).to eq original_curator
+    end
+
+    it "unsuspends the user when given an UNSUSPEND action" do
+      user = User.make!
+      user.suspend!( "hate_speech" )
+      expect( user ).to be_suspended
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::UNSUSPEND,
+        resource: user,
+        user: make_curator,
+        reason: "appealed successfully"
+      user.moderated_with( moderator_action )
+      expect( user ).not_to be_suspended
+      expect( user.spammer ).to be false
+      expect( user.suspended_by_user ).to be_nil
+    end
   end
 
   describe "deletion" do
