@@ -1183,6 +1183,8 @@ nl:
   continue_to_site: Ga door naar %{site_name}
   #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Bijdragen
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Draag bij
   contributor_cannot_be_found: Medewerker kan niet gevonden worden
   contributors_to_project: "Medewerkers aan %{project}"
   controlled_term_labels:
@@ -3075,6 +3077,8 @@ nl:
     en markeringen van alles wat deze gebruiker heeft gemaakt behalve taxa. Dit is
     <strong>alleen zichtbaar voor curatoren</strong> en <strong>curatoren kunnen
     hun eigen geschiedenis niet inzien</strong>, notities over een persoon mogen dus nooit zichtbaar zijn voor die persoon.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Schorsing verlopen
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Verbergen
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -5317,6 +5321,22 @@ nl:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Geschikt voor Wikipedia en andere Wikimedia Foundation projecten
   summary: Samenvatting
   supporting: Ondersteunend
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 dag
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 dagen
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 week
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 maand
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 maanden
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Onbepaald
+  #the time at which a users suspension ends
+  suspend_until: Opschorten tot
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Datum en tijd in de lokale tijdzone van je browser.
   suspend_user: Gebruiker schorsen
   suspend_user_html: Schors %{user}
   suspend_user_reason_instructions_html: |
@@ -9135,6 +9155,10 @@ nl:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
       decimal_units:
         format: '%n %u'
         units:
@@ -9565,6 +9589,9 @@ nl:
               staff_cannot_be_suspended: Staf kan niet worden geschorst
             user_id:
               must_be_a_curator: moet een curator zijn
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Moet in de toekomst zijn
         moderator_note:
           attributes:
             user:
