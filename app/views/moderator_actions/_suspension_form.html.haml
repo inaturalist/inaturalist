@@ -16,6 +16,7 @@
     = f.hidden_field :reason, id: "hidden_reason"
   - else
     = f.text_area :reason, reason_opts
+    %p.help-block= t( :suspension_reason_custom_note )
   - if current_user.is_admin?
     = f.form_field :suspension_duration, label: t( :suspension_duration ) do
       = select_tag :suspension_duration, options_for_select( [[t( :suspension_duration_1_day ), "1_day"], [t( :suspension_duration_3_days ), "3_days"], [t( :suspension_duration_1_week ), "1_week"], [t( :suspension_duration_1_month ), "1_month"], [t( :suspension_duration_2_months ), "2_months"], [t( :suspension_duration_indefinite ), "indefinite"], [t( :suspension_duration_custom ), "custom"]], default_duration ), class: "form-control", id: "suspension_duration"
