@@ -4,6 +4,8 @@ class WikiPagesController < ApplicationController
   acts_as_wiki_pages_controller
   accept_formats :html
 
+  RESPONSIVE_PAGE_PATHS = ["impact", "newsletter"].freeze
+
   protected
 
   def edit_allowed?
@@ -33,7 +35,9 @@ class WikiPagesController < ApplicationController
 
     # If the content uses Blueprint's grid system, we can't make the page
     # responsive
-    if @page&.content&.include?( "span-" ) && !current_user&.in_test_group?( "responsive-header" )
+    if RESPONSIVE_PAGE_PATHS.include?( @page&.path )
+      @responsive = true
+    elsif @page&.content&.include?( "span-" ) && !current_user&.in_test_group?( "responsive-header" )
       @responsive = false
     end
 

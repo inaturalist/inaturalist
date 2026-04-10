@@ -14,7 +14,7 @@
     .wv2-hero__content
       %h1= t("#{s}.hero.headline")
       %p.wv2-hero__sub= t("#{s}.hero.subheadline")
-      = link_to t("#{s}.hero.cta_join"), "https://www.inaturalist.org/signup?#{@header_utm}&utm_medium=owned_web&utm_content=hero_join_cta", class: "btn wv2-btn--white btn-lg"
+      = link_to t("#{s}.hero.cta_join"), "#{signup_path}?#{@header_utm}&utm_medium=owned_web&utm_content=hero_join_cta", class: "btn wv2-btn--white btn-lg"
       %p.wv2-hero__tagline= t("#{s}.hero.tagline")
 
   -# ── "With iNaturalist you can" features ───────────────────
@@ -40,7 +40,7 @@
           .wv2-story__body
             %p= t("#{s}.stories.#{body}", **interp)
             %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
-    = link_to t("#{s}.stories.read_more"), "https://www.inaturalist.org/pages/impact?#{@header_utm}&utm_medium=owned_web&utm_content=impact_stories_cta", class: "btn wv2-btn--green"
+    = link_to t("#{s}.stories.read_more"), "/pages/impact?#{@header_utm}&utm_medium=owned_web&utm_content=impact_stories_cta", class: "btn wv2-btn--green"
 
   -# ── Sample observation ────────────────────────────────────
   .wv2-section.wv2-section--light.text-center
@@ -218,13 +218,13 @@
   .wv2-section.wv2-section--dark.wv2-section--spacious.text-center
     %h2= t("#{s}.newsletter.heading")
     %p.wv2-section__body= t("#{s}.newsletter.body")
-    = link_to t(:sign_up_sentence_case), "https://www.inaturalist.org/pages/newsletter?#{@header_utm}&utm_medium=owned_web&utm_content=newsletter_signup", class: "btn wv2-btn--white"
+    = link_to t(:sign_up_sentence_case), "/pages/newsletter?#{@header_utm}&utm_medium=owned_web&utm_content=newsletter_signup", class: "btn wv2-btn--white"
 
   -# ── Donate ────────────────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--spacious.text-center
     %p.wv2-donate__headline= t("#{s}.donate.heading")
     %p.wv2-section__body= t("#{s}.donate.subheading")
-    = link_to t("#{s}.donate.cta"), "https://www.inaturalist.org/donate?redirect=true&segment=gmHome&#{@header_utm}&utm_medium=webmobile&utm_content=donate_cta", class: "btn wv2-btn--green"
+    = link_to t("#{s}.donate.cta"), "#{donate_path}?redirect=true&segment=gmHome&#{@header_utm}&utm_medium=webmobile&utm_content=donate_cta", class: "btn wv2-btn--green"
 
   -# ── FAQ ───────────────────────────────────────────────────
   .wv2-section.wv2-section--light
@@ -236,7 +236,7 @@
           %p= t("#{s}.faq.#{key}_answer")
 
 -# ── iOS app banner ───────────────────────────────────────────
-= link_to "https://www.inaturalist.org/redirect_links/31?#{@header_utm}&utm_medium=owned_web&utm_content=sticky_footer_cta", class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
+= link_to "#{redirect_link_path(31)}?#{@header_utm}&utm_medium=owned_web&utm_content=sticky_footer_cta", class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
   = image_tag "welcome_v2/app-icon.webp", class: "wv2-app-banner__icon", alt: ""
   .wv2-app-banner__text
     = image_tag "welcome_v2/inat-wordmark.webp", class: "wv2-app-banner__wordmark", alt: "iNaturalist"
