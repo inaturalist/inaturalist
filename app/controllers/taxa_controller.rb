@@ -339,7 +339,7 @@ class TaxaController < ApplicationController
   def new
     @taxon = Taxon.new( name: params[:name] )
     @protected_attributes_editable = true
-    @cortinariaceae = Taxon.cortinariaceae
+    @fungi = Taxon.fungi
   end
 
   def create
@@ -1301,7 +1301,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.find_by( taxon_id: @taxon.id )
     @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-    @cortinariaceae = Taxon.cortinariaceae
+    @fungi = Taxon.fungi
   end
 
   def respond_to_merge_error( msg )

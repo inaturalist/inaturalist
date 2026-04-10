@@ -2150,11 +2150,16 @@ describe Taxon, "provisional taxa name validation" do
   elastic_models( Observation, Taxon )
 
   before( :all ) do
-    load_test_taxa
+    load_test_taxa( iconic: true )
   end
 
-  let( :cortinariaceae ) { Taxon.make!( id: 48_705, name: "Cortinariaceae", rank: Taxon::FAMILY ) }
-  let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
+  let( :fungi ) { Taxon::ICONIC_TAXA_BY_NAME["Fungi"] }
+  let( :cortinariaceae ) do
+    Taxon.make!( name: "Cortinariaceae", rank: Taxon::FAMILY, parent: fungi, iconic_taxon: fungi )
+  end
+  let( :cortinarius ) do
+    Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae, iconic_taxon: fungi )
+  end
 
   describe "name format validation" do
     it "accepts valid provisional taxon name format" do
@@ -2272,7 +2277,7 @@ describe Taxon, "provisional taxa name validation" do
   end
 
   describe "ancestry restriction" do
-    it "allows provisional taxa descended from Cortinariaceae" do
+    it "allows provisional taxa descended from Fungi" do
       taxon = Taxon.new(
         name: "Cortinarius sp. 'test'",
         rank: Taxon::SPECIES,
@@ -2282,9 +2287,7 @@ describe Taxon, "provisional taxa name validation" do
       expect( taxon ).to be_valid
     end
 
-    it "rejects provisional taxa not descended from Cortinariaceae" do
-      # Ensure Cortinariaceae exists for the validation to run
-      cortinariaceae
+    it "rejects provisional taxa not descended from Fungi" do
       other_parent = Taxon.make!( name: "Agaricus", rank: Taxon::GENUS )
       taxon = Taxon.new(
         name: "Agaricus sp. 'test'",
@@ -2294,7 +2297,7 @@ describe Taxon, "provisional taxa name validation" do
       )
       expect( taxon ).not_to be_valid
       expect( taxon.errors[:provisional] ).to include(
-        match( /can only be set to true for taxa that descend from Cortinariaceae/ )
+        match( /can only be set to true for taxa that descend from Fungi/ )
       )
     end
   end

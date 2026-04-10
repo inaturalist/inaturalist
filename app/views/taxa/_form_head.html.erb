@@ -9,12 +9,12 @@
                            "taxon_browser" %>
 
 <script type="text/javascript" charset="utf-8">
-  var CORTINARIACEAE_ID = <%= @cortinariaceae&.id || 'null' %>;
+  var FUNGI_ID = <%= @fungi&.id || 'null' %>;
 
   function updateProvisionalCheckbox( parentId ) {
     var $field = $( '#provisional_field' );
     var $checkbox = $( '#taxon_provisional' );
-    if ( !$field.length || !CORTINARIACEAE_ID ) return;
+    if ( !$field.length || !FUNGI_ID ) return;
 
     if ( !parentId || !$.isNumeric( parentId ) ) {
       // No parent selected, hide and uncheck provisional
@@ -30,8 +30,8 @@
       success: function( taxon ) {
         var ancestry = taxon.ancestry ? taxon.ancestry.split( "/" ) : [];
         ancestry.push( String( taxon.id ) );
-        var isCortinariaceaeDescendant = ancestry.indexOf( String( CORTINARIACEAE_ID ) ) !== -1;
-        if ( isCortinariaceaeDescendant ) {
+        var isFungiDescendant = ancestry.indexOf( String( FUNGI_ID ) ) !== -1;
+        if ( isFungiDescendant ) {
           $field.show();
         } else {
           $field.hide();

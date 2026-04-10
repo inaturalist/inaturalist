@@ -150,7 +150,7 @@ class Taxon < ApplicationRecord
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
-  validate :provisional_only_for_cortinariaceae
+  validate :provisional_only_for_fungi
   validate :provisional_name_unique_within_parent
   validate :graftable_relative_to_taxon_framework_coverage
   validate :user_can_edit_attributes, on: :update
@@ -575,8 +575,8 @@ class Taxon < ApplicationRecord
     const_set( "ICONIC_TAXA_BY_NAME", Taxon::ICONIC_TAXA.index_by( &:name ) )
   end
 
-  def self.cortinariaceae
-    @cortinariaceae ||= Taxon.where( name: "Cortinariaceae", iconic_taxon: ICONIC_TAXA_BY_NAME["Fungi"] ).first
+  def self.fungi
+    ICONIC_TAXA_BY_NAME["Fungi"]
   end
 
   # Callbacks ###############################################################
@@ -1157,24 +1157,24 @@ class Taxon < ApplicationRecord
     errors.add( :base, "can't be its own ancestor" )
   end
 
-  def provisional_only_for_cortinariaceae
+  def provisional_only_for_fungi
     return unless provisional
     # Only validate if provisional flag is being set/changed
     return unless new_record? || will_save_change_to_provisional?
-    return if descends_from_cortinariaceae?
+    return if descends_from_fungi?
 
-    errors.add( :provisional, "can only be set to true for taxa that descend from Cortinariaceae" )
+    errors.add( :provisional, "can only be set to true for taxa that descend from Fungi" )
   end
 
-  def descends_from_cortinariaceae?
-    cortinariaceae = Taxon.cortinariaceae
-    return false unless cortinariaceae
+  def descends_from_fungi?
+    fungi = Taxon.fungi
+    return false unless fungi
 
     # For new records, build the ancestry chain from parent
     if new_record? && parent
-      parent.ancestor_ids.include?( cortinariaceae.id ) || parent.id == cortinariaceae.id
+      parent.ancestor_ids.include?( fungi.id ) || parent.id == fungi.id
     else
-      ancestor_ids.include?( cortinariaceae.id )
+      ancestor_ids.include?( fungi.id )
     end
   end
 
