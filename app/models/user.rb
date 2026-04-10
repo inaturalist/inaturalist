@@ -292,7 +292,6 @@ class User < ApplicationRecord
   before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
-  before_save :check_suspended_by_user
   before_save :remove_email_from_name
   before_save :set_pi_consent_at
   before_save :set_data_transfer_consent_at
@@ -1033,11 +1032,6 @@ class User < ApplicationRecord
     if last_ip_changed? || latitude.nil?
       get_lat_lon_from_ip
     end
-  end
-
-  def check_suspended_by_user
-    return if suspended?
-    self.suspended_by_user_id = nil
   end
 
   def published_name
