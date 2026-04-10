@@ -106,7 +106,7 @@ $( function () {
       ) {
         var defaultDuration = SUSPENSION_REASON_DURATIONS[selectedReason];
         /* eslint-enable no-undef */
-        if ( defaultDuration ) {
+        if ( defaultDuration && durationSelect.value !== "custom" ) {
           durationSelect.value = defaultDuration;
           updateSuspendedUntil();
         }
