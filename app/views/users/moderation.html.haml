@@ -89,7 +89,7 @@
                 = "#{t( :last_edited_by )} "
                 = link_to_user( record.last_edited_by_user )
                 %time.datetime{ datetime: record.updated_at.iso8601, title: record.updated_at.iso8601 }= l record.updated_at, format: :long
-              - else
+              - if record.user
                 = "#{t( :created_by )} "
                 = link_to_user( record.user )
                 %time.datetime{ datetime: record.created_at.iso8601, title: record.created_at.iso8601 }= l record.created_at, format: :long
