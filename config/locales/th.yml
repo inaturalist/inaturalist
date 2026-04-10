@@ -837,6 +837,8 @@ th:
     %{user} เลิกซ่อน%{item}นี้ เนื่องจาก "%{reason}"
   #e.g. "With iNaturalist, you can contribute to real science"
   contribute: มีส่วนร่วม
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: มีส่วนร่วม
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: ไม่ระบุ
