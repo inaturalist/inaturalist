@@ -1889,7 +1889,9 @@ en:
         Please check your email and click the link in the email you received
         to confirm your account.
       user:
-        suspended: Your account has been suspended. If you think this was made in error and would like to appeal, please <a href="https://help.inaturalist.org/support/tickets/new">contact support.</a>
+        suspended: Your account has been suspended
+        # Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: If you think this was made in error and would like to appeal, please <a href="https://help.inaturalist.org/support/tickets/new">contact support.</a>
         # Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
         # with a variable containing relative time (e.g. 1 day, 1 week.)
         suspended_until: "Your suspension will be lifted in %{until}."

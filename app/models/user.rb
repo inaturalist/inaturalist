@@ -587,7 +587,7 @@ class User < ApplicationRecord
   # timed suspensions were implemented.
   def inactive_message
     if suspended?
-      parts = [I18n.t( "devise.failure.user.suspended" )]
+      parts = [I18n.t( "devise.failure.user.suspended" ), I18n.t( "devise.failure.user.suspended_appeal" )]
       if suspended_until.present?
         parts << I18n.t(
           "devise.failure.user.suspended_until",
