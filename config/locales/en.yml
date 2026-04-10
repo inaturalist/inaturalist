@@ -5728,6 +5728,12 @@ en:
     false_ids_or_dqa_votes: Intentionally adding false IDs or DQA votes
     # reason displayed to users who have been suspended for posting machine generated content
     machine_generated_content: Machine generated observations, identifications and comments
+    # reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Continued copyright infringement (after warning)
+    # reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Continued posting of artificially generated media (after warning)
+    # reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Continued reduction of data quality (after warning)
   # the time at which a users suspension ends
   suspend_until: Suspend until
   # a note telling users to select the time in their local time zone

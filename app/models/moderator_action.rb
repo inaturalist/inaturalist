@@ -18,12 +18,15 @@ class ModeratorAction < ApplicationRecord
   MAXIMUM_SUSPEND_REASON_LENGTH = 100
 
   SUSPENSION_REASONS = {
-    "hate_speech" => { default_duration: "1_day" },
+    "hate_speech" => { default_duration: "3_days" },
     "insults_or_threats" => { default_duration: "1_day" },
-    "sexually_explicit_content" => { default_duration: "1_day" },
-    "sockpuppet_accounts" => { default_duration: "1_day" },
+    "sexually_explicit_content" => { default_duration: "indefinite" },
+    "sockpuppet_accounts" => { default_duration: "7_days" },
     "false_ids_or_dqa_votes" => { default_duration: "1_day" },
-    "machine_generated_content" => { default_duration: "1_day" }
+    "machine_generated_content" => { default_duration: "indefinite" },
+    "continued_copyright_infringement_after_warning" => { default_duration: "1_day" },
+    "continued_posting_of_artificially_generated_media_after_warning" => { default_duration: "1_day" },
+    "continued_reduction_of_data_quality_after_warning" => { default_duration: "3_days" }
   }.freeze
 
   PRIVATE_MEDIA_RETENTION_TIME = 2.months
