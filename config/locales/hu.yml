@@ -2123,7 +2123,7 @@ hu:
   #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Azonosítás
   #e.g. "Identify using iNaturalist"
-  identify_cta: Azonosítás
+  identify_cta: Azonosíts
   identification: meghatározás
   identification_by_user: '%{user} meghatározásai'
   #Notification when an identification has been deleted
@@ -7529,6 +7529,9 @@ hu:
               staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
             user_id:
               must_be_a_curator: kurátor kell legyen
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: A jövőben kell legyen
         moderator_note:
           attributes:
             user:
