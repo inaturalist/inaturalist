@@ -568,6 +568,7 @@ describe ModeratorAction do
         u.reload
         expect( u.suspended_until ).to be_nil
         new_time = 14.days.from_now
+        ma.audit_comment = "Adjusting suspension duration"
         ma.update!( suspended_until: new_time )
         u.reload
         expect( u.suspended_until ).to be_within( 1.second ).of( new_time )
@@ -578,9 +579,36 @@ describe ModeratorAction do
         ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
         u.reload
         original_suspended_at = u.suspended_at
+        ma.audit_comment = "Adjusting suspension duration"
         ma.update!( suspended_until: 7.days.from_now )
         u.reload
         expect( u.suspended_at ).to eq original_suspended_at
+      end
+
+      it "requires audit_comment on update" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        expect( ma.update( suspended_until: 7.days.from_now ) ).to be false
+        expect( ma.errors[:audit_comment] ).not_to be_empty
+      end
+
+      it "validates audit_comment minimum length" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        ma.audit_comment = "short"
+        expect( ma.update( suspended_until: 7.days.from_now ) ).to be false
+        expect( ma.errors[:audit_comment] ).not_to be_empty
+      end
+
+      it "creates an audit record with the comment" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        comment = "Updating suspension duration for reason"
+        ma.audit_comment = comment
+        ma.update!( suspended_until: 7.days.from_now )
+        audit = ma.audits.where( action: "update" ).last
+        expect( audit ).not_to be_nil
+        expect( audit.comment ).to eq comment
       end
     end
   end
