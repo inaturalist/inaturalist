@@ -21,11 +21,11 @@
   ]
 
   testimonials_data = {
-    gube:       { name: "Dzivula Gube",                 people_path: "/people/dzivulajr_03" },
-    kratzer:    { name: "Chris Alice \"Alie\" Kratzer",  people_path: "/people/humanbyweight" },
-    sumanapala: { name: "Amila Sumanapala",             people_path: "/people/amila_sumanapala" },
-    fachetti:   { name: "Nágyla Fachetti Coser",        people_path: "/people/nah_fachetti19" },
-    velazco:    { name: "Carlos G. Velazco-Macias",     people_path: "/people/aztekium" }
+    gube:       { name: "Dzivula Gube",                 login: "dzivulajr_03" },
+    kratzer:    { name: "Chris Alice \"Alie\" Kratzer",  login: "humanbyweight" },
+    sumanapala: { name: "Amila Sumanapala",             login: "amila_sumanapala" },
+    fachetti:   { name: "Nágyla Fachetti Coser",        login: "nah_fachetti19" },
+    velazco:    { name: "Carlos G. Velazco-Macias",     login: "aztekium" }
   }
 
 
@@ -160,7 +160,7 @@
                 .wv2-testimonial
                   .wv2-testimonial__quote
                     %p= t("#{s}.testimonials.#{key}_quote")
-                  = link_to person[:people_path], class: "wv2-testimonial__byline", target: "_blank" do
+                  = link_to "/people/#{person[:login]}", class: "wv2-testimonial__byline", target: "_blank" do
                     = image_tag "welcome_v2/testimonial_#{key}.webp", class: "wv2-testimonial__avatar", alt: person[:name]
                     %div
                       %p.wv2-testimonial__name= person[:name]
