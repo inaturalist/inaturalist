@@ -3023,6 +3023,8 @@ it:
     e gli avvisi su tutto ciò che l'utente ha creato oltre ai taxa. Questo è 
     <strong>visibile solo ai curatori</strong> e <strong>i curatori non possono vedere la propria storia</strong>, quindi le note su una persona non dovrebbero mai essere visibili
     a quella persona.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Scadenza della sospensione
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Nascondi
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -5194,6 +5196,26 @@ it:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adatto per Wikipedia e altri progetti della Wikimedia Foundation
   summary: Riassunto
   supporting: Di conferma
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Durata della sospensione
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 giorno
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 giorni
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 settimana
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 mese
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 mesi
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Indefinita
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Consuetudine
+  #the time at which a users suspension ends
+  suspend_until: Sospendere fino a quando non
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Data e ora nel fuso orario locale del browser.
   suspend_user: Sospendi utente
   suspend_user_html: Sospendi %{user}
   suspend_user_reason_instructions_html: |
@@ -7572,11 +7594,21 @@ it:
         end_time_desc: "Orario di fine del tuo bioblitz. Deve essere a meno di un anno dell'orario di inizio."
         event_url_desc: |
           URL di un servizio di registrazione eventi che stai utilizzando per il tuo bioblitz. Se è un URL Eventbrite che contiene in ID numerico, includeremo un widget di registrazione sulla tua pagina di progetto fino all'inizio del bioblitz.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Nascondi la classifica
         icon_desc: "Sarà ritagliato ad un quadrato"
         it_looks_like_this_project_can_be_converted: |
           Sembra che questo progetto può essere convertito in un nuovo <a href="%{url}">Collection Project</a>.
         last_aggregated_at_desc: |
           Ora in cui l'ultimo aggregatore ha finito di aggiungere le osservazioni al progetto
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Classifica
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Il pannello della classifica mostra gli utenti con più osservazioni, gli utenti con la maggior parte delle specie, e le specie più osservate. Può essere nascosto opzionalmente.
         #Label for button to make another user the owner of a project
         make_owner: Rendi Proprietario
         no_curators: |
@@ -8851,6 +8883,11 @@ it:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:
@@ -9281,6 +9318,9 @@ it:
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Deve essere nel futuro
         moderator_note:
           attributes:
             user:
