@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 class WelcomeV2Controller < ApplicationController
-  unless defined?( OBSERVATIONS_DATA )
-    OBSERVATIONS_DATA = JSON.parse(
-      File.read( Rails.root.join( "app/assets/images/welcome_v2/observations/observations.json" ) )
-    ).freeze
-  end
-
   STEPS_DATA = [
     [:observe,      "step1_body", "camera"],
     [:identify_cta, "step2_body", "identify"],
@@ -47,17 +41,19 @@ class WelcomeV2Controller < ApplicationController
     @google_webmaster_verification = @site.google_webmaster_verification if @site
     @steps_data = STEPS_DATA
     @testimonials_data = TESTIMONIALS_DATA
-    @story_data = build_story_data
-    @sample_observation_data = build_sample_observation
-    @explore_observations_data = OBSERVATIONS_DATA["explore"] || []
+
+    observations_data = Site.homepage_observation_data
+    @story_data = build_story_data(observations_data)
+    @sample_observation_data = build_sample_observation(observations_data)
+    @explore_observations_data = observations_data["explore"] || []
 
     render layout: "bootstrap"
   end
 
   private
 
-  def build_story_data
-    story_common_names = OBSERVATIONS_DATA["stories"] || {}
+  def build_story_data(observations_data)
+    story_common_names = observations_data["stories"] || {}
     STORY_DATA.map do |heading, body, user, place, en_name, img, url|
       # TODO: Ideally we'd use common_name to make this more generic,
       # but the translations are already using moth_common_name.
@@ -71,8 +67,8 @@ class WelcomeV2Controller < ApplicationController
     end
   end
 
-  def build_sample_observation
-    observation_data = OBSERVATIONS_DATA["sample"]
+  def build_sample_observation(observations_data)
+    observation_data = observations_data["sample"]
     observation_data["common_name"] = observation_data["common_names"][@locale_key] ||
       observation_data["common_names"][@locale_base] ||
       observation_data["common_names"]["en"]

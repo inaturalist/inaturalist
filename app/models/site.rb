@@ -591,4 +591,15 @@ class Site < ApplicationRecord
   def inat_next_app_url
     "https://apps.apple.com/us/app/inaturalist-next/id6475737561"
   end
+
+  def self.homepage_observation_data( options = {} )
+    if options[:refresh]
+      Rails.cache.delete( "sites_homepage_observation_data" )
+    end
+    Rails.cache.fetch( "sites_homepage_observation_data" ) do
+      JSON.parse(
+        File.read( Rails.root.join( "config/homepage_observations.json" ) )
+      ).freeze
+    end
+  end
 end
