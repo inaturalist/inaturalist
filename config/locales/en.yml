@@ -10108,23 +10108,33 @@ en:
           moth_body: >
             The %{moth_common_name} moth hadn't been spotted in decades and was once
             thought extinct — until a tourist in New Zealand spotted it by accident.
+          # Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Frosted phoenix moth"
           # Heading for the story about a new-to-science mantis species
           mantis_heading: Discovering new-to-science species
           # Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — abbreviated to <span class="italic">I. nat</span> — is a new-to-science mantis species
             found by a woman in Australia walking in her neighborhood.
+          # Alt text for the praying mantis story image
+          inat_img_alt: "Praying mantis"
           # Heading for the story about volunteers protecting amphibians
           amphibian_heading: Protecting local ecosystems
           # Body text for the amphibian protection story
           amphibian_body: >
             A group of local volunteers in California came together through
             iNaturalist to protect migrating amphibians crossing a busy road.
+          # Alt text for the California newt story image
+          california_newt_img_alt: "California newt"
           # Link below the stories to read more community science stories
           read_more: Read more stories
         observation:
           # Heading for the sample observation section
           heading: Every observation tells a story
+          # Alt text for the sample observation photo
+          photo_alt: "Green frog on leaf"
+          # Alt text for the map showing the observation location
+          map_alt: "Map showing observation location with large marker and other observations via grid cells"
         stats:
           # Description label for the observations statistic
           # Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -10215,6 +10225,8 @@ en:
           # Social proof label showing total app downloads
           # %{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
           count_label: "%{count}+ Downloads"
+          # Alt text for the iNaturalist app phone screenshot
+          phone_alt: "iNat on two phone screens, showing hummingbird and California poppy observations"
         explore:
           # Heading for the explore species section; species cards generated from static JSON exported from iNat
           heading: Explore species worldwide
@@ -10228,6 +10240,8 @@ en:
           # Review count social proof label for the app
           # %{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ 5-Star Reviews"
+          # Alt text for the Seek app phone screenshot
+          phone_alt: "Seek app active on two phones, showing a toucan badge and the Species Nearby view"
         newsletter:
           # Heading inviting users to subscribe to the monthly newsletter
           heading: Get our monthly newsletter!

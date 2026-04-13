@@ -49,7 +49,7 @@
       - @story_data.each do |heading, body, user, place, img, interp, url|
         = link_to url, class: "wv2-story", target: "_blank", rel: "noopener" do
           .wv2-story__image
-            = image_tag "welcome_v2/#{img}.webp", alt: t("#{s}.stories.#{heading}")
+            = image_tag "welcome_v2/#{img}.webp", alt: t("#{s}.stories.#{img}_img_alt")
             %h3= t("#{s}.stories.#{heading}")
           .wv2-story__body
             %p= t("#{s}.stories.#{body}", **interp)
@@ -70,7 +70,7 @@
         .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:what)
           %dd
-            = image_tag s_obs["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: ""
+            = image_tag s_obs["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: t("#{s}.observation.photo_alt")
             .wv2-taxon
               = image_tag s_obs["taxon_thumbnail_file"].sub( "app/assets/images/", "" ), class: "wv2-taxon__thumb", alt: ""
               .wv2-taxon__names
@@ -81,7 +81,7 @@
         .wv2-observation__row
           %dt= t(:where)
           %dd
-            = image_tag "welcome_v2/observation_example_map.webp", class: "wv2-observation__map", alt: ""
+            = image_tag "welcome_v2/observation_example_map.webp", class: "wv2-observation__map", alt: t("#{s}.observation.map_alt")
             .wv2-location
               = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-location__icon", alt: ""
               %span= s_obs["place_guess"]
@@ -176,7 +176,7 @@
         %h2= t("#{s}.download.heading")
         %p= t("#{s}.download.subheading")
       .wv2-download__images
-        = image_tag "welcome_v2/inaturalist.webp", class: "wv2-download__phone", alt: "iNaturalist app", width: 600, height: 604
+        = image_tag "welcome_v2/inaturalist.webp", class: "wv2-download__phone", alt: t("#{s}.download.phone_alt"), width: 600, height: 604
       .wv2-download__cta
         = render "store_badges", ios_url: "https://apps.apple.com/app/apple-store/id6475737561?pt=475606&ct=homepage&mt=8?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=app_download_ios", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.android&hl=en_US?utm_source=inaturalist_homepage&utm_medium=owned_web&utm_campaign=homepage_redesign_2026&utm_content=app_download_android"
         %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
@@ -223,7 +223,7 @@
         %h2= t("#{s}.seek.heading")
         %p= t("#{s}.seek.body")
       .wv2-seek__images
-        = image_tag "welcome_v2/seek.webp", class: "wv2-seek__phone", alt: "Seek app", width: 600, height: 605
+        = image_tag "welcome_v2/seek.webp", class: "wv2-seek__phone", alt: t("#{s}.seek.phone_alt"), width: 600, height: 605
       .wv2-seek__cta
         = render "store_badges", ios_url: "https://itunes.apple.com/app/seek-by-inaturalist/id1353224144", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.seek"
         %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
