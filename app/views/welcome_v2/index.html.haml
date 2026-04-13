@@ -192,7 +192,7 @@
       .wv2-download__images
         = image_tag "welcome_v2/inaturalist.webp", class: "wv2-download__phone", alt: t("#{s}.download.phone_alt"), width: 600, height: 604
       .wv2-download__cta
-        = render "store_badges", ios_url: "https://apps.apple.com/app/apple-store/id6475737561?pt=475606&ct=homepage&mt=8", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.android&hl=en_US"
+        = render "welcome_v2/store_badges", ios_url: "https://apps.apple.com/app/apple-store/id6475737561?pt=475606&ct=homepage&mt=8", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.android&hl=en_US"
         %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
 
   -# ── Explore species ───────────────────────────────────────
@@ -239,7 +239,7 @@
       .wv2-seek__images
         = image_tag "welcome_v2/seek.webp", class: "wv2-seek__phone", alt: t("#{s}.seek.phone_alt"), width: 600, height: 605
       .wv2-seek__cta
-        = render "store_badges", ios_url: "https://apps.apple.com/app/apple-store/id1353224144?pt=475606&ct=homepageapr26&mt=8", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.seek"
+        = render "welcome_v2/store_badges", ios_url: "https://apps.apple.com/app/apple-store/id1353224144?pt=475606&ct=homepageapr26&mt=8", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.seek"
         %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
 
   -# ── Newsletter ────────────────────────────────────────────
