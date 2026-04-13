@@ -1,11 +1,17 @@
 - content_for(:title) { t(:a_community_for_naturalist) }
 - content_for(:extracss) { stylesheet_link_tag "welcome_v2" }
 - content_for(:extrahead) do
-  = tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp"
-  %meta{name: "description", content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name)}
   - unless @google_webmaster_verification.blank?
     - @google_webmaster_verification.split( ";" ).each do |verification|
       %meta{content: verification.strip, name: "google-site-verification"}
+  %meta{content: "website", property: "og:type"}
+  %meta{content: @site&.name, property: "og:title"}
+  - if @site&.shareable_image?
+    %meta{content: image_url(@site.shareable_image.url), property: "og:image"}
+    %meta{content: image_url(@site.shareable_image.url), property: "twitter:image"}
+  %meta{content: root_url, property: "og:url"}
+  %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name), property: "og:description"}
+  = tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp"
 - s = "views.welcome_v2.index"
 
 %main.wv2
