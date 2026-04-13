@@ -1165,6 +1165,8 @@ fr:
   continue_to_site: Continuer vers %{site_name}
   #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Contribuer
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Contribuez
   contributor_cannot_be_found: Le collaborateur est introuvable
   contributors_to_project: "Collaborateurs à %{project}"
   controlled_term_labels:
@@ -2351,7 +2353,7 @@ fr:
   #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identifier
   #e.g. "Identify using iNaturalist"
-  identify_cta: Identifier
+  identify_cta: Identifiez
   identification: identification
   identification_by_user: Identification par %{user}
   #Notification when an identification has been deleted
@@ -8757,7 +8759,7 @@ fr:
           headline: Votre curiosité au service de la science.
           #Hero subheadline describing the core value proposition
           subheadline: >
-            Identifiez les plantes, animaux, champignons et bien plus encore, tout en contribuant à un atlas vivant de la vie sur Terre.
+            Identifiez les plantes, les animaux, les champignons et bien plus encore, tout en contribuant à un atlas vivant de la Terre.
           #Primary call-to-action button in the hero section
           cta_join: Rejoignez la communauté
           #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
@@ -8773,10 +8775,10 @@ fr:
           track_desc: les espèces que vous avez vues dans le monde entier
           #Description of where users can Contribute
           #Read as "{Contribute} to real science"
-          contribute_desc: à la vraie science
+          contribute_desc: à la science
           #Description of what users can Discover
           #Read as "{Discover} nature nearby"
-          discover_desc: Nature à proximité
+          discover_desc: la nature à proximité
           #Description of what users can Learn
           #Read as "{Learn} from a global community of naturalists"
           learn_desc: d’une communauté mondiale de naturalistes
@@ -8808,7 +8810,7 @@ fr:
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
-          observations_label: Observations contribuant à la science de la biodiversité
+          observations_label: observations contribuant à la science de la biodiversité
           #Description label for the species statistic
           #Prepended by count, e.g. "550,000+ species documented across the globe"
           species_label: espèces documentées à travers le monde

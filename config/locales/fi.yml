@@ -1098,6 +1098,8 @@ fi:
   continue_to_site: Jatka %{site_name}iin
   #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Osallistu
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Osallistu
   contributor_cannot_be_found: Osallistujaa ei löydy
   contributors_to_project: "Projektin %{project} osallistujat"
   controlled_term_labels:
@@ -2825,6 +2827,8 @@ fi:
     <strong>näkyy vain kuraattoreille</strong> ja <strong>kuraattorit eivät voi katsella
     omaa historiaansa</strong>, joten henkilöä koskevien muistiinpanojen ei pitäisi koskaan näkyä
     kyseiselle henkilölle.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Jäähy päättyi
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Piilota
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -4707,6 +4711,26 @@ fi:
   suggestions: Ehdotukset
   summary: Yhteenveto
   supporting: Tukee määritystä
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Jäähyn kesto
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 päivä
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 päivää
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 viikko
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 kuukausi
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 kuukautta
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Toistaiseksi
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Mukautettu
+  #the time at which a users suspension ends
+  suspend_until: Jäähyllä
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Päivämäärä ja aika selaimesi paikallisella aikavyöhykkeellä.
   suspend_user: Hyllytä käyttäjä
   suspend_user_html: Hyllytä %{user}
   suspend_user_reason_instructions_html: |
@@ -7703,6 +7727,9 @@ fi:
               staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Täytyy olla tulevaisuudessa
         moderator_note:
           attributes:
             user:

@@ -1199,6 +1199,8 @@ da:
   continue_to_site: Fortsæt til %{site_name}
   #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Bidrag
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Bidrag
   contributor_cannot_be_found: Bidragsyder findes ikke
   contributors_to_project: "Bidragsydere til %{project}"
   controlled_term_labels:
@@ -3093,6 +3095,8 @@ da:
     <strong>kun synligt for kuratorer</strong> og <strong>kuratorer kan ikke se
     deres egen historik</strong>, så notater om en person bør aldrig være synlige
     for den pågældende person.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Suspensionen udløbet
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skjul
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -5359,6 +5363,26 @@ da:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Velegnet til Wikipedia og andre Wikimedia Foundation-projekter
   summary: Oversigt
   supporting: Støtter
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Suspensionsvarighed
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 dag
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 dage
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 uge
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 måned
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 måneder
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Ubegrænset
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Tilpasset
+  #the time at which a users suspension ends
+  suspend_until: Suspendér indtil
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Dato og klokkeslæt i webbrowserens lokale tidszone.
   suspend_user: Suspenderet bruger
   suspend_user_html: Suspendér %{user}
   suspend_user_reason_instructions_html: |
@@ -9290,7 +9314,7 @@ da:
             Hvert foto, der deles, bliver en del af en global videnskabelig dokumentation, som forskere verden over er afhængige af.
           #Heading for the community reputation sub-section
           community_heading: '"Det dejligste sted online"'
-          community_heading_2: Det bedste sted online
+          community_heading_2: Det dejligste sted online
           #Description of the welcoming community aspect
           community_body: >
             Kom for identifikationerne, bliv for fællesskabet og for at få indflydelse på videnskaben.
@@ -9513,6 +9537,11 @@ da:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "Mia"
       decimal_units:
         format: '%n %u'
         units:
@@ -9945,6 +9974,9 @@ da:
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Skal være i fremtiden
         moderator_note:
           attributes:
             user:
