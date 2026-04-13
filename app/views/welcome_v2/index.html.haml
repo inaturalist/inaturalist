@@ -13,6 +13,21 @@
   %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name), property: "og:description"}
   = tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp"
 - s = "views.welcome_v2.index"
+:ruby
+  steps_data = [
+    [:observe,      "step1_body", "camera"],
+    [:identify_cta, "step2_body", "identify"],
+    [:contribute,   "step3_body", "globe"]
+  ]
+
+  testimonials_data = {
+    gube:       { name: "Dzivula Gube",                 people_path: "/people/dzivulajr_03" },
+    kratzer:    { name: "Chris Alice \"Alie\" Kratzer",  people_path: "/people/humanbyweight" },
+    sumanapala: { name: "Amila Sumanapala",             people_path: "/people/amila_sumanapala" },
+    fachetti:   { name: "Nágyla Fachetti Coser",        people_path: "/people/nah_fachetti19" },
+    velazco:    { name: "Carlos G. Velazco-Macias",     people_path: "/people/aztekium" }
+  }
+
 
 %main.wv2
   -# ── Announcements ─────────────────────────────────────────
@@ -59,24 +74,23 @@
   -# ── Sample observation ────────────────────────────────────
   .wv2-section.wv2-section--light.text-center
     %h2= t("#{s}.observation.heading")
-    - s_obs = @sample_observation_data
     %dl.wv2-observation
       .wv2-observation__col
         .wv2-observation__row
           %dt= t(:who)
           %dd.wv2-observation__who
-            = image_tag s_obs["user_icon_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__avatar", alt: ""
-            %span= s_obs["user_name"]
+            = image_tag @sample_observation_data["user_icon_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__avatar", alt: ""
+            %span= @sample_observation_data["user_name"]
         .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:what)
           %dd
-            = image_tag s_obs["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: t("#{s}.observation.photo_alt")
+            = image_tag @sample_observation_data["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: t("#{s}.observation.photo_alt")
             .wv2-taxon
-              = image_tag s_obs["taxon_thumbnail_file"].sub( "app/assets/images/", "" ), class: "wv2-taxon__thumb", alt: ""
+              = image_tag @sample_observation_data["taxon_thumbnail_file"].sub( "app/assets/images/", "" ), class: "wv2-taxon__thumb", alt: ""
               .wv2-taxon__names
-                %p= s_obs["common_name"]
-                %em= s_obs["scientific_name"]
-          = link_to "", "/observations/#{s_obs["id"]}", target: "_blank", rel: "noopener", class: "wv2-observation__row-link", aria: { label: t(:view_observation) }
+                %p= @sample_observation_common_name
+                %em= @sample_observation_data["scientific_name"]
+          = link_to "", "/observations/#{@sample_observation_data["id"]}", target: "_blank", rel: "noopener", class: "wv2-observation__row-link", aria: { label: t(:view_observation) }
       .wv2-observation__col
         .wv2-observation__row
           %dt= t(:where)
@@ -84,13 +98,13 @@
             = image_tag "welcome_v2/observation_example_map.webp", class: "wv2-observation__map", alt: t("#{s}.observation.map_alt")
             .wv2-location
               = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-location__icon", alt: ""
-              %span= s_obs["place_guess"]
+              %span= @sample_observation_data["place_guess"]
         .wv2-observation__row.wv2-observation__row--sep
           %dt= t(:when)
           %dd
             .wv2-location
               = image_tag "welcome_v2/icon-datetime.svg", class: "wv2-location__icon", alt: ""
-              %span= s_obs["observed_on"]
+              %span= @sample_observation_data["observed_on"]
 
   -# ── Impact statistics ─────────────────────────────────────
   .wv2-section.wv2-section--white.wv2-section--stats.text-center
@@ -119,7 +133,7 @@
   -# ── How it works ──────────────────────────────────────────
   .wv2-section.wv2-section--light.wv2-section--how
     .wv2-steps
-      - @steps_data.each_with_index do |(label_key, body_key, icon), i|
+      - steps_data.each_with_index do |(label_key, body_key, icon), i|
         .wv2-step
           %span.wv2-step__num= i + 1
           .wv2-step__content
@@ -141,7 +155,7 @@
         .wv2-carousel__stage
           %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
           .wv2-carousel__track
-            - @testimonials_data.each do |key, person|
+            - testimonials_data.each do |key, person|
               .wv2-carousel__item
                 .wv2-testimonial
                   .wv2-testimonial__quote
@@ -153,7 +167,7 @@
                       %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
           %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
         .wv2-carousel__dots
-          - @testimonials_data.each_with_index do |(key, _), i|
+          - testimonials_data.each_with_index do |(key, _), i|
             %button.wv2-carousel__dot{ class: (i == 0 ? "active" : nil), "aria-label": "Testimonial #{i + 1}" }
 
   -# ── Everyone is a naturalist ──────────────────────────────

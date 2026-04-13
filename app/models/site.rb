@@ -602,4 +602,25 @@ class Site < ApplicationRecord
       ).freeze
     end
   end
+
+  HOMEPAGE_STORY_DATA = [
+    ["moth_heading",      "moth_body",        "pav_johnsson", "New Zealand",   "Frosted Phoenix", "frosted_phoenix", "https://tr.ee/FYNsVb"],
+    ["mantis_heading",    "mantis_body_html", "glendawalter", "Australia",     nil,               "inat",            "https://tr.ee/j29kgK"],
+    ["amphibian_heading", "amphibian_body",   "tcuriel",      "United States", nil,               "california_newt", "https://tr.ee/hQZIFH"]
+  ].freeze
+
+  # TODO: Ideally we'd use common_name to make this more generic,
+  # but the translations are already using moth_common_name.
+  def self.homepage_story_data( locale_key:, locale_base: )
+    story_common_names = homepage_observation_data["stories"] || {}
+    HOMEPAGE_STORY_DATA.map do |heading, body, user, place, en_name, img, url|
+      interp = if en_name
+        names = story_common_names[en_name]
+        { moth_common_name: names&.dig( locale_key ) || names&.dig( locale_base ) || names&.dig( "en" ) || en_name }
+      else
+        {}
+      end
+      [heading, body, user, place, img, interp, url]
+    end
+  end
 end
