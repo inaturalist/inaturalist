@@ -472,7 +472,6 @@ describe TaxaController do
   describe "provisional" do
     before do
       load_test_taxa( iconic: true )
-      Taxon.instance_variable_set( :@cortinariaceae, nil )
     end
     let( :fungi ) { Taxon::ICONIC_TAXA_BY_NAME["Fungi"] }
     let( :cortinariaceae ) do
