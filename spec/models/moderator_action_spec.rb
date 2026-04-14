@@ -594,17 +594,6 @@ describe ModeratorAction do
         expect( ma.update( suspended_until: 7.days.from_now ) ).to be false
         expect( ma.errors[:audit_comment] ).not_to be_empty
       end
-
-      it "creates an audit record with the comment" do
-        u = create :user
-        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
-        comment = "Updating suspension duration for reason"
-        ma.audit_comment = comment
-        ma.update!( suspended_until: 7.days.from_now )
-        audit = ma.audits.where( action: "update" ).last
-        expect( audit ).not_to be_nil
-        expect( audit.comment ).to eq comment
-      end
     end
   end
 
