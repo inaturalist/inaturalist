@@ -2194,66 +2194,72 @@ var MapController = function (
       }
       // Restore rectangle from URL params via Terra Draw
       if ( $scope.drawing.terraDraw ) {
-        $scope.clearTerraDrawFeature( );
-        var swlat = parseFloat( $scope.params.swlat );
-        var swlng = parseFloat( $scope.params.swlng );
-        var nelat = parseFloat( $scope.params.nelat );
-        var nelng = parseFloat( $scope.params.nelng );
-        var rectFeature = {
-          type: "Feature",
-          geometry: {
-            type: "Polygon",
-            coordinates: [[
-              [swlng, swlat],
-              [nelng, swlat],
-              [nelng, nelat],
-              [swlng, nelat],
-              [swlng, swlat]
-            ]]
-          },
-          properties: { mode: "rectangle" }
-        };
-        var rectIds = $scope.drawing.terraDraw.addFeatures( [rectFeature] );
-        $scope.drawing.currentFeatureId = rectIds[0];
-        $scope.drawing.currentShape = "rectangle";
-        $scope.drawing.disabled = true;
-        $scope.drawing.terraDraw.setMode( "select" );
+        // Skip recreation if a feature already exists (e.g. just drawn by user)
+        if ( !$scope.getTerraDrawFeature( ) ) {
+          $scope.clearTerraDrawFeature( );
+          var swlat = parseFloat( $scope.params.swlat );
+          var swlng = parseFloat( $scope.params.swlng );
+          var nelat = parseFloat( $scope.params.nelat );
+          var nelng = parseFloat( $scope.params.nelng );
+          var rectFeature = {
+            type: "Feature",
+            geometry: {
+              type: "Polygon",
+              coordinates: [[
+                [swlng, swlat],
+                [nelng, swlat],
+                [nelng, nelat],
+                [swlng, nelat],
+                [swlng, swlat]
+              ]]
+            },
+            properties: { mode: "rectangle" }
+          };
+          var rectIds = $scope.drawing.terraDraw.addFeatures( [rectFeature] );
+          $scope.drawing.currentFeatureId = rectIds[0].id;
+          $scope.drawing.currentShape = "rectangle";
+          $scope.drawing.disabled = true;
+          $scope.drawing.terraDraw.setMode( "select" );
+        }
       }
     } else if ( $scope.params.lat && $scope.params.lng ) {
       // Restore circle from URL params via Terra Draw
       if ( $scope.drawing.terraDraw ) {
-        $scope.clearTerraDrawFeature( );
-        var circleLat = parseFloat( $scope.params.lat );
-        var circleLng = parseFloat( $scope.params.lng );
-        var radiusKm = $scope.params.radius ? parseFloat( $scope.params.radius ) : 10;
-        var radiusM = radiusKm * 1000;
-        // Generate circle polygon points
-        var numPoints = 64;
-        var circleCoords = [];
-        for ( var i = 0; i <= numPoints; i++ ) {
-          var angle = ( i / numPoints ) * 2 * Math.PI;
-          var pointLatLng = google.maps.geometry.spherical.computeOffset(
-            new google.maps.LatLng( circleLat, circleLng ),
-            radiusM,
-            ( angle * 180 ) / Math.PI
-          );
-          circleCoords.push( [pointLatLng.lng( ), pointLatLng.lat( )] );
+        // Skip recreation if a feature already exists (e.g. just drawn by user)
+        if ( !$scope.getTerraDrawFeature( ) ) {
+          $scope.clearTerraDrawFeature( );
+          var circleLat = parseFloat( $scope.params.lat );
+          var circleLng = parseFloat( $scope.params.lng );
+          var radiusKm = $scope.params.radius ? parseFloat( $scope.params.radius ) : 10;
+          var radiusM = radiusKm * 1000;
+          // Generate circle polygon points
+          var numPoints = 64;
+          var circleCoords = [];
+          for ( var i = 0; i <= numPoints; i++ ) {
+            var angle = ( i / numPoints ) * 2 * Math.PI;
+            var pointLatLng = google.maps.geometry.spherical.computeOffset(
+              new google.maps.LatLng( circleLat, circleLng ),
+              radiusM,
+              ( angle * 180 ) / Math.PI
+            );
+            circleCoords.push( [pointLatLng.lng( ), pointLatLng.lat( )] );
+          }
+          var circleFeature = {
+            type: "Feature",
+            geometry: {
+              type: "Polygon",
+              coordinates: [circleCoords]
+            },
+            properties: { mode: "circle" }
+          };
+          var circleIds = $scope.drawing.terraDraw.addFeatures( [circleFeature] );
+          $scope.drawing.currentFeatureId = circleIds[0].id;
+          $scope.drawing.currentShape = "circle";
+          $scope.drawing.disabled = true;
+          $scope.drawing.terraDraw.setMode( "select" );
+          var circleBounds = $scope.getCircleBounds( circleLat, circleLng, radiusKm );
+          $scope.$parent.mapBounds = googleMapsBoundsToObject( circleBounds );
         }
-        var circleFeature = {
-          type: "Feature",
-          geometry: {
-            type: "Polygon",
-            coordinates: [circleCoords]
-          },
-          properties: { mode: "circle" }
-        };
-        var circleIds = $scope.drawing.terraDraw.addFeatures( [circleFeature] );
-        $scope.drawing.currentFeatureId = circleIds[0];
-        $scope.drawing.currentShape = "circle";
-        $scope.drawing.disabled = true;
-        $scope.drawing.terraDraw.setMode( "select" );
-        var circleBounds = $scope.getCircleBounds( circleLat, circleLng, radiusKm );
-        $scope.$parent.mapBounds = googleMapsBoundsToObject( circleBounds );
       }
     }
     $scope.$parent.mapLayersInitialized = true;
