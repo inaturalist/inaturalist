@@ -116,6 +116,23 @@ class Emailer < ActionMailer::Base
     )
   end
 
+  def user_unsuspended( user, reason = nil )
+    return if user.blank?
+    return if user.suspended?
+
+    @user = user
+    return if @user.email.blank?
+    return if @user.prefers_no_email?
+    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
+
+    @reason = reason
+    @site_name = site_name
+    mail_with_defaults(
+      to: @user.email,
+      subject: [:user_unsuspended_email_subject, { prefix: subject_prefix }]
+    )
+  end
+
   # Send the user an email saying the bulk observation import encountered
   # an error.
   def bulk_observation_error( user, filename, error_details )

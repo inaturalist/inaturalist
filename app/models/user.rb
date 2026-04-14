@@ -293,7 +293,6 @@ class User < ApplicationRecord
   before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
-  before_save :check_suspended_by_user
   before_save :remove_email_from_name
   before_save :set_pi_consent_at
   before_save :set_data_transfer_consent_at
@@ -547,6 +546,8 @@ class User < ApplicationRecord
   def unsuspend!
     return unless suspended_at?
 
+    self.spammer = false
+    self.suspended_by_user = nil
     self.suspended_at = nil
     self.suspension_reason = nil
     self.suspended_until = nil
@@ -603,6 +604,32 @@ class User < ApplicationRecord
     return true if anonymous?
 
     super
+  end
+
+  # Override devise_suspendable's inactive_message to include suspension
+  # duration and reason for timed suspensions. Indefinite suspensions only
+  # show the base message to avoid exposing historical reasons from before
+  # timed suspensions were implemented.
+  def inactive_message
+    if suspended?
+      parts = [I18n.t( "devise.failure.user.suspended" ), I18n.t( "devise.failure.user.suspended_appeal" )]
+      if suspended_until.present?
+        parts << I18n.t(
+          "devise.failure.user.suspended_until",
+          # do relative time formatting here
+          until: ApplicationController.helpers.time_until_in_words( suspended_until )
+        )
+        if suspension_reason.present?
+          parts << I18n.t(
+            "devise.failure.user.suspension_reason",
+            reason: ModeratorAction.translate_reason( suspension_reason )
+          )
+        end
+      end
+      parts.join( " " )
+    else
+      super
+    end
   end
 
   def download_remote_icon
@@ -1031,11 +1058,6 @@ class User < ApplicationRecord
     if last_ip_changed? || latitude.nil?
       get_lat_lon_from_ip
     end
-  end
-
-  def check_suspended_by_user
-    return if suspended?
-    self.suspended_by_user_id = nil
   end
 
   def published_name
@@ -1563,6 +1585,10 @@ class User < ApplicationRecord
       resend_unsent_for_user( id )
   end
 
+  def send_unsuspended_email( reason = nil )
+    Emailer.delay.user_unsuspended( self, reason )
+  end
+
   def revoke_access_tokens_by_suspended_user
     return true unless suspended?
     Doorkeeper::AccessToken.where( resource_owner_id: id ).each(&:revoke)
@@ -1795,9 +1821,8 @@ class User < ApplicationRecord
         suspend!( moderator_action.reason )
       end
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
-      self.spammer = false
-      self.suspended_by_user = nil
       unsuspend!
+      send_unsuspended_email( moderator_action.reason )
     elsif moderator_action.action == ModeratorAction::RENAME
       new_login = User.suggest_login( User::DEFAULT_LOGIN )
       self.login = new_login
