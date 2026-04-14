@@ -1,3 +1,5 @@
+@import "breakpoints";
+
 #bodywrapper {
   margin-bottom: 0;
   &:after {
@@ -22,7 +24,7 @@
     position: relative;
     top: 2px;
   }
-  @media (max-width: 767.99px) {
+  @media (max-width: $mobile-max) {
     #mainnav,
     #headersearch,
     .add-obs,

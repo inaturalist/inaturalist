@@ -8,6 +8,7 @@
 *= require projects
 */
 @import "colors";
+@import "breakpoints";
 @import "shared/google_maps";
 body {
   margin: 0;
@@ -2117,7 +2118,7 @@ $header-line-height: 34px;
   .header-md,
   .header-lg { display: none; }
   #narrow-menu { display: none; }
-  @media (max-width: 767.99px) {
+  @media (max-width: $mobile-max) {
     .header-xs { display: inline-block; }
     .dropdown-menu {
       .header-xs { display: block; }
@@ -2127,7 +2128,7 @@ $header-line-height: 34px;
       padding: 6px 7px !important;
     }
   }
-  @media (min-width: 768px) and (max-width: 991.99px) {
+  @media (min-width: $desktop-min) and (max-width: 991.99px) {
     .header-sm { display: inline-block; }
     .dropdown-menu {
       .header-sm { display: block; }
@@ -2537,7 +2538,7 @@ body:not(.responsive) {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-max) {
   body.responsive {
     .container {
       width: auto;

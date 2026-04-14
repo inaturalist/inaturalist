@@ -1,0 +1,276 @@
+- content_for(:title) { t(:a_community_for_naturalist) }
+- content_for(:extracss) { stylesheet_link_tag "welcome_v2" }
+- content_for(:extrahead) do
+  - unless @google_webmaster_verification.blank?
+    - @google_webmaster_verification.split( ";" ).each do |verification|
+      %meta{content: verification.strip, name: "google-site-verification"}
+  %meta{content: "website", property: "og:type"}
+  %meta{content: @site&.name, property: "og:title"}
+  - if @site&.shareable_image?
+    %meta{content: image_url(@site.shareable_image.url), property: "og:image"}
+    %meta{content: image_url(@site.shareable_image.url), property: "twitter:image"}
+  %meta{content: root_url, property: "og:url"}
+  %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name), property: "og:description"}
+  %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name), property: "description"}
+  = tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp"
+- s = "views.welcome_v2.index"
+:ruby
+  steps_data = [
+    [:observe,      "step1_body", "camera"],
+    [:identify_cta, "step2_body", "identify"],
+    [:contribute_cta,   "step3_body", "globe"]
+  ]
+
+  testimonials_data = {
+    gube:       { name: "Dzivula Gube",                 login: "dzivulajr_03" },
+    kratzer:    { name: "Chris Alice \"Alie\" Kratzer",  login: "humanbyweight" },
+    sumanapala: { name: "Amila Sumanapala",             login: "amila_sumanapala" },
+    fachetti:   { name: "Nágyla Fachetti Coser",        login: "nah_fachetti19" },
+    velazco:    { name: "Carlos G. Velazco-Macias",     login: "aztekium" }
+  }
+
+
+%main.wv2
+  -# ── Announcements ─────────────────────────────────────────
+  - @announcements.each do |announcement|
+    .announcement
+      = render "announcements/announcement", announcement: announcement
+
+  -# ── Hero ──────────────────────────────────────────────────
+  .wv2-section.wv2-section--hero.text-center
+    %video.wv2-hero__video{autoplay: true, loop: true, muted: true, playsinline: true, preload: "none", aria: {hidden: "true"}}
+      %source{src: asset_path("welcome_v2/hero_video.webm"), type: "video/webm"}
+      %source{src: asset_path("welcome_v2/hero_video.mp4"), type: "video/mp4"}
+    .wv2-hero__content
+      %h1= t("#{s}.hero.headline")
+      %p.wv2-hero__sub= t("#{s}.hero.subheadline")
+      = link_to t("#{s}.hero.cta_join"), "#{signup_path}?#{@header_utm}&utm_medium=owned_web&utm_content=hero_join_cta", class: "btn wv2-btn--white btn-lg"
+      %p.wv2-hero__tagline= t("#{s}.hero.tagline")
+
+  -# ── "With iNaturalist you can" features ───────────────────
+  .wv2-section.wv2-section--light.text-center
+    %h2= t("#{s}.features.intro")
+    .wv2-features
+      - [[:identify_verb, "identify_desc"], [:track, "track_desc"], [:discover, "discover_desc"], [:contribute, "contribute_desc"], [:learn, "learn_desc"]].each do |label_key, desc_key|
+        .wv2-feature
+          .wv2-feature__icon-wrap
+            = image_tag "welcome_v2/#{label_key}.svg", class: "wv2-feature__icon", alt: ""
+          %h3= t(label_key)
+          %p= t("#{s}.features.#{desc_key}")
+
+  -# ── Community science stories ─────────────────────────────
+  .wv2-section.wv2-section--white.wv2-section--stories.text-center
+    %h2= t("#{s}.stories.heading")
+    .wv2-stories-row
+      - @story_data.each do |heading, body, user, place, img, interp, url|
+        = link_to url, class: "wv2-story", target: "_blank", rel: "noopener" do
+          .wv2-story__image
+            = image_tag "welcome_v2/#{img}.webp", alt: t("#{s}.stories.#{img}_img_alt")
+            %h3= t("#{s}.stories.#{heading}")
+          .wv2-story__body
+            %p= t("#{s}.stories.#{body}", **interp)
+            %p.wv2-story__credit= t("#{s}.stories.observation_credit", user: user, place: place)
+    = link_to t("#{s}.stories.read_more"), "/pages/impact?#{@header_utm}&utm_medium=owned_web&utm_content=impact_stories_cta", class: "btn wv2-btn--green"
+
+  -# ── Sample observation ────────────────────────────────────
+  .wv2-section.wv2-section--light.text-center
+    %h2= t("#{s}.observation.heading")
+    %dl.wv2-observation
+      .wv2-observation__col
+        .wv2-observation__row
+          %dt= t(:who)
+          %dd.wv2-observation__who
+            = image_tag @sample_observation_data["user_icon_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__avatar", alt: ""
+            %span= @sample_observation_data["user_name"]
+        .wv2-observation__row.wv2-observation__row--sep
+          %dt= t(:what)
+          %dd
+            = image_tag @sample_observation_data["observation_photo_file"].sub( "app/assets/images/", "" ), class: "wv2-observation__photo", alt: t("#{s}.observation.photo_alt")
+            .wv2-taxon
+              = image_tag @sample_observation_data["taxon_thumbnail_file"].sub( "app/assets/images/", "" ), class: "wv2-taxon__thumb", alt: ""
+              .wv2-taxon__names
+                %p= @sample_observation_common_name
+                %em= @sample_observation_data["scientific_name"]
+          = link_to "", "/observations/#{@sample_observation_data["id"]}", target: "_blank", rel: "noopener", class: "wv2-observation__row-link", aria: { label: t(:view_observation) }
+      .wv2-observation__col
+        .wv2-observation__row
+          %dt= t(:where)
+          %dd
+            = image_tag "welcome_v2/observation_example_map.webp", class: "wv2-observation__map", alt: t("#{s}.observation.map_alt")
+            .wv2-location
+              = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-location__icon", alt: ""
+              %span= @sample_observation_data["place_guess"]
+        .wv2-observation__row.wv2-observation__row--sep
+          %dt= t(:when)
+          %dd
+            .wv2-location
+              = image_tag "welcome_v2/icon-datetime.svg", class: "wv2-location__icon", alt: ""
+              %span= @sample_observation_data["observed_on"]
+
+  -# ── Impact statistics ─────────────────────────────────────
+  .wv2-section.wv2-section--white.wv2-section--stats.text-center
+    .wv2-stats
+      .wv2-stats__cell
+        %p.wv2-stat__number
+          = number_to_human(350_000_000, precision: 3, significant: false, strip_insignificant_zeros: true, units: :"number.human.compact_units", format: "%n%u")
+          %span.wv2-stat__plus +
+        %p.wv2-stat__label= t("#{s}.stats.observations_label")
+      .wv2-stats__cell
+        %p.wv2-stat__number
+          = number_with_delimiter(550_000)
+          %span.wv2-stat__plus +
+        %p.wv2-stat__label= t("#{s}.stats.species_label")
+      .wv2-stats__cell
+        %p.wv2-stat__number
+          = number_with_delimiter(7_000)
+          %span.wv2-stat__plus +
+        %p.wv2-stat__label= t("#{s}.stats.papers_label")
+      .wv2-stats__cell
+        %p.wv2-stat__number
+          = number_with_delimiter(500)
+          %span.wv2-stat__plus +
+        %p.wv2-stat__label= t("#{s}.stats.discoveries_label")
+
+  -# ── How it works ──────────────────────────────────────────
+  .wv2-section.wv2-section--light.wv2-section--how
+    .wv2-steps
+      - steps_data.each_with_index do |(label_key, body_key, icon), i|
+        .wv2-step
+          %span.wv2-step__num= i + 1
+          .wv2-step__content
+            .wv2-step__heading
+              %h3= t(label_key)
+              = image_tag "welcome_v2/icon-#{icon}.svg", class: "wv2-step__icon", alt: ""
+            %p= t("#{s}.how.#{body_key}")
+
+  -# ── Why ───────────────────────────────────────────────────
+  .wv2-section.wv2-section--white
+    .wv2-why
+      %strong.wv2-why__label= t(:why_question)
+      %p.wv2-why__body= t("#{s}.how.why_note_html")
+
+  -# ── Testimonials ──────────────────────────────────────────
+  .wv2-section.wv2-section--white.wv2-section--no-horizontal-padding
+    .wv2-testimonials
+      .wv2-carousel{ data: { carousel: true, initial_index: 0 } }
+        .wv2-carousel__stage
+          %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
+          .wv2-carousel__track
+            - testimonials_data.each do |key, person|
+              .wv2-carousel__item
+                .wv2-testimonial
+                  .wv2-testimonial__quote
+                    %p= t("#{s}.testimonials.#{key}_quote")
+                  = link_to "/people/#{person[:login]}", class: "wv2-testimonial__byline", target: "_blank" do
+                    = image_tag "welcome_v2/testimonial_#{key}.webp", class: "wv2-testimonial__avatar", alt: person[:name]
+                    %div
+                      %p.wv2-testimonial__name= person[:name]
+                      %p.wv2-testimonial__title= t("#{s}.testimonials.#{key}_title")
+          %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
+        .wv2-carousel__dots
+          - testimonials_data.each_with_index do |(key, _), i|
+            %button.wv2-carousel__dot{ class: (i == 0 ? "active" : nil), "aria-label": "Testimonial #{i + 1}" }
+
+  -# ── Everyone is a naturalist ──────────────────────────────
+  .wv2-section.wv2-section--light
+    .wv2-everyone
+      .wv2-everyone__point
+        %h3= t("#{s}.everyone.heading")
+        %p= t("#{s}.everyone.body")
+      .wv2-everyone__point
+        %h3= t("#{s}.everyone.impact_heading")
+        %p= t("#{s}.everyone.impact_body")
+      .wv2-everyone__point
+        %h3= link_to t("#{s}.everyone.community_heading_2"), "https://www.sfgate.com/local/article/inaturalist-app-bay-area-22092747.php", target: "_blank", rel: "noopener"
+        %p= t("#{s}.everyone.community_body")
+
+  -# ── App download ──────────────────────────────────────────
+  .wv2-section.wv2-section--white
+    .wv2-download
+      .wv2-download__text
+        %h2= t("#{s}.download.heading")
+        %p= t("#{s}.download.subheading")
+      .wv2-download__images
+        = image_tag "welcome_v2/inaturalist.webp", class: "wv2-download__phone", alt: t("#{s}.download.phone_alt"), width: 600, height: 604
+      .wv2-download__cta
+        = render "welcome_v2/store_badges", ios_url: "https://apps.apple.com/app/apple-store/id6475737561?pt=475606&ct=homepage&mt=8", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.android&hl=en_US"
+        %p.wv2-download__count= t("#{s}.download.count_label", count: number_with_delimiter(700_000))
+
+  -# ── Explore species ───────────────────────────────────────
+  .wv2-section.wv2-section--light.wv2-section--no-horizontal-padding.text-center
+    %h2= t("#{s}.explore.heading")
+    .wv2-explore__cards
+      .wv2-carousel{ data: { carousel: true, initial_index: 0 } }
+        .wv2-carousel__stage
+          %button.wv2-carousel__arrow.wv2-carousel__arrow--prev{ "aria-label": "Previous" }
+          .wv2-carousel__track
+            - @explore_observations_data.each do |obs|
+              - common = obs["common_names"][@locale_key] || obs["common_names"][@locale_base] || obs["common_names"]["en"]
+              = link_to "/observations/#{obs["id"]}", target: "_blank", class: "wv2-carousel__item" do
+                .wv2-obs-card
+                  .wv2-obs-card__header
+                    - if obs["user_icon_file"]
+                      = image_tag obs["user_icon_file"].sub("app/assets/images/", ""), class: "wv2-obs-card__avatar-img", alt: ""
+                    - else
+                      .wv2-obs-card__avatar
+                    %span.wv2-obs-card__username= obs["user_name"]
+                  = image_tag obs["observation_photo_file"].sub("app/assets/images/", ""), class: "wv2-obs-card__photo-img", alt: ""
+                  .wv2-taxon
+                    = image_tag obs["taxon_thumbnail_file"].sub("app/assets/images/", ""), class: "wv2-taxon__thumb", alt: ""
+                    .wv2-taxon__names
+                      - if common.present?
+                        %p.wv2-obs-card__common= common
+                      %em.wv2-obs-card__sci= obs["scientific_name"]
+                  .wv2-location
+                    = image_tag "welcome_v2/icon-locationpin.svg", class: "wv2-location__icon", alt: ""
+                    %span= obs["place_guess"].presence || "—"
+          %button.wv2-carousel__arrow.wv2-carousel__arrow--next{ "aria-label": "Next" }
+        .wv2-carousel__dots
+          - obs_mid = @explore_observations_data.length / 2
+          - @explore_observations_data.each_with_index do |_, i|
+            %button.wv2-carousel__dot{ class: (i == obs_mid ? "active" : nil), "aria-label": "Observation #{i + 1}" }
+    = link_to t("#{s}.explore.button"), observations_path, class: "btn wv2-btn--dark"
+
+  -# ── Seek ──────────────────────────────────────────────────
+  .wv2-section.wv2-section--white
+    .wv2-seek
+      .wv2-seek__text
+        %h2= t("#{s}.seek.heading")
+        %p= t("#{s}.seek.body")
+      .wv2-seek__images
+        = image_tag "welcome_v2/seek.webp", class: "wv2-seek__phone", alt: t("#{s}.seek.phone_alt"), width: 600, height: 605
+      .wv2-seek__cta
+        = render "welcome_v2/store_badges", ios_url: "https://apps.apple.com/app/apple-store/id1353224144?pt=475606&ct=homepageapr26&mt=8", android_url: "https://play.google.com/store/apps/details?id=org.inaturalist.seek"
+        %p.wv2-seek__reviews= t("#{s}.seek.review_tagline", count: number_with_delimiter(20_000))
+
+  -# ── Newsletter ────────────────────────────────────────────
+  .wv2-section.wv2-section--dark.wv2-section--spacious.text-center
+    %h2= t("#{s}.newsletter.heading")
+    %p.wv2-section__body= t("#{s}.newsletter.body")
+    = link_to t(:sign_up_sentence_case), "/pages/newsletter?#{@header_utm}&utm_medium=owned_web&utm_content=newsletter_signup", class: "btn wv2-btn--white"
+
+  -# ── Donate ────────────────────────────────────────────────
+  .wv2-section.wv2-section--white.wv2-section--spacious.text-center
+    %p.wv2-donate__headline= t("#{s}.donate.heading")
+    %p.wv2-section__body= t("#{s}.donate.subheading")
+    = link_to t("#{s}.donate.cta"), "#{donate_path}?redirect=true&segment=gmHome&#{@header_utm}&utm_medium=webmobile&utm_content=donate_cta", class: "btn wv2-btn--green"
+
+  -# ── FAQ ───────────────────────────────────────────────────
+  .wv2-section.wv2-section--light
+    %h2.text-center= t("#{s}.faq.heading")
+    .wv2-faq
+      - %w[upload_existing who_can_use research_grade no_knowledge need_app].each do |key|
+        %details.wv2-faq__item
+          %summary= t("#{s}.faq.#{key}_question")
+          %p= t("#{s}.faq.#{key}_answer")
+
+-# ── iOS app banner ───────────────────────────────────────────
+= link_to "#{redirect_link_path(31)}?#{@header_utm}&utm_medium=owned_web&utm_content=sticky_footer_cta", class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
+  = image_tag "welcome_v2/app-icon.webp", class: "wv2-app-banner__icon", alt: ""
+  .wv2-app-banner__text
+    = image_tag "welcome_v2/inat-wordmark.webp", class: "wv2-app-banner__wordmark", alt: "iNaturalist"
+    %p.wv2-app-banner__tagline Discover nature around you
+  %span.wv2-app-banner__cta Use app
+
+- content_for :extrajs do
+  = javascript_include_tag "welcome_v2"
