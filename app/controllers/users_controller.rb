@@ -96,6 +96,7 @@ class UsersController < ApplicationController
       user: current_user,
       action: ModeratorAction::UNSUSPEND
     )
+    @current_suspend_action = ModeratorAction.where( resource: @user, action: ModeratorAction::SUSPEND ).last
     render layout: "bootstrap"
   end
   
@@ -328,6 +329,9 @@ class UsersController < ApplicationController
           @selected_user.last_active = times.compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
         end
         @donor_since = @selected_user.display_donor_since ? @selected_user.display_donor_since.to_date : nil
+        @current_suspend_action = ModeratorAction.where(
+          resource: @user, action: ModeratorAction::SUSPEND
+        ).order( created_at: :desc ).first
         render layout: "bootstrap"
       end
       opts = User.default_json_options
@@ -1012,6 +1016,7 @@ class UsersController < ApplicationController
       where( "flaggable_type != 'Taxon'" ).
       order( "id desc" )
     scopes["ModeratorAction"] = ModeratorAction.
+      includes( :user, :last_edited_by_user ).
       where( "created_at < ?", before ).
       where( resource_user_id: @user ).
       order( "id desc" )

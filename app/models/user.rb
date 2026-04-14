@@ -1786,9 +1786,14 @@ class User < ApplicationRecord
 
   def moderated_with( moderator_action )
     if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
-      self.suspended_by_user = moderator_action.user
       self.suspended_until = moderator_action.suspended_until
-      suspend!
+      if suspended_at?
+        self.suspension_reason = moderator_action.reason
+        save( validate: false ) if changed?
+      else
+        self.suspended_by_user = moderator_action.user
+        suspend!( moderator_action.reason )
+      end
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
       self.spammer = false
       self.suspended_by_user = nil
