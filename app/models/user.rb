@@ -622,7 +622,7 @@ class User < ApplicationRecord
         if suspension_reason.present?
           parts << I18n.t(
             "devise.failure.user.suspension_reason",
-            reason: suspension_reason
+            reason: ModeratorAction.translate_reason( suspension_reason )
           )
         end
       end
