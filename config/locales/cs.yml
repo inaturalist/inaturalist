@@ -1302,6 +1302,10 @@ cs:
     %{user} odkryl %{item} protože "%{reason}"
   continue: Pokračovat
   continue_to_site: Pokračovat na %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Přispívej
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Přispívej
   contributor_cannot_be_found: Přispěvatel nebyl nalezen
   contributors_to_project: "Přispěvatelé do %{project}"
   controlled_term_labels:
@@ -1885,6 +1889,8 @@ cs:
   devise_unlock_instructions_click_the_link: |
     Svůj účet odemknete kliknutím na odkaz níže
   devise_unlock_instructions_unlock: Odemknout účet
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Objevte
   discoveries: Objevy
   did_you_mean: 'Mysleli jste'
   did_you_photos_flickr?: Nahráli jste nějaké fotografie na Flickr?
@@ -2511,6 +2517,10 @@ cs:
   identify_observations: "Identifikovat pozorování"
   identify_observations_by_these_users: Identifikace pozorování těmito uživateli
   identify_title: "Identifikovat"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identifikovat
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identifikovat
   identification: identifikace
   identification_by_user: Identifikace uživatelem %{user}
   #Notification when an identification has been deleted
@@ -2749,7 +2759,7 @@ cs:
     identifications_in_month_year: Nejvíce identifikací v %{month_year}
     identifications_in_year: Nejvíce identifikací v %{year}
   leading: Nejlepší
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Učit se
   learn_about_the_species_live_in: Naučte se o druzích, které žijí v
   learn_more: Více informací
@@ -3548,6 +3558,8 @@ cs:
   obscured_or_private: přibližný nebo soukromý
   obscured_description: |
     Veřejné souřadnice zobrazené jako náhodný bod v prostoru velikosti 0,2 x 0,2 stupně zeměpisné šířky/délky okolo skutečných souřadnic.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Pozorujte
   observation: Pozorování
   observation_: pozorování
   observation_accuracy_experiment_the_sample_for: "Vzorek pro tento experiment ještě nebyl vytvořen."
@@ -5137,6 +5149,7 @@ cs:
   sign_in_with_google: Registrovat přes Google
   sign_out: Odhlásit se
   sign_up: Zaregistrovat se
+  sign_up_sentence_case: Registrace
   similar_species: Podobné druhy
   similar_taxa: Podobné taxony
   #Journal post formatting option
@@ -5926,6 +5939,8 @@ cs:
   total_observations_caps: CELKEM POZOROVÁNÍ
   total_species_observed_caps: CELKEM POZOROVÁNO DRUHŮ
   total_unique_observers: Celkový počet jednotlivých pozorovatelů
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Dráha
   translated_languages: Přeložené jazyky
   'true': 'Pravda'
   trending: Populární
@@ -6346,6 +6361,7 @@ cs:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Jsme si celkem jistí, že toto je v %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Omlouváme se, ale váš hromadný import z %{filename} se nezdařil."
+  #e.g. "What was observed?"
   what: Co
   what_did_you_see: Co jste viděli?
   what_did_you_see?: <em>Co</em> jste viděli?
@@ -6354,9 +6370,11 @@ cs:
   what_want_to_list?: Co chcete zapsat na seznam?
   what_were_you_looking_for?: "Co jste hledali? (cílový seznam)"
   whats_this?: Co je to?
+  #e.g. "When was it observed?"
   when: Kdy
   when_did_you_see_it?: Kdy jste to viděli?
   when_did_you_see_them?: <em>Kdy</em> jste je viděli?
+  #e.g. "Where was it observed?"
   where: Kde
   where_were_they?: Kde byli?
   where_were_you?: Kde jste byli?
@@ -6365,6 +6383,8 @@ cs:
   why_are_you_making_this_change_optional: Proč provádíte tuto změnu? (volitelné)
   why_are_you_making_this_change_cite_source_required: Proč provádíte tuto změnu? Vysvětlete prosím a citujte zdroj, pokud je to možné. (Požadované)
   why_you_can_see_the_coordinates: Proč můžete vidět souřadnice
+  #e.g. "Who observed it?"
+  who: Kdo
   who_can_add_observation_fields_to_my_obs: Kdo může přidat pole pozorování do mých pozorování?
   who_can_add_observations_to_this_project?: Kdo může přidávat pozorování k vašemu projektu?
   who_can_see_the_coordinates: Kdo může vidět souřadnice
@@ -6373,6 +6393,8 @@ cs:
   who_can_see_the_coordinates_trusted: Jednotlivci, kterým pozorovatel důvěřoval, se svými skrytými souřadnicemi
   who_helped_user_the_most: "Kdo uživateli %{user} nejvíce pomohl"
   who_user_helped_the_most: "Komu uživatel %{user} nejvíce pomohl"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Proč?
   why_the_coordinates_are_obscured: Proč jsou souřadnice přibližné
   with_annotation: S anotací
   without_annotation: Bez anotace
@@ -8862,6 +8884,191 @@ cs:
         who_uses_site_name: "Kdo používá %{site_name}?"
         what_are_you_waiting_for: Na co čekáte?
         join_today: Připojte se dnes
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Kde vaše zvědavost přispívá k vědě.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Identifikujte rostliny, živočichy, houby a další, zatímco přidáváte do živého atlasu života na Zemi.
+          #Primary call-to-action button in the hero section
+          cta_join: Přidejte se ke komunitě
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Zdarma, neziskové, komunitou podporované.
+        features:
+          #Section label introducing the three core user actions
+          intro: "S iNaturalist můžete:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Rostliny, živočichy, houby a další
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Druhy, které jste viděli po celém světě
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: K opravdové vědě
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Příroda v okolí
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: od globální komunity přírodovědců
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Síla komunitní vědy
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Viděno %{user} v %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Znovuobjevení dávno ztracených druhů
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} Moth nebyl spatřen desítky let a kdysi byl považován za vyhynulého — dokud ho náhodou nezahlédl turista na Novém Zélandu.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Objevování druhů nových pro vědu
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — zkráceně <span class="italic">I. nat</span> — je nový druh kudlanky, který objevila žena v Austrálii při procházce ve svém sousedství.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Ochrana místních ekosystémů
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Skupina místních dobrovolníků v Kalifornii se spojila prostřednictvím iNaturalist, aby chránila migrující obojživelníky přecházející rušnou silnici.
+          #Link below the stories to read more community science stories
+          read_more: Přečtěte si více příběhů
+        observation:
+          #Heading for the sample observation section
+          heading: Každé pozorování vypráví příběh
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Pozorování přispívají k vědě o biodiverzitě
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Druhy zdokumentované po celém světě
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: články citující data iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Druhy objevené nebo znovuobjevené komunitními vědci
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Otevřete aplikaci a vyfotografujte jakoukoli divokou rostlinu, zvíře, houby nebo jiný organismus — ze svého sousedství nebo odkudkoliv na světě.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Aplikace okamžitě navrhne identifikaci a globální komunita přírodovědců ji potvrzuje nebo zpřesňuje.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Vaše pozorování se stává otevřenými daty — využívanými vědci, ochránci přírody a výzkumníky po celém světě.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Příroda se mění rychleji než kdy dřív, takže potřebujeme <span class="underline">ty</span> aby pomohla zaznamenat, co kde žije.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Opravdu mi to pomohlo s identifikací druhů a zároveň mi to dalo příležitost setkat se s různými lidmi po celém světě.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Mořský ochránce a podvodní fotograf, Keňa
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist otevírá dveře k mnoha novým a vzrušujícím výzkumům málo prozkoumaných taxonů. Podle mého názoru je tato platforma špičkou ekologické vědy.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Autor terénního průvodce ve společnosti Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist a jeho specializovaná komunita identifikátorů se staly neocenitelným zdrojem v mých průzkumech. Pomohla položit základy mé současné práce.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Výzkumník biodiverzity, Srí Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist je mocný nástroj, který spojuje lidi, přírodu a znalosti. Mohu fotografovat vzácný druh, nebo dokonce takový, který dosud nebyl popsán, a zároveň přispívám k ochraně našeho přírodního dědictví.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Environmentální technik a hobby fotograf, Brazílie
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Ať už jste kdekoli na světě, ať už máte PhD nebo jen milujete přírodu, iNaturalist vás přiblíží přírodě a mnoha dalším přírodovědcům.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biolog, Mexiko
+        everyone:
+          #Heading for the broad audience section
+          heading: Každý je přírodovědec
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Pokud jste se někdy podívali zblízka na něco živého a přemýšleli, co to je, iNaturalist je pro vás.
+          #Heading for the impact sub-section
+          impact_heading: Můžete mít dopad
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Každá fotografie, kterou sdílíte, se stává součástí globálního vědeckého záznamu, na kterém se výzkumníci po celém světě spoléhají.
+          #Heading for the community reputation sub-section
+          community_heading: '"Nejhezčí místo online"'
+          community_heading_2: Nejhezčí místo online
+          #Description of the welcoming community aspect
+          community_body: >
+            Přijďte kvůli identifikaci, zůstaňte kvůli komunitě a dopadu na vědu.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Stáhněte si aplikaci iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Získejte identifikace v reálném čase a přispívejte k vědě
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Stažení"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Prozkoumejte druhy po celém světě
+          #Button / link to browse species without downloading
+          button: Prozkoumejte nyní
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Do 13 let? Download Seek!"
+          #Description of Seek's badge and challenge features
+          body: Získejte odznaky a zapojte se do výzev k pozorování druhů!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5hvězdičkové recenze"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Odebírejte náš měsíční zpravodaj!
+          #Description of the newsletter's content
+          body: Zůstaňte v kontaktu s příběhy a objevy z komunity iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist je nezisková organizace, která podporuje vědu a ochranu přírody.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Vaše podpora to umožňuje.
+          #Call-to-action button for the donation section
+          cta: Přispějte nyní
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Často kladené otázky
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Mohu nahrát fotky, které už mám?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ano! Pokud přibližně víte, kdy a kde byla fotografie pořízena, starší fotografie jsou vítány.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Kdo může dělat vědu s pozorováním iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Kdokoliv! Všechna pozorování iNaturalist jsou otevřená a volně dostupná – výzkumným pracovníkům, záchranářům a stejně tak zvídavým jednotlivcům.
+          #FAQ: research grade definition — question
+          research_grade_question: Co znamená "výzkumný stupeň"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Když komunita souhlasí s identifikací, stává se pozorování "výzkumným stupněm" a vstupuje do celosvětového vědeckého záznamu. Každá identifikace může pomoci ji tam dostat.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Potřebuji vědět, na co se dívám?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Vůbec ne! Sdílejte fotografii a globální komunita přírodovědců vám může pomoci ji identifikovat.
+          #FAQ: whether the app is required — question
+          need_app_question: Musím aplikaci používat?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Na desktopu iNaturalist.org funguje skvěle. Na mobilním zařízení vám aplikace poskytuje nejlepší zážitek — zejména při identifikaci druhů na cestách.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Uložit a upravit pro přidání přílohy

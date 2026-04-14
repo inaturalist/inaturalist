@@ -1197,8 +1197,10 @@ da:
     %{user} valgte af vise %{item} igen fordi "%{reason}"
   continue: Fortsæt
   continue_to_site: Fortsæt til %{site_name}
-  #verb, call to action, e.g. "Contribute to real science"
+  #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Bidrag
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Bidrag
   contributor_cannot_be_found: Bidragsyder findes ikke
   contributors_to_project: "Bidragsydere til %{project}"
   controlled_term_labels:
@@ -1792,7 +1794,7 @@ da:
   devise_unlock_instructions_click_the_link: |
     Klik på linket nedenfor, for at oplåse din konto:
   devise_unlock_instructions_unlock: Oplås din konto
-  #verb, call to action, e.g. "Discover nature nearby"
+  #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Opdag
   discoveries: Opdagelser
   did_you_mean: 'Mente du'
@@ -2426,8 +2428,10 @@ da:
   identify_observations: "Identificér observationer"
   identify_observations_by_these_users: Identificér observationer af disse brugere
   identify_title: "Identificér"
-  #verb, call to action, e.g. "Identify nature nearby"
+  #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identificér
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identificér
   identification: identifikation
   identification_by_user: Identifikation af %{user}
   #Notification when an identification has been deleted
@@ -2662,7 +2666,7 @@ da:
     identifications_in_month_year: Fleste identifikationer i %{month_year}
     identifications_in_year: Fleste identifikationer i %{year}
   leading: Førende
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Lære
   learn_about_the_species_live_in: Lær om de arter, der lever i
   learn_more: Lær mere
@@ -3091,6 +3095,8 @@ da:
     <strong>kun synligt for kuratorer</strong> og <strong>kuratorer kan ikke se
     deres egen historik</strong>, så notater om en person bør aldrig være synlige
     for den pågældende person.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Suspensionen udløbet
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skjul
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -5357,6 +5363,26 @@ da:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Velegnet til Wikipedia og andre Wikimedia Foundation-projekter
   summary: Oversigt
   supporting: Støtter
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Suspensionsvarighed
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 dag
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 dage
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 uge
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 måned
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 måneder
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Ubegrænset
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Tilpasset
+  #the time at which a users suspension ends
+  suspend_until: Suspendér indtil
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Dato og klokkeslæt i webbrowserens lokale tidszone.
   suspend_user: Suspenderet bruger
   suspend_user_html: Suspendér %{user}
   suspend_user_reason_instructions_html: |
@@ -5868,7 +5894,7 @@ da:
   total_observations_caps: OBSERVATIONER I ALT
   total_species_observed_caps: OBSERVEREDE ARTER I ALT
   total_unique_observers: Samlet antal unikke observatører
-  #Verb, call to action, e.g. "Track species you've seen worldwide"
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Spor
   translated_languages: Oversatte sprog
   'true': 'Sandt'
@@ -6285,6 +6311,7 @@ da:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Vi er ret sikre på, at dette er i %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklager, men din multiimport af %{filename} har fejlet."
+  #e.g. "What was observed?"
   what: Hvad
   what_did_you_see: Hvad observerede du?
   what_did_you_see?: <em>Hvad</em> så du?
@@ -6293,9 +6320,11 @@ da:
   what_want_to_list?: Hvad ønsker du vist?
   what_were_you_looking_for?: "Hvad ledte du efter? (målliste)"
   whats_this?: Hvad er dette?
+  #e.g. "When was it observed?"
   when: Hvornår
   when_did_you_see_it?: Hvornår observerede du den?
   when_did_you_see_them?: <em>Hvornår</em> så du dem?
+  #e.g. "Where was it observed?"
   where: Hvor
   where_were_they?: Hvor var de?
   where_were_you?: Hvor observerede du den?
@@ -6304,7 +6333,7 @@ da:
   why_are_you_making_this_change_optional: Hvorfor foretages denne ændring? (valgfrit)
   why_are_you_making_this_change_cite_source_required: Hvorfor foretages denne ændring? Forklar venligst og angiv om muligt en kilde. (Obligatorisk)
   why_you_can_see_the_coordinates: Hvorfor du kan se koordinaterne
-  #What or which person or persons, e.g. "Who uses iNaturalist?"
+  #e.g. "Who observed it?"
   who: Hvem
   who_can_add_observation_fields_to_my_obs: Hvem kan tilføje observationsfelter til mine observationer?
   who_can_add_observations_to_this_project?: Hvem kan tilføje observationer til dette projekt?
@@ -6314,6 +6343,8 @@ da:
   who_can_see_the_coordinates_trusted: Personer som observatøren har betroet sine skjulte koordinater til
   who_helped_user_the_most: "Hvem hjalp %{user} mest"
   who_user_helped_the_most: "Hvem %{user} hjalp mest"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Hvorfor?
   why_the_coordinates_are_obscured: Hvorfor koordinaterne er sløret
   with_annotation: Med anmærkning
   without_annotation: Uden note
@@ -7986,11 +8017,21 @@ da:
           URL til den event registreringstjeneste, du bruger til din bioblitz.
           Hvis dette er en Eventbrite URL, der indeholder et numerisk ID, vil vi indsætte en tilmeldings widget på din projektside indtil din bioblitz
           begynder.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Skjul Rangliste
         icon_desc: "Beskæres til kvadrat"
         it_looks_like_this_project_can_be_converted: |
           Det ser ud til at dette projekt kan konverteres til et nyt <a href="%{url}">samlingsprojekt</a>.
         last_aggregated_at_desc: |
           Tidspunkt, hvor samleren sidst var færdig med at tilføje observationer til dette projekt
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Rangliste
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Ranglistepanelet viser brugere med flest observationer, brugere med fleste arter og den mest observerede art. Det kan valgfrit skjules.
         #Label for button to make another user the owner of a project
         make_owner: Gør til Ejer
         no_curators: |
@@ -9159,7 +9200,6 @@ da:
           #Main hero headline on the home page
           headline: Hvor din nysgerrighed bidrager til videnskaben.
           #Hero subheadline describing the core value proposition
-          #TODO: test that line break here doesn't cause line break
           subheadline: >
             Identificér planter, dyr, svampe og mere, mens der føjes til et levende atlas over liv på Jorden.
           #Primary call-to-action button in the hero section
@@ -9274,6 +9314,7 @@ da:
             Hvert foto, der deles, bliver en del af en global videnskabelig dokumentation, som forskere verden over er afhængige af.
           #Heading for the community reputation sub-section
           community_heading: '"Det dejligste sted online"'
+          community_heading_2: Det dejligste sted online
           #Description of the welcoming community aspect
           community_body: >
             Kom for identifikationerne, bliv for fællesskabet og for at få indflydelse på videnskaben.
@@ -9496,6 +9537,11 @@ da:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "Mia"
       decimal_units:
         format: '%n %u'
         units:
@@ -9928,6 +9974,9 @@ da:
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Skal være i fremtiden
         moderator_note:
           attributes:
             user:

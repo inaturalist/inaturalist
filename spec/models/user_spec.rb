@@ -722,6 +722,22 @@ describe User do
     end
   end
 
+  describe "suspension_expired" do
+    it "includes users whose suspended_until is in the past" do
+      user1 = User.make!( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      user2 = User.make!( suspended_at: 1.day.ago, suspended_until: 1.day.from_now )
+      user3 = User.make!( suspended_at: 1.day.ago, suspended_until: nil )
+      user4 = User.make!
+
+      suspension_expired_users = User.suspension_expired
+
+      expect( suspension_expired_users ).to include user1
+      expect( suspension_expired_users ).not_to include user2
+      expect( suspension_expired_users ).not_to include user3
+      expect( suspension_expired_users ).not_to include user4
+    end
+  end
+
   describe "unsuspend!" do
     it "clears suspended_until in addition to suspended_at" do
       user = User.make!( suspended_at: Time.zone.now, suspended_until: 7.days.from_now )
@@ -787,6 +803,51 @@ describe User do
     end
   end
 
+  describe "unsuspend_if_timed_suspension_expired!" do
+    it "is a no-op when user is not suspended" do
+      user = User.make!
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+      expect( user ).not_to be_suspended
+    end
+
+    it "is a no-op for indefinite suspensions" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: nil )
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+      expect( user.reload ).to be_suspended
+    end
+
+    it "is a no-op when timed suspension is still active" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: 1.day.from_now )
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+      expect( user.reload ).to be_suspended
+    end
+
+    it "unsuspends and creates a ModeratorAction when timed suspension has expired" do
+      make_admin
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      expect { user.unsuspend_if_timed_suspension_expired! }.to change( ModeratorAction, :count ).by( 1 )
+      user.reload
+      expect( user ).not_to be_suspended
+      expect( user.suspended_at ).to be_nil
+      expect( user.suspended_until ).to be_nil
+      ma = ModeratorAction.last
+      expect( ma.action ).to eq ModeratorAction::UNSUSPEND
+      expect( ma.resource ).to eq user
+      expect( ma.user ).to be_nil
+    end
+
+    it "is idempotent" do
+      make_admin
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      user.unsuspend_if_timed_suspension_expired!
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+    end
+  end
+
   describe "moderated_with" do
     it "renames the user when given a RENAME action" do
       user = User.make!( login: "old_login" )
@@ -832,6 +893,87 @@ describe User do
       without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user ) }
       mail = ActionMailer::Base.deliveries.last
       expect( mail.body ).not_to match( /historical reason/ )
+    end
+
+    it "suspends the user when given a SUSPEND action" do
+      user = User.make!
+      curator = make_curator
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: user,
+        user: curator,
+        reason: "hate_speech",
+        suspended_until: 3.days.from_now
+      user.moderated_with( moderator_action )
+      expect( user.suspended_at ).not_to be_nil
+      expect( user.suspension_reason ).to eq "hate_speech"
+      expect( user.suspended_by_user ).to eq curator
+      expect( user.suspended_until ).to be_within( 1.second ).of( 3.days.from_now )
+    end
+
+    it "does not suspend admin users" do
+      admin = make_admin
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: admin,
+        user: make_curator,
+        reason: "hate_speech"
+      admin.moderated_with( moderator_action )
+      expect( admin.suspended_at ).to be_nil
+    end
+
+    it "updates reason and duration when editing a suspension on an already-suspended user" do
+      user = User.make!
+      curator = make_curator
+      user.suspended_by_user = curator
+      user.suspend!( "insults_or_threats" )
+      user.update( suspended_until: 1.day.from_now )
+      expect( user ).to be_suspended
+
+      new_moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: user,
+        user: curator,
+        reason: "hate_speech",
+        suspended_until: 7.days.from_now
+      user.moderated_with( new_moderator_action )
+      user.reload
+      expect( user.suspension_reason ).to eq "hate_speech"
+      expect( user.suspended_until ).to be_within( 1.second ).of( 7.days.from_now )
+      expect( user.suspended_at ).not_to be_nil
+    end
+
+    it "does not change suspended_by_user when editing an existing suspension" do
+      user = User.make!
+      original_curator = make_curator
+      user.suspended_by_user = original_curator
+      user.suspend!( "insults_or_threats" )
+
+      different_curator = make_curator
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: user,
+        user: different_curator,
+        reason: "hate_speech",
+        suspended_until: 3.days.from_now
+      user.moderated_with( moderator_action )
+      user.reload
+      expect( user.suspended_by_user ).to eq original_curator
+    end
+
+    it "unsuspends the user when given an UNSUSPEND action" do
+      user = User.make!
+      user.suspend!( "hate_speech" )
+      expect( user ).to be_suspended
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::UNSUSPEND,
+        resource: user,
+        user: make_curator,
+        reason: "appealed successfully"
+      user.moderated_with( moderator_action )
+      expect( user ).not_to be_suspended
+      expect( user.spammer ).to be false
+      expect( user.suspended_by_user ).to be_nil
     end
   end
 

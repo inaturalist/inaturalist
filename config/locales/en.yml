@@ -1311,8 +1311,10 @@ en:
     %{user} unhid this %{item} because "%{reason}"
   continue: Continue
   continue_to_site: Continue to %{site_name}
-  # verb, call to action, e.g. "Contribute to real science"
+  # e.g. "With iNaturalist, you can contribute to real science"
   contribute: Contribute
+  # e.g. "Contribute to iNaturalist"
+  contribute_cta: Contribute
   contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
   controlled_term_labels:
@@ -1969,7 +1971,7 @@ en:
   devise_unlock_instructions_click_the_link: |
     Click the link below to unlock your account
   devise_unlock_instructions_unlock: Unlock Your Account
-  # verb, call to action, e.g. "Discover nature nearby"
+  # e.g. "With iNaturalist, you can discover nature nearby"
   discover: Discover
   discoveries: Discoveries
   did_you_mean: 'Did you mean'
@@ -2060,6 +2062,10 @@ en:
   edit: Edit
   # Title of the moderation note editor
   edit_moderator_note: Edit Moderator Note
+  # Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Edit Suspension
+  # Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: If you only need to update the reason or expiration date, you can <a href="%{edit_link}">edit the suspension</a> instead.
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
   edit_assessment: Edit Assessment
@@ -2633,8 +2639,10 @@ en:
   identify_observations: "Identify Observations"
   identify_observations_by_these_users: Identify Observations By These Users
   identify_title: "Identify"
-  # verb, call to action, e.g. "Identify nature nearby"
+  # e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identify
+  # e.g. "Identify using iNaturalist"
+  identify_cta: Identify
   identification: identification
   identification_by_user: Identification by %{user}
   # Notification when an identification has been deleted
@@ -2890,7 +2898,7 @@ en:
     identifications_in_month_year: Most identifications in %{month_year}
     identifications_in_year: Most identifications in %{year}
   leading: Leading
-  # verb, call to action, e.g. "Learn from a global community of naturalists"
+  # e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
@@ -3325,6 +3333,8 @@ en:
     <strong>only visible to curators</strong> and <strong>curators cannot view
     their own history</strong>, so notes about a person should never be visible
     to that person.
+  # Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Suspension expired
   # Action a moderator can take to hide content; verb
   moderator_actions_hide: Hide
   # Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -5691,12 +5701,65 @@ en:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Suitable for Wikipedia and other Wikimedia Foundation projects
   summary: Summary
   supporting: Supporting
+  # label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Suspension duration
+  # a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 day
+  # a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 days
+  # a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 week
+  # a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 month
+  # a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 months
+  # a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Indefinite
+  # a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Custom
+  # label for the suspension reason dropdown
+  suspension_reason_label: Reason for suspension
+  # option for entering a custom suspension reason
+  suspension_reason_custom: Custom
+  # note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Please note this reason will be displayed to the suspended user.
+  # note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Please update the reason and explain why you are changing the user's suspension.
+  # predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    # reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Hate speech
+    # reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Insults or threats
+    # reason displayed to users who have been suspended for posting sexually explicit content
+    sexually_explicit_content: Sexually explicit content
+    # reason displayed to users who are creating false accounts to circumvent suspensions,
+    # https://en.wikipedia.org/wiki/Sock_puppet_account
+    sockpuppet_accounts: Sockpuppet accounts
+    # reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    false_ids_or_dqa_votes: Intentionally adding false IDs or DQA votes
+    # reason displayed to users who have been suspended for posting machine generated content
+    machine_generated_content: Machine generated observations, identifications and comments
+    # reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Continued copyright infringement (after warning)
+    # reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Continued posting of artificially generated media (after warning)
+    # reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Continued reduction of data quality (after warning)
+  # the time at which a users suspension ends
+  suspend_until: Suspend until
+  # a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Date and time in your browser's local timezone.
   suspend_user: Suspend user
   suspend_user_html: Suspend %{user}
   suspend_user_reason_instructions_html: |
     Explain why you are suspending this account and cite any violations of the
     %{link_start_tag}Community Guidelines%{link_end_tag}. Please refrain
      from adding personal opinions.
+  # a label on a field showing when a user is suspended until
+  suspended_until: Suspended until
+  # a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Suspended indefinitely
   sw_lat: SW Lat.
   sw_lon: SW Lon.
   sync: Sync?
@@ -6219,7 +6282,7 @@ en:
   total_observations_caps: TOTAL OBSERVATIONS
   total_species_observed_caps: TOTAL SPECIES OBSERVED
   total_unique_observers: Total unique observers
-  # Verb, call to action, e.g. "Track species you've seen worldwide"
+  # e.g. "With iNaturalist, you can track species you've seen worldwide"
   track: Track
   translated_languages: Translated Languages
   'true': 'True'
@@ -6653,6 +6716,7 @@ en:
   # higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: We're pretty sure this is in the %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "We're sorry but your bulk import of %{filename} has failed."
+  # e.g. "What was observed?"
   what: What
   what_did_you_see: What did you see?
   what_did_you_see?: <em>What</em> did you see?
@@ -6661,9 +6725,11 @@ en:
   what_want_to_list?: What do you want to list?
   what_were_you_looking_for?: "What were you looking for? (target list)"
   whats_this?: What's this?
+  # e.g. "When was it observed?"
   when: When
   when_did_you_see_it?: When did you see it?
   when_did_you_see_them?: <em>When</em> did you see them?
+  # e.g. "Where was it observed?"
   where: Where
   where_were_they?: Where were they?
   where_were_you?: Where were you?
@@ -6672,7 +6738,7 @@ en:
   why_are_you_making_this_change_optional: Why are you making this change? (optional)
   why_are_you_making_this_change_cite_source_required: Why are you making this change? Please explain, and cite a source if possible. (Required)
   why_you_can_see_the_coordinates: Why You Can See the Coordinates
-  # What or which person or persons, e.g. "Who uses iNaturalist?"
+  # e.g. "Who observed it?"
   who: Who
   who_can_add_observation_fields_to_my_obs: Who can add observation fields to my observations?
   who_can_add_observations_to_this_project?: Who can add observations to this project?
@@ -6682,6 +6748,8 @@ en:
   who_can_see_the_coordinates_trusted: Individuals who the observer has trusted with their hidden coordinates
   who_helped_user_the_most: "Who Helped %{user} the Most"
   who_user_helped_the_most: "Who %{user} Helped the Most"
+  # Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Why?
   why_the_coordinates_are_obscured: Why the Coordinates Are Obscured
   with_annotation: With Annotation
   without_annotation: Without Annotation
@@ -10058,7 +10126,6 @@ en:
           # Main hero headline on the home page
           headline: Where your curiosity contributes to science.
           # Hero subheadline describing the core value proposition
-          # TODO: test that line break here doesn't cause line break
           subheadline: >
             Identify plants, animals, fungi, and more while adding to a living
             atlas of life on Earth.
@@ -10189,6 +10256,7 @@ en:
             researchers worldwide depend on.
           # Heading for the community reputation sub-section
           community_heading: “The nicest place online”
+          community_heading_2: The nicest place online
           # Description of the welcoming community aspect
           community_body: >
             Come for the identifications, stay for the community and impact on
@@ -10431,6 +10499,11 @@ en:
         # 10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      # Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:
@@ -10880,6 +10953,10 @@ en:
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
+            suspended_until:
+              # Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Must be in the future
+
         moderator_note:
           attributes:
             user:

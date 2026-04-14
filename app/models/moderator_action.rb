@@ -15,6 +15,19 @@ class ModeratorAction < ApplicationRecord
   ].freeze
   MINIMUM_REASON_LENGTH = 10
   MAXIMUM_REASON_LENGTH = 2048
+  MAXIMUM_SUSPEND_REASON_LENGTH = 100
+
+  SUSPENSION_REASONS = {
+    "insults_or_threats" => { default_duration: "1_day" },
+    "hate_speech" => { default_duration: "3_days" },
+    "sexually_explicit_content" => { default_duration: "indefinite" },
+    "sockpuppet_accounts" => { default_duration: "1_week" },
+    "false_ids_or_dqa_votes" => { default_duration: "1_day" },
+    "machine_generated_content" => { default_duration: "indefinite" },
+    "continued_copyright_infringement_after_warning" => { default_duration: "1_day" },
+    "continued_posting_of_artificially_generated_media_after_warning" => { default_duration: "1_day" },
+    "continued_reduction_of_data_quality_after_warning" => { default_duration: "3_days" }
+  }.freeze
 
   PRIVATE_MEDIA_RETENTION_TIME = 2.months
 
@@ -28,6 +41,7 @@ class ModeratorAction < ApplicationRecord
     inverse_of: :moderator_actions_as_resource_user
   validates :action, inclusion: ACTIONS
   validates :reason, length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH }
+  validates :reason, length: { maximum: MAXIMUM_SUSPEND_REASON_LENGTH }, if: -> { action == SUSPEND }
   validate :only_curators_and_staff_can_hide, on: :create
   validate :only_staff_can_make_private
   validate :only_staff_can_rename, on: :create
@@ -35,6 +49,7 @@ class ModeratorAction < ApplicationRecord
   validate :only_staff_and_hiding_curator_can_unhide, on: :create
   validate :check_accepted_actions, on: :create
   validate :cannot_suspend_staff
+  validate :suspended_until_must_be_in_future
 
   before_create :set_resource_user_id
   before_create :set_resource_content
@@ -102,10 +117,30 @@ class ModeratorAction < ApplicationRecord
     errors.add( :base, :only_staff_can_rename )
   end
 
+  def suspended_until_must_be_in_future
+    return unless action == SUSPEND
+    return unless suspended_until.present?
+
+    errors.add( :suspended_until, :must_be_in_the_future ) if suspended_until <= Time.current
+  end
+
   def cannot_suspend_staff
     return unless resource.is_a?( User ) && resource.is_admin? && action == SUSPEND
 
     errors.add( :base, :staff_cannot_be_suspended )
+  end
+
+  def editable_by?( editor )
+    return false if editor.blank?
+    return false unless action == SUSPEND
+
+    if resource.is_a?( User )
+      most_recent = ModeratorAction.where( resource: resource, action: SUSPEND ).order( created_at: :desc ).first
+      return false if most_recent && most_recent.id != id
+    end
+    return true if editor.is_admin?
+
+    editor == user
   end
 
   def check_accepted_actions
@@ -115,6 +150,17 @@ class ModeratorAction < ApplicationRecord
         !resource.class.accepted_moderator_actions.include?( action )
       errors.add( :action, :not_supported_for_this_kind_of_content )
     end
+  end
+
+  def self.translate_reason( reason )
+    return reason if reason.blank?
+    return I18n.t( "suspension_reasons.#{reason}" ) if SUSPENSION_REASONS.key?( reason )
+
+    reason
+  end
+
+  def translated_reason
+    self.class.translate_reason( reason )
   end
 
   def as_indexed_json

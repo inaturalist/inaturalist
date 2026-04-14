@@ -1139,6 +1139,10 @@ ca:
     %{user} ha deixat d'ocultar aquest %{item} perquè "%{reason}"
   continue: Continua
   continue_to_site: Continueu a %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Contribueix
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Contribueix
   contributor_cannot_be_found: No s'ha pogut trobar al contribuïdor del projecte
   contributors_to_project: "Col·laboradors de %{project}"
   controlled_term_labels:
@@ -1678,6 +1682,8 @@ ca:
   devise_unlock_instructions_click_the_link: |
     Feu clic a l'enllaç següent per desbloquejar el teu compte
   devise_unlock_instructions_unlock: Desbloqueu el vostre compte
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Descobreix
   discoveries: Descobriments
   did_you_mean: 'Es refereix a'
   did_you_photos_flickr?: Heu pujat fotos a Flickr?
@@ -2290,6 +2296,10 @@ ca:
   identify_observations: "Identifiqueu observacions"
   identify_observations_by_these_users: Identificar Observacions d'aquests Usuaris
   identify_title: "Identificar"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identificació
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identificació
   identification: identificació
   identification_by_user: Identificació de %{user}
   #Notification when an identification has been deleted
@@ -2524,7 +2534,7 @@ ca:
     identifications_in_month_year: La majoria de les identificacions de %{month_year}
     identifications_in_year: La majoria de les identificacions de %{year}
   leading: Dirigint
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Apreneu-ne
   learn_about_the_species_live_in: Informeu-vos sobre les espècies que viuen a
   learn_more: Informeu-vos més
@@ -3314,6 +3324,8 @@ ca:
   obscured_or_private: enfosquit o privat
   obscured_description: |
     Les coordenades públiques es mostren en un punt triat a l'atzar  dins la cel·la  de 0,2 graus de latitud i longitud que conté les coordenades reals.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observa
   observation: Observació
   observation_: observació
   observation_accuracy_experiment_the_sample_for: "La mostra d'aquest experiment no ha estat generada"
@@ -4851,6 +4863,7 @@ ca:
   sign_in_with_google: Entrar amb Google
   sign_out: Surtiu
   sign_up: Registreu-vos
+  sign_up_sentence_case: Inscriu-te
   similar_species: Espècie similar
   similar_taxa: Tàxon semblant
   #Journal post formatting option
@@ -5581,6 +5594,8 @@ ca:
   total_observations_caps: OBSERVACIONS TOTALS
   total_species_observed_caps: ESPÈCIES OBSERVADES EN TOTAL
   total_unique_observers: Nombre total d'observadors únics
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Pista
   translated_languages: Idiomes traduïts
   'true': 'Cert'
   trending: Tendències
@@ -5982,6 +5997,7 @@ ca:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Estem prou segurs que aquest està en el lloc %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ho sentim, però la vostra importació massiva des de %{filename} ha fallat."
+  #e.g. "What was observed?"
   what: Què
   what_did_you_see: Què vau veure?
   what_did_you_see?: <em>Què</em> vau veure?
@@ -5990,9 +6006,11 @@ ca:
   what_want_to_list?: Què voleu afegir a la llista?
   what_were_you_looking_for?: "Què cercàveu? (llista d’objectius)"
   whats_this?: Què és això?
+  #e.g. "When was it observed?"
   when: Quan
   when_did_you_see_it?: Quan l’heu vist?
   when_did_you_see_them?: <em>Quan</em> els vau veure?
+  #e.g. "Where was it observed?"
   where: "On"
   where_were_they?: <em>On</em> es trobaven?
   where_were_you?: <em>On</em> estàveu?
@@ -6001,6 +6019,8 @@ ca:
   why_are_you_making_this_change_optional: Perquè esteu fent aquest canvi? (opcional)
   why_are_you_making_this_change_cite_source_required: Per què heu fet aquest canvi? Si us plau, expliqueu i, si és possible, citeu una font. (obligatori)
   why_you_can_see_the_coordinates: Per què podeu veure les coordenades?
+  #e.g. "Who observed it?"
+  who: Qui
   who_can_add_observation_fields_to_my_obs: Qui pot afegir camps d'observació a les meves observacions?
   who_can_add_observations_to_this_project?: Qui pot afegir observacions a aquest projecte?
   who_can_see_the_coordinates: Qui pot veure les coordenades?
@@ -6009,6 +6029,8 @@ ca:
   who_can_see_the_coordinates_trusted: Individus sobre els quals els observadors han compartit amb tu les coordenades ocultes
   who_helped_user_the_most: "Qui a ajudat més a %{user}"
   who_user_helped_the_most: "A qui a ajudat més %{user}"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Per què?
   why_the_coordinates_are_obscured: Per què les coordenades estan enfosquides?
   with_annotation: Amb anotació
   without_annotation: Sense anotació
@@ -7772,6 +7794,191 @@ ca:
         who_uses_site_name: "Qui fa servir l’%{site_name}?"
         what_are_you_waiting_for: Què esteu esperant?
         join_today: Uniu-vos ara
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: On la teva curiositat contribueix a la ciència.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Identifica plantes, animals, fongs i més mentre afegeixes a un atles viu de la vida a la Terra.
+          #Primary call-to-action button in the hero section
+          cta_join: Uneix-te a la comunitat
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Gratuït, sense ànim de lucre, impulsat per la comunitat.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Amb iNaturalist, pots:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Plantes, animals, fongs i més
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: espècies que has vist arreu del món
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: a la ciència real
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Natura propera
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: D'una comunitat global de naturalistes
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: El poder de la ciència comunitària
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Vist per %{user} en %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Redescobrint espècies perdudes fa molt de temps
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            El %{moth_common_name} Feia dècades que no s'havia vist papallona de papallona i es pensava que estava extingida — fins que un turista a Nova Zelanda la va veure per accident.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Descobrint espècies noves per a la ciència
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — abreujat com a <span class="italic">I. nat</span> — és una espècie de mantis nova per a la ciència trobada per una dona a Austràlia que caminava pel seu barri.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Protecció dels ecosistemes locals
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Un grup de voluntaris locals a Califòrnia es va unir a través d'iNaturalist per protegir els amfibis migratoris que creuaven una carretera molt transitada.
+          #Link below the stories to read more community science stories
+          read_more: Llegeix més històries
+        observation:
+          #Heading for the sample observation section
+          heading: Cada observació explica una història
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Observacions que contribueixen a la ciència de la biodiversitat
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Espècies documentades arreu del món
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: articles que citen dades d'iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Espècies descobertes o redescobertes per científics comunitaris
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Obre l'aplicació i fotografia qualsevol planta, animal, fong o altre organisme silvestre — del teu barri o de qualsevol lloc del món.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            L'aplicació suggereix una identificació instantània, i una comunitat global de naturalistes la confirma o la refina.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            La teva observació esdevé dades obertes — utilitzades per científics, conservacionistes i investigadors d'arreu del món.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            La natura està canviant més ràpid que mai, així que necessitem <span class="underline">Tu</span> per ajudar a registrar què viu i on.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            M'ha ajudat molt a identificar espècies, a més de donar-me l'oportunitat d'interactuar amb diferents persones d'arreu del món.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Conservacionista marí i fotògraf subaquàtic, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist obre la porta a molta recerca nova i emocionant sobre tàxons poc estudiats. En la meva opinió, aquesta plataforma és l'avantguarda de la ciència ecològica.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Autor de la guia de camp a Owlfly LLC, EUA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist i la seva comunitat dedicada d'identificadors es van convertir en un recurs inavaluable en les meves exploracions. Va ajudar a establir les bases de la meva feina actual.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Investigador en biodiversitat, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist és una eina poderosa que connecta persones, natura i coneixement. Puc fotografiar una espècie rara, o fins i tot una que encara no s'ha descrit, i al mateix temps, contribueixo a conservar el nostre patrimoni natural.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Tècnic ambiental i fotògraf aficionat, Brasil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            No importa on siguis al món, tant si tens un doctorat com si simplement t'agrada la natura, iNaturalist t'acostarà a la natura i a molts altres naturalistes.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biòleg, Mèxic
+        everyone:
+          #Heading for the broad audience section
+          heading: Tothom és naturalista
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Si mai t'has fixat en alguna cosa viva i t'has preguntat què era, iNaturalist és per a tu.
+          #Heading for the impact sub-section
+          impact_heading: Pots tenir un impacte
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Cada foto que comparteixes esdevé part d'un registre científic global del qual depenen els investigadors d'arreu del món.
+          #Heading for the community reputation sub-section
+          community_heading: '"El lloc més bonic en línia"'
+          community_heading_2: El lloc més bonic en línia
+          #Description of the welcoming community aspect
+          community_body: >
+            Vine per les identificacions, queda't per la comunitat i per impactar en la ciència.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Descarrega l'aplicació iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Obtenir identificacions en temps real i contribuir a la ciència
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Descàrregues"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Explora espècies arreu del món
+          #Button / link to browse species without downloading
+          button: Explora ara
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Menors de 13? Descarrega Seek!"
+          #Description of Seek's badge and challenge features
+          body: Guanya insígnies i participa en reptes per observar espècies!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Ressenyes de 5 estrelles"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Rep el nostre butlletí mensual!
+          #Description of the newsletter's content
+          body: Mantén-te connectat amb històries i descobriments de la comunitat d'iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist és una organització sense ànim de lucre que dóna suport a la ciència i la conservació.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: El teu suport ho fa possible.
+          #Call-to-action button for the donation section
+          cta: Fes una donació ara
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Preguntes freqüents
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Puc pujar fotos que ja tinc?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Sí! Sempre que sàpigues aproximadament quan i on es va fer una foto, les fotos antigues són benvingudes.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Qui pot fer ciència amb les observacions d'iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Qualsevol! Totes les observacions d'iNaturalist són obertes i lliurement disponibles — tant per a investigadors, professionals de la conservació com per a persones curioses.
+          #FAQ: research grade definition — question
+          research_grade_question: Què vol dir "grau de recerca"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Quan la comunitat acorda una identificació, una observació esdevé "grau de recerca" i entra al registre científic global. Qualsevol identificació pot ajudar a fer-ho arribar.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: He de saber què estic veient?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            De cap manera! Comparteix una foto, i una comunitat global de naturalistes t'ajudarà a identificar-la.
+          #FAQ: whether the app is required — question
+          need_app_question: He d'utilitzar l'aplicació?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            En un escriptori, iNaturalist.org funciona molt bé. En un dispositiu mòbil, l'aplicació t'ofereix la millor experiència — especialment per identificar espècies en moviment.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Desar i editar per afegir fitxers adjunts

@@ -217,6 +217,32 @@ describe ModeratorAction do
         u.reload
         expect( u ).not_to be_suspended
       end
+      it "should not allow a suspend reason longer than #{ModeratorAction::MAXIMUM_SUSPEND_REASON_LENGTH} characters" do
+        u = create :user
+        long_reason = "a" * ( ModeratorAction::MAXIMUM_SUSPEND_REASON_LENGTH + 1 )
+        ma = build( :moderator_action, action: ModeratorAction::SUSPEND, resource: u, reason: long_reason )
+        expect( ma ).not_to be_valid
+        expect( ma.errors[:reason] ).to be_present
+      end
+      it "should allow a suspend reason up to #{ModeratorAction::MAXIMUM_SUSPEND_REASON_LENGTH} characters" do
+        u = create :user
+        reason = "a" * ModeratorAction::MAXIMUM_SUSPEND_REASON_LENGTH
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u, reason: reason )
+        expect( ma ).to be_persisted
+      end
+      it "should not allow suspended_until in the past" do
+        u = create :user
+        ma = build( :moderator_action, action: ModeratorAction::SUSPEND, resource: u,
+          suspended_until: 1.day.ago )
+        expect( ma ).not_to be_valid
+        expect( ma.errors[:suspended_until] ).to be_present
+      end
+      it "should allow suspended_until in the future" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u,
+          suspended_until: 7.days.from_now )
+        expect( ma ).to be_persisted
+      end
       it "sets suspended_by_user" do
         u = create :user
         expect( u ).not_to be_suspended
@@ -236,6 +262,13 @@ describe ModeratorAction do
         create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
         u.reload
         expect( u.suspended_until ).to be_nil
+      end
+      it "copies a predefined reason key to the user's suspension_reason" do
+        u = create :user
+        create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u,
+          reason: "hate_speech", suspended_until: 1.day.from_now )
+        u.reload
+        expect( u.suspension_reason ).to eq "hate_speech"
       end
     end
 
@@ -494,6 +527,64 @@ describe ModeratorAction do
     end
   end
 
+  describe "editable_by?" do
+    let( :suspension_action ) do
+      create( :moderator_action, action: ModeratorAction::SUSPEND, resource: create( :user ), user: curator )
+    end
+    let( :hide_action ) do
+      create( :moderator_action, action: ModeratorAction::HIDE, resource: create( :comment ), user: curator )
+    end
+
+    it "returns false for a blank editor" do
+      expect( suspension_action.editable_by?( nil ) ).to be false
+    end
+
+    it "returns false for non-SUSPEND actions" do
+      expect( hide_action.editable_by?( admin ) ).to be false
+    end
+
+    it "returns true for admin on a SUSPEND action" do
+      expect( suspension_action.editable_by?( admin ) ).to be true
+    end
+
+    it "returns true for the curator who created the action" do
+      expect( suspension_action.editable_by?( curator ) ).to be true
+    end
+
+    it "returns false for a different curator" do
+      expect( suspension_action.editable_by?( make_curator ) ).to be false
+    end
+
+    it "returns false for a regular user" do
+      expect( suspension_action.editable_by?( User.make! ) ).to be false
+    end
+  end
+
+  describe "update" do
+    describe "SUSPEND" do
+      it "syncs updated suspended_until to the user" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        u.reload
+        expect( u.suspended_until ).to be_nil
+        new_time = 14.days.from_now
+        ma.update!( suspended_until: new_time )
+        u.reload
+        expect( u.suspended_until ).to be_within( 1.second ).of( new_time )
+      end
+
+      it "does not reset suspended_at when updating" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        u.reload
+        original_suspended_at = u.suspended_at
+        ma.update!( suspended_until: 7.days.from_now )
+        u.reload
+        expect( u.suspended_at ).to eq original_suspended_at
+      end
+    end
+  end
+
   describe "persistence" do
     shared_examples_for "media" do
       let( :curator ) { make_curator }
@@ -532,6 +623,23 @@ describe ModeratorAction do
     describe "Sounds" do
       let( :resource ) { Sound.make! }
       it_behaves_like "media"
+    end
+  end
+
+  describe "translated_reason" do
+    it "translates a predefined suspension reason key" do
+      ma = build( :moderator_action, action: ModeratorAction::SUSPEND, reason: "hate_speech" )
+      expect( ma.translated_reason ).to eq I18n.t( "suspension_reasons.hate_speech" )
+    end
+
+    it "returns custom reason text unchanged" do
+      ma = build( :moderator_action, action: ModeratorAction::SUSPEND, reason: "posting spam links" )
+      expect( ma.translated_reason ).to eq "posting spam links"
+    end
+
+    it "returns nil for blank reason" do
+      ma = build( :moderator_action, action: ModeratorAction::SUSPEND, reason: nil )
+      expect( ma.translated_reason ).to be_nil
     end
   end
 end

@@ -786,6 +786,9 @@ hu:
   back_to_your_profile: Vissza a profilodhoz
   badges: Jelvények
   base_map_copyright_openstreetmap_html: Alaptérkép © %{startTag}OpenStreetMap%{endTag}
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    A bizonyíték alapján lehet még javítani a közösségi taxonon?
   batch: Köteg
   batch_edit: Tömeges szerkesztés
   #Where x is the title of a list of taxa
@@ -1060,6 +1063,8 @@ hu:
     %{user} újra megjelenítette %{item}t "%{reason}" miatt
   continue: Folytatás
   continue_to_site: 'Tovább ide: %{site_name}'
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Hozzájárulás
   contributor_cannot_be_found: A közreműködő nem található
   contributors_to_project: "%{project} közreműködők"
   controlled_term_labels:
@@ -1563,6 +1568,8 @@ hu:
   devise_unlock_instructions_click_the_link: |
     Katt a linkre a fiók feloldáshoz!
   devise_unlock_instructions_unlock: Fiók zárolásának feloldása
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Fedezd fel
   discoveries: Felfedezések
   did_you_mean: 'Erre gondolsz?'
   did_you_photos_flickr?: Töltöttél fel bármilyen fotót a Flickr-re?
@@ -2113,6 +2120,10 @@ hu:
   identify_observations: "Megfigyelések azonosítása"
   identify_observations_by_these_users: E felhasználók megfigyeléseinek azonosítása
   identify_title: "Azonosítás"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Azonosítás
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Azonosíts
   identification: meghatározás
   identification_by_user: '%{user} meghatározásai'
   #Notification when an identification has been deleted
@@ -2320,7 +2331,7 @@ hu:
     identifications_in_month_year: Legtöbb meghatározás %{month_year} hónapban
     identifications_in_year: Legtöbb meghatározás %{year} évben
   leading: Vezető
-  #verb, call to action, e.g. "Learn from a global community of naturalists"
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Tanulás
   learn_about_the_species_live_in: 'Az itt élő fajok megismerése:'
   learn_more: További információ
@@ -3027,6 +3038,8 @@ hu:
   obscured_or_private: Kitakart vagy privát
   obscured_description: |
     A nyílvános koordinátákat egy véletlenszerű pontként mutatjuk egy 0.2 fokos szél/hossz területen belül ami tartalmazza a valódi koordinátákat.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Figyeld meg
   observation: Megfigyelés
   observation_: megfigyelés
   observation_accuracy_experiment_the_sample_for: "A minta erre a kísérletre még nem készült el"
@@ -3898,7 +3911,7 @@ hu:
   posts: Bejegyzések
   potential_disagreement: Lehetséges konfliktus
   powered_by: 'Működteti:'
-  powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
+  powered_by_inaturalist_open_source_software_html: 'Működteti az <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist nyílt forrású szoftver</a>'
   present: jelen van
   press: Sajtó
   preview: Előnézet
@@ -4398,6 +4411,7 @@ hu:
   sign_in_with_google: Bejelentkezés Google-fiókkal
   sign_out: Kijelentkezés
   sign_up: Regisztráció
+  sign_up_sentence_case: Feliratkozz
   similar_species: Hasonló fajok
   similar_taxa: Hasonló taxonok
   #Journal post formatting option
@@ -4422,6 +4436,19 @@ hu:
     Automatikusan rejtett koordináták (kitakart vagy rejtett a "taxon helyvédelme" miatt)
   sites_affiliation_more_user_hidden_coordinates: |
     Felhasználó által rejtett koordináták (kitakarva vagy rejtve a helyvédelmi beállítások miatt)
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    Az %{start_tag_network}iNaturalist Hálózat%{end_tag_network} helyi tapasztalatot ad a %{start_tag_global}globális iNaturalist közösségben%{end_tag_global}.
+  sites_network_agreements_html: |
+    Az iNaturalist hivatalos megállapodásokat kötött ezeken a földrajzi területeken levő szervezetekkel, hogy támogassák az iNaturalist felület használatát.
+    <strong>Ha a szervezeted szeretne az iNaturalist Hálózathoz csatlakozni további részleteket találsz
+    %{start_tag_join}itt%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    Az iNaturalist hivatalos megállapodásokat kötött ezeken a földrajzi területeken levő szervezetekkel, hogy támogassák az iNaturalist felület használatát. 2024 óta egy leegyszerűsített változatot vezetünk be a hálozatban való részvételhez.
+    <strong>Ha a szervezeted szeretne az iNaturalist Hálózathoz csatlakozni további részleteket találsz
+    %{start_tag_join}itt%{end_tag_join}.</strong>
+  sites_network_consists_of: "Az iNaturalist Hálózat több szervezetből áll:"
+  sites_network_inaturalist_network_collection2: |
+    Az iNaturalist Hálózat egy helyi élmény amely teljesen a globális iNaturalist közösséghez van kapcsolva. A hálózat tagjai helyi intézmények, amelyek elősegítik a helyi használatot és az iNaturalist adatok felhasználását a helyi biodiverzitás javára. Hozzáférnek az igazi koordinátákhoz a földrajzi területeikön belül amelyek automatikusan el vannak rejtve a nyilvánosság számára, hogy jobban védjék a veszélyeztetett fajokat.
   sites_network_your_username: |
     A felhasználóneved és a jelszavad minden honlapon működik ami az iNaturalist Hálózat tagja. Ha csatlakozol a Hálózat egyik honlapjához, a helyi intézmények amelyek e helyi honlapot támogatják elérhetik az email címedet (csak azért, hogy a honlap tevékenységeiről értesítsenek) és hozzáférhetnek az olyan megfigyelések valós koordinátáihoz, ahol a koordinátáknál a kitakart vagy privát beállításokat használtad.
   some_agree: néhányan egyetértenek
@@ -4948,6 +4975,8 @@ hu:
   total_observations_caps: Minden megfigyelés
   total_species_observed_caps: Minden megfigyelt faj
   total_unique_observers: Összes egyedi megfigyelő
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Nyom
   translated_languages: Célnyelv
   'true': 'Igen'
   trending: Népszerű
@@ -5297,14 +5326,17 @@ hu:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Nagy bizonyossággal e %{rank} tagja
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Sajnáljuk, de %{filename} tömeges importálása sikertelen."
+  #e.g. "What was observed?"
   what: Mi
   what_did_you_see: Mit láttál?
   what_did_you_see?: <em>Mit</em> láttál?
   what_do_you_think: Mire gondolsz?
   whats_this?: Mi ez?
+  #e.g. "When was it observed?"
   when: Mikor
   when_did_you_see_it?: Mikor láttad?
   when_did_you_see_them?: <em>Mikor</em> láttad?
+  #e.g. "Where was it observed?"
   where: Hol
   where_were_they?: Hol vannak?
   where_were_you?: Hol voltál?
@@ -5313,6 +5345,8 @@ hu:
   why_are_you_making_this_change_optional: Mi a módosítás oka? (opcionális)
   why_are_you_making_this_change_cite_source_required: Mi a módosítás oka? Kérjük, hogy adj magyarázatot, lehetőleg forrásmegjelöléssel. (Kötelező)
   why_you_can_see_the_coordinates: Miért láthatod a koordinátákat
+  #e.g. "Who observed it?"
+  who: Ki
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
   who_can_add_observations_to_this_project?: Ki adhat hozzá megfigyeléseket ehhez a projekthez?
   who_can_see_the_coordinates: Ki láthatja a koordinátákat
@@ -5320,6 +5354,8 @@ hu:
   who_can_see_the_coordinates_trusted: Egyének akikben a megfigyelő megbízik és számukra láthatóvá tette koordinátáit
   who_helped_user_the_most: "%{user} tőlük kapott a legtöbb segítséget"
   who_user_helped_the_most: "%{user} nekik segített a legtöbbet"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Miért?
   why_the_coordinates_are_obscured: Miért rejtettek a koordináták
   with_annotation: Attribútum
   without_annotation: Megjelölés nélkül
@@ -6753,6 +6789,190 @@ hu:
         who_uses_site_name: "%{site_name}: akik már használják"
         what_are_you_waiting_for: Mire vársz?
         join_today: Csatlakozz most
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Ahol a kíváncsiságod hozzájárul a tudományhoz.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Azonosítsd a növényeket, állatokat, gombákat és még sok mást, miközben hozzájárulsz egy élő atlaszhoz a Földön.
+          #Primary call-to-action button in the hero section
+          cta_join: Csatlakozz a közösséghez
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Ingyenes, nonprofit, közösségi támogatású.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Az iNaturalist-szel a következőket teheted:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: növények, állatok, gombák és még sok más
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Olyan fajokat, amiket világszerte láttál
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: a valódi tudományhoz
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: A közeli természet
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: egy globális természettudós közösségtől
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: A közösségi tudomány ereje
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Látott %{user} in %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: A rég elveszett fajok újrafelfedezése
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            A %{moth_common_name} A lepkét évtizedek óta nem látták, és egykor kihaltnak hitték — egészen addig, amíg egy új-zélandi turista véletlenül meg nem vette.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Új tudományos fajok felfedezése
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — rövidítve: <span class="italic">I. nat</span> — egy tudomány számára új sáskafaj, amelyet egy ausztráliai nő talált a környékén sétálva.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: A helyi ökoszisztémák védelme
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Egy helyi önkéntesekből álló csoport Kaliforniában az iNaturalist-en keresztül gyűlt össze, hogy megvédjék a forgalmas úton átkelő vándorló kétéltűeket.
+          #Link below the stories to read more community science stories
+          read_more: További történetek olvasható
+        observation:
+          #Heading for the sample observation section
+          heading: Minden megfigyelés mesél egy történetet
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Megfigyelések, amelyek hozzájárulnak a biodiverzitás tudományához
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Világszerte dokumentált fajokat
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: iNaturalist adatokra hivatkozó cikkek
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Fajok, amelyeket közösségi tudósok fedeztek fel vagy fedeztek fel újra
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Nyisd meg az alkalmazást, és fényképezz le bármilyen vadnövényt, állatot, gombát vagy más élőlényt — akár a környékedről, akár a világ bármely pontjáról.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Az alkalmazás azonnal azonosítást javasol, és egy globális természettudós közösség megerősíti vagy finomítja azt.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            A megfigyelésed nyílt adatmá válik — tudósok, természetvédők és kutatók által világszerte használják.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            A természet gyorsabban változik, mint valaha, ezért szükségünk van <span class="underline">Te</span> hogy segítsünk feltüntetni, hol élő személyek.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Nagyon sokat segített a fajazonosításban, ráadásul lehetőséget adott arra, hogy különböző emberekkel kapcsolatba lépjek a világ minden tájáról.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Tengeri természetvédő és víz alatti fotós, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            Az iNaturalist rengeteg új és izgalmas kutatás előtt nyitja meg az alulértékelt taxonokról. Véleményem szerint ez a platform az ökológiai tudomány élvonala.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Terepi útmutató szerző az Owlfly LLC-nél, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            Az iNaturalist és elkötelezett azonosító közössége felbecsülhetetlen erőforrássá vált a felfedezéseimben. Ez segített lefektetni a jelenlegi munkám alapjait.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiverzitáskutató, Srí Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            Az iNaturalist egy erőteljes eszköz, amely összeköti az embereket, a természetet és a tudást. Képes vagyok lefotózni egy ritka fajt, vagy akár olyat, amelyet még nem írtak le, és ugyanakkor hozzájárulok a természeti örökségünk megőrzéséhez.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Környezettechnikus és hobbi fotós, Brazília
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Bárhol is vagy a világon, akár PhD-d van, akár csak szereted a természetet, az iNaturalist közelebb visz a természethez és sok más természettudóshoz.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biológus, Mexikó
+        everyone:
+          #Heading for the broad audience section
+          heading: Mindenki természettudós
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Ha valaha is közelről megnéztél valami élőt, és azon tűnődtél volna, mi az, az iNaturalist neked való.
+          #Heading for the impact sub-section
+          impact_heading: Hatással lehet rá
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Minden megosztott fotó egy globális tudományos nyilvántartás részévé válik, amelyre a kutatók világszerte támaszkodnak.
+          #Heading for the community reputation sub-section
+          community_heading: '"A legszebb hely az interneten"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Gyere az azonosításért, maradj a közösségért és a tudományra gyakorolt hatásért.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Töltse le az iNaturalist alkalmazást
+          #Subheading describing the two core benefits of the app
+          subheading: Szerezz valós idejű azonosításokat és járulj hozzá a tudományhoz
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Letöltések"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Fedezze fel a fajokat világszerte
+          #Button / link to browse species without downloading
+          button: Fedezz fel most
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13 év alatti? Töltsd le a Seek!"
+          #Description of Seek's badge and challenge features
+          body: Szerezz jelvényeket, és vegyél részt a fajok megfigyelésére irányuló kihívásokban!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5 csillagos értékelések"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Szerezze meg havi hírlevelünket!
+          #Description of the newsletter's content
+          body: Maradj kapcsolatban az iNaturalist közösség történeteivel és felfedezéseivel.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: Az iNaturalist egy nonprofit szervezet, amely támogatja a tudományt és a természetvédelmet.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: A támogatásod teszi ezt lehetővé.
+          #Call-to-action button for the donation section
+          cta: Adományozz most
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: GYIK
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Feltölthetek már meglévő fotóimat?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Igen! Amíg nagyjából tudod, mikor és hol készült egy fotó, a régebbi fotókat szívesen látjuk.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Ki tud tudományt végezni iNaturalista megfigyelésekkel?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Valaki! Minden iNaturalist megfigyelés nyitott és szabadon elérhető – kutatók, természetvédelmi szakemberek és kíváncsi személyek számára egyaránt.
+          #FAQ: research grade definition — question
+          research_grade_question: Mit jelent a "kutatási minősítés"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Amikor a közösség megegyezik az azonosításban, egy megfigyelés "kutatási fokozatú" lesz, és bekerül a globális tudományos nyilvántartásba. Minden azonosítás segíthet eljuttatni a célt.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Tudnom kell, mit nézek?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Egyáltalán nem! Oszd meg egy fotót, és egy globális természettudósok közössége segíthet felismerni.
+          #FAQ: whether the app is required — question
+          need_app_question: Szükségem van az alkalmazásra?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Asztali gépen iNaturalist.org remekül működik. Mobil eszközön az alkalmazás a legjobb élményt nyújtja — különösen a fajok azonosításához útközben.
   date:
     abbr_day_names:
       - Vas
@@ -7309,6 +7529,9 @@ hu:
               staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
             user_id:
               must_be_a_curator: kurátor kell legyen
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: A jövőben kell legyen
         moderator_note:
           attributes:
             user:

@@ -70,17 +70,26 @@ ms:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A hingga Z"
+  about: Mengenai
   #Label for an option to show any place
   any_place: Sebarang
   #A confirmation message after a user initially presses the delete button for a sound to ensure they want to proceed with deletion.
   are_you_sure_you_want_to_delete_this_sound?: Adakah anda pasti mahu memadamkan bunyi ini?
   artificially_generated_content: Kandungan yang dijana secara buatan
   artificially_generated_content_desc: Mengandungi kandungan yang kebanyakannya atau sepenuhnya dijana melalui kecerdasan buatan.
+  community: Komuniti
+  community_guidelines: Garis Panduan Komuniti
   community_taxon_matches_observation_taxon: Takson Komuniti sepadan dengan Takson Pemerhatian
   confirming_ids: Mengesahkan ID
   confirming_ids_description: |
     Jika anda mematikan ini, anda tidak lagi akan dimaklumkan tentang ID yang bersetuju
     dengan anda melainkan mereka mempunyai kenyataan tambahan.
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Menyumbang
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Menyumbang
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Panduan Kurator
   curator_coordinate_access: Kurator Menyelaraskan Akses
   curator_coordinate_access_desc: |
     Kurator menyelaraskan akses untuk projek tradisional bergantung kepada siapa yang menambah
@@ -99,41 +108,74 @@ ms:
   devise_confirmation_instructions_please_click2: |
     Sila klik pautan di bawah untuk mengesahkan alamat e-mel anda. Jika anda tidak mengesahkan e-mel anda
     alamat, anda tidak akan dapat berinteraksi dengan kandungan pengguna lain.
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Temui
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Perselisihan faham
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Tunjukkan pemerhatian yang mempunyai pengenalan yang tidak bersetuju
+  documentation_for_developers_html: Dokumentasi untuk <a href="/pages/developers">Pemaju</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: MENDERMA
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Menderma
   #Title for a page to edit an announcement
   editing_announcement_x: Pengumuman penyuntingan %{id}
   #The text response for when a sound file's data (i.e. creative commons licensing information) failed to update in our database.
   error_updating_sound: "Ralat mengemas kini bunyi: %{sound_errors}"
+  explore: Terokai
   evidence_accurately_depicts_organism_or_scene: Bukti dengan tepat menggambarkan organisma atau tempat kejadian
+  facebook: Facebook
+  feedback: Maklum balas
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Format fail
   #Label for the URL to a file (i.e. to a sound file, image file)
   file_url: URL fail
+  forum: Forum
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Bermula
+  guides: Panduan
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "PERHATIAN: bunyi ini telah dibenderakan."
+  help: Bantuan
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Kenal pasti
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Kenal pasti
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: ID Infraspesies
+  instagram: Instagram
+  jobs: Pekerjaan
+  journal_posts: Catatan Jurnal
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
+  learn: Belajar
+  log_in: Log masuk
   #Adjectival phrase describing state of being logged in
   logged_in: Log masuk
   #Adjectival phrase describing state of being logged out
   logged_out: Dilog keluar
+  member_of_the_inaturalist_network_html: |
+    Ahli <a href="%{url}">Rangkaian iNaturalist</a>
+  more: Lagi
   #Label for a button or section that shows additional options
   more_options: Lebih Banyak Pilihan
   #A user who is not a curator
   non_curator: Bukan kurator
   #A user who does not admin any projects
   non_project_admin: Pentadbir bukan projek
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Perhatikan
   observation_fields_for_projects: Bidang Pemerhatian untuk Projek
+  or: atau
+  our_blog: Blog Kami
+  people: Orang ramai
   #message describing a delay between importing a place and observations appearing in it
   place_imported_delay: Ia mungkin mengambil masa sehingga sehari untuk pemerhatian dikaitkan dengan tempat ini.
+  places: Tempat
   #user-facing guidance that new places cannot be too large
   places_warning_area: |
     Tempat tidak boleh lebih besar daripada 700,000 kilometer persegi.
@@ -148,8 +190,12 @@ ms:
   #observat count when we have enable the "content-freeze" mode to reduce processing on the site
   places_warning_observation_count_during_content_freeze: |
     Tempat tidak boleh mengandungi lebih daripada 10,000 pemerhatian.
+  powered_by_inaturalist_open_source_software_html: 'Dijanakan oleh <a href="https://github.com/inaturalist/inaturalist" target="_new" >Perisian sumber terbuka iNaturalist</a>'
+  press: Akhbar
+  privacy: Privasi
   #A user who admin's a project
   project_admin: Pentadbir projek
+  projects: Projek
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -160,6 +206,10 @@ ms:
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
     subspecies: Subspesies / Varieti / Bentuk
+  search: Carian
+  sign_up: Daftar
+  sign_up_sentence_case: Daftar
+  site_stats: Statistik Tapak
   sounds:
     #The title to an uploaded sound file. Id is typically a number, and Attribution is the name of the uploader plus creative licensing information i.e. "all rights reserved"
     sound_by_id_attribution: Bunyi %{id}, %{attribution}
@@ -169,9 +219,19 @@ ms:
     sound_hidden: Bunyi tersembunyi
     #Notifies an admin/curator that they successfully UNcensored a sound -- the sound can now be listened to by everyone
     sound_unhidden: Bunyi tidak tersembunyi
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Kedai
+  store_caps: KEDAI
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Melanggan
+  taxa_info: Maklumat Taksa
+  terms_service: Terma Penggunaan
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Trek
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Memahami Projek
   #Notifies a user that they were able to successfully change information about a sound file (i.e. creative licensing information)
   updated_sound: Bunyi yang dikemas kini
   user_trusts_this_project_when_added_by_any: |
@@ -182,8 +242,19 @@ ms:
     kepada projek oleh pemerhati.
   user_trusts_this_project_when_added_by_none: |
     Pengguna tidak mempercayai kurator projek dengan koordinat tersembunyi.
+  video_tutorials: Tutorial Video
   we_also_support3: |
     Kami juga menyokong pengimportan foto daripada <a href="http://flickr.com">Flickr</a>.
+  #e.g. "What was observed?"
+  what: Apa
+  #e.g. "When was it observed?"
+  when: Apabila
+  #e.g. "Where was it observed?"
+  where: Di mana
+  #e.g. "Who observed it?"
+  who: Siapa
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Kenapa?
   views:
     announcements:
       locales_desc: |
@@ -313,6 +384,191 @@ ms:
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Ada yang tidak kena ketika cuba menyiarkan tag tersebut: %{message}
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Di mana rasa ingin tahu anda menyumbang kepada sains.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Kenal pasti tumbuhan, haiwan, kulat dan banyak lagi sambil menambah atlas hidup kehidupan di Bumi.
+          #Primary call-to-action button in the hero section
+          cta_join: Sertai komuniti
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Percuma, bukan untung, dikuasakan oleh komuniti.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Dengan iNaturalist, anda boleh:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: tumbuhan, haiwan, kulat, & banyak lagi
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: spesies yang pernah anda lihat di seluruh dunia
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: kepada sains sebenar
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: alam semula jadi berdekatan
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: daripada komuniti naturalis global
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Kuasa sains komuniti
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Dilihat oleh %{user} dalam %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Menemui semula spesies yang telah lama hilang
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Yang %{moth_common_name} rama-rama tidak dikesan selama beberapa dekad dan pernah dianggap pupus — sehingga seorang pelancong di New Zealand melihatnya secara tidak sengaja.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Menemui spesies baharu kepada sains
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — disingkat kepada <span class="italic">I. nat</span> — ialah spesies belalang baharu sains yang ditemui oleh seorang wanita di Australia yang berjalan di kawasan kejiranannya.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Melindungi ekosistem tempatan
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Sekumpulan sukarelawan tempatan di California berkumpul melalui iNaturalist untuk melindungi amfibia yang berhijrah melintasi jalan yang sibuk.
+          #Link below the stories to read more community science stories
+          read_more: Baca lebih banyak cerita
+        observation:
+          #Heading for the sample observation section
+          heading: Setiap pemerhatian menceritakan kisah
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: pemerhatian yang menyumbang kepada sains biodiversiti
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: spesies yang didokumentasikan di seluruh dunia
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: kertas kerja yang memetik data iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: spesies yang ditemui atau ditemui semula oleh saintis komuniti
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Buka apl dan ambil gambar mana-mana tumbuhan liar, haiwan, kulat atau organisma lain — dari kawasan kejiranan anda atau di mana-mana sahaja di dunia.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Apl ini mencadangkan pengenalan serta-merta, dan komuniti naturalis global mengesahkan atau memperhalusinya.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Pemerhatian anda menjadi data terbuka — digunakan oleh saintis, ahli pemuliharaan dan penyelidik di seluruh dunia.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Alam semula jadi berubah lebih cepat daripada sebelumnya, jadi kita perlukan <span class="underline">awak</span> untuk membantu merekodkan apa yang tinggal di mana.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Ia benar-benar membantu saya dengan pengenalpastian spesies, selain memberi saya peluang untuk berinteraksi dengan orang yang berbeza di seluruh dunia.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Pemuliharaan Marin & Jurugambar Bawah Air, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist membuka pintu kepada begitu banyak penyelidikan baharu dan menarik tentang taksa yang kurang dipelajari. Pada pendapat saya, platform ini adalah canggih dalam sains ekologi.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Pengarang Panduan Lapangan di Owlfly LLC, Amerika Syarikat
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist dan komuniti pengecamnya yang berdedikasi menjadi sumber yang tidak ternilai dalam penerokaan saya. Ia membantu meletakkan asas kerja semasa saya.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Penyelidik Biodiversiti, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist ialah alat berkuasa yang menghubungkan orang, alam semula jadi dan pengetahuan. Saya boleh mengambil gambar spesies yang jarang ditemui, atau bahkan spesies yang belum diterangkan, dan pada masa yang sama, saya menyumbang kepada pemuliharaan warisan semula jadi kita.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Juruteknik Alam Sekitar dan jurugambar hobi, Brazil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Tidak kira di mana sahaja anda berada, sama ada anda mempunyai PhD atau hanya suka aktiviti luar, iNaturalist akan membawa anda lebih dekat dengan alam semula jadi dan ramai rakan naturalis.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Ahli biologi, Mexico
+        everyone:
+          #Heading for the broad audience section
+          heading: Setiap orang adalah seorang naturalis
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Jika anda pernah melihat dengan teliti sesuatu yang hidup dan tertanya-tanya apa itu, iNaturalist adalah untuk anda.
+          #Heading for the impact sub-section
+          impact_heading: Anda boleh memberi impak
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Setiap foto yang anda kongsi menjadi sebahagian daripada rekod saintifik global yang bergantung kepada penyelidik di seluruh dunia.
+          #Heading for the community reputation sub-section
+          community_heading: '"Tempat paling bagus dalam talian"'
+          community_heading_2: Tempat terbaik dalam talian
+          #Description of the welcoming community aspect
+          community_body: >
+            Datang untuk pengenalan, tinggal untuk komuniti dan memberi kesan kepada sains.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Muat turun apl iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Dapatkan pengenalan masa nyata & menyumbang kepada sains
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Muat turun"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Terokai spesies di seluruh dunia
+          #Button / link to browse species without downloading
+          button: Terokai sekarang
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Di bawah 13 tahun? Muat turun Cari!"
+          #Description of Seek's badge and challenge features
+          body: Dapatkan lencana dan ambil bahagian dalam cabaran untuk memerhati spesies!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Ulasan 5 Bintang"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Dapatkan surat berita bulanan kami!
+          #Description of the newsletter's content
+          body: Kekal berhubung dengan cerita dan penemuan daripada komuniti iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist ialah organisasi bukan untung yang menyokong sains dan pemuliharaan.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Sokongan anda menjadikannya mungkin.
+          #Call-to-action button for the donation section
+          cta: Derma sekarang
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Soalan Lazim
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Bolehkah saya memuat naik foto yang sudah saya miliki?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ya! Selagi anda tahu secara kasar bila dan di mana gambar diambil, gambar lama dialu-alukan.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Siapa yang boleh melakukan sains dengan pemerhatian iNaturalis?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Sesiapa sahaja! Semua pemerhatian iNaturalist terbuka dan tersedia secara percuma — kepada penyelidik, pengamal pemuliharaan dan individu yang ingin tahu.
+          #FAQ: research grade definition — question
+          research_grade_question: Apakah maksud "gred penyelidikan"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Apabila komuniti bersetuju dengan pengenalan, pemerhatian menjadi "gred penyelidikan" dan memasuki rekod saintifik global. Setiap pengenalan boleh membantu mendapatkannya ke sana.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Adakah saya perlu tahu apa yang saya lihat?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Langsung tidak! Kongsi foto, dan komuniti naturalis global boleh membantu anda mengenal pastinya.
+          #FAQ: whether the app is required — question
+          need_app_question: Adakah saya perlu menggunakan apl ini?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Pada desktop, iNaturalist.org berfungsi dengan baik. Pada peranti mudah alih, apl ini memberikan anda pengalaman terbaik — terutamanya untuk mengenal pasti spesies semasa dalam perjalanan.
   number:
     format:
       significant: false

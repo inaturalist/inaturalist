@@ -1486,24 +1486,30 @@ end
 
 describe Taxon, "get_gbif_id" do
   it "should work" do
-    a = Taxon.make!( name: "Chordata", rank: "phylum" )
-    t = Taxon.make!( name: "Pseudacris", rank: "genus", parent: a )
-    expect( t.get_gbif_id ).not_to be_blank
-    expect( t.taxon_scheme_taxa ).not_to be_blank
+    VCR.use_cassette( "taxon_spec_get_gbif_id", record: :new_episodes ) do
+      a = Taxon.make!( name: "Chordata", rank: "phylum" )
+      t = Taxon.make!( name: "Pseudacris", rank: "genus", parent: a )
+      expect( t.get_gbif_id ).not_to be_blank
+      expect( t.taxon_scheme_taxa ).not_to be_blank
+    end
   end
   it "should not create a TaxonSchemeTaxon for responses that don't match the taxon's name" do
-    a = Taxon.make!( name: "Chordata", rank: "phylum" )
-    t = Taxon.make!( name: "Sorberacea", rank: "class", parent: a )
-    expect( t.get_gbif_id ).to be_blank
-    expect( t.taxon_scheme_taxa ).to be_blank
+    VCR.use_cassette( "taxon_spec_get_gbif_id", record: :new_episodes ) do
+      a = Taxon.make!( name: "Chordata", rank: "phylum" )
+      t = Taxon.make!( name: "Sorberacea", rank: "class", parent: a )
+      expect( t.get_gbif_id ).to be_blank
+      expect( t.taxon_scheme_taxa ).to be_blank
+    end
   end
   it "should not error and return GBIF ID is there is no valid scientific name" do
-    a = Taxon.make!( name: "Chordata", rank: "phylum" )
-    t = Taxon.make!( name: "Dugongidae", rank: "family", parent: a )
-    t.taxon_names.update_all( is_valid: false )
-    expect { t.get_gbif_id }.not_to raise_error
-    expect( t.get_gbif_id ).to_not be_blank
-    expect( t.taxon_scheme_taxa ).to be_blank
+    VCR.use_cassette( "taxon_spec_get_gbif_id", record: :new_episodes ) do
+      a = Taxon.make!( name: "Chordata", rank: "phylum" )
+      t = Taxon.make!( name: "Dugongidae", rank: "family", parent: a )
+      t.taxon_names.update_all( is_valid: false )
+      expect { t.get_gbif_id }.not_to raise_error
+      expect( t.get_gbif_id ).to_not be_blank
+      expect( t.taxon_scheme_taxa ).to be_blank
+    end
   end
 end
 
@@ -2144,11 +2150,16 @@ describe Taxon, "provisional taxa name validation" do
   elastic_models( Observation, Taxon )
 
   before( :all ) do
-    load_test_taxa
+    load_test_taxa( iconic: true )
   end
 
-  let( :cortinariaceae ) { Taxon.make!( id: 48_705, name: "Cortinariaceae", rank: Taxon::FAMILY ) }
-  let( :cortinarius ) { Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae ) }
+  let( :fungi ) { Taxon::ICONIC_TAXA_BY_NAME["Fungi"] }
+  let( :cortinariaceae ) do
+    Taxon.make!( name: "Cortinariaceae", rank: Taxon::FAMILY, parent: fungi, iconic_taxon: fungi )
+  end
+  let( :cortinarius ) do
+    Taxon.make!( name: "Cortinarius", rank: Taxon::GENUS, parent: cortinariaceae, iconic_taxon: fungi )
+  end
 
   describe "name format validation" do
     it "accepts valid provisional taxon name format" do
@@ -2266,7 +2277,7 @@ describe Taxon, "provisional taxa name validation" do
   end
 
   describe "ancestry restriction" do
-    it "allows provisional taxa descended from Cortinariaceae" do
+    it "allows provisional taxa descended from Fungi" do
       taxon = Taxon.new(
         name: "Cortinarius sp. 'test'",
         rank: Taxon::SPECIES,
@@ -2276,9 +2287,7 @@ describe Taxon, "provisional taxa name validation" do
       expect( taxon ).to be_valid
     end
 
-    it "rejects provisional taxa not descended from Cortinariaceae" do
-      # Ensure Cortinariaceae exists for the validation to run
-      cortinariaceae
+    it "rejects provisional taxa not descended from Fungi" do
       other_parent = Taxon.make!( name: "Agaricus", rank: Taxon::GENUS )
       taxon = Taxon.new(
         name: "Agaricus sp. 'test'",
@@ -2288,7 +2297,7 @@ describe Taxon, "provisional taxa name validation" do
       )
       expect( taxon ).not_to be_valid
       expect( taxon.errors[:provisional] ).to include(
-        match( /can only be set to true for taxa that descend from Cortinariaceae/ )
+        match( /can only be set to true for taxa that descend from Fungi/ )
       )
     end
   end

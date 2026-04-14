@@ -1,0 +1,37 @@
+- default_duration = local_assigns.fetch( :default_duration, "1_day" )
+- existing_suspended_until = local_assigns[:suspended_until_value]
+- reason_opts = { required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: local_assigns.fetch( :reason_maxlength, ModeratorAction::MAXIMUM_REASON_LENGTH ) }
+- reason_opts[:description] = reason_description if local_assigns[:reason_description]
+- selected_reason = local_assigns.fetch( :selected_reason, nil )
+= form_for moderator_action, builder: BootstrapFormBuilder do |f|
+  - if current_user.is_admin?
+    - reason_options = ModeratorAction::SUSPENSION_REASONS.keys.map { |key| [t( "suspension_reasons.#{key}" ), key] }
+    - reason_options << [t( :suspension_reason_custom ), "custom"]
+    = f.form_field :suspension_reason, label: t( :suspension_reason_label ) do
+      = select_tag :suspension_reason, options_for_select( reason_options, selected_reason || reason_options.first[1] ), class: "form-control", id: "suspension_reason"
+    .custom-reason-field{ style: selected_reason == "custom" ? "" : "display: none;" }
+      = f.text_area :reason, reason_opts
+      %p.help-block= t( :suspension_reason_custom_note )
+    = f.hidden_field :reason, id: "hidden_reason"
+  - else
+    = f.text_area :reason, reason_opts
+    %p.help-block= t( :suspension_reason_custom_note )
+  - if current_user.is_admin?
+    = f.form_field :suspension_duration, label: t( :suspension_duration ) do
+      = select_tag :suspension_duration, options_for_select( [[t( :suspension_duration_1_day ), "1_day"], [t( :suspension_duration_3_days ), "3_days"], [t( :suspension_duration_1_week ), "1_week"], [t( :suspension_duration_1_month ), "1_month"], [t( :suspension_duration_2_months ), "2_months"], [t( :suspension_duration_indefinite ), "indefinite"], [t( :suspension_duration_custom ), "custom"]], default_duration ), class: "form-control", id: "suspension_duration"
+    .custom-suspended-until-field{ style: default_duration == "custom" ? "" : "display: none;" }
+      = f.form_field :suspended_until, label: t( :suspend_until ) do
+        %input.form-control{ type: "datetime-local", id: "suspended_until_local", min: Time.now.strftime("%Y-%m-%dT%H:%M"), data: { initial_utc: existing_suspended_until&.iso8601 } }
+        %p.help-block= t( :suspend_until_local_timezone_note )
+    = f.hidden_field :suspended_until, id: "suspended_until_utc", value: existing_suspended_until&.iso8601
+  - if local_assigns[:hidden_fields]
+    - hidden_fields.each do |field|
+      = f.hidden_field field
+  = f.submit submit_text, class: "btn btn-primary"
+  = link_to t( :cancel ), cancel_path, class: "btn btn-default"
+
+- if current_user.is_admin?
+  - content_for :extrajs do
+    :javascript
+      var SUSPENSION_REASON_DURATIONS = #{ModeratorAction::SUSPENSION_REASONS.transform_values { |v| v[:default_duration] }.to_json.html_safe};
+    = javascript_include_tag 'users/suspend'

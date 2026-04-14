@@ -33,6 +33,23 @@ namespace :inaturalist do
     end
   end
 
+  desc "Unsuspend users whose timed suspension has expired"
+  task auto_unsuspend: :environment do
+    User.suspension_expired.each do | user |
+      action = ModeratorAction.new(
+        action: ModeratorAction::UNSUSPEND,
+        resource: user,
+        user: nil,
+        reason: "Timed suspension expired automatically"
+      )
+      next if action.save
+
+      Rails.logger.error(
+        "[ERROR] inaturalist:auto_unsuspend: failed for user #{user.id}: #{action.errors.full_messages.join( ', ' )}"
+      )
+    end
+  end
+
   desc "Delete content from spmmer accounts."
   task :delete_spam_content => :environment do
     spammer_ids = User.where(spammer: true).

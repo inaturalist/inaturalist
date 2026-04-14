@@ -115,7 +115,7 @@ class IdentificationsTab extends Component {
     const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
     const annotations = (
       <div className="annotations">
-        {result.identification.observation.annotations.map( annotation => (
+        {_.map( result.identification.observation.annotations, annotation => (
           <button
             type="button"
             className={`btn btn-default btn-sm${identificationsQuery.term_value_id === annotation.controlled_value.id ? " active" : ""}`}

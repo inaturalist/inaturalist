@@ -1,0 +1,179 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.gbif.org/v1/species/match?name=Pseudacris&phylum=Chordata
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.gbif.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 03 Apr 2026 15:55:24 GMT
+      Cache-Control:
+      - public, max-age=3601
+      X-Varnish:
+      - 681286169 636661746
+      Age:
+      - '739'
+      Via:
+      - 1.1 varnish (Varnish/6.6)
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '383'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"usageKey":2428124,"scientificName":"Pseudacris Fitzinger, 1843","canonicalName":"Pseudacris","rank":"GENUS","status":"ACCEPTED","confidence":97,"matchType":"HIGHERRANK","kingdom":"Animalia","phylum":"Chordata","order":"Anura","family":"Hylidae","genus":"Pseudacris","kingdomKey":1,"phylumKey":44,"classKey":131,"orderKey":952,"familyKey":6735,"genusKey":2428124,"class":"Amphibia"}'
+  recorded_at: Fri, 03 Apr 2026 16:07:43 GMT
+- request:
+    method: get
+    uri: http://api.gbif.org/v1/species/match?name=Sorberacea&phylum=Chordata
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.gbif.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 03 Apr 2026 15:55:24 GMT
+      Cache-Control:
+      - public, max-age=3601
+      X-Varnish:
+      - 717492509 737347574
+      Age:
+      - '739'
+      Via:
+      - 1.1 varnish (Varnish/6.6)
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '219'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"usageKey":44,"scientificName":"Chordata","canonicalName":"Chordata","rank":"PHYLUM","status":"ACCEPTED","confidence":100,"matchType":"HIGHERRANK","kingdom":"Animalia","phylum":"Chordata","kingdomKey":1,"phylumKey":44}'
+  recorded_at: Fri, 03 Apr 2026 16:07:44 GMT
+- request:
+    method: get
+    uri: http://api.gbif.org/v1/species/match?name=Dugongidae&phylum=Chordata
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.gbif.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 03 Apr 2026 15:55:24 GMT
+      Cache-Control:
+      - public, max-age=3601
+      X-Varnish:
+      - 699568753 711462111
+      Age:
+      - '739'
+      Via:
+      - 1.1 varnish (Varnish/6.6)
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '330'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"usageKey":9462,"scientificName":"Dugongidae","canonicalName":"Dugongidae","rank":"FAMILY","status":"ACCEPTED","confidence":97,"matchType":"HIGHERRANK","kingdom":"Animalia","phylum":"Chordata","order":"Sirenia","family":"Dugongidae","kingdomKey":1,"phylumKey":44,"classKey":359,"orderKey":802,"familyKey":9462,"class":"Mammalia"}'
+  recorded_at: Fri, 03 Apr 2026 16:07:45 GMT
+- request:
+    method: get
+    uri: http://api.gbif.org/v1/species/match?name=Dugongidae&phylum=Chordata
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.gbif.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 03 Apr 2026 15:55:24 GMT
+      Cache-Control:
+      - public, max-age=3601
+      X-Varnish:
+      - 600909864 711462111
+      Age:
+      - '739'
+      Via:
+      - 1.1 varnish (Varnish/6.6)
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '330'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"usageKey":9462,"scientificName":"Dugongidae","canonicalName":"Dugongidae","rank":"FAMILY","status":"ACCEPTED","confidence":97,"matchType":"HIGHERRANK","kingdom":"Animalia","phylum":"Chordata","order":"Sirenia","family":"Dugongidae","kingdomKey":1,"phylumKey":44,"classKey":359,"orderKey":802,"familyKey":9462,"class":"Mammalia"}'
+  recorded_at: Fri, 03 Apr 2026 16:07:45 GMT
+recorded_with: VCR 6.2.0

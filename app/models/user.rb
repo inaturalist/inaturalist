@@ -29,6 +29,7 @@ class User < ApplicationRecord
   attr_accessor :make_observation_licenses_same,
     :make_photo_licenses_same,
     :make_sound_licenses_same,
+    :skip_welcome_email,
     :html,
     :pi_consent,
     :data_transfer_consent,
@@ -307,6 +308,7 @@ class User < ApplicationRecord
   after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_create :send_welcome_email, if: lambda {| user |
+    return false if user.skip_welcome_email
     # Can't send emails to addresses that don't exist
     return false if user.email.blank?
 
@@ -391,6 +393,7 @@ class User < ApplicationRecord
   scope :admins, -> { joins( :roles ).where( "roles.name = 'admin'" ) }
   scope :active, -> { where( "suspended_at IS NULL" ) }
   scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
+  scope :suspension_expired, -> { where( "suspended_at IS NOT NULL AND suspended_until < ?", Time.now ) }
 
   HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP = "helpful-id-tips-reviewer"
   HELPFUL_ID_TIPS_TEST_GROUP = "helpful-id-tips"
@@ -549,6 +552,29 @@ class User < ApplicationRecord
     self.suspension_reason = nil
     self.suspended_until = nil
     save( validate: false ) if self.changed?
+  end
+
+  # Unsuspend this user if their timed suspension has expired.
+  # Login-time equivalent of the inaturalist:auto_unsuspend rake task.
+  # Idempotent: no-op for users who are not suspended, have indefinite
+  # suspensions, or whose timed suspension has not yet expired.
+  def unsuspend_if_timed_suspension_expired!
+    return unless suspended_at?
+    return if suspended_until.nil?
+    return if suspended_until > Time.zone.now
+
+    action = ModeratorAction.new(
+      action: ModeratorAction::UNSUSPEND,
+      resource: self,
+      user: nil,
+      reason: "Timed suspension expired automatically"
+    )
+    return if action.save
+
+    Rails.logger.error(
+      "[ERROR] User#unsuspend_if_timed_suspension_expired!: " \
+        "ModeratorAction save failed for user #{id}: #{action.errors.full_messages.join( ', ' )}"
+    )
   end
 
   def active?
@@ -1684,7 +1710,7 @@ class User < ApplicationRecord
     User.where(id: user_id).update_all(identifications_count: count)
   end
 
-  def self.update_observations_counter_cache(user_id)
+  def self.update_observations_counter_cache( user_id, options = {} )
     return unless user = User.find_by_id( user_id )
     result = Observation.elastic_search(
       filters: [
@@ -1697,6 +1723,8 @@ class User < ApplicationRecord
     )
     count = (result && result.response) ? result.response.hits.total.value : 0
     User.where( id: user_id ).update_all( observations_count: count )
+    return if options[:skip_indexing]
+
     user.reload
     user.elastic_index!
   end
@@ -1784,9 +1812,14 @@ class User < ApplicationRecord
 
   def moderated_with( moderator_action )
     if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
-      self.suspended_by_user = moderator_action.user
       self.suspended_until = moderator_action.suspended_until
-      suspend!( moderator_action.reason )
+      if suspended_at?
+        self.suspension_reason = moderator_action.reason
+        save( validate: false ) if changed?
+      else
+        self.suspended_by_user = moderator_action.user
+        suspend!( moderator_action.reason )
+      end
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
       unsuspend!
       send_unsuspended_email( moderator_action.reason )
