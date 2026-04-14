@@ -569,6 +569,7 @@ describe ModeratorAction do
         original_suspended_at = u.suspended_at
 
         expect( u.suspended_until ).to be_nil
+
         new_time = 14.days.from_now
         audit_comment = "Adjusting suspension duration"
         ma.audit_comment = audit_comment
