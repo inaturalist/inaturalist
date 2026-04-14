@@ -733,6 +733,12 @@ var SearchController = function (
     $scope.selectedPlace = null;
     $scope.selectedPlaceLayer = null;
   };
+  $scope.safeApply = function ( fn ) {
+    if ( fn ) { fn( ); }
+    if ( !$scope.$$phase && !$scope.$root.$$phase ) {
+      $scope.$apply( );
+    }
+  };
   $scope.handleTerraDrawFinish = function ( id ) {
     $scope.drawing.pendingDrawing = null;
     if ( $scope.selectedPlace ) {
@@ -751,7 +757,7 @@ var SearchController = function (
       if ( circleParams.lat === 0 || circleParams.lng === 0 ) {
         $scope.drawing.terraDraw.removeFeatures( [id] );
         $scope.clearBoundary( );
-        $scope.$apply( );
+        $scope.safeApply( );
         return;
       }
       $scope.drawing.currentShape = "circle";
@@ -762,7 +768,7 @@ var SearchController = function (
     $scope.drawing.currentFeatureId = id;
     $scope.drawing.terraDraw.setMode( "select" );
     $scope.refreshSelectedPlaceFromTerraDraw( );
-    $scope.$apply( );
+    $scope.safeApply( );
   };
   $scope.handleTerraDrawChange = function ( ids, type ) {
     if ( type !== "update" || $scope.drawing.currentFeatureId === null ) {
@@ -772,14 +778,14 @@ var SearchController = function (
       return;
     }
     $scope.refreshSelectedPlaceFromTerraDraw( );
-    $scope.$apply( );
+    $scope.safeApply( );
   };
   $scope.clearTerraDrawFeature = function ( ) {
-    if ( $scope.drawing.terraDraw && $scope.drawing.currentFeatureId !== null ) {
+    if ( $scope.drawing.terraDraw ) {
       try {
-        $scope.drawing.terraDraw.removeFeatures( [$scope.drawing.currentFeatureId] );
+        $scope.drawing.terraDraw.clear( );
       } catch ( e ) {
-        // feature may already be removed
+        // Terra Draw may not be fully initialized
       }
       $scope.drawing.currentFeatureId = null;
     }
@@ -1842,10 +1848,20 @@ var MapController = function (
             new window.TerraDrawSelectMode( {
               flags: {
                 rectangle: {
-                  feature: { draggable: true, resizable: "center-fixed" }
+                  feature: {
+                    draggable: true,
+                    coordinates: {
+                      draggable: true
+                    }
+                  }
                 },
                 circle: {
-                  feature: { draggable: true, resizable: "center-fixed" }
+                  feature: {
+                    draggable: true,
+                    coordinates: {
+                      draggable: true
+                    }
+                  }
                 }
               },
               styles: {
