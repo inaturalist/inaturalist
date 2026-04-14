@@ -51,6 +51,3 @@ rake inaturalist:generate_translations_js
 
 # Customize the docker config
 cp docker-compose.override.yml.example docker-compose.override.yml &
-
-# bundle config build.pg "--with-cflags=-I/opt/homebrew/opt/libpq/include --with-ldflags=-L/opt/homebrew/opt/libpq/lib" &
-# CFLAGS="-Wno-error=implicit-function-declaration" bundle
