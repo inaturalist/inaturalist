@@ -92,6 +92,10 @@ const config = {
       import: "./users/confirmation_banner/webpack-entry",
       dependOn: ["react-main"]
     },
+    "terra-draw": {
+      import: "./terra_draw/webpack-entry",
+      runtime: "runtime"
+    },
     "react-main": {
       import: [
         "core-js/stable",

@@ -3,6 +3,7 @@
 - content_for :extrajs do
   = javascript_include_tag "angular_includes_bundle"
   = javascript_include_tag "angular_bundle"
+  = javascript_include_tag "webpack/terra-draw-webpack"
   :javascript
     var ICONIC_TAXA = #{Taxon::ICONIC_TAXA_BY_ID.to_json.html_safe};
     var SELECTED_TAXON_ID = #{ params[:taxon_id] || "null" };
