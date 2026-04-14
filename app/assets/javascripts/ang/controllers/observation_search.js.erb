@@ -1803,55 +1803,60 @@ var MapController = function (
     if ( defaultMapType === google.maps.MapTypeId.TERRAIN ) {
       $scope.$parent.mapTerrain = true;
     }
-    // Initialize Terra Draw for shape drawing
+    // Initialize Terra Draw after the map is fully rendered
     if ( !$scope.drawing.terraDraw ) {
-      var terraAdapter = new window.TerraDrawGoogleMapsAdapter( {
-        lib: google.maps,
-        map: $scope.map
-      } );
-      $scope.drawing.terraDraw = new window.TerraDraw( {
-        adapter: terraAdapter,
-        modes: [
-          new window.TerraDrawRectangleMode( {
-            styles: {
-              fillColor: "#f16f3a",
-              fillOpacity: 0,
-              outlineColor: "#f16f3a",
-              outlineWidth: 5
-            }
-          } ),
-          new window.TerraDrawCircleMode( {
-            styles: {
-              fillColor: "#f16f3a",
-              fillOpacity: 0,
-              outlineColor: "#f16f3a",
-              outlineWidth: 5
-            }
-          } ),
-          new window.TerraDrawSelectMode( {
-            flags: {
-              rectangle: {
-                feature: { draggable: true, resizable: "center-fixed" }
-              },
-              circle: {
-                feature: { draggable: true, resizable: "center-fixed" }
+      google.maps.event.addListenerOnce( $scope.map, "idle", function ( ) {
+        var terraAdapter = new window.TerraDrawGoogleMapsAdapter( {
+          lib: google.maps,
+          map: $scope.map
+        } );
+        $scope.drawing.terraDraw = new window.TerraDraw( {
+          adapter: terraAdapter,
+          modes: [
+            new window.TerraDrawRectangleMode( {
+              styles: {
+                fillColor: "#f16f3a",
+                fillOpacity: 0,
+                outlineColor: "#f16f3a",
+                outlineWidth: 5
               }
-            },
-            styles: {
-              selectedPolygonColor: "#f16f3a",
-              selectedPolygonFillOpacity: 0,
-              selectedPolygonOutlineColor: "#f16f3a",
-              selectedPolygonOutlineWidth: 5
-            }
-          } )
-        ]
-      } );
-      $scope.drawing.terraDraw.start( );
-      $scope.drawing.terraDraw.on( "finish", function ( id ) {
-        $scope.handleTerraDrawFinish( id );
-      } );
-      $scope.drawing.terraDraw.on( "change", function ( ids, type ) {
-        $scope.handleTerraDrawChange( ids, type );
+            } ),
+            new window.TerraDrawCircleMode( {
+              styles: {
+                fillColor: "#f16f3a",
+                fillOpacity: 0,
+                outlineColor: "#f16f3a",
+                outlineWidth: 5
+              }
+            } ),
+            new window.TerraDrawSelectMode( {
+              flags: {
+                rectangle: {
+                  feature: { draggable: true, resizable: "center-fixed" }
+                },
+                circle: {
+                  feature: { draggable: true, resizable: "center-fixed" }
+                }
+              },
+              styles: {
+                selectedPolygonColor: "#f16f3a",
+                selectedPolygonFillOpacity: 0,
+                selectedPolygonOutlineColor: "#f16f3a",
+                selectedPolygonOutlineWidth: 5
+              }
+            } )
+          ]
+        } );
+        $scope.drawing.terraDraw.start( );
+        $scope.drawing.terraDraw.on( "finish", function ( id ) {
+          $scope.handleTerraDrawFinish( id );
+        } );
+        $scope.drawing.terraDraw.on( "change", function ( ids, type ) {
+          $scope.handleTerraDrawChange( ids, type );
+        } );
+        // Re-run setMapLayers to restore shapes from URL params now that
+        // Terra Draw is ready
+        $scope.setMapLayers( );
       } );
     }
 
