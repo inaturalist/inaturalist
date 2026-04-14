@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class WelcomeController < ApplicationController
-  HEADER_UTM = "utm_source=inaturalist_homepage&utm_campaign=homepage_redesign_2026".freeze
-
   before_action :set_homepage_wiki, only: :index
 
   prepend_around_action :enable_replica, only: [:index]
@@ -52,10 +50,10 @@ class WelcomeController < ApplicationController
     @skip_react = true
 
     @store_url = "https://tr.ee/MymHMn"
-    @header_utm = HEADER_UTM
-    @header_donate_url = "#{donate_path}?redirect=true&segment=gmHome&#{HEADER_UTM}&utm_medium=webmobile&utm_content=header_donate_cta"
-    @header_login_url  = "#{login_path}?#{HEADER_UTM}&utm_medium=owned_web&utm_content=header_login_cta"
-    @header_signup_url = "#{signup_path}?#{HEADER_UTM}&utm_medium=owned_web&utm_content=header_signup_cta"
+    @header_utm = "utm_source=inaturalist_homepage&utm_campaign=homepage_redesign_2026"
+    @header_donate_url = "#{donate_path}?redirect=true&segment=gmHome&#{@header_utm}&utm_medium=webmobile&utm_content=header_donate_cta"
+    @header_login_url  = "#{login_path}?#{@header_utm}&utm_medium=owned_web&utm_content=header_login_cta"
+    @header_signup_url = "#{signup_path}?#{@header_utm}&utm_medium=owned_web&utm_content=header_signup_cta"
 
     @locale_key = I18n.locale.to_s
     @locale_base = @locale_key.split( "-" ).first

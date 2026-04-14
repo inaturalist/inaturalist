@@ -39,38 +39,6 @@
       dots.forEach(function (d, i) { d.classList.toggle("active", i === idx); });
     }
 
-    // Touch handling — require 60px swipe to advance, otherwise snap back
-    var touchStartX = 0, touchStartY = 0, touchStartScrollLeft = 0, isTouching = false;
-    track.addEventListener("touchstart", function (e) {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-      touchStartScrollLeft = track.scrollLeft;
-      isTouching = true;
-      track.style.scrollSnapType = "none";
-    }, { passive: true });
-    track.addEventListener("touchmove", function (e) {
-      if (!isTouching) return;
-      var dx = touchStartX - e.touches[0].clientX;
-      var dy = touchStartY - e.touches[0].clientY;
-      if (Math.abs(dx) > Math.abs(dy)) {
-        e.preventDefault();
-        track.scrollLeft = touchStartScrollLeft + dx;
-      }
-    }, { passive: false });
-    track.addEventListener("touchend", function (e) {
-      if (!isTouching) return;
-      isTouching = false;
-      track.style.scrollSnapType = "";
-      var dx = touchStartX - e.changedTouches[0].clientX;
-      var threshold = 60;
-      var currentIdx = activeDotIndex();
-      if (Math.abs(dx) >= threshold) {
-        scrollToIndex(dx > 0 ? currentIdx + 1 : currentIdx - 1);
-      } else {
-        scrollToIndex(currentIdx);
-      }
-    }, { passive: true });
-
     var raf;
     track.addEventListener("scroll", function () {
       cancelAnimationFrame(raf);
@@ -84,6 +52,7 @@
     if (prevBtn) prevBtn.addEventListener("click", function () { scrollToIndex(activeDotIndex() - 1); });
     if (nextBtn) nextBtn.addEventListener("click", function () { scrollToIndex(activeDotIndex() + 1); });
 
+    // Allow carousel to switch to static mode if all content fits within the viewport
     function updateStaticMode() {
       // Temporarily remove overflow clip so scrollWidth reflects natural content width
       var wasStatic = carousel.classList.contains("wv2-carousel--static");
@@ -104,11 +73,6 @@
     }
 
     requestAnimationFrame(function () {
-      var initIdx = carousel.dataset.initialIndex != null ? parseInt(carousel.dataset.initialIndex, 10) : Math.floor(items.length / 2);
-      var item = items[initIdx];
-      var itemRect = item.getBoundingClientRect();
-      var trackRect = track.getBoundingClientRect();
-      track.scrollLeft = track.scrollLeft + itemRect.left - trackRect.left - (trackRect.width - itemRect.width) / 2;
       syncDots();
       updateStaticMode();
     });
