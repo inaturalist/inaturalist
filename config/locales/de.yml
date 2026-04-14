@@ -2957,6 +2957,8 @@ de:
   moderation_history_desc_html: |
     Dies beinhaltet Aktionen des Moderators (z.B. Kommentare verstecken oder freischalten), Anmerkungen und Markierungen über alles, was dieser Benutzer mit Ausnahme von Taxa erstellt hat. Dies ist <strong>nur für Kuratoren sichtbar</strong> und <strong>Kuratoren können
     ihren eigenen Verlauf nicht ansehen</strong>, also sollten Notizen über eine Person niemals für diese Person sichtbar sein sein.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Die Sperrung des Benutzers ist abgelaufen
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Verbergen
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -5138,6 +5140,26 @@ de:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Geeignet für Wikipedia und andere Projekte der Wikimedia Foundation
   summary: Zusammenfassung
   supporting: bestätigend
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Dauer der Benutzer-Sperrung
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 Tag
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 Tage
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 Woche
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 Monat
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 Monate
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Unbestimmt
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Benutzerdefiniert
+  #the time at which a users suspension ends
+  suspend_until: Sperrung bis
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Datum und Uhrzeit in der lokalen Zeitzone deines Browsers.
   suspend_user: Benutzer sperren
   suspend_user_html: '%{user} sperren'
   suspend_user_reason_instructions_html: |
@@ -5413,7 +5435,7 @@ de:
   therefore_committing_additional_taxon_changes: Daher ist es nicht erforderlich, nach diesem Taxon-Tausch weitere Taxon-Änderungen vorzunehmen.
   therefore_committing_taxon_changes: Daher ist es nicht erforderlich, nach dieser Abstammungsänderung noch Taxonänderungen vorzunehmen.
   these_are_items_people_on: |
-    Das sind Dinge, die die Leute auf der Seite zur Kuration gemeldet haben. Spam-Kommentare sollten gelöscht werden und Benutzer, die Spam verbreiten, sollten gesperrt werden (gehe zu deren Profilseite und klicke unten rechts auf "Benutzer sperren", um sie am Einloggen zu hindern). Andere gemeldete Sachen sollten nur gelöscht werden, wenn sie eindeutig hasserfüllt, illegal usw. sind. Unhöflichkeit, beleidigende Sprache usw. sollten mit einem höflichen Kommentar behandelt werden. Wiederholungstäter sollten einem Seitenadministrator oder %{email} gemeldet werden.
+    Das sind Situationen, die zur Kuratierung gemeldet wurdenen. Spam-Kommentare sollten gelöscht werden und Benutzer, die Spam verbreiten, sollten gesperrt werden (gehe zu deren Profilseite und klicke unten rechts auf "Benutzer sperren", um sie am Einloggen zu hindern). Andere gemeldete Inhalte sollten nur gelöscht werden, wenn sie eindeutig hasserfüllt, illegal usw. sind. Unhöflichkeit, beleidigende Sprache usw. sollten mit einem höflichen Kommentar behandelt werden. Wiederholungstäter sollten einem Administrator oder %{email} gemeldet werden.
   these_are_taxa_that: |
     Das sind Taxa die %{site} nicht automatisch zu einem Taxonimischen Stammbaum hinzufügen konnte. Du kannst diese zum Stammbaum hinzufügen, indem du das Taxon bearbeitest und die taxonomische nächst höhere Stufe angibst. Zum Beispiel ist die höhere taxonomische Stufe von der Art Homo sapiens die Gattung Homo. Eventuell willst du Synonyme des Taxons suchen um diese zu miteinander zu verbinden.
   these_folks_kindly_volunteer_to: Diese Personen engagieren sich freiwillig, um unsere Taxonomie zu pflegen und sich mit anderen Problemen zu befassen.
@@ -8477,7 +8499,7 @@ de:
             Jedes Foto, das Sie teilen, wird Teil eines globalen wissenschaftlichen Archivs, auf das Forscher weltweit angewiesen sind.
           #Heading for the community reputation sub-section
           community_heading: '"Der schönste Ort online"'
-          community_heading_2: Der schönste Ort online
+          community_heading_2: Eine Wohlfühl-Oase im Internet
           #Description of the welcoming community aspect
           community_body: >
             Kommt wegen der Identifikationen, bleibt für die Gemeinschaft und den Einfluss auf die Wissenschaft.
@@ -8700,6 +8722,11 @@ de:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:
@@ -9078,6 +9105,9 @@ de:
               staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
             user_id:
               must_be_a_curator: muss ein Kurator sein
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Muss in der Zukunft liegen
         moderator_note:
           attributes:
             user:
