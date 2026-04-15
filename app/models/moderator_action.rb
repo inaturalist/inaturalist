@@ -45,6 +45,7 @@ class ModeratorAction < ApplicationRecord
   validates :audit_comment, presence: true, on: :update, if: -> { action == SUSPEND }
   validates :audit_comment,
     length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH },
+    on: :update,
     allow_blank: true
   validate :only_curators_and_staff_can_hide, on: :create
   validate :only_staff_can_make_private
