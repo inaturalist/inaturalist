@@ -1631,6 +1631,14 @@ id:
         Silakan cek email Anda dan klik tautan pada email yang Anda terima untuk mengonfirmasi akun Anda.
       user:
         suspended: Akun Anda telah ditangguhkan
+        #Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: Jika menurut Anda penangguhan ini keliru dan Anda ingin mengajukan banding, silakan <a href="https://help.inaturalist.org/support/tickets/new">hubungi dukungan.</a>
+        #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        #with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Penangguhan Anda akan dicabut dalam %{until}."
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Alasan: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Token reset sandi tidak valid. Silakan gunakan tautan di email reset kata sandi yang terakhir dikirim, atau <a href="%{url}">minta yang baru</a>.
     sessions:
@@ -1775,6 +1783,10 @@ id:
   edit: Ubah
   #Title of the moderation note editor
   edit_moderator_note: Edit Catatan Moderator
+  #Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Edit Penangguhan
+  #Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: Jika Anda hanya perlu memperbarui alasan atau tanggal kedaluwarsa, Anda dapat meng<a href="%{edit_link}">edit penangguhan</a> sebagai gantinya.
   edit_a_batch_of_observations: Ubah Sejumlah Pengamatan
   edit_account_settings_and_profile: "Ubah pengaturan akun &amp; profil"
   edit_assessment: Ubah Penilaian
@@ -5147,6 +5159,35 @@ id:
   suspension_duration_indefinite: Tak terbatas
   #a select form option to select a custom date when a user will be unsuspended
   suspension_duration_custom: Kustom
+  #label for the suspension reason dropdown
+  suspension_reason_label: Alasan penangguhan
+  #option for entering a custom suspension reason
+  suspension_reason_custom: Kustom
+  #note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Harap dicatat bahwa alasan ini akan ditampilkan kepada pengguna yang ditangguhkan.
+  #note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Harap perbarui alasannya dan jelaskan mengapa Anda mengubah penangguhan pengguna.
+  #predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    #reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Ujaran kebencian
+    #reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Penghinaan atau ancaman
+    #reason displayed to users who have been suspended for posting sexually explicit content
+    sexually_explicit_content: Konten seksual eksplisit
+    #reason displayed to users who are creating false accounts to circumvent suspensions,
+    #https://en.wikipedia.org/wiki/Sock_puppet_account
+    sockpuppet_accounts: Akun siluman
+    #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    false_ids_or_dqa_votes: Sengaja menambahkan ID atau suara PKD palsu
+    #reason displayed to users who have been suspended for posting machine generated content
+    machine_generated_content: Pengamatan, identifikasi, dan komentar yang dihasilkan bot
+    #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Pelanggaran hak cipta yang berkelanjutan (setelah peringatan)
+    #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Tetap mengunggah media yang dibuat AI (setelah peringatan)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Pengurangan kualitas data yang berkelanjutan (setelah peringatan)
   #the time at which a users suspension ends
   suspend_until: Tangguhkan sampai
   #a note telling users to select the time in their local time zone
@@ -5155,6 +5196,10 @@ id:
   suspend_user_html: Tangguhkan %{user}
   suspend_user_reason_instructions_html: |
     Jelaskan alasan Anda ingin menangguhkan akun ini dan sertakan pelanggaran yang dilakukan terhadap %{link_start_tag}Pedoman Komunitas%{link_end_tag}. Sebisa mungkin jangan menambahkan pendapat pribadi.
+  #a label on a field showing when a user is suspended until
+  suspended_until: Ditangguhkan hingga
+  #a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Diskors tanpa batas waktu
   sw_lat: Lin. SB
   sw_lon: Buj. SB
   sync: Sinkronkan?
@@ -5856,6 +5901,8 @@ id:
   user_trusts_you_with_their_private_coordinates_desc: |
     Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.
   user_updated_an_observation_field_html: '%{user} memperbarui nilai untuk "%{field_name}" pada pengamatan oleh %{owner}'
+  #An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} Akun Anda telah bebas dari penangguhan"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> menulis,
   username: Nama pengguna
   username_description: Ini adalah nama pengguna yang akan Anda gunakan untuk masuk, juga dapat digunakan oleh pengguna lainnya untuk mengidentifikasi Anda di iNaturalist
@@ -7436,6 +7483,13 @@ id:
           <p>
           Anak Anda baru bisa mengunggah pengamatan ke akun iNaturalist mereka menggunakan aplikasi Seek sehingga mereka dapat dilihat di iNaturalist.org.
           </p>
+      user_unsuspended:
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message: Akun Anda di %{site_name} telah bebas dari penangguhan dan Anda dapat menggunakan situsnya lagi.
+        #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
+        reason: "Akun Anda ditangguhkan karena alasan berikut: %{reason}"
+        #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: '<a href="%{login_url}">Masuk ke akun Anda</a> untuk kembali menggunakan situs.'
       users_updates_suspended:
         message: |
           Anda tidak aktif di %{site_name} selama beberapa saat, jadi kami telah menahan langganan Anda. Untuk kembali mendapatkan kabar tentang aktivitas di situs, harap <a href="%{login_url}">masuk ke akun Anda</a> lagi.
@@ -8460,21 +8514,31 @@ id:
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
             Ngengat %{moth_common_name} tidak terlihat selama beberapa dekade dan pernah dianggap punah —hingga seorang turis di Selandia Baru melihatnya secara tidak sengaja.
+          #Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Ngengat feniks buram"
           #Heading for the story about a new-to-science mantis species
           mantis_heading: Menemukan spesies baru dalam sains
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — disingkat menjadi <span class="italic">I. nat</span> — adalah spesies belalang baru dalam sains yang ditemukan oleh seorang wanita di Australia saat sedang berjalan-jalan di lingkungannya.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "Belalang sembah"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: Melindungi ekosistem lokal
           #Body text for the amphibian protection story
           amphibian_body: >
             Sekelompok sukarelawan lokal di California berkumpul melalui iNaturalist untuk melindungi amfibi yang bermigrasi melintasi jalan yang sibuk.
+          #Alt text for the California newt story image
+          california_newt_img_alt: "Kadal California"
           #Link below the stories to read more community science stories
           read_more: Baca lebih banyak cerita
         observation:
           #Heading for the sample observation section
           heading: Setiap pengamatan menceritakan sebuah cerita
+          #Alt text for the sample observation photo
+          photo_alt: "Katak hijau di daun"
+          #Alt text for the map showing the observation location
+          map_alt: "Peta yang menunjukkan lokasi pengamatan dengan penanda besar serta pengamatan-pengamatan lainnya melalui kisi-kisi"
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -8552,6 +8616,8 @@ id:
           #Social proof label showing total app downloads
           #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
           count_label: "%{count}+ Unduhan"
+          #Alt text for the iNaturalist app phone screenshot
+          phone_alt: "iNat dalam dua layar ponsel, menunjukkan pengamatan burung kolibri dan poppy California"
         explore:
           #Heading for the explore species section; species cards generated from static JSON exported from iNat
           heading: Jelajahi spesies di seluruh dunia
@@ -8565,6 +8631,8 @@ id:
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ Ulasan Bintang 5"
+          #Alt text for the Seek app phone screenshot
+          phone_alt: "Aplikasi Seek yang aktif di dua ponsel, menampilkan lencana burung tukan serta tampilan Spesies di Sekitar"
         newsletter:
           #Heading inviting users to subscribe to the monthly newsletter
           heading: Dapatkan buletin bulanan kami!
@@ -8701,6 +8769,14 @@ id:
         other: '%{count} bulan'
       x_seconds:
         other: '%{count} detik'
+      #the number of hours for distance in time from now
+      x_hours:
+        #multiple hours (plural)
+        other: "%{count} jam"
+      #the number of years for distance in time from now
+      x_years:
+        #multiple years (plural)
+        other: "%{count} tahun"
     countdown_x_days:
       other: HARI
     countdown_x_hours:
