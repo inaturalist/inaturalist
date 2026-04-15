@@ -11,15 +11,11 @@ class WelcomeController < ApplicationController
         @announcements = Announcement.active_in_placement( Announcement::WELCOME_INDEX, { site: @site } )
         @google_webmaster_verification = @site.google_webmaster_verification if @site
 
-        # Admin preview: logged-in admins on the default site see the new homepage
-        if @site == Site.default && logged_in? && current_user.is_admin?
-          setup_v2_homepage
-          render template: "welcome_v2/index", layout: "bootstrap"
-          return
-        end
-
         if logged_in? && !@site.draft?
           redirect_to home_path
+        elsif @site == Site.default
+          setup_v2_homepage
+          render template: "welcome_v2/index", layout: "bootstrap"
         elsif !@page
           render layout: "bootstrap"
         end

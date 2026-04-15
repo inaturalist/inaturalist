@@ -4,28 +4,15 @@ require "spec_helper"
 
 describe WelcomeController do
   describe "index" do
-    it "renders the v2 template for logged-in admins on the default site" do
-      sign_in make_admin
-      get :index
-      expect( response ).to render_template( "welcome_v2/index" )
-    end
-
-    it "redirects logged-in non-admins on the default site to home" do
+    it "redirects logged-in users on the default site to home" do
       sign_in User.make!
       get :index
       expect( response ).to redirect_to( home_path )
     end
 
-    it "redirects logged-in admins on a non-default site to home" do
-      other_site = Site.make!
-      sign_in make_admin
-      get :index, params: { inat_site_id: other_site.id }
-      expect( response ).to redirect_to( home_path )
-    end
-
-    it "renders the v1 template for anonymous users" do
+    it "renders the v2 template for anonymous users" do
       get :index
-      expect( response ).to render_template( "welcome/index" )
+      expect( response ).to render_template( "welcome_v2/index" )
     end
   end
 
