@@ -11,7 +11,7 @@
     %meta{content: image_url(@site.shareable_image.url), property: "twitter:image"}
   %meta{content: root_url, property: "og:url"}
   %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name), property: "og:description"}
-  %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name), property: "description"}
+  %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name), name: "description"}
   = tag.link rel: "preload", href: asset_path("welcome_v2/hero_video_fallback.webp"), as: "image", type: "image/webp"
 - s = "views.welcome_v2.index"
 :ruby
