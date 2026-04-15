@@ -595,6 +595,14 @@ describe ModeratorAction do
         expect( ma.update( suspended_until: 7.days.from_now ) ).to be false
         expect( ma.errors[:audit_comment] ).not_to be_empty
       end
+
+      it "validates audit_comment maximum length" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        ma.audit_comment = "a" * 2049
+        expect( ma.update( suspended_until: 7.days.from_now ) ).to be false
+        expect( ma.errors[:audit_comment] ).not_to be_empty
+      end
     end
   end
 
