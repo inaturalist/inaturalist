@@ -1733,6 +1733,14 @@ da:
         Tjek din e-mail og klik på linket i den modtagne e-mail for at bekræfte din konto.
       user:
         suspended: Din konto er suspenderet
+        #Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: Skønnes det, at dette er gjort ved en fejl og beslutningen ønskes ankes, kontakt venligt <a href="https://help.inaturalist.org/support/tickets/new">supporten.</a>
+        #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        #with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Din suspension ophæves om %{until}."
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Årsag: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Tokenet til nulstilling af adgangskode er ugyldigt. Brug linket i den senest sendte e-mail til adgangskodenulstilling, eller <a href="%{url}">anmod om et nyt</a>.
     sessions:
@@ -1884,6 +1892,10 @@ da:
   edit: Redigér
   #Title of the moderation note editor
   edit_moderator_note: Redigér Moderatornotat
+  #Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Redigér Suspension
+  #Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: Er det kun nødvendigt at opdatere årsag eller udløbsdato, kan suspensionen i stedet <a href="%{edit_link}">redigeres</a>.
   edit_a_batch_of_observations: Redigér et bundt af observationer
   edit_account_settings_and_profile: "Redigér kontoindstillinger &amp; profil"
   edit_assessment: Redigér vurdering
@@ -5379,6 +5391,35 @@ da:
   suspension_duration_indefinite: Ubegrænset
   #a select form option to select a custom date when a user will be unsuspended
   suspension_duration_custom: Tilpasset
+  #label for the suspension reason dropdown
+  suspension_reason_label: Suspensionsårsag
+  #option for entering a custom suspension reason
+  suspension_reason_custom: Tilpasset
+  #note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Bemærk, at den suspenderede bruger vil kunne se denne årsag.
+  #note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Opdater årsagen og forklar, hvorfor brugerens suspension ændres.
+  #predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    #reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Hadefuld tale
+    #reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Fornærmelser eller trusler
+    #reason displayed to users who have been suspended for posting sexually explicit content
+    sexually_explicit_content: Seksuelt eksplicit indhold
+    #reason displayed to users who are creating false accounts to circumvent suspensions,
+    #https://en.wikipedia.org/wiki/Sock_puppet_account
+    sockpuppet_accounts: Sockpuppet-konti
+    #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    false_ids_or_dqa_votes: Bevidst tilføjelse af falske ID'er eller DQA-stemmer
+    #reason displayed to users who have been suspended for posting machine generated content
+    machine_generated_content: Maskingenererede observationer, identifikationer og kommentarer
+    #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Fortsat ophavsretskrænkelse (efter advarsel)
+    #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Fortsat opslag af kunstigt genererede medier (efter advarsel)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Fortsat reduktion af datakvalitet (efter advarsel)
   #the time at which a users suspension ends
   suspend_until: Suspendér indtil
   #a note telling users to select the time in their local time zone
@@ -5389,6 +5430,10 @@ da:
     Forklar, hvorfor du suspenderer denne konto og citér evt. overtrædelser af
     %{link_start_tag}Fællesskabsretningslinjer%{link_end_tag}. Undlad venligst
     at tilføje personlige meninger.
+  #a label on a field showing when a user is suspended until
+  suspended_until: Suspenderet indtil
+  #a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Suspenderet på ubestemt tid
   sw_lat: SV Bre.
   sw_lon: SV Læn.
   sync: Synk?
@@ -6139,6 +6184,8 @@ da:
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
   user_updated_an_observation_field_html: '%{user} føjede en værdi til "%{field_name}" på en observation fra %{owner}'
+  #An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} Din kontosuspension er ophævet"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> skrev,
   username: Brugernavn
   username_description: Dette er det brugernavn, du benytter til indlogning, og som andre brugere kan identificere dig med på iNaturalist
@@ -7918,6 +7965,13 @@ da:
           iNaturalist-konto vha. Seek-appen, så disse kan ses på
           iNaturalist.org.
           </p>
+      user_unsuspended:
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message: Din kontosuspension på %{site_name} er ophævet, og du kan bruge webstedet igen.
+        #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
+        reason: "Din konto blev suspenderet af flg. årsag: %{reason}"
+        #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: '<a href="%{login_url}">Log ind på kontoen</a> for at fortsætte med at bruge siden.'
       users_updates_suspended:
         message: |
           Du har været inaktiv på %{site_name} et stykke tid, så vi har suspenderet
@@ -9234,21 +9288,31 @@ da:
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
             %{moth_common_name}-natsværmeren var ikke set i årtier og blev engang anset for uddød — indtil en turist i New Zealand ved et tilfælde fik øje på den.
+          #Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Matteret føniksmøl"
           #Heading for the story about a new-to-science mantis species
           mantis_heading: Opdagelse af arter, som er nye for videnskaben
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — forkortet til <span class="italic">I. nat</span> — er en for videnskaben ny knælerart fundet af en kvinde i Australien på en gåtur i sit nabolag.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "Knæler/bønneknæler"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: Beskyttelse af lokale økosystemer
           #Body text for the amphibian protection story
           amphibian_body: >
             En gruppe lokale frivillige i Californien gik gennem iNaturalist sammen for at beskytte migrerende padder, som krydser en trafikeret vej.
+          #Alt text for the California newt story image
+          california_newt_img_alt: "Californisk salamander"
           #Link below the stories to read more community science stories
           read_more: Læs flere historier
         observation:
           #Heading for the sample observation section
           heading: Hver observation fortæller en historie
+          #Alt text for the sample observation photo
+          photo_alt: "Grøn frø på blad"
+          #Alt text for the map showing the observation location
+          map_alt: "Kort visende observationssted med stor markør og andre observationer via gitterceller"
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -9326,6 +9390,8 @@ da:
           #Social proof label showing total app downloads
           #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
           count_label: "%{count}+ downloads"
+          #Alt text for the iNaturalist app phone screenshot
+          phone_alt: "iNat på to telefonskærme visende observationer af kolibri og californisk valmue"
         explore:
           #Heading for the explore species section; species cards generated from static JSON exported from iNat
           heading: Udforsk arter verden over
@@ -9339,6 +9405,8 @@ da:
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ 5-stjernede anmeldelser"
+          #Alt text for the Seek app phone screenshot
+          phone_alt: "Seek-app aktiv på to telefoner visende et tukanmærke og visningen Arter i nærheden."
         newsletter:
           #Heading inviting users to subscribe to the monthly newsletter
           heading: Få vores månedlige nyhedsbrev!
@@ -9486,6 +9554,18 @@ da:
       x_seconds:
         one: "1 sekund"
         other: '%{count} sekunder'
+      #the number of hours for distance in time from now
+      x_hours:
+        #a singular hour
+        one: "%{count} time"
+        #multiple hours (plural)
+        other: "%{count} timer"
+      #the number of years for distance in time from now
+      x_years:
+        #a singular year
+        one: "%{count} år"
+        #multiple years (plural)
+        other: "%{count} År"
     countdown_x_days:
       one: DAG
       other: DAGE

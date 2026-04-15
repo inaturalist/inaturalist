@@ -1712,6 +1712,14 @@ nl:
         om jouw account te bevestigen.
       user:
         suspended: Je account is opgeschort
+        #Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: Als je denkt dat dit per ongeluk is gebeurd en je in beroep wilt gaan, neem dan <a href="https://help.inaturalist.org/support/tickets/new">contact op met support.</a>
+        #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        #with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Je schorsing wordt opgeheven na %{until}."
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Reden: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Het token voor het opnieuw instellen van het wachtwoord is ongeldig. Gebruik de link in de meest recent verzonden e-mail voor het opnieuw instellen van het wachtwoord, of <a href="%{url}">vraag een nieuwe aan</a>.
     sessions:
@@ -1865,6 +1873,10 @@ nl:
   edit: Bewerken
   #Title of the moderation note editor
   edit_moderator_note: Moderator Notitie bewerken
+  #Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Opschorting bewerken
+  #Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: Als je alleen de reden of vervaldatum hoeft bij te werken, kun je in plaats daarvan <a href="%{edit_link}">de schorsing</a> bewerken.
   edit_a_batch_of_observations: Bewerk een reeks waarnemingen
   edit_account_settings_and_profile: "Account instellingen &amp; profiel bewerken"
   edit_assessment: Beoordeling bewerken
@@ -5333,6 +5345,35 @@ nl:
   suspension_duration_2_months: 2 maanden
   #a select form option indicating a user will be suspended indefinitely
   suspension_duration_indefinite: Onbepaald
+  #label for the suspension reason dropdown
+  suspension_reason_label: Reden voor de schorsing
+  #option for entering a custom suspension reason
+  suspension_reason_custom: Gewoonte
+  #note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: 'Let op: deze reden zal worden weergegeven aan de geschorste gebruiker.'
+  #note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Werk de reden bij en leg uit waarom je de schorsing van de gebruiker verandert.
+  #predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    #reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Haatdragende taal
+    #reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Beledigingen of bedreigingen
+    #reason displayed to users who have been suspended for posting sexually explicit content
+    sexually_explicit_content: Seksueel expliciete inhoud
+    #reason displayed to users who are creating false accounts to circumvent suspensions,
+    #https://en.wikipedia.org/wiki/Sock_puppet_account
+    sockpuppet_accounts: Sockpuppet-accounts
+    #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    false_ids_or_dqa_votes: Opzettelijk valse ID's of DQA-stemmen toevoegen
+    #reason displayed to users who have been suspended for posting machine generated content
+    machine_generated_content: Machine gegenereerde waarnemingen, determinaties en opmerkingen
+    #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Voortdurende schending van auteursrechten (na waarschuwing)
+    #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Voortdurende plaatsing van kunstmatig gegenereerde media (na waarschuwing)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Voortdurende vermindering van de datakwaliteit (na waarschuwing)
   #the time at which a users suspension ends
   suspend_until: Opschorten tot
   #a note telling users to select the time in their local time zone
@@ -5343,6 +5384,10 @@ nl:
     Leg uit waarom je dit account opschort en noem alle schendingen van de
     %{link_start_tag}Gemeenschapsrichtlijnen%{link_end_tag}. Voeg geen
     persoonlijke opinies toe.
+  #a label on a field showing when a user is suspended until
+  suspended_until: Geschorst tot
+  #a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Geschorst voor onbepaalde tijd
   sw_lat: ZW Lat.
   sw_lon: ZW Lon.
   sync: Synchroniseren?
@@ -6074,6 +6119,8 @@ nl:
   user_trusts_you_with_their_private_coordinates_desc: |
     De waarnemer heeft ervoor gekozen om je de verborgen coördinaten van al zijn waarnemingen toe te vertrouwen.
   user_updated_an_observation_field_html: '%{user} heeft een waarde voor "%{field_name}" op een waarneming door %{owner} bijgewerkt'
+  #An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} Je account is opgeschort"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schreef,
   username: Gebruikersnaam
   username_description: Dit is de gebruikersnaam die je gebruikt om in te loggen, en die andere gebruikers kunnen gebruiken om je te identificeren op iNaturalist
@@ -7695,6 +7742,13 @@ nl:
           met behulp van de Seek-app, zodat die zichtbaar worden op
           iNaturalist.org.
           </p>
+      user_unsuspended:
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message: De schorsing van jouw account op %{site_name} is opgeheven en je kunt de site weer gebruiken.
+        #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
+        reason: "Je account is om de volgende reden geschorst: %{reason}"
+        #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: '<a href="%{login_url}">Log in op je account</a> om de site te blijven gebruiken.'
       users_updates_suspended:
         message: |
           Je bent al een tijdje inactief op %{site_name}, dus we hebben je abonnementen opgeschort. Als je weer nieuwtjes over de activiteiten op de website wil ontvangen moet je <a href="%{login_url}">opnieuw inloggen op je account</a>.
@@ -8852,21 +8906,31 @@ nl:
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
             De nachtvlinder %{moth_common_name} was al decennia niet meer gezien en werd als uitgestorven beschouwd — totdat een toerist in Nieuw-Zeeland hem per ongeluk zag.
+          #Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Bevroren Titanomis sisyrota"
           #Heading for the story about a new-to-science mantis species
           mantis_heading: Soorten ontdekken die nieuw zijn voor de wetenschap
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — afgekort tot <span class="italic">I. nat</span> — is een bidsprinkhaansoort die nieuw voor de wetenschap is, is gevonden door een vrouw in Australië die in haar buurt wandelt.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "Bidsprinkhaan"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: Bescherming van lokale ecosystemen
           #Body text for the amphibian protection story
           amphibian_body: >
             Een groep lokale vrijwilligers in Californië kwam via iNaturalist samen om migrerende amfibieën die een drukke weg overstaken te beschermen.
+          #Alt text for the California newt story image
+          california_newt_img_alt: "Californische salamander"
           #Link below the stories to read more community science stories
           read_more: Lees meer verhalen
         observation:
           #Heading for the sample observation section
           heading: Elke waarneming vertelt een verhaal
+          #Alt text for the sample observation photo
+          photo_alt: "Groene kikker op blad"
+          #Alt text for the map showing the observation location
+          map_alt: "Kaart toont waarnemingslocatie met grote markering en andere waarnemingen via rastercellen"
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -8944,6 +9008,8 @@ nl:
           #Social proof label showing total app downloads
           #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
           count_label: "%{count}+ Downloads"
+          #Alt text for the iNaturalist app phone screenshot
+          phone_alt: "iNat op twee telefoonschermen, toont waarnemingen van kolibrie en Californische papavers"
         explore:
           #Heading for the explore species section; species cards generated from static JSON exported from iNat
           heading: Ontdek soorten wereldwijd
@@ -8957,6 +9023,8 @@ nl:
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ 5-sterren recensies"
+          #Alt text for the Seek app phone screenshot
+          phone_alt: "De Seek -app actief op twee telefoons, met een toekanbadge en de Species Nearby-weergave"
         newsletter:
           #Heading inviting users to subscribe to the monthly newsletter
           heading: Ontvang onze maandelijkse nieuwsbrief!
@@ -9104,6 +9172,18 @@ nl:
       x_seconds:
         one: "%{count} seconde"
         other: '%{count} seconden'
+      #the number of hours for distance in time from now
+      x_hours:
+        #a singular hour
+        one: "%{count} uur"
+        #multiple hours (plural)
+        other: "%{count} uren"
+      #the number of years for distance in time from now
+      x_years:
+        #a singular year
+        one: "%{count} jaar"
+        #multiple years (plural)
+        other: "%{count} jaren"
     countdown_x_days:
       one: DAG
       other: DAGEN
