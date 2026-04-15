@@ -139,9 +139,19 @@ const App = ( {
   if ( project.rule_observed_on && project.startDate ) {
     eventDates = project.startDate.format( "MMM D, YYYY" );
   } else if ( project.rule_d1 && project.rule_d2 && project.startDate && project.endDate ) {
-    const start = project.startDate.format( "MMM D, YYYY" );
-    const end = project.endDate.format( "MMM D, YYYY" );
-    eventDates = I18n.t( "date_to_date", { d1: start, d2: end } );
+    const startDay = project.startDate.format( "MMM D, YYYY" );
+    const endDay = project.endDate.format( "MMM D, YYYY" );
+    if ( startDay === endDay ) {
+      if ( !project.startDateIncludesTime && !project.endDateIncludesTime ) {
+        eventDates = startDay;
+      } else {
+        const startTime = project.startDate.format( I18n.t( "momentjs.time_without_zone" ) );
+        const endTime = project.endDate.format( I18n.t( "momentjs.time_with_zone" ) );
+        eventDates = I18n.t( "date_time_to_time", { date: startDay, start_time: startTime, end_time: endTime } );
+      }
+    } else {
+      eventDates = I18n.t( "date_to_date", { d1: startDay, d2: endDay } );
+    }
   }
   const headerDates = eventDates ? (
     <div className="header-dates">
