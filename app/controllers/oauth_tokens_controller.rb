@@ -26,11 +26,7 @@ class OauthTokensController < Doorkeeper::TokensController
   rescue INat::Auth::SuspendedError => e
     headers.delete "WWW-Authenticate"
     self.status = 401
-    self.response_body = {
-      error: "suspended",
-      error_description: e.message.presence || I18n.t( :this_user_has_been_suspended ),
-      suspended_until: e.suspended_until&.iso8601
-    }.to_json
+    self.response_body = e.json.to_json
   rescue INat::Auth::ChildWithoutPermissionError
     headers.delete "WWW-Authenticate"
     self.status = 400

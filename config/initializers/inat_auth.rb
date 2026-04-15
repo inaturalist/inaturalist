@@ -11,11 +11,17 @@ module INat
 
     # User is suspended
     class SuspendedError < StandardError
-      attr_reader :suspended_until
-
       def initialize( message = nil, suspended_until: nil )
         super( message )
         @suspended_until = suspended_until
+      end
+
+      def json
+        {
+          error: "suspended",
+          error_description: message.presence || I18n.t( :this_user_has_been_suspended ),
+          suspended_until: @suspended_until&.iso8601
+        }
       end
     end
 
