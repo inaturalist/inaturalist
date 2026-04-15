@@ -67,10 +67,18 @@ jobs:
     needs: build-and-push-main-docker-image
     runs-on: ubuntu-22.04
     steps:
+    - name: Create GitHub App token
+      id: app-token
+      uses: actions/create-github-app-token@v1
+      with:
+        app-id: ${{ secrets.DEPLOY_APP_ID }}
+        private-key: ${{ secrets.DEPLOY_APP_PRIVATE_KEY }}
+        owner: inaturalist
+        repositories: staging-deployment
     - name: Refresh Main inaturalist
       uses: actions/github-script@v6
       with:
-        github-token: ${{secrets.STAGING_DEPLOYMENT_PERSONAL_ACCESS_TOKEN}}
+        github-token: ${{steps.app-token.outputs.token}}
         script: |-
           await github.rest.actions.createWorkflowDispatch({
               owner: "inaturalist",

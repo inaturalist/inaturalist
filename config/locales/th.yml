@@ -672,6 +672,9 @@ th:
   back_to_your_observations: กลับไปที่การสังเกตของคุณ
   back_to_your_profile: กลับไปที่โปรไฟล์ของคุณ
   badges: รางวัล
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    จากหลักฐานที่มี การสังเกตนี้ยังจำแนกย่อยลงไปอีกได้หรือไม่?
   batch_edit: แก้ไขหลายรายการ
   be_the_first_to_fave_this_observation: ชอบการสังเกตนี้เป็นคนแรก!
   bg_color: สีพื้นหลัง
@@ -832,6 +835,10 @@ th:
     %{user} ซ่อน%{item}นี้ เนื่องจาก "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} เลิกซ่อน%{item}นี้ เนื่องจาก "%{reason}"
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: มีส่วนร่วม
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: มีส่วนร่วม
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: ไม่ระบุ
@@ -991,7 +998,7 @@ th:
     การสังเกตส่วนบุคคล
   curator_identification: การจำแนกโดย Curator
   #Text to inform the user what the current consensus is for a given specimen's identification (aka taxon)
-  current_community_id: "อนุกรมวิธานชุมชนปัจจุบัน: %{taxon}"
+  current_community_id: "หน่วยฯ ที่ชุมชนเห็นพ้องกันขณะนี้: %{taxon}"
   custom_project_was_successfully_created: เพิ่มการปรับแต่งโครงการแล้ว
   custom_project_was_successfully_updated: อัปเดตการปรับแต่งโครงการแล้ว
   #Button to customize projects that appear in the header
@@ -1115,6 +1122,8 @@ th:
     โปรดคลิกลิงก์ด้านล่างเพื่อยืนยันที่อยู่อีเมลของคุณ หากคุณไม่ยืนยันอีเมลของคุณ
     คุณจะไม่สามารถโต้ตอบกับเนื้อหาของผู้ใช้รายอื่นได้
   devise_reset_password_instructions_hello_email: สวัสดี %{email}
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: ค้นพบ
   did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
   #Checkbox controlling whether to show observations that have disagreeing
@@ -1251,6 +1260,7 @@ th:
   evidence_of_organism: มีหลักฐานของสิ่งมีชีวิต
   evidence_related_to_single_subject: หลักฐานแสดงถึงสิ่งมีชีวิตเพียงชนิดเดียว
   facebook: เฟซบุ๊ก
+  failed_to_save_record: "บันทึกไม่สำเร็จ โปรดลองอีกครั้ง"
   'false': 'เท็จ'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: รายการโปรด
@@ -1258,6 +1268,7 @@ th:
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
   favorites: "รายการโปรด"
   featured: แนะนำ
+  feedback: ข้อเสนอแนะ
   fields: ข้อมูลเสริม
   fields_: ข้อมูลเสริม
   fields_merged: ข้อมูลเสริมถูกรวม
@@ -1437,6 +1448,10 @@ th:
   identify_observations: "จำแนกการสังเกต"
   identify_observations_by_these_users: จำแนกการสังเกตโดยผู้ใช้งานเหล่านี้
   identify_title: "จำแนกชนิด"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: ระบุ
+  #e.g. "Identify using iNaturalist"
+  identify_cta: ระบุ
   identification: การจำแนก
   identification_by_user: การจำแนกโดย %{user}
   #Notification when an identification has been deleted
@@ -1448,6 +1463,8 @@ th:
   identification_withdrawn: ถอนการจำแนกแล้ว
   identifications: การจำแนก
   inaturalist_global_year_in_review: "ภาพรวม iNaturalist ทั่วโลกในปี %{year}"
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist อัปเดตการจำแนกชนิดโดย %{user}
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
   computer_vision_suggestion_desc: |
     การจำแนกภาพด้วยคอมพิวเตอร์ คือกระบวนการสอนให้คอมพิวเตอร์จดจำรูปแบบในภาพ เราใช้โมเดลจำแนกภาพด้วยคอมพิวเตอร์มาฝึกฝนกับรูปถ่ายของทุกคนแล้วนำมาสร้างเครื่องมือช่วยจำแนกชนิด เช่น การแนะนำชนิดที่ใกล้เคียงโดยอัตโนมัติ และการเปรียบเทียบภาพสิ่งมีชีวิตที่คล้ายกัน สัญลักษณ์นี้จะปรากฏขึ้นมาเมื่อผู้ใช้งานจำแนกชนิดด้วยเครื่องมือนี้โดยไม่ได้จำแนกด้วยตนเอง
@@ -1545,6 +1562,8 @@ th:
     identifications_in_month_year: จำนวนการจำแนกสูงสุดใน%{month_year}
     identifications_in_year: จำนวนการจำแนกสูงสุดใน %{year}
   leading: เข้าใกล้คำตอบ
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
+  learn: เรียนรู้
   learn_more: เรียน​รู้​เพิ่ม​เติม
   learn_more_raquo: "เรียนรู้เพิ่มเติม &raquo;"
   least_concern: เป็นกังวลน้อยที่สุด
@@ -1592,6 +1611,7 @@ th:
     hawaiian: ภาษาฮาวาย
     hebrew: ภาษาฮีบรู
     hiligaynon: ภาษาฮีลีไกโนน
+    hokkien: ฮกเกี้ยน
     hungarian: ภาษาฮังการี
     icelandic: ภาษาไอซ์แลนด์
     ilokano: ภาษาอีโลกาโน
@@ -1718,6 +1738,7 @@ th:
   location_is_obscured: ตำแหน่งถูกพราง
   location_is_private: สถานที่นี้เป็นส่วนตัว
   location_specified: มีการระบุตำแหน่ง
+  log_in: เข้าสู่ระบบ
   log_scale_label: ล็อก
   #Adjectival phrase describing state of being logged in
   logged_in: เข้าสู่ระบบ
@@ -1904,6 +1925,7 @@ th:
   new_and_noteworthy: ใหม่ & น่าสนใจ
   new_check_list: รายการตรวจสอบใหม่
   new_check_list_for: "สร้างรายการตรวจสอบใหม่สำหรับ %{place} &raquo;"
+  new_comment_on_a_parent_by_user_link: มีความคิดเห็นใหม่ใน @vow_or_con{vow:an|a} %{parent} โดย %{user_link}
   new_journal_post: โพสต์วารสารใหม่
   new_lexicon: ภาษา/ศัพท์เฉพาะใหม่
   new_list: รายการใหม่
@@ -1995,6 +2017,8 @@ th:
   obscured_or_private: ถูกพรางหรือส่วนตัว
   obscured_description: |
     พิกัดที่แสดงให้ผู้อื่นเห็นเป็นจุดที่ถูกสุ่มภายในกรอบสี่เหลี่ยมขนาด 0.2 องศา โดยมีพิกัดจริงซ่อนอยู่ในกรอบนั้น
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: สังเกต
   observation_accuracy_experiment_research_grade_results: "ผลระดับงานวิจัย"
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
@@ -2737,6 +2761,7 @@ th:
   showing_x_of_y_listings: "แสดง %{x} จาก %{y} รายการ"
   sign_out: ออกจากระบบ
   sign_up: ลงทะเบียน
+  sign_up_sentence_case: ลงทะเบียน
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
   single_observation: การสังเกตเดียว
@@ -2847,6 +2872,7 @@ th:
   subscriptions: การติดตาม
   suggest_an_identification: แนะนำว่าเป็น
   suitable_for_the_global_biodiversity_information_facility: เหมาะสำหรับ Global Biodiversity Information Facility
+  summary: สรุป
   supporting: สนับสนุน
   sync_obs_with_photo_metadata: "ซิงก์การสังเกตกับข้อมูลอภิพันธุ์?"
   synonyms: ชื่อซ้ำ
@@ -2939,6 +2965,7 @@ th:
     other: "มี <span class='count'>%{count}</span> ชื่อซ้ำ</span>"
   there_were_some_problems_saving_this_observation: มีปัญหาบางอย่างในการบันทึกการสังเกตนี้
   theres_something_wrong_with_taxon_framework_relationship: มีบางอย่างผิดพลาดที่นี่ - เราไม่สามารถกำหนดความสัมพันธ์ระหว่างหน่วยอนุกรมวิธานใด ๆ ระหว่างภายในกับภายนอก
+  these_folks_kindly_volunteer_to: อาสาสมัครที่คอยจัดการอนุกรมวิธานและดูแลแก้ไขปัญหาต่าง ๆ
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
   #This is a fallback translation for posessive phrases. It could be used on
@@ -3093,6 +3120,8 @@ th:
   total_observations: การสังเกตทั้งหมด
   total_observations_caps: การสังเกตทั้งหมด
   total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: รอย
   translated_languages: ภาษาที่แปล
   'true': 'จริง'
   trends: แนวโน้ม
@@ -3292,16 +3321,24 @@ th:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: เราค่อนข้างแน่ใจว่าอยู่ใน %{rank}
+  #e.g. "What was observed?"
+  what: อะไร
   what_did_you_see: คุณเห็นอะไร?
   what_did_you_see?: คุณเห็น<em>อะไร</em>?
   whats_this?: นี่คืออะไร?
+  #e.g. "When was it observed?"
+  when: เมื่อ
   when_did_you_see_it?: คุณเห็นเมื่อไหร่?
+  #e.g. "Where was it observed?"
+  where: ที่ไหน
   where_were_you?: คุณอยู่ที่ไหน?
   which_projects_can_add_your_observations?: อนุญาตให้ผู้อื่นเพิ่มการสังเกตของคุณเข้าโครงการแบบดั้งเดิมใดบ้าง?
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: เปลี่ยนแปลงชื่อเพราะเหตุใด? (ไม่บังคับ)
   why_are_you_making_this_change_cite_source_required: โปรดอธิบายเหตุผลที่เปลี่ยนแปลงชื่อ และหากเป็นไปได้ควรอ้างอิงแหล่งที่มาด้วย (จำเป็น)
   why_you_can_see_the_coordinates: คุณมองเห็นพิกัดได้เพราะว่า
+  #e.g. "Who observed it?"
+  who: ใคร
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
   who_can_see_the_coordinates: ใครมองเห็นพิกัดนี้ได้บ้าง?
   who_can_see_the_coordinates_observer: ผู้ที่สร้างการสังเกตนี้
@@ -3309,6 +3346,8 @@ th:
   who_can_see_the_coordinates_trusted: ผู้ที่ได้รับอนุญาตจากผู้สังเกตให้มองเห็นพิกัด
   who_helped_user_the_most: "คนที่ช่วย %{user} มากที่สุด"
   who_user_helped_the_most: "คนที่ %{user} ช่วยมากที่สุด"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: ทําไม?
   why_the_coordinates_are_obscured: พิกัดนี้ถูกพรางเนื่องจาก
   with_annotation: พร้อมหมายเหตุนี้
   without_annotation: ไม่รวมหมายเหตุนี้
@@ -3874,6 +3913,191 @@ th:
         who_uses_site_name: "ใครใช้ %{site_name} บ้าง?"
         what_are_you_waiting_for: รออะไรอยู่ล่ะ?
         join_today: เข้าร่วมวันนี้
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: ที่ซึ่งความอยากรู้อยากเห็นของคุณมีส่วนช่วยในวิทยาศาสตร์
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            ระบุพืช สัตว์ เชื้อรา และอื่นๆ ในขณะที่เพิ่มแผนที่สิ่งมีชีวิตบนโลก
+          #Primary call-to-action button in the hero section
+          cta_join: เข้าร่วมชุมชน
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: ฟรี ไม่แสวงหาผลกําไร ขับเคลื่อนโดยชุมชน
+        features:
+          #Section label introducing the three core user actions
+          intro: "ด้วย iNaturalist คุณสามารถ:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: พืช สัตว์ เชื้อรา และอื่นๆ
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: สายพันธุ์ที่คุณเคยเห็นทั่วโลก
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: สู่วิทยาศาสตร์ที่แท้จริง
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: ธรรมชาติใกล้เคียง
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: จากชุมชนนักธรรมชาติวิทยาระดับโลก
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: พลังของวิทยาศาสตร์ชุมชน
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: เห็นโดย %{user} ใน %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: ค้นพบสายพันธุ์ที่หายไปนานอีกครั้ง
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            พื้นที่ %{moth_common_name} แมลงเม่าไม่เคยพบมานานหลายทศวรรษและครั้งหนึ่งเคยคิดว่าสูญพันธุ์ไปแล้ว จนกระทั่งนักท่องเที่ยวในนิวซีแลนด์พบเห็นมันโดยบังเอิญ
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: ค้นพบสายพันธุ์ใหม่ในวิทยาศาสตร์
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — ย่อมาจาก <span class="italic">I. nat</span> — เป็นตั๊กแตนตําข้าวสายพันธุ์ใหม่ในวิทยาศาสตร์ที่พบโดยผู้หญิงคนหนึ่งในออสเตรเลียที่เดินอยู่ในละแวกบ้านของเธอ
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: ปกป้องระบบนิเวศในท้องถิ่น
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            กลุ่มอาสาสมัครท้องถิ่นในแคลิฟอร์เนียมารวมตัวกันผ่าน iNaturalist เพื่อปกป้องสัตว์สะเทินน้ําสะเทินน้ําสะเทินบกอพยพข้ามถนนที่พลุกพล่าน
+          #Link below the stories to read more community science stories
+          read_more: อ่านเรื่องราวเพิ่มเติม
+        observation:
+          #Heading for the sample observation section
+          heading: ทุกการสังเกตบอกเล่าเรื่องราว
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: การสังเกตที่เอื้อต่อวิทยาศาสตร์ความหลากหลายทางชีวภาพ
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: สายพันธุ์ที่บันทึกไว้ทั่วโลก
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: เอกสารที่อ้างถึงข้อมูล iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: สายพันธุ์ที่ค้นพบหรือค้นพบใหม่โดยนักวิทยาศาสตร์ชุมชน
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            เปิดแอปและถ่ายภาพพืชป่า สัตว์ เชื้อรา หรือสิ่งมีชีวิตอื่นๆ จากละแวกบ้านของคุณหรือที่ใดก็ได้ในโลก
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            แอปจะแนะนําการระบุตัวตนทันที และชุมชนนักธรรมชาติวิทยาทั่วโลกจะยืนยันหรือปรับแต่ง
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            การสังเกตของคุณจะกลายเป็นข้อมูลเปิด ซึ่งใช้โดยนักวิทยาศาสตร์ นักอนุรักษ์ และนักวิจัยทั่วโลก
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            ธรรมชาติเปลี่ยนแปลงเร็วกว่าที่เคย ดังนั้นเราจึงต้องการ <span class="underline">คุณ</span> เพื่อช่วยบันทึกว่ามีอะไรอาศัยอยู่ที่ไหน
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            มันช่วยฉันในการระบุสายพันธุ์ได้จริงๆ นอกเหนือจากการเปิดโอกาสให้ฉันได้มีปฏิสัมพันธ์กับผู้คนต่างๆ ทั่วโลก
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: นักอนุรักษ์ทางทะเลและช่างภาพใต้น้ํา, เคนยา
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist เปิดประตูสู่การวิจัยใหม่และน่าตื่นเต้นมากมายเกี่ยวกับอนุกรมวิธานที่ยังไม่ได้ศึกษา ในความคิดของฉันแพลตฟอร์มนี้เป็นนวัตกรรมที่ทันสมัยของวิทยาศาสตร์นิเวศวิทยา
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Field Guide Author ที่ Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist และชุมชนตัวระบุที่ทุ่มเทกลายเป็นแหล่งข้อมูลอันล้ําค่าในการสํารวจของฉัน มันช่วยวางรากฐานของงานปัจจุบันของฉัน
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: นักวิจัยความหลากหลายทางชีวภาพ ศรีลังกา
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist เป็นเครื่องมืออันทรงพลังที่เชื่อมโยงผู้คน ธรรมชาติ และความรู้ ฉันสามารถถ่ายภาพสายพันธุ์หายากหรือแม้แต่สายพันธุ์ที่ยังไม่ได้อธิบาย และในขณะเดียวกันฉันก็มีส่วนร่วมในการอนุรักษ์มรดกทางธรรมชาติของเรา
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: ช่างเทคนิคสิ่งแวดล้อมและช่างภาพงานอดิเรก บราซิล
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            ไม่ว่าคุณจะอยู่ที่ไหนในโลก ไม่ว่าคุณจะจบปริญญาเอกหรือแค่รักกิจกรรมกลางแจ้ง iNaturalist จะทําให้คุณใกล้ชิดกับธรรมชาติและเพื่อนนักธรรมชาติวิทยาหลายคนมากขึ้น
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: นักชีววิทยา เม็กซิโก
+        everyone:
+          #Heading for the broad audience section
+          heading: ทุกคนเป็นนักธรรมชาติวิทยา
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            หากคุณเคยมองอย่างใกล้ชิดกับบางสิ่งที่มีชีวิตและสงสัยว่ามันคืออะไร iNaturalist เหมาะสําหรับคุณ
+          #Heading for the impact sub-section
+          impact_heading: คุณสามารถสร้างผลกระทบได้
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            ภาพถ่ายทุกภาพที่คุณแชร์จะกลายเป็นส่วนหนึ่งของบันทึกทางวิทยาศาสตร์ระดับโลกที่นักวิจัยทั่วโลกพึ่งพา
+          #Heading for the community reputation sub-section
+          community_heading: '"The nicest place online""0" อ่านเพิ่มเติม'
+          community_heading_2: สถานที่ออนไลน์ที่ดีที่สุด
+          #Description of the welcoming community aspect
+          community_body: >
+            มาเพื่อระบุตัวตน อยู่เพื่อชุมชน และส่งผลกระทบต่อวิทยาศาสตร์
+        download:
+          #Heading prompting users to download the mobile app
+          heading: ดาวน์โหลดแอป iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: รับการระบุตัวตนแบบเรียลไทม์และมีส่วนร่วมในวิทยาศาสตร์
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ ดาวน์โหลด"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: สํารวจสายพันธุ์ทั่วโลก
+          #Button / link to browse species without downloading
+          button: สํารวจตอนนี้
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "อายุต่ํากว่า 13 ปี? ดาวน์โหลด Seek!"
+          #Description of Seek's badge and challenge features
+          body: รับตราและมีส่วนร่วมในความท้าทายเพื่อสังเกตสายพันธุ์!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ รีวิว 5 ดาว"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: รับจดหมายข่าวรายเดือนของเรา!
+          #Description of the newsletter's content
+          body: เชื่อมต่อกับเรื่องราวและการค้นพบจากชุมชน iNaturalist
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist เป็นองค์กรไม่แสวงหาผลกําไรที่สนับสนุนวิทยาศาสตร์และการอนุรักษ์
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: การสนับสนุนของคุณทําให้สิ่งนั้นเป็นไปได้
+          #Call-to-action button for the donation section
+          cta: บริจาคตอนนี้
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: คําถามที่พบบ่อย
+          #FAQ: uploading existing photos — question
+          upload_existing_question: ฉันสามารถอัปโหลดรูปภาพที่ฉันมีอยู่แล้วได้หรือไม่
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            ใช่! ตราบใดที่คุณทราบคร่าวๆ ว่าถ่ายภาพเมื่อใดและที่ไหน ก็ยินดีต้อนรับรูปภาพเก่าๆ
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: ใครสามารถทําวิทยาศาสตร์ด้วยการสังเกตของ iNaturalist ได้บ้าง?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            ใครก็ได้! การสังเกตของ iNaturalist ทั้งหมดเปิดกว้างและใช้งานได้ฟรีสําหรับนักวิจัยผู้ปฏิบัติงานด้านการอนุรักษ์และบุคคลที่อยากรู้อยากเห็น
+          #FAQ: research grade definition — question
+          research_grade_question: '"เกรดการวิจัย" หมายถึงอะไร?'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            เมื่อชุมชนเห็นด้วยกับการระบุตัวตน การสังเกตจะกลายเป็น "เกรดการวิจัย" และเข้าสู่บันทึกทางวิทยาศาสตร์ระดับโลก ทุกการระบุตัวตนสามารถช่วยให้ไปถึงที่นั่นได้
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: ฉันจําเป็นต้องรู้ว่าฉันกําลังดูอะไรอยู่หรือไม่?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            ไม่เลย! แชร์รูปภาพ และชุมชนนักธรรมชาติวิทยาทั่วโลกสามารถช่วยคุณระบุได้
+          #FAQ: whether the app is required — question
+          need_app_question: ฉันจําเป็นต้องใช้แอพนี้หรือไม่?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            บนเดสก์ท็อป iNaturalist.org ใช้งานได้ดี บนอุปกรณ์มือถือ แอปจะมอบประสบการณ์ที่ดีที่สุดให้กับคุณ โดยเฉพาะอย่างยิ่งสําหรับการระบุสายพันธุ์ในขณะเดินทาง
   date:
     abbr_month_names:
       - 
@@ -4103,6 +4327,7 @@ th:
         name: ชื่อ
         #External source of the taxon, e.g. Catalogue of Life
         name_provider: ที่มาของชื่อ
+        wikipedia_summary: สรุปวิกิพีเดีย
         wikipedia_title: หัวข้อวิกิพีเดีย
       taxon_name:
         lexicon: ภาษา/ศัพท์เฉพาะ
@@ -4278,6 +4503,9 @@ th:
         tribe: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         variety: "@n"
+  id_summary_dqa:
+    public_metrics:
+      identification: "มีประโยชน์ต่อการจำแนก"
   #Title of a section warning the user about something
   warning_title: คำเตือน
   wikimedia: วิกิมีเดีย

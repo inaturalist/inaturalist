@@ -18,4 +18,8 @@
           = f.submit t(:apply_app_owner), class: "btn btn-primary"
       - else
         .alert.alert-warning
-          %p=t :app_owner_application_inelligible
+          %p
+            - if has_t?( :app_owner_application_inelligible ) && !has_t?( :app_owner_application_inelligible2 )
+              = t( :app_owner_application_inelligible )
+            - else
+              = t( :app_owner_application_inelligible2 )

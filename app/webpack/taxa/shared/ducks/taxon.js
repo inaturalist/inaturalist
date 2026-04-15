@@ -17,6 +17,8 @@ const SET_RARE = "taxa-show/taxon/SET_RARE";
 const SET_RECENT = "taxa-show/taxon/SET_RECENT";
 const SET_WANTED = "taxa-show/taxon/SET_WANTED";
 const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
+const SET_IDENTIFICATIONS = "taxa-show/taxon/SET_IDENTIFICATIONS";
+const SET_IDENTIFICATIONS_QUERY = "taxa-show/taxon/SET_IDENTIFICATIONS_QUERY";
 const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
 const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
@@ -51,6 +53,11 @@ export default function reducer( state = { counts: {} }, action ) {
       delete newState.rare;
       delete newState.recent;
       delete newState.similar;
+      delete newState.identifications;
+      newState.identificationsQuery = {
+        upvoted: "true",
+        sortKey: "votesDesc"
+      };
       delete newState.species;
       delete newState.taxonChange;
       delete newState.trending;
@@ -87,6 +94,12 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_SIMILAR:
       newState.similar = action.results;
+      break;
+    case SET_IDENTIFICATIONS:
+      newState.identifications = action.results;
+      break;
+    case SET_IDENTIFICATIONS_QUERY:
+      newState.identificationsQuery = action.parameters;
       break;
     case SET_WANTED:
       newState.wanted = action.taxa;
@@ -188,6 +201,13 @@ export function setWanted( taxa ) {
 export function setSimilar( results ) {
   return {
     type: SET_SIMILAR,
+    results
+  };
+}
+
+export function setIdentifications( results ) {
+  return {
+    type: SET_IDENTIFICATIONS,
     results
   };
 }
@@ -374,6 +394,7 @@ export function fetchTaxon( taxon, options = { params: { } } ) {
     if ( testingApiV2 ) {
       params.fields = {
         ...CORE_TAXON_FIELDS,
+        provisional: true,
         complete_species_count: true,
         observations_count: true,
         complete_rank: true,
@@ -384,12 +405,14 @@ export function fetchTaxon( taxon, options = { params: { } } ) {
         },
         ancestors: {
           ...CORE_TAXON_FIELDS,
+          provisional: true,
           complete_species_count: true,
           observations_count: true,
           complete_rank: true
         },
         children: {
           ...CORE_TAXON_FIELDS,
+          provisional: true,
           complete_species_count: true,
           observations_count: true,
           complete_rank: true
@@ -659,6 +682,10 @@ export function fetchWanted( ) {
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    if ( state.taxon.similar ) {
+      return;
+    }
+
     const { testingApiV2 } = state.config;
     const { taxon } = state.taxon;
     const endpoint = inatjs.identifications.similar_species;
@@ -690,6 +717,191 @@ export function fetchSimilar( ) {
       },
       error => console.log( "[DEBUG] error: ", error )
     );
+  };
+}
+
+export function setIdentificationsQuery( parameters ) {
+  return dispatch => {
+    dispatch( {
+      type: SET_IDENTIFICATIONS_QUERY,
+      parameters
+    } );
+    // eslint-disable-next-line no-use-before-define
+    dispatch( fetchIdentifications( ) );
+  };
+}
+
+export function fetchIdentifications( options = { } ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const { taxon } = state.taxon;
+    const params = {
+      direct_taxon_id: taxon.id
+    };
+    if ( options.initialLoad && state.taxon.identifications ) {
+      return;
+    }
+    dispatch( setIdentifications( {
+      ...state.taxon.identifications,
+      loading: true
+    } ) );
+
+    const queryParams = state.taxon.identificationsQuery;
+    _.each( [
+      "q",
+      "term_value_id",
+      "upvoted",
+      "downvoted",
+      "nominated",
+      "order_by",
+      "order",
+      "page"
+    ], param => {
+      if ( queryParams[param] ) {
+        params[param] = queryParams[param];
+      }
+    } );
+    params.include_category_counts = "true";
+    params.include_category_controlled_terms = "true";
+    params.fields = "all";
+    inatjs.exemplar_identifications.search( params ).then(
+      response => {
+        if ( options.initialLoad
+          && _.isEmpty( response.results )
+          && response.category_counts.not_nominated > 0
+        ) {
+          dispatch( setIdentificationsQuery( {
+            ...state.taxon?.identificationsQuery,
+            upvoted: null,
+            downvoted: null,
+            nominated: "false",
+            q: null,
+            term_value_id: null,
+            order_by: "created_at",
+            order: "desc",
+            sortKey: "newest"
+          } ) );
+          return;
+        }
+        dispatch( setIdentifications( response ) );
+      },
+      error => console.log( "[DEBUG] error: ", error )
+    );
+  };
+}
+
+export function fetchIdentificationCagtegories( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const { taxon } = state.taxon;
+    const params = {
+      direct_taxon_id: taxon.id
+    };
+    const queryParams = state.taxon.identificationsQuery;
+    _.each( [
+      "q",
+      "term_value_id",
+      "upvoted",
+      "downvoted",
+      "nominated"
+    ], param => {
+      if ( queryParams[param] ) {
+        params[param] = queryParams[param];
+      }
+    } );
+    params.per_page = 0;
+    params.include_category_counts = "true";
+    params.include_category_controlled_terms = "true";
+    params.fields = "all";
+    inatjs.exemplar_identifications.search( params ).then(
+      response => {
+        const identifications = _.cloneDeep( getState( ).taxon.identifications );
+        identifications.category_counts = response.category_counts;
+        identifications.category_controlled_terms = response.category_controlled_terms;
+        dispatch( setIdentifications( identifications ) );
+      },
+      error => console.log( "[DEBUG] error: ", error )
+    );
+  };
+}
+export function reloadExemplarIdentification( id ) {
+  return ( dispatch, getState ) => {
+    inatjs.exemplar_identifications.search( { id, fields: "all" } ).then(
+      response => {
+        const identifications = _.cloneDeep( getState( ).taxon.identifications );
+        const updatedIdentifications = _.map( identifications.results, identification => (
+          ( identification.id === id ) ? response.results[0] : identification
+        ) );
+        identifications.results = updatedIdentifications;
+        dispatch( setIdentifications( identifications ) );
+      },
+      error => console.log( "[DEBUG] error: ", error )
+    );
+    dispatch( fetchIdentificationCagtegories( ) );
+  };
+}
+
+export function nominateIdentification( id, exemplarID ) {
+  return dispatch => {
+    inatjs.identifications.nominate( { id }, { same_origin: true } ).then( ( ) => {
+      dispatch( reloadExemplarIdentification( exemplarID ) );
+    } );
+  };
+}
+
+export function unnominateIdentification( id, exemplarID ) {
+  return dispatch => {
+    inatjs.identifications.unnominate( { id }, { same_origin: true } ).then( ( ) => {
+      dispatch( reloadExemplarIdentification( exemplarID ) );
+    } );
+  };
+}
+
+export function voteIdentification( id, voteValue ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const identifications = _.cloneDeep( state.taxon.identifications );
+    const newIdentifications = _.map( identifications.results, identification => (
+      ( identification.id === id )
+        ? {
+          ...identification,
+          votes: _.filter( identification.votes || [], v => (
+            !( v.user.id === state.config.currentUser.id )
+          ) ).concat( [{
+            vote_flag: ( voteValue !== "bad" ),
+            user: state.config.currentUser,
+            api_status: "saving"
+          }] )
+        }
+        : identification
+    ) );
+    identifications.results = newIdentifications;
+    dispatch( setIdentifications( identifications ) );
+    inatjs.exemplar_identifications.vote( { id, vote: voteValue } ).then( ( ) => {
+      dispatch( reloadExemplarIdentification( id ) );
+    } );
+  };
+}
+
+export function unvoteIdentification( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const identifications = _.cloneDeep( state.taxon.identifications );
+    const newIdentifications = _.map( identifications.results, identification => (
+      ( identification.id === id )
+        ? {
+          ...identification,
+          votes: _.filter( identification.votes, v => (
+            v.user.id !== state.config.currentUser.id
+          ) )
+        }
+        : identification
+    ) );
+    identifications.results = newIdentifications;
+    dispatch( setIdentifications( identifications ) );
+    inatjs.exemplar_identifications.unvote( { id } ).then( ( ) => {
+      dispatch( reloadExemplarIdentification( id ) );
+    } );
   };
 }
 

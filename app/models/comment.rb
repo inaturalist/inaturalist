@@ -38,7 +38,8 @@ class Comment < ApplicationRecord
     delay: false,
     notification: "mention",
     if: lambda( &:prefers_receive_mentions? )
-  auto_subscribes :user, to: :parent
+  auto_subscribes :user, to: :parent, unsubscribe_enabled: :parent_unsubscribe_enabled?
+
   blockable_by proc {| comment |
     should_bypass_block = comment.parent.is_a?( TaxonChange ) ||
       ( comment.parent.is_a?( Flag ) && comment.parent.flaggable_type == "Taxon" )
@@ -132,6 +133,17 @@ class Comment < ApplicationRecord
     if parent.respond_to?( :prefers_no_comments? ) && parent.prefers_no_comments?
       errors.add( :parent, :prefers_no_comments )
     end
+    true
+  end
+
+  def parent_unsubscribe_enabled?
+    return false if Comment.where( parent: parent, user_id: user_id ).where.not( id: id ).any?
+
+    if parent.is_a?( Observation )
+      return false if Identification.where( observation: parent, user_id: user_id ).any?
+      return false if ObservationFieldValue.where( observation: parent, user_id: user_id ).any?
+    end
+
     true
   end
 end

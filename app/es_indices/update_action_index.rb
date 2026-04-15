@@ -3,10 +3,10 @@
 class UpdateAction < ApplicationRecord
   acts_as_elastic_model
 
-  settings index: { number_of_shards: Rails.env.production? ? 6 : 4, analysis: ElasticModel::ANALYSIS } do
+  settings index: { number_of_shards: Rails.env.production? ? 12 : 4, analysis: ElasticModel::ANALYSIS } do
     mappings( dynamic: true ) do
       indexes :created_at, type: "date"
-      indexes :id, type: "integer"
+      indexes :id, type: "long"
       indexes :notification, type: "keyword"
       indexes :notifier, type: "keyword"
       indexes :notifier_id, type: "keyword"

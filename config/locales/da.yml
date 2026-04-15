@@ -647,6 +647,9 @@ da:
   app_owner_application_inelligible: |
     For at kunne indsende en ansøgning skal din konto være mindst 2 måneder gammel og skal
     have foretaget mindst 10 forbedrende identifikationer den seneste måned.
+  app_owner_application_inelligible2: |
+    For at indsende en ansøgning skal din konto være mindst 2 måneder gammel og
+    have foretaget mindst 10 identifikationsforbedringer for andre brugere over den seneste måned.
   app_owner_application_fields_explanation_html: Beskriv funktionalitet, din app vil have, og hvordan du planlægger den brugt.
   app_owner_application_success: App-ejeransøgning indsendt
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -918,6 +921,7 @@ da:
   casual: uformel
   casual_: Almindelig
   casual_tooltip_html: 'Observationstypen "Uformel" mangler medier, placering eller dato, eller opfylder af andre årsager ikke kriterierne for kvalitetsklasserne "Forskning" eller "Behøver ID". <a href="https://www.inaturalist.org/pages/help#quality"> Få mere at vide om kvalitetsklasser</a>'
+  casual_tooltip_html2: '"Uformel"-observationer mangler medie, sted eller dato, eller opfylder af andre årsager ikke kravene til kvalitetsklassificeringerne "Forskning" eller "Behøver ID". <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Læs mere om kvalitetsklasser</a>'
   categories: kategorier
   cc_0_description: "Denne licens frigiver dit arbejde til det offentlige domæne, så andre kan kopiere, ændre, distribuere og bruge dit arbejde, også til kommercielle formål, uden at anmode om tilladelse eller uden at du bliver krediteret. Dette er den mest åbne af licenser, der tilbydes. Anbefales til maksimal spredning og brug af licenserede materialer."
   cc_0_name: Ingen ophavsret (CCO)
@@ -1193,6 +1197,10 @@ da:
     %{user} valgte af vise %{item} igen fordi "%{reason}"
   continue: Fortsæt
   continue_to_site: Fortsæt til %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Bidrag
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Bidrag
   contributor_cannot_be_found: Bidragsyder findes ikke
   contributors_to_project: "Bidragsydere til %{project}"
   controlled_term_labels:
@@ -1350,6 +1358,10 @@ da:
   couldnt_change_your_password: "Kunne ikke ændre din adgangskode: %{e}"
   couldnt_find_a_user_matching_x_param: "Kunne ikke finde en matchende bruger %{id}"
   couldnt_find_that_taxon: Kunne ikke finde den takson.
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Antal, faldende
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Antal, stigende
   create: Oprette
   create_a_guide: Opret en Guide
   create_a_new_field: Opret et nyt felt
@@ -1782,6 +1794,8 @@ da:
   devise_unlock_instructions_click_the_link: |
     Klik på linket nedenfor, for at oplåse din konto:
   devise_unlock_instructions_unlock: Oplås din konto
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Opdag
   discoveries: Opdagelser
   did_you_mean: 'Mente du'
   did_you_photos_flickr?: Har du lagt billeder på Flickr?
@@ -2028,6 +2042,7 @@ da:
   external_taxon_including_children: Ekstern takson (inklusiv efterfølgere)
   extinct: uddød
   extinct_in_the_wild: Uddøde i naturen
+  provisional_taxon: Provisorisk
   extra_properties: Ekstra egenskaber
   evidence_accurately_depicts_organism_or_scene: Beviser afbilder præcist organisme eller scene
   evidence_of_organism: Bevis for organisme
@@ -2153,6 +2168,7 @@ da:
   flag_marked_as_unresolved_html: '<span class="meta">Flagmarkeret som</span> <strong>uløst.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
+  flag_reason2: "Jeg markerer denne %{record}, fordi"
   flag_resolution: Opløsning
   flag_saved: Markering gemt
   flag_saved_thanks_html: Markering gemt. Tak! <a href="%{url}" class="readmore">Vis markering</a>
@@ -2359,6 +2375,8 @@ da:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Skjul observationer med fortrolige placeringer
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Skjul provisoriske taksa
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Skjul igangværende total
   hide_uncountable_species: Skjul arter der ikke medregnes
@@ -2410,6 +2428,10 @@ da:
   identify_observations: "Identificér observationer"
   identify_observations_by_these_users: Identificér observationer af disse brugere
   identify_title: "Identificér"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identificér
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identificér
   identification: identifikation
   identification_by_user: Identifikation af %{user}
   #Notification when an identification has been deleted
@@ -2514,6 +2536,7 @@ da:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inaktiv
   inactive_taxon_concepts_are: Inaktive takson koncepter er enten taksonomisk forældede eller bliver klargjort til en takson ændring. Forældede koncepter bibeholdes for at opretholde historie og kompatibilitet med nogle websted partnere.
+  provisional_taxa_are_not_published: 'Provisoriske taksa er ikke offentliggjort og kan være underlagt større ændringer. De er i p.t. kun tilladt for svampe og skal være forbundet med en observation med en DNA-sekvens. Link venligst til denne observation i feltet "Hvorfor foretages denne ændring?".'
   inappropriate_content: Upassende indhold?
   inat_account_action: "%{site_name} &#58; konto &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} mener, at dette er en komplet liste over denne taxon på dette sted."
@@ -2643,6 +2666,7 @@ da:
     identifications_in_month_year: Fleste identifikationer i %{month_year}
     identifications_in_year: Fleste identifikationer i %{year}
   leading: Førende
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Lære
   learn_about_the_species_live_in: Lær om de arter, der lever i
   learn_more: Lær mere
@@ -3057,6 +3081,10 @@ da:
   misleading_or_illegal_content_html: |
     Vildledende eller ulovligt indhold, race eller etniske nedgørelse osv. For mere om vores definition af "passende", se
     <a href="/help#inappropriate"> FAQ </a>.
+  misleading_or_illegal_content_html2: |
+    Vildledende eller ulovligt indhold, racemæssige eller etniske skældsord mv. For mere om
+    vores definition af "passende," se
+    <a href="https://help.inaturalist.org/en/support/solutions/articles/151000169915">FAQ</a>.
   #Label shown when a date has not been entered
   missing_date: Dato mangler
   mobile: Mobil
@@ -3067,6 +3095,8 @@ da:
     <strong>kun synligt for kuratorer</strong> og <strong>kuratorer kan ikke se
     deres egen historik</strong>, så notater om en person bør aldrig være synlige
     for den pågældende person.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Suspensionen udløbet
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skjul
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -3226,6 +3256,7 @@ da:
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
   needs_id_tooltip_html: 'Observationstypen "Behøver ID" har medier, placering og dato, men mangler fortsat fællesskabskonsensus ift. en præcis identifikation. <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
+  needs_id_tooltip_html2: '"Behøver ID"-observationer har medier, lokation og dato, men behøver stadig fællesskabskonsensus om en præcis identifikation. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Læs mere om kvalitetsklasser</a>'
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del af det internationale iNaturalist
@@ -3442,6 +3473,8 @@ da:
   obscured_or_private: sløret eller fortrolig
   obscured_description: |
     Offentlige koordinater vist som et tilfældigt punkt inden for 0,2 længde- og breddegrad af feltet, som indeholder de korrekte koordinater.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Observér
   observation: Observation
   observation_: observation
   observation_accuracy_experiment_the_sample_for: "Prøven til dette eksperiment er endnu ikke genereret"
@@ -4820,6 +4853,7 @@ da:
   research_grade: Forskningskvalitet
   research_grade_short_html: "F<span class='full'>orsknings</span>k<span class='full'>valitet</span>"
   research_grade_tooltip_html: 'Observationstypen "Forskningskvalitet" har medier, placering og dato samt en fællesskabskonsensus ift. en præcis identifikation (normalt på artsniveau). <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
+  research_grade_tooltip_html2: '"Forskningskvalitet"-observationer har medier, placering, dato og en fælleskabskonsensus om en præcis identifikation (normalt på artsniveau). <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Læs mere om kvalitetsgrader</a>'
   research_grade_observations_have: 'Observationer af "forskningskvalitet" har en dato, et foto, GPS koordinater og et fællesskabs-støttet ID. Klik videre for at se vurderingen af datakvaliteten.'
   research_grade_qualification: Kvalifikation til Forskningskvalitet
   #Label for a button that re-sends the account confirmation email and signs
@@ -5007,6 +5041,8 @@ da:
   show_running_total: Vis igangværende total
   show_taxa_from_both: (vis taksa fra begge lister)
   show_taxa_from_everywhere: "Viser taksa fra overalt"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: Vis provisoriske taksa
   show_taxa_from_place: "Vis taksa fra %{place}"
   show_total_counts: Vis totalt antal
   show_uncountable_species: Skjul arter der ikke medregnes
@@ -5024,6 +5060,7 @@ da:
   sign_in_with_google: Log ind med Google
   sign_out: Log ud
   sign_up: Tilmeld dig
+  sign_up_sentence_case: Tilmeld dig
   similar_species: Lignende arter
   similar_taxa: Lignende taksa
   #Journal post formatting option
@@ -5178,6 +5215,7 @@ da:
   sorry_you_need_to_be_signed_in_and: Beklager, du skal være logget ind og have en tilknyttet Flickr-konto for at sende tags direkte til Flickr.
   sort: Sortér
   sort_by: Sortér efter
+  sort_included_projects_on_leaderboard_by: Sortér inkluderede projekter på rangliste efter
   sorting_by: Sorterer efter
   soundcloud_needs_to_confirm: "SoundCloud skal bekræfte, at du vil have din konto tilknyttet %{site_name}"
   sounds:
@@ -5325,6 +5363,26 @@ da:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Velegnet til Wikipedia og andre Wikimedia Foundation-projekter
   summary: Oversigt
   supporting: Støtter
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Suspensionsvarighed
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 dag
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 dage
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 uge
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 måned
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 måneder
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Ubegrænset
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Tilpasset
+  #the time at which a users suspension ends
+  suspend_until: Suspendér indtil
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Dato og klokkeslæt i webbrowserens lokale tidszone.
   suspend_user: Suspenderet bruger
   suspend_user_html: Suspendér %{user}
   suspend_user_reason_instructions_html: |
@@ -5836,6 +5894,8 @@ da:
   total_observations_caps: OBSERVATIONER I ALT
   total_species_observed_caps: OBSERVEREDE ARTER I ALT
   total_unique_observers: Samlet antal unikke observatører
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Spor
   translated_languages: Oversatte sprog
   'true': 'Sandt'
   trending: Tendenser
@@ -6251,6 +6311,7 @@ da:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Vi er ret sikre på, at dette er i %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklager, men din multiimport af %{filename} har fejlet."
+  #e.g. "What was observed?"
   what: Hvad
   what_did_you_see: Hvad observerede du?
   what_did_you_see?: <em>Hvad</em> så du?
@@ -6259,9 +6320,11 @@ da:
   what_want_to_list?: Hvad ønsker du vist?
   what_were_you_looking_for?: "Hvad ledte du efter? (målliste)"
   whats_this?: Hvad er dette?
+  #e.g. "When was it observed?"
   when: Hvornår
   when_did_you_see_it?: Hvornår observerede du den?
   when_did_you_see_them?: <em>Hvornår</em> så du dem?
+  #e.g. "Where was it observed?"
   where: Hvor
   where_were_they?: Hvor var de?
   where_were_you?: Hvor observerede du den?
@@ -6270,6 +6333,8 @@ da:
   why_are_you_making_this_change_optional: Hvorfor foretages denne ændring? (valgfrit)
   why_are_you_making_this_change_cite_source_required: Hvorfor foretages denne ændring? Forklar venligst og angiv om muligt en kilde. (Obligatorisk)
   why_you_can_see_the_coordinates: Hvorfor du kan se koordinaterne
+  #e.g. "Who observed it?"
+  who: Hvem
   who_can_add_observation_fields_to_my_obs: Hvem kan tilføje observationsfelter til mine observationer?
   who_can_add_observations_to_this_project?: Hvem kan tilføje observationer til dette projekt?
   who_can_see_the_coordinates: Hvem kan se koordinaterne
@@ -6278,6 +6343,8 @@ da:
   who_can_see_the_coordinates_trusted: Personer som observatøren har betroet sine skjulte koordinater til
   who_helped_user_the_most: "Hvem hjalp %{user} mest"
   who_user_helped_the_most: "Hvem %{user} hjalp mest"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Hvorfor?
   why_the_coordinates_are_obscured: Hvorfor koordinaterne er sløret
   with_annotation: Med anmærkning
   without_annotation: Uden note
@@ -7491,6 +7558,9 @@ da:
           Universel entydig identifikator på observationen. Se
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          Læs, hvordan man bruger denne side og bidrager til identifikationer på iNaturalist!
         review_all_tooltip: "Markér alle observationer på siden som gennemgået"
         you_reviewed_message: "Du har gennemgået %{reviewed} af %{pageTotal} observationer på denne side ud af %{total} matchende observationer."
         unreview_all_tooltip: "Fjern gennemgået status for alle observationer på siden"
@@ -7947,11 +8017,21 @@ da:
           URL til den event registreringstjeneste, du bruger til din bioblitz.
           Hvis dette er en Eventbrite URL, der indeholder et numerisk ID, vil vi indsætte en tilmeldings widget på din projektside indtil din bioblitz
           begynder.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Skjul Rangliste
         icon_desc: "Beskæres til kvadrat"
         it_looks_like_this_project_can_be_converted: |
           Det ser ud til at dette projekt kan konverteres til et nyt <a href="%{url}">samlingsprojekt</a>.
         last_aggregated_at_desc: |
           Tidspunkt, hvor samleren sidst var færdig med at tilføje observationer til dette projekt
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Rangliste
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Ranglistepanelet viser brugere med flest observationer, brugere med fleste arter og den mest observerede art. Det kan valgfrit skjules.
         #Label for button to make another user the owner of a project
         make_owner: Gør til Ejer
         no_curators: |
@@ -9114,6 +9194,191 @@ da:
         who_uses_site_name: "Hvem bruger %{site_name}?"
         what_are_you_waiting_for: Hvad venter du på?
         join_today: Bliv medlem idag
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Hvor din nysgerrighed bidrager til videnskaben.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Identificér planter, dyr, svampe og mere, mens der føjes til et levende atlas over liv på Jorden.
+          #Primary call-to-action button in the hero section
+          cta_join: Bliv en del af fællesskabet
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Gratis, nonprofit, drevet af fællesskabet.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Med iNaturalist kan man:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: planter, dyr, svampe og mere
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: arter, man har set verden over
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: til virkelige videnskab
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: natur i nærheden
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: fra et globalt fællesskab af naturforskere
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Kraften i samfundsvidenskab
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Set af %{user} i %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Genopdagelse af længe forsvundne arter
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            %{moth_common_name}-natsværmeren var ikke set i årtier og blev engang anset for uddød — indtil en turist i New Zealand ved et tilfælde fik øje på den.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Opdagelse af arter, som er nye for videnskaben
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — forkortet til <span class="italic">I. nat</span> — er en for videnskaben ny knælerart fundet af en kvinde i Australien på en gåtur i sit nabolag.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Beskyttelse af lokale økosystemer
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            En gruppe lokale frivillige i Californien gik gennem iNaturalist sammen for at beskytte migrerende padder, som krydser en trafikeret vej.
+          #Link below the stories to read more community science stories
+          read_more: Læs flere historier
+        observation:
+          #Heading for the sample observation section
+          heading: Hver observation fortæller en historie
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: observationer, som bidrager til biodiversitetsvidenskaben
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: arter dokumenteret verden over
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: artikler, som citerer iNaturalist-data
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: arter opdaget/genopdaget af samfundsforskere
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Åbn appen og fotografér enhver vild plante, dyr, svamp eller anden organisme — fra nabolaget eller hvor som helst i verden.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Appen foreslår straks en identifikation, og et globalt naturforskerfællesskab bekræfter eller forfiner den.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Din observation bliver til åbne data — brugt af videnskabsfolk, naturkonservatorer og forskere verden over.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Naturen ændrer sig hurtigere end nogensinde, så vi behøver <span class="underline">dig</span> til at hjælpe med at registrere, hvad der lever hvor.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Det har virkelig hjulpet mig med artsidentifikation samt givet mig mulighed for at interagere med forskellige folk verden over.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Havbevaringsekspert og undervandsfotograf, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist åbner døren for så meget ny og spændende forskning i understuderede taxa. Efter min mening er denne platform den førende del af økologisk videnskab.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Feltguideforfatter hos Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist og dets dedikerede fællesskab af identifikatorer blev en uvurderlig ressource i mine udforskninger. Det hjalp med at lægge fundamentet til mit nuværende arbejde.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversitetsforsker, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist er et kraftfuldt værktøj, der forbinder personer, natur og viden. Jeg kan fotografere en sjælden art, eller endda én, der endnu ikke er beskrevet, og samtidig bidrager jeg til at bevare vores naturlige arv.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Miljøtekniker og hobbyfotograf, Brasilien
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Uanset hvor i verden du befinder dig, om du har en ph.d. eller bare elsker naturen, vil iNaturalist bringe dig tættere på naturen og mange andre naturforskere.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biolog, Mexico
+        everyone:
+          #Heading for the broad audience section
+          heading: Alle er naturentusiaster
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Hvis du nogensinde har kigget nærmere på noget levende og undret dig over, hvad det var, er iNaturalist noget for dig.
+          #Heading for the impact sub-section
+          impact_heading: Du kan gøre en forskel
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Hvert foto, der deles, bliver en del af en global videnskabelig dokumentation, som forskere verden over er afhængige af.
+          #Heading for the community reputation sub-section
+          community_heading: '"Det dejligste sted online"'
+          community_heading_2: Det dejligste sted online
+          #Description of the welcoming community aspect
+          community_body: >
+            Kom for identifikationerne, bliv for fællesskabet og for at få indflydelse på videnskaben.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Download iNaturalist-appen
+          #Subheading describing the two core benefits of the app
+          subheading: Få realtidsidentifikationer og bidrag til videnskaben
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ downloads"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Udforsk arter verden over
+          #Button / link to browse species without downloading
+          button: Udforsk nu
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Under 13? Download Seek!"
+          #Description of Seek's badge and challenge features
+          body: Optjen badges og deltag i udfordringer med at observere arter!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-stjernede anmeldelser"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Få vores månedlige nyhedsbrev!
+          #Description of the newsletter's content
+          body: Hold kontakten med historier og opdagelser fra iNaturalist-fællesskabet.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist er en almennyttig organisation, der understøtter videnskab og bevarelse.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Din støtte gør det muligt.
+          #Call-to-action button for the donation section
+          cta: Donér nu
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Ofte stillede spørgsmål
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Kan der uploades allerede eksisterende fotos?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ja! Så længe det er nogenlunde klart, hvor og hvornår fotoet blev taget. Ældre fotos er velkomne.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Hvem kan bruge iNaturalist-observationer til naturvidenskab?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Alle! Alle iNaturalist-observationer er åbne og frit tilgængelige — for forskere, bevaringsudøvere, nysgerrige individer mv.
+          #FAQ: research grade definition — question
+          research_grade_question: Hvad betyder "forskningskvalitet"/"forskningsklasse"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Når fællesskabet er enigt om en identifikation, bliver observationen til "forskningskvalitet" og indgår så i den globale videnskabelige dokumentation. Enhver identifikation kan hjælpe med, at den når dertil.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Behøver man vide, hvad man kigger på?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Slet ikke! Del et foto, og et globalt fællesskab af naturalister kan assistere med identifikationen.
+          #FAQ: whether the app is required — question
+          need_app_question: Er det nødvendigt at bruge appen?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            På en computer fungerer iNaturalist.org godt. På en mobilenhed giver appen den bedste oplevelse – især til identifikation af arter på farten.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Gem og redigér for at tilføje vedhæftede filer
@@ -9272,6 +9537,11 @@ da:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "Mia"
       decimal_units:
         format: '%n %u'
         units:
@@ -9704,6 +9974,9 @@ da:
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Skal være i fremtiden
         moderator_note:
           attributes:
             user:

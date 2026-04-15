@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
@@ -10,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery with: :exception, if: -> { request.headers["Authorization"].blank? }
+  prepend_before_action :reject_invalid_signed_in_traffic_cookie
   before_action :permit_params
   around_action :set_time_zone
   around_action :logstash_catchall
@@ -26,7 +29,7 @@ class ApplicationController < ActionController::Base
   before_action :draft_site_requires_admin
   before_action :set_ga_trackers
   before_action :set_request_locale
-  before_action :set_testing_font
+  before_action :set_testing_responsive
   before_action :check_preferred_place
   before_action :check_preferred_site
   before_action :sign_out_spammers
@@ -35,10 +38,29 @@ class ApplicationController < ActionController::Base
   # /ping should skip all before filters and just render
   skip_before_action *_process_action_callbacks.map(&:filter), only: :ping, raise: false
 
-  PER_PAGES = [10,30,50,100,200]
+  PER_PAGES = [10, 30, 50, 100, 200]
   HEADER_VERSION = 21
-  
+  SIGNED_IN_TRAFFIC_COOKIE_KEY = "_inaturalist_signed_in"
+  SIGNED_IN_TRAFFIC_COOKIE_TTL = 2.weeks
+  TAMPERED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_tampered_signature"
+  INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_invalid_payload"
+  UNAUTHENTICATED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_without_authenticated_session"
+  MISMATCHED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE = "signed_in_cookie_user_mismatch"
+
   alias :logged_in? :user_signed_in?
+
+  def sign_in( resource_or_scope, *args )
+    result = super
+    options = args.last.is_a?( Hash ) ? args.last : {}
+    set_signed_in_traffic_cookie( current_user ) if options[:store] != false && current_user
+    result
+  end
+
+  def sign_out( resource_or_scope = nil )
+    result = super
+    clear_signed_in_traffic_cookie
+    result
+  end
 
   # set the locale for the current session. If the user is
   # logged in, also update their preferred locale in the DB
@@ -57,6 +79,85 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def reject_invalid_signed_in_traffic_cookie
+    # No marker cookie: let anonymous traffic pass, recreate for authenticated users.
+    if cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].blank?
+      set_signed_in_traffic_cookie( current_user ) if user_signed_in?
+      return
+    end
+
+    signed_cookie_value = cookies.signed[SIGNED_IN_TRAFFIC_COOKIE_KEY]
+
+    # Signature invalid: suspicious marker. Clear and log.
+    unless signed_cookie_value
+      clear_signed_in_traffic_cookie
+      return log_signed_in_traffic_cookie_issue( TAMPERED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE )
+    end
+
+    # Marker payload invalid: suspicious marker. Clear and log.
+    uid = signed_in_traffic_cookie_uid( signed_cookie_value )
+    unless uid
+      clear_signed_in_traffic_cookie
+      return log_signed_in_traffic_cookie_issue( INVALID_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE )
+    end
+
+    # Marker on anonymous request: likely stale session or replay attempt. Clear and log.
+    unless user_signed_in?
+      clear_signed_in_traffic_cookie
+      return log_signed_in_traffic_cookie_issue(
+        UNAUTHENTICATED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE,
+        marker_uid: uid
+      )
+    end
+
+    # Marker uid mismatch while authenticated: suspicious marker. Clear and log.
+    if uid != current_user.id
+      clear_signed_in_traffic_cookie
+      return log_signed_in_traffic_cookie_issue(
+        MISMATCHED_SIGNED_IN_TRAFFIC_COOKIE_SEC_RULE,
+        marker_uid: uid
+      )
+    end
+
+    # Sliding expiration for active authenticated users.
+    set_signed_in_traffic_cookie( current_user )
+  end
+
+  def set_signed_in_traffic_cookie( user )
+    cookies.signed[SIGNED_IN_TRAFFIC_COOKIE_KEY] =
+      signed_in_traffic_cookie_options.merge( value: { uid: user.id } )
+  end
+
+  def clear_signed_in_traffic_cookie
+    cookies.delete( SIGNED_IN_TRAFFIC_COOKIE_KEY, signed_in_traffic_cookie_options( include_expires: false ) )
+  end
+
+  def signed_in_traffic_cookie_options( include_expires: true )
+    options = {
+      path: "/",
+      secure: request.ssl?,
+      httponly: true
+    }
+    options[:expires] = SIGNED_IN_TRAFFIC_COOKIE_TTL.from_now if include_expires
+    options
+  end
+
+  def signed_in_traffic_cookie_uid( signed_cookie_value )
+    return nil unless signed_cookie_value.is_a?( Hash )
+
+    uid = signed_cookie_value[:uid] || signed_cookie_value["uid"]
+    return nil unless uid.present?
+
+    uid.to_i
+  end
+
+  def log_signed_in_traffic_cookie_issue( rule, **_metadata )
+    marker_uid = _metadata[:marker_uid]
+    response.set_header( "X-Sec-Rule", rule )
+    response.set_header( "X-Sec-Rule-Marker-Uid", marker_uid ) if marker_uid
+    nil
+  end
 
   def default_url_options
     return @default_url_options if @default_url_options
@@ -831,6 +932,14 @@ class ApplicationController < ActionController::Base
     super
     payload.merge!(Logstasher.payload_from_request( request ))
     payload.merge!( { session: session } )
+    sec_rule = response.get_header( "X-Sec-Rule" )
+    sec_rule_uid = response.get_header( "X-Sec-Rule-Marker-Uid" )
+    payload[:sec_rule] = sec_rule if sec_rule.present?
+    payload[:sec_rule_uid] = sec_rule_uid if sec_rule_uid.present?
+    payload[:signed_in_traffic_cookie_incoming] =
+      request.cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].present?
+    payload[:signed_in_traffic_cookie_outgoing] =
+      cookies[SIGNED_IN_TRAFFIC_COOKIE_KEY].present?
     if logged_in?
       payload.merge!(Logstasher.payload_from_user( current_user ))
     end
@@ -854,11 +963,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_testing_font
-    return unless current_user&.is_admin?
-
-    @testing_font = params[:test] == "font" || current_user&.in_test_group?( "font" )
-    true
+  def set_testing_responsive
+    if current_user&.in_test_group?( "responsive-header" )
+      @responsive = true
+    end
   end
 end
 

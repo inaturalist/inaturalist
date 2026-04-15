@@ -347,6 +347,20 @@ class SplitTaxon extends React.Component {
     );
   }
 
+  provisional( ) {
+    const { taxon } = this.props;
+    if ( !taxon || !taxon.provisional ) {
+      return null;
+    }
+    return (
+      <span key={`${this.keyBase}-provisional`} className="provisional">
+        [
+        { I18n.t( "provisional_taxon" ) }
+        ]
+      </span>
+    );
+  }
+
   memberGroup( ) {
     const { taxon, showMemberGroup, user } = this.props;
     let memberGroup;
@@ -429,6 +443,7 @@ class SplitTaxon extends React.Component {
       secondName,
       this.inactive( ),
       this.extinct( ),
+      this.provisional( ),
       this.memberGroup( ),
       this.linkIcon( )
     ] );

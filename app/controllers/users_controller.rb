@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   check_spam only: [:create, :update], instance: :user
   before_action :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_action :admin_required, :only => [:curation, :merge]
+  before_action :admin_required_for_some_test_groups, only: :join_test
   before_action :site_admin_of_user_required, only: [:add_role, :remove_role]
   before_action :curator_required, only: [
     :moderation,
@@ -73,10 +74,14 @@ class UsersController < ApplicationController
       flash[:error] = "You cannot suspend someone who is already suspended"
       return redirect_back_or_default person_path( @user )
     end
+
+    @user.unsuspend_if_timed_suspension_expired!
+
     @moderator_action = ModeratorAction.new(
       resource: @user,
       user: current_user,
-      action: ModeratorAction::SUSPEND
+      action: ModeratorAction::SUSPEND,
+      suspended_until: 1.day.from_now
     )
     render layout: "bootstrap"
   end
@@ -91,6 +96,7 @@ class UsersController < ApplicationController
       user: current_user,
       action: ModeratorAction::UNSUSPEND
     )
+    @current_suspend_action = ModeratorAction.where( resource: @user, action: ModeratorAction::SUSPEND ).last
     render layout: "bootstrap"
   end
   
@@ -197,9 +203,13 @@ class UsersController < ApplicationController
           site_name: @site.name,
           vow_or_con: @site.name[0].downcase
         )
-        # Mobile clients that handle account deletion in a webview need this
-        # parameter to detect if deletion was successful
-        redirect_to root_path( account_deleted: true )
+        if current_user&.is_admin?
+          redirect_to user_path( @user )
+        else
+          # Mobile clients that handle account deletion in a webview need this
+          # parameter to detect if deletion was successful
+          redirect_to root_path( account_deleted: true )
+        end
       end
       format.json { head :no_content }
     end
@@ -319,6 +329,9 @@ class UsersController < ApplicationController
           @selected_user.last_active = times.compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
         end
         @donor_since = @selected_user.display_donor_since ? @selected_user.display_donor_since.to_date : nil
+        @current_suspend_action = ModeratorAction.where(
+          resource: @user, action: ModeratorAction::SUSPEND
+        ).order( created_at: :desc ).first
         render layout: "bootstrap"
       end
       opts = User.default_json_options
@@ -1003,6 +1016,7 @@ class UsersController < ApplicationController
       where( "flaggable_type != 'Taxon'" ).
       order( "id desc" )
     scopes["ModeratorAction"] = ModeratorAction.
+      includes( :user, :last_edited_by_user ).
       where( "created_at < ?", before ).
       where( resource_user_id: @user ).
       order( "id desc" )
@@ -1349,5 +1363,11 @@ class UsersController < ApplicationController
       end
       return false
     end
+  end
+
+  def admin_required_for_some_test_groups
+    return unless User::ADMIN_ONLY_TEST_GROUPS.include?( params[:test] )
+
+    admin_required
   end
 end

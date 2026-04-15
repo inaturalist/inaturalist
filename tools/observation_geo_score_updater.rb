@@ -32,36 +32,41 @@ if OPTS.log_task_name
   task_logger = TaskLogger.new( OPTS.log_task_name, nil, "sync" )
 end
 
-task_logger&.start
+begin
+  task_logger&.start
 
-unless OPTS.vision_api_url
-  puts "You must specify a vision API URL"
-  exit( 0 )
-end
+  unless OPTS.vision_api_url
+    puts "You must specify a vision API URL"
+    exit( 0 )
+  end
 
-unless OPTS.updated_minutes_ago || OPTS.update_all || ( OPTS.min_id && OPTS.max_id )
-  puts "You must specify `updated_minutes_ago`, `update_all`, or `min_id` and `max_id` options"
-  exit( 0 )
-end
+  unless OPTS.updated_minutes_ago || OPTS.update_all || ( OPTS.min_id && OPTS.max_id )
+    puts "You must specify `updated_minutes_ago`, `update_all`, or `min_id` and `max_id` options"
+    exit( 0 )
+  end
 
-observation_geo_score_updater = ObservationGeoScoreUpdater.new(
-  OPTS.vision_api_url
-)
-
-if OPTS.updated_minutes_ago
-  observation_geo_score_updater.index_via_elasticsearch_observations_updated_since(
-    OPTS.updated_minutes_ago.minutes.ago
+  observation_geo_score_updater = ObservationGeoScoreUpdater.new(
+    OPTS.vision_api_url
   )
-elsif OPTS.min_id && OPTS.max_id
-  observation_geo_score_updater.index_all_via_elasticsearch(
-    min_id: OPTS.min_id,
-    max_id: OPTS.max_id,
-    not_expected_nearby: OPTS.not_expected_nearby
-  )
-else
-  observation_geo_score_updater.index_all_via_elasticsearch(
-    not_expected_nearby: OPTS.not_expected_nearby
-  )
-end
 
-task_logger&.end
+  if OPTS.updated_minutes_ago
+    observation_geo_score_updater.index_via_elasticsearch_observations_updated_since(
+      OPTS.updated_minutes_ago.minutes.ago
+    )
+  elsif OPTS.min_id && OPTS.max_id
+    observation_geo_score_updater.index_all_via_elasticsearch(
+      min_id: OPTS.min_id,
+      max_id: OPTS.max_id,
+      not_expected_nearby: OPTS.not_expected_nearby
+    )
+  else
+    observation_geo_score_updater.index_all_via_elasticsearch(
+      not_expected_nearby: OPTS.not_expected_nearby
+    )
+  end
+rescue => e # rubocop:disable Style/RescueStandardError
+  task_logger&.error( "#{e}\n#{e.backtrace[0..30].join( "\n" )}" )
+  raise
+ensure
+  task_logger&.end
+end

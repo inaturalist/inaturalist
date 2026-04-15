@@ -373,9 +373,7 @@ describe Identification, "creation" do
       expect( o.quality_grade ).to eq Observation::NEEDS_ID
       _id2 = create :identification, observation: o, taxon: sp2
       expect( o.quality_grade ).to eq Observation::NEEDS_ID
-      puts "adding final ident"
       _id3 = create :identification, observation: o, taxon: sp2
-      puts "added final ident"
       o.reload
       expect( o.owners_identification.category ).to eq Identification::MAVERICK
       expect( o.quality_grade ).to eq Observation::CASUAL
@@ -884,6 +882,16 @@ describe Identification, "deletion" do
     expect( o.observation_reviews.count ).to eq 0
   end
 
+  it "does not destroy automatically created reviews if other identifications exist" do
+    o = Observation.make!
+    i = Identification.make!( observation: o, user: o.user )
+    Identification.make!( observation: o, user: o.user )
+    expect( o.observation_reviews.count ).to eq 1
+    i.destroy
+    o.reload
+    expect( o.observation_reviews.count ).to eq 1
+  end
+
   it "does not destroy user created reviews" do
     o = Observation.make!
     i = Identification.make!( observation: o, user: o.user )
@@ -893,6 +901,28 @@ describe Identification, "deletion" do
     i.destroy
     o.reload
     expect( o.observation_reviews.count ).to eq 1
+  end
+
+  # this test block attempts to test Identification model callbacks as close as
+  # possible to a real world scenarios. In particular, it is testing behavior
+  # of some after_commit callbacks which don't normally run in the test
+  # environment due to transactional fixtures not committing, and not calling
+  # *_commit lifecycle callbacks
+  describe "index interaction" do
+    elastic_models( Observation, Identification, { use_transactional_fixtures: false } )
+
+    around( :each ) do | example |
+      DatabaseCleaner.strategy = :truncation
+      example.run
+      DatabaseCleaner.strategy = :transaction
+    end
+
+    it "removes the identification from the Elasticsearch index" do
+      i = Identification.make!
+      expect( Identification.elastic_search( where: { id: i.id } ).results.results ).not_to be_empty
+      i.destroy
+      expect( Identification.elastic_search( where: { id: i.id } ).results.results ).to be_empty
+    end
   end
 end
 
@@ -938,6 +968,7 @@ describe Identification do
   it {
     is_expected.to have_many( :project_observations ).with_foreign_key( :curator_identification_id ).dependent :nullify
   }
+  it { is_expected.to have_one( :exemplar_identification ).dependent( :destroy ) }
 
   it { is_expected.to validate_presence_of :observation }
   it { is_expected.to validate_presence_of :user }
@@ -1379,6 +1410,131 @@ describe Identification, "update_disagreement_identifications_for_taxon" do
       without_delay { s1.update( parent: t ) }
       i.reload
       expect( i ).not_to be_disagreement
+    end
+  end
+end
+
+describe Identification, "exemplar_identifications" do
+  describe "create_exemplar_identification_association" do
+    it "creates an exemplar_identification if there is a body" do
+      expect( Identification.make!( body: nil ).exemplar_identification ).to be_nil
+      expect( Identification.make!( body: "thebody" ).exemplar_identification ).to be_a( ExemplarIdentification )
+    end
+
+    it "does not create a new exemplar_identicication if one already exists" do
+      identification = Identification.make!( body: "thebody" )
+      original_exemplar = identification.exemplar_identification
+      expect( original_exemplar ).to be_a( ExemplarIdentification )
+      identification.update( body: "modified body" )
+      expect( identification.exemplar_identification ).to be_a( ExemplarIdentification )
+      expect( identification.exemplar_identification.id ).to eq original_exemplar.id
+    end
+  end
+
+  describe "update_exemplar_identification" do
+    let( :genus ) { Taxon.make!( rank: Taxon::GENUS ) }
+    let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
+
+    it "updates the exemplar_identification if the identification is withdrawn" do
+      identification = Identification.make!( body: "thebody", taxon: species )
+      expect( identification.exemplar_identification ).to be_a( ExemplarIdentification )
+      expect( identification.exemplar_identification.active? ).to be true
+
+      identification.update( current: false )
+      expect( identification.exemplar_identification.active? ).to be false
+    end
+
+    it "updates the exemplar_identification if the identification taxon is changed" do
+      identification = Identification.make!( body: "thebody", taxon: species )
+      expect( identification.exemplar_identification ).to be_a( ExemplarIdentification )
+      expect( identification.exemplar_identification.active? ).to be true
+
+      identification.update( current: false )
+      expect( identification.exemplar_identification.active? ).to be false
+    end
+
+    it "destroys examplar_identification if the body becomes empty" do
+      identification = Identification.make!( body: "thebody" )
+      expect( identification.exemplar_identification ).to be_a( ExemplarIdentification )
+      identification.update( body: "" )
+      expect( identification.exemplar_identification ).not_to be_persisted
+
+      identification = Identification.make!( body: "thebody" )
+      expect( identification.exemplar_identification ).to be_a( ExemplarIdentification )
+      identification.update( body: nil )
+      expect( identification.exemplar_identification ).not_to be_persisted
+    end
+  end
+
+  describe "nominate_as_exemplar_by" do
+    let( :identification ) { Identification.make!( body: "thebody" ) }
+    before do
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+    end
+
+    it "requires content creation privileges" do
+      identification.nominate_as_exemplar_by( User.make! )
+      expect( identification.exemplar_identification ).not_to be_valid
+      expect( identification.exemplar_identification.errors[:nominated_by_user] ).not_to be_blank
+
+      new_organizer = User.make!( created_at: Time.now )
+      UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: new_organizer )
+      identification.nominate_as_exemplar_by( new_organizer )
+      expect( identification.exemplar_identification ).not_to be_valid
+      expect( identification.exemplar_identification.errors[:nominated_by_user] ).not_to be_blank
+
+      old_organizer = User.make!( created_at: 2.days.ago )
+      UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: old_organizer )
+      identification.nominate_as_exemplar_by( old_organizer )
+      expect( identification.exemplar_identification ).to be_valid
+      expect( identification.exemplar_identification.errors[:nominated_by_user] ).to be_blank
+      expect( identification.exemplar_identification.nominated_by_user ).to be old_organizer
+    end
+
+    it "can be nominated by curators" do
+      user = make_curator
+      identification.nominate_as_exemplar_by( user )
+      expect( identification.exemplar_identification ).not_to be_nil
+      expect( identification.exemplar_identification.nominated_by_user ).to be user
+    end
+
+    it "can be nominated by admins" do
+      user = make_admin
+      identification.nominate_as_exemplar_by( user )
+      expect( identification.exemplar_identification ).not_to be_nil
+      expect( identification.exemplar_identification.nominated_by_user ).to be user
+    end
+  end
+
+  describe "unnominate_as_exemplar" do
+    before do
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+    end
+    let( :user ) do
+      user = User.make!( created_at: 2.days.ago )
+      UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: user )
+      user
+    end
+    let( :identification ) do
+      identification = Identification.make!( body: "thebody" )
+      identification.nominate_as_exemplar_by( user )
+      identification.exemplar_identification.vote_up( user )
+      identification.exemplar_identification.reload
+      identification
+    end
+
+    it "removes all exemplar votes" do
+      expect( identification.exemplar_identification.votes_for.length ).to eq 1
+      identification.unnominate_as_exemplar
+      expect( identification.exemplar_identification.votes_for.length ).to eq 0
+    end
+
+    it "unsets nominated_by_user" do
+      expect( identification.exemplar_identification.nominated_by_user ).to eq user
+      expect( identification.exemplar_identification.nominated_at ).not_to be_nil
+      identification.unnominate_as_exemplar
+      expect( identification.exemplar_identification.nominated_by_user ).to be_nil
+      expect( identification.exemplar_identification.nominated_at ).to be_nil
     end
   end
 end

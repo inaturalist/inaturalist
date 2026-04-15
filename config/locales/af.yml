@@ -29,10 +29,14 @@ af:
   x_species_html:
     one: "<span class='count'>%{count}</span> Spesies"
     other: "<span class='count'>%{count}</span> Spesies"
+  x_sounds:
+    one: "%{count} geluid"
+    other: "%{count} geluide"
   _100_day_trends: 100-dae neiging
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A tot Z"
+  about: Oor
   about_conservation_status: Oor Bewaringstatus
   about_licenses: Aangaande lisensies
   #Header for a section describing taxon names
@@ -309,6 +313,10 @@ af:
     %{user} het hierdie %{item} weggesteek want "%{reason}"
   continue: Gaan Voort
   continue_to_site: Gaan voort na %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Dra by
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Dra by
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Enige een
@@ -367,6 +375,8 @@ af:
   created_by: Geskep deur
   created_by_user_on_date: Geskep deur %{user} op %{date}
   created_on: Geskep op
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuratorgids
   curator_coordinate_access: Kurator koördinaat toegang
   curator_coordinate_access_desc: |
     Kurator-koördinaattoegang vir tradisionele projekte hang af van wie bygevoeg het
@@ -381,6 +391,8 @@ af:
   dashboard_pilots:
     #button asking to participate in a pilot
     pilot_participate: "Ja! Ek wil graag deelneem."
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "Hou op om deel te neem"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Identifikasiegapingsloods: Benodig ID gesoekte spesies"
   date_: Datum
@@ -428,11 +440,17 @@ af:
     Klik asseblief op die skakel hieronder om jou e-posadres te bevestig. As jy nie jou e-pos bevestig nie
     adres, sal jy nie met ander gebruikers se inhoud kan kommunikeer nie.
   devise_reset_password_instructions_hello_email: Hallo %{email}
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Ontdek
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Meningsverskille
   #Title / tooltip for the disagreements checkbox
   disagreements_show_observations_that: Wys waarnemings wat nie saamstem nie
+  documentation_for_developers_html: Dokumentasie vir <a href="/pages/developers">Ontwikkelaars</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: SKENK
   #Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Skenk
   edit_observations: Redigeer waarnemings
@@ -455,6 +473,7 @@ af:
     Kies tot sewe projekte wat as skakels in die opskrif verskyn. Bywerkings
     sal verskyn nadat die bladsy verfris is.
   favorites: "Gunstelinge"
+  feedback: Terugvoer
   #Label for a computer file's content type. Example values: audio/mp3, image/gif
   file_format: Lêerformaat
   #Label for the URL to a file (i.e. to a sound file, image file)
@@ -469,6 +488,8 @@ af:
   forum: Forum
   gbif: GBIF
   Genus: Genus
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Begin
   go: Gaan
   google: Google
   grid: Rooster
@@ -482,6 +503,10 @@ af:
   icon: Ikoon
   id: ID
   identify: Identifiseer
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identifiseer
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identifiseer
   identifications: Identifikasie
   #Title of identification that was automatically added by a taxon change
   inaturalist_updated_the_id_suggested_by_user: iNaturalist het die ID wat voorgestel is deur opgedateer %{user}
@@ -512,6 +537,7 @@ af:
   #Error message shown when a date format is invalid
   invalid_date: Ongeldige datum
   iphone: iPhone
+  jobs: Werksgeleenthede
   join_the_largest_group_of_naturalists_in_the_world: Sluit aan by die grootste groep natuurkundiges ter wêreld!
   journal: Joernaal
   journal_posts: Tydskrif Poste
@@ -520,6 +546,7 @@ af:
   large: groot
   latitude: Breedtegraad
   leaderboards: Ranglyste
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Leer
   learn_more: Leer meer
   lexicons:
@@ -591,6 +618,8 @@ af:
   #If a single word won't work, a symbol like "+" would be fine.
   media_and: en
   meet: Ontmoet
+  member_of_the_inaturalist_network_html: |
+    Lid van die <a href="%{url}">iNaturalist Network</a>
   merge: Kombineer
   message: Boodskap
   messages: Boodskape
@@ -634,6 +663,8 @@ af:
   #A user who does not admin any projects
   non_project_admin: Nie-projek admin
   none: Geen
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Let op
   observation: Waarneming
   observation_: waarneming
   observation_accuracy_experiment_year: "Jaar"
@@ -655,6 +686,7 @@ af:
   of_places: plekke
   or: Of
   organisms: Organisme
+  our_blog: Ons Blog
   owner: Eienaar
   password: Wagwoord
   password_confirmation: 'Wagwoord bevestiging'
@@ -809,6 +841,8 @@ af:
   plants: plante
   position: Posisie
   posts: Plasings
+  powered_by_inaturalist_open_source_software_html: 'Aangevuur deur <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist oopbron-sagteware</a>'
+  press: Pers
   privacy: Privaatheid
   private_: Privaat
   profile: Profiel
@@ -857,6 +891,7 @@ af:
   share_colon: "Deel:"
   sign_out: Teken af
   sign_up: Registreer
+  sign_up_sentence_case: Teken in
   small: klein
   site_stats: Webwerf Statistieke
   some_rights_reserved: sommige regte voorbehou
@@ -881,6 +916,10 @@ af:
   start: Begin
   stats: Statistieke
   status: Status
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Winkel
+  store_caps: WINKEL
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
   subscribe: Inteken
@@ -903,8 +942,12 @@ af:
     <a href="/privacy" target="_blank">Privaatheidsbeleid</a>, en ek het hersien
     Die <a href="/pages/community+guidelines" target="_blank">Gemeenskap riglyne</a>.
   total: Totaal
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Baan
   'true': 'Waar'
   unblock: Deblokkeer
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Begrip van Projekte
   unknown: Onbekend
   update: Opdateer
   update_existing_observations_with_new_license_desc: |
@@ -944,9 +987,16 @@ af:
   weather: Weer
   welcome: welkom
   welcome_back!: Welkom terug!
+  #e.g. "What was observed?"
   what: Wat
+  #e.g. "When was it observed?"
   when: Wanneer
+  #e.g. "Where was it observed?"
   where: Waar
+  #e.g. "Who observed it?"
+  who: Wie
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Hoekom?
   with: met
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
@@ -1241,6 +1291,191 @@ af:
         who_uses_site_name: "Wie gebruik %{site_name}?"
         what_are_you_waiting_for: Waarvoor wag jy?
         join_today: Sluit vandag aan
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Waar jou nuuskierigheid bydra tot die wetenskap.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Identifiseer plante, diere, swamme en meer terwyl jy bydra tot 'n lewende atlas van lewe op Aarde.
+          #Primary call-to-action button in the hero section
+          cta_join: Sluit aan by die gemeenskap
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Gratis, nie-winsgewend, gemeenskapsgedrewe.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Met iNaturalist kan jy:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Plante, diere, swamme, en meer
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: spesies wat jy wêreldwyd gesien het
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: Na die werklike wetenskap
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Natuur naby
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Uit 'n wêreldwye gemeenskap van natuurkundiges
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Die krag van gemeenskapswetenskap
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Gesien deur %{user} in %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Herontdekking van lank-verlore spesies
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Die %{moth_common_name} Mot is al dekades lank nie gesien nie en is eens as uitgesterf beskou — totdat 'n toeris in Nieu-Seeland dit per ongeluk gesien het.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Ontdekking van nuwe spesies wat vir die wetenskap is
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — afgekort as <span class="italic">I. Nat</span> — is 'n nuwe bidsprinkaanspesie wat deur 'n vrou in Australië gevind is terwyl sy in haar buurt stap.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Beskerming van plaaslike ekosisteme
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            'n Groep plaaslike vrywilligers in Kalifornië het deur iNaturalist bymekaargekom om migrerende amfibieë wat 'n besige pad oorsteek, te beskerm.
+          #Link below the stories to read more community science stories
+          read_more: Lees meer stories
+        observation:
+          #Heading for the sample observation section
+          heading: Elke waarneming vertel 'n storie
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Waarnemings wat bydra tot biodiversiteitswetenskap
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: spesies wat wêreldwyd gedokumenteer is
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: artikels wat iNaturalist-data aanhaal
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: spesies wat deur gemeenskapswetenskaplikes ontdek of herontdek is
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Maak die app oop en neem 'n foto van enige wilde plant, dier, swamme of ander organisme — uit jou buurt of enige plek in die wêreld.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Die app stel onmiddellik 'n identifikasie voor, en 'n wêreldwye gemeenskap van natuurkundiges bevestig of verfyn dit.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Jou waarneming word oop data — gebruik deur wetenskaplikes, bewaringkundiges en navorsers wêreldwyd.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Die natuur verander vinniger as ooit, so ons het dit nodig <span class="underline">Jy</span> om te help om vas te lê wat waar woon.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Dit het my regtig gehelp met spesie-identifikasie, benewens die geleentheid om met verskillende mense regoor die wêreld te kommunikeer.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Mariene Bewaringskundige & Onderwaterfotograaf, Kenia
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist maak die deur oop vir soveel nuwe en opwindende navorsing oor onderbestudeerde taksa. Naar my mening is hierdie platform die voorpunt van ekologiese wetenskap.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Veldgidsskrywer by Owlfly LLC, VSA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist en sy toegewyde gemeenskap van identifiseerders het 'n onskatbare hulpbron in my verkennings geword. Dit het gehelp om die grondslag van my huidige werk te lê.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversiteitsnavorser, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist is 'n kragtige hulpmiddel wat mense, natuur en kennis verbind. Ek kan 'n seldsame spesie fotografeer, of selfs een wat nog nie beskryf is nie, en terselfdertyd dra ek by tot die bewaring van ons natuurlike erfenis.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Omgewingstegnikus en stokperdjiefotograaf, Brasilië
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Maak nie saak waar in die wêreld jy is nie, of jy nou 'n PhD het of net van die buitelewe hou, iNaturalist sal jou nader aan die natuur en baie mede-natuurkundiges bring.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Bioloog, Mexiko
+        everyone:
+          #Heading for the broad audience section
+          heading: Almal is 'n natuurkundige
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            As jy al ooit noukeurig na iets lewends gekyk het en gewonder het wat dit is, is iNaturalist vir jou.
+          #Heading for the impact sub-section
+          impact_heading: Jy kan 'n impak maak
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Elke foto wat jy deel, word deel van 'n wêreldwye wetenskaplike rekord waarop navorsers wêreldwyd staatmaak.
+          #Heading for the community reputation sub-section
+          community_heading: '"Die mooiste plek aanlyn"'
+          community_heading_2: Die mooiste plek aanlyn
+          #Description of the welcoming community aspect
+          community_body: >
+            Kom vir die identifikasies, bly vir die gemeenskap en impak op die wetenskap.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Laai die iNaturalist-app af
+          #Subheading describing the two core benefits of the app
+          subheading: Kry regstreekse identifikasies en dra by tot wetenskap
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Aflaaie"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Verken spesies wêreldwyd
+          #Button / link to browse species without downloading
+          button: Verken nou
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Onder 13? Download Seek!"
+          #Description of Seek's badge and challenge features
+          body: Verdien kentekens en neem deel aan uitdagings om spesies waar te neem!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-ster resensies"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Kry ons maandelikse nuusbrief!
+          #Description of the newsletter's content
+          body: Bly verbind met stories en ontdekkings van die iNaturalist-gemeenskap.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist is 'n nie-winsgewende organisasie wat wetenskap en bewaring ondersteun.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Jou ondersteuning maak dit moontlik.
+          #Call-to-action button for the donation section
+          cta: Skenk nou
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Vrae en Antwoorde
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Kan ek foto's oplaai wat ek reeds het?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Ja! Solank jy ongeveer weet wanneer en waar 'n foto geneem is, is ouer foto's welkom.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Wie kan wetenskap doen met iNaturalist-waarnemings?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Enigiemand! Alle iNaturalist-waarnemings is oop en vrylik beskikbaar — vir navorsers, bewaringpraktisyns en nuuskierige individue.
+          #FAQ: research grade definition — question
+          research_grade_question: Wat beteken "navorsingsgraad"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Wanneer die gemeenskap op 'n identifikasie ooreenkom, word 'n waarneming "navorsingsgraad" en betree die wêreldwye wetenskaplike rekord. Elke identifikasie kan help om dit daar te kry.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Moet ek weet waarna ek kyk?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Glad nie! Deel 'n foto, en 'n wêreldwye gemeenskap van natuurkundiges kan jou help om dit te identifiseer.
+          #FAQ: whether the app is required — question
+          need_app_question: Moet ek die app gebruik?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Op 'n rekenaar werk iNaturalist.org uitstekend. Op 'n mobiele toestel bied die app jou die beste ervaring — veral om spesies onderweg te identifiseer.
   date:
     day_names:
       - Sondag

@@ -700,12 +700,280 @@ describe User do
     expect( user ).to be_suspended
   end
 
+  describe "suspended?" do
+    it "returns true when suspended_at is set and suspended_until is nil (indefinite)" do
+      user = User.make!( suspended_at: Time.zone.now, suspended_until: nil )
+      expect( user ).to be_suspended
+    end
+
+    it "returns true when suspended_at is set and suspended_until is in the future" do
+      user = User.make!( suspended_at: Time.zone.now, suspended_until: 1.day.from_now )
+      expect( user ).to be_suspended
+    end
+
+    it "returns false when suspended_at is set but suspended_until is in the past" do
+      user = User.make!( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      expect( user ).not_to be_suspended
+    end
+
+    it "returns false when suspended_at is nil" do
+      user = User.make!
+      expect( user ).not_to be_suspended
+    end
+  end
+
+  describe "suspension_expired" do
+    it "includes users whose suspended_until is in the past" do
+      user1 = User.make!( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      user2 = User.make!( suspended_at: 1.day.ago, suspended_until: 1.day.from_now )
+      user3 = User.make!( suspended_at: 1.day.ago, suspended_until: nil )
+      user4 = User.make!
+
+      suspension_expired_users = User.suspension_expired
+
+      expect( suspension_expired_users ).to include user1
+      expect( suspension_expired_users ).not_to include user2
+      expect( suspension_expired_users ).not_to include user3
+      expect( suspension_expired_users ).not_to include user4
+    end
+  end
+
+  describe "unsuspend!" do
+    it "clears suspended_until in addition to suspended_at" do
+      user = User.make!( suspended_at: Time.zone.now, suspended_until: 7.days.from_now )
+      user.reload
+      expect( user ).to be_suspended
+      user.unsuspend!
+      expect( user ).not_to be_suspended
+      expect( user.suspended_until ).to be_nil
+    end
+
+    describe "emailing" do
+      it "does not send a unsuspended email when #unsuspend! is called" do
+        user = User.make!
+        user.update_columns(
+          suspended_at: Time.zone.now,
+          suspended_until: nil,
+          suspension_reason: "historical reason"
+        )
+
+        expect { user.unsuspend! }.not_to( change { ActionMailer::Base.deliveries.count } )
+      end
+    end
+  end
+
+  describe "inactive_message" do
+    it "returns base suspension message for indefinite suspensions" do
+      user = User.make!( suspended_at: Time.zone.now, suspended_until: nil, suspension_reason: "They were very bad" )
+      user.reload
+      msg = user.inactive_message
+      expect( msg ).to include I18n.t( "devise.failure.user.suspended" )
+      expect( msg ).not_to include "They were very bad"
+    end
+
+    it "includes relative duration for timed suspensions" do
+      user = User.make!
+      suspended_until = 7.days.from_now
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: suspended_until )
+      user.reload
+      msg = user.inactive_message
+      expect( msg ).to include( "Your suspension will be lifted in 7 days." )
+    end
+
+    it "includes reason for timed suspensions with a reason" do
+      user = User.make!(
+        suspended_at: Time.zone.now,
+        suspended_until: 7.days.from_now,
+        suspension_reason: "posting spam"
+      )
+      user.reload
+      msg = user.inactive_message
+      expect( msg ).to include( "posting spam" )
+    end
+
+    it "does not include reason for indefinite suspensions even if one is set" do
+      user = User.make!(
+        suspended_at: Time.zone.now,
+        suspended_until: nil,
+        suspension_reason: "old reason"
+      )
+      user.reload
+      msg = user.inactive_message
+      expect( msg ).not_to include "old reason"
+    end
+  end
+
+  describe "unsuspend_if_timed_suspension_expired!" do
+    it "is a no-op when user is not suspended" do
+      user = User.make!
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+      expect( user ).not_to be_suspended
+    end
+
+    it "is a no-op for indefinite suspensions" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: nil )
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+      expect( user.reload ).to be_suspended
+    end
+
+    it "is a no-op when timed suspension is still active" do
+      user = User.make!
+      user.update_columns( suspended_at: Time.zone.now, suspended_until: 1.day.from_now )
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+      expect( user.reload ).to be_suspended
+    end
+
+    it "unsuspends and creates a ModeratorAction when timed suspension has expired" do
+      make_admin
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      expect { user.unsuspend_if_timed_suspension_expired! }.to change( ModeratorAction, :count ).by( 1 )
+      user.reload
+      expect( user ).not_to be_suspended
+      expect( user.suspended_at ).to be_nil
+      expect( user.suspended_until ).to be_nil
+      ma = ModeratorAction.last
+      expect( ma.action ).to eq ModeratorAction::UNSUSPEND
+      expect( ma.resource ).to eq user
+      expect( ma.user ).to be_nil
+    end
+
+    it "is idempotent" do
+      make_admin
+      user = User.make!
+      user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+      user.unsuspend_if_timed_suspension_expired!
+      expect { user.unsuspend_if_timed_suspension_expired! }.not_to change( ModeratorAction, :count )
+    end
+  end
+
   describe "moderated_with" do
     it "renames the user when given a RENAME action" do
       user = User.make!( login: "old_login" )
       moderator_action = build :moderator_action, action: ModeratorAction::RENAME, resource: user
       user.moderated_with( moderator_action )
       expect( user.login ).not_to eq "old_login"
+    end
+
+    it "sends an unsuspended email when moderated_with is called" do
+      user = User.make!(
+        suspended_at: Time.zone.now,
+        suspended_until: 7.days.from_now,
+        suspension_reason: "spamming"
+      )
+      user.reload
+      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user ) }
+      mail = ActionMailer::Base.deliveries.last
+      expect( mail ).not_to be_nil
+      expect( mail.to ).to include user.email
+      expect( mail.subject ).to match( /unsuspended/ )
+    end
+
+    it "includes unsuspension reason in unsuspended email for timed suspensions" do
+      user = User.make!(
+        suspended_at: Time.zone.now,
+        suspended_until: 7.days.from_now
+      )
+      user.reload
+      without_delay do
+        ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user, reason: "they were spamming" )
+      end
+      mail = ActionMailer::Base.deliveries.last
+      expect( mail.body ).to match( /spamming/ )
+    end
+
+    it "does not include reason in unsuspended email from user reason" do
+      user = User.make!(
+        suspended_at: Time.zone.now,
+        suspended_until: nil,
+        suspension_reason: "historical reason"
+      )
+      user.reload
+      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user ) }
+      mail = ActionMailer::Base.deliveries.last
+      expect( mail.body ).not_to match( /historical reason/ )
+    end
+
+    it "suspends the user when given a SUSPEND action" do
+      user = User.make!
+      curator = make_curator
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: user,
+        user: curator,
+        reason: "hate_speech",
+        suspended_until: 3.days.from_now
+      user.moderated_with( moderator_action )
+      expect( user.suspended_at ).not_to be_nil
+      expect( user.suspension_reason ).to eq "hate_speech"
+      expect( user.suspended_by_user ).to eq curator
+      expect( user.suspended_until ).to be_within( 1.second ).of( 3.days.from_now )
+    end
+
+    it "does not suspend admin users" do
+      admin = make_admin
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: admin,
+        user: make_curator,
+        reason: "hate_speech"
+      admin.moderated_with( moderator_action )
+      expect( admin.suspended_at ).to be_nil
+    end
+
+    it "updates reason and duration when editing a suspension on an already-suspended user" do
+      user = User.make!
+      curator = make_curator
+      user.suspended_by_user = curator
+      user.suspend!( "insults_or_threats" )
+      user.update( suspended_until: 1.day.from_now )
+      expect( user ).to be_suspended
+
+      new_moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: user,
+        user: curator,
+        reason: "hate_speech",
+        suspended_until: 7.days.from_now
+      user.moderated_with( new_moderator_action )
+      user.reload
+      expect( user.suspension_reason ).to eq "hate_speech"
+      expect( user.suspended_until ).to be_within( 1.second ).of( 7.days.from_now )
+      expect( user.suspended_at ).not_to be_nil
+    end
+
+    it "does not change suspended_by_user when editing an existing suspension" do
+      user = User.make!
+      original_curator = make_curator
+      user.suspended_by_user = original_curator
+      user.suspend!( "insults_or_threats" )
+
+      different_curator = make_curator
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::SUSPEND,
+        resource: user,
+        user: different_curator,
+        reason: "hate_speech",
+        suspended_until: 3.days.from_now
+      user.moderated_with( moderator_action )
+      user.reload
+      expect( user.suspended_by_user ).to eq original_curator
+    end
+
+    it "unsuspends the user when given an UNSUSPEND action" do
+      user = User.make!
+      user.suspend!( "hate_speech" )
+      expect( user ).to be_suspended
+      moderator_action = build :moderator_action,
+        action: ModeratorAction::UNSUSPEND,
+        resource: user,
+        user: make_curator,
+        reason: "appealed successfully"
+      user.moderated_with( moderator_action )
+      expect( user ).not_to be_suspended
+      expect( user.spammer ).to be false
+      expect( user.suspended_by_user ).to be_nil
     end
   end
 
@@ -2058,6 +2326,104 @@ describe User do
       expect( user.prefers_hide_identify_webinar_banner ).to be true
       user.set_webinar_banner_default_preference
       expect( user.prefers_hide_identify_webinar_banner ).to be true
+    end
+  end
+
+  describe "test_groups" do
+    describe "validate_new_admin_only_test_groups" do
+      it "does not let non-admins join admin-only test groups" do
+        u = User.make!
+        u.update( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+        expect( u.errors["test_groups"] ).not_to be_blank
+
+        u.update( test_groups: ["group1", User::ADMIN_ONLY_TEST_GROUPS[0]].join( "|" ) )
+        expect( u.errors["test_groups"] ).not_to be_blank
+
+        u.update( test_groups: [User::ADMIN_ONLY_TEST_GROUPS[0], "group2"].join( "|" ) )
+        expect( u.errors["test_groups"] ).not_to be_blank
+
+        u.update( test_groups: ["group1", "group2"].join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+
+      it "allows non-admins to add new non-admin-only test groups" do
+        u = User.make!
+        # start the user in an admin-only test group which would not be allowed
+        # without directly updating the attribute with update_columns
+        u.update_columns( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+
+        # adding non-admin-only test groups is allowed
+        u.update( test_groups: ( u.test_groups_array + ["group1"] ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        # attemping to add another admin-only test group is not allowed
+        u.update( test_groups: (
+          u.test_groups_array + [User::ADMIN_ONLY_TEST_GROUPS[1]]
+        ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).not_to be_blank
+      end
+
+      it "allows non-admins leave test groups" do
+        u = User.make!
+        # start the user in an admin-only test group which would not be allowed
+        # without directly updating the attribute with update_columns
+        u.update_columns( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+
+        # adding non-admin-only test groups is allowed
+        u.update( test_groups: ( u.test_groups_array + ["group1"] ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        # leaving non-admin-only test groups is allowed
+        u.update( test_groups: ( u.test_groups_array - ["group1"] ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        # leaving the admin-only test group is allowed
+        u.update( test_groups: nil )
+      end
+
+      it "allows admins to join admin-only test groups" do
+        u = make_admin
+        u.update( test_groups: User::ADMIN_ONLY_TEST_GROUPS[0] )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: ["group1", User::ADMIN_ONLY_TEST_GROUPS[0]].join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: [User::ADMIN_ONLY_TEST_GROUPS[0], "group2"].join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+    end
+
+    describe "validate_joining_helpful_id_tips_test_group" do
+      it "allows admins to join and leave the helpful IDs test group" do
+        u = make_admin
+        u.update( test_groups: User::HELPFUL_ID_TIPS_TEST_GROUP )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: nil )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
+
+      it "does not allow non-admins to join the helpful IDs test group" do
+        u = User.make!
+        u.update( test_groups: User::HELPFUL_ID_TIPS_TEST_GROUP )
+        expect( u.errors["test_groups"] ).not_to be_blank
+      end
+
+      it "allows reviewers to join and leave the helpful IDs test group" do
+        u = User.make!
+        # start the user in an admin-only test group which would not be allowed
+        # without directly updating the attribute with update_columns
+        u.update_columns( test_groups: User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+
+        u.update( test_groups: (
+          u.test_groups_array + [User::HELPFUL_ID_TIPS_TEST_GROUP]
+        ).uniq.join( "|" ) )
+        expect( u.errors["test_groups"] ).to be_blank
+
+        u.update( test_groups: User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+        expect( u.errors["test_groups"] ).to be_blank
+      end
     end
   end
 

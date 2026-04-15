@@ -17,11 +17,15 @@ const TaxonomyTab = ( {
   showNewTaxon,
   allChildrenShown,
   toggleAllChildrenShown,
+  provisionalChildrenShown,
+  toggleProvisionalChildrenShown,
   currentUser
 } ) => {
   const viewerIsCurator = currentUser && currentUser.roles && (
     currentUser.roles.indexOf( "admin" ) >= 0 || currentUser.roles.indexOf( "curator" ) >= 0
   );
+  const responsive = currentUser?.isAdmin
+    && currentUser?.isInTestGroup( "responsive-taxon-detail" );
   const sortedNames = _.sortBy( names, [
     n => I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ),
     n => n.position
@@ -46,18 +50,20 @@ const TaxonomyTab = ( {
       <Row className="tab-section">
         <Col xs={12}>
           <Row>
-            <Col xs={8}>
+            <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
               <h3>{ I18n.t( "taxonomy" ) }</h3>
               <TaxonomicBranch
                 taxon={taxon}
                 chooseTaxon={t => showNewTaxon( t, { skipScrollTop: true } )}
                 toggleAllChildrenShown={toggleAllChildrenShown}
                 allChildrenShown={allChildrenShown}
+                provisionalChildrenShown={provisionalChildrenShown}
+                toggleProvisionalChildrenShown={toggleProvisionalChildrenShown}
                 currentUser={currentUser}
                 tabular
               />
             </Col>
-            <Col xs={4}>
+            <Col xs={responsive ? null : 4} sm={responsive ? 4 : null}>
               <ul className="tab-links list-group">
                 <li className="list-group-item internal">
                   <a
@@ -94,7 +100,7 @@ const TaxonomyTab = ( {
       <Row className="tab-section">
         <Col xs={12}>
           <Row>
-            <Col xs={8}>
+            <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
               <h3>{ I18n.t( "names" ) }</h3>
               <table className="table table-striped">
                 <thead>
@@ -186,7 +192,7 @@ const TaxonomyTab = ( {
                 <i className="fa fa-refresh fa-spin" />
               </h3>
             </Col>
-            <Col xs={4}>
+            <Col xs={responsive ? null : 4} sm={responsive ? 4 : null}>
               { currentUser ? (
                 <ul className="tab-links list-group">
                   { viewerIsCurator ? (
@@ -231,6 +237,8 @@ TaxonomyTab.propTypes = {
   showNewTaxon: PropTypes.func,
   allChildrenShown: PropTypes.bool,
   toggleAllChildrenShown: PropTypes.func,
+  provisionalChildrenShown: PropTypes.bool,
+  toggleProvisionalChildrenShown: PropTypes.func,
   currentUser: PropTypes.object
 };
 
@@ -238,7 +246,8 @@ TaxonomyTab.defaultProps = {
   names: [],
   taxonChangesCount: 0,
   taxonSchemesCount: 0,
-  allChildrenShown: false
+  allChildrenShown: false,
+  provisionalChildrenShown: false
 };
 
 export default TaxonomyTab;

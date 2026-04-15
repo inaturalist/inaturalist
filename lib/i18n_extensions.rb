@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Naming/PredicateName
 module I18nExtensions
   # Detect if the current locale has translation _without_ falling back to the default locale
   # Helpful to introduce new translations while maintaining backward compatibility
@@ -16,4 +15,3 @@ module I18nExtensions
     fallbacks.any? {| locale | I18n.backend.exists?( locale, key, fallback: false ) }
   end
 end
-# rubocop:enable Naming/PredicateName

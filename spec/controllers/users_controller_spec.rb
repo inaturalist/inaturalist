@@ -185,6 +185,17 @@ describe UsersController, "delete" do
     delete :destroy, params: { id: user.id }
     expect( User.find_by_id( user.id ) ).not_to be_blank
   end
+
+  it "redirects to the user details page if destroyed by an admin" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    admin_user = make_admin( locale: "en" )
+    user = User.make!
+    sign_in admin_user
+    delete :destroy, params: { id: user.id, confirmation: user.login, confirmation_code: user.login }
+    expect( flash[:notice] ).to match( "#{user.login} has been removed from iNaturalist" )
+    expect( response ).to be_redirect
+    expect( response.redirect_url ).to eq user_url( user )
+  end
 end
 
 describe UsersController, "set_spammer" do
@@ -507,5 +518,132 @@ describe UsersController, "moderation" do
         "td", text: /Moderator Action.*Identification.*Removed/m
       )
     end
+  end
+end
+
+describe UsersController, "join_test" do
+  it "does not allow unauthenticated requests" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    another_user = User.make!
+    put :join_test, params: { test: "test-group", id: another_user.id }
+    expect( response ).not_to be_successful
+    expect( response.response_code ).to eq 302
+    expect( response.location ).to eq new_user_session_url
+  end
+
+  it "allows logged-in users to join test groups" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    sign_in user
+    expect( user.test_groups ).to be_blank
+    put :join_test, params: { test: "test-group", id: user.id }
+    expect( response ).to be_redirect
+    user.reload
+    expect( user.test_groups ).not_to be_blank
+    expect( user.test_groups ).to include( "test-group" )
+  end
+
+  it "does not allow non-admins to join admin test groups" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    sign_in user
+    expect( user.test_groups ).to be_blank
+    expect do
+      put :join_test, params: { test: User::ADMIN_ONLY_TEST_GROUPS.first, id: user.id }
+    end.to throw_symbol( :abort )
+    expect( flash[:error] ).to eq "Only administrators may access that page"
+    expect( user.test_groups ).to be_blank
+  end
+
+  it "allows admins to join admin test groups" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = make_admin
+    sign_in user
+    expect( user.test_groups ).to be_blank
+    put :join_test, params: { test: User::ADMIN_ONLY_TEST_GROUPS.first, id: user.id }
+    expect( response ).to be_redirect
+    user.reload
+    expect( user.test_groups ).not_to be_blank
+    expect( user.test_groups ).to include( User::ADMIN_ONLY_TEST_GROUPS.first )
+  end
+
+  it "does not allow unpermitted users to join the helpful IDs test group" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    sign_in user
+    expect( user.test_groups ).to be_blank
+    put :join_test, params: { test: User::HELPFUL_ID_TIPS_TEST_GROUP, id: user.id }
+    user.reload
+    expect( user.test_groups ).to be_blank
+  end
+
+  it "allows permitted users to join the helpful IDs test group" do
+    controller.request.host = URI.parse( Site.default.url ).host
+    user = User.make!
+    user.update_columns( test_groups: User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+    sign_in user
+    expect( user.test_groups ).to include( User::HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+    put :join_test, params: { test: User::HELPFUL_ID_TIPS_TEST_GROUP, id: user.id }
+    user.reload
+    expect( user.test_groups ).to include( User::HELPFUL_ID_TIPS_TEST_GROUP )
+  end
+end
+
+describe UsersController, "suspend" do
+  let( :curator ) { make_curator }
+  let( :user_with_expired_suspension ) do
+    user = User.make!
+    user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+    user
+  end
+
+  before do
+    sign_in curator
+    request.env["HTTP_REFERER"] = "/"
+  end
+
+  it "unsuspends a user whose timed suspension has expired" do
+    expect( user_with_expired_suspension.suspended_at ).not_to be_nil
+    get :suspend, params: { id: user_with_expired_suspension.id }
+    user_with_expired_suspension.reload
+    expect( user_with_expired_suspension ).not_to be_suspended
+  end
+end
+
+describe UsersController, "unsuspend" do
+  let( :curator ) { make_curator }
+  let( :suspended_user ) do
+    user = User.make!
+    user.update_columns( suspended_at: 1.day.ago, suspended_until: 1.day.from_now )
+    user
+  end
+
+  before do
+    sign_in curator
+    request.env["HTTP_REFERER"] = "/"
+  end
+
+  it "sets suspended_at to nil" do
+    expect( suspended_user.suspended_at ).not_to be_nil
+    ModeratorAction.create!(
+      resource: suspended_user,
+      user: curator,
+      action: ModeratorAction::UNSUSPEND,
+      reason: "Unsuspending this user"
+    )
+    suspended_user.reload
+    expect( suspended_user.suspended_at ).to be_nil
+  end
+
+  it "sets suspended_until to nil" do
+    expect( suspended_user.suspended_until ).not_to be_nil
+    ModeratorAction.create!(
+      resource: suspended_user,
+      user: curator,
+      action: ModeratorAction::UNSUSPEND,
+      reason: "Unsuspending this user"
+    )
+    suspended_user.reload
+    expect( suspended_user.suspended_until ).to be_nil
   end
 end

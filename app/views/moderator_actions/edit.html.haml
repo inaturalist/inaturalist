@@ -1,0 +1,21 @@
+- content_for :title do
+  = @title = t( :edit_suspension )
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      %h2= @title
+      %p.help-block.has-error= t( :suspension_reason_edit_note )
+      %p= link_to_user( @moderator_action.resource )
+      - selected_reason = ModeratorAction::SUSPENSION_REASONS.key?( @moderator_action.reason ) ? @moderator_action.reason : "custom"
+      = render "moderator_actions/suspension_form", moderator_action: @moderator_action, default_duration: @moderator_action.suspended_until.present? ? "custom" : "indefinite", suspended_until_value: @moderator_action.suspended_until, selected_reason: selected_reason, submit_text: t( :update ), cancel_path: moderation_person_path( @moderator_action.resource )
+      .form-group
+        - if @moderator_action.last_edited_by_user
+          %label= t( :last_edited_by )
+          = link_to_user( @moderator_action.last_edited_by_user )
+          %time.datetime{ datetime: @moderator_action.updated_at.iso8601, title: @moderator_action.updated_at.iso8601 }
+            = l @moderator_action.updated_at, format: :long
+        - else
+          %label= t( :created_by )
+          = link_to_user( @moderator_action.user )
+          %time.datetime{ datetime: @moderator_action.created_at.iso8601, title: @moderator_action.created_at.iso8601 }
+            = l @moderator_action.created_at, format: :long

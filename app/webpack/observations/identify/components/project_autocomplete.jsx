@@ -27,9 +27,17 @@ class ProjectAutocomplete extends React.Component {
   }
 
   fetchProject( ) {
-    const { initialProjectID } = this.props;
+    const { initialProjectID, config } = this.props;
     if ( initialProjectID ) {
-      inaturalistjs.projects.fetch( initialProjectID ).then( r => {
+      const params = { };
+      if ( config && config.testingApiV2 ) {
+        params.fields = {
+          id: true,
+          title: true,
+          slug: true
+        };
+      }
+      inaturalistjs.projects.fetch( initialProjectID, params ).then( r => {
         if ( r.results.length > 0 ) {
           this.updateProject( { project: r.results[0] } );
         }
@@ -80,7 +88,8 @@ ProjectAutocomplete.propTypes = {
     PropTypes.string
   ] ),
   className: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  config: PropTypes.object
 };
 
 export default ProjectAutocomplete;

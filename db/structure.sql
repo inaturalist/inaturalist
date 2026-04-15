@@ -38,7 +38,7 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 
 --
--- Name: _final_median(anyarray); Type: FUNCTION; Schema: public; Owner: -
+-- Name: _final_median(anycompatiblearray); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION public._final_median(anycompatiblearray) RETURNS double precision
@@ -225,7 +225,7 @@ CREATE FUNCTION public.st_aslatlontext(public.geometry) RETURNS text
 
 
 --
--- Name: median(anyelement); Type: AGGREGATE; Schema: public; Owner: -
+-- Name: median(anycompatible); Type: AGGREGATE; Schema: public; Owner: -
 --
 
 CREATE AGGREGATE public.median(anycompatible) (
@@ -759,6 +759,37 @@ CREATE SEQUENCE public.cohort_lifecycles_id_seq
 --
 
 ALTER SEQUENCE public.cohort_lifecycles_id_seq OWNED BY public.cohort_lifecycles.id;
+
+
+--
+-- Name: cohort_statistics; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cohort_statistics (
+    id bigint NOT NULL,
+    stat_type character varying NOT NULL,
+    created_at timestamp without time zone,
+    data json
+);
+
+
+--
+-- Name: cohort_statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cohort_statistics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cohort_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cohort_statistics_id_seq OWNED BY public.cohort_statistics.id;
 
 
 --
@@ -1441,6 +1472,40 @@ CREATE SEQUENCE public.email_suppressions_id_seq
 --
 
 ALTER SEQUENCE public.email_suppressions_id_seq OWNED BY public.email_suppressions.id;
+
+
+--
+-- Name: exemplar_identifications; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.exemplar_identifications (
+    id bigint NOT NULL,
+    identification_id integer NOT NULL,
+    nominated_by_user_id integer,
+    nominated_at timestamp without time zone,
+    active boolean DEFAULT true,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: exemplar_identifications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.exemplar_identifications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: exemplar_identifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.exemplar_identifications_id_seq OWNED BY public.exemplar_identifications.id;
 
 
 --
@@ -2716,7 +2781,9 @@ CREATE TABLE public.moderator_actions (
     resource_user_id integer,
     resource_parent_id integer,
     resource_parent_type character varying,
-    resource_content text
+    resource_content text,
+    suspended_until timestamp without time zone,
+    last_edited_by_user_id integer
 );
 
 
@@ -4933,7 +5000,8 @@ CREATE TABLE public.taxa (
     is_active boolean DEFAULT true NOT NULL,
     taxon_framework_relationship_id integer,
     uuid uuid DEFAULT public.uuid_generate_v4(),
-    photos_locked boolean DEFAULT false
+    photos_locked boolean DEFAULT false,
+    provisional boolean DEFAULT false NOT NULL
 );
 
 
@@ -6052,7 +6120,8 @@ CREATE TABLE public.users (
     virtuous_donor_contact_id integer,
     fundraiseup_plan_frequency character varying,
     fundraiseup_plan_status character varying,
-    fundraiseup_plan_started_at date
+    fundraiseup_plan_started_at date,
+    suspended_until timestamp without time zone
 );
 
 
@@ -6385,6 +6454,13 @@ ALTER TABLE ONLY public.cohort_lifecycles ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: cohort_statistics id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cohort_statistics ALTER COLUMN id SET DEFAULT nextval('public.cohort_statistics_id_seq'::regclass);
+
+
+--
 -- Name: colors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6515,6 +6591,13 @@ ALTER TABLE ONLY public.deleted_users ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.email_suppressions ALTER COLUMN id SET DEFAULT nextval('public.email_suppressions_id_seq'::regclass);
+
+
+--
+-- Name: exemplar_identifications id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exemplar_identifications ALTER COLUMN id SET DEFAULT nextval('public.exemplar_identifications_id_seq'::regclass);
 
 
 --
@@ -7484,6 +7567,14 @@ ALTER TABLE ONLY public.cohort_lifecycles
 
 
 --
+-- Name: cohort_statistics cohort_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cohort_statistics
+    ADD CONSTRAINT cohort_statistics_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: colors colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7633,6 +7724,14 @@ ALTER TABLE ONLY public.deleted_users
 
 ALTER TABLE ONLY public.email_suppressions
     ADD CONSTRAINT email_suppressions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: exemplar_identifications exemplar_identifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exemplar_identifications
+    ADD CONSTRAINT exemplar_identifications_pkey PRIMARY KEY (id);
 
 
 --
@@ -8900,6 +8999,13 @@ CREATE INDEX index_cohort_lifecycles_on_user_id ON public.cohort_lifecycles USIN
 
 
 --
+-- Name: index_cohort_statistics_on_stat_type_and_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cohort_statistics_on_stat_type_and_created_at ON public.cohort_statistics USING btree (stat_type, created_at);
+
+
+--
 -- Name: index_colors_taxa_on_taxon_id_and_color_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9149,6 +9255,13 @@ CREATE INDEX index_email_suppressions_on_email_and_suppression_type ON public.em
 --
 
 CREATE INDEX index_email_suppressions_on_user_id ON public.email_suppressions USING btree (user_id);
+
+
+--
+-- Name: index_exemplar_identifications_on_identification_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_exemplar_identifications_on_identification_id ON public.exemplar_identifications USING btree (identification_id);
 
 
 --
@@ -11364,6 +11477,13 @@ CREATE INDEX index_users_on_state ON public.users USING btree (state);
 
 
 --
+-- Name: index_users_on_suspended_until; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_suspended_until ON public.users USING btree (suspended_until);
+
+
+--
 -- Name: index_users_on_unconfirmed_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12066,7 +12186,14 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20251010205509'),
 ('20251014130528'),
 ('20251014130547'),
+('20251014211456'),
+('20251119043443'),
 ('20251119130558'),
-('20251202224705');
+('20251202224705'),
+('20260119093529'),
+('20260319212735'),
+('20260326000001'),
+('20260326000002'),
+('20260406164708');
 
 

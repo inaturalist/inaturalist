@@ -3,8 +3,9 @@
 class ModeratorActionsController < ApplicationController
   before_action :authenticate_user!
   before_action :curator_required, except: [:resource_url]
-  before_action :load_record, only: [:resource_url]
+  before_action :load_record, only: [:resource_url, :edit, :update]
   before_action :resource_must_be_viewable_by_logged_in_user, only: [:resource_url]
+  before_action :editor_required, only: [:edit, :update]
 
   def create
     @moderator_action = ModeratorAction.new( approved_params )
@@ -75,9 +76,29 @@ class ModeratorActionsController < ApplicationController
             redirect_to hide_sound_path( @moderator_action.resource )
             return
           end
-          redirect_back_or_default @moderator_action.resource
+          if @moderator_action.resource_type == "User" && @moderator_action.action == ModeratorAction::SUSPEND
+            @user = @moderator_action.resource
+            render "users/suspend", layout: "bootstrap"
+            return
+          end
+          redirect_back( fallback_location: @moderator_action.resource )
         end
       end
+    end
+  end
+
+  def edit
+    render layout: "bootstrap"
+  end
+
+  def update
+    if @moderator_action.update( approved_update_params.merge( last_edited_by_user_id: current_user.id ) )
+      flash[:notice] = t( :updated )
+      redirect_to moderation_person_path( @moderator_action.resource )
+    else
+      flash[:error] = t( :failed_to_save_record_with_errors,
+        errors: @moderator_action.errors.full_messages.to_sentence )
+      render :edit, layout: "bootstrap"
     end
   end
 
@@ -97,14 +118,26 @@ class ModeratorActionsController < ApplicationController
 
   protected
 
+  def editor_required
+    return if @moderator_action.editable_by?( current_user )
+
+    flash[:error] = t( :you_dont_have_permission_to_do_that )
+    redirect_back_or_default( root_url )
+  end
+
   def approved_params
     params.require( :moderator_action ).permit(
       :reason,
       :action,
       :resource_type,
       :resource_id,
-      :private
+      :private,
+      :suspended_until
     )
+  end
+
+  def approved_update_params
+    params.require( :moderator_action ).permit( :reason, :suspended_until )
   end
 
   def resource_must_be_viewable_by_logged_in_user

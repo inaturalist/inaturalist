@@ -561,6 +561,10 @@ Rails.application.routes.draw do
 
   resources :identifications, constraints: { id: id_param_pattern } do
     resources :flags
+    member do
+      post :nominate
+      delete :unnominate
+    end
   end
   get "identifications/bold" => "identifications#bold"
   post "identifications/agree" => "identifications#agree"
@@ -596,6 +600,11 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :users
+      get :build_test_users
+      post :build_test_user
+      get :build_test_user_progress
+      get :build_test_user_progress_log
+      post :build_test_user_updates
       get "users/:id" => "admin#user_detail", as: :user_detail
       get "login_as/:id" => "admin#login_as", as: :login_as
       get :deleted_users
@@ -653,7 +662,11 @@ Rails.application.routes.draw do
       get :canada_150
       get :parks_canada_2017
       get :user_segments
+      get :segmentation_dau_mau
       get :daily_active_user_model
+      get :acquisition_cohort_statistics
+      get :behavior_cohort_statistics
+      get :segment_active_users_statistics
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
@@ -759,7 +772,7 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
-  resources :moderator_actions, only: [:create] do
+  resources :moderator_actions, only: [:create, :edit, :update] do
     member do
       get :resource_url, constraints: ->( req ) { req.format == :json }
     end

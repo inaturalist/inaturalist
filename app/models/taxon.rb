@@ -132,18 +132,26 @@ class Taxon < ApplicationRecord
   validates_uniqueness_of :name, scope: %i[ancestry is_active],
     unless: lambda {
       # If a complex, allow duplicate sibling name for species...
-      ancestry.blank? || !is_active || complex?
+      # Skip validation only if currently provisional AND not changing to non-provisional
+      skip_for_provisional = provisional && ( !will_save_change_to_provisional? || new_record? )
+      skip_for_provisional || ancestry.blank? || !is_active || complex?
     },
     message: "already used as a child of this taxon's parent"
   validates_uniqueness_of :name, scope: %i[ancestry is_active rank],
-    if: -> { complex? }, # ... but do not allow duplicate sibling complex name
+    if: lambda {
+      complex? && !( provisional && ( !will_save_change_to_provisional? || new_record? ) )
+    }, # ... but do not allow duplicate sibling complex name
     message: "already used as a child complex of this taxon's parent"
   validates :name,
     format: { with: TaxonName::SCIENTIFIC_NAME_FORMAT, message: :bad_format },
-    if: proc {| t | t.new_record? || t.name_changed? }
+    unless: :provisional,
+    if: proc {| t | t.new_record? || t.name_changed? || t.will_save_change_to_provisional? }
+  validate :provisional_name_format
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
+  validate :provisional_only_for_fungi
+  validate :provisional_name_unique_within_parent
   validate :graftable_relative_to_taxon_framework_coverage
   validate :user_can_edit_attributes, on: :update
   validate :graftable_destination_relative_to_taxon_framework_coverage
@@ -157,7 +165,9 @@ class Taxon < ApplicationRecord
   validate :restrict_name_changes_by_rank,
     on: :update,
     # bypass name restrictions only used in specs
-    unless: -> { validation_context == :bypass_name_restrictions }
+    unless: lambda {
+      validation_context == :bypass_name_restrictions
+    }
 
   has_subscribers to: {
     observations: { notification: "new_observations", include_owner: false }
@@ -565,6 +575,10 @@ class Taxon < ApplicationRecord
     const_set( "ICONIC_TAXA_BY_NAME", Taxon::ICONIC_TAXA.index_by( &:name ) )
   end
 
+  def self.fungi
+    ICONIC_TAXA_BY_NAME["Fungi"]
+  end
+
   # Callbacks ###############################################################
 
   def cannot_edit_parent_during_content_freeze
@@ -734,8 +748,10 @@ class Taxon < ApplicationRecord
   end
 
   def remove_rank_from_name
+    # Skip rank removal for provisional taxa as they need "sp." in their name
+    return if provisional
+
     self.name = Taxon.remove_rank_from_name( name )
-    true
   end
 
   #
@@ -774,6 +790,14 @@ class Taxon < ApplicationRecord
   def self.capitalize_scientific_name( name, rank )
     return name.capitalize if rank.blank?
 
+    # Check if this is a provisional name format (Genus sp. 'epithet')
+    # Preserve case within single quotes for provisional taxa
+    if name =~ /\A([A-Za-z][a-z-]*)\s+sp\.\s+'([A-Za-z0-9-]+)'\z/i
+      genus = Regexp.last_match( 1 )
+      epithet = Regexp.last_match( 2 )
+      return "#{genus.capitalize} sp. '#{epithet}'"
+    end
+
     if [GENUS, GENUSHYBRID, SPECIES, HYBRID].include?( rank ) && name =~ /^(x|×)\s+?(.+)/
       _full_name, x, genus_name = name.match( /^(x|×)\s+?(.+)/ ).to_a
       "#{x} #{genus_name.capitalize}"
@@ -810,6 +834,8 @@ class Taxon < ApplicationRecord
     end
     tn.lexicon = TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
     tn.is_valid = true
+    # Set taxon association before validation so provisional check works
+    tn.taxon = self
 
     if !tn.valid? && !tn.errors[:source_identifier].blank?
       tn.source_identifier = nil
@@ -843,7 +869,7 @@ class Taxon < ApplicationRecord
   def to_param
     return nil if new_record?
 
-    "#{id}-#{name.gsub( /\W/, '-' )}"
+    "#{id}-#{name.gsub( /[^a-zA-Z0-9]/, '-' )}"
   end
 
   def to_plain_s( options = {} )
@@ -1129,6 +1155,61 @@ class Taxon < ApplicationRecord
     return unless ancestor_ids.include?( id )
 
     errors.add( :base, "can't be its own ancestor" )
+  end
+
+  def provisional_only_for_fungi
+    return unless provisional
+    # Only validate if provisional flag is being set/changed
+    return unless new_record? || will_save_change_to_provisional?
+    return if descends_from_fungi?
+
+    errors.add( :provisional, "can only be set to true for taxa that descend from Fungi" )
+  end
+
+  def descends_from_fungi?
+    fungi = Taxon.fungi
+    return false unless fungi
+
+    # For new records, build the ancestry chain from parent
+    if new_record? && parent
+      parent.ancestor_ids.include?( fungi.id ) || parent.id == fungi.id
+    else
+      ancestor_ids.include?( fungi.id )
+    end
+  end
+
+  def provisional_name_unique_within_parent
+    return unless provisional
+    return if name.blank? || parent.blank?
+    # Only validate on create or if name/ancestry is changing
+    return unless new_record? || will_save_change_to_name? || will_save_change_to_ancestry?
+
+    # Find siblings (children of the same parent) with provisional = true
+    siblings = parent.children.where( provisional: true ).where.not( id: id )
+
+    # Check for case-insensitive name match
+    existing = siblings.find {| sibling | sibling.name.casecmp?( name ) }
+
+    return unless existing
+
+    errors.add(
+      :name,
+      "must be unique (case-insensitive) among provisional taxa with the same parent. " \
+        "A provisional taxon named '#{existing.name}' already exists under this parent."
+    )
+  end
+
+  def provisional_name_format
+    return unless provisional
+    return if name.blank?
+
+    return if name.match?( TaxonName::PROVISIONAL_NAME_FORMAT )
+
+    errors.add(
+      :name,
+      "must be formatted as 'Genus sp. 'epithet'' for provisional taxa " \
+        "(e.g., Aureonarius sp. 'callisteus-infucatus' or Calonarius sp. 'AK01')"
+    )
   end
 
   def rank_level_for_taxon_and_parent_must_not_be_nil
@@ -2810,6 +2891,12 @@ class Taxon < ApplicationRecord
     end
 
     old_name, new_name = name_change
+
+    # Normalize provisional names to regular binomial format for validation
+    # "Genus sp. 'epithet'" becomes "Genus epithet"
+    old_name = old_name.gsub( /sp\.\s+'([^']+)'/, '\1' ) if old_name.match?( TaxonName::PROVISIONAL_NAME_FORMAT )
+    new_name = new_name.gsub( /sp\.\s+'([^']+)'/, '\1' ) if new_name.match?( TaxonName::PROVISIONAL_NAME_FORMAT )
+
     old_marker = Taxon.hybrid_marker_kind( old_name )
     new_marker = Taxon.hybrid_marker_kind( new_name )
 

@@ -11,23 +11,12 @@ import AlertModalContainer from "../../../shared/containers/alert_modal_containe
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import DisagreementAlertContainer from "../containers/disagreement_alert_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
-import FlashMessage from "../../show/components/flash_message";
 import WebinarBannerContainer from "../containers/webinar_banner_container";
 import ConfirmModalContainer from "../../../shared/containers/confirm_modal_container";
 import ProjectFieldsModalContainer from "../containers/project_fields_modal_container";
-import TestGroupToggle from "../../../shared/components/test_group_toggle";
 
 const App = ( { sideBarHidden, setSideBarHidden, config } ) => (
   <div id="Identify" className={config.blind ? "blind" : ""}>
-    { config && config.testingApiV2 && (
-      <FlashMessage
-        key="testing_apiv2"
-        title="Testing API V2"
-        message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/v2-feedback/21215"
-        type="warning"
-        html
-      />
-    ) }
     <WebinarBannerContainer />
     <Grid fluid>
       <Row>
@@ -47,28 +36,6 @@ const App = ( { sideBarHidden, setSideBarHidden, config } ) => (
             <PaginationControlContainer />
           ) }
           <FinishedModalContainer />
-          {
-            config && config.currentUser
-            && (
-              config.currentUser.roles.indexOf( "curator" ) >= 0
-              || config.currentUser.roles.indexOf( "admin" ) >= 0
-              || config.currentUser.sites_admined.length > 0
-            )
-            && (
-              <div className="container upstacked">
-                <div className="row">
-                  <div className="cols-xs-12">
-                    <TestGroupToggle
-                      group="apiv2"
-                      joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
-                      joinedStatus="Joined API V2 test"
-                      user={config.currentUser}
-                    />
-                  </div>
-                </div>
-              </div>
-            )
-          }
         </div>
         { config?.currentUser?.privilegedWith( "interaction" ) && (
           <SideBar

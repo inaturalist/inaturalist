@@ -33,6 +33,29 @@ namespace :inaturalist do
     end
   end
 
+  desc "Unsuspend users whose timed suspension has expired"
+  task :auto_unsuspend, [:log_task_name] => :environment do | _, args |
+    log_task_name = args[:log_task_name]
+    if log_task_name
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
+    end
+    task_logger&.start
+    User.suspension_expired.each do | user |
+      action = ModeratorAction.new(
+        action: ModeratorAction::UNSUSPEND,
+        resource: user,
+        user: nil,
+        reason: "Timed suspension expired automatically"
+      )
+      next if action.save
+
+      Rails.logger.error(
+        "[ERROR] inaturalist:auto_unsuspend: failed for user #{user.id}: #{action.errors.full_messages.join( ', ' )}"
+      )
+    end
+    task_logger&.end
+  end
+
   desc "Delete content from spmmer accounts."
   task :delete_spam_content => :environment do
     spammer_ids = User.where(spammer: true).
@@ -55,7 +78,8 @@ namespace :inaturalist do
       task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
     end
     task_logger&.start
-    min_id = UpdateAction.minimum( :id )
+    earliest_id = CONFIG.update_action_rollover_id || 1
+    min_id = UpdateAction.where( "id >= ?", earliest_id ).minimum( :id )
     # using an ID clause to limit the number of rows in the query
     last_id_to_delete = UpdateAction.where( ["created_at < ?", 90.days.ago] ).
       where( "id >= #{min_id} AND id < #{min_id + 1_000_000}" ).maximum( :id )

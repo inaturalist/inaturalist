@@ -103,7 +103,7 @@ zh-CN:
   a_default_taxon_name_will_automatically_created: |
     一个来自归属于此分类的学名的默认分类名称将被创建。
     当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
-  a_flag_for_x: "用于%{x}的旗帜"
+  a_flag_for_x: "用于%{x}的标记"
   a_member_of_taxon_html: "%{taxon} 的成员"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -571,6 +571,8 @@ zh-CN:
     对您的计划有疑问，我们保留以任何理由拒绝申请的权利。
   app_owner_application_inelligible: |
     在提交申请前，您的账户注册时间需至少已有2个月，并在过去的一个月里完成了10次改进鉴定（Improving identifications）。
+  app_owner_application_inelligible2: |
+    提交申请时，您的账户必须注册满两个月，且必须在过去一个月里至少为其他用户做了10次正在改进的鉴定。
   app_owner_application_fields_explanation_html: 描述您的应用将具有的功能以及您计划如何使用它。
   app_owner_application_success: 应用程序所有者的申请已提交
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -765,6 +767,9 @@ zh-CN:
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
       根据这些 ID中 %{percent}% 的样本，我们估计这将导致 %{count} 与 %{child} 的 ID <strong>无意中产生分歧</strong> 。
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    基于现有证据，社群鉴定分类能否得到进一步改进？
   batch: 批
   batch_edit: 批量编辑
   #Where x is the title of a list of taxa
@@ -1086,6 +1091,10 @@ zh-CN:
     %{user} 取消隐藏此 %{item}， 因为"%{reason}"
   continue: 继续
   continue_to_site: 继续 %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: 贡献
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: 贡献
   contributor_cannot_be_found: 找不到贡献者
   contributors_to_project: "贡献至 %{project}"
   controlled_term_labels:
@@ -1270,6 +1279,7 @@ zh-CN:
   curating: 助理
   curation: 管理
   curator: 馆长
+  curators_with_most_ids_of_the_input_taxon: "拥有最多输入分类单元鉴定数的馆长"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalist网站馆长是官方授信的志愿者，有编辑iNaturalist分类学系统和修改用户内容的权限。网站馆长对iNaturalist十分重要，他们保持网站分类系统的及时更新，用户发言的合适与文明。想了解成为馆长意味着什么，请参阅以下内容，如果您也想成为馆长，请仔细浏览<a href="/pages/curator+guide" target="_blank">馆长指南</a>，然后填写本页面的申请。
@@ -1653,6 +1663,8 @@ zh-CN:
   devise_unlock_instructions_click_the_link: |
     点击以下链接解锁您的账号
   devise_unlock_instructions_unlock: 解锁您的帐户
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: 发现
   discoveries: 发现
   did_you_mean: '您是不是要找'
   did_you_photos_flickr?: 您在Flickr上放照片了么？
@@ -1894,6 +1906,7 @@ zh-CN:
   external_taxon_including_children: 外部分类（包含子项）
   extinct: 灭绝
   extinct_in_the_wild: 野外灭绝
+  provisional_taxon: 临时
   extra_properties: 额外属性
   evidence_accurately_depicts_organism_or_scene: 证据准确地描述了个体或场景
   evidence_of_organism: 生物证据
@@ -2208,6 +2221,8 @@ zh-CN:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: 隐藏私密位置的观察
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: 隐藏临时分类单元
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隐藏运行总计
   hide_uncountable_species: 隐藏无法计数的物种
@@ -2257,6 +2272,10 @@ zh-CN:
   identify_observations: "对观察记录进行鉴定"
   identify_observations_by_these_users: 鉴定这些用户的观察结果
   identify_title: "鉴定"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: 识别
+  #e.g. "Identify using iNaturalist"
+  identify_cta: 识别
   identification: 鉴定
   identification_by_user: 由 %{user} 做出的物种鉴定
   #Notification when an identification has been deleted
@@ -2360,6 +2379,7 @@ zh-CN:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: 无效
   inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
+  provisional_taxa_are_not_published: '临时分类单元不公开，可能会有重大变动。目前仅允许用于真菌，且必须与DNA序列的观察结果相关联。请在“你为什么要做这个改变？”栏里链接到这个观察。'
   inappropriate_content: 不适当的内容？
   inat_account_action: "%{site_name} &#58; 账户 &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}相信这是此地区内，这种分类单元的完整列表。"
@@ -2486,6 +2506,7 @@ zh-CN:
     identifications_in_month_year: 在%{month_year}做出了最多的鉴定
     identifications_in_year: 在%{year}年做出了最多的鉴定
   leading: 领先的意见
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: 学习
   learn_about_the_species_live_in: 了解有关居住于此的物种
   learn_more: 了解更多
@@ -3268,6 +3289,8 @@ zh-CN:
   obscured_or_private: 已掩盖或私有
   obscured_description: |
     公共坐标显示为真实坐标10KM内的随机点。真正的坐标只对您和您加入观察项目的馆长可见。
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: 观察
   observation: 观察
   observation_: 观察
   observation_accuracy_experiment_the_sample_for: "此实验的样本尚未生成"
@@ -4776,6 +4799,8 @@ zh-CN:
   show_running_total: 显示运行总计
   show_taxa_from_both: '（显示来自两个清单中的分类群）'
   show_taxa_from_everywhere: "显示来自世界各地的分类单元"
+  #Label for a button to show provisional taxa in the taxonomy tree
+  show_provisional_taxa: 展示临时分类单元
   show_taxa_from_place: "显示来自%{place}的分类群"
   show_total_counts: 显示总计计数
   show_uncountable_species: 显示无法计数的物种
@@ -4793,6 +4818,7 @@ zh-CN:
   sign_in_with_google: 使用Google登录
   sign_out: 退出
   sign_up: 注册
+  sign_up_sentence_case: 注册
   similar_species: 类似物种
   similar_taxa: 相似的分类
   #Journal post formatting option
@@ -5498,6 +5524,8 @@ zh-CN:
   total_observations_caps: 观察记录总数
   total_species_observed_caps: 总共被观察到的物种
   total_unique_observers: 总计独立观察者
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: 足迹
   translated_languages: 翻译的语言
   'true': '是'
   trending: 趋向
@@ -5690,7 +5718,7 @@ zh-CN:
   user_flagged_as_a_spammer_html: "%{user} 被标记为垃圾信息发送者"
   user_has_been_removed_from_site: |
     %{username}已被移除出%{site_name}（删除全部相关内容可能需要花上一个小时）
-  user_has_opted_out_of_community_id: 用户已选择退出社区分类单元
+  user_has_opted_out_of_community_id: 用户已选择不接受社群分类
   user_hasnt_joined_any_projects: "%{user} 还未加入任何项目"
   user_helped_x_people_with_y_ids_html: "%{user}以 <strong>%{y} 个鉴定</strong>帮助到了 <strong>%{x} 个人</strong>"
   user_invite_observation_to_project: '%{user}邀请把您的观察“%{observation}”加入至%{project}项目。'
@@ -5886,6 +5914,7 @@ zh-CN:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 我们很确定这个的排名是在%{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "我们很抱歉，但您的 %{filename} 的大量导入工作已失败。"
+  #e.g. "What was observed?"
   what: 什么
   what_did_you_see: 您看见了什么？
   what_did_you_see?: 您在<em>哪里</em>看见的？
@@ -5894,9 +5923,11 @@ zh-CN:
   what_want_to_list?: 您想列出什么？
   what_were_you_looking_for?: "您在寻找什么？(目标列表)"
   whats_this?: 这是什么？
+  #e.g. "When was it observed?"
   when: 何时
   when_did_you_see_it?: 您何时看见的它？
   when_did_you_see_them?: 您<em>在哪</em>发现的它们？
+  #e.g. "Where was it observed?"
   where: 哪里
   where_were_they?: 他们在哪里？
   where_were_you?: 您在哪里？
@@ -5905,6 +5936,8 @@ zh-CN:
   why_are_you_making_this_change_optional: 你为什么要做此修改？（可选）
   why_are_you_making_this_change_cite_source_required: 你为什么要做此修改？如果可能的话，请解释原因并附上依据。（必须）
   why_you_can_see_the_coordinates: 为什么你可以看到坐标
+  #e.g. "Who observed it?"
+  who: 谁
   who_can_add_observation_fields_to_my_obs: 谁可以将观察字段添加到我的观察记录？
   who_can_add_observations_to_this_project?: 谁可以添加观察至此项目？
   who_can_see_the_coordinates: 谁可以查看坐标
@@ -5913,6 +5946,8 @@ zh-CN:
   who_can_see_the_coordinates_trusted: 观察者通过展示他们的隐藏坐标所信任的人
   who_helped_user_the_most: "谁最常帮助%{user}"
   who_user_helped_the_most: "%{user}最常帮助谁"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: 为什么？
   why_the_coordinates_are_obscured: 为什么坐标是被模糊的
   with_annotation: 带注释
   without_annotation: 无注释
@@ -6378,6 +6413,11 @@ zh-CN:
         flaggable_content: 可标记的内容
         flaggable_content_desc: |
           可标记内容是创建标记时标记对象的主要文本属性。只有馆长和员工可以看到它。只有员工可以看到它的内容消息。
+        flags_that_should_not_be_resolved_desc2_html: |
+          请解决 <code>垃圾邮件</code>, <code>版权
+          侵权</code>和 <code>人工生成内容</code>
+          仅在内容非垃圾信息、不构成侵权时才标记
+          分别是版权，或非人工生成。
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -6939,6 +6979,9 @@ zh-CN:
           观察的通用、唯一的标识符。请见
           https://datatracker.ietf.org/doc/html/rfc9562
       identify:
+        #message for a banner linking to a tutorial on how to use the Identify page
+        learn_how_to_use_this_page: |
+          了解如何使用本页面并在iNaturalist上贡献鉴定！
         review_all_tooltip: "将本页全部观察标记为已审核"
         you_reviewed_message: "您审核了本页%{pageTotal}个观察中的%{reviewed}个，一共有%{total}个匹配的观察。"
         unreview_all_tooltip: "移除本页所有观察的已审核状态"
@@ -7540,6 +7583,20 @@ zh-CN:
         recent_w_7_obs_desc: 在此前7天内注册，并添加了不少于7个观察
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: 通过<a href="%{url}">Seek</a>创建
+        today_identified_by_others: 他人鉴定过的观察（1天）
+        today_identified_by_others_by_iconic_taxon: 他人鉴定过的观察（1天）
+        observations_unknown: 30天后仍为未知生命的观察
+        observations_total_unknown_ratio: 未知观察的比例（30天）
+        observations_total_unknown_ratio_desc: 未知观察占所有观察的比例
+        for_others: 对其他人来说
+        ids_last_7_days: 鉴定（7天）
+        ids_last_7_days_desc: 过去7天内创建的鉴定
+        ids_today: 鉴定（1天）
+        ids_today_desc: 一天内创建的鉴定
+        ids_last_7_days_for_others: 为他人鉴定（7天）
+        ids_last_7_days_for_others_desc: 这些鉴定是在过去7天内添加到其他人的观察上的
+        ids_today_for_others: 为他人鉴定（1天）
+        ids_today_for_others_desc: 这些鉴定是在1天内添加到其他人的观察上的
         time_to_id_desc: 鉴定所需的时间（小时，1周移动窗口）
         TTCID: 社群鉴定所需时间
         TTCID_desc: 从与社群分类单元匹配的其他人那里获得鉴定的时间。
@@ -7650,6 +7707,8 @@ zh-CN:
           您只能直接对物种绰号进行细微的更改（例如性别更改、拼写错误）。添加一个 <a target="_blank" href="%{url}">分类单元交换</a> 如果您需要对名称进行其他更改。
         #message when you try to save edits to a taxon that is a descendant of a locked taxon
         heads_up_locked: "注意：您刚刚添加了一个锁定分类单元的后代（<a href='/taxa/%{locked_ancestor_id}'>%{locked_ancestor_name}</a>)。请考虑将其合并到现有分类单元中。" #message when you try to save edits to a taxon that has inactive parents
+        heads_up_inactive_parent: " 注意：这个活跃分类单元的父本是不活跃的，但它是这个分类单元的输出 <a href='/taxon_changes/%{taxon_change_id}'> 分类单元更改草案</a> 我们假设您很快就会提出。" #a message when you try to save an edit to a taxon covered by a taxon framework
+        covered_by_taxon_framework: 这个活跃的分类单元拥有的不仅仅是 %{count} 下游观察或受分类框架覆盖，因此某些分类属性只能由与该分类框架相关的工作人员或分类管理人编辑。
       show:
         about_names_desc: |
           <p>
@@ -8107,6 +8166,191 @@ zh-CN:
         who_uses_site_name: "谁使用 %{site_name}？"
         what_are_you_waiting_for: 您在等待什么？
         join_today: 今天加入
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: 你的好奇心为科学做出贡献。
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            识别植物、动物、真菌等，同时丰富地球生命的活图谱。
+          #Primary call-to-action button in the hero section
+          cta_join: 加入社区
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: 免费、非营利、社区驱动。
+        features:
+          #Section label introducing the three core user actions
+          intro: "通过iNaturalist，您可以："
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: 植物、动物、真菌等
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: 你在全球见过的物种
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: 进入真正的科学
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: 附近的自然环境
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: 来自全球自然学家社区
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: 社区科学的力量
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: 观察者 %{user} 在 %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: 重新发现失落已久的物种
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            该 %{moth_common_name} 蛾类已经几十年未被发现，曾一度被认为已灭绝——直到新西兰的一位游客偶然发现了它。
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: 发现新进入科学的物种
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> —— 简写为 <span class="italic">I. 自然</span> —— 是一种新科学的螳螂物种，由澳大利亚一位女性在她家附近散步时发现。
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: 保护本地生态系统
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            加州一群当地志愿者通过iNaturalist聚集起来，保护穿越繁忙道路的迁徙两栖动物。
+          #Link below the stories to read more community science stories
+          read_more: 阅读更多故事
+        observation:
+          #Heading for the sample observation section
+          heading: 每一个观察都讲述着一个故事
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: 对生物多样性科学的观察贡献
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: 全球范围内记录的物种
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: 引用iNaturalist数据的论文
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: 由社区科学家发现或重新发现的物种
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            打开应用，拍摄任何野生植物、动物、真菌或其他生物——无论是你所在的社区还是世界任何地方。
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            该应用能即时推荐识别，全球自然学家社区会确认或完善。
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            你的观察结果成为开放数据——被全球科学家、保护工作者和研究人员使用。
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            自然变化比以往任何时候都快，所以我们需要 <span class="underline">你</span> 帮助记录什么生物在哪里生活。
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            这不仅帮助我识别物种，还让我有机会与世界各地的不同人群交流。
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: 肯尼亚海洋保护专家兼水下摄影师
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist为许多关于被忽视的分类单元的新颖且令人兴奋的研究打开了大门。在我看来，这个平台是生态科学的前沿。
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: 美国Owlfly LLC的野外指南作者
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist及其专注的标识者社区成为我探索过程中宝贵的资源。这为我现在的工作奠定了基础。
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: 斯里兰卡生物多样性研究员
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist是一个强大的工具，连接了人、自然和知识。我可以拍摄稀有物种，甚至是尚未被描述的物种，同时我也为保护我们的自然遗产做出贡献。
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: 巴西环境技术员兼业余摄影师
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            无论你身处世界何地，无论你拥有博士学位还是热爱户外，iNaturalist都会让你更接近自然以及许多自然学同行。
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: 生物学家，墨西哥
+        everyone:
+          #Heading for the broad audience section
+          heading: 每个人都是自然主义者
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            如果你曾经仔细观察过活物，想知道它是什么，iNaturalist就是为你准备的。
+          #Heading for the impact sub-section
+          impact_heading: 你可以产生影响
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            你分享的每一张照片都成为全球科学记录的一部分，全球研究人员都依赖它。
+          #Heading for the community reputation sub-section
+          community_heading: '“网上最棒的地方”'
+          community_heading_2: 网上最棒的地方
+          #Description of the welcoming community aspect
+          community_body: >
+            来这里是为了识别，留下来是为了社区和对科学的影响。
+        download:
+          #Heading prompting users to download the mobile app
+          heading: 下载iNaturalist的
+          #Subheading describing the two core benefits of the app
+          subheading: 获取实时识别数据，为科学贡献力量
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ 下载"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: 探索全球物种
+          #Button / link to browse species without downloading
+          button: 立即探索
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "13岁以下？下载《Seek！》"
+          #Description of Seek's badge and challenge features
+          body: 赚取徽章并参与挑战，观察物种！
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5星好评"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: 订阅我们的月度通讯！
+          #Description of the newsletter's content
+          body: 保持与iNaturalist社区的故事和发现保持联系。
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist是一家支持科学和保护的非营利组织。
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: 你的支持让这一切成为可能。
+          #Call-to-action button for the donation section
+          cta: 立即捐赠
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: 常见问题解答
+          #FAQ: uploading existing photos — question
+          upload_existing_question: 我可以上传我已经有的照片吗？
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            是的！只要你大致知道照片拍摄的时间和地点，旧照片是受欢迎的。
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: 谁能用iNaturalist的观察做科学？
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            任何人！所有iNaturalist的观察均对研究人员、保护从业者和好奇的个人开放且免费开放。
+          #FAQ: research grade definition — question
+          research_grade_question: '“研究级”是什么意思？'
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            当社区就鉴定达成一致时，该观察即被定为“研究级”，并进入全球科学记录。每一项身份识别都能帮助它达到目标。
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: 我需要知道我在看什么吗？
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            一点也不！分享一张照片，全球自然学家社区可以帮助你识别它。
+          #FAQ: whether the app is required — question
+          need_app_question: 我需要用这个应用吗？
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            在台式机上，iNaturalist.org 表现很好。在移动设备上，该应用提供了最佳体验——尤其是在外出时识别物种时。
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: 保存并编辑以添加附件
@@ -9066,6 +9310,98 @@ zh-CN:
         Protozoa: 原生动物
         Mollusca: 软体动物
         Chromista: 假菌
+  id_summary_dqa:
+    public_metrics:
+      true: "真实陈述"
+      identification: "对鉴定有用"
+      references: "有参考资料支持"
+      distinct: "区别于其他摘要"
+      clear: "简短、学术性和清晰的写作"
+  id_summary_reference_dqa:
+    public_metrics:
+      relevant: "评论与摘要有关。"
+      true: "评论是真实陈述"
+      matches_taxon: "评论涉及 %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        header_link: "鉴定摘要演示"
+        info_line_one: "本演示探讨了利用人工智能总结iNaturalist评论的目的"
+        info_line_two: "使鉴定专业知识更加易于获取。"
+        blog_link_text: "在我们的博客上了解更多"
+        missing_identifier: "缺少分类单元摘要标识符"
+        service_unavailable: "鉴定摘要信息暂不可用。"
+        no_summary_data: "没有找到该分类单元的摘要数据。"
+        load_failed: "加载分类单元摘要失败"
+      filters:
+        active_only: "仅显示活跃摘要"
+        run_label: "运行名称"
+        run_placeholder: "选择一个运行"
+        run_loading: "正在加载运行……"
+        photo_tips_toggle: "显示照片提示"
+        language_label: "语言"
+      summary_list:
+        loading: "正在加载鉴定摘要..."
+        empty: "没有此物种的鉴定摘要。"
+        refreshing: "刷新摘要..."
+        heading: "鉴定摘要"
+        feedback_toggle: "鉴定摘要反馈"
+        feedback_unavailable: "对此摘要的反馈不可用。"
+        sign_in_required: "登录以对鉴定摘要反馈进行投票"
+        service_unavailable: "反馈服务现在不可用。"
+        submit_failed: "提交反馈失败。"
+      summary_feedback:
+        loading: "正在加载反馈..."
+        explainer: "您的反馈将被用来帮助在将来改进鉴定摘要"
+        sign_in_tooltip: "登录以对此摘要进行投票"
+        submitting_tooltip: "提交反馈..."
+        aria_helpful: "%{label}：有帮助"
+        aria_not_helpful: "%{label}：没有帮助"
+      summary_item:
+        disclaimer: "此 iNaturalist 用户评论的摘要由 AI 生成，可能不正确。您可以通过提供反馈来帮助我们改进这个摘要。"
+        default_label: "摘 要"
+        default_title: "摘要"
+        copy_link: "复制本摘要链接"
+        photo_tip_label: "照片提示"
+        photo_tip_aria: "照片提示： %{tip}"
+        references_toggle: "iNaturalist 用户评论参考"
+        user_fallback: "iNaturalist 用户"
+        reference_commented: "已评论"
+        view_comment: "查看评论"
+        view_reference_feedback: "查看参考反馈"
+      reference_feedback:
+        loading: "正在加载参考反馈..."
+        sign_in_required: "登录以对参考反馈进行投票。"
+        unavailable: "目前无法提供参考反馈。"
+        service_unavailable: "参考反馈服务目前不可用。"
+        submit_failed: "未能提交参考反馈。"
+        sign_in_tooltip: "登录以对此参考进行投票"
+        submitting_tooltip: "提交反馈..."
+        aria_helpful: "%{label}：有帮助"
+        aria_not_helpful: "%{label}： 没有帮助"
+      taxon_detail:
+        select_species: "选择一个物种以查看鉴定摘要。"
+        last_updated: "上次更新时间"
+        no_image: "无可用图片"
+        photo_tips_heading: "照片提示"
+        summary_uuid: "分类单元鉴定摘要 UUID"
+      taxa_list:
+        group_labels:
+          animalia: "其他动物"
+          actinopterygii: "辐鳍鱼"
+          aves: "鸟类"
+          reptilia: "爬行动物"
+          amphibia: "两栖动物"
+          mammalia: "哺乳动物"
+          arachnida: "蛛形纲动物 Arachnids"
+          insecta: "昆虫"
+          plantae: "植物"
+          fungi: "真菌"
+          protozoa: "原 生 动物"
+          mollusca: "软体动物"
+          chromista: "色藻"
+        other_group: "其他"
+        empty: "没有可用的物种。"
   #Title of a section warning the user about something
   warning_title: 警告
   wikimedia: Wikimedia

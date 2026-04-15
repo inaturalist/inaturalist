@@ -7,6 +7,12 @@ class SiteStatistic < ApplicationRecord
     :platforms_cumulative
   ]
 
+  def self.record_for( stat_date: nil )
+    records = SiteStatistic.order( created_at: :desc )
+    record = record_for_date( records, stat_date )
+    [record, records.to_a]
+  end
+
   def self.generate_stats_for_day( at_time = Time.now, options = {} )
     at_time = at_time.utc.end_of_day
     if options[:force]
@@ -14,7 +20,6 @@ class SiteStatistic < ApplicationRecord
     elsif stats_generated_for_day?( at_time )
       return
     end
-    sleep 1
     site_statistic_data = STAT_TYPES.to_h {| st | [st, send( "#{st}_stats", at_time )] }
     daily_active_user_model_data = generate_daily_active_user_model_data( at_time )
     site_statistic_data[:daily_active_user_model] = daily_active_user_model_data[:statistic]
@@ -43,6 +48,19 @@ class SiteStatistic < ApplicationRecord
   def self.first_stat
     @@first_stat ||= SiteStatistic.order( "created_at asc" ).first
   end
+
+  def self.record_for_date( records, stat_date )
+    return records.first unless stat_date.present?
+
+    parsed_date = begin
+      Time.zone.parse( stat_date )
+    rescue StandardError
+      nil
+    end
+    record = records.where( "DATE(created_at) = DATE(?)", parsed_date ).first if parsed_date
+    record || records.first
+  end
+  private_class_method :record_for_date
 
   def self.observations_stats(at_time = Time.now)
     at_time = at_time.utc

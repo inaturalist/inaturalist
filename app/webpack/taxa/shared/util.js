@@ -3,10 +3,10 @@ import React from "react";
 import { COLORS } from "../../shared/util";
 
 const urlForTaxon = t => (
-  t ? `/taxa/${t.id}-${t.name.replace( /\W/g, "-" )}` : null
+  t ? `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}` : null
 );
 const urlForTaxonPhotos = ( t, params ) => {
-  let url = `/taxa/${t.id}-${t.name.replace( /\W/g, "-" )}/browse_photos`;
+  let url = `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}/browse_photos`;
   if ( params ) {
     url += `?${_.map( params, ( v, k ) => `${k}=${v}` ).join( "&" )}`;
   }
@@ -227,7 +227,8 @@ const TABS = {
   taxonomy: "taxonomy",
   status: "status",
   similar: "similar",
-  curation: "curation"
+  curation: "curation",
+  identifications: "identifications"
 };
 
 const RANK_LEVELS = {
@@ -269,7 +270,7 @@ const RANK_LEVELS = {
 
 const getChosenTab = ( tab, rankLevel ) => {
   const speciesTabsSet = new Set( [TABS.map, TABS.articles, TABS.interactions,
-    TABS.taxonomy, TABS.status, TABS.similar] );
+    TABS.taxonomy, TABS.status, TABS.similar, TABS.identifications] );
   const genusTabsSet = new Set( [TABS.map, TABS.articles,
     TABS.highlights, TABS.taxonomy, TABS.similar] );
   const aboveGenusTabsSet = new Set( [TABS.map, TABS.articles, TABS.highlights, TABS.taxonomy] );

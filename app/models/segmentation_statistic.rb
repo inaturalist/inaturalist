@@ -8,7 +8,6 @@ class SegmentationStatistic < ApplicationRecord
     elsif stats_generated_for_day?( at_time )
       return
     end
-    sleep 1
     SegmentationStatistic.create!(
       data: generate_segmentation_metrics( at_time ),
       created_at: at_time.beginning_of_day
@@ -31,6 +30,25 @@ class SegmentationStatistic < ApplicationRecord
     users_from_db( end_date, segmentation_data ) if use_database
     segmentation_data
   end
+
+  def self.record_for( stat_date: nil )
+    records = SegmentationStatistic.order( created_at: :desc )
+    record = record_for_date( records, stat_date )
+    [record, records.to_a]
+  end
+
+  def self.record_for_date( records, stat_date )
+    return records.first unless stat_date.present?
+
+    parsed_date = begin
+      Time.zone.parse( stat_date )
+    rescue StandardError
+      nil
+    end
+    record = records.where( "DATE(created_at) = DATE(?)", parsed_date ).first if parsed_date
+    record || records.first
+  end
+  private_class_method :record_for_date
 
   # private
 

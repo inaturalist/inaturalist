@@ -62,7 +62,8 @@ class DateTimeFieldWrapper extends Component {
       inputProps,
       minDate,
       mode,
-      size
+      size,
+      placeholder
     } = this.props;
     return (
       <DateTimeField
@@ -75,6 +76,7 @@ class DateTimeFieldWrapper extends Component {
         maxDate={allowFutureDates ? null : moment( )}
         inputProps={inputProps}
         defaultText={defaultText || ""}
+        placeholder={placeholder}
         dateTime={dateTime}
         inputFormat={inputFormat || parsableDatetimeFormat( )}
         onChange={this.onChange}
@@ -97,7 +99,8 @@ DateTimeFieldWrapper.propTypes = {
     PropTypes.number,
     PropTypes.object
   ] ),
-  minDate: PropTypes.object
+  minDate: PropTypes.object,
+  placeholder: PropTypes.string
 };
 
 export default DateTimeFieldWrapper;

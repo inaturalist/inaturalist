@@ -29,6 +29,7 @@ class User < ApplicationRecord
   attr_accessor :make_observation_licenses_same,
     :make_photo_licenses_same,
     :make_sound_licenses_same,
+    :skip_welcome_email,
     :html,
     :pi_consent,
     :data_transfer_consent,
@@ -292,7 +293,6 @@ class User < ApplicationRecord
   before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
-  before_save :check_suspended_by_user
   before_save :remove_email_from_name
   before_save :set_pi_consent_at
   before_save :set_data_transfer_consent_at
@@ -308,6 +308,7 @@ class User < ApplicationRecord
   after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_create :send_welcome_email, if: lambda {| user |
+    return false if user.skip_welcome_email
     # Can't send emails to addresses that don't exist
     return false if user.email.blank?
 
@@ -381,6 +382,8 @@ class User < ApplicationRecord
   validate :validate_email_domain_exists
   validate :validate_canonical_email_not_shared_with_suspended_account
   validate :validate_faved_project_ids
+  validate :validate_new_admin_only_test_groups, if: -> { test_groups_changed? }
+  validate :validate_joining_helpful_id_tips_test_group, if: -> { test_groups_changed? }
 
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -390,6 +393,16 @@ class User < ApplicationRecord
   scope :admins, -> { joins( :roles ).where( "roles.name = 'admin'" ) }
   scope :active, -> { where( "suspended_at IS NULL" ) }
   scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
+  scope :suspension_expired, -> { where( "suspended_at IS NOT NULL AND suspended_until < ?", Time.now ) }
+
+  HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP = "helpful-id-tips-reviewer"
+  HELPFUL_ID_TIPS_TEST_GROUP = "helpful-id-tips"
+  ADMIN_ONLY_TEST_GROUPS = %w(
+    responsive-header
+    responsive-obs-detail
+    responsive-taxon-detail
+    helpful-id-tips-reviewer
+  ).freeze
 
   def login_must_not_contain_reserved_words
     return unless new_record? || login_changed?
@@ -476,6 +489,28 @@ class User < ApplicationRecord
     end
   end
 
+  def validate_new_admin_only_test_groups
+    return if is_admin?
+
+    previous_test_groups = test_groups_was.to_s.split( "|" )
+    new_test_groups = test_groups_array - previous_test_groups
+    return unless new_test_groups.intersect?( User::ADMIN_ONLY_TEST_GROUPS )
+
+    errors.add( :test_groups, :invalid )
+  end
+
+  def validate_joining_helpful_id_tips_test_group
+    return if is_admin?
+    return unless in_test_group?( HELPFUL_ID_TIPS_TEST_GROUP )
+
+    previous_test_groups = test_groups_was.to_s.split( "|" )
+    # it is required that non-admins were previously added to the reviewer
+    # test group in order to join the HELPFUL_ID_TIPS_TEST_GROUP
+    return if previous_test_groups.include?( HELPFUL_ID_TIPS_REVIEWER_TEST_GROUP )
+
+    errors.add( :test_groups, :invalid )
+  end
+
   def icon_url_provided?
     !self.icon.present? && !self.icon_url.blank?
   end
@@ -493,6 +528,53 @@ class User < ApplicationRecord
   def original_user_icon_url
     return nil if icon.blank?
     "#{ApplicationController.helpers.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
+  end
+
+  # Override devise_suspendable's suspended? to support timed suspensions.
+  # A user is considered suspended if suspended_at is set AND either:
+  #   - suspended_until is nil (indefinite suspension), or
+  #   - suspended_until is in the future (timed suspension still active)
+  def suspended?
+    return false unless suspended_at?
+
+    suspended_until.nil? || suspended_until > Time.zone.now
+  end
+
+  # Override devise_suspendable's unsuspend! to also clear suspended_until.
+  # We check suspended_at? directly (rather than suspended?) so that unsuspending
+  # a user whose timed suspension has already expired still clears suspended_at.
+  def unsuspend!
+    return unless suspended_at?
+
+    self.spammer = false
+    self.suspended_by_user = nil
+    self.suspended_at = nil
+    self.suspension_reason = nil
+    self.suspended_until = nil
+    save( validate: false ) if self.changed?
+  end
+
+  # Unsuspend this user if their timed suspension has expired.
+  # Login-time equivalent of the inaturalist:auto_unsuspend rake task.
+  # Idempotent: no-op for users who are not suspended, have indefinite
+  # suspensions, or whose timed suspension has not yet expired.
+  def unsuspend_if_timed_suspension_expired!
+    return unless suspended_at?
+    return if suspended_until.nil?
+    return if suspended_until > Time.zone.now
+
+    action = ModeratorAction.new(
+      action: ModeratorAction::UNSUSPEND,
+      resource: self,
+      user: nil,
+      reason: "Timed suspension expired automatically"
+    )
+    return if action.save
+
+    Rails.logger.error(
+      "[ERROR] User#unsuspend_if_timed_suspension_expired!: " \
+        "ModeratorAction save failed for user #{id}: #{action.errors.full_messages.join( ', ' )}"
+    )
   end
 
   def active?
@@ -522,6 +604,32 @@ class User < ApplicationRecord
     return true if anonymous?
 
     super
+  end
+
+  # Override devise_suspendable's inactive_message to include suspension
+  # duration and reason for timed suspensions. Indefinite suspensions only
+  # show the base message to avoid exposing historical reasons from before
+  # timed suspensions were implemented.
+  def inactive_message
+    if suspended?
+      parts = [I18n.t( "devise.failure.user.suspended" ), I18n.t( "devise.failure.user.suspended_appeal" )]
+      if suspended_until.present?
+        parts << I18n.t(
+          "devise.failure.user.suspended_until",
+          # do relative time formatting here
+          until: ApplicationController.helpers.time_until_in_words( suspended_until )
+        )
+        if suspension_reason.present?
+          parts << I18n.t(
+            "devise.failure.user.suspension_reason",
+            reason: ModeratorAction.translate_reason( suspension_reason )
+          )
+        end
+      end
+      parts.join( " " )
+    else
+      super
+    end
   end
 
   def download_remote_icon
@@ -950,11 +1058,6 @@ class User < ApplicationRecord
     if last_ip_changed? || latitude.nil?
       get_lat_lon_from_ip
     end
-  end
-
-  def check_suspended_by_user
-    return if suspended?
-    self.suspended_by_user_id = nil
   end
 
   def published_name
@@ -1482,6 +1585,10 @@ class User < ApplicationRecord
       resend_unsent_for_user( id )
   end
 
+  def send_unsuspended_email( reason = nil )
+    Emailer.delay.user_unsuspended( self, reason )
+  end
+
   def revoke_access_tokens_by_suspended_user
     return true unless suspended?
     Doorkeeper::AccessToken.where( resource_owner_id: id ).each(&:revoke)
@@ -1603,7 +1710,7 @@ class User < ApplicationRecord
     User.where(id: user_id).update_all(identifications_count: count)
   end
 
-  def self.update_observations_counter_cache(user_id)
+  def self.update_observations_counter_cache( user_id, options = {} )
     return unless user = User.find_by_id( user_id )
     result = Observation.elastic_search(
       filters: [
@@ -1616,6 +1723,8 @@ class User < ApplicationRecord
     )
     count = (result && result.response) ? result.response.hits.total.value : 0
     User.where( id: user_id ).update_all( observations_count: count )
+    return if options[:skip_indexing]
+
     user.reload
     user.elastic_index!
   end
@@ -1703,12 +1812,17 @@ class User < ApplicationRecord
 
   def moderated_with( moderator_action )
     if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
-      self.suspended_by_user = moderator_action.user
-      suspend!
+      self.suspended_until = moderator_action.suspended_until
+      if suspended_at?
+        self.suspension_reason = moderator_action.reason
+        save( validate: false ) if changed?
+      else
+        self.suspended_by_user = moderator_action.user
+        suspend!( moderator_action.reason )
+      end
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
-      self.spammer = false
-      self.suspended_by_user = nil
       unsuspend!
+      send_unsuspended_email( moderator_action.reason )
     elsif moderator_action.action == ModeratorAction::RENAME
       new_login = User.suggest_login( User::DEFAULT_LOGIN )
       self.login = new_login

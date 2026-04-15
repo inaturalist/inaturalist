@@ -3,6 +3,7 @@ import {
   RECEIVE_OBSERVATIONS,
   UPDATE_OBSERVATION_IN_COLLECTION,
   UPDATE_ALL_LOCAL,
+  SET_OBSERVATIONS,
   SET_REVIEWING,
   SET_PLACES_BY_ID,
   SET_LAST_REQUEST_AT
@@ -20,6 +21,11 @@ const observationsReducer = ( state = {
       page: action.page,
       totalPages: action.totalPages,
       results: action.results
+    } );
+  }
+  if ( action.type === SET_OBSERVATIONS ) {
+    return Object.assign( {}, state, {
+      results: action.observations
     } );
   }
   if ( action.type === UPDATE_OBSERVATION_IN_COLLECTION ) {

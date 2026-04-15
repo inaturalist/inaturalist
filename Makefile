@@ -19,5 +19,12 @@ else
 	docker compose -f ../iNaturalistAPI/docker-compose.yml -f ../iNaturalistAPI/docker-compose.override.yml up --build
 endif
 
+services-vision-api :
+ifdef VISION_API_PATH
+	docker compose -f $(VISION_API_PATH)/docker-compose.yml -f $(VISION_API_PATH)/docker-compose.override.yml up --build
+else
+	docker compose -f ../inatVisionAPI/docker-compose.yml -f ../inatVisionAPI/docker-compose.override.yml up --build
+endif
+
 stop :
 	docker compose stop
