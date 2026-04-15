@@ -92,9 +92,6 @@ class ModeratorActionsController < ApplicationController
   end
 
   def update
-    if params[:moderator_action]&.key?( :audit_comment )
-      @moderator_action.audit_comment = params[:moderator_action][:audit_comment]
-    end
     if @moderator_action.update( approved_update_params.merge( last_edited_by_user_id: current_user.id ) )
       flash[:notice] = t( :updated )
       redirect_to moderation_person_path( @moderator_action.resource )
@@ -103,6 +100,11 @@ class ModeratorActionsController < ApplicationController
         errors: @moderator_action.errors.full_messages.to_sentence )
       render :edit, layout: "bootstrap", status: :unprocessable_entity
     end
+  rescue ActionController::ParameterMissing
+    @moderator_action.errors.add( :audit_comment, :blank )
+    flash[:error] = t( :failed_to_save_record_with_errors,
+      errors: @moderator_action.errors.full_messages.to_sentence )
+    render :edit, layout: "bootstrap", status: :unprocessable_entity
   end
 
   def resource_url
@@ -140,7 +142,8 @@ class ModeratorActionsController < ApplicationController
   end
 
   def approved_update_params
-    params.require( :moderator_action ).permit( :suspended_until )
+    params.require( :moderator_action ).require( :audit_comment )
+    params.require( :moderator_action ).permit( :audit_comment, :suspended_until )
   end
 
   def resource_must_be_viewable_by_logged_in_user

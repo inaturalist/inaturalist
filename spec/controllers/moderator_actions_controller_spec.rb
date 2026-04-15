@@ -115,6 +115,7 @@ describe ModeratorActionsController do
       audit = suspend_action.audits.where( action: "update" ).last
       expect( audit ).not_to be_nil
       expect( audit.comment ).to eq audit_comment_text
+      suspended_user.reload
       expect( suspended_user.suspended_until ).to be_within( 1.second ).of( new_date )
     end
 
