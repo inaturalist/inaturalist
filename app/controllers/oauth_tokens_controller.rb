@@ -11,6 +11,7 @@ class OauthTokensController < Doorkeeper::TokensController
     super
     resource_owner_id = authorize_response.try(:token).try(:resource_owner_id)
     user = User.find_by_id( resource_owner_id ) unless resource_owner_id.blank?
+    user&.unsuspend_if_timed_suspension_expired!
     # A suspended user might have a valid access token
     raise INat::Auth::SuspendedError if user&.suspended?
   rescue INat::Auth::BadUsernamePasswordError

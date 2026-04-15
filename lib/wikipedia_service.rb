@@ -3,8 +3,10 @@
 class WikipediaService < MetaService
   attr_accessor :base_url
 
+  CACHE_HOURS = 720
+
   def initialize( options = {} )
-    super( options )
+    super
     locale = options[:locale] || I18n.locale || "en"
     subdomain = locale.to_s.split( "-" ).first
     self.base_url = "https://#{subdomain}.wikipedia.org"
@@ -12,9 +14,11 @@ class WikipediaService < MetaService
     @api_endpoint = ApiEndpoint.find_or_create_by(
       title: "Wikipedia (#{subdomain.upcase})",
       documentation_url: "#{base_url}/w/api.php",
-      base_url: "#{base_url}/w/api.php?",
-      cache_hours: 720
+      base_url: "#{base_url}/w/api.php?"
     )
+    if @api_endpoint.cache_hours != WikipediaService::CACHE_HOURS
+      @api_endpoint.update( cache_hours: WikipediaService::CACHE_HOURS )
+    end
     @default_params = {
       format: "xml"
     }

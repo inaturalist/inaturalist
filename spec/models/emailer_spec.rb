@@ -166,6 +166,37 @@ describe Emailer, "project_user_invitation" do
   end
 end
 
+describe Emailer, "user_unsuspended" do
+  let( :user ) { User.make! }
+
+  it "should work" do
+    mail = Emailer.user_unsuspended( user )
+    expect( mail.body ).not_to be_blank
+  end
+
+  it "should not deliver to a user with no email" do
+    user.update( email: "" )
+    mail = Emailer.user_unsuspended( user )
+    expect( mail.body ).to be_blank
+  end
+
+  it "should not deliver to a user who prefers no email" do
+    user.update( prefers_no_email: true )
+    mail = Emailer.user_unsuspended( user )
+    expect( mail.body ).to be_blank
+  end
+
+  it "should include reason when provided" do
+    mail = Emailer.user_unsuspended( user, "spamming" )
+    expect( mail.body ).to match( /spamming/ )
+  end
+
+  it "should not include reason when not provided" do
+    mail = Emailer.user_unsuspended( user )
+    expect( mail.body ).not_to match( /Reason/ )
+  end
+end
+
 describe Emailer, "bulk_observation_success" do
   let( :user ) { User.make! }
   it "should mention the filename" do

@@ -297,6 +297,10 @@ mi:
   conservation_status_updated: I whakahou te tūnga whāomoomo
   continue: Haere tonu
   continue_to_site: Haere tonu ki %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Tāpae
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Tāpae
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: Katoa
@@ -362,6 +366,8 @@ mi:
   curator: Kairauhī
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: He aha koe i pirangi ai hei kairauhī?
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Aratohu Kaitiaki
   curators: Kairauhī
   curator_coordinate_access: Āheitanga Taururuku Kaitiaki
   curator_coordinate_access_desc: |
@@ -452,6 +458,8 @@ mi:
     wāhitau, kāore e taea e koe te tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi.
   devise_confirmation_instructions_send_confirmation_email: Tukuna te īmera whakamana
   devise_reset_password_instructions_hello_email: Kia ora %{email}
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Tūhura
   disagree_: Whakahē
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
@@ -616,6 +624,8 @@ mi:
     other: hekaheka
   generate_your_stats: Tatauhia tāu tauanga
   Genus: Puninga
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Te Tīmatanga
   go: Hoake
   go_back: E hoki
   google: Kūkara
@@ -647,6 +657,10 @@ mi:
   id_withdrawn: Kua maunuhia te tautuhi
   identify: Tautuhitia
   identify_title: "Tautuhitia"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Tautohu
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Tautohu
   identification: tautuhi
   identification_by_user: Tautuhi nā %{user}
   #Notification when an identification has been deleted
@@ -681,6 +695,7 @@ mi:
   join: Hono mai
   join_the_largest_group_of_naturalists_in_the_world: E kuhu mai koe i te rōpū nui o kaitaiao i te ao!
   journal: Rangitaki
+  journal_posts: Ngā Whakairinga Tuhitaka
   jpg_png_or_gif: "JPG, PNG, GIF rānei"
   kml: KML
   label_colon: "%{label}:"
@@ -695,6 +710,7 @@ mi:
   latitude_in_decimals: 'Te ahopae i roto i nga tohu-a-ira, e.g. 38.123'
   latitude_value: "Ahopae: %{latitude}"
   leading: Whakamua
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Ako
   learn_more: Akohia tonuhia
   learn_more_raquo: "Akohia tonuhia &raquo;"
@@ -883,6 +899,8 @@ mi:
   notes: Kupu tīpoka
   number_of_observers_value: "E hia ngā kaimātaki: %{number}"
   number_of_observers: "E hia ngā kaimātaki"
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: mātakitaki
   observation: Mauhanga
   observation_: mauhanga
   observation_accuracy_experiment_continent: "Paparahi"
@@ -931,6 +949,7 @@ mi:
   observer_short: Kaimātaki
   of_places: wāhi
   only_view_nearby_suggestions: Tirohia ngā marohi tātata noa iho
+  or: ranei
   our_blog: Rangitaki tō mātou
   overview: Tirohanga Whānui
   password: Kupuhipa
@@ -1160,6 +1179,7 @@ mi:
   play_first_sound: Pureingia te oro tuatahi
   #Title to a section warning a user to exercise caution
   please_be_careful!: Kia tūpato!
+  powered_by_inaturalist_open_source_software_html: 'E āheitia ana e <a href="https://github.com/inaturalist/inaturalist" target="_new" >pūmanawa pūtake tuwhera iNaturalist</a>'
   press: Arapāho
   preview: Huritao takamua
   print_verb: Tā
@@ -1365,6 +1385,7 @@ mi:
   sign_in_with_google: Takiuru mai ki Kūkara
   sign_out: Takiputa
   sign_up: Rēhita
+  sign_up_sentence_case: Takiuru
   similar_species: Momo rite
   similar_taxa: Rōpū rite
   small: iti
@@ -1473,10 +1494,14 @@ mi:
   tos_privacy_guidelines_label: |
     Kei te whakaae au i ngā <a href="/terms" target="_blank">Tikanga whakamahi</a> me te <a href="/privacy" target="_blank">Kaupapahere tūmataiti</a>. Kua arotake au i ngā <a href="/pages/community+guidelines" target="_blank">Aratohu hapori</a>.
   total: Tapeke
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Riu
   'true': 'Pono'
   trending: Ee rōpū te haere
   two_thirds: 2/3
   type_species_name: "Patopatohia te ingoa momo"
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Te Mārama ki ngā Kaupapa
   updating: E whakahou ana...
   unsubscribe: Ohauru kore
   update: Whakahou
@@ -1583,15 +1608,22 @@ mi:
   welcome_back!: Hoki mai anō!
   welcome_to_inat: "Nau mai, haere mai ki %{site_name}!"
   welcome_to_x_project: "Nau mai, haere mai ki %{project}!"
+  #e.g. "What was observed?"
   what: He aha
   what_did_you_see: He aha i mātaki koe?
   what_do_you_think: He aha e whakaaro koe?
   what_were_you_looking_for?: "He aha i kimi koe? (tūtira ūnga)"
   whats_this?: He aha tēnei?
+  #e.g. "When was it observed?"
   when: Inawhea
   when_did_you_see_it?: Inahea?
+  #e.g. "Where was it observed?"
   where: I hea
   where_were_you?: I hea i a koe?
+  #e.g. "Who observed it?"
+  who: Ko wai
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: He aha?
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Maunuhia
@@ -1860,6 +1892,191 @@ mi:
         works_on_all_your_devices: I mahinga i runga i āu pūrere katoa
         who_uses_site_name: "Ko wai e whakamahi %{site_name}?"
         join_today: Rēhita ināianei
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Te wāhi e āwhina ai tō pākiki ki te pūtaiao.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Tautuhia ngā tipu, ngā kararehe, ngā harore, me ētahi atu mea i a koe e tāpiri ana ki tētahi atlas ora o te ora i runga i te Ao.
+          #Primary call-to-action button in the hero section
+          cta_join: Hono ki te hapori
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Koreutu, kore hua, ā-hapori.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Mā te iNaturalist, ka taea e koe:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: ngā tipu, ngā kararehe, ngā harore, me ētahi atu
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: momo kua kitea e koe puta noa i te ao
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: ki te pūtaiao tūturu
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: taiao pātata
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: mai i tētahi hapori māori o te ao
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Te mana o te pūtaiao hapori
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: I kitea e %{user} i roto i %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Te hura anō i ngā momo ngaro roa
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Te %{moth_common_name} Kāore anō kia kitea te huhu i roto i ngā tekau tau, ā, i whakaarotia kua ngaro — tae noa ki te kitenga aituā o tētahi tūruhi i Aotearoa.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Te tūhura i ngā momo hou-ki-te pūtaiao
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — i whakapotohia ki <span class="italic">I. nat</span> — he momo mantis hou ki te pūtaiao i kitea e tētahi wahine i Ahitereiria e haere ana i tōna takiwā.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Te pare i ngā pūnaha pūnaha paetata
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            I huihui mai tētahi rōpū tūao paetata i California mā iNaturalist ki te pare i ngā amphibians heke e whakawhiti ana i tētahi huarahi arokē.
+          #Link below the stories to read more community science stories
+          read_more: Pānuitia ētahi atu pūrākau
+        observation:
+          #Heading for the sample observation section
+          heading: Ko ia kitenga e kōrero ana i tētahi pūrākau
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Ngā kitenga e āwhina ana ki te pūtaiao koiora
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: momo kua tuhinga puta noa i te ao
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: ngā pepa e whakahua ana i ngā raraunga iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: momo i kitea, i kitea anō rānei e ngā kaipūtaiao hapori
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Whakatuwheratia te taupānga me te whakaahua i tētahi tipu mohoao, kararehe, harore, ētahi atu rauropi rānei — mai i tō rohe, i ngā wāhi katoa rānei o te ao.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            E huatau ana te taupānga i tētahi tāutunga inamata tonu, ā, ka whakaūngia, ka whakamahine rānei tētahi hapori māori huri noa.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Ka noho tō kitenga hei raraunga tuwhera - e whakamahia ana e ngā kaipūtaiao, ngā kaitiaki, me ngā kairangahau puta noa i te ao.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Kei te tere ake te huri o te āhua, nā reira e hiahiatia ana e tātau <span class="underline">koe</span> hei āwhina ki te hopu i ngā mea e noho ana i hea.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            It has really helped me with species identification, in addition to giving me the opportunity to interact with different people around the world.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Marine Conservationist & Underwater Photographer, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            Ka whakatuwheratia e iNaturalist te tatau ki te nui o ngā rangahau hōu, mīharo hoki mō ngā tāke kāore i akona. Ki tōku whakaaro, ko tēnei pūhara te tapa o te pūtaiao rauropi.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Kaituhi Aratohu Āpure i Owlfly LLC, USA
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            Ka noho a iNaturalist me tōna hapori kaitāutu tūturu hei rauemi tino taonga i roto i aku hōparatanga. I āwhina ki te whakatakoto i te tūāpapa o aku mahi o nāianei.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Kairangahau Koiora, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            He utauta kaha te iNaturalist e tūhono ana i ngā tāngata, te āhua, me te mātauranga. Ka taea e au te whakaahua i tētahi momo ātaahua, tētahi rānei kāore anō kia whakaahuatia, ā, i te wā kotahi, ka āwhina ahau ki te tiaki i tō tātau taonga tuku iho.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Kaihangarau Taiao me te kaiwhakaahua ngahau, Brazil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Ahakoa kei hea koe i te ao, ahakoa he PhD koe, he aroha noa rānei koe ki waho, ka whakatata mai a iNaturalist i a koe ki te āhua o te ao me te maha o ngā hoa māori.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Kaimātai Koiora, Mehiko
+        everyone:
+          #Heading for the broad audience section
+          heading: He kaimāori te katoa
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Mēnā kua āta titiro koe ki tētahi mea ora me te miharo he aha tērā, māu te iNaturalist.
+          #Heading for the impact sub-section
+          impact_heading: Ka taea e koe te whai pānga
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Ka noho ia whakaahua e tiritiri ana koe hei wāhanga o tētahi pūkete pūtaiao ā-ao e whakawhirinaki ana ngā kairangahau puta noa i te ao.
+          #Heading for the community reputation sub-section
+          community_heading: '"Te wāhi tino pai i runga i te ipurangi"'
+          community_heading_2: Te wāhi tino pai i runga i te ipurangi
+          #Description of the welcoming community aspect
+          community_body: >
+            Haere mai mō ngā tāutunga, noho mō te hapori me te pānga ki te pūtaiao.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Tikiake i te taupānga iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Tīkina ngā tāutunga wā-tūturu me te āwhina ki te pūtaiao
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Ngā Tikiake"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Tūhura i ngā momo puta noa i te ao
+          #Button / link to browse species without downloading
+          button: Tūhura ināianei
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "I raro i te 13? Tikiake Rapu!"
+          #Description of Seek's badge and challenge features
+          body: Whiwhi tohu me te whai wāhi ki ngā wero ki te mātakitaki i ngā momo!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Ngā Arotakenga Whetū-5"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Tīkina tā mātou pānui ā-marama!
+          #Description of the newsletter's content
+          body: Kia tūhono tonu ki ngā pūrākau me ngā kitenga mai i te hapori iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: He whakahaere nonprofit a iNaturalist e tautoko ana i te pūtaiao me te atawhai.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Mā tō tautoko e taea ai tēnā.
+          #Call-to-action button for the donation section
+          cta: Hoatu ināianei
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Ngā FAQ
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Ka taea e au te tukuatu whakaahua kei a au kē?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Āe! Ki te mōhio koe āhea, ki hea hoki i tangohia ai tētahi whakaahua, ka pōhiritia ngā whakaahua tawhito.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Ko wai e āhei ana ki te mahi pūtaiao me ngā kitenga iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Ki te tangata! E tuwhera ana, e wātea noa ana ngā kitenga iNaturalist katoa - ki ngā kairangahau, ki ngā tohunga atawhai, me ngā tāngata pākiki.
+          #FAQ: research grade definition — question
+          research_grade_question: He aha te tikanga o te "kōeke rangahau"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Ina whakaae te hapori ki tētahi tāutunga, ka noho te kitenga hei "kōeke rangahau" ka uru ki te pūkete pūtaiao o te ao. Ka taea e ia tāutunga te āwhina ki te tiki ki reira.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Me mōhio au ki tāku e titiro nei?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Auare ake! Tiria tētahi whakaahua, ā, ka taea e tētahi hapori māori o te ao te āwhina i a koe ki te tautohu.
+          #FAQ: whether the app is required — question
+          need_app_question: Me whakamahi e au te taupānga?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            I runga i te papamahi, iNaturalist.org mahi tino pai. I tētahi pūrere pūkoro, ka hoatu e te taupānga ki a koe te wheako tino pai rawa - otirā mō te tāutu i ngā momo i te haere.
   date:
     abbr_day_names:
       - Tap

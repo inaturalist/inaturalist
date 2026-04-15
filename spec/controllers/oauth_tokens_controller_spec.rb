@@ -13,6 +13,16 @@ shared_examples_for "a token creator that blocks suspended users" do
     post :create, format: :json, params: default_params_for_strategy
     expect( response.code ).to eq "400"
   end
+  it "should return a token and unsuspend a user with an expired timed suspension" do
+    admin = make_admin
+    user.update_columns( suspended_at: 2.days.ago, suspended_until: 1.day.ago )
+    post :create, format: :json, params: default_params_for_strategy
+    json = JSON.parse( response.body )
+    expect( json["access_token"] ).not_to be_blank
+    user.reload
+    expect( user ).not_to be_suspended
+    expect( user.suspended_at ).to be_nil
+  end
 end
 
 describe OauthTokensController, "with resource owner password credentials" do

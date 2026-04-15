@@ -570,6 +570,8 @@ id:
     pertanyaan tentang paket Anda dan kami berhak menolak aplikasi dengan alasan apa pun.
   app_owner_application_inelligible: |
     Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 identifikasi pengembang dalam sebulan terakhir.
+  app_owner_application_inelligible2: |
+    Untuk mengajukan permohonan, akun Anda harus berumur setidaknya 2 bulan dan harus sudah membuat setidaknya 10 identifikasi pengembang untuk pengguna lain dalam sebulan terakhir.
   app_owner_application_fields_explanation_html: Jelaskan fungsi yang akan dimiliki aplikasi Anda dan bagaimana rencana Anda untuk menggunakannya.
   app_owner_application_success: Permohonan menjadi pemilik aplikasi telah dikirim
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -830,6 +832,7 @@ id:
   casual: kasual
   casual_: Kasual
   casual_tooltip_html: 'Pengamatan "Kasual" tidak memiliki media, lokasi, atau tanggal, atau tidak memenuhi persyaratan dan kualitas untuk menjadi bagian dari kelas "Riset" atau "Memerlukan ID" karena satu dan lain hal. <a href="https://www.inaturalist.org/pages/help#quality">Pelajari lebih lanjut tentang tingkat kualitas</a>'
+  casual_tooltip_html2: 'Pengamatan "kasual" tidak memiliki media, lokasi, atau tanggal, atau tidak memenuhi persyaratan tingkat kualitas "Riset" atau "Memerlukan ID" karena alasan lain. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Pelajari tingkat kualitas lebih lanjut</a>'
   categories: Kategori
   cc_0_description: "Lisensi ini merilis pekerjaan Anda kepada domain publik, sehingga orang lain dapat menyalin, memodifikasi, mendistribusikan dan melakukan pekerjaan Anda, bahkan dapat dipakai pula untuk tujuan komersial, tanpa perlu meminta izin atau memberikan penghargaan. Ini adalah lisensi paling akomodatif yang ditawarkan. Direkomendasikan untuk penyebaran seluas-luasnya dan penggunaan bahan-bahan berlisensi."
   cc_0_name: Tidak Ada Hak Cipta (CC0)
@@ -1088,6 +1091,10 @@ id:
     %{user} memperlihatkan %{item} ini karena "%{reason}"
   continue: Lanjutkan
   continue_to_site: Lanjutkan ke %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Berkontribusi
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Berkontribusi
   contributor_cannot_be_found: Kontributor tidak dapat ditemukan
   contributors_to_project: "Kontributor di %{project}"
   controlled_term_labels:
@@ -1249,6 +1256,10 @@ id:
   couldnt_change_your_password: "tidak dapat merubah kaa sandi anda: %{e}"
   couldnt_find_a_user_matching_x_param: "tidak dapat menemukan penggunan yang sesuai %{id}"
   couldnt_find_that_taxon: tidak dapat menemukan taksa tersebut
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Jumlah Menurun
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Jumlah Naik
   create: Buat
   create_a_guide: Membuat panduan
   create_a_new_field: Buat Kolom Baru
@@ -1677,6 +1688,8 @@ id:
   devise_unlock_instructions_click_the_link: |
     Klik tautan di bawah ini untuk membuka akun Anda
   devise_unlock_instructions_unlock: Buka Akun Anda
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Temukan
   discoveries: Penemuan
   did_you_mean: 'Apakah maksud Anda'
   did_you_photos_flickr?: Apakah Anda pernah menempatkan foto di Flickr?
@@ -1714,7 +1727,7 @@ id:
   #short as possible
   donate: DONASI
   #Imperative verb; link to a page where a user can donate money to iNaturalist
-  donate_: Menyumbangkan
+  donate_: Donasi
   donate_again_caps: DONASI LAGI
   donate_again_today_caps: DONASI LAGI SEKARANG
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -2288,6 +2301,10 @@ id:
   identify_observations: "Kenali Pengamatan"
   identify_observations_by_these_users: Kenali Pengamatan Oleh Pengguna Ini
   identify_title: "Kenali"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identifikasi
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Identifikasi
   identification: identifikasi
   identification_by_user: Identifikasi oleh %{user}
   #Notification when an identification has been deleted
@@ -2523,6 +2540,7 @@ id:
     identifications_in_month_year: Identifikasi terbanyak pada %{month_year}
     identifications_in_year: Identifikasi terbanyak pada %{year}
   leading: Memimpin
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Belajar
   learn_about_the_species_live_in: Pelajari tentang spesies yang hidup di
   learn_more: Pelajari lebih lanjut
@@ -2932,12 +2950,18 @@ id:
   misidentifications: Kesalahan identifikasi
   misleading_or_illegal_content_html: |
     Kontent menyesatkan atau ilegal, ejekan rasial atau etnis, dsb. Untuk definisi lebih jelas tentang hal "tidak pantas", harap melihat<a href="/help#inappropriate">FAQ</a>.
+  misleading_or_illegal_content_html2: |
+    Konten yang menyesatkan atau ilegal, penghinaan ras atau etnis, dll. Selebihnya mengenai
+    definisi kita tentang "kepantasan", baca
+    <a href="https://help.inaturalist.org/en/support/solutions/articles/151000169915">FAQ</a>.
   #Label shown when a date has not been entered
   missing_date: Tanggal Tidak Ada
   mobile: Ponsel
   moderation_history_for_user_html: Riwayat moderasi untuk %{user}
   moderation_history_desc_html: |
     Ini termasuk tindakan moderator (seperti menyembunyikan atau menampilkan komentar), catatan, dan semua tanda yang diberikan pengguna ini kepada apapun kecuali taksa. Ini <strong>hanya dapat dilihat oleh kurator</strong> dan <strong>kurator tidak dapat melihat riwayatnya sendiri</strong>, jadi catatan tentang seseorang seharusnya tidak dapat dilihat oleh orang itu sendiri.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Penangguhan berakhir
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Sembunyikan
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -3096,6 +3120,7 @@ id:
   needs_id_: Perlu ID
   needs_id_expandable_html: "<span class='full'>Perlu </span>ID"
   needs_id_tooltip_html: 'Pengamatan yang "Memerlukan ID" memiliki media, lokasi, dan tanggal, tetapi masih membutuhkan konsensus supaya menjadi identifikasi yang tepat. <a href="https://www.inaturalist.org/pages/help#quality">Pelajari tentang tingkat kualitas</a>'
+  needs_id_tooltip_html2: 'Pengamatan yang "Memerlukan ID" memiliki media, lokasi, dan tanggal, tetapi masih membutuhkan persetujuan komunitas untuk mendapatkan identifikasi yang tepat. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Pelajari lebih lanjut mengenai tingkat kualitas</a>'
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, bagian dari Jaringan iNaturalist
@@ -3311,6 +3336,8 @@ id:
   obscured_or_private: dikaburkan atau untuk pribadi
   obscured_description: |
     Koordinat publik yang ditampilkan sebagai titik acak dalam jangkauan 0.2 derajat lin/buj yang memiliki koordinat sebenarnya.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Amati
   observation: Pengamatan
   observation_: pengamatan
   observation_accuracy_experiment_the_sample_for: "Sampel untuk eksperimen ini belum dibuat"
@@ -4658,6 +4685,7 @@ id:
   research_grade: Kelas Riset
   research_grade_short_html: "K<span class='full'>elas </span>R<span class='full'>iset</span>"
   research_grade_tooltip_html: 'Pengamatan "Kelas Riset" memiliki media, lokasi, dan tanggal, dan konsensus komunitas pada sebuah identifikasi yang pasti (biasanya pada tingkat spesies). <a href="https://www.inaturalist.org/pages/help#quality">Pelajari tentang tingkat kualitas</a>'
+  research_grade_tooltip_html2: 'Pengamatan "Kelas Riset" memiliki media, lokasi, dan tanggal, dan persetujuan komunitas akan suatu ID yang pasti (biasanya pada tingkat spesies). <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Pelajari lebih lanjut mengenai tingkat kualitas</a>'
   research_grade_observations_have: 'Pengamatan "Kelas Riset" memiliki tanggal, foto, koordinat dan ID dari komunitas. Klik untuk melihat penilaian kualitas data.'
   research_grade_qualification: Kualifikasi Kelas Riset
   #Label for a button that re-sends the account confirmation email and signs
@@ -4861,6 +4889,7 @@ id:
   sign_in_with_google: Masuk dengan Google
   sign_out: Keluar
   sign_up: Daftar
+  sign_up_sentence_case: Daftar
   similar_species: Spesies Serupa
   similar_taxa: Taksa Serupa
   #Journal post formatting option
@@ -4958,6 +4987,7 @@ id:
   sorry_you_need_to_be_signed_in_and: Maaf, Anda harus masuk dan memiliki akun Flickr terkait untuk mengunggah tag langsung ke Flickr.
   sort: Urutkan
   sort_by: Urut berdasarkan
+  sort_included_projects_on_leaderboard_by: Urutkan proyek yang disertakan di papan peringkat berdasarkan
   sorting_by: Urut berdasarkan
   soundcloud_needs_to_confirm: "SoundCloud perlu konfirmasi Anda untuk menghubungkan akun Anda dengan %{site_name}."
   sounds:
@@ -5101,6 +5131,26 @@ id:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Cocok untuk Wikipedia dan proyek Wikimedia Foundation lainnya
   summary: Ringkasan
   supporting: Pendukung
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Durasi penangguhan
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 hari
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 hari
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 minggu
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 bulan
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 bulan
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Tak terbatas
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Kustom
+  #the time at which a users suspension ends
+  suspend_until: Tangguhkan sampai
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Tanggal dan waktu di zona waktu lokal browser Anda.
   suspend_user: Tangguhkan pengguna
   suspend_user_html: Tangguhkan %{user}
   suspend_user_reason_instructions_html: |
@@ -5570,6 +5620,8 @@ id:
   total_observations_caps: TOTAL PENGAMATAN
   total_species_observed_caps: TOTAL SPESIES YANG DIAMATI
   total_unique_observers: Total pengamat yang unik
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Lacak
   translated_languages: Bahasa Yang Diterjemahkan
   'true': 'Benar'
   trending: Sedang Populer
@@ -5969,6 +6021,7 @@ id:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Kami cukup yakin ini berada dalam %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Maaf tapi impor sekaligus %{filename} Anda gagal."
+  #e.g. "What was observed?"
   what: Apa
   what_did_you_see: Apa yang Anda lihat?
   what_did_you_see?: <em>Apa</em> yang Anda lihat?
@@ -5977,9 +6030,11 @@ id:
   what_want_to_list?: Apa yang ingin Anda daftarkan?
   what_were_you_looking_for?: "Apa yang sedang Anda cari? (daftar target)"
   whats_this?: Apa ini?
+  #e.g. "When was it observed?"
   when: Kapan
   when_did_you_see_it?: Kapan Anda melihatnya?
   when_did_you_see_them?: <em>Kapan</em> Anda melihatnya?
+  #e.g. "Where was it observed?"
   where: Di mana
   where_were_they?: Di manakah mereka berada?
   where_were_you?: Di manakah Anda berada?
@@ -5988,6 +6043,8 @@ id:
   why_are_you_making_this_change_optional: Mengapa Anda membuat perubahan ini? (opsional)
   why_are_you_making_this_change_cite_source_required: Mengapa Anda membuat perubahan ini? Tolong jelaskan dan sertakan sebuah sumber jika ada. (Wajib)
   why_you_can_see_the_coordinates: Mengapa Anda Bisa Melihat Koordinatnya
+  #e.g. "Who observed it?"
+  who: Siapa
   who_can_add_observation_fields_to_my_obs: Siapa yang dapat menambahkan bidang pengamatan ke pengamatan saya?
   who_can_add_observations_to_this_project?: Siapa yang dapat menambahkan pengamatan ke proyek ini?
   who_can_see_the_coordinates: Siapa Yang Bisa Melihat Koordinatnya
@@ -5996,6 +6053,8 @@ id:
   who_can_see_the_coordinates_trusted: Orang yang dipercayakan oleh pengamat dengan koordinat tersembunyi mereka
   who_helped_user_the_most: "Yang Membantu %{user} Paling Sering"
   who_user_helped_the_most: "Yang %{user} Bantu Paling Sering"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Mengapa?
   why_the_coordinates_are_obscured: Mengapa Koordinat Dikaburkan
   with_annotation: Dengan Catatan
   without_annotation: Tanpa Catatan
@@ -6207,6 +6266,7 @@ id:
   you_faved_this: Anda memfavoritkan ini!
   you_have_left_x_project: "Anda telah meninggalkan %{project}"
   you_have_not_confirmed_your_email_address: Anda belum mengonfirmasi email Anda!
+  you_havent_joined_any_projects: Anda belum bergabung dalam proyek apa pun
   you_havent_linked_your_inaturalist_google_account: "Anda belum menghubungkan akun %{site_name} Anda dan akun Google Anda"
   you_joined_this_project: Anda telah bergabung pada proyek ini!
   you_must_be_a_member_of_this_project_to_do_that: Anda harus menjadi anggota pada proyek ini untuk melakukan hal itu
@@ -7447,11 +7507,21 @@ id:
         end_time_desc: "Waktu bioblitz Anda tamat. Harus kurang dari setahun sejak waktu mulai"
         event_url_desc: |
           URL dari layanan pendaftaran acara yang Anda gunakan untuk bioblitz Anda. Jika ini adalah URL Eventbrite yang mencakup ID numerik, kami akan memasukkan widget pendaftaran pada halaman proyek Anda sampai bioblitz Anda dimulai.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Sembunyikan Papan Peringkat
         icon_desc: "Akan dipotong menjadi persegi"
         it_looks_like_this_project_can_be_converted: |
           Sepertinya proyek ini dapat dikonversi menjadi <a href="%{url}">Proyek Koleksi</a> baru.
         last_aggregated_at_desc: |
           Waktu saat agregator terakhir kali selesai menambahkan pengamatan ke proyek ini
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Papan peringkat
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Panel papan peringkat menampilkan pengguna dengan pengamatan terbanyak, pengguna dengan spesies terbanyak, serta spesies yang paling banyak diamati. Panel ini dapat disembunyikan.
         #Label for button to make another user the owner of a project
         make_owner: Jadikan Pemilik
         no_curators: |
@@ -7731,6 +7801,20 @@ id:
         recent_w_7_obs_desc: Mendaftar dalam 7 hari terakhir dan menambahkan >= 7 pengamatan
         #label for chart legend, linking to more information on the Seek app
         seek_desc_html: Dibuat menggunakan <a href="%{url}">Seek</a>
+        today_identified_by_others: Pengamatan yang Diidentifikasi Oleh Orang Lain (1 hari)
+        today_identified_by_others_by_iconic_taxon: Pengamatan yang Diidentifikasi Oleh Orang Lain (1 hari)
+        observations_unknown: Pengamatan Tidak Diketahui Setelah 30 Hari
+        observations_total_unknown_ratio: Rasio Pengamatan Tidak Diketahui (30 hari)
+        observations_total_unknown_ratio_desc: Rasio pengamatan yang tidak diketahui terhadap semua pengamatan
+        for_others: Untuk orang lain
+        ids_last_7_days: Identifikasi (7 hari)
+        ids_last_7_days_desc: Identifikasi yang dibuat selama 7 hari sebelumnya
+        ids_today: Identifikasi (1 hari)
+        ids_today_desc: Identifikasi yang dibuat dalam satu hari
+        ids_last_7_days_for_others: Identifikasi untuk orang lain (7 hari)
+        ids_last_7_days_for_others_desc: Identifikasi yang ditambahkan ke pengamatan orang lain selama 7 hari terakhir
+        ids_today_for_others: Identifikasi untuk orang lain (1 hari)
+        ids_today_for_others_desc: Identifikasi yang ditambahkan ke pengamatan orang lain dalam satu hari
         time_to_id_desc: Waktu hingga ID (jam, jendela 1 minggu)
         TTCID: WUIDK
         TTCID_desc: Waktu hingga menerima identifikasi dari orang lain yang cocok dengan takson komunitas.
@@ -8311,11 +8395,11 @@ id:
           other: "Orang Yang Mendaftar"
         how_it_works: Cara Kerja
         record_your_observations: Rekam pengamatan Anda
-        share_with_fellow_naturalists: Berbagi dengan sesama naturalis
+        share_with_fellow_naturalists: Bagikan dengan sesama naturalis
         discuss_your_findings: Diskusikan penemuan Anda
         contribute_to_science: Berkontribusi kepada Sains
         science_desc_html: |
-          Setiap pengamatan dapat berkontribusi untuk ilmu keanekaragaman hayati, dari kupu-kupu yang sangat langka hingga tanaman liar yang tumbuh di mana-mana. Kami membagikan temuan-temuanmu dengan penyimpanan data saintifik seperti <a href='http://gbif.org' target='_blank'>Fasilitas Informasi Keanekaragaman Hayati Global</a> untuk membantu para ilmuwan menemukan dan menggunakan datamu. Yang perlu kamu lakukan hanyalah mengamati.
+          Setiap pengamatan dapat berkontribusi untuk ilmu keanekaragaman hayati, dari kupu-kupu yang sangat langka hingga tanaman liar yang tumbuh di mana-mana. Kami membagikan temuan-temuan Anda dengan penyimpanan data ilmiah seperti <a href='http://gbif.org' target='_blank'>Fasilitas Informasi Keanekaragaman Hayati Global</a> untuk membantu para ilmuwan menemukan dan menggunakan data Anda. Yang perlu Anda lakukan hanyalah mengamati.
         nature_at_your_fingertips: Alam di Ujung Jari Anda
         keep_track: Pantau
         record_your_encounters: |
@@ -8333,9 +8417,194 @@ id:
         works_on_all_your_devices: Bekerja Di Semua Perangkat Anda
         install_our_mobile_apps: |
           Pasang aplikasi mobile kami sehingga Anda dapat selalu mengamati, bahkan tanpa sinyal seluler atau wifi.
-        who_uses_site_name: "Siapa Menggunakan %{site_name}?"
+        who_uses_site_name: "Siapa Yang Menggunakan %{site_name}?"
         what_are_you_waiting_for: Tunggu apa lagi?
-        join_today: Bergabunglah Hari Ini
+        join_today: Ayo Bergabung
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Tempat keingintahuan Anda berkontribusi pada ilmu pengetahuan.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Identifikasi tumbuhan, hewan, jamur, dan lebih banyak lagi sembari berkontribusi bagi atlas kehidupan di Bumi.
+          #Primary call-to-action button in the hero section
+          cta_join: Bergabunglah dengan komunitas
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Gratis, nirlaba, didukung komunitas.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Dengan iNaturalist, Anda dapat:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: tumbuhan, hewan, jamur, dll.
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: spesies yang pernah Anda lihat di seluruh dunia
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: bagi ilmu pengetahuan
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: alam di sekitar
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: dari komunitas naturalis global
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Kekuatan ilmu pengetahuan komunitas
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Dilihat oleh %{user} di %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Menemukan kembali spesies yang telah lama hilang
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            Ngengat %{moth_common_name} tidak terlihat selama beberapa dekade dan pernah dianggap punah —hingga seorang turis di Selandia Baru melihatnya secara tidak sengaja.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Menemukan spesies baru dalam sains
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — disingkat menjadi <span class="italic">I. nat</span> — adalah spesies belalang baru dalam sains yang ditemukan oleh seorang wanita di Australia saat sedang berjalan-jalan di lingkungannya.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Melindungi ekosistem lokal
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Sekelompok sukarelawan lokal di California berkumpul melalui iNaturalist untuk melindungi amfibi yang bermigrasi melintasi jalan yang sibuk.
+          #Link below the stories to read more community science stories
+          read_more: Baca lebih banyak cerita
+        observation:
+          #Heading for the sample observation section
+          heading: Setiap pengamatan menceritakan sebuah cerita
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: pengamatan yang berkontribusi pada ilmu keanekaragaman hayati
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: spesies terekam dari seluruh dunia
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: jurnal yang mengutip data iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: spesies ditemukan atau ditemukan kembali oleh ilmuwan komunitas
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Buka aplikasi dan foto tumbuhan liar, hewan, jamur, atau organisme lain — dari lingkungan Anda atau di mana saja di dunia.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Aplikasi ini memberikan identifikasi secara instan, dan komunitas naturalis global mengonfirmasi atau menyempurnakannya.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Pengamatan Anda menjadi data terbuka — digunakan oleh ilmuwan, konservasionis, serta peneliti di seluruh dunia.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Alam berubah semakin cepat, jadi kita membutuhkan <span class="underline">Anda</span> untuk membantu merekam apa yang tinggal di suatu tempat.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Ini sangat membantu saya untuk mengidentifikasi spesies dan memberi saya kesempatan untuk berinteraksi dengan berbagai orang yang berbeda di seluruh dunia.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Konservasionis Laut & Fotografer Bawah Air, Kenya
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist membuka pintu untuk begitu banyak penelitian baru dan menarik mengenai takson-takson yang belum banyak dipelajari. Menurut saya, platform ini adalah yang terdepan dalam ilmu ekologi.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Penulis Panduan Lapangan di Owlfly LLC, AS
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist dan komunitas pengidentifikasinya yang berdedikasi menjadi sumber daya yang tak ternilai dalam penjelajahan saya. Mereka membantu meletakkan dasar-dasar dari pekerjaan saya saat ini.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Peneliti Keanekaragaman Hayati, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist adalah alat yang ampuh untuk menghubungkan orang, alam, dan pengetahuan. Saya dapat memotret spesies langka, atau bahkan spesies yang belum dijelaskan, dan pada saat yang sama, saya bisa berkontribusi untuk melestarikan warisan alam kita.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Teknisi Lingkungan dan hobi fotografi, Brasil
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            iNaturalist akan membawa Anda lebih dekat dengan alam serta banyak rekan naturalis lain di mana pun Anda berada, baik Anda yang memiliki gelar doktor atau hanya penyuka alam bebas.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Ahli biologi, Meksiko
+        everyone:
+          #Heading for the broad audience section
+          heading: Setiap orang adalah seorang naturalis
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Jika Anda pernah melihat sesuatu yang hidup dari dekat dan bertanya-tanya apa itu, iNaturalist cocok untuk Anda.
+          #Heading for the impact sub-section
+          impact_heading: Anda bisa berdampak
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Setiap gambar yang Anda bagikan menjadi bagian dari catatan ilmiah global yang diandalkan oleh para peneliti di seluruh dunia.
+          #Heading for the community reputation sub-section
+          community_heading: '"Tempat online teramah"'
+          community_heading_2: Tempat online terbaik
+          #Description of the welcoming community aspect
+          community_body: >
+            Datang untuk identifikasinya, tinggal untuk komunitasnya dan berdampak bagi sains.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Unduh aplikasi iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Dapatkan identifikasi langsung & berkontribusilah untuk ilmu pengetahuan
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Unduhan"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Jelajahi spesies di seluruh dunia
+          #Button / link to browse species without downloading
+          button: Jelajahi sekarang
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Di bawah 13 tahun? Unduh Seek!"
+          #Description of Seek's badge and challenge features
+          body: Dapatkan lencana dan ambil bagian dalam tantangan untuk mengamati spesies!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ Ulasan Bintang 5"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Dapatkan buletin bulanan kami!
+          #Description of the newsletter's content
+          body: Tetap terhubung dengan cerita dan penemuan dari komunitas iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist adalah organisasi nirlaba yang mendukung sains dan konservasi.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Dukungan Anda memungkinkan hal itu.
+          #Call-to-action button for the donation section
+          cta: Donasi sekarang
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Pertanyaan Umum
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Bisakah saya mengunggah foto yang sudah saya miliki?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Bisa! Selama Anda tahu kira-kira kapan dan di mana foto tersebut diambil, foto lama dipersilakan.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Siapa yang bisa melakukan sains dengan pengamatan iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Siapa saja! Semua pengamatan iNaturalist terbuka dan tersedia secara gratis — untuk peneliti, praktisi konservasi, serta individu-individu yang ingin tahu.
+          #FAQ: research grade definition — question
+          research_grade_question: Apa yang dimaksud dengan "kelas riset"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Ketika masyarakat menyetujui identifikasi, pengamatan menjadi "tingkat penelitian" dan memasuki catatan ilmiah global. Setiap identifikasi dapat membantu membawanya ke sana.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Apakah saya perlu tahu apa yang saya lihat?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Gak juga! Bagikan foto dan komunitas naturalis global dapat membantu Anda mengidentifikasinya.
+          #FAQ: whether the app is required — question
+          need_app_question: Apakah saya perlu menggunakan aplikasi?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Di desktop, iNaturalist.org berfungsi dengan baik. Di perangkat seluler, aplikasi memberi Anda pengalaman yang paling baik — terutama untuk mengidentifikasi spesies saat bepergian.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Simpan dan atur untuk menambahkan lampiran
@@ -8479,6 +8748,11 @@ id:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}M"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:
@@ -8899,6 +9173,9 @@ id:
               staff_cannot_be_suspended: Staf tidak bisa ditangguhkan
             user_id:
               must_be_a_curator: harus merupakan kurator
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Harus di masa depan
         moderator_note:
           attributes:
             user:

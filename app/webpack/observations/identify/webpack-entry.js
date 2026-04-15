@@ -67,7 +67,7 @@ if ( defaultApiUrl ) {
   } );
 }
 
-setupKeyboardShortcuts( sharedStore.dispatch );
+setupKeyboardShortcuts( sharedStore.dispatch, sharedStore.getState );
 
 window.onpopstate = e => {
   sharedStore.dispatch( updateSearchParamsWithoutHistory( e.state ) );

@@ -1244,6 +1244,10 @@ he:
     %{user} חשף %{item} זה בגלל %{reason}
   continue: להמשיך
   continue_to_site: להמשיך ל%{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: תרומה
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: תרומה
   contributor_cannot_be_found: לא ניתן למצוא את התורמים
   contributors_to_project: "התורמים ל%{project}"
   controlled_term_labels:
@@ -1808,6 +1812,8 @@ he:
   devise_unlock_instructions_click_the_link: |
     יש ללחוץ על הקישור מטה כדי לפתוח את חשבונך
   devise_unlock_instructions_unlock: ביטול נעילת החשבון שלך
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: גלה
   discoveries: תגליות
   did_you_mean: 'האם התכוונת ל'
   did_you_photos_flickr?: האם העלית תמונות ל Flickr?
@@ -2422,6 +2428,10 @@ he:
   identify_observations: "זיהוי תצפיות"
   identify_observations_by_these_users: זיהוי תצפיות של המשתמשים הבאים
   identify_title: "זיהוי"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: זיהוי
+  #e.g. "Identify using iNaturalist"
+  identify_cta: זיהוי
   identification: זיהוי
   identification_by_user: זיהוי על ידי %{user}
   #Notification when an identification has been deleted
@@ -2652,6 +2662,7 @@ he:
     identifications_in_month_year: הכי הרבה זיהויים ב%{month_year}
     identifications_in_year: הכי הרבה זיהויים ב-%{year}
   leading: מוביל.ה
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: למדו
   learn_about_the_species_live_in: הכירו את המינים שחיים ב
   learn_more: מידע נוסף
@@ -3435,6 +3446,8 @@ he:
   obscured_or_private: מוסתר או פרטי
   obscured_description: |
     קואורדינטות גלויות מוצגות כנקודה אקראית בתוך תא של 0.2x0.2 מעלות אורך/רוחב שמכיל את הקואורדינטות האמיתיות
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: התבונן
   observation: תצפית
   observation_: תצפית
   observation_accuracy_experiment_the_sample_for: "הדגימה עבור ניסוי זה עוד לא יוצרה"
@@ -4992,6 +5005,7 @@ he:
   sign_in_with_google: כניסה באמצעות חשבון גוגל
   sign_out: התנתקות
   sign_up: הרשמה
+  sign_up_sentence_case: הירשמו
   similar_species: מינים דומים
   similar_taxa: טקסונים דומים
   #Journal post formatting option
@@ -5744,6 +5758,8 @@ he:
   total_observations_caps: סה"כ תצפיות
   total_species_observed_caps: סה"כ מינים שנצפו
   total_unique_observers: סה"כ מתצפתים יחודיים
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: מסלול
   translated_languages: שפות מתורגמות
   'true': 'נכון'
   trending: טרנדיים
@@ -6154,6 +6170,7 @@ he:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: להערכתנו זה בתוך ה%{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "סליחה, הייבוא בצובר של %{filename} נכשל."
+  #e.g. "What was observed?"
   what: מה
   what_did_you_see: מה ראית?
   what_did_you_see?: <em>מה</em> ראית?
@@ -6162,9 +6179,11 @@ he:
   what_want_to_list?: מה ברצונך לרשום?
   what_were_you_looking_for?: "מה חיפשת? (רשימת יעד)"
   whats_this?: מה זה?
+  #e.g. "When was it observed?"
   when: מתי
   when_did_you_see_it?: מתי ראית את זה?
   when_did_you_see_them?: <em>מתי</em> ראית אותם?
+  #e.g. "Where was it observed?"
   where: איפה
   where_were_they?: היכן הם היו?
   where_were_you?: היכן היית?
@@ -6173,6 +6192,8 @@ he:
   why_are_you_making_this_change_optional: למה החלטת לבצע שינוי זה? (אופציונאלי)
   why_are_you_making_this_change_cite_source_required: למה החלטת לבצע שינוי זה? נא להסביר, תוך ציטוט מקור אם אפשר. (חובה)
   why_you_can_see_the_coordinates: למה את.ה יכול.ה לראות את הקואורדינטות
+  #e.g. "Who observed it?"
+  who: מי
   who_can_add_observation_fields_to_my_obs: מי יכול.ה להוסיף שדות תצפית לתצפיות שלי?
   who_can_add_observations_to_this_project?: מי יכולים להוסיף תצפיות לפרוייקט?
   who_can_see_the_coordinates: מי יכול לראות את הקואורדינטות
@@ -6181,6 +6202,8 @@ he:
   who_can_see_the_coordinates_trusted: א.נשים שהמתצפת.ת בוטחת בהם עם הקואורדינטות המוסתרות שלה
   who_helped_user_the_most: "מי עזר.ה הכי הרבה ל%{user}"
   who_user_helped_the_most: "למי %{user} עזר.ה הכי הרבה"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: למה?
   why_the_coordinates_are_obscured: הסיבה שבגללה הקואורדינטות מוסתרות
   with_annotation: עם תווית
   without_annotation: ללא תווית
@@ -8454,6 +8477,191 @@ he:
         who_uses_site_name: "מי משתמש.ת ב-%{site_name}?"
         what_are_you_waiting_for: למה את.ה מחכה?
         join_today: הצטרפו היום
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: שבו הסקרנות שלך תורמת למדע.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            זהה צמחים, בעלי חיים, פטריות ועוד תוך הוספת אטלס חי של חיים על פני כדור הארץ.
+          #Primary call-to-action button in the hero section
+          cta_join: הצטרפו לקהילה
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: חינמי, ללא מטרות רווח, מופעל על ידי הקהילה.
+        features:
+          #Section label introducing the three core user actions
+          intro: "עם iNaturalist, אתה יכול:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: צמחים, בעלי חיים, פטריות ועוד
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: מינים שראיתם ברחבי העולם
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: למדע אמיתי
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: הטבע הסמוך
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: מקהילה עולמית של טבעונים
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: כוחו של מדע הקהילה
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: נראה על ידי %{user} בתוך %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: גילוי מחדש של מינים אבודים מזמן
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            ה %{moth_common_name} העש לא נצפה כבר עשרות שנים ופעם חשבו שנכחד — עד שתייר בניו זילנד הבחין בו במקרה.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: גילוי מינים חדשים למדע
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">אינימיה נט</span> — מקוצר ל <span class="italic">I. nat</span> — הוא מין גמל שלמה חדש למדע שנמצא על ידי אישה באוסטרליה שהלכה בשכונה שלה.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: הגנה על מערכות אקולוגיות מקומיות
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            קבוצת מתנדבים מקומיים בקליפורניה התאחדה דרך iNaturalist כדי להגן על דו-חיים נודדים שחצו כביש עמוס.
+          #Link below the stories to read more community science stories
+          read_more: קראו עוד סיפורים
+        observation:
+          #Heading for the sample observation section
+          heading: כל תצפית מספרת סיפור
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: תצפיות התורמות למדעי המגוון הביולוגי
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: מינים שתועדו ברחבי העולם
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: מאמרים המצטטים נתוני iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: מינים שהתגלו או התגלו מחדש על ידי מדעני קהילה
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            פתח את האפליקציה וצלם כל צמח בר, בעל חיים, פטריה או אורגניזם אחר — מהשכונה שלך או מכל מקום בעולם.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            האפליקציה מציעה זיהוי מיידי, וקהילה עולמית של טבעונים מאשרת או משפרת זאת.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            התצפית שלך הופכת לנתונים פתוחים — בשימוש מדענים, שומרי טבע וחוקרים ברחבי העולם.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            הטבע משתנה מהר מתמיד, ולכן אנחנו צריכים <span class="underline">אתה</span> כדי לעזור לתעד מה גר איפה.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            זה עזר לי מאוד בזיהוי מינים, בנוסף להזדמנות ליצור אינטראקציה עם אנשים שונים ברחבי העולם.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: שומר טבע ימי וצלם תת-ימי, קניה
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist פותח דלת להרבה מחקר חדש ומרגש על טקסונים שנחקרו מועט. לדעתי, הפלטפורמה הזו היא החזית של מדעי האקולוגיה.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: מחבר מדריך שטח ב-Owlfly LLC, ארה"ב
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist וקהילת המזהים המסורה שלה הפכו למשאב יקר ערך בחקריי. זה עזר להניח את היסודות לעבודה הנוכחית שלי.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: חוקר מגוון ביולוגי, סרי לנקה
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist הוא כלי עוצמתי שמחבר בין אנשים, טבע וידע. אני יכול לצלם מין נדיר, או אפילו כזה שטרם תואר, ובאותו זמן אני תורם לשימור המורשת הטבעית שלנו.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: טכנאי סביבתי וצלם חובבים, ברזיל
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            לא משנה איפה אתה בעולם, בין אם יש לך דוקטורט או פשוט אוהב את הטבע, iNaturalist יקרב אותך לטבע ולרבים מהטבע האחרים.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: ביולוג, מקסיקו
+        everyone:
+          #Heading for the broad audience section
+          heading: כולם טבעוניים
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            אם אי פעם הסתכלת מקרוב על משהו חי ותהית מהו זה, iNaturalist הוא בשבילך.
+          #Heading for the impact sub-section
+          impact_heading: אתה יכול לעשות רושם
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            כל תמונה שאתה משתף הופכת לחלק מרשומה מדעית עולמית שעליה סומכים חוקרים ברחבי העולם.
+          #Heading for the community reputation sub-section
+          community_heading: '"המקום הכי יפה באינטרנט"'
+          community_heading_2: המקום הכי נעים באינטרנט
+          #Description of the welcoming community aspect
+          community_body: >
+            בואו בשביל הזיהוי, הישארו למען הקהילה וההשפעה על המדע.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: הורידו את אפליקציית iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: קבל זיהויים בזמן אמת ותרום למדע
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ הורדות"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: חקור מינים ברחבי העולם
+          #Button / link to browse species without downloading
+          button: חקור עכשיו
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "מתחת לגיל 13? הורד את Seek!"
+          #Description of Seek's badge and challenge features
+          body: הרוויחו תגים והשתתפו באתגרים לצפייה במינים!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ ביקורות 5 כוכבים"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: קבלו את הניוזלטר החודשי שלנו!
+          #Description of the newsletter's content
+          body: הישארו מחוברים לסיפורים ולגילויים מקהילת iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist היא ארגון ללא מטרות רווח התומך במדע ובשימור.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: התמיכה שלך מאפשרת את זה.
+          #Call-to-action button for the donation section
+          cta: תרמו עכשיו
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: שאלות נפוצות
+          #FAQ: uploading existing photos — question
+          upload_existing_question: האם אני יכול להעלות תמונות שכבר יש לי?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            כן! כל עוד אתם יודעים בערך מתי ואיפה צולמו תמונה, תמונות ישנות מתקבלות בברכה.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: מי יכול לעשות מדע עם תצפיות iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            מישהו! כל התצפיות של iNaturalist פתוחות וזמינות בחופשיות — לחוקרים, לשימור מקצוענים ולאנשים סקרנים כאחד.
+          #FAQ: research grade definition — question
+          research_grade_question: מה המשמעות של "ציון מחקר"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            כאשר הקהילה מסכימה על זיהוי, התצפית הופכת ל"דרגת מחקר" ונכנסת לרשומות המדעיות העולמיות. כל זיהוי יכול לעזור להגיע לשם.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: האם אני צריך לדעת מה אני רואה?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            בכלל לא! שתפו תמונה, וקהילה עולמית של טבעונים תוכל לעזור לכם לזהות אותה.
+          #FAQ: whether the app is required — question
+          need_app_question: האם אני צריך להשתמש באפליקציה?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            במחשב שולחני, iNaturalist.org עובד מצוין. במכשיר נייד, האפליקציה מעניקה לך את החוויה הטובה ביותר — במיוחד לזיהוי מינים תוך כדי תנועה.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: יש לשמור ולערוך על מנת להוסיף צרופות

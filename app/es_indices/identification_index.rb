@@ -14,7 +14,7 @@ class Identification < ApplicationRecord
     )
   }
 
-  settings index: { number_of_shards: Rails.env.production? ? 12 : 4, analysis: ElasticModel::ANALYSIS } do
+  settings index: { number_of_shards: Rails.env.production? ? 24 : 4, analysis: ElasticModel::ANALYSIS } do
     mappings( dynamic: true ) do
       indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :category, type: "keyword"

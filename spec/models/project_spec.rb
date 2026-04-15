@@ -30,7 +30,6 @@ describe Project do
     it { is_expected.to validate_uniqueness_of :title }
     it { is_expected.to validate_exclusion_of( :title ).in_array Project::RESERVED_TITLES + %w(user) }
     it { is_expected.to validate_inclusion_of( :map_type ).in_array Project::MAP_TYPES }
-
     context "when bioblitz" do
       subject { Project.make project_type: Project::BIOBLITZ_TYPE }
       it { is_expected.to validate_presence_of( :start_time ).with_message "can't be blank for a bioblitz" }
@@ -137,6 +136,23 @@ describe Project do
       p = Project.make!( title: "1000 Föö" )
       p.save
       expect( p.slug ).to eq "1000-foo"
+    end
+
+    describe "umbrella_project_list_sort default" do
+      it "should default to alphabetical for new umbrella projects" do
+        project = Project.make!( project_type: "umbrella" )
+        expect( project.prefers_umbrella_project_list_sort ).to eq "alphabetical"
+      end
+
+      it "should allow an explicitly set sort value" do
+        project = Project.make!( project_type: "umbrella", prefers_umbrella_project_list_sort: "descending" )
+        expect( project.prefers_umbrella_project_list_sort ).to eq "descending"
+      end
+
+      it "should not set a default for non-umbrella projects" do
+        project = Project.make!( project_type: "collection" )
+        expect( project.prefers_umbrella_project_list_sort ).to be_nil
+      end
     end
 
     describe "for bioblitzes" do

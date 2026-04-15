@@ -1283,6 +1283,10 @@ ru:
     %{user} открыл это %{item}, поскольку "%{reason}"
   continue: Продолжить
   continue_to_site: Переходим к %{site_name}
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Внести вклад
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Внести вклад
   contributor_cannot_be_found: Не удаётся найти поставщика данных
   contributors_to_project: "Участники %{project}"
   controlled_term_labels:
@@ -1848,6 +1852,8 @@ ru:
   devise_unlock_instructions_click_the_link: |
     Нажмите на ссылку ниже, чтобы разблокировать свой аккаунт:
   devise_unlock_instructions_unlock: Разблокировать аккаунт
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Откройте для себя
   discoveries: Открытия
   did_you_mean: 'Возможно, вы имеете в виду'
   did_you_photos_flickr?: Размещаете ли вы фото на Flickr?
@@ -2470,6 +2476,10 @@ ru:
   identify_observations: "Идентифицируйте наблюдения"
   identify_observations_by_these_users: Идентифицируйте наблюдения этих пользователей
   identify_title: "Идентифицируйте"
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Идентифицировать
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Идентифицировать
   identification: идентификация
   identification_by_user: Идентификация %{user}
   #Notification when an identification has been deleted
@@ -2703,6 +2713,7 @@ ru:
     identifications_in_month_year: Наибольшее число идентификаций за %{month_year}
     identifications_in_year: Наибольшее число идентификаций за %{year}
   leading: Ведущий
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Изучайте
   learn_about_the_species_live_in: Узнать о видах, которые обитают в
   learn_more: Узнать больше
@@ -3485,6 +3496,8 @@ ru:
   obscured_or_private: скрытое или конфиденциальное
   obscured_description: |
     Публичные координаты показываются как произвольная точка, лежащая в пределах ячейки в 0,2 градуса шир/долг от истинных координат.
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Наблюдать
   observation: Наблюдение
   observation_: наблюдение
   observation_accuracy_experiment_the_sample_for: "Выборка наблюдений для этого эксперимента ещё не сгенерирована"
@@ -5050,6 +5063,7 @@ ru:
   sign_in_with_google: Войти через Google
   sign_out: Выйти
   sign_up: Регистрация
+  sign_up_sentence_case: Зарегистрируйтесь
   similar_species: Аналогичные виды
   similar_taxa: Похожие таксоны
   #Journal post formatting option
@@ -5817,6 +5831,8 @@ ru:
   total_observations_caps: ВСЕГО НАБЛЮДЕНИЙ
   total_species_observed_caps: ВСЕГО НАБЛЮДАЕМЫХ ВИДОВ
   total_unique_observers: Итого уникальных наблюдателей
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: След
   translated_languages: Переведенные языки
   'true': 'Да'
   trending: Анализ тенденций
@@ -6222,6 +6238,7 @@ ru:
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Извините, но ваш массовый импорт %{filename} не удался."
+  #e.g. "What was observed?"
   what: Что
   what_did_you_see: Что вы видели?
   what_did_you_see?: <em>Что</em> вы видели?
@@ -6230,9 +6247,11 @@ ru:
   what_want_to_list?: Какой список вы хотите составить?
   what_were_you_looking_for?: "Что вы ищете? (целевой список)"
   whats_this?: Что это?
+  #e.g. "When was it observed?"
   when: Когда
   when_did_you_see_it?: Когда вы это видели?
   when_did_you_see_them?: <em>Когда</em> вы это видели?
+  #e.g. "Where was it observed?"
   where: Где
   where_were_they?: Где они находились?
   where_were_you?: Где вы были?
@@ -6241,6 +6260,8 @@ ru:
   why_are_you_making_this_change_optional: Почему вы вносите это изменение? (опционально)
   why_are_you_making_this_change_cite_source_required: Почему вы вносите это изменение? Пожалуйста, объясните и укажите источник, если это возможно. (Требование)
   why_you_can_see_the_coordinates: Почему вы можете видеть координаты
+  #e.g. "Who observed it?"
+  who: Кто
   who_can_add_observation_fields_to_my_obs: Кто может добавлять поля наблюдения к моим наблюдениям?
   who_can_add_observations_to_this_project?: Кто может добавлять наблюдения к этому проекту?
   who_can_see_the_coordinates: Кто может видеть координаты
@@ -6249,6 +6270,8 @@ ru:
   who_can_see_the_coordinates_trusted: Лица, которым наблюдатель доверил свои скрытые координаты
   who_helped_user_the_most: "Кто больше всего помогал %{user}"
   who_user_helped_the_most: "Кому %{user} помогал больше всего"
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Почему?
   why_the_coordinates_are_obscured: Почему координаты скрыты
   with_annotation: Со значением
   without_annotation: Без значения
@@ -8598,6 +8621,191 @@ ru:
         who_uses_site_name: "Кто использует %{site_name}?"
         what_are_you_waiting_for: Чего же вы ждёте?
         join_today: Присоединяйтесь!
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Где ваше любопытство способствует науке.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Определяйте растения, животных, грибы и многое другое, дополняя живой атлас жизни на Земле.
+          #Primary call-to-action button in the hero section
+          cta_join: Присоединяйтесь к сообществу
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Бесплатно, некоммерческое, ориентированное на сообщество.
+        features:
+          #Section label introducing the three core user actions
+          intro: "С помощью iNaturalist вы можете:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: растения, животные, грибы и многое другое
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: Виды, которые вы видели по всему миру
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: к реальной науке
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Природа поблизости
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: от глобального сообщества натуралистов
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Сила общественной науки
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Видел %{user} в %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Повторное открытие давно потерянных видов
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} Мотылька не была замечена десятилетиями и когда-то считалась вымершей — пока турист в Новой Зеландии не заметил её случайно.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Открытие новых для науки видов
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — сокращённо <span class="italic">I. nat</span> — это новый в науке вид богомола, обнаруженный женщиной в Австралии, гуляющей по своему району.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Защита местных экосистем
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Группа местных волонтёров из Калифорнии объединилась через iNaturalist, чтобы защитить мигрирующих амфибий, переходящих оживлённую дорогу.
+          #Link below the stories to read more community science stories
+          read_more: Читайте больше историй
+        observation:
+          #Heading for the sample observation section
+          heading: Каждое наблюдение рассказывает свою историю
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Наблюдения, способствующие науке о биоразнообразии
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Виды, задокументированные по всему миру
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: статьи, ссылающиеся на данные iNaturalist
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Виды, открытые или вновь открытые учёными из сообщества
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Откройте приложение и сфотографируйте любые дикие растения, животные, грибы или другие организмы — как из вашего района, так и из любой точки мира.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Приложение мгновенно предлагает идентификацию, и глобальное сообщество натуралистов подтверждает или уточняет это.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Ваше наблюдение становится открытыми данными — используемыми учёными, защитниками природы и исследователями по всему миру.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Природа меняется быстрее, чем когда-либо, поэтому нам нужно <span class="underline">Ты</span> чтобы помочь записывать то, что где живёт.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Это действительно помогло мне в идентификации видов, а также дало возможность взаимодействовать с разными людьми по всему миру.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Морской охранник природы и подводный фотограф, Кения
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist открывает дверь для множества новых и захватывающих исследований недостаточно изученных таксонов. На мой взгляд, эта платформа — передовой уровень экологической науки.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Автор полевого руководства в Owlfly LLC, США
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist и его специализированное сообщество идентификаторов стали бесценным ресурсом в моих исследованиях. Это помогло заложить основу моей нынешней работы.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Исследователь биоразнообразия, Шри-Ланка
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist — мощный инструмент, который соединяет людей, природу и знания. Я могу фотографировать редкий вид или даже тот, который ещё не был описан, и одновременно вношу вклад в сохранение нашего природного наследия.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Экологический техник и любительский фотограф, Бразилия
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Где бы вы ни находились в мире — у вас есть степень PhD или вы просто любите природу — iNaturalist сблизит вас с природой и многими другими натуралистами.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Биолог, Мексика
+        everyone:
+          #Heading for the broad audience section
+          heading: Все — натуралисты
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Если вы когда-либо внимательно смотрели на что-то живое и задавались вопросом, что это такое, iNaturalist для вас.
+          #Heading for the impact sub-section
+          impact_heading: Ты можешь повлиять
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Каждая фотография, которую вы публикуете, становится частью глобального научного рекорда, на который опираются исследователи по всему миру.
+          #Heading for the community reputation sub-section
+          community_heading: '«Самое приятное место в интернете»'
+          community_heading_2: Самое приятное место в интернете
+          #Description of the welcoming community aspect
+          community_body: >
+            Приходите ради идентификации, оставайтесь ради сообщества и влияния на науку.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Скачайте приложение iNaturalist
+          #Subheading describing the two core benefits of the app
+          subheading: Получайте идентификацию в реальном времени и вносите вклад в науку
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Загрузки"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Исследуйте виды по всему миру
+          #Button / link to browse species without downloading
+          button: Исследуйте сейчас
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Младше 13 лет? Скачайте Поиск!"
+          #Description of Seek's badge and challenge features
+          body: Зарабатывайте значки и участвуйте в испытаниях по наблюдениям за видами!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-звёздочные отзывы"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Получайте нашу ежемесячную рассылку!
+          #Description of the newsletter's content
+          body: Оставайтесь на связи с историями и открытиями сообщества iNaturalist.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist — это некоммерческая организация, поддерживающая науку и охрану природы.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Ваша поддержка делает это возможным.
+          #Call-to-action button for the donation section
+          cta: Пожертвуйте сейчас
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Часто задаваемые вопросы
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Могу ли я загрузить фотографии, которые у меня уже есть?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Да! Если вы примерно знаете, когда и где была сделана фотография, старые фотографии приветствуются.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Кто может заниматься наукой с помощью наблюдений iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Кто-нибудь! Все наблюдения iNaturalist открыты и свободно доступны — как для исследователей, специалистов по охране природы, так и для любопытных людей.
+          #FAQ: research grade definition — question
+          research_grade_question: Что значит «исследовательская оценка»?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Когда сообщество соглашается на идентификацию, наблюдение становится «исследовательским уровнем» и попадает в мировой научный архив. Любая идентификация может помочь достичь её туда.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Нужно ли мне знать, на что я смотрю?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Совсем нет! Поделитесь фотографией, и глобальное сообщество натуралистов поможет вам его определить.
+          #FAQ: whether the app is required — question
+          need_app_question: Нужно ли мне пользоваться приложением?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            На компьютере iNaturalist.org работает отлично. На мобильном устройстве приложение обеспечивает лучший опыт — особенно для идентификации видов в дороге.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Сохраните и редактируйте для добавления вложений.

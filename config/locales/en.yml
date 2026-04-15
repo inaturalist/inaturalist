@@ -1311,6 +1311,10 @@ en:
     %{user} unhid this %{item} because "%{reason}"
   continue: Continue
   continue_to_site: Continue to %{site_name}
+  # e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Contribute
+  # e.g. "Contribute to iNaturalist"
+  contribute_cta: Contribute
   contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
   controlled_term_labels:
@@ -1474,6 +1478,10 @@ en:
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
   couldnt_find_that_taxon: Could't find that taxon.
+  # Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Count Descending
+  # Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Count Ascending
   create: Create
   create_a_guide: Create a Guide
   create_a_new_field: Create a New Field
@@ -1888,6 +1896,14 @@ en:
         to confirm your account.
       user:
         suspended: Your account has been suspended
+        # Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: If you think this was made in error and would like to appeal, please <a href="https://help.inaturalist.org/support/tickets/new">contact support.</a>
+        # Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        # with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Your suspension will be lifted in %{until}."
+        # Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        # an arbitrary string.
+        suspension_reason: "Reason: %{reason}"
       # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid:
         The reset password token is invalid. Please use the link in the most recently sent
@@ -1959,6 +1975,8 @@ en:
   devise_unlock_instructions_click_the_link: |
     Click the link below to unlock your account
   devise_unlock_instructions_unlock: Unlock Your Account
+  # e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Discover
   discoveries: Discoveries
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
@@ -2048,6 +2066,10 @@ en:
   edit: Edit
   # Title of the moderation note editor
   edit_moderator_note: Edit Moderator Note
+  # Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Edit Suspension
+  # Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: If you only need to update the reason or expiration date, you can <a href="%{edit_link}">edit the suspension</a> instead.
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
   edit_assessment: Edit Assessment
@@ -2621,6 +2643,10 @@ en:
   identify_observations: "Identify Observations"
   identify_observations_by_these_users: Identify Observations By These Users
   identify_title: "Identify"
+  # e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Identify
+  # e.g. "Identify using iNaturalist"
+  identify_cta: Identify
   identification: identification
   identification_by_user: Identification by %{user}
   # Notification when an identification has been deleted
@@ -2876,6 +2902,7 @@ en:
     identifications_in_month_year: Most identifications in %{month_year}
     identifications_in_year: Most identifications in %{year}
   leading: Leading
+  # e.g. "With iNaturalist, you can learn from a global community of naturalists"
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
@@ -3310,6 +3337,8 @@ en:
     <strong>only visible to curators</strong> and <strong>curators cannot view
     their own history</strong>, so notes about a person should never be visible
     to that person.
+  # Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Suspension expired
   # Action a moderator can take to hide content; verb
   moderator_actions_hide: Hide
   # Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -3696,6 +3725,8 @@ en:
   obscured_description: |
     Public coordinates shown as a random point within the 0.2 degree lat/lon
     cell that contains the true coordinates.
+  # verb, call to action, e.g. "Observe nature nearby"
+  observe: Observe
   observation: Observation
   observation_: observation
   observation_accuracy_experiment_the_sample_for: "The sample for this experiment has not yet been generated"
@@ -5342,6 +5373,7 @@ en:
   sign_in_with_google: Sign in with Google
   sign_out: Sign Out
   sign_up: Sign Up
+  sign_up_sentence_case: Sign up
   similar_species: Similar Species
   similar_taxa: Similar Taxa
   # Journal post formatting option
@@ -5527,6 +5559,7 @@ en:
   sorry_you_need_to_be_signed_in_and: Sorry, you need to be signed in and have a linked Flickr account to post tags directly to Flickr.
   sort: Sort
   sort_by: Sort By
+  sort_included_projects_on_leaderboard_by: Sort included projects on leaderboard by
   sorting_by: Sorting by
   soundcloud_needs_to_confirm: "SoundCloud needs to confirm that you want your account connected to %{site_name}."
   sounds:
@@ -5674,12 +5707,65 @@ en:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Suitable for Wikipedia and other Wikimedia Foundation projects
   summary: Summary
   supporting: Supporting
+  # label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Suspension duration
+  # a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 day
+  # a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 days
+  # a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 week
+  # a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 month
+  # a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 months
+  # a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Indefinite
+  # a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Custom
+  # label for the suspension reason dropdown
+  suspension_reason_label: Reason for suspension
+  # option for entering a custom suspension reason
+  suspension_reason_custom: Custom
+  # note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Please note this reason will be displayed to the suspended user.
+  # note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Please update the reason and explain why you are changing the user's suspension.
+  # predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    # reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Hate speech
+    # reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Insults or threats
+    # reason displayed to users who have been suspended for posting sexually explicit content
+    sexually_explicit_content: Sexually explicit content
+    # reason displayed to users who are creating false accounts to circumvent suspensions,
+    # https://en.wikipedia.org/wiki/Sock_puppet_account
+    sockpuppet_accounts: Sockpuppet accounts
+    # reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    false_ids_or_dqa_votes: Intentionally adding false IDs or DQA votes
+    # reason displayed to users who have been suspended for posting machine generated content
+    machine_generated_content: Machine generated observations, identifications and comments
+    # reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Continued copyright infringement (after warning)
+    # reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Continued posting of artificially generated media (after warning)
+    # reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Continued reduction of data quality (after warning)
+  # the time at which a users suspension ends
+  suspend_until: Suspend until
+  # a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Date and time in your browser's local timezone.
   suspend_user: Suspend user
   suspend_user_html: Suspend %{user}
   suspend_user_reason_instructions_html: |
     Explain why you are suspending this account and cite any violations of the
     %{link_start_tag}Community Guidelines%{link_end_tag}. Please refrain
      from adding personal opinions.
+  # a label on a field showing when a user is suspended until
+  suspended_until: Suspended until
+  # a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Suspended indefinitely
   sw_lat: SW Lat.
   sw_lon: SW Lon.
   sync: Sync?
@@ -6202,6 +6288,8 @@ en:
   total_observations_caps: TOTAL OBSERVATIONS
   total_species_observed_caps: TOTAL SPECIES OBSERVED
   total_unique_observers: Total unique observers
+  # e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Track
   translated_languages: Translated Languages
   'true': 'True'
   trending: Trending
@@ -6453,6 +6541,8 @@ en:
     The observer has chosen to trust you with the hidden coordinates of all
     their observations.
   user_updated_an_observation_field_html: '%{user} updated a value for "%{field_name}" on an observation by %{owner}'
+  # An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} Your account has been unsuspended"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
   username: Username
   username_description: This is the username you will use to log in, and other users can use to identify you on iNaturalist
@@ -6632,6 +6722,7 @@ en:
   # higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: We're pretty sure this is in the %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "We're sorry but your bulk import of %{filename} has failed."
+  # e.g. "What was observed?"
   what: What
   what_did_you_see: What did you see?
   what_did_you_see?: <em>What</em> did you see?
@@ -6640,9 +6731,11 @@ en:
   what_want_to_list?: What do you want to list?
   what_were_you_looking_for?: "What were you looking for? (target list)"
   whats_this?: What's this?
+  # e.g. "When was it observed?"
   when: When
   when_did_you_see_it?: When did you see it?
   when_did_you_see_them?: <em>When</em> did you see them?
+  # e.g. "Where was it observed?"
   where: Where
   where_were_they?: Where were they?
   where_were_you?: Where were you?
@@ -6651,6 +6744,8 @@ en:
   why_are_you_making_this_change_optional: Why are you making this change? (optional)
   why_are_you_making_this_change_cite_source_required: Why are you making this change? Please explain, and cite a source if possible. (Required)
   why_you_can_see_the_coordinates: Why You Can See the Coordinates
+  # e.g. "Who observed it?"
+  who: Who
   who_can_add_observation_fields_to_my_obs: Who can add observation fields to my observations?
   who_can_add_observations_to_this_project?: Who can add observations to this project?
   who_can_see_the_coordinates: Who Can See the Coordinates
@@ -6659,6 +6754,8 @@ en:
   who_can_see_the_coordinates_trusted: Individuals who the observer has trusted with their hidden coordinates
   who_helped_user_the_most: "Who Helped %{user} the Most"
   who_user_helped_the_most: "Who %{user} Helped the Most"
+  # Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Why?
   why_the_coordinates_are_obscured: Why the Coordinates Are Obscured
   with_annotation: With Annotation
   without_annotation: Without Annotation
@@ -8488,6 +8585,13 @@ en:
             iNaturalist account using the Seek app so that they can be seen on
             iNaturalist.org.
           </p>
+      user_unsuspended:
+        # A line in an email telling a user their account suspension is being lifted lifted.
+        message: Your account on %{site_name} has been unsuspended and you can use the site again.
+        # A line in an email telling a user why their account was suspended, with a variable for the custom reason.
+        reason: "Your account was suspended for the following reason: %{reason}"
+        # A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: '<a href="%{login_url}">Log in to your account</a> to continue using the site.'
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended
@@ -8596,11 +8700,22 @@ en:
           If this is an Eventbrite URL that includes a numerical ID, we'll
           include a sign-up widget on your project page until your bioblitz
           begins.
+        # label for a form field setting allowing the editor to toggle display
+        # of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Hide Leaderboard
         icon_desc: "Will be cropped to a square"
         it_looks_like_this_project_can_be_converted: |
           It looks like this project can be converted to a new <a href="%{url}">Collection Project</a>.
         last_aggregated_at_desc: |
           Time when the aggregator last finished adding observations to this project
+        # label for a heading for section allowing the editor to toggle
+        # display of the Leaderboard panel showing top observers and species
+        leaderboard: Leaderboard
+        # description of the project Leaderboard panel, to be shown next to a
+        # form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          The leaderboard panel displays users with the most observations, users with the
+          most species, and the top observed species. It can be optionally hidden.
         # Label for button to make another user the owner of a project
         make_owner: Make Owner
         no_curators: |
@@ -10011,6 +10126,229 @@ en:
         who_uses_site_name: "Who Uses %{site_name}?"
         what_are_you_waiting_for: What are you waiting for?
         join_today: Join Today
+    welcome_v2:
+      index:
+        hero:
+          # Main hero headline on the home page
+          headline: Where your curiosity contributes to science.
+          # Hero subheadline describing the core value proposition
+          subheadline: >
+            Identify plants, animals, fungi, and more while adding to a living
+            atlas of life on Earth.
+          # Primary call-to-action button in the hero section
+          cta_join: Join the community
+          # Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Free, nonprofit, community-powered.
+        features:
+          # Section label introducing the three core user actions
+          intro: "With iNaturalist, you can:"
+          # Description of what users can Identify
+          # Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: plants, animals, fungi, & more
+          # Description of what users can Track
+          # Read as "{Track} species you've seen worldwide"
+          track_desc: species you've seen worldwide
+          # Description of where users can Contribute
+          # Read as "{Contribute} to real science"
+          contribute_desc: to real science
+          # Description of what users can Discover
+          # Read as "{Discover} nature nearby"
+          discover_desc: nature nearby
+          # Description of what users can Learn
+          # Read as "{Learn} from a global community of naturalists"
+          learn_desc: from a global community of naturalists
+        stories:
+          # Section heading for real-world stories powered by community science
+          heading: The power of community science
+          # Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Seen by %{user} in %{place}
+          # Heading for the story about rediscovering an extinct moth species
+          moth_heading: Rediscovering long-lost species
+          # Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} moth hadn't been spotted in decades and was once
+            thought extinct — until a tourist in New Zealand spotted it by accident.
+          # Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Frosted phoenix moth"
+          # Heading for the story about a new-to-science mantis species
+          mantis_heading: Discovering new-to-science species
+          # Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — abbreviated to <span class="italic">I. nat</span> — is a new-to-science mantis species
+            found by a woman in Australia walking in her neighborhood.
+          # Alt text for the praying mantis story image
+          inat_img_alt: "Praying mantis"
+          # Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Protecting local ecosystems
+          # Body text for the amphibian protection story
+          amphibian_body: >
+            A group of local volunteers in California came together through
+            iNaturalist to protect migrating amphibians crossing a busy road.
+          # Alt text for the California newt story image
+          california_newt_img_alt: "California newt"
+          # Link below the stories to read more community science stories
+          read_more: Read more stories
+        observation:
+          # Heading for the sample observation section
+          heading: Every observation tells a story
+          # Alt text for the sample observation photo
+          photo_alt: "Green frog on leaf"
+          # Alt text for the map showing the observation location
+          map_alt: "Map showing observation location with large marker and other observations via grid cells"
+        stats:
+          # Description label for the observations statistic
+          # Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: observations contributing to biodiversity science
+          # Description label for the species statistic
+          # Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: species documented across the globe
+          # Description label for the papers statistic
+          # Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: papers citing iNaturalist data
+          # Description label for the discoveries statistic
+          # Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: species discovered or rediscovered by community scientists
+        how:
+          # Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Open the app and photograph any wild plant, animal, fungi, or other
+            organism — from your neighborhood or anywhere in the world.
+          # Step 2 description — explaining AI and community identification
+          step2_body: >
+            The app suggests an identification instantly, and a global community of
+            naturalists confirms or refines it.
+          # Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Your observation becomes open data — used by scientists, conservationists,
+            and researchers worldwide.
+          # Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Nature is changing faster than ever, so we need <span class="underline">you</span> to help
+            record what lives where.
+        testimonials:
+          # Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            It has really helped me with species identification, in addition to
+            giving me the opportunity to interact with different people around the world.
+          # Job title and location of the testimonial author (last name Gube)
+          gube_title: Marine Conservationist & Underwater Photographer, Kenya
+          # Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist opens the door to so much new and exciting research on understudied taxa.
+            In my opinion, this platform is the cutting edge of ecological science.
+          # Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Field Guide Author at Owlfly LLC, USA
+          # Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist and its dedicated community of identifiers became an invaluable resource
+            in my explorations. It helped lay the foundation of my current work.
+          # Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Biodiversity Researcher, Sri Lanka
+          # Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist is a powerful tool that connects people, nature, and knowledge. I can
+            photograph a rare species, or even one that has not yet been described, and at the
+            same time, I contribute to conserving our natural heritage.
+          # Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Environmental Technician and hobby photographer, Brazil
+          # Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            No matter where in the world you are, whether you have a PhD or just love the outdoors,
+            iNaturalist will bring you closer to nature and many fellow naturalists.
+          # Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Biologist, Mexico
+        everyone:
+          # Heading for the broad audience section
+          heading: Everyone is a naturalist
+          # Description inviting anyone who has been curious about a living thing
+          body: >
+            If you've ever looked closely at something living and wondered what it
+            was, iNaturalist is for you.
+          # Heading for the impact sub-section
+          impact_heading: You can make an impact
+          # Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Every photo you share becomes part of a global scientific record that
+            researchers worldwide depend on.
+          # Heading for the community reputation sub-section
+          community_heading: “The nicest place online”
+          community_heading_2: The nicest place online
+          # Description of the welcoming community aspect
+          community_body: >
+            Come for the identifications, stay for the community and impact on
+            science.
+        download:
+          # Heading prompting users to download the mobile app
+          heading: Download the iNaturalist app
+          # Subheading describing the two core benefits of the app
+          subheading: Get real-time identifications & contribute to science
+          # Social proof label showing total app downloads
+          # %{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Downloads"
+          # Alt text for the iNaturalist app phone screenshot
+          phone_alt: "iNat on two phone screens, showing hummingbird and California poppy observations"
+        explore:
+          # Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Explore species worldwide
+          # Button / link to browse species without downloading
+          button: Explore now
+        seek:
+          # Heading for the Seek app section, aimed at users under 13
+          heading: "Under 13? Download Seek!"
+          # Description of Seek's badge and challenge features
+          body: Earn badges and take part in challenges to observe species!
+          # Review count social proof label for the app
+          # %{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-Star Reviews"
+          # Alt text for the Seek app phone screenshot
+          phone_alt: "Seek app active on two phones, showing a toucan badge and the Species Nearby view"
+        newsletter:
+          # Heading inviting users to subscribe to the monthly newsletter
+          heading: Get our monthly newsletter!
+          # Description of the newsletter's content
+          body: Stay connected with stories and discoveries from the iNaturalist community.
+        donate:
+          # Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist is a nonprofit organization that supports science and conservation.
+          # Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Your support makes that possible.
+          # Call-to-action button for the donation section
+          cta: Donate now
+        faq:
+          # Section heading for the Frequently Asked Questions block
+          heading: FAQs
+          # FAQ: uploading existing photos — question
+          upload_existing_question: Can I upload photos I already have?
+          # FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Yes! As long as you know roughly when and where a photo was taken,
+            older photos are welcome.
+          # FAQ: who can use iNaturalist data — question
+          who_can_use_question: Who can do science with iNaturalist observations?
+          # FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Anyone! All iNaturalist observations are open and freely available — to
+            researchers, conservation practitioners, and curious individuals alike.
+          # FAQ: research grade definition — question
+          research_grade_question: What does "research grade" mean?
+          # FAQ: research grade definition — answer
+          research_grade_answer: >
+            When the community agrees on an identification, an observation becomes
+            "research grade" and enters the global scientific record. Every
+            identification can help get it there.
+          # FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Do I need to know what I'm looking at?
+          # FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Not at all! Share a photo, and a global community of naturalists can
+            help you identify it.
+          # FAQ: whether the app is required — question
+          need_app_question: Do I need to use the app?
+          # FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            On a desktop, iNaturalist.org works great. On a mobile device, the app
+            gives you the best experience — especially for identifying species on
+            the go.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Save and edit to add attachments
@@ -10118,6 +10456,18 @@ en:
       x_seconds:
         one: "%{count} second"
         other: '%{count} seconds'
+      # the number of hours for distance in time from now
+      x_hours:
+        # a singular hour
+        one: "%{count} hour"
+        # multiple hours (plural)
+        other: "%{count} hours"
+      # the number of years for distance in time from now
+      x_years:
+        # a singular year
+        one: "%{count} year"
+        # multiple years (plural)
+        other: "%{count} years"
     countdown_x_days:
       one: DAY
       other: DAYS
@@ -10169,6 +10519,11 @@ en:
         # 10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      # Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:
@@ -10618,6 +10973,10 @@ en:
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
+            suspended_until:
+              # Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Must be in the future
+
         moderator_note:
           attributes:
             user:

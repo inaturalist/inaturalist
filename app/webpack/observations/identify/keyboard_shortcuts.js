@@ -22,14 +22,6 @@ import {
 } from "./actions";
 import { increaseBrightness, decreaseBrightness } from "./ducks/brightnesses";
 
-const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
-  bind( shortcut, ( ) => {
-    dispatch( action( ) );
-    if ( options.callback ) { options.callback( ); }
-    return false;
-  }, options.eventType );
-};
-
 // Works for now but it's brittle, and will be confusing for locales other
 // than English. It might be wiser to move this logic to an action or a
 // reducer when the controlled terms get set
@@ -239,32 +231,47 @@ const focusObservationFields = ( ) => {
   }, 200 );
 };
 
-const setupKeyboardShortcuts = dispatch => {
-  bindShortcut( "right", showNextObservation, dispatch, { eventType: "keyup" } );
-  bindShortcut( "left", showPrevObservation, dispatch, { eventType: "keyup" } );
-  bindShortcut( "i", addIdentification, dispatch, { callback: focusCommentIDInput } );
-  bindShortcut( "c", addComment, dispatch, { callback: focusCommentIDInput } );
-  bindShortcut( "x", toggleCaptive, dispatch, { eventType: "keyup" } );
-  bindShortcut( "r", toggleReviewed, dispatch, { eventType: "keyup" } );
-  bindShortcut( "a", agreeWithCurrentObservation, dispatch, { eventType: "keyup" } );
-  bindShortcut( "z", zoomCurrentPhoto, dispatch );
-  bindShortcut( "space", togglePlayFirstSound, dispatch, { eventType: "keydown" } );
-  bindShortcut( "f", toggleFave, dispatch );
-  bindShortcut( ["command+left", "alt+left"], showPrevPhoto, dispatch );
-  bindShortcut( ["command+right", "alt+right"], showNextPhoto, dispatch );
-  bindShortcut( "shift+left", showPrevTab, dispatch );
-  bindShortcut( "shift+right", showNextTab, dispatch );
-  bindShortcut( ["command+up", "alt+up"], increaseBrightness, dispatch );
-  bindShortcut( ["command+down", "alt+down"], decreaseBrightness, dispatch );
-  bindShortcut( "shift+p", addProjects, dispatch, { callback: focusProjects } );
-  bindShortcut( "shift+f", addObservationFields, dispatch, { callback: focusObservationFields } );
+const setupKeyboardShortcuts = ( dispatch, getState ) => {
+  const isModalVisible = ( ) => getState( ).currentObservation.visible;
+
+  const bindShortcut = ( shortcut, action, options = { } ) => {
+    bind( shortcut, ( ) => {
+      if ( options.modalOnly && !isModalVisible( ) ) return false;
+      dispatch( action( ) );
+      if ( options.callback ) { options.callback( ); }
+      return false;
+    }, options.eventType );
+  };
+
+  // Arrow keys handle their own visibility checks in their actions,
+  // so they remain active even when the modal is hidden
+  bindShortcut( "right", showNextObservation, { eventType: "keyup" } );
+  bindShortcut( "left", showPrevObservation, { eventType: "keyup" } );
+  // All other shortcuts only apply when the observation modal is visible
+  bindShortcut( "i", addIdentification, { modalOnly: true, callback: focusCommentIDInput } );
+  bindShortcut( "c", addComment, { modalOnly: true, callback: focusCommentIDInput } );
+  bindShortcut( "x", toggleCaptive, { modalOnly: true, eventType: "keyup" } );
+  bindShortcut( "r", toggleReviewed, { modalOnly: true, eventType: "keyup" } );
+  bindShortcut( "a", agreeWithCurrentObservation, { modalOnly: true, eventType: "keyup" } );
+  bindShortcut( "z", zoomCurrentPhoto, { modalOnly: true } );
+  bindShortcut( "space", togglePlayFirstSound, { modalOnly: true, eventType: "keydown" } );
+  bindShortcut( "f", toggleFave, { modalOnly: true } );
+  bindShortcut( ["command+left", "alt+left"], showPrevPhoto, { modalOnly: true } );
+  bindShortcut( ["command+right", "alt+right"], showNextPhoto, { modalOnly: true } );
+  bindShortcut( "shift+left", showPrevTab, { modalOnly: true } );
+  bindShortcut( "shift+right", showNextTab, { modalOnly: true } );
+  bindShortcut( ["command+up", "alt+up"], increaseBrightness, { modalOnly: true } );
+  bindShortcut( ["command+down", "alt+down"], decreaseBrightness, { modalOnly: true } );
+  bindShortcut( "shift+p", addProjects, { modalOnly: true, callback: focusProjects } );
+  bindShortcut( "shift+f", addObservationFields, { modalOnly: true, callback: focusObservationFields } );
   _.forEach( annotationShortcuts, as => {
     bind( as.shortcut, ( ) => {
+      if ( !isModalVisible( ) ) return false;
       dispatch( addAnnotationFromKeyboard( as.term, as.value ) );
       return false;
     } );
   } );
-  bindShortcut( "?", toggleKeyboardShortcuts, dispatch );
+  bindShortcut( "?", toggleKeyboardShortcuts, { modalOnly: true } );
 };
 
 export default setupKeyboardShortcuts;

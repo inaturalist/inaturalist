@@ -1,0 +1,265 @@
+is:
+  about: Um
+  community: Samfélag
+  community_guidelines: Leiðbeiningar samfélagsins
+  #e.g. "With iNaturalist, you can contribute to real science"
+  contribute: Leggðu þitt af mörkum
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Leiðarvísir sýningarstjóra
+  #e.g. "With iNaturalist, you can discover nature nearby"
+  discover: Uppgötvaðu
+  documentation_for_developers_html: Skjölun fyrir <a href="/pages/developers">Þróunaraðilar</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: STYRKTU
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Gefðu
+  explore: Kannaðu
+  facebook: Facebook
+  feedback: Endurgjöf
+  forum: Vettvangur
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Að byrja
+  guides: Leiðbeiningar
+  help: Hjálp
+  #e.g. "With iNaturalist, you can identify nature nearby"
+  identify_verb: Auðkenna
+  #e.g. "Identify using iNaturalist"
+  identify_cta: Auðkenna
+  instagram: Instagram
+  jobs: Störf
+  journal_posts: Tímaritspóstar
+  #e.g. "With iNaturalist, you can learn from a global community of naturalists"
+  learn: Lærðu
+  log_in: Skráðu þig inn
+  member_of_the_inaturalist_network_html: |
+    Meðlimur <a href="%{url}">iNaturalist Network</a>
+  more: Meira
+  #verb, call to action, e.g. "Observe nature nearby"
+  observe: Fylgstu með
+  or: eða
+  our_blog: Bloggið okkar
+  people: Fólk
+  places: Staðir
+  powered_by_inaturalist_open_source_software_html: 'Knúin áfram af <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist opinn hugbúnaður</a>'
+  press: Fjölmiðlar
+  privacy: Persónuvernd
+  projects: Verkefni
+  search: Leit
+  sign_up: Skráðu þig
+  sign_up_sentence_case: Skráðu þig
+  site_stats: Tölfræði svæðisins
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Verslun
+  store_caps: VERSLUN
+  taxa_info: Upplýsingar um tegundir
+  terms_service: Notkunarskilmálar
+  #e.g. "With iNaturalist, you can track species you've seen worldwide"
+  track: Braut
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Skilningur á verkefnum
+  video_tutorials: Myndbandskennsluefni
+  #e.g. "What was observed?"
+  what: Hvað
+  #e.g. "When was it observed?"
+  when: Þegar
+  #e.g. "Where was it observed?"
+  where: Þar sem
+  #e.g. "Who observed it?"
+  who: Hver
+  #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
+  why_question: Af hverju?
+  views:
+    welcome_v2:
+      index:
+        hero:
+          #Main hero headline on the home page
+          headline: Þar sem forvitni þín stuðlar að vísindum.
+          #Hero subheadline describing the core value proposition
+          subheadline: >
+            Greindu plöntur, dýr, sveppi og fleira á meðan þú bætir við lifandi atlas af lífi á jörðinni.
+          #Primary call-to-action button in the hero section
+          cta_join: Gakktu í samfélagið
+          #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
+          tagline: Ókeypis, ekki rekið í hagnaðarskyni, knúið áfram af samfélaginu.
+        features:
+          #Section label introducing the three core user actions
+          intro: "Með iNaturalist getur þú:"
+          #Description of what users can Identify
+          #Read as "{Identify} plants, animals, fungi, & more"
+          identify_desc: Plöntur, dýr, sveppir og fleira
+          #Description of what users can Track
+          #Read as "{Track} species you've seen worldwide"
+          track_desc: tegundir sem þú hefur séð um allan heim
+          #Description of where users can Contribute
+          #Read as "{Contribute} to real science"
+          contribute_desc: Til raunverulegra vísinda
+          #Description of what users can Discover
+          #Read as "{Discover} nature nearby"
+          discover_desc: Náttúra í nágrenninu
+          #Description of what users can Learn
+          #Read as "{Learn} from a global community of naturalists"
+          learn_desc: Frá alþjóðlegu samfélagi náttúrufræðinga
+        stories:
+          #Section heading for real-world stories powered by community science
+          heading: Kraftur samfélagsvísinda
+          #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
+          observation_credit: Séð af %{user} í %{place}
+          #Heading for the story about rediscovering an extinct moth species
+          moth_heading: Enduruppgötvun löngu týndra tegunda
+          #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
+          moth_body: >
+            The %{moth_common_name} Mölflugan hafði ekki sést í áratugi og var einu sinni talin útdauð — þar til ferðamaður á Nýja-Sjálandi sá hana fyrir tilviljun.
+          #Heading for the story about a new-to-science mantis species
+          mantis_heading: Uppgötvun nýrra tegunda fyrir vísindin
+          #Body text for the mantis discovery story
+          mantis_body_html: >
+            <span class="italic">Inimia nat</span> — skammstafað í <span class="italic">Ég. Nat</span> — er nýr bænufuglategund sem kona í Ástralíu fann þegar hún gekk í hverfinu sínu.
+          #Heading for the story about volunteers protecting amphibians
+          amphibian_heading: Verndun staðbundinna vistkerfa
+          #Body text for the amphibian protection story
+          amphibian_body: >
+            Hópur sjálfboðaliða í Kaliforníu kom saman í gegnum iNaturalist til að vernda farandi froskdýr sem fóru yfir annasaman veg.
+          #Link below the stories to read more community science stories
+          read_more: Lestu fleiri sögur
+        observation:
+          #Heading for the sample observation section
+          heading: Hver athugun segir sögu
+        stats:
+          #Description label for the observations statistic
+          #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
+          observations_label: Athuganir sem leggja sitt af mörkum til líffræðilegrar fjölbreytnivísinda
+          #Description label for the species statistic
+          #Prepended by count, e.g. "550,000+ species documented across the globe"
+          species_label: Tegundir sem eru skráðar um allan heim
+          #Description label for the papers statistic
+          #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
+          papers_label: greinar sem vísa í iNaturalist gögn
+          #Description label for the discoveries statistic
+          #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
+          discoveries_label: Tegundir sem samfélagsvísindamenn uppgötvuðu eða enduruppgötvuðu
+        how:
+          #Step 1 description — instructing users to photograph any organism
+          step1_body: >
+            Opnaðu appið og myndaðu hvaða villta plöntu, dýr, sveppi eða aðra lífveru sem er — hvort sem það er úr þínu hverfi eða hvar sem er í heiminum.
+          #Step 2 description — explaining AI and community identification
+          step2_body: >
+            Appið leggur til greiningu strax og alþjóðlegt samfélag náttúrufræðinga staðfestir eða betrumbætir það.
+          #Step 3 description — explaining how observations become open scientific data
+          step3_body: >
+            Athugun þín verður að opnum gögnum — notuð af vísindamönnum, náttúruverndarsinnum og rannsakendum um allan heim.
+          #Explanatory note below the three steps giving the "why" behind contributing
+          why_note_html: >
+            Náttúran breytist hraðar en nokkru sinni fyrr, svo við þurfum <span class="underline">Þú</span> til að hjálpa til við að skrá hvað býr hvar.
+        testimonials:
+          #Quote from the testimonial author (last name Gube)
+          gube_quote: >
+            Það hefur hjálpað mér mikið við tegundagreiningu, auk þess að gefa mér tækifæri til að eiga samskipti við mismunandi fólk um allan heim.
+          #Job title and location of the testimonial author (last name Gube)
+          gube_title: Sjávarverndarsérfræðingur og neðansjávarljósmyndari, Kenía
+          #Quote from the testimonial author (last name Kratzer)
+          kratzer_quote: >
+            iNaturalist opnar dyrnar fyrir svo mikið af nýju og spennandi rannsóknum á lítt rannsökuðum tegundum. Að mínu mati er þessi vettvangur á fremstu víglínu vistfræðivísinda.
+          #Job title and location of the testimonial author (last name Kratzer)
+          kratzer_title: Höfundur vettvangshandbókar hjá Owlfly LLC, Bandaríkjunum
+          #Quote from the testimonial author (last name Sumanapala)
+          sumanapala_quote: >
+            iNaturalist og sérstakt samfélag auðkenna urðu ómetanleg auðlind í könnunum mínum. Það hjálpaði til við að leggja grunninn að núverandi starfi mínu.
+          #Job title and location of the testimonial author (last name Sumanapala)
+          sumanapala_title: Rannsakandi á líffræðilegri fjölbreytni, Sri Lanka
+          #Quote from the testimonial author (last name Fachetti)
+          fachetti_quote: >
+            iNaturalist er öflugt tæki sem tengir fólk, náttúru og þekkingu. Ég get tekið myndir af sjaldgæfri tegund, eða jafnvel einni sem hefur ekki enn verið lýst, og á sama tíma legg ég mitt af mörkum til að varðveita náttúruarfleifð okkar.
+          #Job title and location of the testimonial author (last name Fachetti)
+          fachetti_title: Umhverfistæknir og áhugaljósmyndari, Brasilía
+          #Quote from the testimonial author (last name Velazco)
+          velazco_quote: >
+            Sama hvar í heiminum þú ert, hvort sem þú ert með doktorsgráðu eða elskar útivist, mun iNaturalist færa þig nær náttúrunni og mörgum öðrum náttúrufræðingum.
+          #Job title and location of the testimonial author (last name Velazco)
+          velazco_title: Líffræðingur, Mexíkó
+        everyone:
+          #Heading for the broad audience section
+          heading: Allir eru náttúrufræðingar
+          #Description inviting anyone who has been curious about a living thing
+          body: >
+            Ef þú hefur einhvern tíma skoðað eitthvað lifandi náið og velt því fyrir þér hvað það væri, þá er iNaturalist fyrir þig.
+          #Heading for the impact sub-section
+          impact_heading: Þú getur haft áhrif
+          #Description of how each photo contributes to the global scientific record
+          impact_body: >
+            Hver mynd sem þú deilir verður hluti af alþjóðlegu vísindalegu skjali sem rannsakendur um allan heim treysta á.
+          #Heading for the community reputation sub-section
+          community_heading: '"Fallegasti staðurinn á netinu"'
+          #Description of the welcoming community aspect
+          community_body: >
+            Komdu fyrir auðkenningar, vertu áfram fyrir samfélagið og áhrifin á vísindin.
+        download:
+          #Heading prompting users to download the mobile app
+          heading: Sæktu iNaturalist appið
+          #Subheading describing the two core benefits of the app
+          subheading: Fáðu rauntíma auðkenningar og leggðu þitt af mörkum til vísinda
+          #Social proof label showing total app downloads
+          #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
+          count_label: "%{count}+ Niðurhal"
+        explore:
+          #Heading for the explore species section; species cards generated from static JSON exported from iNat
+          heading: Kannaðu tegundir um allan heim
+          #Button / link to browse species without downloading
+          button: Kannaðu núna
+        seek:
+          #Heading for the Seek app section, aimed at users under 13
+          heading: "Undir 13 ára? Download Seek!"
+          #Description of Seek's badge and challenge features
+          body: Fáðu merki og taktu þátt í áskorunum til að fylgjast með tegundum!
+          #Review count social proof label for the app
+          #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
+          review_tagline: "%{count}+ 5-stjörnu umsagnir"
+        newsletter:
+          #Heading inviting users to subscribe to the monthly newsletter
+          heading: Fáðu mánaðarlegt fréttabréf okkar!
+          #Description of the newsletter's content
+          body: Vertu tengdur sögum og uppgötvunum frá iNaturalist samfélaginu.
+        donate:
+          #Heading describing iNaturalist's nonprofit status
+          heading: iNaturalist er sjálfseignarstofnun sem styður vísindi og náttúruvernd.
+          #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
+          subheading: Stuðningur þinn gerir það mögulegt.
+          #Call-to-action button for the donation section
+          cta: Gefðu núna
+        faq:
+          #Section heading for the Frequently Asked Questions block
+          heading: Algengar spurningar
+          #FAQ: uploading existing photos — question
+          upload_existing_question: Get ég hlaðið inn myndum sem ég á nú þegar?
+          #FAQ: uploading existing photos — answer
+          upload_existing_answer: >
+            Já! Svo lengi sem þú veist nokkurn veginn hvenær og hvar mynd var tekin, eru eldri myndir velkomnar.
+          #FAQ: who can use iNaturalist data — question
+          who_can_use_question: Hver getur stundað vísindi með athugunum iNaturalist?
+          #FAQ: who can use iNaturalist data — answer
+          who_can_use_answer: >
+            Einhver! Allar athuganir iNaturalist eru opnar og aðgengilegar — fyrir rannsakendur, verndarsérfræðinga og forvitna einstaklinga.
+          #FAQ: research grade definition — question
+          research_grade_question: Hvað þýðir "rannsóknareinkunn"?
+          #FAQ: research grade definition — answer
+          research_grade_answer: >
+            Þegar samfélagið samþykkir auðkenningu verður athugun "rannsóknarstig" og fer inn í alþjóðlega vísindalega skrá. Allar auðkenningar geta hjálpað til við að komast þangað.
+          #FAQ: whether prior knowledge is needed — question
+          no_knowledge_question: Þarf ég að vita hvað ég er að horfa á?
+          #FAQ: whether prior knowledge is needed — answer
+          no_knowledge_answer: >
+            Alls ekki! Deildu mynd og alþjóðlegt samfélag náttúrufræðinga getur hjálpað þér að bera kennsl á hana.
+          #FAQ: whether the app is required — question
+          need_app_question: Þarf ég að nota appið?
+          #FAQ: whether the app is required — answer; references both the website and mobile app
+          need_app_answer: >
+            Á borðtölvu virkar iNaturalist.org mjög vel. Á farsíma gefur appið þér bestu upplifunina — sérstaklega þegar kemur að því að greina tegundir á ferðinni.
+  number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      format:
+        significant: true
+        strip_insignificant_zeros: true
