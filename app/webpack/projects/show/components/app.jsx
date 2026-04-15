@@ -145,7 +145,7 @@ const App = ( {
       if ( !project.startDateIncludesTime && !project.endDateIncludesTime ) {
         eventDates = startDay;
       } else {
-        const startTime = project.startDate.format( I18n.t( "momentjs.time_with_zone" ) );
+        const startTime = project.startDate.format( I18n.t( "momentjs.time_without_zone" ) );
         const endTime = project.endDate.format( I18n.t( "momentjs.time_with_zone" ) );
         eventDates = I18n.t( "date_time_to_time", { date: startDay, start_time: startTime, end_time: endTime } );
       }
