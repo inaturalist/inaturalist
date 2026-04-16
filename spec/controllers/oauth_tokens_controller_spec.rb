@@ -11,7 +11,7 @@ shared_examples_for "a token creator that blocks suspended users" do
     user.suspend!
     expect( user ).to be_suspended
     post :create, format: :json, params: default_params_for_strategy
-    expect( response.code ).to eq "40o"
+    expect( response.code ).to eq "400"
     json = JSON.parse( response.body )
     expect( json["error"] ).to eq "invalid_grant"
     expect( json["error_description"] ).not_to be_blank
