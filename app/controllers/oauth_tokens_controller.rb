@@ -25,8 +25,8 @@ class OauthTokensController < Doorkeeper::TokensController
     }.to_json
   rescue INat::Auth::SuspendedError => e
     headers.delete "WWW-Authenticate"
-    self.status = 401
-    self.response_body = e.json.to_json
+    self.status = 400
+    self.response_body = e.to_h.to_json
   rescue INat::Auth::ChildWithoutPermissionError
     headers.delete "WWW-Authenticate"
     self.status = 400

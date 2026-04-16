@@ -52,7 +52,7 @@ class ProviderOauthController < ApplicationController
       }
       return
     rescue INat::Auth::SuspendedError => e
-      return render status: :unauthorized, json: e.json
+      return render status: :bad_request, json: e.to_h
     rescue INat::Auth::ChildWithoutPermissionError
       render status: :bad_request, json: {
         error: "invalid_grant",

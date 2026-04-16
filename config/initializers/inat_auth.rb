@@ -16,9 +16,9 @@ module INat
         @suspended_until = suspended_until
       end
 
-      def json
+      def to_h
         {
-          error: "suspended",
+          error: "invalid_grant",
           error_description: message.presence || I18n.t( :this_user_has_been_suspended ),
           suspended_until: @suspended_until&.iso8601
         }
