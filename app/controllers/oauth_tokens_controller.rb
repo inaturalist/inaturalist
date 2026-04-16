@@ -25,6 +25,8 @@ class OauthTokensController < Doorkeeper::TokensController
     }.to_json
   rescue INat::Auth::SuspendedError => e
     headers.delete "WWW-Authenticate"
+    # Note that this status code is different from the 401 returned by devise/doorkeeper
+    # for suspended users making requests.
     self.status = 400
     self.response_body = e.to_h.to_json
   rescue INat::Auth::ChildWithoutPermissionError

@@ -52,6 +52,8 @@ class ProviderOauthController < ApplicationController
       }
       return
     rescue INat::Auth::SuspendedError => e
+      # Note that this status code is different from the 401 returned by devise/doorkeeper
+      # for suspended users making requests.
       return render status: :bad_request, json: e.to_h
     rescue INat::Auth::ChildWithoutPermissionError
       render status: :bad_request, json: {

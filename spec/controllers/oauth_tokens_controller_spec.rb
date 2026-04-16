@@ -7,7 +7,9 @@ shared_examples_for "a token creator that blocks suspended users" do
     json = JSON.parse( response.body )
     expect( json["access_token"] ).not_to be_blank
   end
-  it "should return a 401 for a suspended user" do
+  # Token requests return 400 for suspended users,
+  # other API requests for suspended users return 401
+  it "should return a 400 for a suspended user" do
     user.suspend!
     expect( user ).to be_suspended
     post :create, format: :json, params: default_params_for_strategy

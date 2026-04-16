@@ -329,6 +329,8 @@ describe ApplicationController do
         end
         after { ActionController::Base.allow_forgery_protection = false }
 
+        # Token requests return 400 for suspended users,
+        # other API requests for suspended users return 401
         it "returns 401 for a suspended OAuth user whose token was revoked" do
           token = Doorkeeper::AccessToken.create!(
             application: app,

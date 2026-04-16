@@ -75,7 +75,9 @@ describe ProviderOauthController do
         expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
       end
 
-      it "should return a 401 with suspension details for a confirmed suspended user" do
+      # Token requests return 400 for suspended users,
+      # other API requests for suspended users return 401
+      it "should return a 400 with suspension details for a confirmed suspended user" do
         u = create :user, email: google_response[:email], confirmed_at: Time.now
         u.suspend!
         expect( u ).to be_confirmed
