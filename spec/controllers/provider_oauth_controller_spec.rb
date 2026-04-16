@@ -81,10 +81,10 @@ describe ProviderOauthController do
         expect( u ).to be_confirmed
         expect( u ).to be_suspended
         post :assertion, format: :json, params: assertion_params
-        expect( response.status ).to eq 401
+        expect( response.status ).to eq 400
         response_json = JSON.parse( response.body )
         expect( response_json["access_token"] ).to be_blank
-        expect( response_json["error"] ).to eq "suspended"
+        expect( response_json["error"] ).to eq "invalid_grant"
         expect( response_json["error_description"] ).not_to be_blank
       end
 
@@ -93,9 +93,9 @@ describe ProviderOauthController do
         u.update!( suspended_at: Time.now, suspension_reason: "policy violation", suspended_until: 1.week.from_now )
         expect( u ).to be_suspended
         post :assertion, format: :json, params: assertion_params
-        expect( response.status ).to eq 401
+        expect( response.status ).to eq 400
         response_json = JSON.parse( response.body )
-        expect( response_json["error"] ).to eq "suspended"
+        expect( response_json["error"] ).to eq "invalid_grant"
         expect( response_json["error_description"] ).to match( /policy violation/ )
         expect( response_json["suspended_until"] ).not_to be_blank
         expect( Time.parse( response_json["suspended_until"] ) ).to be_within( 1.minute ).of( 1.week.from_now )

@@ -11,18 +11,18 @@ shared_examples_for "a token creator that blocks suspended users" do
     user.suspend!
     expect( user ).to be_suspended
     post :create, format: :json, params: default_params_for_strategy
-    expect( response.code ).to eq "401"
+    expect( response.code ).to eq "40o"
     json = JSON.parse( response.body )
-    expect( json["error"] ).to eq "suspended"
+    expect( json["error"] ).to eq "invalid_grant"
     expect( json["error_description"] ).not_to be_blank
   end
   it "should include suspension details for a timed suspension" do
     user.update!( suspended_at: Time.now, suspension_reason: "policy violation", suspended_until: 1.week.from_now )
     expect( user ).to be_suspended
     post :create, format: :json, params: default_params_for_strategy
-    expect( response.code ).to eq "401"
+    expect( response.code ).to eq "400"
     json = JSON.parse( response.body )
-    expect( json["error"] ).to eq "suspended"
+    expect( json["error"] ).to eq "invalid_grant"
     expect( json["error_description"] ).to match( /policy violation/ )
     expect( json["suspended_until"] ).not_to be_blank
     expect( Time.parse( json["suspended_until"] ) ).to be_within( 1.minute ).of( 1.week.from_now )
