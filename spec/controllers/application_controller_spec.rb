@@ -251,9 +251,7 @@ describe ApplicationController do
         end
       end
     end
-  end
 
-  describe WelcomeController do
     describe "sign_out_suspended_users" do
       it "signs out a suspended user" do
         user = User.make!( suspended_at: Time.now )
@@ -278,8 +276,8 @@ describe ApplicationController do
     end
   end
 
-  describe ObservationsController do
-    describe "sign_out_suspended_users" do
+  describe "sign_out_suspended_users" do
+    describe ObservationsController do
       elastic_models( Observation )
 
       describe "for JSON requests" do
