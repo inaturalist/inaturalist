@@ -841,10 +841,11 @@ var SearchController = function (
       $scope.safeApply( );
       return;
     }
-    // After a feature drag ends on a circle, update center marker
-    if ( action === "dragFeature"
-      && $scope.drawing.currentShape === "circle" ) {
-      $scope.snapCircleToRound( id );
+    // After a feature drag ends, update search params
+    if ( action === "dragFeature" ) {
+      if ( $scope.drawing.currentShape === "circle" ) {
+        $scope.snapCircleToRound( id );
+      }
       $scope.refreshSelectedPlaceFromTerraDraw( );
       $scope.safeApply( );
       return;
@@ -1961,11 +1962,7 @@ var MapController = function (
               flags: {
                 rectangle: {
                   feature: {
-                    draggable: true,
-                    coordinates: {
-                      resizable: "opposite",
-                      draggable: true,
-                    }
+                    draggable: true
                   }
                 },
                 circle: {
