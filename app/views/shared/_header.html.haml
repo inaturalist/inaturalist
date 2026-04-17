@@ -146,7 +146,7 @@
               %i.fa.fa-heart
               %span.header-md.header-lg=t :donate_
         = link_to t(:log_in), @header_login_url || login_path, class: "signin_link"
-        %span= t :or
+        %span#auth-or= t :or
         = link_to t(:sign_up), @header_signup_url || signup_url, class: "signup_link"
     - else
       %li#messagesnav.navtab.messages
