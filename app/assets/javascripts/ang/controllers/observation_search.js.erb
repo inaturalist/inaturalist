@@ -744,6 +744,35 @@ var SearchController = function (
     }
     $scope.drawing.circleCardinalIndices = null;
   };
+  $scope.snapCircleToRound = function ( id ) {
+    var feature = $scope.drawing.terraDraw.getSnapshotFeature( id );
+    if ( !feature ) { return; }
+    var circleParams = $scope.geoJsonCircleToParams( feature );
+    var numPoints = 64;
+    var radiusM = circleParams.radius * 1000;
+    var circleCoords = [];
+    for ( var i = 0; i <= numPoints; i++ ) {
+      var angle = ( i / numPoints ) * 2 * Math.PI;
+      var pointLatLng = google.maps.geometry.spherical.computeOffset(
+        new google.maps.LatLng( circleParams.lat, circleParams.lng ),
+        radiusM,
+        ( angle * 180 ) / Math.PI
+      );
+      circleCoords.push( [
+        Math.round( pointLatLng.lng( ) * 1e9 ) / 1e9,
+        Math.round( pointLatLng.lat( ) * 1e9 ) / 1e9
+      ] );
+    }
+    $scope.drawing.terraDraw.updateFeatureGeometry( id, {
+      type: "Polygon",
+      coordinates: [circleCoords]
+    } );
+    var corrected = $scope.drawing.terraDraw.getSnapshotFeature( id );
+    if ( corrected ) {
+      $scope.drawing.circleCardinalIndices = $scope.getCircleCardinalIndices( corrected );
+      $scope.updateCircleCenterMarker( circleParams.lat, circleParams.lng );
+    }
+  };
   $scope.getTerraDrawFeature = function ( ) {
     if ( !$scope.drawing.terraDraw || $scope.drawing.currentFeatureId === null ) {
       return null;
@@ -785,7 +814,25 @@ var SearchController = function (
       $scope.$apply( );
     }
   };
-  $scope.handleTerraDrawFinish = function ( id ) {
+  $scope.handleTerraDrawFinish = function ( id, context ) {
+    var action = context && context.action;
+    // After a resize drag ends on a circle, snap it back to a perfect circle
+    if ( action === "dragCoordinateResize"
+      && $scope.drawing.currentShape === "circle" ) {
+      $scope.snapCircleToRound( id );
+      $scope.refreshSelectedPlaceFromTerraDraw( );
+      $scope.safeApply( );
+      return;
+    }
+    // After a feature drag ends on a circle, update center marker
+    if ( action === "dragFeature"
+      && $scope.drawing.currentShape === "circle" ) {
+      $scope.snapCircleToRound( id );
+      $scope.refreshSelectedPlaceFromTerraDraw( );
+      $scope.safeApply( );
+      return;
+    }
+    // New shape creation
     $scope.drawing.pendingDrawing = null;
     if ( $scope.selectedPlace ) {
       $scope.$parent.selectedPlace = null;
@@ -1916,7 +1963,7 @@ var MapController = function (
                   feature: {
                     draggable: true,
                     coordinates: {
-                      resizable: "opposite"
+                      resizable: "center-fixed"
                     }
                   }
                 }
@@ -1964,8 +2011,8 @@ var MapController = function (
           ]
         } );
         $scope.drawing.terraDraw.start( );
-        $scope.drawing.terraDraw.on( "finish", function ( id ) {
-          $scope.handleTerraDrawFinish( id );
+        $scope.drawing.terraDraw.on( "finish", function ( id, context ) {
+          $scope.handleTerraDrawFinish( id, context );
         } );
         $scope.drawing.terraDraw.on( "change", function ( ids, type ) {
           $scope.handleTerraDrawChange( ids, type );
