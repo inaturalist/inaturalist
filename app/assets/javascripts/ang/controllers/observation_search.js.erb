@@ -698,6 +698,52 @@ var SearchController = function (
     );
     return { lat: centerLat, lng: centerLng, radius: radiusKm };
   };
+  $scope.getCircleCardinalIndices = function ( feature ) {
+    var coords = feature.geometry.coordinates[0];
+    // Exclude closing point (last == first)
+    var points = coords.slice( 0, -1 );
+    var topIdx = 0;
+    var bottomIdx = 0;
+    var rightIdx = 0;
+    var leftIdx = 0;
+    var maxLat = -Infinity;
+    var minLat = Infinity;
+    var maxLng = -Infinity;
+    var minLng = Infinity;
+    for ( var i = 0; i < points.length; i++ ) {
+      if ( points[i][1] > maxLat ) { maxLat = points[i][1]; topIdx = i; }
+      if ( points[i][1] < minLat ) { minLat = points[i][1]; bottomIdx = i; }
+      if ( points[i][0] > maxLng ) { maxLng = points[i][0]; rightIdx = i; }
+      if ( points[i][0] < minLng ) { minLng = points[i][0]; leftIdx = i; }
+    }
+    return [topIdx, bottomIdx, leftIdx, rightIdx];
+  };
+  $scope.updateCircleCenterMarker = function ( lat, lng ) {
+    if ( $scope.drawing.circleCenterMarker ) {
+      $scope.drawing.circleCenterMarker.setPosition( { lat: lat, lng: lng } );
+    } else {
+      $scope.drawing.circleCenterMarker = new google.maps.Marker( {
+        position: { lat: lat, lng: lng },
+        map: $scope.map,
+        clickable: false,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 5,
+          fillColor: "#f16f3a",
+          fillOpacity: 1,
+          strokeColor: "#ffffff",
+          strokeWeight: 2
+        }
+      } );
+    }
+  };
+  $scope.removeCircleCenterMarker = function ( ) {
+    if ( $scope.drawing.circleCenterMarker ) {
+      $scope.drawing.circleCenterMarker.setMap( null );
+      $scope.drawing.circleCenterMarker = null;
+    }
+    $scope.drawing.circleCardinalIndices = null;
+  };
   $scope.getTerraDrawFeature = function ( ) {
     if ( !$scope.drawing.terraDraw || $scope.drawing.currentFeatureId === null ) {
       return null;
@@ -761,6 +807,8 @@ var SearchController = function (
         return;
       }
       $scope.drawing.currentShape = "circle";
+      $scope.drawing.circleCardinalIndices = $scope.getCircleCardinalIndices( feature );
+      $scope.updateCircleCenterMarker( circleParams.lat, circleParams.lng );
     } else {
       $scope.drawing.currentShape = "rectangle";
     }
@@ -776,10 +824,19 @@ var SearchController = function (
     if ( ids.indexOf( $scope.drawing.currentFeatureId ) === -1 ) {
       return;
     }
+    if ( $scope.drawing.currentShape === "circle" ) {
+      var feature = $scope.getTerraDrawFeature( );
+      if ( feature ) {
+        $scope.drawing.circleCardinalIndices = $scope.getCircleCardinalIndices( feature );
+        var circleParams = $scope.geoJsonCircleToParams( feature );
+        $scope.updateCircleCenterMarker( circleParams.lat, circleParams.lng );
+      }
+    }
     $scope.refreshSelectedPlaceFromTerraDraw( );
     $scope.safeApply( );
   };
   $scope.clearTerraDrawFeature = function ( ) {
+    $scope.removeCircleCenterMarker( );
     if ( $scope.drawing.terraDraw ) {
       try {
         $scope.drawing.terraDraw.clear( );
@@ -1859,8 +1916,7 @@ var MapController = function (
                   feature: {
                     draggable: true,
                     coordinates: {
-                      resizable: "opposite",
-                      draggable: true,
+                      resizable: "opposite"
                     }
                   }
                 }
@@ -1869,7 +1925,40 @@ var MapController = function (
                 selectedPolygonColor: "#f16f3a",
                 selectedPolygonFillOpacity: 0,
                 selectedPolygonOutlineColor: "#f16f3a",
-                selectedPolygonOutlineWidth: 5
+                selectedPolygonOutlineWidth: 5,
+                selectionPointWidth: function ( feature ) {
+                  if ( $scope.drawing.currentShape === "circle"
+                    && $scope.drawing.circleCardinalIndices ) {
+                    var idx = feature.properties.index;
+                    if ( $scope.drawing.circleCardinalIndices.indexOf( idx ) !== -1 ) {
+                      return 6;
+                    }
+                    return 0;
+                  }
+                  return 6;
+                },
+                selectionPointOpacity: function ( feature ) {
+                  if ( $scope.drawing.currentShape === "circle"
+                    && $scope.drawing.circleCardinalIndices ) {
+                    var idx = feature.properties.index;
+                    if ( $scope.drawing.circleCardinalIndices.indexOf( idx ) !== -1 ) {
+                      return 1;
+                    }
+                    return 0;
+                  }
+                  return 1;
+                },
+                selectionPointOutlineWidth: function ( feature ) {
+                  if ( $scope.drawing.currentShape === "circle"
+                    && $scope.drawing.circleCardinalIndices ) {
+                    var idx = feature.properties.index;
+                    if ( $scope.drawing.circleCardinalIndices.indexOf( idx ) !== -1 ) {
+                      return 2;
+                    }
+                    return 0;
+                  }
+                  return 2;
+                }
               }
             } )
           ]
@@ -2243,7 +2332,10 @@ var MapController = function (
               radiusM,
               ( angle * 180 ) / Math.PI
             );
-            circleCoords.push( [pointLatLng.lng( ), pointLatLng.lat( )] );
+            circleCoords.push( [
+              Math.round( pointLatLng.lng( ) * 1e9 ) / 1e9,
+              Math.round( pointLatLng.lat( ) * 1e9 ) / 1e9
+            ] );
           }
           var circleFeature = {
             type: "Feature",
@@ -2256,6 +2348,8 @@ var MapController = function (
           var circleIds = $scope.drawing.terraDraw.addFeatures( [circleFeature] );
           $scope.drawing.currentFeatureId = circleIds[0].id;
           $scope.drawing.currentShape = "circle";
+          $scope.drawing.circleCardinalIndices = $scope.getCircleCardinalIndices( circleFeature );
+          $scope.updateCircleCenterMarker( circleLat, circleLng );
           $scope.drawing.disabled = true;
           $scope.drawing.terraDraw.setMode( "select" );
           var circleBounds = $scope.getCircleBounds( circleLat, circleLng, radiusKm );
