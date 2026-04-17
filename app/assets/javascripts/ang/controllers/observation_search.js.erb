@@ -1962,7 +1962,10 @@ var MapController = function (
               flags: {
                 rectangle: {
                   feature: {
-                    draggable: true
+                    draggable: true,
+                    coordinates: {
+                      resizable: "opposite",
+                    }
                   }
                 },
                 circle: {
