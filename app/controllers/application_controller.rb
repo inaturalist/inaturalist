@@ -335,7 +335,6 @@ class ApplicationController < ActionController::Base
   def load_registration_form_data
     @footless = true
     @no_footer_gap = true
-    @responsive = true
     @observations = @site.login_featured_observations
   end
 
