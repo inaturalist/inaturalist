@@ -327,3 +327,11 @@ body>.popover .label,
 body>div>.popover .label {
   font-weight: 600;
 }
+
+@import "breakpoints";
+
+.mt-sm-1 {
+  @media (max-width: $mobile-max) {
+    margin-top: 1rem !important;
+  }
+}
