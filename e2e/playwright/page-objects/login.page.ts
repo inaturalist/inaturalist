@@ -13,12 +13,12 @@ export class LoginPage extends BasePage {
   constructor( page: Page ) {
     super( page );
     this.loginForm = page.locator( "form.log-in" );
-    this.emailInput = page.locator( "input[type='email']" );
-    this.passwordInput = page.locator( "input[type='password']" );
-    this.submitButton = page.locator( "button.btn-inat.btn-primary" );
-    this.signupLink = page.locator( "a.btn.btn-link" );
-    this.rememberCheckbox = page.locator( "input[type='checkbox']" );
-    this.forgotPasswordLink = page.locator( "a.forgot-password-link" );
+    this.emailInput = this.loginForm.locator( "input[type='email']" );
+    this.passwordInput = this.loginForm.locator( "input[type='password']" );
+    this.submitButton = this.loginForm.locator( "input[type='submit'][name='commit']" );
+    this.signupLink = this.loginForm.locator( "a.btn.btn-link[href='/signup']" );
+    this.rememberCheckbox = this.loginForm.locator( "#user_remember_me" );
+    this.forgotPasswordLink = this.loginForm.locator( "a[href='/users/password/new']" );
   }
 
   async goto(): Promise<void> {

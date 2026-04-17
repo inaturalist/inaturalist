@@ -35,17 +35,70 @@ test.describe( "Login page", () => {
     await loginPage.login( "invalid@example.com", "wrongpassword" );
     await loginPage.assertLoginError();
   } );
+} );
 
-  test( "valid credentials redirect and set CURRENT_USER", async ( { page } ) => {
+test.describe( "Login happy path", () => {
+  test.beforeEach( async ( { page } ) => {
     test.skip(
       !envConfig.testUser.email || !envConfig.testUser.password,
       "Test user credentials not configured"
     );
+    const loginPage = new LoginPage( page );
+    await loginPage.goto();
+  } );
 
-    await loginPage.login( envConfig.testUser.email, envConfig.testUser.password );
-    await page.waitForURL( /\//, { timeout: 15_000 } );
+  test( "submitting valid credentials redirects away from /login", async ( { page } ) => {
+    const loginPage = new LoginPage( page );
+    await Promise.all( [
+      page.waitForURL( url => !url.pathname.startsWith( "/login" )
+        && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
+      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+    ] );
+    expect( new URL( page.url() ).pathname ).not.toMatch( /^\/(login|session)/ );
+  } );
 
-    const isLoggedIn = await loginPage.isLoggedIn();
-    expect( isLoggedIn ).toBe( true );
+  test( "sets CURRENT_USER on the window after login", async ( { page } ) => {
+    const loginPage = new LoginPage( page );
+    await Promise.all( [
+      page.waitForURL( url => !url.pathname.startsWith( "/login" )
+        && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
+      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+    ] );
+    expect( await loginPage.isLoggedIn() ).toBe( true );
+  } );
+
+  test( "header shows signed-in user menu after login", async ( { page } ) => {
+    const loginPage = new LoginPage( page );
+    await Promise.all( [
+      page.waitForURL( url => !url.pathname.startsWith( "/login" )
+        && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
+      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+    ] );
+    await expect( page.locator( "#usernav li.navtab.user.menutab" ) ).toBeVisible();
+    await expect( page.locator( "#usernav li.navtab.signedout" ) ).toHaveCount( 0 );
+  } );
+
+  test( "persists session on subsequent navigation", async ( { page } ) => {
+    const loginPage = new LoginPage( page );
+    await Promise.all( [
+      page.waitForURL( url => !url.pathname.startsWith( "/login" )
+        && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
+      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+    ] );
+    await page.goto( "/observations" );
+    expect( await loginPage.isLoggedIn() ).toBe( true );
+  } );
+
+  test( "remember-me checkbox can be toggled before submit", async ( { page } ) => {
+    const loginPage = new LoginPage( page );
+    await expect( loginPage.rememberCheckbox ).not.toBeChecked();
+    await loginPage.rememberCheckbox.check();
+    await expect( loginPage.rememberCheckbox ).toBeChecked();
+    await Promise.all( [
+      page.waitForURL( url => !url.pathname.startsWith( "/login" )
+        && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
+      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+    ] );
+    expect( await loginPage.isLoggedIn() ).toBe( true );
   } );
 } );

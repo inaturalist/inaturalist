@@ -14,10 +14,14 @@ async function globalSetup( config: FullConfig ) {
   } );
 
   await page.goto( "/login" );
-  await page.locator( "input[type='email']" ).fill( testUser.email );
-  await page.locator( "input[type='password']" ).fill( testUser.password );
-  await page.locator( "button.btn-inat.btn-primary" ).click();
-  await page.waitForURL( /\//, { timeout: 15_000 } );
+  const form = page.locator( "form.log-in" );
+  await form.locator( "input[type='email']" ).fill( testUser.email );
+  await form.locator( "input[type='password']" ).fill( testUser.password );
+  await Promise.all( [
+    page.waitForURL( url => !url.pathname.startsWith( "/login" )
+      && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
+    form.locator( "input[type='submit'][name='commit']" ).click()
+  ] );
 
   await page.context().storageState( { path: ".auth/storage-state.json" } );
   await browser.close();

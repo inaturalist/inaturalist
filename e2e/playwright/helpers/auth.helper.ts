@@ -18,10 +18,14 @@ export async function login(
   }
 
   await page.goto( "/login" );
-  await page.locator( "input[type='email']" ).fill( user );
-  await page.locator( "input[type='password']" ).fill( pass );
-  await page.locator( "button.btn-inat.btn-primary" ).click();
-  await page.waitForURL( /\//, { timeout: 15_000 } );
+  const form = page.locator( "form.log-in" );
+  await form.locator( "input[type='email']" ).fill( user );
+  await form.locator( "input[type='password']" ).fill( pass );
+  await Promise.all( [
+    page.waitForURL( url => !url.pathname.startsWith( "/login" )
+      && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
+    form.locator( "input[type='submit'][name='commit']" ).click()
+  ] );
 }
 
 export async function saveStorageState( context: BrowserContext ): Promise<void> {
