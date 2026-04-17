@@ -687,11 +687,24 @@ var SearchController = function (
   };
   $scope.geoJsonCircleToParams = function ( feature ) {
     var coords = feature.geometry.coordinates[0];
-    var lats = _.map( coords, function ( c ) { return c[1]; } );
-    var lngs = _.map( coords, function ( c ) { return c[0]; } );
-    var centerLat = ( _.min( lats ) + _.max( lats ) ) / 2;
-    var centerLng = ( _.min( lngs ) + _.max( lngs ) ) / 2;
-    var edgeLat = _.max( lats );
+    var sumX = 0, sumY = 0, sumZ = 0;
+    var n = coords.length;
+    // If the ring is closed, skip the duplicate last point
+    if ( n > 1 && coords[0][0] === coords[n - 1][0] && coords[0][1] === coords[n - 1][1] ) {
+      n -= 1;
+    }
+    for ( var i = 0; i < n; i++ ) {
+      var latRad = coords[i][1] * Math.PI / 180;
+      var lngRad = coords[i][0] * Math.PI / 180;
+      sumX += Math.cos( latRad ) * Math.cos( lngRad );
+      sumY += Math.cos( latRad ) * Math.sin( lngRad );
+      sumZ += Math.sin( latRad );
+    }
+    var centerLat = Math.atan2( sumZ / n,
+      Math.sqrt( ( sumX / n ) * ( sumX / n ) + ( sumY / n ) * ( sumY / n ) )
+    ) * 180 / Math.PI;
+    var centerLng = Math.atan2( sumY / n, sumX / n ) * 180 / Math.PI;
+    var edgeLat = _.max( _.map( coords, function ( c ) { return c[1]; } ) );
     var radiusKm = $scope.getHaversineDistanceInKm(
       { lat: centerLat, lng: centerLng },
       { lat: edgeLat, lng: centerLng }
