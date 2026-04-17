@@ -827,6 +827,10 @@ var SearchController = function (
       $scope.$apply( );
     }
   };
+  $scope.debouncedRefreshFromTerraDraw = _.debounce( function ( ) {
+    $scope.refreshSelectedPlaceFromTerraDraw( );
+    $scope.safeApply( );
+  }, 200 );
   $scope.handleTerraDrawFinish = function ( id, context ) {
     var action = context && context.action;
     // After a resize drag ends on a circle, snap it back to a perfect circle
@@ -860,7 +864,7 @@ var SearchController = function (
     var mode = feature.properties.mode;
     if ( mode === "circle" ) {
       var circleParams = $scope.geoJsonCircleToParams( feature );
-      if ( circleParams.lat === 0 || circleParams.lng === 0 ) {
+      if ( circleParams.radius > 20000 ) {
         $scope.drawing.terraDraw.removeFeatures( [id] );
         $scope.clearBoundary( );
         $scope.safeApply( );
@@ -884,16 +888,7 @@ var SearchController = function (
     if ( ids.indexOf( $scope.drawing.currentFeatureId ) === -1 ) {
       return;
     }
-    if ( $scope.drawing.currentShape === "circle" ) {
-      var feature = $scope.getTerraDrawFeature( );
-      if ( feature ) {
-        $scope.drawing.circleCardinalIndices = $scope.getCircleCardinalIndices( feature );
-        var circleParams = $scope.geoJsonCircleToParams( feature );
-        $scope.updateCircleCenterMarker( circleParams.lat, circleParams.lng );
-      }
-    }
-    $scope.refreshSelectedPlaceFromTerraDraw( );
-    $scope.safeApply( );
+    $scope.debouncedRefreshFromTerraDraw( );
   };
   $scope.clearTerraDrawFeature = function ( ) {
     $scope.removeCircleCenterMarker( );
@@ -901,7 +896,7 @@ var SearchController = function (
       try {
         $scope.drawing.terraDraw.clear( );
       } catch ( e ) {
-        // Terra Draw may not be fully initialized
+        console.warn( "clearTerraDrawFeature: ", e );
       }
       $scope.drawing.currentFeatureId = null;
     }
@@ -1292,6 +1287,7 @@ var SearchController = function (
       $rootScope.$emit( "hideNearbyPlace" );
     }
     $scope.clearTerraDrawFeature( );
+    if ( !$scope.drawing.terraDraw ) { return; }
     $scope.drawing.terraDraw.setMode( shape );
   };
 
@@ -2307,6 +2303,7 @@ var MapController = function (
   };
   $scope.refreshSelectedPlace = function ( ) {
     $scope.refreshSelectedPlaceFromTerraDraw( );
+    $scope.safeApply( );
   };
 
   $scope.setMapLayers = function ( align ) {
@@ -2346,7 +2343,6 @@ var MapController = function (
       if ( $scope.drawing.terraDraw ) {
         // Skip recreation if a feature already exists (e.g. just drawn by user)
         if ( !$scope.getTerraDrawFeature( ) ) {
-          $scope.clearTerraDrawFeature( );
           var swlat = parseFloat( $scope.params.swlat );
           var swlng = parseFloat( $scope.params.swlng );
           var nelat = parseFloat( $scope.params.nelat );
@@ -2377,7 +2373,6 @@ var MapController = function (
       if ( $scope.drawing.terraDraw ) {
         // Skip recreation if a feature already exists (e.g. just drawn by user)
         if ( !$scope.getTerraDrawFeature( ) ) {
-          $scope.clearTerraDrawFeature( );
           var circleLat = parseFloat( $scope.params.lat );
           var circleLng = parseFloat( $scope.params.lng );
           var radiusKm = $scope.params.radius ? parseFloat( $scope.params.radius ) : 10;
