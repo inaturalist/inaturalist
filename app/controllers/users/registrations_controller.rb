@@ -5,9 +5,6 @@ module Users
     include Users::CustomDeviseModule
 
     skip_before_action :verify_authenticity_token
-    before_action do
-      @responsive = true
-    end
 
     def permit_params
       return unless params[:user]
