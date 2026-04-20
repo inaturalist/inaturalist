@@ -64,9 +64,10 @@ jobs:
 
     - name: Start Rails server
       run: |
-        bundle exec rails server -e test -p 3000 -d
-        sleep 5
-        curl --retry 10 --retry-delay 2 --retry-connrefused http://localhost:3000
+        mkdir -p log
+        bundle exec rails server -e test -p 3000 > log/rails.log 2>&1 &
+        echo $! > rails.pid
+        curl --max-time 5 --retry 30 --retry-delay 2 --retry-all-errors --fail --silent --show-error http://localhost:3000 > /dev/null
       env:
         PGHOST: 0.0.0.0
         PGUSER: postgres
@@ -78,6 +79,16 @@ jobs:
       env:
         E2E_BASE_URL: http://localhost:3000
         CI: true
+
+    - name: Dump Rails log on failure
+      if: failure()
+      run: |
+        echo "=== rails.log ==="
+        [ -f log/rails.log ] && cat log/rails.log || echo "(no log/rails.log)"
+        echo "=== listening ports ==="
+        ss -lntp || true
+        echo "=== rails process ==="
+        [ -f rails.pid ] && ps -fp "$(cat rails.pid)" || echo "(no rails.pid)"
 
     - name: Upload Playwright report
       uses: actions/upload-artifact@v4
