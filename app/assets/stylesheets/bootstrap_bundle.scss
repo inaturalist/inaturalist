@@ -1,3 +1,5 @@
+@import "breakpoints";
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('/fonts/glyphicons-halflings-regular.eot');
@@ -327,8 +329,6 @@ body>.popover .label,
 body>div>.popover .label {
   font-weight: 600;
 }
-
-@import "breakpoints";
 
 .mt-sm-1 {
   @media (max-width: $mobile-max) {
