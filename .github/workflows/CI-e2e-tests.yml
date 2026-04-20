@@ -83,8 +83,10 @@ jobs:
     - name: Dump Rails log on failure
       if: failure()
       run: |
-        echo "=== rails.log ==="
+        echo "=== log/rails.log (stdout/stderr) ==="
         [ -f log/rails.log ] && cat log/rails.log || echo "(no log/rails.log)"
+        echo "=== log/test.log (Rails logger) ==="
+        [ -f log/test.log ] && tail -n 500 log/test.log || echo "(no log/test.log)"
         echo "=== listening ports ==="
         ss -lntp || true
         echo "=== rails process ==="
