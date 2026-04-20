@@ -1141,7 +1141,7 @@ de:
   continue: Fortfahren
   continue_to_site: Weiter zu %{site_name}
   #e.g. "With iNaturalist, you can contribute to real science"
-  contribute: Beitrag leisten
+  contribute: Einen Beitrag leisten
   #e.g. "Contribute to iNaturalist"
   contribute_cta: Beitrag leisten
   contributor_cannot_be_found: Mitwirkender kann nicht gefunden werden
@@ -1479,7 +1479,7 @@ de:
     #state of button asking to participate in a pilot after participating
     pilot_stop: "Teilnahme beenden"
     #link to a blog post
-    pilot_read_more: "Lesen Sie mehr in unserem Blog."
+    pilot_read_more: "Lies mehr dazu auf unserem Blog."
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Pilotprojekt zur Identifizierung von Lücken: Bedarf bei der Identifizierung gesuchter Arten"
     #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
@@ -1586,6 +1586,10 @@ de:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: Aktualisierungsdatum
   day: Tag
   decrease_brightness: Helligkeit reduzieren
@@ -1665,6 +1669,14 @@ de:
         um dein Konto zu bestätigen.
       user:
         suspended: Dein Benutzerkonto wurde gesperrt
+        #Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: Wenn du denkst, dass dies ein Fehler war und Widerspruch einlegen möchtest, bitte <a href="https://help.inaturalist.org/support/tickets/new">kontaktiere den Support.</a>
+        #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        #with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Deine Sperre wird aufgehoben in %{until}."
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Begründung: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Das Token zum Zurücksetzen des Kennworts ist ungültig. Bitte verwende den Link in der zuletzt gesendeten E-Mail zum Zurücksetzen des Passworts, oder <a href="%{url}">fordere ein Neues an</a>.
     sessions:
@@ -1806,6 +1818,10 @@ de:
   edit: Bearbeiten
   #Title of the moderation note editor
   edit_moderator_note: Moderatornotiz bearbeiten
+  #Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Benutzer-Sperrung bearbeiten
+  #Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: Wenn du nur die Begründung oder das Ablaufdatum aktualisieren möchtest, kannst du stattdessen die <a href="%{edit_link}">Benutzer-Sperrung bearbeiten</a>.
   edit_a_batch_of_observations: Batch-Bearbeitung von Beobachtungen
   edit_account_settings_and_profile: "Kontoeinstellungen &amp; Profil bearbeiten"
   edit_assessment: Bewertung bearbeiten
@@ -3015,6 +3031,10 @@ de:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "HH:mm z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "HH"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
@@ -3332,7 +3352,7 @@ de:
   obscured_description: |
     Öffentliche Koordinaten werden als Zufallspunkt innerhalb der 0.2 Grad-Zelle (Längen-/Breitengrad) angezeigt, die die wahren Koordinaten enthält.
   #verb, call to action, e.g. "Observe nature nearby"
-  observe: Beobachten Sie
+  observe: Beobachte
   observation: Beobachtung
   observation_: Beobachtung
   observation_accuracy_experiment_the_sample_for: "Die Stichprobe für dieses Experiment wurde noch nicht erstellt"
@@ -4878,7 +4898,7 @@ de:
   sign_in_with_google: Mit Google anmelden
   sign_out: Abmelden
   sign_up: Registrieren
-  sign_up_sentence_case: Melden Sie sich an
+  sign_up_sentence_case: Hier anmelden
   similar_species: Ähnliche Arten
   similar_taxa: Ähnliche Taxa
   #Journal post formatting option
@@ -5156,6 +5176,35 @@ de:
   suspension_duration_indefinite: Unbestimmt
   #a select form option to select a custom date when a user will be unsuspended
   suspension_duration_custom: Benutzerdefiniert
+  #label for the suspension reason dropdown
+  suspension_reason_label: Grund für die Sperrung
+  #option for entering a custom suspension reason
+  suspension_reason_custom: Benutzerdefiniert
+  #note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Bitte beachte, dass diese Begründung dem suspendierten Nutzer angezeigt wird.
+  #note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Bitte aktualisiere die Begründung und erkläre, warum du die Sperrung des Nutzers änderst.
+  #predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    #reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Hassrede
+    #reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Beleidigungen oder Drohungen
+    #reason displayed to users who have been suspended for posting sexually explicit content
+    sexually_explicit_content: Sexuell explizite Inhalte
+    #reason displayed to users who are creating false accounts to circumvent suspensions,
+    #https://en.wikipedia.org/wiki/Sock_puppet_account
+    sockpuppet_accounts: Sockpuppet-Konten
+    #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    false_ids_or_dqa_votes: Absichtlich falsche Bestimmungen oder Datenqualitäts-Bewertungen
+    #reason displayed to users who have been suspended for posting machine generated content
+    machine_generated_content: Maschinell erzeugte Beobachtungen, Bestimmungen und Kommentare
+    #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Wiederholte Urheberrechtsverletzung (nach Verwarnung)
+    #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Wiederholtes Hochladen künstlich generierter Medien (nach Verwarnung)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Wiederholte Verminderung der Datenqualität (nach Verwarnung)
   #the time at which a users suspension ends
   suspend_until: Sperrung bis
   #a note telling users to select the time in their local time zone
@@ -5165,6 +5214,10 @@ de:
   suspend_user_reason_instructions_html: |
     Begründe, warum dieses Konto gesperrt wurde und führe alle Verstöße gegen die
     %{link_start_tag}Gemeinschaftsrichtlinien%{link_end_tag} an. Bitte verzichte auf persönliche Meinungen.
+  #a label on a field showing when a user is suspended until
+  suspended_until: Gesperrt bis
+  #a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Auf unbestimmte Zeit gesperrt
   sw_lat: SW Lat.
   sw_lon: SW Lon.
   sync: Synchronisieren?
@@ -5647,7 +5700,7 @@ de:
   total_species_observed_caps: ANZAHL BEOBACHTETER ARTEN
   total_unique_observers: Gesamtzahl Einzelbeobachter
   #e.g. "With iNaturalist, you can track species you've seen worldwide"
-  track: Leichtathletik
+  track: Den Überblick behalten
   translated_languages: Übersetzte Sprachen
   'true': 'Wahr'
   trending: Im Trend
@@ -5875,6 +5928,8 @@ de:
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat dir die verborgenen Koordinaten all seiner Beobachtungen anvertraut.
   user_updated_an_observation_field_html: 'Von %{user} wurde ein Wert für "%{field_name}" zu einer Beobachtung von %{owner} aktualisiert'
+  #An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} Dein Benutzerkonto wurde wieder entsperrt"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schrieb,
   username: Benutzername
   username_description: Dies ist der Benutzername um dich anzumelden und mit dem dich andere Nutzer bei iNaturalist identifizieren können.
@@ -7357,6 +7412,13 @@ de:
            Dein Kind wird dann in der Lage sein, Beobachtungen in seinem iNaturalist-Konto
            zu posten, indem es die Seek-App nutzt und so nach inaturalist.org gesendet werden.
           </p>
+      user_unsuspended:
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message: Dein Konto auf %{site_name} wurde wieder entsperrt und du kannst die Seite wieder nutzen.
+        #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
+        reason: "Dein Konto wurde aus folgendem Grund gesperrt: %{reason}"
+        #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: '<a href="%{login_url}">Melde dich mit deinem Konto an</a> um die Seite wieder zu nutzen.'
       users_updates_suspended:
         message: |
           Du warst eine ganze Weile nicht mehr aktiv auf %{site_name}, daher haben wir deine Abonnements ausgesetzt. Wenn du wieder Updates von Aktivitäten auf der Webseite erhalten möchtest, bitte <a href="%{login_url}">logge dich wiederin dein Konto ein</a>.
@@ -7918,7 +7980,7 @@ de:
           Website anzeigen, die automatisch nach einer Woche aktualisiert wird.
         #a message when you try to save major changes to a taoxn name
         you_can_only_make_minor_changes_to_the_species_epithet_directly_html: |
-          Sie können nur geringfügige Änderungen am Artepitheton direkt vornehmen (z. B. Geschlechtsänderungen, Rechtschreibfehler). Fügen Sie ein <a target="_blank" href="%{url}">Taxon-Tausch</a> Wenn Sie weitere Änderungen am Namen benötigen.
+          Du kannst nur geringfügige Änderungen am Artepitheton direkt vornehmen (z.B. Geschlechtsänderungen, Rechtschreibfehler). Führe einen <a target="_blank" href="%{url}">Taxon-Tausch</a> durch, wenn du weitere Änderungen am Namen benötigst.
       show:
         about_names_desc: |
           <p>
@@ -8386,14 +8448,14 @@ de:
           headline: Wo deine Neugier zur Wissenschaft beiträgt.
           #Hero subheadline describing the core value proposition
           subheadline: >
-            Pflanzen, Tiere, Pilze und mehr identifizieren und gleichzeitig einen lebendigen Lebensatlas auf der Erde ergänzen.
+            Beobachte Pflanzen, Tiere, Pilze und mehr und ergänze den vielfältigen Atlas des Lebens auf unserer Erde.
           #Primary call-to-action button in the hero section
           cta_join: Tritt der Gemeinschaft bei
           #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
           tagline: Kostenlos, gemeinnützig, gemeinschaftsorientiert.
         features:
           #Section label introducing the three core user actions
-          intro: "Mit iNaturalist können Sie:"
+          intro: "Mit iNaturalist kannst du:"
           #Description of what users can Identify
           #Read as "{Identify} plants, animals, fungi, & more"
           identify_desc: Pflanzen, Tiere, Pilze und mehr
@@ -8402,64 +8464,74 @@ de:
           track_desc: Arten, die du weltweit gesehen hast
           #Description of where users can Contribute
           #Read as "{Contribute} to real science"
-          contribute_desc: Zur realen Wissenschaft
+          contribute_desc: für die Forschung
           #Description of what users can Discover
           #Read as "{Discover} nature nearby"
           discover_desc: Natur in der Nähe
           #Description of what users can Learn
           #Read as "{Learn} from a global community of naturalists"
-          learn_desc: Aus einer globalen Gemeinschaft von Naturforschern
+          learn_desc: durch eine weltweite Gemeinschaft von Naturbeobachtern
         stories:
           #Section heading for real-world stories powered by community science
-          heading: Die Kraft der Gemeinschaftswissenschaft
+          heading: Das Potenzial der Bürgerwissenschaft
           #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
           observation_credit: Gesehen von %{user} in %{place}
           #Heading for the story about rediscovering an extinct moth species
           moth_heading: Wiederentdeckung längst verlorener Arten
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
-            Die %{moth_common_name} Der Falter war seit Jahrzehnten nicht mehr gesehen worden und galt einst als ausgestorben – bis ein Tourist in Neuseeland ihn zufällig entdeckte.
+            Der %{moth_common_name}-Nachtfalter war seit Jahrzehnten nicht mehr gesehen worden und galt einst als ausgestorben – bis ein Tourist in Neuseeland ihn zufällig entdeckte.
+          #Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Frosted Phoenix (Nachtfalter)"
           #Heading for the story about a new-to-science mantis species
           mantis_heading: Entdeckung wissenschaftlich neuer Arten
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — abgekürzt zu <span class="italic">I. Nat</span> – ist eine wissenschaftlich neue Gottesanbeterin, die von einer Frau in Australien entdeckt wurde, die in ihrer Nachbarschaft spazieren geht.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "Gottesanbeterin"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: Schutz lokaler Ökosysteme
           #Body text for the amphibian protection story
           amphibian_body: >
             Eine Gruppe lokaler Freiwilliger in Kalifornien kam über iNaturalist zusammen, um wandernde Amphibien zu schützen, die eine stark befahrene Straße überquerten.
+          #Alt text for the California newt story image
+          california_newt_img_alt: "Kalifornischer Molch"
           #Link below the stories to read more community science stories
-          read_more: Lesen Sie weitere Geschichten
+          read_more: Lies weitere Geschichten
         observation:
           #Heading for the sample observation section
           heading: Jede Beobachtung erzählt eine Geschichte
+          #Alt text for the sample observation photo
+          photo_alt: "Grünfrosch auf Blatt"
+          #Alt text for the map showing the observation location
+          map_alt: "Karte, die den Beobachtungsort mit großem Marker und anderen Beobachtunge per Gitterzellen zeigt."
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
-          observations_label: Beobachtungen, die zur Biodiversitätswissenschaft beitragen
+          observations_label: Beobachtungen, die zur Erkenntnis über die Biodiversität beitragen
           #Description label for the species statistic
           #Prepended by count, e.g. "550,000+ species documented across the globe"
-          species_label: Arten, die weltweit dokumentiert sind
+          species_label: Arten wurden bereits gemeldet
           #Description label for the papers statistic
           #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
           papers_label: Arbeiten, die iNaturalist-Daten zitieren
           #Description label for the discoveries statistic
           #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
-          discoveries_label: Arten, die von Gemeinschaftswissenschaftlern entdeckt oder wiederentdeckt wurden
+          discoveries_label: Arten, die von Benutzern der Plattform entdeckt oder wiederentdeckt wurden
         how:
           #Step 1 description — instructing users to photograph any organism
           step1_body: >
-            Öffnen Sie die App und fotografieren Sie jede wilde Pflanze, jedes Tier, jeden Pilz oder ein anderes Organismus – aus Ihrer Nachbarschaft oder irgendwo auf der Welt.
+            Öffne die App und fotografiere jede beliebige wilde Pflanze, jedes Tier, jeden Pilz oder andere Organismen – in deiner Region oder irgendwo auf der Welt.
           #Step 2 description — explaining AI and community identification
           step2_body: >
             Die App schlägt sofort eine Identifikation vor, und eine globale Gemeinschaft von Naturforschern bestätigt oder verfeinert sie.
           #Step 3 description — explaining how observations become open scientific data
           step3_body: >
-            Ihre Beobachtung wird zu offenen Daten – die von Wissenschaftlern, Naturschützern und Forschern weltweit genutzt werden.
+            Deine Beobachtung wird zu offenen Daten – die von Wissenschaftlern, Naturschützern und Forschern weltweit genutzt werden.
           #Explanatory note below the three steps giving the "why" behind contributing
           why_note_html: >
-            Die Natur verändert sich schneller denn je, also brauchen wir <span class="underline">Du</span> um zu dokumentieren, was wo lebt.
+            Die Natur verändert sich schneller denn je, also brauchen wir <span class="underline">dich</span> um zu dokumentieren, was wo lebt.
         testimonials:
           #Quote from the testimonial author (last name Gube)
           gube_quote: >
@@ -8488,21 +8560,21 @@ de:
           velazco_title: Biologe, Mexiko
         everyone:
           #Heading for the broad audience section
-          heading: Jeder ist Naturforscher
+          heading: Jeder ist ein Naturforscher
           #Description inviting anyone who has been curious about a living thing
           body: >
-            Wenn Sie sich jemals etwas Lebendiges genau angesehen und sich gefragt haben, was es ist, ist iNaturalist genau das Richtige für Sie.
+            Wenn du dir jemals etwas Lebendiges genau angesehen und dich gefragt hast was es ist, dann ist iNaturalist genau das Richtige für dich.
           #Heading for the impact sub-section
           impact_heading: Du kannst einen Unterschied machen
           #Description of how each photo contributes to the global scientific record
           impact_body: >
-            Jedes Foto, das Sie teilen, wird Teil eines globalen wissenschaftlichen Archivs, auf das Forscher weltweit angewiesen sind.
+            Jedes Foto, das du teilst, wird Teil eines globalen wissenschaftlichen Archivs, auf das Forscher weltweit zurückgreifen können.
           #Heading for the community reputation sub-section
           community_heading: '"Der schönste Ort online"'
           community_heading_2: Eine Wohlfühl-Oase im Internet
           #Description of the welcoming community aspect
           community_body: >
-            Kommt wegen der Identifikationen, bleibt für die Gemeinschaft und den Einfluss auf die Wissenschaft.
+            Wegen der Bestimmungen gekommen, aber geblieben für die Gemeinschaft und den Beitrag für die Wissenschaft.
         download:
           #Heading prompting users to download the mobile app
           heading: Lade die iNaturalist-App herunter
@@ -8511,24 +8583,28 @@ de:
           #Social proof label showing total app downloads
           #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
           count_label: "%{count}+ Downloads"
+          #Alt text for the iNaturalist app phone screenshot
+          phone_alt: "iNat auf zwei mobilen Bildschirmen, die Beobachtungen eines Kolibris und Kalifornischen Mohnblumen zeigen"
         explore:
           #Heading for the explore species section; species cards generated from static JSON exported from iNat
-          heading: Entdecken Sie Arten weltweit
+          heading: Entdecke Artenvielfalt auf der ganzen Welt
           #Button / link to browse species without downloading
-          button: Entdecken Sie jetzt
+          button: Jetzt entdecken
         seek:
           #Heading for the Seek app section, aimed at users under 13
-          heading: "Unter 13? Download Suche!"
+          heading: "Unter 13? Seek herunterladen!"
           #Description of Seek's badge and challenge features
           body: Verdiene Abzeichen und nimm an Herausforderungen teil, um Arten zu beobachten!
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ 5-Sterne-Bewertungen"
+          #Alt text for the Seek app phone screenshot
+          phone_alt: "Seek App auf zwei Handys aktiv, zeigt ein Tukan-Abzeichen und die Ansicht \"Arten in der Nähe\""
         newsletter:
           #Heading inviting users to subscribe to the monthly newsletter
-          heading: Erhalten Sie unseren monatlichen Newsletter!
+          heading: Erhalte unseren monatlichen Newsletter!
           #Description of the newsletter's content
-          body: Bleiben Sie mit Geschichten und Entdeckungen aus der iNaturalist-Community in Kontakt.
+          body: Bleib verbunden mit Geschichten und Entdeckungen aus der iNaturalist-Community.
         donate:
           #Heading describing iNaturalist's nonprofit status
           heading: iNaturalist ist eine gemeinnützige Organisation, die Wissenschaft und Naturschutz unterstützt.
@@ -8671,6 +8747,18 @@ de:
       x_seconds:
         one: "%{count} Sekunde"
         other: '%{count} Sekunden'
+      #the number of hours for distance in time from now
+      x_hours:
+        #a singular hour
+        one: "%{count} Stunde"
+        #multiple hours (plural)
+        other: "%{count} Stunden"
+      #the number of years for distance in time from now
+      x_years:
+        #a singular year
+        one: "%{count} Jahr"
+        #multiple years (plural)
+        other: "%{count} Jahre"
     countdown_x_days:
       one: TAG
       other: TAGE
@@ -9507,6 +9595,7 @@ de:
       summary_list:
         feedback_toggle: "Feedback zu ID-Zusammenfassungen"
       summary_item:
+        disclaimer: "Diese Zusammenfassung der Benutzerkommentare von iNaturalist wurde von der KI generiert und ist möglicherweise falsch. Du kannst uns durch dein Feedback helfen, diese Zusammenfassung zu verbessern."
         copy_link: "Link zu dieser Zusammenfassung kopieren"
         photo_tip_aria: "Foto-Tipp: %{tip}"
         references_toggle: "Referenzen von iNaturalist-Benutzerkommentaren"

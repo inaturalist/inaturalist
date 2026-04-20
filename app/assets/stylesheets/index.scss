@@ -2603,6 +2603,9 @@ body:not(.responsive) {
       #usernav li.navtab>* {
         padding-inline: 4px;
       }
+      #usernav #auth-or {
+        padding-inline: 1px;
+      }
       #logonav {
         display: flex;
         flex: 1;
