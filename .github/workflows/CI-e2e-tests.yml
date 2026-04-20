@@ -62,6 +62,14 @@ jobs:
         TRAVIS: true
         CI: true
 
+    - name: Precompile assets
+      run: bundle exec rake assets:precompile
+      env:
+        PGHOST: 0.0.0.0
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+
     - name: Start Rails server
       run: |
         mkdir -p log
