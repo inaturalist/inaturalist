@@ -1314,7 +1314,7 @@ class Project < ApplicationRecord
     # API querues. Use a high priority so the indexing is done as soon as possible
     Project.delay(
       priority: USER_PRIORITY,
-      unique_hash: { "Project::elastic_index": subprojects.map( &:id ) }
+      unique_hash: { "Project::sync_delegated_projects_indexing": id }
     ).elastic_index!( ids: subprojects.map( &:id ) )
   end
 
