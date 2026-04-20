@@ -36,7 +36,15 @@
             .checkbox{ "ng-class" => "{ 'filter-changed': params.introduced }" }
               %label
                 %input{ type: 'checkbox', "ng-model" => "params.introduced", "ng-false-value" => ""}
-                {{ shared.t('introduced') }}
+                {{ shared.t('establishment.introduced') }}
+            .checkbox{ "ng-class" => "{ 'filter-changed': params.native }" }
+              %label
+                %input{ type: 'checkbox', "ng-model" => "params.native", "ng-false-value" => ""}
+                {{ shared.t('establishment.native') }}
+            .checkbox{ "ng-class" => "{ 'filter-changed': params.endemic }" }
+              %label
+                %input{ type: 'checkbox', "ng-model" => "params.endemic", "ng-false-value" => ""}
+                {{ shared.t('establishment.endemic') }}
             .checkbox{ "ng-class" => "{ 'filter-changed': params.popular }" }
               %label{ "uib-tooltip" => "{{ shared.t( 'has_one_or_more_faves' ) }}", "tooltip-placement" => "right" }
                 %input{ type: 'checkbox', "ng-model" => "params.popular", "ng-false-value" => ""}
