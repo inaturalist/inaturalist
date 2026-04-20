@@ -911,6 +911,14 @@ describe Project do
       expect( collection.project_observation_rules.where( operator: "observed_by_user?" ).length ).to eq 0
       expect( collection.project_observation_rules.where( operator: "not_observed_by_user?" ).length ).to eq 0
     end
+
+    it "queues up an indexing delayed job" do
+      Delayed::Job.destroy_all
+      expect( Delayed::Job.count ).to eq 0
+      umbrella.sync_delegated_projects
+      expect( Delayed::Job.count ).to eq 1
+      expect( Delayed::Job.last.unique_hash ).to eq "{:\"Project::sync_delegated_projects_indexing\"=>#{umbrella.id}}"
+    end
   end
 
   describe "admin_attributes" do
