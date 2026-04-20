@@ -12,22 +12,22 @@ export class ObservationDetailPage extends BasePage {
   }
 
   getPhoto(): Locator {
-    return this.page.locator( ".image-gallery, .PhotoBrowser, .photo-container" ).first();
+    return this.page.locator( "#ObservationShow .photos_column" ).first();
   }
 
   getTaxonName(): Locator {
-    return this.page.locator( ".TaxonHeader, .taxon-name, .community-taxon" ).first();
+    return this.page.locator( "#ObservationShow .ObservationTitle" ).first();
   }
 
   getObserver(): Locator {
-    return this.page.locator( ".observer, .user-image, .ObserverInfo" ).first();
+    return this.page.locator( "#ObservationShow .user_info" ).first();
   }
 
   getMap(): Locator {
-    return this.page.locator( ".observation-map, .MapDetails, [class*='map']" ).first();
+    return this.page.locator( "#ObservationShow .Map" ).first();
   }
 
   getActivitySection(): Locator {
-    return this.page.locator( ".Activity, .activity, .comments-ids" ).first();
+    return this.page.locator( "#ObservationShow .Activity" ).first();
   }
 }

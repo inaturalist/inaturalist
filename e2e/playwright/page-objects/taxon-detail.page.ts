@@ -12,22 +12,22 @@ export class TaxonDetailPage extends BasePage {
   }
 
   getTaxonName(): Locator {
-    return this.page.locator( ".TaxonHeader, .taxon-name, h1" ).first();
+    return this.page.locator( "#TaxonHeader h1" ).first();
   }
 
   getPhotos(): Locator {
-    return this.page.locator( ".PhotoBrowser, .TaxonPhotos, .photo-container" ).first();
+    return this.page.locator( "#TaxonDetail .PhotoPreview" ).first();
   }
 
   getTaxonomyBreadcrumb(): Locator {
-    return this.page.locator( ".TaxonomyTab, .taxonomy, .breadcrumb" ).first();
+    return this.page.locator( "#TaxonDetail .TaxonCrumbs" ).first();
   }
 
   getTabs(): Locator {
-    return this.page.locator( ".nav-tabs, .Tabs, [role='tablist']" ).first();
+    return this.page.locator( "#main-tabs" ).first();
   }
 
   getMap(): Locator {
-    return this.page.locator( ".TaxonMap, .map-container, [class*='map']" ).first();
+    return this.page.locator( "#TaxonDetail .TaxonMap" ).first();
   }
 }

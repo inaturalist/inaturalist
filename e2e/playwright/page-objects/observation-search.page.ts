@@ -12,19 +12,51 @@ export class ObservationSearchPage extends BasePage {
   }
 
   getGridView(): Locator {
-    return this.page.locator( "[data-view='grid'], .grid-view, .icon-grid" ).first();
+    return this.page.locator( "#subview-controls button", { hasText: /grid/i } );
   }
 
   getTableView(): Locator {
-    return this.page.locator( "[data-view='table'], .table-view, .icon-table" ).first();
+    return this.page.locator( "#subview-controls button", { hasText: /list/i } );
   }
 
   getMapView(): Locator {
-    return this.page.locator( "[data-view='map'], .map-view, .icon-map" ).first();
+    return this.page.locator( "#subview-controls button", { hasText: /map/i } );
   }
 
   getObservationCards(): Locator {
     return this.page.locator( ".observation-photo, .photo_cell, .ObservationsGridItem" );
+  }
+
+  getHeading(): Locator {
+    return this.page.locator( "#filters h1" );
+  }
+
+  getStatsContainer(): Locator {
+    return this.page.locator( "#stats-container" );
+  }
+
+  getObservationsStat(): Locator {
+    return this.page.locator( "#obsstatcol" );
+  }
+
+  getStatColumns(): Locator {
+    return this.page.locator( "#stats-container .statcol" );
+  }
+
+  getTaxonNameInput(): Locator {
+    return this.page.locator( "input[name='taxon_name']" );
+  }
+
+  getPlaceNameInput(): Locator {
+    return this.page.locator( "#place_name" );
+  }
+
+  getFilterToggle(): Locator {
+    return this.page.locator( "#filter-container button.dropdown-toggle" );
+  }
+
+  getResultsContainer(): Locator {
+    return this.page.locator( "#results" );
   }
 
   async switchToGrid(): Promise<void> {
