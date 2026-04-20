@@ -6,8 +6,9 @@ export class ObservationSearchPage extends BasePage {
     super( page );
   }
 
-  async goto(): Promise<void> {
-    await super.goto( "/observations" );
+  async goto( params?: string ): Promise<void> {
+    const path = params ? `/observations?${params}` : "/observations";
+    await super.goto( path );
     await this.waitForPageReady();
   }
 
@@ -69,5 +70,52 @@ export class ObservationSearchPage extends BasePage {
 
   async switchToMap(): Promise<void> {
     await this.getMapView().click();
+  }
+
+  // --- Boundary drawing controls ---
+
+  getRectangleBoundaryButton(): Locator {
+    return this.page.locator( "button.btn-rect" );
+  }
+
+  getCircleBoundaryButton(): Locator {
+    return this.page.locator( "button.btn-circle" );
+  }
+
+  getResetBoundaryButton(): Locator {
+    return this.page.locator( "button.btn-clear-shape" );
+  }
+
+  getCustomBoundaryLabel(): Locator {
+    return this.page.locator( "span.geo.selected", { hasText: /custom boundary/i } );
+  }
+
+  getClearBoundaryIcon(): Locator {
+    return this.page.locator(
+      "span.geo.selected .glyphicon-remove-sign[ng-click=\"clearBoundary( )\"]"
+    );
+  }
+
+  getObservationsStatValue(): Locator {
+    return this.page.locator( "#obsstatcol .stat-value" );
+  }
+
+  async gotoWithRectBoundary(
+    nelat: number,
+    nelng: number,
+    swlat: number,
+    swlng: number
+  ): Promise<void> {
+    await this.goto(
+      `subview=map&nelat=${nelat}&nelng=${nelng}&swlat=${swlat}&swlng=${swlng}`
+    );
+  }
+
+  async gotoWithCircleBoundary(
+    lat: number,
+    lng: number,
+    radius: number
+  ): Promise<void> {
+    await this.goto( `subview=map&lat=${lat}&lng=${lng}&radius=${radius}` );
   }
 }
