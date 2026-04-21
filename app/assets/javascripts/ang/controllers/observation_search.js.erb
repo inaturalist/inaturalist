@@ -919,6 +919,7 @@ var SearchController = function (
         return;
       }
       $scope.drawing.currentShape = "circle";
+      $scope.snapCircleToRound( id );
       $scope.drawing.circleCardinalIndices = $scope.getCircleCardinalIndices( feature );
       $scope.updateCircleCenterMarker( circleParams.lat, circleParams.lng );
     } else {
