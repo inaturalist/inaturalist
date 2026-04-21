@@ -41,18 +41,11 @@ $letter-spacing-tight: -0.03em;
 // ── Header overwrites, incorporate into main header styles once ready ────────
 
 #header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex: 1 0 0;
   background-color: $white;
-  padding: 0 16px;
   position: sticky;
   top: 0;
   z-index: 1000;
   margin-bottom: 0;
-
-  #logonav { min-width: max-content; }
 
   .donate-cta .btn-focus {
     background-color: $white;
@@ -76,19 +69,12 @@ $letter-spacing-tight: -0.03em;
   }
 
   .navtabs {
-    margin: 0;
-    align-self: stretch;
-
     .signin_link {
       padding-inline: 2px !important;
     }
     .signup_link {
       padding-inline: 2px !important;
     }
-  }
-
-  .signin-link {
-    padding-inline: 2px;
   }
 }
 

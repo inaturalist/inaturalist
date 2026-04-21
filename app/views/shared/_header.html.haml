@@ -111,7 +111,8 @@
           = t(:more)
           %i.fa.fa-angle-down
         %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
-          %li.header-md.header-lg= link_to t( :search ), search_path
+          - unless header_search_open
+            %li.header-md.header-lg= link_to t( :search ), search_path
           - if logged_in?
             %li.header-xs.header-sm= link_to t( :identify ), identify_observations_path
           %li= link_to t( :taxa_info ), taxa_path
