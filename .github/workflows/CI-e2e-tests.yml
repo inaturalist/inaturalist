@@ -105,5 +105,5 @@ jobs:
       if: failure()
       with:
         name: playwright-report
-        path: e2e/playwright/test-results/
+        path: spec/e2e/playwright/test-results/
         retention-days: 14
