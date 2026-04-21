@@ -1086,7 +1086,18 @@ var SearchController = function (
       $scope.map
     );
     if ( $scope.drawing.currentShape === "circle" && $scope.drawing.dragStartCircleRadius ) {
-      $scope.rebuildCircleAtCenter( );
+      var radiusKm = $scope.drawing.dragStartCircleRadius;
+      var radiusM = radiusKm * 1000;
+      // The desired bottom-center IS the southernmost point of the circle.
+      // Compute the new center by going north (bearing 0) by radiusM from there.
+      var newCenter = google.maps.geometry.spherical.computeOffset(
+        desiredBottomLatLng,
+        radiusM,
+        0
+      );
+      var newCenterLat = newCenter.lat( );
+      var newCenterLng = newCenter.lng( );
+      $scope.rebuildCircleAtCenter( newCenterLat, newCenterLng );
     } else {
       var startRing = $scope.drawing.dragStartCoords[0];
       var startLats = _.map( startRing, function ( p ) { return p[1]; } );
