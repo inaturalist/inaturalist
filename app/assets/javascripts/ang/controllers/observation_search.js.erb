@@ -193,7 +193,8 @@ var SearchController = function (
     pendingDrawing: null,
     terraDraw: null,
     currentFeatureId: null,
-    dragIcon: null
+    dragIcon: null,
+    edgeMidpoints: { n: null, s: null, e: null, w: null }
   };
   $scope.dragIconOffset = 20;
   $scope.$watchGroup( ["mapType", "mapLabels", "mapTerrain"], function ( ) {
@@ -849,6 +850,7 @@ var SearchController = function (
       $scope.refreshSelectedPlaceFromTerraDraw( );
       $scope.safeApply( );
       $scope.positionDragIcon( );
+      $scope.positionEdgeMidpoints( );
       return;
     }
     // New shape creation
@@ -883,6 +885,7 @@ var SearchController = function (
     $scope.refreshSelectedPlaceFromTerraDraw( );
     $scope.safeApply( );
     $scope.positionDragIcon( );
+    $scope.positionEdgeMidpoints( );
   };
   $scope.handleTerraDrawChange = function ( ids, type ) {
     if ( type !== "update" || $scope.drawing.currentFeatureId === null ) {
@@ -896,6 +899,7 @@ var SearchController = function (
   $scope.clearTerraDrawFeature = function ( ) {
     $scope.removeCircleCenterMarker( );
     $scope.hideDragIcon( );
+    $scope.hideEdgeMidpoints( );
     if ( $scope.drawing.terraDraw ) {
       try {
         $scope.drawing.terraDraw.clear( );
@@ -951,6 +955,76 @@ var SearchController = function (
     if ( $scope.drawing.dragIcon ) {
       $scope.drawing.dragIcon.setVisible( false );
     }
+  };
+  $scope.getRectangleBounds = function ( feature ) {
+    var ring = feature.geometry.coordinates[0];
+    var lats = _.map( ring, function ( p ) { return p[1]; } );
+    var lngs = _.map( ring, function ( p ) { return p[0]; } );
+    return {
+      minLat: _.min( lats ),
+      maxLat: _.max( lats ),
+      minLng: _.min( lngs ),
+      maxLng: _.max( lngs )
+    };
+  };
+  $scope.positionEdgeMidpoints = function ( skipKey ) {
+    var feature = $scope.getTerraDrawFeature( );
+    if ( !feature || $scope.drawing.currentShape !== "rectangle" ) {
+      $scope.hideEdgeMidpoints( );
+      return;
+    }
+    var b = $scope.getRectangleBounds( feature );
+    var midLat = ( b.minLat + b.maxLat ) / 2;
+    var midLng = ( b.minLng + b.maxLng ) / 2;
+    var positions = {
+      n: { lat: b.maxLat, lng: midLng },
+      s: { lat: b.minLat, lng: midLng },
+      e: { lat: midLat, lng: b.maxLng },
+      w: { lat: midLat, lng: b.minLng }
+    };
+    _.each( ["n", "s", "e", "w"], function ( key ) {
+      var m = $scope.drawing.edgeMidpoints[key];
+      if ( !m ) { return; }
+      if ( key !== skipKey ) {
+        m.setPosition( positions[key] );
+      }
+      if ( m.getMap( ) !== $scope.map ) {
+        m.setMap( $scope.map );
+      }
+      m.setVisible( true );
+    } );
+  };
+  $scope.hideEdgeMidpoints = function ( ) {
+    _.each( $scope.drawing.edgeMidpoints, function ( m ) {
+      if ( m ) { m.setVisible( false ); }
+    } );
+  };
+  $scope.resizeRectEdge = function ( edgeKey, newLatLng ) {
+    var feature = $scope.getTerraDrawFeature( );
+    if ( !feature || $scope.drawing.currentShape !== "rectangle" ) { return; }
+    var b = $scope.getRectangleBounds( feature );
+    if ( edgeKey === "n" ) { b.maxLat = newLatLng.lat( ); }
+    if ( edgeKey === "s" ) { b.minLat = newLatLng.lat( ); }
+    if ( edgeKey === "e" ) { b.maxLng = newLatLng.lng( ); }
+    if ( edgeKey === "w" ) { b.minLng = newLatLng.lng( ); }
+    // Clamp to a minimum size to prevent the rectangle from collapsing or
+    // inverting past the opposite edge.
+    var minSize = 1e-6;
+    if ( b.maxLat - b.minLat < minSize || b.maxLng - b.minLng < minSize ) {
+      return;
+    }
+    var r = function ( n ) { return Math.round( n * 1e9 ) / 1e9; };
+    var newRing = [
+      [r( b.minLng ), r( b.minLat )],
+      [r( b.maxLng ), r( b.minLat )],
+      [r( b.maxLng ), r( b.maxLat )],
+      [r( b.minLng ), r( b.maxLat )],
+      [r( b.minLng ), r( b.minLat )]
+    ];
+    $scope.drawing.terraDraw.updateFeatureGeometry( feature.id, {
+      type: "Polygon",
+      coordinates: [newRing]
+    } );
   };
   $scope.translateFeatureForDragIcon = function ( newIconLatLng ) {
     var feature = $scope.getTerraDrawFeature( );
@@ -1019,6 +1093,7 @@ var SearchController = function (
         coordinates: [translatedRing]
       } );
     }
+    $scope.positionEdgeMidpoints( );
   };
   $scope.searchAndUpdateStats = function ( options ) {
     if ( $scope.searchDisabled ) { return; }
@@ -2140,6 +2215,7 @@ var MapController = function (
           $scope.handleTerraDrawChange( ids, type );
         } );
         $scope.initDragIconMarker( );
+        $scope.initEdgeMidpointMarkers( );
         // Re-run setMapLayers to restore shapes from URL params now that
         // Terra Draw is ready
         $scope.setMapLayers( );
@@ -2198,6 +2274,45 @@ var MapController = function (
       $scope.refreshSelectedPlaceFromTerraDraw( );
       $scope.safeApply( );
       $scope.positionDragIcon( );
+      $scope.positionEdgeMidpoints( );
+    } );
+  };
+  $scope.initEdgeMidpointMarkers = function ( ) {
+    _.each( ["n", "s", "e", "w"], function ( key ) {
+      if ( $scope.drawing.edgeMidpoints[key] ) { return; }
+      var marker = new google.maps.Marker( {
+        position: { lat: 0, lng: 0 },
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 6,
+          fillColor: "#ffffff",
+          fillOpacity: 1,
+          strokeColor: "#f16f3a",
+          strokeWeight: 2
+        },
+        cursor: ( key === "n" || key === "s" ) ? "ns-resize" : "ew-resize",
+        draggable: true,
+        raiseOnDrag: false,
+        visible: false,
+        zIndex: 999
+      } );
+      google.maps.event.addListener( marker, "dragstart", function ( ) {
+        $scope.drawing.dragging = true;
+      } );
+      google.maps.event.addListener( marker, "drag", function ( e ) {
+        $scope.resizeRectEdge( key, e.latLng );
+        $scope.positionDragIcon( );
+        $scope.positionEdgeMidpoints( key );
+      } );
+      google.maps.event.addListener( marker, "dragend", function ( e ) {
+        $scope.resizeRectEdge( key, e.latLng );
+        $scope.drawing.dragging = false;
+        $scope.refreshSelectedPlaceFromTerraDraw( );
+        $scope.safeApply( );
+        $scope.positionDragIcon( );
+        $scope.positionEdgeMidpoints( );
+      } );
+      $scope.drawing.edgeMidpoints[key] = marker;
     } );
   };
   $scope.updateParamsForCurrentRect = function ( ) {
@@ -2575,6 +2690,7 @@ var MapController = function (
     if ( $scope.drawing.dragIcon && $scope.getTerraDrawFeature( ) ) {
       setTimeout( function ( ) {
         $scope.positionDragIcon( );
+        $scope.positionEdgeMidpoints( );
       }, 100 );
     }
   };
