@@ -738,10 +738,12 @@ var SearchController = function (
     if ( $scope.drawing.circleCenterMarker ) {
       $scope.drawing.circleCenterMarker.setPosition( { lat: lat, lng: lng } );
     } else {
-      $scope.drawing.circleCenterMarker = new google.maps.Marker( {
+      $scope.drawing.circleCenterMarker = new google.maps.Marker( { //.marker.AdvancedMarkerElement( {
         position: { lat: lat, lng: lng },
         map: $scope.map,
         clickable: false,
+        draggable: true,
+        raiseOnDrag: false,
         icon: {
           path: google.maps.SymbolPath.CIRCLE,
           scale: 5,
@@ -751,6 +753,17 @@ var SearchController = function (
           strokeWeight: 2
         }
       } );
+      google.maps.event.addListener( $scope.drawing.circleCenterMarker, "dragstart", function ( ) {
+        $scope.dragFeatureStart( );
+      } );
+      google.maps.event.addListener( $scope.drawing.circleCenterMarker, "drag", function ( e ) {
+        $scope.rebuildCircleAtCenter( e.latLng.lat( ), e.latLng.lng( ) );
+        $scope.positionDragIcon( );
+      } );
+      google.maps.event.addListener( $scope.drawing.circleCenterMarker, "dragend", function ( e ) {
+        $scope.rebuildCircleAtCenter( e.latLng.lat( ), e.latLng.lng( ) );
+        $scope.dragFeatureEnd( );
+      } );
     }
   };
   $scope.removeCircleCenterMarker = function ( ) {
@@ -759,6 +772,37 @@ var SearchController = function (
       $scope.drawing.circleCenterMarker = null;
     }
     $scope.drawing.circleCardinalIndices = null;
+  };
+  $scope.rebuildCircleAtCenter = function ( newCenterLat, newCenterLng ) {
+    var radiusKm = $scope.drawing.dragStartCircleRadius;
+    var radiusM = radiusKm * 1000;
+    // The desired bottom-center IS the southernmost point of the circle.
+    // Compute the new center by going north (bearing 0) by radiusM from there.
+
+    var feature = $scope.getTerraDrawFeature( );
+    if ( !feature || !$scope.drawing.dragStartCircleRadius ) { return; }
+    var numPoints = 64;
+    var newCoords = _.times( numPoints + 1, function ( i ) {
+      var angle = ( i / numPoints ) * 2 * Math.PI;
+      var pointLatLng = google.maps.geometry.spherical.computeOffset(
+        new google.maps.LatLng( newCenterLat, newCenterLng ),
+        radiusM,
+        ( angle * 180 ) / Math.PI
+      );
+      return [
+        Math.round( pointLatLng.lng( ) * 1e9 ) / 1e9,
+        Math.round( pointLatLng.lat( ) * 1e9 ) / 1e9
+      ];
+    } );
+    $scope.drawing.terraDraw.updateFeatureGeometry( feature.id, {
+      type: "Polygon",
+      coordinates: [newCoords]
+    } );
+    var corrected = $scope.drawing.terraDraw.getSnapshotFeature( feature.id );
+    if ( corrected ) {
+      $scope.drawing.circleCardinalIndices = $scope.getCircleCardinalIndices( corrected );
+    }
+    $scope.updateCircleCenterMarker( newCenterLat, newCenterLng );
   };
   $scope.snapCircleToRound = function ( id ) {
     var feature = $scope.drawing.terraDraw.getSnapshotFeature( id );
@@ -1041,39 +1085,7 @@ var SearchController = function (
       $scope.map
     );
     if ( $scope.drawing.currentShape === "circle" && $scope.drawing.dragStartCircleRadius ) {
-      var radiusKm = $scope.drawing.dragStartCircleRadius;
-      var radiusM = radiusKm * 1000;
-      // The desired bottom-center IS the southernmost point of the circle.
-      // Compute the new center by going north (bearing 0) by radiusM from there.
-      var newCenter = google.maps.geometry.spherical.computeOffset(
-        desiredBottomLatLng,
-        radiusM,
-        0
-      );
-      var newCenterLat = newCenter.lat( );
-      var newCenterLng = newCenter.lng( );
-      var numPoints = 64;
-      var newCoords = _.times( numPoints + 1, function ( i ) {
-        var angle = ( i / numPoints ) * 2 * Math.PI;
-        var pointLatLng = google.maps.geometry.spherical.computeOffset(
-          new google.maps.LatLng( newCenterLat, newCenterLng ),
-          radiusM,
-          ( angle * 180 ) / Math.PI
-        );
-        return [
-          Math.round( pointLatLng.lng( ) * 1e9 ) / 1e9,
-          Math.round( pointLatLng.lat( ) * 1e9 ) / 1e9
-        ];
-      } );
-      $scope.drawing.terraDraw.updateFeatureGeometry( feature.id, {
-        type: "Polygon",
-        coordinates: [newCoords]
-      } );
-      var corrected = $scope.drawing.terraDraw.getSnapshotFeature( feature.id );
-      if ( corrected ) {
-        $scope.drawing.circleCardinalIndices = $scope.getCircleCardinalIndices( corrected );
-      }
-      $scope.updateCircleCenterMarker( newCenterLat, newCenterLng );
+      $scope.rebuildCircleAtCenter( );
     } else {
       var startRing = $scope.drawing.dragStartCoords[0];
       var startLats = _.map( startRing, function ( p ) { return p[1]; } );
@@ -1093,6 +1105,25 @@ var SearchController = function (
         coordinates: [translatedRing]
       } );
     }
+    $scope.positionEdgeMidpoints( );
+  };
+  $scope.dragFeatureStart = function ( ) {
+    var feature = $scope.getTerraDrawFeature( );
+    if ( !feature ) { return; }
+    $scope.drawing.dragging = true;
+    $scope.drawing.dragStartCoords = _.cloneDeep( feature.geometry.coordinates );
+    if ( $scope.drawing.currentShape === "circle" ) {
+      var circleParams = $scope.geoJsonCircleToParams( feature );
+      $scope.drawing.dragStartCircleRadius = circleParams.radius;
+    }
+  };
+  $scope.dragFeatureEnd = function ( ) {
+    $scope.drawing.dragging = false;
+    $scope.drawing.dragStartCoords = null;
+    $scope.drawing.dragStartCircleRadius = null;
+    $scope.refreshSelectedPlaceFromTerraDraw( );
+    $scope.safeApply( );
+    $scope.positionDragIcon( );
     $scope.positionEdgeMidpoints( );
   };
   $scope.searchAndUpdateStats = function ( options ) {
@@ -2152,7 +2183,7 @@ var MapController = function (
                   feature: {
                     draggable: false,
                     coordinates: {
-                      resizable: "opposite",
+                      resizable: "opposite"
                     }
                   }
                 },
@@ -2254,27 +2285,14 @@ var MapController = function (
       zIndex: 1000
     } );
     google.maps.event.addListener( $scope.drawing.dragIcon, "dragstart", function ( ) {
-      var feature = $scope.getTerraDrawFeature( );
-      if ( !feature ) { return; }
-      $scope.drawing.dragging = true;
-      $scope.drawing.dragStartCoords = _.cloneDeep( feature.geometry.coordinates );
-      if ( $scope.drawing.currentShape === "circle" ) {
-        var circleParams = $scope.geoJsonCircleToParams( feature );
-        $scope.drawing.dragStartCircleRadius = circleParams.radius;
-      }
+      $scope.dragFeatureStart( );
     } );
     google.maps.event.addListener( $scope.drawing.dragIcon, "drag", function ( e ) {
       $scope.translateFeatureForDragIcon( e.latLng );
     } );
     google.maps.event.addListener( $scope.drawing.dragIcon, "dragend", function ( e ) {
       $scope.translateFeatureForDragIcon( e.latLng );
-      $scope.drawing.dragging = false;
-      $scope.drawing.dragStartCoords = null;
-      $scope.drawing.dragStartCircleRadius = null;
-      $scope.refreshSelectedPlaceFromTerraDraw( );
-      $scope.safeApply( );
-      $scope.positionDragIcon( );
-      $scope.positionEdgeMidpoints( );
+      $scope.dragFeatureEnd( );
     } );
   };
   $scope.initEdgeMidpointMarkers = function ( ) {
