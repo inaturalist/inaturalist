@@ -24,7 +24,7 @@
     position: relative;
     top: 2px;
   }
-  @media (width < $md) {
+  @media (max-width: $mobile-max) {
     #mainnav,
     #headersearch,
     .add-obs,
