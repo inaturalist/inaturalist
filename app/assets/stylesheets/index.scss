@@ -2118,7 +2118,7 @@ $header-line-height: 34px;
   .header-md,
   .header-lg { display: none; }
   #narrow-menu { display: none; }
-  @media (max-width: $mobile-max) {
+  @media (width < $md) {
     .header-xs { display: inline-block; }
     .dropdown-menu {
       .header-xs { display: block; }
@@ -2128,7 +2128,7 @@ $header-line-height: 34px;
       padding: 6px 7px !important;
     }
   }
-  @media (min-width: $desktop-min) and (max-width: 991.99px) {
+  @media ($md <= width <= 991.99px) {
     .header-sm { display: inline-block; }
     .dropdown-menu {
       .header-sm { display: block; }
@@ -2538,7 +2538,7 @@ body:not(.responsive) {
   }
 }
 
-@media (max-width: $mobile-max) {
+@media (width < $md) {
   body.responsive {
     .container {
       width: auto;
