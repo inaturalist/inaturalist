@@ -22,17 +22,47 @@ rescue LoadError => e
   end
 end
 
-require 'cypress_on_rails/smart_factory_wrapper'
+# Load Machinist blueprints and MakeHelpers (mirrors spec/spec_helper.rb)
+require 'machinist/active_record'
+require 'faker'
+require Rails.root.join('spec', 'helpers', 'make_helpers')
+include MakeHelpers
+require Rails.root.join('spec', 'blueprints')
 
-factory = CypressOnRails::SimpleRailsFactory
-factory = FactoryBot if defined?(FactoryBot)
-factory = FactoryGirl if defined?(FactoryGirl)
+# Adapter that maps SmartFactoryWrapper's interface to Machinist's .make! / .make
+module MachinistFactory
+  def self.create(name, *params)
+    attrs = params.last.is_a?(Hash) ? params.pop : {}
+    blueprint_name = params.first.is_a?(Symbol) ? params.shift : nil
+    klass = name.to_s.camelize.constantize
+    blueprint_name ? klass.make!(blueprint_name, attrs) : klass.make!(attrs)
+  end
+
+  def self.create_list(name, count, *params)
+    count.to_i.times.map { create(name, *params.deep_dup) }
+  end
+
+  def self.build(name, *params)
+    attrs = params.last.is_a?(Hash) ? params.pop : {}
+    blueprint_name = params.first.is_a?(Symbol) ? params.shift : nil
+    klass = name.to_s.camelize.constantize
+    blueprint_name ? klass.make(blueprint_name, attrs) : klass.make(attrs)
+  end
+
+  def self.build_list(name, count, *params)
+    count.to_i.times.map { build(name, *params.deep_dup) }
+  end
+
+  def self.definition_file_paths=(*); end
+  def self.reload; end
+end
+
+require 'cypress_on_rails/smart_factory_wrapper'
 
 CypressOnRails::SmartFactoryWrapper.configure(
     always_reload: false,
-    factory: factory,
+    factory: MachinistFactory,
     files: [
-      Rails.root.join('spec', 'factories.rb'),
-      Rails.root.join('spec', 'factories', '**', '*.rb')
+      Rails.root.join('spec', 'blueprints.rb')
     ]
 )
