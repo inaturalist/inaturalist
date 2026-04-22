@@ -307,6 +307,21 @@ var SearchController = function (
     var ne = new google.maps.LatLng( lat + deltaLat, lng + deltaLng );
     return new google.maps.LatLngBounds( sw, ne );
   };
+  $scope.wrapLng = function ( lng ) {
+    return ( ( lng % 360 ) + 540 ) % 360 - 180;
+  };
+  $scope.clampLat = function ( lat ) {
+    return Math.max( -90, Math.min( 90, lat ) );
+  };
+  // Clamp a polygon-point longitude so it stays on the same side of the
+  // antimeridian as refLng.  Points that wrapped are pinned to ±180,
+  // producing a clean clip instead of a self-intersecting ring.
+  $scope.clampLngToSide = function ( lng, refLng ) {
+    if ( Math.abs( lng - refLng ) > 180 ) {
+      return refLng > 0 ? 180 : -180;
+    }
+    return lng;
+  };
   $scope.resetStats = function ( ) {
     _.each( ["totalObservations", "totalSpecies", "totalObservers", "totalIdentifiers"], function ( k ) {
       $scope[k] = "--";
@@ -681,11 +696,27 @@ var SearchController = function (
     var coords = feature.geometry.coordinates[0];
     var lats = _.map( coords, function ( c ) { return c[1]; } );
     var lngs = _.map( coords, function ( c ) { return c[0]; } );
+    var swlat = $scope.clampLat( _.min( lats ) );
+    var nelat = $scope.clampLat( _.max( lats ) );
+    var minLng = _.min( lngs );
+    var maxLng = _.max( lngs );
+    // When the longitude span exceeds 180°, the rectangle crosses the
+    // antimeridian. In that case swlng > nelng signals the API to wrap.
+    if ( maxLng - minLng > 180 ) {
+      var posLngs = _.filter( lngs, function ( l ) { return l >= 0; } );
+      var negLngs = _.filter( lngs, function ( l ) { return l < 0; } );
+      return {
+        swlat: swlat,
+        swlng: _.min( posLngs ),
+        nelat: nelat,
+        nelng: _.max( negLngs )
+      };
+    }
     return {
-      swlat: _.min( lats ),
-      swlng: _.min( lngs ),
-      nelat: _.max( lats ),
-      nelng: _.max( lngs )
+      swlat: swlat,
+      swlng: minLng,
+      nelat: nelat,
+      nelng: maxLng
     };
   };
   $scope.geoJsonCircleToParams = function ( feature ) {
@@ -703,11 +734,13 @@ var SearchController = function (
       sumY += Math.cos( latRad ) * Math.sin( lngRad );
       sumZ += Math.sin( latRad );
     }
-    var centerLat = Math.atan2( sumZ / n,
+    var centerLat = $scope.clampLat( Math.atan2( sumZ / n,
       Math.sqrt( ( sumX / n ) * ( sumX / n ) + ( sumY / n ) * ( sumY / n ) )
-    ) * 180 / Math.PI;
-    var centerLng = Math.atan2( sumY / n, sumX / n ) * 180 / Math.PI;
-    var edgeLat = _.max( _.map( coords, function ( c ) { return c[1]; } ) );
+    ) * 180 / Math.PI );
+    var centerLng = $scope.wrapLng( Math.atan2( sumY / n, sumX / n ) * 180 / Math.PI );
+    var edgeLat = $scope.clampLat(
+      _.max( _.map( coords, function ( c ) { return c[1]; } ) )
+    );
     var radiusKm = $scope.getHaversineDistanceInKm(
       { lat: centerLat, lng: centerLng },
       { lat: edgeLat, lng: centerLng }
@@ -776,8 +809,8 @@ var SearchController = function (
   $scope.rebuildCircleAtCenter = function ( newCenterLat, newCenterLng ) {
     var radiusKm = $scope.drawing.dragStartCircleRadius;
     var radiusM = radiusKm * 1000;
-    // The desired bottom-center IS the southernmost point of the circle.
-    // Compute the new center by going north (bearing 0) by radiusM from there.
+    newCenterLat = $scope.clampLat( newCenterLat );
+    newCenterLng = $scope.wrapLng( newCenterLng );
 
     var feature = $scope.getTerraDrawFeature( );
     if ( !feature || !$scope.drawing.dragStartCircleRadius ) { return; }
@@ -790,8 +823,10 @@ var SearchController = function (
         ( angle * 180 ) / Math.PI
       );
       return [
-        Math.round( pointLatLng.lng( ) * 1e9 ) / 1e9,
-        Math.round( pointLatLng.lat( ) * 1e9 ) / 1e9
+        Math.round( $scope.clampLngToSide(
+          pointLatLng.lng( ), newCenterLng
+        ) * 1e9 ) / 1e9,
+        Math.round( $scope.clampLat( pointLatLng.lat( ) ) * 1e9 ) / 1e9
       ];
     } );
     $scope.drawing.terraDraw.updateFeatureGeometry( feature.id, {
@@ -810,17 +845,21 @@ var SearchController = function (
     var circleParams = $scope.geoJsonCircleToParams( feature );
     var numPoints = 64;
     var radiusM = circleParams.radius * 1000;
+    var centerLat = $scope.clampLat( circleParams.lat );
+    var centerLng = $scope.wrapLng( circleParams.lng );
     var circleCoords = [];
     for ( var i = 0; i <= numPoints; i++ ) {
       var angle = ( i / numPoints ) * 2 * Math.PI;
       var pointLatLng = google.maps.geometry.spherical.computeOffset(
-        new google.maps.LatLng( circleParams.lat, circleParams.lng ),
+        new google.maps.LatLng( centerLat, centerLng ),
         radiusM,
         ( angle * 180 ) / Math.PI
       );
       circleCoords.push( [
-        Math.round( pointLatLng.lng( ) * 1e9 ) / 1e9,
-        Math.round( pointLatLng.lat( ) * 1e9 ) / 1e9
+        Math.round( $scope.clampLngToSide(
+          pointLatLng.lng( ), centerLng
+        ) * 1e9 ) / 1e9,
+        Math.round( $scope.clampLat( pointLatLng.lat( ) ) * 1e9 ) / 1e9
       ] );
     }
     $scope.drawing.terraDraw.updateFeatureGeometry( id, {
@@ -830,7 +869,7 @@ var SearchController = function (
     var corrected = $scope.drawing.terraDraw.getSnapshotFeature( id );
     if ( corrected ) {
       $scope.drawing.circleCardinalIndices = $scope.getCircleCardinalIndices( corrected );
-      $scope.updateCircleCenterMarker( circleParams.lat, circleParams.lng );
+      $scope.updateCircleCenterMarker( centerLat, centerLng );
     }
   };
   $scope.getTerraDrawFeature = function ( ) {
@@ -1006,8 +1045,8 @@ var SearchController = function (
     var lats = _.map( ring, function ( p ) { return p[1]; } );
     var lngs = _.map( ring, function ( p ) { return p[0]; } );
     return {
-      minLat: _.min( lats ),
-      maxLat: _.max( lats ),
+      minLat: $scope.clampLat( _.min( lats ) ),
+      maxLat: $scope.clampLat( _.max( lats ) ),
       minLng: _.min( lngs ),
       maxLng: _.max( lngs )
     };
@@ -1020,12 +1059,15 @@ var SearchController = function (
     }
     var b = $scope.getRectangleBounds( feature );
     var midLat = ( b.minLat + b.maxLat ) / 2;
-    var midLng = ( b.minLng + b.maxLng ) / 2;
+    var crossesAM = ( b.maxLng - b.minLng ) > 180;
+    var midLng = crossesAM
+      ? $scope.wrapLng( ( b.maxLng + b.minLng ) / 2 + 180 )
+      : ( b.minLng + b.maxLng ) / 2;
     var positions = {
       n: { lat: b.maxLat, lng: midLng },
       s: { lat: b.minLat, lng: midLng },
-      e: { lat: midLat, lng: b.maxLng },
-      w: { lat: midLat, lng: b.minLng }
+      e: { lat: midLat, lng: crossesAM ? b.minLng : b.maxLng },
+      w: { lat: midLat, lng: crossesAM ? b.maxLng : b.minLng }
     };
     _.each( ["n", "s", "e", "w"], function ( key ) {
       var m = $scope.drawing.edgeMidpoints[key];
@@ -1048,23 +1090,37 @@ var SearchController = function (
     var feature = $scope.getTerraDrawFeature( );
     if ( !feature || $scope.drawing.currentShape !== "rectangle" ) { return; }
     var b = $scope.getRectangleBounds( feature );
-    if ( edgeKey === "n" ) { b.maxLat = newLatLng.lat( ); }
-    if ( edgeKey === "s" ) { b.minLat = newLatLng.lat( ); }
-    if ( edgeKey === "e" ) { b.maxLng = newLatLng.lng( ); }
-    if ( edgeKey === "w" ) { b.minLng = newLatLng.lng( ); }
+    var crossesAM = ( b.maxLng - b.minLng ) > 180;
+    if ( edgeKey === "n" ) { b.maxLat = $scope.clampLat( newLatLng.lat( ) ); }
+    if ( edgeKey === "s" ) { b.minLat = $scope.clampLat( newLatLng.lat( ) ); }
+    if ( crossesAM ) {
+      // For AM crossing minLng is the east edge, maxLng the west edge
+      if ( edgeKey === "e" ) { b.minLng = newLatLng.lng( ); }
+      if ( edgeKey === "w" ) { b.maxLng = newLatLng.lng( ); }
+    } else {
+      if ( edgeKey === "e" ) { b.maxLng = newLatLng.lng( ); }
+      if ( edgeKey === "w" ) { b.minLng = newLatLng.lng( ); }
+    }
     // Clamp to a minimum size to prevent the rectangle from collapsing or
     // inverting past the opposite edge.
     var minSize = 1e-6;
-    if ( b.maxLat - b.minLat < minSize || b.maxLng - b.minLng < minSize ) {
-      return;
+    if ( b.maxLat - b.minLat < minSize ) { return; }
+    if ( crossesAM ) {
+      if ( 360 - ( b.maxLng - b.minLng ) < minSize ) { return; }
+    } else {
+      if ( b.maxLng - b.minLng < minSize ) { return; }
     }
     var r = function ( n ) { return Math.round( n * 1e9 ) / 1e9; };
+    // Preserve vertex order: west edge first so AM-crossing rects
+    // go westLng → eastLng across the antimeridian.
+    var westLng = crossesAM ? b.maxLng : b.minLng;
+    var eastLng = crossesAM ? b.minLng : b.maxLng;
     var newRing = [
-      [r( b.minLng ), r( b.minLat )],
-      [r( b.maxLng ), r( b.minLat )],
-      [r( b.maxLng ), r( b.maxLat )],
-      [r( b.minLng ), r( b.maxLat )],
-      [r( b.minLng ), r( b.minLat )]
+      [r( westLng ), r( b.minLat )],
+      [r( eastLng ), r( b.minLat )],
+      [r( eastLng ), r( b.maxLat )],
+      [r( westLng ), r( b.maxLat )],
+      [r( westLng ), r( b.minLat )]
     ];
     $scope.drawing.terraDraw.updateFeatureGeometry( feature.id, {
       type: "Polygon",
@@ -1103,13 +1159,20 @@ var SearchController = function (
       var startLats = _.map( startRing, function ( p ) { return p[1]; } );
       var startLngs = _.map( startRing, function ( p ) { return p[0]; } );
       var startBottomLat = _.min( startLats );
-      var startCenterLng = ( _.min( startLngs ) + _.max( startLngs ) ) / 2;
+      var minLng = _.min( startLngs );
+      var maxLng = _.max( startLngs );
+      var crossesAM = ( maxLng - minLng ) > 180;
+      var startCenterLng = crossesAM
+        ? $scope.wrapLng( ( maxLng + minLng ) / 2 + 180 )
+        : ( minLng + maxLng ) / 2;
       var latDelta = desiredBottomLatLng.lat( ) - startBottomLat;
-      var lngDelta = desiredBottomLatLng.lng( ) - startCenterLng;
+      var lngDelta = crossesAM
+        ? $scope.wrapLng( desiredBottomLatLng.lng( ) - startCenterLng )
+        : desiredBottomLatLng.lng( ) - startCenterLng;
       var translatedRing = _.map( startRing, function ( point ) {
         return [
-          Math.round( ( point[0] + lngDelta ) * 1e9 ) / 1e9,
-          Math.round( ( point[1] + latDelta ) * 1e9 ) / 1e9
+          Math.round( $scope.wrapLng( point[0] + lngDelta ) * 1e9 ) / 1e9,
+          Math.round( $scope.clampLat( point[1] + latDelta ) * 1e9 ) / 1e9
         ];
       } );
       $scope.drawing.terraDraw.updateFeatureGeometry( feature.id, {
@@ -2642,9 +2705,9 @@ var MapController = function (
       if ( $scope.drawing.terraDraw ) {
         // Skip recreation if a feature already exists (e.g. just drawn by user)
         if ( !$scope.getTerraDrawFeature( ) ) {
-          var swlat = parseFloat( $scope.params.swlat );
+          var swlat = $scope.clampLat( parseFloat( $scope.params.swlat ) );
           var swlng = parseFloat( $scope.params.swlng );
-          var nelat = parseFloat( $scope.params.nelat );
+          var nelat = $scope.clampLat( parseFloat( $scope.params.nelat ) );
           var nelng = parseFloat( $scope.params.nelng );
           var rectFeature = {
             type: "Feature",
@@ -2672,8 +2735,8 @@ var MapController = function (
       if ( $scope.drawing.terraDraw ) {
         // Skip recreation if a feature already exists (e.g. just drawn by user)
         if ( !$scope.getTerraDrawFeature( ) ) {
-          var circleLat = parseFloat( $scope.params.lat );
-          var circleLng = parseFloat( $scope.params.lng );
+          var circleLat = $scope.clampLat( parseFloat( $scope.params.lat ) );
+          var circleLng = $scope.wrapLng( parseFloat( $scope.params.lng ) );
           var radiusKm = $scope.params.radius ? parseFloat( $scope.params.radius ) : 10;
           var radiusM = radiusKm * 1000;
           // Generate circle polygon points
@@ -2687,8 +2750,10 @@ var MapController = function (
               ( angle * 180 ) / Math.PI
             );
             circleCoords.push( [
-              Math.round( pointLatLng.lng( ) * 1e9 ) / 1e9,
-              Math.round( pointLatLng.lat( ) * 1e9 ) / 1e9
+              Math.round( $scope.clampLngToSide(
+                pointLatLng.lng( ), circleLng
+              ) * 1e9 ) / 1e9,
+              Math.round( $scope.clampLat( pointLatLng.lat( ) ) * 1e9 ) / 1e9
             ] );
           }
           var circleFeature = {
