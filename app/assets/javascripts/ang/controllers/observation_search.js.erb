@@ -1089,38 +1089,32 @@ var SearchController = function (
   $scope.resizeRectEdge = function ( edgeKey, newLatLng ) {
     var feature = $scope.getTerraDrawFeature( );
     if ( !feature || $scope.drawing.currentShape !== "rectangle" ) { return; }
-    var b = $scope.getRectangleBounds( feature );
-    var crossesAM = ( b.maxLng - b.minLng ) > 180;
-    if ( edgeKey === "n" ) { b.maxLat = $scope.clampLat( newLatLng.lat( ) ); }
-    if ( edgeKey === "s" ) { b.minLat = $scope.clampLat( newLatLng.lat( ) ); }
-    if ( crossesAM ) {
-      // For AM crossing minLng is the east edge, maxLng the west edge
-      if ( edgeKey === "e" ) { b.minLng = newLatLng.lng( ); }
-      if ( edgeKey === "w" ) { b.maxLng = newLatLng.lng( ); }
-    } else {
-      if ( edgeKey === "e" ) { b.maxLng = newLatLng.lng( ); }
-      if ( edgeKey === "w" ) { b.minLng = newLatLng.lng( ); }
-    }
-    // Clamp to a minimum size to prevent the rectangle from collapsing or
-    // inverting past the opposite edge.
+    // Work directly with the ring vertex order rather than min/max bounds
+    // so that antimeridian crossings (and transitions into/out of them)
+    // are handled naturally.
+    // Ring layout: [west,s] [east,s] [east,n] [west,n] [west,s]
+    var ring = feature.geometry.coordinates[0];
+    var lats = _.map( ring, function ( p ) { return p[1]; } );
+    var southLat = $scope.clampLat( _.min( lats ) );
+    var northLat = $scope.clampLat( _.max( lats ) );
+    var westLng = ring[0][0];
+    var eastLng = ring[1][0];
+    if ( edgeKey === "n" ) { northLat = $scope.clampLat( newLatLng.lat( ) ); }
+    if ( edgeKey === "s" ) { southLat = $scope.clampLat( newLatLng.lat( ) ); }
+    if ( edgeKey === "e" ) { eastLng = newLatLng.lng( ); }
+    if ( edgeKey === "w" ) { westLng = newLatLng.lng( ); }
     var minSize = 1e-6;
-    if ( b.maxLat - b.minLat < minSize ) { return; }
-    if ( crossesAM ) {
-      if ( 360 - ( b.maxLng - b.minLng ) < minSize ) { return; }
-    } else {
-      if ( b.maxLng - b.minLng < minSize ) { return; }
-    }
+    if ( northLat - southLat < minSize ) { return; }
+    // Width going eastward from west to east, accounting for wrapping
+    var lngWidth = ( ( eastLng - westLng ) % 360 + 360 ) % 360;
+    if ( lngWidth < minSize || lngWidth > 360 - minSize ) { return; }
     var r = function ( n ) { return Math.round( n * 1e9 ) / 1e9; };
-    // Preserve vertex order: west edge first so AM-crossing rects
-    // go westLng → eastLng across the antimeridian.
-    var westLng = crossesAM ? b.maxLng : b.minLng;
-    var eastLng = crossesAM ? b.minLng : b.maxLng;
     var newRing = [
-      [r( westLng ), r( b.minLat )],
-      [r( eastLng ), r( b.minLat )],
-      [r( eastLng ), r( b.maxLat )],
-      [r( westLng ), r( b.maxLat )],
-      [r( westLng ), r( b.minLat )]
+      [r( westLng ), r( southLat )],
+      [r( eastLng ), r( southLat )],
+      [r( eastLng ), r( northLat )],
+      [r( westLng ), r( northLat )],
+      [r( westLng ), r( southLat )]
     ];
     $scope.drawing.terraDraw.updateFeatureGeometry( feature.id, {
       type: "Polygon",
