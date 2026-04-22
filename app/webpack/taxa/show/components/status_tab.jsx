@@ -43,6 +43,7 @@ const StatusTab = ( {
   let statusSection;
   if ( statuses.length > 0 ) {
     statusSection = (
+      <div className="table-responsive">
       <table className="table">
         <thead>
           <tr>
@@ -226,6 +227,7 @@ const StatusTab = ( {
           } ) }
         </tbody>
       </table>
+      </div>
     );
   }
   let establishmentSection;
@@ -235,6 +237,7 @@ const StatusTab = ( {
         { listedTaxaCount > listedTaxa.length ? (
           <p>{ I18n.t( "showing_x_of_y_listings", { x: listedTaxa.length, y: listedTaxaCount } ) }</p>
         ) : null }
+        <div className="table-responsive">
         <table className="table">
           <thead>
             <tr>
@@ -287,6 +290,7 @@ const StatusTab = ( {
             ) ) }
           </tbody>
         </table>
+        </div>
       </div>
     );
   }

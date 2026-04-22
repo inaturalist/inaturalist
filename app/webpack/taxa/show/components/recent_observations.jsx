@@ -7,7 +7,7 @@ import TaxonPhoto from "../../shared/components/taxon_photo";
 
 const RecentObservations = ( { observations, showPhotoModal, url } ) => {
   if ( !observations ) { return ( <span /> ); }
-  const chunkSize = 7;
+  const chunkSize = window.innerWidth < 768 ? 3 : 7;
   return (
     <Grid className={`RecentObservations ${observations.length < chunkSize ? "no-slides" : ""}`}>
       <Row>
