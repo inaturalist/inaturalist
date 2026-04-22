@@ -15,18 +15,18 @@ const Leaders = ( { taxon } ) => {
   return (
     <div className="Leaders">
       <Row>
-        <Col xs={6}>
+        <Col xs={12} sm={6}>
           <TopObserverContainer />
         </Col>
-        <Col xs={6}>
+        <Col xs={12} sm={6}>
           <TopIdentifierContainer />
         </Col>
       </Row>
       <Row>
-        <Col xs={6}>
+        <Col xs={12} sm={6}>
           { optional }
         </Col>
-        <Col xs={6}>
+        <Col xs={12} sm={6}>
           <NumObservationsContainer />
         </Col>
       </Row>

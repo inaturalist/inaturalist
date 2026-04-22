@@ -92,10 +92,10 @@ const App = ( { taxon, showNewTaxon, config } ) => {
                 establishmentMeans={taxon.establishment_means}
               />
               <Row>
-                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                <Col xs={12} sm={6}>
                   <PhotoPreviewContainer />
                 </Col>
-                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                <Col xs={12} sm={6}>
                   <Leaders taxon={taxon} />
                   <Row>
                     <Col xs={12}>
