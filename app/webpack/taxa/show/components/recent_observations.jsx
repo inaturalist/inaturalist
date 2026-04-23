@@ -13,9 +13,9 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
       <Row>
         <Col xs={12}>
           <Carousel
-            title={ I18n.t( "recent_observations_" ) }
-            noContent={ I18n.t( "no_observations_yet" ) }
-            items={ _.map( _.chunk( observations, chunkSize ), ( chunk, i ) => (
+            title={I18n.t( "recent_observations_" )}
+            noContent={I18n.t( "no_observations_yet" )}
+            items={_.map( _.chunk( observations, chunkSize ), ( chunk, i ) => (
               <div className="slide" key={`recent-observations-${i}`}>
                 {
                   chunk.map( observation => (
@@ -26,11 +26,11 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
                       observation={observation}
                       width={120}
                       height={120}
-                      showTaxonPhotoModal={ ( ) => showPhotoModal(
+                      showTaxonPhotoModal={( ) => showPhotoModal(
                         observation.photos[0],
                         observation.taxon,
                         observation
-                      ) }
+                      )}
                     />
                   ) )
                 }
@@ -40,7 +40,7 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
                   ) : null
                 }
               </div>
-            ) ) }
+            ) )}
           />
         </Col>
       </Row>
