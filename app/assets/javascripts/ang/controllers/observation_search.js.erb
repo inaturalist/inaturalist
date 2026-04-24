@@ -1861,18 +1861,14 @@ var MapController = function (
           }
           if ( mode === "rectangle" ) {
             var ring = feature.geometry.coordinates[0];
-            var lats = _.map( ring, function ( c ) { return c[1]; } );
-            // Use the first edge to determine west/east: ring[0] and
-            // ring[1] share the same lat, so their lngs give west→east.
+            var rectBounds = new google.maps.LatLngBounds( );
+            _.each( ring, function ( c ) {
+              rectBounds.extend( new google.maps.LatLng( c[1], c[0] ) );
+            } );
             $scope.selectedPlaceLayer = new google.maps.Rectangle(
               _.extend( { }, $scope.boundaryBoxStyle, {
                 map: $scope.map,
-                bounds: {
-                  south: _.min( lats ),
-                  north: _.max( lats ),
-                  west: ring[0][0],
-                  east: ring[1][0]
-                },
+                bounds: rectBounds,
                 editable: true,
                 draggable: false,
                 suppressUndo: true
