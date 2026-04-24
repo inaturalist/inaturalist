@@ -1813,7 +1813,6 @@ var MapController = function (
       $scope.delayedOnMove( );
       $scope.$parent.disableRedoSearch = $scope.map.getZoom( ) <= 2;
     } );
-    // Initialize Terra Draw for shape drawing (replaces DrawingManager)
     if ( !$scope.drawing.terraDraw && window.TerraDraw ) {
       google.maps.event.addListenerOnce( $scope.map, "idle", function ( ) {
         var terraAdapter = new window.TerraDrawGoogleMapsAdapter( {
