@@ -1876,8 +1876,6 @@ var MapController = function (
               } )
             );
             $scope.drawing.currentShape = "rectangle";
-            $scope.initSelectedPlaceLayer( $scope.selectedPlaceLayer );
-            $scope.refreshSelectedPlace( );
           } else if ( mode === "circle" ) {
             // Extract center and radius from Terra Draw circle polygon
             var cCoords = feature.geometry.coordinates[0];
@@ -1906,9 +1904,9 @@ var MapController = function (
             $scope.drawing.currentShape = "circle";
             $scope.clearShapeBounds( );
             $scope.selectedPlaceLayer = circle;
-            $scope.initSelectedPlaceLayer( $scope.selectedPlaceLayer );
-            $scope.refreshSelectedPlace( );
           }
+          $scope.initSelectedPlaceLayer( $scope.selectedPlaceLayer );
+          $scope.refreshSelectedPlace( );
         } );
       } );
     }
