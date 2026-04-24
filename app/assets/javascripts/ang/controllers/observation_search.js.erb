@@ -215,7 +215,8 @@ var SearchController = function (
       var scope = angular.element(
         document.getElementsByClassName( "map-shape-controls" )[0]
       ).scope( );
-      if ( scope.drawing.pendingDrawing && scope.currentSubview === "map" ) {
+      if ( scope && scope.drawing && scope.drawing.pendingDrawing
+        && scope.currentSubview === "map" ) {
         scope.clearBoundary( );
         scope.$apply( );
       }
@@ -1993,7 +1994,9 @@ var MapController = function (
   // some too large for DrawingManager to handle: it's no longer a self-contained shape
   // to the curvature of the earth. This just catches that scenario and cleans up
   $scope.clearCircleIfInvalid = function ( circle ) {
-    var center = circle.getBounds( ).getCenter( );
+    var bounds = circle.getBounds( );
+    if ( !bounds ) { return false; }
+    var center = bounds.getCenter( );
     if ( center.lat( ) === 0 || center.lng( ) === 0 ) {
       circle.setMap( null );
       $scope.clearBoundary( );
