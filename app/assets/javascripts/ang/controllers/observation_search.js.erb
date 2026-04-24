@@ -1858,17 +1858,18 @@ var MapController = function (
             $scope.selectedPlaceLayer.setMap( null );
           }
           if ( mode === "rectangle" ) {
-            var coords = feature.geometry.coordinates[0];
-            var lats = _.map( coords, function ( c ) { return c[1]; } );
-            var lngs = _.map( coords, function ( c ) { return c[0]; } );
+            var ring = feature.geometry.coordinates[0];
+            var lats = _.map( ring, function ( c ) { return c[1]; } );
+            // Use the first edge to determine west/east: ring[0] and
+            // ring[1] share the same lat, so their lngs give west→east.
             $scope.selectedPlaceLayer = new google.maps.Rectangle(
               _.extend( { }, $scope.boundaryBoxStyle, {
                 map: $scope.map,
                 bounds: {
-                  north: _.max( lats ),
                   south: _.min( lats ),
-                  east: _.max( lngs ),
-                  west: _.min( lngs )
+                  north: _.max( lats ),
+                  west: ring[0][0],
+                  east: ring[1][0]
                 },
                 editable: true,
                 draggable: false,
