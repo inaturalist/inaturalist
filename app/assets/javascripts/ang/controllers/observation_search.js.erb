@@ -1823,6 +1823,7 @@ var MapController = function (
           adapter: terraAdapter,
           modes: [
             new window.TerraDrawRectangleMode( {
+              drawInteraction: "click-move-or-drag",
               styles: {
                 fillColor: "#f16f3a",
                 fillOpacity: 0,
@@ -1832,6 +1833,7 @@ var MapController = function (
             } ),
             new window.TerraDrawCircleMode( {
               projection: "globe",
+              drawInteraction: "click-move-or-drag",
               styles: {
                 fillColor: "#f16f3a",
                 fillOpacity: 0,
