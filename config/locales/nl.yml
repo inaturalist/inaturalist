@@ -1633,6 +1633,10 @@ nl:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: Laatst Bijgewerkt
   day: Dag
   decrease_brightness: Helderheid verminderen
@@ -3146,6 +3150,10 @@ nl:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "LT"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -5333,6 +5341,8 @@ nl:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Geschikt voor Wikipedia en andere Wikimedia Foundation projecten
   summary: Samenvatting
   supporting: Ondersteunend
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Opschortings duur
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 dag
   #a select form option indicating a user will be suspended for three days
@@ -5345,6 +5355,8 @@ nl:
   suspension_duration_2_months: 2 maanden
   #a select form option indicating a user will be suspended indefinitely
   suspension_duration_indefinite: Onbepaald
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Aangepaste
   #label for the suspension reason dropdown
   suspension_reason_label: Reden voor de schorsing
   #option for entering a custom suspension reason
@@ -9239,6 +9251,7 @@ nl:
       compact_units:
         thousand: "K"
         million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:
