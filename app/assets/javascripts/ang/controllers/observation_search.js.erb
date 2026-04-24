@@ -1886,9 +1886,7 @@ var MapController = function (
             var centerLng = ( _.min( cLngs ) + _.max( cLngs ) ) / 2;
             var center = new google.maps.LatLng( centerLat, centerLng );
             var edge = new google.maps.LatLng( cCoords[0][1], cCoords[0][0] );
-            var radiusM = google.maps.geometry.spherical.computeDistanceBetween(
-              center, edge
-            );
+            var radiusM = google.maps.geometry.spherical.computeDistanceBetween( center, edge );
             var circle = new google.maps.Circle(
               _.extend( { }, $scope.boundaryBoxStyle, {
                 map: $scope.map,
