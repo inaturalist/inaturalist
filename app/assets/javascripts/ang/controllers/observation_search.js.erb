@@ -1992,9 +1992,8 @@ var MapController = function (
   // some too large for DrawingManager to handle: it's no longer a self-contained shape
   // to the curvature of the earth. This just catches that scenario and cleans up
   $scope.clearCircleIfInvalid = function ( circle ) {
-    var bounds = circle.getBounds( );
-    if ( !bounds ) { return false; }
-    var center = bounds.getCenter( );
+    var center = circle?.getBounds( )?.getCenter( );
+    if ( !center ) { return false; }
     if ( center.lat( ) === 0 || center.lng( ) === 0 ) {
       circle.setMap( null );
       $scope.clearBoundary( );
