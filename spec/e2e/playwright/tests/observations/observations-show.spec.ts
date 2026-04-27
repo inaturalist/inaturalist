@@ -1,13 +1,15 @@
 import { test, expect } from "@playwright/test";
 import { ObservationDetailPage } from "../../page-objects/observation-detail.page";
 import testData from "../../fixtures/test-data.json";
+import { appMake, appMachinistHelper } from "../../support/on-rails";
 
 test.describe( "Observation detail page", () => {
   let detailPage: ObservationDetailPage;
 
   test.beforeEach( async ( { page } ) => {
     detailPage = new ObservationDetailPage( page );
-    await detailPage.goto( testData.observations.knownId );
+    const obs = await appMake( "create", "observation", { description: "Test observation" } );
+    await detailPage.goto( obs.id as number );
   } );
 
   test( "page loads without errors", async () => {

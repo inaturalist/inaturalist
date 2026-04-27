@@ -52,8 +52,12 @@ const appMachinistHelper = (
  *   const user = await appMake("create", "user", { login: "testuser" });
  *   const obs = await appMake("create", "observation", { description: "Test" });
  */
-const appMake = ( factoryMethod: string, ...factoryArgs: unknown[] ): Promise<Record<string, unknown>> =>
-  appFactories( [factoryMethod, ...factoryArgs] ) as Promise<Record<string, unknown>>;
+const appMake = async ( factoryMethod: string, ...factoryArgs: unknown[] ): Promise<Record<string, unknown>> => {
+  // factory_bot.rb returns an array from .map; unwrap to get the first record
+  const result = await appFactories( [[factoryMethod, ...factoryArgs]] );
+  const records = result as Record<string, unknown>[];
+  return records[0];
+};
 
 const appClean = (): Promise<unknown> => app( "clean" );
 
