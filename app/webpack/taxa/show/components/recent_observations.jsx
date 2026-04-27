@@ -9,17 +9,18 @@ const TAXON_PHOTO_SIZE = 120;
 const RecentObservations = ( { observations, showPhotoModal, url } ) => {
   if ( !observations ) { return ( <span /> ); }
 
-  const [chunkSize, setChunkSize] = useState(window.innerWidth / TAXON_PHOTO_SIZE);
-  window.addEventListener("resize", () => {
-    setChunkSize(window.innerWidth / TAXON_PHOTO_SIZE);
-  });
-  
-  const items = useMemo(() => {
+  const [chunkSize, setChunkSize] = useState( window.innerWidth / TAXON_PHOTO_SIZE );
+  window.addEventListener( "resize", () => {
+    setChunkSize( window.innerWidth / TAXON_PHOTO_SIZE );
+  } );
+
+  const items = useMemo( () => {
     const observationChunks = _.chunk( observations, chunkSize );
-    const items = observationChunks.map((chunk, i) => (
+    const items = observationChunks.map( ( chunk, i ) => (
       <div className="slide" key={`recent-observations-${i}`}>
-        {chunk.map(observation => (
-          <TaxonPhoto key={`recent-observations-obs-${observation.id}`}
+        {chunk.map( observation => (
+          <TaxonPhoto
+            key={`recent-observations-obs-${observation.id}`}
             photo={observation.photos[0]}
             taxon={observation.taxon}
             observation={observation}
@@ -27,10 +28,13 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
             height={TAXON_PHOTO_SIZE}
             showTaxonPhotoModal={( ) => showPhotoModal(
               observation.photos[0],
-              observation.taxon, observation )} />
-        ))}
+              observation.taxon,
+              observation
+            )}
+          />
+        ) )}
       </div>
-    ));
+    ) );
     if ( items.length < chunkSize ) {
       items.push(
         <a href={url} className="viewall">{ I18n.t( "view_all" ) }</a>
@@ -38,7 +42,7 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
     }
 
     return items;
-  }, [observations, chunkSize]);
+  }, [observations, chunkSize] );
 
   return (
     <div className={`RecentObservations ${observations.length < chunkSize ? "no-slides" : ""}`}>
