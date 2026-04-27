@@ -13,7 +13,10 @@ interface CommandPayload {
 const appCommands = async ( data: CommandPayload | CommandPayload[] ): Promise<unknown[]> => {
   const context = await contextPromise;
   const response = await context.post( "/__e2e__/command", { data } );
-  expect( response.ok() ).toBeTruthy();
+  if ( !response.ok() ) {
+    const body = await response.text();
+    throw new Error( `/__e2e__/command failed (${response.status()}): ${body}` );
+  }
   return await response.json();
 };
 

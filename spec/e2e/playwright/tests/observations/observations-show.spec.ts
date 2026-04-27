@@ -1,15 +1,20 @@
 import { test, expect } from "@playwright/test";
 import { ObservationDetailPage } from "../../page-objects/observation-detail.page";
 import testData from "../../fixtures/test-data.json";
-import { appMake, appMachinistHelper } from "../../support/on-rails";
+import { appEval } from "../../support/on-rails";
 
 test.describe( "Observation detail page", () => {
   let detailPage: ObservationDetailPage;
 
   test.beforeEach( async ( { page } ) => {
     detailPage = new ObservationDetailPage( page );
-    const obs = await appMake( "create", "observation", { description: "Test observation" } );
-    await detailPage.goto( obs.id as number );
+    const obs = await appEval( `
+      user = User.make!( email: "e2e_test_#{SecureRandom.hex(4)}@gmail.com" )
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::INTERACTION )
+      obs = Observation.make!( user: user, description: "Test observation" )
+      obs.attributes
+    ` ) as Record<string, unknown>;
+    await detailPage.goto( obs["id"] as number );
   } );
 
   test( "page loads without errors", async () => {
