@@ -629,6 +629,11 @@ $introducedColor: #E4007C;
   border-top: 1px solid #ccc;
   padding-top: 10px;
 }
+.TaxonPageTabs {
+  .tab-drawer-container {
+    display: none;
+  }
+}
 
 .TaxonPageTabs .nav.nav-tabs {
   border: 0 transparent;
@@ -1466,14 +1471,56 @@ table.regional-names {
 
 @media (max-width: 767px) {
   #main-tabs {
-    display: block;
-    padding: 0;
+    display: none;
   }
-  #main-tabs.nav-tabs > li {
-    text-align: left;
-  }
-  #main-tabs.nav-tabs > li > a {
-    padding: 20px 30px 16px;
+  .TaxonPageTabs {
+    .tab-drawer-container {
+      display: block;
+      border-bottom: 3px solid $inat-green;
+    }
+    .tab-drawer-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 18px;
+      color: black;
+      background: white;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+    .tab-drawer {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+    }
+    .tab-drawer-container.open .tab-drawer {
+      max-height: 600px;
+      transition: max-height 0.3s ease-in;
+    }
+    .tab-drawer li a,
+    .tab-drawer li button {
+      display: block;
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 18px;
+      color: #555;
+      text-decoration: none;
+      border: none;
+      border-top: 1px solid #eee;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+      &:hover {
+        background: #f5f5f5;
+        color: black;
+      }
+    }
   }
   #map-tab {
     padding: 0 30px;

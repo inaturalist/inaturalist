@@ -11,6 +11,7 @@ import HighlightsTabContainer from "../containers/highlights_tab_container";
 import SimilarTabContainer from "../containers/similar_tab_container";
 import IdentificationsTabContainer from "../containers/identifications_tab_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
+import TabDrawer from "../../../shared/components/tab_drawer";
 
 const TaxonPageTabs = ( {
   taxon,
@@ -23,7 +24,6 @@ const TaxonPageTabs = ( {
   const containerRef = useRef( null );
   const prevTaxonIdRef = useRef( taxon?.id );
   const prevChosenTabRef = useRef( chosenTab );
-
   useEffect( ( ) => {
     const tabs = $( "a[data-toggle=tab]", containerRef.current );
     const handleTabShown = e => {
@@ -61,6 +61,26 @@ const TaxonPageTabs = ( {
     : 0;
   const isCurator = currentUser?.roles.indexOf( "curator" ) >= 0 || currentUser?.roles.indexOf( "admin" ) >= 0;
   const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
+  const tabLabels = {
+    map: I18n.t( "map" ),
+    articles: I18n.t( "about" ),
+    highlights: I18n.t( "trends" ),
+    interactions: I18n.t( "interactions" ),
+    taxonomy: I18n.t( "taxonomy" ),
+    status: I18n.t( "status" ),
+    similar: speciesOrLower ? I18n.t( "similar_species" ) : I18n.t( "similar_taxa" ),
+    identifications: I18n.t( "identifications" )
+  };
+  const drawerItems = [
+    { value: "map", label: tabLabels.map },
+    { value: "articles", label: tabLabels.articles },
+    ...( !speciesOrLower ? [{ value: "highlights", label: tabLabels.highlights }] : [] ),
+    ...( speciesOrLower && test === "interactions" ? [{ value: "interactions", label: tabLabels.interactions }] : [] ),
+    { value: "taxonomy", label: tabLabels.taxonomy },
+    ...( speciesOrLower ? [{ value: "status", label: tabLabels.status }] : [] ),
+    ...( genusOrSpecies ? [{ value: "similar", label: tabLabels.similar }] : [] ),
+    ...( currentUser?.canViewHelpfulIDTips( ) && speciesOrLower ? [{ value: "identifications", label: tabLabels.identifications }] : [] )
+  ];
   if ( currentUser?.privilegedWith( "interaction" ) ) {
     let atlasItem;
     if ( isCurator && taxon.rank_level <= 10 ) {
@@ -167,6 +187,12 @@ const TaxonPageTabs = ( {
   }
   return (
     <div className="TaxonPageTabs" ref={containerRef}>
+      <TabDrawer
+        selectedValue={chosenTab}
+        selectedLabel={tabLabels[chosenTab]}
+        items={drawerItems}
+        onChange={choseTab}
+      />
       <ul id="main-tabs" className="nav nav-tabs" role="tablist">
         <li role="presentation" className={chosenTab === "map" ? "active" : ""}>
           <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
