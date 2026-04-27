@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["ES6", "DOM"],
+    "jsx": "react",
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "ignoreDeprecations": "6.0"
+  },
+}
