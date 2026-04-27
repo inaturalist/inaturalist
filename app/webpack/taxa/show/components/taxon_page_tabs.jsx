@@ -266,7 +266,6 @@ class TaxonPageTabs extends React.Component {
           >
             <LazyLoad
               debounce={false}
-              height={630}
               offset={100}
             >
               <TaxonPageMapContainer />

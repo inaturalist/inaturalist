@@ -65,14 +65,8 @@ const TaxonPageMap = ( {
   }
   return (
     <div className="TaxonPageMap">
-      <Grid>
-        <Row>
-          <Col xs={12}>
-            { loading }
-            { taxonMap }
-          </Col>
-        </Row>
-      </Grid>
+      { loading }
+      { taxonMap }
     </div>
   );
 };

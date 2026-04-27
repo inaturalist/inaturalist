@@ -408,7 +408,6 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
-  height: 590px;
 }
 .PhotoPreview .photo-bg {
   position: absolute;
@@ -1289,7 +1288,10 @@ body > [role="dialog"] .PhotoChooserModal {
   content: '';
 }
 .AkaNames .name { color: black; }
-.RecentObservations { margin-bottom: 20px; }
+#map-tab {
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
 .RecentObservations .Carousel { position: relative; }
 .RecentObservations .TaxonPhoto {
   display: inline-block;
@@ -1468,12 +1470,6 @@ table.regional-names {
   }
   #main-tabs.nav-tabs > li {
     text-align: left;
-  }
-
-  .RecentObservations .TaxonPhoto,
-  .RecentObservations .viewall {
-    width: 85px !important;
-    height: 85px !important;
   }
   .RecentObservations .viewall {
     line-height: 85px;
