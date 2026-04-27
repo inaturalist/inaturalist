@@ -1,20 +1,43 @@
 import React, { useState, useMemo } from "react";
-import PropTypes from "prop-types";
 import _ from "lodash";
 import Carousel from "./carousel";
 import TaxonPhoto from "../../shared/components/taxon_photo";
 
 const TAXON_PHOTO_SIZE = 120;
 
-const RecentObservations = ( { observations, showPhotoModal, url } ) => {
+interface ObsPhoto {
+  id: number;
+  [key: string]: unknown;
+}
+
+interface ObsTaxon {
+  id: number;
+  [key: string]: unknown;
+}
+
+interface Observation {
+  id: number;
+  photos: ObsPhoto[];
+  taxon: ObsTaxon;
+}
+
+interface RecentObservationsProps {
+  observations?: Observation[];
+  showPhotoModal?: ( photo: ObsPhoto, taxon: ObsTaxon, observation: Observation ) => void;
+  url?: string;
+}
+
+const RecentObservations = ( {
+  observations, showPhotoModal, url
+}: RecentObservationsProps ) => {
   if ( !observations ) { return ( <span /> ); }
 
   const [chunkSize, setChunkSize] = useState( window.innerWidth / TAXON_PHOTO_SIZE );
-  window.addEventListener( "resize", () => {
+  window.addEventListener( "resize", ( ) => {
     setChunkSize( window.innerWidth / TAXON_PHOTO_SIZE );
   } );
 
-  const items = useMemo( () => {
+  const items = useMemo( ( ) => {
     const observationChunks = _.chunk( observations, chunkSize );
     const slides = observationChunks.map( chunk => (
       <div className="slide" key={`recent-observations-${chunk[0].id}`}>
@@ -26,7 +49,7 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
             observation={observation}
             width={TAXON_PHOTO_SIZE}
             height={TAXON_PHOTO_SIZE}
-            showTaxonPhotoModal={( ) => showPhotoModal(
+            showTaxonPhotoModal={( ) => showPhotoModal?.(
               observation.photos[0],
               observation.taxon,
               observation
@@ -53,12 +76,6 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
       />
     </div>
   );
-};
-
-RecentObservations.propTypes = {
-  observations: PropTypes.array,
-  showPhotoModal: PropTypes.func,
-  url: PropTypes.string
 };
 
 export default RecentObservations;
