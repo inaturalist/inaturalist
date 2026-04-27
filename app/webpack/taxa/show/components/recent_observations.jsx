@@ -16,8 +16,8 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
 
   const items = useMemo( () => {
     const observationChunks = _.chunk( observations, chunkSize );
-    const items = observationChunks.map( ( chunk, i ) => (
-      <div className="slide" key={`recent-observations-${i}`}>
+    const slides = observationChunks.map( chunk => (
+      <div className="slide" key={`recent-observations-${chunk[0].id}`}>
         {chunk.map( observation => (
           <TaxonPhoto
             key={`recent-observations-obs-${observation.id}`}
@@ -35,13 +35,13 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
         ) )}
       </div>
     ) );
-    if ( items.length < chunkSize ) {
-      items.push(
+    if ( slides.length < chunkSize ) {
+      slides.push(
         <a href={url} className="viewall">{ I18n.t( "view_all" ) }</a>
       );
     }
 
-    return items;
+    return slides;
   }, [observations, chunkSize] );
 
   return (
