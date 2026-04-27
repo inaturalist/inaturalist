@@ -625,7 +625,6 @@ $introducedColor: #E4007C;
   border-color: transparentize( $introducedColor, 0.80 );
   color: $introducedColor;
 }
-
 .TaxonPageTabs .tab-content {
   border-top: 1px solid #ccc;
   padding-top: 10px;
@@ -752,6 +751,7 @@ $nav-btn-dim: 40px;
 
 #main-tabs {
   display: flex;
+  padding: 0 60px;
 }
 #main-tabs.nav-tabs > li {
   float: none;
@@ -1467,6 +1467,7 @@ table.regional-names {
 @media (max-width: 767px) {
   #main-tabs {
     display: block;
+    padding: 0 30px;
   }
   #main-tabs.nav-tabs > li {
     text-align: left;
