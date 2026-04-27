@@ -1290,7 +1290,7 @@ body > [role="dialog"] .PhotoChooserModal {
 .AkaNames .name { color: black; }
 #map-tab {
   margin-bottom: 20px;
-  padding: 0 15px;
+  padding: 0 60px;
 }
 .RecentObservations .Carousel { position: relative; }
 .RecentObservations .TaxonPhoto {
@@ -1470,6 +1470,9 @@ table.regional-names {
   }
   #main-tabs.nav-tabs > li {
     text-align: left;
+  }
+  #map-tab {
+    padding: 0 30px;
   }
   .RecentObservations .viewall {
     line-height: 85px;
