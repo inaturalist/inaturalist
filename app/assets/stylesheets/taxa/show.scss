@@ -325,6 +325,13 @@
   top: 8px;
 }
 
+.Leaders {
+  .leaders-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 $leaderItemImageDim: 56px;
 .LeaderItem {
   margin: 20px 0 20px;
@@ -394,8 +401,22 @@ $leaderItemImageDim: 56px;
   .value {
     color: #4a4a4a;
   }
-  .media-body {
-    vertical-align: middle;
+  .show-lg-up {
+    display: none;
+    @media ( min-width: 1200px ) { display: inline; }
+  }
+  .show-below-lg {
+    display: inline;
+    @media ( min-width: 1200px ) { display: none; }
+  }
+  .leader-item-media {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .leader-item-body {
+    flex: 1;
+    min-width: 0;
   }
   .img-wrapper .fa-binoculars {
     font-size: $leaderItemImageDim * 0.5;
