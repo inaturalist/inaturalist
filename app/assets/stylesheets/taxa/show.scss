@@ -639,7 +639,7 @@ $introducedColor: #E4007C;
   color: #555;
   font-weight: 600;
   font-size: 18px;
-  padding: 20px 30px 16px;
+  padding: 20px 0 16px;
 }
 .TaxonPageTabs .nav-tabs > li > a {
   border: 0 transparent;
@@ -1467,10 +1467,13 @@ table.regional-names {
 @media (max-width: 767px) {
   #main-tabs {
     display: block;
-    padding: 0 30px;
+    padding: 0;
   }
   #main-tabs.nav-tabs > li {
     text-align: left;
+  }
+  #main-tabs.nav-tabs > li > a {
+    padding: 20px 30px 16px;
   }
   #map-tab {
     padding: 0 30px;
