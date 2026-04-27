@@ -144,7 +144,7 @@ const config = {
     path: path.resolve( __dirname, "../app/assets/javascripts/webpack" )
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
     fallback: {
       querystring: require.resolve( "querystring-es3" ),
       punycode: require.resolve( "punycode" )
@@ -154,13 +154,14 @@ const config = {
     rules: [
       // run everything through babel
       {
-        test: /\.c?jsx?$/,
+        test: /\.c?[jt]sx?$/,
         loader: "babel-loader",
         resolve: {
           fullySpecified: false
         },
         options: {
           presets: [
+            "@babel/preset-typescript",
             "@babel/preset-env",
             "@babel/preset-react"
           ]

@@ -1,9 +1,20 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
+interface TabItem {
+  value: string;
+  label: string;
+}
+
+interface TabDrawerProps {
+  selectedValue?: string;
+  selectedLabel?: string;
+  items?: TabItem[];
+  onChange?: ( value: string ) => void;
+}
 
 const TabDrawer = ( {
-  selectedValue, selectedLabel, items, onChange
-} ) => {
+  selectedValue, selectedLabel, items = [], onChange
+}: TabDrawerProps ) => {
   const [open, setOpen] = useState( false );
 
   return (
@@ -25,7 +36,7 @@ const TabDrawer = ( {
             <li key={item.value}>
               <button
                 type="button"
-                onClick={() => { onChange( item.value ); setOpen( false ); }}
+                onClick={() => { if ( onChange ) onChange( item.value ); setOpen( false ); }}
               >
                 { item.label }
               </button>
@@ -34,16 +45,6 @@ const TabDrawer = ( {
       </ul>
     </div>
   );
-};
-
-TabDrawer.propTypes = {
-  selectedValue: PropTypes.string,
-  selectedLabel: PropTypes.string,
-  items: PropTypes.arrayOf( PropTypes.shape( {
-    value: PropTypes.string,
-    label: PropTypes.string
-  } ) ),
-  onChange: PropTypes.func
 };
 
 export default TabDrawer;
