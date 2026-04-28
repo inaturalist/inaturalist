@@ -9,7 +9,6 @@
     %meta{content: image_url(@site.shareable_image.url), property: "twitter:image"}
   %meta{content: root_url, property: "og:url"}
   %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site&.name), property: "og:description"}
-%h1 A big title that's always here
 - content_for(:title) do
   = t(:a_community_for_naturalist)
 - announcements = @announcements.select{|a| a.placement == "welcome/index"}
