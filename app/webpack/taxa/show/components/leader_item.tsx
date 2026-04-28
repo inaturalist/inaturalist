@@ -65,9 +65,11 @@ const LeaderItem = ( {
         </a>
       ) : null }
       { " " }
-      { valueIconClassName ? <i className={valueIconClassName} /> : extra }
-      { " " }
-      { value ? <span className="value">{ I18n.toNumber( value, { precision: 0 } ) }</span> : null }
+      <span className="icon-value">
+        { valueIconClassName ? <i className={valueIconClassName} /> : extra }
+        { " " }
+        { value ? <span className="value">{ I18n.toNumber( value, { precision: 0 } ) }</span> : null }
+      </span>
     </div>
   );
 

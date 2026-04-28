@@ -20,7 +20,7 @@ const Leaders = ( { taxon }: LeadersProps ) => {
     : <LastObservationContainer />;
   return (
     <div className="Leaders">
-      <div className="leaders-grid">
+      <div className="LeadersGrid">
         <TopObserverContainer />
         <TopIdentifierContainer />
         { optional }

@@ -17,12 +17,21 @@ class Carousel extends React.Component {
     const domNode = ReactDOM.findDOMNode( this );
     const that = this;
     $( ".carousel", domNode ).on( "slid.bs.carousel", ( ) => {
+      const inner = domNode.querySelector( ".carousel-inner" );
+      if ( inner ) inner.style.minHeight = "";
       that.setState( { sliding: false } );
     } );
   }
 
-  showNext( ) {
+  lockHeight( ) {
     const domNode = ReactDOM.findDOMNode( this );
+    const inner = domNode.querySelector( ".carousel-inner" );
+    if ( inner ) inner.style.minHeight = `${inner.getBoundingClientRect( ).height}px`;
+    return domNode;
+  }
+
+  showNext( ) {
+    const domNode = this.lockHeight( );
     $( ".carousel", domNode ).carousel( "next" );
     const { currentIndex } = this.state;
     this.setState( {
@@ -32,7 +41,7 @@ class Carousel extends React.Component {
   }
 
   showPrev( ) {
-    const domNode = ReactDOM.findDOMNode( this );
+    const domNode = this.lockHeight( );
     $( ".carousel", domNode ).carousel( "prev" );
     const { currentIndex } = this.state;
     this.setState( {

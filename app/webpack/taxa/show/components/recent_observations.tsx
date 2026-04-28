@@ -27,44 +27,44 @@ interface RecentObservationsProps {
   url?: string;
 }
 
+const calcChunkSize = () => Math.floor( window.innerWidth / TAXON_PHOTO_SIZE );
+
 const RecentObservations = ( {
   observations, showPhotoModal, url
 }: RecentObservationsProps ) => {
   if ( !observations ) { return ( <span /> ); }
 
-  const [chunkSize, setChunkSize] = useState( window.innerWidth / TAXON_PHOTO_SIZE );
+  const [chunkSize, setChunkSize] = useState( calcChunkSize() );
   window.addEventListener( "resize", ( ) => {
-    setChunkSize( window.innerWidth / TAXON_PHOTO_SIZE );
+    setChunkSize( calcChunkSize() );
   } );
 
   const items = useMemo( ( ) => {
     const observationChunks = _.chunk( observations, chunkSize );
-    const slides = observationChunks.map( chunk => (
-      <div className="slide" key={`recent-observations-${chunk[0].id}`}>
-        {chunk.map( observation => (
-          <TaxonPhoto
-            key={`recent-observations-obs-${observation.id}`}
-            photo={observation.photos[0]}
-            taxon={observation.taxon}
-            observation={observation}
-            width={TAXON_PHOTO_SIZE}
-            height={TAXON_PHOTO_SIZE}
-            showTaxonPhotoModal={( ) => showPhotoModal?.(
-              observation.photos[0],
-              observation.taxon,
-              observation
-            )}
-          />
-        ) )}
-      </div>
-    ) );
-    if ( slides.length < chunkSize ) {
-      slides.push(
-        <a href={url} className="viewall">{ I18n.t( "view_all" ) }</a>
+    return observationChunks.map( ( chunk, index ) => {
+      const images = chunk.map( observation => (
+        <TaxonPhoto
+          key={`recent-observations-obs-${observation.id}`}
+          photo={observation.photos[0]}
+          taxon={observation.taxon}
+          observation={observation}
+          showTaxonPhotoModal={( ) => showPhotoModal?.(
+            observation.photos[0],
+            observation.taxon,
+            observation
+          )}
+        />
+      ) );
+      const placeholders = Array.from( { length: chunkSize - chunk.length - 1 }, ( _, i ) => (
+        <div className="placeholder" key={`recent-observations-placeholder-${index}-${i}`} />
+      ) );
+      const viewAll = chunk.length < chunkSize && <a href={url} className="viewall">{ I18n.t( "view_all" ) }</a>;
+      return (
+        <div className="slide" key={`recent-observations-${chunk[0].id}`}>
+          {[images, placeholders, viewAll]}
+        </div>
       );
-    }
-
-    return slides;
+    } );
   }, [observations, chunkSize] );
 
   return (
