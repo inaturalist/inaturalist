@@ -18,7 +18,7 @@ class Carousel extends React.Component {
     const that = this;
     $( ".carousel", domNode ).on( "slid.bs.carousel", ( ) => {
       const inner = domNode.querySelector( ".carousel-inner" );
-      if ( inner ) inner.style.minHeight = "";
+      if ( inner ) inner.style.height = "";
       that.setState( { sliding: false } );
     } );
   }
@@ -26,7 +26,7 @@ class Carousel extends React.Component {
   lockHeight( ) {
     const domNode = ReactDOM.findDOMNode( this );
     const inner = domNode.querySelector( ".carousel-inner" );
-    if ( inner ) inner.style.minHeight = `${inner.getBoundingClientRect( ).height}px`;
+    if ( inner ) inner.style.height = `${inner.getBoundingClientRect( ).height}px`;
     return domNode;
   }
 

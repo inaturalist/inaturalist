@@ -8,6 +8,8 @@ const TaxonPhoto = ( {
   photo,
   taxon,
   observation,
+  width,
+  height,
   showTaxonPhotoModal,
   className,
   size,
@@ -18,6 +20,10 @@ const TaxonPhoto = ( {
   onClickTaxon,
   config
 } ) => {
+  let style = {};
+  if ( width ) {
+    style = { width, maxWidth: 2 * width };
+  }
   let photoTaxon;
   if ( showTaxon ) {
     photoTaxon = <div className="photo-taxon"><SplitTaxon taxon={taxon} noParens /></div>;
@@ -47,6 +53,7 @@ const TaxonPhoto = ( {
   return (
     <div
       className={`TaxonPhoto ${className}`}
+      style={style}
       key={`TaxonPhoto-taxon-${taxon.id}-photo-${photo.id}`}
     >
       <div className="photo-hover">
@@ -66,6 +73,7 @@ const TaxonPhoto = ( {
       <CoverImage
         src={photo.photoUrl( size ) || photo.photoUrl( "small" )}
         low={photo.photoUrl( "small" )}
+        height={height}
         backgroundSize={backgroundSize}
         backgroundPosition={backgroundPosition}
       />
@@ -77,6 +85,8 @@ TaxonPhoto.propTypes = {
   photo: PropTypes.object.isRequired,
   taxon: PropTypes.object.isRequired,
   showTaxonPhotoModal: PropTypes.func.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
   observation: PropTypes.object,
   className: PropTypes.string,
   size: PropTypes.string,

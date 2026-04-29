@@ -1350,6 +1350,9 @@ $nav-btn-dim: 40px;
     min-height: 0 !important;
   }
 }
+.RecentObservations .carousel-inner {
+  overflow: hidden;
+}
 .RecentObservations .carousel-inner .slide {
   display: flex;
   padding: 0 50px;
