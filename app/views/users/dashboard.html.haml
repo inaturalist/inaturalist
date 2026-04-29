@@ -7,12 +7,9 @@
     DASHBOARD_TAB = "#{params[:tab] || 'updates'}";
     DASHBOARD_FROM = "#{params[:from]}";
   = javascript_include_tag "map_bundle", "d3.min", "observations/observation_fields", "users/dashboard"
-- puts "#" * 80
 .container
   - if ( announcements = @announcements.select{|a| a.placement == "users/dashboard"} ) && !announcements.blank?
     - announcements.each do |announcement|
-      - puts "@" * 80
-      - puts announcement
       .row
         .col-xs-12
           = render "announcements/announcement", announcement: announcement
