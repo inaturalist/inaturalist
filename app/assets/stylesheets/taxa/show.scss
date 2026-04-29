@@ -59,7 +59,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    padding: 20px 15px;
+    padding: 20px 60px;
     > * { min-width: 0; }
     @media ( max-width: 767px ) {
       grid-template-columns: 1fr;
@@ -337,6 +337,8 @@
 }
 
 .Leaders {
+  margin: 0 auto;
+
   .LeadersGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1636,7 +1638,6 @@ table.regional-names {
   }
   .Leaders {
     max-width: 600px;
-    margin: 0 auto;
 
     .LeadersGrid {
       display: grid;
