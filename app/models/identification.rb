@@ -739,7 +739,7 @@ class Identification < ApplicationRecord
       next unless taxon_change.automatable_for_output?( output_taxon.id )
 
       ident.observation&.skip_update_observations_places = true
-      ident.observation.skip_indexing = true
+      ident.observation&.skip_indexing = true
       new_ident = Identification.new(
         observation: ident.observation,
         taxon: output_taxon,
