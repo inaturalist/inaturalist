@@ -81,6 +81,7 @@ class Announcement < ApplicationRecord
   preference :target_staff, :boolean
   preference :target_unconfirmed_users, :boolean
   preference :exclude_monthly_supporters, :boolean
+  preference :embed_fru, :boolean
 
   scope :in_locale, lambda {| locale |
     where( "(? = ANY (locales)) OR locales IS NULL OR locales = '{}'", locale )
