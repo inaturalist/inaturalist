@@ -42,6 +42,11 @@ class ModeratorAction < ApplicationRecord
   validates :action, inclusion: ACTIONS
   validates :reason, length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH }
   validates :reason, length: { maximum: MAXIMUM_SUSPEND_REASON_LENGTH }, if: -> { action == SUSPEND }
+  validates :audit_comment, presence: true, on: :update, if: -> { action == SUSPEND }
+  validates :audit_comment,
+    length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH },
+    on: :update,
+    allow_blank: true
   validate :only_curators_and_staff_can_hide, on: :create
   validate :only_staff_can_make_private
   validate :only_staff_can_rename, on: :create
@@ -59,6 +64,9 @@ class ModeratorAction < ApplicationRecord
   after_save :notify_resource
   after_save :delete_resource_update_actions, if: ->( moderator_action ) { moderator_action.action == HIDE }
   after_destroy :notify_resource_on_destroy
+
+  audited only: [:reason, :suspended_until, :last_edited_by_user_id],
+    if: ->( moderator_action ) { moderator_action.action == SUSPEND }
 
   def self.current_private_actions
     moderated_private_resource_ids = ModeratorAction.where( private: true ).pluck( :resource_id )
