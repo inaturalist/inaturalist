@@ -1,8 +1,8 @@
 - preview = defined?( preview ) && preview
 - create_announcement_impression( announcement ) unless preview
-- content_for( :extrahead ) do
-  - if announcement.prefers_embed_fru? && !content_for?( :fundraise_up_script )
-    - content_for( :fundraise_up_script, "loaded" )
+- if announcement.prefers_embed_fru? && !content_for?( :fundraise_up_script )
+  - content_for( :fundraise_up_script, "loaded" )
+  - content_for( :extrahead ) do
     -# Fundraise Up code for embedding donation buttons and forms.
     :javascript
       (function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
@@ -12,21 +12,11 @@
       t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
       for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
       })(window,document,'script','FundraiseUp','ACSSCSPN');
-  :javascript
-    $( function ( ) {
-      var announcementRoot = $( "#announcement-#{announcement.id}" )[0];
-      $( announcementRoot.shadowRoot ).find( "form" ).on( "submit", function ( e ) {
-        e.preventDefault( );
-        $( announcementRoot ).fadeOut( );
-        $.ajax( {
-          type: "PUT",
-          url: $( this ).attr( "action" )
-        } );
-      } );
-    } );
-  .bootstrap
-    .announcement
-      = announcement.body.html_safe
-      - if announcement.dismissible? && current_user && !preview
-        = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
-          %i.fa.fa-close
+- scoped_body = Nokogiri::HTML.fragment( announcement.body )
+- scoped_body.css( "style" ).each do |style_tag|
+  - style_tag.content = "@scope {\n#{style_tag.content}\n}"
+%div{ id: "announcement-#{announcement.id}", class: "announcement" }
+  = scoped_body.to_html.html_safe
+  - if announcement.dismissible? && current_user && !preview
+    = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
+      %i.fa.fa-close
