@@ -24,12 +24,26 @@
         url: $( this ).attr( "action" )
       } );
     } );
-  } )();
+  } );
+:javascript
+  setTimeout(
+    function( ) {
+      debugger
+      if ( !document.querySelector( 'iframe[src*="fundraiseup"]' ) ) {
+        document.querySelector( '.fru-fallback' ).style.display = "";
+      }
+    },
+  1000 );
 - scoped_body = Nokogiri::HTML.fragment( announcement.body )
 - scoped_body.css( "style" ).each do |style_tag|
   - style_tag.content = "@scope {\n#{style_tag.content}\n}"
 %div{ id: "announcement-#{announcement.id}", class: "announcement" }
   = scoped_body.to_html.html_safe
+  - if announcement.prefers_embed_fru?
+    .fru-fallback{ style: "display: none;" }
+      = link_to t( :donate_ ), "https://giving.inaturalist.org/login?form=supportinaturalist&segment=acqmobile26&utm_campaign=2026acq&utm_medium=mobile&utm_source=inatrn&utm_content=button&utm_term=2346&amount=5&redirectTo=/", class: "btn btn-inat"
+    %noscript
+      %p= t( :donate_enable_javascript )
   - if announcement.dismissible? && current_user && !preview
     = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
       %i.fa.fa-close
