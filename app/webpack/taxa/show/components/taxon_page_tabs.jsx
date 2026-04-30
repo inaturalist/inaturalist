@@ -81,6 +81,31 @@ const TaxonPageTabs = ( {
     ...( genusOrSpecies ? [{ value: "similar", label: tabLabels.similar }] : [] ),
     ...( currentUser?.canViewHelpfulIDTips( ) && speciesOrLower ? [{ value: "identifications", label: tabLabels.identifications }] : [] )
   ];
+  console.log( "currentUser", currentUser );
+  if ( currentUser?.privilegedWith( "interaction" ) ) {
+    console.log( "is privilegedWith interaction" );
+    drawerItems.push( { separator: true } );
+    drawerItems.push( { href: `/taxa/${taxon.id}/flags/new`, label: I18n.t( "flag_for_curation" ), icon: "fa-cog" } );
+    if ( flagsCount > 0 ) {
+      drawerItems.push( { href: `/taxa/${taxon.id}/flags`, label: I18n.t( "view_flags" ), icon: "fa-cog" } );
+    }
+    if ( !taxon.photos_locked || isAdmin ) {
+      if ( !currentUser.content_creation_restrictions ) {
+        drawerItems.push( { onClick: ( ) => showPhotoChooserModal( ), label: I18n.t( "edit_photos" ), icon: "fa-cog" } );
+      }
+    }
+    if ( isCurator && taxon.rank_level <= 10 ) {
+      if ( taxon.atlas_id ) {
+        drawerItems.push( { href: `/atlases/${taxon.atlas_id}`, label: I18n.t( "edit_atlas" ), icon: "fa-cog" } );
+      } else {
+        drawerItems.push( { href: `/atlases/new?taxon_id=${taxon.id}`, label: I18n.t( "create_an_atlas" ), icon: "fa-cog" } );
+      }
+    }
+    if ( isCurator ) {
+      drawerItems.push( { href: `/taxa/${taxon.id}/edit`, label: I18n.t( "edit_taxon" ), icon: "fa-cog" } );
+    }
+    drawerItems.push( { href: `/taxa/${taxon.id}/history`, label: I18n.t( "history" ), icon: "fa-cog" } );
+  }
   if ( currentUser?.privilegedWith( "interaction" ) ) {
     let atlasItem;
     if ( isCurator && taxon.rank_level <= 10 ) {

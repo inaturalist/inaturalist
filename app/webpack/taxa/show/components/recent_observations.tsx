@@ -41,7 +41,7 @@ const RecentObservations = ( {
 
   const items = useMemo( ( ) => {
     const observationChunks = _.chunk( observations, chunkSize );
-    return observationChunks.map( ( chunk, index ) => {
+    return observationChunks.map( chunk => {
       const images = chunk.map( observation => (
         <TaxonPhoto
           key={`recent-observations-obs-${observation.id}`}
@@ -55,13 +55,15 @@ const RecentObservations = ( {
           )}
         />
       ) );
-      const placeholders = Array.from( { length: chunkSize - chunk.length - 1 }, ( _, i ) => (
-        <div className="placeholder" key={`recent-observations-placeholder-${index}-${i}`} />
+      const placeholders = Array.from( { length: chunkSize - chunk.length - 1 }, ( _el, i ) => (
+        <div className="placeholder" key={`recent-observations-placeholder-${chunk[0]?.id}-${i}`} />
       ) );
       const viewAll = chunk.length < chunkSize && <a href={url} className="viewall">{ I18n.t( "view_all" ) }</a>;
       return (
         <div className="slide" key={`recent-observations-${chunk[0].id}`}>
-          {[images, placeholders, viewAll]}
+          {images}
+          {placeholders}
+          {viewAll}
         </div>
       );
     } );

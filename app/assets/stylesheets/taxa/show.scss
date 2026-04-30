@@ -61,11 +61,18 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     padding: 20px 60px;
+    max-width: $xl;
+    margin: 0 auto;
+    align-items: center;
     > * { min-width: 0; }
     @media ( max-width: 767px ) {
       grid-template-columns: 1fr;
       gap: 0;
       padding: 15px;
+      .PhotoPreview {
+        margin: 0 auto;
+        width: 100%;
+      }
     }
   }
 }
@@ -455,6 +462,8 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
+  height: 100%;
+  align-self: flex-start;
 
   .foreground-container {
     display: flex;
@@ -471,7 +480,10 @@ $photoPreviewThumbGutterTop: 3px;
 
       .CoverImage {
         min-height: 0 !important;
-        height: 500px;
+        height: 100%;
+        @media ( max-width: $mobile-max ) {
+          height: 300px;
+        }
       }
     }
   }
@@ -484,6 +496,9 @@ $photoPreviewThumbGutterTop: 3px;
 
 .PhotoPreview.grid .foreground-container .TaxonPhoto .CoverImage {
   height: 195px;
+  @media ( max-width: $mobile-max ) {
+    height: 120px;
+  }
 }
 
 .PhotoPreview .photo-bg {
@@ -545,7 +560,10 @@ $photoPreviewThumbGutterTop: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 195px;
+  height: 195px !important;
+  @media ( max-width: $mobile-max ) {
+    height: 120px !important;
+  }
 }
 .PhotoPreview.grid .viewmore a .inner {
   text-align: center;
@@ -1588,8 +1606,16 @@ table.regional-names {
       transition: max-height 0.2s ease-out;
     }
     .tab-drawer-container.open .tab-drawer {
-      max-height: 600px;
+      max-height: 900px;
       transition: max-height 0.3s ease-in;
+    }
+    .tab-drawer-separator {
+      border-top: 2px solid #ddd;
+      margin: 4px 0;
+    }
+    .tab-drawer-item-icon {
+      color: $inat-green;
+      margin-right: 6px;
     }
     .tab-drawer li a,
     .tab-drawer li button {
