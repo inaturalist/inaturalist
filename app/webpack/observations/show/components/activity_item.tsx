@@ -16,6 +16,9 @@ import HiddenContentMessageContainer from "../../../shared/containers/hidden_con
 import HiddenActivityItem from "./hidden_activity_item";
 import UsersPopover from "./users_popover";
 
+// TODO: This file could benefit from reducting conditional logic and more explicit ActivityItem
+// types - perhaps even splitting into multiple components.
+
 interface ActivityItemProps {
   addID?: ( taxon: object, options?: object ) => void;
   config?: Record<string, any>;
@@ -440,7 +443,6 @@ const ActivityItem = ( {
     }
     contents = (
       <div className="identification">
-        {buttonDiv}
         <div className="taxon">
           {noTaxonLink ? taxonImageTag : (
             <a
@@ -460,6 +462,7 @@ const ActivityItem = ( {
             showMemberGroup
           />
         </div>
+        {buttonDiv}
         {!_.isEmpty( idBody ) && (
           <div className="id-body-wrapper">
             { idBody }

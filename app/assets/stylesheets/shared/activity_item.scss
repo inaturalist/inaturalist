@@ -11,7 +11,10 @@ body > [role="dialog"] .ActivityItem {
     overflow: inherit;
   }
   .identification {
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
     width: 100%;
     > .taxon {
       display: flex;
@@ -27,15 +30,11 @@ body > [role="dialog"] .ActivityItem {
       }
     }
   }
-  .buttons {
-    float: right;
-  }
   .taxon-image {
     width: 44px;
     height: 44px;
     border: 1px solid $border-grey;
     border-radius: 2px;
-    float: left;
     margin-inline-end: 15px;
     display: inline-block;
   }
@@ -100,7 +99,6 @@ body > [role="dialog"] .ActivityItem {
     }
     .item-status {
       margin-inline-end: 15px;
-      white-space: nowrap;
      .fa, i {
         width: 20px;
         text-align: center;
@@ -251,11 +249,16 @@ body > [role="dialog"] .ActivityItem {
     float: left;
   }
   .buttons {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
     button {
       margin-inline-start: 10px;
       .fa {
         color: $inat-green;
       }
+      vertical-align: middle;
     }
   }
   button.comment_id {
