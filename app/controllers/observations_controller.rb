@@ -2161,6 +2161,7 @@ class ObservationsController < ApplicationController
     @threatened = search_params[:threatened]
     @introduced = search_params[:introduced]
     @native = search_params[:native]
+    @endemic = search_params[:endemic]
     @popular = search_params[:popular]
     @spam = search_params[:spam]
     if stats_adequately_scoped?(search_params)

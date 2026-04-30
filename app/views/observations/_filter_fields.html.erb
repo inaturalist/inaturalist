@@ -450,6 +450,9 @@
 <% if show_all || @native -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "native", value: @native }) %>
 <% end -%>
+<% if show_all || @endemic -%>
+  <%= render(partial: "yes_no_any_field", locals: { field: "endemic", value: @endemic }) %>
+<% end -%>
 <% if show_all || @popular -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "popular", value: @popular }) %>
 <% end -%>
