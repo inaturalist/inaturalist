@@ -11,7 +11,7 @@
     = f.form_field :suspension_reason, label: t( :suspension_reason_label ) do
       = select_tag :suspension_reason, options_for_select( reason_options, selected_reason || reason_options.first[1] ), class: "form-control", id: "suspension_reason"
     .custom-reason-field{ style: selected_reason == "custom" ? "" : "display: none;" }
-      = f.text_area :reason, reason_opts.merge( id: "moderator_action_reason" )
+      = f.text_area :reason, reason_opts
       %p.help-block= t( :suspension_reason_custom_note )
     = f.hidden_field :reason, id: "hidden_reason"
   - else
