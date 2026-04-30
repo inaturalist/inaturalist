@@ -459,6 +459,7 @@ $leaderItemImageDim: 56px;
 $photoPreviewThumbDim: 92px;
 $photoPreviewThumbGutter: 1px;
 $photoPreviewThumbGutterTop: 3px;
+$photoPreviewThumbTotal: $photoPreviewThumbDim + $photoPreviewThumbGutter * 2 + $photoPreviewThumbGutterTop;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
@@ -491,7 +492,7 @@ $photoPreviewThumbGutterTop: 3px;
 
 .PhotoPreview.gallery.cover-bg {
   .foreground-container .TaxonPhoto .CoverImage {
-    height: calc(100% + 98px);
+    height: calc(100% + #{$photoPreviewThumbTotal});
   }
 }
 
