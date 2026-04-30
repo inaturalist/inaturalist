@@ -1,6 +1,6 @@
+/* eslint-disable react/no-danger */
 import React, { useEffect, useRef, useState } from "react";
-// @ts-ignore
-import ReactDOMServer from "react-dom/server"; // eslint-disable-line import/no-extraneous-dependencies
+import ReactDOMServer from "react-dom/server";
 import _ from "lodash";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
@@ -15,8 +15,6 @@ import TextEditor from "../../../shared/components/text_editor";
 import HiddenContentMessageContainer from "../../../shared/containers/hidden_content_message_container";
 import HiddenActivityItem from "./hidden_activity_item";
 import UsersPopover from "./users_popover";
-
-/* eslint-disable react/no-danger */
 
 interface ActivityItemProps {
   addID?: ( taxon: object, options?: object ) => void;
@@ -117,18 +115,20 @@ const ActivityItem = ( {
           setFlaggingModalState?.( { item, show: true } );
         }, { permitOwnerOf: item } );
         history.replaceState(
-          window.history.state, "",
+          window.history.state,
+          "",
           window.location.href.replace( /:[^:]*$/, "" )
         );
       } else if ( action === "hide" && hideContent && item && !item.hidden ) {
         hideContent( item );
         history.replaceState(
-          window.history.state, "",
+          window.history.state,
+          "",
           window.location.href.replace( /:[^:]*$/, "" )
         );
       }
     }
-  }, [] ); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [] );
 
   useEffect( ( ) => {
     if ( containerRef.current ) {
@@ -137,7 +137,7 @@ const ActivityItem = ( {
   } );
 
   useEffect( ( ) => {
-    if ( !showVisionPopover ) return undefined;
+    if ( !showVisionPopover ) return ( ) => { };
     const handleClickOutside = ( e: MouseEvent ) => {
       if ( visionPopoverRef.current && !visionPopoverRef.current.contains( e.target as Node ) ) {
         setShowVisionPopover( false );
@@ -572,6 +572,7 @@ const ActivityItem = ( {
         <button
           type="button"
           className="btn btn-nostyle"
+          aria-label={I18n.t( "computer_vision_suggestion" )}
           onClick={e => {
             e.stopPropagation( );
             setShowVisionPopover( prev => !prev );
