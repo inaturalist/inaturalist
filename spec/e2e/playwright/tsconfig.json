@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["../shared/*"],
+      "@helpers/*": ["./helpers/*"],
+      "@page-objects/*": ["./page-objects/*"],
+      "@fixtures/*": ["./fixtures/*"]
+    }
+  },
+  "include": [
+    "./**/*.ts",
+    "../shared/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "playwright-report",
+    "test-results"
+  ]
+}

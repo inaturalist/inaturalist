@@ -1,0 +1,109 @@
+name: E2E Tests
+
+on:
+  workflow_call:
+
+jobs:
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-22.04
+    services:
+      postgres:
+        image: postgis/postgis:17-3.6-alpine
+        env:
+          POSTGRES_USER: inaturalist
+          POSTGRES_PASSWORD: inaturalist
+          POSTGRES_DB: inaturalist_test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Configure sysctl limits
+      run: |
+        sudo swapoff -a
+        sudo sysctl -w vm.swappiness=1
+        sudo sysctl -w fs.file-max=262144
+        sudo sysctl -w vm.max_map_count=262144
+
+    - name: Runs Elasticsearch
+      uses: elastic/elastic-github-actions/elasticsearch@master
+      with:
+        stack-version: 8.15.3
+        security-enabled: false
+        plugins: analysis-kuromoji
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get -qq update --fix-missing
+        sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
+
+    - name: Use Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - run: npm install
+
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps chromium
+
+    - run: npm run webpack
+
+    - name: Database setup
+      run: ci/scripts/before_script.sh
+      env:
+        PGHOST: 0.0.0.0
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+        TRAVIS: true
+        CI: true
+
+    - name: Precompile assets
+      run: bundle exec rake assets:precompile
+      env:
+        PGHOST: 0.0.0.0
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+
+    - name: Start Rails server
+      run: |
+        mkdir -p log
+        bundle exec rails server -e test -p 3000 > log/rails.log 2>&1 &
+        echo $! > rails.pid
+        curl --max-time 5 --retry 30 --retry-delay 2 --retry-all-errors --fail --silent --show-error http://localhost:3000 > /dev/null
+      env:
+        PGHOST: 0.0.0.0
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+
+    - name: Run E2E tests
+      run: npm run test:e2e:ci
+      env:
+        E2E_BASE_URL: http://localhost:3000
+        CI: true
+
+    - name: Dump Rails log on failure
+      if: failure()
+      run: |
+        echo "=== log/rails.log (stdout/stderr) ==="
+        [ -f log/rails.log ] && cat log/rails.log || echo "(no log/rails.log)"
+        echo "=== log/test.log (Rails logger) ==="
+        [ -f log/test.log ] && tail -n 500 log/test.log || echo "(no log/test.log)"
+        echo "=== listening ports ==="
+        ss -lntp || true
+        echo "=== rails process ==="
+        [ -f rails.pid ] && ps -fp "$(cat rails.pid)" || echo "(no rails.pid)"
+
+    - name: Upload Playwright report
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: playwright-report
+        path: spec/e2e/playwright/test-results/
+        retention-days: 14

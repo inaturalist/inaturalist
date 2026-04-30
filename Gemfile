@@ -143,6 +143,10 @@ group :test, :development, :prod_dev do
   gem "rubocop-rspec", require: false
 end
 
+group :test, :development do
+  gem 'cypress-on-rails', '~> 1.0'
+end
+
 group :development do
   # The following are required for ed25519 ssh keys
   gem "ed25519"
