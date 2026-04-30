@@ -385,7 +385,7 @@ class App extends React.Component {
               </Col>
             </Row>
             <Row>
-              <Col xs={responsive ? null : 7} sm={responsive ? 7 : null} className="middle_left">
+              <Col xs={responsive ? null : 7} sm={responsive ? 7 : null}>
                 { description }
                 <Row>
                   <Col xs={12}>
