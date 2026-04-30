@@ -12,6 +12,7 @@
 @import "../shared/flash_message";
 @import "../users/user_popover";
 @import "./shared/loading_spinner";
+@import "../breakpoints";
 
 #app {
   min-height: 600px;
@@ -337,19 +338,19 @@
 }
 
 .Leaders {
+  max-width: 600px;
   margin: 0 auto;
 
   .LeadersGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
     > * { min-width: 0; }
   }
 }
 
 $leaderItemImageDim: 56px;
 .LeaderItem {
-  margin: 20px 0 20px;
+   margin-bottom: 20px;
   .img-wrapper {
     border: 1px solid transparent;
     width: $leaderItemImageDim;
@@ -439,8 +440,9 @@ $leaderItemImageDim: 56px;
   .img-wrapper .fa-binoculars {
     font-size: $leaderItemImageDim * 0.5;
   }
-  @media ( max-width: 767px ) {
+  @media ( max-width: $lg ) {
     margin: 8px 0;
+    .item-label { text-align: center; }
     .leader-item-media { flex-direction: column; align-items: stretch; }
     .img-wrapper { margin: 0 auto; }
     .leader-item-body { text-align: center; }
@@ -453,7 +455,37 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
+
+  .foreground-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    * {
+      z-index: 1000;
+    }
+
+    .TaxonPhoto {
+      flex-grow: 1;
+
+      .CoverImage {
+        min-height: 0 !important;
+        height: 500px;
+      }
+    }
+  }
 }
+
+.PhotoPreview.grid {
+  max-height: 600px;
+  max-width: 600px;
+}
+
+.PhotoPreview.grid .foreground-container .TaxonPhoto .CoverImage {
+  height: 195px;
+}
+
 .PhotoPreview .photo-bg {
   position: absolute;
   left: -50px;
@@ -473,14 +505,8 @@ $photoPreviewThumbGutterTop: 3px;
   background-color: rgba(0,0,0,0.25);
 }
 .PhotoPreview.gallery ul.others{
-  position: absolute;
-  bottom: 0;
   margin: 0;
-  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;      /* TWEENER - IE 10 */
-  display: -webkit-flex;     /* NEW - Chrome */
-  display: flex;             /* New - everyone else */
+  display: flex;
   flex-wrap: nowrap;
 }
 .PhotoPreview ul.others li {
@@ -516,16 +542,14 @@ $photoPreviewThumbGutterTop: 3px;
   background-color: #333;
   font-weight: 400;
   font-size: 20px;
-  display: block;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 195px;
 }
 .PhotoPreview.grid .viewmore a .inner {
-  width: 100%;
+  text-align: center;
   line-height: 1.6;
-  display: block;
-  position: absolute;
-  top: 50%;
-  margin-top: -25px;
 }
 .PhotoPreview.grid .viewmore a .inner .fa {
   margin-top: 5px;
@@ -1589,16 +1613,6 @@ table.regional-names {
   #map-tab {
     padding: 0 15px;
   }
-  // .RecentObservations .viewall {
-  //   line-height: 85px;
-  // }
-  // .RecentObservations .nav-btn:before {
-  //   height: 85px;
-  //   line-height: 85px;
-  // }
-  // .RecentObservations .nav-btn {
-  //   height: 85px;
-  // }
 
   .SimilarTab .TaxonThumbnail {
     width: calc(50% - 10px);
@@ -1637,12 +1651,6 @@ table.regional-names {
     }
   }
   .Leaders {
-    max-width: 600px;
-
-    .LeadersGrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
+    max-width: 400px;
   }
 }

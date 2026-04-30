@@ -121,61 +121,63 @@ class PhotoPreview extends React.Component {
     return (
       <div className={`PhotoPreview ${layout}`}>
         { bgImage }
-        { currentPhoto }
-        <ul className="plain others">
-          { taxonPhotos.map( tp => {
-            let content;
-            if ( layout === "grid" ) {
-              content = (
-                <TaxonPhoto
-                  photo={tp.photo}
-                  height={thumbnailHeight}
-                  taxon={tp.taxon}
-                  showTaxonPhotoModal={showTaxonPhotoModal}
-                  className="photoItem"
-                  showTaxon
-                  linkTaxon={tp.taxon.id !== taxon.id}
-                  onClickTaxon={newTaxon => showNewTaxon( newTaxon )}
-                  config={config}
-                />
-              );
-            } else {
-              content = (
-                <a
-                  className="photoItem"
-                  href={tp.photo.photoUrl()}
-                  onClick={e => {
-                    e.preventDefault( );
-                    this.showPhoto( tp.photo.id );
-                    return false;
-                  }}
-                >
-                  <CoverImage
-                    src={tp.photo.photoUrl( "small" )}
-                    low={tp.photo.photoUrl( "small" )}
+        <div className="foreground-container">
+          { currentPhoto }
+          <ul className="plain others">
+            { taxonPhotos.map( tp => {
+              let content;
+              if ( layout === "grid" ) {
+                content = (
+                  <TaxonPhoto
+                    photo={tp.photo}
                     height={thumbnailHeight}
+                    taxon={tp.taxon}
+                    showTaxonPhotoModal={showTaxonPhotoModal}
+                    className="photoItem"
+                    showTaxon
+                    linkTaxon={tp.taxon.id !== taxon.id}
+                    onClickTaxon={newTaxon => showNewTaxon( newTaxon )}
+                    config={config}
                   />
-                </a>
+                );
+              } else {
+                content = (
+                  <a
+                    className="photoItem"
+                    href={tp.photo.photoUrl()}
+                    onClick={e => {
+                      e.preventDefault( );
+                      this.showPhoto( tp.photo.id );
+                      return false;
+                    }}
+                  >
+                    <CoverImage
+                      src={tp.photo.photoUrl( "small" )}
+                      low={tp.photo.photoUrl( "small" )}
+                      height={thumbnailHeight}
+                    />
+                  </a>
+                );
+              }
+              return (
+                <li key={`taxon-photo-${tp.taxon.id}-${tp.photo.id}`}>
+                  { content }
+                </li>
               );
-            }
-            return (
-              <li key={`taxon-photo-${tp.taxon.id}-${tp.photo.id}`}>
-                { content }
-              </li>
-            );
-          } ) }
-          <li className="viewmore">
-            <a
-              href={urlForTaxonPhotos( taxon )}
-              style={{ height: layout === "grid" ? `${thumbnailHeight}px` : "inherit" }}
-            >
-              <span className="inner">
-                <span>{ I18n.t( "view_more" )}</span>
-                <i className="fa fa-arrow-circle-right" />
-              </span>
-            </a>
-          </li>
-        </ul>
+            } ) }
+            <li className="viewmore">
+              <a
+                href={urlForTaxonPhotos( taxon )}
+                style={{ height: layout === "grid" ? `${thumbnailHeight}px` : "inherit" }}
+              >
+                <span className="inner">
+                  <span>{ I18n.t( "view_more" )}</span>
+                  <i className="fa fa-arrow-circle-right" />
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }
