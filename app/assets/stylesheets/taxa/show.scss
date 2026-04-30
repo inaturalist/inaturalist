@@ -491,7 +491,7 @@ $photoPreviewThumbGutterTop: 3px;
 
 .PhotoPreview.gallery.cover-bg {
   .foreground-container .TaxonPhoto .CoverImage {
-    height: calc(100% + #{$photoPreviewThumbDim + $photoPreviewThumbGutterTop});
+    height: calc(100% + 98px);
   }
 }
 
