@@ -12,6 +12,19 @@
       t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
       for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
       })(window,document,'script','FundraiseUp','ACSSCSPN');
+= javascript_include_tag "jquery/jquery-1.11.3.min.js"
+:javascript
+  $( function ( ) {
+    var announcementRoot = $( "#announcement-#{announcement.id}" )[0];
+    $( announcementRoot ).find( "form" ).on( "submit", function ( e ) {
+      e.preventDefault( );
+      $( announcementRoot ).fadeOut( );
+      $.ajax( {
+        type: "PUT",
+        url: $( this ).attr( "action" )
+      } );
+    } );
+  } )();
 - scoped_body = Nokogiri::HTML.fragment( announcement.body )
 - scoped_body.css( "style" ).each do |style_tag|
   - style_tag.content = "@scope {\n#{style_tag.content}\n}"
