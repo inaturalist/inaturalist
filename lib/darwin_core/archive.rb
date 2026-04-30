@@ -820,20 +820,21 @@ module DarwinCore
 
     def upload_to_aws_s3
       return unless @opts[:aws_s3_path]
+
       s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml" ) )
       client = ::Aws::S3::Client.new(
         access_key_id: s3_config["access_key_id"],
         secret_access_key: s3_config["secret_access_key"],
         region: CONFIG.s3_region
       )
-      resource = Aws::S3::Resource.new( client: client )
-      bucket = resource.bucket( CONFIG.s3_bucket )
-      object = bucket.object( @opts[:aws_s3_path] )
-      object.upload_file( @opts[:path], {
+      transfer_manager = ::Aws::S3::TransferManager.new( client: client )
+      transfer_manager.upload_file(
+        @opts[:path],
+        key: @opts[:aws_s3_path],
+        bucket: CONFIG.s3_bucket,
         acl: "public-read",
         content_encoding: "zip"
-      } )
+      )
     end
-
   end
 end
