@@ -65,7 +65,7 @@ class ModeratorAction < ApplicationRecord
   after_save :delete_resource_update_actions, if: ->( moderator_action ) { moderator_action.action == HIDE }
   after_destroy :notify_resource_on_destroy
 
-  audited only: [:suspended_until, :last_edited_by_user_id],
+  audited only: [:reason, :suspended_until, :last_edited_by_user_id],
     if: ->( moderator_action ) { moderator_action.action == SUSPEND }
 
   def self.current_private_actions

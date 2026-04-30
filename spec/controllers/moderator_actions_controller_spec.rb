@@ -98,23 +98,25 @@ describe ModeratorActionsController do
   describe "update" do
     let( :audit_comment_text ) { "Editing suspension: #{Faker::Lorem.sentence}" }
 
-    it "saves audit_comment, preserves the original reason, and updates suspended_until" do
+    it "saves audit_comment, updates reason, and updates suspended_until" do
       sign_in suspend_action.user
-      original_reason = suspend_action.reason
+      new_reason = "Updated reason for suspension"
       new_date = 30.days.from_now
 
       patch :update, params: {
         id: suspend_action.id,
         moderator_action: {
+          reason: new_reason,
           audit_comment: audit_comment_text,
           suspended_until: new_date
         }
       }
       suspend_action.reload
-      expect( suspend_action.reason ).to eq original_reason
+      expect( suspend_action.reason ).to eq new_reason
       audit = suspend_action.audits.where( action: "update" ).last
       expect( audit ).not_to be_nil
       expect( audit.comment ).to eq audit_comment_text
+      expect( audit.audited_changes ).to have_key( "reason" )
       suspended_user.reload
       expect( suspended_user.suspended_until ).to be_within( 1.second ).of( new_date )
     end

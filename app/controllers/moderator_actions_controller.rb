@@ -143,7 +143,7 @@ class ModeratorActionsController < ApplicationController
 
   def approved_update_params
     params.require( :moderator_action ).require( :audit_comment )
-    params.require( :moderator_action ).permit( :audit_comment, :suspended_until )
+    params.require( :moderator_action ).permit( :reason, :audit_comment, :suspended_until )
   end
 
   def resource_must_be_viewable_by_logged_in_user

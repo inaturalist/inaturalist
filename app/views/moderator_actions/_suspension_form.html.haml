@@ -1,5 +1,4 @@
 - editing = local_assigns.fetch( :editing, false )
-- reason_field = editing ? :audit_comment : :reason
 - default_duration = local_assigns.fetch( :default_duration, "1_day" )
 - existing_suspended_until = local_assigns[:suspended_until_value]
 - reason_opts = { required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: local_assigns.fetch( :reason_maxlength, ModeratorAction::MAXIMUM_REASON_LENGTH ) }
@@ -12,12 +11,14 @@
     = f.form_field :suspension_reason, label: t( :suspension_reason_label ) do
       = select_tag :suspension_reason, options_for_select( reason_options, selected_reason || reason_options.first[1] ), class: "form-control", id: "suspension_reason"
     .custom-reason-field{ style: selected_reason == "custom" ? "" : "display: none;" }
-      = f.text_area reason_field, reason_opts.merge( id: "moderator_action_reason" )
+      = f.text_area :reason, reason_opts.merge( id: "moderator_action_reason" )
       %p.help-block= t( :suspension_reason_custom_note )
-    = f.hidden_field reason_field, id: "hidden_reason"
+    = f.hidden_field :reason, id: "hidden_reason"
   - else
-    = f.text_area reason_field, reason_opts
+    = f.text_area :reason, reason_opts
     %p.help-block= t( :suspension_reason_custom_note )
+  - if editing
+    = f.text_area :audit_comment, required: true, minlength: ModeratorAction::MINIMUM_REASON_LENGTH, maxlength: ModeratorAction::MAXIMUM_REASON_LENGTH, label: t( :edit_reason_label )
   - if current_user.is_admin?
     = f.form_field :suspension_duration, label: t( :suspension_duration ) do
       = select_tag :suspension_duration, options_for_select( [[t( :suspension_duration_1_day ), "1_day"], [t( :suspension_duration_3_days ), "3_days"], [t( :suspension_duration_1_week ), "1_week"], [t( :suspension_duration_1_month ), "1_month"], [t( :suspension_duration_2_months ), "2_months"], [t( :suspension_duration_indefinite ), "indefinite"], [t( :suspension_duration_custom ), "custom"]], default_duration ), class: "form-control", id: "suspension_duration"

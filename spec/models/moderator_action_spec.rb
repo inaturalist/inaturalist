@@ -581,6 +581,18 @@ describe ModeratorAction do
         expect( ma.audits.last.comment ).to eq( audit_comment )
       end
 
+      it "audits reason changes" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        original_reason = ma.reason
+        new_reason = "Updated suspension reason"
+        ma.audit_comment = "Changing the reason"
+        ma.update!( reason: new_reason )
+        audit = ma.audits.last
+        expect( audit.audited_changes ).to have_key( "reason" )
+        expect( audit.audited_changes["reason"] ).to eq( [original_reason, new_reason] )
+      end
+
       it "requires audit_comment on update" do
         u = create :user
         ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
