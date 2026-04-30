@@ -281,7 +281,7 @@
               %span.glyphicon.glyphicon-leaf
               = t :subscribe_to_a_taxon
           .col-sm-6
-            = link_to "#", "data-subscribe-type" => "place", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do
+            = link_to "#", "data-subscribe-type" => "place", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm mt-sm-1" do
               %span.glyphicon.glyphicon-map-marker
               = t :subscribe_to_a_place
         / Modal
@@ -364,3 +364,5 @@
           %p= t :show_off_your_recent_observations
           %p
             = link_to t(:learn_more), { controller: "observations", action: "widget" }, class: "btn btn-default btn-md"
+
+= render "shared/ios_app_banner", utm_campaign_params: "utm_source=inaturalist_dashboard&utm_campaign=dashboard_prompt_download_app"
