@@ -81,6 +81,7 @@ class PhotoPreview extends React.Component {
         </div>
       );
     }
+    let backgroundSize = "cover";
     if ( current && layout === "gallery" ) {
       const { photo } = current;
       const dims = photo.dimensions( );
@@ -88,7 +89,6 @@ class PhotoPreview extends React.Component {
       if ( dims && dims.height ) {
         ratio = dims.width / dims.height;
       }
-      let backgroundSize = "cover";
       if ( ratio > 1.3 ) {
         backgroundSize = "contain";
       }
@@ -119,7 +119,7 @@ class PhotoPreview extends React.Component {
       taxonPhotos.pop( );
     }
     return (
-      <div className={`PhotoPreview ${layout}`}>
+      <div className={`PhotoPreview ${layout}${layout === "gallery" && backgroundSize === "cover" ? " cover-bg" : ""}`}>
         { bgImage }
         <div className="foreground-container">
           { currentPhoto }

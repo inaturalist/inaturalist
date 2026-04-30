@@ -462,8 +462,11 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
-  height: 100%;
   align-self: flex-start;
+  height: 100%;
+  @media ( max-width: $mobile-max ) {
+    height: 450px;
+  }
 
   .foreground-container {
     display: flex;
@@ -481,11 +484,14 @@ $photoPreviewThumbGutterTop: 3px;
       .CoverImage {
         min-height: 0 !important;
         height: 100%;
-        @media ( max-width: $mobile-max ) {
-          height: 300px;
-        }
       }
     }
+  }
+}
+
+.PhotoPreview.gallery.cover-bg {
+  .foreground-container .TaxonPhoto .CoverImage {
+    height: calc(100% + #{$photoPreviewThumbDim + $photoPreviewThumbGutterTop});
   }
 }
 
