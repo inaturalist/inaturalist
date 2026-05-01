@@ -37,7 +37,7 @@ function initFruFallback( announcementId ) {
   var root = document.getElementById( announcementId );
   if ( !root ) return;
   var fallback = root.querySelector( ".fru-fallback" );
-  var fruAnchor = root.querySelector( 'a[href^="#"][style*="display"]' );
+  var fruAnchor = root.querySelector( "a[href^=\"#\"][style*=\"display\"]" );
   if ( fallback && fruAnchor ) {
     fruAnchor.parentNode.insertBefore( fallback, fruAnchor.nextSibling );
   }

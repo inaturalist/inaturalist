@@ -3,7 +3,7 @@
 - if announcement.prefers_embed_fru? && !content_for?( :fundraise_up_script )
   - content_for( :fundraise_up_script, "loaded" )
   - content_for( :extrahead ) do
-    = javascript_include_tag "fundraise_up_helpers"
+    = javascript_include_tag "announcements/fundraise_up_helpers"
     :javascript
       loadFundraiseUpWidget();
 = javascript_include_tag "jquery/jquery-1.11.3.min.js"
