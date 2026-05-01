@@ -1,0 +1,45 @@
+$nav-btn-dim: 40px;
+
+.Carousel {
+  width: 100%;
+  clear: both;
+  .carousel-body {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .carousel-slides {
+    flex: 1;
+    min-width: 0;
+  }
+  .carousel-slide {
+    display: none;
+    &.active {
+      display: flex;
+    }
+  }
+  .nav-btn {
+    flex-shrink: 0;
+    width: $nav-btn-dim;
+    height: $nav-btn-dim;
+    padding: 0;
+    border: none;
+    border-radius: 100px;
+    background-color: $inat-green;
+    color: white;
+    font-weight: bold;
+    font-size: $nav-btn-dim / 2;
+    line-height: $nav-btn-dim;
+    &:hover, &:focus, &:active {
+      background-color: $inat-green-light;
+      outline: none;
+    }
+    &[disabled] {
+      opacity: 0.4;
+      cursor: default;
+      &:hover, &:focus, &:active {
+        background-color: $inat-green;
+      }
+    }
+  }
+}

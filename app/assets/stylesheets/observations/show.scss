@@ -8,6 +8,7 @@
 @import "../shared/observation_fields";
 @import "../shared/observation_projects";
 @import "../shared/quality_metrics";
+@import "../shared/carousel";
 @import "../shared/split_taxon";
 @import "../shared/user_with_icon";
 @import "../shared/easyzoom";
@@ -1292,11 +1293,14 @@ time {
     }
   }
   .obs {
-    width: 100%;
+    min-width: 150px;
+    max-width: 175px;
+    flex: 1;
     vertical-align: top;
     border-radius: 2px;
     border: 1px solid #D0D0D0;
     background: #fff;
+    margin: 0 5px;
   }
   .photo {
     width: 100%;

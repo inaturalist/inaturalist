@@ -1,9 +1,10 @@
-import _ from "lodash";
+import _ from "lodash"; // eslint-disable-line import/no-duplicates
 import moment from "moment-timezone";
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import Carousel from "../../../shared/components/carousel";
 
 const MoreFromUser = ( {
   observation,
@@ -11,6 +12,8 @@ const MoreFromUser = ( {
   showNewObservation,
   config
 } ) => {
+  const firstItemRef = useRef( null );
+
   if (
     !observation
     || !observation.user
@@ -52,12 +55,44 @@ const MoreFromUser = ( {
   }
   if ( observations.length < 6 ) {
     // if we don't have 6 yet, add as many more previous obs as we need
-    const moreEarlier = _.take(
-      otherObservations.earlierUserObservations.slice( 3 ), 6 - observations.length
-    );
+    const moreEarlier = _.take( otherObservations.earlierUserObservations.slice( 3 ), 6 - observations.length );
     moreEarlier.reverse( );
     observations = moreEarlier.concat( observations );
   }
+
+  const carouselItems = observations.map( ( o, i ) => {
+    let taxonJSX = I18n.t( "unknown" );
+    if ( o.taxon && o.taxon !== null ) {
+      taxonJSX = (
+        <SplitTaxon noParens taxon={o.taxon} url={`/observations/${o.id}`} user={config.currentUser} />
+      );
+    }
+    // TODO: can this be moved somewhere better for reuse?
+    const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name
+      ? o.taxon.iconic_taxon_name.toLowerCase( )
+      : "unknown";
+    return (
+      <div className="obs" ref={i === 0 ? firstItemRef : null}>
+        <div className="photo">
+          <a
+            href={`/observations/${o.id}`}
+            style={o.photo( )
+              ? { backgroundImage: `url( '${o.photo( "medium" )}' )` }
+              : null}
+            className={`${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
+            aria-label={`View ${o.taxon}`}
+            onClick={e => { loadObservationCallback( e, o ); }}
+          >
+            <i className={`taxon-image icon icon-iconic-${iconicTaxonName}`} />
+          </a>
+        </div>
+        <div className="caption">
+          { taxonJSX }
+        </div>
+      </div>
+    );
+  } );
+
   return (
     <div className="MoreFromUser">
       <Col xs={12}>
@@ -68,7 +103,7 @@ const MoreFromUser = ( {
             }}
           />
           <div className="links">
-            <span className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" )} ) }</span>
+            <span className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" ) } ) }</span>
             <a href={`/observations?user_id=${userLogin}&place_id=any&verifiable=any`}>
               { I18n.t( "all" ) }
             </a>
@@ -87,41 +122,7 @@ const MoreFromUser = ( {
           </div>
         </h3>
       </Col>
-      <div className="list d-flex">
-        { observations.map( o => {
-          let taxonJSX = I18n.t( "unknown" );
-          if ( o.taxon && o.taxon !== null ) {
-            taxonJSX = (
-              <SplitTaxon noParens taxon={o.taxon} url={`/observations/${o.id}`} user={config.currentUser} />
-            );
-          }
-          const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name
-            ? o.taxon.iconic_taxon_name.toLowerCase( )
-            : "unknown";
-          return (
-            <Col xs={2} key={`more-obs-${o.uuid}`} className="d-flex">
-              <div className="obs d-flex flex-column">
-                <div className="photo">
-                  <a
-                    href={`/observations/${o.id}`}
-                    style={o.photo( )
-                      ? { backgroundImage: `url( '${o.photo( "medium" )}' )` }
-                      : null
-                    }
-                    className={`${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
-                    onClick={e => { loadObservationCallback( e, o ); }}
-                  >
-                    <i className={`taxon-image icon icon-iconic-${iconicTaxonName}`} />
-                  </a>
-                </div>
-                <div className="caption">
-                  { taxonJSX }
-                </div>
-              </div>
-            </Col>
-          );
-        } ) }
-      </div>
+      <Carousel items={carouselItems} className="more-from-user" itemRef={firstItemRef} />
     </div>
   );
 };
