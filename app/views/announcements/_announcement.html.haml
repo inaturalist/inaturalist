@@ -25,14 +25,6 @@
       } );
     } );
   } );
-:javascript
-  setTimeout(
-    function( ) {
-      if ( !document.querySelector( '.announcement iframe' ) ) {
-        document.querySelector( '.fru-fallback' ).style.display = "";
-      }
-    },
-  1000 );
 - scoped_body = Nokogiri::HTML.fragment( announcement.body )
 - scoped_body.css( "style" ).each do |style_tag|
   - style_tag.content = "@scope {\n#{style_tag.content}\n}"
@@ -43,6 +35,18 @@
       = link_to t( :donate_ ), "https://giving.inaturalist.org/login?form=supportinaturalist&segment=acqmobile26&utm_campaign=2026acq&utm_medium=mobile&utm_source=inatrn&utm_content=button&utm_term=2346&amount=5&redirectTo=/", class: "btn btn-inat"
     %noscript
       %p= t( :donate_enable_javascript )
+    :javascript
+      setTimeout( function( ) {
+        var root = document.getElementById( "announcement-#{announcement.id}" );
+        if ( !root.querySelector( 'iframe' ) ) {
+          var fallback = root.querySelector( '.fru-fallback' );
+          var fruAnchor = root.querySelector( 'a[href^="#"][style*="display"]' );
+          if ( fallback && fruAnchor ) {
+            fruAnchor.parentNode.insertBefore( fallback, fruAnchor.nextSibling );
+            fallback.style.display = "";
+          }
+        }
+      }, 5000 );
   - if announcement.dismissible? && current_user && !preview
     = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
       %i.fa.fa-close
