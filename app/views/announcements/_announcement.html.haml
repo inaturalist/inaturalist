@@ -3,27 +3,13 @@
 - if announcement.prefers_embed_fru? && !content_for?( :fundraise_up_script )
   - content_for( :fundraise_up_script, "loaded" )
   - content_for( :extrahead ) do
-    -# Fundraise Up code for embedding donation buttons and forms.
+    = javascript_include_tag "fundraise_up_helpers"
     :javascript
-      (function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
-      .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
-      :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
-      j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
-      t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
-      for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
-      })(window,document,'script','FundraiseUp','ACSSCSPN');
+      loadFundraiseUpWidget();
 = javascript_include_tag "jquery/jquery-1.11.3.min.js"
 :javascript
-  $( function ( ) {
-    var announcementRoot = $( "#announcement-#{announcement.id}" )[0];
-    $( announcementRoot ).find( "form" ).on( "submit", function ( e ) {
-      e.preventDefault( );
-      $( announcementRoot ).fadeOut( );
-      $.ajax( {
-        type: "PUT",
-        url: $( this ).attr( "action" )
-      } );
-    } );
+  $( function( ) {
+    initAnnouncementDismiss( "announcement-#{announcement.id}" );
   } );
 - scoped_body = Nokogiri::HTML.fragment( announcement.body )
 - scoped_body.css( "style" ).each do |style_tag|
@@ -36,21 +22,7 @@
     %noscript
       %p= t( :donate_enable_javascript )
     :javascript
-      ( function( ) {
-        var root = document.getElementById( "announcement-#{announcement.id}" );
-        var fallback = root.querySelector( '.fru-fallback' );
-        var fruAnchor = root.querySelector( 'a[href^="#"][style*="display"]' );
-        if ( fallback && fruAnchor ) {
-          fruAnchor.parentNode.insertBefore( fallback, fruAnchor.nextSibling );
-        }
-        var observer = new MutationObserver( function( ) {
-          if ( root.querySelector( '.announcement iframe' ) ) {
-            fallback.style.display = "none";
-            observer.disconnect( );
-          }
-        } );
-        observer.observe( root, { childList: true, subtree: true } );
-      } )( );
+      initFruFallback( "announcement-#{announcement.id}" );
   - if announcement.dismissible? && current_user && !preview
     = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
       %i.fa.fa-close
