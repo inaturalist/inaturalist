@@ -31,22 +31,26 @@
 %div{ id: "announcement-#{announcement.id}", class: "announcement" }
   = scoped_body.to_html.html_safe
   - if announcement.prefers_embed_fru?
-    .fru-fallback{ style: "display: none;" }
+    .fru-fallback
       = link_to t( :donate_ ), "https://giving.inaturalist.org/login?form=supportinaturalist&segment=acqmobile26&utm_campaign=2026acq&utm_medium=mobile&utm_source=inatrn&utm_content=button&utm_term=2346&amount=5&redirectTo=/", class: "btn btn-inat"
     %noscript
       %p= t( :donate_enable_javascript )
     :javascript
-      setTimeout( function( ) {
+      ( function( ) {
         var root = document.getElementById( "announcement-#{announcement.id}" );
-        if ( !root.querySelector( 'iframe' ) ) {
-          var fallback = root.querySelector( '.fru-fallback' );
-          var fruAnchor = root.querySelector( 'a[href^="#"][style*="display"]' );
-          if ( fallback && fruAnchor ) {
-            fruAnchor.parentNode.insertBefore( fallback, fruAnchor.nextSibling );
-            fallback.style.display = "";
-          }
+        var fallback = root.querySelector( '.fru-fallback' );
+        var fruAnchor = root.querySelector( 'a[href^="#"][style*="display"]' );
+        if ( fallback && fruAnchor ) {
+          fruAnchor.parentNode.insertBefore( fallback, fruAnchor.nextSibling );
         }
-      }, 5000 );
+        var observer = new MutationObserver( function( ) {
+          if ( root.querySelector( '.announcement iframe' ) ) {
+            fallback.style.display = "none";
+            observer.disconnect( );
+          }
+        } );
+        observer.observe( root, { childList: true, subtree: true } );
+      } )( );
   - if announcement.dismissible? && current_user && !preview
     = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
       %i.fa.fa-close
