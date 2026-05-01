@@ -5407,6 +5407,10 @@ da:
   suspension_reason_custom_note: Bemærk, at den suspenderede bruger vil kunne se denne årsag.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Opdater årsagen og forklar, hvorfor brugerens suspension ændres.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Årsag til redigering
+  #label for the edit reason field in the moderation history table
+  edit_reason: Redigeringsårsag
   #predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     #reason displayed to users who have been suspended for posting hate speech
@@ -9797,6 +9801,8 @@ da:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Årsag
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Redigeringsårsag
       observation:
         description: Notater
         geo_x: Østlig
