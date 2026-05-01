@@ -28,8 +28,7 @@
 :javascript
   setTimeout(
     function( ) {
-      debugger
-      if ( !document.querySelector( 'iframe[src*="fundraiseup"]' ) ) {
+      if ( !document.querySelector( '.announcement iframe' ) ) {
         document.querySelector( '.fru-fallback' ).style.display = "";
       }
     },
