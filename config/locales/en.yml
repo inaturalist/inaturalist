@@ -2018,6 +2018,8 @@ en:
   donate: DONATE
   # Imperative verb; link to a page where a user can donate money to iNaturalist
   donate_: Donate
+  # Message shown on the donate page when JavaScript is disabled
+  donate_enable_javascript: Please enable JavaScript to use the donation form.
   donate_again_caps: DONATE AGAIN
   donate_again_today_caps: DONATE AGAIN TODAY
   # Title for pages and sections that encourage people to donate to iNaturalist
@@ -10671,6 +10673,8 @@ en:
         user_created_start_date: Earliest user signup date
         # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Latest user signup date
+        # Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Enable fundraise up embedded widgets
 
       assessment:
         description: Description

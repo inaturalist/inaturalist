@@ -2458,6 +2458,14 @@ $header-line-height: 34px;
     padding: 0 0 1px 0;
     border: 0 transparent;
   }
+  .fru-fallback {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+.fundraiseup-form + .fru-fallback {
+  margin-top: 15px;
 }
 
 .d-flex {

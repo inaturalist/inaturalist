@@ -33,6 +33,10 @@ class Announcement < ApplicationRecord
     ]
   }.freeze
 
+  FRU_WIDGET_INIT_JS = File.read(
+    Rails.root.join( "app/assets/javascripts/fundraise_up/fundraise_up_widget_init.js" )
+  ).freeze
+
   TARGET_GROUPS = {
     "user_id_parity" => %w(
       even
@@ -81,6 +85,7 @@ class Announcement < ApplicationRecord
   preference :target_staff, :boolean
   preference :target_unconfirmed_users, :boolean
   preference :exclude_monthly_supporters, :boolean
+  preference :embed_fru, :boolean
 
   scope :in_locale, lambda {| locale |
     where( "(? = ANY (locales)) OR locales IS NULL OR locales = '{}'", locale )
@@ -431,9 +436,26 @@ class Announcement < ApplicationRecord
     active( options.merge( placement: placement ) )
   end
 
+  def body_for_mobile
+    return body unless prefers_embed_fru?
+
+    <<~HTML
+      <!DOCTYPE html>
+      <html>
+      <head>
+        #{fundraise_up_js}
+      </head>
+      <body>
+        #{body}
+      </body>
+      </html>
+    HTML
+  end
+
   def serializable_hash( opts = {} )
     options = opts.clone
     options[:methods] ||= []
+    options[:methods] += [:body_for_mobile]
     options[:only] ||= []
     options[:only] += [
       :body,

@@ -1,30 +1,28 @@
 - preview = defined?( preview ) && preview
 - create_announcement_impression( announcement ) unless preview
-%div{ id: "announcement-#{announcement.id}" }
-  %template{ shadowrootmode: "open" }
-    = render "shared/common_stylesheets"
-    = stylesheet_link_tag "bootstrap_bundle"
-    = stylesheet_link_tag "bootstrap-rtl" if @rtl
-    = javascript_include_tag "jquery/jquery-1.11.3.min.js"
-    - # because this announcement is being rendered in a shadow DOM, the rails.js implementation
-    - # of jquery-ujs to handle the `remote: true` part of the below form submit button will not
-    - # activate. The JS below is an attempt to replicate the necessary functionality of
-    - # submitting the form asynchronously and not caring about the response
+- if announcement.prefers_embed_fru? && !content_for?( :fundraise_up_script )
+  - content_for( :fundraise_up_script, "loaded" )
+  - content_for( :extrahead ) do
+    = javascript_include_tag "fundraise_up/fundraise_up_widget_init"
+    = javascript_include_tag "fundraise_up/fundraise_up"
+    = javascript_include_tag "announcements/dismiss"
+= javascript_include_tag "jquery/jquery-1.11.3.min.js"
+:javascript
+  $( function( ) {
+    initAnnouncementDismiss( "announcement-#{announcement.id}" );
+  } );
+- scoped_body = Nokogiri::HTML.fragment( announcement.body )
+- scoped_body.css( "style" ).each do |style_tag|
+  - style_tag.content = "@scope {\n#{style_tag.content}\n}"
+%div{ id: "announcement-#{announcement.id}", class: "announcement" }
+  = scoped_body.to_html.html_safe
+  - if announcement.prefers_embed_fru?
+    .fru-fallback
+      = link_to t( :donate_ ), "https://giving.inaturalist.org/login?form=supportinaturalist&segment=acqmobile26&utm_campaign=2026acq&utm_medium=mobile&utm_source=inatrn&utm_content=button&utm_term=2346&amount=5&redirectTo=/", class: "btn btn-inat"
+    %noscript
+      %p= t( :donate_enable_javascript )
     :javascript
-      $( function ( ) {
-        var announcementRoot = $( "#announcement-#{announcement.id}" )[0];
-        $( announcementRoot.shadowRoot ).find( "form" ).on( "submit", function ( e ) {
-          e.preventDefault( );
-          $( announcementRoot ).fadeOut( );
-          $.ajax( {
-            type: "PUT",
-            url: $( this ).attr( "action" )
-          } );
-        } );
-      } );
-    .bootstrap
-      .announcement
-        = announcement.body.html_safe
-        - if announcement.dismissible? && current_user && !preview
-          = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
-            %i.fa.fa-close
+      initFruFallback( "#announcement-#{announcement.id}" );
+  - if announcement.dismissible? && current_user && !preview
+    = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
+      %i.fa.fa-close
