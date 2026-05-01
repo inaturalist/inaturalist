@@ -41,7 +41,7 @@ function initFruFallback( announcementId ) {
   if ( fallback && fruAnchor ) {
     fruAnchor.parentNode.insertBefore( fallback, fruAnchor.nextSibling );
   }
-  var observer = new MutationObserver( function( ) {
+  var observer = new MutationObserver( function ( ) {
     if ( root.querySelector( "iframe" ) ) {
       fallback.style.display = "none";
       observer.disconnect( );
