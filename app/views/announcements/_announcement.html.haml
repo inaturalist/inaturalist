@@ -21,7 +21,7 @@
     %noscript
       %p= t( :donate_enable_javascript )
     :javascript
-      initFruFallback( "announcement-#{announcement.id}" );
+      initFruFallback( "#announcement-#{announcement.id}" );
   - if announcement.dismissible? && current_user && !preview
     = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
       %i.fa.fa-close

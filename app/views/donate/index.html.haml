@@ -39,7 +39,7 @@
         %p= t( :donate_enable_javascript )
       = javascript_include_tag "fundraise_up_helpers"
       :javascript
-        initDonateFruFallback( ".fundraiseup-form" );
+        initFruFallback( ".fundraiseup-form" );
       - if I18n.locale.to_s =~ /^en/
         %script{ type: "text/javascript" }
           var _msdaf_id = "d54712882b88c";
