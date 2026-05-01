@@ -1816,6 +1816,6 @@ module ApplicationHelper
   end
 
   def fundraise_up_js
-    raw "<script type=\"text/javascript\">#{File.read( Rails.root.join( 'app/assets/javascripts/fundraise_up_widget_init.js' ) )}</script>"
+    raw "<script type=\"text/javascript\">#{File.read( Rails.root.join( 'app/assets/javascripts/fundraise_up/fundraise_up_widget_init.js' ) )}</script>"
   end
 end

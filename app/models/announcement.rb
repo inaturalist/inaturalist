@@ -34,7 +34,7 @@ class Announcement < ApplicationRecord
   }.freeze
 
   FRU_WIDGET_INIT_JS = File.read(
-    Rails.root.join( "app/assets/javascripts/fundraise_up_widget_init.js" )
+    Rails.root.join( "app/assets/javascripts/fundraise_up/fundraise_up_widget_init.js" )
   ).freeze
 
   TARGET_GROUPS = {

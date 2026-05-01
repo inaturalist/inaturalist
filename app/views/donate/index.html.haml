@@ -37,7 +37,7 @@
           = link_to t( :donate_ ), donate_url, class: "btn btn-inat"
       %noscript
         %p= t( :donate_enable_javascript )
-      = javascript_include_tag "fundraise_up_helpers"
+      = javascript_include_tag "fundraise_up/fundraise_up"
       :javascript
         initFruFallback( ".fundraiseup-form" );
       - if I18n.locale.to_s =~ /^en/
