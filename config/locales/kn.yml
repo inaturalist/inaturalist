@@ -5900,49 +5900,49 @@ kn:
       index:
         hero:
           #Main hero headline on the home page
-          headline: ಅಲ್ಲಿ ನಿಮ್ಮ ಕುತೂಹಲವು ವಿಜ್ಞಾನಕ್ಕೆ ಕೊಡುಗೆ ನೀಡುತ್ತದೆ.
+          headline: ನಿಮ್ಮ ಕುತೂಹಲವು ವಿಜ್ಞಾನಕ್ಕೆ ಕೊಡುಗೆಯಾಗಬಲ್ಲದು.
           #Hero subheadline describing the core value proposition
           subheadline: >
-            ಭೂಮಿಯ ಮೇಲಿನ ಜೀವನದ ಜೀವಂತ ಅಟ್ಲಾಸ್ ಗೆ ಸೇರಿಸುವಾಗ ಸಸ್ಯಗಳು, ಪ್ರಾಣಿಗಳು, ಶಿಲೀಂಧ್ರಗಳು ಮತ್ತು ಹೆಚ್ಚಿನದನ್ನು ಗುರುತಿಸಿ.
+            ಸಸ್ಯಗಳು, ಪ್ರಾಣಿಗಳು, ಶಿಲೀಂಧ್ರಗಳು ಮತ್ತು ಇನ್ನೂ ಹಲವಾರುಗಳನ್ನು ಗುರುತಿಸಿ ಭೂಮಿಯ ಮೇಲಿನ ಜೀವಂತ ಜೀವನದ ಭೂಪಟ ರಚಿಸಿ.
           #Primary call-to-action button in the hero section
           cta_join: ಸಮುದಾಯಕ್ಕೆ ಸೇರಿ
           #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
-          tagline: ಉಚಿತ, ಲಾಭರಹಿತ, ಸಮುದಾಯ-ಶಕ್ತಿಯುತ.
+          tagline: ಉಚಿತ, ಲಾಭರಹಿತ, ಸಮುದಾಯ-ಪ್ರೇರಿತ.
         features:
           #Section label introducing the three core user actions
-          intro: "ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ನೊಂದಿಗೆ, ನೀವು ಮಾಡಬಹುದು:"
+          intro: "ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ನೊಂದಿಗೆ, ಇವೆಲ್ಲವೂ ಸಾಧ್ಯ:"
           #Description of what users can Identify
           #Read as "{Identify} plants, animals, fungi, & more"
-          identify_desc: ಸಸ್ಯಗಳು, ಪ್ರಾಣಿಗಳು, ಶಿಲೀಂಧ್ರಗಳು ಮತ್ತು ಇನ್ನಷ್ಟು
+          identify_desc: ಸಸ್ಯಗಳು, ಪ್ರಾಣಿಗಳು, ಶಿಲೀಂಧ್ರಗಳು ಮತ್ತು ಇನ್ನೂ ಹಲವಾರು
           #Description of what users can Track
           #Read as "{Track} species you've seen worldwide"
-          track_desc: ನೀವು ವಿಶ್ವಾದ್ಯಂತ ನೋಡಿದ ಪ್ರಭೇದಗಳು
+          track_desc: ನೀವು ಪ್ರಪಂಚದಾದ್ಯಂತ ಗಮನಿಸಿದ ಪ್ರಭೇದಗಳು
           #Description of where users can Contribute
           #Read as "{Contribute} to real science"
-          contribute_desc: ನಿಜವಾದ ವಿಜ್ಞಾನಕ್ಕೆ
+          contribute_desc: ನೈಜ ವಿಜ್ಞಾನಕ್ಕೆ
           #Description of what users can Discover
           #Read as "{Discover} nature nearby"
-          discover_desc: ಹತ್ತಿರದ ಪ್ರಕೃತಿ
+          discover_desc: ಸುತ್ತಮುತ್ತಲಿನ ಪರಿಸರ
           #Description of what users can Learn
           #Read as "{Learn} from a global community of naturalists"
-          learn_desc: ನಿಸರ್ಗಶಾಸ್ತ್ರಜ್ಞರ ಜಾಗತಿಕ ಸಮುದಾಯದಿಂದ
+          learn_desc: ನಿಸರ್ಗತಜ್ಞರ ಜಾಗತಿಕ ಸಮುದಾಯದಿಂದ
         stories:
           #Section heading for real-world stories powered by community science
           heading: ಸಮುದಾಯ ವಿಜ್ಞಾನದ ಶಕ್ತಿ
           #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
           observation_credit: ನೋಡಿದವರು %{user} ರಲ್ಲಿ %{place}
           #Heading for the story about rediscovering an extinct moth species
-          moth_heading: ದೀರ್ಘಕಾಲ ಕಳೆದುಹೋದ ಪ್ರಭೇದಗಳನ್ನು ಮರುಶೋಧಿಸುವುದು
+          moth_heading: ದೀರ್ಘಕಾಲದಿಂದ ಮರೆಯಾದ ಪ್ರಭೇದಗಳ ಮರುಶೋಧನೆ
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
             ದಿ %{moth_common_name} ಪತಂಗವನ್ನು ದಶಕಗಳಿಂದ ಗುರುತಿಸಲಾಗಿಲ್ಲ ಮತ್ತು ಒಮ್ಮೆ ಅಳಿದುಹೋಗಿದೆ ಎಂದು ಭಾವಿಸಲಾಗಿತ್ತು - ನ್ಯೂಜಿಲೆಂಡ್ ನ ಪ್ರವಾಸಿಗರು ಅದನ್ನು ಆಕಸ್ಮಿಕವಾಗಿ ಗುರುತಿಸುವವರೆಗೆ.
           #Heading for the story about a new-to-science mantis species
-          mantis_heading: ಹೊಸ-ವಿಜ್ಞಾನ ಪ್ರಭೇದಗಳನ್ನು ಕಂಡುಹಿಡಿಯುವುದು
+          mantis_heading: ವಿಜ್ಞಾನಕ್ಕೆ ಹೊಸತಾದ ಪ್ರಭೇದಗಳ ಅನ್ವೇಷಣೆ
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">ಇನಿಮಿಯಾ ನ್ಯಾಟ್</span> - ಸಂಕ್ಷಿಪ್ತವಾಗಿ <span class="italic">I. ನ್ಯಾಟ್</span> - ಇದು ಆಸ್ಟ್ರೇಲಿಯಾದ ಮಹಿಳೆಯೊಬ್ಬಳು ತನ್ನ ನೆರೆಹೊರೆಯಲ್ಲಿ ನಡೆದುಕೊಂಡು ಹೋಗುವ ಹೊಸ-ವಿಜ್ಞಾನ ಮ್ಯಾಂಟಿಸ್ ಪ್ರಭೇದವಾಗಿದೆ.
           #Heading for the story about volunteers protecting amphibians
-          amphibian_heading: ಸ್ಥಳೀಯ ಪರಿಸರ ವ್ಯವಸ್ಥೆಗಳನ್ನು ರಕ್ಷಿಸುವುದು
+          amphibian_heading: ಸ್ಥಳೀಯ ಪರಿಸರ ವ್ಯವಸ್ಥೆಗಳ ಸಂರಕ್ಷಣೆ
           #Body text for the amphibian protection story
           amphibian_body: >
             ಕ್ಯಾಲಿಫೋರ್ನಿಯಾದ ಸ್ಥಳೀಯ ಸ್ವಯಂಸೇವಕರ ಗುಂಪು ಬಿಡುವಿಲ್ಲದ ರಸ್ತೆಯನ್ನು ದಾಟುವ ವಲಸೆ ಉಭಯಚರಗಳನ್ನು ರಕ್ಷಿಸಲು ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಮೂಲಕ ಒಗ್ಗೂಡಿತು.
@@ -5950,33 +5950,33 @@ kn:
           read_more: ಇನ್ನಷ್ಟು ಕಥೆಗಳನ್ನು ಓದಿ
         observation:
           #Heading for the sample observation section
-          heading: ಪ್ರತಿಯೊಂದು ಅವಲೋಕನವೂ ಒಂದು ಕಥೆಯನ್ನು ಹೇಳುತ್ತದೆ
+          heading: ಪ್ರತಿಯೊಂದು ವೀಕ್ಷಣೆಯೂ ಒಂದೊಂದು ಕಥೆಯನ್ನು ಹೇಳಬಲ್ಲದು
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
-          observations_label: ಜೀವವೈವಿಧ್ಯ ವಿಜ್ಞಾನಕ್ಕೆ ಕೊಡುಗೆ ನೀಡುವ ಅವಲೋಕನಗಳು
+          observations_label: ಜೀವವೈವಿಧ್ಯ ವಿಜ್ಞಾನಕ್ಕೆ ಕೊಡುಗೆ ನೀಡುವ ವೀಕ್ಷಣೆಗಳು
           #Description label for the species statistic
           #Prepended by count, e.g. "550,000+ species documented across the globe"
           species_label: ಪ್ರಪಂಚದಾದ್ಯಂತ ದಾಖಲಿಸಲಾದ ಪ್ರಭೇದಗಳು
           #Description label for the papers statistic
           #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
-          papers_label: ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಡೇಟಾವನ್ನು ಉಲ್ಲೇಖಿಸಿದ ಪತ್ರಿಕೆಗಳು
+          papers_label: ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ದತ್ತಾಂಶವನ್ನು ಉಲ್ಲೇಖಿಸಿದ ಪತ್ರಿಕೆಗಳು
           #Description label for the discoveries statistic
           #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
-          discoveries_label: ಸಮುದಾಯ ವಿಜ್ಞಾನಿಗಳು ಕಂಡುಹಿಡಿದ ಅಥವಾ ಮರುಶೋಧಿಸಿದ ಪ್ರಭೇದಗಳು
+          discoveries_label: ಸಮುದಾಯ ವಿಜ್ಞಾನಿಗಳು ಅನ್ವೇಷಿಸಿದ ಅಥವಾ ಮರುಶೋಧಿಸಿದ ಪ್ರಭೇದಗಳು
         how:
           #Step 1 description — instructing users to photograph any organism
           step1_body: >
-            ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ತೆರೆಯಿರಿ ಮತ್ತು ಯಾವುದೇ ಕಾಡು ಸಸ್ಯ, ಪ್ರಾಣಿ, ಶಿಲೀಂಧ್ರ ಅಥವಾ ಇತರ ಜೀವಿಗಳನ್ನು ಛಾಯಾಚಿತ್ರ ತೆಗೆಯಿರಿ - ನಿಮ್ಮ ನೆರೆಹೊರೆಯಿಂದ ಅಥವಾ ವಿಶ್ವದ ಯಾವುದೇ ಭಾಗದಿಂದ.
+            ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ತೆರೆಯಿರಿ ಮತ್ತು ಯಾವುದೇ ವನ್ಯಜೀವಿ, ಸಸ್ಯ, ಶಿಲೀಂಧ್ರ ಅಥವಾ ಇತರ ಜೀವಿಗಳ ಛಾಯಾಚಿತ್ರ ತೆಗೆಯಿರಿ - ನಿಮ್ಮ ನೆರೆಹೊರೆಯಲ್ಲಿ ಅಥವಾ ವಿಶ್ವದ ಯಾವುದೇ ಮೂಲೆಯಲ್ಲಿ.
           #Step 2 description — explaining AI and community identification
           step2_body: >
-            ಅಪ್ಲಿಕೇಶನ್ ತಕ್ಷಣ ಗುರುತನ್ನು ಸೂಚಿಸುತ್ತದೆ, ಮತ್ತು ನಿಸರ್ಗಶಾಸ್ತ್ರಜ್ಞರ ಜಾಗತಿಕ ಸಮುದಾಯವು ಅದನ್ನು ದೃಢೀಕರಿಸುತ್ತದೆ ಅಥವಾ ಪರಿಷ್ಕರಿಸುತ್ತದೆ.
+            ಅಪ್ಲಿಕೇಶನ್ ತಕ್ಷಣವೇ ಒಂದು ಗುರುತನ್ನು ಸೂಚಿಸುತ್ತದೆ, ಮತ್ತು ನಿಸರ್ಗತಜ್ಞರ ಜಾಗತಿಕ ಸಮುದಾಯವು ಅದನ್ನು ದೃಢೀಕರಿಸುತ್ತದೆ ಅಥವಾ ಪರಿಷ್ಕರಿಸುತ್ತದೆ.
           #Step 3 description — explaining how observations become open scientific data
           step3_body: >
-            ನಿಮ್ಮ ಅವಲೋಕನವು ಮುಕ್ತ ಡೇಟಾವಾಗುತ್ತದೆ - ವಿಶ್ವಾದ್ಯಂತ ವಿಜ್ಞಾನಿಗಳು, ಸಂರಕ್ಷಣಾವಾದಿಗಳು ಮತ್ತು ಸಂಶೋಧಕರು ಬಳಸುತ್ತಾರೆ.
+            ನಿಮ್ಮ ವೀಕ್ಷಣೆಯು ಮುಕ್ತ ದತ್ತಾಂಶವಾಗುತ್ತದೆ - ವಿಶ್ವದಾದ್ಯಂತದ ವಿಜ್ಞಾನಿಗಳು, ಸಂರಕ್ಷಣಾವಾದಿಗಳು ಮತ್ತು ಸಂಶೋಧಕರು ಅದನ್ನು ಬಳಸುತ್ತಾರೆ.
           #Explanatory note below the three steps giving the "why" behind contributing
           why_note_html: >
-            ಪ್ರಕೃತಿ ಹಿಂದೆಂದಿಗಿಂತಲೂ ವೇಗವಾಗಿ ಬದಲಾಗುತ್ತಿದೆ, ಆದ್ದರಿಂದ ನಮಗೆ ಅಗತ್ಯವಿದೆ <span class="underline">ನೀವು</span> ಎಲ್ಲಿ ವಾಸಿಸುತ್ತದೆ ಎಂಬುದನ್ನು ದಾಖಲಿಸಲು ಸಹಾಯ ಮಾಡಲು.
+            ನಿಸರ್ಗವು ಹಿಂದೆಂದಿಗಿಂತಲೂ ವೇಗವಾಗಿ ಬದಲಾಗುತ್ತಿದೆ, ಆದ್ದರಿಂದ ಎಲ್ಲಿ ಏನು ನೆಲೆಸಿದೆ ಎಂಬುದನ್ನು ದಾಖಲಿಸಲು <span class="underline">ನಿಮ್ಮ</span> ಸಹಾಯ ನಮಗೆ ಅಗತ್ಯವಿದೆ.
         testimonials:
           #Quote from the testimonial author (last name Gube)
           gube_quote: >
@@ -5985,17 +5985,18 @@ kn:
           gube_title: ಸಾಗರ ಸಂರಕ್ಷಣಾಧಿಕಾರಿ ಮತ್ತು ನೀರೊಳಗಿನ ಛಾಯಾಗ್ರಾಹಕ, ಕೀನ್ಯಾ
           #Quote from the testimonial author (last name Kratzer)
           kratzer_quote: >
-            iNaturalist ಕಡಿಮೆ ಅಧ್ಯಯನ ಮಾಡಿದ ಟ್ಯಾಕ್ಸಾದ ಬಗ್ಗೆ ಹೊಸ ಮತ್ತು ರೋಮಾಂಚಕಾರಿ ಸಂಶೋಧನೆಗೆ ಬಾಗಿಲು ತೆರೆಯುತ್ತದೆ. ನನ್ನ ಅಭಿಪ್ರಾಯದಲ್ಲಿ, ಈ ವೇದಿಕೆಯು ಪರಿಸರ ವಿಜ್ಞಾನದ ಅತ್ಯಾಧುನಿಕವಾಗಿದೆ.
+            iNaturalist ಕಡಿಮೆ ಅಧ್ಯಯನ ಮಾಡಿದ ಟ್ಯಾಕ್ಸಾದ ಬಗ್ಗೆ ಹೊಸದಾದ ಮತ್ತು ರೋಮಾಂಚಕಾರಿಯಾದ ಸಂಶೋಧನೆಗೆ ಬಾಗಿಲು ತೆರೆಯುತ್ತದೆ. ನನ್ನ ಅಭಿಪ್ರಾಯದಲ್ಲಿ, ಇದು 
+            ಪರಿಸರ ವಿಜ್ಞಾನದ ಅತ್ಯಾಧುನಿಕ ವೇದಿಕೆಯಾಗಿದೆ.
           #Job title and location of the testimonial author (last name Kratzer)
           kratzer_title: ಔಫ್ಲಿ ಎಲ್ ಎಲ್ ಸಿ, ಯುಎಸ್ಎಯಲ್ಲಿ ಕ್ಷೇತ್ರ ಮಾರ್ಗದರ್ಶಿ ಲೇಖಕ
           #Quote from the testimonial author (last name Sumanapala)
           sumanapala_quote: >
-            iNaturalist ಮತ್ತು ಅದರ ಮೀಸಲಾದ ಗುರುತುಗಳ ಸಮುದಾಯವು ನನ್ನ ಪರಿಶೋಧನೆಗಳಲ್ಲಿ ಅಮೂಲ್ಯವಾದ ಸಂಪನ್ಮೂಲವಾಯಿತು. ಇದು ನನ್ನ ಪ್ರಸ್ತುತ ಕೆಲಸಕ್ಕೆ ಅಡಿಪಾಯ ಹಾಕಲು ಸಹಾಯ ಮಾಡಿತು.
+            iNaturalist ಮತ್ತು ಅದಕ್ಕೆ ಮುಡಿಪಾದ ಪತ್ತೆದಾರರ ಸಮುದಾಯವು ನನ್ನ ಪರಿಶೋಧನೆಗಳಿಗೆ ಅಮೂಲ್ಯವಾದ ಸಂಪನ್ಮೂಲವಾಯಿತು. ಇದು ನನ್ನ ಪ್ರಸ್ತುತ ಕೆಲಸಕ್ಕೆ ಭದ್ರ ಬುನಾದಿ ಹಾಕಲು ಸಹಾಯ ಮಾಡಿತು.
           #Job title and location of the testimonial author (last name Sumanapala)
           sumanapala_title: ಜೀವವೈವಿಧ್ಯ ಸಂಶೋಧಕ, ಶ್ರೀಲಂಕಾ
           #Quote from the testimonial author (last name Fachetti)
           fachetti_quote: >
-            ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಜನರು, ಪ್ರಕೃತಿ ಮತ್ತು ಜ್ಞಾನವನ್ನು ಸಂಪರ್ಕಿಸುವ ಪ್ರಬಲ ಸಾಧನವಾಗಿದೆ. ನಾನು ಅಪರೂಪದ ಪ್ರಭೇದವನ್ನು ಛಾಯಾಚಿತ್ರ ತೆಗೆಯಬಲ್ಲೆ, ಅಥವಾ ಇನ್ನೂ ವಿವರಿಸಲಾಗದ ಒಂದು ಪ್ರಭೇದವನ್ನು ಸಹ ತೆಗೆದುಕೊಳ್ಳಬಹುದು, ಮತ್ತು ಅದೇ ಸಮಯದಲ್ಲಿ, ನಮ್ಮ ನೈಸರ್ಗಿಕ ಪರಂಪರೆಯನ್ನು ಸಂರಕ್ಷಿಸಲು ನಾನು ಕೊಡುಗೆ ನೀಡುತ್ತೇನೆ.
+            ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಜನರು, ನಿಸರ್ಗ ಮತ್ತು ಜ್ಞಾನವನ್ನು ಸಂಪರ್ಕಿಸುವ ಪ್ರಬಲ ಸಾಧನವಾಗಿದೆ. ನಾನು ಅಪರೂಪದ ಅಥವಾ ಇನ್ನೂ ವಿವರಿಸಲಾಗದ ಪ್ರಭೇದದ ಛಾಯಾಚಿತ್ರ ತೆಗೆಯಬಲ್ಲೆ, ಮತ್ತು ಅದೇ ಸಮಯದಲ್ಲಿ, ನಮ್ಮ ನೈಸರ್ಗಿಕ ಪರಂಪರೆಯನ್ನು ಸಂರಕ್ಷಿಸಲು ನಾನು ಕೊಡುಗೆ ನೀಡುತ್ತಲೂ ಇದ್ದೇನೆ.
           #Job title and location of the testimonial author (last name Fachetti)
           fachetti_title: ಪರಿಸರ ತಂತ್ರಜ್ಞ ಮತ್ತು ಹವ್ಯಾಸ ಛಾಯಾಗ್ರಾಹಕ, ಬ್ರೆಜಿಲ್
           #Quote from the testimonial author (last name Velazco)
@@ -6005,17 +6006,17 @@ kn:
           velazco_title: ಜೀವಶಾಸ್ತ್ರಜ್ಞ, ಮೆಕ್ಸಿಕೊ
         everyone:
           #Heading for the broad audience section
-          heading: ಪ್ರತಿಯೊಬ್ಬರೂ ನಿಸರ್ಗವಾದಿಯೇ
+          heading: ನೀವೆಲ್ಲರೂ ನಿಸರ್ಗದರ್ಶಿಗಳೇ
           #Description inviting anyone who has been curious about a living thing
           body: >
-            ನೀವು ಎಂದಾದರೂ ಜೀವಂತ ಏನನ್ನಾದರೂ ಹತ್ತಿರದಿಂದ ನೋಡಿದ್ದರೆ ಮತ್ತು ಅದು ಏನು ಎಂದು ಆಶ್ಚರ್ಯ ಪಡುತ್ತಿದ್ದರೆ, iNaturalist ನಿಮಗಾಗಿ ಇದೆ.
+            ನೀವು ಎಂದಾದರೂ ಜೀವಭರಿತವಾದ ಏನನ್ನಾದರೂ ಸೂಕ್ಷ್ಮವಾಗಿ ಗಮನಿಸಿದ್ದರೆ ಮತ್ತು ಅದು ಏನು ಎಂಬುದನ್ನು ಅರಿಯುವ ಕುತೂಹಲ ನಿಮಗಿದ್ದರೆ, iNaturalist ನಿಮಗಾಗಿ ಇದೆ.
           #Heading for the impact sub-section
           impact_heading: ನೀವು ಪ್ರಭಾವ ಬೀರಬಹುದು
           #Description of how each photo contributes to the global scientific record
           impact_body: >
-            ನೀವು ಹಂಚಿಕೊಳ್ಳುವ ಪ್ರತಿಯೊಂದು ಫೋಟೋ ವಿಶ್ವಾದ್ಯಂತ ಸಂಶೋಧಕರು ಅವಲಂಬಿಸಿರುವ ಜಾಗತಿಕ ವೈಜ್ಞಾನಿಕ ದಾಖಲೆಯ ಭಾಗವಾಗುತ್ತದೆ.
+            ನೀವು ಹಂಚಿಕೊಳ್ಳುವ ಪ್ರತಿಯೊಂದು ಚಿತ್ರವೂ ವಿಶ್ವಾದ್ಯಂತ ಸಂಶೋಧಕರು ಅವಲಂಬಿಸಿರುವ ಜಾಗತಿಕ ವೈಜ್ಞಾನಿಕ ದಾಖಲೆಯ ಭಾಗವಾಗುತ್ತದೆ.
           #Heading for the community reputation sub-section
-          community_heading: '"ಆನ್ ಲೈನ್ ನಲ್ಲಿ ಉತ್ತಮವಾದ ಸ್ಥಳ"'
+          community_heading: '"ಅಂತರ್ಜಾಲದಲ್ಲಿನ ಅದ್ಭುತ ತಾಣ"'
           community_heading_2: ಆನ್ ಲೈನ್ ನಲ್ಲಿ ಉತ್ತಮ ಸ್ಥಳ
           #Description of the welcoming community aspect
           community_body: >
@@ -6030,12 +6031,12 @@ kn:
           count_label: "%{count}+ ಡೌನ್ ಲೋಡ್ ಗಳು"
         explore:
           #Heading for the explore species section; species cards generated from static JSON exported from iNat
-          heading: ವಿಶ್ವಾದ್ಯಂತ ಪ್ರಭೇದಗಳನ್ನು ಅನ್ವೇಷಿಸಿ
+          heading: ವಿಶ್ವದಾದ್ಯಂತದ ಪ್ರಭೇದಗಳನ್ನು ಅನ್ವೇಷಿಸಿ
           #Button / link to browse species without downloading
-          button: ಈಗ ಅನ್ವೇಷಿಸಿ
+          button: ಈಗಲೇ ಅನ್ವೇಷಿಸಿ
         seek:
           #Heading for the Seek app section, aimed at users under 13
-          heading: "13 ವರ್ಷದೊಳಗಿನವರು? ಡೌನ್ ಲೋಡ್ ಹುಡುಕಿ!"
+          heading: "13 ವರ್ಷದೊಳಗಿನವರೇ? Seek ಅನ್ನು ಡೌನ್ ಲೋಡ್ ಮಾಡಿ!"
           #Description of Seek's badge and challenge features
           body: ಬ್ಯಾಡ್ಜ್ ಗಳನ್ನು ಗಳಿಸಿ ಮತ್ತು ಪ್ರಭೇದಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಸವಾಲುಗಳಲ್ಲಿ ಭಾಗವಹಿಸಿ!
           #Review count social proof label for the app
@@ -6045,10 +6046,10 @@ kn:
           #Heading inviting users to subscribe to the monthly newsletter
           heading: ನಮ್ಮ ಮಾಸಿಕ ಸುದ್ದಿಪತ್ರವನ್ನು ಪಡೆಯಿರಿ!
           #Description of the newsletter's content
-          body: iNaturalist ಸಮುದಾಯದ ಕಥೆಗಳು ಮತ್ತು ಆವಿಷ್ಕಾರಗಳೊಂದಿಗೆ ಸಂಪರ್ಕದಲ್ಲಿರಿ.
+          body: iNaturalist ಸಮುದಾಯದ ಕಥೆಗಳು ಮತ್ತು ಅನ್ವೇಷಣೆಗಳೊಂದಿಗೆ ಸಂಪರ್ಕದಲ್ಲಿರಿ.
         donate:
           #Heading describing iNaturalist's nonprofit status
-          heading: iNaturalist ಎಂಬುದು ವಿಜ್ಞಾನ ಮತ್ತು ಸಂರಕ್ಷಣೆಯನ್ನು ಬೆಂಬಲಿಸುವ ಲಾಭರಹಿತ ಸಂಸ್ಥೆಯಾಗಿದೆ.
+          heading: iNaturalist ವಿಜ್ಞಾನ ಮತ್ತು ಸಂರಕ್ಷಣೆಯನ್ನು ಬೆಂಬಲಿಸುವ ಲಾಭರಹಿತ ಸಂಸ್ಥೆ.
           #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
           subheading: ನಿಮ್ಮ ಬೆಂಬಲವು ಅದನ್ನು ಸಾಧ್ಯವಾಗಿಸುತ್ತದೆ.
           #Call-to-action button for the donation section
@@ -6057,30 +6058,30 @@ kn:
           #Section heading for the Frequently Asked Questions block
           heading: FAQs
           #FAQ: uploading existing photos — question
-          upload_existing_question: ನಾನು ಈಗಾಗಲೇ ಹೊಂದಿರುವ ಫೋಟೋಗಳನ್ನು ಅಪ್ ಲೋಡ್ ಮಾಡಬಹುದೇ?
+          upload_existing_question: ನಾನು ಈಗಾಗಲೇ ಹೊಂದಿರುವ ಚಿತ್ರಗಳನ್ನು ಅಪ್ ಲೋಡ್ ಮಾಡಬಹುದೇ?
           #FAQ: uploading existing photos — answer
           upload_existing_answer: >
-            ಹೌದು! ಫೋಟೋವನ್ನು ಯಾವಾಗ ಮತ್ತು ಎಲ್ಲಿ ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ ಎಂದು ನಿಮಗೆ ಸರಿಸುಮಾರು ತಿಳಿದಿರುವವರೆಗೆ, ಹಳೆಯ ಫೋಟೋಗಳನ್ನು ಸ್ವಾಗತಿಸಲಾಗುತ್ತದೆ.
+            ಹೌದು! ಚಿತ್ರವನ್ನು ಯಾವಾಗ ಮತ್ತು ಎಲ್ಲಿ ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ ಎಂದು ನಿಮಗೆ ಅಂದಾಜಿದ್ದಲ್ಲಿ, ಹಳೆಯ ಚಿತ್ರಗಳಿಗೆ ಸ್ವಾಗತವಿದೆ.
           #FAQ: who can use iNaturalist data — question
-          who_can_use_question: ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಅವಲೋಕನಗಳೊಂದಿಗೆ ವಿಜ್ಞಾನವನ್ನು ಯಾರು ಮಾಡಬಹುದು?
+          who_can_use_question: ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ವೀಕ್ಷಣೆಗಳೊಂದಿಗೆ ವಿಜ್ಞಾನವನ್ನು ಯಾರು ಮಾಡಬಹುದು?
           #FAQ: who can use iNaturalist data — answer
           who_can_use_answer: >
-            ಯಾರಾದರೂ! ಎಲ್ಲಾ ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಅವಲೋಕನಗಳು ಮುಕ್ತ ಮತ್ತು ಮುಕ್ತವಾಗಿ ಲಭ್ಯವಿದೆ - ಸಂಶೋಧಕರು, ಸಂರಕ್ಷಣಾ ಅಭ್ಯಾಸಿಗಳು ಮತ್ತು ಕುತೂಹಲಕಾರಿ ವ್ಯಕ್ತಿಗಳಿಗೆ.
+            ಯಾರು ಬೇಕಾದರೂ! ಎಲ್ಲಾ ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ವೀಕ್ಷಣೆಗಳು ಮುಕ್ತ ಮತ್ತು ಮುಕ್ತವಾಗಿ ಲಭ್ಯವಿರುತ್ತವೆ - ಸಂಶೋಧಕರು, ಸಂರಕ್ಷಣಾ ಅಭ್ಯಾಸಿಗಳು ಮತ್ತು ಕುತೂಹಲಿಗಳಿಗೆ.
           #FAQ: research grade definition — question
           research_grade_question: '"ಸಂಶೋಧನಾ ದರ್ಜೆ" ಎಂದರೇನು?'
           #FAQ: research grade definition — answer
           research_grade_answer: >
-            ಸಮುದಾಯವು ಗುರುತಿಸುವಿಕೆಯನ್ನು ಒಪ್ಪಿದಾಗ, ಅವಲೋಕನವು "ಸಂಶೋಧನಾ ದರ್ಜೆ" ಆಗುತ್ತದೆ ಮತ್ತು ಜಾಗತಿಕ ವೈಜ್ಞಾನಿಕ ದಾಖಲೆಯನ್ನು ಪ್ರವೇಶಿಸುತ್ತದೆ. ಪ್ರತಿ ಗುರುತು ಅದನ್ನು ಅಲ್ಲಿಗೆ ಪಡೆಯಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.
+            ಸಮುದಾಯವು ಗುರುತಿಸುವಿಕೆಯನ್ನು ಸಮ್ಮತಿಸಿದಾಗ, ವೀಕ್ಷಣೆಯು ಸಂಶೋಧನಾ ದರ್ಜೆ" ಎನಿಸಿಕೊಳ್ಳುತ್ತದೆ ಮತ್ತು ಜಾಗತಿಕ ವೈಜ್ಞಾನಿಕ ದಾಖಲೆಯನ್ನು ಪ್ರವೇಶಿಸುತ್ತದೆ. ಪ್ರತಿ ಗುರುತಿಸುವಿಕೆಯೂ ಅದನ್ನು ಅಲ್ಲಿಗೆ ತಲುಪಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.
           #FAQ: whether prior knowledge is needed — question
-          no_knowledge_question: ನಾನು ಏನು ನೋಡುತ್ತಿದ್ದೇನೆ ಎಂದು ನಾನು ತಿಳಿದುಕೊಳ್ಳಬೇಕೇ?
+          no_knowledge_question: ನಾನು ಗಮನಿಸುತ್ತಿರುವುದರ ಬಗ್ಗೆ ನನಗೆ ತಿಳಿದಿರಬೇಕೆ?
           #FAQ: whether prior knowledge is needed — answer
           no_knowledge_answer: >
-            ಇಲ್ಲವೇ ಇಲ್ಲ! ಫೋಟೋವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ, ಮತ್ತು ನಿಸರ್ಗಶಾಸ್ತ್ರಜ್ಞರ ಜಾಗತಿಕ ಸಮುದಾಯವು ಅದನ್ನು ಗುರುತಿಸಲು ನಿಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ.
+            ಇಲ್ಲವೇ ಇಲ್ಲ! ಚಿತ್ರವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ, ಮತ್ತು ನಿಸರ್ಗತಜ್ಞರ ಜಾಗತಿಕ ಸಮುದಾಯವು ಅದನ್ನು ಗುರುತಿಸಲು ನಿಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ.
           #FAQ: whether the app is required — question
           need_app_question: ನಾನು ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಬಳಸಬೇಕೇ?
           #FAQ: whether the app is required — answer; references both the website and mobile app
           need_app_answer: >
-            ಡೆಸ್ಕ್ ಟಾಪ್ ನಲ್ಲಿ, iNaturalist.org ಉತ್ತಮವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ. ಮೊಬೈಲ್ ಸಾಧನದಲ್ಲಿ, ಅಪ್ಲಿಕೇಶನ್ ನಿಮಗೆ ಉತ್ತಮ ಅನುಭವವನ್ನು ನೀಡುತ್ತದೆ - ವಿಶೇಷವಾಗಿ ಪ್ರಯಾಣದಲ್ಲಿ ಪ್ರಭೇದಗಳನ್ನು ಗುರುತಿಸಲು.
+            ಡೆಸ್ಕ್ ಟಾಪ್ ನಲ್ಲಿ, iNaturalist.org ಉತ್ತಮವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ. ಮೊಬೈಲ್ ಸಾಧನದಲ್ಲಿ, ತ್ವರಿತವಾಗಿ ಪ್ರಭೇದಗಳನ್ನು ಗುರುತಿಸುವ ಸೌಲಭ್ಯದೊಂದಿಗೆ - ಅಪ್ಲಿಕೇಶನ್ ನಿಮಗೆ ಅತ್ಯುತ್ತಮ ಅನುಭವವನ್ನು ನೀಡುತ್ತದೆ.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: ಲಗತ್ತುಗಳನ್ನು ಸೇರಿಸಲು ಉಳಿಸಿ ಮತ್ತು ಸಂಪಾದಿಸಿ
