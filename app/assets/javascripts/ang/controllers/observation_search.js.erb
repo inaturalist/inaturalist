@@ -1054,9 +1054,19 @@ var SearchController = function (
       ) || ( $scope.pagination.section >= $scope.pagination.maxSections ) ) {
         $scope.pagination.stopped = true;
       }
-      $scope.observations = $scope.observations.concat(
-        ObservationsFactory.responseToInstances( response )
-      );
+      var appendedObservations = ObservationsFactory.responseToInstances( response );
+      var existingObservationIDs = { };
+      _.each( $scope.observations, function ( observation ) {
+        existingObservationIDs[observation.id] = true;
+      } );
+      $scope.observations = $scope.observations.concat( _.filter(
+        appendedObservations,
+        function ( observation ) {
+          if ( existingObservationIDs[observation.id] ) { return false; }
+          existingObservationIDs[observation.id] = true;
+          return true;
+        }
+      ) );
       $scope.pagination.searching = false;
     } );
   };
