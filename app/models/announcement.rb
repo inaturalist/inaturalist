@@ -436,17 +436,17 @@ class Announcement < ApplicationRecord
     active( options.merge( placement: placement ) )
   end
 
-  def body_for_mobile
-    return body unless prefers_embed_fru?
+  def body
+    return super unless prefers_embed_fru?
 
     <<~HTML
       <!DOCTYPE html>
       <html>
       <head>
-        #{fundraise_up_js}
+        #{ApplicationController.helpers.fundraise_up_js}
       </head>
       <body>
-        #{body}
+        #{super}
       </body>
       </html>
     HTML
@@ -455,7 +455,6 @@ class Announcement < ApplicationRecord
   def serializable_hash( opts = {} )
     options = opts.clone
     options[:methods] ||= []
-    options[:methods] += [:body_for_mobile]
     options[:only] ||= []
     options[:only] += [
       :body,
