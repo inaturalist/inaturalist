@@ -3,7 +3,7 @@
 
 - if announcement.prefers_embed_fru? && !content_for?( :fundraise_up_script )
   - content_for( :extrahead ) do
-    = javascript_include_tag "fundraise_up/fundraise_up_widget_init"
+    = fundraise_up_js.html_safe
     = javascript_include_tag "fundraise_up/fundraise_up"
   - content_for( :fundraise_up_script, "loaded" )
 
@@ -11,7 +11,6 @@
 - scoped_body.css( "style" ).each do |style_tag|
   - style_tag.content = "@scope {\n#{style_tag.content}\n}"
 %div{ id: "announcement-#{announcement.id}", class: "announcement" }
-  = javascript_include_tag "announcements/dismiss"
   = render "shared/common_stylesheets"
   = stylesheet_link_tag "bootstrap_bundle"
   = stylesheet_link_tag "bootstrap-rtl" if @rtl
