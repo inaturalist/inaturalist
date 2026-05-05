@@ -1,18 +1,17 @@
 - preview = defined?( preview ) && preview
 - create_announcement_impression( announcement ) unless preview
-= javascript_include_tag "jquery/jquery-1.11.3.min.js"
-= javascript_include_tag "announcements/dismiss"
 
 - if announcement.prefers_embed_fru? && !content_for?( :fundraise_up_script )
-  - content_for( :fundraise_up_script, "loaded" )
   - content_for( :extrahead ) do
     = javascript_include_tag "fundraise_up/fundraise_up_widget_init"
     = javascript_include_tag "fundraise_up/fundraise_up"
+  - content_for( :fundraise_up_script, "loaded" )
 
 - scoped_body = Nokogiri::HTML.fragment( announcement.body )
 - scoped_body.css( "style" ).each do |style_tag|
   - style_tag.content = "@scope {\n#{style_tag.content}\n}"
 %div{ id: "announcement-#{announcement.id}", class: "announcement" }
+  = javascript_include_tag "announcements/dismiss"
   = render "shared/common_stylesheets"
   = stylesheet_link_tag "bootstrap_bundle"
   = stylesheet_link_tag "bootstrap-rtl" if @rtl
