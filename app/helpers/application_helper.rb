@@ -1829,10 +1829,7 @@ module ApplicationHelper
     HTML
   end
 
-  def fru_donate_url( params = {} )
-    base = "https://giving.inaturalist.org/login"
-    return base if params.empty?
-
-    "#{base}?#{params.to_query}"
+  def fru_donate_url
+    "https://giving.inaturalist.org/login?form=supportinaturalist&segment=renmobile26&utm_campaign=2026ren&utm_medium=mobile&utm_source=iosandroid&utm_content=button&utm_term=2389&redirectTo=/"
   end
 end

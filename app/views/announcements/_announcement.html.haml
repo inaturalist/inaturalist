@@ -34,7 +34,7 @@
         = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
           %i.fa.fa-close
       - if announcement.prefers_embed_fru?
-        %a{ class: "fru-fallback-link" , href: fru_donate_url( form: "supportinaturalist", segment: "acqmobile26", utm_campaign: "2026acq", utm_medium: "mobile", utm_source: "inatrn", utm_content: "button", utm_term: "2346", amount: 5, redirectTo: "/" ) }
+        %a{ class: "fru-fallback-link" , href: fru_donate_url }
           .fru-fallback
             =t( :donate_ ) + " $5 (USD)"
         %noscript
