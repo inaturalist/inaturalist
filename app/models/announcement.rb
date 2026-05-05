@@ -436,8 +436,8 @@ class Announcement < ApplicationRecord
     active( options.merge( placement: placement ) )
   end
 
-  def body
-    return super unless prefers_embed_fru?
+  def body_for_mobile
+    return body unless prefers_embed_fru?
 
     <<~HTML
       <!DOCTYPE html>
@@ -446,7 +446,7 @@ class Announcement < ApplicationRecord
         #{ApplicationController.helpers.fundraise_up_js}
       </head>
       <body>
-        #{super}
+        #{body}
       </body>
       </html>
     HTML
@@ -456,7 +456,9 @@ class Announcement < ApplicationRecord
     options = opts.clone
     options[:methods] ||= []
     options[:only] ||= []
+    options[:methods] += [:body_for_mobile]    
     options[:only] += [
+      :body_for_mobile,
       :body,
       :clients,
       :dismissible,
