@@ -225,7 +225,7 @@
       }
     </script>
     <% unless @skip_external_connections || @asynchronous_google_maps_loading %>
-      <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
+      <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry)) %>
       <%= javascript_include_tag "map_bundle" %>
     <% end %>
     <% if @asynchronous_google_maps_loading %>

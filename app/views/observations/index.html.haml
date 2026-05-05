@@ -12,6 +12,7 @@
     var PREFERRED_MAP_TYPE = "#{
       (logged_in? && current_user.prefers_observations_search_map_type) ||
       session[:prefers_observations_search_map_type] }";
+  = javascript_include_tag "webpack/terra-draw-webpack"
   = javascript_include_tag "ang/controllers/observation_search"
 - content_for :extracss do
   = stylesheet_link_tag "observations/search"
