@@ -103,4 +103,4 @@ TaxonPhoto.defaultProps = {
   config: {}
 };
 
-export default TaxonPhoto;
+export default React.forwardRef( TaxonPhoto );

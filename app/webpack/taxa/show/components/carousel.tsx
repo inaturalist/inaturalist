@@ -39,6 +39,8 @@ const Carousel = ( {
   const lockHeight = ( ) => {
     const wrapper = wrapperRef.current;
     if ( !wrapper ) return wrapper;
+    console.log('wrapper ref', wrapperRef.current);
+    console.log('wrapper', wrapperRef.current.getBoundingClientRect() );
     const inner = wrapper.querySelector<HTMLElement>( ".carousel-inner" );
     if ( inner ) inner.style.height = `${inner.getBoundingClientRect( ).height}px`;
     return wrapper;

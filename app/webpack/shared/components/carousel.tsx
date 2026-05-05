@@ -61,6 +61,7 @@ const Carousel = ( {
     return _.chunk( items, chunkSize );
   }, [chunkSize] );
 
+  console.log('slides', slides);
   return (
     <div className={`Carousel ${className}`}>
       { title && (
@@ -99,7 +100,7 @@ const Carousel = ( {
           <button
             type="button"
             className="btn nav-btn next-btn"
-            disabled={currentIndex >= items.length - 1}
+            disabled={currentIndex >= slides.length - 1}
             onClick={( ) => setCurrentIndex( i => i + 1 )}
             title={I18n.t( "next_taxon_short" )}
           >

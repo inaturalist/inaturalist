@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import _ from "lodash";
 import Carousel from "./carousel";
 import TaxonPhoto from "../../shared/components/taxon_photo";
+// import Carousel from "../../../shared/components/carousel";
 
 const TAXON_PHOTO_SIZE = 120;
 
@@ -34,7 +35,9 @@ const RecentObservations = ( {
 }: RecentObservationsProps ) => {
   if ( !observations ) { return ( <span /> ); }
 
+  const itemRef = useRef<HTMLDivElement>(null);
   const [chunkSize, setChunkSize] = useState( calcChunkSize() );
+
   window.addEventListener( "resize", ( ) => {
     setChunkSize( calcChunkSize() );
   } );
@@ -42,7 +45,7 @@ const RecentObservations = ( {
   const items = useMemo( ( ) => {
     const observationChunks = _.chunk( observations, chunkSize );
     return observationChunks.map( chunk => {
-      const images = chunk.map( observation => (
+      const images = chunk.map( (observation, i) => (
         <TaxonPhoto
           key={`recent-observations-obs-${observation.id}`}
           photo={observation.photos[0]}
@@ -53,6 +56,7 @@ const RecentObservations = ( {
             observation.taxon,
             observation
           )}
+          ref={i === 0 ? itemRef : null}
         />
       ) );
       const placeholders = Array.from( { length: chunkSize - chunk.length - 1 }, ( _el, i ) => (
@@ -69,12 +73,15 @@ const RecentObservations = ( {
     } );
   }, [observations, chunkSize] );
 
+  console.log('itemRef', itemRef);
+
   return (
     <div className={`RecentObservations ${observations.length < chunkSize ? "no-slides" : ""}`}>
       <Carousel
         title={I18n.t( "recent_observations_" )}
         noContent={I18n.t( "no_observations_yet" )}
         items={items}
+        itemRef={itemRef}
       />
     </div>
   );
