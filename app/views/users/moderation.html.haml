@@ -90,6 +90,11 @@
                 = "#{t( :last_edited_by )} "
                 = link_to_user( record.last_edited_by_user )
                 %time.datetime{ datetime: record.updated_at.iso8601, title: record.updated_at.iso8601 }= l record.updated_at, format: :long
+              - last_edit_audit = record.audits.select { |a| a.action == "update" && a.comment.present? }.last
+              - if last_edit_audit
+                %div.text-muted
+                  %strong= "#{t( :edit_reason )}: "
+                  = truncate_with_more formatted_user_text( last_edit_audit.comment ), length: 512
             - if record.user
               %div.text-muted
                 = "#{t( :created_by )} "

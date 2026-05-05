@@ -1017,7 +1017,7 @@ class UsersController < ApplicationController
       where( "flaggable_type != 'Taxon'" ).
       order( "id desc" )
     scopes["ModeratorAction"] = ModeratorAction.
-      includes( :user, :last_edited_by_user ).
+      includes( :user, :last_edited_by_user, :audits ).
       where( "created_at < ?", before ).
       where( resource_user_id: @user ).
       order( "id desc" )

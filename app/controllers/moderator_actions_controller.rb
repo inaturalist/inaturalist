@@ -98,8 +98,13 @@ class ModeratorActionsController < ApplicationController
     else
       flash[:error] = t( :failed_to_save_record_with_errors,
         errors: @moderator_action.errors.full_messages.to_sentence )
-      render :edit, layout: "bootstrap"
+      render :edit, layout: "bootstrap", status: :unprocessable_entity
     end
+  rescue ActionController::ParameterMissing
+    @moderator_action.errors.add( :audit_comment, :blank )
+    flash[:error] = t( :failed_to_save_record_with_errors,
+      errors: @moderator_action.errors.full_messages.to_sentence )
+    render :edit, layout: "bootstrap", status: :unprocessable_entity
   end
 
   def resource_url
@@ -137,7 +142,8 @@ class ModeratorActionsController < ApplicationController
   end
 
   def approved_update_params
-    params.require( :moderator_action ).permit( :reason, :suspended_until )
+    params.require( :moderator_action ).require( :audit_comment )
+    params.require( :moderator_action ).permit( :reason, :audit_comment, :suspended_until )
   end
 
   def resource_must_be_viewable_by_logged_in_user
