@@ -15,3 +15,9 @@ function initFruFallback( containerSelector ) {
   } );
   observer.observe( container, { childList: true, subtree: true } );
 }
+
+function hideFruButtons() {
+  var buttonContainer = document.getElementsByTagName( "iframe" )[0].contentDocument.getElementById( "render-container" );
+  var buttons = buttonContainer.getElementsByClassName( "button" );
+  Array.from( buttons ).slice( 1 ).forEach( button => { button.style.display = "none"; } );
+}
