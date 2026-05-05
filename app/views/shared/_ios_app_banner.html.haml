@@ -1,8 +1,8 @@
 - utm_campaign_params = local_assigns[:utm_campaign_params]
 - url = "#{redirect_link_path(31)}?#{[utm_campaign_params, 'utm_medium=owned_web&utm_content=sticky_footer_cta'].compact.join('&')}"
-= link_to url, class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
+= link_to url, class: "wv2-app-banner", "aria-label": t( :download_inaturalist_app ) do
   = image_tag "welcome_v2/app-icon.webp", class: "wv2-app-banner__icon", alt: ""
   .wv2-app-banner__text
     = image_tag "welcome_v2/wordmark.webp", class: "wv2-app-banner__wordmark", alt: "iNaturalist"
-    %p.wv2-app-banner__tagline Discover nature around you
-  %span.wv2-app-banner__cta Use app
+    %p.wv2-app-banner__tagline= t( :discover_nature_around_you )
+  %span.wv2-app-banner__cta= t( :use_app )

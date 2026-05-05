@@ -1977,6 +1977,7 @@ en:
   devise_unlock_instructions_unlock: Unlock Your Account
   # e.g. "With iNaturalist, you can discover nature nearby"
   discover: Discover
+  discover_nature_around_you: Discover nature around you
   discoveries: Discoveries
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
@@ -2035,6 +2036,7 @@ en:
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulk uploader</a>
   download_csv: Download CSV
   download_csv_template: Download CSV template
+  download_inaturalist_app: Download iNaturalist on the App Store
   download_kml: Download KML
   downstream_coverage_rank: Downstream coverage rank
   downstream_coverage_colon_rank: "Downstream coverage: rank %{rank}"
@@ -6429,6 +6431,7 @@ en:
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
   usage_stats: Usage stats
+  use_app: Use app
   use_name_as_a_placeholder: |
     Use <span class='ac-placeholder'>"%{name}"</span> as a placeholder
   use_this_form_to_create_a_new: |
