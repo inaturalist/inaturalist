@@ -20,7 +20,7 @@
   = scoped_body.to_html.html_safe
   - if announcement.prefers_embed_fru?
     .fru-fallback
-      = link_to t( :donate_ ), "https://giving.inaturalist.org/login?form=supportinaturalist&segment=acqmobile26&utm_campaign=2026acq&utm_medium=mobile&utm_source=inatrn&utm_content=button&utm_term=2346&amount=5&redirectTo=/", class: "btn btn-inat"
+      = link_to t( :donate_ ), fru_donate_url( form: "supportinaturalist", segment: "acqmobile26", utm_campaign: "2026acq", utm_medium: "mobile", utm_source: "inatrn", utm_content: "button", utm_term: "2346", amount: 5, redirectTo: "/" ), class: "btn btn-inat"
     %noscript
       %p= t( :donate_enable_javascript )
     :javascript

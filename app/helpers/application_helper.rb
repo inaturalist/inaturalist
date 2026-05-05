@@ -1818,4 +1818,11 @@ module ApplicationHelper
   def fundraise_up_js
     raw "<script type=\"text/javascript\">#{File.read( Rails.root.join( 'app/assets/javascripts/fundraise_up/fundraise_up_widget_init.js' ) )}</script>"
   end
+
+  def fru_donate_url( params = {} )
+    base = "https://giving.inaturalist.org/login"
+    return base if params.empty?
+
+    "#{base}?#{params.to_query}"
+  end
 end
