@@ -18,7 +18,15 @@
   = javascript_include_tag "jquery/jquery-1.11.3.min.js"
   :javascript
     $( function( ) {
-      initAnnouncementDismiss( "announcement-#{announcement.id}" );
+      var announcementRoot = $( "#announcement-#{announcement.id}" )[0];
+      $( announcementRoot.shadowRoot ).find( "form" ).on( "submit", function ( e ) {
+        e.preventDefault( );
+        $( announcementRoot ).fadeOut( );
+        $.ajax( {
+          type: "PUT",
+          url: $( this ).attr( "action" )
+        } );
+      } );
     } );
   .bootstrap
     .announcement
