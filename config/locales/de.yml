@@ -1737,7 +1737,7 @@ de:
     Klicke auf untenstehenden Link, um Dein Konto zu entsperren
   devise_unlock_instructions_unlock: Konto entsperren
   #e.g. "With iNaturalist, you can discover nature nearby"
-  discover: Entdecke
+  discover: Auf Entdeckungsreise gehen
   discoveries: Entdeckungen
   did_you_mean: 'Meintest du'
   did_you_photos_flickr?: Hast du Bilder auf Flickr hinzugefügt?
@@ -5184,6 +5184,10 @@ de:
   suspension_reason_custom_note: Bitte beachte, dass diese Begründung dem suspendierten Nutzer angezeigt wird.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Bitte aktualisiere die Begründung und erkläre, warum du die Sperrung des Nutzers änderst.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Begründung für die Bearbeitung
+  #label for the edit reason field in the moderation history table
+  edit_reason: Bearbeitungsgrund
   #predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     #reason displayed to users who have been suspended for posting hate speech
@@ -8461,13 +8465,13 @@ de:
           identify_desc: Pflanzen, Tiere, Pilze und mehr
           #Description of what users can Track
           #Read as "{Track} species you've seen worldwide"
-          track_desc: Arten, die du weltweit gesehen hast
+          track_desc: über die Arten, die du beobachtest hast
           #Description of where users can Contribute
           #Read as "{Contribute} to real science"
           contribute_desc: für die Forschung
           #Description of what users can Discover
           #Read as "{Discover} nature nearby"
-          discover_desc: Natur in der Nähe
+          discover_desc: und die Natur in der Umgebung erkunden
           #Description of what users can Learn
           #Read as "{Learn} from a global community of naturalists"
           learn_desc: durch eine weltweite Gemeinschaft von Naturbeobachtern
@@ -8555,7 +8559,7 @@ de:
           fachetti_title: Umwelttechniker und Hobbyfotograf, Brasilien
           #Quote from the testimonial author (last name Velazco)
           velazco_quote: >
-            Egal, wo auf der Welt Sie sich befinden, ob Sie einen Doktortitel haben oder einfach nur die Natur lieben – iNaturalist bringt Sie der Natur und vielen anderen Naturforschern näher.
+            Egal, wo auf der Welt du dich befindest, ob du einen Doktortitel hast oder einfach nur die Natur liebst – iNaturalist bringt dich der Natur näher und mit mit vielen anderen Naturforschern zusammen.
           #Job title and location of the testimonial author (last name Velazco)
           velazco_title: Biologe, Mexiko
         everyone:
@@ -8967,6 +8971,8 @@ de:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Begründung
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Bearbeitungsgrund
       observation:
         description: Bemerkungen
         geo_x: Rechtswert
