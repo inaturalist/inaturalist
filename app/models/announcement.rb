@@ -357,9 +357,12 @@ class Announcement < ApplicationRecord
       scope = scope.where( "? = ANY( clients ) OR clients = '{}'", options[:user_agent_client] )
     end
 
+    # this will filter all announcements to just the partner site (if provided)
     # Site filtering
     scope = if site
       scope.
+        # if the announcement is not targeting a site it will be displayed
+        #
         where(
           "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
           site || Site.default
@@ -368,7 +371,13 @@ class Announcement < ApplicationRecord
       # unauthenticated requests exclude announcements associated with sites
       scope.where( "announcements_sites.site_id IS NULL" )
     end
+    # base criteria above here, cannot really change
     base_scope = scope
+    # pull the announcements into memory at this point and then filter w/ ruby rather than ActiveRecord
+
+    # TODO: get candidates for exact locale
+    # we can have locales and sub locales (e.g. "es-MX") or top level "es"
+    # # we should group the variants of announcements together and then return the best local match for each announcement
     announcements = scope.in_specific_locale( I18n.locale )
     announcements = scope.in_specific_locale( I18n.locale.to_s.split( "-" ).first ) if announcements.blank?
     announcements = scope.in_locale( I18n.locale ) if announcements.blank?
@@ -382,7 +391,10 @@ class Announcement < ApplicationRecord
       announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
     end
 
+    # we currently don't go back to these non-local changes
+    # we could end up with no announcements here when
     announcements = announcements.select do | a |
+      # if the user is not targeting the user
       a.targeted_to_user?( user ) && !a.dismissed_by?( user )
     end
 
@@ -397,6 +409,8 @@ class Announcement < ApplicationRecord
       end
     end
 
+    # we need to do the same for country
+    # if there are two announcements for locale "es", one with country set to spain, and one with country set to mexico, we should only return the locale match with the correct country
     if options[:ip]
       geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
 
