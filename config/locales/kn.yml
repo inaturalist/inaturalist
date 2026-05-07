@@ -21,6 +21,18 @@ kn:
   x_identifications_:
     one: '%{count} ಗುರುತಿಸುವಿಕೆ'
     other: '%{count} ಗುರುತಿಸುವಿಕೆಗಳು'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span>ಗುರುತಿಸುವಿಕೆ'
+    other: '<span class="count">%{count}</span>ಗುರುತಿಸುವಿಕೆಗಳು'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span>ಅನ್ವೇಷಕರು'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span>ಅನ್ವೇಷಕರುಗಳು'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span>ಇತರರಿಗಾಗಿ ಮಾಡಿದ ID'
+    other: '<span class="count">%{count}</span>ಇತರರಿಗಾಗಿ ಮಾಡಿದ IDಗಳು'
   x_languages:
     one: "%{count} ಭಾಷೆ"
     other: "%{count} ಭಾಷೆಗಳು"
@@ -59,18 +71,27 @@ kn:
   x_observations_html:
     one: "<span class='count'>%{count}</span> ವಿಕ್ಷಣೆ"
     other: "<span class='count'>%{count}</span> ವೀಕ್ಷಣೆಗಳು"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span>ವೀಕ್ಷಣೆ"
+    other: "<span class='count'>%{count}</span>ವೀಕ್ಷಣೆಗಳು"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count}ವೀಕ್ಷಣೆ</a>"
     other: "<a href='%{url}'>%{count}ವೀಕ್ಷಣೆಗಳು </a>"
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> ವೀಕ್ಷಣೆ ಪರಿಶೀಲನೆಯಾಗಿದೆ"
     other: "<span class='count'>%{count}</span> ವೀಕ್ಷಣೆಗಳು ಪರಿಶೀಲನೆಯಾಗಿವೆ"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span>ವೀಕ್ಷಕರು'
+    other: '<span class="count">%{count}</span>ವೀಕ್ಷಕರುಗಳು'
   x_others:
     one: "%{count} ಇತರೆ"
     other: "%{count} ಇತರೆ"
   x_people:
     one: "%{count} ವ್ಯಕ್ತಿ"
     other: "%{count} ವ್ಯಕ್ತಿಗಳು"
+  x_people_html:
+    one: '<span class="count">%{count}</span>ವ್ಯಕ್ತಿ'
+    other: '<span class="count">%{count}</span>ಜನರು'
   x_people_helped_user_with_y_ids_html: "%{user} ಅವರಿಗೆ <strong>%{x} ವ್ಯಕ್ತಿಗಳು</strong> <strong>%{y} ID</strong>ಗಳೊಂದಿಗೆ ಸಹಾಯ ಮಾಡಿದ್ದಾರೆ."
   x_photos:
     one: "%{count} ಚಿತ್ರ"
@@ -84,6 +105,9 @@ kn:
   x_species:
     one: '%{count} ಪ್ರಭೇದ'
     other: '%{count} ಪ್ರಭೇದಗಳು'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span>ಪ್ರಭೇದ"
+    other: "<span class='count'>%{count}</span>ಪ್ರಭೇದಗಳು"
   x_species_html:
     one: "<span class='count'>%{count}</span> ಪ್ರಭೇದ"
     other: "<span class='count'>%{count}</span> ಪ್ರಭೇದಗಳು"
@@ -117,6 +141,9 @@ kn:
   _100_day_trends: 100 ದಿನದ ಜನಪ್ರಿಯತೆ
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: ಪರಿಸರ ಪ್ರೇಮಿಗಳ ಒಂದು ಸಮುದಾಯ
+  a_default_taxon_name_will_automatically_created: |
+    ಈ ಟ್ಯಾಕ್ಸಾನ್ ನ ವೈಜ್ಞಾನಿಕ ನಾಮದ ಗುಣಲಕ್ಷಣದಿಂದ ಒಂದು ಪೂರ್ವನಿಗದಿ ಟ್ಯಾಕ್ಸಾನ್ ಹೆಸರು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ರಚಿಸಲ್ಪಡುತ್ತದೆ.
+    ನೀವು ಈ ಹೊಸ ಟ್ಯಾಕ್ಸಾನ್ ಅನ್ನು ಉಳಿಸಿದಾಗ, ನೀವು ಇಲ್ಲಿ ಇತರ ಹೆಸರುಗಳನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ (ಸಾಮಾನ್ಯ ಹೆಸರುಗಳು, ಪುರಾತನ ವೈಜ್ಞಾನಿಕ ನಾಮಗಳು, ಇತ್ಯಾದಿ).
   a_flag_for_x: "%{x} ಗಾಗಿ ಫ್ಲ್ಯಾಗ್"
   a_member_of_taxon_html: "%{taxon} ನ ಸದಸ್ಯ"
   #Ascending alphabetical sort option. Could be alternatively be translated as
@@ -180,6 +207,8 @@ kn:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     ನೀವು ಇವರಿಗಾಗಿ ಮರೆಮಾಡಿದ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಆಯ್ಕೆಮಾಡಿಕೊಳ್ಳಬಹುದು
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: ಅನಪೇಕ್ಷಿತ ಭಿನ್ನಾಭಿಪ್ರಾಯಗಳ ಬಗ್ಗೆ
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -204,7 +233,11 @@ kn:
   add: ಸೇರಿಸಿ
   add_a_batch_of_observations: ವೀಕ್ಷಣೆಗಳ ಬ್ಯಾಚ್ ಅನ್ನು ಸೇರಿಸಿ
   add_a_batch_of_taxa: ಜೀವಿವರ್ಗಗಳ ಬ್ಯಾಚ್ ಅನ್ನು ಸೇರಿಸಿ
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: ಅಂಕಿಸರಣಿ ಪಟ್ಟಿಯನ್ನು ಸೇರಿಸಿ
   add_a_comment: ಅಭಿಪ್ರಾಯ ಸೇರಿಸಿ
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿಯೊಂದನ್ನು ಸೇರಿಸಿ
   add_a_field: ಆವರಣವೊಂದನ್ನು ಸೇರಿಸಿ
   add_a_flag: ಫ್ಲ್ಯಾಗ್ ಸೇರಿಸಿ
   #Tool tip for a button that adds a link to a text area
@@ -229,8 +262,11 @@ kn:
   add_annotations_for_controlled_attribute:
     sex: '"ಲಿಂಗ" ಕ್ಕಾಗಿ ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
     plant_phenology: '"ಸಸ್ಯ ವಿದ್ಯಮಾನ" ಕ್ಕಾಗಿ ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+    flowers_and_fruits: '"ಹೂವುಗಳು ಮತ್ತು ಹಣ್ಣುಗಳು" ಇವುಗಳಿಗಾಗಿ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸೇರಿಸಿ'
+    leaves: '"ಎಲೆಗಳು" ಗಾಗಿ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸೇರಿಸಿ'
     life_stage: '"ಜೈವಿಕ ಹಂತ" ಕಿರುಟಿಪ್ಪಣಿಯನ್ನು ಸೇರಿಸಿ'
     evidence_of_presence: '"ಇರುವಿಕೆಯ ಕುರುಹು" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+  add_another_flag: ಮತ್ತೊಂದು ಪತಾಕೆಯನ್ನು ಸೇರಿಸಿ
   add_another_photo: ಮತ್ತೊಂದು ಚಿತ್ರವನ್ನು ಸೇರಿಸಿ
   add_another_section: ಮತ್ತೊಂದು ವಿಭಾಗವನ್ನು ಸೇರಿಸಿ
   add_another_subscription: ಮತ್ತೊಂದು ಚಂದಾದಾರಿಕೆಯನ್ನು ಸೇರಿಸಿ
@@ -284,7 +320,14 @@ kn:
   add_plant_phenology_flowering_annotation: '"ಸಸ್ಯ ವಿದ್ಯಮಾನ : ಹೂವಾಗುತ್ತಿದೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_plant_phenology_fruiting_annotation: '"ಸಸ್ಯ ವಿದ್ಯಮಾನ : ಹಣ್ಣಾಗುತ್ತಿದೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_plant_phenology_no_evidence_of_flowering_annotation: '"ಸಸ್ಯ ವಿದ್ಯಮಾನ : ಹೂವಾಗುತ್ತಿರುವ ಕುರುಹುಗಳಿಲ್ಲ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+  add_flowers_and_fruits_flower_buds_annotation: '"ಹೂವುಗಳು ಮತ್ತು ಹಣ್ಣುಗಳು: ಹೂವಿನ ಮೊಗ್ಗುಗಳು" ಟಿಪ್ಪಣಿಯನ್ನು ಸೇರಿಸಿ'
+  add_flowers_and_fruits_flowers_annotation: '"ಹೂವುಗಳು ಮತ್ತು ಹಣ್ಣುಗಳು: ಹೂವುಗಳು" ಟಿಪ್ಪಣಿಯನ್ನು ಸೇರಿಸಿ'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: '"ಹೂವುಗಳು ಮತ್ತು ಹಣ್ಣುಗಳು: ಹಣ್ಣುಗಳು ಮತ್ತು ಬೀಜಗಳು" ಟಿಪ್ಪಣಿಯನ್ನು ಸೇರಿಸಿ'
+  add_flowers_and_fruits_no_flower_or_fruits: '"ಹೂವುಗಳು ಮತ್ತು ಹಣ್ಣುಗಳು: ಹಣ್ಣುಗಳಿಲ್ಲ ಅಥವಾ ಬೀಜಗಳಿಲ್ಲ" ಟಿಪ್ಪಣಿಯನ್ನು ಸೇರಿಸಿ'
+  add_leaves_breaking_leaf_buds: '"ಎಲೆಗಳು: ಎಲೆಯ ಮೊಗ್ಗು ಒಡೆಯುವಿಕೆ" ಟಿಪ್ಪಣಿಯನ್ನು ಸೇರಿಸಿ'
   add_leaves_green_leaves: '"Leaves: Green Leaves" ಕಿರುಟಿಪ್ಪಣಿ ಸೇರಿಸಿ'
+  add_leaves_colored_leaves: '"ಎಲೆಗಳು: ಬಣ್ಣ ಸಹಿತ ಎಲೆಗಳು" ಟಿಪ್ಪಣಿಯನ್ನು ಸೇರಿಸಿ'
+  add_leaves_no_live_leaves: '"ಎಲೆಗಳು: ಜೀವ ರಹಿತ ಎಲೆಗಳು" ಟಿಪ್ಪಣಿಯನ್ನು ಸೇರಿಸಿ'
   add_life_stage_adult_annotation: '"ಜೈವಿಕ ಹಂತ : ವಯಸ್ಕ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_life_stage_teneral_annotation: '"ಜೈವಿಕ ಹಂತ : ಟೆನೆರಲ್" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_life_stage_subimago_annotation: '"ಜೈವಿಕ ಹಂತ : ಸಬ್ ಇಮಾಗೋ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
@@ -300,6 +343,11 @@ kn:
   add_evidence_of_presence_track_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಹೆಜ್ಜೆಗುರುತು" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_bone_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಮೂಳೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_molt_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಪೊರೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+  add_evidence_of_presence_leafmine_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಎಲೆಕೊರಕಲು" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+  add_evidence_of_presence_hair_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಕೂದಲು" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+  add_evidence_of_presence_egg_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಮೊಟ್ಟೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+  add_evidence_of_presence_construction_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ನಿರ್ಮಾಣ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+  add_established_not_established: '"ಸ್ಥಾಪಿತ: ಸ್ಥಾಪಿತವಾಗಿಲ್ಲ" ಕಿರುಟಿಪ್ಪಣಿಯನ್ನು ಸೇರಿಸಿ'
   #As in a Taxon Framework Relationship
   add_relationship: 'ಸಂಬಂಧವನ್ನು ಸೇರಿಸಿ'
   #As in a Guide Section
@@ -340,6 +388,8 @@ kn:
   added_by: ಮೂಲಕ ಸೇರಿಸಿದೆ
   added_by_user_on_date_html: "%{date} ರಂದು %{user} ಮೂಲಕ ಸೇರಿಸಲಾಗಿದೆ"
   added_on_datetime: "%{datetime} ರಂದು ಸೇರಿಸಲಾಗಿದೆ"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: ಸೇರಿಸಿದ ಪಾತ್ರ
   added_to_favorites_html: |
     <a href="%{url}">ಮೆಚ್ಚಿನವುಗಳು</a> ಗೆ ಸೇರಿಸಲಾಗಿದೆ
   adding: "ಸೇರಿಸಲಾಗುತ್ತಿದೆ..."
@@ -353,6 +403,7 @@ kn:
   agree_: ಸಮ್ಮತಿಸಿ
   agree?: ಸಮ್ಮತಿಸಿ?
   agree_with_current_taxon: ಪ್ರಸ್ತುತ ಜೀವಿವರ್ಗವನ್ನು ಸಮ್ಮತಿಸಿ
+  agree_with_observation_taxon: ವೀಕ್ಷಣಾ ಟ್ಯಾಕ್ಸಾನ್ ಅನ್ನು ಒಪ್ಪಿಕೊಳ್ಳಿ
   agreeing: ಒಪ್ಪಿಕೊಳ್ಳಲಾಗುತ್ತಿದೆ...
   aka: ಎಂದೂ ಕರೆಯಲಾಗುವ
   #Noun, title of a popup alerting you to something
@@ -396,6 +447,8 @@ kn:
     species: ಎಲ್ಲಾ ಪ್ರಭೇದಗಳನ್ನು ಡೇಟಾಬೇಸಿಗೆ ಸೇರಿಸಲಾಗಿದೆ
     hybrid: ಎಲ್ಲಾ ಸಂಕರತಳಿಗಳನ್ನು ಡೇಟಾಬೇಸಿಗೆ ಸೇರಿಸಲಾಗಿದೆ
     subspecies: ಎಲ್ಲಾ ಉಪಪ್ರಭೇದಗಳನ್ನು ಡೇಟಾಬೇಸಿಗೆ ಸೇರಿಸಲಾಗಿದೆ
+    variety: ಎಲ್ಲಾ ಪ್ರಭೇದಗಳನ್ನು ಡೇಟಾಬೇಸಿಗೆ ಸೇರಿಸಲಾಗಿದೆ
+    form: ಎಲ್ಲಾ ಗಣಗಳನ್ನು ಡೇಟಾಬೇಸಿಗೆ ಸೇರಿಸಲಾಗಿದೆ
   all_rights_reserved: ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ
   all_taxa:
     amphibians: ಉಭಯಚರಿಗಳು
@@ -468,6 +521,10 @@ kn:
   alphabetical_order: ಅಕ್ಷರಸಂಕೇತದ ಅನುಸಾರ
   already_have_an_account_log_in_html: ಈಗಾಗಲೇ ಖಾತೆಯನ್ನು ಹೊಂದಿರುವಿರಾ? <strong>ಲಾಗಿನ್ ಆಗಿ.</strong>
   amphibians: ಉಭಯಚರಿಗಳು
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: ಅನಪೇಕ್ಷಿತ ಭಿನ್ನಾಭಿಪ್ರಾಯಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಿ
   analyze_ids: IDಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಿ
   ancestor_taxon: ಪೀಳಿಗೆ ಜೀವಿವರ್ಗ
   and_other_taxa: "&amp; ಇತರೇ ಜೀವಿವರ್ಗಗಳು"
@@ -512,6 +569,13 @@ kn:
   #Label for an option to show/include content by any user
   any_user: ಯಾವುದಾದರೂ
   anyone: ಯಾರಾದರೂ
+  app_owner_application_explanation_required: |
+    ನೀವು ಏನನ್ನು ನಿರ್ಮಿಸಲು ಬಯಸುತ್ತೀರಿ ಎಂಬುದರ ಬಗ್ಗೆ ನೀವು ಹೆಚ್ಚು ವಿವರವಾದ ವಿವರಣೆಯನ್ನು ಒದಗಿಸಲೇಬೇಕು.
+  app_owner_application_inelligible: |
+    ಅರ್ಜಿಯೊಂದನ್ನು ಸಲ್ಲಿಸಲು, ನಿಮ್ಮ ಖಾತೆಯು ಕನಿಷ್ಟ 2 ತಿಂಗಳು ಹಳೆಯದಾಗಿರಬೇಕು ಮತ್ತು 
+    ಕಳೆದ ತಿಂಗಳಲ್ಲಿ ಕನಿಷ್ಠ 10 ಸುಧಾರಣಾ ಗುರುತುಗಳನ್ನು ಮಾಡಿರಬೇಕು.
+  app_owner_application_fields_explanation_html: ನಿಮ್ಮ ಅಪ್ಲಿಕೇಶನ್ ಹೊಂದಲಿರುವ ಕ್ರಿಯಾತ್ಮಕತೆ ಮತ್ತು ನೀವು ಅದನ್ನು ಹೇಗೆ ಬಳಸಲು ಯೋಜಿಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ವಿವರಿಸಿ.
+  app_owner_application_success: ಅಪ್ಲಿಕೇಶನ್ ಮಾಲೀಕರ ಅರ್ಜಿ ಸಲ್ಲಿಸಲಾಗಿದೆ
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: ಅಪ್ಲಿಕೇಷನ್
@@ -522,6 +586,8 @@ kn:
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: ಸಲ್ಲಿಸಿ
+  apply_to_be_an_app_owner: ಅಪ್ಲಿಕೇಶನ್ ಮಾಲೀಕರಾಗಲು ಅರ್ಜಿ ಸಲ್ಲಿಸಿ
+  apply_to_create_applications_title: ಅಪ್ಲಿಕೇಶನ್ ಗಳನ್ನು ರಚಿಸಲು ಅರ್ಜಿ ಸಲ್ಲಿಸಿ
   apply_to_selected: ಆಯ್ಕೆಮಾಡಿದವುಗಳಿಗೆ ಅನ್ವಯಿಸಿ
   apply_captive_cultivated: "ಸೆರೆಯ ಜೀವಿ / ಪಳಗಿಸಿದ ಜೀವಿ ಅನ್ವಯಿಸಿ"
   apply_fields: ಆವರಣಗಳನ್ನು ಅನ್ವಯಿಸಿ
@@ -534,7 +600,10 @@ kn:
   are_you_really_sure_want_delete_this_user: ಈ ಬಳಕೆದಾರರು ಮತ್ತು ಅವರ ಎಲ್ಲಾ ವಸ್ತುವಿಷಯಗಳನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುತಿದ್ದೀರಾ?
   are_you_sure?: ನಿಮಗೆ ಖಚಿತವೆ?
   are_you_sure_no_undo: ನಿಮಗೆ ಖಚಿತವೆ? ಇದನ್ನು ಸರಿಪಡಿಸಲಾಗುವುದಿಲ್ಲ.
+  are_you_sure_delete_conservation_status: |
+    ಈ ಸಂರಕ್ಷಣಾ ಸ್ಥಿತಿಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ? ಇದು ಈ ಟ್ಯಾಕ್ಸಾನ್ ಮತ್ತು ಅದರೊಳಗಿನ ಟ್ಯಾಕ್ಸಾಗಳ ವೀಕ್ಷಣೆಗಳ ಸ್ಪಷ್ಟತೆಯನ್ನು ಬದಲಾಯಿಸಬಹುದು.
   are_you_sure_delete_post: ಈ ಪೋಸ್ಟ್ ಅನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
+  are_you_sure_delete_taxon_move_associates: "%{taxonname} (%{taxonid}) ಅನ್ನು ಅಳಿಸಲು ಮತ್ತು ಅದರ ಎಲ್ಲಾ ಸಹವರ್ತಿಗಳ ಸರಿಸುವಿಕೆಯನ್ನು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ ?"
   are_you_sure_delete_this_place: ಈ ಸ್ಥಳವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_leave_this_project: ಈ ಪ್ರಾಯೋಜನೆಯನ್ನು ತೊರೆಯಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_merge_these_places: ನೀವು ಈ ಸ್ಥಳಗಳನ್ನು ವಿಲೀನಗೊಳಿಸಲು ಬಯಸುತ್ತೀರಾ? ಇದನ್ನು ಹಿಂಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ
@@ -611,6 +680,7 @@ kn:
   assessment_x: "%{assessment} ಮೌಲ್ಯಮಾಪನ"
   assessments: ಮೌಲ್ಯಮಾಪನಗಳು
   associations: ಸಹಯೋಗಗಳು
+  atlased: ಭೂಪಟವಾಗಿದೆ
   atlas_for_taxon_html: '%{taxon} ಗೆ ಭೂಪಟ'
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -621,6 +691,10 @@ kn:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: ಗುಣವಿಶೇಷ
   attribution: ಗುಣವಿಶೇಷಣ
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, ಅಪ್ ಲೋಡ್ ಮಾಡಿದವರು %{user}"
   #Adjective describing when a place in an atlas was "exploded," i.e. divided
   #into its constituent places
   atlas_alteration_action_exploded: ಸ್ಫೋಟಗೊಂಡಿದೆ
@@ -643,6 +717,7 @@ kn:
   #of values, and not a synonym of "typical" or "normal"
   avg: ಸರಾಸರಿ
   back: ಹಿಂದೆ
+  back_to_applications: "&laquo; ಅಪ್ಲಿಕೇಶನ್ ಗಳಿಗೆ ಹಿಂತಿರುಗಿ"
   back_to_all_species: ಎಲ್ಲಾ ಪ್ರಭೇಧಗಳಿಗೆ ಹಿಂದಿರುಗಿ
   back_to_editing_observation: ವೀಕ್ಷಣೆಯ ಸಂಪಾದನೆಗೆ ಹಿಂದಿರುಗಿ
   back_to_friends: ಗೆಳೆಯರು ಗೆ ಹಿಂದಿರುಗಿ
@@ -672,6 +747,9 @@ kn:
   back_to_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳಿಗೆ ಹಿಂದಿರುಗಿ
   back_to_your_profile: ನಿಮ್ಮ ಪರಿಚಯಕ್ಕೆ ಹಿಂದಿರುಗಿ
   badges: ಬ್ಯಾಡ್ಜ್‌‍ಗಳು
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    ಪುರಾವೆಗಳ ಆಧಾರದ ಮೇಲೆ, ಸಮುದಾಯ ಟ್ಯಾಕ್ಸಾನ್ ಅನ್ನು ಸುಧಾರಿಸಬಹುದೇ?
   batch: ಬ್ಯಾಚ್
   batch_edit: ಬ್ಯಾಚ್ ಸಂಪಾದನೆ
   #Where x is the title of a list of taxa
@@ -679,6 +757,7 @@ kn:
   batch_operations: ಬ್ಯಾಚ್ ಕಾರ್ಯಾಚರಣೆಗಳು
   be_the_first_to_fave_this_observation: ಈ ವೀಕ್ಷಣೆಯನ್ನು ಮೆಚ್ಹುವುದರಲ್ಲಿ ನೀವು ಮೊದಲಿಗರಾಗಿ!
   become_a_donor_caps: ದಾನಿಯಾಗು
+  become_a_donor_today_caps: ಇಂದೇ ದೇಣಿಗೆದಾರರಾಗಿರಿ
   before_importing_photos: ಚಿತ್ರಗಳನ್ನು ಆಮದುಮಾಡುವ ಮುನ್ನ
   bg_color: ಹಿನ್ನೆಲೆ ಬಣ್ಣ
   bio: ಕಿರು ಪರಿಚಯ
@@ -712,6 +791,7 @@ kn:
   by_you: ನಿಮ್ಮಿಂದ
   calendar: ದಿನದರ್ಶಿಕೆ
   calendars_only_show_x_observations_at_time: ದಿನದರ್ಶಿಕೆಗಳು ಒಂದು ಬಾರಿಗೆ %{x} ವೀಕ್ಷಣೆಗಳನ್ನು ಮಾತ್ರ ಪ್ರದರ್ಶಿಸುತ್ತವೆ.
+  callback_url: Callback URL
   cancel: ರದ್ದುಗೊಳಿಸಿ
   cant_edit_or_delete_hidden_content: ತಾಣದ ಮೇಲ್ವಿಚಾರಕರಿಂದ ಮರೆಮಾಡಿದ ವಸ್ತುವಿಷಯಗಳನ್ನು ನೀವು ಸಂಪಾದಿಸಲು ಅಥವಾ ಅಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ
   cant_merge_a_taxon_with_itself: ಜೀವಿವರ್ಗವನ್ನು ಸ್ವತಃ ಅದರೊಂದಿಗೆ ವಿಲೀನಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.
@@ -745,6 +825,7 @@ kn:
     split: ವಿಭಜಿಸಿ
     merge: ಒಂದುಗೂಡಿಸಿ
     swap: ಅದಲುಬದಲಿಸಿ
+    stage: ಹಂತ
     drop: ಬಿಟ್ಟುಬಿಡಿ
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: ಇದರಿಂದ ವಿಭಜಿಸಿ
@@ -807,6 +888,8 @@ kn:
   click_the_map: "ಸ್ಥಳವನ್ನು ಸೇರಿಸಲು <strong>ಭೂಪಟವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ</strong>."
   close: ಮುಚ್ಚಿರಿ
   code: ಸಂಕೇತ
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: ಸಂಕೇತ ಕೊಡುಗೆದಾರರು
   colors: ಬಣ್ಣಗಳು
   columns: ಉದ್ದಸಾಲುಗಳು
   combine: ಜೋಡಿಸಿ
@@ -1143,6 +1226,13 @@ kn:
   daily_users: ಪ್ರತಿದಿನದ ಬಳಕೆದಾರರು
   danger_zone: ಅಪಾಯ ವಲಯ
   dashboard: ಡ್ಯಾಷ್‍ಬೋರ್ಡ್
+  dashboard_pilots:
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "ಸಸ್ಯಗಳಿಗೆ ಆದ್ಯತೆ ನೀಡುವ 300 ಪ್ರಭೇದಗಳ 200 ಅವಲೋಕನಗಳ ಮಾದರಿಯಿಂದ ನಡೆಸಲ್ಪಡುತ್ತವೆ"
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಪ್ರಭೇದಗಳ ಪಟ್ಟಿ ಇಲ್ಲಿದೆ:"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "ಕಂಪ್ಯೂಟರ್ ವಿಷನ್ ಮಾದರಿಯಲ್ಲಿ ಇನ್ನೂ ಸೇರಿಸಲಾಗಿಲ್ಲ"
   data_deficient: ದತ್ತಾಂಶ ಕೊರತೆ
   data_quality: ದತ್ತಾಂಶದ ಗುಣಮಟ್ಟ
   data_quality_assessment: ದತ್ತಾಂಶ ಗುಣಮಟ್ಟ ವಿಮರ್ಶೆ
@@ -1208,6 +1298,7 @@ kn:
   default: ಪೂರ್ವನಿಯೋಜಿತ
   #Default option
   default_: ಪೂರ್ವನಿಯೋಜಿತ
+  default_display_time_zone: ಪೂರ್ವನಿಗದಿತ ಪ್ರದರ್ಶನ ಸಮಯ ವಲಯ
   default_invite_comment: "ಮಹತ್ವದ ಚಿತ್ರ! ನೀವು ಇದನ್ನು %{site_name} ಗೆ ಪ್ರಸರಿಸಲೇಬೇಕು : {{INVITE_LINK}}"
   default_observation_license: ನಿಯೋಜಿತ ವೀಕ್ಷಣೆಯ ಪರವಾನಿಗೆ
   default_photo_license: ನಿಯೋಜಿತ ಚಿತ್ರದ ಪರವಾನಿಗೆ
@@ -1216,6 +1307,8 @@ kn:
     ಇದು ಎಲ್ಲಾ ಅನ್ವೇಷಣೆ ಮತ್ತು ಗುರುತಿಸುವಿಕೆಯ ಹುಡುಕಾಟದಲ್ಲಿ ನಿಮ್ಮ ನಿಯೋಜಿತ ಸ್ಥಳವಾಗಿರುತ್ತದೆ.
   default_sound_license: ನಿಯೋಜಿತ ಧ್ವನಿಯ ಪರವಾನಿಗೆ
   defaults_to_your_name_or_username: ನಿಮ್ಮ ಹೆಸರು ಅಥವಾ ಬಳಕೆದಾರರ ಹೆಸರಿಗೆ ನಿಯೋಜಿತವಾಗುತ್ತದೆ
+  #As in the definition of a word
+  definition: ವಿವರಣೆಗಳು
   definitions: ವಿವರಣೆಗಳು
   delete: ಅಳಿಸಿ
   delete_all: ಎಲ್ಲವನ್ನೂ ಅಳಿಸಿ
@@ -1258,6 +1351,7 @@ kn:
     confirmations:
       confirmed: |
         ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಖಚಿತಪಡಿಸಲಾಗಿದೆ.
+      send_instructions: "ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ನೀವು ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸವನ್ನು ಹೇಗೆ ಧೃಡೀಕರಿಸಬಹುದೆಂಬ ಸೂಚನೆಗಳುಳ್ಳ ಒಂದು ಮಿಂಚೆಯನ್ನು ಪಡೆಯಲಿದ್ದೀರಿ."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1269,6 +1363,9 @@ kn:
       invalid_token: 'ಅಸಿಂಧುವಾದ ಧೃಢೀಕರಣದ ಟೋಕನ್.'
       user:
         suspended: ನಿಮ್ಮ ಖಾತೆಯನ್ನು ತಡೆಹಿಡಿಯಲಾಗಿದೆ
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "ಕಾರಣ: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: ಪಾಸ್ ವರ್ಡ್ ಮರುಹೊಂದಿಕೆ ಟೋಕನ್ ಅಮಾನ್ಯವಾಗಿದೆ. ದಯವಿಟ್ಟು ಇತ್ತೀಚೆಗೆ ಕಳುಹಿಸಿದ ಪಾಸ್ ವರ್ಡ್ ಮರುಹೊಂದಿಕೆ ಇಮೇಲ್ ನಲ್ಲಿ ಲಿಂಕ್ ಬಳಸಿ, ಅಥವಾ <a href="%{url}">ಹೊಸದನ್ನು ವಿನಂತಿಸಿ</a>.
     sessions:
@@ -1284,7 +1381,11 @@ kn:
     registrations:
       destroyed: 'ಮತ್ತೆ ಸಿಗೋಣ! ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ. ನಿಮ್ಮನ್ನು ಶೀಘ್ರದಲ್ಲೇ ಮತ್ತೆ ಭೇಟಿಮಾಡಲು ಬಯಸುತ್ತೇವೆ.'
       signed_up: 'ಸುಸ್ವಾಗತ! ನೀವು ಯಶಸ್ವಿಯಾಗಿ ನೋಂದಾವಣೆಯಾಗಿದ್ದೀರಿ.'
+      signed_up_but_inactive: "ನೀವು ಯಶಸ್ವಿಯಾಗಿ ನೋಂದಣಿಯಾಗಿದ್ದೀರಿ. ಆದಾಗ್ಯೂ, ನಿಮ್ಮ ಖಾತೆಯು ಇನ್ನೂ ಸಕ್ರಿಯವಾಗಿಲ್ಲದ ಕಾರಣ ನಾವು ನಿಮಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."
+      signed_up_but_locked: "ನೀವು ಯಶಸ್ವಿಯಾಗಿ ನೋಂದಣಿಯಾಗಿದ್ದೀರಿ. ಆದಾಗ್ಯೂ, ನಿಮ್ಮ ಖಾತೆಯು ನಿರ್ಬಂಧವಾಗಿರುವ ಕಾರಣ ನಾವು ನಿಮಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."
+      signed_up_but_unconfirmed: "ದೃಢೀಕರಣ ಲಿಂಕ್ ಹೊಂದಿರುವ ಸಂದೇಶವನ್ನು ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸಕ್ಕೆ ಕಳುಹಿಸಲಾಗಿದೆ. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ದಯವಿಟ್ಟು ಲಿಂಕ್ ಅನ್ನು ಅನುಸರಿಸಿ."
       updated: 'ನೀವು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಿದ್ದೀರಿ.'
+      updated_but_not_signed_in: "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ, ಆದರೆ ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಿರುವುದರಿಂದ, ನೀವು ಮತ್ತೊಮ್ಮೆ ಸೈನ್ ಇನ್ ಮಾಡಬೇಕಾಗಿದೆ."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1295,6 +1396,8 @@ kn:
         subject: ಮಿಂಚೆ ದಲಾವಣೆಯು ಕೇಳಲಾಗಿದೆ
       reset_password_instructions:
         subject: 'ಗುಪ್ತಪದ ಮದುಹೊಂದಿಕೆ ಸೂಚನೆಗಳು'
+  devise_confirmation_instructions_if_you_did_not: |
+    ನೀವು @vow_or_con{vow:an|a} %{site_name} ಖಾತೆಗೆ ನೋಂದಣಿಯಾಗಿಲ್ಲದಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ಈ ಮಿಂಚೆಯನ್ನು ನಿರ್ಲಕ್ಷಿಸಿ.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ದೃಢೀಕರಿಸಲು ದಯವಿಟ್ಟು ಕೆಳಗಿನ ಲಿಂಕ್ ಕ್ಲಿಕ್ ಮಾಡಿ. ನಿಮ್ಮ ಇಮೇಲ್ ಅನ್ನು ನೀವು ದೃಢೀಕರಿಸದಿದ್ದರೆ
@@ -1433,6 +1536,8 @@ kn:
   editing_this: '%{elem} ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ'
   editing_x_in_y: "%{y} ರಲ್ಲಿ %{x} ಅನ್ನು ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ"
   editors: ಸಂಪಾದಕಗಳು
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: ಶಿಕ್ಷಕರ ಮಾರ್ಗದರ್ಶಿ
   either_that_user_doesnt_exist_or: "ಆ ಬಳಕೆದಾರರು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ ಅಥವಾ ನೀವು ಅವರನ್ನು ಈಗಾಗಲೇ ಅನುಸರಿಸುತ್ತಿರುವಿರಿ."
   eligible_for_research_grade: ಸಂಶೋಧನಾ ದರ್ಜೆಗೆ ಅರ್ಹವಾಗಿದೆ
   email: ಮಿಂಚೆ
@@ -1486,6 +1591,9 @@ kn:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: ಕರಾರುವಾಕ್ಕಾದ ಶ್ರೇಣಿ
   except: ಹೊರತು
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: ಹೊರಗಿಡಿ
   exclude_places: ಸ್ಥಳಗಳನ್ನು ಹೊರತುಪಡಿಸಿ
   exclude_projects: ಪ್ರಾಯೋಜನೆಗಳನ್ನು ಹೊರತುಪಡಿಸಿ
   exclude_taxa: ಜೀವಿವರ್ಗವನ್ನು ಹೊರತುಪಡಿಸಿ
@@ -5615,6 +5723,11 @@ kn:
         website_desc_html: |
           <a href="https://www.inaturalist.org">iNaturalist</a> ಅಥವಾ <a href="%{url}">iNaturalist ಜಾಲ</a> ದ ಜಾಲತಾಣಗಳ ಮೂಲಕ ರಚಿಸಲಾಗಿದೆ
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: ಎರಡನ್ನೂ ಸೇರಿಸಲಾಗಿದೆ
+        added_only_identifications: ಕೇವಲ ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಮಾತ್ರ ಸೇರಿಸಲಾಗಿದೆ
+        added_only_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ಮಾತ್ರ ಸೇರಿಸಲಾಗಿದೆ
         compared_to_previous_years: ಹಿಂದಿನ ವರ್ಷಗಳಿಗೆ ಹೋಲಿಸಿ
         donate_title: "ನಮ್ಮ ಎಲ್ಲಾ ಬೆಂಬಲಿಗರಿಗೆ ವಿಶೇಷ ಧನ್ಯವಾದಗಳು"
         donors: ದಾನಿಗಳು
@@ -5727,6 +5840,11 @@ kn:
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         ಆ ಟ್ಯಾಗ್ ಗಳನ್ನು ಪೋಸ್ಟ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಏನೋ ತಪ್ಪಾಗಿದೆ: %{message}
+    taxon_changes:
+      #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
+      vote_removed: ಮತ ತೆಗೆದುಹಾಕಲಾಗಿದೆ
+      #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
+      no_votes_yet: ಇನ್ನೂ ಯಾವುದೇ ಮತಗಳು ಇಲ್ಲ
     users:
       dashboard:
         your_content_will_be_updated: ಈ ಜೀವಿವರ್ಗಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ನಿಮ್ಮ ವಸ್ತುವಿಷಯಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಣಗೊಳ್ಳುತ್ತವೆ.
@@ -5813,6 +5931,9 @@ kn:
         same_day_geoprivacy_protection: ಅದೇ-ದಿನದ ಭೂಗೌಪ್ಯತೆಯ ರಕ್ಷಣೆ
         taxon_name_priorities:
           common_name_lexicons_description: ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ, ಸಾಮಾನ್ಯ ಹೆಸರುಗಳು ನಿಮ್ಮ ಖಾತೆಯ ಭಾಷೆ/ಸ್ಥಳದಲ್ಲಿ ತೋರಿಸಲಾಗುತ್ತದೆ. ಇತರ ಶಬ್ದಕೋಶಗಳಲ್ಲಿ ಹೆಸರಿಗಳನ್ನು ನೋಡಲು ಅಥವಾ ನಿರ್ದಿಷ್ಟ ಸ್ಥಳಗಳಲ್ಲಿ ಬಳಸುವ ಹೆಸರಿಗಳಿಗೆ (ಉದಾಹರಣೆಗೆ, ಇಂಗ್ಲಿಷ್ (ಆಸ್ಟ್ರೇಲಿಯಾ) ಅಥವಾ ಸ್ಪ್ಯಾನಿಷ್ (ಕೋಸ್ಟಾ ರಿಕಾ)) ಆದ್ಯತೆ ನೀಡಲು, ಸಾಮಾನ್ಯ ಹೆಸರು ಶಬ್ದಕೋಶಗಳನ್ನು ಸೇರಿಸಿ. ಒಮ್ಮೆಗೆ 3 ಸಾಮಾನ್ಯ ಹೆಸರುಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸಲಾಗುತ್ತದೆ. ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಶಬ್ದಕೋಶಕ್ಕೆ ಯಾವುದೇ ಸಾಮಾನ್ಯ ಹೆಸರು ಲಭ್ಯವಿಲ್ಲವಾದರೆ, ಅದು ತೋರಣೆಯಿಂದ ಕೈದಾಕಲಾಗುತ್ತದೆ.
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: ಗರಿಷ್ಠ 3 ಸಾಮಾನ್ಯ ಹೆಸರು ನಿಘಂಟುಗಳನ್ನು ಈಗಾಗಲೇ ಸೇರಿಸಲಾಗಿದೆ
         this_only_applies_to_traditional_projects2: |
           ಇದು ಸಾಂಪ್ರದಾಯಿಕ ಯೋಜನೆಗಳಿಗೆ ಮಾತ್ರ ಅನ್ವಯಿಸುತ್ತದೆ. ನೀವು ಅವಲೋಕನಗಳನ್ನು ಹೊರಗಿಡಲು ಸಾಧ್ಯವಿಲ್ಲ
           ಸಂಗ್ರಹಣೆ ಅಥವಾ ಛತ್ರಿ ಯೋಜನೆಗಳಿಂದ, ಅವು ಮೂಲಭೂತವಾಗಿ ಉಳಿಸಲಾದ ಹುಡುಕಾಟಗಳಾಗಿವೆ.
@@ -5936,11 +6057,15 @@ kn:
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
             ದಿ %{moth_common_name} ಪತಂಗವನ್ನು ದಶಕಗಳಿಂದ ಗುರುತಿಸಲಾಗಿಲ್ಲ ಮತ್ತು ಒಮ್ಮೆ ಅಳಿದುಹೋಗಿದೆ ಎಂದು ಭಾವಿಸಲಾಗಿತ್ತು - ನ್ಯೂಜಿಲೆಂಡ್ ನ ಪ್ರವಾಸಿಗರು ಅದನ್ನು ಆಕಸ್ಮಿಕವಾಗಿ ಗುರುತಿಸುವವರೆಗೆ.
+          #Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "ಫ್ರಾಸ್ಟೆಡ್ ಫೀನಿಕ್ಸ್ ಪತಂಗ"
           #Heading for the story about a new-to-science mantis species
           mantis_heading: ವಿಜ್ಞಾನಕ್ಕೆ ಹೊಸತಾದ ಪ್ರಭೇದಗಳ ಅನ್ವೇಷಣೆ
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">ಇನಿಮಿಯಾ ನ್ಯಾಟ್</span> - ಸಂಕ್ಷಿಪ್ತವಾಗಿ <span class="italic">I. ನ್ಯಾಟ್</span> - ಇದು ಆಸ್ಟ್ರೇಲಿಯಾದ ಮಹಿಳೆಯೊಬ್ಬಳು ತನ್ನ ನೆರೆಹೊರೆಯಲ್ಲಿ ನಡೆದುಕೊಂಡು ಹೋಗುವ ಹೊಸ-ವಿಜ್ಞಾನ ಮ್ಯಾಂಟಿಸ್ ಪ್ರಭೇದವಾಗಿದೆ.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "ಸೂರ್ಯನ ಕುದುರೆ"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: ಸ್ಥಳೀಯ ಪರಿಸರ ವ್ಯವಸ್ಥೆಗಳ ಸಂರಕ್ಷಣೆ
           #Body text for the amphibian protection story
@@ -5951,6 +6076,8 @@ kn:
         observation:
           #Heading for the sample observation section
           heading: ಪ್ರತಿಯೊಂದು ವೀಕ್ಷಣೆಯೂ ಒಂದೊಂದು ಕಥೆಯನ್ನು ಹೇಳಬಲ್ಲದು
+          #Alt text for the sample observation photo
+          photo_alt: "ಎಲೆಯ ಮೇಲೆ ಹಸಿರು ಕಪ್ಪೆ"
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -6240,6 +6367,11 @@ kn:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "B"
       decimal_units:
         format: '%n %u'
         units:
@@ -6305,6 +6437,9 @@ kn:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: ಮಾಡರೇಟರ್ ಟಿಪ್ಪಣಿ
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: ಅಪ್ಲಿಕೇಷನ್
       Photo: ಚಿತ್ರ
       TaxonLink: ಜೀವಿವರ್ಗದ ಲಿಂಕ್
     attributes:
@@ -6313,6 +6448,11 @@ kn:
         #Whether or not the announcement can be dismissed by people who see it
         dismissible: ತಳ್ಳಿಹಾಕಲಾಗಿದೆ
         updated_at: ಪರಿಷ್ಕರಿಸಿದ ದಿನಾಂಕ
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ತಾಣದ ID ಗಳು
+        prefers_exclude_monthly_supporters: ಮಾಸಿಕ ಬೆಂಬಲಿಗರನ್ನು ಹೊರಗಿಡಿ
+        clients: ಗ್ರಾಹಕರು
         #Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: ದಾನಿ ಪ್ರಾರಂಭ ದಿನಾಂಕವನ್ನು ಹೊರಗಿಡಿ
         #End of a date range that the viewer must not have donated in to see the announcement
@@ -6356,12 +6496,15 @@ kn:
         description: ವಿವರಣೆ
       assessment_section:
         title: ಶೀರ್ಷಿಕೆ
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
       conservation_status:
         status: ಸ್ಥಿತಿ
         description: ವಿವರಣೆ
+        authority: ಪ್ರಾಧಿಕಾರ
         place_id: ಸ್ಥಳ
         url: URL
         geoprivacy: ಭೂಗೌಪ್ಯತೆ
@@ -6369,6 +6512,8 @@ kn:
       flag:
         #The reason the item was flagged
         reason: ಕಾರಣ
+        #The person who resolved the flag
+        resolver_id: ಪರಿಹಾರಕ
       guide:
         source_url: ಮೂಲ URL
         published_at: ಪ್ರಕಟಣೆ
@@ -6382,6 +6527,8 @@ kn:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: ಕಾರಣ
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: ಕಾರಣವನ್ನು ಸಂಪಾದಿಸಿ
       observation:
         description: ಟಿಪ್ಪಣಿಗಳು
         geo_x: ಪೂರ್ವ
@@ -6397,10 +6544,17 @@ kn:
         #Inputs to an export task, e.g. the query and the columns
         inputs: ಇನ್ಪುಟ್‍ಗಳು
       oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: Callback URL
         #Unique identifier for an application
         uid: ID
         #Noun, secret associated with an application, sort of like the application's password
         secret: ಗುಪ್ತ
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: ಗೋಪ್ಯ
       place_taxon_name:
         position: ಸ್ಥಾನ
       post:
@@ -6437,6 +6591,7 @@ kn:
         prefers_check_lists: ತಾಳೆಪಟ್ಟಿಗಳಿಗೆ ಅನುಮತಿ ಇದೆಯೇ?
         woeid: WOEID
       site:
+        logo: Wordmark
         logo_email_banner: ಮಿಂಚೆ ಬ್ಯಾನರ್
       source:
         title: ಶೀರ್ಷಿಕೆ
@@ -6457,6 +6612,8 @@ kn:
         is_active: ಸಕ್ರಿಯ?
         locked: ನಿರ್ಬಂಧಿತ
         name: ಹೆಸರು
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: ಹೆಸರು ಪೂರೈಕೆದಾರರು
         #Boolean attribute determining whether users can add, remove, or
         #re-order photos of this taxon
         photos_locked: ಚಿತ್ರಗಳು ನಿರ್ಬಂಧಿತವಾಗಿವೆಯೇ?
@@ -6475,6 +6632,18 @@ kn:
         position: ಸ್ಥಾನ
         source_url: ಮೂಲ URL
         audit_comment: ಟಿಪ್ಪಣಿ
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: ತಾಣದ ಶೀರ್ಷಿಕೆ
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: ಕಿರು ಶೀರ್ಷಿಕೆ
+        #Taxon this link is associated with
+        taxon: 'ಜೀವಿವರ್ಗ:'
+        #Place this link is associated with
+        place: ಸ್ಥಳ
       user:
         email: ಮಿಂಚೆ
         faved_project_ids: ನೆಚ್ಚಿನ ಯೋಜನೆಗಳು
@@ -6846,6 +7015,46 @@ kn:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  id_summary_dqa:
+    public_metrics:
+      true: "ನಿಜವಾದ ಹೇಳಿಕೆ"
+      identification: "ಗುರುತಿಸುವಿಕೆಗೆ ಉಪಯುಕ್ತ"
+  id_summaries:
+    demo:
+      filters:
+        language_label: "ಭಾಷೆ"
+      summary_list:
+        heading: "ID ಸಾರಾಂಶಗಳು"
+        feedback_toggle: "ID ಸಾರಾಂಶಗಳ ಪ್ರತಿಕ್ರಿಯೆ"
+        feedback_unavailable: "ಈ ಸಾರಾಂಶಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯೆ ಲಭ್ಯವಿಲ್ಲ."
+        service_unavailable: "ಪ್ರತಿಕ್ರಿಯೆ ಸೇವೆ ಇದೀಗ ಲಭ್ಯವಿಲ್ಲ."
+        submit_failed: "ಪ್ರತಿಕ್ರಿಯೆ ಸಲ್ಲಿಸಲು ವಿಫಲವಾಗಿದೆ."
+      summary_feedback:
+        submitting_tooltip: "ಪ್ರತಿಕ್ರಿಯೆ ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ..."
+      summary_item:
+        default_label: "ಸಾರಾಂಶ"
+        default_title: "ಸಾರಾಂಶ"
+        user_fallback: "iNaturalist ಬಳಕೆದಾರರು"
+        reference_commented: "ಕಾಮೆಂಟ್ ಮಾಡಿದ್ದಾರೆ"
+      reference_feedback:
+        submitting_tooltip: "ಪ್ರತಿಕ್ರಿಯೆ ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ..."
+      taxon_detail:
+        select_species: "ID ಸಾರಾಂಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಒಂದು ಪ್ರಭೇದವನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+        no_image: "ಯಾವುದೇ ಚಿತ್ರ ಲಭ್ಯವಿಲ್ಲ"
+      taxa_list:
+        group_labels:
+          animalia: "ಇತರ ಪ್ರಾಣಿಗಳು"
+          actinopterygii: "ರೇ-ರೆಕ್ಕೆಯ ಮೀನುಗಳು"
+          aves: "ಪಕ್ಷಿಗಳು"
+          reptilia: "ಸರೀಸೃಪಗಳು"
+          amphibia: "ಉಭಯಚರಗಳು"
+          mammalia: "ಸಸ್ತನಿಗಳು"
+          insecta: "ಕೀಟಗಳು"
+          plantae: "ಸಸ್ಯಗಳು"
+          fungi: "ಶಿಲೀಂಧ್ರಗಳು"
+          protozoa: "ಪ್ರೋಟೋಜೋವಾ"
+          mollusca: "ಮೃದ್ವಂಗಿಗಳು"
+        empty: "ಯಾವುದೇ ಪ್ರಭೇದಗಳು ಲಭ್ಯವಿಲ್ಲ."
   #Title of a section warning the user about something
   warning_title: ಎಚ್ಚರಿಕೆ
   wikimedia: ವಿಕಿಮೀಡಿಯಾ
