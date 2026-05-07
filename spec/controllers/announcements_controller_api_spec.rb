@@ -64,10 +64,9 @@ describe AnnouncementsController do
         get :active, format: :json
         json = response.parsed_body.find {| a | a["id"] == fru_announcement.id }
         expect( json["id"] ).to eq( fru_announcement.id )
-        expect( json["body_for_mobile"] ).to include( fru_announcement.body )
-        expect( json["body_for_mobile"] ).to include( "<!DOCTYPE html>" )
-        expect( json["body_for_mobile"] ).to include( "FundraiseUp" )
-        expect( json["body"] ).to eq( fru_announcement.body )
+        expect( json["body"] ).to include( fru_announcement.body )
+        expect( json["body"] ).to include( "<!DOCTYPE html>" )
+        expect( json["body"] ).to include( "FundraiseUp" )
       end
 
       it "returns raw body when not prefers_embed_fru" do
@@ -75,7 +74,7 @@ describe AnnouncementsController do
         get :active, format: :json
         json = response.parsed_body.find {| a | a["id"] == standard_announcement.id }
         expect( json["id"] ).to eq( standard_announcement.id )
-        expect( json["body_for_mobile"] ).to eq( standard_announcement.body )
+        expect( json["body"] ).to eq( standard_announcement.body )
       end
     end
 
