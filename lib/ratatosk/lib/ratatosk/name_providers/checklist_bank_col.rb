@@ -1,4 +1,4 @@
-require_relative '../checklist_bank'
+require_relative '../checklistbank'
 
 module Ratatosk
   module NameProviders
