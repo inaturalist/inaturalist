@@ -454,7 +454,6 @@ class Announcement < ApplicationRecord
     options[:only] ||= []
     options[:methods] += [:body_for_mobile]    
     options[:only] += [
-      :body_for_mobile,
       :body,
       :clients,
       :dismissible,
