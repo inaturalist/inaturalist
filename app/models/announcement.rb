@@ -452,9 +452,7 @@ class Announcement < ApplicationRecord
     options = opts.clone
     options[:methods] ||= []
     options[:only] ||= []
-    options[:methods] += [:body_for_mobile]    
     options[:only] += [
-      :body,
       :clients,
       :dismissible,
       :end,
@@ -468,7 +466,7 @@ class Announcement < ApplicationRecord
     end
     options[:methods].uniq!
     options[:only].uniq!
-    super( options )
+    super( options ).merge( "body" => body_for_mobile )
   end
 
   def duplicate_as_user( duplicate_user )
