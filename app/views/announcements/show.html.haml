@@ -40,6 +40,7 @@
     last_observation_end_date
     user_created_start_date
     user_created_end_date
+    parent_announcement_id
   )
 - content_for :title do
   =strip_tags t( :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id )
@@ -87,6 +88,11 @@
                     - val = @announcement.send( a )
                     - if a == "ip_countries" || a == "exclude_ip_countries"
                       = val.map { | code | Place::COUNTRIES_BY_NAME.values.detect { | country | country[:code] == code }.try(:[], :name) }.sort.join( ", " )
+                    - elsif a == "parent_announcement_id"
+                      - if val
+                        = link_to "##{val}", announcement_path(val)
+                      - else
+                        = t(:none)
                     - elsif a == "locales"
                       = val.map { | locale | I18n.t( "locales.#{locale}" ) }.sort.join( ", " )
                     - elsif a == "user"
@@ -123,4 +129,20 @@
               including you
             = link_to_toggle_box "show user IDs" do
               = @announcement.dismiss_user_ids
+      - if @announcement.child_announcements.any?
+        %h4 Translation Variants
+        %table.table.table-bordered
+          %thead
+            %tr
+              %th ID
+              %th Locales
+              %th Start
+              %th End
+          %tbody
+            - @announcement.child_announcements.each do |child|
+              %tr
+                %td= link_to "##{child.id}", announcement_path(child)
+                %td= child.locales.present? ? child.locales.map { |l| I18n.t("locales.#{l}") }.join(", ") : t(:all)
+                %td= child.start
+                %td= child.send(:end)
       = link_to t(:back), announcements_path, class: "back crumb"

@@ -527,6 +527,108 @@ describe Announcement do
     end
   end
 
+  describe "parent_announcement" do
+    it "cannot reference itself" do
+      a = create :announcement
+      a.parent_announcement_id = a.id
+      expect( a ).not_to be_valid
+      expect( a.errors[:parent_announcement_id] ).to include( "cannot reference itself" )
+    end
+
+    it "cannot be a child of a child announcement" do
+      parent = create :announcement
+      child = create :announcement, parent_announcement_id: parent.id
+      grandchild = build :announcement, parent_announcement_id: child.id
+      expect( grandchild ).not_to be_valid
+      expect( grandchild.errors[:parent_announcement_id] ).to include(
+        "cannot be a child announcement (only one level of nesting allowed)"
+      )
+    end
+
+    it "nullifies children when parent is destroyed" do
+      parent = create :announcement
+      child = create :announcement, parent_announcement_id: parent.id
+      parent.destroy
+      expect( child.reload.parent_announcement_id ).to be_nil
+    end
+  end
+
+  describe "duplicate_as_user" do
+    it "links duplicate as child of original" do
+      original = create :announcement
+      dup = original.duplicate_as_user( create( :user ) )
+      expect( dup.parent_announcement_id ).to eq( original.id )
+    end
+
+    it "links duplicate of child to the grandparent" do
+      parent = create :announcement
+      child = create :announcement, parent_announcement_id: parent.id
+      dup = child.duplicate_as_user( create( :user ) )
+      expect( dup.parent_announcement_id ).to eq( parent.id )
+    end
+  end
+
+  describe "active" do
+    it "returns both locale-specific and global announcements when they are unrelated" do
+      _en_announcement = create :announcement, locales: ["en"]
+      es_announcement = create :announcement, locales: ["es"]
+      global_announcement = create :announcement
+      I18n.with_locale( :es ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( es_announcement.id )
+        expect( result_ids ).to include( global_announcement.id )
+        expect( result_ids ).not_to include( _en_announcement.id )
+      end
+    end
+
+    it "deduplicates linked translations, returning best locale match" do
+      parent = create :announcement, locales: ["en"]
+      child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+      I18n.with_locale( :es ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( child_es.id )
+        expect( result_ids ).not_to include( parent.id )
+      end
+      I18n.with_locale( :en ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( parent.id )
+        expect( result_ids ).not_to include( child_es.id )
+      end
+    end
+
+    it "falls back to global parent when no locale match in family" do
+      parent = create :announcement
+      child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+      I18n.with_locale( :ja ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( parent.id )
+        expect( result_ids ).not_to include( child_es.id )
+      end
+    end
+
+    it "handles sub-locale fallback within family groups" do
+      parent = create :announcement
+      child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+      I18n.with_locale( :"es-MX" ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( child_es.id )
+        expect( result_ids ).not_to include( parent.id )
+      end
+    end
+
+    it "prefers exact sub-locale match over language-only match" do
+      parent = create :announcement
+      child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+      child_es_mx = create :announcement, locales: ["es-MX"], parent_announcement_id: parent.id
+      I18n.with_locale( :"es-MX" ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( child_es_mx.id )
+        expect( result_ids ).not_to include( child_es.id )
+        expect( result_ids ).not_to include( parent.id )
+      end
+    end
+  end
+
   describe "active_in_placement" do
     describe "ip_country" do
       it "includes announcements with ip_countries matching IP country" do

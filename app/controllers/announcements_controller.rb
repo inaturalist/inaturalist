@@ -6,6 +6,7 @@ class AnnouncementsController < ApplicationController
   before_action :load_announcement, only: [:show, :edit, :update, :destroy, :dismiss, :duplicate]
   before_action :load_sites, only: [:new, :edit, :create, :duplicate]
   before_action :load_oauth_applications, only: [:new, :edit, :create, :duplicate]
+  before_action :load_parent_announcement_options, only: [:new, :edit, :create, :duplicate]
 
   layout "bootstrap"
 
@@ -136,6 +137,25 @@ class AnnouncementsController < ApplicationController
       "official AND scopes LIKE '%write%'"
     )
     @oauth_applications.sort_by!( &:name )
+  end
+
+  def load_parent_announcement_options
+    candidates = Announcement.
+      where( parent_announcement_id: nil ).
+      where( '"end" > ?', 30.days.ago ).
+      order( id: :desc ).
+      limit( 100 )
+    candidates = candidates.where.not( id: @announcement.id ) if @announcement&.persisted?
+    unless current_user.is_admin? || current_user_site_ids.blank?
+      candidates = candidates.
+        joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id" ).
+        where( "announcements_sites.site_id IS NULL OR announcements_sites.site_id IN (?)", current_user_site_ids )
+    end
+    @parent_announcement_options = candidates.map do | a |
+      label = "##{a.id} - #{ActionController::Base.helpers.strip_tags( a.body ).to_s.truncate( 60 )}" \
+              " (#{a.locales.presence&.join( ', ' ) || 'all locales'})"
+      [label, a.id]
+    end
   end
 
   def user_agent_client

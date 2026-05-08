@@ -92,7 +92,25 @@ describe AnnouncementsController do
         create :announcement, locales: ["es"]
         no_locale_announcement = create :announcement
         get :active, format: :json, params: { locale: "ja" }
-        expect( response.parsed_body.map {| a | a["id"] } ).to eq( [no_locale_announcement.id] )
+        expect( response.parsed_body.map {| a | a["id"] } ).to include( no_locale_announcement.id )
+      end
+
+      it "returns both locale-specific and unrelated global announcements" do
+        es_announcement = create :announcement, locales: ["es"]
+        global_announcement = create :announcement
+        get :active, format: :json, params: { locale: "es" }
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).to include( es_announcement.id )
+        expect( annc_ids ).to include( global_announcement.id )
+      end
+
+      it "deduplicates linked translation variants by locale" do
+        parent = create :announcement, locales: ["en"]
+        child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+        get :active, format: :json, params: { locale: "es" }
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).to include( child_es.id )
+        expect( annc_ids ).not_to include( parent.id )
       end
 
       it "only returns announcements targeting the requested client" do
