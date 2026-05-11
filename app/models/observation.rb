@@ -3153,7 +3153,7 @@ class Observation < ApplicationRecord
 
   def calculate_mappable
     return false if latitude.blank? && longitude.blank?
-    return false if public_positional_accuracy && public_positional_accuracy.to_i > uncertainty_cell_diagonal_meters.to_i
+    return false if public_positional_accuracy && public_positional_accuracy.to_i * 2 > uncertainty_cell_diagonal_meters.to_i
     return false if inaccurate_location?
     return false unless passes_quality_metric?( QualityMetric::EVIDENCE )
     return false unless appropriate?
