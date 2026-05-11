@@ -3,10 +3,13 @@ import React, {
 } from "react";
 import _ from "lodash";
 
+const DEFAULT_CHUNK = 6;
+
 interface CarouselProps {
   items: React.ReactNode[];
   // TODO: can maybe more fancy with interpreting ref type here
-  itemRef: React.MutableRefObject<HTMLDivElement>;
+  itemRef: React.MutableRefObject<HTMLDivElement> | null;
+  finalItem?: React.ReactNode;
   title?: string;
   url?: string;
   description?: string | React.ReactNode;
@@ -19,22 +22,25 @@ const calculateChunkSize = (
   itemRef: React.MutableRefObject<HTMLDivElement>
 ) => {
   const carouselSlideSize = carouselSlideRef.current?.getBoundingClientRect()?.width;
+  console.log('carouselSlideSize', carouselSlideSize);
   const itemSize = itemRef.current?.getBoundingClientRect()?.width;
+  console.log('itemSize', itemSize);
 
-  return carouselSlideSize && itemSize ? Math.floor( carouselSlideSize / itemSize ) : null;
+  return carouselSlideSize && itemSize ? Math.floor( carouselSlideSize / itemSize ) : DEFAULT_CHUNK;
 };
 
 const Carousel = ( {
   title,
   items,
   itemRef,
+  finalItem,
   url,
   description,
   noContent,
   className
 }: CarouselProps ) => {
   const [currentIndex, setCurrentIndex] = useState( 0 );
-  const [chunkSize, setChunkSize] = useState<number | null>( 500 );
+  const [chunkSize, setChunkSize] = useState<number | null>( DEFAULT_CHUNK );
   const carouselSlideContainerRef = useRef<HTMLDivElement>( null );
 
   const link = url && (
@@ -46,6 +52,7 @@ const Carousel = ( {
   const hasNav = items.length > 1;
 
   useEffect( () => {
+    // TODO: restart listener when itemRef changes
     window.addEventListener( "resize", ( ) => {
       setChunkSize( calculateChunkSize( carouselSlideContainerRef, itemRef ) );
     } );
@@ -53,15 +60,22 @@ const Carousel = ( {
 
   useEffect( () => {
     setChunkSize( calculateChunkSize( carouselSlideContainerRef, itemRef ) );
-  }, [] );
+  }, [itemRef.current] );
 
   const slides = useMemo( () => {
     if ( !chunkSize ) return [];
 
-    return _.chunk( items, chunkSize );
-  }, [chunkSize] );
+    console.log('chunkSize', chunkSize);
+    console.log('items', items.length);
+    console.log('items.length % chunkSize', items.length % chunkSize);
+    const s = _.chunk( items, chunkSize );
+    if (items.length % chunkSize !== 0 && finalItem) {
+      s[s.length - 1].push( finalItem );
+    }
 
-  console.log('slides', slides);
+    return s;
+  }, [chunkSize, items] );
+
   return (
     <div className={`Carousel ${className}`}>
       { title && (

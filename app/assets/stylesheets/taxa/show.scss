@@ -13,6 +13,7 @@
 @import "../users/user_popover";
 @import "./shared/loading_spinner";
 @import "../breakpoints";
+@import "../shared/carousel";
 
 #app {
   min-height: 600px;
@@ -1342,135 +1343,27 @@ body > [role="dialog"] .PhotoChooserModal {
   margin-bottom: 20px;
   padding: 0 60px;
 }
+.Carousel {
+  .carousel-item {
+    height: 100px;
+    aspect-ratio: 1 / 1;
+    margin: 5px;
+  }
 
-$nav-btn-dim: 40px;
-.nav-buttons .nav-btn {
-  width: $nav-btn-dim;
-  height: 100%;
-  padding: 0 !important;
-  border: 0 transparent !important;
-  margin: 0 0 10px 10px;
-}
-.nav-buttons .nav-btn:hover,
-.nav-buttons .nav-btn:focus,
-.nav-buttons .nav-btn:active {
-  background: none;
-}
-.nav-buttons .nav-btn:before {
-  display: block;
-  content: '\276E';
-  width: $nav-btn-dim;
-  height: 100%;
-  border-radius: 100px;
-  background-color: $inat-green;
-  color: white;
-  line-height: $nav-btn-dim * 1.05;
-  font-weight: bold;
-  font-size: $nav-btn-dim / 2;
-}
-.nav-buttons .nav-btn:hover:before {
-  background-color: $inat-green-light;
-}
-.nav-buttons .next-btn:before {
-  content: '\276F';
-}
-.Carousel .viewall {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background-color: #333;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  font-size: 16px;
-}
-.Carousel .viewall:hover,
-.Carousel .viewall:focus {
-  color: white;
-}
-.RecentObservations .Carousel { position: relative; }
-.RecentObservations .TaxonPhoto {
-  display: inline-block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  .viewall {
+    height: 100px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 16px;
+  }
 
   .CoverImage {
-    aspect-ratio: 1 / 1;
-    min-height: 0 !important;
+    height: 100%;
   }
-}
-.RecentObservations .carousel-inner {
-  overflow: hidden;
-}
-.RecentObservations .carousel-inner .slide {
-  display: flex;
-  padding: 0 50px;
-}
-.RecentObservations.no-slides .carousel-inner .slide {
-  padding: 0;
-}
-.RecentObservations h2,
-.RecentObservations .nav-btn {
-  position: absolute;
-}
-.RecentObservations h2 {
-  top: -49px;
-  left: 0;
-  padding: 10px;
-  margin: 0;
-  background-color: white;
-  border-radius: 0 2px 0 0;
-  font-size: 18px;
-}
-.RecentObservations .nav-btn {
-  top: 0;
-  bottom: 0;
-  height: auto;
-  z-index: 1;
-  background-color: white;
-  margin: 0;
-  padding-right: 10px;
-}
-.RecentObservations .nav-btn:before {
-  border-radius: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-.RecentObservations .nav-btn[disabled]:before {
-  background-color: #ccc;
-}
-.RecentObservations .prev-btn {
-  left: 0;
-}
-.RecentObservations .next-btn {
-  right: 0;
-}
-.RecentObservations .TaxonPhoto,
-.RecentObservations .placeholder {
-  margin-right: 10px;
-}
-.RecentObservations .TaxonPhoto:last-child,
-.RecentObservations .placeholder:last-child {
-  margin-right: 0;
-}
-.RecentObservations .placeholder {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background-color: #e8e8e8;
-}
-@media (min-width: 1200px) {
-  .RecentObservations .TaxonPhoto,
-  .RecentObservations .placeholder,
-  .Carousel .viewall {
-    width: 200px !important;
-  }
-}
-.RecentObservations .item.active.right {
-  opacity: 0;
 }
 .iconified-list-group .list-group-item {
   display: flex;
