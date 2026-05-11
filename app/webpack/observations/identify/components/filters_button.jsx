@@ -234,7 +234,9 @@ class FiltersButton extends React.Component {
             { [
               { param: "captive", key: "show-filter-captive" },
               { param: "threatened", key: "show-filter-threatened" },
-              { param: "introduced", key: "show-filter-introduced" },
+              { param: "introduced", key: "show-filter-introduced", label: I18n.t( "establishment.introduced" ) },
+              { param: "native", key: "show-filter-native", label: I18n.t( "establishment.native" ) },
+              { param: "endemic", key: "show-filter-endemic", label: I18n.t( "establishment.endemic" ) },
               { param: "popular", key: "show-filter-popular", title: I18n.t( "has_one_or_more_faves" ) }
             ].map( props => (
               <FilterCheckbox
