@@ -35,6 +35,13 @@
   //   "no-mixed-requires": [0],
   //   "no-underscore-dangle": [0]
   // }
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "rules": {
     "arrow-parens": [2, "as-needed"],
     "comma-dangle": [2, "never"],
@@ -67,9 +74,30 @@
     "jsx-a11y/media-has-caption": "off",
     "react/no-find-dom-node": 0,
     "react/destructuring-assignment": 0,
-    "default-param-last": 0
+    "default-param-last": 0,
+    "import/extensions": ["error", "ignorePackages", {
+      "js": "never",
+      "jsx": "never",
+      "ts": "never",
+      "tsx": "never"
+    }]
   },
-  "overrides": [{
-    "files": ["*.js", "*.jsx"]
-  }]
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"]
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+      }
+    }
+  ]
 }

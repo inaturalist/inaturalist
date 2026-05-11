@@ -12,6 +12,8 @@
 @import "../shared/flash_message";
 @import "../users/user_popover";
 @import "./shared/loading_spinner";
+@import "../breakpoints";
+@import "../shared/carousel";
 
 #app {
   min-height: 600px;
@@ -21,17 +23,6 @@
   margin: 20px auto;
 }
 
-#TaxonDetail .container-fluid,
-#TaxonDetail .container {
-  min-width: 980px;
-}
-
-body.skip-min-width {
-  #TaxonDetail .container-fluid,
-  #TaxonDetail .container {
-    min-width: auto;
-  }
-}
 
 #TaxonHeader .inner {
   display: flex;
@@ -65,8 +56,26 @@ body.skip-min-width {
   background-color: #f8f8f8;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  padding: 20px 0;
   margin-top: 5px;
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px 60px;
+    max-width: $xl;
+    margin: 0 auto;
+    align-items: center;
+    > * { min-width: 0; }
+    @media ( max-width: 767px ) {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 15px;
+      .PhotoPreview {
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+  }
 }
 
 #charts {
@@ -336,9 +345,20 @@ body.skip-min-width {
   top: 8px;
 }
 
+.Leaders {
+  max-width: 600px;
+  margin: 0 auto;
+
+  .LeadersGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    > * { min-width: 0; }
+  }
+}
+
 $leaderItemImageDim: 56px;
 .LeaderItem {
-  margin: 20px 0 20px;
+   margin-bottom: 20px;
   .img-wrapper {
     border: 1px solid transparent;
     width: $leaderItemImageDim;
@@ -402,14 +422,38 @@ $leaderItemImageDim: 56px;
       color: $inat-green;
     }
   }
+  .icon-value {
+    white-space: nowrap;
+  }
   .value {
     color: #4a4a4a;
   }
-  .media-body {
-    vertical-align: middle;
+  .show-lg-up {
+    display: none;
+    @media ( min-width: 1200px ) { display: inline; }
+  }
+  .show-below-lg {
+    display: inline;
+    @media ( min-width: 1200px ) { display: none; }
+  }
+  .leader-item-media {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .leader-item-body {
+    flex: 1;
+    min-width: 0;
   }
   .img-wrapper .fa-binoculars {
     font-size: $leaderItemImageDim * 0.5;
+  }
+  @media ( max-width: $lg ) {
+    margin: 8px 0;
+    .item-label { text-align: center; }
+    .leader-item-media { flex-direction: column; align-items: stretch; }
+    .img-wrapper { margin: 0 auto; }
+    .leader-item-body { text-align: center; }
   }
 }
 
@@ -419,8 +463,51 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
-  height: 590px;
+  align-self: flex-start;
+  height: 100%;
+  @media ( max-width: $mobile-max ) {
+    height: 450px;
+  }
+
+  .foreground-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    * {
+      z-index: 1000;
+    }
+
+    .TaxonPhoto {
+      flex-grow: 1;
+
+      .CoverImage {
+        min-height: 0 !important;
+        height: 100%;
+      }
+    }
+  }
 }
+
+.PhotoPreview.gallery.cover-bg {
+  .foreground-container .TaxonPhoto .CoverImage {
+    height: calc(100% + #{$photoPreviewThumbDim + $photoPreviewThumbGutterTop});
+  }
+}
+
+.PhotoPreview.grid {
+  max-height: 600px;
+  max-width: 600px;
+}
+
+.PhotoPreview.grid .foreground-container .TaxonPhoto .CoverImage {
+  height: 195px;
+  @media ( max-width: $mobile-max ) {
+    height: 120px;
+  }
+}
+
 .PhotoPreview .photo-bg {
   position: absolute;
   left: -50px;
@@ -440,14 +527,8 @@ $photoPreviewThumbGutterTop: 3px;
   background-color: rgba(0,0,0,0.25);
 }
 .PhotoPreview.gallery ul.others{
-  position: absolute;
-  bottom: 0;
   margin: 0;
-  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;      /* TWEENER - IE 10 */
-  display: -webkit-flex;     /* NEW - Chrome */
-  display: flex;             /* New - everyone else */
+  display: flex;
   flex-wrap: nowrap;
 }
 .PhotoPreview ul.others li {
@@ -483,16 +564,17 @@ $photoPreviewThumbGutterTop: 3px;
   background-color: #333;
   font-weight: 400;
   font-size: 20px;
-  display: block;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 195px !important;
+  @media ( max-width: $mobile-max ) {
+    height: 120px !important;
+  }
 }
 .PhotoPreview.grid .viewmore a .inner {
-  width: 100%;
+  text-align: center;
   line-height: 1.6;
-  display: block;
-  position: absolute;
-  top: 50%;
-  margin-top: -25px;
 }
 .PhotoPreview.grid .viewmore a .inner .fa {
   margin-top: 5px;
@@ -637,10 +719,14 @@ $introducedColor: #E4007C;
   border-color: transparentize( $introducedColor, 0.80 );
   color: $introducedColor;
 }
-
 .TaxonPageTabs .tab-content {
   border-top: 1px solid #ccc;
   padding-top: 10px;
+}
+.TaxonPageTabs {
+  .tab-drawer-container {
+    display: none;
+  }
 }
 
 .TaxonPageTabs .nav.nav-tabs {
@@ -652,7 +738,7 @@ $introducedColor: #E4007C;
   color: #555;
   font-weight: 600;
   font-size: 18px;
-  padding: 20px 30px 16px;
+  padding: 20px 0 16px;
 }
 .TaxonPageTabs .nav-tabs > li > a {
   border: 0 transparent;
@@ -714,56 +800,9 @@ $introducedColor: #E4007C;
   margin-left: 10px;
 }
 
-$nav-btn-dim: 40px;
-.nav-buttons .nav-btn {
-  width: $nav-btn-dim;
-  height: $nav-btn-dim;
-  padding: 0 !important;
-  border: 0 transparent !important;
-  margin: 0 0 10px 10px;
-}
-.nav-buttons .nav-btn:hover,
-.nav-buttons .nav-btn:focus,
-.nav-buttons .nav-btn:active {
-  background: none;
-}
-.nav-buttons .nav-btn:before {
-  display: block;
-  content: '\276E';
-  width: $nav-btn-dim;
-  height: $nav-btn-dim;
-  border-radius: 100px;
-  background-color: $inat-green;
-  color: white;
-  line-height: $nav-btn-dim * 1.05;
-  font-weight: bold;
-  font-size: $nav-btn-dim / 2;
-}
-❯
-.nav-buttons .nav-btn:hover:before {
-  background-color: $inat-green-light;
-}
-.nav-buttons .next-btn:before {
-  content: '\276F';
-}
-.Carousel .viewall {
-  width: 100%;
-  height: 262px;
-  background-color: #333;
-  color: white;
-  display: block;
-  line-height: 262px;
-  text-align: center;
-  border-radius: 5px;
-  font-size: 16px;
-}
-.Carousel .viewall:hover,
-.Carousel .viewall:focus {
-  color: white;
-}
-
 #main-tabs {
   display: flex;
+  padding: 0 60px;
 }
 #main-tabs.nav-tabs > li {
   float: none;
@@ -1300,68 +1339,26 @@ body > [role="dialog"] .PhotoChooserModal {
   content: '';
 }
 .AkaNames .name { color: black; }
-.RecentObservations { margin-bottom: 20px; }
-.RecentObservations .Carousel { position: relative; }
-.RecentObservations .TaxonPhoto {
-  display: inline-block;
+#map-tab {
+  margin-bottom: 20px;
+  padding: 0 60px;
 }
-.RecentObservations .carousel-inner .slide {
-  display: flex;
-  padding: 0 50px;
-}
-.RecentObservations.no-slides .carousel-inner .slide {
-  padding: 0;
-}
-.RecentObservations h2,
-.RecentObservations .nav-btn {
-  position: absolute;
-}
-.RecentObservations h2 {
-  top: -49px;
-  left: 0;
-  padding: 10px;
-  margin: 0;
-  background-color: white;
-  border-radius: 0 2px 0 0;
-  font-size: 18px;
-}
-.RecentObservations .nav-btn {
-  top: 0px;
-  z-index: 1;
-  background-color: white;
-  height: 120px;
-  margin: 0;
-  padding-right: 10px;
-}
-.RecentObservations .nav-btn:before {
-  border-radius: 0;
-  height: 120px;
-  line-height: 120px;
-}
-.RecentObservations .nav-btn[disabled]:before {
-  background-color: #ccc;
-}
-.RecentObservations .prev-btn {
-  left: 0;
-}
-.RecentObservations .next-btn {
-  right: 0;
-}
-.RecentObservations .TaxonPhoto {
-  margin-right: 10px;
-}
-.RecentObservations .TaxonPhoto:last-child {
-  margin-right: 0;
-}
-.RecentObservations .viewall {
-  width: 120px;
-  height: 120px;
-  line-height: 120px;
-}
-@media (min-width: 1200px) {
-  .RecentObservations .TaxonPhoto,
-  .RecentObservations .viewall {
-    width: 200px !important;
+.Carousel {
+  .carousel-item {
+    aspect-ratio: 1 / 1;
+  }
+
+  .viewall {
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .CoverImage {
+    height: 100%;
   }
 }
 .iconified-list-group .list-group-item {
@@ -1471,4 +1468,110 @@ table.regional-names {
   // .bb-xgrid-line line {
   //   stroke-dasharray: 1 2;
   // }
+}
+
+@media (max-width: 767px) {
+  #main-tabs {
+    display: none;
+  }
+  .TaxonPageTabs {
+    .tab-drawer-container {
+      display: block;
+      border-bottom: 3px solid $inat-green;
+    }
+    .tab-drawer-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 18px;
+      color: black;
+      background: white;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+    .tab-drawer {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+    }
+    .tab-drawer-container.open .tab-drawer {
+      max-height: 900px;
+      transition: max-height 0.3s ease-in;
+    }
+    .tab-drawer-separator {
+      border-top: 2px solid #ddd;
+      margin: 4px 0;
+    }
+    .tab-drawer-item-icon {
+      color: $inat-green;
+      margin-right: 6px;
+    }
+    .tab-drawer li a,
+    .tab-drawer li button {
+      display: block;
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 18px;
+      color: #555;
+      text-decoration: none;
+      border: none;
+      border-top: 1px solid #eee;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+      &:hover {
+        background: #f5f5f5;
+        color: black;
+      }
+    }
+  }
+  #map-tab {
+    padding: 0 15px;
+  }
+
+  .SimilarTab .TaxonThumbnail {
+    width: calc(50% - 10px);
+  }
+
+  .IdentificationsTab {
+    .btn-group.identification-categories {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      .btn {
+        flex: 1 1 auto;
+      }
+    }
+    .search select[name="sort"] {
+      min-width: 0;
+      width: 100%;
+      margin-left: 0;
+      margin-top: 5px;
+    }
+    .Identification {
+      .contents {
+        flex-direction: column;
+      }
+      .preview {
+        width: 100%;
+        margin-bottom: 10px;
+        .image {
+          width: 100%;
+          height: 200px;
+        }
+      }
+      .content {
+        padding-left: 0;
+      }
+    }
+  }
+  .Leaders {
+    max-width: 400px;
+  }
 }

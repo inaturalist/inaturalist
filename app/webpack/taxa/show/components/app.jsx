@@ -27,7 +27,11 @@ const App = ( { taxon, showNewTaxon, config } ) => {
         <Row className="preheader">
           <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
             <TaxonCrumbsContainer />
-            <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.replace( /[^a-zA-Z0-9]/g, "-" )}`}>
+            <a
+              className="permalink"
+              href={`/taxa/${taxon.id}-${taxon.name.replace( /[^a-zA-Z0-9]/g, "-" )}`}
+              aria-label={I18n.t( "permalink" )}
+            >
               <i className="icon-link" />
             </a>
           </Col>
@@ -83,33 +87,21 @@ const App = ( { taxon, showNewTaxon, config } ) => {
           </Col>
         </Row>
       </Grid>
-      <Grid fluid>
-        <Row id="hero">
-          <Col xs={12}>
-            <Grid>
-              <StatusRow
-                conservationStatus={taxon.conservationStatus}
-                establishmentMeans={taxon.establishment_means}
-              />
-              <Row>
-                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
-                  <PhotoPreviewContainer />
-                </Col>
-                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
-                  <Leaders taxon={taxon} />
-                  <Row>
-                    <Col xs={12}>
-                      <ErrorBoundary>
-                        <ChartsContainer />
-                      </ErrorBoundary>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </Grid>
-          </Col>
-        </Row>
-      </Grid>
+      <div id="hero">
+        <StatusRow
+          conservationStatus={taxon.conservationStatus}
+          establishmentMeans={taxon.establishment_means}
+        />
+        <div className="hero-grid">
+          <PhotoPreviewContainer />
+          <div className="hero-right">
+            <Leaders taxon={taxon} />
+            <ErrorBoundary>
+              <ChartsContainer />
+            </ErrorBoundary>
+          </div>
+        </div>
+      </div>
       <TaxonPageTabsContainer />
       <PhotoModalContainer />
       <PhotoChooserModalContainer />
