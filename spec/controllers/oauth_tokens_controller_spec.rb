@@ -7,11 +7,34 @@ shared_examples_for "a token creator that blocks suspended users" do
     json = JSON.parse( response.body )
     expect( json["access_token"] ).not_to be_blank
   end
+  # Token requests return 400 for suspended users,
+  # other API requests for suspended users return 401
   it "should return a 400 for a suspended user" do
     user.suspend!
     expect( user ).to be_suspended
     post :create, format: :json, params: default_params_for_strategy
     expect( response.code ).to eq "400"
+    json = JSON.parse( response.body )
+    expect( json["error"] ).to eq "invalid_grant"
+    expect( json["error_description"] ).not_to be_blank
+  end
+  it "should include suspension details for a timed suspension" do
+    user.update!( suspended_at: Time.now, suspension_reason: "policy violation", suspended_until: 1.week.from_now )
+    expect( user ).to be_suspended
+    post :create, format: :json, params: default_params_for_strategy
+    expect( response.code ).to eq "400"
+    json = JSON.parse( response.body )
+    expect( json["error"] ).to eq "invalid_grant"
+    expect( json["error_description"] ).to match( /policy violation/ )
+    expect( json["suspended_until"] ).not_to be_blank
+    expect( Time.parse( json["suspended_until"] ) ).to be_within( 1.minute ).of( 1.week.from_now )
+  end
+  it "should return null suspended_until for an indefinite suspension" do
+    user.suspend!
+    post :create, format: :json, params: default_params_for_strategy
+    json = JSON.parse( response.body )
+    expect( json ).to have_key( "suspended_until" )
+    expect( json["suspended_until"] ).to be_nil
   end
   it "should return a token and unsuspend a user with an expired timed suspension" do
     admin = make_admin

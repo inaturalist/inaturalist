@@ -75,17 +75,41 @@ describe ProviderOauthController do
         expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
       end
 
-      it "should not return a token for a confirmed suspended user" do
+      # Token requests return 400 for suspended users,
+      # other API requests for suspended users return 401
+      it "should return a 400 with suspension details for a confirmed suspended user" do
         u = create :user, email: google_response[:email], confirmed_at: Time.now
         u.suspend!
         expect( u ).to be_confirmed
         expect( u ).to be_suspended
         post :assertion, format: :json, params: assertion_params
-        expect( response ).not_to be_successful
+        expect( response.status ).to eq 400
         response_json = JSON.parse( response.body )
         expect( response_json["access_token"] ).to be_blank
         expect( response_json["error"] ).to eq "invalid_grant"
         expect( response_json["error_description"] ).not_to be_blank
+      end
+
+      it "should include suspension reason for a timed suspension" do
+        u = create :user, email: google_response[:email], confirmed_at: Time.now
+        u.update!( suspended_at: Time.now, suspension_reason: "policy violation", suspended_until: 1.week.from_now )
+        expect( u ).to be_suspended
+        post :assertion, format: :json, params: assertion_params
+        expect( response.status ).to eq 400
+        response_json = JSON.parse( response.body )
+        expect( response_json["error"] ).to eq "invalid_grant"
+        expect( response_json["error_description"] ).to match( /policy violation/ )
+        expect( response_json["suspended_until"] ).not_to be_blank
+        expect( Time.parse( response_json["suspended_until"] ) ).to be_within( 1.minute ).of( 1.week.from_now )
+      end
+
+      it "should return null suspended_until for an indefinite suspension" do
+        u = create :user, email: google_response[:email], confirmed_at: Time.now
+        u.suspend!
+        post :assertion, format: :json, params: assertion_params
+        response_json = JSON.parse( response.body )
+        expect( response_json ).to have_key( "suspended_until" )
+        expect( response_json["suspended_until"] ).to be_nil
       end
 
       it "should not return a token for a confirmed child without permission" do

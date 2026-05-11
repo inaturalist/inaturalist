@@ -8,6 +8,10 @@ const config = {
   target: ["web", "es5"],
   context: path.resolve( webpackAssetsPath ),
   entry: {
+    "terra-draw": {
+      import: "./terra_draw/webpack-entry",
+      runtime: "runtime"
+    },
     "computer-vision": {
       import: "./computer_vision/demo/webpack-entry",
       dependOn: ["react-main", "react-dropzone"]
