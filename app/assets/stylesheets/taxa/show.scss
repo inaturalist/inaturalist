@@ -1345,19 +1345,15 @@ body > [role="dialog"] .PhotoChooserModal {
 }
 .Carousel {
   .carousel-item {
-    height: 100px;
     aspect-ratio: 1 / 1;
-    margin: 5px;
   }
 
   .viewall {
-    height: 100px;
     background-color: #333;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
     font-size: 16px;
   }
 

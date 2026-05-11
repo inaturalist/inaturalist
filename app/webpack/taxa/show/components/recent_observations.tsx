@@ -3,8 +3,6 @@ import _ from "lodash";
 import TaxonPhoto from "../../shared/components/taxon_photo";
 import Carousel from "../../../shared/components/carousel";
 
-const TAXON_PHOTO_SIZE = 120;
-
 interface ObsPhoto {
   id: number;
   [key: string]: unknown;
@@ -27,25 +25,19 @@ interface RecentObservationsProps {
   url?: string;
 }
 
-const calcChunkSize = () => Math.floor( window.innerWidth / TAXON_PHOTO_SIZE );
-
 const RecentObservations = ( {
   observations, showPhotoModal, url
 }: RecentObservationsProps ) => {
   if ( !observations ) { return ( <span /> ); }
 
   const itemRef = useRef<HTMLDivElement>( null );
-  const [chunkSize, setChunkSize] = useState( calcChunkSize() );
-
-  window.addEventListener( "resize", ( ) => {
-    setChunkSize( calcChunkSize() );
-  } );
 
   const items = useMemo( () => {
     const images = observations.map( ( observation, idx ) => (
       <TaxonPhoto
         key={`recent-observations-obs-${observation.id}`}
         photo={observation.photos[0]}
+        size="medium"
         taxon={observation.taxon}
         observation={observation}
         showTaxonPhotoModal={( ) => showPhotoModal?.(
@@ -60,12 +52,12 @@ const RecentObservations = ( {
   }, [observations] );
 
   return (
-    <div className={`RecentObservations ${observations.length < chunkSize ? "no-slides" : ""}`}>
+    <div className="RecentObservations">
       <Carousel
         title={I18n.t( "recent_observations_" )}
         noContent={I18n.t( "no_observations_yet" )}
         items={items}
-        finalItem={( <a href={url} className="viewall carousel-item">{ I18n.t( "view_all" ) }</a> )}
+        finalItem={( <a key="viewall" href={url} className="viewall carousel-item">{ I18n.t( "view_all" ) }</a> )}
         itemRef={itemRef}
       />
     </div>

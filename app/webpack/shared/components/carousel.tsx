@@ -4,6 +4,7 @@ import React, {
 import _ from "lodash";
 
 const DEFAULT_CHUNK = 6;
+const CAROUSEL_ITEM_GAP = 10; // must match $carousel-item-gap in carousel.scss
 
 interface CarouselProps {
   items: React.ReactNode[];
@@ -19,14 +20,12 @@ interface CarouselProps {
 
 const calculateChunkSize = (
   carouselSlideRef: React.RefObject<HTMLDivElement>,
-  itemRef: React.MutableRefObject<HTMLDivElement>
+  itemWidth: number
 ) => {
-  const carouselSlideSize = carouselSlideRef.current?.getBoundingClientRect()?.width;
-  console.log('carouselSlideSize', carouselSlideSize);
-  const itemSize = itemRef.current?.getBoundingClientRect()?.width;
-  console.log('itemSize', itemSize);
-
-  return carouselSlideSize && itemSize ? Math.floor( carouselSlideSize / itemSize ) : DEFAULT_CHUNK;
+  const containerWidth = carouselSlideRef.current?.getBoundingClientRect()?.width;
+  return containerWidth && itemWidth
+    ? Math.floor( ( containerWidth + CAROUSEL_ITEM_GAP ) / ( itemWidth + CAROUSEL_ITEM_GAP ) )
+    : DEFAULT_CHUNK;
 };
 
 const Carousel = ( {
@@ -42,6 +41,7 @@ const Carousel = ( {
   const [currentIndex, setCurrentIndex] = useState( 0 );
   const [chunkSize, setChunkSize] = useState<number | null>( DEFAULT_CHUNK );
   const carouselSlideContainerRef = useRef<HTMLDivElement>( null );
+  const itemWidthRef = useRef<number>( 0 );
 
   const link = url && (
     <a href={url} className="readmore">
@@ -54,20 +54,21 @@ const Carousel = ( {
   useEffect( () => {
     // TODO: restart listener when itemRef changes
     window.addEventListener( "resize", ( ) => {
-      setChunkSize( calculateChunkSize( carouselSlideContainerRef, itemRef ) );
+      setChunkSize( calculateChunkSize( carouselSlideContainerRef, itemWidthRef.current ) );
     } );
   }, [] );
 
   useEffect( () => {
-    setChunkSize( calculateChunkSize( carouselSlideContainerRef, itemRef ) );
+    const measuredWidth = itemRef.current?.getBoundingClientRect().width || 0;
+    if ( measuredWidth > 0 ) {
+      itemWidthRef.current = measuredWidth;
+    }
+    setChunkSize( calculateChunkSize( carouselSlideContainerRef, itemWidthRef.current ) );
   }, [itemRef.current] );
 
   const slides = useMemo( () => {
     if ( !chunkSize ) return [];
 
-    console.log('chunkSize', chunkSize);
-    console.log('items', items.length);
-    console.log('items.length % chunkSize', items.length % chunkSize);
     const s = _.chunk( items, chunkSize );
     if (items.length % chunkSize !== 0 && finalItem) {
       s[s.length - 1].push( finalItem );
@@ -101,14 +102,20 @@ const Carousel = ( {
           </button>
         ) }
         <div className="carousel-slides" ref={carouselSlideContainerRef}>
-          { slides.map( ( slide, index ) => (
-            <div
-              key={`${_.kebabCase( title )}-carousel-item-${index}`}
-              className={`carousel-slide ${index === currentIndex ? "active" : ""}`}
-            >
-              { slide }
-            </div>
-          ) ) }
+          { slides.map( ( slide, index ) => {
+            const offset = chunkSize && slide.length < chunkSize
+              ? Math.floor( ( chunkSize - slide.length ) / 2 )
+              : 0;
+            return (
+              <div
+                key={`${_.kebabCase( title )}-carousel-item-${index}`}
+                className={`carousel-slide ${index === currentIndex ? "active" : ""}${offset > 0 ? " partial" : ""}`}
+                style={offset > 0 ? { "--grid-offset": offset } as React.CSSProperties : undefined}
+              >
+                { slide }
+              </div>
+            );
+          } ) }
         </div>
         { hasNav && (
           <button

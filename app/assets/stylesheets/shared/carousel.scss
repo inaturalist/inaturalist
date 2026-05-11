@@ -1,4 +1,6 @@
 $nav-btn-dim: 40px;
+$carousel-item-width: 100px;
+$carousel-item-gap: 10px;
 
 .Carousel {
   width: 100%;
@@ -15,20 +17,23 @@ $nav-btn-dim: 40px;
   .carousel-slide {
     display: none;
     &.active {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, $carousel-item-width);
+      gap: $carousel-item-gap;
+      justify-content: center;
     }
   }
   .nav-btn {
     width: $nav-btn-dim;
-    height: $nav-btn-dim;
-    padding: 0;
+    align-self: stretch;
     border: none;
-    border-radius: 100px;
     background-color: $inat-green;
     color: white;
     font-weight: bold;
     font-size: $nav-btn-dim / 2;
-    line-height: $nav-btn-dim;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover, &:focus, &:active {
       background-color: $inat-green-light;
       outline: none;

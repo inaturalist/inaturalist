@@ -117,6 +117,7 @@ const TaxonPhoto = React.forwardRef<HTMLDivElement>( ( props: any, ref ) => {
       <CoverImage
         src={photo.photoUrl( size ) || photo.photoUrl( "small" )}
         low={photo.photoUrl( "small" )}
+        size={size}
         height={height}
         backgroundSize={backgroundSize}
         backgroundPosition={backgroundPosition}

@@ -1346,6 +1346,9 @@ time {
     font-weight: 700;
     margin-inline-end: 5px;
   }
+  .carousel-slide.active {
+    display: flex;
+  }
 }
 
 [dir = "rtl"] .MoreFromUser{
