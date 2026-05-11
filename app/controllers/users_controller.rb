@@ -558,12 +558,11 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html do
-        @responsive = true
         render layout: "bootstrap"
       end
     end
   end
-
+  
   def updates_count
     count = current_user.recent_notifications(unviewed: true,
       filters: [ { terms: { notification: [ "activity", "mention" ] } } ], per_page: 1).total_entries
