@@ -9,7 +9,7 @@
 
 - scoped_body = Nokogiri::HTML.fragment( announcement.body )
 - scoped_body.css( "style" ).each do |style_tag|
-  - style_tag.content = "@scope {\n#{style_tag.content}\n}"
+  - style_tag.content = "@scope (`#announcement-#{announcement.id}`) {\n#{style_tag.content}\n}"
 %div{ id: "announcement-#{announcement.id}", class: "announcement" }
   .bootstrap
     .announcement
