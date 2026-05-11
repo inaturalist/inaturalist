@@ -799,6 +799,12 @@ $introducedColor: #E4007C;
   font-weight: 400;
   margin-left: 10px;
 }
+.HighlightsTab {
+  .carousel-item {
+    aspect-ratio: 3 / 4;
+    height: 200px;
+  }
+}
 
 #main-tabs {
   display: flex;
@@ -1342,23 +1348,24 @@ body > [role="dialog"] .PhotoChooserModal {
 #map-tab {
   margin-bottom: 20px;
   padding: 0 60px;
-}
-.Carousel {
-  .carousel-item {
-    aspect-ratio: 1 / 1;
-  }
 
-  .viewall {
-    background-color: #333;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-  }
-
-  .CoverImage {
-    height: 100%;
+  .Carousel {
+    .carousel-item {
+      aspect-ratio: 1 / 1;
+    }
+  
+    .viewall {
+      background-color: #333;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+  
+    .CoverImage {
+      height: 100%;
+    }
   }
 }
 .iconified-list-group .list-group-item {

@@ -15,6 +15,8 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../shared/components/taxon_photo";
 import { urlForTaxonPhotos } from "../../shared/util";
 
+// TODO: I seem to have broken this?
+
 const PhotoBrowser = ( {
   groupedPhotos,
   grouping,
