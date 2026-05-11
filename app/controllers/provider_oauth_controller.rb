@@ -51,11 +51,10 @@ class ProviderOauthController < ApplicationController
         error_description: t( :provider_without_email_error_generic ).to_s.gsub( /\s+/, " " )
       }
       return
-    rescue INat::Auth::SuspendedError
-      return render status: :bad_request, json: {
-        error: "invalid_grant",
-        error_description: t( :this_user_has_been_suspended )
-      }
+    rescue INat::Auth::SuspendedError => e
+      # Note that this status code is different from the 401 returned by devise/doorkeeper
+      # for suspended users making requests.
+      return render status: :bad_request, json: e.to_h
     rescue INat::Auth::ChildWithoutPermissionError
       render status: :bad_request, json: {
         error: "invalid_grant",
@@ -268,7 +267,9 @@ class ProviderOauthController < ApplicationController
   def assertion_access_token_for_client_and_user( client, user )
     user.unsuspend_if_timed_suspension_expired!
     unless user.active_for_authentication?
-      raise INat::Auth::SuspendedError if user.suspended?
+      if user.suspended?
+        raise INat::Auth::SuspendedError.new( user.inactive_message, suspended_until: user.suspended_until )
+      end
       raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
     end
     access_token = Doorkeeper::AccessToken.

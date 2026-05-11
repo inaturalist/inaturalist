@@ -85,18 +85,16 @@
 (function () {
   var header = document.getElementById("header");
   if (!header) return;
-  var signinLink = header.querySelector(".signin_link");
-  var orSpan = signinLink && signinLink.nextElementSibling && signinLink.nextElementSibling.tagName === "SPAN"
-    ? signinLink.nextElementSibling
-    : null;
+  var signupLink = header.querySelector(".signup_link");
+  var orSpan = header.querySelector("#auth-or");
   function updateDonateText() {
     // Reset
     header.classList.remove("header-donate-icon-only");
-    if (signinLink) signinLink.style.display = "";
+    if (signupLink) signupLink.style.display = "";
     if (orSpan) orSpan.style.display = "";
     // Step 1: hide signin + or if overflowing
     if (header.scrollWidth > header.clientWidth) {
-      if (signinLink) signinLink.style.display = "none";
+      if (signupLink) signupLink.style.display = "none";
       if (orSpan) orSpan.style.display = "none";
     }
     // Step 2: shrink donate button if still overflowing

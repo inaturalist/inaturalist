@@ -5733,6 +5733,10 @@ en:
   suspension_reason_custom_note: Please note this reason will be displayed to the suspended user.
   # note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Please update the reason and explain why you are changing the user's suspension.
+  # label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Reason for editing
+  # label for the edit reason field in the moderation history table
+  edit_reason: Edit reason
   # predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     # reason displayed to users who have been suspended for posting hate speech
@@ -10706,6 +10710,8 @@ en:
         # The reason a moderator action was taken, e.g. an explanation for why
         # someone thought a comment should be hidden
         reason: Reason
+        # The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Edit reason
       observation:
         description: Notes
         geo_x: Easting

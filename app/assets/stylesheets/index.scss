@@ -586,7 +586,6 @@ ul.leafylist li li:first-child {
   font-size: 100%;
   color: #999;
   width: 100%;
-  min-width: 980px;
 
   p {
     font-size: 14px;
@@ -2602,6 +2601,9 @@ body:not(.responsive) {
       }
       #usernav li.navtab>* {
         padding-inline: 4px;
+      }
+      #usernav #auth-or {
+        padding-inline: 1px;
       }
       #logonav {
         display: flex;
