@@ -1,21 +1,3 @@
-function initFruFallback( containerSelector ) {
-  var container = document.querySelector( containerSelector );
-  if ( !container ) return;
-  var fallback = container.querySelector( ".fru-fallback-link" );
-  if ( !fallback ) return;
-  var fruAnchor = container.querySelector( "a:empty[href^=\"#\"][style*=\"display: none\"]" );
-  if ( fruAnchor ) {
-    container.insertBefore( fallback, container.lastElementChild );
-  }
-  var observer = new MutationObserver( function ( ) {
-    if ( container.querySelector( "iframe" ) ) {
-      fallback.style.display = "none";
-      observer.disconnect( );
-    }
-  } );
-  observer.observe( container, { childList: true, subtree: true } );
-}
-
 function hideFruButtons() {
   var container = document.querySelector( ".announcement" );
   var observer = new MutationObserver( function ( ) {
