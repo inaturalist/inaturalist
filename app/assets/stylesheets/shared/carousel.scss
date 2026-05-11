@@ -13,14 +13,24 @@ $carousel-item-gap: 10px;
   .carousel-slides {
     flex: 1;
     min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
   }
   .carousel-slide {
-    display: none;
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, $carousel-item-width);
+    gap: $carousel-item-gap;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
     &.active {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, $carousel-item-width);
-      gap: $carousel-item-gap;
-      justify-content: center;
+      transform: translateX(0);
+    }
+    &.left {
+      transform: translateX(-100%);
     }
   }
   .nav-btn {

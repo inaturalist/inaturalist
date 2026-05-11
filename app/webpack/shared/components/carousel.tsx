@@ -102,20 +102,16 @@ const Carousel = ( {
           </button>
         ) }
         <div className="carousel-slides" ref={carouselSlideContainerRef}>
-          { slides.map( ( slide, index ) => {
-            const offset = chunkSize && slide.length < chunkSize
-              ? Math.floor( ( chunkSize - slide.length ) / 2 )
-              : 0;
-            return (
-              <div
-                key={`${_.kebabCase( title )}-carousel-item-${index}`}
-                className={`carousel-slide ${index === currentIndex ? "active" : ""}${offset > 0 ? " partial" : ""}`}
-                style={offset > 0 ? { "--grid-offset": offset } as React.CSSProperties : undefined}
-              >
-                { slide }
-              </div>
-            );
-          } ) }
+          { slides.map( ( slide, index ) => (
+            <div
+              key={`${_.kebabCase( title )}-carousel-item-${index}`}
+              className={`carousel-slide ${
+                index === currentIndex ? "active" : index < currentIndex ? "left" : ""
+              }`}
+            >
+              { slide }
+            </div>
+          ) ) }
         </div>
         { hasNav && (
           <button
