@@ -3,6 +3,7 @@ $carousel-item-width: 100px;
 $carousel-item-gap: 10px;
 
 .Carousel {
+  --carousel-item-width: #{$carousel-item-width};
   width: 100%;
   clear: both;
   .carousel-body {
@@ -21,7 +22,7 @@ $carousel-item-gap: 10px;
     grid-row: 1;
     grid-column: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, $carousel-item-width);
+    grid-template-columns: repeat(auto-fill, var(--carousel-item-width));
     gap: $carousel-item-gap;
     justify-content: center;
     transform: translateX(100%);

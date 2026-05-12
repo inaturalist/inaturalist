@@ -68,7 +68,6 @@ const HiglightsCarousel = ( {
       >
         <TaxonThumbnail
           taxon={taxon}
-          height={200}
           onClick={( e: React.MouseEvent ) => {
             if ( !showNewTaxon ) return true;
             if ( e.metaKey || e.ctrlKey ) return true;

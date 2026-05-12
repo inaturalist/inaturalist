@@ -800,9 +800,24 @@ $introducedColor: #E4007C;
   margin-left: 10px;
 }
 .HighlightsTab {
+  .Carousel {
+    --carousel-item-width: 200px;
+    padding-bottom: 20px;
+  }
   .carousel-item {
     aspect-ratio: 3 / 4;
-    height: 200px;
+    .TaxonThumbnail {
+      height: 100%;
+      > a {
+        flex: 3;
+        .CoverImage {
+          height: 100%;
+        }
+      }
+      .caption {
+        flex: 1;
+      }
+    }
   }
 }
 
