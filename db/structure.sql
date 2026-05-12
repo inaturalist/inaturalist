@@ -1,12 +1,6 @@
-\restrict 4ajfHQOm4CKUlzi3qCyNezzFKhwgM2tYw1k7cBtjrsTmH9LqR8P54VkqqHZNOeq
-
--- Dumped from database version 17.9
--- Dumped by pg_dump version 18.3
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
-SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -14,13 +8,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON SCHEMA public IS '';
-
 
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
@@ -33,7 +20,7 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 -- Name: EXTENSION postgis; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON EXTENSION postgis IS 'PostGIS geometry and geography spatial types and functions';
+COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
 
 
 --
@@ -51,17 +38,10 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 
 --
--- Name: pgis_abs; Type: TYPE; Schema: public; Owner: -
+-- Name: _final_median(anycompatiblearray); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE TYPE public.pgis_abs;
-
-
---
--- Name: _final_median(anyarray); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public._final_median(anyarray) RETURNS double precision
+CREATE FUNCTION public._final_median(anycompatiblearray) RETURNS double precision
     LANGUAGE sql IMMUTABLE
     AS $_$ 
         WITH q AS
@@ -83,203 +63,6 @@ CREATE FUNCTION public._final_median(anyarray) RETURNS double precision
           OFFSET GREATEST(CEIL((SELECT c FROM cnt) / 2.0) - 1,0)  
         ) q2;
       $_$;
-
-
---
--- Name: _final_most(anyarray); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public._final_most(anyarray) RETURNS anyelement
-    LANGUAGE sql IMMUTABLE
-    AS $_$
-    SELECT a
-    FROM unnest($1) a
-    GROUP BY 1 ORDER BY COUNT(1) DESC
-    LIMIT 1;
-$_$;
-
-
---
--- Name: _st_asgeojson(integer, public.geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public._st_asgeojson(integer, public.geometry, integer, integer) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT ST_AsGeoJson($2::geometry, $3::int4, $4::int4); $_$;
-
-
---
--- Name: _st_dumppoints(public.geometry, integer[]); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public._st_dumppoints(the_geom public.geometry, cur_path integer[]) RETURNS SETOF public.geometry_dump
-    LANGUAGE plpgsql
-    AS $$
-DECLARE
-  tmp geometry_dump;
-  tmp2 geometry_dump;
-  nb_points integer;
-  nb_geom integer;
-  i integer;
-  j integer;
-  g geometry;
-  
-BEGIN
-  
-  -- RAISE DEBUG '%,%', cur_path, ST_GeometryType(the_geom);
-
-  -- Special case collections : iterate and return the DumpPoints of the geometries
-
-  IF (ST_IsCollection(the_geom)) THEN
- 
-    i = 1;
-    FOR tmp2 IN SELECT (ST_Dump(the_geom)).* LOOP
-
-      FOR tmp IN SELECT * FROM _ST_DumpPoints(tmp2.geom, cur_path || tmp2.path) LOOP
-	    RETURN NEXT tmp;
-      END LOOP;
-      i = i + 1;
-      
-    END LOOP;
-
-    RETURN;
-  END IF;
-  
-
-  -- Special case (POLYGON) : return the points of the rings of a polygon
-  IF (ST_GeometryType(the_geom) = 'ST_Polygon') THEN
-
-    FOR tmp IN SELECT * FROM _ST_DumpPoints(ST_ExteriorRing(the_geom), cur_path || ARRAY[1]) LOOP
-      RETURN NEXT tmp;
-    END LOOP;
-    
-    j := ST_NumInteriorRings(the_geom);
-    FOR i IN 1..j LOOP
-        FOR tmp IN SELECT * FROM _ST_DumpPoints(ST_InteriorRingN(the_geom, i), cur_path || ARRAY[i+1]) LOOP
-          RETURN NEXT tmp;
-        END LOOP;
-    END LOOP;
-    
-    RETURN;
-  END IF;
-
-  -- Special case (TRIANGLE) : return the points of the external rings of a TRIANGLE
-  IF (ST_GeometryType(the_geom) = 'ST_Triangle') THEN
-
-    FOR tmp IN SELECT * FROM _ST_DumpPoints(ST_ExteriorRing(the_geom), cur_path || ARRAY[1]) LOOP
-      RETURN NEXT tmp;
-    END LOOP;
-    
-    RETURN;
-  END IF;
-
-    
-  -- Special case (POINT) : return the point
-  IF (ST_GeometryType(the_geom) = 'ST_Point') THEN
-
-    tmp.path = cur_path || ARRAY[1];
-    tmp.geom = the_geom;
-
-    RETURN NEXT tmp;
-    RETURN;
-
-  END IF;
-
-
-  -- Use ST_NumPoints rather than ST_NPoints to have a NULL value if the_geom isn't
-  -- a LINESTRING, CIRCULARSTRING.
-  SELECT ST_NumPoints(the_geom) INTO nb_points;
-
-  -- This should never happen
-  IF (nb_points IS NULL) THEN
-    RAISE EXCEPTION 'Unexpected error while dumping geometry %', ST_AsText(the_geom);
-  END IF;
-
-  FOR i IN 1..nb_points LOOP
-    tmp.path = cur_path || ARRAY[i];
-    tmp.geom := ST_PointN(the_geom, i);
-    RETURN NEXT tmp;
-  END LOOP;
-   
-END
-$$;
-
-
---
--- Name: addauth(text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.addauth(text) RETURNS boolean
-    LANGUAGE plpgsql
-    AS $_$
-DECLARE
-	lockid alias for $1;
-	okay boolean;
-	myrec record;
-BEGIN
-	-- check to see if table exists
-	--  if not, CREATE TEMP TABLE mylock (transid xid, lockcode text)
-	okay := 'f';
-	FOR myrec IN SELECT * FROM pg_class WHERE relname = 'temp_lock_have_table' LOOP
-		okay := 't';
-	END LOOP;
-	IF (okay <> 't') THEN
-		CREATE TEMP TABLE temp_lock_have_table (transid xid, lockcode text);
-			-- this will only work from pgsql7.4 up
-			-- ON COMMIT DELETE ROWS;
-	END IF;
-
-	--  INSERT INTO mylock VALUES ( $1)
---	EXECUTE 'INSERT INTO temp_lock_have_table VALUES ( '||
---		quote_literal(getTransactionID()) || ',' ||
---		quote_literal(lockid) ||')';
-
-	INSERT INTO temp_lock_have_table VALUES (getTransactionID(), lockid);
-
-	RETURN true::boolean;
-END;
-$_$;
-
-
---
--- Name: checkauth(text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.checkauth(text, text) RETURNS integer
-    LANGUAGE sql
-    AS $_$ SELECT CheckAuth('', $1, $2) $_$;
-
-
---
--- Name: checkauth(text, text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.checkauth(text, text, text) RETURNS integer
-    LANGUAGE plpgsql
-    AS $_$
-DECLARE
-	schema text;
-BEGIN
-	IF NOT LongTransactionsEnabled() THEN
-		RAISE EXCEPTION 'Long transaction support disabled, use EnableLongTransaction() to enable.';
-	END IF;
-
-	if ( $1 != '' ) THEN
-		schema = $1;
-	ELSE
-		SELECT current_schema() into schema;
-	END IF;
-
-	-- TODO: check for an already existing trigger ?
-
-	EXECUTE 'CREATE TRIGGER check_auth BEFORE UPDATE OR DELETE ON '
-		|| quote_ident(schema) || '.' || quote_ident($2)
-		||' FOR EACH ROW EXECUTE PROCEDURE CheckAuthTrigger('
-		|| quote_literal($3) || ')';
-
-	RETURN 0;
-END;
-$_$;
 
 
 --
@@ -433,280 +216,6 @@ CREATE FUNCTION public.crc32(word text) RETURNS bigint
 
 
 --
--- Name: disablelongtransactions(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.disablelongtransactions() RETURNS text
-    LANGUAGE plpgsql
-    AS $$
-DECLARE
-	rec RECORD;
-
-BEGIN
-
-	--
-	-- Drop all triggers applied by CheckAuth()
-	--
-	FOR rec IN
-		SELECT c.relname, t.tgname, t.tgargs FROM pg_trigger t, pg_class c, pg_proc p
-		WHERE p.proname = 'checkauthtrigger' and t.tgfoid = p.oid and t.tgrelid = c.oid
-	LOOP
-		EXECUTE 'DROP TRIGGER ' || quote_ident(rec.tgname) ||
-			' ON ' || quote_ident(rec.relname);
-	END LOOP;
-
-	--
-	-- Drop the authorization_table table
-	--
-	FOR rec IN SELECT * FROM pg_class WHERE relname = 'authorization_table' LOOP
-		DROP TABLE authorization_table;
-	END LOOP;
-
-	--
-	-- Drop the authorized_tables view
-	--
-	FOR rec IN SELECT * FROM pg_class WHERE relname = 'authorized_tables' LOOP
-		DROP VIEW authorized_tables;
-	END LOOP;
-
-	RETURN 'Long transactions support disabled';
-END;
-$$;
-
-
---
--- Name: enablelongtransactions(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.enablelongtransactions() RETURNS text
-    LANGUAGE plpgsql
-    AS $$
-DECLARE
-	"query" text;
-	exists bool;
-	rec RECORD;
-
-BEGIN
-
-	exists = 'f';
-	FOR rec IN SELECT * FROM pg_class WHERE relname = 'authorization_table'
-	LOOP
-		exists = 't';
-	END LOOP;
-
-	IF NOT exists
-	THEN
-		"query" = 'CREATE TABLE authorization_table (
-			toid oid, -- table oid
-			rid text, -- row id
-			expires timestamp,
-			authid text
-		)';
-		EXECUTE "query";
-	END IF;
-
-	exists = 'f';
-	FOR rec IN SELECT * FROM pg_class WHERE relname = 'authorized_tables'
-	LOOP
-		exists = 't';
-	END LOOP;
-
-	IF NOT exists THEN
-		"query" = 'CREATE VIEW authorized_tables AS ' ||
-			'SELECT ' ||
-			'n.nspname as schema, ' ||
-			'c.relname as table, trim(' ||
-			quote_literal(chr(92) || '000') ||
-			' from t.tgargs) as id_column ' ||
-			'FROM pg_trigger t, pg_class c, pg_proc p ' ||
-			', pg_namespace n ' ||
-			'WHERE p.proname = ' || quote_literal('checkauthtrigger') ||
-			' AND c.relnamespace = n.oid' ||
-			' AND t.tgfoid = p.oid and t.tgrelid = c.oid';
-		EXECUTE "query";
-	END IF;
-
-	RETURN 'Long transactions support enabled';
-END;
-$$;
-
-
---
--- Name: lockrow(text, text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.lockrow(text, text, text) RETURNS integer
-    LANGUAGE sql STRICT
-    AS $_$ SELECT LockRow(current_schema(), $1, $2, $3, now()::timestamp+'1:00'); $_$;
-
-
---
--- Name: lockrow(text, text, text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.lockrow(text, text, text, text) RETURNS integer
-    LANGUAGE sql STRICT
-    AS $_$ SELECT LockRow($1, $2, $3, $4, now()::timestamp+'1:00'); $_$;
-
-
---
--- Name: lockrow(text, text, text, timestamp without time zone); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.lockrow(text, text, text, timestamp without time zone) RETURNS integer
-    LANGUAGE sql STRICT
-    AS $_$ SELECT LockRow(current_schema(), $1, $2, $3, $4); $_$;
-
-
---
--- Name: lockrow(text, text, text, text, timestamp without time zone); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.lockrow(text, text, text, text, timestamp without time zone) RETURNS integer
-    LANGUAGE plpgsql STRICT
-    AS $_$
-DECLARE
-	myschema alias for $1;
-	mytable alias for $2;
-	myrid   alias for $3;
-	authid alias for $4;
-	expires alias for $5;
-	ret int;
-	mytoid oid;
-	myrec RECORD;
-
-BEGIN
-
-	IF NOT LongTransactionsEnabled() THEN
-		RAISE EXCEPTION 'Long transaction support disabled, use EnableLongTransaction() to enable.';
-	END IF;
-
-	EXECUTE 'DELETE FROM authorization_table WHERE expires < now()';
-
-	SELECT c.oid INTO mytoid FROM pg_class c, pg_namespace n
-		WHERE c.relname = mytable
-		AND c.relnamespace = n.oid
-		AND n.nspname = myschema;
-
-	-- RAISE NOTICE 'toid: %', mytoid;
-
-	FOR myrec IN SELECT * FROM authorization_table WHERE
-		toid = mytoid AND rid = myrid
-	LOOP
-		IF myrec.authid != authid THEN
-			RETURN 0;
-		ELSE
-			RETURN 1;
-		END IF;
-	END LOOP;
-
-	EXECUTE 'INSERT INTO authorization_table VALUES ('||
-		quote_literal(mytoid::text)||','||quote_literal(myrid)||
-		','||quote_literal(expires::text)||
-		','||quote_literal(authid) ||')';
-
-	GET DIAGNOSTICS ret = ROW_COUNT;
-
-	RETURN ret;
-END;
-$_$;
-
-
---
--- Name: longtransactionsenabled(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.longtransactionsenabled() RETURNS boolean
-    LANGUAGE plpgsql
-    AS $$
-DECLARE
-	rec RECORD;
-BEGIN
-	FOR rec IN SELECT oid FROM pg_class WHERE relname = 'authorized_tables'
-	LOOP
-		return 't';
-	END LOOP;
-	return 'f';
-END;
-$$;
-
-
---
--- Name: postgis_extensions_upgrade(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.postgis_extensions_upgrade() RETURNS text
-    LANGUAGE plpgsql
-    AS $$
-DECLARE rec record; sql text;
-BEGIN
-	-- if at a version different from default version or we are at a dev version,
-	-- then do an upgrade to default version
-
-	FOR rec in SELECT  name, default_version, installed_version
-		FROM pg_available_extensions
-		WHERE installed_version > '' AND name IN('postgis', 'postgis_sfcgal', 'postgis_tiger_geocoder', 'postgis_topology')
-		AND ( default_version <> installed_version  OR
-			( default_version = installed_version AND default_version ILIKE '%dev%' AND  installed_version ILIKE '%dev%'  )  ) LOOP
-
-		-- we need to upgrade to next so our installed is different from current
-		-- and then we can upgrade to default_version
-		IF rec.installed_version = rec.default_version THEN
-			sql = 'ALTER EXTENSION ' || rec.name || ' UPDATE TO ' || quote_ident(rec.default_version || 'next')   || ';';
-			EXECUTE sql;
-			RAISE NOTICE '%', sql;
-		END IF;
-
-		sql = 'ALTER EXTENSION ' || rec.name || ' UPDATE TO ' || quote_ident(rec.default_version)   || ';';
-		EXECUTE sql;
-		RAISE NOTICE '%', sql;
-	END LOOP;
-
-	RETURN postgis_full_version();
-
-END
-$$;
-
-
---
--- Name: st_3dlength_spheroid(public.geometry, public.spheroid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_3dlength_spheroid(public.geometry, public.spheroid) RETURNS double precision
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT _postgis_deprecate('ST_3DLength_Spheroid', 'ST_LengthSpheroid', '2.2.0');
-    SELECT ST_LengthSpheroid($1,$2);
-  $_$;
-
-
---
--- Name: st_asgeojson(integer, public.geography, integer, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_asgeojson(gj_version integer, geog public.geography, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _ST_AsGeoJson($1, $2, $3, $4); $_$;
-
-
---
--- Name: st_asgeojson(integer, public.geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_asgeojson(gj_version integer, geom public.geometry, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT ST_AsGeoJson($2::geometry, $3::int4, $4::int4); $_$;
-
-
---
--- Name: st_asgml(public.geography, integer, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_asgml(geog public.geography, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$SELECT _ST_AsGML(2, $1, $2, $3, null, null)$_$;
-
-
---
 -- Name: st_aslatlontext(public.geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -716,320 +225,15 @@ CREATE FUNCTION public.st_aslatlontext(public.geometry) RETURNS text
 
 
 --
--- Name: st_combine_bbox(public.box2d, public.geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: median(anycompatible); Type: AGGREGATE; Schema: public; Owner: -
 --
 
-CREATE FUNCTION public.st_combine_bbox(public.box2d, public.geometry) RETURNS public.box2d
-    LANGUAGE sql IMMUTABLE
-    AS $_$ SELECT _postgis_deprecate('ST_Combine_BBox', 'ST_CombineBbox', '2.2.0');
-    SELECT ST_CombineBbox($1,$2);
-  $_$;
-
-
---
--- Name: st_combine_bbox(public.box3d, public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_combine_bbox(public.box3d, public.geometry) RETURNS public.box3d
-    LANGUAGE sql IMMUTABLE
-    AS $_$ SELECT _postgis_deprecate('ST_Combine_BBox', 'ST_CombineBbox', '2.2.0');
-    SELECT ST_CombineBbox($1,$2);
-  $_$;
-
-
---
--- Name: st_curvetoline(public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_curvetoline(public.geometry) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$SELECT ST_CurveToLine($1, 32::integer)$_$;
-
-
---
--- Name: st_curvetoline(public.geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_curvetoline(public.geometry, integer) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$SELECT ST_CurveToLine($1, $2::float8, 0, 0)$_$;
-
-
---
--- Name: st_distance(public.geography, public.geography); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_distance(public.geography, public.geography) RETURNS double precision
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$SELECT _ST_Distance($1, $2, 0.0, true)$_$;
-
-
---
--- Name: st_distance_sphere(public.geometry, public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_distance_sphere(geom1 public.geometry, geom2 public.geometry) RETURNS double precision
-    LANGUAGE sql IMMUTABLE STRICT COST 300 PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Distance_Sphere', 'ST_DistanceSphere', '2.2.0');
-    SELECT ST_DistanceSphere($1,$2);
-  $_$;
-
-
---
--- Name: st_distance_spheroid(public.geometry, public.geometry, public.spheroid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_distance_spheroid(geom1 public.geometry, geom2 public.geometry, public.spheroid) RETURNS double precision
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Distance_Spheroid', 'ST_DistanceSpheroid', '2.2.0');
-    SELECT ST_DistanceSpheroid($1,$2,$3);
-  $_$;
-
-
---
--- Name: st_dwithin(public.geography, public.geography, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_dwithin(public.geography, public.geography, double precision) RETURNS boolean
-    LANGUAGE sql IMMUTABLE PARALLEL SAFE
-    AS $_$SELECT $1 OPERATOR(&&) _ST_Expand($2,$3) AND $2 OPERATOR(&&) _ST_Expand($1,$3) AND _ST_DWithin($1, $2, $3, true)$_$;
-
-
---
--- Name: st_estimated_extent(text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_estimated_extent(text, text) RETURNS public.box2d
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT _postgis_deprecate('ST_Estimated_Extent', 'ST_EstimatedExtent', '2.1.0');
-    -- We use security invoker instead of security definer
-    -- to prevent malicious injection of a same named different function
-    -- that would be run under elevated permissions
-    SELECT ST_EstimatedExtent($1, $2);
-  $_$;
-
-
---
--- Name: st_estimated_extent(text, text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_estimated_extent(text, text, text) RETURNS public.box2d
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT _postgis_deprecate('ST_Estimated_Extent', 'ST_EstimatedExtent', '2.1.0');
-    -- We use security invoker instead of security definer
-    -- to prevent malicious injection of a different same named function
-    SELECT ST_EstimatedExtent($1, $2, $3);
-  $_$;
-
-
---
--- Name: st_find_extent(text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_find_extent(text, text) RETURNS public.box2d
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Find_Extent', 'ST_FindExtent', '2.2.0');
-    SELECT ST_FindExtent($1,$2);
-  $_$;
-
-
---
--- Name: st_find_extent(text, text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_find_extent(text, text, text) RETURNS public.box2d
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Find_Extent', 'ST_FindExtent', '2.2.0');
-    SELECT ST_FindExtent($1,$2,$3);
-  $_$;
-
-
---
--- Name: st_force_2d(public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_force_2d(public.geometry) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Force_2d', 'ST_Force2D', '2.1.0');
-    SELECT ST_Force2D($1);
-  $_$;
-
-
---
--- Name: st_force_3d(public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_force_3d(public.geometry) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Force_3d', 'ST_Force3D', '2.1.0');
-    SELECT ST_Force3D($1);
-  $_$;
-
-
---
--- Name: st_force_3dm(public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_force_3dm(public.geometry) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Force_3dm', 'ST_Force3DM', '2.1.0');
-    SELECT ST_Force3DM($1);
-  $_$;
-
-
---
--- Name: st_force_3dz(public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_force_3dz(public.geometry) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Force_3dz', 'ST_Force3DZ', '2.1.0');
-    SELECT ST_Force3DZ($1);
-  $_$;
-
-
---
--- Name: st_force_4d(public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_force_4d(public.geometry) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Force_4d', 'ST_Force4D', '2.1.0');
-    SELECT ST_Force4D($1);
-  $_$;
-
-
---
--- Name: st_force_collection(public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_force_collection(public.geometry) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Force_Collection', 'ST_ForceCollection', '2.1.0');
-    SELECT ST_ForceCollection($1);
-  $_$;
-
-
---
--- Name: st_length2d_spheroid(public.geometry, public.spheroid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_length2d_spheroid(public.geometry, public.spheroid) RETURNS double precision
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Length2D_Spheroid', 'ST_Length2DSpheroid', '2.2.0');
-    SELECT ST_Length2DSpheroid($1,$2);
-  $_$;
-
-
---
--- Name: st_length_spheroid(public.geometry, public.spheroid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_length_spheroid(public.geometry, public.spheroid) RETURNS double precision
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Length_Spheroid', 'ST_LengthSpheroid', '2.2.0');
-    SELECT ST_LengthSpheroid($1,$2);
-  $_$;
-
-
---
--- Name: st_line_interpolate_point(public.geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_line_interpolate_point(public.geometry, double precision) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Line_Interpolate_Point', 'ST_LineInterpolatePoint', '2.1.0');
-    SELECT ST_LineInterpolatePoint($1, $2);
-  $_$;
-
-
---
--- Name: st_line_locate_point(public.geometry, public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_line_locate_point(geom1 public.geometry, geom2 public.geometry) RETURNS double precision
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Line_Locate_Point', 'ST_LineLocatePoint', '2.1.0');
-     SELECT ST_LineLocatePoint($1, $2);
-  $_$;
-
-
---
--- Name: st_line_substring(public.geometry, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_line_substring(public.geometry, double precision, double precision) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Line_Substring', 'ST_LineSubstring', '2.1.0');
-     SELECT ST_LineSubstring($1, $2, $3);
-  $_$;
-
-
---
--- Name: st_locate_along_measure(public.geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_locate_along_measure(public.geometry, double precision) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT ST_locate_between_measures($1, $2, $2) $_$;
-
-
---
--- Name: st_mem_size(public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_mem_size(public.geometry) RETURNS integer
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT _postgis_deprecate('ST_Mem_Size', 'ST_MemSize', '2.2.0');
-    SELECT ST_MemSize($1);
-  $_$;
-
-
---
--- Name: st_point_inside_circle(public.geometry, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_point_inside_circle(public.geometry, double precision, double precision, double precision) RETURNS boolean
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Point_Inside_Circle', 'ST_PointInsideCircle', '2.2.0');
-    SELECT ST_PointInsideCircle($1,$2,$3,$4);
-  $_$;
-
-
---
--- Name: st_shift_longitude(public.geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.st_shift_longitude(public.geometry) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE STRICT PARALLEL SAFE
-    AS $_$ SELECT _postgis_deprecate('ST_Shift_Longitude', 'ST_ShiftLongitude', '2.2.0');
-    SELECT ST_ShiftLongitude($1);
-  $_$;
-
-
---
--- Name: unlockrows(text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.unlockrows(text) RETURNS integer
-    LANGUAGE plpgsql STRICT
-    AS $_$
-DECLARE
-	ret int;
-BEGIN
-
-	IF NOT LongTransactionsEnabled() THEN
-		RAISE EXCEPTION 'Long transaction support disabled, use EnableLongTransaction() to enable.';
-	END IF;
-
-	EXECUTE 'DELETE FROM authorization_table where authid = ' ||
-		quote_literal($1);
-
-	GET DIAGNOSTICS ret = ROW_COUNT;
-
-	RETURN ret;
-END;
-$_$;
+CREATE AGGREGATE public.median(anycompatible) (
+    SFUNC = array_append,
+    STYPE = anycompatiblearray,
+    INITCOND = '{}',
+    FINALFUNC = public._final_median
+);
 
 
 SET default_tablespace = '';
@@ -1173,17 +377,16 @@ CREATE TABLE public.announcements (
     last_observation_start_date date,
     last_observation_end_date date,
     ip_countries text[] DEFAULT '{}'::text[],
+    user_id integer,
     include_observation_oauth_application_ids integer[] DEFAULT '{}'::integer[],
     exclude_observation_oauth_application_ids integer[] DEFAULT '{}'::integer[],
     target_curators character varying DEFAULT 'any'::character varying,
     target_project_admins character varying DEFAULT 'any'::character varying,
-    user_id integer,
     target_creator boolean DEFAULT false,
     excludes_non_site boolean DEFAULT false,
     include_virtuous_tags text[] DEFAULT '{}'::text[],
     exclude_virtuous_tags text[] DEFAULT '{}'::text[],
-    exclude_ip_countries character varying[] DEFAULT '{}'::character varying[],
-    parent_announcement_id integer
+    exclude_ip_countries character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -1564,7 +767,7 @@ ALTER SEQUENCE public.cohort_lifecycles_id_seq OWNED BY public.cohort_lifecycles
 
 CREATE TABLE public.cohort_statistics (
     id bigint NOT NULL,
-    stat_type character varying,
+    stat_type character varying NOT NULL,
     created_at timestamp without time zone,
     data json
 );
@@ -1920,20 +1123,6 @@ ALTER SEQUENCE public.controlled_terms_id_seq OWNED BY public.controlled_terms.i
 
 
 --
--- Name: counties_simplified; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.counties_simplified (
-    id integer,
-    place_id integer,
-    geom public.geometry,
-    CONSTRAINT enforce_dims_geom CHECK ((public.st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((public.geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((public.st_srid(geom) = 0))
-);
-
-
---
 -- Name: counties_simplified_01; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1941,10 +1130,7 @@ CREATE TABLE public.counties_simplified_01 (
     id integer NOT NULL,
     place_geometry_id integer,
     place_id integer,
-    geom public.geometry NOT NULL,
-    CONSTRAINT enforce_dims_geom CHECK ((public.st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((public.geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((public.st_srid(geom) = 0))
+    geom public.geometry(MultiPolygon) NOT NULL
 );
 
 
@@ -1968,31 +1154,6 @@ ALTER SEQUENCE public.counties_simplified_01_id_seq OWNED BY public.counties_sim
 
 
 --
--- Name: countries_large_polygons; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.countries_large_polygons (
-    id integer,
-    place_id integer,
-    geom public.geometry
-);
-
-
---
--- Name: countries_simplified; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.countries_simplified (
-    id integer,
-    place_id integer,
-    geom public.geometry,
-    CONSTRAINT enforce_dims_geom CHECK ((public.st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((public.geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((public.st_srid(geom) = 0))
-);
-
-
---
 -- Name: countries_simplified_1; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2000,10 +1161,7 @@ CREATE TABLE public.countries_simplified_1 (
     id integer NOT NULL,
     place_geometry_id integer,
     place_id integer,
-    geom public.geometry NOT NULL,
-    CONSTRAINT enforce_dims_geom CHECK ((public.st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((public.geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((public.st_srid(geom) = 0))
+    geom public.geometry(MultiPolygon) NOT NULL
 );
 
 
@@ -2317,39 +1475,6 @@ ALTER SEQUENCE public.email_suppressions_id_seq OWNED BY public.email_suppressio
 
 
 --
--- Name: exchange_rates; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.exchange_rates (
-    id bigint NOT NULL,
-    code character varying(3) NOT NULL,
-    rate_per_usd numeric(18,8) NOT NULL,
-    fetched_at timestamp without time zone NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: exchange_rates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.exchange_rates_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: exchange_rates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.exchange_rates_id_seq OWNED BY public.exchange_rates.id;
-
-
---
 -- Name: exemplar_identifications; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2516,42 +1641,6 @@ ALTER SEQUENCE public.file_prefixes_id_seq OWNED BY public.file_prefixes.id;
 
 
 --
--- Name: flaggings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.flaggings (
-    id integer NOT NULL,
-    user_id integer,
-    taxon_id integer,
-    reason character varying(255),
-    resolver_id integer,
-    resolved boolean DEFAULT false,
-    resolution_note character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: flaggings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.flaggings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: flaggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.flaggings_id_seq OWNED BY public.flaggings.id;
-
-
---
 -- Name: flags; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2568,8 +1657,8 @@ CREATE TABLE public.flags (
     updated_at timestamp without time zone,
     resolved_at timestamp without time zone,
     flaggable_user_id integer,
-    uuid uuid DEFAULT public.uuid_generate_v4(),
     flaggable_content text,
+    uuid uuid DEFAULT public.uuid_generate_v4(),
     flaggable_parent_type character varying,
     flaggable_parent_id bigint
 );
@@ -3241,10 +2330,10 @@ CREATE TABLE public.id_summaries (
     taxon_id_summary_id integer,
     summary text,
     visual_key_group character varying,
-    photo_tip character varying,
     score double precision,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    photo_tip character varying
 );
 
 
@@ -3893,12 +2982,7 @@ CREATE TABLE public.observation_accuracy_experiments (
     updated_at timestamp(6) without time zone NOT NULL,
     version character varying,
     consider_location boolean DEFAULT false,
-    post_id integer,
-    id_history_csv_path character varying,
-    sample_quality_filter character varying,
-    generate_sample_now boolean,
-    export_id_history_csv boolean,
-    id_history_improving_use_recent_window boolean
+    post_id integer
 );
 
 
@@ -4161,8 +3245,7 @@ CREATE TABLE public.observation_photos (
     "position" integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    old_uuid character varying(255),
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid character varying(255)
 );
 
 
@@ -4253,10 +3336,197 @@ ALTER SEQUENCE public.observation_sounds_id_seq OWNED BY public.observation_soun
 
 
 --
+-- Name: observation_zooms_10; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_10 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_11; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_11 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_12; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_12 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_125; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_125 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
 -- Name: observation_zooms_2; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.observation_zooms_2 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_2000; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_2000 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_250; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_250 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_3; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_3 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_4; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_4 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_4000; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_4000 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_5; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_5 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_500; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_500 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_6; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_6 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_63; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_63 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_7; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_7 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_8; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_8 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_9; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_9 (
+    taxon_id integer,
+    geom public.geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_990; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_zooms_990 (
     taxon_id integer,
     geom public.geometry,
     count integer NOT NULL
@@ -4294,8 +3564,7 @@ CREATE TABLE public.observations (
     private_latitude numeric(15,10),
     private_longitude numeric(15,10),
     geoprivacy character varying(255),
-    geom public.geometry,
-    quality_grade character varying(255) DEFAULT 'casual'::character varying,
+    quality_grade character varying DEFAULT 'casual'::character varying,
     user_agent character varying(255),
     positioning_method character varying(255),
     positioning_device character varying(255),
@@ -4304,27 +3573,23 @@ CREATE TABLE public.observations (
     uri character varying(255),
     observation_photos_count integer DEFAULT 0,
     comments_count integer DEFAULT 0,
-    cached_tag_list character varying(768) DEFAULT NULL::character varying,
+    geom public.geometry(Point),
+    cached_tag_list character varying(768),
     zic_time_zone character varying(255),
     oauth_application_id integer,
     observation_sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
-    private_geom public.geometry,
-    captive boolean DEFAULT false,
+    private_geom public.geometry(Point),
     community_taxon_id integer,
+    captive boolean DEFAULT false,
     site_id integer,
-    old_uuid character varying(255),
+    uuid character varying(255),
     public_positional_accuracy integer,
     mappable boolean DEFAULT false,
     cached_votes_total integer DEFAULT 0,
     last_indexed_at timestamp without time zone,
     private_place_guess character varying,
-    uuid uuid DEFAULT public.uuid_generate_v4(),
-    taxon_geoprivacy character varying,
-    CONSTRAINT enforce_dims_geom CHECK ((public.st_ndims(geom) = 2)),
-    CONSTRAINT enforce_dims_private_geom CHECK ((public.st_ndims(private_geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((public.geometrytype(geom) = 'POINT'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_geotype_private_geom CHECK (((public.geometrytype(private_geom) = 'POINT'::text) OR (private_geom IS NULL)))
+    taxon_geoprivacy character varying
 );
 
 
@@ -4505,12 +3770,9 @@ CREATE TABLE public.place_geometries (
     source_identifier character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    geom public.geometry NOT NULL,
     source_filename character varying(255),
-    source_id integer,
-    CONSTRAINT enforce_dims_geom CHECK ((public.st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((public.geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((public.st_srid(geom) = 0))
+    geom public.geometry(MultiPolygon) NOT NULL,
+    source_id integer
 );
 
 
@@ -5184,15 +4446,6 @@ ALTER SEQUENCE public.rules_id_seq OWNED BY public.rules.id;
 
 
 --
--- Name: sampled_observation_ids; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE UNLOGGED TABLE public.sampled_observation_ids (
-    id integer
-);
-
-
---
 -- Name: saved_locations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5585,31 +4838,6 @@ ALTER SEQUENCE public.sources_id_seq OWNED BY public.sources.id;
 
 
 --
--- Name: states_large_polygons; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.states_large_polygons (
-    id integer,
-    place_id integer,
-    geom public.geometry
-);
-
-
---
--- Name: states_simplified; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.states_simplified (
-    id integer,
-    place_id integer,
-    geom public.geometry,
-    CONSTRAINT enforce_dims_geom CHECK ((public.st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((public.geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((public.st_srid(geom) = 0))
-);
-
-
---
 -- Name: states_simplified_1; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5617,10 +4845,7 @@ CREATE TABLE public.states_simplified_1 (
     id integer NOT NULL,
     place_geometry_id integer,
     place_id integer,
-    geom public.geometry NOT NULL,
-    CONSTRAINT enforce_dims_geom CHECK ((public.st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((public.geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((public.st_srid(geom) = 0))
+    geom public.geometry(MultiPolygon) NOT NULL
 );
 
 
@@ -5800,16 +5025,6 @@ ALTER SEQUENCE public.taxa_id_seq OWNED BY public.taxa.id;
 
 
 --
--- Name: taxon_ancestors_working; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.taxon_ancestors_working (
-    taxon_id integer NOT NULL,
-    ancestor_taxon_id integer NOT NULL
-);
-
-
---
 -- Name: taxon_change_taxa; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5817,8 +5032,8 @@ CREATE TABLE public.taxon_change_taxa (
     id integer NOT NULL,
     taxon_change_id integer,
     taxon_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -5852,8 +5067,8 @@ CREATE TABLE public.taxon_changes (
     source_id integer,
     user_id integer,
     type character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     committed_on date,
     change_group character varying(255),
     committer_id integer,
@@ -5887,10 +5102,10 @@ ALTER SEQUENCE public.taxon_changes_id_seq OWNED BY public.taxon_changes.id;
 
 CREATE TABLE public.taxon_curators (
     id integer NOT NULL,
-    taxon_id integer,
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    taxon_id integer,
     taxon_framework_id integer
 );
 
@@ -6063,6 +5278,39 @@ ALTER SEQUENCE public.taxon_id_summaries_id_seq OWNED BY public.taxon_id_summari
 
 
 --
+-- Name: taxon_id_summary_flags; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.taxon_id_summary_flags (
+    id bigint NOT NULL,
+    taxon_id_summary_id bigint NOT NULL,
+    user_id integer NOT NULL,
+    comment text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: taxon_id_summary_flags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.taxon_id_summary_flags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxon_id_summary_flags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.taxon_id_summary_flags_id_seq OWNED BY public.taxon_id_summary_flags.id;
+
+
+--
 -- Name: taxon_links; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6217,27 +5465,24 @@ ALTER SEQUENCE public.taxon_photos_id_seq OWNED BY public.taxon_photos.id;
 CREATE TABLE public.taxon_ranges (
     id integer NOT NULL,
     taxon_id integer,
-    range_type character varying(255),
     source character varying(255),
     start_month integer,
     end_month integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    range_type character varying(255),
     range_content_type character varying(255),
     range_file_name character varying(255),
     range_file_size integer,
     description text,
     source_id integer,
-    geom public.geometry,
     source_identifier integer,
     range_updated_at timestamp without time zone,
+    geom public.geometry(MultiPolygon),
     url character varying(255),
     user_id integer,
     updater_id integer,
-    iucn_relationship integer,
-    CONSTRAINT enforce_dims_geom CHECK ((public.st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((public.geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((public.st_srid(geom) = 0))
+    iucn_relationship integer
 );
 
 
@@ -6268,8 +5513,8 @@ CREATE TABLE public.taxon_scheme_taxa (
     id integer NOT NULL,
     taxon_scheme_id integer,
     taxon_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     source_identifier character varying(255),
     taxon_name_id integer
 );
@@ -6303,8 +5548,8 @@ CREATE TABLE public.taxon_schemes (
     title character varying(255),
     description text,
     source_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -6328,40 +5573,22 @@ ALTER SEQUENCE public.taxon_schemes_id_seq OWNED BY public.taxon_schemes.id;
 
 
 --
--- Name: taxon_versions; Type: TABLE; Schema: public; Owner: -
+-- Name: time_zone_geometries; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.taxon_versions (
-    id integer NOT NULL,
-    taxon_id integer,
-    version integer,
-    name character varying(255),
-    rank character varying(255),
-    source_identifier character varying(255),
-    source_url character varying(255),
-    parent_id integer,
-    source_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    iconic_taxon_id integer,
-    is_iconic boolean DEFAULT false,
-    auto_photos boolean DEFAULT true,
-    auto_description boolean DEFAULT true,
-    lft integer,
-    rgt integer,
-    name_provider character varying(255),
-    delta boolean DEFAULT false,
-    creator_id integer,
-    updater_id integer,
-    rank_level integer
+CREATE TABLE public.time_zone_geometries (
+    ogc_fid integer NOT NULL,
+    tzid character varying(80),
+    geom public.geometry(MultiPolygon)
 );
 
 
 --
--- Name: taxon_versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: time_zone_geometries_ogc_fid_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.taxon_versions_id_seq
+CREATE SEQUENCE public.time_zone_geometries_ogc_fid_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -6370,20 +5597,10 @@ CREATE SEQUENCE public.taxon_versions_id_seq
 
 
 --
--- Name: taxon_versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: time_zone_geometries_ogc_fid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.taxon_versions_id_seq OWNED BY public.taxon_versions.id;
-
-
---
--- Name: time_zone_geometries; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.time_zone_geometries (
-    tzid character varying,
-    geom public.geometry(MultiPolygon)
-);
+ALTER SEQUENCE public.time_zone_geometries_ogc_fid_seq OWNED BY public.time_zone_geometries.ogc_fid;
 
 
 --
@@ -6586,15 +5803,6 @@ CREATE SEQUENCE public.user_donations_id_seq
 --
 
 ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
-
-
---
--- Name: user_ids_needed; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE UNLOGGED TABLE public.user_ids_needed (
-    id integer
-);
 
 
 --
@@ -6934,51 +6142,6 @@ CREATE SEQUENCE public.users_id_seq
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
-
-
---
--- Name: users_old; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.users_old (
-    id integer NOT NULL,
-    login character varying(255),
-    email character varying(255),
-    crypted_password character varying(40),
-    salt character varying(40),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    remember_token character varying(255),
-    remember_token_expires_at timestamp without time zone,
-    password_reset_code character varying(40),
-    description text,
-    favorite_thing_1 character varying(255),
-    favorite_thing_2 character varying(255),
-    favorite_thing_3 character varying(255),
-    time_zone character varying(255) DEFAULT 'UTC'::character varying,
-    icon_file_name character varying(255),
-    icon_content_type character varying(255),
-    icon_file_size integer
-);
-
-
---
--- Name: users_old_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.users_old_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_old_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.users_old_id_seq OWNED BY public.users_old.id;
 
 
 --
@@ -7431,13 +6594,6 @@ ALTER TABLE ONLY public.email_suppressions ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- Name: exchange_rates id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.exchange_rates ALTER COLUMN id SET DEFAULT nextval('public.exchange_rates_id_seq'::regclass);
-
-
---
 -- Name: exemplar_identifications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7470,13 +6626,6 @@ ALTER TABLE ONLY public.file_extensions ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.file_prefixes ALTER COLUMN id SET DEFAULT nextval('public.file_prefixes_id_seq'::regclass);
-
-
---
--- Name: flaggings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.flaggings ALTER COLUMN id SET DEFAULT nextval('public.flaggings_id_seq'::regclass);
 
 
 --
@@ -8103,6 +7252,13 @@ ALTER TABLE ONLY public.taxon_id_summaries ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: taxon_id_summary_flags id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_id_summary_flags ALTER COLUMN id SET DEFAULT nextval('public.taxon_id_summary_flags_id_seq'::regclass);
+
+
+--
 -- Name: taxon_links id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8152,10 +7308,10 @@ ALTER TABLE ONLY public.taxon_schemes ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: taxon_versions id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: time_zone_geometries ogc_fid; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.taxon_versions ALTER COLUMN id SET DEFAULT nextval('public.taxon_versions_id_seq'::regclass);
+ALTER TABLE ONLY public.time_zone_geometries ALTER COLUMN ogc_fid SET DEFAULT nextval('public.time_zone_geometries_ogc_fid_seq'::regclass);
 
 
 --
@@ -8254,13 +7410,6 @@ ALTER TABLE ONLY public.username_reserved_words ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
-
-
---
--- Name: users_old id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_old ALTER COLUMN id SET DEFAULT nextval('public.users_old_id_seq'::regclass);
 
 
 --
@@ -8578,14 +7727,6 @@ ALTER TABLE ONLY public.email_suppressions
 
 
 --
--- Name: exchange_rates exchange_rates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.exchange_rates
-    ADD CONSTRAINT exchange_rates_pkey PRIMARY KEY (id);
-
-
---
 -- Name: exemplar_identifications exemplar_identifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8626,14 +7767,6 @@ ALTER TABLE ONLY public.file_prefixes
 
 
 --
--- Name: flaggings flaggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.flaggings
-    ADD CONSTRAINT flaggings_pkey PRIMARY KEY (id);
-
-
---
 -- Name: flags flags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8671,6 +7804,14 @@ ALTER TABLE ONLY public.flow_tasks
 
 ALTER TABLE ONLY public.frequency_cells
     ADD CONSTRAINT frequency_cells_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: friendly_id_slugs friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.friendly_id_slugs
+    ADD CONSTRAINT friendly_id_slugs_pkey PRIMARY KEY (id);
 
 
 --
@@ -9170,14 +8311,6 @@ ALTER TABLE ONLY public.saved_locations
 
 
 --
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
-
-
---
 -- Name: segmentation_statistics segmentation_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9231,14 +8364,6 @@ ALTER TABLE ONLY public.site_statistics
 
 ALTER TABLE ONLY public.sites
     ADD CONSTRAINT sites_pkey PRIMARY KEY (id);
-
-
---
--- Name: friendly_id_slugs slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.friendly_id_slugs
-    ADD CONSTRAINT slugs_pkey PRIMARY KEY (id);
 
 
 --
@@ -9362,6 +8487,14 @@ ALTER TABLE ONLY public.taxon_id_summaries
 
 
 --
+-- Name: taxon_id_summary_flags taxon_id_summary_flags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_id_summary_flags
+    ADD CONSTRAINT taxon_id_summary_flags_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: taxon_links taxon_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9418,11 +8551,11 @@ ALTER TABLE ONLY public.taxon_schemes
 
 
 --
--- Name: taxon_versions taxon_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: time_zone_geometries time_zone_geometries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.taxon_versions
-    ADD CONSTRAINT taxon_versions_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.time_zone_geometries
+    ADD CONSTRAINT time_zone_geometries_pkey PRIMARY KEY (ogc_fid);
 
 
 --
@@ -9530,14 +8663,6 @@ ALTER TABLE ONLY public.username_reserved_words
 
 
 --
--- Name: users_old users_old_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_old
-    ADD CONSTRAINT users_old_pkey PRIMARY KEY (id);
-
-
---
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9594,13 +8719,6 @@ ALTER TABLE ONLY public.year_statistics
 
 
 --
--- Name: abc; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX abc ON public.delayed_jobs USING btree (priority, run_at);
-
-
---
 -- Name: associated_index; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9622,31 +8740,17 @@ CREATE INDEX fk_flags_user ON public.flags USING btree (user_id);
 
 
 --
+-- Name: idx_summary_flags_one_per_summary; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_summary_flags_one_per_summary ON public.taxon_id_summary_flags USING btree (taxon_id_summary_id);
+
+
+--
 -- Name: idx_taxon_id_summaries_active_per_taxon; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX idx_taxon_id_summaries_active_per_taxon ON public.taxon_id_summaries USING btree (taxon_id, language) WHERE (active = true);
-
-
---
--- Name: idx_test; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_test ON public.delayed_jobs USING btree (priority, run_at, locked_at, failed_at);
-
-
---
--- Name: idx_test1; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_test1 ON public.delayed_jobs USING btree (queue, run_at);
-
-
---
--- Name: idx_users_login; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_users_login ON public.users USING btree (login);
 
 
 --
@@ -9738,13 +8842,6 @@ CREATE INDEX index_announcement_impressions_on_user_id ON public.announcement_im
 --
 
 CREATE INDEX index_announcement_impressions_on_user_id_and_id ON public.announcement_impressions USING btree (user_id, announcement_id);
-
-
---
--- Name: index_announcements_on_parent_announcement_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_announcements_on_parent_announcement_id ON public.announcements USING btree (parent_announcement_id);
 
 
 --
@@ -9906,13 +9003,6 @@ CREATE INDEX index_cohort_lifecycles_on_user_id ON public.cohort_lifecycles USIN
 --
 
 CREATE INDEX index_cohort_statistics_on_stat_type_and_created_at ON public.cohort_statistics USING btree (stat_type, created_at);
-
-
---
--- Name: index_colors_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_colors_taxa_on_taxon_id ON public.colors_taxa USING btree (taxon_id);
 
 
 --
@@ -10091,13 +9181,6 @@ CREATE INDEX index_custom_projects_on_project_id ON public.custom_projects USING
 
 
 --
--- Name: index_delayed_jobs_on_failed_at; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_delayed_jobs_on_failed_at ON public.delayed_jobs USING btree (failed_at);
-
-
---
 -- Name: index_delayed_jobs_on_unique_hash; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10172,13 +9255,6 @@ CREATE INDEX index_email_suppressions_on_email_and_suppression_type ON public.em
 --
 
 CREATE INDEX index_email_suppressions_on_user_id ON public.email_suppressions USING btree (user_id);
-
-
---
--- Name: index_exchange_rates_on_code; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_exchange_rates_on_code ON public.exchange_rates USING btree (code);
 
 
 --
@@ -10577,7 +9653,7 @@ CREATE INDEX index_listed_taxa_on_list_id_and_taxon_id ON public.listed_taxa USI
 -- Name: index_listed_taxa_on_place_id_and_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_listed_taxa_on_place_id_and_created_at ON public.listed_taxa USING btree (created_at);
+CREATE INDEX index_listed_taxa_on_place_id_and_created_at ON public.listed_taxa USING btree (place_id, created_at);
 
 
 --
@@ -10952,10 +10028,129 @@ CREATE UNIQUE INDEX index_observation_sounds_on_uuid ON public.observation_sound
 
 
 --
+-- Name: index_observation_zooms_10_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_10_on_taxon_id ON public.observation_zooms_10 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_11_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_11_on_taxon_id ON public.observation_zooms_11 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_125_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_125_on_taxon_id ON public.observation_zooms_125 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_12_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_12_on_taxon_id ON public.observation_zooms_12 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_2000_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_2000_on_taxon_id ON public.observation_zooms_2000 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_250_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_250_on_taxon_id ON public.observation_zooms_250 USING btree (taxon_id);
+
+
+--
 -- Name: index_observation_zooms_2_on_taxon_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_observation_zooms_2_on_taxon_id ON public.observation_zooms_2 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_3_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_3_on_taxon_id ON public.observation_zooms_3 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_4000_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_4000_on_taxon_id ON public.observation_zooms_4000 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_4_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_4_on_taxon_id ON public.observation_zooms_4 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_500_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_500_on_taxon_id ON public.observation_zooms_500 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_5_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_5_on_taxon_id ON public.observation_zooms_5 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_63_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_63_on_taxon_id ON public.observation_zooms_63 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_6_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_6_on_taxon_id ON public.observation_zooms_6 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_7_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_7_on_taxon_id ON public.observation_zooms_7 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_8_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_8_on_taxon_id ON public.observation_zooms_8 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_990_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_990_on_taxon_id ON public.observation_zooms_990 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_9_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_zooms_9_on_taxon_id ON public.observation_zooms_9 USING btree (taxon_id);
 
 
 --
@@ -11869,6 +11064,13 @@ CREATE INDEX index_taxon_name_priorities_on_user_id ON public.taxon_name_priorit
 
 
 --
+-- Name: index_taxon_names_on_lexicon; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxon_names_on_lexicon ON public.taxon_names USING btree (lexicon);
+
+
+--
 -- Name: index_taxon_names_on_taxon_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11978,13 +11180,6 @@ CREATE INDEX index_trip_taxa_on_trip_id ON public.trip_taxa USING btree (trip_id
 --
 
 CREATE INDEX index_udac_on_tc_yc ON public.user_daily_active_categories USING btree (today_category, yesterday_category);
-
-
---
--- Name: index_update_actions_on_notifier_id_and_notifier_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_update_actions_on_notifier_id_and_notifier_type ON public.update_actions USING btree (notifier_id, notifier_type);
 
 
 --
@@ -12401,13 +11596,6 @@ CREATE INDEX index_year_statistics_on_user_id ON public.year_statistics USING bt
 
 
 --
--- Name: lttest; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX lttest ON public.listed_taxa USING btree (taxon_id, establishment_means);
-
-
---
 -- Name: pof_projid_ofid; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12422,38 +11610,10 @@ CREATE INDEX pof_projid_pos ON public.project_observation_fields USING btree (pr
 
 
 --
--- Name: sampled_observation_ids_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX sampled_observation_ids_id_idx ON public.sampled_observation_ids USING btree (id);
-
-
---
 -- Name: taggings_idx; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX taggings_idx ON public.taggings USING btree (tag_id, taggable_id, taggable_type, context, tagger_id, tagger_type);
-
-
---
--- Name: taxon_ancestors_working_ancestor_taxon_id_taxon_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX taxon_ancestors_working_ancestor_taxon_id_taxon_id_idx ON public.taxon_ancestors_working USING btree (ancestor_taxon_id, taxon_id);
-
-
---
--- Name: taxon_ancestors_working_taxon_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX taxon_ancestors_working_taxon_id_idx ON public.taxon_ancestors_working USING btree (taxon_id);
-
-
---
--- Name: taxon_names_lower_lexicon_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX taxon_names_lower_lexicon_index ON public.taxon_names USING btree (lower((lexicon)::text));
 
 
 --
@@ -12464,17 +11624,17 @@ CREATE INDEX taxon_names_lower_name_index ON public.taxon_names USING btree (low
 
 
 --
+-- Name: time_zone_geometries_geom_geom_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX time_zone_geometries_geom_geom_idx ON public.time_zone_geometries USING gist (geom);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
-
-
---
--- Name: user_ids_needed_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX user_ids_needed_id_idx ON public.user_ids_needed USING btree (id);
 
 
 --
@@ -12485,18 +11645,8 @@ CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
 
 --
--- Name: announcements fk_rails_7acaf995fb; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.announcements
-    ADD CONSTRAINT fk_rails_7acaf995fb FOREIGN KEY (parent_announcement_id) REFERENCES public.announcements(id) ON DELETE SET NULL;
-
-
---
 -- PostgreSQL database dump complete
 --
-
-\unrestrict 4ajfHQOm4CKUlzi3qCyNezzFKhwgM2tYw1k7cBtjrsTmH9LqR8P54VkqqHZNOeq
 
 SET search_path TO "$user", public;
 
@@ -12756,6 +11906,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20150409021334'),
 ('20150409031504'),
 ('20150412200608'),
+('20150413222254'),
 ('20150421155510'),
 ('20150504184529'),
 ('20150509225733'),
@@ -12898,6 +12049,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191210173400'),
 ('20200116234248'),
 ('20200117011717'),
+('20200122231601'),
 ('20200127213714'),
 ('20200130191142'),
 ('20200220211829'),
@@ -12906,6 +12058,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200604181750'),
 ('20200706035032'),
 ('20200708223315'),
+('20200710004607'),
+('20200710004608'),
 ('20200822002822'),
 ('20200824210059'),
 ('20200826001446'),
@@ -13019,6 +12173,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250417172959'),
 ('20250519192340'),
 ('20250618190319'),
+('20250702141918'),
 ('20250722154500'),
 ('20250729144230'),
 ('20250729180530'),
@@ -13039,8 +12194,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260319212735'),
 ('20260326000001'),
 ('20260326000002'),
-('20260406164708'),
-('20260429000001'),
-('20260507200000');
+('20260406164708');
 
 
