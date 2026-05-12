@@ -132,6 +132,7 @@ class PhotoPreview extends React.Component {
                     photo={tp.photo}
                     height={thumbnailHeight}
                     taxon={tp.taxon}
+                    size="medium"
                     showTaxonPhotoModal={showTaxonPhotoModal}
                     className="photoItem"
                     showTaxon

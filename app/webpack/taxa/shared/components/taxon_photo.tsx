@@ -1,71 +1,65 @@
-import React, { useEffect, useImperativeHandle, useRef } from "react";
-import PropTypes from "prop-types";
+import React, { useImperativeHandle, useRef } from "react";
 import CoverImage from "../../../shared/components/cover_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../util";
 
-// TODO
-// interface Photo {
-//   photoUrl: (size: string) => string;
-// }
+interface Photo {
+  id: number;
+  photoUrl: ( size: string ) => string;
+}
 
-// interface Taxon {
+interface Taxon {
+  id: number;
+  name: string;
+  [key: string]: unknown;
+}
 
-// }
+interface Observation {
+  id: number;
+  [key: string]: unknown;
+}
 
-// interface Observation {
-  
-// }
+interface Config {
+  currentUser?: unknown;
+  [key: string]: unknown;
+}
 
-// interface Config {
+interface TaxonPhotoProps {
+  photo: Photo;
+  taxon: Taxon;
+  showTaxonPhotoModal: ( photo: Photo, taxon: Taxon, observation?: Observation ) => void;
+  width?: number;
+  height?: number;
+  observation?: Observation;
+  className?: string;
+  size?: string;
+  backgroundSize?: string;
+  backgroundPosition?: string;
+  showTaxon?: boolean;
+  linkTaxon?: boolean;
+  onClickTaxon?: ( taxon: Taxon ) => void;
+  config?: Config;
+}
 
-// }
+const TaxonPhoto = React.forwardRef<HTMLDivElement, TaxonPhotoProps>( ( props, ref ) => {
+  const innerRef = useRef<HTMLDivElement>( null );
 
-// interface TaxonPhotoProps {
-//   photo: any,
-//   taxon: any,
-//   showTaxonPhotoModal?: () => void,
-//   width?: number,
-//   height?: number,
-//   observation?: any,
-//   className?: string,
-//   size?: string,
-//   backgroundSize?: string,
-//   backgroundPosition?: string,
-//   showTaxon?: boolean,
-//   linkTaxon?: boolean,
-//   onClickTaxon?: () => void,
-//   config?: any,
-//   children?: ReactNode
-// }
-
-// TODO: fix prop types
-const TaxonPhoto = React.forwardRef<HTMLDivElement>( ( props: any, ref ) => {
-  const innerRef = useRef<HTMLDivElement>(null);
-
-  useImperativeHandle(ref, () => innerRef.current);
-
-  useEffect(() => {
-    if (innerRef.current) {
-      console.log("clientWidth: ", innerRef.current.clientWidth);
-    }
-  }, [] );
+  useImperativeHandle( ref, ( ) => innerRef.current! );
 
   const {
     photo,
     taxon,
     observation,
-    width,
     height,
     showTaxonPhotoModal,
     className,
-    size,
+    size = "medium",
     backgroundSize,
     backgroundPosition,
     showTaxon,
     linkTaxon,
     onClickTaxon,
-    config
+    config = {}
   } = props;
 
   let photoTaxon;
@@ -125,28 +119,5 @@ const TaxonPhoto = React.forwardRef<HTMLDivElement>( ( props: any, ref ) => {
     </div>
   );
 } );
-
-// TaxonPhoto.propTypes = {
-//   photo: PropTypes.object.isRequired,
-//   taxon: PropTypes.object.isRequired,
-//   showTaxonPhotoModal: PropTypes.func.isRequired,
-//   width: PropTypes.number,
-//   height: PropTypes.number,
-//   observation: PropTypes.object,
-//   className: PropTypes.string,
-//   size: PropTypes.string,
-//   backgroundSize: PropTypes.string,
-//   backgroundPosition: PropTypes.string,
-//   showTaxon: PropTypes.bool,
-//   linkTaxon: PropTypes.bool,
-//   onClickTaxon: PropTypes.func,
-//   config: PropTypes.object,
-//   ref: PropTypes.bool
-// };
-
-// TaxonPhoto.defaultProps = {
-//   size: "medium",
-//   config: {}
-// };
 
 export default TaxonPhoto;

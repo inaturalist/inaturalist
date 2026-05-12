@@ -499,12 +499,17 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview.grid {
   max-height: 600px;
   max-width: 600px;
+
+  @media ( max-width: $mobile-max ) {
+    aspect-ratio: 1 / 1;
+    height: auto;
+  }
 }
 
 .PhotoPreview.grid .foreground-container .TaxonPhoto .CoverImage {
   height: 195px;
   @media ( max-width: $mobile-max ) {
-    height: 120px;
+    height: auto;
   }
 }
 
@@ -569,7 +574,7 @@ $photoPreviewThumbGutterTop: 3px;
   justify-content: center;
   height: 195px !important;
   @media ( max-width: $mobile-max ) {
-    height: 120px !important;
+    height: 195px !important;
   }
 }
 .PhotoPreview.grid .viewmore a .inner {
