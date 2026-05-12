@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TaxonRange < ApplicationRecord
   belongs_to :taxon
   belongs_to :source
@@ -8,6 +10,7 @@ class TaxonRange < ApplicationRecord
   validates_uniqueness_of :taxon_id, message: :already_has_a_range
   validates_presence_of :taxon
   validate :iucn_relationship_must_be_an_accepted_value
+  validate :validate_geometry
 
   accepts_nested_attributes_for :source
   
@@ -49,12 +52,6 @@ class TaxonRange < ApplicationRecord
       TaxonRange::IUCN_RED_LIST_MAP_UNSUITABLE,
       TaxonRange::NOT_ON_IUCN_RED_LIST].include? iucn_relationship
     errors.add(:iucn_relationship, :must_be_an_accepted_value)
-  end
-
-  def validate_geometry
-    if geom && geom.num_points < 3
-      errors.add(:geom, " must have more than 2 points")
-    end
   end
 
   def kml_url
@@ -150,4 +147,34 @@ class TaxonRange < ApplicationRecord
     }
   end
 
+  # see the comment on PlaceGeometry#geom
+  def geom
+    begin
+      super
+    rescue NoMethodError => e
+      raise e unless e.message =~ /undefined method.*factory/
+
+      errors.add( :geom, "could not be parsed" )
+      nil
+    end
+  end
+
+  def validate_geometry
+    return if geom.blank?
+
+    if geom.num_points < 4
+      errors.add( :geom, :must_have_more_than_three_points )
+    end
+    if geom.detect {| g | g.num_points < 4 }
+      errors.add( :geom, :polygon_with_less_than_four_points )
+    end
+    if geom.detect {| g | g.envelope.is_a?( RGeo::Geos::CAPIPointImpl ) }
+      errors.add( :geom, :polygon_with_no_area )
+    end
+    unless geom.detect {| g | g.points.detect {| pt | pt.x < -180 || pt.x > 180 || pt.y < -90 || pt.y > 90 } }
+      return
+    end
+
+    errors.add( :geom, :invalid_point )
+  end
 end
