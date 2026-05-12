@@ -18,7 +18,7 @@ const s = {
 const DEFAULT_CHUNK = 6;
 const CAROUSEL_ITEM_GAP = 10; // must match $carousel-item-gap in carousel.module.scss
 
-interface CarouselProps {
+export interface CarouselProps {
   items: React.ReactNode[];
   // TODO: can maybe more fancy with interpreting ref type here
   itemRef: React.MutableRefObject<HTMLDivElement> | null;
