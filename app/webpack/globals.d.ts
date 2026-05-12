@@ -1,3 +1,8 @@
+declare module "*.module.css" {
+  const styles: Record<string, string>;
+  export default styles;
+}
+
 declare const I18n: {
   t: ( key: string, options?: Record<string, unknown> ) => string;
   toNumber: ( value: number, options?: Record<string, unknown> ) => string;

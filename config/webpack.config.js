@@ -170,6 +170,20 @@ const config = {
             "@babel/preset-react"
           ]
         }
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: "[local]--[hash:base64:5]"
+              }
+            }
+          }
+        ]
       }
     ]
   },

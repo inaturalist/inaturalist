@@ -1,0 +1,74 @@
+.carousel {
+  --carousel-item-width: 100px;
+  width: 100%;
+  clear: both;
+}
+
+.carousel__title {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.carousel__body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.carousel__slides {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+}
+
+.carousel__slide {
+  grid-row: 1;
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--carousel-item-width));
+  gap: 10px;
+  justify-content: center;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel__slide--active {
+  transform: translateX(0);
+}
+
+.carousel__slide--left {
+  transform: translateX(-100%);
+}
+
+.carousel__nav-btn {
+  width: 40px;
+  align-self: stretch;
+  border: none;
+  background-color: #74ac00;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel__nav-btn:hover,
+.carousel__nav-btn:focus,
+.carousel__nav-btn:active {
+  background-color: #a8cc09;
+  outline: none;
+}
+
+.carousel__nav-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.carousel__nav-btn:disabled:hover,
+.carousel__nav-btn:disabled:focus,
+.carousel__nav-btn:disabled:active {
+  background-color: #74ac00;
+}

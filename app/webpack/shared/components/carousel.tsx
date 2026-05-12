@@ -2,9 +2,21 @@ import React, {
   useState, useEffect, useRef, useMemo
 } from "react";
 import _ from "lodash";
+import css from "./carousel.module.css";
+
+const s = {
+  carousel: css.carousel,
+  title: css["carousel__title"],
+  body: css["carousel__body"],
+  slides: css["carousel__slides"],
+  slide: css["carousel__slide"],
+  slideActive: css["carousel__slide--active"],
+  slideLeft: css["carousel__slide--left"],
+  navBtn: css["carousel__nav-btn"]
+};
 
 const DEFAULT_CHUNK = 6;
-const CAROUSEL_ITEM_GAP = 10; // must match $carousel-item-gap in carousel.scss
+const CAROUSEL_ITEM_GAP = 10; // must match $carousel-item-gap in carousel.module.scss
 
 interface CarouselProps {
   items: React.ReactNode[];
@@ -77,9 +89,9 @@ const Carousel = ( {
   }, [chunkSize, items] );
 
   return (
-    <div className={`Carousel ${className}`}>
+    <div className={`${s.carousel}${className ? ` ${className}` : ""}`}>
       { title && (
-        <h2 className="carousel-title">
+        <h2 className={s.title}>
           { title }
           { link }
         </h2>
@@ -88,11 +100,11 @@ const Carousel = ( {
       { ( slides.length === 0 ) && (
         <p className="text-muted text-center">{ noContent }</p>
       ) }
-      <div className="carousel-body">
+      <div className={s.body}>
         { hasNav && (
           <button
             type="button"
-            className="btn nav-btn prev-btn"
+            className={`btn ${s.navBtn}`}
             disabled={currentIndex === 0}
             onClick={( ) => setCurrentIndex( i => i - 1 )}
             title={I18n.t( "previous_taxon_short" )}
@@ -100,13 +112,14 @@ const Carousel = ( {
             ❮
           </button>
         ) }
-        <div className="carousel-slides" ref={carouselSlideContainerRef}>
+        <div className={s.slides} ref={carouselSlideContainerRef}>
           { slides.map( ( slide, index ) => (
             <div
               key={`${_.kebabCase( title )}-carousel-item-${index}`}
-              className={`carousel-slide ${
-                index === currentIndex ? "active" : index < currentIndex ? "left" : ""
-              }`}
+              className={[
+                s.slide,
+                index === currentIndex ? s.slideActive : index < currentIndex ? s.slideLeft : ""
+              ].filter( Boolean ).join( " " )}
             >
               { slide }
             </div>
@@ -115,7 +128,7 @@ const Carousel = ( {
         { hasNav && (
           <button
             type="button"
-            className="btn nav-btn next-btn"
+            className={`btn ${s.navBtn}`}
             disabled={currentIndex >= slides.length - 1}
             onClick={( ) => setCurrentIndex( i => i + 1 )}
             title={I18n.t( "next_taxon_short" )}
