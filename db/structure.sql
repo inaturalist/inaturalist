@@ -386,7 +386,8 @@ CREATE TABLE public.announcements (
     excludes_non_site boolean DEFAULT false,
     include_virtuous_tags text[] DEFAULT '{}'::text[],
     exclude_virtuous_tags text[] DEFAULT '{}'::text[],
-    exclude_ip_countries character varying[] DEFAULT '{}'::character varying[]
+    exclude_ip_countries character varying[] DEFAULT '{}'::character varying[],
+    parent_announcement_id integer
 );
 
 
@@ -8845,6 +8846,13 @@ CREATE INDEX index_announcement_impressions_on_user_id_and_id ON public.announce
 
 
 --
+-- Name: index_announcements_on_parent_announcement_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcements_on_parent_announcement_id ON public.announcements USING btree (parent_announcement_id);
+
+
+--
 -- Name: index_announcements_on_start_and_end; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11645,6 +11653,14 @@ CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
 
 --
+-- Name: announcements fk_rails_7acaf995fb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.announcements
+    ADD CONSTRAINT fk_rails_7acaf995fb FOREIGN KEY (parent_announcement_id) REFERENCES public.announcements(id) ON DELETE SET NULL;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -12194,6 +12210,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260319212735'),
 ('20260326000001'),
 ('20260326000002'),
-('20260406164708');
+('20260406164708'),
+('20260507201412');
 
 
