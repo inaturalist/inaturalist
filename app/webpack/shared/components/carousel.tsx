@@ -52,19 +52,18 @@ const Carousel = ( {
   const hasNav = items.length > 1;
 
   useEffect( () => {
-    // TODO: restart listener when itemRef changes
-    window.addEventListener( "resize", ( ) => {
+    const observer = new ResizeObserver( () => {
+      const measuredWidth = itemRef?.current?.getBoundingClientRect().width || 0;
+      if ( measuredWidth > 0 ) {
+        itemWidthRef.current = measuredWidth;
+      }
       setChunkSize( calculateChunkSize( carouselSlideContainerRef, itemWidthRef.current ) );
     } );
-  }, [] );
-
-  useEffect( () => {
-    const measuredWidth = itemRef.current?.getBoundingClientRect().width || 0;
-    if ( measuredWidth > 0 ) {
-      itemWidthRef.current = measuredWidth;
+    if ( carouselSlideContainerRef.current ) {
+      observer.observe( carouselSlideContainerRef.current );
     }
-    setChunkSize( calculateChunkSize( carouselSlideContainerRef, itemWidthRef.current ) );
-  }, [itemRef.current] );
+    return () => observer.disconnect();
+  }, [] );
 
   const slides = useMemo( () => {
     if ( !chunkSize ) return [];
@@ -80,7 +79,7 @@ const Carousel = ( {
   return (
     <div className={`Carousel ${className}`}>
       { title && (
-        <h2>
+        <h2 className="carousel-title">
           { title }
           { link }
         </h2>

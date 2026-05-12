@@ -6,6 +6,10 @@ $carousel-item-gap: 10px;
   --carousel-item-width: #{$carousel-item-width};
   width: 100%;
   clear: both;
+  .carousel-title {
+    margin: 0;
+    margin-bottom: 10px;
+  }
   .carousel-body {
     display: flex;
     align-items: center;

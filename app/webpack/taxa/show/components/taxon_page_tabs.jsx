@@ -261,7 +261,7 @@ class TaxonPageTabs extends React.Component {
         <div id="main-tabs-content" className="tab-content">
           <div
             role="tabpanel"
-            className={`tab-pane ${chosenTab === "map" ? "active" : ""}`}
+            className={`tab-pane ${chosenTab === "map" ? "active" : ""} VanillaTab MapTab`}
             id="map-tab"
           >
             <LazyLoad
@@ -288,7 +288,7 @@ class TaxonPageTabs extends React.Component {
           </div>
           <div
             role="tabpanel"
-            className={`tab-pane ${speciesOrLower ? "hidden" : ""} ${chosenTab === "highlights" ? "active" : ""}`}
+            className={`tab-pane ${speciesOrLower ? "hidden" : ""} ${chosenTab === "highlights" ? "active" : ""} VanillaTab`}
             id="highlights-tab"
           >
             <HighlightsTabContainer />

@@ -241,7 +241,7 @@
 
 .TaxonMap {
   height: 600px;
-  margin: 20px 0 10px;
+  margin-bottom: 10px;
   border: 1px solid #ddd;
 }
 
@@ -721,7 +721,7 @@ $introducedColor: #E4007C;
 }
 .TaxonPageTabs .tab-content {
   border-top: 1px solid #ccc;
-  padding-top: 10px;
+  padding: 10px 60px;
 }
 .TaxonPageTabs {
   .tab-drawer-container {
@@ -754,6 +754,9 @@ $introducedColor: #E4007C;
   background-color: inherit;
   color: black;
   opacity: 1;
+}
+.VanillaTab {
+  margin-top: 20px;
 }
 
 .InteractionsTab {
@@ -1360,10 +1363,7 @@ body > [role="dialog"] .PhotoChooserModal {
   content: '';
 }
 .AkaNames .name { color: black; }
-#map-tab {
-  margin-bottom: 20px;
-  padding: 0 60px;
-
+.MapTab {
   .Carousel {
     .carousel-item {
       aspect-ratio: 1 / 1;
@@ -1552,9 +1552,10 @@ table.regional-names {
         color: black;
       }
     }
-  }
-  #map-tab {
-    padding: 0 15px;
+
+    .tab-content {
+      padding: 0 15px;
+    }
   }
 
   .SimilarTab .TaxonThumbnail {
