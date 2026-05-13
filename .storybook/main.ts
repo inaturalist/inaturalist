@@ -4,6 +4,7 @@ import type { RuleSetRule } from "webpack";
 const config: StorybookConfig = {
   stories: ["../app/webpack/**/*.stories.@(tsx|ts|jsx|js)"],
   addons: ["@storybook/addon-essentials"],
+  staticDirs: [{ from: "../app/assets/fonts", to: "/fonts" }],
   framework: {
     name: "@storybook/react-webpack5",
     options: {}

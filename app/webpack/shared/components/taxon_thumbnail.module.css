@@ -1,0 +1,95 @@
+.taxon-thumbnail {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  padding: 0;
+  position: relative;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transition: border 0.2s ease-in-out;
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+}
+
+.taxon-thumbnail__photo {
+  display: block;
+  height: 130px;
+  font-size: 100px;
+  text-align: center;
+  line-height: 130px;
+  overflow: hidden;
+  position: relative;
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.taxon-thumbnail__photo :global(.CoverImage) {
+  width: 100%;
+  height: 100%;
+}
+
+.taxon-thumbnail__badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: white;
+  background-color: #777;
+  border-radius: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  min-width: 10px;
+  z-index: 1;
+}
+
+.taxon-thumbnail__badge a {
+  color: white;
+}
+
+.taxon-thumbnail__badge--with-tip {
+  cursor: pointer;
+}
+
+.taxon-thumbnail__overlay {
+  width: 100%;
+}
+
+.taxon-thumbnail__caption {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding: 9px;
+  box-sizing: border-box;
+}
+
+.taxon-thumbnail__caption :global(.SplitTaxon) {
+  display: block;
+  min-height: 42px;
+  margin-bottom: 10px;
+}
+
+.taxon-thumbnail__caption :global(.SplitTaxon a) {
+  text-decoration: none;
+}
+
+.taxon-thumbnail__caption :global(.display-name) {
+  display: block;
+  color: #000;
+  font-size: 120%;
+  font-weight: 600;
+}
+
+.taxon-thumbnail__caption :global(.secondary-name) {
+  color: #aaa;
+  font-style: italic;
+  white-space: normal;
+}

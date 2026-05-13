@@ -1,35 +1,40 @@
 import React, { useImperativeHandle, useRef } from "react";
-import CoverImage from "../../../shared/components/cover_image";
-import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../util";
+import CoverImage from "./cover_image";
+import SplitTaxon from "./split_taxon";
+import css from "./taxon_photo.module.css";
 
-interface Photo {
+const classes = {
+  taxonPhoto: css["taxon-photo"],
+  photoHover: css["taxon-photo__photo-hover"],
+  modalBtn: css["taxon-photo__modal-btn"],
+  taxonLabel: css["taxon-photo__taxon-label"],
+  infoLink: css["taxon-photo__info-link"]
+};
+
+const urlForTaxon = ( t: { id: number; name: string } | null ) => (
+  t ? `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}` : null
+);
+
+export interface Photo {
   id: number;
   photoUrl: ( size: string ) => string;
 }
 
-interface Taxon {
+export interface Taxon {
   id: number;
   name: string;
   [key: string]: unknown;
 }
 
-interface Observation {
+export interface Observation {
   id: number;
   [key: string]: unknown;
 }
 
-interface Config {
-  currentUser?: unknown;
-  [key: string]: unknown;
-}
-
-interface TaxonPhotoProps {
+export interface TaxonPhotoProps {
   photo: Photo;
   taxon: Taxon;
   showTaxonPhotoModal: ( photo: Photo, taxon: Taxon, observation?: Observation ) => void;
-  width?: number;
-  height?: number;
   observation?: Observation;
   className?: string;
   size?: string;
@@ -38,19 +43,17 @@ interface TaxonPhotoProps {
   showTaxon?: boolean;
   linkTaxon?: boolean;
   onClickTaxon?: ( taxon: Taxon ) => void;
-  config?: Config;
+  config?: { currentUser?: unknown; [key: string]: unknown };
 }
 
 const TaxonPhoto = React.forwardRef<HTMLDivElement, TaxonPhotoProps>( ( props, ref ) => {
   const innerRef = useRef<HTMLDivElement>( null );
-
   useImperativeHandle( ref, ( ) => innerRef.current! );
 
   const {
     photo,
     taxon,
     observation,
-    height,
     showTaxonPhotoModal,
     className,
     size = "medium",
@@ -62,17 +65,21 @@ const TaxonPhoto = React.forwardRef<HTMLDivElement, TaxonPhotoProps>( ( props, r
     config = {}
   } = props;
 
-  let photoTaxon;
+  let taxonLabel;
   if ( showTaxon ) {
-    photoTaxon = <div className="photo-taxon"><SplitTaxon taxon={taxon} noParens /></div>;
+    taxonLabel = (
+      <div className={classes.taxonLabel}>
+        <SplitTaxon taxon={taxon} noParens />
+      </div>
+    );
     if ( linkTaxon ) {
-      photoTaxon = (
-        <div className="photo-taxon">
+      taxonLabel = (
+        <div className={classes.taxonLabel}>
           <SplitTaxon
             taxon={taxon}
             noParens
             url={urlForTaxon( taxon )}
-            onClick={e => {
+            onClick={( e: React.MouseEvent ) => {
               if ( !onClickTaxon ) return true;
               if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
@@ -81,23 +88,24 @@ const TaxonPhoto = React.forwardRef<HTMLDivElement, TaxonPhotoProps>( ( props, r
             }}
             user={config.currentUser}
           />
-          <a href={urlForTaxon( taxon )} className="btn btn-link info-link">
+          <a href={urlForTaxon( taxon ) ?? undefined} className={classes.infoLink} aria-label={I18n.t( "view_taxon" )}>
             <i className="fa fa-info-circle" />
           </a>
         </div>
       );
     }
   }
+
   return (
     <div
-      className={`TaxonPhoto ${className} carousel-item`}
-      key={`TaxonPhoto-taxon-${taxon.id}-photo-${photo.id}`}
+      className={`${classes.taxonPhoto}${className ? ` ${className}` : ""}`}
       ref={innerRef}
     >
-      <div className="photo-hover">
+      <div className={classes.photoHover}>
         <button
           type="button"
-          className="btn btn-link modal-link"
+          className={classes.modalBtn}
+          aria-label={I18n.t( "view_photo" )}
           onClick={e => {
             e.preventDefault( );
             showTaxonPhotoModal( photo, taxon, observation );
@@ -106,13 +114,11 @@ const TaxonPhoto = React.forwardRef<HTMLDivElement, TaxonPhotoProps>( ( props, r
         >
           <i className="fa fa-search-plus" />
         </button>
-        { photoTaxon }
+        { taxonLabel }
       </div>
       <CoverImage
         src={photo.photoUrl( size ) || photo.photoUrl( "small" )}
         low={photo.photoUrl( "small" )}
-        size={size}
-        height={height}
         backgroundSize={backgroundSize}
         backgroundPosition={backgroundPosition}
       />

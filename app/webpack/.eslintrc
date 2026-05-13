@@ -96,7 +96,8 @@
       "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "react/prop-types": "off"
       }
     }
   ]
