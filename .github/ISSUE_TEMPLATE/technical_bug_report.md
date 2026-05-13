@@ -1,5 +1,5 @@
 ---
-name: Technical bug report
+name: Report a code-level technical issue
 about: Create a report to help us improve, with code-level/engineering specific concerns
 title: ''
 type: Bug
