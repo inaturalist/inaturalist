@@ -1,5 +1,9 @@
-# Place this file at .github/ISSUE_TEMPLATE/config.yml so that Github 
-# will present these links to users and direct traffic to the forum.
+# This file disables blank issue creation and replaces the issue form with
+# links that redirect users to the appropriate channels.
+#
+# Place this file at .github/ISSUE_TEMPLATE/config.yml in each repo.
+
+blank_issues_enabled: false
 
 contact_links:
   - name: 🐛 Report a bug
