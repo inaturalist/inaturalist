@@ -1,5 +1,6 @@
 .carousel {
-  --carousel-item-width: 100px;
+  --carousel-slide-count: 1;
+  --carousel-chunk-size: 1;
   width: 100%;
   clear: both;
 }
@@ -7,42 +8,36 @@
 .carousel__title {
   margin: 0;
   margin-bottom: 10px;
+  width: fit-content;
 }
 
 .carousel__body {
   display: flex;
   align-items: center;
   gap: 10px;
+  /* width: fit-content; */
 }
 
 .carousel__slides {
   flex: 1;
-  min-width: 0;
-  display: grid;
-  grid-template-columns: 1fr;
   overflow: hidden;
 }
 
-.carousel__slide {
-  grid-row: 1;
-  grid-column: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, var(--carousel-item-width));
-  gap: 10px;
-  justify-content: center;
-  transform: translateX(100%);
+.carousel__track {
+  display: flex;
+  width: calc(var(--carousel-slide-count) * 100%);
   transition: transform 0.3s ease-in-out;
 }
 
-.carousel__slide--active {
-  transform: translateX(0);
+.carousel__slide {
+  display: grid;
+  grid-template-columns: repeat(var(--carousel-chunk-size), 1fr);
+  width: 100%;
+  gap: 10px;
+  justify-content: center;
 }
 
-.carousel__slide--left {
-  transform: translateX(-100%);
-}
-
-.carousel__nav-btn {
+.carousel__navbtn {
   width: 40px;
   align-self: stretch;
   border: none;
@@ -55,20 +50,20 @@
   justify-content: center;
 }
 
-.carousel__nav-btn:hover,
-.carousel__nav-btn:focus,
-.carousel__nav-btn:active {
+.carousel__navbtn:hover,
+.carousel__navbtn:focus,
+.carousel__navbtn:active {
   background-color: #a8cc09;
   outline: none;
 }
 
-.carousel__nav-btn:disabled {
+.carousel__navbtn:disabled {
   opacity: 0.4;
   cursor: default;
 }
 
-.carousel__nav-btn:disabled:hover,
-.carousel__nav-btn:disabled:focus,
-.carousel__nav-btn:disabled:active {
+.carousel__navbtn:disabled:hover,
+.carousel__navbtn:disabled:focus,
+.carousel__navbtn:disabled:active {
   background-color: #74ac00;
 }

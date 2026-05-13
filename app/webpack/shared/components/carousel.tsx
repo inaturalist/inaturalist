@@ -1,22 +1,12 @@
 import React, {
-  useState, useEffect, useRef, useMemo
+  useState, useEffect, useRef, useMemo, useCallback
 } from "react";
 import _ from "lodash";
 import css from "./carousel.module.css";
 
-const s = {
-  carousel: css.carousel,
-  title: css["carousel__title"],
-  body: css["carousel__body"],
-  slides: css["carousel__slides"],
-  slide: css["carousel__slide"],
-  slideActive: css["carousel__slide--active"],
-  slideLeft: css["carousel__slide--left"],
-  navBtn: css["carousel__nav-btn"]
-};
-
 const DEFAULT_CHUNK = 6;
-const CAROUSEL_ITEM_GAP = 10; // must match $carousel-item-gap in carousel.module.scss
+const CAROUSEL_ITEM_GAP = 10; // must match --carousel-item-gap in carousel.module.css
+const NAV_BTN_WIDTH = 40; // must match width in carousel.module.css
 
 export interface CarouselProps {
   items: React.ReactNode[];
@@ -31,14 +21,11 @@ export interface CarouselProps {
 }
 
 const calculateChunkSize = (
-  carouselSlideRef: React.RefObject<HTMLDivElement>,
+  availableWidth: number,
   itemWidth: number
-) => {
-  const containerWidth = carouselSlideRef.current?.getBoundingClientRect()?.width;
-  return containerWidth && itemWidth
-    ? Math.floor( ( containerWidth + CAROUSEL_ITEM_GAP ) / ( itemWidth + CAROUSEL_ITEM_GAP ) )
-    : DEFAULT_CHUNK;
-};
+) => ( availableWidth && itemWidth
+  ? Math.floor( ( availableWidth + CAROUSEL_ITEM_GAP ) / ( itemWidth + CAROUSEL_ITEM_GAP ) )
+  : DEFAULT_CHUNK );
 
 const Carousel = ( {
   title,
@@ -52,7 +39,6 @@ const Carousel = ( {
 }: CarouselProps ) => {
   const [currentIndex, setCurrentIndex] = useState( 0 );
   const [chunkSize, setChunkSize] = useState<number | null>( DEFAULT_CHUNK );
-  const carouselSlideContainerRef = useRef<HTMLDivElement>( null );
   const itemWidthRef = useRef<number>( 0 );
 
   const link = url && (
@@ -63,35 +49,49 @@ const Carousel = ( {
 
   const hasNav = items.length > 1;
 
-  useEffect( () => {
-    const observer = new ResizeObserver( () => {
-      const measuredWidth = itemRef?.current?.getBoundingClientRect().width || 0;
-      if ( measuredWidth > 0 ) {
-        itemWidthRef.current = measuredWidth;
-      }
-      setChunkSize( calculateChunkSize( carouselSlideContainerRef, itemWidthRef.current ) );
-    } );
-    if ( carouselSlideContainerRef.current ) {
-      observer.observe( carouselSlideContainerRef.current );
+  const handleResize = useCallback( () => {
+    const measuredWidth = itemRef?.current?.getBoundingClientRect().width || 0;
+    if ( measuredWidth > 0 ) {
+      itemWidthRef.current = measuredWidth;
     }
-    return () => observer.disconnect();
+    const navSpace = hasNav ? 2 * ( NAV_BTN_WIDTH + CAROUSEL_ITEM_GAP ) : 0;
+    setChunkSize( calculateChunkSize( window.innerWidth - navSpace, itemWidthRef.current ) );
   }, [] );
+
+  useEffect( () => {
+    window.addEventListener( "resize", handleResize );
+    handleResize();
+    return () => window.removeEventListener( "resize", handleResize );
+  }, [handleResize] );
 
   const slides = useMemo( () => {
     if ( !chunkSize ) return [];
 
-    const s = _.chunk( items, chunkSize );
-    if (items.length % chunkSize !== 0 && finalItem) {
-      s[s.length - 1].push( finalItem );
+    const chunks = _.chunk( items, chunkSize );
+    if ( items.length % chunkSize !== 0 && finalItem ) {
+      chunks[chunks.length - 1].push( finalItem );
     }
 
-    return s;
+    return chunks;
   }, [chunkSize, items] );
 
+  const itemWidthStyle = {
+    "--carousel-slide-count": slides.length || 1,
+    ...( chunkSize ? {
+      "--carousel-chunk-size": `${chunkSize}`
+    } : {} )
+  } as React.CSSProperties;
+
+  const trackStyle = {
+    transform: slides.length > 1
+      ? `translateX(-${( currentIndex / slides.length ) * 100}%)`
+      : undefined
+  } as React.CSSProperties;
+
   return (
-    <div className={`${s.carousel}${className ? ` ${className}` : ""}`}>
+    <div className={`${css.carousel}${className ? ` ${className}` : ""}`} style={itemWidthStyle}>
       { title && (
-        <h2 className={s.title}>
+        <h2 className={css.carousel__title}>
           { title }
           { link }
         </h2>
@@ -100,11 +100,11 @@ const Carousel = ( {
       { ( slides.length === 0 ) && (
         <p className="text-muted text-center">{ noContent }</p>
       ) }
-      <div className={s.body}>
+      <div className={css.carousel__body}>
         { hasNav && (
           <button
             type="button"
-            className={`btn ${s.navBtn}`}
+            className={`btn ${css.carousel__navbtn}`}
             disabled={currentIndex === 0}
             onClick={( ) => setCurrentIndex( i => i - 1 )}
             title={I18n.t( "previous_taxon_short" )}
@@ -112,23 +112,22 @@ const Carousel = ( {
             ❮
           </button>
         ) }
-        <div className={s.slides} ref={carouselSlideContainerRef}>
-          { slides.map( ( slide, index ) => (
-            <div
-              key={`${_.kebabCase( title )}-carousel-item-${index}`}
-              className={[
-                s.slide,
-                index === currentIndex ? s.slideActive : index < currentIndex ? s.slideLeft : ""
-              ].filter( Boolean ).join( " " )}
-            >
-              { slide }
-            </div>
-          ) ) }
+        <div className={css.carousel__slides}>
+          <div className={css.carousel__track} style={trackStyle}>
+            { slides.map( ( slide, index ) => (
+              <div
+                key={React.isValidElement( slide[0] ) ? String( slide[0].key ) : index}
+                className={css.carousel__slide}
+              >
+                { Math.abs( index - currentIndex ) <= 1 && slide }
+              </div>
+            ) ) }
+          </div>
         </div>
         { hasNav && (
           <button
             type="button"
-            className={`btn ${s.navBtn}`}
+            className={`btn ${css.carousel__navbtn}`}
             disabled={currentIndex >= slides.length - 1}
             onClick={( ) => setCurrentIndex( i => i + 1 )}
             title={I18n.t( "next_taxon_short" )}

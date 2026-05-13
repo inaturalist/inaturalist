@@ -101,6 +101,8 @@ body.skip-min-width {
     border: 1px solid #ddd;
     position: relative;
     flex-grow: 1;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
     .tab-pane-container {
       height: 100%;
       .tab-pane {
@@ -636,11 +638,6 @@ $introducedColor: #E4007C;
   background-color: transparentize( $introducedColor, 0.90 );
   border-color: transparentize( $introducedColor, 0.80 );
   color: $introducedColor;
-}
-
-.TaxonPageTabs .tab-content {
-  border-top: 1px solid #ccc;
-  padding-top: 10px;
 }
 
 .TaxonPageTabs .nav.nav-tabs {
@@ -1300,69 +1297,10 @@ body > [role="dialog"] .PhotoChooserModal {
   content: '';
 }
 .AkaNames .name { color: black; }
-.RecentObservations { margin-bottom: 20px; }
-.RecentObservations .Carousel { position: relative; }
-.RecentObservations .TaxonPhoto {
-  display: inline-block;
-}
-.RecentObservations .carousel-inner .slide {
+.RecentObservations {
+  margin-bottom: 20px;
   display: flex;
-  padding: 0 50px;
-}
-.RecentObservations.no-slides .carousel-inner .slide {
-  padding: 0;
-}
-.RecentObservations h2,
-.RecentObservations .nav-btn {
-  position: absolute;
-}
-.RecentObservations h2 {
-  top: -49px;
-  left: 0;
-  padding: 10px;
-  margin: 0;
-  background-color: white;
-  border-radius: 0 2px 0 0;
-  font-size: 18px;
-}
-.RecentObservations .nav-btn {
-  top: 0px;
-  z-index: 1;
-  background-color: white;
-  height: 120px;
-  margin: 0;
-  padding-right: 10px;
-}
-.RecentObservations .nav-btn:before {
-  border-radius: 0;
-  height: 120px;
-  line-height: 120px;
-}
-.RecentObservations .nav-btn[disabled]:before {
-  background-color: #ccc;
-}
-.RecentObservations .prev-btn {
-  left: 0;
-}
-.RecentObservations .next-btn {
-  right: 0;
-}
-.RecentObservations .TaxonPhoto {
-  margin-right: 10px;
-}
-.RecentObservations .TaxonPhoto:last-child {
-  margin-right: 0;
-}
-.RecentObservations .viewall {
-  width: 120px;
-  height: 120px;
-  line-height: 120px;
-}
-@media (min-width: 1200px) {
-  .RecentObservations .TaxonPhoto,
-  .RecentObservations .viewall {
-    width: 200px !important;
-  }
+  justify-content: center;
 }
 .iconified-list-group .list-group-item {
   display: flex;

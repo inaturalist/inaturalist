@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
-import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import ErrorBoundary from "../../../shared/components/error_boundary";
@@ -65,14 +64,8 @@ const TaxonPageMap = ( {
   }
   return (
     <div className="TaxonPageMap">
-      <Grid>
-        <Row>
-          <Col xs={12}>
-            { loading }
-            { taxonMap }
-          </Col>
-        </Row>
-      </Grid>
+      { loading }
+      { taxonMap }
     </div>
   );
 };
