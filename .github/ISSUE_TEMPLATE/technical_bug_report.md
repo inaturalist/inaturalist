@@ -1,13 +1,13 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Technical bug report
+about: Create a report to help us improve, with code-level/engineering specific concerns
 title: ''
 type: Bug
 assignees: ''
 
 ---
 
-[//]: # (For feature requests and bug reports not specifically concerning code, please use https://forum.inaturalist.org/c/feature-requests/16. iNat staff will make github issues if/when an actionable solution emerges)
+[//]: # (For feature requests and bug reports not specifically concerning code, please use https://forum.inaturalist.org/c/bug-reports. To request a feature, use https://forum.inaturalist.org/c/feature-requests. To ask a technical question, use https://github.com/inaturalist/inaturalist/discussions. To report a secutrity vulnerability, email help+security@inaturalist.org)
 
 **Describe the bug**
 A clear and concise description of what the bug is, preferably with citations to the relevant code in this github repo.

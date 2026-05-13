@@ -1,0 +1,27 @@
+# Place this file at .github/ISSUE_TEMPLATE/config.yml so that Github 
+# will present these links to users and direct traffic to the forum.
+
+contact_links:
+  - name: 🐛 Report a bug
+    url: https://forum.inaturalist.org/c/bug-reports
+    about: >
+      Please report bugs on the iNaturalist Forum. You're more likely to get
+      a response there, and other users can confirm or add context to your report.
+
+  - name: 💡 Request a feature
+    url: https://forum.inaturalist.org/c/feature-requests
+    about: >
+      Please post feature requests on the iNaturalist Forum, where the
+      community can discuss and staff can weigh in on feasibility.
+
+  - name: 💬 Ask a technical question about the code
+    url: https://github.com/inaturalist/inaturalist/discussions
+    about: >
+      If you have a question about how the code works, or you're building
+      an integration, open a GitHub Discussion instead of an issue.
+
+  - name: 🔒 Report a security vulnerability
+    url: mailto:help+security@inaturalist.org
+    about: >
+      For security issues requiring confidential communication,
+      please email us directly rather than filing a public issue.
