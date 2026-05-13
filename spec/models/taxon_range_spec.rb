@@ -73,9 +73,9 @@ describe TaxonRange do
       expect( taxon_range ).to be_valid
     end
 
-    it "should be invalid with a two-point polygon" do
+    it "should be invalid with a three-point polygon" do
       taxon_range = TaxonRange.make!
-      two_pt_polygon = "MULTIPOLYGON(((-122.24 37.85,-122.28 37.84)))"
+      two_pt_polygon = "MULTIPOLYGON(((-122.24 37.85,-122.28 37.84,-122.28 37.83)))"
       taxon_range.geom = two_pt_polygon
       expect( taxon_range ).not_to be_valid
     end
@@ -83,6 +83,14 @@ describe TaxonRange do
     it "should be invalid with a latitude greater than 90" do
       taxon_range = TaxonRange.make!
       impossible_polygon = "MULTIPOLYGON(((0 89,0 91,1 91,0 91,0 89)))"
+      taxon_range.geom = impossible_polygon
+      expect( taxon_range ).not_to be_valid
+      expect( taxon_range.errors.size ).to eq 1
+    end
+
+    it "should be invalid with a longitude greater than 180" do
+      taxon_range = TaxonRange.make!
+      impossible_polygon = "MULTIPOLYGON(((180 89,181 89,180 89,180 89,180 89)))"
       taxon_range.geom = impossible_polygon
       expect( taxon_range ).not_to be_valid
       expect( taxon_range.errors.size ).to eq 1

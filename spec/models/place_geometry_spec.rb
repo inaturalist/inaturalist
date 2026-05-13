@@ -31,9 +31,9 @@ describe PlaceGeometry do
       expect( pg ).to be_valid
     end
 
-    it "should be invalid with a two-point polygon" do
+    it "should be invalid with a three-point polygon" do
       pg = PlaceGeometry.new( place: @place )
-      two_pt_polygon = "MULTIPOLYGON(((-122.24 37.85,-122.28 37.84)))"
+      two_pt_polygon = "MULTIPOLYGON(((-122.24 37.85,-122.28 37.84,-122.28 37.83)))"
       pg.geom = two_pt_polygon
       expect( pg ).not_to be_valid
     end
@@ -41,6 +41,14 @@ describe PlaceGeometry do
     it "should be invalid with a latitude greater than 90" do
       pg = PlaceGeometry.new( place: @place )
       impossible_polygon = "MULTIPOLYGON(((0 89,0 91,1 91,0 91,0 89)))"
+      pg.geom = impossible_polygon
+      expect( pg ).not_to be_valid
+      expect( pg.errors.size ).to eq 1
+    end
+
+    it "should be invalid with a longitude greater than 180" do
+      pg = PlaceGeometry.new( place: @place )
+      impossible_polygon = "MULTIPOLYGON(((180 89,181 89,180 89,180 89,180 89)))"
       pg.geom = impossible_polygon
       expect( pg ).not_to be_valid
       expect( pg.errors.size ).to eq 1
