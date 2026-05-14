@@ -9184,7 +9184,7 @@ CREATE INDEX index_custom_projects_on_project_id ON public.custom_projects USING
 -- Name: index_delayed_jobs_on_unique_hash; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_delayed_jobs_on_unique_hash ON public.delayed_jobs USING btree (unique_hash);
+CREATE UNIQUE INDEX index_delayed_jobs_on_unique_hash ON public.delayed_jobs USING btree (unique_hash);
 
 
 --
@@ -12194,6 +12194,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260319212735'),
 ('20260326000001'),
 ('20260326000002'),
-('20260406164708');
+('20260406164708'),
+('20260514215925');
 
 
