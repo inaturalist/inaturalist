@@ -46,8 +46,6 @@ const Project = class Project extends inatjs.Project {
     Object.assign( this.search_params, additionalSearchParams );
     const start = this.rule_observed_on || this.rule_d1;
     const end = this.rule_observed_on || this.rule_d2;
-    this.ruleD1Moment = util.momentDateFromString( this.rule_d1 );
-    this.ruleD2Moment = util.momentDateFromString( this.rule_d2 );
     this.startDate = util.momentDateFromString( start );
     this.startDateIncludesTime = this.startDate && !util.isDate( start );
     this.endDate = util.momentDateFromString( end );
@@ -199,8 +197,8 @@ const Project = class Project extends inatjs.Project {
         return;
       }
       // if both times are valid, set tentative date range rules
-      this.rule_d1 = this.exactDateD1Moment.format( "YYYY-MM-DD HH:mm UTCZ" );
-      this.rule_d2 = this.exactDateD2Moment.format( "YYYY-MM-DD HH:mm UTCZ" );
+      this.rule_d1 = this.exactDateD1Moment.format( "YYYY-MM-DD HH:mm Z" );
+      this.rule_d2 = this.exactDateD2Moment.format( "YYYY-MM-DD HH:mm Z" );
       return;
     }
 

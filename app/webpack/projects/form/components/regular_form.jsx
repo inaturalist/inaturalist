@@ -13,6 +13,9 @@ import TaxonSelector from "./taxon_selector";
 import PlaceSelector from "./place_selector";
 import UserSelector from "./user_selector";
 
+const MonthNames = ( "january february march april may june july august "
+  + "september october november december" ).split( " " );
+
 class RegularForm extends React.Component {
   constructor( props ) {
     super( props );
@@ -136,27 +139,25 @@ class RegularForm extends React.Component {
     const { project, updateProject } = this.props;
     const key = `time-checkbox-${_.kebabCase( fieldName )}`;
     return (
-      <div>
-        <div className="checkbox">
-          <label>
-            <input
-              type="checkbox"
-              key={key}
-              id={key}
-              defaultChecked={project[fieldName]}
-              onChange={e => {
-                const updates = {
-                  [fieldName]: e.target.checked || null
-                };
-                if ( !e.target.checked ) {
-                  Object.assign( updates, resetUpdates );
-                }
-                updateProject( updates );
-              }}
-            />
-            { I18n.t( "views.projects.new.date_pickers.include_times" ) }
-          </label>
-        </div>
+      <div className="checkbox">
+        <label>
+          <input
+            type="checkbox"
+            key={key}
+            id={key}
+            defaultChecked={project[fieldName]}
+            onChange={e => {
+              const updates = {
+                [fieldName]: e.target.checked || null
+              };
+              if ( !e.target.checked ) {
+                Object.assign( updates, resetUpdates );
+              }
+              updateProject( updates );
+            }}
+          />
+          { I18n.t( "views.projects.new.date_pickers.include_times" ) }
+        </label>
       </div>
     );
   }
@@ -264,8 +265,6 @@ class RegularForm extends React.Component {
       project,
       setRulePreference
     } = this.props;
-    const monthNames = ( "january february march april may june july august "
-      + "september october november december" ).split( " " );
     return (
       <div
         style={{ position: "relative" }}
@@ -277,7 +276,7 @@ class RegularForm extends React.Component {
           defaultValue={project.rule_month ? project.rule_month.split( "," ) : []}
           noneSelectedText={I18n.t( "views.projects.new.date_pickers.select_months" )}
           data={
-            _.map( monthNames, ( month, i ) => (
+            _.map( MonthNames, ( month, i ) => (
               {
                 value: i + 1,
                 label: I18n.t( `date_format.month.${month}` )
