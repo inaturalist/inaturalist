@@ -119,23 +119,21 @@ class Announcement < ApplicationRecord
   def parent_announcement_cannot_be_self
     return unless parent_announcement_id.present? && parent_announcement_id == id
 
-    errors.add( :parent_announcement_id, "cannot reference itself" )
+    errors.add( :parent_announcement_id, :cannot_reference_self )
   end
 
   def parent_announcement_cannot_have_parent
     return unless parent_announcement_id.present?
     return unless parent_announcement&.parent_announcement_id.present?
 
-    errors.add( :parent_announcement_id,
-      "Cannot add parent, chosen parent announcement is a child (only one level of nesting allowed)" )
+    errors.add( :parent_announcement_id, :cannot_reference_variant )
   end
 
   def parent_with_children_cannot_become_child
     return unless parent_announcement_id.present?
     return unless persisted? && child_announcements.exists?
 
-    errors.add( :parent_announcement_id,
-      "Cannot add parent, current announcement is already a parent (only one level of nesting allowed)" )
+    errors.add( :parent_announcement_id, :cannot_have_variants )
   end
 
   def session_key
