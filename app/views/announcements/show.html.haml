@@ -114,6 +114,9 @@
           %th ID
           %th Body
           %th Locales
+          %th= t( "activerecord.attributes.announcement.site_ids", default: t( :site_ids ) )
+          %th= t( "activerecord.attributes.announcement.ip_countries", default: t( :ip_countries ) )
+          %th= t( "activerecord.attributes.announcement.exclude_ip_countries", default: t( :exclude_ip_countries ) )
           %th Start
           %th End
       %tbody
@@ -126,10 +129,13 @@
                   %span.label.label-default= t( :original )
               %td= variant.body_preview
               %td= variant.locales.present? ? variant.locales.map { |l| I18n.t( "locales.#{l}" ) }.join( ", " ) : t( :all )
+              %td= variant.sites.any? ? variant.sites.map( &:name ).sort.join( ", " ) : t( :all )
+              %td= variant.ip_countries.present? ? variant.ip_countries.map { |code| Place::COUNTRIES_BY_NAME.values.detect { |c| c[:code] == code }.try( :[], :name ) }.compact.sort.join( ", " ) : t( :all )
+              %td= variant.exclude_ip_countries.present? ? variant.exclude_ip_countries.map { |code| Place::COUNTRIES_BY_NAME.values.detect { |c| c[:code] == code }.try( :[], :name ) }.compact.sort.join( ", " ) : t( :none )
               %td= variant.start
               %td= variant.send( :end )
         %tr
-          %td{ colspan: 5 }
+          %td{ colspan: 8 }
             = link_to duplicate_announcement_path( @announcement ), class: "btn btn-default btn-sm" do
               %i.fa.fa-plus
               = t :create_a_translation_variant
