@@ -156,7 +156,7 @@ class AnnouncementsController < ApplicationController
     candidates = candidates.where.not( id: @announcement.id ) if @announcement&.persisted?
     candidates = candidates.to_a
     unless current_user.is_admin? || current_user_site_ids.blank?
-      candidates = candidates.select {| a | a.site_ids.blank? || ( a.site_ids & current_user_site_ids ).any? }
+      candidates = candidates.select {| a | a.site_ids.blank? || a.site_ids.intersect?( current_user_site_ids ) }
     end
     @parent_announcement_options = candidates.map {| a | [a.dropdown_label, a.id] }
   end

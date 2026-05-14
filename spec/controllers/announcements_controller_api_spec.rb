@@ -323,23 +323,12 @@ describe AnnouncementsController do
       user = create :user
       SiteAdmin.create!( site: site_b, user: user )
       multi_site_announcement = create :announcement, sites: [site_a, site_b]
+      non_site_announcement = create :announcement, sites: [site_a]
       sign_in user
       get :new, params: { inat_site_id: site_b.id }
       option_ids = assigns( :parent_announcement_options ).map( &:last )
       expect( option_ids ).to include( multi_site_announcement.id )
-    end
-
-    it "does not duplicate multi-site announcements in the options list" do
-      create( :site ) unless Site.default
-      site_a = create :site
-      site_b = create :site
-      user = create :user
-      SiteAdmin.create!( site: site_b, user: user )
-      multi_site_announcement = create :announcement, sites: [site_a, site_b]
-      sign_in user
-      get :new, params: { inat_site_id: site_b.id }
-      option_ids = assigns( :parent_announcement_options ).map( &:last )
-      expect( option_ids.count( multi_site_announcement.id ) ).to eq( 1 )
+      expect( option_ids ).not_to include( non_site_announcement.id )
     end
   end
 end
