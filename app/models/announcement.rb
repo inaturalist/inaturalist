@@ -400,12 +400,13 @@ class Announcement < ApplicationRecord
         filtered.select {| a | a.site_ids.blank? }
       end
 
-      site_specific = filtered.detect {| a | a.site_ids.present? && a.excludes_non_site }
-      filtered = filtered.select {| a | a.site_ids.present? } if site_specific
-
       filtered = pick_best_locale_matches( filtered, locale_str, lang_only )
 
       filtered
+    end
+
+    if announcements.detect {| a | a.site_ids.present? && a.excludes_non_site }
+      announcements = announcements.select {| a | a.site_ids.present? }
     end
 
     announcements.sort_by do | a |
