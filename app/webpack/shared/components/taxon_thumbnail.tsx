@@ -1,5 +1,4 @@
 import React, { useImperativeHandle, useRef } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import CoverImage from "./cover_image";
 import SplitTaxon from "./split_taxon";
 import css from "./taxon_thumbnail.module.css";
@@ -7,9 +6,6 @@ import css from "./taxon_thumbnail.module.css";
 const classes = {
   taxonThumbnail: css["taxon-thumbnail"],
   photo: css["taxon-thumbnail__photo"],
-  badge: css["taxon-thumbnail__badge"],
-  badgeWithTip: css["taxon-thumbnail__badge--with-tip"],
-  overlay: css["taxon-thumbnail__overlay"],
   caption: css["taxon-thumbnail__caption"]
 };
 
@@ -37,17 +33,11 @@ export interface Taxon {
 
 export interface TaxonThumbnailProps {
   taxon: Taxon;
-  className?: string;
-  badgeText?: React.ReactNode;
-  badgeTip?: string;
-  truncate?: number;
+  width?: number;
   onClick?: ( e: React.MouseEvent ) => void;
   captionForTaxon?: ( taxon: Taxon ) => React.ReactNode;
   urlForTaxon?: ( taxon: Taxon ) => string;
-  overlay?: React.ReactNode;
   config?: { currentUser?: unknown; [key: string]: unknown };
-  noInactive?: boolean;
-  style?: React.CSSProperties;
 }
 
 const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( props, ref ) => {
@@ -56,17 +46,11 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
 
   const {
     taxon,
-    className,
-    badgeText,
-    badgeTip,
-    truncate,
+    width,
     onClick,
     captionForTaxon,
     urlForTaxon = defaultUrlForTaxon,
-    overlay,
-    config = {},
-    noInactive,
-    style
+    config = {}
   } = props;
 
   let mediumURL: string | undefined;
@@ -79,34 +63,12 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
     squareURL = taxon.default_photo.square_url;
   }
 
-  let badge: React.ReactNode;
-  if ( badgeText ) {
-    const badgeClassName = `${classes.badge}${badgeTip ? ` ${classes.badgeWithTip}` : ""}`;
-    const badgeSpan = <span className={badgeClassName}>{ badgeText }</span>;
-    if ( badgeTip ) {
-      const snakeText = String( badgeText ).toLowerCase( ).replace( /\s+/g, "_" );
-      badge = (
-        <OverlayTrigger
-          placement="top"
-          overlay={(
-            <Tooltip id={`taxon-thumbnail-badge-${taxon.id}-${snakeText}`}>
-              { badgeTip }
-            </Tooltip>
-          )}
-        >
-          { badgeSpan }
-        </OverlayTrigger>
-      );
-    } else {
-      badge = badgeSpan;
-    }
-  }
-
-  const rootClassName = `${classes.taxonThumbnail}${className ? ` ${className}` : ""}`;
-
   return (
-    <div ref={innerRef} className={rootClassName} style={style}>
-      { badge }
+    <div
+      ref={innerRef}
+      className={classes.taxonThumbnail}
+      style={width ? { "--taxon-thumbnail-width": `${width}px` } as React.CSSProperties : undefined}
+    >
       <a href={urlForTaxon( taxon )} onClick={onClick} className={classes.photo}>
         { mediumURL ? (
           <CoverImage src={mediumURL} low={squareURL} />
@@ -118,16 +80,13 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
           />
         ) }
       </a>
-      { overlay && <div className={classes.overlay}>{ overlay }</div> }
       <div className={classes.caption}>
         <SplitTaxon
           taxon={taxon}
           url={urlForTaxon( taxon )}
           noParens
-          truncate={truncate}
           onClick={onClick}
           user={config.currentUser}
-          noInactive={noInactive}
         />
         { captionForTaxon ? captionForTaxon( taxon ) : null }
       </div>

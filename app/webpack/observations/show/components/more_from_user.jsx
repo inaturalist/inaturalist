@@ -41,21 +41,21 @@ const MoreFromUser = ( {
     showNewObservation( o, { useInstance: !testingApiV2 } );
   };
   const userLogin = observation.user.login;
-  // obs list starts with the previous 3 obs
-  let observations = _.take( otherObservations.earlierUserObservations, 3 );
+  // obs list starts with the previous 8 obs
+  let observations = _.take( otherObservations.earlierUserObservations, 8 );
   // reverse them since they are ordered DESC, and we want to show them ASC
   observations.reverse( );
-  // add the next 3 obs
-  observations = observations.concat( _.take( otherObservations.laterUserObservations, 3 ) );
-  if ( observations.length < 6 ) {
-    // if we don't have 6 yet, add the rest of the next obs
-    observations = observations.concat( otherObservations.laterUserObservations.slice( 3 ) );
-    observations = _.take( observations, 6 );
+  // add the next 7 obs
+  observations = observations.concat( _.take( otherObservations.laterUserObservations, 7 ) );
+  if ( observations.length < 15 ) {
+    // if we don't have 15 yet, add the rest of the next obs
+    observations = observations.concat( otherObservations.laterUserObservations.slice( 7 ) );
+    observations = _.take( observations, 15 );
   }
-  if ( observations.length < 6 ) {
-    // if we don't have 6 yet, add as many more previous obs as we need
+  if ( observations.length < 15 ) {
+    // if we don't have 15 yet, add as many more previous obs as we need
     const moreEarlier = _.take(
-      otherObservations.earlierUserObservations.slice( 3 ), 6 - observations.length
+      otherObservations.earlierUserObservations.slice( 8 ), 15 - observations.length
     );
     moreEarlier.reverse( );
     observations = moreEarlier.concat( observations );
@@ -79,6 +79,7 @@ const MoreFromUser = ( {
         urlForTaxon={( ) => `/observations/${o.id}`}
         onClick={e => loadObservationCallback( e, o )}
         config={config}
+        width={160}
       />
     );
   } );

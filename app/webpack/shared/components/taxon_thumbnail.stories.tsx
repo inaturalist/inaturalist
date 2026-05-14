@@ -58,28 +58,6 @@ export const NoPhoto: Story = {
   }
 };
 
-export const WithBadge: Story = {
-  args: {
-    taxon: fungus,
-    badgeText: "3"
-  }
-};
-
-export const WithBadgeTip: Story = {
-  args: {
-    taxon: hawk,
-    badgeText: "Top",
-    badgeTip: "Most observed this month"
-  }
-};
-
-export const WithOverlay: Story = {
-  args: {
-    taxon: hawk,
-    overlay: <div style={{ padding: "4px 8px", background: "#eee", fontSize: "12px" }}>Observed 42×</div>
-  }
-};
-
 export const WithCaption: Story = {
   args: {
     taxon: fungus,
