@@ -55,6 +55,9 @@
     .table td {
       width: 100%;
     }
+    table#translation_variants_table td {
+      width: auto;
+    }
     .btn-spacer-left { margin-left: 6px; }
 - content_for :extrajs do
   :javascript
@@ -105,7 +108,7 @@
                     - else
                       = val
     %h4 Translation Variants
-    %table.table.table-bordered
+    %table.table.table-bordered#translation_variants_table
       %thead
         %tr
           %th ID
