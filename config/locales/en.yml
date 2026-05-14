@@ -7124,10 +7124,10 @@ en:
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
         app.
-      # Tooltip for the original announcement select when editing an announcement that already has variants
-      parent_announcement_disabled_desc: This announcement has targeted variants and cannot be assigned an original
-      # Tooltip for the original announcement select field on the announcement form
-      parent_announcement_desc: Link this announcement as a targeted variant of an original announcement
+      # Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: This announcement has targeted variants and cannot be assigned a global announcement.
+      # Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Select an announcement that this announcement should replace for users who meet the targeting rules.
       site_ids_desc: |
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
@@ -10669,8 +10669,8 @@ en:
         max_observations: Max observations
         # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min observations
-        # ID of the original announcement that this targeted variant is linked to
-        parent_announcement_id: Original Announcement
+        # A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Global Announcement (optional)
         # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Placement
         # Preference for an announcement that is only shown to the user who created the announcement
@@ -10935,11 +10935,11 @@ en:
               # if it's not translated perfectly.
               must_be_valid_for_specified_placement: must be valid for specified placement
             parent_announcement_id:
-              # Error shown when an announcement's original announcement field references itself
+              # Error shown when an announcement's global announcement field references itself
               cannot_reference_self: cannot reference itself
-              # Error shown when an announcement's original announcement is itself a variant of another announcement
+              # Error shown when an announcement's global announcement is itself a variant of another announcement
               cannot_reference_variant: cannot reference an announcement that is itself a variant (only one level of nesting allowed)
-              # Error shown when trying to set an original announcement on an announcement that already has variants
+              # Error shown when trying to set an global announcement on an announcement that already has variants
               cannot_have_variants: cannot be set on an announcement that already has variants (only one level of nesting allowed)
             target_group_partition:
               # Error message shown when an Announcement has a value in the
