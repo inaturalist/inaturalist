@@ -4,9 +4,9 @@ class AnnouncementsController < ApplicationController
   before_action :authenticate_user!, except: [:active]
   before_action :site_admin_required, except: [:active, :dismiss]
   before_action :load_announcement, only: [:show, :edit, :update, :destroy, :dismiss, :duplicate]
-  before_action :load_sites, only: [:new, :edit, :create, :duplicate]
-  before_action :load_oauth_applications, only: [:new, :edit, :create, :duplicate]
-  before_action :load_parent_announcement_options, only: [:new, :edit, :create, :duplicate]
+  before_action :load_sites, only: [:new, :edit, :create, :update, :duplicate]
+  before_action :load_oauth_applications, only: [:new, :edit, :create, :update, :duplicate]
+  before_action :load_parent_announcement_options, only: [:new, :edit, :create, :update, :duplicate]
 
   layout "bootstrap"
 

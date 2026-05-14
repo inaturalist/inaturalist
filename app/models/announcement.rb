@@ -63,6 +63,7 @@ class Announcement < ApplicationRecord
   validate :valid_placement_clients
   validate :parent_announcement_cannot_be_self
   validate :parent_announcement_cannot_have_parent
+  validate :parent_with_children_cannot_become_child
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
   validates_inclusion_of :target_logged_in, in: YES_NO_ANY
   validates_inclusion_of :target_curators, in: YES_NO_ANY
@@ -124,7 +125,16 @@ class Announcement < ApplicationRecord
     return unless parent_announcement_id.present?
     return unless parent_announcement&.parent_announcement_id.present?
 
-    errors.add( :parent_announcement_id, "cannot be a child announcement (only one level of nesting allowed)" )
+    errors.add( :parent_announcement_id,
+      "Cannot add parent, chosen parent announcement is a child (only one level of nesting allowed)" )
+  end
+
+  def parent_with_children_cannot_become_child
+    return unless parent_announcement_id.present?
+    return unless persisted? && child_announcements.exists?
+
+    errors.add( :parent_announcement_id,
+      "Cannot add parent, current announcement is already a parent (only one level of nesting allowed)" )
   end
 
   def session_key

@@ -542,7 +542,18 @@ describe Announcement do
       grandchild = build :announcement, parent_announcement_id: child.id
       expect( grandchild ).not_to be_valid
       expect( grandchild.errors[:parent_announcement_id] ).to include(
-        "cannot be a child announcement (only one level of nesting allowed)"
+        "Cannot add parent, chosen parent announcement is a child (only one level of nesting allowed)"
+      )
+    end
+
+    it "cannot become a child when it already has children" do
+      parent = create :announcement
+      _child = create :announcement, parent_announcement_id: parent.id
+      new_grandparent = create :announcement
+      parent.parent_announcement_id = new_grandparent.id
+      expect( parent ).not_to be_valid
+      expect( parent.errors[:parent_announcement_id] ).to include(
+        "Cannot add parent, current announcement is already a parent (only one level of nesting allowed)"
       )
     end
 
