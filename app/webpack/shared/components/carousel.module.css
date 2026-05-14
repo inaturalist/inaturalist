@@ -7,6 +7,9 @@
   margin: 0;
   margin-bottom: 10px;
   width: fit-content;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.1;
 }
 
 .carousel__body {
@@ -65,4 +68,14 @@
 .carousel__navbtn:disabled:focus,
 .carousel__navbtn:disabled:active {
   background-color: #74ac00;
+}
+
+.carousel__readmore {
+  font-size: 18px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.carousel__readmore::after {
+  content: '\0020 \00BB';
 }

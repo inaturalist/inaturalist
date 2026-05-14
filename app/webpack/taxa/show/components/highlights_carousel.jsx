@@ -40,7 +40,6 @@ const HiglightsCarousel = ( {
         key={`highlights-taxon-${taxon.id}`}
         ref={i === 0 ? firstItemRef : null}
         taxon={taxon}
-        style={{ "--taxon-thumbnail-width": `${ITEM_WIDTH}px` }}
         onClick={e => {
           if ( !showNewTaxon ) return true;
           if ( e.metaKey || e.ctrlKey ) return true;

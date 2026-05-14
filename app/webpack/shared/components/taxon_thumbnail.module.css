@@ -1,7 +1,7 @@
 .taxon-thumbnail {
-  --taxon-thumbnail-width: 160px;
+  --taxon-thumbnail-width: 200px;
   width: var(--taxon-thumbnail-width);
-  height: calc(var(--taxon-thumbnail-width) * 4 / 3);
+  aspect-ratio: 3 / 4;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: white;
@@ -16,6 +16,10 @@
   font-size: 14px;
   line-height: 20px;
   color: #333;
+
+  @media (max-width: 768px) {
+    width: calc(var(--taxon-thumbnail-width) * 0.75);
+  }
 }
 
 .taxon-thumbnail__photo {
@@ -72,6 +76,10 @@
   padding: 9px;
   box-sizing: border-box;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    flex: 1.5;
+  }
 }
 
 .taxon-thumbnail__caption :global(.SplitTaxon) {
@@ -90,10 +98,18 @@
   color: #000;
   font-size: 120%;
   font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: 100%;
+  }
 }
 
 .taxon-thumbnail__caption :global(.secondary-name) {
   color: #aaa;
   font-style: italic;
   white-space: normal;
+
+  @media (max-width: 768px) {
+    font-size: 80%;
+  }
 }

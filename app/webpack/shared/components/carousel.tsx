@@ -31,7 +31,7 @@ const Carousel = ( {
   const trackRef = useRef<HTMLDivElement>( null );
 
   const link = url && (
-    <a href={url} className="readmore">
+    <a href={url} className={css.carousel__readmore}>
       { I18n.t( "view_all_caps" ) }
     </a>
   );
@@ -39,7 +39,12 @@ const Carousel = ( {
   const allItems = finalItem ? [...items, finalItem] : items;
 
   useEffect( () => {
-    if ( trackRef.current ) setTrackWidth( trackRef.current.getBoundingClientRect().width );
+    const updateTrackWidth = () => {
+      if ( trackRef.current ) setTrackWidth( trackRef.current.getBoundingClientRect().width );
+    };
+    updateTrackWidth();
+    window.addEventListener( "resize", updateTrackWidth );
+    return () => window.removeEventListener( "resize", updateTrackWidth );
   }, [] );
 
   useEffect( () => {
@@ -88,10 +93,10 @@ const Carousel = ( {
   return (
     <div className={`${css.carousel}${className ? ` ${className}` : ""}`}>
       { title && (
-        <h2 className={css.carousel__title}>
+        <div className={css.carousel__title}>
           { title }
           { link }
-        </h2>
+        </div>
       ) }
       { description && <p>{ description }</p> }
       { allItems.length === 0 && (
