@@ -649,6 +649,32 @@ describe Announcement do
       result_ids = Announcement.active( user: user, site: user.site ).map( &:id )
       expect( result_ids.count( multi_site_announcement.id ) ).to eq( 1 )
     end
+
+    it "filters by placement" do
+      dashboard = create :announcement, placement: Announcement::USERS_DASHBOARD
+      sidebar = create :announcement, placement: Announcement::USERS_DASHBOARD_SIDEBAR
+      result_ids = Announcement.active( placement: Announcement::USERS_DASHBOARD ).map( &:id )
+      expect( result_ids ).to include( dashboard.id )
+      expect( result_ids ).not_to include( sidebar.id )
+    end
+
+    it "filters by client" do
+      ios = create :announcement, placement: Announcement::MOBILE_HOME, clients: [Announcement::INAT_IOS]
+      android = create :announcement, placement: Announcement::MOBILE_HOME, clients: [Announcement::INAT_ANDROID]
+      no_client = create :announcement, placement: Announcement::MOBILE_HOME
+      result_ids = Announcement.active( client: Announcement::INAT_IOS ).map( &:id )
+      expect( result_ids ).to include( ios.id )
+      expect( result_ids ).not_to include( android.id )
+      expect( result_ids ).to include( no_client.id )
+    end
+
+    it "filters by user_agent_client" do
+      inatrn = create :announcement, placement: Announcement::MOBILE_HOME, clients: [Announcement::INATRN]
+      ios = create :announcement, placement: Announcement::MOBILE_HOME, clients: [Announcement::INAT_IOS]
+      result_ids = Announcement.active( user_agent_client: Announcement::INATRN ).map( &:id )
+      expect( result_ids ).to include( inatrn.id )
+      expect( result_ids ).not_to include( ios.id )
+    end
   end
 
   describe "active_in_placement" do
