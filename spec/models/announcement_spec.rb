@@ -640,6 +640,15 @@ describe Announcement do
         expect( result_ids ).not_to include( child_es.id )
       end
     end
+
+    it "does not duplicate announcements associated with multiple sites" do
+      site_a = create :site
+      site_b = create :site
+      user = create :user, site: site_a
+      multi_site_announcement = create :announcement, sites: [site_a, site_b]
+      result_ids = Announcement.active( user: user, site: user.site ).map( &:id )
+      expect( result_ids.count( multi_site_announcement.id ) ).to eq( 1 )
+    end
   end
 
   describe "active_in_placement" do

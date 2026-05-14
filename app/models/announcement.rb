@@ -355,9 +355,8 @@ class Announcement < ApplicationRecord
     site = options[:site]
     user = options[:user]
     scope = Announcement.
+      includes( :sites ).
       where( '? BETWEEN "start" AND "end"', Time.now.utc ).
-      joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id" ).
-      joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
       limit( 50 )
     placements = options[:placement].to_s.split( "," ) & PARAM_PLACEMENTS
     if placements.size.positive?
@@ -374,20 +373,6 @@ class Announcement < ApplicationRecord
       scope = scope.where( "? = ANY( clients ) OR clients = '{}'", options[:user_agent_client] )
     end
 
-    # this will filter all announcements to just the partner site (if provided)
-    # Site filtering
-    scope = if site
-      scope.
-        # if the announcement is not targeting a site it will be displayed
-        #
-        where(
-          "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
-          site || Site.default
-        )
-    else
-      # unauthenticated requests exclude announcements associated with sites
-      scope.where( "announcements_sites.site_id IS NULL" )
-    end
     all_announcements = scope.to_a
     locale_str = I18n.locale.to_s
     lang_only = locale_str.split( "-" ).first
@@ -407,6 +392,12 @@ class Announcement < ApplicationRecord
         else
           filtered.select {| a | a.ip_countries.blank? }
         end
+      end
+
+      filtered = if site
+        filtered.select {| a | a.site_ids.blank? || a.site_ids.include?( site.id ) }
+      else
+        filtered.select {| a | a.site_ids.blank? }
       end
 
       site_specific = filtered.detect {| a | a.site_ids.present? && a.excludes_non_site }
