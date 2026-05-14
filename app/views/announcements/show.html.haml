@@ -109,6 +109,7 @@
       %thead
         %tr
           %th ID
+          %th Body
           %th Locales
           %th Start
           %th End
@@ -120,11 +121,12 @@
                 = link_to "##{variant.id}", announcement_path( variant )
                 - if variant.id == @family_root.id
                   %span.label.label-default= t( :original )
+              %td= variant.body_preview
               %td= variant.locales.present? ? variant.locales.map { |l| I18n.t( "locales.#{l}" ) }.join( ", " ) : t( :all )
               %td= variant.start
               %td= variant.send( :end )
         %tr
-          %td{ colspan: 4 }
+          %td{ colspan: 5 }
             = link_to duplicate_announcement_path( @announcement ), class: "btn btn-default btn-sm" do
               %i.fa.fa-plus
               = t :create_a_translation_variant

@@ -131,6 +131,15 @@ class Announcement < ApplicationRecord
     "user-seen-ann-#{id}"
   end
 
+  def body_preview( length = 60 )
+    ActionController::Base.helpers.strip_tags( body ).to_s.truncate( length )
+  end
+
+  def dropdown_label
+    locale_label = locales.presence&.join( ", " ) || "all locales"
+    "##{id} - #{body_preview} (#{locale_label})"
+  end
+
   def compact_array_attributes
     array_attributes = %w(
       clients

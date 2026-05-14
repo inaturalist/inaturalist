@@ -158,11 +158,7 @@ class AnnouncementsController < ApplicationController
         joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id" ).
         where( "announcements_sites.site_id IS NULL OR announcements_sites.site_id IN (?)", current_user_site_ids )
     end
-    @parent_announcement_options = candidates.map do | a |
-      label = "##{a.id} - #{ActionController::Base.helpers.strip_tags( a.body ).to_s.truncate( 60 )}" \
-              " (#{a.locales.presence&.join( ', ' ) || 'all locales'})"
-      [label, a.id]
-    end
+    @parent_announcement_options = candidates.map {| a | [a.dropdown_label, a.id] }
   end
 
   def user_agent_client
