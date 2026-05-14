@@ -129,20 +129,24 @@
               including you
             = link_to_toggle_box "show user IDs" do
               = @announcement.dismiss_user_ids
-      - if @announcement.child_announcements.any?
+      - unless @announcement.parent_announcement_id.present?
         %h4 Translation Variants
-        %table.table.table-bordered
-          %thead
-            %tr
-              %th ID
-              %th Locales
-              %th Start
-              %th End
-          %tbody
-            - @announcement.child_announcements.each do |child|
+        - if @announcement.child_announcements.any?
+          %table.table.table-bordered
+            %thead
               %tr
-                %td= link_to "##{child.id}", announcement_path(child)
-                %td= child.locales.present? ? child.locales.map { |l| I18n.t("locales.#{l}") }.join(", ") : t(:all)
-                %td= child.start
-                %td= child.send(:end)
+                %th ID
+                %th Locales
+                %th Start
+                %th End
+            %tbody
+              - @announcement.child_announcements.each do |child|
+                %tr
+                  %td= link_to "##{child.id}", announcement_path(child)
+                  %td= child.locales.present? ? child.locales.map { |l| I18n.t("locales.#{l}") }.join(", ") : t(:all)
+                  %td= child.start
+                  %td= child.send(:end)
+        = link_to duplicate_announcement_path( @announcement ), class: "btn btn-default btn-sm" do
+          %i.fa.fa-plus
+          = t :create_a_translation_variant
       = link_to t(:back), announcements_path, class: "back crumb"
