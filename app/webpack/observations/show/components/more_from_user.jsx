@@ -1,9 +1,9 @@
 import _ from "lodash";
 import moment from "moment-timezone";
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import { Col } from "react-bootstrap";
-import SplitTaxon from "../../../shared/components/split_taxon";
+import Carousel from "../../../shared/components/carousel";
+import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
 
 const MoreFromUser = ( {
   observation,
@@ -11,6 +11,8 @@ const MoreFromUser = ( {
   showNewObservation,
   config
 } ) => {
+  const firstItemRef = useRef( null );
+
   if (
     !observation
     || !observation.user
@@ -58,70 +60,60 @@ const MoreFromUser = ( {
     moreEarlier.reverse( );
     observations = moreEarlier.concat( observations );
   }
+
+  const items = observations.map( ( o, i ) => {
+    const taxon = o.taxon
+      ? {
+        ...o.taxon,
+        default_photo: o.photo( ) ? {
+          medium_url: o.photo( "medium" ),
+          square_url: o.photo( "square" ) || o.photo( "medium" )
+        } : undefined
+      }
+      : { id: o.id, name: I18n.t( "unknown" ), iconic_taxon_name: "unknown" };
+    return (
+      <TaxonThumbnail
+        key={`more-obs-${o.uuid}`}
+        ref={i === 0 ? firstItemRef : null}
+        taxon={taxon}
+        urlForTaxon={( ) => `/observations/${o.id}`}
+        onClick={e => loadObservationCallback( e, o )}
+        config={config}
+      />
+    );
+  } );
+
   return (
     <div className="MoreFromUser">
-      <Col xs={12}>
-        <h3>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "more_from_x", { x: `<a href="/people/${userLogin}">${userLogin}</a>` } )
-            }}
-          />
-          <div className="links">
-            <span className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" )} ) }</span>
-            <a href={`/observations?user_id=${userLogin}&place_id=any&verifiable=any`}>
-              { I18n.t( "all" ) }
-            </a>
-            { dateObserved ? (
-              <span>
-                <span className="separator">·</span>
-                <a href={`/observations?user_id=${userLogin}&on=${onDate}&place_id=any&verifiable=any`}>
-                  { dateObserved.format( I18n.t( "momentjs.date_long" ) ) }
-                </a>
-                <span className="separator">·</span>
-                <a href={`/calendar/${userLogin}/${calendarDate}`}>
-                  { I18n.t( "calendar" ) }
-                </a>
-              </span>
-            ) : "" }
-          </div>
-        </h3>
-      </Col>
-      <div className="list d-flex">
-        { observations.map( o => {
-          let taxonJSX = I18n.t( "unknown" );
-          if ( o.taxon && o.taxon !== null ) {
-            taxonJSX = (
-              <SplitTaxon noParens taxon={o.taxon} url={`/observations/${o.id}`} user={config.currentUser} />
-            );
-          }
-          const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name
-            ? o.taxon.iconic_taxon_name.toLowerCase( )
-            : "unknown";
-          return (
-            <Col xs={2} key={`more-obs-${o.uuid}`} className="d-flex">
-              <div className="obs d-flex flex-column">
-                <div className="photo">
-                  <a
-                    href={`/observations/${o.id}`}
-                    style={o.photo( )
-                      ? { backgroundImage: `url( '${o.photo( "medium" )}' )` }
-                      : null
-                    }
-                    className={`${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
-                    onClick={e => { loadObservationCallback( e, o ); }}
-                  >
-                    <i className={`taxon-image icon icon-iconic-${iconicTaxonName}`} />
-                  </a>
-                </div>
-                <div className="caption">
-                  { taxonJSX }
-                </div>
-              </div>
-            </Col>
-          );
-        } ) }
-      </div>
+      <h3>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "more_from_x", { x: `<a href="/people/${userLogin}">${userLogin}</a>` } )
+          }}
+        />
+        <div className="links">
+          <span className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" )} ) }</span>
+          <a href={`/observations?user_id=${userLogin}&place_id=any&verifiable=any`}>
+            { I18n.t( "all" ) }
+          </a>
+          { dateObserved ? (
+            <span>
+              <span className="separator">·</span>
+              <a href={`/observations?user_id=${userLogin}&on=${onDate}&place_id=any&verifiable=any`}>
+                { dateObserved.format( I18n.t( "momentjs.date_long" ) ) }
+              </a>
+              <span className="separator">·</span>
+              <a href={`/calendar/${userLogin}/${calendarDate}`}>
+                { I18n.t( "calendar" ) }
+              </a>
+            </span>
+          ) : "" }
+        </div>
+      </h3>
+      <Carousel
+        items={items}
+        itemRef={firstItemRef}
+      />
     </div>
   );
 };

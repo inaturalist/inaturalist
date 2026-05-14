@@ -30,6 +30,10 @@
   font-size: 100px;
   overflow: hidden;
   position: relative;
+}
+
+/* Nested for specificity (0,2,0) to win over .bootstrap a { color: inherit } at (0,1,1) */
+.taxon-thumbnail .taxon-thumbnail__photo {
   color: #337ab7;
   text-decoration: none;
 }
