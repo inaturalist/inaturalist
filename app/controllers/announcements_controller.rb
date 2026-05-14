@@ -148,15 +148,15 @@ class AnnouncementsController < ApplicationController
 
   def load_parent_announcement_options
     candidates = Announcement.
+      includes( :sites ).
       where( parent_announcement_id: nil ).
       where( '"end" > ?', 30.days.ago ).
       order( id: :desc ).
       limit( 100 )
     candidates = candidates.where.not( id: @announcement.id ) if @announcement&.persisted?
+    candidates = candidates.to_a
     unless current_user.is_admin? || current_user_site_ids.blank?
-      candidates = candidates.
-        joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id" ).
-        where( "announcements_sites.site_id IS NULL OR announcements_sites.site_id IN (?)", current_user_site_ids )
+      candidates = candidates.select {| a | a.site_ids.blank? || ( a.site_ids & current_user_site_ids ).any? }
     end
     @parent_announcement_options = candidates.map {| a | [a.dropdown_label, a.id] }
   end
