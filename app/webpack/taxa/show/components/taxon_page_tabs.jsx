@@ -261,7 +261,7 @@ class TaxonPageTabs extends React.Component {
         <div id="main-tabs-content" className="tab-content">
           <div
             role="tabpanel"
-            className={`tab-pane ${chosenTab === "map" ? "active" : ""} flex`}
+            className={`tab-pane ${chosenTab === "map" ? "active" : ""} vanilla`}
             id="map-tab"
           >
             <LazyLoad

@@ -9,6 +9,11 @@
   line-height: 20px;
   color: #333;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 85px;
+    height: 85px;
+  }
 }
 
 .taxon-photo :global(.CoverImage) {

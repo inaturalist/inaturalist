@@ -1,6 +1,9 @@
 .carousel {
   --carousel-slide-count: 1;
+  --carousel-current-slide-index: 0;
+  --carousel-current-slide-offset: calc(var(--carousel-current-slide-index) / var(--carousel-slide-count));
   --carousel-chunk-size: 1;
+  --carousel-item-gap: 5;
   width: 100%;
   clear: both;
 }
@@ -14,8 +17,7 @@
 .carousel__body {
   display: flex;
   align-items: center;
-  gap: 10px;
-  /* width: fit-content; */
+  gap: 5px;
 }
 
 .carousel__slides {
@@ -27,13 +29,14 @@
   display: flex;
   width: calc(var(--carousel-slide-count) * 100%);
   transition: transform 0.3s ease-in-out;
+  transform: translateX(calc(var(--carousel-current-slide-offset) * -100%));
 }
 
 .carousel__slide {
   display: grid;
   grid-template-columns: repeat(var(--carousel-chunk-size), 1fr);
   width: 100%;
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
 }
 

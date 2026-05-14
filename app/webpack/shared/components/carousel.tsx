@@ -5,8 +5,7 @@ import _ from "lodash";
 import css from "./carousel.module.css";
 
 const DEFAULT_CHUNK = 6;
-const CAROUSEL_ITEM_GAP = 10; // must match --carousel-item-gap in carousel.module.css
-const NAV_BTN_WIDTH = 40; // must match width in carousel.module.css
+const CAROUSEL_ITEM_GAP = 5;
 
 export interface CarouselProps {
   items: React.ReactNode[];
@@ -24,7 +23,7 @@ const calculateChunkSize = (
   availableWidth: number,
   itemWidth: number
 ) => ( availableWidth && itemWidth
-  ? Math.floor( ( availableWidth + CAROUSEL_ITEM_GAP ) / ( itemWidth + CAROUSEL_ITEM_GAP ) )
+  ? Math.floor( availableWidth / ( itemWidth + CAROUSEL_ITEM_GAP ) )
   : DEFAULT_CHUNK );
 
 const Carousel = ( {
@@ -40,6 +39,7 @@ const Carousel = ( {
   const [currentIndex, setCurrentIndex] = useState( 0 );
   const [chunkSize, setChunkSize] = useState<number | null>( DEFAULT_CHUNK );
   const itemWidthRef = useRef<number>( 0 );
+  const slidesRef = useRef<HTMLDivElement>( null );
 
   const link = url && (
     <a href={url} className="readmore">
@@ -47,16 +47,15 @@ const Carousel = ( {
     </a>
   );
 
-  const hasNav = items.length > 1;
-
   const handleResize = useCallback( () => {
-    const measuredWidth = itemRef?.current?.getBoundingClientRect().width || 0;
-    if ( measuredWidth > 0 ) {
-      itemWidthRef.current = measuredWidth;
+    if ( !items.length ) return;
+    const itemWidth = itemRef?.current?.getBoundingClientRect().width || 0;
+    if ( itemWidth > 0 ) {
+      itemWidthRef.current = itemWidth;
     }
-    const navSpace = hasNav ? 2 * ( NAV_BTN_WIDTH + CAROUSEL_ITEM_GAP ) : 0;
-    setChunkSize( calculateChunkSize( window.innerWidth - navSpace, itemWidthRef.current ) );
-  }, [] );
+    const slidesWidth = slidesRef.current?.getBoundingClientRect().width || 0;
+    setChunkSize( calculateChunkSize( slidesWidth, itemWidthRef.current ) );
+  }, [items.length] );
 
   useEffect( () => {
     window.addEventListener( "resize", handleResize );
@@ -75,21 +74,15 @@ const Carousel = ( {
     return chunks;
   }, [chunkSize, items] );
 
-  const itemWidthStyle = {
+  const styleVariables = {
     "--carousel-slide-count": slides.length || 1,
-    ...( chunkSize ? {
-      "--carousel-chunk-size": `${chunkSize}`
-    } : {} )
-  } as React.CSSProperties;
-
-  const trackStyle = {
-    transform: slides.length > 1
-      ? `translateX(-${( currentIndex / slides.length ) * 100}%)`
-      : undefined
+    "--carousel-current-slide-index": `${currentIndex}`,
+    "--carousel-chunk-size": `${chunkSize}`,
+    "--carousel-item-gap": `${CAROUSEL_ITEM_GAP}`
   } as React.CSSProperties;
 
   return (
-    <div className={`${css.carousel}${className ? ` ${className}` : ""}`} style={itemWidthStyle}>
+    <div className={`${css.carousel}${className ? ` ${className}` : ""}`} style={styleVariables}>
       { title && (
         <h2 className={css.carousel__title}>
           { title }
@@ -101,7 +94,7 @@ const Carousel = ( {
         <p className="text-muted text-center">{ noContent }</p>
       ) }
       <div className={css.carousel__body}>
-        { hasNav && (
+        { items.length > 0 && (
           <button
             type="button"
             className={`btn ${css.carousel__navbtn}`}
@@ -112,8 +105,8 @@ const Carousel = ( {
             ❮
           </button>
         ) }
-        <div className={css.carousel__slides}>
-          <div className={css.carousel__track} style={trackStyle}>
+        <div className={css.carousel__slides} ref={slidesRef}>
+          <div className={css.carousel__track}>
             { slides.map( ( slide, index ) => (
               <div
                 key={React.isValidElement( slide[0] ) ? String( slide[0].key ) : index}
@@ -124,7 +117,7 @@ const Carousel = ( {
             ) ) }
           </div>
         </div>
-        { hasNav && (
+        { items.length > 0 && (
           <button
             type="button"
             className={`btn ${css.carousel__navbtn}`}
