@@ -405,6 +405,8 @@ class Announcement < ApplicationRecord
       filtered
     end
 
+    # TODO: remove excludes_non_site logic once the column is fully deprecated.
+    # This was a workaround now replaced by parent_announcement_id family grouping.
     if announcements.detect {| a | a.site_ids.present? && a.excludes_non_site }
       announcements = announcements.select {| a | a.site_ids.present? }
     end
