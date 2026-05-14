@@ -11368,7 +11368,7 @@ CREATE INDEX index_users_on_curator_sponsor_id ON public.users USING btree (cura
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_users_on_email ON public.users USING btree (email);
+CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
 
 
 --
@@ -12194,6 +12194,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260319212735'),
 ('20260326000001'),
 ('20260326000002'),
-('20260406164708');
+('20260406164708'),
+('20260514211433');
 
 
