@@ -207,7 +207,8 @@ describe Announcement do
       a = create(
         :announcement,
         target_logged_in: Announcement::YES,
-        include_donor_start_date: 10.days.ago, include_donor_end_date: 1.day.ago )
+        include_donor_start_date: 10.days.ago, include_donor_end_date: 1.day.ago
+      )
       expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be false
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be true
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 20.days.ago ).user ) ).to be false
@@ -726,8 +727,8 @@ describe Announcement do
       it "excludes announcements when exclude_ip_countries matches IP country and no ip_countries are set" do
         annc = create :announcement, exclude_ip_countries: ["US"], ip_countries: []
         test_ip = "1.2.3.4"
-        allow( INatAPIService ).to receive( :geoip_lookup )
-          .and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+        allow( INatAPIService ).to receive( :geoip_lookup ).
+          and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
 
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
@@ -738,8 +739,8 @@ describe Announcement do
         # Both include and exclude contain "US" → exclude wins
         annc = create :announcement, ip_countries: ["US", "CA"], exclude_ip_countries: ["US"]
         test_ip = "1.2.3.4"
-        allow( INatAPIService ).to receive( :geoip_lookup )
-          .and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+        allow( INatAPIService ).to receive( :geoip_lookup ).
+          and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
 
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
@@ -750,8 +751,8 @@ describe Announcement do
         # Include has "US", exclude has "PL" → allowed
         annc = create :announcement, ip_countries: ["US"], exclude_ip_countries: ["PL"]
         test_ip = "1.2.3.4"
-        allow( INatAPIService ).to receive( :geoip_lookup )
-          .and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+        allow( INatAPIService ).to receive( :geoip_lookup ).
+          and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
 
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
