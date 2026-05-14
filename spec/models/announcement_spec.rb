@@ -565,6 +565,30 @@ describe Announcement do
     end
   end
 
+  describe "body_preview" do
+    it "strips HTML and truncates" do
+      a = create :announcement, body: "<b>Hello</b> <i>world</i> this is a long announcement body"
+      expect( a.body_preview ).to eq( "Hello world this is a long announcement body" )
+    end
+
+    it "truncates to specified length" do
+      a = create :announcement, body: "<p>A very long announcement body text</p>"
+      expect( a.body_preview( 20 ) ).to eq( "A very long annou..." )
+    end
+  end
+
+  describe "dropdown_label" do
+    it "includes id, body preview, and locales" do
+      a = create :announcement, body: "<b>Test body</b>", locales: ["es", "fr"]
+      expect( a.dropdown_label ).to eq( "##{a.id} - Test body (es, fr)" )
+    end
+
+    it "shows all locales when no locales set" do
+      a = create :announcement, body: "Simple body"
+      expect( a.dropdown_label ).to include( "(all locales)" )
+    end
+  end
+
   describe "duplicate_as_user" do
     it "links duplicate as child of original" do
       original = create :announcement
@@ -701,6 +725,26 @@ describe Announcement do
       result_ids = Announcement.active( user_agent_client: Announcement::INATRN ).map( &:id )
       expect( result_ids ).to include( inatrn.id )
       expect( result_ids ).not_to include( ios.id )
+    end
+
+    it "returns all mobile placements when filtering by mobile" do
+      mobile_home = create :announcement, placement: Announcement::MOBILE_HOME
+      dashboard = create :announcement, placement: Announcement::USERS_DASHBOARD
+      result_ids = Announcement.active( placement: "mobile" ).map( &:id )
+      expect( result_ids ).to include( mobile_home.id )
+      expect( result_ids ).not_to include( dashboard.id )
+    end
+
+    # This behavior is a previous workaround for displaying
+    # localized versions of announcements. The setting has been removed
+    # from the UI, but we are still supporting the logic for now.
+    it "hides all non-site announcements when excludes_non_site is set" do
+      site = create :site
+      site_annc = create :announcement, excludes_non_site: true, sites: [site]
+      no_site_annc = create :announcement
+      result_ids = Announcement.active( site: site ).map( &:id )
+      expect( result_ids ).to include( site_annc.id )
+      expect( result_ids ).not_to include( no_site_annc.id )
     end
   end
 
