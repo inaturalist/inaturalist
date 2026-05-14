@@ -316,19 +316,38 @@ describe AnnouncementsController do
   end
 
   describe "load_parent_announcement_options" do
-    it "includes multi-site announcements when the site admin's site is any of the associated sites" do
+    let( :site ) { create :site }
+    let( :user ) { create :user }
+    before do
       create( :site ) unless Site.default
-      site_a = create :site
-      site_b = create :site
-      user = create :user
-      SiteAdmin.create!( site: site_b, user: user )
-      multi_site_announcement = create :announcement, sites: [site_a, site_b]
-      non_site_announcement = create :announcement, sites: [site_a]
+      SiteAdmin.create!( site: site, user: user )
       sign_in user
-      get :new, params: { inat_site_id: site_b.id }
+    end
+
+    it "includes announcements from any site" do
+      other_site = create :site
+      other_site_announcement = create :announcement, sites: [other_site]
+      get :new, params: { inat_site_id: site.id }
       option_ids = assigns( :parent_announcement_options ).map( &:last )
-      expect( option_ids ).to include( multi_site_announcement.id )
-      expect( option_ids ).not_to include( non_site_announcement.id )
+      expect( option_ids ).to include( other_site_announcement.id )
+    end
+
+    it "excludes child announcements" do
+      parent = create :announcement
+      child = create :announcement, parent_announcement_id: parent.id
+      get :new, params: { inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( parent.id )
+      expect( option_ids ).not_to include( child.id )
+    end
+
+    it "excludes announcements that ended more than 30 days ago" do
+      old_announcement = create :announcement, start: 60.days.ago, end: 31.days.ago
+      recent_announcement = create :announcement
+      get :new, params: { inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( recent_announcement.id )
+      expect( option_ids ).not_to include( old_announcement.id )
     end
   end
 end
