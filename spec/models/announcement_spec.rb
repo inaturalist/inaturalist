@@ -627,6 +627,19 @@ describe Announcement do
         expect( result_ids ).not_to include( parent.id )
       end
     end
+
+    it "falls back to parent when best locale match is filtered out by targeting" do
+      parent = create :announcement
+      child_es = create :announcement,
+        locales: ["es"],
+        parent_announcement_id: parent.id,
+        target_logged_in: Announcement::YES
+      I18n.with_locale( :es ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( parent.id )
+        expect( result_ids ).not_to include( child_es.id )
+      end
+    end
   end
 
   describe "active_in_placement" do

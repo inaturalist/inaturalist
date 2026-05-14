@@ -399,9 +399,7 @@ class Announcement < ApplicationRecord
     families = all_announcements.group_by {| a | a.parent_announcement_id || a.id }
 
     announcements = families.flat_map do | _key, group |
-      filtered = pick_best_locale_matches( group, locale_str, lang_only )
-
-      filtered = filtered.select {| a | a.targeted_to_user?( user ) && !a.dismissed_by?( user ) }
+      filtered = group.select {| a | a.targeted_to_user?( user ) && !a.dismissed_by?( user ) }
 
       if options[:ip]
         filtered = if geoip_country.present?
@@ -413,6 +411,8 @@ class Announcement < ApplicationRecord
 
       site_specific = filtered.detect {| a | a.site_ids.present? && a.excludes_non_site }
       filtered = filtered.select {| a | a.site_ids.present? } if site_specific
+
+      filtered = pick_best_locale_matches( filtered, locale_str, lang_only )
 
       filtered
     end
