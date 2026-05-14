@@ -47,6 +47,7 @@ export interface TaxonThumbnailProps {
   overlay?: React.ReactNode;
   config?: { currentUser?: unknown; [key: string]: unknown };
   noInactive?: boolean;
+  style?: React.CSSProperties;
 }
 
 const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( props, ref ) => {
@@ -64,7 +65,8 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
     urlForTaxon = defaultUrlForTaxon,
     overlay,
     config = {},
-    noInactive
+    noInactive,
+    style
   } = props;
 
   let mediumURL: string | undefined;
@@ -103,7 +105,7 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
   const rootClassName = `${classes.taxonThumbnail}${className ? ` ${className}` : ""}`;
 
   return (
-    <div ref={innerRef} className={rootClassName}>
+    <div ref={innerRef} className={rootClassName} style={style}>
       { badge }
       <a href={urlForTaxon( taxon )} onClick={onClick} className={classes.photo}>
         { mediumURL ? (

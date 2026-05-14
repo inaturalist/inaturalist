@@ -1,9 +1,4 @@
 .carousel {
-  --carousel-slide-count: 1;
-  --carousel-current-slide-index: 0;
-  --carousel-current-slide-offset: calc(var(--carousel-current-slide-index) / var(--carousel-slide-count));
-  --carousel-chunk-size: 1;
-  --carousel-item-gap: 5;
   width: 100%;
   clear: both;
 }
@@ -20,24 +15,25 @@
   gap: 5px;
 }
 
-.carousel__slides {
-  flex: 1;
-  overflow: hidden;
-}
-
 .carousel__track {
+  flex: 1;
   display: flex;
-  width: calc(var(--carousel-slide-count) * 100%);
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(calc(var(--carousel-current-slide-offset) * -100%));
+  gap: 5px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
-.carousel__slide {
-  display: grid;
-  grid-template-columns: repeat(var(--carousel-chunk-size), 1fr);
-  width: 100%;
-  gap: 5px;
-  justify-content: center;
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .carousel__navbtn {

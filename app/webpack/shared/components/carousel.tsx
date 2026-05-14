@@ -1,11 +1,7 @@
 import React, {
-  useState, useEffect, useRef, useMemo, useCallback
+  useState, useEffect, useRef, useCallback
 } from "react";
-import _ from "lodash";
 import css from "./carousel.module.css";
-
-const DEFAULT_CHUNK = 6;
-const CAROUSEL_ITEM_GAP = 5;
 
 export interface CarouselProps {
   items: React.ReactNode[];
@@ -19,13 +15,6 @@ export interface CarouselProps {
   className?: string;
 }
 
-const calculateChunkSize = (
-  availableWidth: number,
-  itemWidth: number
-) => ( availableWidth && itemWidth
-  ? Math.floor( availableWidth / ( itemWidth + CAROUSEL_ITEM_GAP ) )
-  : DEFAULT_CHUNK );
-
 const Carousel = ( {
   title,
   items,
@@ -36,10 +25,10 @@ const Carousel = ( {
   noContent,
   className
 }: CarouselProps ) => {
-  const [currentIndex, setCurrentIndex] = useState( 0 );
-  const [chunkSize, setChunkSize] = useState<number | null>( DEFAULT_CHUNK );
+  const [activeIndex, setActiveIndex] = useState( 0 );
+  const [trackWidth, setTrackWidth] = useState( 0 );
   const itemWidthRef = useRef<number>( 0 );
-  const slidesRef = useRef<HTMLDivElement>( null );
+  const trackRef = useRef<HTMLDivElement>( null );
 
   const link = url && (
     <a href={url} className="readmore">
@@ -47,42 +36,57 @@ const Carousel = ( {
     </a>
   );
 
-  const handleResize = useCallback( () => {
-    if ( !items.length ) return;
-    const itemWidth = itemRef?.current?.getBoundingClientRect().width || 0;
-    if ( itemWidth > 0 ) {
-      itemWidthRef.current = itemWidth;
-    }
-    const slidesWidth = slidesRef.current?.getBoundingClientRect().width || 0;
-    setChunkSize( calculateChunkSize( slidesWidth, itemWidthRef.current ) );
-  }, [items.length] );
+  const allItems = finalItem ? [...items, finalItem] : items;
 
   useEffect( () => {
-    window.addEventListener( "resize", handleResize );
-    handleResize();
-    return () => window.removeEventListener( "resize", handleResize );
-  }, [handleResize] );
+    if ( trackRef.current ) setTrackWidth( trackRef.current.getBoundingClientRect().width );
+  }, [] );
 
-  const slides = useMemo( () => {
-    if ( !chunkSize ) return [];
+  useEffect( () => {
+    const measured = itemRef?.current?.getBoundingClientRect().width || 0;
+    if ( measured > 0 ) itemWidthRef.current = measured;
+  }, [itemRef, items.length] );
 
-    const chunks = _.chunk( items, chunkSize );
-    if ( items.length % chunkSize !== 0 && finalItem ) {
-      chunks[chunks.length - 1].push( finalItem );
-    }
+  const scrollToIndex = useCallback( ( idx: number ) => {
+    const track = trackRef.current;
+    if ( !track ) return;
+    const item = track.children[idx] as HTMLElement;
+    if ( !item ) return;
+    const itemLeft = item.getBoundingClientRect().left - track.getBoundingClientRect().left;
+    const offset = track.scrollLeft + itemLeft;
+    track.scrollTo( { left: offset, behavior: "smooth" } );
+  }, [] );
 
-    return chunks;
-  }, [chunkSize, items] );
+  useEffect( () => {
+    const track = trackRef.current;
+    let raf: number;
+    const handleScroll = () => {
+      cancelAnimationFrame( raf );
+      raf = requestAnimationFrame( () => {
+        if ( !track ) return;
+        const trackLeft = track.getBoundingClientRect().left;
+        let closest = 0;
+        let minDist = Infinity;
+        Array.from( track.children ).forEach( ( child, i ) => {
+          const dist = Math.abs( child.getBoundingClientRect().left - trackLeft );
+          if ( dist < minDist ) { minDist = dist; closest = i; }
+        } );
+        setActiveIndex( closest );
+      } );
+    };
+    if ( track ) track.addEventListener( "scroll", handleScroll, { passive: true } );
+    return ( ) => {
+      if ( track ) track.removeEventListener( "scroll", handleScroll );
+      cancelAnimationFrame( raf );
+    };
+  }, [] );
 
-  const styleVariables = {
-    "--carousel-slide-count": slides.length || 1,
-    "--carousel-current-slide-index": `${currentIndex}`,
-    "--carousel-chunk-size": `${chunkSize}`,
-    "--carousel-item-gap": `${CAROUSEL_ITEM_GAP}`
-  } as React.CSSProperties;
+  const visibleCount = trackWidth && itemWidthRef.current
+    ? Math.ceil( trackWidth / itemWidthRef.current )
+    : allItems.length;
 
   return (
-    <div className={`${css.carousel}${className ? ` ${className}` : ""}`} style={styleVariables}>
+    <div className={`${css.carousel}${className ? ` ${className}` : ""}`}>
       { title && (
         <h2 className={css.carousel__title}>
           { title }
@@ -90,39 +94,40 @@ const Carousel = ( {
         </h2>
       ) }
       { description && <p>{ description }</p> }
-      { ( slides.length === 0 ) && (
+      { allItems.length === 0 && (
         <p className="text-muted text-center">{ noContent }</p>
       ) }
       <div className={css.carousel__body}>
-        { items.length > 0 && (
+        { allItems.length > 0 && (
           <button
             type="button"
             className={`btn ${css.carousel__navbtn}`}
-            disabled={currentIndex === 0}
-            onClick={( ) => setCurrentIndex( i => i - 1 )}
+            disabled={activeIndex === 0}
+            onClick={( ) => scrollToIndex( activeIndex - 1 )}
             title={I18n.t( "previous_taxon_short" )}
           >
             ❮
           </button>
         ) }
-        <div className={css.carousel__slides} ref={slidesRef}>
-          <div className={css.carousel__track}>
-            { slides.map( ( slide, index ) => (
-              <div
-                key={React.isValidElement( slide[0] ) ? String( slide[0].key ) : index}
-                className={css.carousel__slide}
-              >
-                { Math.abs( index - currentIndex ) <= 1 && slide }
-              </div>
-            ) ) }
-          </div>
+        <div className={css.carousel__track} ref={trackRef}>
+          { allItems.map( ( item, index ) => (
+            <div
+              key={React.isValidElement( item ) ? String( item.key ) : index}
+              className={css.carousel__item}
+              style={Math.abs( index - activeIndex ) > visibleCount && itemWidthRef.current
+                ? { width: itemWidthRef.current }
+                : undefined}
+            >
+              { Math.abs( index - activeIndex ) <= visibleCount && item }
+            </div>
+          ) ) }
         </div>
-        { items.length > 0 && (
+        { allItems.length > 0 && (
           <button
             type="button"
             className={`btn ${css.carousel__navbtn}`}
-            disabled={currentIndex >= slides.length - 1}
-            onClick={( ) => setCurrentIndex( i => i + 1 )}
+            disabled={activeIndex >= allItems.length - 1}
+            onClick={( ) => scrollToIndex( activeIndex + 1 )}
             title={I18n.t( "next_taxon_short" )}
           >
             ❯
