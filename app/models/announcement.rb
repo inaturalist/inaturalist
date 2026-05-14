@@ -54,10 +54,11 @@ class Announcement < ApplicationRecord
   YES_NO_ANY = [YES, NO, ANY].freeze
 
   belongs_to :user
-  belongs_to :parent_announcement, class_name: "Announcement", optional: true
+  belongs_to :parent_announcement, class_name: "Announcement", optional: true, inverse_of: :child_announcements
   has_and_belongs_to_many :sites
   has_many :announcement_impressions, dependent: :delete_all
-  has_many :child_announcements, class_name: "Announcement", foreign_key: :parent_announcement_id, dependent: :nullify
+  has_many :child_announcements, class_name: "Announcement", foreign_key: :parent_announcement_id, dependent: :nullify,
+    inverse_of: :parent_announcement
 
   validates_presence_of :placement, :start, :end, :body
   validate :valid_placement_clients
