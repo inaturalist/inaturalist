@@ -405,6 +405,9 @@ class Announcement < ApplicationRecord
       # dismissing any announcement in the group will hide all announcements in the group
       next [] if group.any? {| a | a.dismissed_by?( user ) }
 
+      # This filtering is done within the flat_map so that a dismissal will apply to
+      # all grouped announcements, even if the dismissal is on an announcement no
+      # longer targeting the user.
       filtered = group.select {| a | a.targeted_to_user?( user ) }
 
       if options[:ip]
