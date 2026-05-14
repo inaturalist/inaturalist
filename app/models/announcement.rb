@@ -393,7 +393,10 @@ class Announcement < ApplicationRecord
     families = all_announcements.group_by {| a | a.parent_announcement_id || a.id }
 
     announcements = families.flat_map do | _key, group |
-      filtered = group.select {| a | a.targeted_to_user?( user ) && !a.dismissed_by?( user ) }
+      # dismissing any announcement in the group will hide all announcements in the group
+      next [] if group.any? {| a | a.dismissed_by?( user ) }
+
+      filtered = group.select {| a | a.targeted_to_user?( user ) }
 
       if options[:ip]
         filtered = if geoip_country.present?

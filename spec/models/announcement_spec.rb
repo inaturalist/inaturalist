@@ -641,6 +641,21 @@ describe Announcement do
       end
     end
 
+    it "hides entire family when any variant has been dismissed by the user" do
+      user = create :user
+      parent = create :announcement, dismissible: true
+      child_es = create :announcement,
+        locales: ["es"],
+        parent_announcement_id: parent.id,
+        dismissible: true
+      child_es.update( dismiss_user_ids: [user.id] )
+      I18n.with_locale( :es ) do
+        result_ids = Announcement.active( user: user ).map( &:id )
+        expect( result_ids ).not_to include( parent.id )
+        expect( result_ids ).not_to include( child_es.id )
+      end
+    end
+
     it "does not duplicate announcements associated with multiple sites" do
       site_a = create :site
       site_b = create :site
