@@ -41,6 +41,13 @@ class AnnouncementsController < ApplicationController
   end
 
   def show
+    @family_root = @announcement.parent_announcement || @announcement
+    @translation_variants = if @announcement.parent_announcement_id.present?
+      [@family_root] + @family_root.child_announcements.where.not( id: @announcement.id ).order( :id )
+    else
+      @announcement.child_announcements.order( :id )
+    end
+
     respond_to do | format |
       format.html do
         if params[:body]
