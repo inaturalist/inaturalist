@@ -55,13 +55,18 @@ class WikipediaService < MetaService
 
   def summary_from_parsed( parsed )
     hxml = Nokogiri::HTML( HTMLEntities.new.decode( parsed.at( "text" ).try( :inner_text ) ) )
-    hxml.search( "table" ).remove
+    %w[
+      style link script noscript table
+      .hatnote .ambox .mbox .tmbox .ombox .cmbox .fmbox
+      .dablink .rellink .navbox .vertical-navbox .metadata
+      .noprint .infobox .sidebar .mw-editsection .navbar
+      .taxobox .taxobox_v3 table.infobox
+    ].each {| selector | hxml.search( selector ).remove }
     hxml.search( "//comment()" ).remove
     # Remove all elements that aren't displayed
     hxml.search( "//*[contains(@style,'display:none')]/text()" ).remove
-    summary = ( hxml.search( "//p" ).detect do | node |
-      !node.inner_html.strip.blank?
-    end || hxml ).inner_html.to_s.strip
+    summary_node = hxml.search( "//p" ).detect {| node | lead_paragraph?( node ) }
+    summary = ( summary_node || hxml ).inner_html.to_s.strip
     summary = sanitizer.sanitize( summary, tags: %w(p i em b strong) )
     summary.gsub! /\[.*?\]/, ""
     summary
@@ -76,5 +81,22 @@ class WikipediaService < MetaService
 
   def sanitizer
     @sanitizer ||= Rails::Html::SafeListSanitizer.new
+  end
+
+  private
+
+  def lead_paragraph?( node )
+    classes = node["class"].to_s.split
+    return false if classes.intersect?( %w(noexcerpt mw-empty-elt) )
+
+    text = node.text.to_s.squish
+    return false if text.blank?
+    return false if css_fragment?( text )
+
+    true
+  end
+
+  def css_fragment?( text )
+    text.match?( /\A[.#][\w-]+/ ) || ( text.include?( "{" ) && text.include?( "}" ) )
   end
 end
