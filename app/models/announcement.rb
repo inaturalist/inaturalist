@@ -419,7 +419,8 @@ class Announcement < ApplicationRecord
       end
 
       filtered = if site
-        filtered.select {| a | a.site_ids.blank? || a.site_ids.include?( site.id ) }
+        site_specific = filtered.select {| a | a.site_ids.include?( site.id ) }
+        site_specific.any? ? site_specific : filtered.select {| a | a.site_ids.blank? }
       else
         filtered.select {| a | a.site_ids.blank? }
       end

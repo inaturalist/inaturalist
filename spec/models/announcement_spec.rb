@@ -606,14 +606,14 @@ describe Announcement do
 
   describe "active" do
     it "returns both locale-specific and global announcements when they are unrelated" do
-      _en_announcement = create :announcement, locales: ["en"]
+      en_announcement = create :announcement, locales: ["en"]
       es_announcement = create :announcement, locales: ["es"]
       global_announcement = create :announcement
       I18n.with_locale( :es ) do
         result_ids = Announcement.active.map( &:id )
         expect( result_ids ).to include( es_announcement.id )
         expect( result_ids ).to include( global_announcement.id )
-        expect( result_ids ).not_to include( _en_announcement.id )
+        expect( result_ids ).not_to include( en_announcement.id )
       end
     end
 
@@ -692,15 +692,17 @@ describe Announcement do
       end
     end
 
-    it "includes announcements matching the provided site" do
+    it "filters each family by site, keeping matching and global variants" do
       site_a = create :site
       site_b = create :site
       user = create :user, site: site_a
-      site_a_announcement = create :announcement, sites: [site_a]
-      site_b_announcement = create :announcement, sites: [site_b]
+      parent = create :announcement
+      child_site_a = create :announcement, sites: [site_a], parent_announcement_id: parent.id
+      child_site_b = create :announcement, sites: [site_b], parent_announcement_id: parent.id
       result_ids = Announcement.active( user: user, site: site_a ).map( &:id )
-      expect( result_ids ).to include( site_a_announcement.id )
-      expect( result_ids ).not_to include( site_b_announcement.id )
+      expect( result_ids ).to include( child_site_a.id )
+      expect( result_ids ).not_to include( parent.id )
+      expect( result_ids ).not_to include( child_site_b.id )
     end
 
     it "filters by placement" do
