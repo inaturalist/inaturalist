@@ -265,12 +265,7 @@
           %p= t("#{s}.faq.#{key}_answer")
 
 -# ── iOS app banner ───────────────────────────────────────────
-= link_to "#{redirect_link_path(31)}?#{@header_utm}&utm_medium=owned_web&utm_content=sticky_footer_cta", class: "wv2-app-banner", "aria-label": "Download iNaturalist on the App Store" do
-  = image_tag "welcome_v2/app-icon.webp", class: "wv2-app-banner__icon", alt: ""
-  .wv2-app-banner__text
-    = image_tag "welcome_v2/inat-wordmark.webp", class: "wv2-app-banner__wordmark", alt: "iNaturalist"
-    %p.wv2-app-banner__tagline Discover nature around you
-  %span.wv2-app-banner__cta Use app
+= render "shared/ios_app_banner", utm_campaign_params: @header_utm
 
 - content_for :extrajs do
   = javascript_include_tag "welcome_v2"
