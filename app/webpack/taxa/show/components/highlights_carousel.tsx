@@ -1,13 +1,30 @@
 import React, { useRef } from "react";
-import PropTypes from "prop-types";
 import _ from "lodash";
 import ObservationsGridItem from "../../../shared/components/observations_grid_item";
 import Carousel from "../../../shared/components/carousel";
-import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
+import TaxonThumbnail, { Taxon } from "../../../shared/components/taxon_thumbnail";
 
 const ITEM_WIDTH = 200;
 
-const HiglightsCarousel = ( {
+interface Observation {
+  id: number;
+  [key: string]: unknown;
+}
+
+interface Props {
+  title?: string;
+  description?: string | React.ReactNode;
+  url?: string;
+  taxa?: Taxon[];
+  observations?: Observation[];
+  showNewTaxon?: ( taxon: Taxon ) => void;
+  captionForObservation?: ( obs: Observation ) => React.ReactNode;
+  captionForTaxon?: ( taxon: Taxon ) => React.ReactNode;
+  urlForTaxon?: ( taxon: Taxon ) => string;
+  config?: { currentUser?: unknown; [key: string]: unknown };
+}
+
+const HighlightsCarousel = ( {
   title,
   description,
   url,
@@ -17,9 +34,9 @@ const HiglightsCarousel = ( {
   captionForTaxon,
   captionForObservation,
   urlForTaxon,
-  config
-} ) => {
-  const firstItemRef = useRef( null );
+  config = {}
+}: Props ) => {
+  const firstItemRef = useRef<HTMLDivElement>( null );
 
   if ( !taxa && !observations ) {
     return (
@@ -33,7 +50,7 @@ const HiglightsCarousel = ( {
     );
   }
 
-  let items;
+  let items: React.ReactElement[];
   if ( taxa ) {
     items = taxa.map( ( taxon, i ) => (
       <TaxonThumbnail
@@ -60,7 +77,7 @@ const HiglightsCarousel = ( {
         style={{ width: ITEM_WIDTH }}
       >
         <ObservationsGridItem
-          observation={obs}
+          observation={obs as any}
           controls={captionForObservation ? captionForObservation( obs ) : null}
           user={config.currentUser}
         />
@@ -80,17 +97,4 @@ const HiglightsCarousel = ( {
   );
 };
 
-HiglightsCarousel.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.oneOfType( [PropTypes.string, PropTypes.element] ),
-  url: PropTypes.string,
-  taxa: PropTypes.array,
-  observations: PropTypes.array,
-  showNewTaxon: PropTypes.func,
-  captionForObservation: PropTypes.func,
-  captionForTaxon: PropTypes.func,
-  urlForTaxon: PropTypes.func,
-  config: PropTypes.object
-};
-
-export default HiglightsCarousel;
+export default HighlightsCarousel;

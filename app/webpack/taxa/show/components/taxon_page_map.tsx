@@ -1,10 +1,33 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import PropTypes from "prop-types";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import ErrorBoundary from "../../../shared/components/error_boundary";
 import { urlForTaxon, taxonLayerForTaxon } from "../../shared/util";
+
+interface Bounds {
+  swlng: number;
+  swlat: number;
+  nelng: number;
+  nelat: number;
+}
+
+interface Taxon {
+  id: number;
+  name: string;
+  preferred_common_name?: string;
+  [key: string]: unknown;
+}
+
+interface Props {
+  taxon?: Taxon;
+  bounds?: Bounds;
+  latitude?: number;
+  longitude?: number;
+  zoomLevel?: number;
+  config?: { currentUser?: unknown; [key: string]: unknown };
+  updateCurrentUser?: ( updates: unknown ) => void;
+}
 
 const TaxonPageMap = ( {
   taxon,
@@ -12,27 +35,29 @@ const TaxonPageMap = ( {
   latitude,
   longitude,
   zoomLevel,
-  config,
+  config = {},
   updateCurrentUser
-} ) => {
-  let loading;
-  let taxonMap;
+}: Props ) => {
+  let loading: React.ReactNode;
+  let taxonMap: React.ReactNode;
   if ( taxon ) {
-    const t = Object.assign( { }, taxon, {
-      forced_name: ReactDOMServer.renderToString(
-        <SplitTaxon
-          taxon={taxon}
-          user={config.currentUser}
-          noParens
-          iconLink
-          url={urlForTaxon( taxon )}
-        />
-      )
-    } );
+    const t: Taxon & { forced_name?: string; common_name?: { name: string } } = Object.assign(
+      { },
+      taxon,
+      {
+        forced_name: ReactDOMServer.renderToString(
+          <SplitTaxon
+            taxon={taxon}
+            user={config.currentUser}
+            noParens
+            iconLink
+            url={urlForTaxon( taxon )}
+          />
+        )
+      }
+    );
     if ( t.preferred_common_name ) {
-      t.common_name = {
-        name: t.preferred_common_name
-      };
+      t.common_name = { name: t.preferred_common_name };
     }
     taxonMap = (
       <ErrorBoundary key="taxa-show-map">
@@ -68,16 +93,6 @@ const TaxonPageMap = ( {
       { taxonMap }
     </div>
   );
-};
-
-TaxonPageMap.propTypes = {
-  taxon: PropTypes.object,
-  bounds: PropTypes.object,
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
-  zoomLevel: PropTypes.number,
-  config: PropTypes.object,
-  updateCurrentUser: PropTypes.func
 };
 
 export default TaxonPageMap;

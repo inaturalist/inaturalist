@@ -563,7 +563,7 @@ export function fetchTrending( ) {
     const { testingApiV2 } = state.config;
     const params = {
       ...defaultObservationParams( getState( ) ),
-      d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" ),
+      d1: moment( ).subtract( 10, "month" ).format( "YYYY-MM-DD" ),
       taxon_is_active: true
     };
     if ( testingApiV2 ) {

@@ -10,7 +10,7 @@ import { fetchRecent, fetchWanted } from "../../shared/ducks/taxon";
 function mapStateToProps( state ) {
   const trendingParams = Object.assign( { }, defaultObservationParams( state ), {
     view: "species",
-    d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" )
+    d1: moment( ).subtract( 10, "month" ).format( "YYYY-MM-DD" )
   } );
   let discoveries;
   if ( state.taxon.recent ) {
