@@ -117,7 +117,7 @@ class TaxonAutocomplete extends React.Component {
       if ( r.frequencyScore ) {
         subtitles.push( I18n.t( "expected_nearby" ) );
       }
-      extraSubtitle = ( <span className="subtitle vision">{ subtitles.join( " / " ) }</span> );
+      extraSubtitle = ( <span className="subtitle vision">{ subtitles.join( " & " ) }</span> );
     }
     return ReactDOMServer.renderToString(
       <div className={className} data-taxon-id={r.id}>
