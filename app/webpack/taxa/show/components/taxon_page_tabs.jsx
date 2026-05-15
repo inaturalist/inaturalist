@@ -19,6 +19,7 @@ import HighlightsTabContainer from "../containers/highlights_tab_container";
 import SimilarTabContainer from "../containers/similar_tab_container";
 import IdentificationsTabContainer from "../containers/identifications_tab_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
+import TabDrawer from "../../../shared/components/tab_drawer";
 
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
@@ -54,7 +55,8 @@ class TaxonPageTabs extends React.Component {
       taxon,
       chosenTab,
       currentUser,
-      showPhotoChooserModal
+      showPhotoChooserModal,
+      choseTab
     } = this.props;
     const { test } = $.deparam.querystring( );
     const speciesOrLower = taxon && taxon.rank_level <= 10;
@@ -65,7 +67,77 @@ class TaxonPageTabs extends React.Component {
       : 0;
     const isCurator = currentUser?.roles.indexOf( "curator" ) >= 0 || currentUser?.roles.indexOf( "admin" ) >= 0;
     const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
+    const tabLabels = {
+      map: I18n.t( "map" ),
+      articles: I18n.t( "about" ),
+      highlights: I18n.t( "trends" ),
+      interactions: I18n.t( "interactions" ),
+      taxonomy: I18n.t( "taxonomy" ),
+      status: I18n.t( "status" ),
+      similar: speciesOrLower ? I18n.t( "similar_species" ) : I18n.t( "similar_taxa" ),
+      identifications: I18n.t( "identifications" )
+    };
+    const drawerItems = [
+      { value: "map", label: tabLabels.map },
+      { value: "articles", label: tabLabels.articles },
+      ...( !speciesOrLower ? [{ value: "highlights", label: tabLabels.highlights }] : [] ),
+      ...( speciesOrLower && test === "interactions"
+        ? [{ value: "interactions", label: tabLabels.interactions }] : [] ),
+      { value: "taxonomy", label: tabLabels.taxonomy },
+      ...( speciesOrLower ? [{ value: "status", label: tabLabels.status }] : [] ),
+      ...( genusOrSpecies ? [{ value: "similar", label: tabLabels.similar }] : [] ),
+      ...( currentUser?.canViewHelpfulIDTips( ) && speciesOrLower
+        ? [{ value: "identifications", label: tabLabels.identifications }] : [] )
+    ];
     if ( currentUser?.privilegedWith( "interaction" ) ) {
+      drawerItems.push( { separator: true } );
+      drawerItems.push( {
+        href: `/taxa/${taxon.id}/flags/new`,
+        label: I18n.t( "flag_for_curation" ),
+        icon: "fa-flag"
+      } );
+      if ( flagsCount > 0 ) {
+        drawerItems.push( {
+          href: `/taxa/${taxon.id}/flags`,
+          label: `${I18n.t( "view_flags" )} (${flagsCount})`,
+          icon: "fa-flag-checkered"
+        } );
+      }
+      if ( taxon.photos_locked && !isAdmin ) {
+        drawerItems.push( {
+          label: I18n.t( "photos_locked" ),
+          icon: "fa-picture-o"
+        } );
+      } else if ( !currentUser.content_creation_restrictions ) {
+        drawerItems.push( {
+          onClick: ( ) => showPhotoChooserModal( ),
+          label: I18n.t( "edit_photos" ),
+          icon: "fa-picture-o"
+        } );
+      }
+      if ( isCurator && taxon.rank_level <= 10 ) {
+        drawerItems.push( taxon.atlas_id ? {
+          href: `/atlases/${taxon.atlas_id}`,
+          label: I18n.t( "edit_atlas" ),
+          icon: "fa-globe"
+        } : {
+          href: `/atlases/new?taxon_id=${taxon.id}`,
+          label: I18n.t( "create_an_atlas" ),
+          icon: "fa-globe"
+        } );
+      }
+      if ( isCurator ) {
+        drawerItems.push( {
+          href: `/taxa/${taxon.id}/edit`,
+          label: I18n.t( "edit_taxon" ),
+          icon: "fa-pencil"
+        } );
+      }
+      drawerItems.push( {
+        href: `/taxa/${taxon.id}/history`,
+        label: I18n.t( "history" ),
+        icon: "fa-history"
+      } );
       let atlasItem;
       if ( isCurator && taxon.rank_level <= 10 ) {
         atlasItem = taxon.atlas_id ? (
@@ -192,6 +264,12 @@ class TaxonPageTabs extends React.Component {
     }
     return (
       <div className="TaxonPageTabs">
+        <TabDrawer
+          selectedValue={chosenTab}
+          selectedLabel={tabLabels[chosenTab]}
+          items={drawerItems}
+          onChange={choseTab}
+        />
         <Grid>
           <Row>
             <Col xs={12}>
@@ -261,12 +339,11 @@ class TaxonPageTabs extends React.Component {
         <div id="main-tabs-content" className="tab-content">
           <div
             role="tabpanel"
-            className={`tab-pane ${chosenTab === "map" ? "active" : ""}`}
+            className={`tab-pane ${chosenTab === "map" ? "active" : ""} vanilla`}
             id="map-tab"
           >
             <LazyLoad
               debounce={false}
-              height={630}
               offset={100}
             >
               <TaxonPageMapContainer />

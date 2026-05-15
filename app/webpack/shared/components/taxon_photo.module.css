@@ -1,0 +1,108 @@
+.taxon-photo {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 85px;
+    height: 85px;
+  }
+}
+
+.taxon-photo :global(.CoverImage) {
+  width: 100%;
+  height: 100%;
+}
+
+.taxon-photo__photo-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
+.taxon-photo:hover .taxon-photo__photo-hover {
+  opacity: 1;
+}
+
+.taxon-photo__modal-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.taxon-photo__modal-btn i {
+  font-size: 300%;
+  color: white;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.taxon-photo__taxon-label {
+  width: 100%;
+  padding: 6px 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 90%;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.taxon-photo__taxon-label a {
+  color: white;
+  text-decoration: none;
+}
+
+.taxon-photo__taxon-label a:hover {
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.taxon-photo__taxon-label :global(.SplitTaxon > .display-name),
+.taxon-photo__taxon-label :global(.display-names) {
+  display: block;
+}
+
+.taxon-photo__taxon-label :global(.display-name) {
+  font-size: 120%;
+}
+
+.taxon-photo__taxon-label :global(.secondary-name) {
+  font-style: italic;
+}
+
+.taxon-photo__info-link {
+  flex-shrink: 0;
+  color: white;
+  font-size: 130%;
+  line-height: 1;
+  pointer-events: all;
+  text-decoration: none;
+}

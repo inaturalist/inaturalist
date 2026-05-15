@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
-import TaxonThumbnail from "./taxon_thumbnail";
+import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
 
 const SimilarTab = ( {
   results,

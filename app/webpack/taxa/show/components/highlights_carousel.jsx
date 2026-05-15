@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import { Row, Col } from "react-bootstrap";
 import ObservationsGridItem from "../../../shared/components/observations_grid_item";
-import Carousel from "./carousel";
-import TaxonThumbnail from "./taxon_thumbnail";
+import Carousel from "../../../shared/components/carousel";
+import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
+
+const ITEM_WIDTH = 200;
 
 const HiglightsCarousel = ( {
   title,
@@ -18,75 +19,63 @@ const HiglightsCarousel = ( {
   urlForTaxon,
   config
 } ) => {
-  const photosPerSlide = 4;
-  const columnWidth = 3;
-  const thumbnailHeight = 200;
-  const keyBase = _.snakeCase( title );
+  const firstItemRef = useRef( null );
+
   if ( !taxa && !observations ) {
     return (
       <div>
         <h2>{ title }</h2>
         <p className="text-muted text-center">
-          <i className="fa fa-refresh fa-spin"></i> { I18n.t( "loading" ) }
+          <i className="fa fa-refresh fa-spin" />
+          { I18n.t( "loading" ) }
         </p>
       </div>
     );
   }
+
   let items;
   if ( taxa ) {
-    const chunkedTaxa = _.chunk( taxa, photosPerSlide );
-    items = (
-      _.map( chunkedTaxa, ( chunk, i ) => (
-        <Row key={`${keyBase}-${i}`} className="d-flex">
-          {
-            chunk.map( taxon => (
-              <Col xs={ columnWidth } key={ `${keyBase}-item-${taxon.id}` } className="d-flex">
-                <TaxonThumbnail
-                  taxon={ taxon }
-                  height={ thumbnailHeight }
-                  onClick={ e => {
-                    if ( !showNewTaxon ) return true;
-                    if ( e.metaKey || e.ctrlKey ) return true;
-                    e.preventDefault( );
-                    showNewTaxon( taxon );
-                    return false;
-                  } }
-                  captionForTaxon={ captionForTaxon }
-                  urlForTaxon={ urlForTaxon }
-                  config={ config }
-                />
-              </Col>
-            ) )
-          }
-        </Row>
-      ) )
-    );
+    items = taxa.map( ( taxon, i ) => (
+      <TaxonThumbnail
+        key={`highlights-taxon-${taxon.id}`}
+        ref={i === 0 ? firstItemRef : null}
+        taxon={taxon}
+        onClick={e => {
+          if ( !showNewTaxon ) return true;
+          if ( e.metaKey || e.ctrlKey ) return true;
+          e.preventDefault( );
+          showNewTaxon( taxon );
+          return false;
+        }}
+        captionForTaxon={captionForTaxon}
+        urlForTaxon={urlForTaxon}
+        config={config}
+      />
+    ) );
   } else {
-    items = (
-      _.map( _.chunk( _.uniqBy( observations, o => o.id ), photosPerSlide ), ( chunk, i ) => (
-        <Row key={`${keyBase}-${i}`} className="d-flex">
-          {
-            chunk.map( obs => (
-              <Col xs={columnWidth} key={`${keyBase}-item-${obs.id}`}>
-                <ObservationsGridItem
-                  observation={ obs }
-                  controls={ captionForObservation ? captionForObservation( obs ) : null }
-                  user={ config.currentUser }
-                />
-              </Col>
-            ) )
-          }
-        </Row>
-      ) )
-    );
+    items = _.uniqBy( observations, o => o.id ).map( ( obs, i ) => (
+      <div
+        key={`highlights-obs-${obs.id}`}
+        ref={i === 0 ? firstItemRef : null}
+        style={{ width: ITEM_WIDTH }}
+      >
+        <ObservationsGridItem
+          observation={obs}
+          controls={captionForObservation ? captionForObservation( obs ) : null}
+          user={config.currentUser}
+        />
+      </div>
+    ) );
   }
+
   return (
     <Carousel
-      title={ title }
-      description={ description }
-      url={ url }
-      noContent={ I18n.t( "no_observations_yet" ) }
-      items={ items }
+      title={title}
+      description={description}
+      url={url}
+      noContent={I18n.t( "no_observations_yet" )}
+      items={items}
+      itemRef={firstItemRef}
     />
   );
 };

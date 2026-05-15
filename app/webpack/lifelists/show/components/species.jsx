@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
+import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Species extends Component {

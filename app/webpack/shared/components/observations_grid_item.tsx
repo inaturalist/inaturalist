@@ -1,7 +1,37 @@
 import React from "react";
-import PropTypes from "prop-types";
 import SplitTaxon from "./split_taxon";
 import UserImage from "./user_image";
+
+interface ObsPhoto {
+  id: number;
+  photoUrl: ( size: string ) => string;
+  attribution?: string;
+}
+
+interface Observation {
+  id: number;
+  reviewedByCurrentUser?: boolean;
+  photo: ( size?: string ) => string | null;
+  photos?: ObsPhoto[];
+  hasPhotos: ( ) => boolean;
+  hasMedia: ( ) => boolean;
+  hasSounds: ( ) => boolean;
+  user: unknown;
+  taxon?: unknown;
+}
+
+interface ObservationsGridItemProps {
+  observation: Observation;
+  onObservationClick?: ( obs: Observation ) => void;
+  before?: React.ReactElement;
+  controls?: React.ReactElement | null;
+  showMagnifier?: boolean;
+  linkTarget?: string;
+  splitTaxonOptions?: Record<string, unknown>;
+  user?: unknown;
+  showAllPhotosPreview?: boolean;
+  photoSize?: string;
+}
 
 const ObservationsGridItem = ( {
   observation: o,
@@ -9,12 +39,12 @@ const ObservationsGridItem = ( {
   before,
   controls,
   showMagnifier,
-  linkTarget,
-  splitTaxonOptions,
+  linkTarget = "_self",
+  splitTaxonOptions = {},
   user,
   showAllPhotosPreview,
-  photoSize
-} ) => {
+  photoSize = "small"
+}: ObservationsGridItemProps ) => {
   let wrapperClass = "thumbnail borderless ObservationsGridItem d-flex flex-column";
   if ( o.reviewedByCurrentUser ) {
     wrapperClass += " reviewed";
@@ -29,16 +59,16 @@ const ObservationsGridItem = ( {
         }}
         target={linkTarget}
         className={`media ${o.hasPhotos( ) ? "photo" : ""} ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
-        onClick={function ( e ) {
-          if ( typeof ( onObservationClick ) !== "function" ) {
+        onClick={( e ) => {
+          if ( typeof onObservationClick !== "function" ) {
             return true;
           }
-          e.preventDefault();
+          e.preventDefault( );
           onObservationClick( o );
           return false;
         }}
       >
-        <i className={`icon icon-iconic-${"unknown"}`} />
+        <i className="icon icon-iconic-unknown" />
         <i className="sound-icon fa fa-volume-up" />
         { showMagnifier ? (
           <div className="magnifier">
@@ -80,25 +110,6 @@ const ObservationsGridItem = ( {
       </div>
     </div>
   );
-};
-
-ObservationsGridItem.propTypes = {
-  observation: PropTypes.object.isRequired,
-  onObservationClick: PropTypes.func,
-  before: PropTypes.element,
-  controls: PropTypes.element,
-  showMagnifier: PropTypes.bool,
-  linkTarget: PropTypes.string,
-  splitTaxonOptions: PropTypes.object,
-  user: PropTypes.object,
-  showAllPhotosPreview: PropTypes.bool,
-  photoSize: PropTypes.string
-};
-
-ObservationsGridItem.defaultProps = {
-  linkTarget: "_self",
-  splitTaxonOptions: {},
-  photoSize: "small"
 };
 
 export default ObservationsGridItem;
