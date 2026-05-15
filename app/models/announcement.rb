@@ -412,7 +412,14 @@ class Announcement < ApplicationRecord
 
       if options[:ip]
         filtered = if geoip_country.present?
-          filtered.select {| a | a.visible_in_country?( geoip_country ) }
+          geo_targeted = filtered.select {| a | a.ip_countries.present? && a.visible_in_country?( geoip_country ) }
+          if geo_targeted.any?
+            geo_targeted
+          else
+            filtered.select do | a |
+              a.ip_countries.blank? && a.visible_in_country?( geoip_country )
+            end
+          end
         else
           filtered.select {| a | a.ip_countries.blank? }
         end

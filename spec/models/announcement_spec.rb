@@ -705,6 +705,32 @@ describe Announcement do
       expect( result_ids ).not_to include( child_site_b.id )
     end
 
+    it "filters each family by ip_country, preferring geo-targeted over global variants" do
+      parent = create :announcement
+      child_us = create :announcement, ip_countries: ["US"], parent_announcement_id: parent.id
+      child_pl = create :announcement, ip_countries: ["PL"], parent_announcement_id: parent.id
+      test_ip = "1.2.3.4"
+      allow( INatAPIService ).to receive( :geoip_lookup ) do
+        OpenStruct.new_recursive( results: { country: "US" } )
+      end
+      result_ids = Announcement.active( ip: test_ip ).map( &:id )
+      expect( result_ids ).to include( child_us.id )
+      expect( result_ids ).not_to include( parent.id )
+      expect( result_ids ).not_to include( child_pl.id )
+    end
+
+    it "falls back to global variant when no ip_country match in family" do
+      parent = create :announcement
+      child_pl = create :announcement, ip_countries: ["PL"], parent_announcement_id: parent.id
+      test_ip = "1.2.3.4"
+      allow( INatAPIService ).to receive( :geoip_lookup ) do
+        OpenStruct.new_recursive( results: { country: "US" } )
+      end
+      result_ids = Announcement.active( ip: test_ip ).map( &:id )
+      expect( result_ids ).to include( parent.id )
+      expect( result_ids ).not_to include( child_pl.id )
+    end
+
     it "filters by placement" do
       dashboard = create :announcement, placement: Announcement::USERS_DASHBOARD
       sidebar = create :announcement, placement: Announcement::USERS_DASHBOARD_SIDEBAR
