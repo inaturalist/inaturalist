@@ -692,13 +692,15 @@ describe Announcement do
       end
     end
 
-    it "does not duplicate announcements associated with multiple sites" do
+    it "includes announcements matching the provided site" do
       site_a = create :site
       site_b = create :site
       user = create :user, site: site_a
-      multi_site_announcement = create :announcement, sites: [site_a, site_b]
-      result_ids = Announcement.active( user: user, site: user.site ).map( &:id )
-      expect( result_ids.count( multi_site_announcement.id ) ).to eq( 1 )
+      site_a_announcement = create :announcement, sites: [site_a]
+      site_b_announcement = create :announcement, sites: [site_b]
+      result_ids = Announcement.active( user: user, site: site_a ).map( &:id )
+      expect( result_ids ).to include( site_a_announcement.id )
+      expect( result_ids ).not_to include( site_b_announcement.id )
     end
 
     it "filters by placement" do
