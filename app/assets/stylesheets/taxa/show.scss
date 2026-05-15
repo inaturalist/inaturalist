@@ -494,7 +494,6 @@ $photoPreviewThumbGutterTop: 3px;
       flex-grow: 1;
 
       .CoverImage {
-        min-height: 0 !important;
         height: 100%;
       }
     }
@@ -513,6 +512,7 @@ $photoPreviewThumbGutterTop: 3px;
 }
 
 .PhotoPreview.grid .foreground-container .TaxonPhoto .CoverImage {
+  min-height: 0 !important;
   height: 195px;
   @media ( max-width: $mobile-max ) {
     height: 120px;
