@@ -1556,6 +1556,11 @@ table.regional-names {
   }
 
   .IdentificationsTab {
+    &.container {
+      @media (max-width: $mobile-max) {
+        padding: 0;
+      }
+    }
     .btn-group.identification-categories {
       display: flex;
       flex-wrap: wrap;

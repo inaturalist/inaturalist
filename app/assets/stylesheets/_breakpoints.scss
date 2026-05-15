@@ -1,8 +1,8 @@
 // Shared responsive breakpoints
 // Use $mobile-max  for max-width queries (mobile styles apply ≤ 767px)
 // Use $desktop-min for min-width queries (desktop styles apply ≥ 768px)
-$mobile-max:  767px;
-$desktop-min: 768px;
+$mobile-max:  767px; // TODO: name to conform with Bootstrap 5
+$desktop-min: 768px; // TODO: name to conform with Bootstrap 5
 $sm: 576px;
 $lg: 992px;
 $xl: 1200px;
