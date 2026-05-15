@@ -31,6 +31,7 @@ export function removeProject( ) {
 export function setProject( p ) {
   p.initialSubprojectCount = _.isEmpty( p.project_observation_rules ) ? 0
     : _.filter( p.project_observation_rules, rule => rule.operand_type === "Project" ).length;
+  p.editing = true;
   const project = new Project( p );
   return setAttributes( { project, initialProject: _.cloneDeep( project ) } );
 }
@@ -402,13 +403,13 @@ export function submitProject( ) {
           ( _.isEmpty( project.rule_term_value_id ) || _.isEmpty( project.rule_term_id ) )
             ? "" : project.rule_term_value_id,
         prefers_rule_observed_on:
-          ( project.date_type !== "exact" || _.isEmpty( project.rule_observed_on ) )
+          ( project.date_type === "months" || _.isEmpty( project.rule_observed_on ) )
             ? "" : project.rule_observed_on.trim( ),
-        prefers_rule_d1: project.date_type !== "range" || _.isEmpty( project.rule_d1 )
+        prefers_rule_d1: ( project.date_type === "months" || _.isEmpty( project.rule_d1 ) )
           ? "" : project.rule_d1.trim( ),
-        prefers_rule_d2: project.date_type !== "range" || _.isEmpty( project.rule_d2 )
+        prefers_rule_d2: ( project.date_type === "months" || _.isEmpty( project.rule_d2 ) )
           ? "" : project.rule_d2.trim( ),
-        prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month )
+        prefers_rule_month: ( project.date_type !== "months" || _.isEmpty( project.rule_month ) )
           || project.rule_month === _.range( 1, 13 ).join( "," ) ? "" : project.rule_month,
         prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
         prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced,
