@@ -149,6 +149,26 @@ class Announcement < ApplicationRecord
     "##{id} - #{body_preview} (#{locale_label})"
   end
 
+  def locale_names
+    return if locales.blank?
+
+    locales.map {| l | I18n.t( "locales.#{l}" ) }.sort.join( ", " )
+  end
+
+  def site_names
+    return unless sites.any?
+
+    sites.map( &:name ).sort.join( ", " )
+  end
+
+  def ip_country_names
+    country_codes_to_names( ip_countries )
+  end
+
+  def exclude_ip_country_names
+    country_codes_to_names( exclude_ip_countries )
+  end
+
   def compact_array_attributes
     array_attributes = %w(
       clients
@@ -175,6 +195,15 @@ class Announcement < ApplicationRecord
       !excludes.include?( country )
     end
   end
+
+  def country_codes_to_names( codes )
+    return if codes.blank?
+
+    codes.map do | code |
+      Place::COUNTRIES_BY_NAME.values.detect {| c | c[:code] == code }.try( :[], :name )
+    end.compact.sort.join( ", " )
+  end
+  private :country_codes_to_names
 
   def clean_target_group
     self.target_group_type = nil if target_group_type.blank?
@@ -443,6 +472,7 @@ class Announcement < ApplicationRecord
         ->( a ) { a.site_ids.include?( site.id ) },
         ->( a ) { a.site_ids.blank? } )
     else
+      # unauthenticated requests exclude announcements associated with sites
       filtered.select {| a | a.site_ids.blank? }
     end
 
