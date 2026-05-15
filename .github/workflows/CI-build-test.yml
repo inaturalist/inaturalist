@@ -3,9 +3,12 @@ name: Rails Build and Test
 on:
   workflow_call:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   build-and-test:
-    name: Build/Test 
+    name: Build/Test
     runs-on: ubuntu-22.04
     services:
       postgres:
@@ -40,7 +43,7 @@ jobs:
           - spec/helpers spec/initializers spec/lib spec/views spec/features
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Configure sysctl limits
       run: |
