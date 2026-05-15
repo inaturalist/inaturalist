@@ -2807,6 +2807,8 @@ en:
   introduced_in_place: "Introduced in %{place}"
   # Error message shown when a date format is invalid
   invalid_date: Invalid date
+  # Error message shown when a time format is invalid
+  invalid_time: Invalid time
   invitation: Invitation
   invite: invite
   invite_people: Invite people
@@ -8859,12 +8861,31 @@ en:
         contain_entire_image_without_cropping: Contain entire image without cropping
         custom_banner_icon_and_project_description: Custom banner, icon, and project description
         data_visualizations: Data visualizations
+        date_pickers:
+          # Label for a form field for a project's exact date
+          date: Date
+          # Label for a form field for a project's starting date
+          start_date: Start Date
+          # Label for a form field for a project's end date
+          end_date: End Date
+          # Label for a form field for a project's starting time
+          start_time: Start Time
+          # Label for a form field for a project's end time
+          end_time: End Time
+          # Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Include Times
+          # Label for a form select field allowing the editor to choose calendar months
+          select_months: Select Months
         delete_project: Delete Project
         display_project_name: Display project name
         do_you_need_features_from_traditional2: |
           Do you need features from traditional projects, such as custom observation fields,
           or adding individual observations that can’t be automatically filtered?
         duplicate_project: Duplicate Project
+        # validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: End date must be after start date
+        # validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: End time must be after start time
         include_annotated_observations: |
           Include only observations annotated with a particular attribute (e.g. life stage),
           or a particular attribute and value (e.g life stage = adult).
