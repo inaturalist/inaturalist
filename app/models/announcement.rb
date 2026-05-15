@@ -402,38 +402,8 @@ class Announcement < ApplicationRecord
     families = all_announcements.group_by {| a | a.parent_announcement_id || a.id }
 
     announcements = families.flat_map do | _key, group |
-      # dismissing any announcement in the group will hide all announcements in the group
-      next [] if group.any? {| a | a.dismissed_by?( user ) }
-
-      # This filtering is done within the flat_map so that a dismissal will apply to
-      # all grouped announcements, even if the dismissal is on an announcement no
-      # longer targeting the user.
-      filtered = group.select {| a | a.targeted_to_user?( user ) }
-
-      if options[:ip]
-        filtered = if geoip_country.present?
-          pick_best_matches( filtered,
-            ->( a ) { a.ip_countries.present? && a.visible_in_country?( geoip_country ) },
-            ->( a ) { a.ip_countries.blank? && a.visible_in_country?( geoip_country ) } )
-        else
-          filtered.select {| a | a.ip_countries.blank? }
-        end
-      end
-
-      filtered = if site
-        pick_best_matches( filtered,
-          ->( a ) { a.site_ids.include?( site.id ) },
-          ->( a ) { a.site_ids.blank? } )
-      else
-        filtered.select {| a | a.site_ids.blank? }
-      end
-
-      filtered = pick_best_matches( filtered,
-        ->( a ) { a.locales&.include?( locale_str ) },
-        ->( a ) { locale_str != lang_only && a.locales&.include?( lang_only ) },
-        ->( a ) { a.locales.blank? } )
-
-      filtered
+      filter_family( group, user: user, site: site, ip: options[:ip],
+        geoip_country: geoip_country, locale_str: locale_str, lang_only: lang_only )
     end
 
     # TODO: remove excludes_non_site logic once the column is fully deprecated.
@@ -449,6 +419,39 @@ class Announcement < ApplicationRecord
       ]
     end
   end
+
+  def self.filter_family( group, user:, site:, ip:, geoip_country:, locale_str:, lang_only: )
+    # Dismissing any variant hides the entire family. Checked before targeting so
+    # that a dismissed variant still suppresses the family even if the user no
+    # longer matches its targeting rules.
+    return [] if group.any? {| a | a.dismissed_by?( user ) }
+
+    filtered = group.select {| a | a.targeted_to_user?( user ) }
+
+    if ip
+      filtered = if geoip_country.present?
+        pick_best_matches( filtered,
+          ->( a ) { a.ip_countries.present? && a.visible_in_country?( geoip_country ) },
+          ->( a ) { a.ip_countries.blank? && a.visible_in_country?( geoip_country ) } )
+      else
+        filtered.select {| a | a.ip_countries.blank? }
+      end
+    end
+
+    filtered = if site
+      pick_best_matches( filtered,
+        ->( a ) { a.site_ids.include?( site.id ) },
+        ->( a ) { a.site_ids.blank? } )
+    else
+      filtered.select {| a | a.site_ids.blank? }
+    end
+
+    pick_best_matches( filtered,
+      ->( a ) { a.locales&.include?( locale_str ) },
+      ->( a ) { locale_str != lang_only && a.locales&.include?( lang_only ) },
+      ->( a ) { a.locales.blank? } )
+  end
+  private_class_method :filter_family
 
   def self.pick_best_matches( group, *tiers )
     tiers.each do | tier |
