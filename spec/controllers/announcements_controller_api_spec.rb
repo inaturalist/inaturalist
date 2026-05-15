@@ -58,6 +58,26 @@ describe AnnouncementsController do
       end
     end
 
+    describe "body_for_mobile" do
+      it "wraps body in a full HTML document with FRU script when prefers_embed_fru" do
+        fru_announcement = create :announcement, prefers_embed_fru: true, body: "<p>Donate now</p>"
+        get :active, format: :json
+        json = response.parsed_body.find {| a | a["id"] == fru_announcement.id }
+        expect( json["id"] ).to eq( fru_announcement.id )
+        expect( json["body"] ).to include( fru_announcement.body )
+        expect( json["body"] ).to include( "<!DOCTYPE html>" )
+        expect( json["body"] ).to include( "FundraiseUp" )
+      end
+
+      it "returns raw body when not prefers_embed_fru" do
+        standard_announcement = create :announcement, body: "<p>Hello</p>"
+        get :active, format: :json
+        json = response.parsed_body.find {| a | a["id"] == standard_announcement.id }
+        expect( json["id"] ).to eq( standard_announcement.id )
+        expect( json["body"] ).to eq( standard_announcement.body )
+      end
+    end
+
     describe "basic filters" do
       it "only returns announcements that are active" do
         _inactive_announcement = create :announcement, start: 1.day.from_now, end: 2.days.from_now
