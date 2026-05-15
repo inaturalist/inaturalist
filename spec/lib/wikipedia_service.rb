@@ -46,4 +46,39 @@ describe WikipediaService do
       expect( api_endpoint.cache_hours ).to eq WikipediaService::CACHE_HOURS
     end
   end
+
+  describe "summary_from_parsed" do
+    let( :service ) { WikipediaService.new( locale: "fr" ) }
+
+    def parsed_doc_for( html )
+      Nokogiri::XML( "<api><parse><text>#{ERB::Util.h( html )}</text></parse></api>" )
+    end
+
+    it "ignores subtitle and style noise before the lead paragraph" do
+      html = <<~HTML
+        <div class="mw-parser-output">
+          <p id="sous_titre_h1" class="noexcerpt"><i>Cacatua galerita</i></p>
+          <style>.mw-parser-output h1 #sous_titre_h1{display:block}</style>
+          <p><b>Cacatua galerita</b> est une espece d'oiseau de la famille des Cacatuidae.</p>
+        </div>
+      HTML
+      summary = service.summary_from_parsed( parsed_doc_for( html ) )
+      expect( summary ).to include( "Cacatua galerita" )
+      expect( summary ).not_to match( /\.mw-parser-output/ )
+    end
+
+    it "ignores banner paragraphs and returns the descriptive lead paragraph" do
+      html = <<~HTML
+        <div class="mw-parser-output">
+          <div class="bandeau-container metadata hatnote">
+            <p>Vous lisez un bon article labellise en 2008.</p>
+          </div>
+          <p><b>Psittaciformes</b> est un ordre d'oiseaux comprenant les perroquets.</p>
+        </div>
+      HTML
+      summary = service.summary_from_parsed( parsed_doc_for( html ) )
+      expect( summary ).to include( "Psittaciformes" )
+      expect( summary ).not_to include( "bon article" )
+    end
+  end
 end

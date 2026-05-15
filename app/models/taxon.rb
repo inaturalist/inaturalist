@@ -1518,6 +1518,22 @@ class Taxon < ApplicationRecord
     nil
   end
 
+  def wikipedia_url( options = {} )
+    return unless shows_wikipedia?
+
+    locale = options[:locale] || I18n.locale
+    locale_lang = Regexp.escape( locale.to_s.split( "-" ).first )
+    wikipedia_descriptions = taxon_descriptions.select do | desc |
+      desc.provider == "Wikipedia"
+    end
+    td = wikipedia_descriptions.detect {| desc | desc.locale.to_s == locale.to_s && !desc.url.blank? }
+    td ||= wikipedia_descriptions.detect do | desc |
+      desc.locale.to_s =~ /^#{locale_lang}(-|$)/ && !desc.url.blank?
+    end
+    td ||= wikipedia_descriptions.detect {| desc | desc.locale.to_s =~ /^en(-|$)/ && !desc.url.blank? }
+    td&.url
+  end
+
   def set_wikipedia_summary( options = {} )
     unless shows_wikipedia?
       update( wikipedia_summary: false )
@@ -1532,7 +1548,7 @@ class Taxon < ApplicationRecord
     if ( details = w.page_details( wname, options ) )
       pre_trunc = details[:summary]
       details[:summary] = details[:summary].split[0..75].join( " " )
-      details[:summary] += "..." if pre_trunc > details[:summary]
+      details[:summary] += "..." if pre_trunc.to_s.split.size > details[:summary].to_s.split.size
       provider = "Wikipedia"
     end
 
