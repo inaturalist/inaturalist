@@ -91,9 +91,9 @@ describe WelcomeController do
       expect( assigns( :announcements ) ).not_to include annc
     end
 
-    it "should target locales" do
+    it "should target locales within a family" do
       a = create :announcement, placement: Announcement::WELCOME_INDEX
-      locale_a = create :announcement, placement: Announcement::WELCOME_INDEX, locales: ["es"]
+      locale_a = create :announcement, placement: Announcement::WELCOME_INDEX, locales: ["es"], parent_announcement_id: a.id
       u = User.make!( locale: "es" )
       sign_in u
       get :index, params: { locale: "es" }

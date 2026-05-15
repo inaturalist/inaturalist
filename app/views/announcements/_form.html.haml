@@ -45,6 +45,8 @@
       = f.check_box :dismissible, label_after: true
       = f.check_box :prefers_target_staff, label_after: true
       = f.check_box :target_creator, label_after: true
+      - has_children = @announcement.persisted? && @announcement.child_announcements.exists?
+      = f.select :parent_announcement_id, @parent_announcement_options, { include_blank: t( :none ) }, { disabled: has_children, description: has_children ? t( "views.announcements.parent_announcement_disabled_desc" ) : t( "views.announcements.parent_announcement_desc" ), description_tip: true }
     .col-xs-4
       = f.select :ip_countries, country_options, { include_blank: t( :all ) }, multiple: true, description: t( "views.announcements.ip_countries_desc" ), description_tip: true
       - if current_user.is_admin?
@@ -52,7 +54,6 @@
           = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true, description: t( "views.announcements.site_ids_desc" ), description_tip: true
       - else
         = f.hidden_field :site_ids
-      = f.check_box :excludes_non_site, description: t( "views.announcements.excludes_non_site_desc" ), description_tip: true
     .col-xs-4
       = f.select :exclude_ip_countries, country_options, { include_blank: t( :none ) }, multiple: true, description: t( "views.announcements.exclude_ip_countries_desc" ), description_tip: true
       = f.select :locales, locale_options, { include_blank: t( :all ) }, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_tip: true }

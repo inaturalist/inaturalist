@@ -40,6 +40,7 @@
     last_observation_end_date
     user_created_start_date
     user_created_end_date
+    parent_announcement_id
   )
 - content_for :title do
   =strip_tags t( :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id )
@@ -53,6 +54,9 @@
     }
     .table td {
       width: 100%;
+    }
+    table#translation_variants_table td {
+      width: auto;
     }
     .btn-spacer-left { margin-left: 6px; }
 - content_for :extrajs do
@@ -85,10 +89,17 @@
                   %th{ title: attr_name }=attr_name
                   %td
                     - val = @announcement.send( a )
-                    - if a == "ip_countries" || a == "exclude_ip_countries"
-                      = val.map { | code | Place::COUNTRIES_BY_NAME.values.detect { | country | country[:code] == code }.try(:[], :name) }.sort.join( ", " )
+                    - if a == "ip_countries"
+                      = @announcement.ip_country_names
+                    - elsif a == "exclude_ip_countries"
+                      = @announcement.exclude_ip_country_names
+                    - elsif a == "parent_announcement_id"
+                      - if val
+                        = link_to "##{val}", announcement_path(val)
+                      - else
+                        = t(:none)
                     - elsif a == "locales"
-                      = val.map { | locale | I18n.t( "locales.#{locale}" ) }.sort.join( ", " )
+                      = @announcement.locale_names
                     - elsif a == "user"
                       = link_to( user_image( @announcement.user), @announcement.user ) if @announcement.user
                       = link_to_user @announcement.user, missing: t( :unknown )
@@ -98,6 +109,39 @@
                       =t val, default: val
                     - else
                       = val
+    %h4= t( :targeted_variants )
+    %table.table.table-bordered#translation_variants_table
+      %thead
+        %tr
+          %th= t( :id )
+          %th= t( :body )
+          %th= t( :locales_ )
+          %th= t( "activerecord.attributes.announcement.site_ids" )
+          %th= t( "activerecord.attributes.announcement.ip_countries" )
+          %th= t( "activerecord.attributes.announcement.exclude_ip_countries" )
+          %th= t( :start )
+          %th= t( :end )
+      %tbody
+        - if @translation_variants.any?
+          - @translation_variants.each do |variant|
+            %tr
+              %td
+                = link_to "##{variant.id}", announcement_path( variant )
+                - if variant.id == @family_root.id
+                  %span.label.label-default= t( :original )
+              %td= variant.body_preview
+              %td= variant.locale_names || t( :all )
+              %td= variant.site_names || t( :all )
+              %td= variant.ip_country_names || t( :all )
+              %td= variant.exclude_ip_country_names || t( :none )
+              %td= variant.start
+              %td= variant.end
+        %tr
+          %td{ colspan: 8 }
+            = link_to duplicate_announcement_path( @announcement ), class: "btn btn-default btn-sm" do
+              %i.fa.fa-plus
+              = t :create_a_targeted_variant
+
       %table.table.table-bordered
         %tr
           %th=t :body
@@ -123,4 +167,5 @@
               including you
             = link_to_toggle_box "show user IDs" do
               = @announcement.dismiss_user_ids
+
       = link_to t(:back), announcements_path, class: "back crumb"

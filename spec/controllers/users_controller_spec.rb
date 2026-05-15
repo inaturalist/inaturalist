@@ -51,9 +51,9 @@ describe UsersController, "dashboard" do
       end
     end
 
-    it "should target locales" do
+    it "should target locales within a family" do
       a = Announcement.make!
-      locale_a = Announcement.make!( locales: ["es"] )
+      locale_a = Announcement.make!( locales: ["es"], parent_announcement_id: a.id )
       u = User.make!( locale: "es" )
       sign_in u
       get :dashboard, params: { locale: "es" }

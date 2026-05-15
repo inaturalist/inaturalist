@@ -54,11 +54,17 @@ class Announcement < ApplicationRecord
   YES_NO_ANY = [YES, NO, ANY].freeze
 
   belongs_to :user
+  belongs_to :parent_announcement, class_name: "Announcement", optional: true, inverse_of: :child_announcements
   has_and_belongs_to_many :sites
   has_many :announcement_impressions, dependent: :delete_all
+  has_many :child_announcements, class_name: "Announcement", foreign_key: :parent_announcement_id, dependent: :nullify,
+    inverse_of: :parent_announcement
 
   validates_presence_of :placement, :start, :end, :body
   validate :valid_placement_clients
+  validate :parent_announcement_cannot_be_self
+  validate :parent_announcement_cannot_have_parent
+  validate :parent_with_children_cannot_become_child
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
   validates_inclusion_of :target_logged_in, in: YES_NO_ANY
   validates_inclusion_of :target_curators, in: YES_NO_ANY
@@ -110,8 +116,57 @@ class Announcement < ApplicationRecord
     errors.add( :target_group_partition, :must_be_valid_for_specified_target_group )
   end
 
+  def parent_announcement_cannot_be_self
+    return unless parent_announcement_id.present? && parent_announcement_id == id
+
+    errors.add( :parent_announcement_id, :cannot_reference_self )
+  end
+
+  def parent_announcement_cannot_have_parent
+    return unless parent_announcement_id.present?
+    return unless parent_announcement&.parent_announcement_id.present?
+
+    errors.add( :parent_announcement_id, :cannot_reference_variant )
+  end
+
+  def parent_with_children_cannot_become_child
+    return unless parent_announcement_id.present?
+    return unless persisted? && child_announcements.exists?
+
+    errors.add( :parent_announcement_id, :cannot_have_variants )
+  end
+
   def session_key
     "user-seen-ann-#{id}"
+  end
+
+  def body_preview( length = 60 )
+    ActionController::Base.helpers.strip_tags( body ).to_s.truncate( length )
+  end
+
+  def dropdown_label
+    locale_label = locales.presence&.join( ", " ) || "all locales"
+    "##{id} - #{body_preview} (#{locale_label})"
+  end
+
+  def locale_names
+    return if locales.blank?
+
+    locales.map {| l | I18n.t( "locales.#{l}" ) }.sort.join( ", " )
+  end
+
+  def site_names
+    return unless sites.any?
+
+    sites.map( &:name ).sort.join( ", " )
+  end
+
+  def ip_country_names
+    country_codes_to_names( ip_countries )
+  end
+
+  def exclude_ip_country_names
+    country_codes_to_names( exclude_ip_countries )
   end
 
   def compact_array_attributes
@@ -140,6 +195,15 @@ class Announcement < ApplicationRecord
       !excludes.include?( country )
     end
   end
+
+  def country_codes_to_names( codes )
+    return if codes.blank?
+
+    codes.map do | code |
+      Place::COUNTRIES_BY_NAME.values.detect {| c | c[:code] == code }.try( :[], :name )
+    end.compact.sort.join( ", " )
+  end
+  private :country_codes_to_names
 
   def clean_target_group
     self.target_group_type = nil if target_group_type.blank?
@@ -338,9 +402,8 @@ class Announcement < ApplicationRecord
     site = options[:site]
     user = options[:user]
     scope = Announcement.
+      includes( :sites ).
       where( '? BETWEEN "start" AND "end"', Time.now.utc ).
-      joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id" ).
-      joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
       limit( 50 )
     placements = options[:placement].to_s.split( "," ) & PARAM_PLACEMENTS
     if placements.size.positive?
@@ -357,75 +420,77 @@ class Announcement < ApplicationRecord
       scope = scope.where( "? = ANY( clients ) OR clients = '{}'", options[:user_agent_client] )
     end
 
-    # Site filtering
-    scope = if site
-      scope.
-        where(
-          "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
-          site || Site.default
-        )
-    else
-      # unauthenticated requests exclude announcements associated with sites
-      scope.where( "announcements_sites.site_id IS NULL" )
-    end
-    base_scope = scope
-    announcements = scope.in_specific_locale( I18n.locale )
-    announcements = scope.in_specific_locale( I18n.locale.to_s.split( "-" ).first ) if announcements.blank?
-    announcements = scope.in_locale( I18n.locale ) if announcements.blank?
-    announcements = scope.in_locale( I18n.locale.to_s.split( "-" ).first ) if announcements.blank?
-    if announcements.blank?
-      announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
-      announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if announcements.blank?
-      announcements = announcements.to_a.flatten
-    end
-    if announcements.blank?
-      announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
+    all_announcements = scope.to_a
+    locale_str = I18n.locale.to_s
+    lang_only = locale_str.split( "-" ).first
+
+    geoip_country = if options[:ip]
+      INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
     end
 
-    announcements = announcements.select do | a |
-      a.targeted_to_user?( user ) && !a.dismissed_by?( user )
+    families = all_announcements.group_by {| a | a.parent_announcement_id || a.id }
+
+    announcements = families.flat_map do | _key, group |
+      filter_family( group, user: user, site: site, ip: options[:ip],
+        geoip_country: geoip_country, locale_str: locale_str, lang_only: lang_only )
     end
 
-    # Locale- and site- specific targeting above may have excluded
-    # announcements without those filters, so we need to add them back in and
-    # check their targeting. This is kind of a pointless extra db query. We
-    # might just want to do locale and site filtering in Ruby instead of the
-    # DB for simplicity.
-    if announcements.blank?
-      announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ).select do | a |
-        a.targeted_to_user?( user ) && !a.dismissed_by?( user )
-      end
-    end
-
-    if options[:ip]
-      geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
-
-      announcements =
-        if geoip_country.present?
-          announcements.select {| a | a.visible_in_country?( geoip_country ) }
-        else
-          # No country detected: only show announcements that are not country-targeted
-          announcements.select {| a | a.ip_countries.blank? }
-        end
-    end
-
-    # Remove non-site announcements if some announcements target sites
-    announcement_target_site = announcements.detect do | annc |
-      annc.site_ids.present? && annc.excludes_non_site
-    end
-    if announcement_target_site
-      announcements = announcements.select do | annc |
-        annc.site_ids.present?
-      end
+    # TODO: remove excludes_non_site logic once the column is fully deprecated.
+    # This was a workaround now replaced by parent_announcement_id family grouping.
+    if announcements.detect {| a | a.site_ids.present? && a.excludes_non_site }
+      announcements = announcements.select {| a | a.site_ids.present? }
     end
 
     announcements.sort_by do | a |
       [
-        a.locales.include?( I18n.locale ) ? 0 : 1,
+        a.locales.include?( I18n.locale.to_s ) ? 0 : 1,
         a.id * -1
       ]
     end
   end
+
+  def self.filter_family( group, user:, site:, ip:, geoip_country:, locale_str:, lang_only: )
+    # Dismissing any variant hides the entire family. Checked before targeting so
+    # that a dismissed variant still suppresses the family even if the user no
+    # longer matches its targeting rules.
+    return [] if group.any? {| a | a.dismissed_by?( user ) }
+
+    filtered = group.select {| a | a.targeted_to_user?( user ) }
+
+    if ip
+      filtered = if geoip_country.present?
+        pick_best_matches( filtered,
+          ->( a ) { a.ip_countries.present? && a.visible_in_country?( geoip_country ) },
+          ->( a ) { a.ip_countries.blank? && a.visible_in_country?( geoip_country ) } )
+      else
+        filtered.select {| a | a.ip_countries.blank? }
+      end
+    end
+
+    filtered = if site
+      pick_best_matches( filtered,
+        ->( a ) { a.site_ids.include?( site.id ) },
+        ->( a ) { a.site_ids.blank? } )
+    else
+      # unauthenticated requests exclude announcements associated with sites
+      filtered.select {| a | a.site_ids.blank? }
+    end
+
+    pick_best_matches( filtered,
+      ->( a ) { a.locales&.include?( locale_str ) },
+      ->( a ) { locale_str != lang_only && a.locales&.include?( lang_only ) },
+      ->( a ) { a.locales.blank? } )
+  end
+  private_class_method :filter_family
+
+  def self.pick_best_matches( group, *tiers )
+    tiers.each do | tier |
+      matches = group.select( &tier )
+      return matches if matches.any?
+    end
+    []
+  end
+  private_class_method :pick_best_matches
 
   def self.active_in_placement( placement, options = {} )
     active( options.merge( placement: placement ) )
@@ -442,6 +507,7 @@ class Announcement < ApplicationRecord
       :end,
       :id,
       :locales,
+      :parent_announcement_id,
       :placement,
       :start
     ]
@@ -463,6 +529,7 @@ class Announcement < ApplicationRecord
     # Copy site associations and preferences
     announcement.sites = sites
     announcement.stored_preferences = stored_preferences
+    announcement.parent_announcement_id = parent_announcement_id || id
 
     announcement
   end

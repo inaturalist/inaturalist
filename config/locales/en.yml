@@ -1488,6 +1488,8 @@ en:
   create_a_new_place: Create a New Place
   create_a_new_taxon: Create a New Taxon
   create_a_query: Create a Query
+  # Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Create a Targeted Variant
   create_an_account: Create an Account
   create_an_atlas: Create an Atlas
   create_export: Create Export
@@ -5790,6 +5792,8 @@ en:
   take_me_flickr!: Yes, take me to Flickr!
   target_list_alert: Are you sure that you attempted to observe all species covered by your target list? Remember that anything covered by your target list that you didn't observe will be interpreted as an absence so its very important that your target list accurately reflects the set of species you attempted to detect
   target_list_warning: Remember that anything covered by your target list that you didn't observe within the radius and duration of this trip will be interpreted as an absence. Its very important that your target list accurately reflects the set of species you attempted to detect. If you didn't attempt to detect a species on your target list or every species covered by a group on your target list, please remove it.
+  # Section heading on announcement show page listing linked announcement variants
+  targeted_variants: Targeted Variants
   task_deleted: Task deleted
   taxa: Taxa
   taxa_show_obs_photo_search_tip: |
@@ -7122,6 +7126,10 @@ en:
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
         app.
+      # Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: This announcement has targeted variants and cannot be assigned a global announcement.
+      # Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Select an announcement that this announcement should replace for users who meet the targeting rules.
       site_ids_desc: |
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
@@ -10657,6 +10665,8 @@ en:
         exclude_donor_start_date: Exclude donor start date
         # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclude donor end date
+        # Column header for countries excluded by IP address
+        exclude_ip_countries: Exclude IP Countries
         excludes_non_site: Hide other announcements in this placement that have no Site ID
         # iNat client applications that the user must not have made an observation
         # with to see the announcement
@@ -10682,6 +10692,8 @@ en:
         max_observations: Max observations
         # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min observations
+        # A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Global Announcement (optional)
         # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Placement
         # Preference for an announcement that is only shown to the user who created the announcement
@@ -10945,6 +10957,13 @@ en:
               # placement". Only site admins will see this text, so it's ok
               # if it's not translated perfectly.
               must_be_valid_for_specified_placement: must be valid for specified placement
+            parent_announcement_id:
+              # Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: cannot reference itself
+              # Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: cannot reference an announcement that is itself a variant (only one level of nesting allowed)
+              # Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: cannot be set on an announcement that already has variants (only one level of nesting allowed)
             target_group_partition:
               # Error message shown when an Announcement has a value in the
               # target_group_partition attribute that is not a valid partition in the

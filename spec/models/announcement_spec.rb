@@ -207,7 +207,8 @@ describe Announcement do
       a = create(
         :announcement,
         target_logged_in: Announcement::YES,
-        include_donor_start_date: 10.days.ago, include_donor_end_date: 1.day.ago )
+        include_donor_start_date: 10.days.ago, include_donor_end_date: 1.day.ago
+      )
       expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be false
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be true
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 20.days.ago ).user ) ).to be false
@@ -527,6 +528,256 @@ describe Announcement do
     end
   end
 
+  describe "parent_announcement" do
+    it "cannot reference itself" do
+      a = create :announcement
+      a.parent_announcement_id = a.id
+      expect( a ).not_to be_valid
+      expect( a.errors[:parent_announcement_id] ).to include( "cannot reference itself" )
+    end
+
+    it "cannot be a child of a child announcement" do
+      parent = create :announcement
+      child = create :announcement, parent_announcement_id: parent.id
+      grandchild = build :announcement, parent_announcement_id: child.id
+      expect( grandchild ).not_to be_valid
+      expect( grandchild.errors[:parent_announcement_id] ).to include(
+        "cannot reference an announcement that is itself a variant (only one level of nesting allowed)"
+      )
+    end
+
+    it "cannot become a child when it already has children" do
+      parent = create :announcement
+      _child = create :announcement, parent_announcement_id: parent.id
+      new_grandparent = create :announcement
+      parent.parent_announcement_id = new_grandparent.id
+      expect( parent ).not_to be_valid
+      expect( parent.errors[:parent_announcement_id] ).to include(
+        "cannot be set on an announcement that already has variants (only one level of nesting allowed)"
+      )
+    end
+
+    it "nullifies children when parent is destroyed" do
+      parent = create :announcement
+      child = create :announcement, parent_announcement_id: parent.id
+      parent.destroy
+      expect( child.reload.parent_announcement_id ).to be_nil
+    end
+  end
+
+  describe "body_preview" do
+    it "strips HTML and truncates" do
+      a = create :announcement, body: "<b>Hello</b> <i>world</i> this is a long announcement body"
+      expect( a.body_preview ).to eq( "Hello world this is a long announcement body" )
+    end
+
+    it "truncates to specified length" do
+      a = create :announcement, body: "<p>A very long announcement body text</p>"
+      expect( a.body_preview( 20 ) ).to eq( "A very long annou..." )
+    end
+  end
+
+  describe "dropdown_label" do
+    it "includes id, body preview, and locales" do
+      a = create :announcement, body: "<b>Test body</b>", locales: ["es", "fr"]
+      expect( a.dropdown_label ).to eq( "##{a.id} - Test body (es, fr)" )
+    end
+
+    it "shows all locales when no locales set" do
+      a = create :announcement, body: "Simple body"
+      expect( a.dropdown_label ).to include( "(all locales)" )
+    end
+  end
+
+  describe "duplicate_as_user" do
+    it "links duplicate as child of original" do
+      original = create :announcement
+      dup = original.duplicate_as_user( create( :user ) )
+      expect( dup.parent_announcement_id ).to eq( original.id )
+    end
+
+    it "links duplicate of child to the grandparent" do
+      parent = create :announcement
+      child = create :announcement, parent_announcement_id: parent.id
+      dup = child.duplicate_as_user( create( :user ) )
+      expect( dup.parent_announcement_id ).to eq( parent.id )
+    end
+  end
+
+  describe "active" do
+    it "returns both locale-specific and global announcements when they are unrelated" do
+      en_announcement = create :announcement, locales: ["en"]
+      es_announcement = create :announcement, locales: ["es"]
+      global_announcement = create :announcement
+      I18n.with_locale( :es ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( es_announcement.id )
+        expect( result_ids ).to include( global_announcement.id )
+        expect( result_ids ).not_to include( en_announcement.id )
+      end
+    end
+
+    it "deduplicates linked translations, returning best locale match" do
+      parent = create :announcement, locales: ["en"]
+      child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+      I18n.with_locale( :es ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( child_es.id )
+        expect( result_ids ).not_to include( parent.id )
+      end
+      I18n.with_locale( :en ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( parent.id )
+        expect( result_ids ).not_to include( child_es.id )
+      end
+    end
+
+    it "falls back to global parent when no locale match in family" do
+      parent = create :announcement
+      child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+      I18n.with_locale( :ja ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( parent.id )
+        expect( result_ids ).not_to include( child_es.id )
+      end
+    end
+
+    it "handles sub-locale fallback within family groups" do
+      parent = create :announcement
+      child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+      I18n.with_locale( :"es-MX" ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( child_es.id )
+        expect( result_ids ).not_to include( parent.id )
+      end
+    end
+
+    it "prefers exact sub-locale match over language-only match" do
+      parent = create :announcement
+      child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+      child_es_mx = create :announcement, locales: ["es-MX"], parent_announcement_id: parent.id
+      I18n.with_locale( :"es-MX" ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( child_es_mx.id )
+        expect( result_ids ).not_to include( child_es.id )
+        expect( result_ids ).not_to include( parent.id )
+      end
+    end
+
+    it "falls back to parent when best locale match is filtered out by targeting" do
+      parent = create :announcement
+      child_es = create :announcement,
+        locales: ["es"],
+        parent_announcement_id: parent.id,
+        target_logged_in: Announcement::YES
+      I18n.with_locale( :es ) do
+        result_ids = Announcement.active.map( &:id )
+        expect( result_ids ).to include( parent.id )
+        expect( result_ids ).not_to include( child_es.id )
+      end
+    end
+
+    it "hides entire family when any variant has been dismissed by the user" do
+      user = create :user
+      parent = create :announcement, dismissible: true
+      child_es = create :announcement,
+        locales: ["es"],
+        parent_announcement_id: parent.id,
+        dismissible: true
+      child_es.update( dismiss_user_ids: [user.id] )
+      I18n.with_locale( :es ) do
+        result_ids = Announcement.active( user: user ).map( &:id )
+        expect( result_ids ).not_to include( parent.id )
+        expect( result_ids ).not_to include( child_es.id )
+      end
+    end
+
+    it "filters each family by site, keeping matching and global variants" do
+      site_a = create :site
+      site_b = create :site
+      user = create :user, site: site_a
+      parent = create :announcement
+      child_site_a = create :announcement, sites: [site_a], parent_announcement_id: parent.id
+      child_site_b = create :announcement, sites: [site_b], parent_announcement_id: parent.id
+      result_ids = Announcement.active( user: user, site: site_a ).map( &:id )
+      expect( result_ids ).to include( child_site_a.id )
+      expect( result_ids ).not_to include( parent.id )
+      expect( result_ids ).not_to include( child_site_b.id )
+    end
+
+    it "filters each family by ip_country, preferring geo-targeted over global variants" do
+      parent = create :announcement
+      child_us = create :announcement, ip_countries: ["US"], parent_announcement_id: parent.id
+      child_pl = create :announcement, ip_countries: ["PL"], parent_announcement_id: parent.id
+      test_ip = "1.2.3.4"
+      allow( INatAPIService ).to receive( :geoip_lookup ) do
+        OpenStruct.new_recursive( results: { country: "US" } )
+      end
+      result_ids = Announcement.active( ip: test_ip ).map( &:id )
+      expect( result_ids ).to include( child_us.id )
+      expect( result_ids ).not_to include( parent.id )
+      expect( result_ids ).not_to include( child_pl.id )
+    end
+
+    it "falls back to global variant when no ip_country match in family" do
+      parent = create :announcement
+      child_pl = create :announcement, ip_countries: ["PL"], parent_announcement_id: parent.id
+      test_ip = "1.2.3.4"
+      allow( INatAPIService ).to receive( :geoip_lookup ) do
+        OpenStruct.new_recursive( results: { country: "US" } )
+      end
+      result_ids = Announcement.active( ip: test_ip ).map( &:id )
+      expect( result_ids ).to include( parent.id )
+      expect( result_ids ).not_to include( child_pl.id )
+    end
+
+    it "filters by placement" do
+      dashboard = create :announcement, placement: Announcement::USERS_DASHBOARD
+      sidebar = create :announcement, placement: Announcement::USERS_DASHBOARD_SIDEBAR
+      result_ids = Announcement.active( placement: Announcement::USERS_DASHBOARD ).map( &:id )
+      expect( result_ids ).to include( dashboard.id )
+      expect( result_ids ).not_to include( sidebar.id )
+    end
+
+    it "filters by client" do
+      ios = create :announcement, placement: Announcement::MOBILE_HOME, clients: [Announcement::INAT_IOS]
+      android = create :announcement, placement: Announcement::MOBILE_HOME, clients: [Announcement::INAT_ANDROID]
+      no_client = create :announcement, placement: Announcement::MOBILE_HOME
+      result_ids = Announcement.active( client: Announcement::INAT_IOS ).map( &:id )
+      expect( result_ids ).to include( ios.id )
+      expect( result_ids ).not_to include( android.id )
+      expect( result_ids ).to include( no_client.id )
+    end
+
+    it "filters by user_agent_client" do
+      inatrn = create :announcement, placement: Announcement::MOBILE_HOME, clients: [Announcement::INATRN]
+      ios = create :announcement, placement: Announcement::MOBILE_HOME, clients: [Announcement::INAT_IOS]
+      result_ids = Announcement.active( user_agent_client: Announcement::INATRN ).map( &:id )
+      expect( result_ids ).to include( inatrn.id )
+      expect( result_ids ).not_to include( ios.id )
+    end
+
+    it "returns all mobile placements when filtering by mobile" do
+      mobile_home = create :announcement, placement: Announcement::MOBILE_HOME
+      dashboard = create :announcement, placement: Announcement::USERS_DASHBOARD
+      result_ids = Announcement.active( placement: "mobile" ).map( &:id )
+      expect( result_ids ).to include( mobile_home.id )
+      expect( result_ids ).not_to include( dashboard.id )
+    end
+
+    # This behavior is a previous workaround for displaying
+    # localized versions of announcements. The setting has been removed
+    # from the UI, but we are still supporting the logic for now.
+    it "hides all non-site announcements when excludes_non_site is set" do
+      site = create :site
+      site_annc = create :announcement, excludes_non_site: true, sites: [site]
+      no_site_annc = create :announcement
+      result_ids = Announcement.active( site: site ).map( &:id )
+      expect( result_ids ).to include( site_annc.id )
+      expect( result_ids ).not_to include( no_site_annc.id )
+    end
+  end
+
   describe "active_in_placement" do
     describe "ip_country" do
       it "includes announcements with ip_countries matching IP country" do
@@ -561,8 +812,8 @@ describe Announcement do
       it "excludes announcements when exclude_ip_countries matches IP country and no ip_countries are set" do
         annc = create :announcement, exclude_ip_countries: ["US"], ip_countries: []
         test_ip = "1.2.3.4"
-        allow( INatAPIService ).to receive( :geoip_lookup )
-          .and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+        allow( INatAPIService ).to receive( :geoip_lookup ).
+          and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
 
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
@@ -573,8 +824,8 @@ describe Announcement do
         # Both include and exclude contain "US" → exclude wins
         annc = create :announcement, ip_countries: ["US", "CA"], exclude_ip_countries: ["US"]
         test_ip = "1.2.3.4"
-        allow( INatAPIService ).to receive( :geoip_lookup )
-          .and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+        allow( INatAPIService ).to receive( :geoip_lookup ).
+          and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
 
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
@@ -585,8 +836,8 @@ describe Announcement do
         # Include has "US", exclude has "PL" → allowed
         annc = create :announcement, ip_countries: ["US"], exclude_ip_countries: ["PL"]
         test_ip = "1.2.3.4"
-        allow( INatAPIService ).to receive( :geoip_lookup )
-          .and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+        allow( INatAPIService ).to receive( :geoip_lookup ).
+          and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
 
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )

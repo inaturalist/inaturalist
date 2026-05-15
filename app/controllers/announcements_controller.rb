@@ -4,8 +4,9 @@ class AnnouncementsController < ApplicationController
   before_action :authenticate_user!, except: [:active]
   before_action :site_admin_required, except: [:active, :dismiss]
   before_action :load_announcement, only: [:show, :edit, :update, :destroy, :dismiss, :duplicate]
-  before_action :load_sites, only: [:new, :edit, :create, :duplicate]
-  before_action :load_oauth_applications, only: [:new, :edit, :create, :duplicate]
+  before_action :load_sites, only: [:new, :edit, :create, :update, :duplicate]
+  before_action :load_oauth_applications, only: [:new, :edit, :create, :update, :duplicate]
+  before_action :load_parent_announcement_options, only: [:new, :edit, :create, :update, :duplicate]
 
   layout "bootstrap"
 
@@ -40,6 +41,13 @@ class AnnouncementsController < ApplicationController
   end
 
   def show
+    @family_root = @announcement.parent_announcement || @announcement
+    @translation_variants = if @announcement.parent_announcement_id.present?
+      [@family_root] + @family_root.child_announcements.includes( :sites ).where.not( id: @announcement.id ).order( :id )
+    else
+      @announcement.child_announcements.includes( :sites ).order( :id )
+    end
+
     respond_to do | format |
       format.html do
         if params[:body]
@@ -136,6 +144,16 @@ class AnnouncementsController < ApplicationController
       "official AND scopes LIKE '%write%'"
     )
     @oauth_applications.sort_by!( &:name )
+  end
+
+  def load_parent_announcement_options
+    candidates = Announcement.
+      where( parent_announcement_id: nil ).
+      where( '"end" > ?', 30.days.ago ).
+      order( id: :desc ).
+      limit( 100 )
+    candidates = candidates.where.not( id: @announcement.id ) if @announcement&.persisted?
+    @parent_announcement_options = candidates.map {| a | [a.dropdown_label, a.id] }
   end
 
   def user_agent_client
