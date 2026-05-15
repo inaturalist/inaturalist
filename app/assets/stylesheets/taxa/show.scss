@@ -1029,9 +1029,6 @@ $introducedColor: #E4007C;
   justify-content: center;
   gap: 15px;
 }
-.SimilarTab .TaxonThumbnail {
-  width: 18.9%;
-}
 
 .IdentificationsTab {
   .loading {
@@ -1556,10 +1553,6 @@ table.regional-names {
     .tab-content {
       padding: 0 15px;
     }
-  }
-
-  .SimilarTab .TaxonThumbnail {
-    width: calc(50% - 10px);
   }
 
   .IdentificationsTab {
