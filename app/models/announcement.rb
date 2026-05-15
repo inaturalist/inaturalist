@@ -412,27 +412,26 @@ class Announcement < ApplicationRecord
 
       if options[:ip]
         filtered = if geoip_country.present?
-          geo_targeted = filtered.select {| a | a.ip_countries.present? && a.visible_in_country?( geoip_country ) }
-          if geo_targeted.any?
-            geo_targeted
-          else
-            filtered.select do | a |
-              a.ip_countries.blank? && a.visible_in_country?( geoip_country )
-            end
-          end
+          pick_best_matches( filtered,
+            ->( a ) { a.ip_countries.present? && a.visible_in_country?( geoip_country ) },
+            ->( a ) { a.ip_countries.blank? && a.visible_in_country?( geoip_country ) } )
         else
           filtered.select {| a | a.ip_countries.blank? }
         end
       end
 
       filtered = if site
-        site_specific = filtered.select {| a | a.site_ids.include?( site.id ) }
-        site_specific.any? ? site_specific : filtered.select {| a | a.site_ids.blank? }
+        pick_best_matches( filtered,
+          ->( a ) { a.site_ids.include?( site.id ) },
+          ->( a ) { a.site_ids.blank? } )
       else
         filtered.select {| a | a.site_ids.blank? }
       end
 
-      filtered = pick_best_locale_matches( filtered, locale_str, lang_only )
+      filtered = pick_best_matches( filtered,
+        ->( a ) { a.locales&.include?( locale_str ) },
+        ->( a ) { locale_str != lang_only && a.locales&.include?( lang_only ) },
+        ->( a ) { a.locales.blank? } )
 
       filtered
     end
@@ -451,21 +450,14 @@ class Announcement < ApplicationRecord
     end
   end
 
-  def self.pick_best_locale_matches( group, locale_str, lang_only )
-    exact = group.select {| a | a.locales&.include?( locale_str ) }
-    return exact if exact.any?
-
-    if locale_str != lang_only
-      lang = group.select {| a | a.locales&.include?( lang_only ) }
-      return lang if lang.any?
+  def self.pick_best_matches( group, *tiers )
+    tiers.each do | tier |
+      matches = group.select( &tier )
+      return matches if matches.any?
     end
-
-    no_locale = group.select {| a | a.locales.blank? }
-    return no_locale if no_locale.any?
-
     []
   end
-  private_class_method :pick_best_locale_matches
+  private_class_method :pick_best_matches
 
   def self.active_in_placement( placement, options = {} )
     active( options.merge( placement: placement ) )
