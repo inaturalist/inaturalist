@@ -2463,6 +2463,8 @@ id:
   introduced_in_place: "Diperkenalkan di %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Tanggal tidak sah
+  #Error message shown when a time format is invalid
+  invalid_time: Waktu tidak valid
   invitation: Undangan
   invite: undang
   invite_people: Undang orang
@@ -7681,11 +7683,30 @@ id:
         contain_entire_image_without_cropping: Muat seluruh gambar tanpa dipotong
         custom_banner_icon_and_project_description: Sampul, ikon, dan deskripsi proyek kustom
         data_visualizations: Visualisasi data
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Tanggal
+          #Label for a form field for a project's starting date
+          start_date: Tanggal Mulai
+          #Label for a form field for a project's end date
+          end_date: Tanggal Selesai
+          #Label for a form field for a project's starting time
+          start_time: Waktu Mulai
+          #Label for a form field for a project's end time
+          end_time: Waktu Selesai
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Sertakan Waktu
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Pilih Bulan
         delete_project: Hapus Proyek
         display_project_name: Hapus nama proyek
         do_you_need_features_from_traditional2: |
           Apakah Anda memerlukan fitur dari proyek tradisional, seperti kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
         duplicate_project: Gandakan Proyek
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: Tanggal akhir harus setelah tanggal mulai
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: Waktu berakhir harus setelah waktu mulai
         include_annotated_observations: |
           Hanya masukkan pengamatan yang dicatat dengan atribut tertentu (seperti tahap kehidupan), atau atribut dan nilai tertentu (seperti tahap kehidupan = dewasa). Ada batasan sebanyak satu saringan catatan per proyek.
         leaderboards_among_individuals: Papan peringkat untuk <strong>individu</strong>
