@@ -2587,6 +2587,8 @@ da:
   introduced_in_place: "indført i %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Ugyldig dato
+  #Error message shown when a time format is invalid
+  invalid_time: Ugyldig tid
   invitation: Invitation
   invite: invitér
   invite_people: Invitér personer
@@ -8207,12 +8209,31 @@ da:
         contain_entire_image_without_cropping: Bibehold hele billedet uden beskæring
         custom_banner_icon_and_project_description: Brugerdefineret banner, ikon og projektbeskrivelse
         data_visualizations: Data visualiseringer
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Dato
+          #Label for a form field for a project's starting date
+          start_date: Startdato
+          #Label for a form field for a project's end date
+          end_date: Slutdato
+          #Label for a form field for a project's starting time
+          start_time: Starttid
+          #Label for a form field for a project's end time
+          end_time: Sluttid
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Inkludér tider
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Udvalgte måneder
         delete_project: Slet projekt
         display_project_name: Vis projektnavn
         do_you_need_features_from_traditional2: |
           Brug for funktioner fra traditionelle projekter, såsom tilpassede observationsfelter,
           eller tilføjelse af individuelle observationer, som ikke automatisk kan filtreres?
         duplicate_project: Duplikér Projekt
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: Slutdatoen skal være efter startdatoen
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: Sluttiden skal være efter starttiden
         include_annotated_observations: |
           Inkludér kun observationer kommenteret med én bestemt attribut (f.eks. Livsfase),
           eller én bestemt attribut og værdi (f.eks. livsfase = voksen).
