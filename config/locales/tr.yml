@@ -885,6 +885,7 @@ tr:
   casual: sıradan
   casual_: Sıradan
   casual_tooltip_html: '"Sıradan" gözlemlerde medya, konum veya tarih eksiktir ya da başka nedenlerle "Araştırma" ya da "Tanımlama Gerekli" derecelerinin gerekliliklerini karşılamamaktadır. <a href="https://www.inaturalist.org/pages/help#quality">Nitelik sınıfı hakkında daha çok bilgi edin</a>'
+  casual_tooltip_html2: '“Sıradan” gözlemlerde medya, konum veya tarih bilgisi eksik olabilir ya da başka nedenlerle ‘Araştırma’ veya “Tanımlama Gerekli” nitelik sınıflarının gerekliliklerini karşılamayabilir. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Nitelik sınıfları hakkında daha fazla bilgi edinin</a>'
   categories: Kategoriler
   cc_0_description: "Bu lisans, çalışmanızı kamuya açık bir alanda yayınlar; böylece diğerleri, izin almadan ya da size bilgi vermeden ticari amaçlarla bile çalışmanızı kopyalayabilir, değiştirebilir, dağıtabilir ve uygulayabilir. Sunulan lisansların en uygunu budur. Azami yayılma ve lisanslı malzemelerin kullanımı için önerilir."
   cc_0_name: Telif Hakkı Yok (CC0)
@@ -1296,6 +1297,10 @@ tr:
   couldnt_change_your_password: "Şifreniz değiştirilemiyor: %{e}"
   couldnt_find_a_user_matching_x_param: "Eşleşen bir kullanıcı bulunamıyor: %{id}"
   couldnt_find_that_taxon: Bu takson bulunamadı.
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Azalan Sıra
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Artan Sıra
   create: Oluştur
   create_a_guide: Bir Rehber Oluştur
   create_a_new_field: Yeni Bir Alan Oluştur
@@ -1571,6 +1576,10 @@ tr:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: Güncelleme Tarihi
   day: Gün
   decrease_brightness: Parlaklığı Azalt
@@ -1649,6 +1658,14 @@ tr:
         Lütfen e-postanı kontrol et ve hesabını doğrulamak için aldığın e-postadaki bağlantıya tıkla.
       user:
         suspended: Hesabın askıya alındı
+        #Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: Bunun bir hata sonucu yapıldığını düşünüyorsanız ve itiraz etmek istiyorsanız, lütfen <a href="https://help.inaturalist.org/support/tickets/new">destek ekibiyle iletişime geçin.</a>
+        #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        #with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Hesabınızın askıya alınması %{until} tarihinde kaldırılacaktır."
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Neden: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Şifre sıfırlama belirteci geçersiz. Lütfen en son gönderilen şifre sıfırlama e-postasındaki bağlantıyı kullanın veya <a href="%{url}">yeni bir tane isteyin</a>.
     sessions:
@@ -1794,6 +1811,10 @@ tr:
   edit: Düzenle
   #Title of the moderation note editor
   edit_moderator_note: Moderatör Notunu Düzenle
+  #Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Askıya Almayı Düzenle
+  #Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: Yalnızca gerekçe veya sona erme tarihini güncellemeniz gerekiyorsa, bunun yerine <a href="%{edit_link}">askıya alma işlemini düzenleyebilirsiniz</a>.
   edit_a_batch_of_observations: Toplu Gözlem Düzenle
   edit_account_settings_and_profile: "Hesap ayarlarını &amp; profilini düzenle"
   edit_assessment: Değerlendirmeyi Düzenle
@@ -2320,9 +2341,9 @@ tr:
   identify_observations_by_these_users: Bu Kullanıcıların Gözlemlerini Tanımla
   identify_title: "Tanımla"
   #e.g. "With iNaturalist, you can identify nature nearby"
-  identify_verb: Tanımlama
+  identify_verb: Tanımla
   #e.g. "Identify using iNaturalist"
-  identify_cta: Tanımlama
+  identify_cta: Tanımla
   identification: tanımlama
   identification_by_user: '%{user} tarafından tanımlama'
   #Notification when an identification has been deleted
@@ -2961,12 +2982,16 @@ tr:
   misidentifications: Yanlış tanımlamalar
   misleading_or_illegal_content_html: |
     Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. "Uygun" tanımımızla ilgili daha çoğu için <a href="/help#inappropriate">SSS'ye</a>bakın.
+  misleading_or_illegal_content_html2: |
+    Yanıltıcı veya yasa dışı içerik, ırkçı veya etnik hakaretler vb. “Uygun” kavramına ilişkin tanımımız hakkında daha fazla bilgi için <a href="https://help.inaturalist.org/en/support/solutions/articles/151000169915">SSS</a> bölümüne bakın.
   #Label shown when a date has not been entered
   missing_date: Eksik Tarih
   mobile: Mobil
   moderation_history_for_user_html: '%{user} kullanıcısının moderasyon geçmişi'
   moderation_history_desc_html: |
     Bu, moderatör işlemlerini (ör. yorumları gizleme veya görünür hale getirme), notları ve bu kullanıcının taksonlar dışındaki tüm katkılarına eklenmiş işaretleri içerir. Bu bölüm <strong>yalnızca küratörler tarafından görülebilir</strong> ve <strong>küratörler kendi geçmişlerini görüntüleyemez</strong>, bu nedenle bir kişi hakkında yazılan notlar asla o kişinin kendisi tarafından görülebilir olmamalıdır.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Askıya alınma süresi doldu
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Gizle
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -3020,6 +3045,10 @@ tr:
     date_long_without_year: "DD MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "HH mm z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "HH mm"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -3125,6 +3154,7 @@ tr:
   needs_id_: Tanımlama Gerekli
   needs_id_expandable_html: "Tanımlama <span class='full'>Gerekli</span>"
   needs_id_tooltip_html: '"Tanımlama Gerekli" gözlemlerinde medya, konum ve tarih bulunur ancak yine de kesin bir tanımlama için topluluk kararı gerekir. <a href="https://www.inaturalist.org/pages/help#quality">Nitelik sınıfı hakkında daha fazla bilgi edin</a>'
+  needs_id_tooltip_html2: '“Tanımlama Gerekli” gözlemlerinde medya, konum ve tarih bilgileri bulunur, ancak kesin bir tanımlama için topluluğun mutabakatı gereklidir. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Nitelik sınıfları hakkında daha fazla bilgi edinin</a>'
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, %{place} konumundaki insanlara ve biyoçeşitliliğe odaklı uluslararası iNaturalist Ağının parçasıdır. Hesap üyeliğini <strong>%{inat_site_name}</strong> yerine <strong>%{site_name}</strong> olarak değiştirmek ve verilerini yerel kurumlarla paylaşmak istiyor musun?
@@ -3334,7 +3364,7 @@ tr:
   obscured_description: |
     Açık koordinatlar, gerçek koordinatları içeren 0.2 derece enlem/boylam hücresinde rastgele bir nokta olarak gösterilir.
   #verb, call to action, e.g. "Observe nature nearby"
-  observe: Gözlemleyin
+  observe: Gözlemle
   observation: Gözlem
   observation_: gözlem
   observation_accuracy_experiment_the_sample_for: "Bu deney için henüz örnek oluşturulmamıştır"
@@ -4668,6 +4698,7 @@ tr:
   research_grade: Araştırma Sınıfı
   research_grade_short_html: "A<span class='full'>raştırma</span>S<span class='full'>ınıfı</span>"
   research_grade_tooltip_html: '"Araştırma Sınıfı" gözlemlerde medya, konum, tarih ve kesin bir tanımlama (genellikle tür düzeyinde) konusunda topluluk fikir birliğine sahiptir. <a href="https://www.inaturalist.org/pages/help#quality">Nitelik sınıfı hakkında daha fazla bilgi edin</a>'
+  research_grade_tooltip_html2: '“Araştırma Sınıfı” gözlemlerde medya, konum, tarih ve kesin bir tanımlama (genellikle tür düzeyinde) konusunda topluluk görüşü bulunur. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Nitelik sınıfları hakkında daha fazla bilgi edinmek için tıklayın</a>'
   research_grade_observations_have: '"Araştırma Sınıfı" gözlemlerin bir tarihi, fotoğrafı, koordinatları ve topluluk destekli bir tanımlaması vardır. Veri kalite değerlendirmesini görmek için tıklayın.'
   research_grade_qualification: Araştırma Sınıfı Yeterliliği
   #Label for a button that re-sends the account confirmation email and signs
@@ -4969,6 +5000,7 @@ tr:
   sorry_you_need_to_be_signed_in_and: Üzgünüm, etiketleri doğrudan Flickr'a göndermek için oturum açman ve bağlantılı bir Flickr hesabın olması gerekir.
   sort: Sırala
   sort_by: Sıralama Türü
+  sort_included_projects_on_leaderboard_by: Liderlik tablosundaki projeleri şöyle sırala
   sorting_by: 'Sıralama ölçütü:'
   soundcloud_needs_to_confirm: "SoundCloud'un, hesabının %{site_name}'e bağlanmasını istediğini onaylaması gerekir."
   sounds:
@@ -5112,10 +5144,67 @@ tr:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Wikipedia ve diğer Wikimedia Foundation projeleri için uygun
   summary: Özet
   supporting: Destekleyici
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Askıya alınma süresi
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 gün
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 gün
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 hafta
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 ay
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 ay
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Süresiz
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Özel
+  #label for the suspension reason dropdown
+  suspension_reason_label: Askıya alma nedeni
+  #option for entering a custom suspension reason
+  suspension_reason_custom: Özel
+  #note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Lütfen bu gerekçenin askıya alınan kullanıcıya gösterileceğini unutmayın.
+  #note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Lütfen gerekçeyi güncelleyin ve kullanıcının askıya alınma durumunu neden değiştirdiğinizi açıklayın.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Düzenleme nedeni
+  #label for the edit reason field in the moderation history table
+  edit_reason: Düzenleme nedeni
+  #predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    #reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Nefret söylemi
+    #reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Hakaret veya tehdit
+    #reason displayed to users who have been suspended for posting sexually explicit content
+    sexually_explicit_content: Cinsel içerikli yayın
+    #reason displayed to users who are creating false accounts to circumvent suspensions,
+    #https://en.wikipedia.org/wiki/Sock_puppet_account
+    sockpuppet_accounts: Sahte hesap
+    #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    false_ids_or_dqa_votes: Kasıtlı olarak sahte tanımlamalar veya VND oyları eklemek
+    #reason displayed to users who have been suspended for posting machine generated content
+    machine_generated_content: Makine tarafından oluşturulan gözlemler, tanımlamalar ve yorumlar
+    #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Telif hakkı ihlali devam etmesi (uyarıdan sonra)
+    #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Yapay olarak üretilmiş içeriklerin paylaşımına devam edilmesi (uyarıdan sonra) 
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Veri niteliğindeki düşüşün devam etmesi (uyarıdan sonra)
+  #the time at which a users suspension ends
+  suspend_until: 'Şu tarihe kadar askıya al:'
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Tarayıcınızın yerel saat dilimindeki tarih ve saat.
   suspend_user: Kullanıcıyı askıya al
   suspend_user_html: '%{user} kullanıcısını askıya al'
   suspend_user_reason_instructions_html: |
     Bu hesabı neden askıya aldığınızı açıklayın ve %{link_start_tag}Topluluk İlkelerinin%{link_end_tag} herhangi bir ihlalini belirtin. Lütfen kişisel görüşlerinizi eklemekten kaçının.
+  #a label on a field showing when a user is suspended until
+  suspended_until: 'Şu tarihe kadar askıya alındı:'
+  #a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Süresiz olarak askıya alındı
   sw_lat: GB Enlemi.
   sw_lon: GB Boylamı.
   sync: Eşitlensin mi?
@@ -5590,7 +5679,7 @@ tr:
   total_species_observed_caps: GÖZLEMLENEN TOPLAM TÜR
   total_unique_observers: Toplam benzersiz gözlemci
   #e.g. "With iNaturalist, you can track species you've seen worldwide"
-  track: İz
+  track: Takip et
   translated_languages: Çevrilmiş Diller
   'true': 'Doğru'
   trending: Öne Çıkanlar
@@ -5821,6 +5910,8 @@ tr:
   user_trusts_you_with_their_private_coordinates_desc: |
     Gözlemci, tüm gözlemlerinin gizli koordinatları ile size güvenmeyi tercih etti.
   user_updated_an_observation_field_html: '%{user}, %{owner} tarafından yapılan bir gözlemde "%{field_name}" için bir değeri güncelledi'
+  #An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} Hesabınızın askıya alınma durumu kaldırıldı"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> yazdı,
   username: Kullanıcı Adı
   username_description: Bu senin giriş yaparken kullanacağın kullanıcı adın, aynı zamanda iNaturalist'teki diğer kullanıcılar da seni bu isimle tanımlayacak.
@@ -7330,6 +7421,13 @@ tr:
           </p>
           <p> Böylece çocuğunuz, Seek uygulamasını kullanarak iNaturalist hesabına gözlemlerini paylaşabilecek ve bu gözlemler iNaturalist.org’da görüntülenebilecektir.
           </p>
+      user_unsuspended:
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message: '%{site_name}''teki hesabınızın askıya alınma durumu kaldırıldı; artık siteyi tekrar kullanabilirsiniz.'
+        #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
+        reason: "Hesabınız şu nedenle askıya alınmıştır: %{reason}"
+        #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: 'Sitenin kullanımına devam etmek için <a href="%{login_url}">hesabınıza giriş yapın</a>.'
       users_updates_suspended:
         message: |
           Bir süredir %{site_name}'te etkin değilsin, bu nedenle aboneliklerini askıya aldık. Site etkinliği ile ilgili güncellemeleri almaya devam etmek için lütfen hesabına tekrar <a href="%{login_url}">giriş yap</a>.
@@ -7400,11 +7498,21 @@ tr:
         end_time_desc: "Bioblitzin için bitiş zamanı. Başlangıç zamanından sonra bir yıldan az olmalı"
         event_url_desc: |
           Bioblitz'iniz için kullandığın etkinlik kayıt hizmetinin URL'si. Bu, sayısal bir kimlik içeren bir Eventbrite URL'si ise, Bioblitzin başlayana kadar proje sayfana bir kayıt widgetı ekleyeceğiz.
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Liberlik Tablosunu Gizle
         icon_desc: "Bir kare boyutuna kırpılacak"
         it_looks_like_this_project_can_be_converted: |
           Görünüşe göre bu proje yeni bir <a href="%{url}">Koleksiyon Projesine</a> dönüştürülebilir.
         last_aggregated_at_desc: |
           Kümeleyicinin bu projeye gözlem eklemeyi bitirdiği en son zaman
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Liderlik Tablosu
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          Liderlik tablosu paneli, en fazla gözlem yapan kullanıcıları, en fazla tür kaydeden kullanıcıları ve en çok gözlemlenen türleri gösterir. İsteğe bağlı olarak gizlenebilir.
         #Label for button to make another user the owner of a project
         make_owner: Sahibi Yap
         no_curators: |
@@ -8330,14 +8438,14 @@ tr:
       index:
         hero:
           #Main hero headline on the home page
-          headline: Merakınızın bilime katkıda bulunduğu yer.
+          headline: Merakınızın bilime katkı sağladığı yer.
           #Hero subheadline describing the core value proposition
           subheadline: >
             Bitkileri, hayvanları, mantarları ve daha fazlasını tanımlayarak Dünya'daki yaşam atlasına katkı sağlayın.
           #Primary call-to-action button in the hero section
           cta_join: Topluluğa katılın
           #Tagline displayed beneath the hero CTA, emphasising the app's accessibility
-          tagline: Ücretsiz, kar amacı gütmeyen, topluluk destekli.
+          tagline: Ücretsiz, kâr amacı gütmeyen, topluluk destekli.
         features:
           #Section label introducing the three core user actions
           intro: "iNaturalist ile şunları yapabilirsiniz:"
@@ -8346,91 +8454,101 @@ tr:
           identify_desc: bitkiler, hayvanlar, mantarlar ve daha fazlası
           #Description of what users can Track
           #Read as "{Track} species you've seen worldwide"
-          track_desc: dünya çapında gördüğün türler
+          track_desc: dünya çapında gördüğün türleri
           #Description of where users can Contribute
           #Read as "{Contribute} to real science"
           contribute_desc: gerçek bilime
           #Description of what users can Discover
           #Read as "{Discover} nature nearby"
-          discover_desc: yakındaki doğa
+          discover_desc: yakın çevredeki doğayı
           #Description of what users can Learn
           #Read as "{Learn} from a global community of naturalists"
-          learn_desc: Küresel bir doğa bilimci topluluğundan
+          learn_desc: dünya çapındaki doğa severler topluluğundan
         stories:
           #Section heading for real-world stories powered by community science
           heading: Topluluk biliminin gücü
           #Photo credit for each community-science story card; %{user} = observer login, %{place} = display place name
-          observation_credit: Görülen %{user} içinde %{place}
+          observation_credit: '%{user} tarafından %{place} konumunda görüldü'
           #Heading for the story about rediscovering an extinct moth species
-          moth_heading: Uzun zamandır kayıp türleri yeniden keşfetmek
+          moth_heading: Uzun süredir kayıp olan türleri yeniden keşfetmek
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
-            The %{moth_common_name} Güve onlarca yıldır fark edilmemişti ve bir zamanlar nesli tükenmiş sanıyordu — ta ki Yeni Zelanda'da bir turist onu tesadüfen fark edene kadar.
+            %{moth_common_name} türü güve, on yıllardır görülmemişti ve bir zamanlar nesli tükenmiş sanılıyordu — ta ki Yeni Zelanda'da bir turist onu tesadüfen görene kadar.
+          #Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Buzlu anka güvesi"
           #Heading for the story about a new-to-science mantis species
-          mantis_heading: Bilime yeni gelen türlerin keşfi
+          mantis_heading: Bilim dünyası için yeni türlerin keşfi
           #Body text for the mantis discovery story
           mantis_body_html: >
-            <span class="italic">Inimia nat</span> — kısaltılmış olarak <span class="italic">I. nat</span> — Avustralya'da bir kadının mahallesinde yürürken keşfettiği bilime yeni giren bir mantis türü.
+            <span class="italic">Inimia nat</span> — kısaltması <span class="italic">I. nat</span> olan — Avustralya'da mahallesinde yürüyüş yapan bir kadın tarafından keşfedilen, bilim dünyası için yeni bir peygamberdevesi türü.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "Peygamber devesi"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: Yerel ekosistemlerin korunması
           #Body text for the amphibian protection story
           amphibian_body: >
-            Kaliforniya'daki yerel gönüllülerden oluşan bir grup, iNaturalist aracılığıyla yoğun bir yolu geçen göç eden amfibileri korumak için bir araya geldi.
+            Kaliforniya'daki bir grup yerel gönüllü, yoğun trafiğin olduğu bir yolu geçen göç eden yüzergezerleri korumak amacıyla iNaturalist aracılığıyla bir araya geldi.
+          #Alt text for the California newt story image
+          california_newt_img_alt: "Kaliforniya semenderi"
           #Link below the stories to read more community science stories
-          read_more: Daha fazla hikaye okuyun
+          read_more: Diğer hikayeleri okuyun
         observation:
           #Heading for the sample observation section
-          heading: Her gözlem bir hikaye anlatır
+          heading: Her gözlem bir hikâye anlatır
+          #Alt text for the sample observation photo
+          photo_alt: "Yapraktaki yeşil kurbağa"
+          #Alt text for the map showing the observation location
+          map_alt: "Gözlem konumunu büyük bir işaretleyici ve ızgara hücreleri aracılığıyla diğer gözlemleri gösteren harita"
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
-          observations_label: Biyolojik çeşitlilik bilimine katkıda bulunan gözlemler
+          observations_label: biyoçeşitlilik bilimine katkı sağlayan gözlem
           #Description label for the species statistic
           #Prepended by count, e.g. "550,000+ species documented across the globe"
-          species_label: Dünya genelinde belgelenmiş türler
+          species_label: dünya çapında kayıt altına alınmış tür
           #Description label for the papers statistic
           #Prepended by count, e.g. "7,000+ papers citing iNaturalist data"
-          papers_label: iNaturalist verilerine atıfta bulunan makaleler
+          papers_label: iNaturalist verilerini kaynak gösteren makale
           #Description label for the discoveries statistic
           #Prepended by count, e.g. "500+ species discovered or rediscovered by community scientists"
-          discoveries_label: Topluluk bilimcileri tarafından keşfedilen veya yeniden keşfedilen türler
+          discoveries_label: topluluk bilimcileri tarafından keşfedilen veya yeniden keşfedilen tür
         how:
           #Step 1 description — instructing users to photograph any organism
           step1_body: >
-            Uygulamayı açın ve mahallenizden veya dünyanın herhangi bir yerinden herhangi bir yabani bitki, hayvan, mantar veya başka bir organizmanın fotoğrafını çekin.
+            Uygulamayı açın ve mahallenizden ya da dünyanın herhangi bir yerinden yabani bitki, hayvan, mantar veya başka bir canlıyı fotoğraflayın.
           #Step 2 description — explaining AI and community identification
           step2_body: >
-            Uygulama anında tanımlama öneriyor ve küresel bir doğa bilimci topluluğu bunu doğrular veya iyileştirir.
+            Uygulama anında bir tanımlama önerir ve dünya çapındaki doğa bilimcileri topluluğu bunu doğrular veya detaylandırır.
           #Step 3 description — explaining how observations become open scientific data
           step3_body: >
-            Gözleminiz açık veri haline gelir — bilim insanları, korumacılar ve dünya çapında araştırmacılar tarafından kullanılır.
+            Gözleminiz açık veri haline gelir — dünya çapında bilim insanları, doğa koruma uzmanları ve araştırmacılar tarafından kullanılır.
           #Explanatory note below the three steps giving the "why" behind contributing
           why_note_html: >
-            Doğa her zamankinden daha hızlı değişiyor, bu yüzden <span class="underline">Sen</span> Nerede yaşadığını kaydetmeye yardımcı olmak için.
+            Doğa hiç olmadığı kadar hızlı değişiyor; bu yüzden, hangi canlıların nerede yaşadığını kaydetmemize yardım etmen için <span class="underline">sana</span> ihtiyacımız var.
         testimonials:
           #Quote from the testimonial author (last name Gube)
           gube_quote: >
-            Bu, bana tür tanımlama konusunda gerçekten yardımcı oldu, ayrıca dünyanın dört bir yanındaki farklı insanlarla etkileşim kurma fırsatı da verdi.
+            Bu, türlerin tanımlanmasında bana gerçekten yardımcı oldu; ayrıca dünyanın dört bir yanından farklı insanlarla iletişim kurma fırsatı da sağladı.
           #Job title and location of the testimonial author (last name Gube)
           gube_title: Deniz Koruma Uzmanı ve Sualtı Fotoğrafçısı, Kenya
           #Quote from the testimonial author (last name Kratzer)
           kratzer_quote: >
-            iNaturalist, az incelenen taksonlar üzerine çok sayıda yeni ve heyecan verici araştırmanın kapısını açıyor. Bence bu platform ekoloji bilimin öncüsüdür.
+            iNaturalist, yeterince araştırılmamış taksonlar üzerine pek çok yeni ve heyecan verici araştırmanın önünü açıyor. Bana göre bu platform, ekoloji biliminin en ileri noktasıdır.
           #Job title and location of the testimonial author (last name Kratzer)
           kratzer_title: Owlfly LLC, ABD'de Saha Rehberi Yazarı
           #Quote from the testimonial author (last name Sumanapala)
           sumanapala_quote: >
-            iNaturalist ve ona bağlı tanımlayıcılar topluluğu, keşiflerimde paha biçilmez bir kaynak haline geldi. Bu, mevcut çalışmalarımın temelini atmaya yardımcı oldu.
+            iNaturalist ve kendini bu işe adamış tanımlayıcı topluluğu, keşiflerim sırasında paha biçilmez bir kaynak oldu. Bu, şu anki çalışmalarımın temelini atmamda bana yardımcı oldu.
           #Job title and location of the testimonial author (last name Sumanapala)
           sumanapala_title: Biyolojik Çeşitlilik Araştırmacısı, Sri Lanka
           #Quote from the testimonial author (last name Fachetti)
           fachetti_quote: >
-            iNaturalist, insanları, doğayı ve bilgiyi birbirine bağlayan güçlü bir araçtır. Nadir bir türü fotoğraflayabilirim, hatta henüz tanımlanmamış bir türü fotoğraflayabilirim ve aynı zamanda doğal mirasımızın korunmasına katkıda bulunuyorum.
+            iNaturalist, insanları, doğayı ve bilgiyi birbirine bağlayan güçlü bir araçtır. Nadir bir türü, hatta henüz tanımlanmamış bir türü fotoğraflayabilirim ve aynı zamanda doğal mirasımızın korunmasına katkıda bulunmuş olurum.
           #Job title and location of the testimonial author (last name Fachetti)
           fachetti_title: Çevre Teknisyeni ve hobi fotoğrafçısı, Brezilya
           #Quote from the testimonial author (last name Velazco)
           velazco_quote: >
-            Dünyanın neresinde olursanız olun, ister doktora dereceniz olsun ister sadece doğayı sevin, iNaturalist sizi doğaya ve birçok doğa uzmanına daha da yakınlaştıracak.
+            Dünyanın neresinde olursanız olun, ister doktora dereceniz olsun ister sadece doğayı seviyor olun, iNaturalist sizi doğaya ve birçok doğa sever arkadaşınıza yaklaştıracak.
           #Job title and location of the testimonial author (last name Velazco)
           velazco_title: Biyolog, Meksika
         everyone:
@@ -8438,47 +8556,51 @@ tr:
           heading: Herkes doğa bilimcidir
           #Description inviting anyone who has been curious about a living thing
           body: >
-            Eğer yaşayan bir şeye yakından baktıysanız ve ne olduğunu merak ettiyseniz, iNaturalist sizin için.
+            Eğer daha önce bir canlıyı yakından inceleyip ne olduğunu merak ettiyseniz, iNaturalist tam size göre.
           #Heading for the impact sub-section
           impact_heading: Etki yaratabilirsiniz
           #Description of how each photo contributes to the global scientific record
           impact_body: >
-            Paylaştığınız her fotoğraf, araştırmacıların dünya çapındaki güvendiği küresel bir bilimsel kaydın parçası haline gelir.
+            Paylaştığınız her fotoğraf, dünyanın dört bir yanındaki araştırmacıların dayandığı küresel bir bilimsel arşivin parçası haline gelir.
           #Heading for the community reputation sub-section
-          community_heading: '"Çevrimiçi en güzel yer"'
-          community_heading_2: Çevrimiçi en güzel yer
+          community_heading: '“İnternetteki en güzel yer”'
+          community_heading_2: İnternetteki en güzel yer
           #Description of the welcoming community aspect
           community_body: >
-            Kimlikler için gelin, topluluk için ve bilime etki için kalın.
+            Tanımlamalar için gelin, topluluk ve bilimsel etki için kalın.
         download:
           #Heading prompting users to download the mobile app
           heading: iNaturalist uygulamasını indirin
           #Subheading describing the two core benefits of the app
-          subheading: Gerçek zamanlı kimlik bilgilerini alın ve bilime katkıda bulunun
+          subheading: Gerçek zamanlı tür tanımlamaları alın ve bilime katkıda bulunun
           #Social proof label showing total app downloads
           #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
-          count_label: "%{count}+ İndirmeler"
+          count_label: "%{count}+ İndirme"
+          #Alt text for the iNaturalist app phone screenshot
+          phone_alt: "İki telefon ekranında görüntülenen iNat uygulaması, sinekkuşu ve Kaliforniya gelinciği gözlemlerini gösteriyor"
         explore:
           #Heading for the explore species section; species cards generated from static JSON exported from iNat
-          heading: Dünya çapında türleri keşfedin
+          heading: Dünyanın dört bir yanındaki türleri keşfedin
           #Button / link to browse species without downloading
           button: Şimdi keşfedin
         seek:
           #Heading for the Seek app section, aimed at users under 13
-          heading: "13 yaş altı mı? Seek! İndirin"
+          heading: "13 yaşından küçük müsün? Seek'i indir!"
           #Description of Seek's badge and challenge features
-          body: Rozetler kazanın ve türleri gözlemlemek için yarışmalara katılın!
+          body: Rozetler kazan ve türleri gözlemlemek için mücadelelere katıl!
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ 5 Yıldızlı İncelemeler"
+          #Alt text for the Seek app phone screenshot
+          phone_alt: "Seek uygulaması iki telefonda da açık durumda; bir tukan rozeti ve “Yakındaki Türler” görünümü gösteriliyor"
         newsletter:
           #Heading inviting users to subscribe to the monthly newsletter
-          heading: Aylık bültenimizi alın!
+          heading: Aylık bültenimize abone olun!
           #Description of the newsletter's content
-          body: iNaturalist topluluğundan gelen hikayeler ve keşiflerle bağlantıda kalın.
+          body: iNaturalist topluluğundan gelen hikayeler ve keşiflerden haberdar olun.
         donate:
           #Heading describing iNaturalist's nonprofit status
-          heading: iNaturalist, bilim ve korumayı destekleyen kar amacı gütmeyen bir kuruluştur.
+          heading: iNaturalist, bilimi ve doğa korumasını destekleyen kâr amacı gütmeyen bir kuruluştur.
           #Supporting line connecting the user's donation to iNaturalist's mission of supporting science and conservation.
           subheading: Desteğiniz bunu mümkün kılıyor.
           #Call-to-action button for the donation section
@@ -8490,27 +8612,27 @@ tr:
           upload_existing_question: Zaten sahip olduğum fotoğrafları yükleyebilir miyim?
           #FAQ: uploading existing photos — answer
           upload_existing_answer: >
-            Evet! Fotoğrafın ne zaman ve nerede çekildiğini yaklaşık olarak bildiğiniz sürece, eski fotoğraflar da memnuniyetle karşılanır.
+            Evet! Fotoğrafın ne zaman ve nerede çekildiğini yaklaşık olarak biliyorsanız, eski fotoğraflar da kabul edilir.
           #FAQ: who can use iNaturalist data — question
-          who_can_use_question: iNaturalist gözlemleriyle kim bilim yapabilir?
+          who_can_use_question: iNaturalist gözlemleriyle kimler bilimsel çalışmalar yapabilir?
           #FAQ: who can use iNaturalist data — answer
           who_can_use_answer: >
-            Herkes! Tüm iNaturalist gözlemleri açık ve ücretsiz olarak erişilebilir — hem araştırmacılar, koruma uygulayıcıları hem de meraklı bireyler için.
+            Herkes! iNaturalist'teki tüm gözlemler herkese açıktır ve ücretsiz olarak erişilebilir — araştırmacılar, doğa koruma uzmanları ve meraklı bireyler için de.
           #FAQ: research grade definition — question
-          research_grade_question: '"Araştırma notu" ne anlama geliyor?'
+          research_grade_question: '“Araştırma sınıfı” ne anlama gelir?'
           #FAQ: research grade definition — answer
           research_grade_answer: >
-            Topluluk bir tanımlama konusunda anlaştığında, bir gözlem "araştırma derecesi" olur ve küresel bilimsel kayda girer. Her kimlik onu oraya götürmeye yardımcı olabilir.
+            Topluluk bir tanımlama üzerinde mutabık kaldığında, o gözlem “araştırma sınıfı” hale gelir ve küresel bilimsel kayıtlara girer. Her tanımlama, bu hedefe ulaşılmasına katkıda bulunabilir.
           #FAQ: whether prior knowledge is needed — question
-          no_knowledge_question: Ne gördüğümü bilmem mi gerekiyor?
+          no_knowledge_question: Neye baktığımı bilmem gerekiyor mu?
           #FAQ: whether prior knowledge is needed — answer
           no_knowledge_answer: >
-            Hiç de hayır! Bir fotoğraf paylaşın, küresel bir doğa bilimci topluluğu bunu tanımlamanıza yardımcı olabilir.
+            Hiç de bile! Bir fotoğraf paylaşın, dünya çapındaki doğa severler topluluğu onu tanımlamanıza yardımcı olsun.
           #FAQ: whether the app is required — question
           need_app_question: Uygulamayı kullanmam gerekiyor mu?
           #FAQ: whether the app is required — answer; references both the website and mobile app
           need_app_answer: >
-            Masaüstü bilgisayarda iNaturalist.org harika çalışıyor. Mobil cihazda, uygulama size en iyi deneyimi sunuyor — özellikle hareket halindeyken türleri tanımlamak için.
+            Masaüstü bilgisayarda iNaturalist.org mükemmel çalışıyor. Mobil cihazlarda ise uygulama size en iyi deneyimi sunuyor — özellikle de hareket halindeyken türleri tanımlamak için.
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Ek eklemek için kaydet ve düzenle
@@ -8618,6 +8740,18 @@ tr:
       x_seconds:
         one: "%{count} saniye"
         other: '%{count} saniye'
+      #the number of hours for distance in time from now
+      x_hours:
+        #a singular hour
+        one: "%{count} saat"
+        #multiple hours (plural)
+        other: "%{count} saat"
+      #the number of years for distance in time from now
+      x_years:
+        #a singular year
+        one: "%{count} yıl"
+        #multiple years (plural)
+        other: "%{count} yıl"
     countdown_x_days:
       one: GÜN
       other: GÜN
@@ -8669,6 +8803,11 @@ tr:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "BİN"
+        million: "MN"
+        billion: "MLR"
       decimal_units:
         format: '%n %u'
         units:
@@ -8836,6 +8975,8 @@ tr:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Neden
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Düzenleme nedeni
       observation:
         description: Notlar
         geo_x: Doğuya Doğru
@@ -9099,6 +9240,9 @@ tr:
               staff_cannot_be_suspended: Personel askıya alınamaz
             user_id:
               must_be_a_curator: küratör olmalı
+            suspended_until:
+              #Error saying that the date selected for suspension expiration must be in the future
+              must_be_in_the_future: Gelecek zamanda olmalı
         moderator_note:
           attributes:
             user:

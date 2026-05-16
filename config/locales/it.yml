@@ -1606,6 +1606,10 @@ it:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: Data aggiornamento
   day: Giorno
   decrease_brightness: Riduci luminosità
@@ -1685,6 +1689,14 @@ it:
         per confermare il tuo account.
       user:
         suspended: Il tuo account è stato sospeso
+        #Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: Se pensi che ciò sia stato fatto per errore e vuoi fare ricorso, ti prego <a href="https://help.inaturalist.org/support/tickets/new">Contatta l'assistenza.</a>
+        #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        #with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "La sospensione verrà annullata in %{until}."
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Motivo: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Il token di reimpostazione della password non è valido. Si prega di utilizzare il link nell'e-mail di reimpostazione della password inviata più di recente, oppure <a href="%{url}">richiedi una nuova</a>.
     sessions:
@@ -1830,6 +1842,10 @@ it:
   edit: Modifica
   #Title of the moderation note editor
   edit_moderator_note: Modifica Nota Moderatore
+  #Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Modifica Sospensione
+  #Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: Se devi solo aggiornare il motivo o la data di scadenza, invece puoi farlo <a href="%{edit_link}">modificando la sospensione</a>.
   edit_a_batch_of_observations: Modifica un gruppo di osservazioni
   edit_account_settings_and_profile: "Modifica impostazioni utenza e profilo"
   edit_assessment: Modifica la valutazione
@@ -3079,6 +3095,10 @@ it:
     date_long_without_year: "MMMM D"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "LT"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -5212,6 +5232,39 @@ it:
   suspension_duration_indefinite: Indefinita
   #a select form option to select a custom date when a user will be unsuspended
   suspension_duration_custom: Consuetudine
+  #label for the suspension reason dropdown
+  suspension_reason_label: Motivo della sospensione
+  #option for entering a custom suspension reason
+  suspension_reason_custom: Personalizzato
+  #note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Si prega di notare che questa motivazione sarà mostrata all'utente sospeso.
+  #note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Per favore, aggiorna il motivo e spiega perché stai cambiando la sospensione dell'utente.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Motivo della modifica
+  #label for the edit reason field in the moderation history table
+  edit_reason: Motivo di modifica
+  #predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    #reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Discorsi d'odio
+    #reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Insulti o minacce
+    #reason displayed to users who have been suspended for posting sexually explicit content
+    sexually_explicit_content: Contenuti sessualmente espliciti
+    #reason displayed to users who are creating false accounts to circumvent suspensions,
+    #https://en.wikipedia.org/wiki/Sock_puppet_account
+    sockpuppet_accounts: Account sockpuppet
+    #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    false_ids_or_dqa_votes: Aggiungendo intenzionalmente false identità o voti VDQ
+    #reason displayed to users who have been suspended for posting machine generated content
+    machine_generated_content: Osservazioni, identificazioni e commenti generati da macchina
+    #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Violazione continua del copyright (dopo avvertimento)
+    #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Continua la pubblicazione di media generati artificialmente (dopo avvertimento)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Riduzione continua della qualità dei dati (dopo avvertimento)
   #the time at which a users suspension ends
   suspend_until: Sospendere fino a quando non
   #a note telling users to select the time in their local time zone
@@ -5220,6 +5273,10 @@ it:
   suspend_user_html: Sospendi %{user}
   suspend_user_reason_instructions_html: |
     Spiega perché stai sospendendo questo profilo e cita qualsiasi violazione delle %{link_start_tag}Linee Guida della Community%{link_end_tag}. Sei pregato di astenerti dall'aggiungere opinioni personali.
+  #a label on a field showing when a user is suspended until
+  suspended_until: Sospeso fino a
+  #a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Sospeso indefinitamente
   sw_lat: Lat. SO
   sw_lon: Lon. SO
   sync: Sincronizza?
@@ -5938,6 +5995,8 @@ it:
   user_trusts_you_with_their_private_coordinates_desc: |
     L'osservatore ha deciso di rivelarti le coordinate nascoste di tutte le sue osservazioni.
   user_updated_an_observation_field_html: '%{user} ha aggiunto un valore per "%{field_name}" a un''osservazione compiuta da %{owner}'
+  #An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} Il tuo account è stato riattivato"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> ha scritto,
   username: Nome utente
   username_description: Questo è il nome utente che utilizzerai per effettuare il login, e quello attraverso cui gli altri utenti potranno identificarti su iNaturalist
@@ -7521,6 +7580,13 @@ it:
           <p>
           Tuo figlio sarà così in grado di publicare osservazioni sul suo account iNaturalist usando l'app Seek app in modo che queste siano visibili su iNaturalist.org.
           </p>
+      user_unsuspended:
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message: Il tuo account su %{site_name} è stato riattivato e puoi usare di nuovo il sito.
+        #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
+        reason: "Il tuo account è stato sospeso per il seguente motivo: %{reason}"
+        #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: '<a href="%{login_url}">Accedi al tuo account</a> per continuare a usare il sito.'
       users_updates_suspended:
         message: |
           Sei stato inattivo su%{site_name} per un po', così abbiamo sospeso la tua iscrizione. Per riattivarla, per favore, <a href="%{login_url}">accedi al tuo account</a>.
@@ -8580,21 +8646,31 @@ it:
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
             La falena %{moth_common_name} non era stata avvistata da decenni e una volta si pensava che fosse estinta — fino a quando un turista in Nuova Zelanda la avvistò per caso.
+          #Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Falena fenice ghiacciata"
           #Heading for the story about a new-to-science mantis species
           mantis_heading: Alla scoperta di nuove specie scientifiche
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — abbreviata in <span class="italic">I. nat</span> — è una specie di mantis nuova alla scienza trovata da una donna in Australia mentre camminava nel suo quartiere.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "Mantide religiosa"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: Proteggere gli ecosistemi locali
           #Body text for the amphibian protection story
           amphibian_body: >
             Un gruppo di volontari locali in California si è unito tramite iNaturalist per proteggere gli anfibi migratori che attraversano una strada trafficata.
+          #Alt text for the California newt story image
+          california_newt_img_alt: "Tritone della California"
           #Link below the stories to read more community science stories
           read_more: Leggi altre storie
         observation:
           #Heading for the sample observation section
           heading: Ogni osservazione racconta una storia
+          #Alt text for the sample observation photo
+          photo_alt: "Rana verde su foglia"
+          #Alt text for the map showing the observation location
+          map_alt: "Mappa che mostra la posizione dell'osservazione con un grande marcatore e altre osservazioni tramite celle della griglia"
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -8672,6 +8748,8 @@ it:
           #Social proof label showing total app downloads
           #%{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
           count_label: "%{count}+ Scaricamenti"
+          #Alt text for the iNaturalist app phone screenshot
+          phone_alt: "iNat su due schermi telefoni, che mostrano osservazioni di colibrì e papavero della California"
         explore:
           #Heading for the explore species section; species cards generated from static JSON exported from iNat
           heading: Esplora specie in tutto il mondo
@@ -8685,6 +8763,8 @@ it:
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ Recensioni a 5 stelle"
+          #Alt text for the Seek app phone screenshot
+          phone_alt: "L'app Seek attiva su due telefoni, mostra il distintivo del tucano e la vista Specie Vicine"
         newsletter:
           #Heading inviting users to subscribe to the monthly newsletter
           heading: Ricevi la nostra newsletter mensile!
@@ -8832,6 +8912,18 @@ it:
       x_seconds:
         one: "1 secondo"
         other: '%{count} secondi'
+      #the number of hours for distance in time from now
+      x_hours:
+        #a singular hour
+        one: "%{count} ora"
+        #multiple hours (plural)
+        other: "%{count} Orari"
+      #the number of years for distance in time from now
+      x_years:
+        #a singular year
+        one: "%{count} Anno"
+        #multiple years (plural)
+        other: "%{count} Anni"
     countdown_x_days:
       one: GIORNO
       other: GIORNI
@@ -9055,6 +9147,8 @@ it:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Motivo
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Motivo di modifica
       observation:
         description: Descrizioni
         geo_x: Est

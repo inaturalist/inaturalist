@@ -2571,6 +2571,8 @@ nl:
   introduced_in_place: "Geïntroduceerd in %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Ongeldige datum
+  #Error message shown when a time format is invalid
+  invalid_time: Ongeldige tijd
   invitation: Uitnodiging
   invite: uitnodigen
   invite_people: Mensen uitnodigen
@@ -5365,6 +5367,10 @@ nl:
   suspension_reason_custom_note: 'Let op: deze reden zal worden weergegeven aan de geschorste gebruiker.'
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Werk de reden bij en leg uit waarom je de schorsing van de gebruiker verandert.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Reden voor de bewerking
+  #label for the edit reason field in the moderation history table
+  edit_reason: Reden voor bewerking.
   #predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     #reason displayed to users who have been suspended for posting hate speech
@@ -7957,12 +7963,27 @@ nl:
         contain_entire_image_without_cropping: Bevat de volledige afbeelding zonder bij te snijden
         custom_banner_icon_and_project_description: Aangepaste banner, pictogram en projectbeschrijving
         data_visualizations: Data visualisaties
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Datum
+          #Label for a form field for a project's starting date
+          start_date: Startdatum
+          #Label for a form field for a project's end date
+          end_date: Einddatum
+          #Label for a form field for a project's starting time
+          start_time: Starttijd
+          #Label for a form field for a project's end time
+          end_time: Eindtijd
         delete_project: Project verwijderen
         display_project_name: Toon project naam
         do_you_need_features_from_traditional2: |
           Heb je functies nodig van traditionele projecten, zoals op maat gemaakte waarnemingsvelden,
           of individuele waarnemingen toevoegen die niet automatisch kunnen worden gefilterd?
         duplicate_project: Kopieer Project
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: De einddatum moet na de startdatum liggen
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: De eindtijd moet na de begintijd liggen
         include_annotated_observations: |
           Neem alleen waarnemingen op die een bepaalde aantekening hebben (bijv. levensstadium), of een bepaalde aantekening en waarde (bijv. levensstadium = adult).
           Er is een limiet van één aantekeningenfilter per project.
@@ -9419,6 +9440,8 @@ nl:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Reden
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Reden voor bewerking.
       observation:
         description: Notities
         geo_x: Oostwaarde
