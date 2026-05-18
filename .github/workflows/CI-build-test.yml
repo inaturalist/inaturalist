@@ -98,4 +98,12 @@ jobs:
       run: bundle exec rubocop ./app/controllers/users ./app/controllers/admin ./app/es_indices
 
     - name: Run restricted eslint
-      run: npm run eslint app/webpack/computer_vision/language
+      run: |
+        npm run eslint \
+          app/webpack/computer_vision/language \
+          "app/webpack/shared/components/*.tsx" \
+          "app/webpack/taxa/show/components/*.tsx" \
+          app/webpack/taxa/show/components/similar_tab.jsx \
+          app/webpack/taxa/show/components/status_tab.jsx \
+          app/webpack/taxa/photos/components/photo_browser.jsx \
+          app/webpack/taxa/show/containers/highlights_tab_container.js
