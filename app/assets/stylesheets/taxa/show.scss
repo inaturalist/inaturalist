@@ -248,7 +248,7 @@
   margin-bottom: 10px;
   border: 1px solid #ddd;
 
-  @media ( max-width: $mobile-max ) {
+  @media ( max-width: $md ) {
     height: 300px;
   }
 }
@@ -518,7 +518,7 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview.grid .foreground-container .TaxonPhoto .CoverImage {
   min-height: 0 !important;
   height: 195px;
-  @media ( max-width: $mobile-max ) {
+  @media ( max-width: $md ) {
     height: 120px;
   }
 }
@@ -583,7 +583,7 @@ $photoPreviewThumbGutterTop: 3px;
   align-items: center;
   justify-content: center;
   height: 195px !important;
-  @media ( max-width: $mobile-max ) {
+  @media ( max-width: $md ) {
     height: 120px !important;
   }
 }
@@ -821,7 +821,7 @@ $introducedColor: #E4007C;
     --carousel-item-width: 200px;
     padding-bottom: 20px;
 
-    @media ( max-width: $mobile-max ) {
+    @media ( max-width: $md ) {
       --carousel-item-width: 100px;
     }
   }
@@ -1560,7 +1560,7 @@ table.regional-names {
 
   .IdentificationsTab {
     &.container {
-      @media (max-width: $mobile-max) {
+      @media (max-width: $md) {
         padding: 0;
       }
     }
