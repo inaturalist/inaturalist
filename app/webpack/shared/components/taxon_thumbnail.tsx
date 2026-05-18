@@ -25,6 +25,12 @@ export interface Taxon {
   [key: string]: unknown;
 }
 
+export interface TaxonThumbnailBadge {
+  text: React.ReactNode;
+  linkUrl?: string;
+  tip?: string;
+}
+
 export interface TaxonThumbnailProps {
   taxon: Taxon;
   width?: number;
@@ -32,6 +38,7 @@ export interface TaxonThumbnailProps {
   className?: string;
   overlay?: React.ReactNode;
   noInactive?: boolean;
+  badge?: TaxonThumbnailBadge;
   onClick?: ( e: React.MouseEvent ) => void;
   captionForTaxon?: ( taxon: Taxon ) => React.ReactNode;
   urlForTaxon?: ( taxon: Taxon ) => string;
@@ -49,6 +56,7 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
     className,
     overlay,
     noInactive,
+    badge,
     onClick,
     captionForTaxon,
     urlForTaxon = defaultUrlForTaxon,
@@ -67,7 +75,7 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
 
   let wrapperStyle: React.CSSProperties | undefined;
   if ( height ) {
-    wrapperStyle = { width: "100%", height, aspectRatio: "unset" };
+    wrapperStyle = { height, aspectRatio: "unset" };
   } else if ( width ) {
     wrapperStyle = { "--taxon-thumbnail-width": `${width}px` } as React.CSSProperties;
   }
@@ -78,6 +86,11 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
       className={`TaxonThumbnail ${css["taxon-thumbnail"]}${className ? ` ${className}` : ""}`}
       style={wrapperStyle}
     >
+      { badge && (
+        <span className={css["taxon-thumbnail__badge"]} title={badge.tip}>
+          { badge.linkUrl ? <a href={badge.linkUrl}>{ badge.text }</a> : badge.text }
+        </span>
+      ) }
       <a href={urlForTaxon( taxon )} onClick={onClick} className={css["taxon-thumbnail__photo"]}>
         { mediumURL ? (
           <CoverImage src={mediumURL} low={squareURL} />

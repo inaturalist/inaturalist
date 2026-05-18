@@ -112,3 +112,20 @@
     color: white;
   }
 }
+
+.taxon-thumbnail__badge {
+  composes: badge from global;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 1;
+  color: white;
+
+  a {
+    color: white;
+  }
+
+  &[title] {
+    cursor: pointer;
+  }
+}

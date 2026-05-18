@@ -33,13 +33,12 @@ const SimilarTab = ( {
             <TaxonThumbnail
               taxon={result.taxon}
               key={`similar-taxon-${result.taxon.id}`}
-              badgeText={(
-                <a href={`/observations?ident_taxon_id_exclusive=${result.taxon.id},${taxon.id}&place_id=${place ? place.id : "any"}&verifiable=any`}>
-                  { result.count }
-                </a>
-              )}
-              badgeTip={tip}
-              height={190}
+              badge={{
+                text: result.count,
+                linkUrl: `/observations?ident_taxon_id_exclusive=${result.taxon.id},${taxon.id}&place_id=${place ? place.id : "any"}&verifiable=any`,
+                tip
+              }}
+              width={180}
               onClick={e => {
                 if ( !showNewTaxon ) return true;
                 if ( e.metaKey || e.ctrlKey ) return true;
