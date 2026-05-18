@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { DropdownButton, MenuItem } from "react-bootstrap";
-import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
+import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
 import { rankLabel, filteredNodes, nodeObsCount } from "../util";
 
 class SpeciesNoAPI extends Component {
@@ -40,8 +40,11 @@ class SpeciesNoAPI extends Component {
     } else {
       sortMethod = [t => -1 * obsCount( t ), "left"];
     }
-    const secondaryNodesToDisplay = _.slice( _.sortBy( secondaryNodes, sortMethod ), 0,
-      lifelist.speciesViewScrollPage * lifelist.speciesViewPerPage );
+    const secondaryNodesToDisplay = _.slice(
+      _.sortBy( secondaryNodes, sortMethod ),
+      0,
+      lifelist.speciesViewScrollPage * lifelist.speciesViewPerPage
+    );
     let emptyMessage;
     let emptyClearButton;
     if ( _.size( secondaryNodesToDisplay ) === 0 && lifelist.speciesPlaceFilter ) {

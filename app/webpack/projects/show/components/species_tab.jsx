@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroller";
-import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
+import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
 
 const SpeciesTab = ( {
   project,

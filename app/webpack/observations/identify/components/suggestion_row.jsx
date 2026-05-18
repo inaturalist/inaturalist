@@ -4,7 +4,7 @@ import _ from "lodash";
 import LazyLoad from "react-lazy-load";
 import { Button } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
+import TaxonPhoto from "../../../shared/components/taxon_photo";
 import { urlForTaxon } from "../../../taxa/shared/util";
 import { COLORS } from "../../../shared/util";
 import TaxonMap from "./taxon_map";
@@ -141,11 +141,13 @@ const SuggestionRow = ( {
                 key={`suggestions-row-photo-${tp.taxon.id}-${tp.photo.id}`}
                 photo={tp.photo}
                 taxon={taxon}
-                height={200}
+                height={150}
                 backgroundSize={backgroundSize}
                 showTaxonPhotoModal={p => {
-                  const index = _.findIndex( taxon.taxonPhotos,
-                    taxonPhoto => taxonPhoto.photo.id === p.id );
+                  const index = _.findIndex(
+                    taxon.taxonPhotos,
+                    taxonPhoto => taxonPhoto.photo.id === p.id
+                  );
                   setDetailTaxon( taxon, { detailPhotoIndex: index } );
                 }}
               />
