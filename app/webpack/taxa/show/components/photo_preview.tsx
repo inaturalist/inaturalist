@@ -151,6 +151,7 @@ const PhotoPreview = ( {
                 <a
                   className="photoItem"
                   href={tp.photo.photoUrl( )}
+                  aria-label={I18n.t( "view_photo" )}
                   onClick={e => {
                     e.preventDefault( );
                     showPhoto( tp.photo.id );

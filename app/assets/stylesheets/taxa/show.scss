@@ -61,7 +61,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     padding: 20px 60px;
-    max-width: 1300px;
+    max-width: $xl;
     margin: 0 auto;
     align-items: center;
     > * { min-width: 0; }
@@ -165,6 +165,10 @@
 #main-tabs-content {
   & [role="tabpanel"] {
     scroll-margin-top: 80px; // add some spacing at the top to prevent anchor behavior to hide the tabs
+  }
+  .tab-pane.vanilla {
+    max-width: $xl;
+    margin: 0 auto;
   }
 }
 
@@ -765,9 +769,6 @@ $introducedColor: #E4007C;
   background-color: inherit;
   color: black;
   opacity: 1;
-}
-.VanillaTab {
-  margin-top: 20px;
 }
 
 .InteractionsTab {

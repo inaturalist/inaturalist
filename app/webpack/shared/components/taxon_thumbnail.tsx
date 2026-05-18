@@ -3,11 +3,6 @@ import CoverImage from "./cover_image";
 import SplitTaxon from "./split_taxon";
 import css from "./taxon_thumbnail.module.css";
 
-const classes = {
-  taxonThumbnail: css["taxon-thumbnail"],
-  photo: css["taxon-thumbnail__photo"],
-  caption: css["taxon-thumbnail__caption"]
-};
 
 const defaultUrlForTaxon = ( t: { id: number; name: string } ) => (
   `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}`
@@ -34,6 +29,10 @@ export interface Taxon {
 export interface TaxonThumbnailProps {
   taxon: Taxon;
   width?: number;
+  height?: number;
+  className?: string;
+  overlay?: React.ReactNode;
+  noInactive?: boolean;
   onClick?: ( e: React.MouseEvent ) => void;
   captionForTaxon?: ( taxon: Taxon ) => React.ReactNode;
   urlForTaxon?: ( taxon: Taxon ) => string;
@@ -47,6 +46,10 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
   const {
     taxon,
     width,
+    height,
+    className,
+    overlay,
+    noInactive,
     onClick,
     captionForTaxon,
     urlForTaxon = defaultUrlForTaxon,
@@ -63,13 +66,20 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
     squareURL = taxon.default_photo.square_url;
   }
 
+  let wrapperStyle: React.CSSProperties | undefined;
+  if ( height ) {
+    wrapperStyle = { width: "100%", height, aspectRatio: "unset" };
+  } else if ( width ) {
+    wrapperStyle = { "--taxon-thumbnail-width": `${width}px` } as React.CSSProperties;
+  }
+
   return (
     <div
       ref={innerRef}
-      className={`TaxonThumbnail ${classes.taxonThumbnail}`}
-      style={width ? { "--taxon-thumbnail-width": `${width}px` } as React.CSSProperties : undefined}
+      className={`TaxonThumbnail ${css["taxon-thumbnail"]}${className ? ` ${className}` : ""}`}
+      style={wrapperStyle}
     >
-      <a href={urlForTaxon( taxon )} onClick={onClick} className={classes.photo}>
+      <a href={urlForTaxon( taxon )} onClick={onClick} className={css["taxon-thumbnail__photo"]}>
         { mediumURL ? (
           <CoverImage src={mediumURL} low={squareURL} />
         ) : (
@@ -79,14 +89,16 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
             }
           />
         ) }
+        { overlay && <div className={css["taxon-thumbnail__overlay"]}>{ overlay }</div> }
       </a>
-      <div className={classes.caption}>
+      <div className={css["taxon-thumbnail__caption"]}>
         <SplitTaxon
           taxon={taxon}
           url={urlForTaxon( taxon )}
           noParens
           onClick={onClick}
           user={config.currentUser}
+          noInactive={noInactive}
         />
         { captionForTaxon ? captionForTaxon( taxon ) : null }
       </div>

@@ -40,8 +40,11 @@ class SpeciesNoAPI extends Component {
     } else {
       sortMethod = [t => -1 * obsCount( t ), "left"];
     }
-    const secondaryNodesToDisplay = _.slice( _.sortBy( secondaryNodes, sortMethod ), 0,
-      lifelist.speciesViewScrollPage * lifelist.speciesViewPerPage );
+    const secondaryNodesToDisplay = _.slice(
+      _.sortBy( secondaryNodes, sortMethod ),
+      0,
+      lifelist.speciesViewScrollPage * lifelist.speciesViewPerPage
+    );
     let emptyMessage;
     let emptyClearButton;
     if ( _.size( secondaryNodesToDisplay ) === 0 && lifelist.speciesPlaceFilter ) {

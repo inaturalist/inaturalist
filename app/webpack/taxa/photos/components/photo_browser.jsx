@@ -56,7 +56,7 @@ const PhotoBrowser = ( {
         itemDim += 50;
         const dims = observationPhoto.photo.dimensions( );
         if ( dims ) {
-          width = itemDim / dims.height * dims.width;
+          width = ( itemDim / dims.height ) * dims.width;
         } else {
           width = itemDim;
         }
@@ -203,8 +203,10 @@ const PhotoBrowser = ( {
         eventKey={values[0].controlled_attribute}
         active={grouping.param === `field:${values[0].controlled_attribute.label}`}
       >
-        { I18n.t( `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
-          { defaultValue: values[0].controlled_attribute.label } ) }
+        { I18n.t(
+          `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
+          { defaultValue: values[0].controlled_attribute.label }
+        ) }
       </MenuItem>
     ) )
   );
@@ -287,8 +289,10 @@ const PhotoBrowser = ( {
                         { ": " }
                         <strong>
                           {( selectedTerm && selectedTerm.id === attr.id && selectedTermValue
-                            ? I18n.t( `controlled_term_labels.${_.snakeCase( selectedTermValue.label )}`,
-                              { defaultValue: selectedTermValue.label } )
+                            ? I18n.t(
+                              `controlled_term_labels.${_.snakeCase( selectedTermValue.label )}`,
+                              { defaultValue: selectedTermValue.label }
+                            )
                             : translatedAny
                           ) }
                         </strong>

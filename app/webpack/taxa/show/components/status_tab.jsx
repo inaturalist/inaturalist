@@ -44,126 +44,127 @@ const StatusTab = ( {
   if ( statuses.length > 0 ) {
     statusSection = (
       <div className="table-responsive">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>{ I18n.t( "place" ) }</th>
-            <th>{ I18n.t( "conservation_status" ) }</th>
-            <th>{ I18n.t( "source" ) }</th>
-            <th>
-              <OverlayTrigger
-                trigger="click"
-                rootClose
-                placement="top"
-                containerPadding={20}
-                overlay={(
-                  <Popover id="geoprivacy-explanation">
-                    <div className="contents">
-                      { I18n.t( "conservation_status_geoprivacy_desc" ) }
-                    </div>
-                  </Popover>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>{ I18n.t( "place" ) }</th>
+              <th>{ I18n.t( "conservation_status" ) }</th>
+              <th>{ I18n.t( "source" ) }</th>
+              <th>
+                <OverlayTrigger
+                  trigger="click"
+                  rootClose
+                  placement="top"
+                  containerPadding={20}
+                  overlay={(
+                    <Popover id="geoprivacy-explanation">
+                      <div className="contents">
+                        { I18n.t( "conservation_status_geoprivacy_desc" ) }
+                      </div>
+                    </Popover>
                 )}
-                className="cool"
-              >
-                <span>
-                  { I18n.t( "taxon_geoprivacy" ) }
-                  { " " }
-                  <i className="fa fa-info-circle linky" />
-                </span>
-              </OverlayTrigger>
-            </th>
-            { isCurator && (
-              <th />
-            ) }
-          </tr>
-        </thead>
-        <tbody>
-          { sortedStatuses.map( status => {
-            let text = status.statusText( );
-            text = I18n.t( text, { defaultValue: text } );
-            if ( !text.match( new RegExp( `(${status.status})` ) ) ) {
-              text += ` (${status.status})`;
-            }
-            let flagClass;
-            switch ( status.iucnStatusCode( ) ) {
-              case "LC":
-                flagClass = "least-concern";
-                break;
-              case "NT":
-              case "VU":
-                flagClass = "vulnerable";
-                break;
-              case "CR":
-              case "EN":
-                flagClass = "endangered";
-                break;
-              default:
+                  className="cool"
+                >
+                  <span>
+                    { I18n.t( "taxon_geoprivacy" ) }
+                    { " " }
+                    <i className="fa fa-info-circle linky" />
+                  </span>
+                </OverlayTrigger>
+              </th>
+              { isCurator && (
+              <th aria-label={I18n.t( "edit" )} />
+              ) }
+            </tr>
+          </thead>
+          <tbody>
+            { sortedStatuses.map( status => {
+              let text = status.statusText( );
+              text = I18n.t( text, { defaultValue: text } );
+              if ( !text.match( new RegExp( `(${status.status})` ) ) ) {
+                text += ` (${status.status})`;
+              }
+              let flagClass;
+              switch ( status.iucnStatusCode( ) ) {
+                case "LC":
+                  flagClass = "least-concern";
+                  break;
+                case "NT":
+                case "VU":
+                  flagClass = "vulnerable";
+                  break;
+                case "CR":
+                case "EN":
+                  flagClass = "endangered";
+                  break;
+                default:
                 // ok
-            }
-            let geoprivacy = I18n.t( "open_" );
-            if ( status.geoprivacy === "obscured" ) {
-              geoprivacy = I18n.t( "obscured" );
-            } else if ( status.geoprivacy === "private" ) {
-              geoprivacy = I18n.t( "private_" );
-            }
-            let source = I18n.t( "unknown" );
-            if ( status.url && status.authority ) {
-              source = (
-                <a href={status.url}>{ status.authority }</a>
+              }
+              let geoprivacy = I18n.t( "open_" );
+              if ( status.geoprivacy === "obscured" ) {
+                geoprivacy = I18n.t( "obscured" );
+              } else if ( status.geoprivacy === "private" ) {
+                geoprivacy = I18n.t( "private_" );
+              }
+              let source = I18n.t( "unknown" );
+              if ( status.url && status.authority ) {
+                source = (
+                  <a href={status.url}>{ status.authority }</a>
+                );
+              } else if ( status.authority ) {
+                source = status.authority;
+              } else if ( status.user ) {
+                source = <a href={`/people/${status.user.login}`}>{ status.user.login }</a>;
+              }
+              const statusTaxon = _.find(
+                taxon.ancestors,
+                ancestor => ancestor.id === status.taxon_id
               );
-            } else if ( status.authority ) {
-              source = status.authority;
-            } else if ( status.user ) {
-              source = <a href={`/people/${status.user.login}`}>{ status.user.login }</a>;
-            }
-            const statusTaxon = _.find(
-              taxon.ancestors,
-              ancestor => ancestor.id === status.taxon_id
-            );
-            return (
-              <tr
-                key={`statuses-${status.id}-${status.authority}-${status.place ? status.place.id : "global"}`}
-              >
-                <td>
-                  <div className="media">
-                    <div className="media-left">
-                      { status.place
-                        ? (
-                          <a
-                            href={`/places/${status.place ? status.place.id : null}`}
-                            className="place-link"
-                          >
-                            <i className="fa fa-invert fa-map-marker" />
-                          </a>
-                        )
-                        : <i className="fa fa-invert fa-globe" />}
+              return (
+                <tr
+                  key={`statuses-${status.id}-${status.authority}-${status.place ? status.place.id : "global"}`}
+                >
+                  <td>
+                    <div className="media">
+                      <div className="media-left">
+                        { status.place
+                          ? (
+                            <a
+                              href={`/places/${status.place ? status.place.id : null}`}
+                              className="place-link"
+                              aria-label={status.place.display_name}
+                            >
+                              <i className="fa fa-invert fa-map-marker" />
+                            </a>
+                          )
+                          : <i className="fa fa-invert fa-globe" />}
+                      </div>
+                      <div className="media-body">
+                        { status.place
+                          ? (
+                            <a href={`/places/${status.place.id}`} className="place-link">
+                              { I18n.t(
+                                `places_name.${_.snakeCase( status.place.display_name )}`,
+                                { defaultValue: status.place.display_name }
+                              ) }
+                            </a>
+                          )
+                          : I18n.t( "globally" )}
+                      </div>
                     </div>
-                    <div className="media-body">
-                      { status.place
-                        ? (
-                          <a href={`/places/${status.place.id}`} className="place-link">
-                            { I18n.t(
-                              `places_name.${_.snakeCase( status.place.display_name )}`,
-                              { defaultValue: status.place.display_name }
-                            ) }
-                          </a>
-                        )
-                        : I18n.t( "globally" )}
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <i className={`glyphicon glyphicon-flag ${flagClass}`} />
-                  { " " }
-                  { text }
-                  { status.description && status.description.length > 0 && (
+                  </td>
+                  <td>
+                    <i className={`glyphicon glyphicon-flag ${flagClass}`} />
+                    { " " }
+                    { text }
+                    { status.description && status.description.length > 0 && (
                     <UserText
                       truncate={550}
                       className="text-muted"
                       text={status.description}
                     />
-                  ) }
-                  { status.taxon_id && status.taxon_name && status.taxon_id !== taxon.id && (
+                    ) }
+                    { status.taxon_id && status.taxon_name && status.taxon_id !== taxon.id && (
                     <div
                       className="text-muted"
                       dangerouslySetInnerHTML={{
@@ -174,8 +175,8 @@ const StatusTab = ( {
                         } )
                       }}
                     />
-                  ) }
-                  { status.user && status.created_at && (
+                    ) }
+                    { status.user && status.created_at && (
                     <div
                       className="small text-muted"
                       dangerouslySetInnerHTML={{
@@ -185,8 +186,8 @@ const StatusTab = ( {
                         } )
                       }}
                     />
-                  ) }
-                  { status.updater && status.updated_at && (
+                    ) }
+                    { status.updater && status.updated_at && (
                     <div
                       className="small text-muted"
                       dangerouslySetInnerHTML={{
@@ -196,37 +197,37 @@ const StatusTab = ( {
                         } )
                       }}
                     />
-                  ) }
-                </td>
-                <td>
-                  <div className="media">
-                    <div className="media-body">
-                      { source }
-                    </div>
-                    { status.url && (
+                    ) }
+                  </td>
+                  <td>
+                    <div className="media">
+                      <div className="media-body">
+                        { source }
+                      </div>
+                      { status.url && (
                       <div className="media-right">
-                        <a href={status.url}>
+                        <a href={status.url} aria-label={I18n.t( "view_source" )}>
                           <i className="glyphicon glyphicon-new-window" />
                         </a>
                       </div>
-                    ) }
-                  </div>
-                </td>
-                <td>
-                  { geoprivacy }
-                </td>
-                { isCurator && (
+                      ) }
+                    </div>
+                  </td>
+                  <td>
+                    { geoprivacy }
+                  </td>
+                  { isCurator && (
                   <td>
                     <a href={`/conservation_statuses/${status.id}/edit`}>
                       { I18n.t( "edit" ) }
                     </a>
                   </td>
-                ) }
-              </tr>
-            );
-          } ) }
-        </tbody>
-      </table>
+                  ) }
+                </tr>
+              );
+            } ) }
+          </tbody>
+        </table>
       </div>
     );
   }
@@ -238,58 +239,62 @@ const StatusTab = ( {
           <p>{ I18n.t( "showing_x_of_y_listings", { x: listedTaxa.length, y: listedTaxaCount } ) }</p>
         ) : null }
         <div className="table-responsive">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>{ I18n.t( "place" ) }</th>
-              <th>{ I18n.t( "establishment_means" ) }</th>
-              <th>{ I18n.t( "source_list_" ) }</th>
-              <th>{ I18n.t( "details" ) }</th>
-            </tr>
-          </thead>
-          <tbody>
-            { sortedListedTaxa.map( lt => (
-              <tr
-                key={`listed-taxon-${lt.id}`}
-              >
-                <td className="conservation-status">
-                  <div className="media">
-                    <div className="media-left">
-                      { lt.place
-                        ? (
-                          <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                            <i className="fa fa-invert fa-map-marker" />
-                          </a>
-                        )
-                        : <i className="fa fa-invert fa-globe" />}
-                    </div>
-                    <div className="media-body">
-                      { lt.place
-                        ? (
-                          <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                            { I18n.t(
-                              `places_name.${_.snakeCase( lt.place.name )}`,
-                              { defaultValue: lt.place.display_name }
-                            ) }
-                          </a>
-                        )
-                        : I18n.t( "globally" )}
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  { I18n.t( lt.establishment_means, { defaultValue: lt.establishment_means } ) }
-                </td>
-                <td>
-                  <a href={`/lists/${lt.list.id}`}>{ lt.list.title }</a>
-                </td>
-                <td>
-                  <a href={`/listed_taxa/${lt.id}`}>{ I18n.t( "view" ) }</a>
-                </td>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>{ I18n.t( "place" ) }</th>
+                <th>{ I18n.t( "establishment_means" ) }</th>
+                <th>{ I18n.t( "source_list_" ) }</th>
+                <th>{ I18n.t( "details" ) }</th>
               </tr>
-            ) ) }
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              { sortedListedTaxa.map( lt => (
+                <tr
+                  key={`listed-taxon-${lt.id}`}
+                >
+                  <td className="conservation-status">
+                    <div className="media">
+                      <div className="media-left">
+                        { lt.place
+                          ? (
+                            <a
+                              href={`/places/${lt.place ? lt.place.id : null}`}
+                              className="place-link"
+                              aria-label={lt.place.display_name}
+                            >
+                              <i className="fa fa-invert fa-map-marker" />
+                            </a>
+                          )
+                          : <i className="fa fa-invert fa-globe" />}
+                      </div>
+                      <div className="media-body">
+                        { lt.place
+                          ? (
+                            <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
+                              { I18n.t(
+                                `places_name.${_.snakeCase( lt.place.name )}`,
+                                { defaultValue: lt.place.display_name }
+                              ) }
+                            </a>
+                          )
+                          : I18n.t( "globally" )}
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    { I18n.t( lt.establishment_means, { defaultValue: lt.establishment_means } ) }
+                  </td>
+                  <td>
+                    <a href={`/lists/${lt.list.id}`}>{ lt.list.title }</a>
+                  </td>
+                  <td>
+                    <a href={`/listed_taxa/${lt.id}`}>{ I18n.t( "view" ) }</a>
+                  </td>
+                </tr>
+              ) ) }
+            </tbody>
+          </table>
         </div>
       </div>
     );

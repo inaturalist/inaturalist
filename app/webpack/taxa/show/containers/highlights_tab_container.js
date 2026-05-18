@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import HighlightsTab from "../components/highlights_tab";
 import moment from "moment";
 import querystring from "querystring";
 import _ from "lodash";
+import HighlightsTab from "../components/highlights_tab";
 import { defaultObservationParams, urlForPlace } from "../../shared/util";
 import { showNewTaxon } from "../actions/taxon";
 import { fetchRecent, fetchWanted } from "../../shared/ducks/taxon";

@@ -27,7 +27,7 @@ interface ObservationsGridItemProps {
   controls?: React.ReactElement | null;
   showMagnifier?: boolean;
   linkTarget?: string;
-  splitTaxonOptions?: Record<string, unknown>;
+  splitTaxonOptions?: { noParens?: boolean; noInactive?: boolean };
   user?: unknown;
   showAllPhotosPreview?: boolean;
   photoSize?: string;
@@ -59,7 +59,7 @@ const ObservationsGridItem = ( {
         }}
         target={linkTarget}
         className={`media ${o.hasPhotos( ) ? "photo" : ""} ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
-        onClick={( e ) => {
+        onClick={e => {
           if ( typeof onObservationClick !== "function" ) {
             return true;
           }
@@ -98,11 +98,12 @@ const ObservationsGridItem = ( {
       <div className="caption flex-grow-1">
         <UserImage user={o.user} linkTarget={linkTarget} />
         <SplitTaxon
-          {...splitTaxonOptions}
           taxon={o.taxon}
           user={user}
           url={`/observations/${o.id}`}
           target={linkTarget}
+          noParens={splitTaxonOptions.noParens}
+          noInactive={splitTaxonOptions.noInactive}
         />
         <div className="controls">
           { controls }
