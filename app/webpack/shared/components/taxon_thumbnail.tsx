@@ -3,7 +3,6 @@ import CoverImage from "./cover_image";
 import SplitTaxon from "./split_taxon";
 import css from "./taxon_thumbnail.module.css";
 
-
 const defaultUrlForTaxon = ( t: { id: number; name: string } ) => (
   `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}`
 );
