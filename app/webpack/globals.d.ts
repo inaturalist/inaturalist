@@ -9,6 +9,8 @@ declare const I18n: {
   localize: ( format: string, value: unknown ) => string;
 };
 
+// Intentionally narrow — jQuery is a Rails-injected global, not a webpack dep. $.deparam is also
+// a non-standard plugin absent from @types/jquery, so a minimal stub beats the full type package.
 interface JQueryStub {
   ( selector: string | Element, context?: Element | null ): {
     on: ( event: string, handler: ( ) => void ) => void;
@@ -26,7 +28,9 @@ declare const iNaturalist: {
   [key: string]: unknown;
 };
 
+// v0.33.1 ships no types; @types/react-bootstrap is an empty stub pointing at newer versions
 declare module "react-bootstrap";
+// @types/react-redux starts at v5; project uses v4.4.9
 declare module "react-redux";
-declare module "react-infinite-scroller";
+// no types available on npm
 declare module "react-lazy-load";
