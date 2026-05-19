@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import _ from "lodash";
 import ObservationsGridItem from "../../../shared/components/observations_grid_item";
 import Carousel from "../../../shared/components/carousel";
@@ -34,8 +34,6 @@ const HighlightsCarousel = ( {
   urlForTaxon,
   config = {}
 }: Props ) => {
-  const firstItemRef = useRef<HTMLDivElement>( null );
-
   if ( !taxa && !observations ) {
     return (
       <div>
@@ -53,7 +51,6 @@ const HighlightsCarousel = ( {
     items = taxa.map( ( taxon, i ) => (
       <TaxonThumbnail
         key={`highlights-taxon-${taxon.id}`}
-        ref={i === 0 ? firstItemRef : null}
         taxon={taxon}
         onClick={e => {
           if ( !showNewTaxon ) return true;
@@ -71,7 +68,6 @@ const HighlightsCarousel = ( {
     items = _.uniqBy( observations, o => o.id ).map( ( obs, i ) => (
       <div
         key={`highlights-obs-${obs.id}`}
-        ref={i === 0 ? firstItemRef : null}
       >
         <ObservationsGridItem
           observation={obs as any}
@@ -89,7 +85,6 @@ const HighlightsCarousel = ( {
       url={url}
       noContent={I18n.t( "no_observations_yet" )}
       items={items}
-      itemRef={firstItemRef}
     />
   );
 };
