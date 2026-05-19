@@ -81,6 +81,7 @@ class Announcement < ApplicationRecord
   preference :target_staff, :boolean
   preference :target_unconfirmed_users, :boolean
   preference :exclude_monthly_supporters, :boolean
+  preference :embed_fru, :boolean
 
   scope :in_locale, lambda {| locale |
     where( "(? = ANY (locales)) OR locales IS NULL OR locales = '{}'", locale )
@@ -431,12 +432,27 @@ class Announcement < ApplicationRecord
     active( options.merge( placement: placement ) )
   end
 
+  def body_for_mobile
+    return body unless prefers_embed_fru?
+
+    <<~HTML
+      <!DOCTYPE html>
+      <html>
+      <head>
+        #{ApplicationController.helpers.fundraise_up_js}
+      </head>
+      <body>
+        #{body}
+      </body>
+      </html>
+    HTML
+  end
+
   def serializable_hash( opts = {} )
     options = opts.clone
     options[:methods] ||= []
     options[:only] ||= []
     options[:only] += [
-      :body,
       :clients,
       :dismissible,
       :end,
@@ -450,7 +466,7 @@ class Announcement < ApplicationRecord
     end
     options[:methods].uniq!
     options[:only].uniq!
-    super( options )
+    super( options ).merge( "body" => body_for_mobile )
   end
 
   def duplicate_as_user( duplicate_user )
