@@ -4,6 +4,7 @@ import TaxonMap from "../../../observations/identify/components/taxon_map";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import ErrorBoundary from "../../../shared/components/error_boundary";
 import { urlForTaxon, taxonLayerForTaxon } from "../../shared/util";
+import type { Taxon, Config } from "../../../shared/types";
 
 interface Bounds {
   swlng: number;
@@ -12,20 +13,13 @@ interface Bounds {
   nelat: number;
 }
 
-interface Taxon {
-  id: number;
-  name: string;
-  preferred_common_name?: string;
-  [key: string]: unknown;
-}
-
 interface Props {
   taxon?: Taxon;
   bounds?: Bounds;
   latitude?: number;
   longitude?: number;
   zoomLevel?: number;
-  config?: { currentUser?: unknown; [key: string]: unknown };
+  config?: Config;
   updateCurrentUser?: ( updates: unknown ) => void;
 }
 

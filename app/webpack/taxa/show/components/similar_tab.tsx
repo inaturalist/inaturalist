@@ -2,19 +2,15 @@ import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
+import type { Taxon, Config } from "../../../shared/types";
 
 interface Place {
   id: number;
   display_name: string;
 }
 
-interface SimilarTaxon {
-  id: number;
-  name: string;
-  rank: string;
-  rank_level: number;
-  [key: string]: unknown;
-}
+// On the similar-taxa tab `rank` and `rank_level` are guaranteed by the API.
+type SimilarTaxon = Taxon & { rank: string; rank_level: number };
 
 interface SimilarResult {
   taxon: SimilarTaxon;
@@ -25,13 +21,8 @@ interface SimilarTabProps {
   results?: SimilarResult[];
   place?: Place | null;
   showNewTaxon?: ( taxon: SimilarTaxon ) => void;
-  config?: { currentUser?: unknown; [key: string]: unknown };
-  taxon: {
-    id: number;
-    rank: string;
-    rank_level: number;
-    [key: string]: unknown;
-  };
+  config?: Config;
+  taxon: SimilarTaxon;
 }
 
 const SimilarTab = ( {

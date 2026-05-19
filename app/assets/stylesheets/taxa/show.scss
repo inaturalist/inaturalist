@@ -1203,7 +1203,7 @@ $introducedColor: #E4007C;
       display: flex;
       align-items: center;
       .annotations {
-        flex-grow: 1,
+        flex-grow: 1;
       }
       .conversation {
         white-space: nowrap;
@@ -1502,9 +1502,7 @@ table.regional-names {
 
   .IdentificationsTab {
     &.container {
-      @media (max-width: $md) {
-        padding: 0;
-      }
+      padding: 0;
     }
     .btn-group.identification-categories {
       display: flex;

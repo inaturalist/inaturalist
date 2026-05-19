@@ -4,11 +4,7 @@ import TopIdentifierContainer from "../containers/top_identifier_container";
 import NumSpeciesContainer from "../containers/num_species_container";
 import LastObservationContainer from "../containers/last_observation_container";
 import NumObservationsContainer from "../containers/num_observations_container";
-
-interface Taxon {
-  rank_level?: number;
-  complete_species_count?: number;
-}
+import type { Taxon } from "../../../shared/types";
 
 interface LeadersProps {
   taxon: Taxon;

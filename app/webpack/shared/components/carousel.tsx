@@ -24,7 +24,7 @@ const Carousel = ( {
 }: CarouselProps ) => {
   const [activeIndex, setActiveIndex] = useState( 0 );
   const [trackWidth, setTrackWidth] = useState( 0 );
-  const itemWidthRef = useRef<number>( 0 );
+  const [itemWidth, setItemWidth] = useState( 0 );
   const trackRef = useRef<HTMLDivElement>( null );
 
   const link = url && (
@@ -43,25 +43,27 @@ const Carousel = ( {
       const h = el as HTMLElement;
       return !h.style.width && h.getBoundingClientRect().width > 0;
     } ) as HTMLElement | undefined;
-    if ( child ) itemWidthRef.current = child.getBoundingClientRect().width;
+    if ( child ) {
+      const w = child.getBoundingClientRect().width;
+      setItemWidth( prev => ( prev !== w ? w : prev ) );
+    }
   }, [] );
 
   useEffect( () => {
-    const updateTrackWidth = () => {
-      if ( trackRef.current ) {
-        const w = trackRef.current.getBoundingClientRect().width;
-        if ( w > 0 ) setTrackWidth( w );
-      }
+    const track = trackRef.current;
+    if ( !track ) return () => {};
+    const ro = new ResizeObserver( () => {
+      const w = track.getBoundingClientRect().width;
+      if ( w > 0 ) setTrackWidth( prev => ( prev !== w ? w : prev ) );
       measureItemWidth();
-    };
-    updateTrackWidth();
-    window.addEventListener( "resize", updateTrackWidth );
-    return () => window.removeEventListener( "resize", updateTrackWidth );
+    } );
+    ro.observe( track );
+    return () => ro.disconnect();
   }, [measureItemWidth] );
 
   useEffect( () => {
     measureItemWidth();
-  }, [measureItemWidth, items.length] );
+  }, [measureItemWidth, items] );
 
   useEffect( () => {
     const track = trackRef.current;
@@ -97,9 +99,13 @@ const Carousel = ( {
     track.scrollTo( { left: offset, behavior: "smooth" } );
   }, [] );
 
-  const visibleCount = trackWidth && itemWidthRef.current
-    ? Math.ceil( trackWidth / itemWidthRef.current )
-    : allItems.length;
+  // Until the carousel has been measured, render only a couple items so off-screen
+  // CoverImages don't mount and fire network requests on first paint. After ResizeObserver
+  // measures the track, visibleCount switches to the real value and placeholders get sized.
+  const INITIAL_VISIBLE = 2;
+  const visibleCount = trackWidth && itemWidth
+    ? Math.ceil( trackWidth / itemWidth )
+    : INITIAL_VISIBLE;
 
   const renderedItems = allItems.map( ( item, index ) => {
     const distFromActive = Math.abs( index - activeIndex );
@@ -107,8 +113,8 @@ const Carousel = ( {
       <div
         key={React.isValidElement( item ) ? String( item.key ) : index}
         className={css.carousel__item}
-        style={distFromActive > visibleCount && itemWidthRef.current
-          ? { width: itemWidthRef.current }
+        style={distFromActive > visibleCount && itemWidth
+          ? { width: itemWidth }
           : undefined}
       >
         { distFromActive <= visibleCount && item }

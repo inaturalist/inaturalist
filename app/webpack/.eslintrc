@@ -97,7 +97,14 @@
         "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "@typescript-eslint/no-explicit-any": "error",
         "react/prop-types": 0
+      }
+    },
+    {
+      "files": ["*.d.ts"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
       }
     }
   ]

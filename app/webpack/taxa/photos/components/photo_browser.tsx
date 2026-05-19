@@ -11,20 +11,19 @@ import {
   Dropdown
 } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import TaxonPhoto, {
-  Photo as BasePhoto,
-  Taxon,
-  Observation as BaseObservation
-} from "../../../shared/components/taxon_photo";
+import TaxonPhoto from "../../../shared/components/taxon_photo";
 import { urlForTaxonPhotos } from "../../shared/util";
+import type {
+  Photo as BasePhoto, Taxon, Observation as BaseObservation, Config
+} from "../../../shared/types";
 
-interface Photo extends BasePhoto {
+type Photo = BasePhoto & {
   dimensions: () => { width: number; height: number } | null;
-}
+};
 
-interface Observation extends BaseObservation {
+type Observation = BaseObservation & {
   taxon: Taxon;
-}
+};
 
 interface ObservationPhoto {
   photo: Photo;
@@ -78,7 +77,7 @@ interface Place {
 }
 
 interface PhotoBrowserProps {
-  config?: { currentUser?: unknown; [key: string]: unknown };
+  config?: Config;
   groupedPhotos?: Record<string, PhotoGroup>;
   grouping?: Grouping;
   hasMorePhotos?: boolean;

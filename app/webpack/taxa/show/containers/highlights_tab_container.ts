@@ -7,6 +7,7 @@ import { defaultObservationParams, urlForPlace } from "../../shared/util";
 import { showNewTaxon } from "../actions/taxon";
 import { fetchRecent, fetchWanted } from "../../shared/ducks/taxon";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapStateToProps( state: Record<string, any> ) {
   const trendingParams = Object.assign( { }, defaultObservationParams( state ), {
     view: "species",

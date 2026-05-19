@@ -1,29 +1,14 @@
-import React, { useImperativeHandle, useRef } from "react";
+import React from "react";
 import CoverImage from "./cover_image";
 import SplitTaxon from "./split_taxon";
 import css from "./taxon_thumbnail.module.css";
+import type { Taxon, Config } from "../types";
 
-const defaultUrlForTaxon = ( t: { id: number; name: string } ) => (
+export type { Taxon, RawPhoto } from "../types";
+
+const defaultUrlForTaxon = ( t: Taxon ) => (
   `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}`
 );
-
-export interface DefaultPhoto {
-  photoUrl: ( size: string ) => string;
-}
-
-export interface RawPhoto {
-  medium_url: string;
-  square_url: string;
-}
-
-export interface Taxon {
-  id: number;
-  name: string;
-  defaultPhoto?: DefaultPhoto;
-  default_photo?: RawPhoto;
-  iconic_taxon_name?: string;
-  [key: string]: unknown;
-}
 
 export interface TaxonThumbnailBadge {
   text: React.ReactNode;
@@ -41,26 +26,21 @@ export interface TaxonThumbnailProps {
   onClick?: ( e: React.MouseEvent ) => void;
   captionForTaxon?: ( taxon: Taxon ) => React.ReactNode;
   urlForTaxon?: ( taxon: Taxon ) => string | undefined;
-  config?: { currentUser?: unknown; [key: string]: unknown };
+  config?: Config;
 }
 
-const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( props, ref ) => {
-  const innerRef = useRef<HTMLDivElement>( null );
-  useImperativeHandle( ref, ( ) => innerRef.current! );
-
-  const {
-    taxon,
-    width,
-    className,
-    overlay,
-    noInactive,
-    badge,
-    onClick,
-    captionForTaxon,
-    urlForTaxon = defaultUrlForTaxon,
-    config = {}
-  } = props;
-
+const TaxonThumbnail = ( {
+  taxon,
+  width,
+  className,
+  overlay,
+  noInactive,
+  badge,
+  onClick,
+  captionForTaxon,
+  urlForTaxon = defaultUrlForTaxon,
+  config = {}
+}: TaxonThumbnailProps ) => {
   let mediumURL: string | undefined;
   let squareURL: string | undefined;
   if ( taxon.defaultPhoto && typeof taxon.defaultPhoto.photoUrl === "function" ) {
@@ -77,7 +57,6 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
 
   return (
     <div
-      ref={innerRef}
       className={`TaxonThumbnail ${css["taxon-thumbnail"]}${className ? ` ${className}` : ""}`}
       style={wrapperStyle}
     >
@@ -111,6 +90,6 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
       </div>
     </div>
   );
-} );
+};
 
 export default TaxonThumbnail;

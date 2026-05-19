@@ -3,12 +3,7 @@ import LazyLoad from "react-lazy-load";
 import moment from "moment";
 import _ from "lodash";
 import HighlightsCarousel from "./highlights_carousel";
-
-interface Taxon {
-  id: number;
-  name: string;
-  [key: string]: unknown;
-}
+import type { Taxon, Config } from "../../../shared/types";
 
 interface Discovery {
   taxon: Taxon;
@@ -17,11 +12,6 @@ interface Discovery {
     created_at: string;
     category?: string;
   };
-}
-
-interface Config {
-  currentUser?: unknown;
-  [key: string]: unknown;
 }
 
 interface HighlightsTabProps {

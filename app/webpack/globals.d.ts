@@ -1,3 +1,5 @@
+/// <reference types="google.maps" />
+
 declare module "*.module.css" {
   const styles: Record<string, string>;
   export default styles;
@@ -11,15 +13,23 @@ declare const I18n: {
 
 // Intentionally narrow — jQuery is a Rails-injected global, not a webpack dep. $.deparam is also
 // a non-standard plugin absent from @types/jquery, so a minimal stub beats the full type package.
+interface JQueryStubResult {
+  on: ( event: string, handler: ( ) => void ) => void;
+  off: ( event: string, handler: ( ) => void ) => void;
+  carousel: ( command: string ) => void;
+  tab: ( command: string ) => void;
+  data: ( key: string ) => unknown;
+  get: ( index: number ) => Element | undefined;
+  taxonMap: ( options?: unknown ) => void;
+}
+interface JQueryDeparam {
+  ( str: string ): Record<string, unknown>;
+  querystring( ): Record<string, unknown>;
+}
 interface JQueryStub {
-  ( selector: string | Element, context?: Element | null ): {
-    on: ( event: string, handler: ( ) => void ) => void;
-    off: ( event: string, handler: ( ) => void ) => void;
-    carousel: ( command: string ) => void;
-    tab: ( command: string ) => void;
-  };
+  ( selector: string | Element, context?: Element | null ): JQueryStubResult;
   param( obj: Record<string, unknown> ): string;
-  deparam( str: string ): Record<string, unknown>;
+  deparam: JQueryDeparam;
 }
 declare const $: JQueryStub;
 

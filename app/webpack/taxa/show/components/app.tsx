@@ -15,32 +15,17 @@ import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
+import type { Taxon as BaseTaxon, Config } from "../../../shared/types";
 
-interface CurrentUser {
-  isAdmin?: boolean;
-  isInTestGroup?: ( group: string ) => boolean;
-  roles?: string[];
-  [key: string]: unknown;
-}
-
-interface Taxon {
-  id: number;
-  name: string;
-  rank_level?: number;
-  complete_species_count?: number;
+type Taxon = BaseTaxon & {
   conservationStatus?: object | null;
   establishment_means?: object | null;
-  flag_counts?: {
-    unresolved?: number;
-    [key: string]: unknown;
-  };
-  [key: string]: unknown;
-}
+};
 
 interface Props {
   taxon: Taxon;
   showNewTaxon: ( taxon: unknown ) => void;
-  config?: { currentUser?: CurrentUser; [key: string]: unknown };
+  config?: Config;
 }
 
 const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
@@ -68,7 +53,7 @@ const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
                 bootstrapClear
                 placeholder={I18n.t( "search_species_" )}
                 searchExternal={false}
-                afterSelect={( result: any ) => showNewTaxon( result.item )}
+                afterSelect={( result: { item: unknown } ) => showNewTaxon( result.item )}
                 position={{ my: "right top", at: "right bottom", collision: "none" }}
                 config={config}
               />
@@ -90,8 +75,7 @@ const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
                     || config.currentUser.roles.indexOf( "admin" ) >= 0
                   )
                   && taxon.flag_counts
-                  && taxon.flag_counts.unresolved
-                  && taxon.flag_counts.unresolved > 0
+                  && Number( taxon.flag_counts.unresolved ) > 0
                   ? (
                     <a href={`/taxa/${taxon.id}/flags`} className="btn btn-default btn-flags">
                       <i className="fa fa-flag" />
@@ -102,7 +86,7 @@ const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
                   : null }
               </h1>
               <div id="place-chooser-container">
-                <PlaceChooserContainer container={( $ as any )( "#app" ).get( 0 )} clearButton />
+                <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
               </div>
             </div>
           </Col>

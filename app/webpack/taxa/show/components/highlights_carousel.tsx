@@ -2,12 +2,8 @@ import React from "react";
 import _ from "lodash";
 import ObservationsGridItem from "../../../shared/components/observations_grid_item";
 import Carousel from "../../../shared/components/carousel";
-import TaxonThumbnail, { Taxon } from "../../../shared/components/taxon_thumbnail";
-
-interface Observation {
-  id: number;
-  [key: string]: unknown;
-}
+import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
+import type { Taxon, Observation, Config } from "../../../shared/types";
 
 interface Props {
   title?: string;
@@ -19,7 +15,7 @@ interface Props {
   captionForObservation?: ( obs: Observation ) => React.ReactNode;
   captionForTaxon?: ( taxon: Taxon ) => React.ReactNode;
   urlForTaxon?: ( taxon: Taxon ) => string | undefined;
-  config?: { currentUser?: unknown; [key: string]: unknown };
+  config?: Config;
 }
 
 const HighlightsCarousel = ( {
@@ -48,7 +44,7 @@ const HighlightsCarousel = ( {
 
   let items: React.ReactElement[];
   if ( taxa ) {
-    items = taxa.map( ( taxon, i ) => (
+    items = taxa.map( taxon => (
       <TaxonThumbnail
         key={`highlights-taxon-${taxon.id}`}
         taxon={taxon}
@@ -65,12 +61,12 @@ const HighlightsCarousel = ( {
       />
     ) );
   } else {
-    items = _.uniqBy( observations, o => o.id ).map( ( obs, i ) => (
+    items = _.uniqBy( observations, o => o.id ).map( obs => (
       <div
         key={`highlights-obs-${obs.id}`}
       >
         <ObservationsGridItem
-          observation={obs as any}
+          observation={obs as unknown as React.ComponentProps<typeof ObservationsGridItem>["observation"]}
           controls={captionForObservation ? captionForObservation( obs ) : null}
           user={config.currentUser}
         />

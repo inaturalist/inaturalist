@@ -1,7 +1,12 @@
-import React, { useImperativeHandle, useRef } from "react";
+import React from "react";
 import CoverImage from "./cover_image";
 import SplitTaxon from "./split_taxon";
 import css from "./taxon_photo.module.css";
+import type {
+  Photo, Taxon, Observation, Config
+} from "../types";
+
+export type { Photo, Taxon, Observation } from "../types";
 
 const classes = {
   taxonPhoto: css["taxon-photo"],
@@ -11,25 +16,9 @@ const classes = {
   infoLink: css["taxon-photo__info-link"]
 };
 
-const urlForTaxon = ( t: { id: number; name: string } | null ) => (
+const urlForTaxon = ( t: Taxon | null ) => (
   t ? `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}` : null
 );
-
-export interface Photo {
-  id: number;
-  photoUrl: ( size: string ) => string;
-}
-
-export interface Taxon {
-  id: number;
-  name: string;
-  [key: string]: unknown;
-}
-
-export interface Observation {
-  id: number;
-  [key: string]: unknown;
-}
 
 export interface TaxonPhotoProps {
   photo: Photo;
@@ -45,30 +34,25 @@ export interface TaxonPhotoProps {
   showTaxon?: boolean;
   linkTaxon?: boolean;
   onClickTaxon?: ( taxon: Taxon ) => void;
-  config?: { currentUser?: unknown; [key: string]: unknown };
+  config?: Config;
 }
 
-const TaxonPhoto = React.forwardRef<HTMLDivElement, TaxonPhotoProps>( ( props, ref ) => {
-  const innerRef = useRef<HTMLDivElement>( null );
-  useImperativeHandle( ref, ( ) => innerRef.current! );
-
-  const {
-    photo,
-    taxon,
-    observation,
-    showTaxonPhotoModal,
-    className,
-    size = "medium",
-    width,
-    height,
-    backgroundSize,
-    backgroundPosition,
-    showTaxon,
-    linkTaxon,
-    onClickTaxon,
-    config = {}
-  } = props;
-
+const TaxonPhoto = ( {
+  photo,
+  taxon,
+  observation,
+  showTaxonPhotoModal,
+  className,
+  size = "medium",
+  width,
+  height,
+  backgroundSize,
+  backgroundPosition,
+  showTaxon,
+  linkTaxon,
+  onClickTaxon,
+  config = {}
+}: TaxonPhotoProps ) => {
   let taxonLabel;
   if ( showTaxon ) {
     taxonLabel = (
@@ -103,7 +87,6 @@ const TaxonPhoto = React.forwardRef<HTMLDivElement, TaxonPhotoProps>( ( props, r
   return (
     <div
       className={`TaxonPhoto ${classes.taxonPhoto}${className ? ` ${className}` : ""}`}
-      ref={innerRef}
       style={width
         ? { width, maxWidth: 2 * width, height: "auto" }
         : undefined}
@@ -132,6 +115,6 @@ const TaxonPhoto = React.forwardRef<HTMLDivElement, TaxonPhotoProps>( ( props, r
       />
     </div>
   );
-} );
+};
 
 export default TaxonPhoto;

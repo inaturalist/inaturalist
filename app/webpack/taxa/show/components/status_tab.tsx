@@ -11,6 +11,7 @@ import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../../shared/util";
+import type { Taxon, CurrentUser } from "../../../shared/types";
 
 interface Place {
   id: number;
@@ -36,7 +37,6 @@ export interface ConservationStatus {
   updated_at?: string;
   statusText: () => string;
   iucnStatusCode: () => string;
-  [key: string]: unknown;
 }
 
 export interface ListedTaxon {
@@ -44,25 +44,15 @@ export interface ListedTaxon {
   establishment_means: string;
   place?: Place;
   list: { id: number; title: string };
-  [key: string]: unknown;
 }
 
-interface CurrentUser {
-  roles?: string[];
-  isAdmin?: boolean;
-  isInTestGroup?: ( group: string ) => boolean;
-  [key: string]: unknown;
-}
+type StatusTaxon = Taxon & { ancestors?: { id: number }[] };
 
 interface StatusTabProps {
   statuses?: ConservationStatus[];
   listedTaxa?: ListedTaxon[];
   listedTaxaCount?: number;
-  taxon?: {
-    id: number;
-    ancestors?: { id: number; [key: string]: unknown }[];
-    [key: string]: unknown;
-  };
+  taxon?: StatusTaxon;
   currentUser?: CurrentUser;
 }
 
@@ -357,11 +347,11 @@ const StatusTab = ( {
       <Row className="conservation-status tab-section">
         <Col xs={12}>
           <Row>
-            <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
+            <Col xs={responsive ? undefined : 8} sm={responsive ? 8 : undefined}>
               <h3>{ I18n.t( "conservation_status" ) }</h3>
               { statusSection || I18n.t( "we_have_no_conservation_status_for_this_taxon" ) }
             </Col>
-            <Col xs={responsive ? null : 4} sm={responsive ? 4 : null}>
+            <Col xs={responsive ? undefined : 4} sm={responsive ? 4 : undefined}>
               <h4>{ I18n.t( "about_conservation_status" ) }</h4>
               <p>
                 { I18n.t( "views.taxa.show.about_conservation_status_desc" ) }
@@ -425,11 +415,11 @@ const StatusTab = ( {
       <Row className="establishment-means tab-section">
         <Col xs={12}>
           <Row>
-            <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
+            <Col xs={responsive ? undefined : 8} sm={responsive ? 8 : undefined}>
               <h3>{ I18n.t( "establishment_means" ) }</h3>
               { establishmentSection || I18n.t( "we_have_no_establishment_data_for_this_taxon" ) }
             </Col>
-            <Col xs={responsive ? null : 4} sm={responsive ? 4 : null}>
+            <Col xs={responsive ? undefined : 4} sm={responsive ? 4 : undefined}>
               <h4>{ I18n.t( "about_establishment_means" ) }</h4>
               <p>
                 { I18n.t( "views.taxa.show.about_establishment_desc" ) }

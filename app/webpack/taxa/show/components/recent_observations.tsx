@@ -13,21 +13,22 @@ interface Props {
 }
 
 const RecentObservations = ( { observations, showPhotoModal }: Props ) => {
-  if ( !observations ) { return <span />; }
+  if ( !observations ) return null;
 
-  const items = observations.map( observation => (
-    <TaxonPhoto
-      key={`recent-observations-obs-${observation.id}`}
-      photo={observation.photos[0]}
-      taxon={observation.taxon}
-      observation={observation}
-      showTaxonPhotoModal={( ) => showPhotoModal?.(
-        observation.photos[0],
-        observation.taxon,
-        observation
-      )}
-    />
-  ) );
+  const items = observations
+    .filter( observation => observation.photos?.[0] )
+    .map( observation => {
+      const photo = observation.photos[0];
+      return (
+        <TaxonPhoto
+          key={`recent-observations-obs-${observation.id}`}
+          photo={photo}
+          taxon={observation.taxon}
+          observation={observation}
+          showTaxonPhotoModal={( ) => showPhotoModal?.( photo, observation.taxon, observation )}
+        />
+      );
+    } );
 
   return (
     <div className="RecentObservations">

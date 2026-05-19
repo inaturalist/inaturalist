@@ -14,31 +14,25 @@ import SimilarTabContainer from "../containers/similar_tab_container";
 import IdentificationsTabContainer from "../containers/identifications_tab_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
 import TabDrawer from "../../../shared/components/tab_drawer";
+import type { Taxon as BaseTaxon, CurrentUser as BaseCurrentUser } from "../../../shared/types";
 
 const MAIN_TAB_VALUES = new Set( [
   "map", "articles", "highlights", "interactions",
   "taxonomy", "status", "similar", "identifications"
 ] );
 
-interface Taxon {
-  id: number;
+// On this page the taxon always has a rank_level and the user's curation methods are present.
+type Taxon = BaseTaxon & {
   rank_level: number;
-  flag_counts?: { resolved: string; unresolved: string };
-  photos_locked?: boolean;
-  atlas_id?: number;
   conservationStatuses?: ConservationStatus[];
-  listed_taxa_count?: number;
   listed_taxa?: ListedTaxon[];
-  [key: string]: unknown;
-}
-
-interface CurrentUser {
+  listed_taxa_count?: number;
+};
+type CurrentUser = BaseCurrentUser & {
   roles: string[];
   canViewHelpfulIDTips: ( ) => boolean;
   privilegedWith: ( perm: string ) => boolean;
-  content_creation_restrictions?: boolean;
-  [key: string]: unknown;
-}
+};
 
 interface Props {
   taxon: Taxon;
@@ -70,18 +64,6 @@ const TaxonPageTabs = ( {
   const containerRef = useRef<HTMLDivElement>( null );
   const prevTaxonIdRef = useRef<number | null>( null );
   const prevChosenTabRef = useRef<string>( chosenTab );
-  const choseTabRef = useRef( choseTab );
-  choseTabRef.current = choseTab;
-
-  useEffect( ( ) => {
-    if ( !containerRef.current ) return;
-    ( $ as any )( "a[data-toggle=tab]", containerRef.current ).on(
-      "shown.bs.tab",
-      ( e: any ) => {
-        choseTabRef.current( e.target.hash.match( /#(.+)-tab/ )[1] );
-      }
-    );
-  }, [] );
 
   useEffect( ( ) => {
     const currTaxonId = taxon ? taxon.id : null;
@@ -93,22 +75,23 @@ const TaxonPageTabs = ( {
 
   useEffect( ( ) => {
     if ( chosenTab === "map" && prevChosenTabRef.current !== "map" ) {
-      const taxonMap = ( $ as any )( ".TaxonMap", containerRef.current );
+      const taxonMap = $( ".TaxonMap", containerRef.current );
       // If google wasn't initialized for some reason, doing any of this will
       // crash, and we can't use an ErrorBoundary in a callback like this
-      if ( typeof ( window as any ).google !== "undefined" ) {
-        ( window as any ).google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
+      if ( typeof google !== "undefined" ) {
+        const mapInstance = taxonMap.data( "taxonMap" ) as object;
+        google.maps.event.trigger( mapInstance, "resize" );
         taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
       }
     }
     prevChosenTabRef.current = chosenTab;
   }, [chosenTab] );
 
-  const { test } = ( $ as any ).deparam.querystring( );
+  const { test } = $.deparam.querystring( );
   const speciesOrLower = taxon && taxon.rank_level <= 10;
   const genusOrSpecies = taxon && ( taxon.rank_level === 20 || taxon.rank_level === 10 );
   const flagsCount = taxon.flag_counts
-    ? parseInt( taxon.flag_counts.resolved, 10 ) + parseInt( taxon.flag_counts.unresolved, 10 )
+    ? Number( taxon.flag_counts.resolved ?? 0 ) + Number( taxon.flag_counts.unresolved ?? 0 )
     : 0;
   const isCurator = !!currentUser?.roles.includes( "curator" )
     || !!currentUser?.roles.includes( "admin" );
@@ -203,7 +186,7 @@ const TaxonPageTabs = ( {
       <Dropdown
         id="curation-dropdown"
         pullRight
-        onSelect={( eventKey: any ) => {
+        onSelect={( eventKey: string ) => {
           if ( eventKey === "edit-photos" ) showPhotoChooserModal( );
         }}
       >
@@ -248,7 +231,16 @@ const TaxonPageTabs = ( {
           .filter( item => !item.separator && MAIN_TAB_VALUES.has( item.value ) )
           .map( item => (
             <li key={item.value} role="presentation" className={chosenTab === item.value ? "active" : ""}>
-              <a href={`#${item.value}-tab`} role="tab" data-toggle="tab">{ item.label }</a>
+              <a
+                href={`#${item.value}-tab`}
+                role="tab"
+                onClick={e => {
+                  e.preventDefault( );
+                  choseTab( item.value );
+                }}
+              >
+                { item.label }
+              </a>
             </li>
           ) )}
         { curationTab }

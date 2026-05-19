@@ -1,37 +1,29 @@
 import React, { useState, useEffect } from "react";
 import CoverImage from "../../../shared/components/cover_image";
 import { urlForTaxonPhotos } from "../../shared/util";
-import TaxonPhoto, { Photo as BasePhoto } from "../../../shared/components/taxon_photo";
+import TaxonPhoto from "../../../shared/components/taxon_photo";
+import type {
+  Photo, Taxon, Observation, Config
+} from "../../../shared/types";
 
-interface Photo extends BasePhoto {
-  photoUrl: ( size?: string ) => string;
+// On this page `dimensions()` is guaranteed by the inaturalistjs Photo model.
+type PreviewPhoto = Photo & {
   dimensions: ( ) => { width: number; height: number } | null | undefined;
-}
-
-interface Taxon {
-  id: number;
-  name: string;
-  [key: string]: unknown;
-}
+};
 
 interface TaxonPhotoEntry {
-  photo: Photo;
+  photo: PreviewPhoto;
   taxon: Taxon;
-}
-
-interface CurrentUser {
-  content_creation_restrictions?: boolean;
-  [key: string]: unknown;
 }
 
 interface Props {
   taxon: Taxon;
   taxonPhotos: TaxonPhotoEntry[];
   layout?: string;
-  showTaxonPhotoModal?: ( photo: BasePhoto, taxon: Taxon, observation?: unknown ) => void;
+  showTaxonPhotoModal?: ( photo: Photo, taxon: Taxon, observation?: Observation ) => void;
   showPhotoChooserModal?: ( ) => void;
   showNewTaxon?: ( taxon: Taxon ) => void;
-  config?: { currentUser?: CurrentUser; [key: string]: unknown };
+  config?: Config;
 }
 
 const PhotoPreview = ( {
@@ -110,7 +102,7 @@ const PhotoPreview = ( {
     currentPhoto = (
       <TaxonPhoto
         taxon={taxon}
-        photo={photo as any}
+        photo={photo}
         size="large"
         showTaxonPhotoModal={showTaxonPhotoModal ?? ( ( ) => undefined )}
         height={currentPhotoHeight}
@@ -133,7 +125,7 @@ const PhotoPreview = ( {
             if ( layout === "grid" ) {
               content = (
                 <TaxonPhoto
-                  photo={tp.photo as any}
+                  photo={tp.photo}
                   height={thumbnailHeight}
                   taxon={tp.taxon}
                   size="medium"
