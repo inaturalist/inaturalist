@@ -16,7 +16,7 @@ interface Observation {
   hasPhotos: ( ) => boolean;
   hasMedia: ( ) => boolean;
   hasSounds: ( ) => boolean;
-  user: unknown;
+  user?: Record<string, unknown>;
   taxon?: unknown;
 }
 
@@ -24,7 +24,7 @@ interface ObservationsGridItemProps {
   observation: Observation;
   onObservationClick?: ( obs: Observation ) => void;
   before?: React.ReactElement;
-  controls?: React.ReactElement | null;
+  controls?: React.ReactNode;
   showMagnifier?: boolean;
   linkTarget?: string;
   splitTaxonOptions?: { noParens?: boolean; noInactive?: boolean };

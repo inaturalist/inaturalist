@@ -8,7 +8,7 @@ interface Props {
 }
 
 const RecentObservations = ( { observations, showPhotoModal }: Props ) => {
-  const firstItemRef = useRef( null );
+  const firstItemRef = useRef<HTMLDivElement>( null );
 
   if ( !observations ) { return <span />; }
 

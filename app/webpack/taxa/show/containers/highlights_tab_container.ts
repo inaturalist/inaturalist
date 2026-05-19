@@ -7,7 +7,7 @@ import { defaultObservationParams, urlForPlace } from "../../shared/util";
 import { showNewTaxon } from "../actions/taxon";
 import { fetchRecent, fetchWanted } from "../../shared/ducks/taxon";
 
-function mapStateToProps( state ) {
+function mapStateToProps( state: Record<string, any> ) {
   const trendingParams = Object.assign( { }, defaultObservationParams( state ), {
     view: "species",
     d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" )
@@ -32,9 +32,9 @@ function mapStateToProps( state ) {
   };
 }
 
-function mapDispatchToProps( dispatch ) {
+function mapDispatchToProps( dispatch: ( action: unknown ) => void ) {
   return {
-    showNewTaxon: taxon => dispatch( showNewTaxon( taxon ) ),
+    showNewTaxon: ( taxon: unknown ) => dispatch( showNewTaxon( taxon ) ),
     fetchRecent: ( ) => dispatch( fetchRecent( ) ),
     fetchWanted: ( ) => dispatch( fetchWanted( ) )
   };

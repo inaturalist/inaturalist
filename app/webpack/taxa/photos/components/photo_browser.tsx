@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroller";
 import _ from "lodash";
 import {
@@ -12,17 +11,102 @@ import {
   Dropdown
 } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import TaxonPhoto from "../../../shared/components/taxon_photo";
+import TaxonPhoto, {
+  Photo as BasePhoto,
+  Taxon,
+  Observation as BaseObservation
+} from "../../../shared/components/taxon_photo";
 import { urlForTaxonPhotos } from "../../shared/util";
 
+interface Photo extends BasePhoto {
+  dimensions: () => { width: number; height: number } | null;
+}
+
+interface Observation extends BaseObservation {
+  taxon: Taxon;
+}
+
+interface ObservationPhoto {
+  photo: Photo;
+  observation: Observation;
+}
+
+interface GroupObject {
+  id?: number;
+  name?: string;
+  label?: string;
+  [key: string]: unknown;
+}
+
+interface PhotoGroup {
+  groupName: string;
+  groupObject: GroupObject;
+  observationPhotos: ObservationPhoto[];
+}
+
+interface ControlledAttribute {
+  id: number;
+  label: string;
+}
+
+interface ControlledValue {
+  id: number;
+  label: string;
+}
+
+interface TermValue {
+  controlled_attribute: ControlledAttribute;
+  controlled_value: ControlledValue;
+}
+
+interface Grouping {
+  param?: string;
+  values?: number;
+}
+
+interface Params {
+  order_by?: string;
+  photo_license?: string;
+  quality_grade?: string;
+  [key: string]: unknown;
+}
+
+interface Place {
+  id: number;
+  display_name: string;
+  [key: string]: unknown;
+}
+
+interface PhotoBrowserProps {
+  config?: { currentUser?: unknown; [key: string]: unknown };
+  groupedPhotos?: Record<string, PhotoGroup>;
+  grouping?: Grouping;
+  hasMorePhotos?: boolean;
+  layout?: string;
+  loadMorePhotos: () => void;
+  observationPhotos?: ObservationPhoto[];
+  params?: Params;
+  place?: Place;
+  selectedTerm?: ControlledAttribute;
+  selectedTermValue?: ControlledValue;
+  setGrouping?: ( param: string | null, values?: number ) => void;
+  setLayout: ( layout: string ) => void;
+  setParam?: ( key: string, value: string ) => void;
+  setTerm?: ( attrId: number, valueId: string ) => void;
+  showTaxonGrouping?: boolean;
+  showTaxonPhotoModal: ( photo: Photo, taxon: Taxon, observation: Observation ) => void;
+  taxon?: Taxon;
+  terms?: Record<string, TermValue[]>;
+}
+
 const PhotoBrowser = ( {
-  groupedPhotos,
-  grouping,
+  groupedPhotos = {},
+  grouping = {},
   hasMorePhotos,
-  layout,
+  layout = "fluid",
   loadMorePhotos,
   observationPhotos,
-  params,
+  params = {},
   setGrouping,
   setLayout,
   setParam,
@@ -31,11 +115,11 @@ const PhotoBrowser = ( {
   selectedTerm,
   selectedTermValue,
   taxon,
-  terms,
-  showTaxonGrouping,
+  terms = {},
+  showTaxonGrouping = true,
   place,
-  config
-} ) => {
+  config = {}
+}: PhotoBrowserProps ) => {
   let sortedGroupedPhotos;
   if ( grouping.param === "taxon_id" ) {
     sortedGroupedPhotos = _.sortBy( _.values( groupedPhotos ), group => group.groupObject.name );
@@ -46,7 +130,7 @@ const PhotoBrowser = ( {
     _.keys( _.pickBy( iNaturalist.Licenses, ( v, k ) => k.indexOf( "cc" ) === 0 ) ),
     k => I18n.t( `${_.snakeCase( k )}_name`, { defaultValue: k } )
   );
-  const renderObservationPhotos = obsPhotos => (
+  const renderObservationPhotos = ( obsPhotos: ObservationPhoto[] | undefined ) => (
     ( obsPhotos || [] ).map( observationPhoto => {
       let itemDim = 183;
       let width = itemDim;
@@ -126,10 +210,10 @@ const PhotoBrowser = ( {
               taxon_id: group.groupObject.id
             } );
             obsUrl = `/observations?${query}`;
-          } else if ( grouping.param.match( /terms/ ) ) {
+          } else if ( grouping.param?.match( /terms/ ) ) {
             const query = $.param( {
               ...params,
-              taxon_id: taxon.id,
+              taxon_id: taxon?.id,
               term_id: grouping.values,
               term_value_id: group.groupObject.id
             } );
@@ -153,36 +237,36 @@ const PhotoBrowser = ( {
       } ) }
     </div>
   );
-  const orderByDisplay = key => {
+  const orderByDisplay = ( key: string | undefined ) => {
     if ( key === "created_at" ) {
       return I18n.t( "date_added" );
     }
     return I18n.t( "faves" );
   };
-  const licenseDisplay = key => {
+  const licenseDisplay = ( key: string | undefined ) => {
     if ( key && key.length > 0 ) {
       const licenseKey = _.snakeCase( key );
       return I18n.t( `${licenseKey}_name`, { defaultValue: key } );
     }
     return I18n.t( "any_license" );
   };
-  const qualityGradeDisplay = key => {
+  const qualityGradeDisplay = ( key: string | undefined ) => {
     if ( key && key !== "any" ) {
       return I18n.t( "research_" );
     }
     return I18n.t( "any_quality_grade" );
   };
-  const groupingDisplay = param => {
+  const groupingDisplay = ( param: string | null ) => {
     if ( param === "taxon_id" ) {
       return I18n.t( "taxonomic" );
     }
-    if ( param && terms[grouping.values] ) {
+    if ( param && grouping.values !== undefined && terms[grouping.values] ) {
       const displayText = terms[grouping.values][0].controlled_attribute.label;
       return I18n.t( `controlled_term_labels.${_.snakeCase( displayText )}`, { defaultValue: displayText } );
     }
     return I18n.t( "none" );
   };
-  let groupingMenuItems = [];
+  let groupingMenuItems: React.ReactNode[] = [];
   if ( showTaxonGrouping ) {
     groupingMenuItems.push(
       <MenuItem
@@ -245,20 +329,20 @@ const PhotoBrowser = ( {
                 <span className="control-group">
                   <Dropdown
                     id="grouping-control"
-                    onSelect={key => {
+                    onSelect={( key: any ) => {
                       if ( key === "none" ) {
-                        setGrouping( null );
+                        setGrouping?.( null );
                       } else if ( key === "taxon_id" ) {
-                        setGrouping( "taxon_id" );
+                        setGrouping?.( "taxon_id" );
                       } else {
-                        setGrouping( `terms:${key.id}`, key.id );
+                        setGrouping?.( `terms:${key.id}`, key.id );
                       }
                     }}
                   >
                     <Dropdown.Toggle bsStyle="link">
                       { I18n.t( "grouping" ) }
                       { ": " }
-                      <strong>{ groupingDisplay( grouping.param ) }</strong>
+                      <strong>{ groupingDisplay( grouping.param ?? null ) }</strong>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       { groupingMenuItems }
@@ -280,7 +364,7 @@ const PhotoBrowser = ( {
                   <span key={`term-${attr.label}`} className="control-group">
                     <Dropdown
                       id={`term-chooser-${attr.label}`}
-                      onSelect={key => setTerm( attr.id, key )}
+                      onSelect={( key: any ) => setTerm?.( attr.id, key )}
                     >
                       <Dropdown.Toggle bsStyle="link">
                         { I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } ) }
@@ -323,8 +407,8 @@ const PhotoBrowser = ( {
               <span className="control-group">
                 <Dropdown
                   id="sort-control"
-                  onSelect={key => {
-                    setParam( "order_by", key );
+                  onSelect={( key: any ) => {
+                    setParam?.( "order_by", key );
                   }}
                 >
                   <Dropdown.Toggle bsStyle="link">
@@ -341,7 +425,7 @@ const PhotoBrowser = ( {
                     </MenuItem>
                     <MenuItem
                       eventKey="created_at"
-                      active={grouping === "created_at"}
+                      active={params.order_by === "created_at"}
                     >
                       { orderByDisplay( "created_at" ) }
                     </MenuItem>
@@ -351,7 +435,7 @@ const PhotoBrowser = ( {
               <span className="control-group">
                 <Dropdown
                   id="license-control"
-                  onSelect={key => { setParam( "photo_license", key ); }}
+                  onSelect={( key: any ) => { setParam?.( "photo_license", key ); }}
                 >
                   <Dropdown.Toggle bsStyle="link">
                     { I18n.t( "photo_licensing" ) }
@@ -381,8 +465,8 @@ const PhotoBrowser = ( {
               <span className="control-group">
                 <Dropdown
                   id="quality-grade-control"
-                  onSelect={key => {
-                    setParam( "quality_grade", key );
+                  onSelect={( key: any ) => {
+                    setParam?.( "quality_grade", key );
                   }}
                 >
                   <Dropdown.Toggle bsStyle="link">
@@ -420,37 +504,6 @@ const PhotoBrowser = ( {
       </Row>
     </Grid>
   );
-};
-
-PhotoBrowser.propTypes = {
-  config: PropTypes.object,
-  groupedPhotos: PropTypes.object,
-  grouping: PropTypes.object,
-  hasMorePhotos: PropTypes.bool,
-  layout: PropTypes.string,
-  loadMorePhotos: PropTypes.func.isRequired,
-  observationPhotos: PropTypes.array,
-  params: PropTypes.object,
-  place: PropTypes.object,
-  selectedTerm: PropTypes.object,
-  selectedTermValue: PropTypes.object,
-  setGrouping: PropTypes.func,
-  setLayout: PropTypes.func.isRequired,
-  setParam: PropTypes.func,
-  setTerm: PropTypes.func,
-  showTaxonGrouping: PropTypes.bool,
-  showTaxonPhotoModal: PropTypes.func.isRequired,
-  taxon: PropTypes.object,
-  terms: PropTypes.object
-};
-
-PhotoBrowser.defaultProps = {
-  layout: "fluid",
-  terms: {},
-  grouping: {},
-  groupedPhotos: {},
-  showTaxonGrouping: true,
-  config: {}
 };
 
 export default PhotoBrowser;

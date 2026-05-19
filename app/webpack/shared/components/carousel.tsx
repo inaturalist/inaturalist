@@ -5,8 +5,7 @@ import css from "./carousel.module.css";
 
 export interface CarouselProps {
   items: React.ReactNode[];
-  // TODO: can maybe more fancy with interpreting ref type here
-  itemRef: React.MutableRefObject<HTMLDivElement> | null;
+  itemRef?: React.RefObject<Element>;
   finalItem?: React.ReactNode;
   title?: string;
   url?: string;

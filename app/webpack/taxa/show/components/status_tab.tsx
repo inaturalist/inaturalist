@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ReactDOMServer from "react-dom/server";
 import {
   Col,
@@ -13,19 +12,73 @@ import UserText from "../../../shared/components/user_text";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../../shared/util";
 
+interface Place {
+  id: number;
+  name: string;
+  display_name: string;
+  admin_level: number;
+}
+
+interface ConservationStatus {
+  id: number;
+  status: string;
+  iucn: number;
+  geoprivacy?: string;
+  url?: string;
+  authority?: string;
+  description?: string;
+  taxon_id?: number;
+  taxon_name?: string;
+  place?: Place;
+  user?: { login: string };
+  created_at?: string;
+  updater?: { login: string };
+  updated_at?: string;
+  statusText: () => string;
+  iucnStatusCode: () => string;
+  [key: string]: unknown;
+}
+
+interface ListedTaxon {
+  id: number;
+  establishment_means: string;
+  place?: Place;
+  list: { id: number; title: string };
+  [key: string]: unknown;
+}
+
+interface CurrentUser {
+  roles?: string[];
+  isAdmin?: boolean;
+  isInTestGroup?: ( group: string ) => boolean;
+  [key: string]: unknown;
+}
+
+interface StatusTabProps {
+  statuses?: ConservationStatus[];
+  listedTaxa?: ListedTaxon[];
+  listedTaxaCount?: number;
+  taxon?: {
+    id: number;
+    ancestors?: { id: number; [key: string]: unknown }[];
+    [key: string]: unknown;
+  };
+  currentUser?: CurrentUser;
+}
+
 const StatusTab = ( {
-  listedTaxa,
-  listedTaxaCount,
-  statuses,
+  statuses = [],
+  listedTaxa = [],
+  listedTaxaCount = 0,
   taxon,
   currentUser
-} ) => {
+}: StatusTabProps ) => {
   const isCurator = currentUser && currentUser.roles && (
     currentUser.roles.indexOf( "curator" ) >= 0
     || currentUser.roles.indexOf( "admin" ) >= 0
   );
   const responsive = currentUser?.isAdmin
-    && currentUser?.isInTestGroup( "responsive-taxon-detail" );
+    && currentUser?.isInTestGroup?.( "responsive-taxon-detail" );
   const sortedStatuses = _.sortBy( statuses, status => {
     let sortKey = `-${status.iucn}`;
     if ( status.place ) {
@@ -106,7 +159,7 @@ const StatusTab = ( {
               } else if ( status.geoprivacy === "private" ) {
                 geoprivacy = I18n.t( "private_" );
               }
-              let source = I18n.t( "unknown" );
+              let source: React.ReactNode = I18n.t( "unknown" );
               if ( status.url && status.authority ) {
                 source = (
                   <a href={status.url}>{ status.authority }</a>
@@ -117,7 +170,7 @@ const StatusTab = ( {
                 source = <a href={`/people/${status.user.login}`}>{ status.user.login }</a>;
               }
               const statusTaxon = _.find(
-                taxon.ancestors,
+                taxon?.ancestors,
                 ancestor => ancestor.id === status.taxon_id
               );
               return (
@@ -164,7 +217,7 @@ const StatusTab = ( {
                       text={status.description}
                     />
                     ) }
-                    { status.taxon_id && status.taxon_name && status.taxon_id !== taxon.id && (
+                    { status.taxon_id && status.taxon_name && status.taxon_id !== taxon?.id && (
                     <div
                       className="text-muted"
                       dangerouslySetInnerHTML={{
@@ -325,7 +378,7 @@ const StatusTab = ( {
                 <ul className="tab-links list-group">
                   <li className="list-group-item internal">
                     <a
-                      href={`/taxa/${taxon.id}/conservation_statuses/new`}
+                      href={`/taxa/${taxon?.id}/conservation_statuses/new`}
                       rel="nofollow"
                     >
                       <i className="fa fa-plus accessory-icon" />
@@ -394,20 +447,6 @@ const StatusTab = ( {
       </Row>
     </Grid>
   );
-};
-
-StatusTab.propTypes = {
-  statuses: PropTypes.array,
-  listedTaxa: PropTypes.array,
-  listedTaxaCount: PropTypes.number,
-  taxon: PropTypes.object,
-  currentUser: PropTypes.object
-};
-
-StatusTab.defaultProps = {
-  statuses: [],
-  listedTaxa: [],
-  listedTaxaCount: 0
 };
 
 export default StatusTab;

@@ -1,16 +1,46 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
+
+interface Place {
+  id: number;
+  display_name: string;
+}
+
+interface SimilarTaxon {
+  id: number;
+  name: string;
+  rank: string;
+  rank_level: number;
+  [key: string]: unknown;
+}
+
+interface SimilarResult {
+  taxon: SimilarTaxon;
+  count: number;
+}
+
+interface SimilarTabProps {
+  results?: SimilarResult[];
+  place?: Place | null;
+  showNewTaxon?: ( taxon: SimilarTaxon ) => void;
+  config?: { currentUser?: unknown; [key: string]: unknown };
+  taxon: {
+    id: number;
+    rank: string;
+    rank_level: number;
+    [key: string]: unknown;
+  };
+}
 
 const SimilarTab = ( {
   results,
   place,
   showNewTaxon,
-  config,
+  config = {},
   taxon
-} ) => {
+}: SimilarTabProps ) => {
   let content;
   const rank = I18n.t( `ranks.${taxon.rank}`, { defaultValue: taxon.rank } ).toLowerCase( );
   if ( results && results.length > 0 ) {
@@ -57,7 +87,7 @@ const SimilarTab = ( {
   } else {
     content = <div className="loading status">{ I18n.t( "loading" ) }</div>;
   }
-  let title = I18n.t( "other_species_commonly_misidentified_as_this_species" );
+  let title: React.ReactNode = I18n.t( "other_species_commonly_misidentified_as_this_species" );
   if ( taxon.rank_level > 10 ) {
     const snakeCaseRank = _.snakeCase( taxon.rank );
     if ( place ) {
@@ -110,14 +140,6 @@ const SimilarTab = ( {
       </Row>
     </Grid>
   );
-};
-
-SimilarTab.propTypes = {
-  results: PropTypes.array,
-  place: PropTypes.object,
-  showNewTaxon: PropTypes.func,
-  config: PropTypes.object,
-  taxon: PropTypes.object
 };
 
 export default SimilarTab;
