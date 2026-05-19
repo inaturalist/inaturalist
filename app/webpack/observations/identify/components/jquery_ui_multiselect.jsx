@@ -5,11 +5,12 @@ import _ from "lodash";
 
 class JQueryUIMultiselect extends React.Component {
   componentDidMount( ) {
-    const { onOpen, onChange } = this.props;
+    const { onOpen, onChange, noneSelectedText } = this.props;
     const domNode = ReactDOM.findDOMNode( this );
     const opts = {
       checkAllText: I18n.t( "all" ),
-      uncheckAllText: I18n.t( "none" )
+      uncheckAllText: I18n.t( "none" ),
+      noneSelectedText
     };
     if ( typeof ( onOpen ) === "function" ) {
       opts.open = onOpen;
@@ -52,6 +53,7 @@ JQueryUIMultiselect.propTypes = {
   onChange: PropTypes.func,
   onOpen: PropTypes.func,
   id: PropTypes.string,
+  noneSelectedText: PropTypes.string,
   data: PropTypes.array,
   defaultValue: PropTypes.array
 };
