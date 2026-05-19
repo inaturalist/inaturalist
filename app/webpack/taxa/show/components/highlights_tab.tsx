@@ -6,6 +6,7 @@ import HighlightsCarousel from "./highlights_carousel";
 
 interface Taxon {
   id: number;
+  name: string;
   [key: string]: unknown;
 }
 
@@ -70,11 +71,10 @@ const HighlightsTab = ( {
   };
 
   const discoveryUrlForTaxon = ( taxon: Taxon ) => {
-    const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
-    if ( !discoveries || !discovery ) {
-      return null;
-    }
-    return `/observations/${discovery.identification.observation.id}`;
+    const discovery = discoveries && _.find( discoveries, d => d.taxon.id === taxon.id );
+    return discovery
+      ? `/observations/${discovery.identification.observation.id}`
+      : undefined;
   };
 
   return (
@@ -96,7 +96,7 @@ const HighlightsTab = ( {
             )
             : I18n.t( "views.taxa.show.trending_desc" )
         }
-        taxa={trendingTaxa}
+        taxa={trendingTaxa ?? undefined}
         showNewTaxon={showNewTaxon}
         config={config}
       />
@@ -109,7 +109,7 @@ const HighlightsTab = ( {
         >
           <HighlightsCarousel
             title={I18n.t( "discoveries" )}
-            taxa={discoveries ? discoveries.map( d => d.taxon ) : null}
+            taxa={discoveries?.map( d => d.taxon )}
             showNewTaxon={showNewTaxon}
             captionForTaxon={discoveryCaptionForTaxon}
             description={I18n.t( "views.taxa.show.discoveries_desc" )}
@@ -129,7 +129,7 @@ const HighlightsTab = ( {
             <HighlightsCarousel
               title={I18n.t( "wanted" )}
               description={I18n.t( "views.taxa.show.wanted_desc" )}
-              taxa={wantedTaxa ? wantedTaxa.slice( 0, 20 ) : null}
+              taxa={wantedTaxa?.slice( 0, 20 )}
               showNewTaxon={showNewTaxon}
               config={config}
             />

@@ -19,7 +19,7 @@ interface Place {
   admin_level: number;
 }
 
-interface ConservationStatus {
+export interface ConservationStatus {
   id: number;
   status: string;
   iucn: number;
@@ -39,7 +39,7 @@ interface ConservationStatus {
   [key: string]: unknown;
 }
 
-interface ListedTaxon {
+export interface ListedTaxon {
   id: number;
   establishment_means: string;
   place?: Place;

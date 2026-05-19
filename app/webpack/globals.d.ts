@@ -9,16 +9,17 @@ declare const I18n: {
   localize: ( format: string, value: unknown ) => string;
 };
 
-declare function $( selector: string | Element, context?: Element | null ): {
-  on: ( event: string, handler: ( ) => void ) => void;
-  off: ( event: string, handler: ( ) => void ) => void;
-  carousel: ( command: string ) => void;
-  tab: ( command: string ) => void;
-};
-declare namespace $ {
-  function param( obj: Record<string, unknown> ): string;
-  function deparam( str: string ): Record<string, unknown>;
+interface JQueryStub {
+  ( selector: string | Element, context?: Element | null ): {
+    on: ( event: string, handler: ( ) => void ) => void;
+    off: ( event: string, handler: ( ) => void ) => void;
+    carousel: ( command: string ) => void;
+    tab: ( command: string ) => void;
+  };
+  param( obj: Record<string, unknown> ): string;
+  deparam( str: string ): Record<string, unknown>;
 }
+declare const $: JQueryStub;
 
 declare const iNaturalist: {
   Licenses: Record<string, unknown>;
@@ -28,3 +29,4 @@ declare const iNaturalist: {
 declare module "react-bootstrap";
 declare module "react-redux";
 declare module "react-infinite-scroller";
+declare module "react-lazy-load";

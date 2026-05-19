@@ -1,10 +1,15 @@
 import React, { useRef } from "react";
 import Carousel from "../../../shared/components/carousel";
-import TaxonPhoto from "../../../shared/components/taxon_photo";
+import TaxonPhoto, { Photo, Taxon, Observation } from "../../../shared/components/taxon_photo";
+
+interface RecentObservation extends Observation {
+  photos: Photo[];
+  taxon: Taxon;
+}
 
 interface Props {
-  observations?: object[];
-  showPhotoModal?: ( photo: object, taxon: object, observation: object ) => void;
+  observations?: RecentObservation[];
+  showPhotoModal?: ( photo: Photo, taxon: Taxon, observation: Observation ) => void;
 }
 
 const RecentObservations = ( { observations, showPhotoModal }: Props ) => {
@@ -12,7 +17,7 @@ const RecentObservations = ( { observations, showPhotoModal }: Props ) => {
 
   if ( !observations ) { return <span />; }
 
-  const items = observations.map( ( observation: any, i ) => (
+  const items = observations.map( ( observation, i ) => (
     <TaxonPhoto
       key={`recent-observations-obs-${observation.id}`}
       ref={i === 0 ? firstItemRef : null}

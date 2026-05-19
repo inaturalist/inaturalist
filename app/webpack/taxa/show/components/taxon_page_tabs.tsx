@@ -1,15 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import {
-  Grid,
-  Row,
-  Col,
   Dropdown,
   MenuItem
 } from "react-bootstrap";
 import LazyLoad from "react-lazy-load";
-import _ from "lodash";
 import TaxonPageMapContainer from "../containers/taxon_page_map_container";
-import StatusTab from "./status_tab";
+import StatusTab, { ConservationStatus, ListedTaxon } from "./status_tab";
 import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
 import ArticlesTabContainer from "../containers/articles_tab_container";
 import InteractionsTabContainer from "../containers/interactions_tab_container";
@@ -19,15 +15,20 @@ import IdentificationsTabContainer from "../containers/identifications_tab_conta
 import RecentObservationsContainer from "../containers/recent_observations_container";
 import TabDrawer from "../../../shared/components/tab_drawer";
 
+const MAIN_TAB_VALUES = new Set( [
+  "map", "articles", "highlights", "interactions",
+  "taxonomy", "status", "similar", "identifications"
+] );
+
 interface Taxon {
   id: number;
   rank_level: number;
   flag_counts?: { resolved: string; unresolved: string };
   photos_locked?: boolean;
   atlas_id?: number;
-  conservationStatuses?: unknown;
+  conservationStatuses?: ConservationStatus[];
   listed_taxa_count?: number;
-  listed_taxa?: Array<{ establishment_means?: unknown; [key: string]: unknown }>;
+  listed_taxa?: ListedTaxon[];
   [key: string]: unknown;
 }
 
@@ -46,6 +47,16 @@ interface Props {
   loadDataForTab: ( tab: string ) => void;
   choseTab: ( tab: string ) => void;
   showPhotoChooserModal: ( ) => void;
+}
+
+interface DrawerItem {
+  value: string;
+  label?: string;
+  href?: string;
+  onClick?: ( ) => void;
+  separator?: boolean;
+  icon?: string;
+  visible?: boolean;
 }
 
 const TaxonPageTabs = ( {
@@ -99,9 +110,9 @@ const TaxonPageTabs = ( {
   const flagsCount = taxon.flag_counts
     ? parseInt( taxon.flag_counts.resolved, 10 ) + parseInt( taxon.flag_counts.unresolved, 10 )
     : 0;
-  const isCurator = currentUser?.roles.indexOf( "curator" ) >= 0
-    || currentUser?.roles.indexOf( "admin" ) >= 0;
-  const isAdmin = currentUser?.roles.indexOf( "admin" ) >= 0;
+  const isCurator = !!currentUser?.roles.includes( "curator" )
+    || !!currentUser?.roles.includes( "admin" );
+  const isAdmin = !!currentUser?.roles.includes( "admin" );
 
   const tabLabels: Record<string, string> = {
     map: I18n.t( "map" ),
@@ -114,193 +125,115 @@ const TaxonPageTabs = ( {
     identifications: I18n.t( "identifications" )
   };
 
-  const drawerItems: Array<{
-    value?: string;
-    label?: string;
-    href?: string;
-    onClick?: ( ) => void;
-    separator?: boolean;
-    icon?: string;
-  }> = [
+  const tabItems: DrawerItem[] = [
     { value: "map", label: tabLabels.map },
     { value: "articles", label: tabLabels.articles },
-    ...( !speciesOrLower ? [{ value: "highlights", label: tabLabels.highlights }] : [] ),
-    ...( speciesOrLower && test === "interactions"
-      ? [{ value: "interactions", label: tabLabels.interactions }] : [] ),
+    { value: "highlights", label: tabLabels.highlights, visible: !speciesOrLower },
+    { value: "interactions", label: tabLabels.interactions, visible: !!( speciesOrLower && test === "interactions" ) },
     { value: "taxonomy", label: tabLabels.taxonomy },
-    ...( speciesOrLower ? [{ value: "status", label: tabLabels.status }] : [] ),
-    ...( genusOrSpecies ? [{ value: "similar", label: tabLabels.similar }] : [] ),
-    ...( currentUser?.canViewHelpfulIDTips( ) && speciesOrLower
-      ? [{ value: "identifications", label: tabLabels.identifications }] : [] )
-  ];
+    { value: "status", label: tabLabels.status, visible: !!speciesOrLower },
+    { value: "similar", label: tabLabels.similar, visible: !!genusOrSpecies },
+    { value: "identifications", label: tabLabels.identifications, visible: !!( currentUser?.canViewHelpfulIDTips( ) && speciesOrLower ) }
+  ].filter( item => item.visible !== false );
 
-  let curationTab: React.ReactNode;
-
-  if ( currentUser?.privilegedWith( "interaction" ) ) {
-    drawerItems.push( { separator: true } );
-    drawerItems.push( {
+  const curationItems: DrawerItem[] = currentUser?.privilegedWith( "interaction" ) ? [
+    {
+      value: "separator1",
+      separator: true
+    },
+    {
+      value: "flag-for-curation",
       href: `/taxa/${taxon.id}/flags/new`,
       label: I18n.t( "flag_for_curation" ),
       icon: "fa-flag"
-    } );
-    if ( flagsCount > 0 ) {
-      drawerItems.push( {
-        href: `/taxa/${taxon.id}/flags`,
-        label: `${I18n.t( "view_flags" )} (${flagsCount})`,
-        icon: "fa-flag-checkered"
-      } );
-    }
-    if ( taxon.photos_locked && !isAdmin ) {
-      drawerItems.push( {
-        label: I18n.t( "photos_locked" ),
-        icon: "fa-picture-o"
-      } );
-    } else if ( !currentUser.content_creation_restrictions ) {
-      drawerItems.push( {
-        onClick: ( ) => showPhotoChooserModal( ),
-        label: I18n.t( "edit_photos" ),
-        icon: "fa-picture-o"
-      } );
-    }
-    if ( isCurator && taxon.rank_level <= 10 ) {
-      drawerItems.push( taxon.atlas_id ? {
-        href: `/atlases/${taxon.atlas_id}`,
-        label: I18n.t( "edit_atlas" ),
-        icon: "fa-globe"
-      } : {
-        href: `/atlases/new?taxon_id=${taxon.id}`,
-        label: I18n.t( "create_an_atlas" ),
-        icon: "fa-globe"
-      } );
-    }
-    if ( isCurator ) {
-      drawerItems.push( {
-        href: `/taxa/${taxon.id}/edit`,
-        label: I18n.t( "edit_taxon" ),
-        icon: "fa-pencil"
-      } );
-    }
-    drawerItems.push( {
+    },
+    {
+      value: "view-flags",
+      href: `/taxa/${taxon.id}/flags`,
+      label: `${I18n.t( "view_flags" )} (${flagsCount})`,
+      icon: "fa-flag-checkered",
+      visible: flagsCount > 0
+    },
+    {
+      value: "photos-locked",
+      label: I18n.t( "photos_locked" ),
+      icon: "fa-picture-o",
+      visible: !!( taxon.photos_locked && !isAdmin )
+    },
+    {
+      value: "edit-photos",
+      onClick: ( ) => showPhotoChooserModal( ),
+      label: I18n.t( "edit_photos" ),
+      icon: "fa-picture-o",
+      visible: !taxon.photos_locked && !currentUser.content_creation_restrictions
+    },
+    {
+      value: "edit-atlas",
+      href: `/atlases/${taxon.atlas_id}`,
+      label: I18n.t( "edit_atlas" ),
+      icon: "fa-globe",
+      visible: isCurator && taxon.rank_level <= 10 && !!taxon.atlas_id
+    },
+    {
+      value: "new-atlas",
+      href: `/atlases/new?taxon_id=${taxon.id}`,
+      label: I18n.t( "create_an_atlas" ),
+      icon: "fa-globe",
+      visible: isCurator && taxon.rank_level <= 10 && !taxon.atlas_id
+    },
+    {
+      value: "edit-taxon",
+      href: `/taxa/${taxon.id}/edit`,
+      label: I18n.t( "edit_taxon" ),
+      icon: "fa-pencil",
+      visible: isCurator
+    },
+    {
+      value: "history",
       href: `/taxa/${taxon.id}/history`,
       label: I18n.t( "history" ),
       icon: "fa-history"
-    } );
-
-    let atlasItem: React.ReactNode;
-    if ( isCurator && taxon.rank_level <= 10 ) {
-      atlasItem = taxon.atlas_id ? (
-        <MenuItem eventKey="edit-atlas" href={`/atlases/${taxon.atlas_id}`}>
-          <i className="fa fa-globe" />
-          { " " }
-          { I18n.t( "edit_atlas" ) }
-        </MenuItem>
-      ) : (
-        <MenuItem eventKey="new-atlas" href={`/atlases/new?taxon_id=${taxon.id}`}>
-          <i className="fa fa-globe" />
-          { " " }
-          { I18n.t( "create_an_atlas" ) }
-        </MenuItem>
-      );
     }
+  ].filter( item => item.visible !== false ) : [];
 
-    let taxonPhotosItem: React.ReactNode;
-    if ( taxon.photos_locked && !isAdmin ) {
-      taxonPhotosItem = (
-        <MenuItem
-          className="disabled"
-          title={I18n.t( "photos_locked_desc" )}
-          eventKey="edit-photos-locked"
-        >
-          <i className="fa fa-picture-o" />
-          { " " }
-          { I18n.t( "photos_locked" ) }
-        </MenuItem>
-      );
-    } else if ( !currentUser.content_creation_restrictions ) {
-      taxonPhotosItem = (
-        <MenuItem eventKey="edit-photos">
-          <i className="fa fa-picture-o" />
-          { " " }
-          { I18n.t( "edit_photos" ) }
-        </MenuItem>
-      );
-    }
+  const drawerItems = [...tabItems, ...curationItems];
 
-    curationTab = (
-      <li className="curation-tab">
-        <Dropdown
-          id="curation-dropdown"
-          pullRight
-          onSelect={( eventKey: any ) => {
-            switch ( eventKey ) {
-              case "add-flag":
-                window.location.href = `/taxa/${taxon.id}/flags/new`;
-                break;
-              case "view-flags":
-                window.location.href = `/taxa/${taxon.id}/flags`;
-                break;
-              case "edit-photos":
-                showPhotoChooserModal( );
-                break;
-              case "edit-photos-locked":
-                break;
-              case "edit-atlas":
-                window.location.href = `/atlases/${taxon.atlas_id}`;
-                break;
-              case "new-atlas":
-                window.location.href = `/atlases/new?taxon_id=${taxon.id}`;
-                break;
-              case "history":
-                window.location.href = `/taxa/${taxon.id}/history`;
-                break;
-              default:
-                window.location.href = `/taxa/${taxon.id}/edit`;
-            }
-          }}
-        >
-          <Dropdown.Toggle>
-            <i className="fa fa-cog" />
-            { " " }
-            { I18n.t( "curation" ) }
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <MenuItem eventKey="add-flag" href={`/taxa/${taxon.id}/flags/new`}>
-              <i className="fa fa-flag" />
-              { " " }
-              { I18n.t( "flag_for_curation" ) }
-            </MenuItem>
-            <MenuItem
-              className={flagsCount > 0 ? "" : "hidden"}
-              eventKey="view-flags"
-              href={`/taxa/${taxon.id}/flags`}
-            >
-              <i className="fa fa-flag-checkered" />
-              { " " }
-              { I18n.t( "view_flags" ) }
-              { " " }
-              <span className="text-muted">{ `(${flagsCount})` }</span>
-            </MenuItem>
-            { taxonPhotosItem }
-            { atlasItem }
-            <MenuItem
-              className={isCurator ? "" : "hidden"}
-              eventKey="edit-taxon"
-              href={`/taxa/${taxon.id}/edit`}
-            >
-              <i className="fa fa-pencil" />
-              { " " }
-              { I18n.t( "edit_taxon" ) }
-            </MenuItem>
-            <MenuItem eventKey="history" href={`/taxa/${taxon.id}/history`}>
-              <i className="fa fa-history" />
-              { " " }
-              { I18n.t( "history" ) }
-            </MenuItem>
-          </Dropdown.Menu>
-        </Dropdown>
-      </li>
-    );
-  }
+  const curationTab = curationItems.length > 0 ? (
+    <li className="curation-tab">
+      <Dropdown
+        id="curation-dropdown"
+        pullRight
+        onSelect={( eventKey: any ) => {
+          if ( eventKey === "edit-photos" ) showPhotoChooserModal( );
+        }}
+      >
+        <Dropdown.Toggle>
+          <i className="fa fa-cog" />
+          { " " }
+          { I18n.t( "curation" ) }
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          { curationItems.map( item => {
+            if ( item.separator ) return null;
+
+            return (
+              <MenuItem
+                key={item.value}
+                eventKey={item.value}
+                href={item.href}
+                className={item.value === "photos-locked" ? "disabled" : undefined}
+                title={item.value === "photos-locked" ? I18n.t( "photos_locked_desc" ) : undefined}
+              >
+                <i className={`fa ${item.icon}`} />
+                { " " }
+                { item.label }
+              </MenuItem>
+            );
+          } ) }
+        </Dropdown.Menu>
+      </Dropdown>
+    </li>
+  ) : null;
 
   return (
     <div className="TaxonPageTabs" ref={containerRef}>
@@ -310,66 +243,16 @@ const TaxonPageTabs = ( {
         items={drawerItems}
         onChange={choseTab}
       />
-      <Grid>
-        <Row>
-          <Col xs={12}>
-            <ul id="main-tabs" className="nav nav-tabs" role="tablist">
-              <li role="presentation" className={chosenTab === "map" ? "active" : ""}>
-                <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
-              </li>
-              <li role="presentation" className={chosenTab === "articles" ? "active" : ""}>
-                <a href="#articles-tab" role="tab" data-toggle="tab">{ I18n.t( "about" ) }</a>
-              </li>
-              <li
-                role="presentation"
-                className={`${speciesOrLower ? "hidden" : ""} ${chosenTab === "highlights" ? "active" : ""}`}
-              >
-                <a href="#highlights-tab" role="tab" data-toggle="tab">
-                  { I18n.t( "trends" ) }
-                </a>
-              </li>
-              { test === "interactions" && (
-                <li
-                  role="presentation"
-                  className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "interactions" ? "active" : ""}`}
-                >
-                  <a href="#interactions-tab" role="tab" data-toggle="tab">
-                    { I18n.t( "interactions" ) }
-                  </a>
-                </li>
-              ) }
-              <li role="presentation" className={chosenTab === "taxonomy" ? "active" : ""}>
-                <a href="#taxonomy-tab" role="tab" data-toggle="tab">{ I18n.t( "taxonomy" ) }</a>
-              </li>
-              <li
-                role="presentation"
-                className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "status" ? "active" : ""}`}
-              >
-                <a href="#status-tab" role="tab" data-toggle="tab">{ I18n.t( "status" ) }</a>
-              </li>
-              <li
-                role="presentation"
-                className={`${genusOrSpecies ? "" : "hidden"} ${chosenTab === "similar" ? "active" : ""}`}
-              >
-                <a href="#similar-tab" role="tab" data-toggle="tab">
-                  { speciesOrLower ? I18n.t( "similar_species" ) : I18n.t( "similar_taxa" ) }
-                </a>
-              </li>
-              { currentUser?.canViewHelpfulIDTips( ) && (
-                <li
-                  role="presentation"
-                  className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "identifications" ? "active" : ""}`}
-                >
-                  <a href="#identifications-tab" role="tab" data-toggle="tab">
-                    { I18n.t( "identifications" ) }
-                  </a>
-                </li>
-              ) }
-              { curationTab }
-            </ul>
-          </Col>
-        </Row>
-      </Grid>
+      <ul id="main-tabs" className="nav nav-tabs" role="tablist">
+        { drawerItems
+          .filter( item => !item.separator && MAIN_TAB_VALUES.has( item.value ) )
+          .map( item => (
+            <li key={item.value} role="presentation" className={chosenTab === item.value ? "active" : ""}>
+              <a href={`#${item.value}-tab`} role="tab" data-toggle="tab">{ item.label }</a>
+            </li>
+          ) )}
+        { curationTab }
+      </ul>
       <div id="main-tabs-content" className="tab-content">
         <div
           role="tabpanel"
@@ -421,7 +304,7 @@ const TaxonPageTabs = ( {
             taxon={taxon}
             statuses={taxon.conservationStatuses}
             listedTaxaCount={taxon.listed_taxa_count}
-            listedTaxa={_.filter( taxon.listed_taxa, lt => lt.establishment_means )}
+            listedTaxa={taxon.listed_taxa?.filter( lt => lt.establishment_means )}
           />
         </div>
         <div

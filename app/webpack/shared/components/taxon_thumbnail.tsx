@@ -34,14 +34,13 @@ export interface TaxonThumbnailBadge {
 export interface TaxonThumbnailProps {
   taxon: Taxon;
   width?: number;
-  height?: number;
   className?: string;
   overlay?: React.ReactNode;
   noInactive?: boolean;
   badge?: TaxonThumbnailBadge;
   onClick?: ( e: React.MouseEvent ) => void;
   captionForTaxon?: ( taxon: Taxon ) => React.ReactNode;
-  urlForTaxon?: ( taxon: Taxon ) => string;
+  urlForTaxon?: ( taxon: Taxon ) => string | undefined;
   config?: { currentUser?: unknown; [key: string]: unknown };
 }
 
@@ -52,7 +51,6 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
   const {
     taxon,
     width,
-    height,
     className,
     overlay,
     noInactive,
@@ -73,12 +71,9 @@ const TaxonThumbnail = React.forwardRef<HTMLDivElement, TaxonThumbnailProps>( ( 
     squareURL = taxon.default_photo.square_url;
   }
 
-  let wrapperStyle: React.CSSProperties | undefined;
-  if ( height ) {
-    wrapperStyle = { height, aspectRatio: "unset" };
-  } else if ( width ) {
-    wrapperStyle = { "--taxon-thumbnail-width": `${width}px` } as React.CSSProperties;
-  }
+  const wrapperStyle: React.CSSProperties | undefined = width
+    ? { "--taxon-thumbnail-width": `${width}px` } as React.CSSProperties
+    : undefined;
 
   return (
     <div

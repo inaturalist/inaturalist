@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import css from "./tab_drawer.module.css";
 
 interface TabItem {
-  value?: string;
+  value: string;
   label?: string;
   href?: string;
   onClick?: ( ) => void;
@@ -22,10 +23,10 @@ const TabDrawer = ( {
   const [open, setOpen] = useState( false );
 
   return (
-    <div className={`tab-drawer-container${open ? " open" : ""}`}>
+    <div className={`${css.container}${open ? ` ${css.open}` : ""}`}>
       <button
         type="button"
-        className="tab-drawer-toggle"
+        className={css.toggle}
         aria-expanded={open}
         aria-controls="tab-drawer"
         onClick={() => setOpen( o => !o )}
@@ -33,16 +34,15 @@ const TabDrawer = ( {
         { selectedLabel }
         <i className={`fa fa-chevron-${open ? "up" : "down"}`} />
       </button>
-      <ul id="tab-drawer" className="tab-drawer">
+      <ul id="tab-drawer" className={css.drawer}>
         { items
           .filter( item => item.separator || item.value !== selectedValue )
-          .map( ( item, i ) => {
+          .map( item => {
             if ( item.separator ) {
-              // eslint-disable-next-line react/no-array-index-key
-              return <li key={`sep-${i}`} className="tab-drawer-separator" />;
+              return <li key={item.value} className={css.separator} />;
             }
             const itemIcon = item.icon
-              ? <i className={`fa ${item.icon} tab-drawer-item-icon`} />
+              ? <i className={`fa ${item.icon} ${css["item-icon"]}`} />
               : null;
             if ( item.href ) {
               return (

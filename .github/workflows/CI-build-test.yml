@@ -101,7 +101,8 @@ jobs:
       run: |
         npm run eslint \
           app/webpack/computer_vision/language \
-          "app/webpack/shared/components/*.tsx" \
-          "app/webpack/taxa/show/components/*.tsx" \
-          app/webpack/taxa/photos/components/photo_browser.tsx \
-          app/webpack/taxa/show/containers/highlights_tab_container.ts
+          "app/webpack/**/*.tsx" \
+          "app/webpack/**/*.ts"
+
+    - name: Run TypeScript type check
+      run: npm run typecheck

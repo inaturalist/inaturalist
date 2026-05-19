@@ -4,8 +4,6 @@ import ObservationsGridItem from "../../../shared/components/observations_grid_i
 import Carousel from "../../../shared/components/carousel";
 import TaxonThumbnail, { Taxon } from "../../../shared/components/taxon_thumbnail";
 
-const ITEM_WIDTH = 200;
-
 interface Observation {
   id: number;
   [key: string]: unknown;
@@ -20,7 +18,7 @@ interface Props {
   showNewTaxon?: ( taxon: Taxon ) => void;
   captionForObservation?: ( obs: Observation ) => React.ReactNode;
   captionForTaxon?: ( taxon: Taxon ) => React.ReactNode;
-  urlForTaxon?: ( taxon: Taxon ) => string;
+  urlForTaxon?: ( taxon: Taxon ) => string | undefined;
   config?: { currentUser?: unknown; [key: string]: unknown };
 }
 
@@ -74,7 +72,6 @@ const HighlightsCarousel = ( {
       <div
         key={`highlights-obs-${obs.id}`}
         ref={i === 0 ? firstItemRef : null}
-        style={{ width: ITEM_WIDTH }}
       >
         <ObservationsGridItem
           observation={obs as any}

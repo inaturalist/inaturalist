@@ -329,12 +329,12 @@ const PhotoBrowser = ( {
                 <span className="control-group">
                   <Dropdown
                     id="grouping-control"
-                    onSelect={( key: any ) => {
+                    onSelect={( key: string | ControlledAttribute ) => {
                       if ( key === "none" ) {
                         setGrouping?.( null );
                       } else if ( key === "taxon_id" ) {
                         setGrouping?.( "taxon_id" );
-                      } else {
+                      } else if ( typeof key !== "string" ) {
                         setGrouping?.( `terms:${key.id}`, key.id );
                       }
                     }}
@@ -364,7 +364,7 @@ const PhotoBrowser = ( {
                   <span key={`term-${attr.label}`} className="control-group">
                     <Dropdown
                       id={`term-chooser-${attr.label}`}
-                      onSelect={( key: any ) => setTerm?.( attr.id, key )}
+                      onSelect={( key: string ) => setTerm?.( attr.id, key )}
                     >
                       <Dropdown.Toggle bsStyle="link">
                         { I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } ) }
@@ -407,7 +407,7 @@ const PhotoBrowser = ( {
               <span className="control-group">
                 <Dropdown
                   id="sort-control"
-                  onSelect={( key: any ) => {
+                  onSelect={( key: string ) => {
                     setParam?.( "order_by", key );
                   }}
                 >
@@ -435,7 +435,7 @@ const PhotoBrowser = ( {
               <span className="control-group">
                 <Dropdown
                   id="license-control"
-                  onSelect={( key: any ) => { setParam?.( "photo_license", key ); }}
+                  onSelect={( key: string ) => { setParam?.( "photo_license", key ); }}
                 >
                   <Dropdown.Toggle bsStyle="link">
                     { I18n.t( "photo_licensing" ) }
@@ -465,7 +465,7 @@ const PhotoBrowser = ( {
               <span className="control-group">
                 <Dropdown
                   id="quality-grade-control"
-                  onSelect={( key: any ) => {
+                  onSelect={( key: string ) => {
                     setParam?.( "quality_grade", key );
                   }}
                 >

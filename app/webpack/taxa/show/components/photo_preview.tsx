@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CoverImage from "../../../shared/components/cover_image";
 import { urlForTaxonPhotos } from "../../shared/util";
-import TaxonPhoto from "../../../shared/components/taxon_photo";
+import TaxonPhoto, { Photo as BasePhoto } from "../../../shared/components/taxon_photo";
 
-interface Photo {
-  id: number;
+interface Photo extends BasePhoto {
   photoUrl: ( size?: string ) => string;
   dimensions: ( ) => { width: number; height: number } | null | undefined;
 }
@@ -29,7 +28,7 @@ interface Props {
   taxon: Taxon;
   taxonPhotos: TaxonPhotoEntry[];
   layout?: string;
-  showTaxonPhotoModal?: ( photo: Photo, taxon: Taxon, observation?: unknown ) => void;
+  showTaxonPhotoModal?: ( photo: BasePhoto, taxon: Taxon, observation?: unknown ) => void;
   showPhotoChooserModal?: ( ) => void;
   showNewTaxon?: ( taxon: Taxon ) => void;
   config?: { currentUser?: CurrentUser; [key: string]: unknown };

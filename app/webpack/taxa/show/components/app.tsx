@@ -26,8 +26,10 @@ interface CurrentUser {
 interface Taxon {
   id: number;
   name: string;
-  conservationStatus?: unknown;
-  establishment_means?: unknown;
+  rank_level?: number;
+  complete_species_count?: number;
+  conservationStatus?: object | null;
+  establishment_means?: object | null;
   flag_counts?: {
     unresolved?: number;
     [key: string]: unknown;
