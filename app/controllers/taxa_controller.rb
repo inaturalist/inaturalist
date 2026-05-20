@@ -217,10 +217,7 @@ class TaxaController < ApplicationController
         else
           session[:preferred_taxon_page_ancestors_shown]
         end
-        if current_user&.in_test_group?( "responsive-header" ) &&
-            current_user.in_test_group?( "responsive-taxon-detail" )
-          @skip_min_width = true
-        end
+        @skip_min_width = true
         render layout: "bootstrap", action: "show"
       end
 
