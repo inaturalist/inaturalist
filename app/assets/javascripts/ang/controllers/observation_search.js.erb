@@ -1345,8 +1345,10 @@ var SearchController = function (
   };
 
   $scope.geocodeSearchedPlaceID = function ( placeID ) {
-    var s = new google.maps.Geocoder( );
-    s.geocode( { placeId: placeID }, function ( results, status ) {
+    var geocoder = new google.maps.Geocoder( );
+    // language: "en" ensures address_components are in English for matching against
+    // iNat's English place database, regardless of the user's locale.
+    geocoder.geocode( { placeId: placeID, language: "en" }, function ( results, status ) {
       if ( status !== google.maps.GeocoderStatus.OK ) {
         return;
       }
