@@ -1,10 +1,27 @@
 @import "../colors";
+@import "../breakpoints";
 
 .Annotations,
 .bootstrap .Annotations,
 body > [role="dialog"] .Annotations {
-  table, .table {
+  table {
     margin-bottom: 0px;
+    table-layout: fixed;
+    width: 100%;
+  }
+  .attribute {
+    min-width: 0;
+    width: 26%;
+  }
+  .value {
+    white-space: normal;
+    width: 38%;
+  }
+  .agree, .disagree {
+    width: 18%;
+  }
+  .check {
+    display: none;
   }
   thead {
     background: rgba(174,174,174, 0.09);

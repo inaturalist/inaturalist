@@ -1,3 +1,4 @@
+@import "../breakpoints";
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 @import "../../../../node_modules/react-image-gallery/styles/scss/image-gallery";
 @import "../shared/disagreement_alert";
@@ -196,6 +197,18 @@ a.UserImage,
   }
 }
 
+.obs-show-container {
+  padding: 15px;
+  max-width: $xl;
+  margin: 0 auto;
+  @media (min-width: $md) {
+    padding: 30px;
+  }
+  @media (min-width: $xl) {
+    padding: 60px;
+  }
+}
+
 #ObservationShow {
   .top_container {
     margin: 0;
@@ -203,11 +216,24 @@ a.UserImage,
   }
   .title_row {
     margin: 10px 0px 10px;
+    display: flex;
+    align-items: flex-start;
+    .ObservationTitle {
+      flex: 1;
+      width: auto;
+    }
   }
   .top_row {
     background: #fff;
     border: 1px solid $border-grey;
+    @media (min-width: $md) {
+      display: flex;
+    }
     .photos_column {
+      @media (min-width: $md) {
+        flex: 0 0 58.33%;
+        width: 58.33%;
+      }
       padding: 0px;
       border-right: 1px solid $border-grey;
       &.empty {
@@ -449,6 +475,10 @@ a.UserImage,
       }
     }
     .info_column {
+      @media (min-width: $md) {
+        flex: 0 0 41.67%;
+        width: 41.67%;
+      }
       border-left: 1px solid $border-grey;
       margin-left: -1px;
       padding: 20px 0px;
@@ -462,7 +492,10 @@ a.UserImage,
       }
       .date_row {
         margin: 20px;
+        display: flex;
         & > div {
+          flex: 0 0 50%;
+          width: 50%;
           padding: 0px;
         }
         .bold_label {
@@ -591,14 +624,30 @@ a.UserImage,
       }
     }
   }
+  .activity_row {
+    @media (min-width: $md) {
+      display: flex;
+      .activity_column {
+        flex: 0 0 58.33%;
+        width: 58.33%;
+      }
+      .opposite_activity {
+        flex: 0 0 41.67%;
+        width: 41.67%;
+      }
+    }
+  }
   .middle_left {
     padding-right: 40px;
+    @media (max-width: $sm) {
+      padding-right: 0;
+    }
     h3 {
       margin-bottom: 20px;
     }
   }
   .opposite_activity {
-    & > .row .col-xs-12 > div {
+    & > div > div {
       margin-bottom: 15px;
     }
     h4 {
@@ -679,8 +728,15 @@ a.UserImage,
   }
 }
 
-.more_from > .container > .row > .col-xs-12 {
-  padding: 0;
+.nearby_similar_row {
+  @media (min-width: $md) {
+    display: flex;
+    > div {
+      flex: 0 0 50%;
+      width: 50%;
+      padding: 0;
+    }
+  }
 }
 
 .other_observations > .container > .row > .col-xs-6 {
