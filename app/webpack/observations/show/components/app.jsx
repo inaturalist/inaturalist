@@ -242,7 +242,6 @@ class App extends React.Component {
       qualityGradeTooltipHtml = I18n.t( "needs_id_tooltip_html2", {
         defaultValuePreFallback: I18n.t( "needs_id_tooltip_html" )
       } );
-
     } else {
       qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html2", {
         defaultValuePreFallback: I18n.t( "research_grade_tooltip_html" )
@@ -385,7 +384,7 @@ class App extends React.Component {
               </Col>
             </Row>
             <Row>
-              <Col xs={responsive ? null : 7} sm={responsive ? 7 : null} className="middle_left">
+              <Col xs={responsive ? null : 7} sm={responsive ? 7 : null}>
                 { description }
                 <Row>
                   <Col xs={12}>

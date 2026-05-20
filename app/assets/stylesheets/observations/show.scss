@@ -1270,8 +1270,11 @@ time {
 
 .MoreFromUser {
   display: inline-block;
-  padding-bottom: 30px;
+  padding: 0 30px 30px;
   width: 100%;
+  @media (max-width: 768px) {
+    padding: 0 15px 15px;
+  }
   h3 {
     & > span a {
       font-weight: 600;
@@ -1285,63 +1288,6 @@ time {
       .separator {
         margin: 0px 5px;
       }
-    }
-  }
-  .list {
-    text-align: center;
-    padding-left: 5px;
-    padding-right: 5px;
-    width: 100%;
-    .col-xs-2 {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-  }
-  .obs {
-    width: 100%;
-    vertical-align: top;
-    border-radius: 2px;
-    border: 1px solid #D0D0D0;
-    background: #fff;
-  }
-  .photo {
-    width: 100%;
-    height: 140px;
-    a {
-      width: 100%;
-      height: 100%;
-      display: block;
-      background-size: cover;
-      background-position: center;
-      margin: 0px auto;
-      text-align: center;
-      &:hover {
-        opacity: 1;
-      }
-    }
-
-    .icon, .sound-icon {
-      display: none;
-      color: #aaa;
-      opacity: 0.8;
-      font-size: 105px;
-      margin-top: 20px;
-    }
-    a.sound .sound-icon, a.iconic .icon {
-      display: inline-block;
-    }
-
-  }
-  .caption {
-    padding: 8px;
-    min-height: 56px;
-    text-align: start;
-    .SplitTaxon .display-name {
-      color: #000;
-    }
-    .SplitTaxon > .display-name, .display-names,
-    .SplitTaxon > .secondary-name, .secondary-names {
-      display: block;
     }
   }
   .view {
@@ -2214,13 +2160,7 @@ time {
 }
 
 @media (min-width: 1200px) {
-  .MoreFromUser .photo {
-    height: 171px;
-    .icon, .sound-icon {
-      font-size: 125px;
-      margin-top: 25px;
-    }
-  }
+
   .ObservationsHighlight .photo {
     height: 84px;
   }

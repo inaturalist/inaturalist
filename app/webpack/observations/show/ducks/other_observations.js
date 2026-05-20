@@ -249,7 +249,7 @@ export function fetchMoreFromThisUser( ) {
     const baseParams = {
       user_id: observation.user.id,
       order_by: "id",
-      per_page: 6,
+      per_page: 15,
       no_total_hits: true,
       details: "all",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
