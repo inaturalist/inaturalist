@@ -9,16 +9,15 @@ body > [role="dialog"] .Annotations {
     table-layout: fixed;
     width: 100%;
   }
+  thead th:nth-child(1) { width: 30%; }
+  thead th:nth-child(2) { width: 30%; }
+  thead th:nth-child(3) { width: 20%; }
+  thead th:nth-child(4) { width: 20%; }
   .attribute {
     min-width: 0;
-    width: 26%;
   }
   .value {
     white-space: normal;
-    width: 38%;
-  }
-  .agree, .disagree {
-    width: 18%;
   }
   .check {
     display: none;

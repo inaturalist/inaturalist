@@ -231,8 +231,7 @@ a.UserImage,
     }
     .photos_column {
       @media (min-width: $md) {
-        flex: 0 0 58.33%;
-        width: 58.33%;
+        flex: 7;
       }
       padding: 0px;
       border-right: 1px solid $border-grey;
@@ -476,8 +475,7 @@ a.UserImage,
     }
     .info_column {
       @media (min-width: $md) {
-        flex: 0 0 41.67%;
-        width: 41.67%;
+        flex: 5;
       }
       border-left: 1px solid $border-grey;
       margin-left: -1px;
@@ -494,8 +492,7 @@ a.UserImage,
         margin: 20px;
         display: flex;
         & > div {
-          flex: 0 0 50%;
-          width: 50%;
+          flex: 1;
           padding: 0px;
         }
         .bold_label {
@@ -625,15 +622,13 @@ a.UserImage,
     }
   }
   .activity_row {
-    @media (min-width: $md) {
+    @media (min-width: $lg) {
       display: flex;
       .activity_column {
-        flex: 0 0 58.33%;
-        width: 58.33%;
+        flex: 7;
       }
       .opposite_activity {
-        flex: 0 0 41.67%;
-        width: 41.67%;
+        flex: 5;
       }
     }
   }
@@ -732,8 +727,7 @@ a.UserImage,
   @media (min-width: $md) {
     display: flex;
     > div {
-      flex: 0 0 50%;
-      width: 50%;
+      flex: 1;
       padding: 0;
     }
   }
