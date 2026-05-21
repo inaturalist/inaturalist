@@ -56,6 +56,9 @@ const App = ( { taxon, showNewTaxon, config = {} }: Props ) => (
       </div>
       <div id="TaxonHeader">
         <div className="inner">
+          <div id="place-chooser-container">
+            <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
+          </div>
           <h1>
             <SplitTaxon
               taxon={taxon}
@@ -78,9 +81,6 @@ const App = ( { taxon, showNewTaxon, config = {} }: Props ) => (
               )
               : null }
           </h1>
-          <div id="place-chooser-container">
-            <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
-          </div>
         </div>
         <AkaNamesContainer />
       </div>

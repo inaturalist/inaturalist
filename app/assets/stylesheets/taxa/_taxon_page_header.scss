@@ -13,6 +13,20 @@
 #TaxonHeader .inner {
   display: flex;
   justify-content: space-between;
+
+  h1 { order: 1; }
+  #place-chooser-container { order: 2; }
+
+  @media ( max-width: $mobile-max ) {
+    flex-direction: column;
+
+    h1 { order: 2; }
+    #place-chooser-container {
+      order: 1;
+      align-self: flex-end;
+      margin-top: 0;
+    }
+  }
 }
 
 #TaxonHeader h1 {

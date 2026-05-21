@@ -52,15 +52,15 @@ const App = ( { taxon, config = {} }: Props ) => {
         </div>
         <div id="TaxonHeader">
           <div className="inner">
+            <div id="place-chooser-container">
+              <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
+            </div>
             <h1
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={
                 { __html: I18n.t( "photos_of_taxon_html", { taxon: taxonHTML } ) }
               }
             />
-            <div id="place-chooser-container">
-              <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
-            </div>
           </div>
         </div>
       </div>
