@@ -697,6 +697,7 @@ class IdentificationsTab extends Component {
                   e.preventDefault( );
                 }}
               >
+                <div className="search-bar-row">
                 <div className="input-group">
                   <div className="search-input">
                     <input
@@ -734,7 +735,10 @@ class IdentificationsTab extends Component {
                       value="Search"
                     />
                   </span>
+                </div>
+                <div className="sort-row">
                   { this.sortSelect( ) }
+                </div>
                 </div>
                 { this.resultAnnotations( ) }
               </form>

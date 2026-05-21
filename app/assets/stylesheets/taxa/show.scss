@@ -952,8 +952,20 @@ $introducedColor: #E4007C;
         z-index: 3;
       }
     }
+    .search-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .input-group {
+        flex: 1;
+      }
+      @media ( max-width: $mobile-max ) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+    }
     select[name="sort"] {
-      margin-left: 10px;
       min-width: 195px;
     }
   }
