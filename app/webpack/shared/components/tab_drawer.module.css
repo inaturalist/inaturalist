@@ -5,7 +5,6 @@
 
   @media (max-width: 768px) {
     display: block;
-    border-bottom: 3px solid var(--green);
     position: relative;
     z-index: 100;
   }
@@ -30,6 +29,7 @@
   font-size: 18px !important;
   color: black;
   background: white;
+  border-bottom: 3px solid var(--green) !important;
 }
 
 .drawer {
