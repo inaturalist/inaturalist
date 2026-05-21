@@ -365,10 +365,8 @@ $photoPreviewThumbGutterTop: 3px;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-
-    * {
-      z-index: 1000;
-    }
+    position: relative;
+    z-index: 1;
 
     .TaxonPhoto {
       flex-grow: 1;
@@ -613,6 +611,11 @@ $introducedColor: #E4007C;
 .TaxonPageTabs .tab-content {
   border-top: 1px solid #ccc;
   padding: 10px 60px;
+
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .TaxonPageTabs .nav.nav-tabs {
@@ -1365,15 +1368,19 @@ table.regional-names {
   // }
 }
 
+@media (max-width: $sm) {
+  .TaxonPageTabs {
+    .tab-content {
+      padding: 0 15px;
+    }
+  }
+}
+
 @media (max-width: 767px) {
   #main-tabs {
     display: none;
   }
   .TaxonPageTabs {
-
-    .tab-content {
-      padding: 0 15px;
-    }
   }
 
   .IdentificationsTab {
