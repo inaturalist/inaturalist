@@ -93,3 +93,6 @@ jobs:
               core.setFailed(`create workflow_dispatch received status code ${response.status}`);
             }
           });
+
+  e2e-tests:
+    uses: ./.github/workflows/CI-e2e-tests.yml
