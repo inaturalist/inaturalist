@@ -41,7 +41,7 @@
     margin: 0 auto;
     align-items: center;
     > * { min-width: 0; }
-    @media ( max-width: 767px ) {
+    @media ( max-width: $md ) {
       grid-template-columns: 1fr;
       gap: 0;
       .PhotoPreview {
@@ -1401,7 +1401,7 @@ table.regional-names {
 }
 
 
-@media (max-width: 767px) {
+@media ( max-width: $md ) {
   #main-tabs {
     display: none;
   }
