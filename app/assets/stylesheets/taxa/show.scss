@@ -13,6 +13,7 @@
 @import "../users/user_popover";
 @import "./shared/loading_spinner";
 @import "../breakpoints";
+@import "taxon_page_header";
 
 #app {
   min-height: 600px;
@@ -23,33 +24,6 @@
 }
 
 
-#TaxonHeader .inner {
-  display: flex;
-  justify-content: space-between;
-}
-
-#TaxonHeader h1 {
-  margin-top: 10px;
-  font-size: 32px;
-  font-weight: 200;
-
-  .btn-flags {
-    margin-left: 10px;
-    background-color: #EFD6D6;
-    i { color: red; }
-  }
-}
-
-#TaxonHeader .taxon .display-name {
-  color: black;
-  font-weight: 200;
-}
-
-#TaxonHeader .has-com-name {
-  .secondary-name, .secondary-names {
-    font-size: 20px;
-  }
-}
 
 #hero {
   background-color: #f8f8f8;
@@ -257,105 +231,6 @@
   padding-bottom: 20px;
 }
 
-.permalink {
-  position: relative;
-  top: -6px;
-}
-
-.TaxonCrumbs {
-  color: #aaa;
-  padding: 0;
-  margin: 0 7px 0 0;
-  line-height: 25px;
-  display: inline;
-  position: relative;
-  top: -4px;
-}
-.TaxonCrumbs.contracted .inner {
-  display: none;
-}
-.TaxonCrumbs.expanded .inner {
-  display: inline-block;
-}
-.TaxonCrumbs.contracted .expand-control {
-  display: inline-block;
-}
-.TaxonCrumbs.expanded .expand-control {
-  width: 0;
-}
-.TaxonCrumbs.contracted .contract-control {
-  display: none;
-}
-.TaxonCrumbs.expanded .contract-control {
-  display: inline-block;
-}
-.TaxonCrumbs .inner ul {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-}
-.TaxonCrumbs .taxon a {
-  color: #337ab7;
-}
-.TaxonCrumbs li {
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-}
-.TaxonCrumbs li div {
-  display: inline-block;
-}
-.TaxonCrumbs li:after {
-  content: '\203A';
-  margin: 0px 5px;
-}
-.TaxonCrumbs li:last-child:after {
-  display: none;
-}
-
-.TaxonCrumbs .has-com-name {
-  .secondary-name, .secondary-names {
-    display: none;
-  }
-}
-
-.TaxonCrumbs .contract-control {
-  margin-left: 10px;
-}
-
-.taxon-crumbs-children .taxon a {
-  color: #333;
-}
-.taxon-crumbs-children .taxon.has-com-name {
-  .secondary-name, .secondary-names {
-    color: #aaa;
-  }
-}
-.taxon-crumbs-children .SplitTaxon:before {
-  content: '\021B3';
-  margin-right: 5px;
-  color: #aaa;
-}
-
-.preheader .ui-autocomplete-input {
-  width: 200px;
-}
-
-.preheader .ac-select-thumb {
-  line-height: 28px;
-}
-.preheader .ac-select-thumb img {
-  height: 30px;
-}
-.preheader .ac-select-thumb i {
-  font-size: 22px;
-}
-.preheader .form-group {
-  margin: 0;
-}
-.preheader .ac-chooser .searchclear.glyphicon {
-  top: 8px;
-}
 
 .Leaders {
   max-width: 600px;
