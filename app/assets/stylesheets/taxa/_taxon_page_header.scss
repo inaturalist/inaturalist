@@ -13,7 +13,7 @@
   h1 { order: 1; }
   #place-chooser-container { order: 2; }
 
-  @media ( max-width: $mobile-max ) {
+  @media ( max-width: $md ) {
     flex-direction: column;
 
     h1 { order: 2; }
@@ -138,7 +138,7 @@
     padding-right: 10px;
   }
 
-  @media ( min-width: $desktop-min ) {
+  @media ( min-width: $md ) {
     flex-direction: row;
     align-items: center;
 
@@ -158,7 +158,7 @@
 .preheader .ui-autocomplete-input {
   width: 200px;
 
-  @media ( max-width: $mobile-max ) {
+  @media ( max-width: $md ) {
     width: 100%;
   }
 }

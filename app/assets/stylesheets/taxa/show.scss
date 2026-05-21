@@ -976,7 +976,7 @@ $introducedColor: #E4007C;
       .input-group {
         flex: 1;
       }
-      @media ( max-width: $mobile-max ) {
+      @media ( max-width: $md ) {
         flex-direction: column;
         align-items: stretch;
         gap: 0;
