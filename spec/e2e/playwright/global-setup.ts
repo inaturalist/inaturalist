@@ -1,7 +1,37 @@
-import { chromium, FullConfig } from "@playwright/test";
+import { chromium, FullConfig, request } from "@playwright/test";
 import { envConfig } from "../shared/env.config";
 
+async function verifyTestEnvironment(): Promise<void> {
+  const context = await request.newContext( { baseURL: envConfig.baseUrl } );
+  let railsEnv: string;
+  try {
+    const response = await context.post( "/__e2e__/command", {
+      data: { name: "eval", options: "Rails.env.to_s" }
+    } );
+    if ( !response.ok() ) {
+      throw new Error(
+        `The Rails server at ${envConfig.baseUrl} does not expose /__e2e__/command ` +
+        `(HTTP ${response.status()}). The server must run in test mode:\n\n` +
+        `  RAILS_ENV=test bundle exec rails server -p 3001\n`
+      );
+    }
+    const results = await response.json() as unknown[];
+    railsEnv = String( results[0] );
+  } finally {
+    await context.dispose();
+  }
+  if ( railsEnv !== "test" ) {
+    throw new Error(
+      `Rails server is running in "${railsEnv}" mode. ` +
+      `E2E tests must target a test-mode server to avoid corrupting real data.\n\n` +
+      `Restart with:  RAILS_ENV=test bundle exec rails server -p 3001\n`
+    );
+  }
+}
+
 async function globalSetup( config: FullConfig ) {
+  await verifyTestEnvironment();
+
   const { testUser } = envConfig;
   if ( !testUser.email || !testUser.password ) {
     console.log( "No test user credentials configured — skipping auth setup" );

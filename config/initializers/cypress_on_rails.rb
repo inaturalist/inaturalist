@@ -4,7 +4,7 @@ if defined?(CypressOnRails)
     c.install_folder = File.expand_path("#{__dir__}/../../spec/e2e")
     # WARNING!! CypressOnRails can execute arbitrary ruby code
     # please use with extra caution if enabling on hosted servers or starting your local server on 0.0.0.0
-    c.use_middleware = !Rails.env.production?
+    c.use_middleware = Rails.env.test?
     #  c.use_vcr_middleware = !Rails.env.production?
     #  # Use this if you want to use use_cassette wrapper instead of manual insert/eject
     #  # c.use_vcr_use_cassette_middleware = !Rails.env.production?

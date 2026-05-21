@@ -1,3 +1,5 @@
+raise "appClean must only run in test environment (currently: #{Rails.env})" unless Rails.env.test?
+
 if defined?(DatabaseCleaner)
   # cleaning the database using database_cleaner
   DatabaseCleaner.strategy = :truncation
