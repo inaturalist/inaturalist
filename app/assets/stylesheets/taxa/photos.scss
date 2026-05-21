@@ -1,4 +1,9 @@
+@import "taxon_page_header";
+
 .PhotoBrowser {
+  @include container-padding;
+  max-width: $xl;
+  margin: 0 auto;
   .photos {
     margin: -2.5px;
     line-height: 0;
@@ -81,3 +86,59 @@
   }
 }
 .photo-group.first h3 { margin-top: 0px; }
+
+.PhotoBrowser.grid {
+  .photos {
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax( 160px, 1fr ) );
+    margin: 0;
+    gap: 5px;
+
+    @media ( max-width: $sm ) {
+      grid-template-columns: repeat( auto-fill, minmax( 130px, 1fr ) );
+    }
+  }
+  .TaxonPhoto {
+    width: 100%;
+    margin: 0;
+    // aspect-ratio:1 is unreliable here because CoverImage sets width:100% inline,
+    // creating a sizing cycle. padding-bottom:% is always relative to own width, so
+    // height:0 + padding-bottom:100% guarantees a square without browser variation.
+    height: 0;
+    padding-bottom: 100%;
+    overflow: hidden;
+    .CoverImage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+    }
+  }
+}
+
+@media ( max-width: $sm ) {
+  .PhotoBrowser {
+    padding-bottom: 30px;
+  }
+
+  #controls {
+    flex-direction: column;
+
+    #layout-control {
+      margin-bottom: 10px;
+    }
+
+    #filters {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: normal;
+
+      .control-group {
+        margin-right: 0;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+}

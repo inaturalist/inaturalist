@@ -170,6 +170,7 @@ class TaxaController < ApplicationController
   end
 
   def show
+    @responsive = true
     if params[:id]
       begin
         @taxon ||= Taxon.where( id: params[:id] ).includes( { taxon_names: :place_taxon_names } ).first

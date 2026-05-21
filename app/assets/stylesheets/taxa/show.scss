@@ -13,6 +13,7 @@
 @import "../users/user_popover";
 @import "./shared/loading_spinner";
 @import "../breakpoints";
+@import "taxon_page_header";
 
 #app {
   min-height: 600px;
@@ -23,33 +24,6 @@
 }
 
 
-#TaxonHeader .inner {
-  display: flex;
-  justify-content: space-between;
-}
-
-#TaxonHeader h1 {
-  margin-top: 10px;
-  font-size: 32px;
-  font-weight: 200;
-
-  .btn-flags {
-    margin-left: 10px;
-    background-color: #EFD6D6;
-    i { color: red; }
-  }
-}
-
-#TaxonHeader .taxon .display-name {
-  color: black;
-  font-weight: 200;
-}
-
-#TaxonHeader .has-com-name {
-  .secondary-name, .secondary-names {
-    font-size: 20px;
-  }
-}
 
 #hero {
   background-color: #f8f8f8;
@@ -60,15 +34,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    padding: 20px 60px;
+    @include container-padding;
+    padding-top: 20px;
+    padding-bottom: 20px;
     max-width: $xl;
     margin: 0 auto;
     align-items: center;
     > * { min-width: 0; }
-    @media ( max-width: 767px ) {
+    @media ( max-width: $md ) {
       grid-template-columns: 1fr;
       gap: 0;
-      padding: 15px;
       .PhotoPreview {
         margin: 0 auto;
         width: 100%;
@@ -257,109 +232,11 @@
   padding-bottom: 20px;
 }
 
-.permalink {
-  position: relative;
-  top: -6px;
-}
-
-.TaxonCrumbs {
-  color: #aaa;
-  padding: 0;
-  margin: 0 7px 0 0;
-  line-height: 25px;
-  display: inline;
-  position: relative;
-  top: -4px;
-}
-.TaxonCrumbs.contracted .inner {
-  display: none;
-}
-.TaxonCrumbs.expanded .inner {
-  display: inline-block;
-}
-.TaxonCrumbs.contracted .expand-control {
-  display: inline-block;
-}
-.TaxonCrumbs.expanded .expand-control {
-  width: 0;
-}
-.TaxonCrumbs.contracted .contract-control {
-  display: none;
-}
-.TaxonCrumbs.expanded .contract-control {
-  display: inline-block;
-}
-.TaxonCrumbs .inner ul {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-}
-.TaxonCrumbs .taxon a {
-  color: #337ab7;
-}
-.TaxonCrumbs li {
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-}
-.TaxonCrumbs li div {
-  display: inline-block;
-}
-.TaxonCrumbs li:after {
-  content: '\203A';
-  margin: 0px 5px;
-}
-.TaxonCrumbs li:last-child:after {
-  display: none;
-}
-
-.TaxonCrumbs .has-com-name {
-  .secondary-name, .secondary-names {
-    display: none;
-  }
-}
-
-.TaxonCrumbs .contract-control {
-  margin-left: 10px;
-}
-
-.taxon-crumbs-children .taxon a {
-  color: #333;
-}
-.taxon-crumbs-children .taxon.has-com-name {
-  .secondary-name, .secondary-names {
-    color: #aaa;
-  }
-}
-.taxon-crumbs-children .SplitTaxon:before {
-  content: '\021B3';
-  margin-right: 5px;
-  color: #aaa;
-}
-
-.preheader .ui-autocomplete-input {
-  width: 200px;
-}
-
-.preheader .ac-select-thumb {
-  line-height: 28px;
-}
-.preheader .ac-select-thumb img {
-  height: 30px;
-}
-.preheader .ac-select-thumb i {
-  font-size: 22px;
-}
-.preheader .form-group {
-  margin: 0;
-}
-.preheader .ac-chooser .searchclear.glyphicon {
-  top: 8px;
-}
 
 .Leaders {
   max-width: 600px;
   margin: 0 auto;
+  padding: 20px 0;
 
   .LeadersGrid {
     display: grid;
@@ -489,10 +366,8 @@ $photoPreviewThumbGutterTop: 3px;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-
-    * {
-      z-index: 1000;
-    }
+    position: relative;
+    z-index: 1;
 
     .TaxonPhoto {
       flex-grow: 1;
@@ -668,6 +543,12 @@ $photoPreviewThumbGutterTop: 3px;
     font-weight: 600;
     white-space: nowrap;
   }
+  td {
+    font-size: 14px;
+    a {
+      font-size: 14px;
+    }
+  }
   .UserText {
     br {
       display: none;
@@ -734,9 +615,27 @@ $introducedColor: #E4007C;
   border-color: transparentize( $introducedColor, 0.80 );
   color: $introducedColor;
 }
-.TaxonPageTabs .tab-content {
+.TaxonPageTabs .tab-divider {
+  margin: 0;
   border-top: 1px solid #ccc;
-  padding: 10px 60px;
+  border-bottom: 0;
+}
+
+.TaxonPageTabs .tab-content {
+  @include container-padding;
+  max-width: $xl;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .TaxonPageTabs .nav.nav-tabs {
@@ -841,7 +740,7 @@ $introducedColor: #E4007C;
 
 #main-tabs {
   display: flex;
-  padding: 0 60px;
+  @include container-padding;
 }
 #main-tabs.nav-tabs > li {
   float: none;
@@ -1070,8 +969,20 @@ $introducedColor: #E4007C;
         z-index: 3;
       }
     }
+    .search-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .input-group {
+        flex: 1;
+      }
+      @media ( max-width: $md ) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+    }
     select[name="sort"] {
-      margin-left: 10px;
       min-width: 195px;
     }
   }
@@ -1489,15 +1400,12 @@ table.regional-names {
   // }
 }
 
-@media (max-width: 767px) {
+
+@media ( max-width: $md ) {
   #main-tabs {
     display: none;
   }
   .TaxonPageTabs {
-
-    .tab-content {
-      padding: 0 15px;
-    }
   }
 
   .IdentificationsTab {

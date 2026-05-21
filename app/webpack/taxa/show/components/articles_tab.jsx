@@ -15,12 +15,10 @@ const ArticlesTab = ( {
     currentUser.roles.indexOf( "curator" ) >= 0
     || currentUser.roles.indexOf( "admin" ) >= 0
   );
-  const responsive = currentUser?.isAdmin
-    && currentUser?.isInTestGroup( "responsive-taxon-detail" );
   return (
     <Grid className="ArticlesTab">
       <Row>
-        <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
+        <Col sm={8}>
           <h2
             className={`text-center ${description ? "hidden" : ""}`}
           >
@@ -41,7 +39,7 @@ const ArticlesTab = ( {
             <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
         </Col>
-        <Col xs={responsive ? null : 3} sm={responsive ? 3 : null} xsOffset={1}>
+        <Col sm={3} smOffset={1}>
           <h2>{ I18n.t( "more_info_title" ) }</h2>
           <ul className="list-group iconified-list-group">
             { _.sortBy( links, l => _.lowerCase( l.taxon_link.site_title ) ).map( link => {

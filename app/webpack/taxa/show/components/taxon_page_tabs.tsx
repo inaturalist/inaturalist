@@ -245,6 +245,7 @@ const TaxonPageTabs = ( {
           ) )}
         { curationTab }
       </ul>
+      <hr className="tab-divider" />
       <div id="main-tabs-content" className="tab-content">
         <div
           role="tabpanel"

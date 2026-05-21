@@ -1,0 +1,180 @@
+@import "../breakpoints";
+
+.taxon-detail-inner {
+  @include container-padding;
+  max-width: $xl;
+  margin: 0 auto;
+}
+
+#TaxonHeader .inner {
+  display: flex;
+  justify-content: space-between;
+
+  h1 { order: 1; }
+  #place-chooser-container { order: 2; }
+
+  @media ( max-width: $md ) {
+    flex-direction: column;
+
+    h1 { order: 2; }
+    #place-chooser-container {
+      order: 1;
+      align-self: flex-end;
+      margin-top: 0;
+    }
+  }
+}
+
+#TaxonHeader h1 {
+  margin-top: 10px;
+  font-size: 32px;
+  font-weight: 200;
+
+  .btn-flags {
+    margin-left: 10px;
+    background-color: #EFD6D6;
+    i { color: red; }
+  }
+}
+
+#TaxonHeader .taxon .display-name {
+  color: black;
+  font-weight: 200;
+}
+
+#TaxonHeader .has-com-name {
+  .secondary-name, .secondary-names {
+    font-size: 20px;
+  }
+}
+
+.permalink {
+  position: relative;
+  top: -6px;
+}
+
+.TaxonCrumbs {
+  color: #aaa;
+  padding: 0;
+  margin: 0 7px 0 0;
+  line-height: 25px;
+  display: inline;
+  position: relative;
+  top: -4px;
+}
+.TaxonCrumbs.contracted .inner {
+  display: none;
+}
+.TaxonCrumbs.expanded .inner {
+  display: inline-block;
+}
+.TaxonCrumbs.contracted .expand-control {
+  display: inline-block;
+}
+.TaxonCrumbs.expanded .expand-control {
+  width: 0;
+}
+.TaxonCrumbs.contracted .contract-control {
+  display: none;
+}
+.TaxonCrumbs.expanded .contract-control {
+  display: inline-block;
+}
+.TaxonCrumbs .inner ul {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.TaxonCrumbs .taxon a {
+  color: #337ab7;
+}
+.TaxonCrumbs li {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+.TaxonCrumbs li div {
+  display: inline-block;
+}
+.TaxonCrumbs li:after {
+  content: '\203A';
+  margin: 0px 5px;
+}
+.TaxonCrumbs li:last-child:after {
+  display: none;
+}
+
+.TaxonCrumbs .has-com-name {
+  .secondary-name, .secondary-names {
+    display: none;
+  }
+}
+
+.TaxonCrumbs .contract-control {
+  margin-left: 10px;
+}
+
+.taxon-crumbs-children .taxon a {
+  color: #333;
+}
+.taxon-crumbs-children .taxon.has-com-name {
+  .secondary-name, .secondary-names {
+    color: #aaa;
+  }
+}
+.taxon-crumbs-children .SplitTaxon:before {
+  content: '\021B3';
+  margin-right: 5px;
+  color: #aaa;
+}
+
+.preheader {
+  display: flex;
+  flex-direction: column;
+
+  .preheader-search {
+    padding-bottom: 8px;
+    width: 100%;
+    padding-right: 10px;
+  }
+
+  @media ( min-width: $md ) {
+    flex-direction: row;
+    align-items: center;
+
+    .preheader-search {
+      order: 2;
+      width: 33.33%;
+      padding-bottom: 0;
+    }
+
+    .preheader-crumbs {
+      order: 1;
+      flex: 1;
+    }
+  }
+}
+
+.preheader .ui-autocomplete-input {
+  width: 200px;
+
+  @media ( max-width: $md ) {
+    width: 100%;
+  }
+}
+
+.preheader .ac-select-thumb {
+  line-height: 28px;
+}
+.preheader .ac-select-thumb img {
+  height: 30px;
+}
+.preheader .ac-select-thumb i {
+  font-size: 22px;
+}
+.preheader .form-group {
+  margin: 0;
+}
+.preheader .ac-chooser .searchclear.glyphicon {
+  top: 8px;
+}
