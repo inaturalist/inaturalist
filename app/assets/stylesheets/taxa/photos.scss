@@ -117,6 +117,10 @@
 }
 
 @media ( max-width: $sm ) {
+  .PhotoBrowser {
+    padding-bottom: 30px;
+  }
+
   #controls {
     flex-direction: column;
 
