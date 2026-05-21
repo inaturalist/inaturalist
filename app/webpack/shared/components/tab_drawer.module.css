@@ -6,6 +6,8 @@
   @media (max-width: 768px) {
     display: block;
     border-bottom: 3px solid var(--green);
+    position: relative;
+    z-index: 100;
   }
 }
 
@@ -37,6 +39,11 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
 .open .drawer {
