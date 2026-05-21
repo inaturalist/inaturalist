@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "../../page-objects/login.page";
-import { appMake } from "../../support/on-rails";
+import { appMake, appClean } from "../../support/on-rails";
 
 const TEST_PASSWORD = "TestPass123!";
 
@@ -43,6 +43,7 @@ test.describe( "Login happy path", () => {
   let testEmail: string;
 
   test.beforeEach( async ( { page } ) => {
+    await appClean();
     const user = await appMake( "create", "user", {
       email: `e2e_login_${Date.now()}@gmail.com`,
       password: TEST_PASSWORD

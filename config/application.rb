@@ -148,6 +148,11 @@ module Inaturalist
         ]
       }
     end
+
+    if defined?(CypressOnRails) && !Rails.env.production?
+      require 'cypress_on_rails/middleware'
+      config.middleware.use CypressOnRails::Middleware
+    end
   end
 end
 

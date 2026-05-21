@@ -1,20 +1,20 @@
 import { test, expect } from "@playwright/test";
 import { ObservationDetailPage } from "../../page-objects/observation-detail.page";
-import testData from "../../fixtures/test-data.json";
-import { appEval } from "../../support/on-rails";
+import { appMachinistHelper, appClean, appMake } from "../../support/on-rails";
 
 test.describe( "Observation detail page", () => {
   let detailPage: ObservationDetailPage;
 
   test.beforeEach( async ( { page } ) => {
+    await appClean();
     detailPage = new ObservationDetailPage( page );
-    const obs = await appEval( `
-      user = User.make!( email: "e2e_test_#{SecureRandom.hex(4)}@gmail.com" )
-      UserPrivilege.make!( user: user, privilege: UserPrivilege::INTERACTION )
-      obs = Observation.make!( user: user, description: "Test observation" )
-      obs.attributes
-    ` ) as Record<string, unknown>;
-    await detailPage.goto( obs["id"] as number );
+    const obsUser = await appMake( "create", "user", { email: `e2e_obs_${Date.now()}@inaturalist.org` } );
+    const identUser = await appMake( "create", "user", { email: `e2e_ident_${Date.now()}@inaturalist.org` } );
+    const obs = await appMachinistHelper( "make_research_grade_observation", {
+      user_id: obsUser["id"] as number,
+      identifier_user_id: identUser["id"] as number
+    } );
+    await detailPage.goto( obs["id"] as number, obs );
   } );
 
   test( "page loads without errors", async () => {
