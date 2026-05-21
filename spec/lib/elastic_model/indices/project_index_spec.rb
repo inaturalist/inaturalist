@@ -46,6 +46,11 @@ describe "Project Index" do
     expect( collection.as_indexed_json[:delegated_project_id] ).to eq umbrella.id
   end
 
+  it "indexes membership_model" do
+    project.update( preferred_membership_model: Project::MEMBERSHIP_INVITE_ONLY )
+    expect( project.as_indexed_json[:membership_model] ).to eq Project::MEMBERSHIP_INVITE_ONLY
+  end
+
   describe "associated_place_ids" do
     let(:project) { Project.make! }
     let(:country) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
