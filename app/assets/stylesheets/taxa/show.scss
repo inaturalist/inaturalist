@@ -34,7 +34,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    padding: 20px 60px;
+    @include container-padding;
+    padding-top: 20px;
+    padding-bottom: 20px;
     max-width: $xl;
     margin: 0 auto;
     align-items: center;
@@ -42,7 +44,6 @@
     @media ( max-width: 767px ) {
       grid-template-columns: 1fr;
       gap: 0;
-      padding: 15px;
       .PhotoPreview {
         margin: 0 auto;
         width: 100%;
@@ -611,11 +612,24 @@ $introducedColor: #E4007C;
   border-color: transparentize( $introducedColor, 0.80 );
   color: $introducedColor;
 }
-.TaxonPageTabs .tab-content {
+.TaxonPageTabs .tab-divider {
+  margin: 0;
   border-top: 1px solid #ccc;
-  padding: 10px 60px;
+  border-bottom: 0;
+}
+
+.TaxonPageTabs .tab-content {
+  @include container-padding;
+  max-width: $xl;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
   .container {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
     padding-left: 0;
     padding-right: 0;
   }
@@ -723,7 +737,7 @@ $introducedColor: #E4007C;
 
 #main-tabs {
   display: flex;
-  padding: 0 60px;
+  @include container-padding;
 }
 #main-tabs.nav-tabs > li {
   float: none;
@@ -1383,13 +1397,6 @@ table.regional-names {
   // }
 }
 
-@media (max-width: $sm) {
-  .TaxonPageTabs {
-    .tab-content {
-      padding: 0 15px;
-    }
-  }
-}
 
 @media (max-width: 767px) {
   #main-tabs {

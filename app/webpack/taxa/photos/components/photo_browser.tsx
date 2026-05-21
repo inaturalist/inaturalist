@@ -2,9 +2,6 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import _ from "lodash";
 import {
-  Grid,
-  Row,
-  Col,
   ButtonGroup,
   Button,
   MenuItem,
@@ -131,16 +128,12 @@ const PhotoBrowser = ( {
   );
   const renderObservationPhotos = ( obsPhotos: ObservationPhoto[] | undefined ) => (
     ( obsPhotos || [] ).map( observationPhoto => {
-      let itemDim = 183;
-      let width = itemDim;
+      let itemDim: number | undefined;
+      let width: number | undefined;
       if ( layout === "fluid" ) {
-        itemDim += 50;
+        itemDim = 233;
         const dims = observationPhoto.photo.dimensions( );
-        if ( dims ) {
-          width = ( itemDim / dims.height ) * dims.width;
-        } else {
-          width = itemDim;
-        }
+        width = dims ? ( itemDim / dims.height ) * dims.width : itemDim;
       }
       return (
         <TaxonPhoto
@@ -303,11 +296,9 @@ const PhotoBrowser = ( {
     );
   }
   return (
-    <Grid className={`PhotoBrowser ${layout}`}>
-      <Row>
-        <Col xs={12}>
-          <div id="controls">
-            <ButtonGroup className="control-group" id="layout-control">
+    <div className={`PhotoBrowser ${layout}`}>
+      <div id="controls">
+        <ButtonGroup className="control-group" id="layout-control">
               <Button
                 active={layout === "fluid"}
                 title={I18n.t( "fluid_layout" )}
@@ -322,8 +313,8 @@ const PhotoBrowser = ( {
               >
                 <i className="icon-photo-grid" />
               </Button>
-            </ButtonGroup>
-            <div id="filters">
+        </ButtonGroup>
+        <div id="filters">
               { groupingMenuItems.length === 0 ? null : (
                 <span className="control-group">
                   <Dropdown
@@ -491,17 +482,13 @@ const PhotoBrowser = ( {
                   </Dropdown.Menu>
                 </Dropdown>
               </span>
-            </div>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          { sortedGroupedPhotos && sortedGroupedPhotos.length > 0
-            ? renderGroupedPhotos( ) : renderUngroupedPhotos( ) }
-        </Col>
-      </Row>
-    </Grid>
+        </div>
+      </div>
+      <div>
+        { sortedGroupedPhotos && sortedGroupedPhotos.length > 0
+          ? renderGroupedPhotos( ) : renderUngroupedPhotos( ) }
+      </div>
+    </div>
   );
 };
 

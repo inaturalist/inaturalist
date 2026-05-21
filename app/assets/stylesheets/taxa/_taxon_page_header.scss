@@ -1,13 +1,9 @@
 @import "../breakpoints";
 
 .taxon-detail-inner {
+  @include container-padding;
   max-width: $xl;
   margin: 0 auto;
-  padding: 0 60px;
-
-  @media ( max-width: $mobile-max ) {
-    padding: 0 15px;
-  }
 }
 
 #TaxonHeader .inner {
