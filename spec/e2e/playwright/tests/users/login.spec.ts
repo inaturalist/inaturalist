@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "../../page-objects/login.page";
-import { envConfig } from "../../../shared/env.config";
+import { appMake } from "../../support/on-rails";
+
+const TEST_PASSWORD = "TestPass123!";
 
 test.describe( "Login page", () => {
   let loginPage: LoginPage;
@@ -38,11 +40,14 @@ test.describe( "Login page", () => {
 } );
 
 test.describe( "Login happy path", () => {
+  let testEmail: string;
+
   test.beforeEach( async ( { page } ) => {
-    test.skip(
-      !envConfig.testUser.email || !envConfig.testUser.password,
-      "Test user credentials not configured"
-    );
+    const user = await appMake( "create", "user", {
+      email: `e2e_login_${Date.now()}@gmail.com`,
+      password: TEST_PASSWORD
+    } );
+    testEmail = user.email as string;
     const loginPage = new LoginPage( page );
     await loginPage.goto();
   } );
@@ -52,7 +57,7 @@ test.describe( "Login happy path", () => {
     await Promise.all( [
       page.waitForURL( url => !url.pathname.startsWith( "/login" )
         && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
-      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+      loginPage.login( testEmail, TEST_PASSWORD )
     ] );
     expect( new URL( page.url() ).pathname ).not.toMatch( /^\/(login|session)/ );
   } );
@@ -62,7 +67,7 @@ test.describe( "Login happy path", () => {
     await Promise.all( [
       page.waitForURL( url => !url.pathname.startsWith( "/login" )
         && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
-      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+      loginPage.login( testEmail, TEST_PASSWORD )
     ] );
     expect( await loginPage.isLoggedIn() ).toBe( true );
   } );
@@ -72,7 +77,7 @@ test.describe( "Login happy path", () => {
     await Promise.all( [
       page.waitForURL( url => !url.pathname.startsWith( "/login" )
         && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
-      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+      loginPage.login( testEmail, TEST_PASSWORD )
     ] );
     await expect( page.locator( "#usernav li.navtab.user.menutab" ) ).toBeVisible();
     await expect( page.locator( "#usernav li.navtab.signedout" ) ).toHaveCount( 0 );
@@ -83,7 +88,7 @@ test.describe( "Login happy path", () => {
     await Promise.all( [
       page.waitForURL( url => !url.pathname.startsWith( "/login" )
         && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
-      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+      loginPage.login( testEmail, TEST_PASSWORD )
     ] );
     await page.goto( "/observations" );
     expect( await loginPage.isLoggedIn() ).toBe( true );
@@ -97,7 +102,7 @@ test.describe( "Login happy path", () => {
     await Promise.all( [
       page.waitForURL( url => !url.pathname.startsWith( "/login" )
         && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
-      loginPage.login( envConfig.testUser.email, envConfig.testUser.password )
+      loginPage.login( testEmail, TEST_PASSWORD )
     ] );
     expect( await loginPage.isLoggedIn() ).toBe( true );
   } );
