@@ -44,13 +44,12 @@ const Project = class Project extends inatjs.Project {
       this.search_params.collection_preview = true;
     }
     Object.assign( this.search_params, additionalSearchParams );
-    this.setPreviewSearchParams( );
     const start = this.rule_observed_on || this.rule_d1;
     const end = this.rule_observed_on || this.rule_d2;
     this.startDate = util.momentDateFromString( start );
-    this.startDateIncludesTime = !util.isDate( start );
+    this.startDateIncludesTime = this.startDate && !util.isDate( start );
     this.endDate = util.momentDateFromString( end );
-    this.endDateIncludesTime = !util.isDate( end );
+    this.endDateIncludesTime = this.endDate && !util.isDate( end );
     this.started = false;
     this.ended = false;
     this.durationToEvent = null;
@@ -73,39 +72,225 @@ const Project = class Project extends inatjs.Project {
     this.undestroyedAdmins = _.filter( this.admins, a => !a._destroy );
     // TODO don't hardcode default color
     this.banner_color = this.banner_color || "#74ac00";
+    if ( !this.editing ) {
+      return;
+    }
+
+    this.mapAttributesToFormDates( );
     this.errors = this.errors || { };
-    this.validateDates( );
+    this.validateNewDates( );
+    this.setPreviewSearchParams( );
   }
 
-  validateDates( ) {
-    if ( this.date_type === "range" ) {
-      _.each( ["d1", "d2"], dateField => {
-        const ruleName = `rule_${dateField}`;
-        if ( this[ruleName] && !(
-          moment( this[ruleName].trim( ), "YYYY-MM-DD HH:mm Z", true ).isValid( )
-            || moment( this[ruleName].trim( ), "YYYY-MM-DD", true ).isValid( )
-        ) ) {
-          this.errors[dateField] = I18n.t( "invalid_date" );
-        } else {
-          delete this.errors[dateField];
+  mapAttributesToFormDates( ) {
+    // when projects are loaded from an API response, the way the form dates
+    // should be set up depeneds on the nature of the response, particularly
+    // when it comes to d1 and d2. Projects using d1 and d2 may use the
+    // "exact" date type if they are the same day relative to the viewwer,
+    // or they may use the "range" date type of they are different days
+    if ( !this.date_type ) {
+      if ( ( this.rule_d1 && this.startDate ) || ( this.rule_d2 && this.endDate ) ) {
+        const startDay = this.startDate?.format( "YYYY-MM-DD" );
+        const endDay = this.endDate?.format( "YYYY-MM-DD" );
+        if ( startDay === endDay ) {
+          this.date_type = "exact";
+          this.includeExactTimes = true;
+          this.exactDate = this.startDate.format( "YYYY-MM-DD" );
+          this.exactDateD1 = this.startDate.format( "HH:mm UTCZ" );
+          this.exactDateD2 = this.endDate.format( "HH:mm UTCZ" );
+          return;
         }
-      } );
-    } else {
-      delete this.errors.d1;
-      delete this.errors.d2;
+        this.rangeStartDate = this.startDate?.format( "YYYY-MM-DD" );
+        if ( this.startDateIncludesTime ) {
+          this.rangeStartTime = this.startDate.format( "HH:mm UTCZ" );
+          this.includeRangeTimes = true;
+        }
+        this.rangeEndDate = this.endDate?.format( "YYYY-MM-DD" );
+        if ( this.endDateIncludesTime ) {
+          this.rangeEndTime = this.endDate.format( "HH:mm UTCZ" );
+          this.includeRangeTimes = true;
+        }
+        this.date_type = "range";
+      } else if ( this.rule_observed_on ) {
+        this.date_type = "exact";
+        this.exactDate = this.rule_observed_on;
+      } else if ( this.rule_month ) {
+        this.date_type = "months";
+      } else {
+        this.date_type = "any";
+      }
+    }
+  }
+
+  validateExactTime( index ) {
+    const exactAttribute = `exactDateD${index}`;
+    const exactMomentAttribute = `exactDateD${index}Moment`;
+    delete this.errors[exactAttribute];
+    delete this[exactMomentAttribute];
+
+    if ( _.isEmpty( this[exactAttribute] ) ) {
+      return;
     }
 
-    if ( this.date_type === "exact" ) {
-      if ( this.rule_observed_on
-        && !moment( this.rule_observed_on.trim( ), "YYYY-MM-DD", true ).isValid( )
-      ) {
-        this.errors.observed_on = I18n.t( "invalid_date" );
-      } else {
-        delete this.errors.observed_on;
-      }
-    } else {
-      delete this.errors.observed_on;
+    // combine the date and time and validate the resulting datetime
+    const strippedTime = this[exactAttribute].replace( " UTC", "" );
+    this[exactMomentAttribute] = moment(
+      `${this.exactDate}T${strippedTime}`,
+      "YYYY-MM-DDTHH:mmZ",
+      true
+    );
+    if ( !this[exactMomentAttribute].isValid( ) ) {
+      this.errors[exactAttribute] = I18n.t( "invalid_time" );
+      return;
     }
+
+    // if one time is set and the other is not, set it accordingly. Also mark it as being updated -
+    // the datetimepicker will not recognize the updated time unless it is re-renderd, which we
+    // only want to do when the time is force-updated
+    let altIndex;
+    let altMomentMethod;
+    if ( index === 1 ) {
+      altIndex = 2;
+      altMomentMethod = "endOf";
+    } else {
+      altIndex = 1;
+      altMomentMethod = "startOf";
+    }
+    const altExactAttribute = `exactDateD${altIndex}`;
+    const altExactAttributeUpdatedAt = `exactDateD${altIndex}UpdatedAt`;
+    const altExactMomentAttribute = `exactDateD${altIndex}Moment`;
+    if ( _.isEmpty( this[altExactAttribute] ) ) {
+      this[altExactMomentAttribute] = this[exactMomentAttribute].clone( )[altMomentMethod]( "day" );
+      this[altExactAttribute] = this[altExactMomentAttribute].format( "HH:mm UTCZ" );
+      this[altExactAttributeUpdatedAt] = Date.now( );
+    }
+  }
+
+  validateExactDates( ) {
+    if ( this.date_type !== "exact" ) {
+      return;
+    }
+
+    if ( _.isEmpty( this.exactDate ) ) {
+      delete this.exactDateD1;
+      delete this.exactDateD2;
+      this.exactDateD1UpdatedAt = Date.now( );
+      this.exactDateD2UpdatedAt = Date.now( );
+      return;
+    }
+
+    delete this.errors.exactDate;
+    if ( !moment( this.exactDate.trim( ), "YYYY-MM-DD", true ).isValid( ) ) {
+      this.errors.exactDate = I18n.t( "invalid_date" );
+      return;
+    }
+
+    // validate the values in the time fields
+    this.validateExactTime( 1 );
+    this.validateExactTime( 2 );
+
+    if ( this.exactDateD1 && this.exactDateD2
+      && !this.errors.exactDateD1 && !this.errors.exactDateD2
+    ) {
+      if ( this.exactDateD2Moment.isSameOrBefore( this.exactDateD1Moment ) ) {
+        this.errors.exactDateD2 = I18n.t( "views.projects.new.end_time_must_be_after_start_time" );
+        return;
+      }
+      // if both times are valid, set tentative date range rules
+      this.rule_d1 = this.exactDateD1Moment.format( "YYYY-MM-DD HH:mm Z" );
+      this.rule_d2 = this.exactDateD2Moment.format( "YYYY-MM-DD HH:mm Z" );
+      return;
+    }
+
+    // if both times aren't valid, only apply the date as a tentative rule
+    this.rule_observed_on = this.exactDate;
+  }
+
+  validateRangeTime( type ) {
+    const rangeTimeAttribute = `range${type}Time`;
+    const rangeDateAttribute = `range${type}Date`;
+    const rangeTimeMomentAttribute = `range${type}TimeMoment`;
+    delete this.errors[rangeTimeAttribute];
+    delete this[rangeTimeMomentAttribute];
+
+    if ( _.isEmpty( this[rangeTimeAttribute] ) ) {
+      return;
+    }
+
+    // combine the date and time and validate the resulting datetime
+    const strippedTime = this[rangeTimeAttribute].replace( " UTC", "" );
+    this[rangeTimeMomentAttribute] = moment(
+      `${this[rangeDateAttribute]}T${strippedTime}`,
+      "YYYY-MM-DDTHH:mmZ",
+      true
+    );
+    if ( !this[rangeTimeMomentAttribute].isValid( ) ) {
+      this.errors[rangeTimeAttribute] = I18n.t( "invalid_time" );
+    }
+  }
+
+  validateRangeDates( ) {
+    if ( this.date_type !== "range" ) {
+      return;
+    }
+
+    delete this.errors.rangeStartDate;
+    let rangeStartDateMoment;
+    if ( _.isEmpty( this.rangeStartDate ) ) {
+      delete this.rangeStartTime;
+      this.rangeStartTimeUpdatedAt = Date.now( );
+    } else {
+      rangeStartDateMoment = moment( this.rangeStartDate.trim( ), "YYYY-MM-DD", true );
+      if ( !rangeStartDateMoment.isValid( ) ) {
+        this.errors.rangeStartDate = I18n.t( "invalid_date" );
+      } else {
+        this.validateRangeTime( "Start" );
+      }
+    }
+
+    delete this.errors.rangeEndDate;
+    let rangeEndDateMoment;
+    if ( _.isEmpty( this.rangeEndDate ) ) {
+      delete this.rangeEndTime;
+      this.rangeEndTimeUpdatedAt = Date.now( );
+    } else {
+      rangeEndDateMoment = moment( this.rangeEndDate.trim( ), "YYYY-MM-DD", true );
+      if ( !rangeEndDateMoment.isValid( ) ) {
+        this.errors.rangeEndDate = I18n.t( "invalid_date" );
+      } else {
+        this.validateRangeTime( "End" );
+      }
+    }
+
+    // validate the end date is after the start date
+    if ( rangeEndDateMoment && rangeStartDateMoment
+      && rangeEndDateMoment.isSameOrBefore( rangeStartDateMoment ) ) {
+      this.errors.rangeEndDate = I18n.t( "views.projects.new.end_date_must_be_after_start_date" );
+      return;
+    }
+
+    if ( this.rangeStartDate && !this.errors.rangeStartDate ) {
+      if ( this.rangeStartTime && !this.errors.rangeStartTime ) {
+        this.rule_d1 = this.rangeStartTimeMoment.format( "YYYY-MM-DD HH:mm Z" );
+      } else {
+        this.rule_d1 = this.rangeStartDate;
+      }
+    }
+    if ( this.rangeEndDate && !this.errors.rangeEndDate ) {
+      if ( this.rangeEndTime && !this.errors.rangeEndTime ) {
+        this.rule_d2 = this.rangeEndTimeMoment.format( "YYYY-MM-DD HH:mm Z" );
+      } else {
+        this.rule_d2 = this.rangeEndDate;
+      }
+    }
+  }
+
+  validateNewDates( ) {
+    delete this.rule_d1;
+    delete this.rule_d2;
+    delete this.rule_observed_on;
+    this.validateExactDates( );
+    this.validateRangeDates( );
   }
 
   hasInsufficientRequirements( ) {
@@ -113,9 +298,11 @@ const Project = class Project extends inatjs.Project {
     const dateType = this.date_type;
     if ( !_.isEmpty( this.rule_term_id ) ) { empty = false; }
     if ( !_.isEmpty( this.rule_term_value_id ) ) { empty = false; }
-    if ( dateType === "exact" && !_.isEmpty( this.rule_observed_on ) ) { empty = false; }
-    if ( dateType === "range" && !_.isEmpty( this.rule_d1 ) ) { empty = false; }
-    if ( dateType === "range" && !_.isEmpty( this.rule_d2 ) ) { empty = false; }
+    if ( dateType !== "months" && (
+      !_.isEmpty( this.rule_observed_on )
+      || !_.isEmpty( this.rule_d1 )
+      || !_.isEmpty( this.rule_d2 )
+    ) ) { empty = false; }
     // there are months, but not ALL months
     if ( dateType === "months" && !_.isEmpty( this.rule_month )
       && this.rule_month !== _.range( 1, 13 ).join( "," ) ) {
@@ -227,7 +414,15 @@ const Project = class Project extends inatjs.Project {
     }
     if ( !this.is_umbrella || this.is_delegated_umbrella ) {
       this.previewSearchParamsObject = _.fromPairs(
-        _.map( _.filter( this.rule_preferences, p => p.value !== null ), p => [p.field, p.value] )
+        _.map(
+          _.filter( this.rule_preferences, p => {
+            if ( _.includes( ["d1", "d2", "observed_on", "month"], p.field ) ) {
+              return false;
+            }
+            return p.value !== null;
+          } ),
+          p => [p.field, p.value]
+        )
       );
       if ( !_.isEmpty( this.notTaxonRules ) ) {
         this.previewSearchParamsObject.without_taxon_id = _.map(
@@ -266,27 +461,6 @@ const Project = class Project extends inatjs.Project {
         ).join( "," );
       }
     }
-    if ( !this.date_type ) {
-      if ( this.previewSearchParamsObject.d1 || this.previewSearchParamsObject.d2 ) {
-        this.date_type = "range";
-      } else if ( this.previewSearchParamsObject.observed_on ) {
-        this.date_type = "exact";
-      } else if ( this.previewSearchParamsObject.month ) {
-        this.date_type = "months";
-      } else {
-        this.date_type = "any";
-      }
-    }
-    if ( this.date_type !== "range" ) {
-      delete this.previewSearchParamsObject.d1;
-      delete this.previewSearchParamsObject.d2;
-    }
-    if ( this.date_type !== "months" ) {
-      delete this.previewSearchParamsObject.month;
-    }
-    if ( this.date_type !== "exact" ) {
-      delete this.previewSearchParamsObject.observed_on;
-    }
     if ( this.previewSearchParamsObject.members_only ) {
       if ( this.id ) {
         this.previewSearchParamsObject.members_of_project = this.id;
@@ -306,13 +480,22 @@ const Project = class Project extends inatjs.Project {
     // using naming consistent with the web obs search form
     this.previewSearchParamsObject.verifiable = "any";
     this.previewSearchParamsObject.place_id = this.previewSearchParamsObject.place_id || "any";
-    // Convert dates into iso8601 strings
-    _.each( ["d1", "d2"], dateAttr => {
-      if ( this.previewSearchParamsObject[dateAttr] ) {
-        const d = moment( this.previewSearchParamsObject[dateAttr] );
-        this.previewSearchParamsObject[dateAttr] = d.format( );
+
+    // handle dates separately to avoid conflicts between the form data
+    // and existing rules returned from the project details API response
+    if ( this.rule_d1 ) {
+      this.previewSearchParamsObject.d1 = this.rule_d1;
+    }
+    if ( this.rule_d2 ) {
+      this.previewSearchParamsObject.d2 = this.rule_d2;
+    }
+    if ( !this.rule_d1 && !this.rule_d2 ) {
+      if ( this.rule_observed_on ) {
+        this.previewSearchParamsObject.on = this.rule_observed_on;
+      } else if ( this.rule_month ) {
+        this.previewSearchParamsObject.month = this.rule_month;
       }
-    } );
+    }
     this.previewSearchParamsString = $.param( this.previewSearchParamsObject );
   }
 };

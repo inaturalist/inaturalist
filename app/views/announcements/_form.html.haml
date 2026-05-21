@@ -45,6 +45,7 @@
       = f.check_box :dismissible, label_after: true
       = f.check_box :prefers_target_staff, label_after: true
       = f.check_box :target_creator, label_after: true
+      = f.check_box :prefers_embed_fru, label_after: true
     .col-xs-4
       = f.select :ip_countries, country_options, { include_blank: t( :all ) }, multiple: true, description: t( "views.announcements.ip_countries_desc" ), description_tip: true
       - if current_user.is_admin?

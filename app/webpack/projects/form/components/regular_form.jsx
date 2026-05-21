@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import {
   Grid, Row, Col, Panel, Overlay, Popover
 } from "react-bootstrap";
+import moment from "moment-timezone";
 import DateTimeFieldWrapper from
   "../../../observations/uploader/components/date_time_field_wrapper";
 import JQueryUIMultiselect from "../../../observations/identify/components/jquery_ui_multiselect";
@@ -12,12 +13,19 @@ import TaxonSelector from "./taxon_selector";
 import PlaceSelector from "./place_selector";
 import UserSelector from "./user_selector";
 
+const MonthNames = ( "january february march april may june july august "
+  + "september october november december" ).split( " " );
+
 class RegularForm extends React.Component {
   constructor( props ) {
     super( props );
-    this.observedOnInput = React.createRef( );
-    this.dateRangeD1Input = React.createRef( );
-    this.dateRangeD2Input = React.createRef( );
+    this.exactDateInput = React.createRef( );
+    this.exactDateStartTimeInput = React.createRef( );
+    this.exactDateEndTimeInput = React.createRef( );
+    this.rangeStartDateInput = React.createRef( );
+    this.rangeStartTimeInput = React.createRef( );
+    this.rangeEndDateInput = React.createRef( );
+    this.rangeEndTimeInput = React.createRef( );
     this.state = {
       inverseFiltersOpen: null
     };
@@ -28,6 +36,275 @@ class RegularForm extends React.Component {
     return _.map( checkedInputs, a => a.value ).join( "," ) || null;
   }
 
+  errorOverlay( fieldName, target, errorKeyAlt = null ) {
+    const { project } = this.props;
+    const error = project.errors[fieldName];
+    const id = `popover-${_.kebabCase( fieldName )}`;
+    // some factors shift the elements the overlays are intended to be displayed
+    // on top of. Allow the key to be modified so the overlay re-renders
+    // over the element if its placement changes
+    const overlayKey = `overlay-${_.kebabCase( fieldName )}${errorKeyAlt ? "-alt" : ""}`;
+    return error && (
+      <Overlay
+        show
+        placement="top"
+        target={( ) => target}
+        key={overlayKey}
+      >
+        <Popover
+          id={id}
+          className="popover-error"
+        >
+          { error }
+        </Popover>
+      </Overlay>
+    );
+  }
+
+  dateField( fieldName, ref, options = { } ) {
+    const { project, updateProject } = this.props;
+    const error = project.errors[fieldName];
+    const divKey = `date-${_.kebabCase( fieldName )}`;
+    let className = "datetime-wrapper";
+    if ( options.pullLeft ) {
+      className += " datetimepicker-pull-left";
+    }
+    if ( error ) {
+      className += " has-error";
+    }
+    return (
+      <>
+        <div
+          className={className}
+          key={divKey}
+        >
+          <DateTimeFieldWrapper
+            className="datefield"
+            mode="date"
+            ref={ref}
+            inputFormat="YYYY-MM-DD"
+            defaultText={project[fieldName]}
+            onChange={date => updateProject( { [fieldName]: date } )}
+            allowFutureDates
+            inputProps={{
+              className: "form-control",
+              placeholder: "YYYY-MM-DD",
+              onClick: ( ) => ref.current.onClick( )
+            }}
+          />
+        </div>
+        { this.errorOverlay( fieldName, ref.current, options.errorKeyAlt ) }
+      </>
+    );
+  }
+
+  timeField( fieldName, fieldMoment, updatedAt, ref, options = { } ) {
+    const { project, updateProject } = this.props;
+    const error = project.errors[fieldName];
+    const divKey = `time-${_.kebabCase( fieldName )}-${updatedAt}`;
+    let className = "datetime-wrapper";
+    if ( options.pullLeft ) {
+      className += " datetimepicker-pull-left";
+    }
+    if ( error ) {
+      className += " has-error";
+    }
+    return (
+      <>
+        <div
+          className={className}
+          key={divKey}
+        >
+          <DateTimeFieldWrapper
+            className="datefield"
+            mode="time"
+            ref={ref}
+            inputFormat="HH:mm UTCZ"
+            defaultText={project[fieldName]}
+            dateTime={fieldMoment ? fieldMoment.format( "x" ) : moment().format( "x" )}
+            onChange={date => updateProject( { [fieldName]: date } )}
+            allowFutureDates
+            inputProps={{
+              className: "form-control",
+              onClick: ( ) => ref.current.onClick( )
+            }}
+          />
+        </div>
+        { this.errorOverlay( fieldName, ref.current, options.errorKeyAlt ) }
+      </>
+    );
+  }
+
+  includeTimesCheckbox( fieldName, resetUpdates = { } ) {
+    const { project, updateProject } = this.props;
+    const key = `time-checkbox-${_.kebabCase( fieldName )}`;
+    return (
+      <div className="checkbox">
+        <label>
+          <input
+            type="checkbox"
+            key={key}
+            id={key}
+            defaultChecked={project[fieldName]}
+            onChange={e => {
+              const updates = {
+                [fieldName]: e.target.checked || null
+              };
+              if ( !e.target.checked ) {
+                Object.assign( updates, resetUpdates );
+              }
+              updateProject( updates );
+            }}
+          />
+          { I18n.t( "views.projects.new.date_pickers.include_times" ) }
+        </label>
+      </div>
+    );
+  }
+
+  exactDatePickers( ) {
+    const { project } = this.props;
+    let timesDisabled = false;
+    if ( !project.exactDate || project.errors.exactDate ) {
+      timesDisabled = true;
+    }
+    return (
+      <>
+        <div className="date-pickers">
+          <label>
+            { I18n.t( "views.projects.new.date_pickers.date" ) }
+          </label>
+          { this.dateField( "exactDate", this.exactDateInput, { pullLeft: true } ) }
+          { project.includeExactTimes && (
+            <div className={`times${timesDisabled ? " disabled" : ""}`}>
+              <label>
+                { I18n.t( "views.projects.new.date_pickers.start_time" ) }
+              </label>
+              { this.timeField(
+                "exactDateD1",
+                project.exactDateD1Moment,
+                project.exactDateD1UpdatedAt,
+                this.exactDateStartTimeInput
+              ) }
+              <label>
+                { I18n.t( "views.projects.new.date_pickers.end_time" ) }
+              </label>
+              { this.timeField(
+                "exactDateD2",
+                project.exactDateD2Moment,
+                project.exactDateD2UpdatedAt,
+                this.exactDateEndTimeInput
+              ) }
+            </div>
+          ) }
+        </div>
+        { this.includeTimesCheckbox( "includeExactTimes", {
+          exactDateD1: null,
+          exactDateD2: null
+        } )}
+      </>
+    );
+  }
+
+  rangeDatePickers( ) {
+    const { project } = this.props;
+    let rangeStartTimeDisabled = false;
+    let rangeEndTimeDisabled = false;
+    if ( !project.rangeStartDate || project.errors.rangeStartDate ) {
+      rangeStartTimeDisabled = true;
+    }
+    if ( !project.rangeEndDate || project.errors.rangeEndDate ) {
+      rangeEndTimeDisabled = true;
+    }
+    return (
+      <>
+        <div className="date-pickers">
+          <label>
+            { I18n.t( "views.projects.new.date_pickers.start_date" ) }
+          </label>
+          { this.dateField( "rangeStartDate", this.rangeStartDateInput, { pullLeft: true } ) }
+          { project.includeRangeTimes && (
+            <div className={`times${rangeStartTimeDisabled ? " disabled" : ""}`}>
+              { this.timeField(
+                "rangeStartTime",
+                project.rangeStartTimeMoment,
+                project.rangeStartTimeUpdatedAt,
+                this.rangeStartTimeInput
+              ) }
+            </div>
+          ) }
+          <label>
+            { I18n.t( "views.projects.new.date_pickers.end_date" ) }
+          </label>
+          { this.dateField(
+            "rangeEndDate",
+            this.rangeEndDateInput,
+            { errorKeyAlt: project.includeRangeTimes }
+          ) }
+          { project.includeRangeTimes && (
+            <div className={`times${rangeEndTimeDisabled ? " disabled" : ""}`}>
+              { this.timeField(
+                "rangeEndTime",
+                project.rangeEndTimeMoment,
+                project.rangeEndTimeUpdatedAt,
+                this.rangeEndTimeInput
+              ) }
+            </div>
+          ) }
+        </div>
+        { this.includeTimesCheckbox( "includeRangeTimes", {
+          rangeStartTime: null,
+          rangeEndTime: null
+        } )}
+      </>
+    );
+  }
+
+  monthDatePickers( ) {
+    const {
+      project,
+      setRulePreference
+    } = this.props;
+    return (
+      <div
+        style={{ position: "relative" }}
+      >
+        <JQueryUIMultiselect
+          className="form-control input-sm"
+          id="filters-dates-month"
+          onChange={values => setRulePreference( "month", values ? values.join( "," ) : null )}
+          defaultValue={project.rule_month ? project.rule_month.split( "," ) : []}
+          noneSelectedText={I18n.t( "views.projects.new.date_pickers.select_months" )}
+          data={
+            _.map( MonthNames, ( month, i ) => (
+              {
+                value: i + 1,
+                label: I18n.t( `date_format.month.${month}` )
+              }
+            ) )
+          }
+        />
+      </div>
+    );
+  }
+
+  datePickers( ) {
+    const { project } = this.props;
+    switch ( project.date_type ) {
+      case "exact": {
+        return this.exactDatePickers( );
+      }
+      case "range": {
+        return this.rangeDatePickers( );
+      }
+      case "months": {
+        return this.monthDatePickers( );
+      }
+      default:
+    }
+    return null;
+  }
+
   render( ) {
     const {
       project,
@@ -36,8 +313,6 @@ class RegularForm extends React.Component {
       allControlledTerms
     } = this.props;
     let { inverseFiltersOpen } = this.state;
-    const monthNames = ( "january february march april may june july august "
-      + "september october november december" ).split( " " );
     const inverseFilterCount = _.size( project.notTaxonRules )
       + _.size( project.notPlaceRules ) + _.size( project.notUserRules );
     if ( inverseFiltersOpen === null && inverseFilterCount > 0 ) {
@@ -377,19 +652,19 @@ class RegularForm extends React.Component {
               </label>
             </Col>
           </Row>
-          <Row className="date-row">
-            <Col xs={12} className={`members-only${usingDelegation ? " disabled" : ""}`}>
+          <Row>
+            <Col xs={12} className={usingDelegation ? " disabled" : null}>
               <label>{ I18n.t( "date_observed_" ) }</label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.use_this_for_a_time_limited_event" ) }
               </div>
+              <input
+                type="radio"
+                id="project-date-type-any"
+                checked={project.date_type === "any"}
+                onChange={( ) => updateProject( { date_type: "any" } )}
+              />
               <label className="inline checkboxradio" htmlFor="project-date-type-any">
-                <input
-                  type="radio"
-                  id="project-date-type-any"
-                  checked={project.date_type === "any"}
-                  onChange={( ) => updateProject( { date_type: "any" } )}
-                />
                 { I18n.t( "any_date" ) }
               </label>
               <input
@@ -398,117 +673,18 @@ class RegularForm extends React.Component {
                 checked={project.date_type === "exact"}
                 onChange={( ) => updateProject( { date_type: "exact" } )}
               />
-              <label className="inline" htmlFor="project-date-type-exact">
-                { I18n.t( "exact" ) }
+              <label className="inline checkboxradio" htmlFor="project-date-type-exact">
+                { I18n.t( "exact_date" ) }
               </label>
-              <div className={`datetime-wrapper ${project.errors.observed_on && "has-error"}`}>
-                <DateTimeFieldWrapper
-                  className="datefield"
-                  mode="date"
-                  ref={this.observedOnInput}
-                  inputFormat="YYYY-MM-DD"
-                  defaultText={project.rule_observed_on}
-                  onChange={date => setRulePreference( "observed_on", date )}
-                  allowFutureDates
-                  inputProps={{
-                    className: "form-control",
-                    placeholder: "YYYY-MM-DD",
-                    onClick: ( ) => this.observedOnInput.current.onClick( )
-                  }}
-                />
-              </div>
-              { project.errors.observed_on && (
-                <Overlay
-                  show
-                  placement="top"
-                  target={( ) => this.observedOnInput.current}
-                >
-                  <Popover
-                    id="popover-observed-on"
-                    className="popover-error"
-                  >
-                    { project.errors.observed_on }
-                  </Popover>
-                </Overlay>
-              ) }
-            </Col>
-          </Row>
-          <Row className="date-row">
-            <Col xs={12} className={`date-range-col members-only${usingDelegation ? " disabled" : ""}`}>
               <input
                 type="radio"
                 id="project-date-type-range"
                 checked={project.date_type === "range"}
                 onChange={( ) => updateProject( { date_type: "range" } )}
               />
-              <label className="inline" htmlFor="project-date-type-range">
-                { I18n.t( "date_picker.range" ) }
+              <label className="inline checkboxradio" htmlFor="project-date-type-range">
+                { I18n.t( "date_range" ) }
               </label>
-              <div className={`datetime-wrapper ${project.errors.d1 && "has-error"}`}>
-                <DateTimeFieldWrapper
-                  mode="datetime"
-                  ref={this.dateRangeD1Input}
-                  inputFormat="YYYY-MM-DD HH:mm Z"
-                  defaultText={project.rule_d1}
-                  onChange={date => setRulePreference( "d1", date )}
-                  allowFutureDates
-                  inputProps={{
-                    className: "form-control",
-                    placeholder: I18n.t( "start_date_time" ),
-                    onClick: ( ) => this.dateRangeD1Input.current.onClick( )
-                  }}
-                />
-              </div>
-              { project.errors.d1 && (
-                <Overlay
-                  show
-                  placement="top"
-                  target={( ) => this.dateRangeD1Input.current}
-                >
-                  <Popover
-                    id="popover-d1"
-                    className="popover-error"
-                  >
-                    { project.errors.d1 }
-                  </Popover>
-                </Overlay>
-              ) }
-              <div className={`datetime-wrapper ${project.errors.d2 && "has-error"}`}>
-                <DateTimeFieldWrapper
-                  mode="datetime"
-                  ref={this.dateRangeD2Input}
-                  inputFormat="YYYY-MM-DD HH:mm Z"
-                  defaultText={project.rule_d2}
-                  onChange={date => setRulePreference( "d2", date )}
-                  allowFutureDates
-                  inputProps={{
-                    className: "form-control",
-                    placeholder: I18n.t( "end_date_time" ),
-                    onClick: ( ) => this.dateRangeD2Input.current.onClick( )
-                  }}
-                />
-              </div>
-              { project.errors.d2 && (
-                <Overlay
-                  show
-                  placement="top"
-                  target={( ) => this.dateRangeD2Input.current}
-                >
-                  <Popover
-                    id="popover-d2"
-                    className="popover-error"
-                  >
-                    { project.errors.d2 }
-                  </Popover>
-                </Overlay>
-              ) }
-              <div className="help-text">
-                { I18n.t( "views.projects.new.note_you_can_delete_the_time" ) }
-              </div>
-            </Col>
-          </Row>
-          <Row className="date-row">
-            <Col xs={12} className={`members-only${usingDelegation ? " disabled" : ""}`}>
               <input
                 type="radio"
                 id="project-date-type-months"
@@ -518,26 +694,7 @@ class RegularForm extends React.Component {
               <label className="inline" htmlFor="project-date-type-months">
                 { I18n.t( "months" ) }
               </label>
-              <div
-                style={{ position: "relative" }}
-              >
-                <JQueryUIMultiselect
-                  className="form-control input-sm"
-                  id="filters-dates-month"
-                  onChange={values => setRulePreference(
-                    "month", values ? values.join( "," ) : null
-                  )}
-                  defaultValue={project.rule_month ? project.rule_month.split( "," ) : []}
-                  data={
-                    _.map( monthNames, ( month, i ) => (
-                      {
-                        value: i + 1,
-                        label: I18n.t( `date_format.month.${month}` )
-                      }
-                    ) )
-                  }
-                />
-              </div>
+              { this.datePickers( ) }
             </Col>
           </Row>
         </Grid>
