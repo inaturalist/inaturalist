@@ -17,23 +17,11 @@ test.describe( "Observation detail page", () => {
     await detailPage.goto( obs["id"] as number, obs );
   } );
 
-  test( "page loads without errors", async () => {
+  test( "loads and displays core observation content", async () => {
     await detailPage.assertNoServerError();
-  } );
-
-  test( "displays observation photo or media", async () => {
     await expect( detailPage.getPhoto() ).toBeVisible( { timeout: 15_000 } );
-  } );
-
-  test( "displays taxon identification", async () => {
     await expect( detailPage.getTaxonName() ).toBeVisible( { timeout: 15_000 } );
-  } );
-
-  test( "displays observer info", async () => {
     await expect( detailPage.getObserver() ).toBeVisible( { timeout: 15_000 } );
-  } );
-
-  test( "displays map", async () => {
     await expect( detailPage.getMap() ).toBeVisible( { timeout: 15_000 } );
   } );
 } );
