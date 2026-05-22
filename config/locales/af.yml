@@ -1,7 +1,32 @@
 af:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} verandering"
+    other: "%{count} veranderinge"
+  x_comments:
+    one: '%{count} Kommentaar'
+    other: '%{count} kommentaar'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentaar'
+    other: '<span class="count">%{count}</span> kommentaar'
   x_faves:
     one: '%{count} gunsteling'
     other: '%{count} gunstelinge'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> vlag opgelos"
+    other: "<span class='count'>%{count}</span> vlag opgelos"
+  x_identifications:
+    one: '%{count} identifikasie'
+    other: '%{count} identifikasies'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> identifikasie'
+    other: '<span class="count">%{count}</span> identifikasies'
+  x_identifications_:
+    one: '%{count} identifikasie'
+    other: '%{count} identifikasies'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFIKASIE'
+    other: '<span class="count">%{count}</span> IDENTIFIKASIES'
   x_languages:
     one: "%{count} taal"
     other: "%{count} tale"
@@ -33,6 +58,7 @@ af:
     one: "%{count} geluid"
     other: "%{count} geluide"
   _100_day_trends: 100-dae neiging
+  a_community_for_naturalist: '''n Gemeenskap vir Natuurkundiges'
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A tot Z"
