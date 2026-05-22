@@ -1,0 +1,215 @@
+.taxon-detail-inner {
+  padding-left: 60px;
+  padding-right: 60px;
+  max-width: 1300px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  @media (max-width: 576px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.taxon-header .inner {
+  display: flex;
+  justify-content: space-between;
+
+  h1 {
+    order: 1;
+  }
+
+  :global(#place-chooser-container) {
+    order: 2;
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+
+    h1 {
+      order: 2;
+    }
+
+    :global(#place-chooser-container) {
+      order: 1;
+      align-self: flex-end;
+      margin-top: 0;
+    }
+  }
+}
+
+.taxon-header h1 {
+  margin-top: 10px;
+  font-size: 32px;
+  font-weight: 200;
+
+  :global(.btn-flags) {
+    margin-left: 10px;
+    background-color: #EFD6D6;
+
+    i {
+      color: red;
+    }
+  }
+}
+
+.taxon-header :global(.taxon .display-name) {
+  color: black;
+  font-weight: 200;
+}
+
+.taxon-header :global(.has-com-name .secondary-name),
+.taxon-header :global(.has-com-name .secondary-names) {
+  font-size: 20px;
+}
+
+.permalink {
+  position: relative;
+  top: -6px;
+}
+
+:global(.TaxonCrumbs) {
+  color: #aaa;
+  padding: 0;
+  margin: 0 7px 0 0;
+  line-height: 25px;
+  display: inline;
+  position: relative;
+  top: -4px;
+}
+
+:global(.TaxonCrumbs.contracted .inner) {
+  display: none;
+}
+
+:global(.TaxonCrumbs.expanded .inner) {
+  display: inline-block;
+}
+
+:global(.TaxonCrumbs.contracted .expand-control) {
+  display: inline-block;
+}
+
+:global(.TaxonCrumbs.expanded .expand-control) {
+  width: 0;
+}
+
+:global(.TaxonCrumbs.contracted .contract-control) {
+  display: none;
+}
+
+:global(.TaxonCrumbs.expanded .contract-control) {
+  display: inline-block;
+}
+
+:global(.TaxonCrumbs .inner ul) {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+:global(.TaxonCrumbs .taxon a) {
+  color: #337ab7;
+}
+
+:global(.TaxonCrumbs li) {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+:global(.TaxonCrumbs li div) {
+  display: inline-block;
+}
+
+:global(.TaxonCrumbs li::after) {
+  content: '\203A';
+  margin: 0 5px;
+}
+
+:global(.TaxonCrumbs li:last-child::after) {
+  display: none;
+}
+
+:global(.TaxonCrumbs .has-com-name .secondary-name),
+:global(.TaxonCrumbs .has-com-name .secondary-names) {
+  display: none;
+}
+
+:global(.TaxonCrumbs .contract-control) {
+  margin-left: 10px;
+}
+
+:global(.taxon-crumbs-children .taxon a) {
+  color: #333;
+}
+
+:global(.taxon-crumbs-children .taxon.has-com-name .secondary-name),
+:global(.taxon-crumbs-children .taxon.has-com-name .secondary-names) {
+  color: #aaa;
+}
+
+:global(.taxon-crumbs-children .SplitTaxon::before) {
+  content: '\021B3';
+  margin-right: 5px;
+  color: #aaa;
+}
+
+.preheader {
+  display: flex;
+  flex-direction: column;
+
+  .preheader-search {
+    padding-bottom: 8px;
+    width: 100%;
+    padding-right: 10px;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+
+    .preheader-search {
+      order: 2;
+      width: 33.33%;
+      padding-bottom: 0;
+    }
+
+    .preheader-crumbs {
+      order: 1;
+      flex: 1;
+    }
+  }
+}
+
+.preheader :global(.ui-autocomplete-input) {
+  width: 200px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.preheader :global(.ac-select-thumb) {
+  line-height: 28px;
+
+  img {
+    height: 30px;
+  }
+
+  i {
+    font-size: 22px;
+  }
+}
+
+.preheader :global(.form-group) {
+  margin: 0;
+}
+
+.preheader :global(.ac-chooser .searchclear.glyphicon) {
+  top: 8px;
+}
