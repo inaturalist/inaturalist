@@ -230,6 +230,14 @@
 
 .RecentObservations {
   padding-bottom: 20px;
+
+  .TaxonPhoto {
+    width: 150px;
+
+    @media ( max-width: $sm ) {
+      width: 85px;
+    }
+  }
 }
 
 
@@ -356,12 +364,6 @@ $photoPreviewThumbGutterTop: 3px;
   align-self: flex-start;
   height: 100%;
 
-  .TaxonPhoto {
-    display: block;
-    width: auto;
-    height: auto;
-  }
-
   .foreground-container {
     display: flex;
     flex-direction: column;
@@ -369,125 +371,117 @@ $photoPreviewThumbGutterTop: 3px;
     height: 100%;
     position: relative;
     z-index: 1;
+  }
 
-    .TaxonPhoto {
-      flex-grow: 1;
+  .photo-bg {
+    position: absolute;
+    left: -50px;
+    top: -50px;
+    background-size: cover;
+    width: 120%;
+    height: 120%;
+    background-color: black;
+    filter: blur(20px) brightness(0.5);
+    -webkit-filter: blur(20px) brightness(0.5);
+    -moz-filter: blur(20px) brightness(0.5);
+    -o-filter: blur(20px) brightness(0.5);
+    -ms-filter: "blur(20px)";
+  }
 
-      .CoverImage {
-        height: 100%;
+  ul.others {
+    width: 100%;
+    background-color: rgba(0,0,0,0.25);
+
+    li {
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    a {
+      color: white;
+    }
+  }
+
+  .viewmore {
+    text-align: center;
+    font-weight: 600;
+
+    a {
+      display: block;
+    }
+  }
+
+  &.grid {
+    max-height: 600px;
+    max-width: 600px;
+
+    .others {
+      line-height: 0;
+    }
+
+    li {
+      width: 33.3333333333%;
+    }
+
+    .viewmore a {
+      background-color: #333;
+      font-weight: 400;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .inner {
+        text-align: center;
+        line-height: 1.6;
+
+        .fa {
+          margin-top: 5px;
+          display: block;
+        }
       }
     }
   }
-}
 
-.PhotoPreview.gallery.cover-bg {
-  .foreground-container .TaxonPhoto .CoverImage {
-    height: calc(100% + #{$photoPreviewThumbDim + $photoPreviewThumbGutterTop});
+  &.gallery {
+    ul.others {
+      margin: 0;
+      display: flex;
+      flex-wrap: nowrap;
+
+      li {
+        flex: 1;
+        flex-grow: 1;
+        vertical-align: middle;
+        width: $photoPreviewThumbDim;
+        height: $photoPreviewThumbDim;
+        line-height: $photoPreviewThumbDim;
+        margin: $photoPreviewThumbGutterTop $photoPreviewThumbGutter / 2;
+      }
+    }
+
+    .viewmore .fa {
+      margin-left: 5px;
+    }
   }
-}
 
-.PhotoPreview.grid {
-  max-height: 600px;
-  max-width: 600px;
-}
+  &.no-content {
+    display: flex;
+    flex-direction: row;
+    min-height: 533px;
+    align-items: center;
+    border: 1px solid #ddd;
 
-.PhotoPreview.grid .foreground-container .TaxonPhoto .CoverImage {
-  min-height: 0 !important;
-  height: 195px;
-  @media ( max-width: $md ) {
-    height: 120px;
+    > div {
+      width: 100%;
+    }
+
+    h3 {
+      color: #888;
+      text-transform: none;
+      margin-bottom: 20px;
+    }
   }
-}
-
-.PhotoPreview .photo-bg {
-  position: absolute;
-  left: -50px;
-  top: -50px;
-  background-size: cover;
-  width: 120%;
-  height: 120%;
-  background-color: black;
-  filter: blur(20px) brightness(0.5);
-  -webkit-filter: blur(20px) brightness(0.5);
-  -moz-filter: blur(20px) brightness(0.5);
-  -o-filter: blur(20px) brightness(0.5);
-  -ms-filter: "blur(20px)";
-}
-.PhotoPreview ul.others {
-  width: 100%;
-  background-color: rgba(0,0,0,0.25);
-}
-.PhotoPreview.gallery ul.others{
-  margin: 0;
-  display: flex;
-  flex-wrap: nowrap;
-}
-.PhotoPreview ul.others li {
-  overflow: hidden;
-  display: inline-block;
-}
-.PhotoPreview.gallery ul.others li {
-  flex: 1;
-  flex-grow: 1;
-  vertical-align: middle;
-  width: $photoPreviewThumbDim;
-  height: $photoPreviewThumbDim;
-  line-height: $photoPreviewThumbDim;
-  margin: $photoPreviewThumbGutterTop $photoPreviewThumbGutter / 2;
-}
-.PhotoPreview.grid .others {
-  line-height: 0;
-}
-.PhotoPreview.grid li {
-  width: 33.3333333333%;
-}
-.PhotoPreview .others a {
-  color: white;
-}
-.PhotoPreview .viewmore {
-  text-align: center;
-  font-weight: 600;
-}
-.PhotoPreview .viewmore a {
-  display: block;
-}
-.PhotoPreview.grid .viewmore a {
-  background-color: #333;
-  font-weight: 400;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 195px !important;
-  @media ( max-width: $md ) {
-    height: 120px !important;
-  }
-}
-.PhotoPreview.grid .viewmore a .inner {
-  text-align: center;
-  line-height: 1.6;
-}
-.PhotoPreview.grid .viewmore a .inner .fa {
-  margin-top: 5px;
-  display: block;
-}
-.PhotoPreview.gallery .viewmore .fa {
-  margin-left: 5px;
-}
-.PhotoPreview.no-content {
-  display: flex;
-  flex-direction: row;
-  min-height: 533px;
-  align-items: center;
-  border: 1px solid #ddd;
-}
-.PhotoPreview.no-content > div {
-  width: 100%;
-}
-.PhotoPreview.no-content h3 {
-  color: #888;
-  text-transform: none;
-  margin-bottom: 20px;
 }
 
 .CoverImage {

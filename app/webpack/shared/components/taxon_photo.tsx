@@ -29,6 +29,7 @@ export interface TaxonPhotoProps {
   size?: string;
   width?: number;
   height?: number;
+  square?: boolean;
   backgroundSize?: string;
   backgroundPosition?: string;
   showTaxon?: boolean;
@@ -46,6 +47,7 @@ const TaxonPhoto = ( {
   size = "medium",
   width,
   height,
+  square = false,
   backgroundSize,
   backgroundPosition,
   showTaxon,
@@ -87,9 +89,10 @@ const TaxonPhoto = ( {
   return (
     <div
       className={`TaxonPhoto ${classes.taxonPhoto}${className ? ` ${className}` : ""}`}
-      style={width
-        ? { width, maxWidth: 2 * width, height: "auto" }
-        : undefined}
+      style={( width || !square ) ? {
+        ...( width ? { width, maxWidth: 2 * width, height: "auto" } : {} ),
+        ...( !square ? { aspectRatio: "auto" as const } : {} )
+      } : undefined}
     >
       <div className={classes.photoHover}>
         <button

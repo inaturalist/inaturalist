@@ -167,6 +167,7 @@ const PhotoBrowser = ( {
           observation={observationPhoto.observation}
           width={width}
           height={itemDim}
+          square={layout !== "fluid"}
           showTaxonPhotoModal={( ) => showTaxonPhotoModal(
             observationPhoto.photo,
             observationPhoto.observation.taxon,

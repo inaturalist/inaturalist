@@ -129,6 +129,7 @@ const PhotoPreview = ( {
                   height={thumbnailHeight}
                   taxon={tp.taxon}
                   size="medium"
+                  square={false}
                   showTaxonPhotoModal={showTaxonPhotoModal ?? ( ( ) => undefined )}
                   className="photoItem"
                   showTaxon

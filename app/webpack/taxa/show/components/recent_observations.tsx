@@ -25,6 +25,7 @@ const RecentObservations = ( { observations, showPhotoModal }: Props ) => {
           photo={photo}
           taxon={observation.taxon}
           observation={observation}
+          square
           showTaxonPhotoModal={( ) => showPhotoModal?.( photo, observation.taxon, observation )}
         />
       );
