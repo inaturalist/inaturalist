@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import _ from "lodash";
 import {
@@ -95,6 +95,28 @@ interface PhotoBrowserProps {
   terms?: Record<string, TermValue[]>;
 }
 
+const orderByDisplay = ( key: string | undefined ) => {
+  if ( key === "created_at" ) {
+    return I18n.t( "date_added" );
+  }
+  return I18n.t( "faves" );
+};
+
+const licenseDisplay = ( key: string | undefined ) => {
+  if ( key && key.length > 0 ) {
+    const licenseKey = _.snakeCase( key );
+    return I18n.t( `${licenseKey}_name`, { defaultValue: key } );
+  }
+  return I18n.t( "any_license" );
+};
+
+const qualityGradeDisplay = ( key: string | undefined ) => {
+  if ( key && key !== "any" ) {
+    return I18n.t( "research_" );
+  }
+  return I18n.t( "any_quality_grade" );
+};
+
 const PhotoBrowser = ( {
   groupedPhotos = {},
   grouping = {},
@@ -116,17 +138,19 @@ const PhotoBrowser = ( {
   place,
   config = {}
 }: PhotoBrowserProps ) => {
-  let sortedGroupedPhotos;
-  if ( grouping.param === "taxon_id" ) {
-    sortedGroupedPhotos = _.sortBy( _.values( groupedPhotos ), group => group.groupObject.name );
-  } else {
-    sortedGroupedPhotos = _.sortBy( _.values( groupedPhotos ), "groupName" );
-  }
-  const photoLicenses = _.sortBy(
+  const sortedGroupedPhotos = useMemo( ( ) => {
+    if ( grouping.param === "taxon_id" ) {
+      return _.sortBy( _.values( groupedPhotos ), group => group.groupObject.name );
+    }
+    return _.sortBy( _.values( groupedPhotos ), "groupName" );
+  }, [groupedPhotos, grouping.param] );
+
+  const photoLicenses = useMemo( ( ) => _.sortBy(
     _.keys( _.pickBy( iNaturalist.Licenses, ( v, k ) => k.indexOf( "cc" ) === 0 ) ),
     k => I18n.t( `${_.snakeCase( k )}_name`, { defaultValue: k } )
-  );
-  const renderObservationPhotos = ( obsPhotos: ObservationPhoto[] | undefined ) => (
+  ), [] );
+
+  const renderObservationPhotos = useCallback( ( obsPhotos: ObservationPhoto[] | undefined ) => (
     ( obsPhotos || [] ).map( observationPhoto => {
       let itemDim: number | undefined;
       let width: number | undefined;
@@ -154,7 +178,8 @@ const PhotoBrowser = ( {
         />
       );
     } )
-  );
+  ), [layout, showTaxonPhotoModal, config] );
+
   const loader = (
     <div key="photo-browser-loader" className="loading">
       <i className="fa fa-refresh fa-spin" />
@@ -229,26 +254,7 @@ const PhotoBrowser = ( {
       } ) }
     </div>
   );
-  const orderByDisplay = ( key: string | undefined ) => {
-    if ( key === "created_at" ) {
-      return I18n.t( "date_added" );
-    }
-    return I18n.t( "faves" );
-  };
-  const licenseDisplay = ( key: string | undefined ) => {
-    if ( key && key.length > 0 ) {
-      const licenseKey = _.snakeCase( key );
-      return I18n.t( `${licenseKey}_name`, { defaultValue: key } );
-    }
-    return I18n.t( "any_license" );
-  };
-  const qualityGradeDisplay = ( key: string | undefined ) => {
-    if ( key && key !== "any" ) {
-      return I18n.t( "research_" );
-    }
-    return I18n.t( "any_quality_grade" );
-  };
-  const groupingDisplay = ( param: string | null ) => {
+  const groupingDisplay = useCallback( ( param: string | null ) => {
     if ( param === "taxon_id" ) {
       return I18n.t( "taxonomic" );
     }
@@ -257,7 +263,7 @@ const PhotoBrowser = ( {
       return I18n.t( `controlled_term_labels.${_.snakeCase( displayText )}`, { defaultValue: displayText } );
     }
     return I18n.t( "none" );
-  };
+  }, [grouping, terms] );
   let groupingMenuItems: React.ReactNode[] = [];
   if ( showTaxonGrouping ) {
     groupingMenuItems.push(
