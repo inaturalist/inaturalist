@@ -131,12 +131,10 @@
 
     #filters {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      flex-wrap: wrap;
       line-height: normal;
 
       .control-group {
-        margin-right: 0;
         margin-bottom: 5px;
       }
     }
