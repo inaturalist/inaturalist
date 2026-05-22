@@ -234,7 +234,7 @@
   .TaxonPhoto {
     width: 150px;
 
-    @media ( max-width: $sm ) {
+    @media ( max-width: $md ) {
       width: 85px;
     }
   }
