@@ -2343,6 +2343,7 @@ th:
     virgin_islands: หมู่เกาะเวอร์จิน
     west_africa: แอฟริกาตะวันตก
     zambia: แซมเบีย
+    zimbabwe: ซิมบับเว
   places_of_interest: สถานที่บนหน้าจอ
   places_merged_successfully: รวมสถานที่สำเร็จแล้ว!
   #user-facing guidance that new places cannot be too large
@@ -3412,6 +3413,14 @@ th:
     นี่คือตัวอย่างของสมาชิกผู้มีอุปการะคุณที่บริจาคให้ iNat ทุกเดือน
   you: คุณ
   you_: คุณ
+  you_are_now_following_x: "คุณกำลังติดตาม %{friend_user}"
+  you_are_now_the_admin_for_project_html: |
+    ขณะนี้<strong>คุณ</strong>เป็นแอดมินของ %{project}
+  you_are_now_a_curator_for_project_html: |
+    ขณะนี้<strong>คุณ</strong>เป็นผู้ดูแลของ %{project}
+  you_are_now_a_manager_for_project_html: |
+    ขณะนี้<strong>คุณ</strong>เป็นผู้จัดการของ %{project}
+  you_are_already_a_member_of_this_project: "คุณเป็นสมาชิกของโครงการนี้แล้ว!"
   you_are_submitting_obs_with_no_date_or_no_location: |
     คุณกำลังส่งการสังเกตที่ไม่มีวันที่หรือตำแหน่ง การสังเกตที่ไม่มีข้อมูลเหล่านี้มักจะจำแนกไม่ได้ และเบื้องต้นจะไม่สามารถมองเห็นจากการค้นหาการสังเกต
   you_are_subscribed_to_comments_on_this_flag: คุณติดตามความคิดเห็นในรายงานนี้แล้ว
