@@ -628,6 +628,8 @@ de:
     Fragen zu Ihrem Plan und wir behalten uns das Recht vor, Anträge aus beliebigem Grund abzulehnen.
   app_owner_application_inelligible: |
     Um eine App einzureichen, musst du seit mindestens 2 Monaten ein Benutzerkonto haben, mit dem du im letzten Monat mindestens 10 verbessernde IDs beigetragen hast.
+  app_owner_application_inelligible2: |
+    Um einen Antrag einzureichen, muss dein Konto mindestens 2 Monate alt sein und im letzten Monat haben mindestens 10 Bestimmungen (Verbesserung) für andere Nutzer vorgenommen haben.
   app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
   app_owner_application_success: App owner application submitted
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -840,6 +842,9 @@ de:
     Weil wir davon ausgehen, dass diese Änderung zu mehr als 10 unbeabsichtigten
     Widersprüchen führen wird, <strong>empfehlen wir dir auch eine Taxonänderung von
     %{old_parent} durchzuführen, wie zum Beispiel der Trennung von %{new_parent} und %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Da wir davon ausgehen, dass diese Änderung zu 10 oder weniger unbeabsichtigten Unstimmigkeiten führen wird, <strong> ist eine Taxon-Änderung mit %{old_parent} wahrscheinlich nicht notwendig.</strong>
   become_a_donor_caps: Unterstützer werden
   become_a_donor_today_caps: Werde heute ein Unterstützer
   before_importing_photos: vor dem Importieren von Bildern verlinken
@@ -924,6 +929,8 @@ de:
   change_group: Gruppen ändern
   change_icon: Symbol ändern
   change_password: Passwort ändern
+  #Message shown after you change your email address
+  change_to_email_requested_html: Änderung zu <strong>%{email}</strong> angefragt. Überprüfen Sie Ihre E-Mail unter dieser Adresse, um die Änderung zu bestätigen.
   change_types:
     activated_soon: bald aktiviert
     change_types: Typen ändern
@@ -1794,7 +1801,13 @@ de:
   download_csv: CSV herunterladen
   download_csv_template: CSV-Vorlage herunterladen
   download_kml: KML herunterladen
+  downstream_coverage_rank: Rang der Abdeckung auf niedrigerer Taxon-Ebene
+  downstream_coverage_colon_rank: "Abdeckung auf niedrigerer Taxon-Ebene: Rang %{rank}"
   downstream_deviations: Downstream-Abweichungen
+  downstream_deviations_for_taxon: "Abweichungen auf niedrigerer Taxon-Ebene für %{taxon}"
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: Auf niedrigerer Taxon-Ebene markierte Taxa
   #Noun, as in a journal post that has not been published
   draft: Entwurf
   #Noun, as in a journal post that has not been published
@@ -1853,6 +1866,8 @@ de:
   edit_taxon_link: Taxonlink bearbeiten
   edit_taxon_range: Verbreitungsgebiet bearbeiten
   edit_the_observation: Die Beobachtung bearbeiten
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Bearbeiten Sie dieses Taxon, nachdem Sie es erstellt haben, um einen Schutzstatus hinzuzufügen
   edit_your_account_and_profile_html: "Bearbeite dein Konto & Profil"
   edit_your_default_settings: "Deine Standardeinstellungen bearbeiten"
   edit_your_global_project_settings: Die globalen Projekteinstellungen bearbeiten
@@ -2402,8 +2417,16 @@ de:
   inaturalist_network_affiliation: iNaturalist-Netzwerk
   #Label for messages you've received
   inbox: Posteingang
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Einbeziehen
   include_places: Gebiete einbeziehen
   include_projects: Projekte einbeziehen
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Taxa der Vorfahren einschließen / ausschließen
   include_suggestions_not_seen_nearby: Vorschläge einbeziehen, die nicht aus der Nähe stammen
   include_suggestions_not_expected_nearby: Vorschläge einbeziehen, die nicht in der Nähe erwartet werden
   include_taxa: Taxa einbeziehen
@@ -3425,6 +3448,10 @@ de:
     Wir sind sehr dankbar für deine Bestimmungs-Hilfe auf iNaturalist und vielen Dank für die Teilnahme an dieser Studie. Mehr über die Methoden zu diesem Experiment kannst du <a href="%{url}">hier</a> erfahren.
   observation_accuracy_validator_email_with_gratitude: In Dankbarkeit,
   observation_accuracy_validator_email_the_inaturalist_team: das Team von iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b> Bitte antworte nicht auf diese Nachricht. Wenn du Fragen oder Feedback hast, kommentiere bitte unter <a href="%{url}">diesem Blogpost</a> oder schreibe eine Mail <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Bitte antworten Sie nicht auf diese Nachricht. Wenn Sie Fragen oder Feedback haben, bitte kontaktieren Sie uns unter <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
   observation_aggregation: Beobachtungs Ansammlung
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3635,6 +3662,8 @@ de:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "Einer der folgenden Punkte muss zutreffen:"
   one_of_your_lists: "einer deiner Listen..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Ein oder mehrere Eingabetaxa sind mit mehr als 1000 Beobachtungen verknüpft, so dass die Durchführung einige Zeit in Anspruch nehmen kann. Sind Sie sicher, dass diese Taxonänderung notwendig ist? Denken Sie daran, dass Taxonänderungen nicht rückgängig gemacht werden können.
   only_a_project_manager_can_add: Nur ein Projektmanager kann den Status eines Projektkurators hinzufügen.
   only_administrators_may_access_that_page: Nur Administratoren dürfen auf diese Seite zugreifen
   only_an_admin_can_remove_project_users: Nur Administratoren können Projektbenutzer entfernen.
@@ -5881,6 +5910,7 @@ de:
     one: "%{user} hat %{count} Beobachtung hinzugefügt"
     other: "%{user} hat %{count} Beobachtungen hinzugefügt"
   user_already_authenticated: Der Benutzer ist bereits authentifiziert
+  user_already_app_owner: Nutzer besitzt diese App bereits.
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
@@ -6372,6 +6402,8 @@ de:
   your_account_has_been_activated: Dein Benutzerkonto wurde aktiviert!
   your_account_has_been_verified: "Dein %{site_name} Konto wurde verifiziert! Bitte melde dich an, um fortzufahren."
   your_activation_code_was_missing: "Dein Aktivierungscode fehlte. Bitte folge der URL aus deiner E-Mail."
+  #Title for a list of 3rd party applications you control
+  your_applications: Ihre Bewerbungen
   your_browser_does_not_support_the_audio_element: Dein Browser unterstützt das Audio-Element nicht.
   your_comment_was_saved: Der Inhalt wurde gespeichert
   your_content: Deine Inhalte
@@ -6657,6 +6689,7 @@ de:
           #Expected Nearby range that the user can download
           download_expected_nearby_map_as_geojson: Download der 'In der Nähe zu erwarten' Karte als GeoJSON
         unthresholded_map:
+          unthresholded_map: Unbegrenzte Karte
           figure_alt_text: Das Geomodell gewichtet die Ergebnisse der Computer-Vision
         range_comparison:
           expected_nearby_vs_taxon_range: Erwartet in der Umgebung vs. Taxon-Verbreitung
@@ -7090,13 +7123,21 @@ de:
         place_guess: Gebietsbeschreibung, wie vom Beobachter eingegeben
         positional_accuracy: "Genauigkeit der Koordinaten (ja, ja, ja, Genauigkeit! = Präzision -- schlechte Terminologie)"
         private_latitude: "Privater Breitengrad, falls Beobachtung privat oder verschleiert"
+        private_longitude: "Privater Längengrad, wird gesetzt, wenn die Beobachtung privat oder verdeckt ist"
         geoprivacy: "Ob der Beobachter die Koordinaten verschleiert oder versteckt hat. Siehe https://help.inaturalist.org/support/solutions/articles/151000169938"
+        taxon_geoprivacy: "Die konservativste Geoprivatisierung wurde aufgrund des Schutzstatus der Taxa bei der aktuellen Bestimmung angewandt."
         coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, entweder aufgrund von Geo-Privatsphäre oder eines Gefährdungsstatus"
         out_of_range: Ob diese Beobachtung außerhalb der bekannten Verbreitung des Taxons liegt oder nicht
+        user_id: Eindeutige, sequentielle Kennung für den Beobachter
+        user_login: Handle / Benutzername des Beobachters, d.h. eine kurze, eindeutige, alphanumerische Kennung für einen Benutzer
+        user_name: |
+          Name des Beobachters, der in der Regel für die Zuordnung auf der Webseite verwendet wird.
+          Dies ist ein optionales Feld und der Name kann auch ein Pseudonym sein.
         created_at: Zeitpunkt an dem die Beobachtung erstellt wurde
         updated_at: Datetime der Aktualisierung der Beobachtung
         quality_grade: Qualitätsbewertung dieser Beobachtung. Weitere Informationen hierzu sind unter https://help.inaturalist.org/support/solutions/articles/151000169936 zu finden
         url: URL der Beobachtung
+        image_url: URL für das erste Foto, das der Beobachtung zugeordnet ist
         tag_list: Komma-getrennte Liste der Stichwörter.
         place_admin1_name: Name des administrativen Ortes ein Rang unterhalb der Landesebene
         place_admin2_name: Name des administrativen Ortes zwei Ränge unterhalb der Landesebene
@@ -7116,6 +7157,34 @@ de:
         private_place_guess: |
           Beobachtungsort, wie er vom Beobachter geschrieben wurde, wenn der Standort verdeckt ist
         public_positional_accuracy: Maximale horizontale Positionsunsicherheit in Metern; beinhaltet Unsicherheit durch Verschleierung der Koordinaten
+        taxon_class_name: |
+          Name der taxonomischen Klasse, die das beobachtete Taxon enthält
+        taxon_family_name: |
+          Name der taxonomischen Familie, die das beobachtete Taxon enthält
+        taxon_genus_name: |
+          Name der taxonomischen Gattung, die das beobachtete Taxon enthält
+        taxon_genushybrid_name: |
+          Name der taxonomischen Hybridgattung, die das beobachtete Taxon enthält
+        taxon_hybrid_name: |
+          Name des taxonomischen Hybrids, der das beobachtete Taxon enthält
+        taxon_kingdom_name: |
+          Name des taxonomischen Reichs, das das beobachtete Taxon enthält
+        taxon_order_name: |
+          Name der taxonomischen Ordnung, die das beobachtete Taxon enthält
+        taxon_phylum_name: |
+          Name des taxonomischen Stammes, der das beobachtete Taxon enthält
+        taxon_species_name: |
+          Name der taxonomischen Art, die das beobachtete Taxon enthält
+        taxon_subclass_name: |
+          Name der taxonomischen Unterklasse, die das beobachtete Taxon enthält
+        taxon_subfamily_name: |
+          Name der taxonomischen Unterfamilie, die das beobachtete Taxon enthält
+        taxon_suborder_name: |
+          Name der taxonomischen Unterordnung, die das beobachtete Taxon enthält
+        taxon_subphylum_name: |
+          Name des taxonomischen Unterstammes, der das beobachtete Taxon enthält
+        taxon_subspecies_name: |
+          Name der taxonomischen Unterart, die das beobachtete Taxon enthält
       identify:
         #message for a banner linking to a tutorial on how to use the Identify page
         learn_how_to_use_this_page: |
@@ -8108,6 +8177,10 @@ de:
       withdrawn: zurückgezogen
       #state of a committed taxon change
       committed: engagiert
+      #state of a pending taxon change
+      pending: ausstehend
+      #state of a approved taxon change
+      approved: genehmigt
       #state of a draft taxon change
       draft: Entwurf
       #the status of a taxon change: draft, withdrawn or committed
@@ -8240,6 +8313,7 @@ de:
           Leute, bitte <a href="mailto:%{help_email}">kontaktieren Sie uns</a>.
         block_desc_there_are_two_exceptions: |
           Es gibt zwei Situationen, in denen das Blockieren die Interaktion nicht verhindert:
+        block_desc_comments_on_taxon_flags: Kommentare zu von dir erstellten Taxon-Meldungen
         common_scientific_name_display_order: Reihenfolge für wissenschaftliche/ Trivialnamen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wenn du deine Meinung änderst, kannst du jederzeit
@@ -8921,6 +8995,7 @@ de:
         #announcement should be shown on
         site_ids: Website-IDs
         prefers_exclude_monthly_supporters: Monatliche Unterstützer ausschließen
+        clients: Kunden
         #Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: Startdatum des Spenders ausschließen
         #End of a date range that the viewer must not have donated in to see the announcement
@@ -9024,6 +9099,8 @@ de:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Vertraulich
+      place_taxon_name:
+        position: Position
       post:
         title: Titel
         body: Text
@@ -9031,6 +9108,8 @@ de:
         title: Titel
         project_icon: Projektsymbol
         project_type: Projekttyp
+        preferred_count_by: Bevorzugte Zählung nach
+        prefers_count_from_list: Bevorzugt die Zählung aus der Liste
         description: Beschreibung
         end_time: Endzeit
         event_url: Event registrierungs URL
@@ -9055,6 +9134,7 @@ de:
         parent_id: übergeordnet
         place_type: Gebiets-Typ
         prefers_check_lists: Checklisten erlaubt?
+        woeid: WOEID
       site:
         logo: Wortzeichen
         logo_email_banner: Email-Banner
@@ -9065,6 +9145,7 @@ de:
         citation: Zitierung
       taxon:
         ancestry: Ancestry
+        auto_photos: Automatische Fotos
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Schutzstatus
         #Datetime this taxon was featured for display on /taxa
@@ -9073,6 +9154,9 @@ de:
         iconic_taxon_id: Symboltaxon-ID
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktiv?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Ikonisch?
         locked: Gesperrt
         name: Name
         #External source of the taxon, e.g. Catalogue of Life
@@ -9174,6 +9258,23 @@ de:
           one: "%{count} Fehler verhinderte das Speichern von %{model}"
           other: '%{count} Fehler verhinderten das Speichern von %{model}'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this text, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: muss für die angegebene Platzierung gültig sein
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: muss für die angegebene Zielgruppe gültig sein
         application:
           attributes:
             redirect_uri:
@@ -9270,6 +9371,10 @@ de:
             place_geometry:
               is_too_large_to_edit: ist zu groß zum Bearbeiten
               is_too_large_to_import: ist zu groß zum importieren
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: ist zu groß oder kompliziert, um sie vor dem Timeout zu verarbeiten
               contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
               cannot_be_blank: darf nicht leer sein
               invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
@@ -9352,6 +9457,18 @@ de:
               bad_format: |
                 kann nur lateinische Standardzeichen, Bindestriche, Leerzeichen und
                 × enthalten; beachte bitte, dass strittige Taxa und Kultivare nicht erlaubt sind
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Namensänderungen sind für Ränge, die gröber als Arten sind, nicht erlaubt"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Namensänderungen sind für Hybrid-Formeln nicht erlaubt"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "Die Gattung kann sich nicht ändern"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Nicht-standardisierter Artname: Nur das Entfernen von 'x'/'×' oder das Hinzufügen von '×' ist erlaubt"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "Der spezifische Beiname muss ähnlich sein (nur kleiner Tippfehler/Geschlecht)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "Der erste Buchstabe eines Beinamens kann sich nicht ändern."
         taxon_change:
           attributes:
             base:
@@ -9623,6 +9740,8 @@ de:
         language_label: "Sprache"
       summary_list:
         feedback_toggle: "Feedback zu ID-Zusammenfassungen"
+      summary_feedback:
+        sign_in_tooltip: "Melde dich an, um über diese Zusammenfassung abzustimmen"
       summary_item:
         disclaimer: "Diese Zusammenfassung der Benutzerkommentare von iNaturalist wurde von der KI generiert und ist möglicherweise falsch. Du kannst uns durch dein Feedback helfen, diese Zusammenfassung zu verbessern."
         copy_link: "Link zu dieser Zusammenfassung kopieren"
