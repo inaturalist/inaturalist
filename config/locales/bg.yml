@@ -4,7 +4,7 @@ bg:
     one: "%{count} промяна"
     other: "%{count} промени"
   x_comments:
-    one: 'Един коментар'
+    one: '%{count} коментар'
     other: '%{count} коментара'
   x_comments_html:
     one: '<span class="count">%{count}</span> коментар'
@@ -228,7 +228,7 @@ bg:
   add_a_batch_of_taxa: Добавяне на множество таксони
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Добави списък с водещи символи
-  add_a_comment: Добавяне на коментар
+  add_a_comment: Добави коментар
   add_a_field: Добавяне на поле
   add_a_flag: Добавяне на маркер
   #Tool tip for a button that adds a link to a text area
@@ -266,7 +266,7 @@ bg:
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Добави удебелен текст
   add_comma_separated_tags: "Добави етикети (разделени със запетаи)"
-  add_comment: Добавяне на коментар
+  add_comment: Добави коментар
   add_conservation_status: Добави природозащитен статут
   add_custom_project_fields: Добавяне на потребителски полета на проекта
   add_edit_flags: Добави/редактирай маркери
@@ -1702,6 +1702,7 @@ bg:
   header_your_identifications: Вашите разпознавания
   header_your_projects: Вашите проекти
   header_your_profile: Вашият профил
+  heads_up: Внимание
   heads_up_this_photo_has_been_flagged: "ВНИМАНИЕ: снимката е била маркирана."
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "HEADS UP: този звук е маркиран."
@@ -3868,7 +3869,7 @@ bg:
   submitted: Публикувано
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
-  subscribe: Абонамент
+  subscribe: Абонирай се
   subscribe_to_a_taxon: Абонирай се за таксон
   subscribe_to_a_place: Абонирай се за място
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Абонирай се%{tag_end} за коментари към този маркер"
@@ -6450,6 +6451,11 @@ bg:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  id_summaries:
+    demo:
+      summary_item:
+        reference_commented: "коментира"
+        view_comment: "Виж коментара"
   #Title of a section warning the user about something
   warning_title: Внимание
   wikimedia: Уикимедия
