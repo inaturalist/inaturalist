@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import css from "./tab_drawer.module.css";
 
-interface TabItem {
+interface TabItemBase {
   value: string;
-  label?: string;
-  href?: string;
-  onClick?: ( ) => void;
-  separator?: boolean;
+  label: string;
   icon?: string;
 }
+
+export type TabItem =
+  | { kind: "separator"; value: string }
+  | ( TabItemBase & { kind: "tab" } )
+  | ( TabItemBase & { kind: "link"; href: string } )
+  | ( TabItemBase & { kind: "action"; onClick: ( ) => void } );
 
 interface TabDrawerProps {
   selectedValue?: string;
@@ -36,17 +39,17 @@ const TabDrawer = ( {
       </button>
       <ul id="tab-drawer" className={css.drawer}>
         { items
-          .filter( item => item.separator || item.value !== selectedValue )
+          .filter( item => item.kind === "separator" || item.value !== selectedValue )
           .map( item => {
-            if ( item.separator ) {
+            if ( item.kind === "separator" ) {
               return <li key={item.value} className={css.separator} />;
             }
             const itemIcon = item.icon
               ? <i className={`fa ${item.icon} ${css["item-icon"]}`} />
               : null;
-            if ( item.href ) {
+            if ( item.kind === "link" ) {
               return (
-                <li key={item.href}>
+                <li key={item.value}>
                   <a href={item.href} onClick={() => setOpen( false )}>
                     { itemIcon }
                     { item.label }
@@ -54,12 +57,12 @@ const TabDrawer = ( {
                 </li>
               );
             }
-            if ( item.onClick ) {
+            if ( item.kind === "action" ) {
               return (
-                <li key={item.label}>
+                <li key={item.value}>
                   <button
                     type="button"
-                    onClick={() => { item.onClick!( ); setOpen( false ); }}
+                    onClick={() => { item.onClick( ); setOpen( false ); }}
                   >
                     { itemIcon }
                     { item.label }
@@ -71,7 +74,7 @@ const TabDrawer = ( {
               <li key={item.value}>
                 <button
                   type="button"
-                  onClick={() => { if ( onChange ) onChange( item.value! ); setOpen( false ); }}
+                  onClick={() => { if ( onChange ) onChange( item.value ); setOpen( false ); }}
                 >
                   { itemIcon }
                   { item.label }

@@ -13,7 +13,7 @@ import HighlightsTabContainer from "../containers/highlights_tab_container";
 import SimilarTabContainer from "../containers/similar_tab_container";
 import IdentificationsTabContainer from "../containers/identifications_tab_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
-import TabDrawer from "../../../shared/components/tab_drawer";
+import TabDrawer, { TabItem } from "../../../shared/components/tab_drawer";
 import type { Taxon as BaseTaxon, CurrentUser as BaseCurrentUser } from "../../../shared/types";
 
 const MAIN_TAB_VALUES = new Set( [
@@ -43,15 +43,7 @@ interface Props {
   showPhotoChooserModal: ( ) => void;
 }
 
-interface DrawerItem {
-  value: string;
-  label?: string;
-  href?: string;
-  onClick?: ( ) => void;
-  separator?: boolean;
-  icon?: string;
-  visible?: boolean;
-}
+type DrawerItem = TabItem & { visible?: boolean };
 
 const TaxonPageTabs = ( {
   taxon,
@@ -108,29 +100,42 @@ const TaxonPageTabs = ( {
     identifications: I18n.t( "identifications" )
   };
 
-  const tabItems: DrawerItem[] = [
-    { value: "map", label: tabLabels.map },
-    { value: "articles", label: tabLabels.articles },
-    { value: "highlights", label: tabLabels.highlights, visible: !speciesOrLower },
-    { value: "interactions", label: tabLabels.interactions, visible: !!( speciesOrLower && test === "interactions" ) },
-    { value: "taxonomy", label: tabLabels.taxonomy },
-    { value: "status", label: tabLabels.status, visible: !!speciesOrLower },
-    { value: "similar", label: tabLabels.similar, visible: !!genusOrSpecies },
-    { value: "identifications", label: tabLabels.identifications, visible: !!( currentUser?.canViewHelpfulIDTips( ) && speciesOrLower ) }
-  ].filter( item => item.visible !== false );
-
-  const curationItems: DrawerItem[] = currentUser?.privilegedWith( "interaction" ) ? [
+  const allTabItems: DrawerItem[] = [
+    { kind: "tab", value: "map", label: tabLabels.map },
+    { kind: "tab", value: "articles", label: tabLabels.articles },
     {
-      value: "separator1",
-      separator: true
+      kind: "tab", value: "highlights", label: tabLabels.highlights, visible: !speciesOrLower
     },
     {
+      kind: "tab", value: "interactions", label: tabLabels.interactions, visible: !!( speciesOrLower && test === "interactions" )
+    },
+    { kind: "tab", value: "taxonomy", label: tabLabels.taxonomy },
+    {
+      kind: "tab", value: "status", label: tabLabels.status, visible: !!speciesOrLower
+    },
+    {
+      kind: "tab", value: "similar", label: tabLabels.similar, visible: !!genusOrSpecies
+    },
+    {
+      kind: "tab", value: "identifications", label: tabLabels.identifications, visible: !!( currentUser?.canViewHelpfulIDTips( ) && speciesOrLower )
+    }
+  ];
+  const tabItems = allTabItems.filter( item => item.visible !== false );
+
+  const allCurationItems: DrawerItem[] = currentUser?.privilegedWith( "interaction" ) ? [
+    {
+      kind: "separator",
+      value: "separator1"
+    },
+    {
+      kind: "link",
       value: "flag-for-curation",
       href: `/taxa/${taxon.id}/flags/new`,
       label: I18n.t( "flag_for_curation" ),
       icon: "fa-flag"
     },
     {
+      kind: "link",
       value: "view-flags",
       href: `/taxa/${taxon.id}/flags`,
       label: `${I18n.t( "view_flags" )} (${flagsCount})`,
@@ -138,12 +143,14 @@ const TaxonPageTabs = ( {
       visible: flagsCount > 0
     },
     {
+      kind: "tab",
       value: "photos-locked",
       label: I18n.t( "photos_locked" ),
       icon: "fa-picture-o",
       visible: !!( taxon.photos_locked && !isAdmin )
     },
     {
+      kind: "action",
       value: "edit-photos",
       onClick: ( ) => showPhotoChooserModal( ),
       label: I18n.t( "edit_photos" ),
@@ -151,6 +158,7 @@ const TaxonPageTabs = ( {
       visible: !taxon.photos_locked && !currentUser.content_creation_restrictions
     },
     {
+      kind: "link",
       value: "edit-atlas",
       href: `/atlases/${taxon.atlas_id}`,
       label: I18n.t( "edit_atlas" ),
@@ -158,6 +166,7 @@ const TaxonPageTabs = ( {
       visible: isCurator && taxon.rank_level <= 10 && !!taxon.atlas_id
     },
     {
+      kind: "link",
       value: "new-atlas",
       href: `/atlases/new?taxon_id=${taxon.id}`,
       label: I18n.t( "create_an_atlas" ),
@@ -165,6 +174,7 @@ const TaxonPageTabs = ( {
       visible: isCurator && taxon.rank_level <= 10 && !taxon.atlas_id
     },
     {
+      kind: "link",
       value: "edit-taxon",
       href: `/taxa/${taxon.id}/edit`,
       label: I18n.t( "edit_taxon" ),
@@ -172,12 +182,14 @@ const TaxonPageTabs = ( {
       visible: isCurator
     },
     {
+      kind: "link",
       value: "history",
       href: `/taxa/${taxon.id}/history`,
       label: I18n.t( "history" ),
       icon: "fa-history"
     }
-  ].filter( item => item.visible !== false ) : [];
+  ] : [];
+  const curationItems = allCurationItems.filter( item => item.visible !== false );
 
   const drawerItems = [...tabItems, ...curationItems];
 
@@ -197,13 +209,13 @@ const TaxonPageTabs = ( {
         </Dropdown.Toggle>
         <Dropdown.Menu>
           { curationItems.map( item => {
-            if ( item.separator ) return null;
+            if ( item.kind === "separator" ) return null;
 
             return (
               <MenuItem
                 key={item.value}
                 eventKey={item.value}
-                href={item.href}
+                href={item.kind === "link" ? item.href : undefined}
                 className={item.value === "photos-locked" ? "disabled" : undefined}
                 title={item.value === "photos-locked" ? I18n.t( "photos_locked_desc" ) : undefined}
               >
@@ -228,20 +240,21 @@ const TaxonPageTabs = ( {
       />
       <ul id="main-tabs" className="nav nav-tabs" role="tablist">
         { drawerItems
-          .filter( item => !item.separator && MAIN_TAB_VALUES.has( item.value ) )
           .map( item => (
-            <li key={item.value} role="presentation" className={chosenTab === item.value ? "active" : ""}>
-              <a
-                href={`#${item.value}-tab`}
-                role="tab"
-                onClick={e => {
-                  e.preventDefault( );
-                  choseTab( item.value );
-                }}
-              >
-                { item.label }
-              </a>
-            </li>
+            item.kind === "tab" && MAIN_TAB_VALUES.has( item.value ) && (
+              <li key={item.value} role="presentation" className={chosenTab === item.value ? "active" : ""}>
+                <a
+                  href={`#${item.value}-tab`}
+                  role="tab"
+                  onClick={e => {
+                    e.preventDefault( );
+                    choseTab( item.value );
+                  }}
+                >
+                  { item.label }
+                </a>
+              </li>
+            )
           ) )}
         { curationTab }
       </ul>
