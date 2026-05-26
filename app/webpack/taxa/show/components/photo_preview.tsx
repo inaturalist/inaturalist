@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import CoverImage from "../../../shared/components/cover_image";
 import { urlForTaxonPhotos } from "../../shared/util";
 import TaxonPhoto from "../../../shared/components/taxon_photo";
@@ -35,21 +35,13 @@ const PhotoPreview = ( {
   showNewTaxon,
   config = {}
 }: Props ) => {
-  const [current, setCurrent] = useState<TaxonPhotoEntry | undefined>( undefined );
-  const [taxonPhotos, setTaxonPhotos] = useState<TaxonPhotoEntry[]>( [] );
+  const [currentPhotoIdx, setCurrentPhotoIdx] = useState<number>( 0 );
 
-  useEffect( ( ) => {
-    const sliced = layout === "gallery"
+  const taxonPhotos = useMemo( ( ) => (
+    layout === "gallery"
       ? taxonPhotosProp.slice( 0, 5 )
-      : taxonPhotosProp.slice( 0, 8 );
-    setTaxonPhotos( sliced );
-    setCurrent( taxonPhotosProp[0] );
-  }, [taxonPhotosProp, layout] );
-
-  const showPhoto = ( photoId: number ) => {
-    const found = taxonPhotos.find( p => p.photo.id === photoId );
-    if ( found ) setCurrent( found );
-  };
+      : taxonPhotosProp.slice( 0, 8 )
+  ), [taxonPhotosProp, layout] );
 
   const thumbnailHeight = layout === "gallery" ? 98 : 196.5;
   const { currentUser } = config;
@@ -80,8 +72,8 @@ const PhotoPreview = ( {
   let currentPhotoHeight = 590;
   let backgroundSize = "cover";
 
-  if ( current && layout === "gallery" ) {
-    const { photo } = current;
+  if ( taxonPhotos[currentPhotoIdx] && layout === "gallery" ) {
+    const { photo } = taxonPhotos[currentPhotoIdx];
     const dims = photo.dimensions( );
     let ratio = 1;
     if ( dims && dims.height ) {
@@ -95,7 +87,7 @@ const PhotoPreview = ( {
       bgImage = (
         <div
           className="photo-bg"
-          style={{ backgroundImage: `url('${current.photo.photoUrl( "small" )}')` }}
+          style={{ backgroundImage: `url('${photo.photoUrl( "small" )}')` }}
         />
       );
     }
@@ -114,26 +106,28 @@ const PhotoPreview = ( {
 
   const displayPhotos = taxonPhotos.length === 1 ? [] : taxonPhotos;
 
+  // TODO: split render between grid and gallery
   return (
     <div className={`PhotoPreview ${layout}${layout === "gallery" && backgroundSize === "cover" ? " cover-bg" : ""}`}>
       { bgImage }
       <div className="foreground-container">
         { currentPhoto }
         <ul className="plain others">
-          { displayPhotos.map( tp => {
+          { displayPhotos.map( ( taxonPhoto, idx ) => {
+            // TODO: Modernize
             let content: React.ReactNode;
             if ( layout === "grid" ) {
               content = (
                 <TaxonPhoto
-                  photo={tp.photo}
+                  photo={taxonPhoto.photo}
                   height={thumbnailHeight}
-                  taxon={tp.taxon}
+                  taxon={taxonPhoto.taxon}
                   size="medium"
                   square={false}
                   showTaxonPhotoModal={showTaxonPhotoModal ?? ( ( ) => undefined )}
                   className="photoItem"
                   showTaxon
-                  linkTaxon={tp.taxon.id !== taxon.id}
+                  linkTaxon={taxonPhoto.taxon.id !== taxon.id}
                   onClickTaxon={newTaxon => showNewTaxon?.( newTaxon )}
                   config={config}
                 />
@@ -142,24 +136,24 @@ const PhotoPreview = ( {
               content = (
                 <a
                   className="photoItem"
-                  href={tp.photo.photoUrl( )}
+                  href={taxonPhoto.photo.photoUrl( )}
                   aria-label={I18n.t( "view_photo" )}
                   onClick={e => {
                     e.preventDefault( );
-                    showPhoto( tp.photo.id );
+                    setCurrentPhotoIdx( idx );
                     return false;
                   }}
                 >
                   <CoverImage
-                    src={tp.photo.photoUrl( "small" )}
-                    low={tp.photo.photoUrl( "small" )}
+                    src={taxonPhoto.photo.photoUrl( "small" )}
+                    low={taxonPhoto.photo.photoUrl( "small" )}
                     height={thumbnailHeight}
                   />
                 </a>
               );
             }
             return (
-              <li key={`taxon-photo-${tp.taxon.id}-${tp.photo.id}`}>
+              <li key={`taxon-photo-${taxonPhoto.taxon.id}-${taxonPhoto.photo.id}`}>
                 { content }
               </li>
             );
