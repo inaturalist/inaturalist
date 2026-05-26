@@ -1,7 +1,7 @@
 import React from "react";
 import ErrorBoundary from "../../../shared/components/error_boundary";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import TaxonPageHeader from "../../../shared/components/taxon_page_header";
+import TaxonPageHeader from "../../shared/components/taxon_page_header";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import ChartsContainer from "../containers/charts_container";
 import Leaders from "./leaders";
@@ -46,42 +46,42 @@ const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
     )
     : null;
   return (
-  <div id="TaxonDetail">
-    <TaxonPageHeader
-      taxon={taxon}
-      config={config}
-      heading={(
-        <h1>
-          <SplitTaxon taxon={taxon} user={config.currentUser} />
-          { flagsButton }
-        </h1>
+    <div id="TaxonDetail">
+      <TaxonPageHeader
+        taxon={taxon}
+        config={config}
+        heading={(
+          <h1>
+            <SplitTaxon taxon={taxon} user={config.currentUser} />
+            { flagsButton }
+          </h1>
       )}
-      afterSelect={( result: { item: unknown } ) => showNewTaxon( result.item )}
-      showNewTaxon={showNewTaxon}
-      placeChooser={<PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />}
-      prefix={<TaxonChangeAlertContainer />}
-      extra={<AkaNamesContainer />}
-    />
-    <div id="hero">
-      <StatusRow
-        conservationStatus={taxon.conservationStatus}
-        establishmentMeans={taxon.establishment_means}
+        afterSelect={( result: { item: unknown } ) => showNewTaxon( result.item )}
+        showNewTaxon={showNewTaxon}
+        placeChooser={<PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />}
+        prefix={<TaxonChangeAlertContainer />}
+        extra={<AkaNamesContainer />}
       />
-      <div className="hero-grid">
-        <PhotoPreviewContainer />
-        <div className="hero-right">
-          <Leaders taxon={taxon} />
-          <ErrorBoundary>
-            <ChartsContainer />
-          </ErrorBoundary>
+      <div id="hero">
+        <StatusRow
+          conservationStatus={taxon.conservationStatus}
+          establishmentMeans={taxon.establishment_means}
+        />
+        <div className="hero-grid">
+          <PhotoPreviewContainer />
+          <div className="hero-right">
+            <Leaders taxon={taxon} />
+            <ErrorBoundary>
+              <ChartsContainer />
+            </ErrorBoundary>
+          </div>
         </div>
       </div>
+      <TaxonPageTabsContainer />
+      <PhotoModalContainer />
+      <PhotoChooserModalContainer />
+      <RtlTestGroupToggle config={config} />
     </div>
-    <TaxonPageTabsContainer />
-    <PhotoModalContainer />
-    <PhotoChooserModalContainer />
-    <RtlTestGroupToggle config={config} />
-  </div>
   );
 };
 

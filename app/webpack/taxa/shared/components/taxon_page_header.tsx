@@ -1,8 +1,8 @@
 import React from "react";
-import TaxonAutocomplete from "./taxon_autocomplete";
-import TaxonCrumbsContainer from "../../taxa/shared/containers/taxon_crumbs_container";
+import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
+import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import css from "./taxon_page_header.module.css";
-import type { Taxon, Config } from "../types";
+import type { Taxon, Config } from "../../../shared/types";
 
 const urlForTaxon = ( t: Taxon | null ) => (
   t ? `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}` : null
