@@ -15,15 +15,20 @@ export type TabItem =
 
 interface TabDrawerProps {
   selectedValue?: string;
-  selectedLabel?: string;
   items?: TabItem[];
   onChange?: ( value: string ) => void;
 }
 
 const TabDrawer = ( {
-  selectedValue, selectedLabel, items = [], onChange
+  selectedValue, items = [], onChange
 }: TabDrawerProps ) => {
   const [open, setOpen] = useState( false );
+
+  const selectedLabel = items.find(
+    ( item ): item is Exclude<TabItem, { kind: "separator" }> => (
+      item.kind !== "separator" && item.value === selectedValue
+    )
+  )?.label;
 
   return (
     <div className={`${css.container}${open ? ` ${css.open}` : ""}`}>

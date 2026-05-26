@@ -234,7 +234,6 @@ const TaxonPageTabs = ( {
     <div className="TaxonPageTabs" ref={containerRef}>
       <TabDrawer
         selectedValue={chosenTab}
-        selectedLabel={tabLabels[chosenTab]}
         items={drawerItems}
         onChange={choseTab}
       />
