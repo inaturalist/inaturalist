@@ -61,10 +61,12 @@ class Announcement < ApplicationRecord
     inverse_of: :parent_announcement
 
   validates_presence_of :placement, :start, :end, :body
+  validates_presence_of :parent_announcement, if: :parent_announcement_id?
   validate :valid_placement_clients
   validate :parent_announcement_cannot_be_self
   validate :parent_announcement_cannot_have_parent
   validate :parent_with_children_cannot_become_child
+
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
   validates_inclusion_of :target_logged_in, in: YES_NO_ANY
   validates_inclusion_of :target_curators, in: YES_NO_ANY

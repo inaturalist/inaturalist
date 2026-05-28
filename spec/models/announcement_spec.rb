@@ -557,6 +557,12 @@ describe Announcement do
       )
     end
 
+    it "is invalid when parent_announcement_id references a nonexistent record" do
+      a = build :announcement, parent_announcement_id: 999_999
+      expect( a ).not_to be_valid
+      expect( a.errors[:parent_announcement] ).to include( "can't be blank" )
+    end
+
     it "nullifies children when parent is destroyed" do
       parent = create :announcement
       child = create :announcement, parent_announcement_id: parent.id
