@@ -590,17 +590,12 @@ describe Announcement do
   end
 
   describe "duplicate_as_user" do
-    it "links duplicate as child of original" do
+    it "copies the announcement without setting parent_announcement_id" do
       original = create :announcement
       dup = original.duplicate_as_user( create( :user ) )
-      expect( dup.parent_announcement_id ).to eq( original.id )
-    end
-
-    it "links duplicate of child to the grandparent" do
-      parent = create :announcement
-      child = create :announcement, parent_announcement_id: parent.id
-      dup = child.duplicate_as_user( create( :user ) )
-      expect( dup.parent_announcement_id ).to eq( parent.id )
+      expect( dup.parent_announcement_id ).to be_nil
+      expect( dup.body ).to eq( original.body )
+      expect( dup.placement ).to eq( original.placement )
     end
   end
 

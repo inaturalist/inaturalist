@@ -138,7 +138,7 @@
               %td= variant.end
         %tr
           %td{ colspan: 8 }
-            = link_to duplicate_announcement_path( @announcement ), class: "btn btn-default btn-sm" do
+            = link_to duplicate_announcement_path( @announcement, variant: true ), class: "btn btn-default btn-sm" do
               %i.fa.fa-plus
               = t :create_a_targeted_variant
 

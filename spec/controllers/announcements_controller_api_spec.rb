@@ -349,5 +349,37 @@ describe AnnouncementsController do
       expect( option_ids ).to include( recent_announcement.id )
       expect( option_ids ).not_to include( old_announcement.id )
     end
+
+    it "includes current parent even when older than 30 days" do
+      old_parent = create :announcement, start: 60.days.ago, end: 31.days.ago
+      child = create :announcement, parent_announcement_id: old_parent.id
+      get :edit, params: { id: child.id, inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( old_parent.id )
+    end
+  end
+
+  describe "duplicate" do
+    let( :site ) { create :site }
+    let( :user ) { create :user }
+    before do
+      create( :site ) unless Site.default
+      SiteAdmin.create!( site: site, user: user )
+      sign_in user
+    end
+
+    it "pre-selects parent announcement when variant param is present" do
+      announcement = create :announcement
+      get :duplicate, params: { id: announcement.id, variant: true, inat_site_id: site.id }
+      expect( assigns( :announcement ).parent_announcement_id ).to eq( announcement.id )
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( announcement.id )
+    end
+
+    it "does not set parent announcement for regular duplicates" do
+      announcement = create :announcement
+      get :duplicate, params: { id: announcement.id, inat_site_id: site.id }
+      expect( assigns( :announcement ).parent_announcement_id ).to be_nil
+    end
   end
 end

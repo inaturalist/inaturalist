@@ -529,7 +529,6 @@ class Announcement < ApplicationRecord
     # Copy site associations and preferences
     announcement.sites = sites
     announcement.stored_preferences = stored_preferences
-    announcement.parent_announcement_id = parent_announcement_id || id
 
     announcement
   end

@@ -119,9 +119,13 @@ class AnnouncementsController < ApplicationController
   end
 
   def duplicate
-    @announcement = @announcement.duplicate_as_user( current_user )
-
-    # Show the form with all fields prefilled (unsaved record)
+    original = @announcement
+    @announcement = original.duplicate_as_user( current_user )
+    if params[:variant]
+      @parent_announcement_options.unshift( [original.dropdown_label, original.id] ) unless
+        @parent_announcement_options.any? {| _label, id | id == @announcement.parent_announcement_id }
+      @announcement.parent_announcement_id = original.id
+    end
     render :new
   end
 
@@ -154,6 +158,11 @@ class AnnouncementsController < ApplicationController
       limit( 100 )
     candidates = candidates.where.not( id: @announcement.id ) if @announcement&.persisted?
     @parent_announcement_options = candidates.map {| a | [a.dropdown_label, a.id] }
+    if @announcement&.parent_announcement_id.present? &&
+        @parent_announcement_options.none? {| _label, id | id == @announcement.parent_announcement_id }
+      parent = Announcement.find_by_id( @announcement.parent_announcement_id )
+      @parent_announcement_options.unshift( [parent.dropdown_label, parent.id] ) if parent
+    end
   end
 
   def user_agent_client
