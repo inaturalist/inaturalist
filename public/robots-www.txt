@@ -1,0 +1,298 @@
+User-agent: *
+
+Allow: /
+
+#
+# Routes with exceptions
+#
+
+# Blog
+Allow: /blog$
+Allow: /blog/$
+Allow: /blog/*$
+Allow: /blog/archives$
+Disallow: /blog/new$
+Disallow: /blog/*/*
+Allow: /blog/archives/*/*$
+# Blog with params
+Disallow: /blog?
+Disallow: /blog/?
+Disallow: /blog/*?*
+
+# Journal
+Allow: /journal$
+Allow: /journal/$
+Allow: /journal/*$
+Allow: /journal/*/*$
+Disallow: /journal/*/new$
+Disallow: /journal/*/archives$
+Disallow: /journal/*/*/*
+# Journal with params
+Disallow: /journal?
+Disallow: /journal/?
+Disallow: /journal/*?*
+
+# Observations
+Allow: /observations$
+Allow: /observations/$
+Disallow: /observations/*
+# Observations with params
+Disallow: /observations?
+Disallow: /observations/?
+Disallow: /observations/*?*
+
+# Pages
+Disallow: /pages$
+Disallow: /pages/$
+Allow: /pages/*$
+Disallow: /pages/all$
+Disallow: /pages/*/*
+# Pages with params
+Disallow: /pages?
+Disallow: /pages/?
+Disallow: /pages/*?*
+
+# People
+Allow: /people$
+Allow: /people/$
+Allow: /people/*$
+Disallow: /people/leaderboard$
+Disallow: /people/new$
+Disallow: /people/*/*
+# People with params
+Disallow: /people?
+Disallow: /people/?
+Disallow: /people/*?*
+
+# Places
+Allow: /places$
+Allow: /places/$
+Allow: /places/*$
+Disallow: /places/autocomplete$
+Disallow: /places/cached_guide$
+Disallow: /places/geometry$
+Disallow: /places/guide$
+Disallow: /places/guide_widget$
+Disallow: /places/new$
+Disallow: /places/planner$
+Disallow: /places/search$
+Disallow: /places/wikipedia$
+Disallow: /places/*/*
+# Places with params
+Disallow: /places?
+Disallow: /places/?
+Disallow: /places/*?*
+
+# Posts
+Disallow: /posts$
+Disallow: /posts/$
+Allow: /posts/*$
+Disallow: /posts/for_project_user$
+Disallow: /posts/for_user$
+Disallow: /posts/new$
+Disallow: /posts/search$
+Disallow: /posts/*/*
+# Posts with params
+Disallow: /posts?
+Disallow: /posts/?*
+Disallow: /posts/*?
+
+# Projects
+Allow: /projects$
+Allow: /projects/$
+Allow: /projects/*$
+Disallow: /projects/browse$
+Disallow: /projects/calendar$
+Disallow: /projects/new$
+Disallow: /projects/new_traditional$
+Disallow: /projects/search$
+Disallow: /projects/user$
+Disallow: /projects/*/*
+Allow: /projects/*/journal$
+Allow: /projects/*/journal/$
+Allow: /projects/*/journal/*$
+Disallow: /projects/*/journal/new$
+Disallow: /projects/*/journal/*/*
+Allow: /projects/*/journal/archives/*/*$
+# Projects with params
+Disallow: /projects?
+Disallow: /projects/?
+Disallow: /projects/*?*
+
+# Sites
+Disallow: /sites$
+Disallow: /sites/$
+Disallow: /sites/*$
+Allow: /sites/affiliation$
+Allow: /sites/network$
+# Sites with params
+Disallow: /sites?
+Disallow: /sites/?
+Disallow: /sites/*?*
+
+# Stats
+Allow: /stats$
+Allow: /stats/$
+Disallow: /stats/*
+Allow: /stats/20*$
+# Stats with params
+Disallow: /stats?
+Disallow: /stats/?
+Disallow: /stats/*?*
+
+# Taxa
+Allow: /taxa$
+Allow: /taxa/$
+Allow: /taxa/*$
+Disallow: /taxa/auto_complete_name$
+Disallow: /taxa/autocomplete$
+Disallow: /taxa/curation$
+Disallow: /taxa/flickr_photos_tagged$
+Disallow: /taxa/flickr_tagger$
+Disallow: /taxa/map$
+Disallow: /taxa/names$
+Disallow: /taxa/new$
+Disallow: /taxa/observation_photos$
+Disallow: /taxa/occur_in$
+Disallow: /taxa/search$
+Disallow: /taxa/synonyms$
+Disallow: /taxa/*/*
+# Taxa with params
+Disallow: /taxa?
+Disallow: /taxa/?
+Disallow: /taxa/*?*
+
+# Translations
+Allow: /translations$
+Allow: /translations/$
+Disallow: /translations/*
+# Translations with params
+Disallow: /translations?
+Disallow: /translations/?
+Disallow: /translations/*?*
+
+# User Parents
+Allow: /user_parents$
+Allow: /user_parents/$
+Disallow: /user_parents/*
+Allow: /user_parents/new$
+# User Parents with params
+Disallow: /user_parents?
+Disallow: /user_parents/?
+Disallow: /user_parents/*?*
+
+# Users
+Allow: /users$
+Allow: /users/$
+Allow: /users/*$
+Disallow: /users/api_token$
+Disallow: /users/cancel$
+Disallow: /users/confirmation$
+Disallow: /users/curation$
+Disallow: /users/dashboard$
+Disallow: /users/dashboard_updates$
+Disallow: /users/delete$
+Disallow: /users/edit$
+Disallow: /users/edit_after_auth$
+Disallow: /users/email_available$
+Disallow: /users/new$
+Disallow: /users/new.mobile$
+Disallow: /users/new_updates$
+Disallow: /users/password$
+Disallow: /users/recent$
+Disallow: /users/unlock$
+Disallow: /users/updates_count$
+Disallow: /users/*/*
+# Users with params
+Disallow: /users?
+Disallow: /users/?
+Disallow: /users/*?*
+
+#
+# Routes entirely disallowed
+#
+
+Disallow: /activate
+Disallow: /admin
+Disallow: /annotations
+Disallow: /announcements
+Disallow: /assessment_sections
+Disallow: /assessments
+Disallow: /atlases
+Disallow: /auth
+Disallow: /build_info
+Disallow: /calendar
+Disallow: /check_lists
+Disallow: /comments
+Disallow: /complete_sets
+Disallow: /computer_vision_demo
+Disallow: /computer_vision_demo_uploads
+Disallow: /computer_vision_eval
+Disallow: /conservation_statuses
+Disallow: /controlled_terms
+Disallow: /curator_applications
+Disallow: /custom_projects
+Disallow: /data_partners
+Disallow: /email_suppressions
+Disallow: /eol
+Disallow: /exploded_atlas_places
+Disallow: /faves
+Disallow: /flags
+Disallow: /flickr
+Disallow: /flow_tasks
+Disallow: /geo_model
+Disallow: /guide_photos
+Disallow: /guide_ranges
+Disallow: /guide_sections
+Disallow: /guide_taxa
+Disallow: /guide_users
+Disallow: /guides
+Disallow: /identifications
+Disallow: /lifelists
+Disallow: /listed_taxa
+Disallow: /lists
+Disallow: /logout
+Disallow: /messages
+Disallow: /moderator_actions
+Disallow: /moderator_notes
+Disallow: /oauth
+Disallow: /observation_accuracy_experiments
+Disallow: /observation_fields
+Disallow: /observation_photos
+Disallow: /observation_sounds
+Disallow: /photos
+Disallow: /picasa
+Disallow: /ping
+Disallow: /project/*$
+Disallow: /project_assets
+Disallow: /project_lists
+Disallow: /rails
+Disallow: /redirect_links
+Disallow: /relationships
+Disallow: /saved_locations
+Disallow: /search
+Disallow: /set_locale
+Disallow: /soundcloud_sounds
+Disallow: /sounds
+Disallow: /sources
+Disallow: /subscriptions
+Disallow: /supportersurvey
+Disallow: /taxon_change_taxa
+Disallow: /taxon_changes
+Disallow: /taxon_curators
+Disallow: /taxon_drops
+Disallow: /taxon_framework_relationships
+Disallow: /taxon_frameworks
+Disallow: /taxon_links
+Disallow: /taxon_merges
+Disallow: /taxon_names
+Disallow: /taxon_photos
+Disallow: /taxon_ranges
+Disallow: /taxon_scheme_taxa
+Disallow: /taxon_schemes
+Disallow: /taxon_splits
+Disallow: /taxon_stages
+Disallow: /taxon_swaps
+Disallow: /trips
+Disallow: /votes
+Disallow: /wikimedia_commons
