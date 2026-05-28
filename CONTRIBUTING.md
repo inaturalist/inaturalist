@@ -59,7 +59,7 @@ We may close pull requests that arrive without prior discussion, or that don't a
 
 ## Translations
 
-Translations are handled separately through [Crowdin](https://crowdin.com/project/inaturalist), not through pull requests. If you'd like to help translate iNaturalist into another language, that's the place to start — and it's one of the most impactful ways to contribute to the project.
+Translations are handled separately through [Crowdin](https://crowdin.com/project/inaturalistweb), not through pull requests. If you'd like to help translate iNaturalist into another language, that's the place to start — and it's one of the most impactful ways to contribute to the project.
 
 ---
 
