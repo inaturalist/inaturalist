@@ -56,6 +56,10 @@ class ExemplarIdentification < ApplicationRecord
           indexes :id, type: "integer" do
             indexes :keyword, type: "keyword"
           end
+          indexes :login, analyzer: "ascii_snowball_analyzer"
+          indexes :login_autocomplete, analyzer: "autocomplete_analyzer",
+            search_analyzer: "standard_analyzer"
+          indexes :login_exact, type: "keyword"
         end
         indexes :observation do
           indexes :id, type: "integer"
@@ -136,7 +140,10 @@ class ExemplarIdentification < ApplicationRecord
         body_character_length: identification.body&.length || 0,
         created_at: identification.created_at,
         user: {
-          id: identification.user_id
+          id: identification.user_id,
+          login: identification.user.login,
+          login_autocomplete: identification.user.login,
+          login_exact: identification.user.login
         },
         observation: observation_schema,
         taxon: identification.taxon ? {

@@ -514,6 +514,63 @@ describe User do
         expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
       end
     end
+
+    describe "reindex ExemplarIdentifications" do
+      elastic_models( ExemplarIdentification )
+      let( :old_login ) { "old_login" }
+      let( :new_login ) { "new_login" }
+      let!( :user ) do
+        user = User.make( login: old_login )
+        Identification.make!( user: user, body: "the body" )
+        user
+      end
+
+      it "queues a reindex job if login changes" do
+        Delayed::Job.delete_all
+        expect( Delayed::Job.where(
+          "handler LIKE '%reindex_exemplar_identifications_after_login_change%'"
+        ).count ).to eq 0
+
+        user.update( login: new_login )
+
+        expect( Delayed::Job.where(
+          "handler LIKE '%reindex_exemplar_identifications_after_login_change%'"
+        ).count ).to eq 1
+      end
+
+      it "does not queue a reindex job if login does not change" do
+        Delayed::Job.delete_all
+        expect( Delayed::Job.where(
+          "handler LIKE '%reindex_exemplar_identifications_after_login_change%'"
+        ).count ).to eq 0
+
+        user.update( description: "new description" )
+
+        expect( Delayed::Job.where(
+          "handler LIKE '%reindex_exemplar_identifications_after_login_change%'"
+        ).count ).to eq 0
+      end
+
+      it "queues a job that updates logins in indexed exemplar_identifications" do
+        expect( ExemplarIdentification.elastic_search(
+          where: { "identification.user.login": old_login }
+        ).size ).to eq 1
+        expect( ExemplarIdentification.elastic_search(
+          where: { "identification.user.login": new_login }
+        ).size ).to eq 0
+
+        user.update( login: new_login )
+        Delayed::Worker.new.work_off
+        Delayed::Worker.new.work_off
+
+        expect( ExemplarIdentification.elastic_search(
+          where: { "identification.user.login": old_login }
+        ).size ).to eq 0
+        expect( ExemplarIdentification.elastic_search(
+          where: { "identification.user.login": new_login }
+        ).size ).to eq 1
+      end
+    end
   end
 
   #
