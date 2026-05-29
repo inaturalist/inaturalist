@@ -107,10 +107,12 @@ test.describe( "Observations map — boundary drawing tools", () => {
     // fires the same `bounds_changed` listener that a user drag would trigger,
     // exercising the full Angular → URL update path without needing to
     // pixel-perfectly target a small SVG handle at low zoom.
-    // Skipped: Google Maps fails to load in the test browser ("This page didn't
-    // load Google Maps correctly"), so the Angular MapController never
-    // instantiates `selectedPlaceLayer` and `waitForShape` times out. Needs a
-    // Maps API mock or a working Maps key for the test referrer. Revisit.
+    // Skipped: Google Maps does not load in test mode in either CI or local.
+    // The placeholder key from config.yml.example triggers `InvalidKeyMapError`,
+    // so the Angular controller never finishes wiring the Rectangle overlay —
+    // it's constructed but `getBounds()` stays null and `getMap()` returns null.
+    // Passed intermittently on CI before only via retries; not a real signal.
+    // Revisit with a Google Maps mock or a working test API key.
     test.skip( "expanding the NE corner via setBounds updates the rectangular boundary", async ( { page } ) => {
       await searchPage.gotoWithRectBoundary( 45, -75, 30, -120 );
       await waitForShape( page );
@@ -148,8 +150,8 @@ test.describe( "Observations map — boundary drawing tools", () => {
     // fires the same `radius_changed` listener that a user drag would trigger,
     // exercising the full Angular → URL update path reliably across headless
     // and headed environments.
-    // Skipped: same reason as the rectangle resize test above — Google Maps
-    // does not load in the test browser, so the circle overlay never exists.
+    // Skipped: same root cause as the rectangle test above — Google Maps fails
+    // to load with `InvalidKeyMapError`, so the Circle overlay is half-built.
     test.skip( "expanding the radius via setRadius updates the circle boundary", async ( { page } ) => {
       await searchPage.gotoWithCircleBoundary( 48.8, 2.3, 300 );
       await waitForShape( page );
