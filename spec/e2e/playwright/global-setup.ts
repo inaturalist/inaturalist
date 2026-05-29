@@ -43,18 +43,22 @@ async function globalSetup( config: FullConfig ) {
     baseURL: envConfig.baseUrl
   } );
 
-  await page.goto( "/login" );
-  const form = page.locator( "form.log-in" );
-  await form.locator( "input[type='email']" ).fill( testUser.email );
-  await form.locator( "input[type='password']" ).fill( testUser.password );
-  await Promise.all( [
-    page.waitForURL( url => !url.pathname.startsWith( "/login" )
-      && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
-    form.locator( "input[type='submit'][name='commit']" ).click()
-  ] );
-
-  await page.context().storageState( { path: ".auth/storage-state.json" } );
-  await browser.close();
+  try {
+    await page.goto( "/login" );
+    const form = page.locator( "form.log-in" );
+    await form.locator( "input[type='email']" ).fill( testUser.email );
+    await form.locator( "input[type='password']" ).fill( testUser.password );
+    await Promise.all( [
+      page.waitForURL( url => !url.pathname.startsWith( "/login" )
+        && !url.pathname.startsWith( "/session" ), { timeout: 15_000 } ),
+      form.locator( "input[type='submit'][name='commit']" ).click()
+    ] );
+    await page.context().storageState( { path: ".auth/storage-state.json" } );
+  } catch ( err ) {
+    console.warn( `Auth setup failed for ${testUser.email} — skipping cached auth state. Tests requiring login will fail.\n${err}` );
+  } finally {
+    await browser.close();
+  }
 }
 
 export default globalSetup;
