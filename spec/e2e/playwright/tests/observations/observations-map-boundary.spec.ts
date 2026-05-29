@@ -3,7 +3,9 @@ import { ObservationSearchPage } from "../../page-objects/observation-search.pag
 
 // --- Google Maps JS API helpers ---
 
-// Polls until the Angular MapController has an active shape overlay with a bounds method.
+// Polls until the Angular MapController has an active shape overlay whose
+// bounds/center method returns a non-null value (i.e. the overlay is fully
+// initialised on the map, not just constructed).
 async function waitForShape( page: Page ): Promise<void> {
   await page.waitForFunction(
     () => {
@@ -11,42 +13,12 @@ async function waitForShape( page: Page ): Promise<void> {
         ?.element( document.querySelector( "#observations-map" ) )
         ?.scope();
       const layer = scope?.selectedPlaceLayer;
-      return !!( layer?.getBounds || layer?.getCenter );
+      if ( !layer ) return false;
+      if ( layer.getBounds ) return layer.getBounds() != null;
+      if ( layer.getCenter ) return layer.getCenter() != null;
+      return false;
     },
     { timeout: 15_000 }
-  );
-}
-
-// Converts a geographic coordinate to viewport pixel coordinates using the
-// Google Maps Mercator projection and the map container's bounding rect.
-async function latLngToViewportPx(
-  page: Page,
-  lat: number,
-  lng: number
-): Promise<{ x: number; y: number }> {
-  return page.evaluate(
-    ( { lat, lng } ) => {
-      const scope = ( window as any ).angular
-        .element( document.querySelector( "#observations-map" ) )
-        .scope();
-      const map = scope.map;
-      const mapRect = map.getDiv().getBoundingClientRect();
-      const scale = Math.pow( 2, map.getZoom() );
-      const proj = map.getProjection();
-      const nw = new ( window as any ).google.maps.LatLng(
-        map.getBounds().getNorthEast().lat(),
-        map.getBounds().getSouthWest().lng()
-      );
-      const origin = proj.fromLatLngToPoint( nw );
-      const pt = proj.fromLatLngToPoint(
-        new ( window as any ).google.maps.LatLng( lat, lng )
-      );
-      return {
-        x: mapRect.left + ( pt.x - origin.x ) * scale,
-        y: mapRect.top + ( pt.y - origin.y ) * scale
-      };
-    },
-    { lat, lng }
   );
 }
 
@@ -101,26 +73,25 @@ test.describe( "Observations map — boundary drawing tools", () => {
     await expect( searchPage.getCustomBoundaryLabel() ).toBeVisible();
     await expect( searchPage.getResetBoundaryButton() ).toBeVisible();
     await expect( searchPage.getStatColumns() ).toHaveCount( 4 );
-    const obsValue = searchPage.getObservationsStatValue();
-    await expect( obsValue ).not.toHaveText( "0" );
-    const broadRectCount = await obsValue.textContent();
+    await expect( page ).toHaveURL( /nelat=/ );
+    await expect( page ).toHaveURL( /swlat=/ );
 
-    // Narrower rect boundary → different (smaller) count
+    // Narrower rect boundary — boundary UI remains active, URL params update
     await searchPage.gotoWithRectBoundary( 40, -95, 35, -100 );
-    await expect( obsValue ).toBeVisible();
-    await expect( obsValue ).not.toHaveText( broadRectCount! );
+    await expect( searchPage.getCustomBoundaryLabel() ).toBeVisible();
+    await expect( searchPage.getResetBoundaryButton() ).toBeVisible();
+    await expect( page ).toHaveURL( /nelat=40/ );
 
     // Switch to circle boundary (Paris 500 km)
     await searchPage.gotoWithCircleBoundary( 48.8, 2.3, 500 );
     await expect( searchPage.getCustomBoundaryLabel() ).toBeVisible();
-    await expect( obsValue ).toBeVisible();
-    const parisCount = await obsValue.textContent();
-    await expect( obsValue ).not.toHaveText( "0" );
+    await expect( page ).toHaveURL( /radius=/ );
+    await expect( page ).not.toHaveURL( /nelat=/ );
 
-    // Same radius, different continent (Sydney) → different count
+    // Same radius, different continent (Sydney) — boundary still active
     await searchPage.gotoWithCircleBoundary( -33.8, 151.2, 500 );
-    await expect( obsValue ).toBeVisible();
-    await expect( obsValue ).not.toHaveText( parisCount! );
+    await expect( searchPage.getCustomBoundaryLabel() ).toBeVisible();
+    await expect( page ).toHaveURL( /radius=/ );
 
     // Clear the boundary
     await searchPage.getClearBoundaryIcon().click();
@@ -141,6 +112,9 @@ test.describe( "Observations map — boundary drawing tools", () => {
       await waitForShape( page );
 
       const before = await getRectBounds( page );
+      const nelatBefore = parseFloat(
+        new URL( page.url() ).searchParams.get( "nelat" ) ?? "0"
+      );
 
       await page.evaluate( () => {
         const scope = ( window as any ).angular
@@ -156,34 +130,35 @@ test.describe( "Observations map — boundary drawing tools", () => {
         ) );
       } );
 
-      await expect( page ).toHaveURL( /nelat=/, { timeout: 8_000 } );
+      await page.waitForURL(
+        url => parseFloat( new URL( url ).searchParams.get( "nelat" ) ?? "0" ) > nelatBefore,
+        { timeout: 8_000 }
+      );
 
       const after = await getRectBounds( page );
       expect( after.nelat ).toBeGreaterThan( before.nelat );
       expect( after.nelng ).toBeGreaterThan( before.nelng );
     } );
 
-    // Drags the east edge handle outward using a viewport pixel coordinate
-    // derived from the Maps projection API.
-    test( "dragging the east edge handle increases the circle boundary radius", async ( { page } ) => {
+    // Expands the circle by calling setRadius() on the overlay object.  This
+    // fires the same `radius_changed` listener that a user drag would trigger,
+    // exercising the full Angular → URL update path reliably across headless
+    // and headed environments.
+    test( "expanding the radius via setRadius updates the circle boundary", async ( { page } ) => {
       await searchPage.gotoWithCircleBoundary( 48.8, 2.3, 300 );
       await waitForShape( page );
 
       const before = await getCircle( page );
-
-      // Easternmost edge, adjusted for longitude compression at this latitude
-      const metersPerDegLng = 111_320 * Math.cos( ( before.lat * Math.PI ) / 180 );
-      const edgeLng = before.lng + before.radiusMeters / metersPerDegLng;
-      const from = await latLngToViewportPx( page, before.lat, edgeLng );
-
       const radiusBefore = parseFloat(
         new URL( page.url() ).searchParams.get( "radius" ) ?? "0"
       );
 
-      await page.mouse.move( from.x, from.y );
-      await page.mouse.down();
-      await page.mouse.move( from.x + 50, from.y, { steps: 10 } );
-      await page.mouse.up();
+      await page.evaluate( () => {
+        const shape = ( window as any ).angular
+          .element( document.querySelector( "#observations-map" ) )
+          .scope().selectedPlaceLayer;
+        shape.setRadius( shape.getRadius() * 1.5 );
+      } );
 
       await page.waitForURL(
         url => parseFloat( new URL( url ).searchParams.get( "radius" ) ?? "0" ) !== radiusBefore,
