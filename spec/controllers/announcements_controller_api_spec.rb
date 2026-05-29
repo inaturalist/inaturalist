@@ -396,10 +396,11 @@ describe AnnouncementsController do
       expect( option_ids ).to include( announcement.id )
     end
 
-    it "does not set parent announcement for regular duplicates" do
-      announcement = create :announcement
+    it "maintains existing parent_announcement_id for standard duplicate button" do
+      parent_announcement = create :announcement
+      announcement = create :announcement, parent_announcement_id: parent_announcement.id
       get :duplicate, params: { id: announcement.id, inat_site_id: site.id }
-      expect( assigns( :announcement ).parent_announcement_id ).to be_nil
+      expect( assigns( :announcement ).parent_announcement_id ).to be parent_announcement.id
     end
   end
 end
