@@ -19,20 +19,6 @@ const app = async ( name: string, options: CommandOptions = {} ): Promise<unknow
 };
 
 /**
- * Call a MakeHelpers method on the server.
- * Returns the record attributes (or array of attributes) created by the helper.
- *
- * @example
- *   const user = await appMachinistHelper("make_curator", { login: "curator1" });
- *   const obs = await appMachinistHelper("make_research_grade_observation");
- */
-const appMachinistHelper = (
-  method: string,
-  args: Record<string, unknown> = {}
-): Promise<Record<string, unknown>> =>
-  app( "machinist_helper", { method, args } ) as Promise<Record<string, unknown>>;
-
-/**
  * Create a record using Machinist blueprints via SmartFactoryWrapper.
  *
  * @example
@@ -49,7 +35,6 @@ const appClean = (): Promise<unknown> => app( "clean" );
 
 export {
   app,
-  appMachinistHelper,
   appMake,
   appClean
 };

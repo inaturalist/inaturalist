@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page } from "@playwright/test";
 
 export class BasePage {
   readonly page: Page;
@@ -29,18 +29,10 @@ export class BasePage {
     await spinner.waitFor( { state: "detached", timeout } );
   }
 
-  getHeader(): Locator {
-    return this.page.locator( "#header.bootstrap" );
-  }
-
   async isLoggedIn(): Promise<boolean> {
     return this.page.evaluate( () =>
       typeof ( window as any ).CURRENT_USER !== "undefined"
         && ( window as any ).CURRENT_USER !== null
     );
-  }
-
-  async getPageTitle(): Promise<string> {
-    return this.page.title();
   }
 }

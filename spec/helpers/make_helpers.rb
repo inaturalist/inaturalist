@@ -91,21 +91,18 @@ module MakeHelpers
     else
       User.make!
     end
-    identifier = options[:identifier_user] || User.find_by_id( options[:identifier_user_id] )
-    obs_options = {
+    options = {
       taxon: Taxon.make!(:species),
       latitude: 1,
       longitude: 1,
       observed_on_string: "yesterday",
       user: user,
       editing_user_id: user.id
-    }.merge( options.reject { |k, _| [:identifier_user_id, :identifier_user].include?( k ) } )
-    o = Observation.make!( obs_options )
-    id_opts = { observation: o, taxon: o.taxon }
-    id_opts[:user] = identifier if identifier
-    Identification.make!( id_opts )
-    o.photos << LocalPhoto.make!( user: o.user )
-    Observation.set_quality_grade( o.id )
+    }.merge(options)
+    o = Observation.make!(options)
+    i = Identification.make!(:observation => o, :taxon => o.taxon)
+    o.photos << LocalPhoto.make!(:user => o.user)
+    Observation.set_quality_grade(o.id)
     o.reload
     o
   end

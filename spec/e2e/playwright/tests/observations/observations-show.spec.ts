@@ -1,22 +1,25 @@
 import { test, expect } from "@playwright/test";
 import { ObservationDetailPage } from "../../page-objects/observation-detail.page";
 import { mockObservationFetch } from "../../fixtures/observation-response";
-import { appMachinistHelper, appClean, appMake } from "../../support/on-rails";
+import { app, appClean, appMake } from "../../support/on-rails";
 
 test.describe( "Observation detail page", () => {
   let detailPage: ObservationDetailPage;
 
   test.beforeEach( async ( { page } ) => {
     await appClean();
-    detailPage = new ObservationDetailPage( page );
-    const obsUser = await appMake( "create", "user", { email: `e2e_obs_${Date.now()}@inaturalist.org` } );
-    const identUser = await appMake( "create", "user", { email: `e2e_ident_${Date.now()}@inaturalist.org` } );
-    const obs = await appMachinistHelper( "make_research_grade_observation", {
-      user_id: obsUser["id"] as number,
-      identifier_user_id: identUser["id"] as number
+    const user = await appMake( "create", "user", {} );
+    const taxon = await app( "eval", "Taxon.make!(:species).attributes" ) as Record<string, unknown>;
+    const obs = await appMake( "create", "observation", {
+      user_id: user.id,
+      taxon_id: taxon.id,
+      latitude: 1,
+      longitude: 1,
+      observed_on_string: "yesterday"
     } );
     await mockObservationFetch( page, obs );
-    await detailPage.goto( obs["id"] as number );
+    detailPage = new ObservationDetailPage( page );
+    await detailPage.goto( obs.id as number );
   } );
 
   test( "loads and displays core observation content", async () => {
