@@ -9,6 +9,5 @@ export const envConfig = {
     email: process.env.E2E_TEST_USER_EMAIL || "",
     password: process.env.E2E_TEST_USER_PASSWORD || ""
   },
-  headless: process.env.E2E_HEADLESS !== "false",
-  slowMo: parseInt( process.env.E2E_SLOW_MO || "0", 10 )
+  headless: process.env.E2E_HEADLESS !== "false"
 };

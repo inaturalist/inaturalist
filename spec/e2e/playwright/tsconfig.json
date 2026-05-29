@@ -8,13 +8,7 @@
     "resolveJsonModule": true,
     "outDir": "./dist",
     "rootDir": ".",
-    "baseUrl": ".",
-    "paths": {
-      "@shared/*": ["../shared/*"],
-      "@helpers/*": ["./helpers/*"],
-      "@page-objects/*": ["./page-objects/*"],
-      "@fixtures/*": ["./fixtures/*"]
-    }
+    "baseUrl": "."
   },
   "include": [
     "./**/*.ts",

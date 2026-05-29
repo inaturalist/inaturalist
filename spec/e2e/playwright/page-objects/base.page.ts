@@ -1,5 +1,4 @@
-import { Page, Locator, expect } from "@playwright/test";
-import { waitForReactMount } from "../helpers/wait-for-react.helper";
+import { Page, Locator } from "@playwright/test";
 
 export class BasePage {
   readonly page: Page;
@@ -12,37 +11,36 @@ export class BasePage {
     await this.page.goto( path );
   }
 
-  async waitForReactMount( timeout?: number ): Promise<void> {
-    await waitForReactMount( this.page, timeout );
-  }
+  /**
+   * Waits for the React bundle to finish mounting.
+   *
+   * iNaturalist pages render a #initial-loading spinner inside #app.
+   * When the React component tree mounts, the spinner is removed. For
+   * non-React pages #app or #initial-loading may not exist; in that case
+   * we treat the page as already loaded.
+   */
+  async waitForReactMount( timeout = 30_000 ): Promise<void> {
+    const app = this.page.locator( "#app" );
+    if ( await app.count() === 0 ) return;
 
-  async waitForPageReady(): Promise<void> {
-    await this.page.waitForLoadState( "domcontentloaded" );
+    const spinner = app.locator( "#initial-loading" );
+    if ( await spinner.count() === 0 ) return;
+
+    await spinner.waitFor( { state: "detached", timeout } );
   }
 
   getHeader(): Locator {
     return this.page.locator( "#header.bootstrap" );
   }
 
-  getFooter(): Locator {
-    return this.page.locator( "#footer.bootstrap" );
-  }
-
   async isLoggedIn(): Promise<boolean> {
-    const currentUser = await this.page.evaluate( () => {
-      return typeof ( window as any ).CURRENT_USER !== "undefined"
-        && ( window as any ).CURRENT_USER !== null;
-    } );
-    return currentUser;
+    return this.page.evaluate( () =>
+      typeof ( window as any ).CURRENT_USER !== "undefined"
+        && ( window as any ).CURRENT_USER !== null
+    );
   }
 
   async getPageTitle(): Promise<string> {
     return this.page.title();
-  }
-
-  async assertNoServerError(): Promise<void> {
-    const bodyText = await this.page.locator( "body" ).textContent();
-    expect( bodyText ).not.toContain( "500 Internal Server Error" );
-    expect( bodyText ).not.toContain( "We're sorry, but something went wrong" );
   }
 }

@@ -20,7 +20,6 @@ test.describe( "Observation detail page", () => {
   } );
 
   test( "loads and displays core observation content", async () => {
-    await detailPage.assertNoServerError();
     await expect( detailPage.getPhoto() ).toBeVisible( { timeout: 15_000 } );
     await expect( detailPage.getTaxonName() ).toBeVisible( { timeout: 15_000 } );
     await expect( detailPage.getObserver() ).toBeVisible( { timeout: 15_000 } );

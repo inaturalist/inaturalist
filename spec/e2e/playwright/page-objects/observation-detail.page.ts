@@ -26,8 +26,4 @@ export class ObservationDetailPage extends BasePage {
   getMap(): Locator {
     return this.page.locator( "#ObservationShow .Map" ).first();
   }
-
-  getActivitySection(): Locator {
-    return this.page.locator( "#ObservationShow .Activity" ).first();
-  }
 }

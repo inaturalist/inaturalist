@@ -9,7 +9,6 @@ export class ObservationSearchPage extends BasePage {
   async goto( params?: string ): Promise<void> {
     const path = params ? `/observations?${params}` : "/observations";
     await super.goto( path );
-    await this.waitForPageReady();
   }
 
   getGridView(): Locator {
