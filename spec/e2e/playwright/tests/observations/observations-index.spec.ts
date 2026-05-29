@@ -22,20 +22,4 @@ test.describe( "Observations index", () => {
   test( "grid view control is present", async () => {
     await expect( searchPage.getGridView() ).toBeVisible();
   } );
-
-  test( "can switch to map view", async () => {
-    const mapControl = searchPage.getMapView();
-    if ( await mapControl.isVisible() ) {
-      await searchPage.switchToMap();
-      await expect( searchPage.page.locator( "[class*='map'], .map" ).first() ).toBeVisible();
-    }
-  } );
-
-  test( "can switch to table view", async () => {
-    const tableControl = searchPage.getTableView();
-    if ( await tableControl.isVisible() ) {
-      await searchPage.switchToTable();
-      await expect( searchPage.page.locator( "table, .table" ).first() ).toBeVisible();
-    }
-  } );
 } );

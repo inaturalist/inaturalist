@@ -5,9 +5,6 @@ export class LoginPage extends BasePage {
   readonly emailInput: Locator;
   readonly passwordInput: Locator;
   readonly submitButton: Locator;
-  readonly signupLink: Locator;
-  readonly rememberCheckbox: Locator;
-  readonly forgotPasswordLink: Locator;
   readonly loginForm: Locator;
 
   constructor( page: Page ) {
@@ -16,9 +13,6 @@ export class LoginPage extends BasePage {
     this.emailInput = this.loginForm.locator( "input[type='email']" );
     this.passwordInput = this.loginForm.locator( "input[type='password']" );
     this.submitButton = this.loginForm.locator( "input[type='submit'][name='commit']" );
-    this.signupLink = this.loginForm.locator( "a.btn.btn-link[href='/signup']" );
-    this.rememberCheckbox = this.loginForm.locator( "#user_remember_me" );
-    this.forgotPasswordLink = this.loginForm.locator( "a[href='/users/password/new']" );
   }
 
   async goto(): Promise<void> {

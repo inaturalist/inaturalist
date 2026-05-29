@@ -1,38 +1,22 @@
-import { request, expect } from "@playwright/test";
+import { request } from "@playwright/test";
 import { envConfig } from "../../shared/env.config";
 
 const contextPromise = request.newContext( {
   baseURL: envConfig.baseUrl
 } );
 
-interface CommandPayload {
-  name: string;
-  options?: Record<string, unknown> | string | unknown[];
-}
+type CommandOptions = Record<string, unknown> | string | unknown[];
 
-const appCommands = async ( data: CommandPayload | CommandPayload[] ): Promise<unknown[]> => {
+const app = async ( name: string, options: CommandOptions = {} ): Promise<unknown> => {
   const context = await contextPromise;
-  const response = await context.post( "/__e2e__/command", { data } );
+  const response = await context.post( "/__e2e__/command", { data: { name, options } } );
   if ( !response.ok() ) {
     const body = await response.text();
     throw new Error( `/__e2e__/command failed (${response.status()}): ${body}` );
   }
-  return await response.json();
-};
-
-const app = async ( name: string, options: Record<string, unknown> | string | unknown[] = {} ): Promise<unknown> => {
-  const results = await appCommands( { name, options } );
+  const results = await response.json() as unknown[];
   return results[0];
 };
-
-const appScenario = ( name: string, options: Record<string, unknown> = {} ): Promise<unknown> =>
-  app( "scenarios/" + name, options );
-
-const appEval = ( code: string ): Promise<unknown> =>
-  app( "eval", code );
-
-const appFactories = ( options: unknown[] ): Promise<unknown> =>
-  app( "factory_bot", options );
 
 /**
  * Call a MakeHelpers method on the server.
@@ -57,39 +41,15 @@ const appMachinistHelper = (
  */
 const appMake = async ( factoryMethod: string, ...factoryArgs: unknown[] ): Promise<Record<string, unknown>> => {
   // factory_bot.rb returns an array from .map; unwrap to get the first record
-  const result = await appFactories( [[factoryMethod, ...factoryArgs]] );
-  const records = result as Record<string, unknown>[];
+  const records = await app( "factory_bot", [[factoryMethod, ...factoryArgs]] ) as Record<string, unknown>[];
   return records[0];
 };
 
 const appClean = (): Promise<unknown> => app( "clean" );
 
-const appVcrInsertCassette = async ( cassetteName: string, options?: Record<string, unknown> ) => {
-  const context = await contextPromise;
-  const opts = options ? Object.fromEntries(
-    Object.entries( options ).filter( ( [, v] ) => v !== undefined )
-  ) : {};
-  const response = await context.post( "/__e2e__/vcr/insert", { data: [cassetteName, opts] } );
-  expect( response.ok() ).toBeTruthy();
-  return await response.json();
-};
-
-const appVcrEjectCassette = async () => {
-  const context = await contextPromise;
-  const response = await context.post( "/__e2e__/vcr/eject" );
-  expect( response.ok() ).toBeTruthy();
-  return await response.json();
-};
-
 export {
-  appCommands,
   app,
-  appScenario,
-  appEval,
-  appFactories,
   appMachinistHelper,
   appMake,
-  appClean,
-  appVcrInsertCassette,
-  appVcrEjectCassette
+  appClean
 };

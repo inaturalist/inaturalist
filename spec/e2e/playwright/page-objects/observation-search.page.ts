@@ -24,10 +24,6 @@ export class ObservationSearchPage extends BasePage {
     return this.page.locator( "#subview-controls button", { hasText: /map/i } );
   }
 
-  getObservationCards(): Locator {
-    return this.page.locator( ".observation-photo, .photo_cell, .ObservationsGridItem" );
-  }
-
   getHeading(): Locator {
     return this.page.locator( "#filters h1" );
   }
@@ -60,18 +56,6 @@ export class ObservationSearchPage extends BasePage {
     return this.page.locator( "#results" );
   }
 
-  async switchToGrid(): Promise<void> {
-    await this.getGridView().click();
-  }
-
-  async switchToTable(): Promise<void> {
-    await this.getTableView().click();
-  }
-
-  async switchToMap(): Promise<void> {
-    await this.getMapView().click();
-  }
-
   // --- Boundary drawing controls ---
 
   getRectangleBoundaryButton(): Locator {
@@ -94,10 +78,6 @@ export class ObservationSearchPage extends BasePage {
     return this.page.locator(
       "span.geo.selected .glyphicon-remove-sign[ng-click=\"clearBoundary( )\"]"
     );
-  }
-
-  getObservationsStatValue(): Locator {
-    return this.page.locator( "#obsstatcol .stat-value" );
   }
 
   async gotoWithRectBoundary(

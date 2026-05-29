@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { ObservationDetailPage } from "../../page-objects/observation-detail.page";
+import { mockObservationFetch } from "../../fixtures/observation-response";
 import { appMachinistHelper, appClean, appMake } from "../../support/on-rails";
 
 test.describe( "Observation detail page", () => {
@@ -14,7 +15,8 @@ test.describe( "Observation detail page", () => {
       user_id: obsUser["id"] as number,
       identifier_user_id: identUser["id"] as number
     } );
-    await detailPage.goto( obs["id"] as number, obs );
+    await mockObservationFetch( page, obs );
+    await detailPage.goto( obs["id"] as number );
   } );
 
   test( "loads and displays core observation content", async () => {
