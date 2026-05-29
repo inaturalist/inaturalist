@@ -162,7 +162,8 @@ var SearchController = function (
   $scope.possibleSubviews = { observations: ["map", "grid", "table"] };
   $scope.possibleFields = ["iconic_taxa", "month", "swlat", "swlng",
     "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview",
-    "locale", "preferred_place_id", "ident_user_id", "spam", "test"];
+    "locale", "preferred_place_id", "ident_user_id", "spam", "test",
+    "identified"];
   $scope.defaultView = "observations";
   $scope.defaultSubview = "grid";
   $rootScope.mapType = "map";
@@ -201,6 +202,19 @@ var SearchController = function (
   };
   $scope.$watchGroup( ["mapType", "mapLabels", "mapTerrain"], function ( ) {
     $rootScope.$emit( "setMapType", $scope.mapType, $scope.mapLabels, $scope.mapTerrain );
+  } );
+  $scope.toggleUnknownFilter = function ( ) {
+    if ( $scope.params.identified === "false" ) {
+      delete $scope.params.identified;
+    } else {
+      $scope.params.iconic_taxa_hash = {};
+      $scope.params.identified = "false";
+    }
+  };
+  $scope.$watchCollection( "params.iconic_taxa_hash", function ( newVal ) {
+    if ( newVal && _.some( newVal, function ( v ) { return !!v; } ) ) {
+      delete $scope.params.identified;
+    }
   } );
   // this is the first block to run when the page loads
   $scope.preInitialize = function ( ) {

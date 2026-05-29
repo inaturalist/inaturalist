@@ -153,15 +153,18 @@ class FiltersButton extends React.Component {
           key={`btn-${t.name}`}
           onClick={( ) => {
             let newIconicTaxa;
+            const newParams = {};
             if ( _.includes( params.iconic_taxa, t.name ) ) {
               newIconicTaxa = _.without( params.iconic_taxa, t.name );
             } else {
               newIconicTaxa = params.iconic_taxa.map( n => n );
               newIconicTaxa.push( t.name );
             }
-            updateSearchParams( {
-              iconic_taxa: newIconicTaxa
-            } );
+            newParams.iconic_taxa = newIconicTaxa;
+            if ( params.identified === false ) {
+              newParams.identified = null;
+            }
+            updateSearchParams( newParams );
           }}
         >
           <i className={`icon-iconic-${t.name.toLowerCase( )}`} />
@@ -321,9 +324,22 @@ class FiltersButton extends React.Component {
                 { name: "Insecta", label: "insects" },
                 { name: "Plantae", label: "plants" },
                 { name: "Fungi", label: "fungi" },
-                { name: "Protozoa", label: "protozoans" },
-                { name: "unknown", label: "unknown" }
+                { name: "Protozoa", label: "protozoans" }
               ].map( iconicTaxonButton ) }
+              <Button
+                className={`iconic-taxon last${params.identified === false ? " filter-changed active" : ""}`}
+                title={I18n.t( "unknown" )}
+                key="btn-unknown"
+                onClick={( ) => {
+                  if ( params.identified === false ) {
+                    updateSearchParams( { identified: null } );
+                  } else {
+                    updateSearchParams( { iconic_taxa: [], identified: false } );
+                  }
+                }}
+              >
+                <i className="icon-iconic-unknown" />
+              </Button>
             </div>
           </Col>
         </Row>

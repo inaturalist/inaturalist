@@ -80,7 +80,7 @@
                   }
                 %button{ button_attrs }
                   %i{ :class => "icon-iconic-#{t[0].downcase}" }
-              %button{ type: "button", :class => "btn btn-default iconic-taxon last", "uib-btn-checkbox" => true, "uib-btn-checkbox-true" => "unknown", "ng-model" => "params.iconic_taxa_hash.unknown", title: "{{ shared.t( 'unknown' ) }}", "ng-class" => "{ 'filter-changed': params.iconic_taxa_hash.unknown }" }
+              %button{ type: "button", :class => "btn btn-default iconic-taxon last", "ng-click" => "toggleUnknownFilter()", "ng-class" => "{ 'filter-changed active': params.identified === 'false' }", title: "{{ shared.t( 'unknown' ) }}" }
                 %i{ :class => "icon-iconic-unknown" }
         .row
           .col-xs-12
