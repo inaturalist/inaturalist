@@ -1,0 +1,55 @@
+User-agent: *
+
+Disallow: /
+
+Allow: /$
+Allow: /login$
+Allow: /signup$
+Allow: /assets/
+Allow: /fonts/
+
+# Blog
+Allow: /blog$
+Allow: /blog/$
+Allow: /blog/*$
+Allow: /blog/archives$
+Disallow: /blog/new$
+Disallow: /blog/*/*
+Allow: /blog/archives/*/*$
+# Blog with params
+Disallow: /blog?
+Disallow: /blog/?
+Disallow: /blog/*?*
+
+# Pages
+Disallow: /pages$
+Disallow: /pages/$
+Allow: /pages/*$
+Disallow: /pages/all$
+Disallow: /pages/*/*
+# Pages with params
+Disallow: /pages?
+Disallow: /pages/?
+Disallow: /pages/*?*
+
+# Projects
+Allow: /projects$
+Allow: /projects/$
+Allow: /projects/*$
+Disallow: /projects/browse$
+Disallow: /projects/calendar$
+Disallow: /projects/new$
+Disallow: /projects/new_traditional$
+Disallow: /projects/search$
+Disallow: /projects/user$
+Disallow: /projects/*/*
+Allow: /projects/*/journal$
+Allow: /projects/*/journal/$
+Allow: /projects/*/journal/*$
+Disallow: /projects/*/journal/new$
+Disallow: /projects/*/journal/*/*
+Allow: /projects/*/journal/archives/*/*$
+# Projects with params
+Disallow: /projects?
+Disallow: /projects/?
+Disallow: /projects/*?*

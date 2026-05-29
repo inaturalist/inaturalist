@@ -6,13 +6,13 @@ require "tmpdir"
 require "zlib"
 
 module Sitemap
-  class Generator
+  class SitemapWwwSitemapGenerator
     MAX_URLS_PER_SITEMAP = 50_000
     DEFAULT_CHUNK_SIZE = 45_000
     DEFAULT_BATCH_SIZE = 2_000
-    OUTPUT_DIR = Rails.root.join( "public", "sitemaps" ).to_s
-    ROOT_INDEX_PATH = Rails.root.join( "public", "sitemap.xml" ).to_s
-    PUBLIC_URL_PREFIX = "/sitemaps"
+    OUTPUT_DIR = Rails.root.join( "public", "sitemap-www" ).to_s
+    ROOT_INDEX_PATH = File.join( OUTPUT_DIR, "sitemap.xml" )
+    PUBLIC_URL_PREFIX = "/sitemap-www"
     XML_HEADER = %(<?xml version="1.0" encoding="UTF-8"?>\n)
     URLSET_OPEN = %(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n)
     URLSET_CLOSE = %(</urlset>\n)
@@ -44,10 +44,10 @@ module Sitemap
       category_results = []
       category_results << generate_projects( tmp_dir )
       category_results << generate_taxa( tmp_dir )
-      category_results << generate_people( tmp_dir )
+      # category_results << generate_people( tmp_dir )
       category_results << generate_places( tmp_dir )
       category_results << generate_blog_posts( tmp_dir )
-      category_results << generate_user_journal_posts( tmp_dir )
+      # category_results << generate_user_journal_posts( tmp_dir )
       category_results << generate_project_journal_posts( tmp_dir )
 
       write_root_index( root_index_tmp_path, category_results.map {| result | result[:index_filename] } )

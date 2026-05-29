@@ -181,33 +181,6 @@ Disallow: /user_parents?
 Disallow: /user_parents/?
 Disallow: /user_parents/*?*
 
-# Users
-Allow: /users$
-Allow: /users/$
-Allow: /users/*$
-Disallow: /users/api_token$
-Disallow: /users/cancel$
-Disallow: /users/confirmation$
-Disallow: /users/curation$
-Disallow: /users/dashboard$
-Disallow: /users/dashboard_updates$
-Disallow: /users/delete$
-Disallow: /users/edit$
-Disallow: /users/edit_after_auth$
-Disallow: /users/email_available$
-Disallow: /users/new$
-Disallow: /users/new.mobile$
-Disallow: /users/new_updates$
-Disallow: /users/password$
-Disallow: /users/recent$
-Disallow: /users/unlock$
-Disallow: /users/updates_count$
-Disallow: /users/*/*
-# Users with params
-Disallow: /users?
-Disallow: /users/?
-Disallow: /users/*?*
-
 #
 # Routes entirely disallowed
 #
@@ -294,5 +267,6 @@ Disallow: /taxon_splits
 Disallow: /taxon_stages
 Disallow: /taxon_swaps
 Disallow: /trips
+Disallow: /users
 Disallow: /votes
 Disallow: /wikimedia_commons
