@@ -1,3 +1,4 @@
+import path from "path";
 import { defineConfig, devices } from "@playwright/test";
 import { envConfig } from "../shared/env.config";
 
@@ -5,10 +6,13 @@ export default defineConfig( {
   globalSetup: "./global-setup",
   webServer: {
     command: "bundle exec rails server -e test -p 3001",
-    url: "http://localhost:3001",
+    url: "http://localhost:3001/ping",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
-    env: { RAILS_ENV: "test" }
+    env: { RAILS_ENV: "test" },
+    cwd: path.resolve( __dirname, "../../.." ),
+    stdout: "pipe",
+    stderr: "pipe"
   },
   testDir: "./tests",
   fullyParallel: true,
