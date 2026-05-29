@@ -11085,6 +11085,11 @@ en:
                 a lot of spammers, and this is a kind of lame way of dealing
                 with them. You can still save a draft, and if you're still
                 using the site in a day, you'll be able to publish.
+        project:
+          attributes:
+              base:
+                # Error message indicating a project start date must be before its end date
+                start_date_must_be_before_end_date: start date must be before end date
         project_fave:
           attributes:
             base:

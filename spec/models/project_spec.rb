@@ -37,6 +37,59 @@ describe Project do
     end
   end
 
+  describe "start_date_must_be_before_end_date" do
+    it "does not generate an error if there are only start or end dates" do
+      expect( Project.make!( start_time: "2020-01-01" ) ).to be_valid
+      expect( Project.make!( end_time: "2020-01-01" ) ).to be_valid
+      expect( Project.make!( preferred_rule_d1: "2020-01-01" ) ).to be_valid
+      expect( Project.make!( preferred_rule_d2: "2020-01-01" ) ).to be_valid
+    end
+
+    it "does not generate an error if the end date is not before the start date" do
+      expect( Project.make!( start_time: "2020-01-01", end_time: "2020-01-01" ) ).to be_valid
+      expect( Project.make!( start_time: "2020-01-01", end_time: "2020-01-02" ) ).to be_valid
+      expect( Project.make!(
+        start_time: "2020-01-01 01:00:00 -0400",
+        end_time: "2020-01-01 02:00:00 -0400"
+      ) ).to be_valid
+      expect( Project.make!(
+        preferred_rule_d1: "2020-01-01",
+        preferred_rule_d2: "2020-01-01"
+      ) ).to be_valid
+      expect( Project.make!(
+        preferred_rule_d1: "2020-01-01 01:00:00 -0400",
+        preferred_rule_d2: "2020-01-01 02:00:00 -0400"
+      ) ).to be_valid
+    end
+
+    it "generates an error if the end date is before the start date" do
+      expect do
+        Project.make!(
+          start_time: "2020-02-01",
+          end_time: "2020-01-01"
+        )
+      end.to raise_error( ActiveRecord::RecordInvalid, /start date must be before end date/ )
+      expect do
+        Project.make!(
+          start_time: "2020-01-01 02:00:00 -0400",
+          end_time: "2020-01-01 01:00:00 -0400"
+        )
+      end.to raise_error( ActiveRecord::RecordInvalid, /start date must be before end date/ )
+      expect do
+        Project.make!(
+          preferred_rule_d1: "2020-02-01",
+          preferred_rule_d2: "2020-01-01"
+        )
+      end.to raise_error( ActiveRecord::RecordInvalid, /start date must be before end date/ )
+      expect do
+        Project.make!(
+          preferred_rule_d1: "2020-01-01 02:00:00 -0400",
+          preferred_rule_d2: "2020-01-01 01:00:00 -0400"
+        )
+      end.to raise_error( ActiveRecord::RecordInvalid, /start date must be before end date/ )
+    end
+  end
+
   it "resets last_aggregated_at if start or end times changed" do
     p = Project.make!( prefers_aggregation: true, project_type: Project::BIOBLITZ_TYPE,
       place: make_place_with_geom, start_time: Time.now, end_time: Time.now )
@@ -950,6 +1003,22 @@ describe Project do
       project.save!
       project_user.reload
       expect( project_user.role ).to be_blank
+    end
+  end
+
+  describe "datetime_rule_to_instance" do
+    it "returns a time for datetime strings" do
+      expect( Project.datetime_rule_to_instance( "2020-01-01 00:00:00 -0400" ) ).to be_a Time
+    end
+
+    it "returns a date for date strings" do
+      expect( Project.datetime_rule_to_instance( "2020-01-01" ) ).to be_a Date
+    end
+
+    it "nil for everything else" do
+      expect( Project.datetime_rule_to_instance( nil ) ).to be_nil
+      expect( Project.datetime_rule_to_instance( "tomorrow" ) ).to be_nil
+      expect( Project.datetime_rule_to_instance( 1_577_854_800_000 ) ).to be_nil
     end
   end
 end
