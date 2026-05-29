@@ -29,6 +29,28 @@ async function verifyTestEnvironment(): Promise<void> {
   }
 }
 
+async function seedTestUser( email: string, password: string ): Promise<void> {
+  const context = await request.newContext( { baseURL: envConfig.baseUrl } );
+  try {
+    const response = await context.post( "/__e2e__/command", {
+      data: {
+        name: "factory_bot",
+        options: [["create", "user", { email, password }]]
+      }
+    } );
+    if ( !response.ok() ) {
+      const body = await response.text();
+      // Email-uniqueness collision from a prior run is fine; the existing user
+      // can still log in with the same password.
+      if ( !/has already been taken|is already/i.test( body ) ) {
+        throw new Error( `Failed to seed test user (${response.status()}): ${body}` );
+      }
+    }
+  } finally {
+    await context.dispose();
+  }
+}
+
 async function globalSetup( config: FullConfig ) {
   await verifyTestEnvironment();
 
@@ -37,6 +59,8 @@ async function globalSetup( config: FullConfig ) {
     console.log( "No test user credentials configured — skipping auth setup" );
     return;
   }
+
+  await seedTestUser( testUser.email, testUser.password );
 
   const browser = await chromium.launch();
   const page = await browser.newPage( {
