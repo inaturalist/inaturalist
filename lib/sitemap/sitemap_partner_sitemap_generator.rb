@@ -6,18 +6,6 @@ require "uri"
 
 module Sitemap
   class SitemapPartnerSitemapGenerator
-    STATIC_ALLOWED_URL_METHODS = %i[
-      root_url
-      site_posts_url
-      login_url
-      signup_url
-    ].freeze
-    DYNAMIC_URL_METHODS = %i[
-      about_url
-      help_url
-      getting_started_url
-      community_guidelines_url
-    ].freeze
     OUTPUT_DIR = Rails.root.join( "public", "sitemap-partners" )
 
     class << self
@@ -61,17 +49,9 @@ module Sitemap
 
     def allowed_urls_for_site( site )
       FakeView.set_default_url_options_from_site( site )
-      static_urls = STATIC_ALLOWED_URL_METHODS.filter_map do | method_name |
-        next unless FakeView.respond_to?( method_name )
-
-        FakeView.public_send( method_name )
-      end
-      dynamic_urls = DYNAMIC_URL_METHODS.filter_map do | method_name |
-        site.public_send( method_name ).presence
-      end
       blog_post_urls = blog_post_urls_for_site( site )
       featured_project_urls = featured_project_urls_for_site( site )
-      ( static_urls + dynamic_urls + blog_post_urls + featured_project_urls ).uniq
+      ( blog_post_urls + featured_project_urls ).uniq
     end
 
     def blog_post_urls_for_site( site )
