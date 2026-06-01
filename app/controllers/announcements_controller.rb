@@ -124,7 +124,7 @@ class AnnouncementsController < ApplicationController
     if params[:variant]
       @parent_announcement_options.unshift( [original.dropdown_label, original.id] ) unless
         @parent_announcement_options.any? {| _label, id | id == @announcement.parent_announcement_id }
-      @announcement.parent_announcement_id = original.id
+      @announcement.parent_announcement_id = original.parent_announcement_id || original.id
     end
     render :new
   end
