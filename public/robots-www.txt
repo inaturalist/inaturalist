@@ -7,67 +7,30 @@ Allow: /
 #
 
 # Blog
-Allow: /blog$
-Allow: /blog/$
-Allow: /blog/*$
-Allow: /blog/archives$
 Disallow: /blog/new$
 Disallow: /blog/*/*
 Allow: /blog/archives/*/*$
-# Blog with params
-Disallow: /blog?
-Disallow: /blog/?
-Disallow: /blog/*?*
 
 # Journal
-Allow: /journal$
-Allow: /journal/$
-Allow: /journal/*$
-Allow: /journal/*/*$
 Disallow: /journal/*/new$
 Disallow: /journal/*/archives$
 Disallow: /journal/*/*/*
-# Journal with params
-Disallow: /journal?
-Disallow: /journal/?
-Disallow: /journal/*?*
 
 # Observations
-Allow: /observations$
-Allow: /observations/$
 Disallow: /observations/*
-# Observations with params
-Disallow: /observations?
-Disallow: /observations/?
-Disallow: /observations/*?*
 
 # Pages
 Disallow: /pages$
 Disallow: /pages/$
-Allow: /pages/*$
 Disallow: /pages/all$
 Disallow: /pages/*/*
-# Pages with params
-Disallow: /pages?
-Disallow: /pages/?
-Disallow: /pages/*?*
 
 # People
-Allow: /people$
-Allow: /people/$
-Allow: /people/*$
 Disallow: /people/leaderboard$
 Disallow: /people/new$
 Disallow: /people/*/*
-# People with params
-Disallow: /people?
-Disallow: /people/?
-Disallow: /people/*?*
 
 # Places
-Allow: /places$
-Allow: /places/$
-Allow: /places/*$
 Disallow: /places/autocomplete$
 Disallow: /places/cached_guide$
 Disallow: /places/geometry$
@@ -78,29 +41,17 @@ Disallow: /places/planner$
 Disallow: /places/search$
 Disallow: /places/wikipedia$
 Disallow: /places/*/*
-# Places with params
-Disallow: /places?
-Disallow: /places/?
-Disallow: /places/*?*
 
 # Posts
 Disallow: /posts$
 Disallow: /posts/$
-Allow: /posts/*$
 Disallow: /posts/for_project_user$
 Disallow: /posts/for_user$
 Disallow: /posts/new$
 Disallow: /posts/search$
 Disallow: /posts/*/*
-# Posts with params
-Disallow: /posts?
-Disallow: /posts/?*
-Disallow: /posts/*?
 
 # Projects
-Allow: /projects$
-Allow: /projects/$
-Allow: /projects/*$
 Disallow: /projects/browse$
 Disallow: /projects/calendar$
 Disallow: /projects/new$
@@ -108,42 +59,19 @@ Disallow: /projects/new_traditional$
 Disallow: /projects/search$
 Disallow: /projects/user$
 Disallow: /projects/*/*
-Allow: /projects/*/journal$
-Allow: /projects/*/journal/$
-Allow: /projects/*/journal/*$
 Disallow: /projects/*/journal/new$
 Disallow: /projects/*/journal/*/*
-Allow: /projects/*/journal/archives/*/*$
-# Projects with params
-Disallow: /projects?
-Disallow: /projects/?
-Disallow: /projects/*?*
 
 # Sites
 Disallow: /sites$
 Disallow: /sites/$
 Disallow: /sites/*$
-Allow: /sites/affiliation$
-Allow: /sites/network$
-# Sites with params
-Disallow: /sites?
-Disallow: /sites/?
-Disallow: /sites/*?*
 
 # Stats
-Allow: /stats$
-Allow: /stats/$
 Disallow: /stats/*
 Allow: /stats/20*$
-# Stats with params
-Disallow: /stats?
-Disallow: /stats/?
-Disallow: /stats/*?*
 
 # Taxa
-Allow: /taxa$
-Allow: /taxa/$
-Allow: /taxa/*$
 Disallow: /taxa/auto_complete_name$
 Disallow: /taxa/autocomplete$
 Disallow: /taxa/curation$
@@ -157,29 +85,24 @@ Disallow: /taxa/occur_in$
 Disallow: /taxa/search$
 Disallow: /taxa/synonyms$
 Disallow: /taxa/*/*
-# Taxa with params
-Disallow: /taxa?
-Disallow: /taxa/?
-Disallow: /taxa/*?*
 
 # Translations
-Allow: /translations$
-Allow: /translations/$
 Disallow: /translations/*
-# Translations with params
-Disallow: /translations?
-Disallow: /translations/?
-Disallow: /translations/*?*
 
 # User Parents
-Allow: /user_parents$
-Allow: /user_parents/$
 Disallow: /user_parents/*
-Allow: /user_parents/new$
-# User Parents with params
-Disallow: /user_parents?
-Disallow: /user_parents/?
-Disallow: /user_parents/*?*
+
+#
+# Routes with parameters
+#
+Disallow: /*?*
+
+#
+# Routes with formats
+#
+Disallow: /*.atom*
+Disallow: /*.csv*
+Disallow: /*.json*
 
 #
 # Routes entirely disallowed

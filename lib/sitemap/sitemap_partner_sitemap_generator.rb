@@ -6,7 +6,12 @@ require "uri"
 
 module Sitemap
   class SitemapPartnerSitemapGenerator
-    STATIC_ALLOWED_PATHS = %w(/blog /login /signup).freeze
+    STATIC_ALLOWED_URL_METHODS = %i[
+      root_url
+      site_posts_url
+      login_url
+      signup_url
+    ].freeze
     DYNAMIC_URL_METHODS = %i[
       about_url
       help_url
@@ -35,8 +40,7 @@ module Sitemap
 
         write_sitemap_file(
           site_data[:sitemap_filename],
-          site_data[:base_url],
-          site_data[:allowed_paths],
+          site_data[:allowed_urls],
           site_data[:site_url]
         )
         generated_count += 1
@@ -48,55 +52,38 @@ module Sitemap
     private
 
     def site_data_for( site )
-      site_uri = parse_site_uri( site.url )
-      return nil unless site_uri
-
-      host = site_uri.host.to_s.downcase
-      return nil if host.blank?
-
       {
         site_url: site.url.to_s,
-        base_url: base_url_from_uri( site_uri ),
-        allowed_paths: allowed_paths_for_site( site, host ),
+        allowed_urls: allowed_urls_for_site( site ),
         sitemap_filename: "sitemap-#{site.id}.xml"
       }
     end
 
-    def parse_site_uri( raw_url )
-      return nil if raw_url.blank?
+    def allowed_urls_for_site( site )
+      FakeView.set_default_url_options_from_site( site )
+      static_urls = STATIC_ALLOWED_URL_METHODS.filter_map do | method_name |
+        next unless FakeView.respond_to?( method_name )
 
-      URI.parse( raw_url.to_s )
-    rescue URI::InvalidURIError
-      nil
-    end
-
-    def base_url_from_uri( site_uri )
-      scheme = site_uri.scheme.presence || "https"
-      host = site_uri.host
-      default_port = ( scheme == "https" ) ? 443 : 80
-      port_part = ( site_uri.port == default_port ) ? "" : ":#{site_uri.port}"
-      "#{scheme}://#{host}#{port_part}"
-    end
-
-    def allowed_paths_for_site( site, host )
-      dynamic_paths = DYNAMIC_URL_METHODS.filter_map do | method_name |
-        normalize_path_for_site( site.public_send( method_name ), host )
+        FakeView.public_send( method_name )
       end
-      blog_paths = blog_post_paths_for_site( site )
-      featured_project_paths = featured_project_paths_for_site( site )
-      ( ["/"] + STATIC_ALLOWED_PATHS + dynamic_paths + blog_paths + featured_project_paths ).uniq
+      dynamic_urls = DYNAMIC_URL_METHODS.filter_map do | method_name |
+        site.public_send( method_name ).presence
+      end
+      blog_post_urls = blog_post_urls_for_site( site )
+      featured_project_urls = featured_project_urls_for_site( site )
+      ( static_urls + dynamic_urls + blog_post_urls + featured_project_urls ).uniq
     end
 
-    def blog_post_paths_for_site( site )
+    def blog_post_urls_for_site( site )
       Post.published.
         where( parent_type: "Site", parent_id: site.id ).
         not_flagged_as_spam.
-        select( :id, :title ).
+        select( :id, :title, :slug ).
         order( :id ).
-        map {| post | "/blog/#{post.to_param}" }
+        map {| post | FakeView.site_post_url( post ) }
     end
 
-    def featured_project_paths_for_site( site )
+    def featured_project_urls_for_site( site )
       site.site_featured_projects.
         joins( :project ).
         merge( Project.not_flagged_as_spam ).
@@ -104,37 +91,16 @@ module Sitemap
         order( "site_featured_projects.updated_at DESC" ).
         map do | featured_project |
           project = featured_project.project
-          "/projects/#{project.slug.presence || project.id}"
+          FakeView.project_url( project )
         end
     end
 
-    def normalize_path_for_site( raw_value, host )
-      return nil if raw_value.blank?
-
-      value = raw_value.to_s.strip
-      return nil if value.blank?
-
-      if value.start_with?( "/" )
-        return value
-      end
-
-      uri = URI.parse( value )
-      return nil if uri.host.present? && uri.host.downcase != host
-
-      path = uri.path.presence || "/"
-      path = "/#{path}" unless path.start_with?( "/" )
-      path
-    rescue URI::InvalidURIError
-      nil
-    end
-
-    def write_sitemap_file( filename, base_url, allowed_paths, site_url )
+    def write_sitemap_file( filename, allowed_urls, site_url )
       File.open( @output_dir.join( filename ), "w:UTF-8" ) do | io |
         io.write( %(<?xml version="1.0" encoding="UTF-8"?>\n) )
         io.write( %(<!-- Generated for #{CGI.escapeHTML( site_url )} -->\n) )
         io.write( %(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n) )
-        allowed_paths.each do | path |
-          loc = "#{base_url}#{path}"
+        allowed_urls.each do | loc |
           io.write( "  <url><loc>#{CGI.escapeHTML( loc )}</loc></url>\n" )
         end
         io.write( %(</urlset>\n) )

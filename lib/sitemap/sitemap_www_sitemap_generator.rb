@@ -23,6 +23,8 @@ module Sitemap
       @base_url = Site.default&.url.to_s.sub( %r{/$}, "" )
       raise ArgumentError, "Could not determine base URL from Site.default.url" if @base_url.blank?
 
+      FakeView.set_default_url_options_from_site( Site.default )
+
       @output_dir = OUTPUT_DIR
       @chunk_size = ( chunk_size.presence || DEFAULT_CHUNK_SIZE ).to_i
       @batch_size = ( batch_size.presence || DEFAULT_BATCH_SIZE ).to_i
@@ -90,14 +92,14 @@ module Sitemap
     def generate_projects( dir )
       relation = Project.not_flagged_as_spam.select( :id, :slug, :title ).distinct.order( :id )
       generate_category( dir, "projects", relation ) do | project |
-        "/projects/#{project.slug.presence || project.id}"
+        FakeView.project_url( project )
       end
     end
 
     def generate_taxa( dir )
       relation = Taxon.active.select( :id, :name ).order( :id )
       generate_category( dir, "taxa", relation ) do | taxon |
-        "/taxa/#{taxon.to_param}"
+        FakeView.taxon_url( taxon )
       end
     end
 
@@ -106,14 +108,14 @@ module Sitemap
         where( "spammer = ? OR spammer IS NULL", false ).
         select( :id, :login ).order( :id )
       generate_category( dir, "people", relation ) do | user |
-        "/people/#{user.login}"
+        FakeView.person_by_login_url( login: user.login )
       end
     end
 
     def generate_places( dir )
       relation = Place.select( :id, :slug ).order( :id )
       generate_category( dir, "places", relation ) do | place |
-        "/places/#{place.slug.presence || place.id}"
+        FakeView.place_url( place )
       end
     end
 
@@ -124,7 +126,7 @@ module Sitemap
         select( :id, :title ).
         order( :id )
       generate_category( dir, "blog-posts", relation ) do | post |
-        "/blog/#{post.to_param}"
+        FakeView.site_post_url( post )
       end
     end
 
@@ -139,7 +141,7 @@ module Sitemap
         distinct.
         order( :id )
       generate_category( dir, "journal-posts", relation ) do | post |
-        "/journal/#{post.user.login}/#{post.to_param}"
+        FakeView.journal_post_url( login: post.user.login, id: post.to_param )
       end
     end
 
@@ -152,7 +154,7 @@ module Sitemap
         order( "posts.id" )
       generate_category( dir, "project-journal-posts", relation ) do | post |
         project_key = post.read_attribute( "project_slug" ).presence || post.parent_id
-        "/projects/#{project_key}/journal/#{post.to_param}"
+        FakeView.project_journal_post_url( project_id: project_key, id: post.to_param )
       end
     end
 
@@ -175,8 +177,7 @@ module Sitemap
             puts "[sitemap] #{category}: opened #{writer[:filename]} (chunk #{chunk_filenames.length + 1})"
           end
 
-          path = yield( record )
-          url = absolute_url( path )
+          url = yield( record )
           writer[:io].write( "  <url><loc>#{xml_escape( url )}</loc></url>\n" )
           writer[:count] += 1
           total += 1
@@ -243,13 +244,9 @@ module Sitemap
     end
 
     def write_index_entry( io, filename )
-      url = absolute_url( "#{PUBLIC_URL_PREFIX}/#{filename}" )
+      root = FakeView.root_url.to_s.sub( %r{/$}, "" )
+      url = "#{root}#{PUBLIC_URL_PREFIX}/#{filename}"
       io.write( "  <sitemap><loc>#{xml_escape( url )}</loc></sitemap>\n" )
-    end
-
-    def absolute_url( path )
-      normalized_path = path.start_with?( "/" ) ? path : "/#{path}"
-      "#{@base_url}#{normalized_path}"
     end
 
     def xml_escape( value )
