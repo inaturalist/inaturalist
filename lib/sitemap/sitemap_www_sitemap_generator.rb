@@ -90,7 +90,7 @@ module Sitemap
     end
 
     def generate_projects( dir )
-      relation = Project.not_flagged_as_spam.select( :id, :slug, :title ).distinct.order( :id )
+      relation = Project.not_flagged_as_spam.select( :id, :slug ).distinct.order( :id )
       generate_category( dir, "projects", relation ) do | project |
         FakeView.project_url( project )
       end

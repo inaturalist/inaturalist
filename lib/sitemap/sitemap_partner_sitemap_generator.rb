@@ -78,7 +78,7 @@ module Sitemap
       Post.published.
         where( parent_type: "Site", parent_id: site.id ).
         not_flagged_as_spam.
-        select( :id, :title, :slug ).
+        select( :id, :title ).
         order( :id ).
         map {| post | FakeView.site_post_url( post ) }
     end
