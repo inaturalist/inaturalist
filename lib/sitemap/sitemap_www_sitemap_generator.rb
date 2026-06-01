@@ -106,13 +106,14 @@ module Sitemap
     def generate_people( dir )
       relation = User.active.
         where( "spammer = ? OR spammer IS NULL", false ).
+        where( "login ~ ?", "^[[:alnum:]_][^.,/]+$" ).
         where(
           "observations_count > 0 OR identifications_count > 0 OR journal_posts_count > 0 OR " \
             "BTRIM( COALESCE( description, '' ) ) != ''"
         ).
         select( :id, :login ).order( :id )
       generate_category( dir, "people", relation ) do | user |
-        FakeView.person_url( user )
+        FakeView.person_by_login_url( login: user.login )
       end
     end
 
