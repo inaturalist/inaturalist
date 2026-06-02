@@ -20,7 +20,7 @@ const Carousel = ( {
   url,
   description,
   noContent,
-  className
+  className = ""
 }: CarouselProps ) => {
   const [activeIndex, setActiveIndex] = useState( 0 );
   const [trackWidth, setTrackWidth] = useState( 0 );
@@ -163,10 +163,6 @@ const Carousel = ( {
       </div>
     </div>
   );
-};
-
-Carousel.defaultProps = {
-  className: ""
 };
 
 export default Carousel;

@@ -10,7 +10,7 @@ import {
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../../shared/util";
+import { urlForTaxon, isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon, CurrentUser } from "../../../shared/types";
 
 interface Place {
@@ -63,10 +63,7 @@ const StatusTab = ( {
   taxon,
   currentUser
 }: StatusTabProps ) => {
-  const isCurator = currentUser && currentUser.roles && (
-    currentUser.roles.indexOf( "curator" ) >= 0
-    || currentUser.roles.indexOf( "admin" ) >= 0
-  );
+  const isCurator = isCuratorOrAdmin( currentUser );
   const sortedStatuses = _.sortBy( statuses, status => {
     let sortKey = `-${status.iucn}`;
     if ( status.place ) {

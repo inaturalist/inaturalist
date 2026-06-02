@@ -15,6 +15,7 @@ import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 import type { Taxon as BaseTaxon, Config } from "../../../shared/types";
+import { isCuratorOrAdmin } from "../../shared/util";
 
 type Taxon = BaseTaxon & {
   conservationStatus?: object | null;
@@ -28,13 +29,7 @@ interface Props {
 }
 
 const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
-  const isCuratorOrAdmin = config.currentUser
-    && config.currentUser.roles
-    && (
-      config.currentUser.roles.indexOf( "curator" ) >= 0
-      || config.currentUser.roles.indexOf( "admin" ) >= 0
-    );
-  const flagsButton = isCuratorOrAdmin
+  const flagsButton = isCuratorOrAdmin( config.currentUser )
     && taxon.flag_counts
     && Number( taxon.flag_counts.unresolved ) > 0
     ? (
