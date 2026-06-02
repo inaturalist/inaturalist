@@ -4,9 +4,11 @@
 
 export interface Photo {
   id: number;
+  // Prototype methods on the inaturalistjs model instance — always present.
   photoUrl: ( size?: string ) => string;
+  dimensions: ( ) => { width: number; height: number } | null | undefined;
+  // Passthrough data field — present only when the payload includes it.
   attribution?: string;
-  dimensions?: ( ) => { width: number; height: number } | null | undefined;
 }
 
 // Photo as it appears on raw API responses (no model methods).
@@ -37,25 +39,37 @@ export interface Taxon {
   // the page that uses them should intersect: `Taxon & { conservationStatuses?: ... }`.
 }
 
+export interface User {
+  id: number;
+  login?: string;
+  name?: string;
+  preferences?: Record<string, unknown>;
+  observations_count?: number;
+}
+
 export interface Observation {
   id: number;
+  // Prototype methods on the inaturalistjs model instance — always present.
+  photo: ( size?: string ) => string | null;
+  hasPhotos: ( ) => boolean;
+  hasMedia: ( ) => boolean;
+  hasSounds: ( ) => boolean;
+  // Passthrough data fields — present only when the payload includes them.
   reviewedByCurrentUser?: boolean;
-  photo?: ( size?: string ) => string | null;
   photos?: Photo[];
-  hasPhotos?: ( ) => boolean;
-  hasMedia?: ( ) => boolean;
-  hasSounds?: ( ) => boolean;
-  user?: Record<string, unknown>;
+  user?: User;
   taxon?: Taxon;
 }
 
 export interface CurrentUser {
+  // Always set by the CurrentUser model constructor / prototype.
+  isAdmin: boolean;
+  isInTestGroup: ( group: string ) => boolean;
+  canViewHelpfulIDTips: ( ) => boolean;
+  privilegedWith: ( perm: string ) => boolean;
+  // Passthrough data fields — present only when the payload includes them.
   login?: string;
-  isAdmin?: boolean;
-  isInTestGroup?: ( group: string ) => boolean;
   roles?: string[];
-  canViewHelpfulIDTips?: ( ) => boolean;
-  privilegedWith?: ( perm: string ) => boolean;
   content_creation_restrictions?: boolean;
 }
 

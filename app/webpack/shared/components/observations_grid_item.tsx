@@ -1,24 +1,7 @@
 import React from "react";
 import SplitTaxon from "./split_taxon";
 import UserImage from "./user_image";
-
-interface ObsPhoto {
-  id: number;
-  photoUrl: ( size: string ) => string;
-  attribution?: string;
-}
-
-interface Observation {
-  id: number;
-  reviewedByCurrentUser?: boolean;
-  photo: ( size?: string ) => string | null;
-  photos?: ObsPhoto[];
-  hasPhotos: ( ) => boolean;
-  hasMedia: ( ) => boolean;
-  hasSounds: ( ) => boolean;
-  user?: Record<string, unknown>;
-  taxon?: unknown;
-}
+import type { Observation } from "../types";
 
 interface ObservationsGridItemProps {
   observation: Observation;
@@ -55,10 +38,10 @@ const ObservationsGridItem = ( {
       <a
         href={`/observations/${o.id}`}
         style={{
-          backgroundImage: o.photo( ) ? `url( '${o.photo( photoSize )}' )` : ""
+          backgroundImage: o.photo?.( ) ? `url( '${o.photo?.( photoSize )}' )` : ""
         }}
         target={linkTarget}
-        className={`media ${o.hasPhotos( ) ? "photo" : ""} ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
+        className={`media ${o.hasPhotos?.( ) ? "photo" : ""} ${o.hasMedia?.( ) ? "" : "iconic"} ${o.hasSounds?.( ) ? "sound" : ""}`}
         onClick={e => {
           if ( typeof onObservationClick !== "function" ) {
             return true;

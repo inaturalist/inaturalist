@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from "../../../shared/components/carousel";
-import TaxonPhoto, { Photo, Taxon, Observation } from "../../../shared/components/taxon_photo";
+import TaxonPhoto from "../../../shared/components/taxon_photo";
+import type { Photo, Taxon, Observation } from "../../../shared/types";
 
 interface RecentObservation extends Observation {
   photos: Photo[];

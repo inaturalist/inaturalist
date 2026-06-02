@@ -66,7 +66,7 @@ const HighlightsCarousel = ( {
         key={`highlights-obs-${obs.id}`}
       >
         <ObservationsGridItem
-          observation={obs as unknown as React.ComponentProps<typeof ObservationsGridItem>["observation"]}
+          observation={obs}
           controls={captionForObservation ? captionForObservation( obs ) : null}
           user={config.currentUser}
         />

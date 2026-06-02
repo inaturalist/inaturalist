@@ -6,8 +6,6 @@ import type {
   Photo, Taxon, Observation, Config
 } from "../types";
 
-export type { Photo, Taxon, Observation } from "../types";
-
 const classes = {
   taxonPhoto: css["taxon-photo"],
   photoHover: css["taxon-photo__photo-hover"],
