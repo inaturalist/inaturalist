@@ -10,9 +10,7 @@ export default defineConfig( {
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     env: { RAILS_ENV: "test" },
-    cwd: path.resolve( __dirname, "../../.." ),
-    stdout: "pipe",
-    stderr: "pipe"
+    cwd: path.resolve( __dirname, "../../.." )
   },
   testDir: "./tests",
   fullyParallel: true,
