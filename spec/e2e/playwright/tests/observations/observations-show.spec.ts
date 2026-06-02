@@ -9,7 +9,7 @@ test.describe( "Observation detail page", () => {
   test.beforeEach( async ( { page } ) => {
     await appClean();
     const user = await appMake( "create", "user", {} );
-    const taxon = await app( "eval", "Taxon.make!(:species).attributes" ) as Record<string, unknown>;
+    const taxon = await appMake( "create", "taxon", {});
     const obs = await appMake( "create", "observation", {
       user_id: user.id,
       taxon_id: taxon.id,
