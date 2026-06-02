@@ -23,7 +23,7 @@ jobs:
     - name: Run TypeScript type check
       run: npm run typecheck
 
-  # Might be worth considering buildling a container image for this job and reusing that instead of
+  # Might be worth considering building a container image for this job and reusing that instead of
   # building the image for each matrix step.
   build-and-test:
     name: Build/Test
