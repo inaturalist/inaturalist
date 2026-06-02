@@ -3,12 +3,9 @@ import CoverImage from "./cover_image";
 import SplitTaxon from "./split_taxon";
 import css from "./taxon_thumbnail.module.css";
 import type { Taxon, Config } from "../types";
+import { urlForTaxon as defaultUrlForTaxon } from "../../taxa/shared/util";
 
 export type { Taxon, RawPhoto } from "../types";
-
-const defaultUrlForTaxon = ( t: Taxon ) => (
-  `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}`
-);
 
 export interface TaxonThumbnailBadge {
   text: React.ReactNode;
