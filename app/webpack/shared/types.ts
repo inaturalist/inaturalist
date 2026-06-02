@@ -31,7 +31,7 @@ export interface Taxon {
   default_photo?: RawPhoto;
   // Fields surfaced on most taxon-related views.
   complete_species_count?: number;
-  flag_counts?: { unresolved?: number | string; resolved?: number | string };
+  flag_counts?: { unresolved?: number; resolved?: number };
   photos_locked?: boolean;
   atlas_id?: number;
   // Page-specific fields (conservationStatuses, listed_taxa, listed_taxa_count,

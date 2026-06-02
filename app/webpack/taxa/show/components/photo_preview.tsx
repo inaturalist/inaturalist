@@ -9,13 +9,8 @@ import type {
 const GRID_THUMBNAIL_HEIGHT = 196.5;
 const GALLERY_THUMBNAIL_HEIGHT = 98;
 
-// On this page `dimensions()` is guaranteed by the inaturalistjs Photo model.
-type PreviewPhoto = Photo & {
-  dimensions: ( ) => { width: number; height: number } | null | undefined;
-};
-
 interface TaxonPhotoEntry {
-  photo: PreviewPhoto;
+  photo: Photo;
   taxon: Taxon;
 }
 

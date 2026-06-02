@@ -31,7 +31,7 @@ interface Props {
 const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
   const flagsButton = isCuratorOrAdmin( config.currentUser )
     && taxon.flag_counts
-    && Number( taxon.flag_counts.unresolved ) > 0
+    && ( taxon.flag_counts.unresolved ?? 0 ) > 0
     ? (
       <a href={`/taxa/${taxon.id}/flags`} className="btn btn-default btn-flags">
         <i className="fa fa-flag" />

@@ -4,8 +4,8 @@ import React, {
 import css from "./carousel.module.css";
 
 export interface CarouselProps {
-  items: React.ReactNode[];
-  finalItem?: React.ReactNode;
+  items: React.ReactElement[];
+  finalItem?: React.ReactElement;
   title?: string;
   url?: string;
   description?: string | React.ReactNode;
@@ -111,7 +111,7 @@ const Carousel = ( {
     const distFromActive = Math.abs( index - activeIndex );
     return (
       <div
-        key={React.isValidElement( item ) ? String( item.key ) : index}
+        key={String( item.key )}
         className={css.carousel__item}
         style={distFromActive > visibleCount && itemWidth
           ? { width: itemWidth }

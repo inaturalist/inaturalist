@@ -5,7 +5,6 @@ import css from "./taxon_thumbnail.module.css";
 import type { Taxon, Config } from "../types";
 import { urlForTaxon as defaultUrlForTaxon } from "../../taxa/shared/util";
 
-export type { Taxon, RawPhoto } from "../types";
 
 export interface TaxonThumbnailBadge {
   text: React.ReactNode;

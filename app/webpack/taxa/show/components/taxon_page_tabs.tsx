@@ -83,7 +83,7 @@ const TaxonPageTabs = ( {
   const speciesOrLower = taxon && taxon.rank_level <= 10;
   const genusOrSpecies = taxon && ( taxon.rank_level === 20 || taxon.rank_level === 10 );
   const flagsCount = taxon.flag_counts
-    ? Number( taxon.flag_counts.resolved ?? 0 ) + Number( taxon.flag_counts.unresolved ?? 0 )
+    ? ( taxon.flag_counts.resolved ?? 0 ) + ( taxon.flag_counts.unresolved ?? 0 )
     : 0;
   const isCurator = !!currentUser?.roles.includes( "curator" )
     || !!currentUser?.roles.includes( "admin" );

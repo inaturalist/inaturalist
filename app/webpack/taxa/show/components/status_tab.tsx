@@ -168,7 +168,7 @@ const StatusTab = ( {
                         { status.place
                           ? (
                             <a
-                              href={`/places/${status.place ? status.place.id : null}`}
+                              href={`/places/${status.place.id}`}
                               className="place-link"
                               aria-label={status.place.display_name}
                             >
