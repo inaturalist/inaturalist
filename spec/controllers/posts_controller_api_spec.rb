@@ -113,6 +113,7 @@ shared_examples_for "a PostsController" do
       json = JSON.parse( response.body )
       expect( json.detect {| post_json | post_json["id"].to_i == post.id } ).to be_blank
     end
+
     describe "older_than" do
       let( :pu ) { ProjectUser.make!( user: user ) }
       let( :p1 ) { Post.make!( parent: pu.project, user: pu.project.user ) }
@@ -179,6 +180,38 @@ describe PostsController, "without authentication" do
       json = JSON.parse( response.body )
       json_post = json.detect {| p | p["id"] == post.id }
       expect( json_post ).not_to be_blank
+    end
+
+    it "includes pagination data in headers" do
+      5.times { Post.make!( parent: Site.default ) }
+      total_entries = Post.count
+      get :for_user, format: :json, params: { page: 1, per_page: 2 }
+      expect( response.headers["X-Total-Entries"].to_i ).to eq( total_entries )
+      expect( response.headers["X-Page"].to_i ).to eq( 1 )
+      expect( response.headers["X-Per-Page"].to_i ).to eq( 2 )
+      expect( JSON.parse( response.body ).length ).to eq( 2 )
+    end
+
+    it "allows a per_page value of up to but not above 200" do
+      get :for_user, format: :json, params: { page: 1, per_page: 199 }
+      expect( response.headers["X-Per-Page"].to_i ).to eq( 199 )
+
+      get :for_user, format: :json, params: { page: 1, per_page: 200 }
+      expect( response.headers["X-Per-Page"].to_i ).to eq( 200 )
+
+      get :for_user, format: :json, params: { page: 1, per_page: 201 }
+      expect( response.headers["X-Per-Page"].to_i ).to eq( 200 )
+    end
+
+    it "does not allow per_page values below 1" do
+      get :for_user, format: :json, params: { page: 1, per_page: 1 }
+      expect( response.headers["X-Per-Page"].to_i ).to eq( 1 )
+
+      get :for_user, format: :json, params: { page: 1, per_page: 0 }
+      expect( response.headers["X-Per-Page"].to_i ).to eq( 30 )
+
+      get :for_user, format: :json, params: { page: 1, per_page: -1 }
+      expect( response.headers["X-Per-Page"].to_i ).to eq( 30 )
     end
   end
 end

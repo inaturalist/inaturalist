@@ -282,13 +282,14 @@ class PostsController < ApplicationController
       from( "(#{posts_sql}) AS posts" ).
       order( "published_at DESC" ).
       page( params[:page] || 1 ).
-      per_page( 30 )
+      per_page( limited_per_page )
     if !params[:newer_than].blank? && ( newer_than_post = Post.find_by_id( params[:newer_than] ) )
       @posts = @posts.where( "posts.published_at > ?", newer_than_post.published_at )
     end
     if !params[:older_than].blank? && ( older_than_post = Post.find_by_id( params[:older_than] ) )
       @posts = @posts.where( "posts.published_at < ?", older_than_post.published_at )
     end
+    pagination_headers_for( @posts )
     Post.preload_associations( @posts, [{ user: :site }, :stored_preferences, :parent] )
     # TODO: Rails 5 - pleary 06/30/21: I removed :site_name_short from methods as Rails 5 throws
     # an error for missing methods. We should only use methods shared by all post parent classes

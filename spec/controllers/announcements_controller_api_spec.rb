@@ -112,7 +112,25 @@ describe AnnouncementsController do
         create :announcement, locales: ["es"]
         no_locale_announcement = create :announcement
         get :active, format: :json, params: { locale: "ja" }
-        expect( response.parsed_body.map {| a | a["id"] } ).to eq( [no_locale_announcement.id] )
+        expect( response.parsed_body.map {| a | a["id"] } ).to include( no_locale_announcement.id )
+      end
+
+      it "returns both locale-specific and unrelated global announcements" do
+        es_announcement = create :announcement, locales: ["es"]
+        global_announcement = create :announcement
+        get :active, format: :json, params: { locale: "es" }
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).to include( es_announcement.id )
+        expect( annc_ids ).to include( global_announcement.id )
+      end
+
+      it "deduplicates linked translation variants by locale" do
+        parent = create :announcement, locales: ["en"]
+        child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+        get :active, format: :json, params: { locale: "es" }
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).to include( child_es.id )
+        expect( annc_ids ).not_to include( parent.id )
       end
 
       it "only returns announcements targeting the requested client" do
@@ -314,6 +332,75 @@ describe AnnouncementsController do
         get :active, format: :json
       end.to change( AnnouncementImpression, :count ).by( 1 )
       expect( AnnouncementImpression.last.announcement ).to eq( announcement )
+    end
+  end
+
+  describe "load_parent_announcement_options" do
+    let( :site ) { create :site }
+    let( :user ) { create :user }
+    before do
+      create( :site ) unless Site.default
+      SiteAdmin.create!( site: site, user: user )
+      sign_in user
+    end
+
+    it "includes announcements from any site" do
+      other_site = create :site
+      other_site_announcement = create :announcement, sites: [other_site]
+      get :new, params: { inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( other_site_announcement.id )
+    end
+
+    it "excludes child announcements" do
+      parent = create :announcement
+      child = create :announcement, parent_announcement_id: parent.id
+      get :new, params: { inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( parent.id )
+      expect( option_ids ).not_to include( child.id )
+    end
+
+    it "excludes announcements that ended more than 30 days ago" do
+      old_announcement = create :announcement, start: 60.days.ago, end: 31.days.ago
+      recent_announcement = create :announcement
+      get :new, params: { inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( recent_announcement.id )
+      expect( option_ids ).not_to include( old_announcement.id )
+    end
+
+    it "includes current parent even when older than 30 days" do
+      old_parent = create :announcement, start: 60.days.ago, end: 31.days.ago
+      child = create :announcement, parent_announcement_id: old_parent.id
+      get :edit, params: { id: child.id, inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( old_parent.id )
+    end
+  end
+
+  describe "duplicate" do
+    let( :site ) { create :site }
+    let( :user ) { create :user }
+    before do
+      create( :site ) unless Site.default
+      SiteAdmin.create!( site: site, user: user )
+      sign_in user
+    end
+
+    it "pre-selects parent announcement when variant param is present" do
+      announcement = create :announcement
+      get :duplicate, params: { id: announcement.id, variant: true, inat_site_id: site.id }
+      expect( assigns( :announcement ).parent_announcement_id ).to eq( announcement.id )
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( announcement.id )
+    end
+
+    it "maintains existing parent_announcement_id for standard duplicate button" do
+      parent_announcement = create :announcement
+      announcement = create :announcement, parent_announcement_id: parent_announcement.id
+      get :duplicate, params: { id: announcement.id, inat_site_id: site.id }
+      expect( assigns( :announcement ).parent_announcement_id ).to be parent_announcement.id
     end
   end
 end
