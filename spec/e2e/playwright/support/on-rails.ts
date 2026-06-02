@@ -27,7 +27,7 @@ const app = async ( name: string, options: CommandOptions = {} ): Promise<unknow
  */
 const appMake = async ( factoryMethod: string, ...factoryArgs: unknown[] ): Promise<Record<string, unknown>> => {
   // factory_bot.rb returns an array from .map; unwrap to get the first record
-  const records = await app( "factory_bot", [[factoryMethod, ...factoryArgs]] ) as Record<string, unknown>[];
+  const records = await app( "machinist", [[factoryMethod, ...factoryArgs]] ) as Record<string, unknown>[];
   return records[0];
 };
 
