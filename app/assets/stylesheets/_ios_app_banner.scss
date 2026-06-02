@@ -1,0 +1,77 @@
+// iOS-only sticky app download banner
+// @supports (-webkit-touch-callout: none) matches iOS Safari only
+
+@supports (-webkit-touch-callout: none) {
+  body.responsive #inatnotice { padding-bottom: 80px; }
+}
+
+.wv2-app-banner {
+  display: none;
+
+  @supports (-webkit-touch-callout: none) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    z-index: 1000;
+  }
+
+  &:hover { opacity: 1; }
+}
+
+// Higher specificity than Bootstrap's `.bootstrap a` and `.bootstrap p` rules
+.bootstrap .wv2-app-banner {
+  background-color: #ffffff;
+
+  &:hover { opacity: 1; }
+
+  p { margin: 0; }
+}
+
+.wv2-app-banner__icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.wv2-app-banner__text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.wv2-app-banner__wordmark {
+  height: 16px;
+  width: auto;
+  align-self: flex-start;
+}
+
+.wv2-app-banner__tagline {
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+
+  p { margin: 0; }
+}
+
+.wv2-app-banner__cta {
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #74ac00;
+  border-radius: 40px;
+  padding: 10px 19px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

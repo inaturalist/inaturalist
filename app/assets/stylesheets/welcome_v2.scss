@@ -1,5 +1,6 @@
 @import "welcome_v2_fonts";
 @import "breakpoints";
+@import "ios_app_banner";
 
 // ── Variables ────────────────────────────────────────────────────────────────
 
@@ -1369,86 +1370,3 @@ a.wv2-carousel__item {
 
 // Match sticky footer spacer to the negative margin so no dead zone appears
 #bodywrapper:after { height: 196px; }
-
-// iOS-only sticky app download banner
-// @supports (-webkit-touch-callout: none) matches iOS Safari only
-
-// Extra footer clearance for the sticky app banner on iOS
-@supports (-webkit-touch-callout: none) {
-  body.responsive #inatnotice { padding-bottom: 80px; }
-}
-
-.wv2-app-banner {
-  display: none;
-
-  &:hover { opacity: 1; }
-
-  @supports (-webkit-touch-callout: none) {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 10px 10px 0 0;
-    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    z-index: 1000;
-  }
-}
-
-// Needs higher specificity than Bootstrap's `.bootstrap a` and `.bootstrap p` rules
-.bootstrap .wv2-app-banner {
-  background-color: $white;
-
-  &:hover { opacity: 1; }
-
-  p {
-    margin: 0;
-  }
-}
-
-.wv2-app-banner__icon {
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
-}
-
-.wv2-app-banner__text {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  flex: 1;
-}
-
-.wv2-app-banner__wordmark {
-  height: 16px;
-  width: auto;
-  align-self: flex-start;
-}
-
-.wv2-app-banner__tagline {
-  font-family: $font-sans;
-  font-size: 14px;
-  font-weight: 500;
-  color: #000;
-  margin: 0;
-
-  p {
-    margin: 0;
-  }
-}
-
-.wv2-app-banner__cta {
-  font-family: $font-sans;
-  font-size: 14px;
-  font-weight: 700;
-  color: $white;
-  background: $green;
-  border-radius: 40px;
-  padding: 10px 19px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
