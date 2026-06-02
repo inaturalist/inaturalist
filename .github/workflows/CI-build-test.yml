@@ -23,25 +23,10 @@ jobs:
     - name: Run TypeScript type check
       run: npm run typecheck
 
-  build-webpack:
-    name: Build webpack
-    runs-on: ubuntu-22.04
-    steps:
-    - uses: actions/checkout@v5
-    - run: npm install
-    - run: npm run webpack
-    - name: Upload webpack output
-      uses: actions/upload-artifact@v4
-      with:
-        name: webpack-output
-        path: app/assets/javascripts/webpack
-        retention-days: 1
-
   # Might be worth considering buildling a container image for this job and reusing that instead of
   # building the image for each matrix step.
   build-and-test:
     name: Build/Test
-    needs: build-webpack
     runs-on: ubuntu-22.04
     services:
       postgres:
@@ -106,11 +91,8 @@ jobs:
       with:
         bundler-cache: true
 
-    - name: Download webpack output
-      uses: actions/download-artifact@v4
-      with:
-        name: webpack-output
-        path: app/assets/javascripts/webpack
+    - run: npm install
+    - run: npm run webpack
 
     - name: Before script
       run: ci/scripts/before_script.sh
