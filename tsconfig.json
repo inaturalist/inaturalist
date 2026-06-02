@@ -11,7 +11,8 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "ignoreDeprecations": "6.0",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["app/webpack/**/*"]
 }
