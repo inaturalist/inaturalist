@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   id_param_pattern = /(\d+([\w\-%]*))|#{uuid_pattern}/
   simplified_login_regex = %r{\w[^.,/]+}
   root to: "welcome#index"
+  get "/robots.txt", to: "robots_txt#robots", format: false
 
   # legacy routes
   get "/set_locale", to: "application#set_locale", as: :set_locale
