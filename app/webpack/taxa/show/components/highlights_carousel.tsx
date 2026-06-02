@@ -42,9 +42,8 @@ const HighlightsCarousel = ( {
     );
   }
 
-  let items: React.ReactElement[];
-  if ( taxa ) {
-    items = taxa.map( taxon => (
+  const items: React.ReactElement[] = taxa
+    ? taxa.map( taxon => (
       <TaxonThumbnail
         key={`highlights-taxon-${taxon.id}`}
         taxon={taxon}
@@ -59,9 +58,8 @@ const HighlightsCarousel = ( {
         urlForTaxon={urlForTaxon}
         config={config}
       />
-    ) );
-  } else {
-    items = _.uniqBy( observations, o => o.id ).map( obs => (
+    ) )
+    : _.uniqBy( observations, o => o.id ).map( obs => (
       <div
         key={`highlights-obs-${obs.id}`}
       >
@@ -72,7 +70,6 @@ const HighlightsCarousel = ( {
         />
       </div>
     ) );
-  }
 
   return (
     <Carousel
