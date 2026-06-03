@@ -1704,6 +1704,7 @@ id:
   devise_unlock_instructions_unlock: Buka Akun Anda
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Temukan
+  discover_nature_around_you: Temukan alam di sekitar Anda
   discoveries: Penemuan
   did_you_mean: 'Apakah maksud Anda'
   did_you_photos_flickr?: Apakah Anda pernah menempatkan foto di Flickr?
@@ -1758,6 +1759,7 @@ id:
     <a href="%{url}">Unduh template</a> untuk digunakan di <a href="/observations/import?project_id=%{project_id}#csv_import">pengunggahan sekaligus</a>
   download_csv: Unduh CSV
   download_csv_template: Unduh Template CSV
+  download_inaturalist_app: Unduh iNaturalist di App Store
   download_kml: Unduh KML
   downstream_coverage_rank: Tingkat cakupan arus bawah
   downstream_coverage_colon_rank: "Cakupan arus bawah: tingkat %{rank}"
@@ -5812,6 +5814,7 @@ id:
   url_identifier_of_a_project_derived_from: "URL / pengenal dari sebuah proyek yang berasal dari beberapa sumber eksternal"
   url_of_this_taxon_on_the_source_website: URL takson ini pada situs sumber
   usage_stats: Statistik penggunaan
+  use_app: Gunakan aplikasi
   use_name_as_a_placeholder: |
     Pakai <span class='ac-placeholder'>%{name}</span> sebagai penampung
   use_this_form_to_create_a_new: |
@@ -6426,6 +6429,10 @@ id:
         Perhatikan bahwa tanggal pembuatan pengamatan yang paling baru dibuat oleh pengguna di-cache, jadi mungkin perlu beberapa jam hingga penargetannya diterapkan
       observation_oauth_application_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang aplikasinya.
+      #Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: Pengumuman ini memiliki varian yang ditargetkan dan tidak dapat ditetapkan sebagai pengumuman global.
+      #Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Pilih pengumuman yang harus digantikan oleh pengumuman ini untuk pengguna yang memenuhi aturan penargetan.
       site_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang afiliasi situsnya.
       start_desc: |
@@ -8959,6 +8966,8 @@ id:
         exclude_donor_start_date: Kecualikan tanggal mulai donor
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kecualikan tanggal akhir donor
+        #Column header for countries excluded by IP address
+        exclude_ip_countries: Kecualikan Negara IP
         excludes_non_site: Menyembunyikan pengumuman lain di penempatan ini yang tidak memiliki ID Situs
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -8984,6 +8993,8 @@ id:
         max_observations: Pengamatan maks
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Pengamatan min
+        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Pengumuman Global (opsional)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Penempatan
         #Preference for an announcement that is only shown to the user who created the announcement
@@ -8994,6 +9005,8 @@ id:
         user_created_start_date: Tanggal pendaftaran pengguna terawal
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Tanggal pendaftaran pengguna terbaru
+        #Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Aktifkan widget fundraise up yang disematkan
       assessment:
         description: Deskripsi
       assessment_section:
@@ -9233,6 +9246,13 @@ id:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: harus valid untuk penempatan yang tertera
+            parent_announcement_id:
+              #Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: tidak boleh merujuk kepada dirinya sendiri
+              #Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: tidak boleh merujuk kepada pengumuman yang merupakan varian juga (hanya satu tingkat bersarang yang diizinkan)
+              #Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: tidak dapat diatur pada pengumuman yang sudah memiliki varian (hanya satu tingkat bersarang yang diizinkan)
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
