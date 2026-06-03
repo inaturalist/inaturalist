@@ -9369,6 +9369,8 @@ nl:
         exclude_donor_start_date: Uitsluiten donor met startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Uitsluiten donor met einddatum
+        #Column header for countries excluded by IP address
+        exclude_ip_countries: IP-landen uitsluiten
         excludes_non_site: Verberg andere mededelingen in deze plaatsing zonder Site ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -9394,6 +9396,8 @@ nl:
         max_observations: Max waarnemingen
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min. waarnemingen
+        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Wereldwijde Aankondiging (optioneel)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Plaatsing
         #Preference for an announcement that is only shown to the user who created the announcement
@@ -9652,6 +9656,13 @@ nl:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: moet geldig zijn voor opgegeven plaatsing
+            parent_announcement_id:
+              #Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: kan niet naar zichzelf verwijzen
+              #Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: kan niet verwijzen naar een aankondiging die zelf een variant is (slechts één niveau van nesten toegestaan)
+              #Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: Kan niet worden ingesteld op een aankondiging die al varianten heeft (slechts één niveau van nesten toegestaan)
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
