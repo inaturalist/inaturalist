@@ -255,6 +255,7 @@ GEM
       debug_inspector (>= 0.0.1)
     biodiversity (6.0.1)
       ffi (~> 1.15)
+    blurhash (0.1.8)
     bower-rails (0.12.0)
     builder (3.3.0)
     bundler-audit (0.9.1)
@@ -489,6 +490,7 @@ GEM
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0)
       version_gem (~> 1.1)
+    observer (0.1.2)
     omniauth (2.1.1)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
@@ -528,6 +530,7 @@ GEM
       racc
     patron (0.13.3)
     pg (1.5.9)
+    pkg-config (1.6.5)
     prism (1.9.0)
     public_suffix (7.0.5)
     puma (5.6.9)
@@ -619,6 +622,9 @@ GEM
       dbf (~> 4.0)
       rgeo (>= 1.0)
     rinku (2.0.6)
+    rmagick (7.0.3)
+      observer (~> 0.1)
+      pkg-config (~> 1.4)
     rqrcode (2.2.0)
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
@@ -792,6 +798,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   biodiversity (~> 6.0)
+  blurhash
   bower-rails
   bundler-audit
   byebug
@@ -883,6 +890,7 @@ DEPENDENCIES
   rgeo-shapefile
   rinku (~> 2.0)
   riparian!
+  rmagick
   rqrcode (~> 2.0)
   rspec
   rspec-html-matchers

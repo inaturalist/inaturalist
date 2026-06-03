@@ -20,6 +20,7 @@ gem "aws-sdk-s3"
 gem "aws-sdk-waf"
 gem "aws-sdk-wafv2"
 gem "biodiversity", "~> 6.0"
+gem 'blurhash'
 gem "bower-rails"
 gem "bundler-audit"
 gem "capistrano"
@@ -106,6 +107,7 @@ gem "rgeo-proj4", "~> 3.1.1"
 gem "rgeo-shapefile"
 gem "rinku", "~> 2.0"
 gem "riparian", git: "https://github.com/inaturalist/riparian.git", ref: "rails6"
+gem 'rmagick'
 gem "rubyzip", "~> 2.3.0"
 gem "sass-rails"
 gem "savon" # allow to consume soap services with WSDL

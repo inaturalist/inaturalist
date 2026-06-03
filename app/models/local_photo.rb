@@ -93,6 +93,9 @@ class LocalPhoto < Photo
   # so grab metadata twice (extract_metadata is purely additive)
   after_post_process :extract_metadata
 
+  after_post_process :generate_blurhash
+
+
   after_initialize :set_license
 
   # LocalPhotos with subtypes are former remote photos, and subtype
@@ -250,6 +253,15 @@ class LocalPhoto < Photo
     updates[:file_prefix_id] = FilePrefix.id_for_prefix( self.parse_url_prefix )
     Photo.where( id: id ).update_all( updates )
     true
+  end
+
+  def generate_blurhash
+    staged = file.queued_for_write[:square]
+    return unless staged
+    image = Magick::ImageList.new(staged.path)
+    self.blurhash = Blurhash.encode(image.columns, image.rows, image.export_pixels)
+  rescue => e
+      Rails.logger.error "Blurhash generation failed: #{e}"
   end
 
   def reset_file_from_original
