@@ -15,6 +15,8 @@ module Sitemap
     PUBLIC_URL_PREFIX = "/sitemap-www"
     XML_HEADER = %(<?xml version="1.0" encoding="UTF-8"?>\n)
     URLSET_OPEN = %(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n)
+    URLSET_IMAGE_OPEN = %(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ) \
+      %(xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n)
     URLSET_CLOSE = %(</urlset>\n)
     INDEX_OPEN = %(<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n)
     INDEX_CLOSE = %(</sitemapindex>\n)
@@ -95,9 +97,20 @@ module Sitemap
     end
 
     def generate_taxa( dir )
-      relation = Taxon.active.select( :id, :name ).order( :id )
-      generate_category( dir, "taxa", relation ) do | taxon |
-        FakeView.taxon_url( taxon )
+      relation = Taxon.active
+        .includes( :taxon_names, taxon_photos: { photo: :user } )
+        .select( :id, :name )
+        .order( :id )
+      generate_category( dir, "taxa", relation, image_namespace: true ) do | taxon |
+        common = taxon.common_name&.name
+        taxon_label = common ? "#{taxon.name} (#{common})" : taxon.name
+        images = taxon.taxon_photos.filter_map do | tp |
+          next unless tp.photo&.medium_url.present?
+          next if tp.photo.license.to_i == Shared::LicenseModule::COPYRIGHT
+
+          { loc: tp.photo.medium_url, title: "#{taxon_label} photographed by #{tp.photo.attribution_name}" }
+        end
+        { url: FakeView.taxon_url( taxon ), images: images }
       end
     end
 
@@ -161,7 +174,7 @@ module Sitemap
       end
     end
 
-    def generate_category( dir, category, relation )
+    def generate_category( dir, category, relation, image_namespace: false )
       puts "[sitemap] generating #{category}"
       chunk_filenames = []
       writer = nil
@@ -176,12 +189,22 @@ module Sitemap
         batch.each do | record |
           if writer.nil? || writer[:count] >= @chunk_size
             close_chunk_writer( writer, chunk_filenames ) if writer
-            writer = open_chunk_writer( dir, category, chunk_filenames.length + 1 )
+            writer = open_chunk_writer( dir, category, chunk_filenames.length + 1,
+              image_namespace: image_namespace )
             puts "[sitemap] #{category}: opened #{writer[:filename]} (chunk #{chunk_filenames.length + 1})"
           end
 
-          url = yield( record )
-          writer[:io].write( "  <url><loc>#{xml_escape( url )}</loc></url>\n" )
+          result = yield( record )
+          url, images = result.is_a?( Hash ) ? [result[:url], result[:images]] : [result, nil]
+          entry = "  <url><loc>#{xml_escape( url )}</loc>"
+          images&.each do | img |
+            entry += "\n    <image:image>" \
+              "\n      <image:loc>#{xml_escape( img[:loc] )}</image:loc>" \
+              "\n      <image:title>#{xml_escape( img[:title] )}</image:title>" \
+              "\n    </image:image>"
+          end
+          entry += "</url>\n"
+          writer[:io].write( entry )
           writer[:count] += 1
           total += 1
           samples << url if samples.size < 5
@@ -224,12 +247,12 @@ module Sitemap
       end
     end
 
-    def open_chunk_writer( dir, category, chunk_number )
+    def open_chunk_writer( dir, category, chunk_number, image_namespace: false )
       filename = format( "sitemap-%<category>s-%<chunk>04d.xml.gz", category: category, chunk: chunk_number )
       path = File.join( dir, filename )
       io = Zlib::GzipWriter.open( path )
       io.write( XML_HEADER )
-      io.write( URLSET_OPEN )
+      io.write( image_namespace ? URLSET_IMAGE_OPEN : URLSET_OPEN )
       { io: io, filename: filename, count: 0 }
     end
 
