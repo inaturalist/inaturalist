@@ -15,8 +15,7 @@ module Sitemap
     PUBLIC_URL_PREFIX = "/sitemap-www"
     XML_HEADER = %(<?xml version="1.0" encoding="UTF-8"?>\n)
     URLSET_OPEN = %(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n)
-    URLSET_IMAGE_OPEN = %(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ) \
-      %(xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n)
+    URLSET_IMAGE_OPEN = %(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n)
     URLSET_CLOSE = %(</urlset>\n)
     INDEX_OPEN = %(<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n)
     INDEX_CLOSE = %(</sitemapindex>\n)
@@ -97,10 +96,10 @@ module Sitemap
     end
 
     def generate_taxa( dir )
-      relation = Taxon.active
-        .includes( :taxon_names, taxon_photos: { photo: :user } )
-        .select( :id, :name )
-        .order( :id )
+      relation = Taxon.active.
+        includes( :taxon_names, taxon_photos: { photo: :user } ).
+        select( :id, :name ).
+        order( :id )
       generate_category( dir, "taxa", relation, image_namespace: true ) do | taxon |
         common = taxon.common_name&.name
         taxon_label = common ? "#{taxon.name} (#{common})" : taxon.name
