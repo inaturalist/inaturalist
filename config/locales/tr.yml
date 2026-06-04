@@ -1307,6 +1307,8 @@ tr:
   create_a_new_place: Yeni Bir Konum Oluştur
   create_a_new_taxon: Yeni Bir Takson Oluştur
   create_a_query: Bir Sorgu Oluştur
+  #Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Hedefli Varyant Oluştur
   create_an_account: Bir Hesap Oluştur
   create_an_atlas: Bir Atlas Oluştur
   create_export: Dışa Aktarma Oluştur
@@ -1726,6 +1728,7 @@ tr:
   devise_unlock_instructions_unlock: Hesabının Kilidini Aç
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Keşfet
+  discover_nature_around_you: Çevrenizdeki doğayı keşfedin
   discoveries: Keşifler
   did_you_mean: 'Bunu mu demek istedin'
   did_you_photos_flickr?: Flickr'a hiç fotoğraf koydun mu?
@@ -1780,6 +1783,7 @@ tr:
     <a href="/observations/import?project_id=%{project_id}#csv_import">Toplu yükleyicide</a> kullanmak için <a href="%{url}">şablonu indir</a>.
   download_csv: CSV'yi İndir
   download_csv_template: CSV şablonunu indir
+  download_inaturalist_app: App Store'dan iNaturalist'i indirin
   download_kml: KML'yi İndir
   downstream_coverage_rank: Alt soy kapsam düzeyi
   downstream_coverage_colon_rank: "Alt soy kapsamı: %{rank} düzeyi"
@@ -2480,6 +2484,8 @@ tr:
   introduced_in_place: "%{place} konumunda egzotik tür"
   #Error message shown when a date format is invalid
   invalid_date: Geçersiz tarih
+  #Error message shown when a time format is invalid
+  invalid_time: Geçersiz zaman
   invitation: Davetiye
   invite: davet et
   invite_people: Kişileri davet et
@@ -5221,6 +5227,8 @@ tr:
   take_me_flickr!: Evet, beni Flickr'a götür!
   target_list_alert: Hedef listende yer alan tüm türleri gözlemlemeye çalıştığından emin misin? Hedef listende yer alıp da gözlemlemediğin her şeyin yokluk olarak yorumlanacağını unutmayın; bu nedenle hedef listenin tespit etmeye çalıştığın türler kümesini doğru bir şekilde yansıtması çok önemlidir
   target_list_warning: Hedef listende yer alan ve bu gezinin yarıçapı ve süresi içinde gözlemlemediğin her şeyin yokluk olarak yorumlanacağını unutma. Hedef listenin tespit etmeye çalıştığın türler kümesini doğru bir şekilde yansıtması çok önemlidir. Hedef listendeki bir türü ya da hedef listendeki bir grubun kapsadığı her türü tespit etmeye çalışmadıysan, lütfen listenden çıkar.
+  #Section heading on announcement show page listing linked announcement variants
+  targeted_variants: Hedeflenen Varyantlar
   task_deleted: Görev silindi
   taxa: Taksonlar
   taxa_show_obs_photo_search_tip: |
@@ -5803,6 +5811,7 @@ tr:
   url_identifier_of_a_project_derived_from: "Bazı harici kaynaklardan türetilen bir projenin URL'si / tanımlayıcısı"
   url_of_this_taxon_on_the_source_website: Bu taksonun, kaynağın web sitesindeki URL'si
   usage_stats: Kullanım istatistikleri
+  use_app: Uygulamayı kullanın
   use_name_as_a_placeholder: |
     Yer imi olarak <span class='ac-placeholder'>"%{name}"</span> kullan
   use_this_form_to_create_a_new: |
@@ -6395,6 +6404,10 @@ tr:
         Kullanıcının en son oluşturduğu gözlemin oluşturulma tarihinin önbelleğe alındığını unutmayın, bu nedenle hedeflemenin etkili olması birkaç saat sürebilir.
       observation_oauth_application_ids_desc: |
         Birden fazla seçim yapmak için CMD veya SHIFT tuşuna basarak tıkla. "Tümünü" seçmek ya da herhangi bir seçim yapmamak, duyurunun uygulama fark etmeksizin tüm kullanıcılara gösterilmesini sağlar.
+      #Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: Bu duyurunun hedefli varyantları var ve küresel bir duyuru olarak atanamaz.
+      #Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Bu duyurunun, hedefleme kurallarını karşılayan kullanıcılar için yerine geçeceği bir duyuru seçin.
       site_ids_desc: |
         Birden fazla seçim yapmak için CMD- veya SHIFT-tıklayın. "Tümünü" seçmek veya seçim yapmamak, duyuruyu site üyeliğine bakılmaksızın tüm kullanıcılara gösterecektir.
       start_desc: |
@@ -7609,11 +7622,30 @@ tr:
         contain_entire_image_without_cropping: Tüm resmi kırpmadan içer
         custom_banner_icon_and_project_description: Özel afiş, ikon, ve proje açıklaması
         data_visualizations: Veri görselleştirmeleri
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Tarih
+          #Label for a form field for a project's starting date
+          start_date: Başlangıç Tarihi
+          #Label for a form field for a project's end date
+          end_date: Bitiş Tarihi
+          #Label for a form field for a project's starting time
+          start_time: Başlama Zamanı
+          #Label for a form field for a project's end time
+          end_time: Bitiş Zamanı
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Saatleri Dahil Et
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Ayları Seç
         delete_project: Projeyi Sil
         display_project_name: Proje ismini görüntüle
         do_you_need_features_from_traditional2: |
           Özel gözlem alanları veya otomatik olarak filtrelenemeyen bireysel gözlemler eklemek gibi geleneksel projelerdeki özelliklere mi ihtiyacın var?
         duplicate_project: Projeyi Kopyala
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: Bitiş tarihi başlangıç tarihinden sonra olmalıdır
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: Bitiş zamanı başlangıç zamanından sonra olmalıdır
         include_annotated_observations: |
           Yalnızca belirli bir nitelikle (ör. yaşam evresi) ya da belirli bir nitelik ve değerle (ör. yaşam evresi = yetişkin) açıklanmış gözlemleri dahil et. Proje başına bir açıklama filtresi sınırı vardır.
         leaderboards_among_individuals: <strong>Kişiler</strong> arasında liderlik sıralaması
@@ -8902,6 +8934,8 @@ tr:
         exclude_donor_start_date: Bağışçı başlangıç tarihini hariç tut
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Bağışçı bitiş tarihini hariç tut
+        #Column header for countries excluded by IP address
+        exclude_ip_countries: IP Ülkelerini Hariç Tut
         excludes_non_site: Site ID'si bulunmayan diğer duyuruları bu bölümde gizle
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -8927,6 +8961,8 @@ tr:
         max_observations: Azami gözlem
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Asgari gözlem
+        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Küresel Duyuru (isteğe bağlı)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Gösterim Yeri
         #Preference for an announcement that is only shown to the user who created the announcement
@@ -8937,6 +8973,8 @@ tr:
         user_created_start_date: En erken kullanıcı kayıt tarihi
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: En geç kullanıcı kayıt tarihi
+        #Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Fundraise Up gömülü widget’larını etkinleştir
       assessment:
         description: Açıklama
       assessment_section:
@@ -9185,6 +9223,13 @@ tr:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: belirtilen yerleşim için geçerli olmalıdır
+            parent_announcement_id:
+              #Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: kendisini referans gösteremez
+              #Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: kendisi bir varyant olan bir duyuru referans gösterilemez (yalnızca tek seviyeli iç içe yapı izinlidir)
+              #Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: zaten varyantları bulunan bir duyuruya atanamaz (yalnızca tek seviyeli iç içe yapı izinlidir)
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
