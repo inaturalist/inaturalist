@@ -72,10 +72,8 @@ module Sitemap
     end
 
     def publish!( tmp_dir, root_index_tmp_path )
-      FileUtils.rm_rf( @output_dir )
-      FileUtils.mkdir_p( File.dirname( @output_dir ) )
-      FileUtils.mv( tmp_dir, @output_dir )
-      FileUtils.rm_f( ROOT_INDEX_PATH )
+      FileUtils.rm_rf( Dir.glob( "#{@output_dir}/*" ) )
+      FileUtils.mv( Dir.glob( "#{tmp_dir}/*" ), @output_dir )
       FileUtils.mv( root_index_tmp_path, ROOT_INDEX_PATH )
     end
 
