@@ -7,7 +7,6 @@ test.describe( "Observation detail page", () => {
   let detailPage: ObservationDetailPage;
 
   test.beforeEach( async ( { page } ) => {
-    await appClean();
     const user = await appMake( "create", "user", {} );
     const taxon = await appMake( "create", "taxon", {});
     const obs = await appMake( "create", "observation", {

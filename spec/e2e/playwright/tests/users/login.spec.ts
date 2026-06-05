@@ -27,7 +27,6 @@ test.describe( "Login happy path", () => {
   let testEmail: string;
 
   test.beforeEach( async () => {
-    await appClean();
     const user = await appMake( "create", "user", {
       email: `e2e_login_${Date.now()}@gmail.com`,
       password: TEST_PASSWORD
