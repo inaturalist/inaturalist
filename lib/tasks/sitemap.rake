@@ -4,7 +4,7 @@ require Rails.root.join( "lib", "sitemap", "sitemap_www_sitemap_generator" )
 require Rails.root.join( "lib", "sitemap", "sitemap_partner_sitemap_generator" )
 
 namespace :sitemap do
-  desc "Generate full www sitemaps for projects, people, taxa, places, blog posts, and journal posts"
+  desc "Generate full www sitemaps for projects, people, taxa (with photos), places, blog posts, and journal posts"
   task :generate_www_sitemap, [:log_task_name] => :environment do | _, args |
     log_task_name = args[:log_task_name]
     task_logger = log_task_name ? TaskLogger.new( log_task_name, nil, "sync" ) : nil

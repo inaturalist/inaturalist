@@ -8,8 +8,9 @@ require "zlib"
 module Sitemap
   class SitemapWwwSitemapGenerator
     MAX_URLS_PER_SITEMAP = 50_000
-    DEFAULT_CHUNK_SIZE = 45_000
+    DEFAULT_CHUNK_SIZE = 10_000
     DEFAULT_BATCH_SIZE = 2_000
+    MAX_PHOTOS_PER_TAXON = 5
     OUTPUT_DIR = Rails.root.join( "public", "sitemap-www" ).to_s
     ROOT_INDEX_PATH = File.join( OUTPUT_DIR, "sitemap.xml" )
     PUBLIC_URL_PREFIX = "/sitemap-www"
@@ -96,18 +97,14 @@ module Sitemap
     end
 
     def generate_taxa( dir )
-      relation = Taxon.active.
-        includes( :taxon_names, taxon_photos: { photo: :user } ).
-        select( :id, :name ).
-        order( :id )
-      generate_category( dir, "taxa", relation, image_namespace: true ) do | taxon |
-        common = taxon.common_name&.name
+      relation = Taxon.active.select( :id, :name ).order( :id )
+      generate_category( dir, "taxa", relation, image_namespace: true,
+        preload: method( :preload_taxa_batch ) ) do | taxon, ctx |
+        common = ctx[:common_names][taxon.id]
         taxon_label = common ? "#{taxon.name} (#{common})" : taxon.name
-        images = taxon.taxon_photos.filter_map do | tp |
-          next unless tp.photo&.medium_url.present?
-          next if tp.photo.license.to_i == Shared::LicenseModule::COPYRIGHT
-
-          { loc: tp.photo.medium_url, title: "#{taxon_label} photographed by #{tp.photo.attribution_name}" }
+        images = ( ctx[:photos_by_taxon][taxon.id] || [] ).map do | photo_data |
+          attribution = photo_data[:attribution_name].presence || I18n.t( "copyright.anonymous" )
+          { loc: photo_data[:url], title: "#{taxon_label} photographed by #{attribution}" }
         end
         { url: FakeView.taxon_url( taxon ), images: images }
       end
@@ -173,7 +170,66 @@ module Sitemap
       end
     end
 
-    def generate_category( dir, category, relation, image_namespace: false )
+    def preload_taxa_batch( batch )
+      taxon_ids = batch.map( &:id )
+
+      # first valid common name per taxon (raw values, no AR objects)
+      common_names = TaxonName.
+        where( taxon_id: taxon_ids, is_valid: true ).
+        where( lexicon: TaxonName::LEXICONS[:ENGLISH] ).
+        order( "taxon_id ASC, position ASC NULLS LAST, id ASC" ).
+        pluck( :taxon_id, :name ).
+        each_with_object( {} ) {| ( tid, name ), h | h[tid] ||= name }
+
+      # photo data (raw values; copyright flags excluded in SQL; no AR objects)
+      @file_prefixes ||= FilePrefix.all.index_by( &:id )
+      @file_extensions ||= FileExtension.all.index_by( &:id )
+
+      raw_photos = TaxonPhoto.
+        joins( :photo ).
+        joins( "LEFT JOIN users ON users.id = photos.user_id" ).
+        where( taxon_photos: { taxon_id: taxon_ids } ).
+        where.not( photos: { license: Shared::LicenseModule::COPYRIGHT } ).
+        where( "photos.file_processing IS NOT TRUE" ).
+        where(
+          "NOT EXISTS (
+            SELECT 1 FROM flags
+            WHERE flags.flaggable_type = 'Photo'
+              AND flags.flaggable_id = photos.id
+              AND flags.flag = ?
+              AND flags.resolved_at IS NULL
+          )", Flag::COPYRIGHT_INFRINGEMENT
+        ).
+        order( "taxon_photos.taxon_id, taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC" ).
+        pluck(
+          "taxon_photos.taxon_id",
+          "photos.id",
+          "photos.file_prefix_id",
+          "photos.file_extension_id",
+          "photos.native_realname",
+          "photos.native_username",
+          "users.name",
+          "users.login"
+        )
+
+      photos_by_taxon = raw_photos.
+        group_by( &:first ).
+        transform_values do | rows |
+          rows.first( MAX_PHOTOS_PER_TAXON ).filter_map do | row |
+            _tid, id, fp_id, fe_id, realname, username, uname, ulogin = row
+            fp = @file_prefixes[fp_id]
+            fe = @file_extensions[fe_id]
+            next unless fp && fe
+
+            attribution_name = realname.presence || username.presence || uname.presence || ulogin.presence
+            { url: "#{fp.prefix}/#{id}/medium.#{fe.extension}", attribution_name: attribution_name }
+          end
+        end
+
+      { common_names: common_names, photos_by_taxon: photos_by_taxon }
+    end
+
+    def generate_category( dir, category, relation, image_namespace: false, preload: nil )
       puts "[sitemap] generating #{category}"
       chunk_filenames = []
       writer = nil
@@ -185,6 +241,7 @@ module Sitemap
       relation.find_in_batches( batch_size: @batch_size ) do | batch |
         batch_index += 1
         batch_started_at = Time.now
+        ctx = preload&.call( batch )
         batch.each do | record |
           if writer.nil? || writer[:count] >= @chunk_size
             close_chunk_writer( writer, chunk_filenames ) if writer
@@ -193,7 +250,7 @@ module Sitemap
             puts "[sitemap] #{category}: opened #{writer[:filename]} (chunk #{chunk_filenames.length + 1})"
           end
 
-          result = yield( record )
+          result = yield( record, ctx )
           url, images = result.is_a?( Hash ) ? [result[:url], result[:images]] : [result, nil]
           entry = "  <url><loc>#{xml_escape( url )}</loc>"
           images&.each do | img |
