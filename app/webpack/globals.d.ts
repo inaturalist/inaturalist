@@ -28,6 +28,16 @@ interface JQueryDeparam {
 }
 interface JQueryStub {
   ( selector: string | Element, context?: Element | null ): JQueryStubResult;
+  ajax( url: string, settings?: Record<string, unknown> ): unknown;
+  each<T>(
+    collection: ArrayLike<T> | Record<string, T>,
+    callback: ( indexOrKey: number | string, value: T ) => void
+  ): void;
+  scrollTo(
+    target: string | number | Element,
+    duration?: number,
+    options?: Record<string, unknown>
+  ): void;
   param( obj: Record<string, unknown> ): string;
   deparam: JQueryDeparam;
 }

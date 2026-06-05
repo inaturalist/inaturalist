@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "lib": ["ES6", "DOM"],
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
     "jsx": "react",
     "strict": true,
     "noEmit": true,
     "allowJs": true,
     "checkJs": false,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "ignoreDeprecations": "6.0",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
