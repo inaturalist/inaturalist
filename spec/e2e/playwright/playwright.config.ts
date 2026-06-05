@@ -5,7 +5,9 @@ import { envConfig } from "../shared/env.config";
 export default defineConfig( {
   globalSetup: "./global-setup",
   webServer: {
-    command: "bundle exec rake inaturalist:generate_translations_js && bundle exec rails server -e test -p 3001",
+    command: "bundle exec rake inaturalist:generate_translations_js \
+      && bundle exec rake assets:precompile \
+      && bundle exec rails server -e test -p 3001",
     url: "http://localhost:3001/ping",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
