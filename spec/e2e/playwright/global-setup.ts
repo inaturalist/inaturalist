@@ -3,14 +3,12 @@ import { envConfig } from "../shared/env.config";
 
 /**
  * Aborts the suite before any tests run if the Rails server isn't in test mode.
- * The /__e2e__/command endpoint executes arbitrary Ruby — pointing tests at a
- * dev or production server would corrupt real data.
  */
 async function globalSetup() {
   const context = await request.newContext( { baseURL: envConfig.baseUrl } );
   try {
     const response = await context.post( "/__e2e__/command", {
-      data: { name: "eval", options: "Rails.env.to_s" }
+      data: { name: "env" }
     } );
     if ( !response.ok() ) {
       throw new Error(
