@@ -62,14 +62,6 @@ jobs:
         TRAVIS: true
         CI: true
 
-    - name: Precompile assets
-      run: bundle exec rake assets:precompile
-      env:
-        PGHOST: 0.0.0.0
-        PGUSER: postgres
-        PGPASSWORD: postgres
-        RAILS_ENV: test
-
     - name: Run E2E tests
       run: npm run test:e2e:ci
       env:
