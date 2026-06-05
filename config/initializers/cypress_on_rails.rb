@@ -36,6 +36,14 @@ if defined?( CypressOnRails )
     #     return [403, {}, ["forbidden"]]
     #   end
     # }
+
+    c.before_request = lambda do | _request |
+      # Defense in depth: even if use_middleware is ever loosened (e.g. to enable
+      # the bridge on a non-test host), refuse to execute any command outside test.
+      next if Rails.env.test?
+
+      [403, { "Content-Type" => "text/plain" }, ["E2E command endpoint is test-only"]]
+    end
   end
 
   # # if you compile your asssets on CI
