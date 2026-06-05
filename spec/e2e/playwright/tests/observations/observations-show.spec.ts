@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { ObservationDetailPage } from "../../page-objects/observation-detail.page";
 import { mockObservationFetch } from "../../fixtures/observation-response";
-import { app, appClean, appMake } from "../../support/on-rails";
+import { app, appMake } from "../../support/on-rails";
 
 test.describe( "Observation detail page", () => {
   let detailPage: ObservationDetailPage;

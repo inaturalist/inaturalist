@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "../../page-objects/login.page";
 import { login } from "../../helpers/auth.helper";
-import { appMake, appClean } from "../../support/on-rails";
+import { appMake } from "../../support/on-rails";
 
 const TEST_PASSWORD = "TestPass123!";
 
