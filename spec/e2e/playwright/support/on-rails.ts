@@ -31,10 +31,7 @@ const appMake = async ( factoryMethod: string, ...factoryArgs: unknown[] ): Prom
   return records[0];
 };
 
-const appClean = (): Promise<unknown> => app( "clean" );
-
 export {
   app,
-  appMake,
-  appClean
+  appMake
 };
