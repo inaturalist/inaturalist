@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   id_param_pattern = /(\d+([\w\-%]*))|#{uuid_pattern}/
   simplified_login_regex = %r{\w[^.,/]+}
   root to: "welcome#index"
+  get "/robots.txt", to: "robots_txt#robots", format: false
 
   # legacy routes
   get "/set_locale", to: "application#set_locale", as: :set_locale
@@ -772,7 +773,7 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
-  resources :moderator_actions, only: [:create] do
+  resources :moderator_actions, only: [:create, :edit, :update] do
     member do
       get :resource_url, constraints: ->( req ) { req.format == :json }
     end

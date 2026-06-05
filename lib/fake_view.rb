@@ -22,8 +22,20 @@ class FakeView
     }
   end
 
+  def set_default_url_options_from_site( site )
+    @default_url_options = {
+      host: site.url.sub( "http://", "" ),
+      port: URI.parse( site.url ).port == 80 ? nil : URI.parse( site.url ).port,
+      protocol: URI.parse( site.url ).scheme
+    }
+  end
+
   def self.fake_instance
     @fake_instance ||= new
+  end
+
+  def self.set_default_url_options_from_site( site )
+    fake_instance.set_default_url_options_from_site( site )
   end
 
   def self.method_missing( method, *args )

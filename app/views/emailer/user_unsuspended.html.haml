@@ -1,0 +1,12 @@
+= render "header"
+%p<>
+  = succeed "," do
+    = t(:hi_user, user: @user.name.blank? ? @user.login : @user.name)
+%p<>
+  = t("views.emailer.user_unsuspended.message", site_name: @site_name)
+- if @reason.present?
+  %p<>
+    = t("views.emailer.user_unsuspended.reason", reason: @reason)
+%p<>
+  = raw t("views.emailer.user_unsuspended.login_prompt", login_url: login_url)
+= render "footer"

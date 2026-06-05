@@ -263,6 +263,13 @@ describe ModeratorAction do
         u.reload
         expect( u.suspended_until ).to be_nil
       end
+      it "copies a predefined reason key to the user's suspension_reason" do
+        u = create :user
+        create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u,
+          reason: "hate_speech", suspended_until: 1.day.from_now )
+        u.reload
+        expect( u.suspension_reason ).to eq "hate_speech"
+      end
     end
 
     describe "UNSUSPEND" do
@@ -520,6 +527,97 @@ describe ModeratorAction do
     end
   end
 
+  describe "editable_by?" do
+    let( :suspension_action ) do
+      create( :moderator_action, action: ModeratorAction::SUSPEND, resource: create( :user ), user: curator )
+    end
+    let( :hide_action ) do
+      create( :moderator_action, action: ModeratorAction::HIDE, resource: create( :comment ), user: curator )
+    end
+
+    it "returns false for a blank editor" do
+      expect( suspension_action.editable_by?( nil ) ).to be false
+    end
+
+    it "returns false for non-SUSPEND actions" do
+      expect( hide_action.editable_by?( admin ) ).to be false
+    end
+
+    it "returns true for admin on a SUSPEND action" do
+      expect( suspension_action.editable_by?( admin ) ).to be true
+    end
+
+    it "returns true for the curator who created the action" do
+      expect( suspension_action.editable_by?( curator ) ).to be true
+    end
+
+    it "returns false for a different curator" do
+      expect( suspension_action.editable_by?( make_curator ) ).to be false
+    end
+
+    it "returns false for a regular user" do
+      expect( suspension_action.editable_by?( User.make! ) ).to be false
+    end
+  end
+
+  describe "update" do
+    describe "SUSPEND" do
+      it "syncs updated suspended_until to the user" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        u.reload
+        original_suspended_at = u.suspended_at
+
+        expect( u.suspended_until ).to be_nil
+
+        new_time = 14.days.from_now
+        audit_comment = "Adjusting suspension duration"
+        ma.audit_comment = audit_comment
+        ma.update!( suspended_until: new_time )
+        u.reload
+
+        expect( u.suspended_at ).to eq original_suspended_at
+        expect( u.suspended_until ).to be_within( 1.second ).of( new_time )
+        expect( ma.audits.last.comment ).to eq( audit_comment )
+      end
+
+      it "audits reason changes" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        original_reason = ma.reason
+        new_reason = "Updated suspension reason"
+        ma.audit_comment = "Changing the reason"
+        ma.update!( reason: new_reason )
+        audit = ma.audits.last
+        expect( audit.audited_changes ).to have_key( "reason" )
+        expect( audit.audited_changes["reason"] ).to eq( [original_reason, new_reason] )
+      end
+
+      it "requires audit_comment on update" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        expect( ma.update( suspended_until: 7.days.from_now ) ).to be false
+        expect( ma.errors[:audit_comment] ).not_to be_empty
+      end
+
+      it "validates audit_comment minimum length" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        ma.audit_comment = "short"
+        expect( ma.update( suspended_until: 7.days.from_now ) ).to be false
+        expect( ma.errors[:audit_comment] ).not_to be_empty
+      end
+
+      it "validates audit_comment maximum length" do
+        u = create :user
+        ma = create( :moderator_action, action: ModeratorAction::SUSPEND, resource: u )
+        ma.audit_comment = "a" * 2049
+        expect( ma.update( suspended_until: 7.days.from_now ) ).to be false
+        expect( ma.errors[:audit_comment] ).not_to be_empty
+      end
+    end
+  end
+
   describe "persistence" do
     shared_examples_for "media" do
       let( :curator ) { make_curator }
@@ -558,6 +656,23 @@ describe ModeratorAction do
     describe "Sounds" do
       let( :resource ) { Sound.make! }
       it_behaves_like "media"
+    end
+  end
+
+  describe "translated_reason" do
+    it "translates a predefined suspension reason key" do
+      ma = build( :moderator_action, action: ModeratorAction::SUSPEND, reason: "hate_speech" )
+      expect( ma.translated_reason ).to eq I18n.t( "suspension_reasons.hate_speech" )
+    end
+
+    it "returns custom reason text unchanged" do
+      ma = build( :moderator_action, action: ModeratorAction::SUSPEND, reason: "posting spam links" )
+      expect( ma.translated_reason ).to eq "posting spam links"
+    end
+
+    it "returns nil for blank reason" do
+      ma = build( :moderator_action, action: ModeratorAction::SUSPEND, reason: nil )
+      expect( ma.translated_reason ).to be_nil
     end
   end
 end

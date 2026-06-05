@@ -10,7 +10,20 @@ module INat
     class MissingEmailError < StandardError; end
 
     # User is suspended
-    class SuspendedError < StandardError; end
+    class SuspendedError < StandardError
+      def initialize( message = nil, suspended_until: nil )
+        super( message )
+        @suspended_until = suspended_until
+      end
+
+      def to_h
+        {
+          error: "invalid_grant",
+          error_description: message.presence || I18n.t( :this_user_has_been_suspended ),
+          suspended_until: @suspended_until&.iso8601
+        }
+      end
+    end
 
     # User is a known child without parental permission
     class ChildWithoutPermissionError < StandardError; end

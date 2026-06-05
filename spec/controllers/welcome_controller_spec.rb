@@ -3,6 +3,19 @@
 require "spec_helper"
 
 describe WelcomeController do
+  describe "index" do
+    it "redirects logged-in users on the default site to home" do
+      sign_in User.make!
+      get :index
+      expect( response ).to redirect_to( home_path )
+    end
+
+    it "renders the v2 template for anonymous users" do
+      get :index
+      expect( response ).to render_template( "welcome_v2/index" )
+    end
+  end
+
   describe "set_homepage_wiki" do
     elastic_models( Observation )
     let( :site ) { Site.default }
@@ -78,9 +91,9 @@ describe WelcomeController do
       expect( assigns( :announcements ) ).not_to include annc
     end
 
-    it "should target locales" do
+    it "should target locales within a family" do
       a = create :announcement, placement: Announcement::WELCOME_INDEX
-      locale_a = create :announcement, placement: Announcement::WELCOME_INDEX, locales: ["es"]
+      locale_a = create :announcement, placement: Announcement::WELCOME_INDEX, locales: ["es"], parent_announcement_id: a.id
       u = User.make!( locale: "es" )
       sign_in u
       get :index, params: { locale: "es" }

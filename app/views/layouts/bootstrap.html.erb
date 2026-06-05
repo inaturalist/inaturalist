@@ -225,16 +225,18 @@
       }
     </script>
     <% unless @skip_external_connections || @asynchronous_google_maps_loading %>
-      <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
+      <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry)) %>
       <%= javascript_include_tag "map_bundle" %>
     <% end %>
     <% if @asynchronous_google_maps_loading %>
       <%= javascript_include_tag "map_bundle" %>
       <%= google_maps_async_js %>
     <% end %>
-    <%= javascript_include_tag "webpack/runtime-webpack" %>
-    <%= javascript_include_tag "webpack/react-main-webpack" %>
-    <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
+    <% unless @skip_react %>
+      <%= javascript_include_tag "webpack/runtime-webpack" %>
+      <%= javascript_include_tag "webpack/react-main-webpack" %>
+      <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
+    <% end %>
     <%= yield :extrajs %>
     <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">

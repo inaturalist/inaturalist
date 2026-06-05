@@ -1488,6 +1488,8 @@ en:
   create_a_new_place: Create a New Place
   create_a_new_taxon: Create a New Taxon
   create_a_query: Create a Query
+  # Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Create a Targeted Variant
   create_an_account: Create an Account
   create_an_atlas: Create an Atlas
   create_export: Create Export
@@ -1806,6 +1808,10 @@ en:
   # d2" if "to" might be translated differently for different values of d1 and
   # d2
   date_to_date: "%{d1} - %{d2}"
+  # Express a single date with a time range. Better to use a flexible form
+  # here, e.g. not something like "start_time to end_time" if "to" might be
+  # translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: Date Updated
   day: Day
   decrease_brightness: Decrease Brightness
@@ -1892,6 +1898,14 @@ en:
         to confirm your account.
       user:
         suspended: Your account has been suspended
+        # Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: If you think this was made in error and would like to appeal, please <a href="https://help.inaturalist.org/support/tickets/new">contact support.</a>
+        # Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        # with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Your suspension will be lifted in %{until}."
+        # Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        # an arbitrary string.
+        suspension_reason: "Reason: %{reason}"
       # Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid:
         The reset password token is invalid. Please use the link in the most recently sent
@@ -1965,6 +1979,7 @@ en:
   devise_unlock_instructions_unlock: Unlock Your Account
   # e.g. "With iNaturalist, you can discover nature nearby"
   discover: Discover
+  discover_nature_around_you: Discover nature around you
   discoveries: Discoveries
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
@@ -2023,6 +2038,7 @@ en:
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulk uploader</a>
   download_csv: Download CSV
   download_csv_template: Download CSV template
+  download_inaturalist_app: Download iNaturalist on the App Store
   download_kml: Download KML
   downstream_coverage_rank: Downstream coverage rank
   downstream_coverage_colon_rank: "Downstream coverage: rank %{rank}"
@@ -2054,6 +2070,10 @@ en:
   edit: Edit
   # Title of the moderation note editor
   edit_moderator_note: Edit Moderator Note
+  # Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Edit Suspension
+  # Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: If you only need to update the reason or expiration date, you can <a href="%{edit_link}">edit the suspension</a> instead.
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
   edit_assessment: Edit Assessment
@@ -2789,6 +2809,8 @@ en:
   introduced_in_place: "Introduced in %{place}"
   # Error message shown when a date format is invalid
   invalid_date: Invalid date
+  # Error message shown when a time format is invalid
+  invalid_time: Invalid time
   invitation: Invitation
   invite: invite
   invite_people: Invite people
@@ -3378,6 +3400,10 @@ en:
     date_long_without_year: "MMMM D"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h:mm a"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "LT z"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "LT"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -5705,6 +5731,39 @@ en:
   suspension_duration_indefinite: Indefinite
   # a select form option to select a custom date when a user will be unsuspended
   suspension_duration_custom: Custom
+  # label for the suspension reason dropdown
+  suspension_reason_label: Reason for suspension
+  # option for entering a custom suspension reason
+  suspension_reason_custom: Custom
+  # note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Please note this reason will be displayed to the suspended user.
+  # note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: Please update the reason and explain why you are changing the user's suspension.
+  # label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Reason for editing
+  # label for the edit reason field in the moderation history table
+  edit_reason: Edit reason
+  # predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    # reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Hate speech
+    # reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Insults or threats
+    # reason displayed to users who have been suspended for posting sexually explicit content
+    sexually_explicit_content: Sexually explicit content
+    # reason displayed to users who are creating false accounts to circumvent suspensions,
+    # https://en.wikipedia.org/wiki/Sock_puppet_account
+    sockpuppet_accounts: Sockpuppet accounts
+    # reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    false_ids_or_dqa_votes: Intentionally adding false IDs or DQA votes
+    # reason displayed to users who have been suspended for posting machine generated content
+    machine_generated_content: Machine generated observations, identifications and comments
+    # reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    continued_copyright_infringement_after_warning: Continued copyright infringement (after warning)
+    # reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
+    continued_posting_of_artificially_generated_media_after_warning: Continued posting of artificially generated media (after warning)
+    # reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_after_warning: Continued reduction of data quality (after warning)
   # the time at which a users suspension ends
   suspend_until: Suspend until
   # a note telling users to select the time in their local time zone
@@ -5715,6 +5774,10 @@ en:
     Explain why you are suspending this account and cite any violations of the
     %{link_start_tag}Community Guidelines%{link_end_tag}. Please refrain
      from adding personal opinions.
+  # a label on a field showing when a user is suspended until
+  suspended_until: Suspended until
+  # a string on the moderation history page showing that a user has been suspended indefinitely
+  suspended_indefinitely: Suspended indefinitely
   sw_lat: SW Lat.
   sw_lon: SW Lon.
   sync: Sync?
@@ -5731,6 +5794,8 @@ en:
   take_me_flickr!: Yes, take me to Flickr!
   target_list_alert: Are you sure that you attempted to observe all species covered by your target list? Remember that anything covered by your target list that you didn't observe will be interpreted as an absence so its very important that your target list accurately reflects the set of species you attempted to detect
   target_list_warning: Remember that anything covered by your target list that you didn't observe within the radius and duration of this trip will be interpreted as an absence. Its very important that your target list accurately reflects the set of species you attempted to detect. If you didn't attempt to detect a species on your target list or every species covered by a group on your target list, please remove it.
+  # Section heading on announcement show page listing linked announcement variants
+  targeted_variants: Targeted Variants
   task_deleted: Task deleted
   taxa: Taxa
   taxa_show_obs_photo_search_tip: |
@@ -6372,6 +6437,7 @@ en:
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
   usage_stats: Usage stats
+  use_app: Use app
   use_name_as_a_placeholder: |
     Use <span class='ac-placeholder'>"%{name}"</span> as a placeholder
   use_this_form_to_create_a_new: |
@@ -6490,6 +6556,8 @@ en:
     The observer has chosen to trust you with the hidden coordinates of all
     their observations.
   user_updated_an_observation_field_html: '%{user} updated a value for "%{field_name}" on an observation by %{owner}'
+  # An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} Your account has been unsuspended"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
   username: Username
   username_description: This is the username you will use to log in, and other users can use to identify you on iNaturalist
@@ -7061,6 +7129,10 @@ en:
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
         app.
+      # Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: This announcement has targeted variants and cannot be assigned a global announcement.
+      # Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Select an announcement that this announcement should replace for users who meet the targeting rules.
       site_ids_desc: |
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
@@ -8532,6 +8604,13 @@ en:
             iNaturalist account using the Seek app so that they can be seen on
             iNaturalist.org.
           </p>
+      user_unsuspended:
+        # A line in an email telling a user their account suspension is being lifted lifted.
+        message: Your account on %{site_name} has been unsuspended and you can use the site again.
+        # A line in an email telling a user why their account was suspended, with a variable for the custom reason.
+        reason: "Your account was suspended for the following reason: %{reason}"
+        # A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
+        login_prompt: '<a href="%{login_url}">Log in to your account</a> to continue using the site.'
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended
@@ -8785,12 +8864,31 @@ en:
         contain_entire_image_without_cropping: Contain entire image without cropping
         custom_banner_icon_and_project_description: Custom banner, icon, and project description
         data_visualizations: Data visualizations
+        date_pickers:
+          # Label for a form field for a project's exact date
+          date: Date
+          # Label for a form field for a project's starting date
+          start_date: Start Date
+          # Label for a form field for a project's end date
+          end_date: End Date
+          # Label for a form field for a project's starting time
+          start_time: Start Time
+          # Label for a form field for a project's end time
+          end_time: End Time
+          # Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Include Times
+          # Label for a form select field allowing the editor to choose calendar months
+          select_months: Select Months
         delete_project: Delete Project
         display_project_name: Display project name
         do_you_need_features_from_traditional2: |
           Do you need features from traditional projects, such as custom observation fields,
           or adding individual observations that can’t be automatically filtered?
         duplicate_project: Duplicate Project
+        # validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: End date must be after start date
+        # validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: End time must be after start time
         include_annotated_observations: |
           Include only observations annotated with a particular attribute (e.g. life stage),
           or a particular attribute and value (e.g life stage = adult).
@@ -10108,23 +10206,33 @@ en:
           moth_body: >
             The %{moth_common_name} moth hadn't been spotted in decades and was once
             thought extinct — until a tourist in New Zealand spotted it by accident.
+          # Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "Frosted phoenix moth"
           # Heading for the story about a new-to-science mantis species
           mantis_heading: Discovering new-to-science species
           # Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — abbreviated to <span class="italic">I. nat</span> — is a new-to-science mantis species
             found by a woman in Australia walking in her neighborhood.
+          # Alt text for the praying mantis story image
+          inat_img_alt: "Praying mantis"
           # Heading for the story about volunteers protecting amphibians
           amphibian_heading: Protecting local ecosystems
           # Body text for the amphibian protection story
           amphibian_body: >
             A group of local volunteers in California came together through
             iNaturalist to protect migrating amphibians crossing a busy road.
+          # Alt text for the California newt story image
+          california_newt_img_alt: "California newt"
           # Link below the stories to read more community science stories
           read_more: Read more stories
         observation:
           # Heading for the sample observation section
           heading: Every observation tells a story
+          # Alt text for the sample observation photo
+          photo_alt: "Green frog on leaf"
+          # Alt text for the map showing the observation location
+          map_alt: "Map showing observation location with large marker and other observations via grid cells"
         stats:
           # Description label for the observations statistic
           # Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -10215,6 +10323,8 @@ en:
           # Social proof label showing total app downloads
           # %{count} = formatted and rounded number of downloads. The plus (+) reflects there being more than that number.
           count_label: "%{count}+ Downloads"
+          # Alt text for the iNaturalist app phone screenshot
+          phone_alt: "iNat on two phone screens, showing hummingbird and California poppy observations"
         explore:
           # Heading for the explore species section; species cards generated from static JSON exported from iNat
           heading: Explore species worldwide
@@ -10228,6 +10338,8 @@ en:
           # Review count social proof label for the app
           # %{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ 5-Star Reviews"
+          # Alt text for the Seek app phone screenshot
+          phone_alt: "Seek app active on two phones, showing a toucan badge and the Species Nearby view"
         newsletter:
           # Heading inviting users to subscribe to the monthly newsletter
           heading: Get our monthly newsletter!
@@ -10382,6 +10494,18 @@ en:
       x_seconds:
         one: "%{count} second"
         other: '%{count} seconds'
+      # the number of hours for distance in time from now
+      x_hours:
+        # a singular hour
+        one: "%{count} hour"
+        # multiple hours (plural)
+        other: "%{count} hours"
+      # the number of years for distance in time from now
+      x_years:
+        # a singular year
+        one: "%{count} year"
+        # multiple years (plural)
+        other: "%{count} years"
     countdown_x_days:
       one: DAY
       other: DAYS
@@ -10544,6 +10668,8 @@ en:
         exclude_donor_start_date: Exclude donor start date
         # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclude donor end date
+        # Column header for countries excluded by IP address
+        exclude_ip_countries: Exclude IP Countries
         excludes_non_site: Hide other announcements in this placement that have no Site ID
         # iNat client applications that the user must not have made an observation
         # with to see the announcement
@@ -10569,6 +10695,8 @@ en:
         max_observations: Max observations
         # Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min observations
+        # A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Global Announcement (optional)
         # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Placement
         # Preference for an announcement that is only shown to the user who created the announcement
@@ -10579,6 +10707,8 @@ en:
         user_created_start_date: Earliest user signup date
         # Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Latest user signup date
+        # Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Enable fundraise up embedded widgets
 
       assessment:
         description: Description
@@ -10618,6 +10748,8 @@ en:
         # The reason a moderator action was taken, e.g. an explanation for why
         # someone thought a comment should be hidden
         reason: Reason
+        # The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Edit reason
       observation:
         description: Notes
         geo_x: Easting
@@ -10830,6 +10962,13 @@ en:
               # placement". Only site admins will see this text, so it's ok
               # if it's not translated perfectly.
               must_be_valid_for_specified_placement: must be valid for specified placement
+            parent_announcement_id:
+              # Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: cannot reference itself
+              # Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: cannot reference an announcement that is itself a variant (only one level of nesting allowed)
+              # Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: cannot be set on an announcement that already has variants (only one level of nesting allowed)
             target_group_partition:
               # Error message shown when an Announcement has a value in the
               # target_group_partition attribute that is not a valid partition in the

@@ -188,10 +188,12 @@ body>div>.popover[role="tooltip"].popover-error {
     }
   }
   .row {
-    padding-bottom: 43px;
     &.text, &.separator-row {
       padding: 0;
     }
+  }
+  .row:not( :last-child ) {
+    padding-bottom: 43px;
   }
   label {
     font-weight: 600 !important;
@@ -358,23 +360,13 @@ body>div>.popover[role="tooltip"].popover-error {
       height: 20px;
     }
   }
-  .date-row {
+  .row.date-row {
     padding-bottom: 5px;
     & > div > div:not(.help-text) {
       display: inline-block;
       position: relative;
       vertical-align: middle;
       margin-left: 5px;
-    }
-    .input-group.date {
-      width: 190px;
-      .form-control:first-child {
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-      }
-      .input-group-addon {
-        display: none
-      }
     }
     label[for="project-date-type-exact"] + div .input-group.date {
       width: 120px;
@@ -389,6 +381,43 @@ body>div>.popover[role="tooltip"].popover-error {
     margin-top: 15px;
     button + button {
       margin-left: 10px;
+    }
+  }
+  .date-pickers {
+    .datetime-wrapper {
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+      margin-left: 5px;
+    }
+    .input-group.date {
+      width: 150px;
+      input {
+        width: 145px;
+      }
+      .input-group-addon {
+        display: none
+      }
+      .form-control:first-child {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+    }
+    .times {
+      display: inline-block;
+    }
+    .datetime-wrapper.datetimepicker-pull-left {
+      .bootstrap-datetimepicker-widget.dropdown-menu {
+        right: auto !important;
+        &:before {
+          left: 7px;
+          right: auto;
+        }
+        &:after {
+          left: 8px;
+          right: auto;
+        }
+      }
     }
   }
 }
@@ -522,4 +551,11 @@ body>div>.popover[role="tooltip"].popover-error {
   border: 1px solid $border-grey;
   padding: 15px;
   background: white;
+}
+
+.bootstrap .dropdown-menu.bootstrap-datetimepicker-widget {
+  padding: 4px;
+  td span {
+    line-height: 54px;
+  }
 }

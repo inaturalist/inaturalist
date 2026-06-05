@@ -3,9 +3,30 @@ name: Rails Build and Test
 on:
   workflow_call:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
+  js-checks:
+    name: JS Lint/Typecheck
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - run: npm install
+    - name: Run restricted eslint
+      run: |
+        npm run eslint -- \
+          --no-error-on-unmatched-pattern \
+          app/webpack/computer_vision/language \
+          "app/webpack/**/*.tsx" \
+          "app/webpack/**/*.ts"
+    - name: Run TypeScript type check
+      run: npm run typecheck
+
+  # WEB-1046: Might be worth considering building a container image for this job and reusing that
+  # instead of building the image for each matrix step.
   build-and-test:
-    name: Build/Test 
+    name: Build/Test
     runs-on: ubuntu-22.04
     services:
       postgres:
@@ -40,7 +61,7 @@ jobs:
           - spec/helpers spec/initializers spec/lib spec/views spec/features
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Configure sysctl limits
       run: |
@@ -94,8 +115,6 @@ jobs:
         TRAVIS_CI: true
         CI: true
 
+    # WEB-1046: This is running for each matrix step (14x) when it should only be running once.
     - name: Run restricted rubocop
       run: bundle exec rubocop ./app/controllers/users ./app/controllers/admin ./app/es_indices
-
-    - name: Run restricted eslint
-      run: npm run eslint app/webpack/computer_vision/language

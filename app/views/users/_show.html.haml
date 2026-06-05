@@ -18,13 +18,17 @@
               = t :admin_tools, default: 'Admin Tools'
               %span.caret
             %ul.dropdown-menu{:style => "width:100%"}
-              - if is_curator_or_site_admin && !is_me?(@user) && !@user.is_admin? && !@user.is_curator?
+              - if !@user.is_admin? && !is_me?(@user) && |
+                ((is_curator_or_site_admin && !@user.is_curator?) || current_user.is_admin?) |
                 - if @user.active?
                   %li
                     = link_to t(:suspend_user), suspend_user_path(@user)
                 - else
                   %li
                     = link_to t(:unsuspend_user), unsuspend_user_path(@user)
+                  - if @current_suspend_action&.editable_by?( current_user )
+                    %li
+                      = link_to t(:edit_suspension), edit_moderator_action_path( @current_suspend_action )
               - if current_user.is_site_admin_of?( @user.site ) && !@user.is_admin?
                 - if @user.is_curator?
                   %li

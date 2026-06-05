@@ -17,6 +17,18 @@ class ModeratorAction < ApplicationRecord
   MAXIMUM_REASON_LENGTH = 2048
   MAXIMUM_SUSPEND_REASON_LENGTH = 100
 
+  SUSPENSION_REASONS = {
+    "insults_or_threats" => { default_duration: "1_day" },
+    "hate_speech" => { default_duration: "3_days" },
+    "sexually_explicit_content" => { default_duration: "indefinite" },
+    "sockpuppet_accounts" => { default_duration: "1_week" },
+    "false_ids_or_dqa_votes" => { default_duration: "1_day" },
+    "machine_generated_content" => { default_duration: "indefinite" },
+    "continued_copyright_infringement_after_warning" => { default_duration: "1_day" },
+    "continued_posting_of_artificially_generated_media_after_warning" => { default_duration: "1_day" },
+    "continued_reduction_of_data_quality_after_warning" => { default_duration: "3_days" }
+  }.freeze
+
   PRIVATE_MEDIA_RETENTION_TIME = 2.months
 
   belongs_to :user, inverse_of: :moderator_actions
@@ -30,6 +42,11 @@ class ModeratorAction < ApplicationRecord
   validates :action, inclusion: ACTIONS
   validates :reason, length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH }
   validates :reason, length: { maximum: MAXIMUM_SUSPEND_REASON_LENGTH }, if: -> { action == SUSPEND }
+  validates :audit_comment, presence: true, on: :update, if: -> { action == SUSPEND }
+  validates :audit_comment,
+    length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH },
+    on: :update,
+    allow_blank: true
   validate :only_curators_and_staff_can_hide, on: :create
   validate :only_staff_can_make_private
   validate :only_staff_can_rename, on: :create
@@ -47,6 +64,9 @@ class ModeratorAction < ApplicationRecord
   after_save :notify_resource
   after_save :delete_resource_update_actions, if: ->( moderator_action ) { moderator_action.action == HIDE }
   after_destroy :notify_resource_on_destroy
+
+  audited only: [:reason, :suspended_until, :last_edited_by_user_id],
+    if: ->( moderator_action ) { moderator_action.action == SUSPEND }
 
   def self.current_private_actions
     moderated_private_resource_ids = ModeratorAction.where( private: true ).pluck( :resource_id )
@@ -118,6 +138,19 @@ class ModeratorAction < ApplicationRecord
     errors.add( :base, :staff_cannot_be_suspended )
   end
 
+  def editable_by?( editor )
+    return false if editor.blank?
+    return false unless action == SUSPEND
+
+    if resource.is_a?( User )
+      most_recent = ModeratorAction.where( resource: resource, action: SUSPEND ).order( created_at: :desc ).first
+      return false if most_recent && most_recent.id != id
+    end
+    return true if editor.is_admin?
+
+    editor == user
+  end
+
   def check_accepted_actions
     if resource &&
         resource.class.respond_to?( :accepted_moderator_actions ) &&
@@ -125,6 +158,17 @@ class ModeratorAction < ApplicationRecord
         !resource.class.accepted_moderator_actions.include?( action )
       errors.add( :action, :not_supported_for_this_kind_of_content )
     end
+  end
+
+  def self.translate_reason( reason )
+    return reason if reason.blank?
+    return I18n.t( "suspension_reasons.#{reason}" ) if SUSPENSION_REASONS.key?( reason )
+
+    reason
+  end
+
+  def translated_reason
+    self.class.translate_reason( reason )
   end
 
   def as_indexed_json
