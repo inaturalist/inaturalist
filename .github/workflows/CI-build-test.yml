@@ -23,8 +23,8 @@ jobs:
     - name: Run TypeScript type check
       run: npm run typecheck
 
-  # Might be worth considering building a container image for this job and reusing that instead of
-  # building the image for each matrix step.
+  # WEB-1046: Might be worth considering building a container image for this job and reusing that
+  # instead of building the image for each matrix step.
   build-and-test:
     name: Build/Test
     runs-on: ubuntu-22.04
@@ -115,6 +115,6 @@ jobs:
         TRAVIS_CI: true
         CI: true
 
-    # This is running for each matrix step (14x) when it should only be running once.
+    # WEB-1046: This is running for each matrix step (14x) when it should only be running once.
     - name: Run restricted rubocop
       run: bundle exec rubocop ./app/controllers/users ./app/controllers/admin ./app/es_indices
