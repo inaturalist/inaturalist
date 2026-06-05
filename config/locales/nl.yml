@@ -1791,6 +1791,7 @@ nl:
   devise_unlock_instructions_unlock: Deblokkeer je account
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Ontdek
+  discover_nature_around_you: Ontdek de natuur om je heen
   discoveries: Ontdekkingen
   did_you_mean: 'Bedoelde u'
   did_you_photos_flickr?: Heb je foto's geplaatst op Flickr?
@@ -1846,6 +1847,7 @@ nl:
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-uploader</a> te gebruiken
   download_csv: CSV downloaden
   download_csv_template: CSV-sjabloon downloaden
+  download_inaturalist_app: Download iNaturalist in de App Store
   download_kml: KML downloaden
   downstream_coverage_rank: Afdalende dekkingrang
   downstream_coverage_colon_rank: "Onderliggende dekking: niveau %{rank}"
@@ -6026,6 +6028,7 @@ nl:
   url_identifier_of_a_project_derived_from: "URL/identifier van een project dat is afgeleid van een externe bron"
   url_of_this_taxon_on_the_source_website: URL van dit taxon op de website van de bron
   usage_stats: Gebruiksstatistieken
+  use_app: Gebruik de app
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> als een placeholder gebruiken
   use_this_form_to_create_a_new: |
