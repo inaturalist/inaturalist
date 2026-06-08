@@ -1,12 +1,16 @@
+- translated_reason = ModeratorAction.translate_reason( @reason )
 %p<>
   = succeed "," do
     = t(:hi_user, user: @user.name.blank? ? @user.login : @user.name)
 - if @indefinite
   %p<>
-    = t("views.emailer.user_suspended.message_indefinite", reason: @reason)
+    = t("views.emailer.user_suspended.message_indefinite", reason: translated_reason)
 - else
   %p<>
-    = t("views.emailer.user_suspended.message_timed", reason: @reason, duration: @suspension_duration)
+    = t("views.emailer.user_suspended.message_timed", |
+      reason: translated_reason, |
+      duration: ApplicationController.helpers.time_until_in_words( @suspended_until ) |
+    ) |
 %p<>
   = t("views.emailer.user_suspended.appeal_html", |
     contact_us_url: "https://help.inaturalist.org/support/tickets/new" |

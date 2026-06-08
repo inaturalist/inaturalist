@@ -141,9 +141,9 @@ class Emailer < ActionMailer::Base
     return if @user.prefers_no_email?
     return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
 
-    @reason = ModeratorAction.translate_reason( reason )
+    @reason = reason
     @indefinite = suspended_until.blank?
-    @suspension_duration = ApplicationController.helpers.time_until_in_words( suspended_until ) unless @indefinite
+    @suspended_until = suspended_until
     @site_name = site_name
     mail_with_defaults(
       to: @user.email,

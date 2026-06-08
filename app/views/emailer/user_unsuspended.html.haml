@@ -5,7 +5,7 @@
   = t("views.emailer.user_unsuspended.message", site_name: @site_name)
 - if @reason.present?
   %p<>
-    = t("views.emailer.user_unsuspended.reason", reason: @reason)
+    = t("views.emailer.user_unsuspended.reason", reason: ModeratorAction.translate_reason( @reason ))
 %p<>
   = t("views.emailer.user_unsuspended.please_abide_html", |
     community_guidelines_url: "https://www.inaturalist.org/pages/community+guidelines", |
