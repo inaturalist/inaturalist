@@ -147,6 +147,7 @@ class Project < ApplicationRecord
   validate :place_with_boundary, if: ->( p ) { p.bioblitz? }
   validate :one_year_time_span, if: ->( p ) { p.bioblitz? }, unless: ->( p ) { p.errors.any? }
   validate :aggregation_preference_allowed?
+  validate :start_date_must_be_before_end_date
 
   scope :in_group, ->( name ) { where( group: name ) }
   scope :near_point, lambda {| latitude, longitude |
@@ -255,6 +256,18 @@ class Project < ApplicationRecord
     return unless end_time - start_time > 366.days
 
     errors.add( :end_time, "must be less than one year after the start time" )
+  end
+
+  def start_date_must_be_before_end_date
+    if start_time && end_time && end_time < start_time
+      errors.add( :base, :start_date_must_be_before_end_date )
+    end
+
+    d1 = Project.datetime_rule_to_instance( preferred_rule_d1 )
+    d2 = Project.datetime_rule_to_instance( preferred_rule_d2 )
+    return unless d1 && d2 && d2 < d1
+
+    errors.add( :base, :start_date_must_be_before_end_date )
   end
 
   def to_s
@@ -578,22 +591,10 @@ class Project < ApplicationRecord
 
       # map the rule values to their proper data types
       if ["rule_d1", "rule_d2", "rule_observed_on"].include?( rule )
-        if rule_value.strip.match( / / )
-          rule_value = begin
-            Time.parse( rule_value )
-          rescue StandardError
-            nil
-          end
-        else
-          rule_value = begin
-            Date.parse( rule_value )
-          rescue StandardError
-            nil
-          end
-          if rule == "rule_d2" && !rule_value.nil?
-            # when d2 is a date w/o a time, we want to capture that in its own field
-            params["d2_date"] = rule_value
-          end
+        rule_value = Project.datetime_rule_to_instance( rule_value )
+        if rule == "rule_d2" && rule_value.is_a?( Date )
+          # when d2 is a date w/o a time, we want to capture that in its own field
+          params["d2_date"] = rule_value
         end
       elsif rule_value.is_a?( String )
         is_int = rule_value.match( /^\d+ *(, *\d+)*$/ )
@@ -1364,6 +1365,24 @@ class Project < ApplicationRecord
       next unless trusting_prefs.include?( project_user.prefers_curator_coordinate_access_for )
 
       Emailer.collection_project_changed_for_trusting_member( project_user ).deliver_now
+    end
+  end
+
+  def self.datetime_rule_to_instance( rule_value )
+    return nil if !rule_value.respond_to?( :strip )
+
+    if rule_value.strip.match( / / )
+      begin
+        Time.parse( rule_value )
+      rescue StandardError
+        nil
+      end
+    else
+      begin
+        Date.parse( rule_value )
+      rescue StandardError
+        nil
+      end
     end
   end
 
