@@ -6574,6 +6574,8 @@ en:
     The observer has chosen to trust you with the hidden coordinates of all
     their observations.
   user_updated_an_observation_field_html: '%{user} updated a value for "%{field_name}" on an observation by %{owner}'
+  # An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Your account has been suspended"
   # An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Your account has been unsuspended"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
@@ -8636,6 +8638,15 @@ en:
         contact_us_html: 'If you have questions or concerns, you can <a href="%{contact_us_url}">contact us</a>.'
         # A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Log in to your account</a> to continue using the site.'
+      user_suspended:
+        # A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "Your iNaturalist account has been suspended for the following reason: %{reason}. Your suspension will be lifted in %{duration}."
+        # A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "Your iNaturalist account has been suspended indefinitely for the following reason: %{reason}."
+        # A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'If you believe this suspension was made in error or would like to appeal, please <a href="%{contact_us_url}">contact iNaturalist Support</a>. Keep in mind that using other accounts to evade suspension will result in the other accounts being suspended and their public content removed.'
+        # A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'All iNaturalist community members are asked to abide by the <a href="%{community_guidelines_url}">Community Guidelines</a> and <a href="%{terms_of_use_url}">Terms of Use</a>.'
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended

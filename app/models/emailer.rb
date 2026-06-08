@@ -133,6 +133,24 @@ class Emailer < ActionMailer::Base
     )
   end
 
+  def user_suspended( user, reason, suspended_until )
+    return if user.blank?
+
+    @user = user
+    return if @user.email.blank?
+    return if @user.prefers_no_email?
+    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
+
+    @reason = ModeratorAction.translate_reason( reason )
+    @indefinite = suspended_until.blank?
+    @suspension_duration = ApplicationController.helpers.time_until_in_words( suspended_until ) unless @indefinite
+    @site_name = site_name
+    mail_with_defaults(
+      to: @user.email,
+      subject: [:user_suspended_email_subject, { prefix: subject_prefix }]
+    )
+  end
+
   # Send the user an email saying the bulk observation import encountered
   # an error.
   def bulk_observation_error( user, filename, error_details )
