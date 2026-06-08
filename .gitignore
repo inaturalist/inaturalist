@@ -63,3 +63,8 @@ spec/fixtures/timezones-with-oceans*
 tmp/
 vendor/plugins/ratatosk/spec/debug.log
 xmp.xml
+spec/e2e/playwright/playwright-report/
+spec/e2e/playwright/test-results/
+spec/e2e/playwright/.auth/
+spec/e2e/.env.local
+test-results/
