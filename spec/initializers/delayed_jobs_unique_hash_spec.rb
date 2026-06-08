@@ -47,4 +47,21 @@ describe "Delayed::Jobs::unique_hash" do
     expect( second_job.unique_hash_taken ).to be true
     expect( second_job.errors[:unique_hash] ).not_to be_empty
   end
+
+  it "does not leave open transactions in a failed state" do
+    User.delay( unique_hash: "first!" ).find( 1 )
+    second_job = Delayed::Job.new( unique_hash: "first!" )
+    # many jobs are enqueued from model callbacks, i.e. inside an open
+    # transaction. When an INSERT violates a unique index, Postgres aborts
+    # the entire transaction. This is checking that after hitting a DB
+    # unique index violation, the open transaction can still process
+    # queries, and does not raise a PG::InFailedSqlTransaction error
+    ActiveRecord::Base.transaction do
+      expect( second_job.save( validate: false ) ).to be false
+      expect( second_job.unique_hash_taken ).to be true
+      expect do
+        Delayed::Job.count
+      end.not_to raise_error
+    end
+  end
 end

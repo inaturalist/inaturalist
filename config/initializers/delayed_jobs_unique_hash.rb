@@ -23,7 +23,13 @@ module Delayed
         # before the job can be saved. Catch these unique_hash uniqueness errors
         # and add an error to the instance instead of raising an exception
         def save( *args, **kwargs, & )
-          super
+          # create a transaction, or savepoint within an open transaction, so
+          # that if a unique index violation occurs at the DB level an open
+          # transaction is not left in a fail state, causing subsequent queries
+          # to raise errors
+          self.class.transaction( requires_new: true ) do
+            super
+          end
         rescue ::ActiveRecord::RecordNotUnique, ::PG::UniqueViolation => e
           raise unless e.message.include?( "index_delayed_jobs_on_unique_hash" )
 
