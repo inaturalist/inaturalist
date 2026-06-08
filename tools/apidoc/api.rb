@@ -698,7 +698,7 @@ EOT
 
     param "observation[positional_accuracy]" do
       desc "Positional accuracy of the observation coordinates in meters."
-      values "Any positive integer"
+      values "Any non-negative integer"
     end
 
     param "observation[geoprivacy]" do
