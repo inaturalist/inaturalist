@@ -5,6 +5,7 @@ class Emailer < ActionMailer::Base
   helper :observations
   helper :taxa
   helper :users
+  helper :format
 
   before_action :set_x_smtpapi_headers
 

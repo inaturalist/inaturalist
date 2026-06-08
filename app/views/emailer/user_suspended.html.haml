@@ -9,7 +9,7 @@
   %p<>
     = t("views.emailer.user_suspended.message_timed", |
       reason: translated_reason, |
-      duration: ApplicationController.helpers.time_until_in_words( @suspended_until ) |
+      duration: time_until_in_words( @suspended_until ) |
     ) |
 %p<>
   = t("views.emailer.user_suspended.appeal_html", |
