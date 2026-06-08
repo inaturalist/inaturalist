@@ -3760,8 +3760,13 @@ th:
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: การสังเกตที่จำแนกถึงระดับสกุล
         obs_id_d_desc: สร้างขึ้นภายใน 7 วันก่อนหน้าและมีการจำแนก (อาจเป็นการจำแนกโดยผู้สังเกตเอง)
+        observations_1_week_moving_window: การสังเกต (ช่วง 1 สัปดาห์)
         observers_desc: เพิ่มการสังเกตในวันนี้
         recent_desc: ลงทะเบียนเมื่อ 7 วันก่อน
+        today_identified_by_others: การสังเกตที่จำแนกโดยผู้อื่น (1 วัน)
+        today_identified_by_others_by_iconic_taxon: การสังเกตที่จำแนกโดยผู้อื่น (1 วัน)
+        observations_unknown: การสังเกตที่ยังไม่จำแนกหลังผ่านไป 30 วัน
+        observations_total_unknown_ratio: สัดส่วนของการสังเกตที่ยังไม่จำแนก (30 วัน)
       year:
         #label used for a chart component that shows the count of users that
         #added both identifications and observations
