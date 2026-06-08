@@ -1821,8 +1821,9 @@ class User < ApplicationRecord
         suspend!( moderator_action.reason )
       end
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      email_reason = suspended_until.present? ? suspension_reason : moderator_action.reason
       unsuspend!
-      send_unsuspended_email( moderator_action.reason )
+      send_unsuspended_email( email_reason )
     elsif moderator_action.action == ModeratorAction::RENAME
       new_login = User.suggest_login( User::DEFAULT_LOGIN )
       self.login = new_login
