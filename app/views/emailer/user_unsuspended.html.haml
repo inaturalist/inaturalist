@@ -1,4 +1,3 @@
-= render "header"
 %p<>
   = succeed "," do
     = t(:hi_user, user: @user.name.blank? ? @user.login : @user.name)
@@ -8,5 +7,11 @@
   %p<>
     = t("views.emailer.user_unsuspended.reason", reason: @reason)
 %p<>
-  = raw t("views.emailer.user_unsuspended.login_prompt", login_url: login_url)
-= render "footer"
+  = t("views.emailer.user_unsuspended.please_abide_html", |
+    community_guidelines_url: "https://www.inaturalist.org/pages/community+guidelines", |
+    terms_of_use_url: "https://www.inaturalist.org/pages/terms" |
+  ) |
+%p<>
+  = t("views.emailer.user_unsuspended.contact_us_html", |
+    contact_us_url: "https://help.inaturalist.org/support/tickets/new" |
+  ) |

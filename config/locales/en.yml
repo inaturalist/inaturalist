@@ -8625,8 +8625,15 @@ en:
       user_unsuspended:
         # A line in an email telling a user their account suspension is being lifted lifted.
         message: Your account on %{site_name} has been unsuspended and you can use the site again.
+        # A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Your account on %{site_name} has been reinstated and you can log in again.
         # A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Your account was suspended for the following reason: %{reason}"
+        # A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        # longer future suspensions.
+        please_abide_html: 'Please abide by the <a href="%{community_guidelines_url}">iNaturalist Community Guidelines</a> and <a href="%{terms_of_use_url}">Terms of Use</a>. Future violations may result in longer suspensions.'
+        # A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'If you have questions or concerns, you can <a href="%{contact_us_url}">contact us</a>.'
         # A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Log in to your account</a> to continue using the site.'
       users_updates_suspended:
