@@ -15,7 +15,7 @@ class ModeratorAction < ApplicationRecord
   ].freeze
   MINIMUM_REASON_LENGTH = 10
   MAXIMUM_REASON_LENGTH = 2048
-  MAXIMUM_SUSPEND_REASON_LENGTH = 100
+  MAXIMUM_SUSPEND_REASON_LENGTH = 250
 
   SUSPENSION_REASONS = {
     "insults_or_threats" => { default_duration: "1_day" },
