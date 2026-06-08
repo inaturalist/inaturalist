@@ -5750,20 +5750,38 @@ en:
     # reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Insults or threats
     # reason displayed to users who have been suspended for posting sexually explicit content
+    # REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Sexually explicit content
+    # reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Posting sexually explicit human content
     # reason displayed to users who are creating false accounts to circumvent suspensions,
     # https://en.wikipedia.org/wiki/Sock_puppet_account
+    # REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sockpuppet accounts
+    # reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Misusing a second account, such as confirming your own identifications
     # reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    # REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Intentionally adding false IDs or DQA votes
+    # reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Intentionally adding false data, such as observations, identifications, or Data Quality Assessment votes
     # reason displayed to users who have been suspended for posting machine generated content
+    # REPLACED with adding_machine_generated_content below
     machine_generated_content: Machine generated observations, identifications and comments
+    # reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Adding machine-generated content
     # reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    # REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Continued copyright infringement (after warning)
+    # reason displayed to users who have continued to post media to the platform wihtout the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Continued posting media without media owner's permission (after warning)
     # reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Continued posting of artificially generated media (after warning)
     # reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    # REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Continued reduction of data quality (after warning)
+    # reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Continued reduction of data quality, such as adding incorrect identifications (after warning)
   # the time at which a users suspension ends
   suspend_until: Suspend until
   # a note telling users to select the time in their local time zone
