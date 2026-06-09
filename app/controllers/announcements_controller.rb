@@ -4,6 +4,7 @@ class AnnouncementsController < ApplicationController
   before_action :authenticate_user!, except: [:active]
   before_action :site_admin_required, except: [:active, :dismiss]
   before_action :load_announcement, only: [:show, :edit, :update, :destroy, :dismiss, :duplicate]
+  before_action :ensure_can_edit_announcement, only: [:edit, :update, :destroy]
   before_action :load_sites, only: [:new, :edit, :create, :update, :duplicate]
   before_action :load_oauth_applications, only: [:new, :edit, :create, :update, :duplicate]
   before_action :load_parent_announcement_options, only: [:new, :edit, :create, :update, :duplicate]
@@ -14,7 +15,9 @@ class AnnouncementsController < ApplicationController
   # GET /announcements.xml
   def index
     @announcements = Announcement.includes( :sites ).order( "announcements.id desc" ).page( params[:page] )
-    @announcements = @announcements.where( sites: { id: current_user_site_ids } ) unless current_user_site_ids.blank?
+    if current_user_site_ids.present? && params[:site_filter] != "all"
+      @announcements = @announcements.where( sites: { id: current_user_site_ids } )
+    end
     @announcements = @announcements.where( "body ilike ?", "%#{params[:q]}%" ) unless params[:q].blank?
     @active = params[:active].yesish?
     @announcements = @announcements.where( "\"end\" > ?", Time.now ) if @active
@@ -133,6 +136,28 @@ class AnnouncementsController < ApplicationController
 
   def current_user_site_ids
     @current_user_site_ids ||= current_user.site_admins.pluck( :site_id )
+  end
+
+  def announcement_editable_by_current_user?( announcement = @announcement )
+    return true if current_user.is_admin?
+    return false if current_user_site_ids.blank?
+
+    announcement.site_ids.intersect?( current_user_site_ids )
+  end
+  helper_method :announcement_editable_by_current_user?, :current_user_site_ids
+
+  def ensure_can_edit_announcement
+    return if announcement_editable_by_current_user?
+
+    respond_to do | format |
+      format.html do
+        flash[:error] = t( :you_dont_have_permission_to_edit_that_announcement )
+        redirect_to @announcement
+      end
+      format.json do
+        render status: :forbidden, json: { error: t( :you_dont_have_permission_to_edit_that_announcement ) }
+      end
+    end
   end
 
   def load_announcement
