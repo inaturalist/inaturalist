@@ -126,6 +126,7 @@ class Emailer < ActionMailer::Base
 
     @reason = reason
     @site_name = site_name
+    @x_smtpapi_headers[:asm_group_id] = CONFIG.sendgrid&.asm_group_ids&.account
     mail_with_defaults(
       to: @user.email,
       subject: [:user_unsuspended_email_subject, { prefix: subject_prefix }]
@@ -142,6 +143,7 @@ class Emailer < ActionMailer::Base
     @indefinite = suspended_until.blank?
     @suspended_until = suspended_until
     @site_name = site_name
+    @x_smtpapi_headers[:asm_group_id] = CONFIG.sendgrid&.asm_group_ids&.account
     mail_with_defaults(
       to: @user.email,
       subject: [:user_suspended_email_subject, { prefix: subject_prefix }]
