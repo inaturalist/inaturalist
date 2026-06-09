@@ -123,8 +123,6 @@ class Emailer < ActionMailer::Base
 
     @user = user
     return if @user.email.blank?
-    return if @user.prefers_no_email?
-    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
 
     @reason = reason
     @site_name = site_name
@@ -139,8 +137,6 @@ class Emailer < ActionMailer::Base
 
     @user = user
     return if @user.email.blank?
-    return if @user.prefers_no_email?
-    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
 
     @reason = reason
     @indefinite = suspended_until.blank?
