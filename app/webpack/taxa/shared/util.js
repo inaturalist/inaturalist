@@ -15,6 +15,15 @@ const urlForTaxonPhotos = ( t, params ) => {
 const urlForUser = u => `/people/${u.login}`;
 const urlForPlace = p => `/places/${p.slug || p.id}`;
 
+const isCuratorOrAdmin = currentUser => (
+  currentUser
+  && currentUser.roles
+  && (
+    currentUser.roles.includes( "curator" )
+    || currentUser.roles.includes( "admin" )
+  )
+);
+
 const defaultObservationParams = ( state, options = { } ) => {
   const { config } = state;
   const params = {
@@ -276,12 +285,12 @@ const getChosenTab = ( tab, rankLevel ) => {
   const aboveGenusTabsSet = new Set( [TABS.map, TABS.articles, TABS.highlights, TABS.taxonomy] );
 
   if (
-    ( rankLevel <= RANK_LEVELS.species && speciesTabsSet.has( tab ) >= 0 )
-    || ( rankLevel === RANK_LEVELS.genus && genusTabsSet.has( tab ) >= 0 )
+    ( rankLevel <= RANK_LEVELS.species && speciesTabsSet.has( tab ) )
+    || ( rankLevel === RANK_LEVELS.genus && genusTabsSet.has( tab ) )
     || (
       ( rankLevel > RANK_LEVELS.genus
       || ( rankLevel > RANK_LEVELS.species && rankLevel < RANK_LEVELS.genus ) )
-      && aboveGenusTabsSet.has( tab ) >= 0
+      && aboveGenusTabsSet.has( tab )
     )
   ) {
     return tab;
@@ -307,6 +316,7 @@ const MAX_TAXON_PHOTOS = 12;
 
 export {
   urlForTaxon,
+  isCuratorOrAdmin,
   urlForTaxonPhotos,
   urlForUser,
   urlForPlace,
