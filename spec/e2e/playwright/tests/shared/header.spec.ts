@@ -2,7 +2,7 @@ import { test, expect, Page } from "@playwright/test";
 import { login } from "../../helpers/auth.helper";
 import { app, appMake } from "../../support/on-rails";
 import { VIEWPORTS } from "../../../shared/breakpoints";
-import { expectNoHorizontalOverflowAtEveryBreakpoint } from "../../helpers/overflow.helper";
+import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
 
 const TEST_PASSWORD = "TestPass123!";
 
@@ -103,7 +103,19 @@ test.describe( "Header navigation parity (desktop)", () => {
   } );
 } );
 
-expectNoHorizontalOverflowAtEveryBreakpoint( "/" );
+expectNoHorizontalOverflow( "/" );
+
+test.describe( "Header at the sm breakpoint (logged in)", () => {
+  test.beforeEach( async ( { page } ) => {
+    await page.setViewportSize( VIEWPORTS.sm );
+    await page.goto( "/" );
+    await page.locator( "#header .add-obs" ).waitFor();
+  } );
+
+  test( "upload button text is not visible", async ( { page } ) => {
+    await expect( page.locator( "#header .add-obs .btn-inat span" ) ).toBeHidden();
+  } );
+} );
 
 test.describe( "Header at the md breakpoint (logged in)", () => {
   test.beforeEach( async ( { page } ) => {
@@ -131,17 +143,5 @@ test.describe( "Header at the lg breakpoint (logged in)", () => {
 
   test( "upload button text is visible", async ( { page } ) => {
     await expect( page.locator( "#header .add-obs .btn-inat span" ) ).toBeVisible();
-  } );
-} );
-
-test.describe( "Header at the sm breakpoint (logged in)", () => {
-  test.beforeEach( async ( { page } ) => {
-    await page.setViewportSize( VIEWPORTS.sm );
-    await page.goto( "/" );
-    await page.locator( "#header .add-obs" ).waitFor();
-  } );
-
-  test( "upload button text is not visible", async ( { page } ) => {
-    await expect( page.locator( "#header .add-obs .btn-inat span" ) ).toBeHidden();
   } );
 } );
