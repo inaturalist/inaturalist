@@ -2527,6 +2527,9 @@ body:not(.responsive) {
 }
 
 @mixin header-narrow-menu {
+  .search {
+    flex: 1;
+  }
   #narrow-menu {
     display: flex;
     align-items: center;
