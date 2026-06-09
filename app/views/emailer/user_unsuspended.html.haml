@@ -2,7 +2,7 @@
   = succeed "," do
     = t(:hi_user, user: @user.name.blank? ? @user.login : @user.name)
 %p<>
-  = t("views.emailer.user_unsuspended.message_2", site_name: @site_name)
+  = t_with_fallback("views.emailer.user_unsuspended.message_2", "views.emailer.user_unsuspended.message", site_name: @site_name)
 - if @reason.present?
   %p<>
     = t("views.emailer.user_unsuspended.reason", reason: ModeratorAction.translate_reason( @reason ))
