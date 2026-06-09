@@ -1,9 +1,0 @@
-.col-md-3.col-sm-3
-  .media
-    .media-left
-      = link_to_user friend do
-        = user_image friend, size: "thumb", class: "media-object img-circle followee"
-    .media-body
-      %h4.media-heading= link_to friend.login, person_by_login_path(friend.login)
-      %i.fa.fa-binoculars{"aria-hidden" => "true"}
-      = link_to friend.observations_count, observations_path( user_id: friend.login )

@@ -20,6 +20,15 @@ const StatusTab = ( {
   taxon,
   currentUser
 } ) => {
+  const placeName = place => {
+    if ( !place ) {
+      return null;
+    }
+    return I18n.t(
+      `places_name.${_.snakeCase( place.name )}`,
+      { defaultValue: place.display_name || place.name }
+    );
+  };
   const isCurator = currentUser && currentUser.roles && (
     currentUser.roles.indexOf( "curator" ) >= 0
     || currentUser.roles.indexOf( "admin" ) >= 0
@@ -141,10 +150,7 @@ const StatusTab = ( {
                       { status.place
                         ? (
                           <a href={`/places/${status.place.id}`} className="place-link">
-                            { I18n.t(
-                              `places_name.${_.snakeCase( status.place.display_name )}`,
-                              { defaultValue: status.place.display_name }
-                            ) }
+                            { placeName( status.place ) }
                           </a>
                         )
                         : I18n.t( "globally" )}
@@ -264,10 +270,7 @@ const StatusTab = ( {
                       { lt.place
                         ? (
                           <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                            { I18n.t(
-                              `places_name.${_.snakeCase( lt.place.name )}`,
-                              { defaultValue: lt.place.display_name }
-                            ) }
+                            { placeName( lt.place ) }
                           </a>
                         )
                         : I18n.t( "globally" )}

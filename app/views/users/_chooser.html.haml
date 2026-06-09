@@ -1,7 +1,0 @@
-- user ||= chooser || object
-.chooseritem
-  = user_image user
-  - if user.name.blank?
-    = user.login
-  - else
-    = "#{user.name} (#{user.login})"

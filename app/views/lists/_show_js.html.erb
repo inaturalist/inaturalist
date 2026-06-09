@@ -1,8 +1,0 @@
-<script type="text/javascript">
-  var FILTER_TAXON = <%=json_escape @filter_taxon.to_json(Taxon.default_json_options).html_safe %>
-</script>
-<%= javascript_include_tag 'jquery/plugins/jqModal', 
-                           'jquery/plugins/jquery.string.1.0', 
-                           'modal_image',
-                           "jquery/plugins/inat/fixed_follower.js",
-                           "lists/show" %>

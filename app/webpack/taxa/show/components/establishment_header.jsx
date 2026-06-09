@@ -1,5 +1,16 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+
+const placeName = place => {
+  if ( !place ) {
+    return null;
+  }
+  return I18n.t(
+    `places_name.${_.snakeCase( place.name )}`,
+    { defaultValue: place.display_name || place.name }
+  );
+};
 
 const EstablishmentHeader = ( { establishmentMeans, source, url } ) => {
   let sourceElement;
@@ -23,7 +34,7 @@ const EstablishmentHeader = ( { establishmentMeans, source, url } ) => {
         <i className="glyphicon glyphicon-star" />
         { " " }
         <strong>
-          { I18n.t( "endemic_to_x", { x: establishmentMeans.place.display_name } ) }
+          { I18n.t( "endemic_to_x", { x: placeName( establishmentMeans.place ) } ) }
         </strong>
         { " " }
         { sourceElement }
@@ -34,7 +45,7 @@ const EstablishmentHeader = ( { establishmentMeans, source, url } ) => {
     return (
       <div className="alert establishment-endemic StatusHeader EstablishmentHeader">
         <strong>
-          { I18n.t( "native_to_place", { place: establishmentMeans.place.display_name } ) }
+          { I18n.t( "native_to_place", { place: placeName( establishmentMeans.place ) } ) }
         </strong>
         { " " }
         { sourceElement }
@@ -47,7 +58,7 @@ const EstablishmentHeader = ( { establishmentMeans, source, url } ) => {
         <i className="glyphicon glyphicon-alert" />
         { " " }
         <strong>
-          { I18n.t( "introduced_in_place", { place: establishmentMeans.place.display_name } ) }
+          { I18n.t( "introduced_in_place", { place: placeName( establishmentMeans.place ) } ) }
         </strong>
         { " " }
         { sourceElement }

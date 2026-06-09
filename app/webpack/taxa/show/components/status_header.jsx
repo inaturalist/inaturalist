@@ -3,6 +3,16 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 
+const placeName = place => {
+  if ( !place ) {
+    return null;
+  }
+  return I18n.t(
+    `places_name.${_.snakeCase( place.name )}`,
+    { defaultValue: place.display_name || place.name }
+  );
+};
+
 const StatusHeader = ( { status } ) => {
   let text = status.statusText( );
   text = I18n.t( _.snakeCase( text ), { defaultValue: text } );
@@ -45,7 +55,7 @@ const StatusHeader = ( { status } ) => {
       <strong>
         {
           status.place
-            ? I18n.t( "status_in_place", { status: text, place: status.place.display_name } )
+            ? I18n.t( "status_in_place", { status: text, place: placeName( status.place ) } )
             : I18n.t( "status_globally", { status: text } )
         }
       </strong>

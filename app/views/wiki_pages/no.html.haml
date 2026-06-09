@@ -1,8 +1,0 @@
-= content_for :title do
-  = @title = t( :x_does_not_exist, x: @page.title )
-%h2= @title
-.nocontent.meta
-  - if edit_allowed?
-    = t( :no_such_wiki_page_html, new_url: wiki_page_new_path )
-  - else
-    = t( :no_such_wiki_page )

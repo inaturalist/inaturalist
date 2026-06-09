@@ -1,9 +1,0 @@
-= content_for :title do
-  = @title = "Editing #{@page.title}"
-= content_for :extrajs do
-  = google_maps_js
-  = javascript_include_tag 'map_bundle'
-= content_for :extracss do
-  = stylesheet_link_tag 'wiki'
-%h2= wt @title
-= render 'form'

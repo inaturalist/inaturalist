@@ -1,2 +1,0 @@
-class ProjectUserRule < Rule
-end

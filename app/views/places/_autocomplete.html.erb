@@ -1,3 +1,0 @@
-<%- for place in @places %>
-<%=json_escape place.to_json(:methods => [:place_type_name]).html_safe %>
-<% end -%>

@@ -1,7 +1,0 @@
-<%- taxon_name ||= @taxon_name -%>
-<%- no_lexicon ||= false -%>
-<span class="taxon_name <%= taxon_name.lexicon.gsub(' ', '_') if taxon_name.lexicon %>"><%= taxon_name.name -%>
-<%- if taxon_name.lexicon.blank? -%>
-  <span class="lexicon description">(unknown lexicon)</span>
-<%- else -%>
-  <span class="lexicon description">(<%= taxon_name.lexicon %>)</span><%- end -%></span>

@@ -1,5 +1,0 @@
-<%- taxon ||= chooser || @taxon -%>
-<div class="taxon chooseritem">
-  <span class="inlineblock selected iconic_taxon_sprite <%= taxon.iconic_taxon_name.to_s.downcase %>"></span>
-  <%= render_in_format :html, :partial => "shared/taxon", :object => taxon %>
-</div>
