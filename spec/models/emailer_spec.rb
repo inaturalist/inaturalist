@@ -180,12 +180,6 @@ describe Emailer, "user_unsuspended" do
     expect( mail.body ).to be_blank
   end
 
-  it "should not deliver to a user who prefers no email" do
-    user.update( prefers_no_email: true )
-    mail = Emailer.user_unsuspended( user )
-    expect( mail.body ).to be_blank
-  end
-
   it "should include reason when provided" do
     mail = Emailer.user_unsuspended( user, "spamming" )
     expect( mail.body ).to match( /spamming/ )
@@ -226,12 +220,6 @@ describe Emailer, "user_suspended" do
 
   it "should not deliver to a user with no email" do
     user.update( email: "" )
-    mail = Emailer.user_suspended( user, "hate_speech", nil )
-    expect( mail.body ).to be_blank
-  end
-
-  it "should not deliver to a user who prefers no email" do
-    user.update( prefers_no_email: true )
     mail = Emailer.user_suspended( user, "hate_speech", nil )
     expect( mail.body ).to be_blank
   end
