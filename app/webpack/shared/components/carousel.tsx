@@ -27,14 +27,6 @@ const Carousel = ( {
   const [itemWidth, setItemWidth] = useState( 0 );
   const trackRef = useRef<HTMLDivElement>( null );
 
-  const link = url && (
-    <a href={url} className={css.carousel__readmore}>
-      { I18n.t( "view_all_caps" ) }
-    </a>
-  );
-
-  const allItems = finalItem ? [...items, finalItem] : items;
-
   const measureItemWidth = useCallback( () => {
     if ( !trackRef.current ) return;
     // Measure the first track child with a naturally-derived width (no inline width style,
@@ -49,16 +41,28 @@ const Carousel = ( {
     }
   }, [] );
 
+  const scrollToIndex = useCallback( ( idx: number ) => {
+    const track = trackRef.current;
+    if ( !track ) return;
+    const item = track.children[idx] as HTMLElement;
+    if ( !item ) return;
+    const itemLeft = item.getBoundingClientRect().left - track.getBoundingClientRect().left;
+    const offset = track.scrollLeft + itemLeft;
+    track.scrollTo( { left: offset, behavior: "smooth" } );
+  }, [] );
+
   useEffect( () => {
     const track = trackRef.current;
     if ( !track ) return () => {};
-    const ro = new ResizeObserver( () => {
-      const w = track.getBoundingClientRect().width;
-      if ( w > 0 ) setTrackWidth( prev => ( prev !== w ? w : prev ) );
+    const resizeObserver = new ResizeObserver( () => {
+      const currentTrackWidth = track.getBoundingClientRect().width;
+      if ( currentTrackWidth > 0 ) {
+        setTrackWidth( prev => ( prev !== currentTrackWidth ? currentTrackWidth : prev ) );
+      }
       measureItemWidth();
     } );
-    ro.observe( track );
-    return () => ro.disconnect();
+    resizeObserver.observe( track );
+    return () => resizeObserver.disconnect();
   }, [measureItemWidth] );
 
   useEffect( () => {
@@ -89,24 +93,14 @@ const Carousel = ( {
     };
   }, [] );
 
-  const scrollToIndex = useCallback( ( idx: number ) => {
-    const track = trackRef.current;
-    if ( !track ) return;
-    const item = track.children[idx] as HTMLElement;
-    if ( !item ) return;
-    const itemLeft = item.getBoundingClientRect().left - track.getBoundingClientRect().left;
-    const offset = track.scrollLeft + itemLeft;
-    track.scrollTo( { left: offset, behavior: "smooth" } );
-  }, [] );
-
   // Until the carousel has been measured, render only a couple items so off-screen
-  // CoverImages don't mount and fire network requests on first paint. After ResizeObserver
+  // elements don't mount and fire network requests on first paint. After ResizeObserver
   // measures the track, visibleCount switches to the real value and placeholders get sized.
   const INITIAL_VISIBLE = 2;
   const visibleCount = trackWidth && itemWidth
     ? Math.ceil( trackWidth / itemWidth )
     : INITIAL_VISIBLE;
-
+  const allItems = finalItem ? [...items, finalItem] : items;
   const renderedItems = allItems.map( ( item, index ) => {
     const distFromActive = Math.abs( index - activeIndex );
     return (
@@ -121,6 +115,12 @@ const Carousel = ( {
       </div>
     );
   } );
+
+  const link = url && (
+    <a href={url} className={css.carousel__readmore}>
+      { I18n.t( "view_all_caps" ) }
+    </a>
+  );
 
   return (
     <div className={`${css.carousel}${className ? ` ${className}` : ""}`}>
