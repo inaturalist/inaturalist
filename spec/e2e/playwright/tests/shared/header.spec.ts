@@ -6,9 +6,6 @@ import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
 
 const TEST_PASSWORD = "TestPass123!";
 
-// One test user for the whole file; every test logs in as this user. The
-// responsive header is gated behind the "responsive-header" test group, so the
-// user is added to it (which also makes pages render with body.responsive).
 let testEmail: string;
 
 async function menuLabels( page: Page ): Promise<{ mainnav: string[]; hamburger: string[] }> {

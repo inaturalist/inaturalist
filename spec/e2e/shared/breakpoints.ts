@@ -1,22 +1,3 @@
-/**
- * Responsive breakpoints, shared across all e2e tests.
- *
- * These mirror the Bootstrap 5 grid tiers:
- *
- *   Breakpoint    Infix    Dimensions
- *   Extra small   (none)   < 576px
- *   Small         sm       >= 576px
- *   Medium        md       >= 768px
- *   Large         lg       >= 992px
- *   Extra large   xl       >= 1200px
- *   XX-large      xxl      >= 1400px
- *
- * `minWidth` is the viewport width (px) at which a tier becomes active.
- * `VIEWPORTS` gives a representative viewport for each tier — the tier's
- * lower bound (with a sensible width for `xs`, which has no minimum) — so a
- * test can do `page.setViewportSize( VIEWPORTS.lg )`.
- */
-
 export type BreakpointName = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
 
 export interface Breakpoint {
