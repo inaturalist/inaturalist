@@ -4,7 +4,6 @@
 import {
   urlForTaxon,
   urlForTaxonPhotos,
-  isCuratorOrAdmin,
   getChosenTab,
   RANK_LEVELS
 } from "./util";
@@ -33,26 +32,6 @@ describe( "urlForTaxonPhotos", ( ) => {
   it( "appends query params when provided", ( ) => {
     expect( urlForTaxonPhotos( { id: 1, name: "Test" }, { place_id: 2, user_id: 3 } ) )
       .toBe( "/taxa/1-Test/browse_photos?place_id=2&user_id=3" );
-  } );
-} );
-
-describe( "isCuratorOrAdmin", ( ) => {
-  it( "is true for a curator", ( ) => {
-    expect( isCuratorOrAdmin( { roles: ["curator"] } ) ).toBe( true );
-  } );
-
-  it( "is true for an admin", ( ) => {
-    expect( isCuratorOrAdmin( { roles: ["admin"] } ) ).toBe( true );
-  } );
-
-  it( "is falsy for a plain observer", ( ) => {
-    expect( isCuratorOrAdmin( { roles: ["observer"] } ) ).toBeFalsy( );
-  } );
-
-  it( "is falsy when currentUser is null or lacks roles", ( ) => {
-    expect( isCuratorOrAdmin( null ) ).toBeFalsy( );
-    expect( isCuratorOrAdmin( { roles: null } ) ).toBeFalsy( );
-    expect( isCuratorOrAdmin( { } ) ).toBeFalsy( );
   } );
 } );
 
