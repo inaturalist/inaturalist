@@ -46,6 +46,10 @@ module Sitemap
       category_results = []
       category_results << generate_projects( tmp_dir )
       category_results << generate_taxa( tmp_dir )
+      ( I18N_SUPPORTED_LOCALES - ["en"] ).each do | locale |
+        result = generate_taxa_for_locale( tmp_dir, locale )
+        category_results << result if result
+      end
       category_results << generate_people( tmp_dir )
       category_results << generate_places( tmp_dir )
       category_results << generate_blog_posts( tmp_dir )
@@ -98,6 +102,26 @@ module Sitemap
       relation = Taxon.active.select( :id, :name ).order( :id )
       generate_category( dir, "taxa", relation ) do | taxon |
         FakeView.taxon_url( taxon )
+      end
+    end
+
+    def generate_taxa_for_locale( dir, locale )
+      lexicon_key = TaxonName::LEXICONS_BY_LOCALE[locale]
+      return unless lexicon_key
+
+      lexicon = TaxonName::LEXICONS[lexicon_key.upcase.to_sym]
+      return unless lexicon
+
+      relation = Taxon.active.
+        joins( :taxon_names ).
+        where( taxon_names: { lexicon: lexicon, is_valid: true } ).
+        select( "taxa.id, taxa.name" ).
+        distinct.
+        order( "taxa.id" )
+
+      category = "taxa-#{locale.downcase.gsub( /[^a-z0-9]/, "-" )}"
+      generate_category( dir, category, relation ) do | taxon |
+        FakeView.localized_taxon_url( locale: locale, id: taxon.to_param )
       end
     end
 
