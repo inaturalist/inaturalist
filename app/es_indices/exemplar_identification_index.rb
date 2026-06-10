@@ -49,6 +49,8 @@ class ExemplarIdentification < ApplicationRecord
         end
         indexes :uuid, type: "keyword"
         indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :body_search, analyzer: "autocomplete_analyzer",
+          search_analyzer: "standard_analyzer"
         indexes :body_word_length, type: "integer"
         indexes :body_character_length, type: "integer"
         indexes :created_at, type: "date"
@@ -136,6 +138,7 @@ class ExemplarIdentification < ApplicationRecord
         id: identification.id,
         uuid: identification.uuid,
         body: identification.body,
+        body_search: identification.body,
         body_word_length: identification.body&.split&.length || 0,
         body_character_length: identification.body&.length || 0,
         created_at: identification.created_at,
