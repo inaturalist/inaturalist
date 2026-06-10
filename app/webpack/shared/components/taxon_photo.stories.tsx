@@ -1,13 +1,28 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import TaxonPhoto from "./taxon_photo";
-import type { Photo, Taxon, Observation } from "../types";
+import type { Photo, Taxon } from "../types";
 
+// TaxonPhoto derives its height from `width`/`height`/`square` plus its parent's
+// width (the CoverImage inside is height:100%). It is always rendered inside a
+// sized grid cell in the app, so the stories supply explicit dimensions and a
+// fixed-width container — without them the image collapses to zero height.
 const meta: Meta<typeof TaxonPhoto> = {
   title: "Shared/TaxonPhoto",
   component: TaxonPhoto,
   args: {
-    showTaxonPhotoModal: ( ) => { /* no-op */ }
-  }
+    showTaxonPhotoModal: ( ) => { /* no-op */ },
+    width: 240,
+    height: 240,
+    square: true
+  },
+  decorators: [
+    Story => (
+      <div style={{ width: 260 }}>
+        <Story />
+      </div>
+    )
+  ]
 };
 
 export default meta;
@@ -19,14 +34,6 @@ const makePhoto = ( id: number ): Photo => ( {
   dimensions: ( ) => ( { width: 400, height: 300 } )
 } );
 
-const makeObservation = ( id: number ): Observation => ( {
-  id,
-  photo: ( ) => null,
-  hasPhotos: ( ) => false,
-  hasMedia: ( ) => false,
-  hasSounds: ( ) => false
-} );
-
 const hawk: Taxon = {
   id: 4849,
   name: "Buteo jamaicensis",
@@ -34,16 +41,6 @@ const hawk: Taxon = {
   rank: "species",
   rank_level: 10,
   iconic_taxon_name: "Aves",
-  is_active: true
-};
-
-const fungus: Taxon = {
-  id: 54743,
-  name: "Amanita muscaria",
-  preferred_common_name: "Fly Agaric",
-  rank: "species",
-  rank_level: 10,
-  iconic_taxon_name: "Fungi",
   is_active: true
 };
 
@@ -68,23 +65,5 @@ export const ShowTaxonLinked: Story = {
     taxon: hawk,
     showTaxon: true,
     linkTaxon: true
-  }
-};
-
-export const Fungus: Story = {
-  args: {
-    photo: makePhoto( 7 ),
-    taxon: fungus,
-    showTaxon: true,
-    linkTaxon: true
-  }
-};
-
-export const WithObservation: Story = {
-  args: {
-    photo: makePhoto( 5 ),
-    taxon: hawk,
-    observation: makeObservation( 12345 ),
-    showTaxon: true
   }
 };

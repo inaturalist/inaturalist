@@ -14,14 +14,8 @@ const config: StorybookConfig = {
       test: /\.[jt]sx?$/,
       exclude: /node_modules/,
       use: {
-        loader: "babel-loader",
-        options: {
-          presets: [
-            "@babel/preset-typescript",
-            "@babel/preset-env",
-            "@babel/preset-react"
-          ]
-        }
+        // Babel presets come from the shared root babel.config.js
+        loader: "babel-loader"
       }
     } as RuleSetRule );
     return baseConfig;

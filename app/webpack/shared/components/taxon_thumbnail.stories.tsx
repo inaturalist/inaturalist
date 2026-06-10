@@ -63,9 +63,9 @@ export const NoPhoto: Story = {
 export const WithCaption: Story = {
   args: {
     taxon: fungus,
-    captionForTaxon: ( t: Taxon ) => (
+    captionForTaxon: ( ) => (
       <div style={{ textAlign: "right", fontSize: "12px", color: "#888" }}>
-        { `${t.rank}` }
+        Absolutely classic mushroom
       </div>
     )
   }
