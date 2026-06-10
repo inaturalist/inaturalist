@@ -9403,6 +9403,11 @@ de:
             user:
               must_be_on_site_long_enough: |
                 muss sich vor mehr als 24 Stunden registriert haben, um zu veröffentlichen. Wir haben viele Spammer, und dies ist eine Art mit ihnen umzugehen. Du kannst immer noch einen Entwurf speichern, und wenn du die Seite in einem Tag immer noch benutzt, kannst du den Post veröffentlichen.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: Das Startdatum muss vor dem Enddatum liegen
         project_fave:
           attributes:
             base:
