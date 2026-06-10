@@ -119,7 +119,7 @@ module Sitemap
         distinct.
         order( "taxa.id" )
 
-      category = "taxa-#{locale.downcase.gsub( /[^a-z0-9]/, "-" )}"
+      category = "taxa-#{locale.downcase.gsub( /[^a-z0-9]/, '-' )}"
       generate_category( dir, category, relation ) do | taxon |
         FakeView.localized_taxon_url( locale: locale, id: taxon.to_param )
       end
