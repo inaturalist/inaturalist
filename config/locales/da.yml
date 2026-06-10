@@ -10191,6 +10191,11 @@ da:
               must_be_on_site_long_enough: |
                 skal være registreret i mere end 24 timer for at kunne publicere. Vi får
                 en masse spammere, og dette er vores måde at håndtere dem på. Du kan stadig gemme som kladde og publicere det på et senere tidspunkt.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: startdato skal være før slutdato
         project_fave:
           attributes:
             base:
