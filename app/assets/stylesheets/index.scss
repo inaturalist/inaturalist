@@ -2216,6 +2216,7 @@ $header-line-height: 34px;
   .search {
     margin-bottom: 0;
     margin-right: 10px;
+    min-width: 0;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -2569,7 +2570,7 @@ body:not(.responsive) {
   }
 }
 
-@media (min-width: $md) and (max-width: $xl-max) {
+@media (max-width: $xl-max) {
   body.responsive #header {
     @include header-narrow-menu;
     #mainnav {
@@ -2586,8 +2587,7 @@ body:not(.responsive) {
       margin-right: 15px;
     }
     #header {
-      @include header-narrow-menu;
-      #headersearch, #mainnav {
+      #headersearch {
         display: none;
       }
       #messagesnav, #updatesnav {
