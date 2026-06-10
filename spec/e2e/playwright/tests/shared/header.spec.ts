@@ -40,6 +40,8 @@ test.beforeEach( async ( { page } ) => {
   await login( page, testEmail, TEST_PASSWORD );
 } );
 
+expectNoHorizontalOverflow( "/" );
+
 test.describe( "Header search bar (desktop)", () => {
   test.beforeEach( async ( { page } ) => {
     await page.setViewportSize( VIEWPORTS.xl );
@@ -99,8 +101,6 @@ test.describe( "Header navigation parity (desktop)", () => {
     }
   } );
 } );
-
-expectNoHorizontalOverflow( "/" );
 
 test.describe( "Header at the sm breakpoint (logged in)", () => {
   test.beforeEach( async ( { page } ) => {
