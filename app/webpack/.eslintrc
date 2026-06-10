@@ -101,5 +101,13 @@
         "react/prop-types": 0
       }
     },
+    {
+      "files": ["*.test.ts", "*.test.tsx", "*.test.js", "*.test.jsx"],
+      "env": { "jest": true },
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "react/jsx-props-no-spreading": "off"
+      }
+    }
   ]
 }
