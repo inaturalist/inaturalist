@@ -1266,6 +1266,8 @@ id:
   create_a_new_place: Membuat lokasi baru
   create_a_new_taxon: Membuat taksa baru
   create_a_query: Membuat pertanyaan
+  #Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Buat varian yang ditargetkan
   create_an_account: Buat akun
   create_an_atlas: Buat Atlas
   create_export: Buat Ekspor
@@ -1702,6 +1704,7 @@ id:
   devise_unlock_instructions_unlock: Buka Akun Anda
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Temukan
+  discover_nature_around_you: Temukan alam di sekitar Anda
   discoveries: Penemuan
   did_you_mean: 'Apakah maksud Anda'
   did_you_photos_flickr?: Apakah Anda pernah menempatkan foto di Flickr?
@@ -1756,6 +1759,7 @@ id:
     <a href="%{url}">Unduh template</a> untuk digunakan di <a href="/observations/import?project_id=%{project_id}#csv_import">pengunggahan sekaligus</a>
   download_csv: Unduh CSV
   download_csv_template: Unduh Template CSV
+  download_inaturalist_app: Unduh iNaturalist di App Store
   download_kml: Unduh KML
   downstream_coverage_rank: Tingkat cakupan arus bawah
   downstream_coverage_colon_rank: "Cakupan arus bawah: tingkat %{rank}"
@@ -2463,6 +2467,8 @@ id:
   introduced_in_place: "Diperkenalkan di %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Tanggal tidak sah
+  #Error message shown when a time format is invalid
+  invalid_time: Waktu tidak valid
   invitation: Undangan
   invite: undang
   invite_people: Undang orang
@@ -5175,6 +5181,10 @@ id:
   suspension_reason_custom_note: Harap dicatat bahwa alasan ini akan ditampilkan kepada pengguna yang ditangguhkan.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Harap perbarui alasannya dan jelaskan mengapa Anda mengubah penangguhan pengguna.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Alasan untuk mengedit
+  #label for the edit reason field in the moderation history table
+  edit_reason: Alasan editan
   #predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     #reason displayed to users who have been suspended for posting hate speech
@@ -5224,6 +5234,8 @@ id:
   take_me_flickr!: Ya, bawa saya ke Flickr!
   target_list_alert: Apakah Anda yakin bahwa Anda telah mencoba untuk mengamati semua spesies yang dicakup dalam daftar target Anda? Ingat bahwa apapun yang dicakup dalam daftar target Anda yang tidak Anda amati akan ditafsirkan sebagai ketidakberadaan, jadi daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan
   target_list_warning: Ingat bahwa semua yang dicakup daftar target Anda yang tidak Anda amati dalam radius dan waktu perjalanan ini akan ditafsirkan sebagai ketidakberadaan. Daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan. Jika Anda belum mencoba untuk menemukan suatu spesies dalam daftar target Anda atau semua spesies yang dicakup dalam suatu kelompok di daftar target Anda, harap menghapusnya.
+  #Section heading on announcement show page listing linked announcement variants
+  targeted_variants: Varian yang Ditargetkan
   task_deleted: Tugas dihapus
   taxa: Taksa
   taxa_show_obs_photo_search_tip: |
@@ -5802,6 +5814,7 @@ id:
   url_identifier_of_a_project_derived_from: "URL / pengenal dari sebuah proyek yang berasal dari beberapa sumber eksternal"
   url_of_this_taxon_on_the_source_website: URL takson ini pada situs sumber
   usage_stats: Statistik penggunaan
+  use_app: Gunakan aplikasi
   use_name_as_a_placeholder: |
     Pakai <span class='ac-placeholder'>%{name}</span> sebagai penampung
   use_this_form_to_create_a_new: |
@@ -6416,6 +6429,10 @@ id:
         Perhatikan bahwa tanggal pembuatan pengamatan yang paling baru dibuat oleh pengguna di-cache, jadi mungkin perlu beberapa jam hingga penargetannya diterapkan
       observation_oauth_application_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang aplikasinya.
+      #Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: Pengumuman ini memiliki varian yang ditargetkan dan tidak dapat ditetapkan sebagai pengumuman global.
+      #Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Pilih pengumuman yang harus digantikan oleh pengumuman ini untuk pengguna yang memenuhi aturan penargetan.
       site_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang afiliasi situsnya.
       start_desc: |
@@ -7677,11 +7694,30 @@ id:
         contain_entire_image_without_cropping: Muat seluruh gambar tanpa dipotong
         custom_banner_icon_and_project_description: Sampul, ikon, dan deskripsi proyek kustom
         data_visualizations: Visualisasi data
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Tanggal
+          #Label for a form field for a project's starting date
+          start_date: Tanggal Mulai
+          #Label for a form field for a project's end date
+          end_date: Tanggal Selesai
+          #Label for a form field for a project's starting time
+          start_time: Waktu Mulai
+          #Label for a form field for a project's end time
+          end_time: Waktu Selesai
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Sertakan Waktu
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Pilih Bulan
         delete_project: Hapus Proyek
         display_project_name: Hapus nama proyek
         do_you_need_features_from_traditional2: |
           Apakah Anda memerlukan fitur dari proyek tradisional, seperti kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
         duplicate_project: Gandakan Proyek
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: Tanggal akhir harus setelah tanggal mulai
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: Waktu berakhir harus setelah waktu mulai
         include_annotated_observations: |
           Hanya masukkan pengamatan yang dicatat dengan atribut tertentu (seperti tahap kehidupan), atau atribut dan nilai tertentu (seperti tahap kehidupan = dewasa). Ada batasan sebanyak satu saringan catatan per proyek.
         leaderboards_among_individuals: Papan peringkat untuk <strong>individu</strong>
@@ -8930,6 +8966,8 @@ id:
         exclude_donor_start_date: Kecualikan tanggal mulai donor
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kecualikan tanggal akhir donor
+        #Column header for countries excluded by IP address
+        exclude_ip_countries: Kecualikan Negara IP
         excludes_non_site: Menyembunyikan pengumuman lain di penempatan ini yang tidak memiliki ID Situs
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -8955,6 +8993,8 @@ id:
         max_observations: Pengamatan maks
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Pengamatan min
+        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Pengumuman Global (opsional)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Penempatan
         #Preference for an announcement that is only shown to the user who created the announcement
@@ -8965,6 +9005,8 @@ id:
         user_created_start_date: Tanggal pendaftaran pengguna terawal
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Tanggal pendaftaran pengguna terbaru
+        #Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Aktifkan widget fundraise up yang disematkan
       assessment:
         description: Deskripsi
       assessment_section:
@@ -9003,6 +9045,8 @@ id:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Alasan
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Alasan editan
       observation:
         description: Catatan
         geo_x: Arah Timur
@@ -9202,6 +9246,13 @@ id:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: harus valid untuk penempatan yang tertera
+            parent_announcement_id:
+              #Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: tidak boleh merujuk kepada dirinya sendiri
+              #Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: tidak boleh merujuk kepada pengumuman yang merupakan varian juga (hanya satu tingkat bersarang yang diizinkan)
+              #Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: tidak dapat diatur pada pengumuman yang sudah memiliki varian (hanya satu tingkat bersarang yang diizinkan)
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
@@ -9332,6 +9383,11 @@ id:
             user:
               must_be_on_site_long_enough: |
                 harus terdaftar lebih dari 24 jam yang lalu untuk menerbitkan. Kami mendapatkan banyak spammer, dan ini adalah semacam cara yang kurang baik untuk berurusan dengan mereka. Anda masih dapat menyimpan draf, dan jika Anda masih menggunakan situs ini dalam satu hari, Anda bisa menerbitkan.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: tanggal mulai harus sebelum tanggal akhir
         project_fave:
           attributes:
             base:

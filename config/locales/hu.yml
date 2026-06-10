@@ -1065,6 +1065,8 @@ hu:
   continue_to_site: 'Tovább ide: %{site_name}'
   #e.g. "With iNaturalist, you can contribute to real science"
   contribute: Hozzájárulás
+  #e.g. "Contribute to iNaturalist"
+  contribute_cta: Járulj hozzá
   contributor_cannot_be_found: A közreműködő nem található
   contributors_to_project: "%{project} közreműködők"
   controlled_term_labels:
@@ -1436,6 +1438,10 @@ hu:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: Módosítás dátuma
   day: Nap
   decrease_brightness: Fényerő csökkentése
@@ -2241,6 +2247,8 @@ hu:
   introduced_in_place: "Behurcolva ide: %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Érvénytelen dátum
+  #Error message shown when a time format is invalid
+  invalid_time: Érvénytelen idő
   invitation: Meghívó
   invite: meghívás
   invite_people: Emberek meghívása
@@ -2718,6 +2726,8 @@ hu:
   missing_date: Hiányzó dátum
   mobile: Mobil
   moderation_history_for_user_html: '%{user} felhasználó moderálási előzményei'
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: A felfüggesztés lejárt
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Elrejtés
   #Action a moderator can take to suspend a user; verb
@@ -2767,6 +2777,10 @@ hu:
     date_long_without_year: "MMMM D"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "LT"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "YYYY. MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -2863,6 +2877,8 @@ hu:
   needs_id_: Meghatározásra vár
   needs_id_expandable_html: "Azonosítás <span class='full'>kell</span>"
   needs_id_tooltip_html: 'A meghatározásra váró megfigyelésekhez tartozik kép (esetleg hang), hely és dátum, de a közösség még nem jutott egyetértésre a meghatározással kapcsolatban. <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi értékelésről</a>'
+  #Column header in a table listing iNaturalist Network members
+  network_member: Hálózati tag
   new: Új
   new_and_noteworthy: Újdonságok
   new_announcement: Új felhívás
@@ -4605,6 +4621,26 @@ hu:
   suggestions: Javaslatok
   summary: Összefoglaló
   supporting: Megerősítő
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Felfüggesztés időtartama
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 nap
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 nap
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 hét
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 hónap
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 hónap
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Korlátlan
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Egyéni
+  #the time at which a users suspension ends
+  suspend_until: 'Felfüggesztés eddig:'
+  #a note telling users to select the time in their local time zone
+  suspend_until_local_timezone_note: Dátum és idő a böngésző helyi időzónájában.
   suspend_user: Felhasználó felfüggesztése
   suspend_user_html: '%{user} felfüggesztése'
   sw_lat: DNy Szél.
@@ -6233,7 +6269,17 @@ hu:
           </p>
         cover_desc: "Opcionális széles kép ami a projekt lapján legfelül fog megjelenni. 950 pixel széles kell legyen és kevesebb mint 400 pixel magas."
         end_time_desc: "A bioblitzed vége. A kezdeti időtől számítva legfeljebb egy év lehet."
+        #label for a form field setting allowing the editor to toggle display
+        #of the Leaderboard panel showing top observers and species
+        hide_leaderboard: Ranglista elrejtése
         icon_desc: "Négyzetre vágjuk"
+        #label for a heading for section allowing the editor to toggle
+        #display of the Leaderboard panel showing top observers and species
+        leaderboard: Ranglista
+        #description of the project Leaderboard panel, to be shown next to a
+        #form field option allowing the editor to toggle display of the panel
+        leaderboard_description: |
+          A ranglista panelje azokat a felhasználókat mutatja akik a legtöbb megfigyeléssel, valamint a legtöbb fajjal rendelkeznek és melyek a leggyakrabban megfigyelt fajok. A panel el is rejthető.
         #Label for button to make another user the owner of a project
         make_owner: Legyen tulajdonos
         project_list_desc_html: |
@@ -6278,11 +6324,30 @@ hu:
         contain_entire_image_without_cropping: A teljes kép felhasználása méretrevágás nélkül
         custom_banner_icon_and_project_description: Egyedi háttérkép, ikon és leírás
         data_visualizations: Adatvizualizáció
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Dátum
+          #Label for a form field for a project's starting date
+          start_date: Kezdő dátum
+          #Label for a form field for a project's end date
+          end_date: Befejezés dátuma
+          #Label for a form field for a project's starting time
+          start_time: Kezdő időpont
+          #Label for a form field for a project's end time
+          end_time: Végső időpont
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Időponttal
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Válaszd ki a hónapokat
         delete_project: Projekt törlése
         display_project_name: A projektnév megjelenítése
         do_you_need_features_from_traditional2: |
           Szükséged van a hagyományos projektek funkcióira, mint például az egyéni adatmezők vagy az olyan megfigyelések hozzáadásának lehetősége, amelyeket nem lehet szűrőkkel listázni?
         duplicate_project: Projekt duplikálása
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: A végdátumnak a kezdeti dátum után kell lennie
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: A vég időnek a kezdési idő után kell lennie
         include_annotated_observations: |
           Csak olyan megfigyelések felvétele, amelyek rendelkeznek attribútummal (pl. életszakasz), vagy attribútum-értékkel (pl. életszakasz = felnőtt). Projektenként egy attribútum adható meg.
         leaderboards_among_individuals: <strong>Egyének</strong> szerinti toplisták
@@ -6834,6 +6899,8 @@ hu:
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — rövidítve: <span class="italic">I. nat</span> — egy tudomány számára új sáskafaj, amelyet egy ausztráliai nő talált a környékén sétálva.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "Imádkozó sáska"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: A helyi ökoszisztémák védelme
           #Body text for the amphibian protection story
@@ -6844,6 +6911,8 @@ hu:
         observation:
           #Heading for the sample observation section
           heading: Minden megfigyelés mesél egy történetet
+          #Alt text for the sample observation photo
+          photo_alt: "Zöldbéka a levélen"
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -6909,6 +6978,7 @@ hu:
             Minden megosztott fotó egy globális tudományos nyilvántartás részévé válik, amelyre a kutatók világszerte támaszkodnak.
           #Heading for the community reputation sub-section
           community_heading: '"A legszebb hely az interneten"'
+          community_heading_2: A legszebb hely az interneten
           #Description of the welcoming community aspect
           community_body: >
             Gyere az azonosításért, maradj a közösségért és a tudományra gyakorolt hatásért.
@@ -6933,6 +7003,8 @@ hu:
           #Review count social proof label for the app
           #%{count} = formatted and rounded number of 5-star reviews. The plus (+) reflects there being more than that number.
           review_tagline: "%{count}+ 5 csillagos értékelések"
+          #Alt text for the Seek app phone screenshot
+          phone_alt: "A Seek alkalmazás aktív két telefonon, amely egy tukán jelvényt és a Fajok a közelben nézetet mutatja"
         newsletter:
           #Heading inviting users to subscribe to the monthly newsletter
           heading: Szerezze meg havi hírlevelünket!
@@ -7128,6 +7200,11 @@ hu:
         #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
         giga: "%{number}G"
     human:
+      #Used to abbreviate long numbers, such as 350M for 350 million or 350,000,000.
+      compact_units:
+        thousand: "K"
+        million: "M"
+        billion: "Mrd"
       decimal_units:
         format: '%n %u'
         units:

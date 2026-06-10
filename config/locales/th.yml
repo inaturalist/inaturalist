@@ -2343,6 +2343,7 @@ th:
     virgin_islands: หมู่เกาะเวอร์จิน
     west_africa: แอฟริกาตะวันตก
     zambia: แซมเบีย
+    zimbabwe: ซิมบับเว
   places_of_interest: สถานที่บนหน้าจอ
   places_merged_successfully: รวมสถานที่สำเร็จแล้ว!
   #user-facing guidance that new places cannot be too large
@@ -3412,6 +3413,14 @@ th:
     นี่คือตัวอย่างของสมาชิกผู้มีอุปการะคุณที่บริจาคให้ iNat ทุกเดือน
   you: คุณ
   you_: คุณ
+  you_are_now_following_x: "คุณกำลังติดตาม %{friend_user}"
+  you_are_now_the_admin_for_project_html: |
+    ขณะนี้<strong>คุณ</strong>เป็นแอดมินของ %{project}
+  you_are_now_a_curator_for_project_html: |
+    ขณะนี้<strong>คุณ</strong>เป็นผู้ดูแลของ %{project}
+  you_are_now_a_manager_for_project_html: |
+    ขณะนี้<strong>คุณ</strong>เป็นผู้จัดการของ %{project}
+  you_are_already_a_member_of_this_project: "คุณเป็นสมาชิกของโครงการนี้แล้ว!"
   you_are_submitting_obs_with_no_date_or_no_location: |
     คุณกำลังส่งการสังเกตที่ไม่มีวันที่หรือตำแหน่ง การสังเกตที่ไม่มีข้อมูลเหล่านี้มักจะจำแนกไม่ได้ และเบื้องต้นจะไม่สามารถมองเห็นจากการค้นหาการสังเกต
   you_are_subscribed_to_comments_on_this_flag: คุณติดตามความคิดเห็นในรายงานนี้แล้ว
@@ -3751,8 +3760,13 @@ th:
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: การสังเกตที่จำแนกถึงระดับสกุล
         obs_id_d_desc: สร้างขึ้นภายใน 7 วันก่อนหน้าและมีการจำแนก (อาจเป็นการจำแนกโดยผู้สังเกตเอง)
+        observations_1_week_moving_window: การสังเกต (ช่วง 1 สัปดาห์)
         observers_desc: เพิ่มการสังเกตในวันนี้
         recent_desc: ลงทะเบียนเมื่อ 7 วันก่อน
+        today_identified_by_others: การสังเกตที่จำแนกโดยผู้อื่น (1 วัน)
+        today_identified_by_others_by_iconic_taxon: การสังเกตที่จำแนกโดยผู้อื่น (1 วัน)
+        observations_unknown: การสังเกตที่ยังไม่จำแนกหลังผ่านไป 30 วัน
+        observations_total_unknown_ratio: สัดส่วนของการสังเกตที่ยังไม่จำแนก (30 วัน)
       year:
         #label used for a chart component that shows the count of users that
         #added both identifications and observations

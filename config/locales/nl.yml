@@ -1791,6 +1791,7 @@ nl:
   devise_unlock_instructions_unlock: Deblokkeer je account
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Ontdek
+  discover_nature_around_you: Ontdek de natuur om je heen
   discoveries: Ontdekkingen
   did_you_mean: 'Bedoelde u'
   did_you_photos_flickr?: Heb je foto's geplaatst op Flickr?
@@ -1846,6 +1847,7 @@ nl:
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-uploader</a> te gebruiken
   download_csv: CSV downloaden
   download_csv_template: CSV-sjabloon downloaden
+  download_inaturalist_app: Download iNaturalist in de App Store
   download_kml: KML downloaden
   downstream_coverage_rank: Afdalende dekkingrang
   downstream_coverage_colon_rank: "Onderliggende dekking: niveau %{rank}"
@@ -2571,6 +2573,8 @@ nl:
   introduced_in_place: "Geïntroduceerd in %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Ongeldige datum
+  #Error message shown when a time format is invalid
+  invalid_time: Ongeldige tijd
   invitation: Uitnodiging
   invite: uitnodigen
   invite_people: Mensen uitnodigen
@@ -5365,6 +5369,10 @@ nl:
   suspension_reason_custom_note: 'Let op: deze reden zal worden weergegeven aan de geschorste gebruiker.'
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Werk de reden bij en leg uit waarom je de schorsing van de gebruiker verandert.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Reden voor de bewerking
+  #label for the edit reason field in the moderation history table
+  edit_reason: Reden voor bewerking.
   #predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     #reason displayed to users who have been suspended for posting hate speech
@@ -6020,6 +6028,7 @@ nl:
   url_identifier_of_a_project_derived_from: "URL/identifier van een project dat is afgeleid van een externe bron"
   url_of_this_taxon_on_the_source_website: URL van dit taxon op de website van de bron
   usage_stats: Gebruiksstatistieken
+  use_app: Gebruik de app
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> als een placeholder gebruiken
   use_this_form_to_create_a_new: |
@@ -7957,12 +7966,29 @@ nl:
         contain_entire_image_without_cropping: Bevat de volledige afbeelding zonder bij te snijden
         custom_banner_icon_and_project_description: Aangepaste banner, pictogram en projectbeschrijving
         data_visualizations: Data visualisaties
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Datum
+          #Label for a form field for a project's starting date
+          start_date: Startdatum
+          #Label for a form field for a project's end date
+          end_date: Einddatum
+          #Label for a form field for a project's starting time
+          start_time: Starttijd
+          #Label for a form field for a project's end time
+          end_time: Eindtijd
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Selecteer een maand
         delete_project: Project verwijderen
         display_project_name: Toon project naam
         do_you_need_features_from_traditional2: |
           Heb je functies nodig van traditionele projecten, zoals op maat gemaakte waarnemingsvelden,
           of individuele waarnemingen toevoegen die niet automatisch kunnen worden gefilterd?
         duplicate_project: Kopieer Project
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: De einddatum moet na de startdatum liggen
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: De eindtijd moet na de begintijd liggen
         include_annotated_observations: |
           Neem alleen waarnemingen op die een bepaalde aantekening hebben (bijv. levensstadium), of een bepaalde aantekening en waarde (bijv. levensstadium = adult).
           Er is een limiet van één aantekeningenfilter per project.
@@ -9346,6 +9372,8 @@ nl:
         exclude_donor_start_date: Uitsluiten donor met startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Uitsluiten donor met einddatum
+        #Column header for countries excluded by IP address
+        exclude_ip_countries: IP-landen uitsluiten
         excludes_non_site: Verberg andere mededelingen in deze plaatsing zonder Site ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -9371,6 +9399,8 @@ nl:
         max_observations: Max waarnemingen
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min. waarnemingen
+        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Wereldwijde Aankondiging (optioneel)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Plaatsing
         #Preference for an announcement that is only shown to the user who created the announcement
@@ -9419,6 +9449,8 @@ nl:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Reden
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Reden voor bewerking.
       observation:
         description: Notities
         geo_x: Oostwaarde
@@ -9627,6 +9659,13 @@ nl:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: moet geldig zijn voor opgegeven plaatsing
+            parent_announcement_id:
+              #Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: kan niet naar zichzelf verwijzen
+              #Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: kan niet verwijzen naar een aankondiging die zelf een variant is (slechts één niveau van nesten toegestaan)
+              #Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: Kan niet worden ingesteld op een aankondiging die al varianten heeft (slechts één niveau van nesten toegestaan)
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the

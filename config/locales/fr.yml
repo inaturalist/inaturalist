@@ -630,6 +630,8 @@ fr:
     questions sur votre plan et nous nous réservons le droit de refuser les demandes pour quelque raison que ce soit.
   app_owner_application_inelligible: |
     Pour pouvoir soumettre une demande, vous devez avoir créé votre compte il y a au moins 2 mois et vous devez avoir ajouté au moins 10 identifications d'amélioration au cours du mois dernier.
+  app_owner_application_inelligible2: |
+    Pour pouvoir soumettre une demande, vous devez avoir créé votre compte il y a au moins 2 mois et vous devez avoir ajouté au moins 10 identifications d'amélioration pour d'autres utilisateurs au cours du mois dernier.
   app_owner_application_fields_explanation_html: Décrivez la fonctionnalité de votre application et comment vous comptez l'utiliser.
   app_owner_application_success: Demande envoyée
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -5183,6 +5185,18 @@ fr:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Convient à Wikipédia et aux autres projets de la Fondation Wikimédia
   summary: Résumé
   supporting: Soutien
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 jour
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 jours
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 semaine
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 mois
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 mois
+  #note displayed when entering a custom suspension reason
+  suspension_reason_custom_note: Veuillez noter que cette raison sera affichée à l’utilisateur suspendu.
   suspend_user: Suspendre l’utilisateur
   suspend_user_html: Suspendre %{user}
   suspend_user_reason_instructions_html: |
@@ -7127,7 +7141,7 @@ fr:
           rel="nofollow noreferrer noopener"
           href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
           Archive (DwC-A) pour GBIF</a> : il s'agit du fichier <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a> que nous générons au GBIF pour ingérer, il ne devrait donc pas contenir quoique ce soit qui ne soit pas dans le GBIF, mais si vous souhaitez l'archive complète, vous pouvez le télécharger. C'est une très gros fichiers compressé contenant des entrées au format CSV. Mis à jour hebdomadaire.
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a> que nous générons au GBIF pour ingérer, il ne devrait donc pas contenir quoique ce soit qui ne soit pas dans le GBIF, mais si vous souhaitez l'archive complète, vous pouvez le télécharger. C'est un très gros fichier compressé contenant des entrées au format CSV. Mis à jour hebdomadaire.
           </p>
           </li>
           <li>
@@ -8320,6 +8334,10 @@ fr:
         trending_desc: Taxons les plus observés lors du dernier mois
         trending_in_place_desc_html: Taxons les plus observés dans le dernier mois à <a href="%{url}">%{place}</a>
         wanted_desc: Espèces dans ce taxon qui n’ont pas encore été observées.
+      #error message when Flicker permissions preventing Flickr tagger feature
+      cant_tag_photos_html: |
+        %{site} ne peut pas ajouter de tags à vos photos tant que Flickr n’a pas l’autorisation de votre part.
+        <a href='%{url}'>Autoriser Flickr</a>.
       #error message when the Flickr tagger feature fails
       something_went_wrong_tags: |
         Quelque chose s’est mal passé en essayant de poster ces tags : %{message}
@@ -8353,10 +8371,16 @@ fr:
       vote_removed: Vote retiré
       #a tooltip that replaces the names of curators who have voted in approval of a taxon change when there are no votes
       no_votes_yet: Aucun vote pour le moment
+      output_taxon_rank_level_not_coarser_html: >
+        Le rang du taxon de sortie ne peut pas être plus général que celui des enfants actifs du taxon d’entrée %{taxon_link}.
+      #a message when someone tries to commit a taxon change that was already committed
+      taxon_change_already_committed: Ce changement taxonomique a déjà été validé !
       #a message when a taxon change was deleted
       taxon_change_deleted: La modification de taxon a été supprimée.
       #a message when a taxon change was successfully updated
       taxon_change_successfully_update: Le modification de taxon a été mis à jour avec succès.
+      #a message when a taxon change was successfully created
+      taxon_change_successfully_created: Le modification de taxon a bien été créée.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -8508,6 +8532,12 @@ fr:
           les gens, s’il vous plaît <a href="mailto:%{help_email}">Contactez-nous</a>.
         block_desc_there_are_two_exceptions: |
           Il existe deux situations où le blocage n’empêche pas l’interaction :
+        block_desc_comments_on_taxon_flags: commentaires sur les signalements créés par vous au sujet de taxons
+        block_desc_unlike_more_personal: |
+          Contrairement à des contenus plus personnels comme les observations ou les articles de journal, les taxons sont partagés par tous et doivent rester ouverts à la discussion. Le blocage vous empêchera néanmoins de recevoir des notifications pour les commentaires publiés sur ces contenus par la personne que vous avez bloquée.
+        block_desc_if_harassing_html: |
+          Si quelqu’un vous harcèle ou vous traque sur %{site_name},
+          <a href="mailto:%{help_email}">merci de nous en informer</a>. Si cela enfreint nos conditions d’utilisation ou correspond à un comportement que nous jugeons inapproprié, nous ouvrirons une enquête.
         common_scientific_name_display_order: Ordre d'affichage du nom commun et du nom scientifique
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si vous changez d’avis, vous pouvez toujours
@@ -9965,6 +9995,21 @@ fr:
         language_label: "Langue"
       summary_item:
         disclaimer: "Ce résumé des commentaires des utilisateurs d’iNaturalist a été généré par IA et peut être incorrect. Vous pouvez nous aider à améliorer ce résumé en nous faisant part de vos commentaires."
+      taxa_list:
+        group_labels:
+          aves: "Oiseaux"
+          reptilia: "Reptiles"
+          amphibia: "Amphibiens"
+          mammalia: "Mammifères"
+          arachnida: "Arachnides"
+          insecta: "Insectes"
+          plantae: "Plantes"
+          fungi: "Mycètes"
+          protozoa: "Protozoaires"
+          mollusca: "Mollusques"
+          chromista: "Chromistes"
+        other_group: "Autre"
+        empty: "Aucune espèce disponible."
   #Title of a section warning the user about something
   warning_title: Avertissement
   wikimedia: Wikimédia

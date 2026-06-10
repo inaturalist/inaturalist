@@ -27,6 +27,12 @@ es-AR:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICACIÓN'
     other: '<span class="count">%{count}</span> IDENTIFICACIONES'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFICADOR'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFICADORES'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID efectuada para otros'
     other: '<span class="count">%{count}</span> IDs efectuadas para otros'
@@ -51,6 +57,9 @@ es-AR:
   x_misidentifications_of_this_species:
     one: "%{count} identificación errónea de esta especie"
     other: "%{count} identificaciones erróneas de esta especie"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} identificación errónea de especie en este género"
+    other: "%{count} identificación errónea de especie en este género"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -995,6 +1004,7 @@ es-AR:
   community_id_is_precise: El taxón de la comunidad es preciso
   community_moderation_settings: Configuración de la moderación de la comunidad
   community_supported_id: '¿Taxón reconocido por la comunidad?'
+  community_taxon_matches_observation_taxon: El taxón comunitario coincide con el taxón de observación
   compare: Comparar
   compare_with: Comparar con
   comparing: comparando

@@ -372,7 +372,7 @@ ca:
   add_evidence_of_presence_construction_annotation: 'Afegiu l''anotació "Evidència de presència: Construccions".'
   add_established_not_established: 'Afegiu l''anotació "Establiment: No establerta".'
   #As in a Taxon Framework Relationship
-  add_relationship: 'Afegeix una relació'
+  add_relationship: 'Afegiu una relació'
   #As in a Guide Section
   add_section: Afegiu Secció
   add_several_observations_at_once: Afegiu diverses observacions a la vegada.
@@ -856,10 +856,10 @@ ca:
   browse: Navega
   browse_all_projects: Navegar per tots els projectes
   browse_all_species: Examina totes les espècies
-  browse_observations: Veure observacions
+  browse_observations: Vegeu les observacions
   browse_people: Examinar persones
   browse_projects: Examina els projectes
-  browse_species_that_occur_near_this_observation: Veure espècies que es trobin prop d'aquesta observació.
+  browse_species_that_occur_near_this_observation: Vegeu espècies que es trobin prop d'aquesta observació.
   built_with_site_guides_html: "Fet amb les <a href=\"%{url}\">Guies %{site_name}</a>"
   bulk_import_of_filename_is_complete: "La importació massiva de %{filename} s'ha completat"
   by_everyone: De tothom
@@ -1721,7 +1721,7 @@ ca:
   #short as possible
   donate: DONAR
   #Imperative verb; link to a page where a user can donate money to iNaturalist
-  donate_: Donar
+  donate_: Wspieraj
   donate_again_caps: DONEU DE NOU
   donate_again_today_caps: DONEU DE NOU, AVUI
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1909,7 +1909,7 @@ ca:
   examples_of_data_use_by_network_members: Exemples d'Ús de Dades per Membres de la Xarxa
   examples_of_ranking_organizations: Exemples de Classificació d'Organitzacions
   expected_nearby: Esperat a prop
-  explore: Exploreu-ne
+  explore: Exploreu
   export: Exportar
   export_observations: Exporta observacions
   export_with_private_coordinates: Exporteu amb coordenades ocultes
@@ -1981,7 +1981,7 @@ ca:
   filter_by_species: Filtrar per espècie
   filter_by_taxon: Filtre per tàxon
   filter_by_place_taxon_and_color: Filtra per lloc, color, espècie o grup utilitzant els controls.
-  filter_list_by_this_taxon: Filtrar per aquest tàxon
+  filter_list_by_this_taxon: Filtreu el llistat per aquest tàxon
   filtering: Filtrant...
   filters: Filtres
   find: Troba
@@ -2054,7 +2054,7 @@ ca:
   flag_reason2: "Estic marcant aquest %{record} perquè"
   flag_resolution: Resolució
   flag_saved: Advertència desada.
-  flag_saved_thanks_html: Marca desada. Gràcies! <a href="%{url}" class="readmore">Veure la marca</a>
+  flag_saved_thanks_html: Marca desada. Gràcies! <a href="%{url}" class="readmore">Vegeu la marca</a>
   flag_this_observation: Marca aquesta observació
   flag_this_photo: Marca aquesta foto
   flag_this_place: Marqueu aquest lloc
@@ -2273,7 +2273,7 @@ ca:
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   however_you_may_want_to_commit_html: |
     Tanmateix, és possible que vulgueu comentar les observacions amb desacords no intencionats enllaçats amb anterioritat, per alertar els identificadors que l'abast de %{old_parent} s'ha reduït.
-  i_dont_know_but_i_am_sure_this_is_taxon: No ho sé segur, però segur que és%{taxon}
+  i_dont_know_but_i_am_sure_this_is_taxon: No ho sé, però segur que és %{taxon}
   icon: Icona
   icon_size: Mida de la icona
   iconic_taxon: Icona del Tàxon
@@ -2292,10 +2292,10 @@ ca:
   id_two_of_taxon_swap_html: "La Identificació 2 del tàxon <strong>E</strong> serà un desacord no intencionat amb la identificació 1 del tàxon <strong>B</strong> després de l'intercanvi de tàxons."
   id_withdrawn: ID retirat
   ids_by_taxon: Ids. per tàxon
-  identify: Identificar
+  identify: Identifiqueu
   identify_observations: "Identifiqueu observacions"
-  identify_observations_by_these_users: Identificar Observacions d'aquests Usuaris
-  identify_title: "Identificar"
+  identify_observations_by_these_users: Identifiqueu observacions d'aquests usuaris
+  identify_title: "Identifiqueu"
   #e.g. "With iNaturalist, you can identify nature nearby"
   identify_verb: Identificació
   #e.g. "Identify using iNaturalist"
@@ -2447,7 +2447,7 @@ ca:
   invited_x: "Convidat %{x}"
   iphone: iPhone
   is_not_following_anyone: no segueix ningú
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Aquesta evidència és suficient per confirmar que és %{taxon}?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Les dades proporcionades són suficients per a confirmar que és %{taxon}?
   is_this_offensive_html: 'És <a href="/help#inappropriate">inadequat</a>, brossa, o ofensiu?'
   is_this_place_a_duplicate: Aquest lloc està duplicat?
   #Form field label for setting a scientific name as the currently "accepted"
@@ -2888,7 +2888,7 @@ ca:
   mark_as_reviewed: Marqueu-ho com a revisat
   #Note that "Identify" is https://www.inaturalist.org/observations/identify
   mark_as_reviewed_desc: |
-    Marcant una observació com a revisada significa que la tornareu a veure per defecte a Identificar. Seguirà sent visible per altres persones a Identificació.
+    Marcant una observació com a revisada significa que la tornareu a veure per defecte a Identifiqueu. Continuarà sent visible per altres persones a Identifiqueu.
   mark_all_as_reviewed: Marca-ho tot com a revisat
   mark_all_as_unreviewed: Marqueu-ho tot com a No revisat
   matching_species_will_shown_up_here: Les espècies trobades es mostraran aquí. El mapa mostrarà un rang si %{place} té alguna d'aquestes espècies.
@@ -2951,7 +2951,7 @@ ca:
   mobile: Mòbil
   moderation_history_for_user_html: Història de moderació de %{user}
   moderation_history_desc_html: |
-    Això inclou les accions del moderador (com ocultar o mostrar comentaris), notes i marques de qualsevol mena que aquest usuari ha creat i no són tàxons. Això <strong>només és visible als supervisors</strong>, però <strong>els supervisors no poden veure el seu historial</strong>, per tant, les notes sobre una persona mai són visibles per aquesta persona.
+    Això inclou les accions del moderador (com ocultar o mostrar comentaris), notes i marques de qualsevol mena que aquest usuari ha creat i no són tàxons. Això <strong>només és visible als supervisors</strong>, però <strong>els supervisors no poden veure el seu historial</strong>, per tant, les notes sobre una persona mai no són visibles per aquesta persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Amaga
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -3184,7 +3184,7 @@ ca:
   #Shown when a list of 3rd party applications has no applications
   no_applications_yet: Encara no hi ha aplicacions
   no_assessments_have_been_added_to_this_project_yet: Encara no s'ha afegit cap valoració a aquest projecte.
-  no_but_it_is_a_member_of_taxon: "No, però es un membre de %{taxon}"
+  no_but_it_is_a_member_of_taxon: "No és suficient, però és un membre de %{taxon}"
   no_comments_yet: Encara no hi ha comentaris
   no_creative_commons_flickr_photos_tagged_x: 'No hi ha fotos a Flickr etiquetades amb Creative Commons per a "%{x}"'
   no_curators_set: Encara no hi ha supervisors
@@ -3250,8 +3250,6 @@ ca:
   no_sections_have_been_added_to_this_assessments_yet: Encara no s'han afegit seccions a aquestes avaluacions.
   no_species_have_been_listed: Encara no s'ha llistat cap espècie per a aquest lloc!
   no_species_on_this_list: Encara no hi ha cap espècie en aquesta llista!
-  no_species_on_this_list_for_owner: |
-    Podeu començar a afegir espècies a aquesta llista utilitzant l'eina "Afegiu a la Vostra Llista", a la dreta.
   no_subject_parens: "(Sense tema)"
   no_such_wiki_page: No existeix aquesta pàgina.
   no_such_wiki_page_html: No existeix aquesta pàgina. Voleu <a href="%{new_url}">crear-la</a>?
@@ -3279,8 +3277,8 @@ ca:
   #disagreement.
   non_disagreeing_ancestor_ids_description: |
     Si desactiveu aquesta opció, ja no rebreu una notificació quan algú afegeixi un
-    ID d'un tàxon que és un avantpassat del tàxon del vostre document d'identitat i no
-    en desacord explícitament amb el tàxon comunitari. Se us notificarà si el
+    ID d'un tàxon que és un avantpassat del tàxon de la vostra ID i no està
+    en desacord explícitament amb el Tàxon Comunitari. Se vos notificarà si la
     ID té comentaris addicionals.
   non_human?: No humà?
   #A user who does not admin any projects
@@ -3542,7 +3540,7 @@ ca:
   observations_specifying_this_field: Observacions que especifiquen aquest camp
   observations_specifying_this_field_with_value: Observacions especificant aquest camp amb %{value}
   observations_text_search_warning: |
-    Les cerques de text poden produir resultats estranys quan es combinen amb altres filtres; si vols trobar l'observació d'una espècie en particular, utilitza filtrar tàxon.
+    Les cerques de text poden produir resultats estranys quan es combinen amb altres filtres; si voleu trobar l'observació d'una espècie en particular, utilitzeu Filtreu el llistat per aquest tàxon.
   observations_this_year_vs_last_year: Observacions d'aquest anys vs. darrer any
   observations_total: Observacions Totals
   observations_w: Cerca d'observacions amb
@@ -3646,7 +3644,7 @@ ca:
   only_staff_can_edit_standard_places: Només el personal de l'organització poen editar llocs de la jerarquia estàndard
   only_the_owner_of_this_list_can_do_that: Només el propietari d'aquesta llista pot fer això. No sigueu dolent.
   only_the_project_admin_can_delete_this_project: Només l'administrador del projecte pot eliminar aquest projecte.
-  only_view_nearby_suggestions: Veure només suggeriments propers
+  only_view_nearby_suggestions: Vegeu només suggeriments propers
   only_you: Només tu
   #Geoprivacy status in which no privacy has been applied
   open: Transparent
@@ -3693,13 +3691,13 @@ ca:
   other_taxa_commonly_misidentified_as_this_rank: Altres tàxons generalment mal identificats a aquest %{rank}
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: Altres taxons habitualment mal identificats com aquest %{rank} a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: Altres tàxons generalment mal identificats com aquesta secció
-  other_taxa_commonly_misidentified_as_this_section_in_place_html: Altres tàxons habitualment mal identificar com aquesta secció a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: Altres tàxons habitualment mal identificats com aquesta secció a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_species: Altres tàxons generalment mal identificats com aquesta espècie
-  other_taxa_commonly_misidentified_as_this_species_in_place_html: Altres tàxons habitualment mal identificar com aquesta espècie a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: Altres tàxons habitualment mal identificats com aquesta espècie a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subgenus: Altres tàxons generalment mal identificats com aquest subgènere
-  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Altres tàxons habitualment mal identificar com aquest subgènere a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Altres tàxons habitualment mal identificats com aquest subgènere a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Altres tàxons generalment mal identificats com aquesta subsecció
-  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Altres tàxons habitualment mal identificar com aquesta subsecció a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Altres tàxons habitualment mal identificats com aquesta subsecció a <a href="%{url}">%{place}</a>
   outside_of_all_atlases: Fora de tots els atles
   our_blog: El nostre blog
   output_taxon: Tàxon de sortida
@@ -4306,7 +4304,7 @@ ca:
   privacy: Privacitat
   private: privada
   private_: Privat
-  private_description: "Coordenades completament amagades als mapes públics. Les coordenades reals només les podeu veure vosaltres i els supervisors dels projectes als que hi afegiu l'observació. Les observacions amb coordenades ocultes encara es poden utilitzar per verificar les llistes de comprovació del lloc."
+  private_description: "Coordenades completament amagades als mapes públics. Les coordenades reals només les podeu veure vós i els supervisors dels projectes als quals afegiu l'observació. Les observacions amb coordenades ocultes encara es poden utilitzar per verificar les llistes de comprovació del lloc."
   probably_spam: Spam Probable
   proceed: Procedir
   processing: Processant
@@ -4329,7 +4327,7 @@ ca:
   project_assessments: Avaluació del projecte
   project_assets: Arxius del projecte
   project_coordinate_access_enabled: |
-    Hauria de poder veure les coordenades ocultes de les observacions dels membres de confiança
+    Hauríeu de poder veure les coordenades ocultes de les observacions dels membres de confiança
   project_coordinate_access_disabled_until_datetime: |
     No podreu accedir a coordenades ocultes fins a %{datetime}
   project_coordinate_access_warning: |
@@ -4723,7 +4721,7 @@ ca:
   satellite: satèl·lit
   save: Desa
   save_all: Desa-ho tot
-  save_and_add_another: Desa i afegeix-ne un altre
+  save_and_add_another: Deseu i afegiu-ne un altre
   save_and_continue: "Desa i continua..."
   save_and_add_taxa: "Desa i comença a afegir espècies"
   save_changes: Desa els canvis
@@ -4861,10 +4859,10 @@ ca:
   sign_in_with_apple: Iniciar sessió amb Apple
   sign_in_with_provider: "Inicieu sessió amb %{provider}"
   sign_in_with_google: Entrar amb Google
-  sign_out: Surtiu
+  sign_out: Sortiu
   sign_up: Registreu-vos
   sign_up_sentence_case: Inscriu-te
-  similar_species: Espècie similar
+  similar_species: Espècies similars
   similar_taxa: Tàxon semblant
   #Journal post formatting option
   simple: Senzill
@@ -4956,7 +4954,7 @@ ca:
   somewhere: En algun lloc...
   sorry_flickr_isnt_responding_at_the_moment: "Ho sentim, ara mateix Flickr no respon."
   sorry_how_about_we_try_repeat: "Ho sentim. Proveu de repetir la cerca en algunes de les nostres bases de dades o de noms d'espècies. Si trobem algun resultat, el desarem perquè el pugueu localitzar la pròxima vegada."
-  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Ho sentim, alguna d'aquestes fotos de Flickr no existeix o bé no teniu permís per veure-la."
+  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Ens sap greu, alguna d'aquestes fotos de Flickr no existeix o bé no teniu permís per veure-la."
   sorry_that_photo_provider_isnt_responding: "Ho sentim, aquest proveïdor de la foto de moment no està responent. Si us plau, intenteu-lo més tard."
   sorry_that_service_is_not_responding: "Ho sentim, el servei no està responent. Si us plau, proveu-lo més tard."
   sorry_there_were_problems_with_your_request: "Ho sentim, hi ha hagut problemes amb la vostra petició: %{project_user}"
@@ -5097,8 +5095,8 @@ ca:
   subscribe_to_observations_in_a_taxon: Subscriure's a totes les observacions publicades sobre una espècie o grup d'organismes (per exemple, 'escorpins').
   subscribe_to_observations_in_a_place: Subscriure's a totes les observacions publicades sobre aquest lloc. També podeu afegir un filtre opcional per un tàxon (per exemple, 'escorpins de Tarragona').
   subscribe_to_places_help: |
-    Les subscripcions controlen el que pots veure a les teves actualitzacions i en el teu panell de control.
-    Per exemple, pots subscriure't a un tàxon per obtenir actualitzacions sobre noves observacions d'aquest tàxon. Automàticament, estàs subscrit a les actualitzacions sobre les observacions que has comentat o identificat.
+    Les subscripcions controlen el que podeu veure a les vostres actualitzacions i en el vostre panell de control.
+    Per exemple, podeu subscriure-vos a un tàxon per obtenir actualitzacions sobre noves observacions d'aquest tàxon. Automàticament, esteu subscrit a les actualitzacions sobre les observacions que heu comentat o identificat.
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscriure's</a>
     a %{x} d'aquestes %{y}.
@@ -5344,7 +5342,7 @@ ca:
   the_following_observations_could: "Les observacions següents no s'han pogut afegir a %{link}"
   the_following_photos_have_been_tagged: "S’han etiquetat les fotos següents"
   the_identotron_is_a_tool_to: |
-    L'Identotron és una eina que us ajuda a identificar observacions basades en les llistes de %{site_name}. Donat un nivell taxonòmic superior i un lloc (p. ex. mamífers i la Índia), %{site_name} buscarà en llistes de verificació que hagin identificat el tàxon en aquest lloc, com una guia dinàmica d'espècies de tot el planeta. La majoria de llistes de verificació estan en desenvolupament, però hi ha alguna que és exhaustiva, per exemple llista <em>tots</em> els representants d'un tàxon en un lloc, l'Identotron mostrarà un avís.
+    L'Identotron és una eina que us ajuda a identificar observacions basades en les llistes de %{site_name}. Donat un nivell taxonòmic superior i un lloc (p. ex. mamífers i la Índia), %{site_name} cercarà en llistes de verificació que hagin identificat el tàxon en aquest lloc, com una guia dinàmica d'espècies de tot el planeta. La majoria de llistes de verificació estan en desenvolupament, però n'hi ha alguna que és exhaustiva, com per exemple llista <em>tots</em> els representants d'un tàxon en un lloc, l'Identotron mostrarà un avís.
   the_name_of_the_taxon_including_space: El nom del tàxon, incloent-hi l'espai per a les espècies i infraespècies.
   the_name_of_the_taxon_dashes: El nom del tàxon, els espais són substituïts per guionets.
   the_name_of_the_taxon_underscores: El nom del tàxon, els espais són substituïts per guions baixos.
@@ -5630,7 +5628,7 @@ ca:
   ungrafted_taxa: Tàxons no inserits
   unhide_content: Deixa d'amagar el contingut
   unhide_desc: |
-    "Deixar d'amagar" permetrà que qualsevol pugui veure aquest contingut. Els administradors encara poden escollir amagar-lo de nou en el futur.
+    "Deixeu d'amagar" permetrà que qualsevol pugui veure aquest contingut. Els administradors encara poden triar amagar-ho de nou en el futur.
   unique_identifier_of_this_taxon: Identificador únic per a aquesta espècie o grup en la base de dades.
   unique_observers: observadors únics
   unknown: Desconegut
@@ -5876,38 +5874,38 @@ ca:
   video_tutorials: Vídeo-tutorial
   view: Mostra
   view_all: Mostra-ho tot
-  view_all_caps: VEURE-HO TOT
-  view_all_fields: Veure tots els Camps
-  view_all_flags: Veure totes les marques
-  view_all_members: Veure tots els membres
+  view_all_caps: VEGEU-HO TOT
+  view_all_fields: Vegeu tots els camps
+  view_all_flags: Vegeu totes les etiquetes
+  view_all_members: Vegeu tots els membres
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
-    one: "Veure tot %{count}"
+    one: "Vegeu-ho tot %{count}"
     other: "Veure tots %{count}"
-  view_all_observations: Veure totes les observacions
-  view_all_photocount_photos: "Veure les %{photo_count} fotos"
-  view_assessment: Veure valoració
-  view_check_list_page: Veure la pàgina de la llista de comprovació
-  view_contributions: Veure contribucions
+  view_all_observations: Vegeu totes les observacions
+  view_all_photocount_photos: "Vegeu les %{photo_count} fotos"
+  view_assessment: Vegeu la valoració
+  view_check_list_page: Vegeu la pàgina de la llista de comprovació
+  view_contributions: Vegeu contribucions
   view_details: Mostra els detalls
-  view_dynamic_lifelist_: VEURE LLISTA DE VIDA DINÀMICA
-  view_field_options: Veure el camp Opcions
-  view_flag: Veure etiqueta
-  view_flags: Veure les etiquetes
-  view_flags_for_x_html: "Veure les etiquetes per %{x}"
-  view_full_observation: Veure l’observació completa
-  view_full_size_photo: Veure la foto a mida completa
-  view_inaturalist_global_year_in_review: Veure el Resum Global d'iNaturalist de l'any %{year}
-  view_inaturalist_global_year_in_review_caps: VEURE LA RESUM GLOBAL D'INATURALIST DE L'ANY %{year}
+  view_dynamic_lifelist_: VEGEU LLISTA DE VIDA DINÀMICA
+  view_field_options: Vegeu el camp Opcions
+  view_flag: Veure l'etiqueta
+  view_flags: Vegeu les etiquetes
+  view_flags_for_x_html: "Vegeu les etiquetes per %{x}"
+  view_full_observation: Vegeu l’observació completa
+  view_full_size_photo: Vegeu la foto a mida completa
+  view_inaturalist_global_year_in_review: Vegeu el Resum Global d'iNaturalist de l'any %{year}
+  view_inaturalist_global_year_in_review_caps: VEGEU EL RESUM GLOBAL D'INATURALIST DE L'ANY %{year}
   #Text in link to view Year in Review for a specific site. %{site} should
   #support @vow_or_con
-  view_site_year_in_review: Veure el resum global a %{site} de l'any %{year}
-  view_site_year_in_review_caps: VEURE EL RESUM GLOBAL A %{site} DE L'ANY %{year}
-  view_journal: Veure el diari
+  view_site_year_in_review: Vegeu el resum global a %{site} de l'any %{year}
+  view_site_year_in_review_caps: VEGEU EL RESUM GLOBAL A %{site} DE L'ANY %{year}
+  view_journal: Vegeu el diari
   view_leaderboard_from_last_month: Mostra els més actius del mes passat
   view_leaderboard_from_last_year: Mostra els més actius de l'any passat
-  view_license: Veure la llicència
-  view_lists: Veure les llistes
+  view_license: Vegeu la llicència
+  view_lists: Vegeu les llistes
   view_listing: Veure les llistes
   view_moderation_history: Veure història de la moderació
   view_moderation_history_for_this_comment: Veure història de la moderació d'aquest comentari
@@ -6027,8 +6025,8 @@ ca:
   who_can_see_the_coordinates_observer: La persona que va fer l'observació
   who_can_see_the_coordinates_projects: Supervisors dels següents projectes
   who_can_see_the_coordinates_trusted: Individus sobre els quals els observadors han compartit amb tu les coordenades ocultes
-  who_helped_user_the_most: "Qui a ajudat més a %{user}"
-  who_user_helped_the_most: "A qui a ajudat més %{user}"
+  who_helped_user_the_most: "Qui ha ajudat més a %{user}"
+  who_user_helped_the_most: "A qui ha ajudat més %{user}"
   #Question mark added to the end of the word "Why" to make it a question. e.g. "Why should I use iNaturalist?"
   why_question: Per què?
   why_the_coordinates_are_obscured: Per què les coordenades estan enfosquides?
@@ -6162,7 +6160,7 @@ ca:
   you_are_setting_this_project_to_aggregate: |
     Esteu fent que aquest projecte incorpori totes les observacions que coincideixen amb les regles següents: %{rules}, voleu continuar?
   you_are_submitting_obs_with_no_date_or_no_location: |
-    Esteu enviant observacions sense data o localització. Les observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.
+    Esteu enviant observacions sense data o localització. Les observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defecte a les cerques d'observacions.
   you_are_subscribed_to_comments_on_this_flag: Esteu subscrit als comentaris d'aquesta marca.
   you_are_subscribed_to_comments_on_this_post: Esteu subscrit als comentaris d'aquesta entrada.
   you_are_subscribed_to_comments_on_this_taxon_stage: Esteu subscrit als comentaris d'aquesta activació del tàxon
@@ -6247,7 +6245,7 @@ ca:
   your_flickr_account: el vostre compte de Flickr
   your_flickr_photos_have_been_tagged: S'han etiquetat les vostres fotos de Flickr!
   your_hard_drive: El vostre disc dur
-  your_home: La vostra pàgina d\'inici
+  your_home: La vostra pàgina d'inici
   your_id: La vostra ID
   your_identification: La vostra identificació
   your_membership: La vostra Afiliació
@@ -6832,7 +6830,7 @@ ca:
           Intenteu aplicar filtres per a reduir el número de resultats, o marqueu les observacions com a revisades i utilitzeu el botó "Veure Més" en comptes de la paginació
       import:
         coordinate_systems_help: |
-          %{site_name} accepta coordenades procedents de diversos sistemes de coordenades, de manera que quan proporcioneu les coordenades en un sistema diferent al de latitud / longitud, cal saber quin sistema de coordenades s'està utilitzant per ser capaç d'interpretar-les correctament. Si us plau, assegureu-vos que heu escollit el sistema de coordenades correcte per a les vostres dades o la ubicació pot situar-se a una llarga distància d'on hauria de ser-hi. Si les vostres coordenades provenen d'un GPS, comproveu la seva configuració per identificar quin és el sistema de coordenades que utilitza. Tingueu en compte que el sistema no emmagatzema les coordenades geogràfiques en altres formats que no siguin la latitud i longitud.
+          %{site_name} accepta coordenades procedents de diversos sistemes de coordenades, de manera que quan proporcioneu les coordenades en un sistema diferent al de latitud / longitud, cal saber quin sistema de coordenades s'està utilitzant per ser capaç d'interpretar-les correctament. Si us plau, assegureu-vos que heu escollit el sistema de coordenades correcte per a les vostres dades o la ubicació pot situar-se a una llarga distància d'on hauria de ser. Si les vostres coordenades provenen d'un GPS, comproveu la seva configuració per identificar quin és el sistema de coordenades que utilitza. Tingueu en compte que el sistema no emmagatzema les coordenades geogràfiques en altres formats que no siguin la latitud i longitud.
         date_column_format: AAAA-MM-DD HH:MM:SS
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
@@ -7246,7 +7244,7 @@ ca:
           Els projectes han estat redissenyats per incloure automàticament totes les observacions que coincideixen amb el lloc, tàxon, usuaris, qualitat i dates que definiu. Escolliu entre dos tipus principals: Projectes de Col·lecció i de Paraigua, que comparteixen les característiques següents:
         welcome_to_projects: benvinguts al Projects!
         you_have_not_defined_any_observation_requirements: |
-          No heu definit cap requeriment de les observacions. Assegureu-vos de seleccionar un o més tàxons (p.e. ocells, coníferes), llocs (p.e. Brasil, Yellowstone), usuaris i/o dates per identificar les observacions que voleu incloure en el vostres projecte.
+          No heu definit cap requeriment de les observacions. Assegureu-vos de seleccionar un o més tàxons (p.e. ocells, coníferes), llocs (p.e. Brasil, Yellowstone), usuaris i/o dates per identificar les observacions que voleu incloure en el vostre projecte.
         errors:
           name_is_required: Cal un nom de Projecte
           name_less_than_100_characters: El nom del Projecte ha de tenir menys de 100 caràcters
@@ -7597,24 +7595,9 @@ ca:
       edit:
         about_third_party_tracking: Sobre el seguiment per part de tercers
         block_desc_blocking_someone_prevents: |
-          Bloquejar algú impedeix que us enviï missatges o comentaris sobre el vostre
-          observacions, identificar les vostres observacions i interactuar d'una altra manera
-          amb tu %{site_name}. També elimina les seves observacions de la vostra
-          resultats de la cerca i suprimeix les vostres observacions de la seva cerca
-          Resultats. Tanmateix, no et fa invisible per a ells. Poden
-          encara trobeu les vostres observacions i visualitzeu el vostre perfil, simplement no poden
-          interactuar amb tu.
+          Blocar algú impedeix que us enviï missatges o comentaris sobre les vostres observacions, identificar les vostres observacions i interactuar de cap altra manera amb vós a %{site_name}. També elimina les seves observacions dels vostres resultats de la cerca i suprimeix les vostres observacions dels seus resultats de cerca. Tanmateix, no us fa invisibles per a ell. Encara pot trobar les vostres observacions i visualitzar el vostre perfil, simplement no pot interactuar amb vós.
         block_desc_blocking_is_for_situations: |
-          El bloqueig és per a situacions en què simplement no et pots portar bé
-          algú i no et deixaran sol, malgrat els teus millors esforços per
-          resoldre disputes d'una manera civilitzada. No és una manera d'amagar-se
-          persones, per evitar identificacions de persones les opinions de les quals
-          no confiar, o per desactivar l'ID de la comunitat (n'hi ha un altre
-          configuració per a això). Per tant, el bloqueig funciona en ambdós sentits: si bloqueges
-          algú, no pot interactuar amb tu, però tu tampoc pots interactuar
-          amb ells. Si en feu un mal ús per evitar que algú identifiqui el vostre
-          observacions, també t'impedeixes d'identificar les seves
-          Observacions.
+          El blocatge és per situacions en què simplement no us podeu portar bé algú i no us deixen fer, malgrat els vostres millors esforços per resoldre les disputes d'una manera civilitzada. No és una manera d'amagar-se ningú, d'evitar identificacions de persones amb opinions en què no confieu, o de desactivar l'ID de la comunitat (hi ha una altra configuració per a això). Per tant, el blocatge funciona en ambdós sentits: si bloqueu algú, no pot interactuar amb vós, però vós tampoc podeu interactuar amb ell. Si en feu un mal ús per a evitar que algú identifiqui les vostres observacions, també us impediu d'identificar les seves observacions.
         block_desc_you_can_only_block_html: |
           Només podeu bloquejar tres persones. Creiem que aquest és un raonable
           que s'adapta a les persones que necessiten bloqueig mentre
@@ -7709,7 +7692,7 @@ ca:
         about_recent_users: Quant a
         definitions_html: <dl> <dt>Spam Probable</dt> <dd> L'usuari probablement sigui un spammer, el que significa que no té cap observació o identificació però sí que té una descripció al perfil. </dd> <dt>Spam Automàtic</dt> <dd> Spammer que ha estat identificats pel sistema com Spammer, de forma automàtica. </dd> <dt>Spam Manual</dt> <dd> Spammer que ha estat considerat així per un supervisor del lloc. </dd> <dt>Falsos Positius</dt> <dd> Usuaris que van ser marcats com spammers però resolts pels supervisors del lloc perquè no eren realment spammers. </dd> </dl>
         recent_users_desc_html: |
-          <p>Donem la benvinguda als nous usuaris, però també volem combatre els spammers. Tenim d'esperança que aquesta eina ens ajudarà a les dues coses. Marquem automàticament mols usuaris utilitzant <a
+          <p>Volem donar la benvinguda als nous usuaris, però també volem combatre els spammers. Tenim d'esperança que aquesta eina ens ajudarà a fer les dues coses. Etiquetem automàticament molts usuaris com a spammers utilitzant <a
           href="https://akismet.com/">Akismet</a>, però Akismet no és perfecta, per això si voleu dedicar uns minuts a identificar quins nous usuaris són spammers i quins no, ens ajudareu.
           </p>
       show:

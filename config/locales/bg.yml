@@ -4,7 +4,7 @@ bg:
     one: "%{count} промяна"
     other: "%{count} промени"
   x_comments:
-    one: 'Един коментар'
+    one: '%{count} коментар'
     other: '%{count} коментара'
   x_comments_html:
     one: '<span class="count">%{count}</span> коментар'
@@ -228,7 +228,7 @@ bg:
   add_a_batch_of_taxa: Добавяне на множество таксони
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Добави списък с водещи символи
-  add_a_comment: Добавяне на коментар
+  add_a_comment: Добави коментар
   add_a_field: Добавяне на поле
   add_a_flag: Добавяне на маркер
   #Tool tip for a button that adds a link to a text area
@@ -266,7 +266,7 @@ bg:
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Добави удебелен текст
   add_comma_separated_tags: "Добави етикети (разделени със запетаи)"
-  add_comment: Добавяне на коментар
+  add_comment: Добави коментар
   add_conservation_status: Добави природозащитен статут
   add_custom_project_fields: Добавяне на потребителски полета на проекта
   add_edit_flags: Добави/редактирай маркери
@@ -1702,6 +1702,7 @@ bg:
   header_your_identifications: Вашите разпознавания
   header_your_projects: Вашите проекти
   header_your_profile: Вашият профил
+  heads_up: Внимание
   heads_up_this_photo_has_been_flagged: "ВНИМАНИЕ: снимката е била маркирана."
   #A warning in a small header to a user that this sound is considered problematic to listen to by another user (i.e. it is spam, has offensive content)
   heads_up_this_sound_has_been_flagged: "HEADS UP: този звук е маркиран."
@@ -3720,6 +3721,8 @@ bg:
   share_caps: СПОДЕЛИ
   share_colon: "Споделяне:"
   short_code_for_this_place: Кратък код за това място, например BG за България
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Трябва ли това народно име да се показва по подразбиране за този таксон?
   show: Показване
   show_active_and_inactive_taxa: Покажи активни и неактивни таксони
   show_keyboard_shortcuts: Покажи клавишните комбинации
@@ -3780,6 +3783,7 @@ bg:
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Съжаляваме, някоя от тези снимки на Flickr или не съществува или нямате разрешение да я видите."
   sorry_that_photo_provider_isnt_responding: "Съжаляваме, източникът на снимката на отговаря в момента. Моля, опитайте пак по-късно."
   sorry_that_service_is_not_responding: "Съжаляваме, услугата не отговаря в момента. Моля, опитайте пак по-късно."
+  sorry_there_were_problems_with_your_request: "Съжаляваме, имаше проблеми с Вашата заявка: %{project_user}"
   sorry_we_didnt_find_that_photo: "Съжаляваме, не успахме да намерим снимката."
   sorry_we_dont_have_any_metadata_for_that_photo: "Съжаляваме, не разполагаме с метаданни за тази снимка които да приложим към наблюдението."
   sorry_x_is_not_responding: "Съжаляваме, %{x} не отговаря. Моля опитайте пак по-късно."
@@ -3868,7 +3872,7 @@ bg:
   submitted: Публикувано
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
-  subscribe: Абонамент
+  subscribe: Абонирай се
   subscribe_to_a_taxon: Абонирай се за таксон
   subscribe_to_a_place: Абонирай се за място
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Абонирай се%{tag_end} за коментари към този маркер"
@@ -4035,6 +4039,12 @@ bg:
   the_world_is_full_of_interesting_places: |
     Светът е пълен с интересни места, всяко изпълнено с чудати и чудесни форми на живот. Някои са на другия край на света, докато други са ти точно под носа! %{site_name} Места ти позволява да разгледаш живота по целия свят. Започни да го изучаваш!
   then_keybord_sequence: тогава
+  there_merge_problems_with_the_merge: "Имаше проблеми с обединяването: %{merged_errors}"
+  there_were_problems_adding_taxa: "Имаше проблеми с добавянето на тези таксони: %{errors}"
+  there_were_problems_adding_that_observation_to_this_project: "Имаше проблеми с добавянето на това наблюдение към този проект: "
+  there_were_problems_importing_that_place: "Имаше проблеми с импортирането на това място: %{place_error}"
+  there_were_problems_importing_that_place_geometry: |
+    Имаше проблеми с импортирането на геометрията на това място: %{error}
   there_were_some_problems_saving_this_observation: Възникна проблем при записването на наблюдението
   there_were_some_problems_saving_those_colors: "Възникна проблем при записването на тези цветове: %{error}"
   there_were_some_problems_with_fields: "Има проблеми със следните полета:"
@@ -5471,6 +5481,10 @@ bg:
       form:
         name_with_rank_desc: |
           Таксономичното име, заедно с ранга. Вътревидовите рангове се поставят след биномното име.
+    taxon_names:
+      form:
+        places_help_html: |
+          Добавете име към място, за да му дадете приоритет за сайтове и потребители от това място. Ако има няколко имена към дадено място, можете да ги подредите по приоритет <a href="%{url}">тук</a>. Моля <strong>не добавяйте</strong> име към ВСЯКО място, където името се използва, а само към места, където употребата се различава от другите места.
     users:
       dashboard:
         your_content_will_be_updated: Вашето съдържание, свързано с тези таксони, ще бъде обновено автоматично.
@@ -6190,6 +6204,8 @@ bg:
         not_an_integer: трябва да е цяло число
         odd: трябва да е нечетно
         requires_privilege_interaction: трябва да имате потвърден имейл адрес, за да направите това
+      template:
+        body: 'Имаше проблеми със следните полета:'
       models:
         application:
           attributes:
@@ -6450,6 +6466,11 @@ bg:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  id_summaries:
+    demo:
+      summary_item:
+        reference_commented: "коментира"
+        view_comment: "Виж коментара"
   #Title of a section warning the user about something
   warning_title: Внимание
   wikimedia: Уикимедия

@@ -916,6 +916,7 @@ sv:
   casual: informell
   casual_: Grundklass
   casual_tooltip_html: 'Fynd av grundklass saknar media, fyndplats eller datum, eller uppfyller inte kraven för "Forsknings-" eller "Behöver bestämning-"klass av andra skäl. <a href="https://www.inaturalist.org/pages/help#quality">Lär dig mer om kvalitetsklasser</a>'
+  casual_tooltip_html2: 'Fynd av grundklass är de där media, plats eller datum saknas, eller så uppfyller de inte kraven för kvalitetsklasserna "Forsknings-" eller "Behöver bestämmas" av andra skäl. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Läs mer om kvalitetsklasser</a>'
   categories: Kategorier
   cc_0_description: "Denna licens gör ditt verk publikt tillgängligt, så att andra kan kopiera, ändra, sprida och uppföra ditt verk, även för kommersiella ändamål, allt utan att be om tillstånd eller erkänna dig. Detta är den mest tillåtande licens som erbjuds. Rekommenderas för maximal spridning och användning av licensierat material."
   cc_0_name: Ingen upphovsrätt (CC0)
@@ -1347,6 +1348,10 @@ sv:
   couldnt_change_your_password: "Kunde inte ändra ditt lösenord: %{e}"
   couldnt_find_a_user_matching_x_param: "Kunde inte hitta en användare med %{id}"
   couldnt_find_that_taxon: Kunde inte hitta detta taxon.
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Fallande antal
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Stigande antal
   create: Skapa
   create_a_guide: Skapa en guide
   create_a_new_field: Skapa ett nytt fält
@@ -1632,6 +1637,10 @@ sv:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1}–%{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time}–%{end_time}"
   date_updated: Uppdateringsdatum
   day: Dag
   decrease_brightness: Minska ljusstyrkan
@@ -1718,6 +1727,14 @@ sv:
         för att bekräfta ditt konto.
       user:
         suspended: Ditt konto har blivit avstängt
+        #Error message for suspended users telling them how to appeal and providing them with a link.
+        suspended_appeal: Om du tror att detta gjordes av misstag och vill överklaga, var vänlig <a href="https://help.inaturalist.org/support/tickets/new">kontakta supporten.</a>
+        #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        #with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Din avstängning kommer att hävas om %{until}."
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Anledning: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: Token för återställning av lösenord är ogiltig. Använd länken i det senast skickade e-postmeddelandet om återställning av lösenord, eller <a href="%{url}">Begär en ny</a>.
     sessions:
@@ -1874,6 +1891,10 @@ sv:
   edit: Redigera
   #Title of the moderation note editor
   edit_moderator_note: Redigera moderatoranteckning
+  #Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Redigera avstängning
+  #Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: Om du bara behöver uppdatera anledning eller slutdatum kan du <a href="%{edit_link}">ändra avstängningen</a> istället.
   edit_a_batch_of_observations: Redigera flera fynd i taget
   edit_account_settings_and_profile: "Redigera kontoinställningar och profil"
   edit_assessment: Redigera bedömning
@@ -3085,6 +3106,10 @@ sv:
     Vilseledande eller olagligt innehåll, rasistiska eller etniska glåpord etc. För mer om
     vår definition av "lämplig", se vår
     <a href="/help#inappropriate">FAQ</a>.
+  misleading_or_illegal_content_html2: |
+    Vilseledande eller olagligt innehåll, rasistiska eller etniska glåpord, etc. För mer om
+    vår definition av "lämpligt", se
+    <a href="https://help.inaturalist.org/en/support/solutions/articles/151000169915">Vanliga frågor</a>.
   #Label shown when a date has not been entered
   missing_date: Saknar datum
   mobile: Mobil
@@ -3094,6 +3119,8 @@ sv:
     <strong>endast synligt för förvaltare</strong> och <strong>förvaltare kan inte se
     sin egen historik</strong>, så anteckningar om en person ska aldrig synas
     för den personen.
+  #Replaces the username of the moderator on automatic unsuspension actions
+  moderator_actions_suspension_expired: Avstängningen har löpt ut
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Dölj
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -3148,6 +3175,10 @@ sv:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "LT"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -3254,6 +3285,7 @@ sv:
   needs_id_: Behöver bestämmas
   needs_id_expandable_html: "<span class='full'>Behöver </span>bestämmas"
   needs_id_tooltip_html: '"Behöver bestämning"-fynd har media, fyndplats och datum, men kräver fortfarande att communityn är överens om en exakt artbestämning. <a href="https://www.inaturalist.org/pages/help#quality">Läs mer om kvalitetsklasser</a>'
+  needs_id_tooltip_html2: 'Fynd som ”Behöver bestämmas” har media, plats och datum, men kräver fortfarande communityns enighet om en exakt bestämning. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Läs mer om kvalitetsklasser</a>'
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del av det internationella iNaturalist-
@@ -4853,6 +4885,7 @@ sv:
   research_grade: Forskningsklass
   research_grade_short_html: "F<span class='full'>orsknings</span>K<span class='full'>valitet</span>"
   research_grade_tooltip_html: 'Fynd av forskningsklass har media, fyndplats, datum och en exakt bestämning som communityn är överens om (vanligtvis på artnivån). <a href="https://www.inaturalist.org/pages/help#quality">Lär dig mer om kvalitetsklasser</a>'
+  research_grade_tooltip_html2: 'Fynd av ”forskningsklass” har media, plats, datum samt enighet inom communityn om en exakt bestämning (vanligtvis på artnivå). <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Läs mer om kvalitetsklasser</a>'
   research_grade_observations_have: 'Fynd av "Forskningsklass" har ett datum, bild, koordinater och en community-bestämning. Klicka för att se kvalitetsbedömning av data.'
   research_grade_qualification: Bedömningsgrund för forskningsklass
   #Label for a button that re-sends the account confirmation email and signs
@@ -5187,6 +5220,7 @@ sv:
   sorry_you_need_to_be_signed_in_and: Tyvärr, du måste vara inloggad och ha ett länkat Flickr-konto för att lägga upp taggar direkt till Flickr.
   sort: Sortera
   sort_by: Sortera efter
+  sort_included_projects_on_leaderboard_by: Sortera inkluderade projekt i topplistan efter
   sorting_by: Sorterar efter
   soundcloud_needs_to_confirm: "SoundCloud behöver bekräfta att du vill ha ditt konto kopplat till %{site_name}."
   sounds:
@@ -5334,6 +5368,26 @@ sv:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Lämpad för Wikipedia och andra Wikimedia Foundation-projekt
   summary: Sammanfattning
   supporting: Stödjer
+  #label for a form field allowing a curator to specify a length of time a user will be suspended
+  suspension_duration: Avstängningens längd
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 dag
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 dagar
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 vecka
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 månad
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 månader
+  #a select form option indicating a user will be suspended indefinitely
+  suspension_duration_indefinite: Tillsvidare
+  #a select form option to select a custom date when a user will be unsuspended
+  suspension_duration_custom: Anpassat
+  #label for the suspension reason dropdown
+  suspension_reason_label: Anledning till avstängningen
+  #option for entering a custom suspension reason
+  suspension_reason_custom: Anpassat
   suspend_user: Stäng av användare
   suspend_user_html: Stäng av %{user}
   suspend_user_reason_instructions_html: |
