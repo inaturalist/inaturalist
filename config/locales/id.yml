@@ -9383,6 +9383,11 @@ id:
             user:
               must_be_on_site_long_enough: |
                 harus terdaftar lebih dari 24 jam yang lalu untuk menerbitkan. Kami mendapatkan banyak spammer, dan ini adalah semacam cara yang kurang baik untuk berurusan dengan mereka. Anda masih dapat menyimpan draf, dan jika Anda masih menggunakan situs ini dalam satu hari, Anda bisa menerbitkan.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: tanggal mulai harus sebelum tanggal akhir
         project_fave:
           attributes:
             base:
