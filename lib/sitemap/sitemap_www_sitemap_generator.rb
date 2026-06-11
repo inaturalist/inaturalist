@@ -46,15 +46,15 @@ module Sitemap
       FileUtils.mkdir_p( tmp_dir )
 
       category_results = []
-      #category_results << generate_projects( tmp_dir )
+      category_results << generate_projects( tmp_dir )
       category_results << generate_taxa( tmp_dir )
-      #category_results << generate_people( tmp_dir )
-      #category_results << generate_places( tmp_dir )
-      #category_results << generate_blog_posts( tmp_dir )
-      #category_results << generate_user_journal_posts( tmp_dir )
-      #category_results << generate_project_journal_posts( tmp_dir )
+      category_results << generate_people( tmp_dir )
+      category_results << generate_places( tmp_dir )
+      category_results << generate_blog_posts( tmp_dir )
+      category_results << generate_user_journal_posts( tmp_dir )
+      category_results << generate_project_journal_posts( tmp_dir )
 
-      write_root_index( root_index_tmp_path, category_results.map {| result | result[:index_filename] } )
+      write_root_index( root_index_tmp_path, category_results.flat_map {| result | result[:chunk_filenames] } )
       publish!( tmp_dir, root_index_tmp_path )
       print_summary( category_results )
 
@@ -260,20 +260,11 @@ module Sitemap
 
       close_chunk_writer( writer, chunk_filenames ) if writer
 
-      index_filename = "sitemap-#{category}-index.xml"
-      write_xml( File.join( dir, index_filename ) ) do | io |
-        io.write( INDEX_OPEN )
-        chunk_filenames.each do | chunk_filename |
-          write_index_entry( io, chunk_filename )
-        end
-        io.write( INDEX_CLOSE )
-      end
-
       duration = ( Time.now - category_started_at ).round( 1 )
       puts "[sitemap] #{category}: #{total} URLs across #{chunk_filenames.size} files (done in #{duration}s)"
       {
         name: category,
-        index_filename: index_filename,
+        chunk_filenames: chunk_filenames,
         count: total,
         duration_seconds: duration,
         samples: samples
