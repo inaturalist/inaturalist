@@ -198,6 +198,7 @@ class ActivityCreatePanel extends React.Component {
                   onChange={e => {
                     setNominateOnSubmit( e.target.checked );
                   }}
+                  tabIndex={-1}
                 />
                 <label
                   className="identificationNomination"
