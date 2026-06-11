@@ -25,20 +25,7 @@ iconFont.textContent = `
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .icon-iconic-animalia:before  { content: "\\e00a"; }
-  .icon-iconic-aves:before      { content: "\\e00c"; }
-  .icon-iconic-arachnida:before { content: "\\e00b"; }
-  .icon-iconic-actinopterygii:before { content: "\\e00d"; }
-  .icon-iconic-reptilia:before  { content: "\\e00e"; }
-  .icon-iconic-protozoa:before  { content: "\\e00f"; }
-  .icon-iconic-plantae:before   { content: "\\e010"; }
-  .icon-iconic-mollusca:before  { content: "\\e011"; }
-  .icon-iconic-mammalia:before  { content: "\\e012"; }
-  .icon-iconic-chromista:before { content: "\\e013"; }
-  .icon-iconic-insecta:before   { content: "\\e014"; }
-  .icon-iconic-fungi:before     { content: "\\e015"; }
-  .icon-iconic-unknown:before   { content: "\\e01a"; }
-  .icon-iconic-amphibia:before  { content: "\\e01b"; }
+  .icon-iconic-fungi:before { content: "\\e015"; }
 `;
 document.head.appendChild( iconFont );
 
@@ -48,37 +35,7 @@ const translations: Record<string, string> = {
   next_taxon_short: "›",
   view_photo: "View photo",
   view_taxon: "View taxon",
-  "ranks.stateofmatter": "State of matter",
-  "ranks.kingdom": "Kingdom",
-  "ranks.subkingdom": "Subkingdom",
-  "ranks.phylum": "Phylum",
-  "ranks.subphylum": "Subphylum",
-  "ranks.superclass": "Superclass",
-  "ranks.class": "Class",
-  "ranks.subclass": "Subclass",
-  "ranks.infraclass": "Infraclass",
-  "ranks.superorder": "Superorder",
-  "ranks.order": "Order",
-  "ranks.suborder": "Suborder",
-  "ranks.infraorder": "Infraorder",
-  "ranks.superfamily": "Superfamily",
-  "ranks.epifamily": "Epifamily",
-  "ranks.family": "Family",
-  "ranks.subfamily": "Subfamily",
-  "ranks.tribe": "Tribe",
-  "ranks.subtribe": "Subtribe",
-  "ranks.genus": "Genus",
-  "ranks.genushybrid": "Genushybrid",
-  "ranks.subgenus": "Subgenus",
-  "ranks.section": "Section",
-  "ranks.subsection": "Subsection",
-  "ranks.complex": "Complex",
-  "ranks.species": "Species",
-  "ranks.hybrid": "Hybrid",
-  "ranks.subspecies": "Subspecies",
-  "ranks.variety": "Variety",
-  "ranks.form": "Form",
-  "ranks.infrahybrid": "Infrahybrid"
+  "ranks.kingdom": "Kingdom"
 };
 
 type WindowWithGlobals = Window & {

@@ -17,17 +17,6 @@ const makePhoto = ( seed: string ): Photo => ( {
   dimensions: ( ) => ( { width: 400, height: 300 } )
 } );
 
-const hawk: Taxon = {
-  id: 4849,
-  name: "Buteo jamaicensis",
-  preferred_common_name: "Red-tailed Hawk",
-  rank: "species",
-  rank_level: 10,
-  iconic_taxon_name: "Aves",
-  is_active: true,
-  defaultPhoto: makePhoto( "hawk" )
-};
-
 const fungus: Taxon = {
   id: 54743,
   name: "Amanita muscaria",
@@ -39,24 +28,15 @@ const fungus: Taxon = {
   defaultPhoto: makePhoto( "fungus" )
 };
 
-const noPhoto: Taxon = {
-  id: 1,
-  name: "Animalia",
-  rank: "kingdom",
-  rank_level: 70,
-  iconic_taxon_name: "Animalia",
-  is_active: true
-};
-
 export const Default: Story = {
   args: {
-    taxon: hawk
+    taxon: fungus
   }
 };
 
 export const NoPhoto: Story = {
   args: {
-    taxon: noPhoto
+    taxon: { ...fungus, defaultPhoto: undefined }
   }
 };
 

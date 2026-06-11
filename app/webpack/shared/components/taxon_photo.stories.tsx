@@ -34,27 +34,27 @@ const makePhoto = ( id: number ): Photo => ( {
   dimensions: ( ) => ( { width: 400, height: 300 } )
 } );
 
-const hawk: Taxon = {
-  id: 4849,
-  name: "Buteo jamaicensis",
-  preferred_common_name: "Red-tailed Hawk",
+const fungus: Taxon = {
+  id: 54743,
+  name: "Amanita muscaria",
+  preferred_common_name: "Fly Agaric",
   rank: "species",
   rank_level: 10,
-  iconic_taxon_name: "Aves",
+  iconic_taxon_name: "Fungi",
   is_active: true
 };
 
 export const Default: Story = {
   args: {
     photo: makePhoto( 1 ),
-    taxon: hawk
+    taxon: fungus
   }
 };
 
 export const ShowTaxon: Story = {
   args: {
     photo: makePhoto( 2 ),
-    taxon: hawk,
+    taxon: fungus,
     showTaxon: true
   }
 };
@@ -62,7 +62,7 @@ export const ShowTaxon: Story = {
 export const ShowTaxonLinked: Story = {
   args: {
     photo: makePhoto( 3 ),
-    taxon: hawk,
+    taxon: fungus,
     showTaxon: true,
     linkTaxon: true
   }
