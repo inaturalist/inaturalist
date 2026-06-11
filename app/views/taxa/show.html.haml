@@ -43,7 +43,7 @@
   %link{ rel: "canonical", href: taxon_canonical_url }
   %link{ rel: "alternate", hreflang: "x-default", href: taxon_default_url }
   %link{ rel: "alternate", hreflang: "en", href: taxon_default_url }
-  - @taxon_hreflang_locales.each do |locale|
+  - ( @taxon_hreflang_locales || [] ).each do |locale|
     %link{ rel: "alternate", hreflang: locale, href: localized_taxon_url( locale: locale, id: @taxon.to_param, host: Site.default.url ) }
 #app
   #initial-loading.text-center
