@@ -18,7 +18,12 @@ class AnnouncementsController < ApplicationController
     if current_user_site_ids.present? && params[:site_filter] != "all"
       @announcements = @announcements.where( sites: { id: current_user_site_ids } )
     end
-    @announcements = @announcements.where( "body ilike ?", "%#{params[:q]}%" ) unless params[:q].blank?
+    unless params[:q].blank?
+      sanitized_q = Announcement.sanitize_sql_like( params[:q] )
+      @announcements = @announcements.where(
+        "body ilike ?", "%#{sanitized_q}%"
+      )
+    end
     @active = params[:active].yesish?
     @announcements = @announcements.where( "\"end\" > ?", Time.now ) if @active
     @placement = params[:placement] if Announcement::PLACEMENTS.include?( params[:placement] )
