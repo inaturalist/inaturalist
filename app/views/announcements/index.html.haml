@@ -84,10 +84,9 @@
                 = link_to announcement, class: "btn btn-default btn-sm" do
                   %i.fa.fa-eye
                   = t(:show)
-              - if announcement_editable_by_current_user?( announcement )
-                %td
-                  = link_to edit_announcement_path(announcement), class: "btn btn-default btn-sm" do
-                    %i.fa.fa-pencil
-                    = t(:edit)
+              %td
+                = link_to edit_announcement_path(announcement), disabled: !announcement_editable_by_current_user?( announcement ), class: "btn btn-default btn-sm" do
+                  %i.fa.fa-pencil
+                  = t(:edit)
       = will_paginate @announcements
       = link_to t(:new_announcement), new_announcement_path, class: "btn btn-primary"
