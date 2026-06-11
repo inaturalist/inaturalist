@@ -23,6 +23,15 @@ jobs:
     - name: Run TypeScript type check
       run: npm run typecheck
 
+  js-unit-tests:
+    name: JS Unit Tests
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - run: npm install
+    - name: Run JS unit tests
+      run: npm run test:unit -- --ci
+
   # WEB-1046: Might be worth considering building a container image for this job and reusing that
   # instead of building the image for each matrix step.
   build-and-test:

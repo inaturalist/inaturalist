@@ -730,12 +730,23 @@ en:
     least 2 months old and must have made at least 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">improving identifications</a> in the last month. We may ask follow-up
     questions about your plan and we reserve the right to turn down applications for any reason.
+  app_owner_application_about_p2_2_html: |
+    As of 2022 we are requiring manual approval for users wishing to make API clients.
+    In order to create third-party apps, you must first submit an application to become
+    an "app owner." This application should describe the functionality of your proposed app
+    and how you plan to use it. In order to submit an application your account must be at
+    least 2 months old and must have made at least 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">improving identifications</a>
+    <i>for other users</i> in the last month. We may ask follow-up questions about your plan
+    and we reserve the right to turn down applications for any reason.
   app_owner_application_inelligible: |
     In order to submit an application your account must be at least 2 months old and must
     have made at least 10 improving identifications in the last month.
-  app_owner_application_inelligible2: |
+  app_owner_application_inelligible2_html: |
     In order to submit an application your account must be at least 2 months old and must
-    have made at least 10 improving identifications for other users in the last month.
+    have made at least 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">improving identifications</a>
+    <i>for other users</i> in the last month.
   app_owner_application_fields_explanation_html: Describe the functionality your app
     will have and how you plan to use it.
   app_owner_application_success: App owner application submitted
@@ -5750,20 +5761,38 @@ en:
     # reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Insults or threats
     # reason displayed to users who have been suspended for posting sexually explicit content
+    # REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Sexually explicit content
+    # reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Posting sexually explicit human content
     # reason displayed to users who are creating false accounts to circumvent suspensions,
     # https://en.wikipedia.org/wiki/Sock_puppet_account
+    # REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sockpuppet accounts
+    # reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Misusing a second account, such as confirming your own identifications
     # reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    # REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Intentionally adding false IDs or DQA votes
+    # reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Intentionally adding false data, such as observations, identifications, or Data Quality Assessment votes
     # reason displayed to users who have been suspended for posting machine generated content
+    # REPLACED with adding_machine_generated_content below
     machine_generated_content: Machine generated observations, identifications and comments
+    # reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Adding machine-generated content
     # reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    # REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Continued copyright infringement (after warning)
+    # reason displayed to users who have continued to post media to the platform without the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Continued posting media without media owner's permission (after warning)
     # reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Continued posting of artificially generated media (after warning)
     # reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    # REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Continued reduction of data quality (after warning)
+    # reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Continued reduction of data quality, such as adding incorrect identifications (after warning)
   # the time at which a users suspension ends
   suspend_until: Suspend until
   # a note telling users to select the time in their local time zone
@@ -6556,6 +6585,8 @@ en:
     The observer has chosen to trust you with the hidden coordinates of all
     their observations.
   user_updated_an_observation_field_html: '%{user} updated a value for "%{field_name}" on an observation by %{owner}'
+  # An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Your account has been suspended"
   # An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Your account has been unsuspended"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
@@ -8607,10 +8638,26 @@ en:
       user_unsuspended:
         # A line in an email telling a user their account suspension is being lifted lifted.
         message: Your account on %{site_name} has been unsuspended and you can use the site again.
+        # A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Your account on %{site_name} has been reinstated and you can log in again.
         # A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Your account was suspended for the following reason: %{reason}"
+        # A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        # longer future suspensions.
+        please_abide_html: 'Please abide by the <a href="%{community_guidelines_url}">iNaturalist Community Guidelines</a> and <a href="%{terms_of_use_url}">Terms of Use</a>. Future violations may result in longer suspensions.'
+        # A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'If you have questions or concerns, you can <a href="%{contact_us_url}">contact us</a>.'
         # A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Log in to your account</a> to continue using the site.'
+      user_suspended:
+        # A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "Your iNaturalist account has been suspended for the following reason: %{reason}. Your suspension will be lifted in %{duration}."
+        # A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "Your iNaturalist account has been suspended indefinitely for the following reason: %{reason}."
+        # A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'If you believe this suspension was made in error or would like to appeal, please <a href="%{contact_us_url}">contact iNaturalist Support</a>. Keep in mind that using other accounts to evade suspension will result in the other accounts being suspended and their public content removed.'
+        # A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'All iNaturalist community members are asked to abide by the <a href="%{community_guidelines_url}">Community Guidelines</a> and <a href="%{terms_of_use_url}">Terms of Use</a>.'
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended

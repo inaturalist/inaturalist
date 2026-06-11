@@ -162,14 +162,8 @@ const config = {
         loader: "babel-loader",
         resolve: {
           fullySpecified: false
-        },
-        options: {
-          presets: [
-            "@babel/preset-typescript",
-            "@babel/preset-env",
-            "@babel/preset-react"
-          ]
         }
+        // Babel presets come from the shared root babel.config.js
       },
       {
         test: /\.module\.css$/,

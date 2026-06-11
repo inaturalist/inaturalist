@@ -1,12 +1,17 @@
-= render "header"
 %p<>
   = succeed "," do
     = t(:hi_user, user: @user.name.blank? ? @user.login : @user.name)
 %p<>
-  = t("views.emailer.user_unsuspended.message", site_name: @site_name)
+  = t_with_fallback("views.emailer.user_unsuspended.message_2", "views.emailer.user_unsuspended.message", site_name: @site_name)
 - if @reason.present?
   %p<>
-    = t("views.emailer.user_unsuspended.reason", reason: @reason)
+    = t("views.emailer.user_unsuspended.reason", reason: ModeratorAction.translate_reason( @reason ))
 %p<>
-  = raw t("views.emailer.user_unsuspended.login_prompt", login_url: login_url)
-= render "footer"
+  = t("views.emailer.user_unsuspended.please_abide_html", |
+    community_guidelines_url: "https://www.inaturalist.org/pages/community+guidelines", |
+    terms_of_use_url: "https://www.inaturalist.org/pages/terms" |
+  ) |
+%p<>
+  = t("views.emailer.user_unsuspended.contact_us_html", |
+    contact_us_url: "https://help.inaturalist.org/support/tickets/new" |
+  ) |

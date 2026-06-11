@@ -1585,6 +1585,10 @@ class User < ApplicationRecord
       resend_unsent_for_user( id )
   end
 
+  def send_suspended_email( reason, suspended_until )
+    Emailer.delay.user_suspended( self, reason, suspended_until )
+  end
+
   def send_unsuspended_email( reason = nil )
     Emailer.delay.user_unsuspended( self, reason )
   end
@@ -1820,9 +1824,11 @@ class User < ApplicationRecord
         self.suspended_by_user = moderator_action.user
         suspend!( moderator_action.reason )
       end
+      send_suspended_email( moderator_action.reason, moderator_action.suspended_until )
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      email_reason = suspended_until.present? ? suspension_reason : moderator_action.reason
       unsuspend!
-      send_unsuspended_email( moderator_action.reason )
+      send_unsuspended_email( email_reason )
     elsif moderator_action.action == ModeratorAction::RENAME
       new_login = User.suggest_login( User::DEFAULT_LOGIN )
       self.login = new_login

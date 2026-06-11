@@ -1,5 +1,4 @@
 import _ from "lodash";
-import React from "react";
 import { COLORS } from "../../shared/util";
 
 const urlForTaxon = t => (
