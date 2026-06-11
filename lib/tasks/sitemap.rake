@@ -11,8 +11,7 @@ namespace :sitemap do
     task_logger&.start
     Sitemap::SitemapWwwSitemapGenerator.new(
       chunk_size: ENV.fetch( "CHUNK_SIZE", nil ),
-      batch_size: ENV.fetch( "BATCH_SIZE", nil ),
-      photo_strategy: ENV.fetch( "PHOTO_STRATEGY", nil )
+      batch_size: ENV.fetch( "BATCH_SIZE", nil )
     ).generate!
     task_logger&.end
   end
