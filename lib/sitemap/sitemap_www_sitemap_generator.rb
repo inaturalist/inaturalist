@@ -21,7 +21,10 @@ module Sitemap
     INDEX_OPEN = %(<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n)
     INDEX_CLOSE = %(</sitemapindex>\n)
 
-    def initialize( chunk_size: nil, batch_size: nil )
+    PHOTO_STRATEGIES = %w[active_record pluck].freeze
+    DEFAULT_PHOTO_STRATEGY = "active_record"
+
+    def initialize( chunk_size: nil, batch_size: nil, photo_strategy: nil )
       @base_url = Site.default&.url.to_s.sub( %r{/$}, "" )
       raise ArgumentError, "Could not determine base URL from Site.default.url" if @base_url.blank?
 
@@ -30,6 +33,7 @@ module Sitemap
       @output_dir = OUTPUT_DIR
       @chunk_size = ( chunk_size.presence || DEFAULT_CHUNK_SIZE ).to_i
       @batch_size = ( batch_size.presence || DEFAULT_BATCH_SIZE ).to_i
+      @photo_strategy = ( photo_strategy.presence || DEFAULT_PHOTO_STRATEGY ).to_s
       validate_options!
     end
 
@@ -38,6 +42,7 @@ module Sitemap
       puts "[sitemap] writing sitemap files to #{@output_dir}"
       puts "[sitemap] base URL: #{@base_url}"
       puts "[sitemap] chunk size: #{@chunk_size} URLs"
+      puts "[sitemap] photo strategy: #{@photo_strategy}"
       puts "[sitemap] root index: #{ROOT_INDEX_PATH}"
 
       tmp_work_dir = Dir.mktmpdir( "inat-sitemaps-", "/tmp" )
@@ -68,6 +73,8 @@ module Sitemap
     def validate_options!
       raise ArgumentError, "chunk_size must be >= 1" if @chunk_size <= 0
       raise ArgumentError, "batch_size must be >= 1" if @batch_size <= 0
+      raise ArgumentError, "photo_strategy must be one of: #{PHOTO_STRATEGIES.join( ', ' )}" unless
+        PHOTO_STRATEGIES.include?( @photo_strategy )
       return unless @chunk_size > MAX_URLS_PER_SITEMAP
 
       raise ArgumentError, "chunk_size must be <= #{MAX_URLS_PER_SITEMAP}"
@@ -172,19 +179,57 @@ module Sitemap
 
     def preload_taxa_batch( batch )
       taxon_ids = batch.map( &:id )
+      common_names = preload_common_names( taxon_ids )
+      @file_prefixes ||= FilePrefix.all.index_by( &:id )
+      @file_extensions ||= FileExtension.all.index_by( &:id )
+      photos_by_taxon = if @photo_strategy == "pluck"
+        preload_photos_pluck( taxon_ids )
+      else
+        preload_photos_active_record( taxon_ids )
+      end
+      { common_names: common_names, photos_by_taxon: photos_by_taxon }
+    end
 
-      # first valid common name per taxon (raw values, no AR objects)
-      common_names = TaxonName.
+    def preload_common_names( taxon_ids )
+      TaxonName.
         where( taxon_id: taxon_ids, is_valid: true ).
         where( lexicon: TaxonName::LEXICONS[:ENGLISH] ).
         order( "taxon_id ASC, position ASC NULLS LAST, id ASC" ).
         pluck( :taxon_id, :name ).
         each_with_object( {} ) {| ( tid, name ), h | h[tid] ||= name }
+    end
 
-      # photo data (raw values; copyright flags excluded in SQL; no AR objects)
-      @file_prefixes ||= FilePrefix.all.index_by( &:id )
-      @file_extensions ||= FileExtension.all.index_by( &:id )
+    def preload_photos_active_record( taxon_ids )
+      TaxonPhoto.
+        where( taxon_id: taxon_ids ).
+        includes( { photo: [:user, :flags, :moderator_actions] } ).
+        order( "taxon_id, position ASC NULLS LAST, id ASC" ).
+        group_by( &:taxon_id ).
+        transform_values do | taxon_grouped_photos |
+          taxon_grouped_photos.first( MAX_PHOTOS_PER_TAXON ).filter_map do | taxon_photo |
+            photo = taxon_photo.photo
+            next unless photo.is_a?( LocalPhoto )
+            next if photo.user.blank?
+            next if photo.license == Shared::LicenseModule::COPYRIGHT
+            next if photo.flags.any? {| f | !f.resolved? }
+            next if photo.hidden?
 
+            file_prefix = @file_prefixes[photo.file_prefix_id]
+            file_extension = @file_extensions[photo.file_extension_id]
+            next unless file_prefix && file_extension
+
+            attribution_name = photo.native_realname.presence || photo.native_username.presence ||
+              photo.user.name.presence || photo.user.login.presence
+            {
+              url: "#{file_prefix.prefix}/#{photo.id}/medium.#{file_extension.extension}",
+              attribution_name: attribution_name,
+              license: photo.license_url
+            }
+          end
+        end
+    end
+
+    def preload_photos_pluck( taxon_ids )
       raw_photos = TaxonPhoto.
         joins( :photo ).
         joins( "LEFT JOIN users ON users.id = photos.user_id" ).
@@ -212,7 +257,7 @@ module Sitemap
           "users.login"
         )
 
-      photos_by_taxon = raw_photos.
+      raw_photos.
         group_by( &:first ).
         transform_values do | rows |
           rows.first( MAX_PHOTOS_PER_TAXON ).filter_map do | row |
@@ -225,8 +270,6 @@ module Sitemap
             { url: "#{fp.prefix}/#{id}/medium.#{fe.extension}", attribution_name: attribution_name }
           end
         end
-
-      { common_names: common_names, photos_by_taxon: photos_by_taxon }
     end
 
     def generate_category( dir, category, relation, image_namespace: false, preload: nil )
