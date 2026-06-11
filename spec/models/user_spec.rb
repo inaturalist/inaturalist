@@ -870,29 +870,33 @@ describe User do
       expect( mail.subject ).to match( /unsuspended/ )
     end
 
-    it "includes unsuspension reason in unsuspended email for timed suspensions" do
+    it "includes suspension reason in unsuspended email for timed suspensions" do
       user = User.make!(
         suspended_at: Time.zone.now,
-        suspended_until: 7.days.from_now
+        suspended_until: 7.days.from_now,
+        suspension_reason: "they were spamming"
       )
       user.reload
       without_delay do
-        ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user, reason: "they were spamming" )
+        ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user )
       end
       mail = ActionMailer::Base.deliveries.last
       expect( mail.body ).to match( /spamming/ )
     end
 
-    it "does not include reason in unsuspended email from user reason" do
+    it "includes unsuspension reason in unsuspended email for indefinite suspensions" do
       user = User.make!(
         suspended_at: Time.zone.now,
         suspended_until: nil,
         suspension_reason: "historical reason"
       )
       user.reload
-      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user ) }
+      without_delay do
+        ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user, reason: "unsuspension reason" )
+      end
       mail = ActionMailer::Base.deliveries.last
       expect( mail.body ).not_to match( /historical reason/ )
+      expect( mail.body ).to match( /unsuspension reason/ )
     end
 
     it "suspends the user when given a SUSPEND action" do
@@ -1463,8 +1467,8 @@ describe User do
   describe "merge" do
     elastic_models( Observation, Identification )
 
-    let(:keeper) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
-    let(:reject) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+    let( :keeper ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+    let( :reject ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
     it "should move observations" do
       o = Observation.make!( user: reject )
@@ -1591,14 +1595,14 @@ describe User do
       Delayed::Worker.new.work_off
       expect( reject.project_users.count ).to eq 1
       expect( keeper.project_users.count ).to eq 0
-      expect( project.as_indexed_json[:admins].select do |admin|
+      expect( project.as_indexed_json[:admins].select do | admin |
         admin[:user_id] === reject.id && admin[:role] == "manager"
       end ).not_to be_empty
-      expect( project.as_indexed_json[:admins].map{ |a| a[:user_id] } ).not_to include( keeper.id )
+      expect( project.as_indexed_json[:admins].map {| a | a[:user_id] } ).not_to include( keeper.id )
       without_delay { keeper.merge( reject ) }
       project.reload
       expect( keeper.project_users.count ).to eq 1
-      expect( project.as_indexed_json[:admins].select do |admin|
+      expect( project.as_indexed_json[:admins].select do | admin |
         admin[:user_id] === keeper.id && admin[:role] == "manager"
       end ).not_to be_empty
     end

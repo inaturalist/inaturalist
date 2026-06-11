@@ -5,6 +5,7 @@ class Emailer < ActionMailer::Base
   helper :observations
   helper :taxa
   helper :users
+  helper :format
 
   before_action :set_x_smtpapi_headers
 
@@ -122,14 +123,30 @@ class Emailer < ActionMailer::Base
 
     @user = user
     return if @user.email.blank?
-    return if @user.prefers_no_email?
-    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
 
     @reason = reason
     @site_name = site_name
+    @x_smtpapi_headers[:asm_group_id] = CONFIG.sendgrid&.asm_group_ids&.account
     mail_with_defaults(
       to: @user.email,
       subject: [:user_unsuspended_email_subject, { prefix: subject_prefix }]
+    )
+  end
+
+  def user_suspended( user, reason, suspended_until )
+    return if user.blank?
+
+    @user = user
+    return if @user.email.blank?
+
+    @reason = reason
+    @indefinite = suspended_until.blank?
+    @suspended_until = suspended_until
+    @site_name = site_name
+    @x_smtpapi_headers[:asm_group_id] = CONFIG.sendgrid&.asm_group_ids&.account
+    mail_with_defaults(
+      to: @user.email,
+      subject: [:user_suspended_email_subject, { prefix: subject_prefix }]
     )
   end
 
