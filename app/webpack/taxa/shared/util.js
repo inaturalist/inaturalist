@@ -1,5 +1,4 @@
 import _ from "lodash";
-import React from "react";
 import { COLORS } from "../../shared/util";
 
 const urlForTaxon = t => (
@@ -276,12 +275,12 @@ const getChosenTab = ( tab, rankLevel ) => {
   const aboveGenusTabsSet = new Set( [TABS.map, TABS.articles, TABS.highlights, TABS.taxonomy] );
 
   if (
-    ( rankLevel <= RANK_LEVELS.species && speciesTabsSet.has( tab ) >= 0 )
-    || ( rankLevel === RANK_LEVELS.genus && genusTabsSet.has( tab ) >= 0 )
+    ( rankLevel <= RANK_LEVELS.species && speciesTabsSet.has( tab ) )
+    || ( rankLevel === RANK_LEVELS.genus && genusTabsSet.has( tab ) )
     || (
       ( rankLevel > RANK_LEVELS.genus
       || ( rankLevel > RANK_LEVELS.species && rankLevel < RANK_LEVELS.genus ) )
-      && aboveGenusTabsSet.has( tab ) >= 0
+      && aboveGenusTabsSet.has( tab )
     )
   ) {
     return tab;
