@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import _ from "lodash";
+import moment from "moment";
 import util from "../models/util";
 import { objectToComparable } from "../../../shared/util";
 import PhotoMarkerOverlayView from "./photo_marker_overlay_view";
@@ -336,6 +337,60 @@ class LocationChooserMap extends React.Component {
         map: this.map
       } );
       this.overlays.push( polyline );
+
+      const startPt = gpxTrack.points[0];
+      const endPt = gpxTrack.points[gpxTrack.points.length - 1];
+      const timeFormat = "h:mm A";
+
+      const startMarker = new google.maps.Marker( {
+        map: this.map,
+        position: { lat: startPt.lat, lng: startPt.lng },
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 7,
+          fillColor: "#28a745",
+          fillOpacity: 1,
+          strokeColor: "#fff",
+          strokeWeight: 2
+        },
+        label: {
+          text: startPt.time ? moment( startPt.time ).format( timeFormat ) : I18n.t( "start" ),
+          color: "#28a745",
+          fontWeight: "bold",
+          fontSize: "12px",
+          className: "gpx-time-label"
+        },
+        title: startPt.time
+          ? `${I18n.t( "start" )}: ${moment( startPt.time ).format( "YYYY/MM/DD h:mm A" )}`
+          : I18n.t( "start" )
+      } );
+      this.overlays.push( startMarker );
+
+      if ( gpxTrack.points.length > 1 ) {
+        const endMarker = new google.maps.Marker( {
+          map: this.map,
+          position: { lat: endPt.lat, lng: endPt.lng },
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 7,
+            fillColor: "#dc3545",
+            fillOpacity: 1,
+            strokeColor: "#fff",
+            strokeWeight: 2
+          },
+          label: {
+            text: endPt.time ? moment( endPt.time ).format( timeFormat ) : I18n.t( "end" ),
+            color: "#dc3545",
+            fontWeight: "bold",
+            fontSize: "12px",
+            className: "gpx-time-label"
+          },
+          title: endPt.time
+            ? `${I18n.t( "end" )}: ${moment( endPt.time ).format( "YYYY/MM/DD h:mm A" )}`
+            : I18n.t( "end" )
+        } );
+        this.overlays.push( endMarker );
+      }
 
       if ( !newCenter && gpxTrack.bounds ) {
         const trackBounds = new google.maps.LatLngBounds(

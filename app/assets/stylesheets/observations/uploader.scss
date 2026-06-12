@@ -1203,3 +1203,8 @@ $tickmark: 6px;
     color: #0066CC;
   }
 }
+
+.gpx-time-label {
+  margin-top: -28px !important;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
