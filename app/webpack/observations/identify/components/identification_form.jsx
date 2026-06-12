@@ -98,6 +98,7 @@ class IdentificationForm extends React.Component {
               <input
                 type="checkbox"
                 id="nominate-id"
+                tabIndex={-1}
                 defaultChecked={nominate}
                 disabled={_.size( content ) === 0}
                 onChange={e => {
