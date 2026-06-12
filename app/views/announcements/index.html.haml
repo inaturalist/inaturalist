@@ -31,6 +31,10 @@
             %label
               = check_box_tag :active, !@active, @active, data: { autosubmit: true }
               =t :active
+          - unless current_user_site_ids.blank?
+            .form-group
+              %label{ for: "site_filter" }=t :sites
+              = select_tag :site_filter, options_for_select( [[t( :my_site ), nil], [t( :all ), "all"]], params[:site_filter] ), class: "form-control", id: "site_filter", data: { autosubmit: true }
         = form_tag url_for, method: :get do
           = hidden_fields_for_params
           .input-group
@@ -81,7 +85,7 @@
                   %i.fa.fa-eye
                   = t(:show)
               %td
-                = link_to edit_announcement_path(announcement), class: "btn btn-default btn-sm" do
+                = link_to edit_announcement_path(announcement), disabled: !announcement_editable_by_current_user?( announcement ), class: "btn btn-default btn-sm" do
                   %i.fa.fa-pencil
                   = t(:edit)
       = will_paginate @announcements
