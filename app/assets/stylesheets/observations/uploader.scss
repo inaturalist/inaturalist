@@ -1174,3 +1174,32 @@ $tickmark: 6px;
     border-width: 10px;
   }
 }
+
+.gpx-status-bar {
+  margin: 0 15px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .gpx-info {
+    i.fa-road {
+      margin-right: 4px;
+    }
+  }
+
+  .gpx-actions {
+    .btn + .btn {
+      margin-left: 5px;
+    }
+  }
+}
+
+.gpx-badge {
+  color: #1E90FF;
+  cursor: pointer;
+
+  &:hover {
+    color: #0066CC;
+  }
+}

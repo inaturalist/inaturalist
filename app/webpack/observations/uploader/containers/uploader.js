@@ -102,6 +102,18 @@ const mapDispatchToProps = dispatch => ( {
   },
   duplicateSelected: ( ) => {
     dispatch( actions.duplicateSelected( ) );
+  },
+  onGpxFileDrop: file => {
+    dispatch( actions.onGpxFileDrop( file ) );
+  },
+  applyGpxLocations: options => {
+    dispatch( actions.applyGpxLocations( options ) );
+  },
+  revertGpxLocation: obsCard => {
+    dispatch( actions.revertGpxLocation( obsCard ) );
+  },
+  removeGpxTrack: ( ) => {
+    dispatch( actions.setState( { gpxTrack: null } ) );
   }
 } );
 

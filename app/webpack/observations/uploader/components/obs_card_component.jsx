@@ -166,6 +166,7 @@ class ObsCardComponent extends Component {
       fileIsOver,
       obsCard,
       onCardDrop,
+      revertGpxLocation,
       selectCard,
       setState,
       updateObsCard,
@@ -379,6 +380,26 @@ class ObsCardComponent extends Component {
                 placeholder={I18n.t( "location" )}
                 readOnly
               />
+              { obsCard.gpxOverridden && (
+                <OverlayTrigger
+                  placement="top"
+                  overlay={(
+                    <Tooltip id={`gpx-tip-${obsCard.id}`}>
+                      { I18n.t( "gpx_location_from_track" ) }
+                    </Tooltip>
+                  )}
+                >
+                  <span
+                    className="input-group-addon input-sm gpx-badge"
+                    onClick={e => {
+                      e.stopPropagation( );
+                      revertGpxLocation( obsCard );
+                    }}
+                  >
+                    <i className="fa fa-road" />
+                  </span>
+                </OverlayTrigger>
+              ) }
             </div>
             <div className="form-group">
               <textarea
@@ -412,6 +433,7 @@ ObsCardComponent.propTypes = {
   onCardDrop: PropTypes.func,
   fileDropTarget: PropTypes.func,
   fileIsOver: PropTypes.bool,
+  revertGpxLocation: PropTypes.func,
   selectCard: PropTypes.func,
   selectedSpeciesGuess: PropTypes.string,
   setState: PropTypes.func,

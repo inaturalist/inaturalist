@@ -108,14 +108,18 @@ class LocationChooserMap extends React.Component {
       "center",
       "bounds"
     ];
-    const { obsCards } = this.props;
+    const { obsCards, gpxTrack } = this.props;
     const comparable = objectToComparable( {
       ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
-      obsCards: _.keys( obsCards )
+      obsCards: _.keys( obsCards ),
+      gpxTrackFile: gpxTrack ? gpxTrack.fileName : null,
+      gpxTrackLen: gpxTrack ? gpxTrack.points.length : 0
     } );
     const nextComparable = objectToComparable( {
       ..._.filter( nextProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
-      obsCards: _.keys( nextProps.obsCards )
+      obsCards: _.keys( nextProps.obsCards ),
+      gpxTrackFile: nextProps.gpxTrack ? nextProps.gpxTrack.fileName : null,
+      gpxTrackLen: nextProps.gpxTrack ? nextProps.gpxTrack.points.length : 0
     } );
     return comparable !== nextComparable;
   }
@@ -220,6 +224,7 @@ class LocationChooserMap extends React.Component {
   // Remove existing overlays and repopulate them based on the props
   overlaysFromProps( prevProps = {} ) {
     const {
+      gpxTrack,
       lat,
       lng,
       obsCard: currentCard,
@@ -236,11 +241,13 @@ class LocationChooserMap extends React.Component {
     ];
     const comparable = objectToComparable( {
       ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
-      obsCards: _.keys( obsCards )
+      obsCards: _.keys( obsCards ),
+      gpxTrackFile: gpxTrack ? gpxTrack.fileName : null
     } );
     const prevComparable = objectToComparable( {
       ..._.filter( prevProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
-      obsCards: _.keys( prevProps.obsCards )
+      obsCards: _.keys( prevProps.obsCards ),
+      gpxTrackFile: prevProps.gpxTrack ? prevProps.gpxTrack.fileName : null
     } );
     if ( comparable === prevComparable ) {
       return;
@@ -315,6 +322,40 @@ class LocationChooserMap extends React.Component {
         icon: { ...markerSVG, fillColor: "#DF0101", scale: 0.03 }
       } );
       this.overlays.push( marker );
+    }
+
+    // Add GPX track polyline
+    if ( this.map && gpxTrack && gpxTrack.points.length > 0 ) {
+      const path = gpxTrack.points.map( pt => ( { lat: pt.lat, lng: pt.lng } ) );
+      const polyline = new google.maps.Polyline( {
+        path,
+        geodesic: true,
+        strokeColor: "#1E90FF",
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        map: this.map
+      } );
+      this.overlays.push( polyline );
+
+      if ( !newCenter && gpxTrack.bounds ) {
+        const trackBounds = new google.maps.LatLngBounds(
+          { lat: gpxTrack.bounds.south, lng: gpxTrack.bounds.west },
+          { lat: gpxTrack.bounds.north, lng: gpxTrack.bounds.east }
+        );
+        this.map.fitBounds( trackBounds );
+      }
+
+      const cardId = currentCard && currentCard.id;
+      const matched = gpxTrack.matchedLocations && gpxTrack.matchedLocations[cardId];
+      if ( matched ) {
+        const gpxMarker = new google.maps.Marker( {
+          map: this.map,
+          position: { lat: matched.lat, lng: matched.lng },
+          icon: { ...markerSVG, fillColor: "#1E90FF", scale: 0.025 },
+          title: I18n.t( "gpx_matched_location" )
+        } );
+        this.overlays.push( gpxMarker );
+      }
     }
   }
 
@@ -437,6 +478,7 @@ LocationChooserMap.propTypes = {
   show: PropTypes.bool,
   obsCard: PropTypes.object,
   obsCards: PropTypes.object,
+  gpxTrack: PropTypes.object,
   updateState: PropTypes.func,
   lat: PropTypes.any,
   lng: PropTypes.any,

@@ -14,6 +14,7 @@ import PhotoViewer from "./photo_viewer";
 import RemoveModal from "./remove_modal";
 import StatusModal from "./status_modal";
 import TopMenu from "./top_menu";
+import GpxStatusBar from "./gpx_status_bar";
 import HeaderUserMenu from "./header_user_menu";
 import InsertionDropTarget from "./insertion_drop_target";
 import { ACCEPTED_FILE_TYPES, MAX_FILE_SIZE } from "../models/util";
@@ -93,6 +94,7 @@ class DragDropZone extends Component {
   constructor( props, context ) {
     super( props, context );
     this.fileChooser = this.fileChooser.bind( this );
+    this.gpxFileChooser = this.gpxFileChooser.bind( this );
     this.selectObsCards = this.selectObsCards.bind( this );
     this.unselectAll = this.unselectAll.bind( this );
     this.selectCard = this.selectCard.bind( this );
@@ -153,6 +155,10 @@ class DragDropZone extends Component {
 
   fileChooser( ) {
     this.refs.dropzone.open( );
+  }
+
+  gpxFileChooser( ) {
+    this.refs.gpxInput.click( );
   }
 
   selectObsCards( e ) {
@@ -235,6 +241,10 @@ class DragDropZone extends Component {
       observationFieldSelectedDate,
       observationFieldValue,
       onDrop,
+      onGpxFileDrop,
+      gpxTrack,
+      applyGpxLocations,
+      removeGpxTrack,
       photoViewer,
       obsPositions,
       removeModal,
@@ -352,11 +362,17 @@ class DragDropZone extends Component {
             reactKey={`topMenu${cardCount}${countSelected}`}
             selectNone={this.selectNone}
             fileChooser={this.fileChooser}
+            gpxFileChooser={this.gpxFileChooser}
             countTotal={cardCount}
             countSelected={countSelected}
             countSelectedPending={countSelectedPending}
             countPending={countPending}
             {...this.props}
+          />
+          <GpxStatusBar
+            gpxTrack={gpxTrack}
+            removeGpxTrack={removeGpxTrack}
+            applyGpxLocations={applyGpxLocations}
           />
           <Grid fluid>
             <div className="row-fluid">
@@ -420,6 +436,18 @@ class DragDropZone extends Component {
             </div>
           </Grid>
         </Dropzone>
+        <input
+          ref="gpxInput"
+          type="file"
+          accept=".gpx,application/gpx+xml"
+          style={{ display: "none" }}
+          onChange={e => {
+            if ( e.target.files[0] ) {
+              onGpxFileDrop( e.target.files[0] );
+            }
+            e.target.value = null;
+          }}
+        />
         <StatusModal
           {...this.props}
           className="status"
@@ -448,6 +476,7 @@ class DragDropZone extends Component {
 }
 
 DragDropZone.propTypes = {
+  applyGpxLocations: PropTypes.func,
   commandKeyPressed: PropTypes.bool,
   config: PropTypes.object,
   confirmModal: PropTypes.object,
@@ -456,6 +485,7 @@ DragDropZone.propTypes = {
   draggingProps: PropTypes.object,
   fileIsOver: PropTypes.bool,
   files: PropTypes.object,
+  gpxTrack: PropTypes.object,
   locationChooser: PropTypes.object,
   newCardFromMedia: PropTypes.func,
   obsCards: PropTypes.object,
@@ -463,7 +493,9 @@ DragDropZone.propTypes = {
   observationFieldSelectedDate: PropTypes.string,
   observationFieldValue: PropTypes.any,
   onDrop: PropTypes.func.isRequired,
+  onGpxFileDrop: PropTypes.func,
   photoViewer: PropTypes.object,
+  removeGpxTrack: PropTypes.func,
   removeModal: PropTypes.object,
   removeObsCard: PropTypes.func,
   saveStatus: PropTypes.string,

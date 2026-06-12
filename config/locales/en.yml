@@ -2502,6 +2502,24 @@ en:
     access like an Internet Service Provider.
   got_it!: Got it!
   got_your_data_somewhere_else?: Got your data somewhere else?  We can help.
+  # Menu item label for uploading a GPX track file in the observation uploader
+  gpx_track: GPX Track
+  # Shown when a GPX file is parsed but contains no trackpoints with timestamps
+  gpx_no_trackpoints: The GPX file contains no trackpoints with timestamps.
+  # Shown when a GPX file cannot be parsed
+  gpx_parse_error: Could not read the GPX file. Please ensure it is a valid GPX format.
+  # Shown in the GPX status bar indicating how many track points were loaded
+  gpx_x_trackpoints: "%{count} trackpoints"
+  # Shown in the GPX status bar indicating how many observations matched the track
+  gpx_x_observations_matched: "%{count} observations matched"
+  # Button to apply GPX track coordinates to all observations, overriding photo geotags
+  gpx_apply_to_all: Apply GPX locations to all observations
+  # Button to remove the loaded GPX track
+  gpx_remove_track: Remove track
+  # Tooltip shown on observation cards whose location was set from a GPX track
+  gpx_location_from_track: Location matched from GPX track. Click to revert to photo geotag.
+  # Title for the GPX-matched location marker on the map
+  gpx_matched_location: GPX-matched location
   graft: Graft
   graft_taxon: Graft %{taxon}
   grafting_attemps_to_insert_this_taxon: Grafting attempts to insert this taxon into our taxonomic tree, finding an existing parent taxon or creating all the necessary in-between taxa in order to attach it to an existing higher level taxon.
