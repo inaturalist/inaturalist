@@ -354,6 +354,8 @@ class Observation < ApplicationRecord
     joins(:model_attribute_changes) }, class_name: "ProjectObservation"
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
+  has_many :additional_observers, :dependent => :destroy
+  has_many :additional_observer_users, :through => :additional_observers, :source => :user
   has_many :observation_field_values, -> { order("id asc") }, :dependent => :destroy, :inverse_of => :observation
   has_many :observation_fields, :through => :observation_field_values
   has_many :observation_links

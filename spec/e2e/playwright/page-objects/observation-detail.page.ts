@@ -26,4 +26,18 @@ export class ObservationDetailPage extends BasePage {
   getMap(): Locator {
     return this.page.locator( "#ObservationShow .Map" ).first();
   }
+
+  getAdditionalObserversWidget(): Locator {
+    return this.page.locator( "#AdditionalObservers" ).first();
+  }
+
+  getAdditionalObserverAutocomplete(): Locator {
+    return this.page.locator(
+      "#AdditionalObservers .UserAutocomplete input[name='user_login']"
+    ).first();
+  }
+
+  getAdditionalObserverRows(): Locator {
+    return this.page.locator( "#AdditionalObservers .observer-row" );
+  }
 }

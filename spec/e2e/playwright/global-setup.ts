@@ -26,6 +26,7 @@ async function globalSetup() {
         `Restart with:  RAILS_ENV=test bundle exec rails server -p 3001\n`
       );
     }
+    await context.post( "/__e2e__/command", { data: { name: "truncate_tables" } } );
   } finally {
     await context.dispose();
   }

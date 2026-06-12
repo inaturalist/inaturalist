@@ -32,6 +32,7 @@ Some notes:
 <%-
   observation_component ||= nil
   observation ||= observation_component
+  viewed_user ||= nil
   check_box_name ||= false
   check_box_checked ||= false
   top ||= false
@@ -123,6 +124,9 @@ Some notes:
       <span class="taxon">
         <%= link_to "#{t(:something)}...", obs_url %>
       </span>
+    <% end %>
+    <% if viewed_user && observation.user_id != viewed_user.id %>
+      <span class="shared-observation-marker"><%= t :shared_with_you %></span>
     <% end %>
     <!-- <span class="button detailsctrl">Show Details</span> -->
   </div>

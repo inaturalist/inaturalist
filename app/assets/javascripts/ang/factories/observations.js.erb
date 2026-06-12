@@ -151,6 +151,10 @@ iNatAPI.factory( "ObservationsFactory", [
     var processParamsForAPI = function ( p, possibleFields ) {
       var params = _.extend( { }, this.processParams( p, possibleFields ) );
       if ( p.per_page ) { params.per_page = p.per_page; }
+      // When viewing a single user's observations, also surface observations
+      // they were added to as an additional observer. Harmless when no user_id
+      // filter is set (the API ignores the flag without a user_id).
+      if ( params.user_id ) { params.include_additional_observers = true; }
       return _.omitBy( params, function ( value ) {
         return value === "any" || _.isNull( value ) || _.isUndefined( value );
       } );

@@ -21,6 +21,7 @@ import FlashMessagesContainer from "../../../shared/containers/flash_messages_co
 import ConservationStatusBadge from "./conservation_status_badge";
 import EstablishmentMeansBadge from "./establishment_means_badge";
 import ActivityContainer from "../containers/activity_container";
+import AdditionalObserversContainer from "../containers/additional_observers_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import AssessmentContainer from "../containers/assessment_container";
 import CommunityIdentificationContainer from "../containers/community_identification_container";
@@ -354,6 +355,7 @@ class App extends React.Component {
                             && !observation.private_geojson
                           }
                         />
+                        { viewerIsObserver && <AdditionalObserversContainer /> }
                       </div>
                       <Row className="date_row">
                         <Col xs={6}>

@@ -1253,6 +1253,7 @@ class ObservationsController < ApplicationController
   def by_login
     block_if_spammer(@selected_user) && return
     params[:user_id] = @selected_user.id
+    params[:include_additional_observers] = true
     params[:viewer] = current_user
     params[:filter_spam] = (current_user.blank? || current_user != @selected_user)
     params[:order_by] ||= @prefs["edit_observations_order"] if @prefs["edit_observations_order"]

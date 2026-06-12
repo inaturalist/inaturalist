@@ -3,6 +3,13 @@
 require "machinist/active_record"
 require "faker"
 
+AdditionalObserver.blueprint do
+  o = Observation.make!
+  observation_id { o.id }
+  user_id { User.make!.id }
+  added_by_user_id { o.user_id }
+end
+
 Announcement.blueprint do
   start { 1.day.ago }
   send( :end ) { 1.day.from_now }
@@ -254,7 +261,7 @@ OauthApplication.blueprint do
 end
 
 Observation.blueprint do
-  user { UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user }
+  user_id { UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user_id }
   license { Observation::CC_BY }
   description { Faker::Lorem.sentence }
 end

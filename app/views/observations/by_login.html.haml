@@ -104,7 +104,7 @@
   #listcol
     .observations.table
       = render :partial => 'observations_table_header'
-      = render(:partial => 'cached_component', :collection => @observations)
+      = render(:partial => 'cached_component', :collection => @observations, :locals => { :viewed_user => @selected_user })
     - if @observations.empty?
       #no_obs_message.description
         = t :no_matching_observations

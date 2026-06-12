@@ -436,6 +436,12 @@ en:
   add_observation_fields: Add Observation Fields
   add_observations: Add Observations
   add_observations_by_checking_off: Add observations by checking off species from a list.
+  # Placeholder/label for the picker used to add another user as an additional
+  # observer on an observation.
+  add_observers: Add observers
+  # Heading for the creator-only widget listing additional observers on an
+  # observation.
+  additional_observers: Additional observers
   add_observations_project: Add Observations to This Project
   # Used for buttons to add observations where the words "Add"
   # and "Observations" need to be styled differently
@@ -5346,6 +5352,9 @@ en:
   share: Share
   share_caps: SHARE
   share_colon: "Share:"
+  # Marker shown next to an observation in a user's list when they are an
+  # additional observer on it rather than its creator.
+  shared_with_you: Shared with you
   short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
   # Form field label for setting a common name as the default common name in a language for a taxon
@@ -11023,6 +11032,16 @@ en:
               # sentence like "Target group partition must be valid for specified target group".
               # Only site admins will see this text, so it's ok if it's not translated perfectly.
               must_be_valid_for_specified_target_group: must be valid for specified target group
+        additional_observer:
+          attributes:
+            user:
+              # Error shown when someone tries to add the observation's creator
+              # as an additional observer on their own observation.
+              cannot_be_the_creator: cannot be the creator of the observation
+            added_by_user:
+              # Error shown when someone other than the observation's creator
+              # tries to add an additional observer.
+              must_be_the_creator: must be the creator of the observation
         application:
           attributes:
             redirect_uri:

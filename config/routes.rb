@@ -285,6 +285,8 @@ Rails.application.routes.draw do
   end
   resources :observations, constraints: { id: id_param_pattern } do
     resources :flags
+    resources :observers, controller: "additional_observers",
+      only: [:create, :destroy], param: :user_id
     get "fields", as: "extra_fields"
     get "community_taxon_summary"
     collection do

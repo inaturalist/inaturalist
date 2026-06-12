@@ -295,6 +295,38 @@ describe ObservationsController do
     end
   end
 
+  describe "by_login" do
+    render_views
+    before { stub_const( "Taxon::ICONIC_TAXON_NAMES", {} ) }
+
+    it "marks observations the viewed user is an additional observer on" do
+      creator = User.make!
+      observer = User.make!
+      shared = Observation.make!( user: creator )
+      AdditionalObserver.make!( observation: shared, user: observer, added_by_user: creator )
+      get :by_login, params: { login: observer.login }
+      expect( response.body ).to match( /shared-observation-marker/ )
+    end
+
+    it "does not mark the viewed user's own observations" do
+      observer = User.make!
+      Observation.make!( user: observer )
+      get :by_login, params: { login: observer.login }
+      expect( response.body ).not_to match( /shared-observation-marker/ )
+    end
+
+    it "excludes an obscured shared observation from an untrusted viewer" do
+      creator = User.make!
+      observer = User.make!
+      shared = Observation.make!(
+        user: creator, geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1
+      )
+      AdditionalObserver.make!( observation: shared, user: observer, added_by_user: creator )
+      get :by_login, params: { login: observer.login }
+      expect( response.body ).not_to match( /shared-observation-marker/ )
+    end
+  end
+
   describe "by_login_all", "page cache" do
     before do
       @observation = Observation.make!

@@ -338,6 +338,9 @@ module ObservationSearch
 
       p[:captive] = p[:captive].yesish? unless p[:captive].blank?
 
+      p[:include_additional_observers] = p[:include_additional_observers].yesish? unless
+        p[:include_additional_observers].blank?
+
       if p[:skip_order]
         p.delete(:order)
         p.delete(:order_by)

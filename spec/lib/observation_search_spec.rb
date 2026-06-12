@@ -99,4 +99,38 @@ describe Observation do
       expect( Observation.elastic_taxon_leaf_ids[1] ).to eq @habilis.id
     end
   end
+
+  describe "include_additional_observers" do
+    elastic_models( Observation )
+
+    let( :creator ) { User.make! }
+    let( :observer ) { User.make! }
+    let!( :own_observation ) { Observation.make!( user: observer ) }
+    let!( :shared_observation ) do
+      o = Observation.make!( user: creator )
+      AdditionalObserver.make!( observation: o, user: observer, added_by_user: creator )
+      o
+    end
+
+    it "includes observations the user is an additional observer on when the flag is set" do
+      ids = Observation.page_of_results(
+        user_id: observer.id, include_additional_observers: true
+      ).map( &:id )
+      expect( ids ).to include( shared_observation.id )
+      expect( ids ).to include( own_observation.id )
+    end
+
+    it "excludes shared observations when the flag is not set" do
+      ids = Observation.page_of_results( user_id: observer.id ).map( &:id )
+      expect( ids ).not_to include( shared_observation.id )
+      expect( ids ).to include( own_observation.id )
+    end
+
+    it "still returns the creator's own observations" do
+      ids = Observation.page_of_results(
+        user_id: creator.id, include_additional_observers: true
+      ).map( &:id )
+      expect( ids ).to include( shared_observation.id )
+    end
+  end
 end

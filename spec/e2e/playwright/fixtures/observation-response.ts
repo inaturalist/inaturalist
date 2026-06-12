@@ -48,6 +48,7 @@ export function buildObservationApiResponse( obsData: Record<string, unknown> ) 
           login: "e2e_test_user",
           name: "E2E Test User"
         },
+        additional_observers: obsData["additional_observers"] || [],
         photos: [
           {
             id: 1,

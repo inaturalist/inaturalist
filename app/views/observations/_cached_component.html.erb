@@ -1,7 +1,8 @@
 <%-
   cached_component ||= nil
   observation ||= cached_component
+  viewed_user ||= nil
   return unless observation
 -%>
 <%= render :partial => 'observations/observation_component',
-           :locals => {:observation => observation} %>
+           :locals => {:observation => observation, :viewed_user => viewed_user} %>

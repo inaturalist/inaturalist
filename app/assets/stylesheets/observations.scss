@@ -861,3 +861,16 @@
     }
   }
 }
+
+// Marker shown next to an observation in a user's list when they are an
+// additional observer rather than the creator (see _observation_component).
+.shared-observation-marker {
+  display: inline-block;
+  margin-inline-start: 4px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background-color: #eee;
+  color: #555;
+  font-size: 11px;
+  text-transform: uppercase;
+}

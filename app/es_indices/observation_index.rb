@@ -12,7 +12,7 @@ class Observation < ApplicationRecord
     includes(
       { user: [:flags, :stored_preferences] }, :confirmed_reviews, :flags,
       :observation_links, :quality_metrics, :observation_geo_score,
-      :votes_for, :stored_preferences, :tags,
+      :votes_for, :stored_preferences, :tags, :additional_observers,
       { annotations: :votes_for },
       { photos: :flags },
       { sounds: :user },
@@ -145,6 +145,9 @@ class Observation < ApplicationRecord
       indexes :identifications_most_disagree, type: "boolean"
       indexes :identifications_some_agree, type: "boolean"
       indexes :identifier_user_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
+      indexes :additional_observer_ids, type: "integer" do
         indexes :keyword, type: "keyword"
       end
       indexes :license_code, type: "keyword"
@@ -410,6 +413,7 @@ class Observation < ApplicationRecord
         sound_licenses: sounds.map( &:index_license_code ).compact.uniq,
         sounds: sounds.map( &:as_indexed_json ),
         identifier_user_ids: current_ids.map( &:user_id ),
+        additional_observer_ids: additional_observers.map( &:user_id ).compact.uniq,
         ident_taxon_ids: current_ids.map {| i | i.taxon.self_and_ancestor_ids rescue [] }.flatten.uniq,
         non_owner_identifier_user_ids: current_ids.map( &:user_id ) - [user_id],
         identification_categories: current_ids.map( &:category ).uniq,
@@ -598,6 +602,22 @@ class Observation < ApplicationRecord
     search_result.results.results.map( &:id ).map( &:to_i )
   end
 
+  # OR filter matching observations where the given user ids are either the
+  # creator (user.id) or an additional observer (additional_observer_ids). Used
+  # only when the include_additional_observers flag is set, so default search
+  # behavior stays creator-scoped.
+  def self.observers_or_filter( user_ids )
+    {
+      bool: {
+        should: [
+          { terms: { "user.id" => user_ids } },
+          { terms: { "additional_observer_ids" => user_ids } }
+        ],
+        minimum_should_match: 1
+      }
+    }
+  end
+
   def self.params_to_elastic_query( params, options = {} )
     current_user = options[:current_user] || params[:viewer]
     p = params[:_query_params_set] ? params : query_params( params )
@@ -648,13 +668,19 @@ class Observation < ApplicationRecord
       end
     end
     if p[:user]
-      search_filters << { term: {
-        "user.id.keyword" => ElasticModel.id_or_object( p[:user] )
-      } }
+      user_ids = [ElasticModel.id_or_object( p[:user] )]
+      search_filters << if p[:include_additional_observers]
+        observers_or_filter( user_ids )
+      else
+        { term: { "user.id.keyword" => user_ids.first } }
+      end
     elsif p[:user_id]
-      search_filters << { terms: {
-        "user.id.keyword" => [p[:user_id]].flatten.map {| u | ElasticModel.id_or_object( u ) }
-      } }
+      user_ids = [p[:user_id]].flatten.map {| u | ElasticModel.id_or_object( u ) }
+      search_filters << if p[:include_additional_observers]
+        observers_or_filter( user_ids )
+      else
+        { terms: { "user.id.keyword" => user_ids } }
+      end
     end
 
     # params to search based on value

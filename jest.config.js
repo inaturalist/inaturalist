@@ -1,5 +1,6 @@
 module.exports = {
   testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["<rootDir>/app/webpack/jest.setup.ts"],
   roots: ["<rootDir>/app/webpack"],
   testMatch: ["<rootDir>/app/webpack/**/*.test.@(ts|tsx|js|jsx)"],
   moduleFileExtensions: ["tsx", "ts", "jsx", "js", "json"],

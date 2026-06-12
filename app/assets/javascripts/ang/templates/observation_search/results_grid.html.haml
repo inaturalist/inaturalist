@@ -10,6 +10,8 @@
         .caption.d-flex.flex-column.flex-grow-1.justify-content-between
           %a.userimage{ href: "/people/{{ o.user.login }}", "ng-style": "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
             %i.icon-person{"ng-hide" => "o.user.icon_url"}
+          %span.shared-observation-marker{ "ng-if" => "params.user_id && o.user.id != params.user_id && o.user.login != params.user_id", title: "{{ o.user.login }}" }
+            {{ shared.t( "shared_with_you" ) }}
           %inat-taxon.title.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}", user: "{{ currentUser }}"}
           .meta
             %span{:class => "quality_grade {{ o.quality_grade }}"}

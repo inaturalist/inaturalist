@@ -144,6 +144,10 @@ class User < ApplicationRecord
   has_many :user_installations
   has_many :blocked_ips
   has_many :observations, dependent: :destroy
+  has_many :additional_observers, dependent: :destroy
+  has_many :shared_observations, through: :additional_observers, source: :observation
+  has_many :additional_observers_added,
+    class_name: "AdditionalObserver", foreign_key: "added_by_user_id", dependent: :destroy
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
