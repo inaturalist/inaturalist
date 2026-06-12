@@ -88,9 +88,9 @@ describe AdditionalObserver do
       observation = Observation.make!
       user = User.make!
       AdditionalObserver.make!(
-        observation: observation,
-        user: user,
-        added_by_user: observation.user
+        observation_id: observation.id,
+        user_id: user.id,
+        added_by_user_id: observation.user_id
       )
       result = Observation.elastic_search( where: { id: observation.id } ).results.results.first
       expect( result.additional_observer_ids ).to include( user.id )
@@ -100,9 +100,9 @@ describe AdditionalObserver do
       observation = Observation.make!
       user = User.make!
       ao = AdditionalObserver.make!(
-        observation: observation,
-        user: user,
-        added_by_user: observation.user
+        observation_id: observation.id,
+        user_id: user.id,
+        added_by_user_id: observation.user_id
       )
       ao.destroy
       result = Observation.elastic_search( where: { id: observation.id } ).results.results.first

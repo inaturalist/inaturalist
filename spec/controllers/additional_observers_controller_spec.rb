@@ -4,7 +4,7 @@ require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe AdditionalObserversController do
   let( :creator ) { User.make! }
-  let( :observation ) { Observation.make!( user: creator ) }
+  let( :observation ) { Observation.make!( user_id: creator.id ) }
   let( :other_user ) { User.make! }
 
   stub_elastic_index! Observation
@@ -56,7 +56,7 @@ describe AdditionalObserversController do
 
     it "422s on a duplicate" do
       sign_in( creator )
-      AdditionalObserver.make!( observation: observation, user: other_user, added_by_user: creator )
+      AdditionalObserver.make!( observation_id: observation.id, user_id: other_user.id, added_by_user_id: creator.id )
       post :create, format: :json, params: {
         observation_id: observation.id, user_id: other_user.id
       }
@@ -83,7 +83,7 @@ describe AdditionalObserversController do
   describe "destroy" do
     it "lets the creator remove an additional observer" do
       sign_in( creator )
-      AdditionalObserver.make!( observation: observation, user: other_user, added_by_user: creator )
+      AdditionalObserver.make!( observation_id: observation.id, user_id: other_user.id, added_by_user_id: creator.id )
       delete :destroy, format: :json, params: {
         observation_id: observation.id, user_id: other_user.id
       }
@@ -100,7 +100,7 @@ describe AdditionalObserversController do
     end
 
     it "forbids a non-creator from removing" do
-      AdditionalObserver.make!( observation: observation, user: other_user, added_by_user: creator )
+      AdditionalObserver.make!( observation_id: observation.id, user_id: other_user.id, added_by_user_id: creator.id )
       sign_in( other_user )
       delete :destroy, format: :json, params: {
         observation_id: observation.id, user_id: other_user.id
