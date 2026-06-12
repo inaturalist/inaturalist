@@ -15,6 +15,7 @@ const defaultState = {
     saved: 0,
     failed: 0
   },
+  gpxTrack: null,
   locationChooser: { show: false, fitCurrentCircle: false },
   removeModal: { show: false },
   confirmModal: { show: false },

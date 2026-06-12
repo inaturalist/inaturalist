@@ -5,6 +5,9 @@ import * as types from "../constants/constants";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
 import util from "../models/util";
+import {
+  parseGpx, flattenTrackPoints, computeBounds, matchAllObsCards
+} from "../models/gpx_utils";
 import { resizeUpload } from "../../../shared/util";
 import RejectedFilesError from "../../../shared/components/rejected_files_error";
 
@@ -122,9 +125,13 @@ const actions = class actions {
   }
 
   static readFileExif( file ) {
-    return function ( dispatch ) {
+    return function ( dispatch, getState ) {
       file.readExif( ).then( metadata => {
         dispatch( actions.updateFile( file, { metadata } ) );
+        const s = getState( );
+        if ( s.dragDropZone.gpxTrack && metadata.date ) {
+          dispatch( actions.applyGpxLocations( ) );
+        }
       } );
     };
   }
@@ -810,6 +817,116 @@ const actions = class actions {
     return function ( dispatch, getState ) {
       const s = getState( );
       dispatch( actions.duplicateObsCards( s.dragDropZone.selectedObsCards ) );
+    };
+  }
+
+  static onGpxFileDrop( file ) {
+    return function ( dispatch, getState ) {
+      if ( !file ) return;
+      const reader = new FileReader( );
+      reader.onload = e => {
+        try {
+          const parsed = parseGpx( e.target.result );
+          const points = flattenTrackPoints( parsed );
+          if ( points.length === 0 ) {
+            dispatch( actions.setState( {
+              confirmModal: {
+                show: true,
+                message: I18n.t( "gpx_no_trackpoints" ),
+                confirmText: I18n.t( "ok" ),
+                hideCancel: true
+              }
+            } ) );
+            return;
+          }
+          const bounds = computeBounds( points );
+          const s = getState( );
+          const matchedLocations = matchAllObsCards(
+            s.dragDropZone.obsCards,
+            s.dragDropZone.files,
+            points
+          );
+          dispatch( actions.setState( {
+            gpxTrack: {
+              fileName: file.name,
+              points,
+              bounds,
+              matchedLocations
+            }
+          } ) );
+          dispatch( actions.applyGpxLocations( ) );
+        } catch ( err ) {
+          dispatch( actions.setState( {
+            confirmModal: {
+              show: true,
+              message: I18n.t( "gpx_parse_error" ),
+              confirmText: I18n.t( "ok" ),
+              hideCancel: true
+            }
+          } ) );
+        }
+      };
+      reader.readAsText( file );
+    };
+  }
+
+  static applyGpxLocations( options = { } ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      const { gpxTrack, obsCards, files } = s.dragDropZone;
+      if ( !gpxTrack ) return;
+
+      const matchedLocations = matchAllObsCards(
+        obsCards, files, gpxTrack.points
+      );
+
+      dispatch( actions.updateState( {
+        gpxTrack: { matchedLocations }
+      } ) );
+
+      _.each( matchedLocations, ( loc, cardId ) => {
+        const card = obsCards[cardId];
+        if ( !card ) return;
+        if ( !card.latitude || options.overrideExisting ) {
+          util.reverseGeocode( loc.lat, loc.lng ).then( locationName => {
+            dispatch( actions.updateObsCard( card, {
+              latitude: loc.lat,
+              longitude: loc.lng,
+              accuracy: Math.round( loc.accuracy ),
+              locality_notes: locationName || "",
+              gpxOverridden: true
+            } ) );
+          } );
+        }
+      } );
+    };
+  }
+
+  static revertGpxLocation( obsCard ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      const cardFiles = _.pickBy( s.dragDropZone.files, f => f.cardID === obsCard.id );
+      let exifLat = null;
+      let exifLng = null;
+      let exifAccuracy = null;
+      let exifLocality = null;
+
+      _.each( cardFiles, file => {
+        if ( file.metadata ) {
+          if ( file.metadata.latitude != null ) exifLat = file.metadata.latitude;
+          if ( file.metadata.longitude != null ) exifLng = file.metadata.longitude;
+          if ( file.metadata.accuracy != null ) exifAccuracy = file.metadata.accuracy;
+          if ( file.metadata.locality_notes ) exifLocality = file.metadata.locality_notes;
+        }
+      } );
+
+      dispatch( actions.updateObsCard( obsCard, {
+        latitude: exifLat,
+        longitude: exifLng,
+        accuracy: exifAccuracy,
+        locality_notes: exifLocality || "",
+        gpxOverridden: false
+      } ) );
     };
   }
 };
