@@ -79,6 +79,21 @@ $letter-spacing-tight: -0.03em;
   }
 }
 
+// Between md and xl: keep mainnav visible and hide the hamburger menu
+@media (min-width: $md) and (max-width: $xl-max) {
+  body.responsive #header {
+    #mainnav { display: flex; }
+    #narrow-menu { display: none; }
+  }
+}
+
+// Below md: logonav fills remaining space (mirrors the global mobile rule)
+@media (max-width: $md-max) {
+  body.responsive #header {
+    #logonav { flex: 1; }
+  }
+}
+
 // ── All component rules scoped under .wv2 to beat .bootstrap p specificity ───
 
 .wv2 {

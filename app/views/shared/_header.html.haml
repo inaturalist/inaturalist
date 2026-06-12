@@ -43,6 +43,7 @@
               %li= link_to t( :video_tutorials ), @site.video_tutorials_url
             - if !@site&.curator_guide_url.blank?
               %li= link_to t( :curator_guide ), @site.curator_guide_url
+            %li= link_to t( :donate_ ), donate_url( utm_content: "header-more" )
 
   #logonav.navtabs
     - if site && !site.custom_logo.blank?

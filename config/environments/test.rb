@@ -7,7 +7,16 @@ Rails.application.configure do
   # and recreated between test runs.  Don't rely on the data there!
   config.cache_classes = true
 
-  config.eager_load = false
+  # Normally the test env autoloads lazily (false) for fast RSpec boots. But the
+  # e2e suite boots a live, multi-threaded Puma (`rails server -e test`), and this
+  # app still uses the classic autoloader (`config.load_defaults 5.0`), which is
+  # NOT thread-safe. Concurrent requests then race while synthesizing implicit
+  # namespace modules like `Users` (which spans app/controllers/users,
+  # app/webpack/users, ...), producing "already initialized constant Users" and
+  # "Unable to autoload constant Users::SessionsController" LoadErrors. Eager
+  # loading at boot (single-threaded) loads every constant before any request, so
+  # no thread ever autoloads at request time. Enabled only for the e2e server.
+  config.eager_load = ENV["E2E_EAGER_LOAD"] == "true"
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
