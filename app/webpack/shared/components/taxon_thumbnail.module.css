@@ -23,7 +23,7 @@
   }
 }
 
-.taxon-thumbnail__photo {
+.photo {
   flex: 3;
   display: flex;
   align-items: center;
@@ -34,18 +34,18 @@
 }
 
 /* Nested for specificity (0,2,0) to win over .bootstrap a { color: inherit } at (0,1,1) */
-.taxon-thumbnail .taxon-thumbnail__photo {
+.taxon-thumbnail .photo {
   color: #337ab7;
   text-decoration: none;
 }
 
-.taxon-thumbnail__photo :global(.CoverImage) {
+.photo :global(.CoverImage) {
   width: 100%;
   height: 100%;
 }
 
 
-.taxon-thumbnail__caption {
+.caption {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -60,18 +60,18 @@
   }
 }
 
-.taxon-thumbnail__caption :global(.SplitTaxon) {
+.caption :global(.SplitTaxon) {
   display: block;
   margin-bottom: 10px;
   margin: 0;
 }
 
-.taxon-thumbnail__caption :global(.SplitTaxon a) {
+.caption :global(.SplitTaxon a) {
   color: #333;
   text-decoration: none;
 }
 
-.taxon-thumbnail__caption :global(.display-name) {
+.caption :global(.display-name) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -85,7 +85,7 @@
   }
 }
 
-.taxon-thumbnail__caption :global(.secondary-name) {
+.caption :global(.secondary-name) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -99,7 +99,7 @@
   }
 }
 
-.taxon-thumbnail__overlay {
+.overlay {
   position: absolute;
   background-color: rgba(0,0,0,0.3);
   color: white;
@@ -113,7 +113,7 @@
   }
 }
 
-.taxon-thumbnail__badge {
+.badge {
   composes: badge from global;
   position: absolute;
   top: 5px;

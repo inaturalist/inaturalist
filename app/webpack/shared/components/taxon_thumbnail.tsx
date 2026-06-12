@@ -61,11 +61,11 @@ const TaxonThumbnail = ( {
       style={wrapperStyle}
     >
       { badge && (
-        <span className={css["taxon-thumbnail__badge"]} title={badge.tip}>
+        <span className={css.badge} title={badge.tip}>
           { badge.linkUrl ? <a href={badge.linkUrl}>{ badge.text }</a> : badge.text }
         </span>
       ) }
-      <a href={urlForTaxon( taxon )} onClick={onClick} className={css["taxon-thumbnail__photo"]}>
+      <a href={urlForTaxon( taxon )} onClick={onClick} className={css.photo}>
         { mediumURL ? (
           <CoverImage src={mediumURL} low={squareURL} />
         ) : (
@@ -75,9 +75,9 @@ const TaxonThumbnail = ( {
             }
           />
         ) }
-        { overlay && <div className={css["taxon-thumbnail__overlay"]}>{ overlay }</div> }
+        { overlay && <div className={css.overlay}>{ overlay }</div> }
       </a>
-      <div className={css["taxon-thumbnail__caption"]}>
+      <div className={css.caption}>
         <SplitTaxon
           taxon={taxon}
           url={urlForTaxon( taxon )}

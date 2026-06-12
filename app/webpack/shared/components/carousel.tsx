@@ -106,7 +106,7 @@ const Carousel = ( {
     return (
       <div
         key={String( item.key )}
-        className={css.carousel__item}
+        className={css.item}
         style={distFromActive > visibleCount && itemWidth
           ? { width: itemWidth }
           : undefined}
@@ -117,7 +117,7 @@ const Carousel = ( {
   } );
 
   const link = url && (
-    <a href={url} className={css.carousel__readmore}>
+    <a href={url} className={css.readmore}>
       { I18n.t( "view_all_caps" ) }
     </a>
   );
@@ -125,7 +125,7 @@ const Carousel = ( {
   return (
     <div className={`${css.carousel}${className ? ` ${className}` : ""}`}>
       { title && (
-        <div className={css.carousel__title}>
+        <div className={css.title}>
           { title }
           { link }
         </div>
@@ -134,11 +134,11 @@ const Carousel = ( {
       { allItems.length === 0 && (
         <p className="text-muted text-center">{ noContent }</p>
       ) }
-      <div className={css.carousel__body}>
+      <div className={css.body}>
         { allItems.length > 0 && (
           <button
             type="button"
-            className={`btn ${css.carousel__navbtn}`}
+            className={`btn ${css.navbtn}`}
             disabled={activeIndex === 0}
             onClick={( ) => scrollToIndex( activeIndex - 1 )}
             title={I18n.t( "previous_taxon_short" )}
@@ -146,13 +146,13 @@ const Carousel = ( {
             ❮
           </button>
         ) }
-        <div className={css.carousel__track} ref={trackRef}>
+        <div className={css.track} ref={trackRef}>
           { renderedItems }
         </div>
         { allItems.length > 0 && (
           <button
             type="button"
-            className={`btn ${css.carousel__navbtn}`}
+            className={`btn ${css.navbtn}`}
             disabled={activeIndex >= allItems.length - 1}
             onClick={( ) => scrollToIndex( activeIndex + 1 )}
             title={I18n.t( "next_taxon_short" )}

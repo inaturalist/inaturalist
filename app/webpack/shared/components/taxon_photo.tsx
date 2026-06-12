@@ -8,10 +8,10 @@ import type {
 
 const classes = {
   taxonPhoto: css["taxon-photo"],
-  photoHover: css["taxon-photo__photo-hover"],
-  modalBtn: css["taxon-photo__modal-btn"],
-  taxonLabel: css["taxon-photo__taxon-label"],
-  infoLink: css["taxon-photo__info-link"]
+  photoHover: css["photo-hover"],
+  modalBtn: css["modal-btn"],
+  taxonLabel: css["taxon-label"],
+  infoLink: css["info-link"]
 };
 
 const urlForTaxon = ( t: Taxon | null ) => (

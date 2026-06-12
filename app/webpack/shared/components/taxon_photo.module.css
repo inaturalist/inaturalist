@@ -17,7 +17,7 @@
   pointer-events: none;
 }
 
-.taxon-photo__photo-hover {
+.photo-hover {
   position: absolute;
   inset: 0;
   display: flex;
@@ -29,11 +29,11 @@
   transition: opacity 0.2s linear;
 }
 
-.taxon-photo:hover .taxon-photo__photo-hover {
+.taxon-photo:hover .photo-hover {
   opacity: 1;
 }
 
-.taxon-photo__modal-btn {
+.modal-btn {
   flex: 1;
   display: flex;
   align-items: center;
@@ -47,14 +47,14 @@
   box-sizing: border-box;
 }
 
-.taxon-photo__modal-btn i {
+.modal-btn i {
   font-size: 300%;
   color: white;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.taxon-photo__taxon-label {
+.taxon-label {
   width: 100%;
   padding: 6px 10px;
   background-color: rgba(0, 0, 0, 0.4);
@@ -70,31 +70,31 @@
   box-sizing: border-box;
 }
 
-.taxon-photo__taxon-label a {
+.taxon-label a {
   color: white;
   text-decoration: none;
 }
 
-.taxon-photo__taxon-label a:hover {
+.taxon-label a:hover {
   color: white;
   text-decoration: none;
   opacity: 0.8;
 }
 
-.taxon-photo__taxon-label :global(.SplitTaxon > .display-name),
-.taxon-photo__taxon-label :global(.display-names) {
+.taxon-label :global(.SplitTaxon > .display-name),
+.taxon-label :global(.display-names) {
   display: block;
 }
 
-.taxon-photo__taxon-label :global(.display-name) {
+.taxon-label :global(.display-name) {
   font-size: 120%;
 }
 
-.taxon-photo__taxon-label :global(.secondary-name) {
+.taxon-label :global(.secondary-name) {
   font-style: italic;
 }
 
-.taxon-photo__info-link {
+.info-link {
   flex-shrink: 0;
   color: white;
   font-size: 130%;
