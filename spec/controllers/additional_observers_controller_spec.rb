@@ -4,7 +4,7 @@ require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe AdditionalObserversController do
   let( :creator ) { User.make! }
-  let( :observation ) { Observation.make!( user_id: creator.id ) }
+  let( :observation ) { Observation.make!( user: creator ) }
   let( :other_user ) { User.make! }
 
   stub_elastic_index! Observation

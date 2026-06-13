@@ -302,7 +302,7 @@ describe ObservationsController do
     it "marks observations the viewed user is an additional observer on" do
       creator = User.make!
       observer = User.make!
-      shared = Observation.make!( user_id: creator.id )
+      shared = Observation.make!( user: creator )
       AdditionalObserver.make!( observation_id: shared.id, user_id: observer.id, added_by_user_id: creator.id )
       get :by_login, params: { login: observer.login }
       expect( response.body ).to match( /shared-observation-marker/ )
@@ -310,7 +310,7 @@ describe ObservationsController do
 
     it "does not mark the viewed user's own observations" do
       observer = User.make!
-      Observation.make!( user_id: observer.id )
+      Observation.make!( user: observer )
       get :by_login, params: { login: observer.login }
       expect( response.body ).not_to match( /shared-observation-marker/ )
     end
@@ -319,7 +319,7 @@ describe ObservationsController do
       creator = User.make!
       observer = User.make!
       shared = Observation.make!(
-        user_id: creator.id, geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1
+        user: creator, geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1
       )
       AdditionalObserver.make!( observation_id: shared.id, user_id: observer.id, added_by_user_id: creator.id )
       get :by_login, params: { login: observer.login }

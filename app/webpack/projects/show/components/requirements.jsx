@@ -47,14 +47,16 @@ const Requirements = ( {
         noInactive
       />
     ) );
-  const locationRules = _.isEmpty( project.placeRules ) ? I18n.t( "worldwide" )
-    : _.map( _.sortBy( project.placeRules, r => r.place.display_name ), r => (
+  const validPlaceRules = _.filter( project.placeRules, "place" );
+  const locationRules = _.isEmpty( validPlaceRules ) ? I18n.t( "worldwide" )
+    : _.map( _.sortBy( validPlaceRules, r => r.place.display_name ), r => (
       <a key={`project-place-rules-${r.id}`} href={`/places/${r.place.id}`}>
         { r.place.display_name }
       </a>
     ) );
-  const exceptLocationRules = !_.isEmpty( project.notPlaceRules )
-    && _.map( _.sortBy( project.notPlaceRules, r => r.place.display_name ), r => (
+  const validNotPlaceRules = _.filter( project.notPlaceRules, "place" );
+  const exceptLocationRules = !_.isEmpty( validNotPlaceRules )
+    && _.map( _.sortBy( validNotPlaceRules, r => r.place.display_name ), r => (
       <a key={`project-place-rules-${r.id}`} href={`/places/${r.place.id}`}>
         { r.place.display_name }
       </a>
@@ -252,8 +254,8 @@ const Requirements = ( {
               <td className="value location-rules">
                 {
                   (
-                    Number( project?.placeRules?.length )
-                    + Number( project?.notPlaceRules?.length ) > 3
+                    Number( validPlaceRules?.length )
+                    + Number( validNotPlaceRules?.length ) > 3
                   )
                     ? <PartialDetails>{locationContent}</PartialDetails>
                     : locationContent

@@ -100,7 +100,13 @@ const PROJECT_FIELDS = {
   slug: true,
   title: true
 };
-const FIELDS = {
+export const FIELDS = {
+  additional_observers: {
+    id: true,
+    login: true,
+    icon: true,
+    icon_url: true
+  },
   annotations: {
     controlled_attribute: CONTROLLED_TERM_FIELDS,
     controlled_value: CONTROLLED_TERM_FIELDS,

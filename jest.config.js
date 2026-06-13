@@ -6,7 +6,8 @@ module.exports = {
   moduleFileExtensions: ["tsx", "ts", "jsx", "js", "json"],
   moduleNameMapper: {
     "\\.module\\.css$": "identity-obj-proxy",
-    "\\.(css|scss|less)$": "identity-obj-proxy"
+    "\\.(css|scss|less)$": "identity-obj-proxy",
+    "^heic-to$": "<rootDir>/app/webpack/__mocks__/heic-to.js"
   },
   transform: {
     "^.+\\.[jt]sx?$": "babel-jest"

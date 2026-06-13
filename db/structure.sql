@@ -1,4 +1,4 @@
-\restrict xc9HlDgN9phZi2M0vapGdBgR5hxLzIVlK1UhiBH3vM4qE4NgJ2QD37S5RHG7ctZ
+\restrict VTR48IsL7Pz4sIaeFJw4Gn18x5dtvvH73DsGLSFyUwzk6p2dWwrqoCgk1bTYf1v
 
 -- Dumped from database version 17.9
 -- Dumped by pg_dump version 18.4 (Ubuntu 18.4-1.pgdg24.04+1)
@@ -11732,7 +11732,7 @@ ALTER TABLE ONLY public.announcements
 -- PostgreSQL database dump complete
 --
 
-\unrestrict xc9HlDgN9phZi2M0vapGdBgR5hxLzIVlK1UhiBH3vM4qE4NgJ2QD37S5RHG7ctZ
+\unrestrict VTR48IsL7Pz4sIaeFJw4Gn18x5dtvvH73DsGLSFyUwzk6p2dWwrqoCgk1bTYf1v
 
 SET search_path TO "$user", public;
 

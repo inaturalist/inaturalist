@@ -261,7 +261,7 @@ OauthApplication.blueprint do
 end
 
 Observation.blueprint do
-  user_id { UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user_id }
+  user { UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user }
   license { Observation::CC_BY }
   description { Faker::Lorem.sentence }
 end

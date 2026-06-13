@@ -105,9 +105,9 @@ describe Observation do
 
     let( :creator ) { User.make! }
     let( :observer ) { User.make! }
-    let!( :own_observation ) { Observation.make!( user_id: observer.id ) }
+    let!( :own_observation ) { Observation.make!( user: observer ) }
     let!( :shared_observation ) do
-      o = Observation.make!( user_id: creator.id )
+      o = Observation.make!( user: creator )
       AdditionalObserver.make!( observation_id: o.id, user_id: observer.id, added_by_user_id: creator.id )
       o
     end
