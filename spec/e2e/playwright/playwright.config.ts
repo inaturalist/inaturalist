@@ -11,14 +11,15 @@ export default defineConfig( {
     url: "http://localhost:3001/ping",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
-    env: { RAILS_ENV: "test" },
+    // Eager-load the app: the classic autoloader is not thread-safe, and the
+    // live multi-threaded Puma races on lazy autoloads otherwise. See test.rb.
+    env: { RAILS_ENV: "test", E2E_EAGER_LOAD: "true" },
     cwd: path.resolve( __dirname, "../../.." )
   },
   testDir: "./tests",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: 1,
   reporter: process.env.CI ? "html" : "list",
   timeout: 30_000,
   expect: {

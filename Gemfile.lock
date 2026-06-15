@@ -214,6 +214,8 @@ GEM
     audited (5.3.3)
       activerecord (>= 5.0, < 7.1)
       request_store (~> 1.2)
+    auth-sanitizer (0.1.2)
+      version_gem (~> 1.1, >= 1.1.9)
     aws-eventstream (1.4.0)
     aws-partitions (1.1196.0)
     aws-sdk-cloudfront (1.56.0)
@@ -257,8 +259,8 @@ GEM
       ffi (~> 1.15)
     bower-rails (0.12.0)
     builder (3.3.0)
-    bundler-audit (0.9.1)
-      bundler (>= 1.2.0, < 3)
+    bundler-audit (0.9.3)
+      bundler (>= 1.2.0)
       thor (~> 1.0)
     byebug (11.1.3)
     capistrano (3.19.2)
@@ -306,7 +308,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    date (3.4.1)
+    date (3.5.1)
     dbf (4.2.0)
     debug_inspector (1.1.0)
     delayed_job (4.1.13)
@@ -367,7 +369,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
-    faraday (2.14.1)
+    faraday (2.14.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -421,7 +423,8 @@ GEM
       aes_key_wrap
       bindata
       httpclient
-    jwt (2.7.0)
+    jwt (3.2.0)
+      base64
     language_server-protocol (3.17.0.4)
     lefthook (0.7.7)
     lint_roller (1.1.0)
@@ -455,7 +458,7 @@ GEM
     multipart-post (2.4.1)
     net-http (0.9.1)
       uri (>= 0.11.1)
-    net-imap (0.5.7)
+    net-imap (0.5.15)
       date
       net-protocol
     net-pop (0.1.2)
@@ -471,26 +474,30 @@ GEM
     net-ssh (7.3.0)
     netrc (0.11.0)
     newrelic_rpm (9.19.0)
-    nio4r (2.7.4)
-    nokogiri (1.19.1)
+    nio4r (2.7.5)
+    nokogiri (1.19.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-darwin)
+    nokogiri (1.19.3-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-linux-gnu)
+    nokogiri (1.19.3-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.3-x86_64-linux-gnu)
       racc (~> 1.4)
     non-stupid-digest-assets (1.0.11)
       sprockets (>= 2.0)
     nori (2.6.0)
     numerizer (0.2.0)
     oauth (0.5.10)
-    oauth2 (2.0.9)
-      faraday (>= 0.17.3, < 3.0)
-      jwt (>= 1.0, < 3.0)
+    oauth2 (2.0.19)
+      auth-sanitizer (~> 0.1)
+      faraday (>= 0.17.3, < 4.0)
+      jwt (>= 1.0, < 4.0)
+      logger (~> 1.2)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 4)
-      snaky_hash (~> 2.0)
-      version_gem (~> 1.1)
+      snaky_hash (~> 2.0, >= 2.0.3)
+      version_gem (~> 1.1, >= 1.1.9)
     omniauth (2.1.1)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
@@ -532,7 +539,7 @@ GEM
     pg (1.5.9)
     prism (1.9.0)
     public_suffix (7.0.5)
-    puma (5.6.9)
+    puma (7.2.1)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.23)
@@ -702,9 +709,9 @@ GEM
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.3)
     simpleidn (0.2.3)
-    snaky_hash (2.0.1)
-      hashie
-      version_gem (~> 1.1, >= 1.1.1)
+    snaky_hash (2.0.4)
+      hashie (>= 0.1.0, < 6)
+      version_gem (>= 1.1.8, < 3)
     socksify (1.7.1)
     soundcloud (0.3.5)
       hashie
@@ -730,7 +737,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     thor (1.4.0)
     tilt (2.0.10)
-    timeout (0.4.3)
+    timeout (0.6.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
@@ -743,7 +750,7 @@ GEM
     utf8-cleaner (1.0.0)
       activesupport
     vcr (6.2.0)
-    version_gem (1.1.1)
+    version_gem (1.1.9)
     warden (1.2.9)
       rack (>= 2.0.9)
     wasabi (3.6.1)
@@ -770,6 +777,7 @@ GEM
     zeitwerk (2.7.5)
 
 PLATFORMS
+  arm64-darwin
   ruby
   x86_64-darwin-17
   x86_64-darwin-18
