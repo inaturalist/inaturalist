@@ -1,12 +1,6 @@
-\restrict 1ictqrOVw077AcgEJGDnQV19nkB5qVe4zXARyiLh11XgP2KycaPi5WIgg7Z3FXG
-
--- Dumped from database version 17.9
--- Dumped by pg_dump version 18.4 (Ubuntu 18.4-1.pgdg24.04+1)
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
-SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -245,39 +239,6 @@ CREATE AGGREGATE public.median(anycompatible) (
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
-
---
--- Name: additional_observers; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.additional_observers (
-    id bigint NOT NULL,
-    observation_id integer NOT NULL,
-    user_id integer NOT NULL,
-    added_by_user_id integer NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: additional_observers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.additional_observers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: additional_observers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.additional_observers_id_seq OWNED BY public.additional_observers.id;
-
 
 --
 -- Name: annotations; Type: TABLE; Schema: public; Owner: -
@@ -6403,13 +6364,6 @@ ALTER SEQUENCE public.year_statistics_id_seq OWNED BY public.year_statistics.id;
 
 
 --
--- Name: additional_observers id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.additional_observers ALTER COLUMN id SET DEFAULT nextval('public.additional_observers_id_seq'::regclass);
-
-
---
 -- Name: annotations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7499,14 +7453,6 @@ ALTER TABLE ONLY public.year_statistic_localized_shareable_images ALTER COLUMN i
 --
 
 ALTER TABLE ONLY public.year_statistics ALTER COLUMN id SET DEFAULT nextval('public.year_statistics_id_seq'::regclass);
-
-
---
--- Name: additional_observers additional_observers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.additional_observers
-    ADD CONSTRAINT additional_observers_pkey PRIMARY KEY (id);
 
 
 --
@@ -8806,20 +8752,6 @@ CREATE UNIQUE INDEX idx_summary_flags_one_per_summary ON public.taxon_id_summary
 --
 
 CREATE UNIQUE INDEX idx_taxon_id_summaries_active_per_taxon ON public.taxon_id_summaries USING btree (taxon_id, language) WHERE (active = true);
-
-
---
--- Name: index_additional_observers_on_observation_id_and_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_additional_observers_on_observation_id_and_user_id ON public.additional_observers USING btree (observation_id, user_id);
-
-
---
--- Name: index_additional_observers_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_additional_observers_on_user_id ON public.additional_observers USING btree (user_id);
 
 
 --
@@ -11732,8 +11664,6 @@ ALTER TABLE ONLY public.announcements
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 1ictqrOVw077AcgEJGDnQV19nkB5qVe4zXARyiLh11XgP2KycaPi5WIgg7Z3FXG
-
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
@@ -12284,7 +12214,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260507201412'),
 ('20260511210120'),
 ('20260514211433'),
-('20260514215925'),
-('20260612000000');
+('20260514215925');
 
 
