@@ -72,6 +72,7 @@
   top: -6px;
 }
 
+/* TODO: Move styling to TaxonCrumbs' own CSS module if / when we refactor */
 :global(.TaxonCrumbs) {
   color: #aaa;
   padding: 0;

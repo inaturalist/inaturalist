@@ -29,8 +29,6 @@ const Carousel = ( {
 
   const measureItemWidth = useCallback( () => {
     if ( !trackRef.current ) return;
-    // Measure the first track child with a naturally-derived width (no inline width style,
-    // which would indicate a virtualized placeholder using the stale cached value).
     const child = Array.from( trackRef.current.children ).find( el => {
       const h = el as HTMLElement;
       return !h.style.width && h.getBoundingClientRect().width > 0;

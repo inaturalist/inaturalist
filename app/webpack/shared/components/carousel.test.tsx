@@ -2,10 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Carousel from "./carousel";
 
-// NOTE: jsdom has no layout, so the carousel's measurement-driven behavior
-// (visibleCount from getBoundingClientRect, scroll-driven activeIndex,
-// virtualization) is NOT covered here — that belongs in Playwright. These are
-// render/prop smoke tests only.
+// TODO: Add Playwright tests to verify responsive behavior once used in the app.
 
 const items = ["A", "B", "C"].map( label => <div key={label}>{ `Item ${label}` }</div> );
 
