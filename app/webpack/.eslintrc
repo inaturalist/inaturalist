@@ -102,14 +102,6 @@
       }
     },
     {
-      "files": ["*.stories.tsx"],
-      "rules": {
-        "import/no-extraneous-dependencies": "off",
-        "react/jsx-props-no-spreading": "off",
-        "react/no-array-index-key": "off"
-      }
-    },
-    {
       "files": ["*.test.ts", "*.test.tsx", "*.test.js", "*.test.jsx", "jest.setup.ts"],
       "env": { "jest": true },
       "rules": {
