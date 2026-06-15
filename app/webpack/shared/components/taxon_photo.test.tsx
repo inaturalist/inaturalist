@@ -4,6 +4,13 @@ import userEvent from "@testing-library/user-event";
 import TaxonPhoto from "./taxon_photo";
 import type { Photo, Taxon, Observation } from "../types";
 
+// urlForTaxon transitively loads browser-only deps (heic-to); stub it with the
+// same slug builder used in production so the href assertions stay meaningful.
+jest.mock( "../../taxa/shared/util", ( ) => ( {
+  urlForTaxon: ( t: { id: number; name: string } | null ) => (
+    t ? `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}` : null
+  )
+} ) );
 // Inert stubs so we test TaxonPhoto's own logic, not its children.
 jest.mock( "./cover_image", ( ) => ( {
   __esModule: true,

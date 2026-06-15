@@ -5,6 +5,7 @@ import css from "./taxon_photo.module.css";
 import type {
   Photo, Taxon, Observation, Config
 } from "../types";
+import { urlForTaxon } from "../../taxa/shared/util";
 
 const classes = {
   taxonPhoto: css["taxon-photo"],
@@ -13,10 +14,6 @@ const classes = {
   taxonLabel: css["taxon-label"],
   infoLink: css["info-link"]
 };
-
-const urlForTaxon = ( t: Taxon | null ) => (
-  t ? `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}` : null
-);
 
 export interface TaxonPhotoProps {
   photo: Photo;

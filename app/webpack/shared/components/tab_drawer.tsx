@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import _ from "lodash";
 import css from "./tab_drawer.module.css";
 
 interface TabItemBase {
@@ -23,6 +24,8 @@ const TabDrawer = ( {
   selectedValue, items = [], onChange
 }: TabDrawerProps ) => {
   const [open, setOpen] = useState( false );
+  // Unique per instance so multiple drawers on one page don't collide on the DOM id.
+  const [drawerId] = useState( ( ) => _.uniqueId( "tab-drawer-" ) );
 
   const selectedLabel = items.find(
     ( item ): item is Exclude<TabItem, { kind: "separator" }> => (
@@ -36,13 +39,13 @@ const TabDrawer = ( {
         type="button"
         className={css.toggle}
         aria-expanded={open}
-        aria-controls="tab-drawer"
+        aria-controls={drawerId}
         onClick={() => setOpen( o => !o )}
       >
         { selectedLabel }
         <i className={`fa fa-chevron-${open ? "up" : "down"}`} />
       </button>
-      <ul id="tab-drawer" className={css.drawer}>
+      <ul id={drawerId} className={css.drawer}>
         { items
           .filter( item => item.kind === "separator" || item.value !== selectedValue )
           .map( item => {
