@@ -2669,6 +2669,16 @@ en:
   identification_saved: "Identification saved!"
   # Notice when an identification has been hidden by moderators
   identification_hidden: Identification hidden
+  identification_tips:
+    # Label for a menu option to nominate an identification as an ID tip
+    nominate: Nominate
+    # Label for a menu option to remove a nomination on an identification
+    remove_nomination: Remove Nomination
+    # displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} nominated this as an ID tip"
+    # displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation:
+      Nominate as an ID Tip (diagnostic characteristics that teach others to identify this organism)
   # Notice when an identification has been unhidden by moderators
   identification_unhidden: Identification unhidden
   # Notification when an identification has been updated
@@ -9548,6 +9558,36 @@ en:
           concepts, and they only include species, not infraspecific taxa like
           subspecies or varieties.
         discoveries_desc: "Most recent newly-identified species in this taxon"
+        identifications:
+          # Label for a a taxon page tab that displays Identifications with remarks
+          # that make them useful information or advice for how to identify the organism
+          identification_tips: Identification Tips
+          # Placeholder text for a search field allowing users to search on identification
+          # bodies, or search on usernames of who added the identifications
+          search_identifications: Search Identifications by text or username
+          sort:
+            # sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Sort: Highest to lowest votes"
+            # sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Sort: Lowest to higest votes"
+            # sort option for displaying the newest results first
+            newest_to_oldest: "Sort: Newest to oldest"
+            # sort option for displaying the oldest results first
+            oldest_to_newest: "Sort: Oldest to newest"
+            # sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Sort: Longest to shortest"
+          # label for a subtab that displays only IDs that have been upvoted
+          upvoted: Upvoted
+          # label for a subtab that displays only IDs that have been downvoted, and
+          # as a result are not visible to most users
+          downvoted_and_hidden: Downvoted (hidden)
+          # label for a subtab that displays only IDs that have not received any votes
+          no_votes: No Vote
+          # label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Not Nominated
+          # label for a link to view an identification in the context of its associated
+          # observation so users can view other remarks relevant to the conversation
+          view_full_conversation: View Full Conversation
         frequency:
           research: Research Grade
           verifiable: Verifiable

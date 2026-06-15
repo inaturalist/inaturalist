@@ -33,31 +33,31 @@ class IdentificationsTab extends Component {
     const allSorts = {
       votesDesc: {
         key: "votesDesc",
-        label: "Highest to lowest votes",
+        label: I18n.t( "views.taxa.show.identifications.sort.highest_to_lowest_votes" ),
         order_by: "votes",
         order: "desc"
       },
       votesAsc: {
         key: "votesAsc",
-        label: "Lowest to higest votes",
+        label: I18n.t( "views.taxa.show.identifications.sort.lowest_to_highest_votes" ),
         order_by: "votes",
         order: "asc"
       },
       newest: {
         key: "newest",
-        label: "Newest to oldest",
+        label: I18n.t( "views.taxa.show.identifications.sort.newest_to_oldest" ),
         order_by: "created_at",
         order: "desc"
       },
       oldest: {
         key: "oldest",
-        label: "Oldest to newest",
+        label: I18n.t( "views.taxa.show.identifications.sort.oldest_to_newest" ),
         order_by: "created_at",
         order: "asc"
       },
       lengthDesc: {
         key: "lengthDesc",
-        label: "Longest to shortest",
+        label: I18n.t( "views.taxa.show.identifications.sort.longest_to_shortest" ),
         order_by: "word_count",
         order: "desc"
       }
@@ -226,7 +226,7 @@ class IdentificationsTab extends Component {
           key="id-unnominate"
           eventKey="unnominate"
         >
-          Remove Nomination
+          { I18n.t( "identification_tips.remove_nomination" ) }
         </MenuItem>
       ) );
     } else {
@@ -235,7 +235,7 @@ class IdentificationsTab extends Component {
           key="id-nominate"
           eventKey="nominate"
         >
-          Nominate
+          { I18n.t( "identification_tips.nominate" ) }
         </MenuItem>
       ) );
     }
@@ -247,6 +247,16 @@ class IdentificationsTab extends Component {
         noInativersary
         href={`/identifications/${result.identification.uuid}`}
         user={result.identification.user}
+      />
+    );
+
+    let nominatedByUserLink = result.nominated_by_user && (
+      <UserLink
+        className="user"
+        config={config}
+        noInativersary
+        href={`/identifications/${result.identification.uuid}`}
+        user={result.nominated_by_user}
       />
     );
 
@@ -309,18 +319,17 @@ class IdentificationsTab extends Component {
                   <UserText text={result.identification.body} className="id_body" />
                 </div>
               </Panel.Body>
-              { result.nominated_by_user && (
+              { nominatedByUserLink && (
                 <Panel.Footer>
-                  <span className="footer-text">
-                    <UserLink
-                      className="user"
-                      config={config}
-                      noInativersary
-                      href={`/identifications/${result.identification.uuid}`}
-                      user={result.nominated_by_user}
-                    />
-                    &nbsp;nominated this as an ID tip
-                  </span>
+                  <span
+                    className="footer-text"
+                    // eslint-disable-next-line react/no-danger
+                    dangerouslySetInnerHTML={{
+                      __html: I18n.t( "identification_tips.user_nominated_this_as_an_id_tip_html", {
+                        user: ReactDOMServer.renderToString( nominatedByUserLink )
+                      } )
+                    }}
+                  />
                   <time
                     className="time"
                     dateTime={result.nominated_at}
@@ -376,7 +385,7 @@ class IdentificationsTab extends Component {
               {result.identification.observation.discussion_count > 1 && (
                 <div className="conversation">
                   <a href={`/observations/${result.identification.observation.id}`}>
-                    View Full Conversation
+                    { I18n.t( "views.taxa.show.identifications.view_full_conversation" ) }
                   </a>
                 </div>
               )}
@@ -448,7 +457,7 @@ class IdentificationsTab extends Component {
             $( "#identifications_search_query" ).val( "" );
           }}
         >
-          Upvoted
+          { I18n.t( "views.taxa.show.identifications.upvoted" ) }
         </button>
         <button
           type="button"
@@ -476,7 +485,7 @@ class IdentificationsTab extends Component {
             $( "#identifications_search_query" ).val( "" );
           }}
         >
-          Downvoted (hidden)
+          { I18n.t( "views.taxa.show.identifications.downvoted_and_hidden" ) }
         </button>
         <button
           type="button"
@@ -504,7 +513,7 @@ class IdentificationsTab extends Component {
             $( "#identifications_search_query" ).val( "" );
           }}
         >
-          No Votes
+          { I18n.t( "views.taxa.show.identifications.no_votes" ) }
         </button>
         <button
           type="button"
@@ -533,7 +542,7 @@ class IdentificationsTab extends Component {
             $( "#identifications_search_query" ).val( "" );
           }}
         >
-          Not Nominated
+          { I18n.t( "views.taxa.show.identifications.not_nominated" ) }
         </button>
       </div>
     );
@@ -567,9 +576,7 @@ class IdentificationsTab extends Component {
             value={sortOption.key}
             key={`params-order-by-${sortOption.key}`}
           >
-            Sort:
-            {" "}
-            { I18n.t( sortOption.label, { defaultValue: sortOption.label } ) }
+            { sortOption.label }
           </option>
         ) ) }
       </select>
@@ -656,7 +663,7 @@ class IdentificationsTab extends Component {
     if ( response?.results?.length === 0 ) {
       content = (
         <div className="no-identifications">
-          No results
+          { I18n.t( "no_results_found" ) }
         </div>
       );
     } else if ( response?.results?.length > 0 ) {
@@ -682,7 +689,7 @@ class IdentificationsTab extends Component {
         <Row>
           <Col xs={responsive ? null : 8} sm={responsive ? 12 : null}>
             <h2>
-              {I18n.t( "identifications" )}
+              {I18n.t( "views.taxa.show.identifications.identification_tips" )}
             </h2>
             <div className={`search-container${response?.loading ? " disabled" : ""}`}>
               {this.identificationCategories( )}
@@ -704,7 +711,7 @@ class IdentificationsTab extends Component {
                       name="q"
                       id="identifications_search_query"
                       type="text"
-                      placeholder="Search Identifications"
+                      placeholder={I18n.t( "views.taxa.show.identifications.search_identifications" )}
                       autoComplete="off"
                       onChange={e => {
                         this.setSearchSearchTermPresent( !_.isEmpty( e.target.value ) );
@@ -731,7 +738,7 @@ class IdentificationsTab extends Component {
                     <input
                       type="submit"
                       className="btn btn-primary"
-                      value="Search"
+                      value={I18n.t( "search" )}
                     />
                   </span>
                   { this.sortSelect( ) }

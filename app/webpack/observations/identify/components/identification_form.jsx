@@ -108,7 +108,7 @@ class IdentificationForm extends React.Component {
                 className="identificationNomination"
                 htmlFor="nominate-id"
               >
-                Nominate as an ID Tip (diagnostic characteristics that teach others to identify this organism)
+                { I18n.t( "identification_tips.nominate_as_an_id_tip_with_explanation" ) }
               </label>
             </div>
           ) }
