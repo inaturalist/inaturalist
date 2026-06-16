@@ -233,6 +233,7 @@ class User < ApplicationRecord
   has_many :redirect_links, dependent: :nullify
   has_many :announcements, dependent: :nullify
   has_many :user_virtuous_tags, dependent: :delete_all
+  has_many :exemplar_identifications, through: :identifications
 
   file_options = {
     processors: [:deanimator],
@@ -319,6 +320,7 @@ class User < ApplicationRecord
     true
   }
   after_update :check_privileges_if_confirmed
+  after_update :reindex_exemplar_identifications_after_login_change_later
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
@@ -1549,6 +1551,27 @@ class User < ApplicationRecord
   def reindex_observations_with_voted_annotations_after_destroy_later
     User.delay.reindex_observations_with_voted_annotations_after_destroy( id )
     true
+  end
+
+  def self.reindex_exemplar_identifications_after_login_change( user_id )
+    return unless ( user = User.find_by_id( user_id ) )
+
+    exemplar_identification_ids = user.exemplar_identifications.pluck( :id )
+    return if exemplar_identification_ids.empty?
+
+    # batch the reindexing in potentially multiple delayed jobs
+    ExemplarIdentification.elastic_index!(
+      ids: exemplar_identification_ids,
+      delay: true
+    )
+  end
+
+  def reindex_exemplar_identifications_after_login_change_later
+    return unless saved_change_to_login?
+
+    # determining what IDs need to be reindexed might take a while,
+    # so delay that operation, which will ultimately create more delayed jobs
+    User.delay.reindex_exemplar_identifications_after_login_change( id )
   end
 
   def generate_csv(path, columns, options = {})
