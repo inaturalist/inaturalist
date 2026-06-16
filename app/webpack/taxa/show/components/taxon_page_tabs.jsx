@@ -250,7 +250,7 @@ class TaxonPageTabs extends React.Component {
                     role="presentation"
                     className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "identifications" ? "active" : ""}`}
                   >
-                    <a href="#identifications-tab" role="tab" data-toggle="tab">{ I18n.t( "identifications" ) }</a>
+                    <a href="#identifications-tab" role="tab" data-toggle="tab">{ I18n.t( "views.taxa.show.identifications.identification_tips" ) }</a>
                   </li>
                 ) }
                 { curationTab }

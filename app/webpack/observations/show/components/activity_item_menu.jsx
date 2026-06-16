@@ -118,9 +118,8 @@ const ActivityItemMenu = ( {
         <MenuItem
           key="id-unnominate"
           eventKey="unnominate"
-          title="Remove nomination"
         >
-          Remove Nomination
+          { I18n.t( "identification_tips.remove_nomination" ) }
         </MenuItem>
       ) );
     } else if ( config?.currentUser?.canNominateIdentification( item ) ) {
@@ -129,7 +128,7 @@ const ActivityItemMenu = ( {
           key="id-nominate"
           eventKey="nominate"
         >
-          Nominate
+          { I18n.t( "identification_tips.nominate" ) }
         </MenuItem>
       ) );
     }

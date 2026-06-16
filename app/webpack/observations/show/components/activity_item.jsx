@@ -669,10 +669,17 @@ class ActivityItem extends React.Component {
     if ( currentUser?.canViewHelpfulIDTips( ) && this.identificationHasNomination( ) ) {
       footers.nomination = (
         <>
-          <span className="footer-text">
-            <b>{item.exemplar_identification.nominated_by_user.login}</b>
-            &nbsp;nominated this as an ID tip
-          </span>
+          <span
+            className="footer-text"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "identification_tips.user_nominated_this_as_an_id_tip_html", {
+                user: ReactDOMServer.renderToString( (
+                  <b>{item.exemplar_identification.nominated_by_user.login}</b>
+                ) )
+              } )
+            }}
+          />
           <time
             className="time"
             dateTime={item.exemplar_identification.nominated_at}
