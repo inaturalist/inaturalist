@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 describe ObservationsHelper do
@@ -15,11 +17,11 @@ describe ObservationsHelper do
 
     it "should not return hidden photos" do
       photo = Photo.make!( user: observation.user )
-      op = ObservationPhoto.make!( observation: observation, photo: photo )
+      ObservationPhoto.make!( observation: observation, photo: photo )
       ModeratorAction.make!( resource: photo, action: "hide" )
+      observation.reload
       expect( photo.hidden? ).to be true
       expect( observation_image_url( observation ) ).to be_nil
     end
   end
-
 end

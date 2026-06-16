@@ -202,6 +202,24 @@ describe "Observation Index" do
     expect( moderator_actions.first[:user] ).to be_nil
   end
 
+  describe "quality_grade" do
+    it "indexes quality_grade" do
+      observation = make_research_grade_observation
+      indexed_json = observation.as_indexed_json
+      expect( indexed_json[:quality_grade] ).to eq Observation::RESEARCH_GRADE
+      expect( indexed_json[:quality_grade_if_not_captive] ).to be_nil
+    end
+
+    it "indexes quality_grade_if_not_captive" do
+      observation = make_research_grade_observation
+      QualityMetric.make!( observation: observation, metric: QualityMetric::WILD, agree: false )
+      observation.reload
+      indexed_json = observation.as_indexed_json
+      expect( indexed_json[:quality_grade] ).to eq Observation::CASUAL
+      expect( indexed_json[:quality_grade_if_not_captive] ).to eq Observation::RESEARCH_GRADE
+    end
+  end
+
   describe "photos_count" do
     it "should not count photos with copyright infringement flags" do
       o = Observation.make!
