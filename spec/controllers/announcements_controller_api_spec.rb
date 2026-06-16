@@ -372,7 +372,7 @@ describe AnnouncementsController do
 
     it "includes current parent even when older than 30 days" do
       old_parent = create :announcement, start: 60.days.ago, end: 31.days.ago
-      child = create :announcement, parent_announcement_id: old_parent.id
+      child = create :announcement, parent_announcement_id: old_parent.id, sites: [site]
       get :edit, params: { id: child.id, inat_site_id: site.id }
       option_ids = assigns( :parent_announcement_options ).map( &:last )
       expect( option_ids ).to include( old_parent.id )
@@ -401,6 +401,149 @@ describe AnnouncementsController do
       announcement = create :announcement, parent_announcement_id: parent_announcement.id
       get :duplicate, params: { id: announcement.id, inat_site_id: site.id }
       expect( assigns( :announcement ).parent_announcement_id ).to be parent_announcement.id
+    end
+  end
+
+  describe "index" do
+    describe "as site admin" do
+      let( :site ) { create :site }
+      let( :other_site ) { create :site }
+      let( :user ) { create :user }
+      before do
+        create( :site ) unless Site.default
+        SiteAdmin.create!( site: site, user: user )
+        sign_in user
+      end
+
+      it "shows announcements targeted to the admin's site" do
+        site_announcement = create :announcement, sites: [site]
+        get :index, params: { inat_site_id: site.id }
+        expect( assigns( :announcements ) ).to include( site_announcement )
+      end
+
+      it "excludes global announcements by default" do
+        global_announcement = create :announcement
+        get :index, params: { inat_site_id: site.id }
+        expect( assigns( :announcements ) ).not_to include( global_announcement )
+      end
+
+      it "excludes announcements for other sites by default" do
+        other_announcement = create :announcement, sites: [other_site]
+        get :index, params: { inat_site_id: site.id }
+        expect( assigns( :announcements ) ).not_to include( other_announcement )
+      end
+
+      it "shows all announcements when site_filter is all" do
+        site_announcement = create :announcement, sites: [site]
+        other_announcement = create :announcement, sites: [other_site]
+        global_announcement = create :announcement
+        get :index, params: { inat_site_id: site.id, site_filter: "all" }
+        expect( assigns( :announcements ) ).to include( site_announcement )
+        expect( assigns( :announcements ) ).to include( other_announcement )
+        expect( assigns( :announcements ) ).to include( global_announcement )
+      end
+    end
+  end
+
+  describe "edit" do
+    describe "as site admin" do
+      let( :site ) { create :site }
+      let( :other_site ) { create :site }
+      let( :user ) { create :user }
+      before do
+        create( :site ) unless Site.default
+        SiteAdmin.create!( site: site, user: user )
+        sign_in user
+      end
+
+      it "allows editing announcements targeted to the admin's site" do
+        announcement = create :announcement, sites: [site]
+        get :edit, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to be_successful
+      end
+
+      it "denies editing announcements targeted to another site" do
+        announcement = create :announcement, sites: [other_site]
+        get :edit, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to redirect_to( announcement )
+        expect( flash[:error] ).to be_present
+      end
+
+      it "denies editing global announcements" do
+        announcement = create :announcement
+        get :edit, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to redirect_to( announcement )
+      end
+    end
+
+    describe "as staff admin" do
+      let( :admin ) { make_admin }
+      before { sign_in admin }
+
+      it "can edit any announcement" do
+        announcement = create :announcement
+        get :edit, params: { id: announcement.id }
+        expect( response ).to be_successful
+      end
+    end
+  end
+
+  describe "update" do
+    describe "as site admin" do
+      let( :site ) { create :site }
+      let( :other_site ) { create :site }
+      let( :user ) { create :user }
+      before do
+        create( :site ) unless Site.default
+        SiteAdmin.create!( site: site, user: user )
+        sign_in user
+      end
+
+      it "allows updating announcements targeted to the admin's site" do
+        announcement = create :announcement, sites: [site]
+        put :update, params: { id: announcement.id, inat_site_id: site.id, announcement: { body: "updated" } }
+        expect( response ).to redirect_to( announcement )
+      end
+
+      it "denies updating announcements targeted to another site" do
+        announcement = create :announcement, sites: [other_site]
+        put :update, params: { id: announcement.id, inat_site_id: site.id, announcement: { body: "updated" } }
+        expect( response ).to redirect_to( announcement )
+        expect( flash[:error] ).to be_present
+      end
+    end
+  end
+
+  describe "destroy" do
+    describe "as site admin" do
+      let( :site ) { create :site }
+      let( :other_site ) { create :site }
+      let( :user ) { create :user }
+      before do
+        create( :site ) unless Site.default
+        SiteAdmin.create!( site: site, user: user )
+        sign_in user
+      end
+
+      it "allows destroying announcements targeted to the admin's site" do
+        announcement = create :announcement, sites: [site]
+        delete :destroy, params: { id: announcement.id, inat_site_id: site.id }
+        expect( Announcement.find_by_id( announcement.id ) ).to be_nil
+      end
+
+      it "denies destroying announcements targeted to another site" do
+        announcement = create :announcement, sites: [other_site]
+        delete :destroy, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to redirect_to( announcement )
+        expect( Announcement.find_by_id( announcement.id ) ).not_to be_nil
+      end
+
+      it "denies destroying global announcements" do
+        announcement = create :announcement
+        delete :destroy, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to redirect_to( announcement )
+        expect( Announcement.find_by_id( announcement.id ) ).not_to be_nil
+      end
     end
   end
 end
