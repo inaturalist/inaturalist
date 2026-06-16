@@ -15,3 +15,25 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         cancel_others: true
+    - uses: actions/checkout@v5
+
+    - name: Cache apt packages
+      id: apt-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/apt-packages
+        key: apt-packages-${{ runner.os }}-${{ hashFiles('.github/workflows/CI-pre-build.yml', '.github/workflows/CI-build-test.yml') }}
+
+    - name: Download apt packages
+      timeout-minutes: 10
+      if: steps.apt-cache.outputs.cache-hit != 'true'
+      run: |
+        sudo apt-get update --fix-missing
+        sudo apt-get install -y --no-install-recommends -d \
+          -o Acquire::Retries=5 \
+          -o Acquire::http::Timeout="15" \
+          libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
+        mkdir -p ~/apt-packages/archives ~/apt-packages/lists
+        cp /var/cache/apt/archives/*.deb ~/apt-packages/archives/
+        sudo rsync -a --exclude='partial' --exclude='lock' /var/lib/apt/lists/ ~/apt-packages/lists/
+        sudo chown -R $USER:$USER ~/apt-packages/
