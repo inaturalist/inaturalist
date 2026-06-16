@@ -91,9 +91,10 @@ jobs:
         curl --verbose --show-error http://localhost:9200
 
     - name: Install dependencies
+      timeout-minutes: 5
       run: |
-        sudo apt-get -qq update --fix-missing
-        sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
+        sudo apt-get -qq update --fix-missing 2>&1 | ts '[%Y-%m-%d %H:%M:%S]'
+        sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg 2>&1 | ts '[%Y-%m-%d %H:%M:%S]'
 
     - name: Use Ruby
       uses: ruby/setup-ruby@v1
