@@ -61,7 +61,7 @@ export function expectNoHorizontalOverflow(
         // Visual-regression step: capture a full-page snapshot at this
         // breakpoint and compare it against the committed baseline.
         // currently only used for local development
-        if ( options.screenshot !== false ) {
+        if ( options.screenshot ) {
           const masks = [...SHARED_DYNAMIC_MASKS, ...( options.mask || [] )]
             .map( selector => page.locator( selector ) );
 

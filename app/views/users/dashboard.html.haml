@@ -7,18 +7,16 @@
     DASHBOARD_TAB = "#{params[:tab] || 'updates'}";
     DASHBOARD_FROM = "#{params[:from]}";
   = javascript_include_tag "map_bundle", "d3.min", "observations/observation_fields", "users/dashboard"
-.container
+.dashboard-container
   - if ( announcements = @announcements.select{|a| a.placement == "users/dashboard"} ) && !announcements.blank?
     - announcements.each do |announcement|
-      .row
-        .col-xs-12
-          = render "announcements/announcement", announcement: announcement
+      = render "announcements/announcement", announcement: announcement
   .row
     = render partial: "shared/by_login_header_bootstrap", locals: { user: current_user }
-  .row
-    .col-md-8
+  .dashboard-columns
+    .dashboard-main
       .tabbable
-        .row.dashboard_tab_row
+        .dashboard_tab_row
           .btn-group
             %a.btn.btn-default.dashboard_tab.active{ "data-tab" => "updates", "data-target-el" => "#updates", href: "#updates" }
               = t :all_updates
@@ -40,9 +38,9 @@
                     - if @local_onboarding_content[:target_taxa]
                       %p.lead
                         = @local_onboarding_content[:local_results] ? t('onboarding.observe_panel_body_p1_local') : t( "onboarding.observe_panel_body_p1_global" )
-                      .row
+                      .dashboard-card-grid
                         - for taxon in @local_onboarding_content[:target_taxa]
-                          = render( partial: 'favorites', locals: { taxon: taxon } )
+                          = render( partial: 'favorites', locals: { taxon: taxon, item_class: "dashboard-grid-item" } )
                     .media
                       .media-body
                         %p.lead= t( "onboarding.observe_panel_body_p2", site_name: @site.name.gsub(".org",""), new_observation_path: upload_observations_path).html_safe
@@ -64,9 +62,9 @@
                       = @local_onboarding_content[:local_results] ? t( "onboarding.follow_panel_title_local" ) : t( "onboarding.follow_panel_title_global" )
                   .panel-body
                     %p= t "onboarding.follow_panel_body"
-                    .row
+                    .dashboard-card-grid
                       - @local_onboarding_content[:to_follows].each do |to_follow|
-                        = render( partial: "followees", locals: { friend: to_follow } )
+                        = render( partial: "followees", locals: { friend: to_follow, item_class: "dashboard-grid-item" } )
                   .panel-footer
                     = link_to people_path, class: "btn btn-primary" do
                       = t :browse_people
@@ -118,7 +116,7 @@
                   %a.btn.btn-primary{ "data-panel-type" => "comments" }= t(:got_it!)
             #comments_target
               .loading.status= t :loading
-    .col-md-4
+    .dashboard-sidebar
       = link_to upload_observations_path, id: "obsbutton", class: "btn btn-default btn-lg nav-justified" do
         %span.glyphicon.glyphicon-plus
         = t(:add_observations)
@@ -275,12 +273,12 @@
                       %span.othernames
                         = surround "(", ")" do
                           = render "shared/taxon", taxon: subscription.taxon, link_url: subscription.taxon, no_common: true
-        .row
-          .col-sm-6
+        .dashboard-subscribe-actions
+          .dashboard-subscribe-action
             = link_to "#", "data-subscribe-type" => "taxon", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do
               %span.glyphicon.glyphicon-leaf
               = t :subscribe_to_a_taxon
-          .col-sm-6
+          .dashboard-subscribe-action
             = link_to "#", "data-subscribe-type" => "place", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do
               %span.glyphicon.glyphicon-map-marker
               = t :subscribe_to_a_place

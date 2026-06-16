@@ -1,7 +1,64 @@
+@import "breakpoints";
+
 .container.main {
    min-width:950px;
    width: auto !important;
-   width:950px;            
+   width:950px;
+}
+
+.dashboard-container {
+  @include container-padding;
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard-columns {
+  margin-left: -15px;
+  margin-right: -15px;
+
+  @media ( min-width: $lg ) {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+.dashboard-main,
+.dashboard-sidebar {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.dashboard-main {
+  @media ( min-width: $lg ) { width: 66.66667%; }
+}
+
+.dashboard-sidebar {
+  @media ( min-width: $lg ) { width: 33.33333%; }
+}
+
+.dashboard-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard-grid-item {
+  width: 100%;
+  padding: 0 5px;
+
+  @media ( min-width: $md ) { width: 25%; }
+}
+
+.dashboard-subscribe-actions {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard-subscribe-action {
+  width: 100%;
+  padding: 0 15px;
+
+  @media ( min-width: $md ) { width: 50%; }
 }
 
 .followee {
@@ -412,7 +469,7 @@ li.taxon_change > timeline-body > div {
   border: 1px solid transparent;
   border-radius: 4px;
 }
-li.observation_multiple_added > .timeline-panel > .timeline-body > .row {
+li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid {
   margin-right: -5px;
   margin-left: -5px;
 }
@@ -460,14 +517,18 @@ li.observation_multiple_added > .timeline-panel > .timeline-body > .row {
 /* Observations Added - Gallery (Mulitiple Photos)
 ------------------------- */
 
-li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul {
+li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid > ul {
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
-  margin-left: -40px;
+  margin-left: 0;
+  padding-left: 0;
 }
-li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul > li.col-md-3 {
+li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid > ul > li.dashboard-obs-thumb {
+  width: 25%;
   padding: 0 5px;
 }
-li.observation_multiple_added > .timeline-panel > .timeline-body > .row > ul > li.col-md-3 > a > .thumbnail {
+li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid > ul > li.dashboard-obs-thumb > a > .thumbnail {
   margin-bottom: 10px;
 }
 

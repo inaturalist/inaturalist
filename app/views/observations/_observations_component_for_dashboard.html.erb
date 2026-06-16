@@ -109,7 +109,7 @@
     </div>
   </div>
 <%- else %>
-  <div class="row">
+  <div class="dashboard-obs-grid">
     <ul>
       <% for observation in observations[0..3] %>
         <%= render partial: "shared/mult_obs_component_for_dashboard", :locals => {:observation => observation, :first => true} %>
@@ -117,7 +117,7 @@
     </ul>
   </div>
   <% if observations.count > 4 -%>
-    <div class="row collapse out", id="<%= "expand#{target_id}" %>">
+    <div class="dashboard-obs-grid collapse out", id="<%= "expand#{target_id}" %>">
       <ul>
         <% for observation in observations[4..-1] %>
           <%= render partial: "shared/mult_obs_component_for_dashboard", :locals => {:observation => observation, :first => false} %>

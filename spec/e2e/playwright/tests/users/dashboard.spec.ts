@@ -19,9 +19,4 @@ test.beforeEach( async ( { page } ) => {
   await login( page, testEmail, TEST_PASSWORD );
 } );
 
-expectNoHorizontalOverflow( "/home", {
-  // Mask dynamic content so the visual baseline stays stable across runs:
-  // the by-login header echoes the randomly-named test user, and the update
-  // tabs load asynchronously from the API.
-  mask: [".dashboard-container > .row", "#updates_target"]
-} );
+expectNoHorizontalOverflow( "/home" );

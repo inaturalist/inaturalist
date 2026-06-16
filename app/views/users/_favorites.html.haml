@@ -1,5 +1,6 @@
 - taxon ||= listed_taxon.taxon
-.col-md-3.col-sm-3
+- item_class ||= "col-md-3 col-sm-3"
+%div{ class: item_class }
   .thumbnail
     = link_to taxon_path(taxon) do
       %div.scaledimg{ style: "background-image: url('#{taxon_image_url(taxon, size: "medium")}')" }
