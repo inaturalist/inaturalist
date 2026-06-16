@@ -4,10 +4,10 @@ class CloudfrontLogParser
 
   def initialize
     return unless LOG_BUCKET_NAME
-    s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml" ) )
+    cf_config = YAML.load_file( File.join( Rails.root, "config", "cloudfront.yml" ) )
     @s3_client = ::Aws::S3::Client.new(
-      access_key_id: s3_config["access_key_id"],
-      secret_access_key: s3_config["secret_access_key"],
+      access_key_id: cf_config["access_key_id"],
+      secret_access_key: cf_config["secret_access_key"],
       region: CONFIG.s3_region
     )
   end

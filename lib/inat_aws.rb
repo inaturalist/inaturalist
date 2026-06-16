@@ -1,12 +1,12 @@
 #encoding: utf-8
 class INatAWS
 
-  def self.config
-    YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
+  def self.config_cloudfront
+    YAML.load_file(File.join(Rails.root, "config", "cloudfront.yml"))
   end
 
   def self.cloudfront_invalidate(path)
-    config = INatAWS.config
+    config = INatAWS.config_cloudfront
     return unless Rails.env.production? &&
       path &&
       config["access_key_id"] &&
