@@ -2435,6 +2435,7 @@ describe Observation, "sound_url" do
     sound = LocalSound.make!( user: observation.user )
     ObservationSound.make!( observation: observation, sound: sound )
     ModeratorAction.make!( resource: sound, action: "hide" )
+    observation.reload
     expect( sound.hidden? ).to be true
     expect( observation.sound_url ).to be_nil
   end
