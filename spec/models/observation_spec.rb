@@ -1935,6 +1935,99 @@ describe Observation do
       ).to be_blank
     end
   end
+
+  describe "quality_metrics_pass" do
+    it "returns true if there are no metrics to fail" do
+      o = make_research_grade_candidate_observation
+      expect( o.quality_metrics_pass? ).to be true
+    end
+
+    it "returns true if all quality metrics pass" do
+      o = make_research_grade_candidate_observation
+      QualityMetric::METRICS.each do | metric |
+        QualityMetric.make!( observation: o, metric: metric, agree: true )
+      end
+      expect( o.quality_metrics_pass? ).to be true
+    end
+
+    it "returns true if any quality metrics pass" do
+      QualityMetric::METRICS.each do | metric |
+        o = make_research_grade_candidate_observation
+        QualityMetric.make!( observation: o, metric: metric, agree: true )
+        expect( o.quality_metrics_pass? ).to be true
+      end
+    end
+
+    it "returns false any quality metrics fail" do
+      QualityMetric::METRICS.each do | metric |
+        o = make_research_grade_candidate_observation
+        QualityMetric.make!( observation: o, metric: metric, agree: false )
+        expect( o.quality_metrics_pass? ).to be false
+      end
+    end
+
+    it "returns true if a quality metrics votes offset each other" do
+      QualityMetric::METRICS.each do | metric |
+        o = make_research_grade_candidate_observation
+        QualityMetric.make!( observation: o, metric: metric, agree: true )
+        QualityMetric.make!( observation: o, metric: metric, agree: false )
+        expect( o.quality_metrics_pass? ).to be true
+      end
+    end
+
+    it "accepts an array of metrics to check against" do
+      o = make_research_grade_candidate_observation
+      QualityMetric.make!( observation: o, metric: QualityMetric::WILD, agree: false )
+      expect( o.quality_metrics_pass? ).to be false
+      expect( o.quality_metrics_pass?(
+        metrics: QualityMetric::METRICS - [QualityMetric::WILD]
+      ) ).to be true
+    end
+  end
+
+  describe "get_quality_grade" do
+    it "considers high quality observations research grade" do
+      o = make_research_grade_observation
+      expect( o.get_quality_grade ).to be Observation::RESEARCH_GRADE
+    end
+
+    it "considers observations failing quality metrics to be casual" do
+      o = make_research_grade_observation
+      QualityMetric.make!( observation: o, metric: QualityMetric::WILD, agree: false )
+      expect( o.get_quality_grade ).to be Observation::CASUAL
+    end
+
+    it "accepts an array of metrics to check against" do
+      o = make_research_grade_observation
+      QualityMetric.make!( observation: o, metric: QualityMetric::WILD, agree: false )
+      expect( o.get_quality_grade ).to be Observation::CASUAL
+      expect( o.get_quality_grade(
+        metrics: QualityMetric::METRICS - [QualityMetric::WILD]
+      ) ).to be Observation::RESEARCH_GRADE
+    end
+  end
+
+  describe "quality_grade_if_not_captive" do
+    it "returns nil if the observation is not captive" do
+      o = make_research_grade_observation
+      expect( o.quality_grade_if_not_captive ).to be_nil
+    end
+
+    it "considers observations only failing wild metrics to be research grade" do
+      o = make_research_grade_observation
+      QualityMetric.make!( observation: o, metric: QualityMetric::WILD, agree: false )
+      expect( o.get_quality_grade ).to be Observation::CASUAL
+      expect( o.quality_grade_if_not_captive ).to be Observation::RESEARCH_GRADE
+    end
+
+    it "considers observations only failing multiple metrics to be casual" do
+      o = make_research_grade_observation
+      QualityMetric.make!( observation: o, metric: QualityMetric::WILD, agree: false )
+      QualityMetric.make!( observation: o, metric: QualityMetric::DATE, agree: false )
+      expect( o.get_quality_grade ).to be Observation::CASUAL
+      expect( o.quality_grade_if_not_captive ).to be Observation::CASUAL
+    end
+  end
 end
 
 describe Observation, "probably_captive?" do
