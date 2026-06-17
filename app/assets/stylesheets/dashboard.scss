@@ -84,15 +84,6 @@
   padding: 20px 0 20px 0;
   position: relative;
 }
-.timeline:before {
-  top: 0;
-  bottom: 0;
-  position: absolute;
-  content: " ";
-  width: 4px;
-  background-color: #eeeeee;
-  margin-left: 25px;
-}
 .timeline li {
   margin-bottom: 20px;
   position: relative;
@@ -139,38 +130,7 @@
   background: -moz-linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
   background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0)); /* Standard syntax */
 }
-/* Udder****************************************** */
 
-.timeline > li > .timeline-panel:before {
-  position: absolute;
-  top: 11px;
-  right: -16px;
-  display: inline-block;
-  border-top: 10px solid transparent;
-  border-left: 10px solid #ccc;
-  border-right: 0 solid #ccc;
-  border-bottom: 10px solid transparent;
-  content: " ";
-  border-left-width: 0;
-  border-right-width: 15px;
-  left: -15px;
-  right: auto;
-}
-.timeline > li > .timeline-panel:after {
-  position: absolute;
-  top: 12px;
-  right: -15px;
-  display: inline-block;
-  border-top: 9px solid transparent;
-  border-left: 9px solid #f2f2f2;
-  border-right: 0 solid #f2f2f2;
-  border-bottom: 9px solid transparent;
-  content: " ";
-  border-left-width: 0;
-  border-right-width: 14px;
-  left: -14px;
-  right: auto;
-}
 /* Badge************************************* */
 
 .timeline > li > .timeline-badge {
@@ -217,9 +177,6 @@
 .timeline-badge > i {
   vertical-align: middle;
 }
-.timeline-badge.primary {
-  background-color: #2e6da4 !important;
-}
 .timeline-badge.success {
   background-color: #3f903f !important;
 }
@@ -228,12 +185,6 @@
 }
 .timeline-badge.plain {
   background-color: #ffffff !important;
-}
-.timeline-badge.danger {
-  background-color: #d9534f !important;
-}
-.timeline-badge.info {
-  background-color: #5bc0de !important;
 }
 
 /* Panel Content************************************* */
@@ -279,6 +230,29 @@ h2.timeline-title { /* fix - added h2 */
 }
 .timeline-heading {
   background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.timeline-heading > .timeline-badge {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 1em;
+  border-radius: 50%;
+}
+
+.timeline-heading > .timeline-badge > img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.timeline-heading > h2.timeline-title {
+  flex: 1;
+  min-width: 0;
 }
 .timeline-body {
   padding: 15px 15px 15px 15px;

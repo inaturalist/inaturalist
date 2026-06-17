@@ -10,27 +10,28 @@
         notifier = notifying_update.notifier
         is_mention = ( notification == "mention" )
       %li.observation_multiple_added
-        - if notification == "committed"
-          .timeline-badge.warning
-            %i.glyphicon.glyphicon.glyphicon-random
-        - elsif ( notification == "new_observations" && resource.class.name == "Place" )
-          .timeline-badge.success
-            %i.glyphicon.glyphicon-map-marker
-        - else
-          .timeline-badge.plain
-            = link_to update_image_for( notifying_update ), resource
-        - if ["activity","curator_change","invited","created_post"].include? notification
-          :ruby
-            glytype = case notification
-              when "activity" then "bookmark"
-              when "curator_change" then "user"
-              when "invited" then "send"
-              when "created_post" then "pencil"
-            end
-          .sub-badge
-            %i{ class: "glyphicon glyphicon-#{glytype}" }
         .timeline-panel
           .timeline-heading
+            - if notification == "committed"
+              .timeline-badge.warning
+                %i.glyphicon.glyphicon.glyphicon-random
+            - elsif ( notification == "new_observations" && resource.class.name == "Place" )
+              .timeline-badge.success
+                %i.glyphicon.glyphicon-map-marker
+            - else
+              .timeline-badge.plain
+                = link_to update_image_for( notifying_update ), resource
+                %# TODO: verify sub-badge renders correctly after badge moved into timeline-heading (was absolutely positioned relative to li)
+                - if ["activity","curator_change","invited","created_post"].include? notification
+                  :ruby
+                    glytype = case notification
+                      when "activity" then "bookmark"
+                      when "curator_change" then "user"
+                      when "invited" then "send"
+                      when "created_post" then "pencil"
+                    end
+                  .sub-badge
+                    %i{ class: "glyphicon glyphicon-#{glytype}" }
             %h2.timeline-title
               - if is_mention
                 = link_to generic_edit_user_url( anchor: "activity-settings" ), class: "pull-right update-settings", target: "_blank", rel: "noopener noreferrer" do
