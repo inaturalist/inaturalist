@@ -1,0 +1,44 @@
+{
+  "name": "Claude Code Sandbox",
+  "build": { "dockerfile": "Dockerfile" },
+
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "vscode",
+
+  "containerEnv": {
+    "INAT_DB_HOST": "host.docker.internal",
+    "INAT_ES_HOST": "host.docker.internal"
+  },
+
+  // NET_ADMIN/NET_RAW let init-firewall.sh program iptables. add-host wires
+  // host.docker.internal to the Docker host gateway so the container can reach
+  // the host-run Rails/API servers and backing services (pg/redis/es/memcached).
+  // --env-file loads credentials from a gitignored file (set once, no exporting
+  // on each launch). Create it from .env.local.example. Required keys:
+  //   CLAUDE_CODE_OAUTH_TOKEN  (from `claude setup-token` on the host)
+  //   GH_TOKEN                 (a dedicated READ-ONLY GitHub PAT — NOT your
+  //                             normal write-capable gh login; gh/git use it)
+  "mounts": [
+    "source=${localWorkspaceFolder}/../iNaturalistAPI,target=/iNaturalistAPI,type=bind,consistency=cached"
+  ],
+
+  "runArgs": [
+    "--cap-add=NET_ADMIN",
+    "--cap-add=NET_RAW",
+    "--add-host=host.docker.internal:host-gateway",
+    "--env-file=${localWorkspaceFolder}/.devcontainer/.env.local"
+  ],
+
+  // Apply the egress allowlist on every start (iptables rules don't survive a
+  // container stop/start, so postCreate alone would leave restarts unprotected).
+  // Runs via passwordless sudo (granted to vscode by the base image).
+  "postStartCommand": "sudo /usr/local/bin/init-firewall.sh",
+
+  // After image build: install gems and create/migrate both databases so tests
+  // can run immediately without manual setup. Requires INAT_DB_HOST in .env.local.
+  "postCreateCommand": "cd /workspace && (bundle check || bundle install --jobs 4) && bundle exec rake db:create db:migrate && RAILS_ENV=test bundle exec rake db:create db:migrate && npm install"
+
+  // No forwardPorts: the Rails/API servers run on the host and are reached via
+  // host.docker.internal, not as container-listening ports.
+}
