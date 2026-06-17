@@ -90,6 +90,12 @@ jobs:
       run: |
         curl --verbose --show-error http://localhost:9200
 
+    - name: Cache apt packages
+      uses: actions/cache@v4
+      with:
+        path: /var/cache/apt/archives
+        key: apt-packages-${{ runner.os }}-${{ hashFiles('.github/workflows/CI-build-test.yml') }}
+
     - name: Install dependencies
       timeout-minutes: 5
       run: |
