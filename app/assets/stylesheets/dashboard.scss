@@ -210,28 +210,6 @@
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
 }
-button.btn_expand {
-  background-color: #eee;
-  float: right
-}
-button.btn_expand.collapsed .expand_active {
-  display: none;
-}
-button.btn_expand.collapsed .expand_inactive {
-  display: block;
-}
-button.btn_expand .expand_active {
-  display: block;
-}
-button.btn_expand .expand_inactive {
-  display: none;
-}
-
-@media ( max-width: $sm-max ) {
-  .btn_expand_label {
-    display: none;
-  }
-}
 
 .sub-badge > i {
   vertical-align: middle;
@@ -414,11 +392,10 @@ div.media-body > ul {
 ------------------------- */
 
 .timeline-footer {
+  display: flex;
+  gap: 15px;
   margin-top: 0;
-  padding: 0 15px 15px 15px
-}
-.timeline-footer > .btn {
-  margin-right: 15px;
+  padding: 0 15px 15px 15px;
 }
 
 .thumbnail > .capt {
@@ -449,6 +426,43 @@ li > .thumbnail.first {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.timeline-footer > button.btn_expand {
+  // background-color: #eee;
+  margin-left: auto;
+  min-width: 0;
+}
+
+.timeline-footer > button.btn_expand .expand_inactive,
+.timeline-footer > button.btn_expand .expand_active {
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.timeline-footer > button.btn_expand.collapsed .expand_active {
+  display: none;
+}
+.timeline-footer > button.btn_expand.collapsed .expand_inactive {
+  display: flex;
+}
+.timeline-footer > button.btn_expand .expand_active {
+  display: flex;
+}
+.timeline-footer > button.btn_expand .expand_inactive {
+  display: none;
+}
+
+.btn_expand_label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  min-width: 0;
+
+  @media ( max-width: 420px ) {
+    display: none;
+  }
 }
 
 .timeline-footer > a.btn_settings {
