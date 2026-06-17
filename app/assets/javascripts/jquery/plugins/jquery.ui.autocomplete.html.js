@@ -14,7 +14,7 @@ var proto = $.ui.autocomplete.prototype,
 function filter( array, term ) {
 	var matcher = new RegExp( $.ui.autocomplete.escapeRegex(term), "i" );
 	return $.grep( array, function(value) {
-		return matcher.test( $( "<div>" ).html( value.label || value.value || value ).text() );
+		return matcher.test( $( "<div>" ).text( value.label || value.value || value ).text() );
 	});
 }
 
@@ -32,7 +32,7 @@ $.extend( proto, {
 	_renderItem: function( ul, item) {
 		return $( "<li></li>" )
 			.data( "item.autocomplete", item )
-			.append( $( "<a></a>" )[ this.options.html ? "html" : "text" ]( item.label ) )
+			.append( $( "<a></a>" ).text( item.label ) )
 			.appendTo( ul );
 	}
 });
