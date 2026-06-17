@@ -97,12 +97,11 @@ jobs:
         key: apt-packages-${{ runner.os }}-${{ hashFiles('.github/workflows/CI-build-test.yml') }}
 
     - name: Install dependencies
-      timeout-minutes: 5
+      timeout-minutes: 10
       run: |
-        echo 'Acquire::http::Timeout "60";' | sudo tee /etc/apt/apt.conf.d/99timeout
-        echo 'Acquire::Retries "3";' | sudo tee -a /etc/apt/apt.conf.d/99timeout
         sudo apt-get update --fix-missing
-        sudo apt-get -y install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
+        sudo apt-get -y install nala
+        sudo nala install --assume-yes --no-autoremove libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg < /dev/null
 
     - name: Use Ruby
       uses: ruby/setup-ruby@v1
