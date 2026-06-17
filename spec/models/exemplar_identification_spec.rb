@@ -147,6 +147,97 @@ describe ExemplarIdentification do
       identification.update( taxon: genus )
       expect( identification.exemplar_identification.active? ).to be false
     end
+
+    describe "from associations" do
+      let!( :observation ) do
+        observation = Observation.make!( taxon: species )
+        photo = LocalPhoto.make!( user: observation.user )
+        ObservationPhoto.make!( observation: observation, photo: photo )
+        sound = LocalSound.make!( user: observation.user )
+        ObservationSound.make!( observation: observation, sound: sound )
+        observation.reload
+      end
+      let!( :identification ) do
+        Identification.make!( observation: observation, taxon: species, body: "thebody" )
+      end
+      let( :exemplar_identification ) do
+        identification.exemplar_identification
+      end
+      let( :admin ) { make_admin }
+
+      it "sets active to false when IDs are flagged" do
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be true
+        Flag.make!( flaggable: identification )
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be false
+      end
+
+      it "sets active to false when IDs are hidden" do
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be true
+        ModeratorAction.create(
+          action: ModeratorAction::HIDE,
+          resource: identification,
+          user: admin,
+          reason: Faker::Lorem.sentence
+        )
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be false
+      end
+
+      it "sets active to false when observations are flagged" do
+        exemplar_identification.reload
+        observation.reload
+        expect( exemplar_identification.active? ).to be true
+        Flag.make!( flaggable: observation )
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be false
+      end
+
+      it "sets active to false when observations photos are flagged" do
+        exemplar_identification.reload
+        observation.reload
+        expect( exemplar_identification.active? ).to be true
+        Flag.make!( flaggable: observation.photos.first )
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be false
+      end
+
+      it "sets active to false when observations sounds are flagged" do
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be true
+        Flag.make!( flaggable: observation.sounds.first )
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be false
+      end
+
+      it "sets active to false when photos are hidden" do
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be true
+        ModeratorAction.create(
+          action: ModeratorAction::HIDE,
+          resource: observation.photos.first,
+          user: admin,
+          reason: Faker::Lorem.sentence
+        )
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be false
+      end
+
+      it "sets active to false when sounds are hidden" do
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be true
+        ModeratorAction.create(
+          action: ModeratorAction::HIDE,
+          resource: observation.sounds.first,
+          user: admin,
+          reason: Faker::Lorem.sentence
+        )
+        exemplar_identification.reload
+        expect( exemplar_identification.active? ).to be false
+      end
+    end
   end
 
   describe "elastic indexing" do

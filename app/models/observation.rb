@@ -471,6 +471,7 @@ class Observation < ApplicationRecord
   after_save :set_taxon_photo
   after_save :create_observation_review
   after_save :reassess_annotations
+  after_save :reassess_exemplar_identifications
   after_create :set_uri
   after_commit :update_user_counter_caches_after_create, on: :create
   after_commit :update_user_counter_caches_after_destroy, on: :destroy
@@ -2983,6 +2984,13 @@ class Observation < ApplicationRecord
     true
   end
 
+  def reassess_exemplar_identifications
+    return true unless saved_change_to_taxon_id?
+
+    identifications.reload
+    identifications.each( &:update_exemplar_identification )
+  end
+
   def create_deleted_observation
     DeletedObservation.create(
       observation_id: id,
@@ -3375,6 +3383,8 @@ class Observation < ApplicationRecord
     quality_grade_will_change!
     save
     evaluate_new_flag_for_spam(flag)
+    identifications.reload
+    identifications.each( &:update_exemplar_identification )
   end
 
   def mentioned_users

@@ -19,6 +19,7 @@ const SET_WANTED = "taxa-show/taxon/SET_WANTED";
 const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 const SET_IDENTIFICATIONS = "taxa-show/taxon/SET_IDENTIFICATIONS";
 const SET_IDENTIFICATIONS_QUERY = "taxa-show/taxon/SET_IDENTIFICATIONS_QUERY";
+const SET_IDENTIFICATIONS_AVAILABLE = "taxa-show/taxon/SET_IDENTIFICATIONS_AVAILABLE";
 const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
 const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
@@ -58,6 +59,7 @@ export default function reducer( state = { counts: {} }, action ) {
         upvoted: "true",
         sortKey: "votesDesc"
       };
+      delete newState.identificationsAvailable;
       delete newState.species;
       delete newState.taxonChange;
       delete newState.trending;
@@ -100,6 +102,9 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_IDENTIFICATIONS_QUERY:
       newState.identificationsQuery = action.parameters;
+      break;
+    case SET_IDENTIFICATIONS_AVAILABLE:
+      newState.identificationsAvailable = action.available;
       break;
     case SET_WANTED:
       newState.wanted = action.taxa;
@@ -720,6 +725,15 @@ export function fetchSimilar( ) {
   };
 }
 
+export function setIdentificationsAvailable( available ) {
+  return dispatch => {
+    dispatch( {
+      type: SET_IDENTIFICATIONS_AVAILABLE,
+      available
+    } );
+  };
+}
+
 export function setIdentificationsQuery( parameters ) {
   return dispatch => {
     dispatch( {
@@ -770,18 +784,22 @@ export function fetchIdentifications( options = { } ) {
           && _.isEmpty( response.results )
           && response.category_counts.not_nominated > 0
         ) {
-          dispatch( setIdentificationsQuery( {
-            ...state.taxon?.identificationsQuery,
-            upvoted: null,
-            downvoted: null,
-            nominated: "false",
-            q: null,
-            term_value_id: null,
-            order_by: "created_at",
-            order: "desc",
-            sortKey: "newest"
-          } ) );
-          return;
+          if ( state.config?.currentUser?.canNominateHelpfulIDTips( ) ) {
+            dispatch( setIdentificationsQuery( {
+              ...state.taxon?.identificationsQuery,
+              upvoted: null,
+              downvoted: null,
+              nominated: "false",
+              q: null,
+              term_value_id: null,
+              order_by: "created_at",
+              order: "desc",
+              sortKey: "newest"
+            } ) );
+            return;
+          }
+
+          dispatch( setIdentificationsAvailable( false ) );
         }
         dispatch( setIdentifications( response ) );
       },
