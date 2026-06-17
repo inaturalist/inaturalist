@@ -202,6 +202,9 @@ class ActivityItem extends React.Component {
     if ( !this.identificationHasNomination( ) ) {
       return null;
     }
+    if ( !config?.currentUser ) {
+      return null;
+    }
 
     const votesFor = [];
     const votesAgainst = [];
@@ -213,7 +216,7 @@ class ActivityItem extends React.Component {
       } else if ( v.vote_flag === false ) {
         votesAgainst.push( v );
       }
-      if ( v.user?.id === config.currentUser.id ) {
+      if ( v.user?.id === config.currentUser?.id ) {
         userVotedFor = ( v.vote_flag === true );
         userVotedAgainst = ( v.vote_flag === false );
       }
@@ -303,7 +306,6 @@ class ActivityItem extends React.Component {
       return ( <div /> );
     }
     const { taxon } = item;
-    const { currentUser } = config;
     const loggedIn = config?.currentUser;
     const userCanInteract = config?.currentUserCanInteractWithResource( observation );
     const canSeeHidden = config && config.currentUser && (
@@ -666,7 +668,7 @@ class ActivityItem extends React.Component {
         />
       );
     }
-    if ( currentUser?.canViewHelpfulIDTips( ) && this.identificationHasNomination( ) ) {
+    if ( this.identificationHasNomination( ) ) {
       footers.nomination = (
         <>
           <span

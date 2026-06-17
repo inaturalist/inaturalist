@@ -925,10 +925,10 @@ class User < ApplicationRecord
   end
 
   def content_creation_restrictions?
-    return false unless CONFIG&.content_creation_restriction_days&.positive?
     return false if is_admin?
     return false if is_curator?
     return true unless privileged_with?( UserPrivilege::ORGANIZER )
+    return false unless CONFIG&.content_creation_restriction_days&.positive?
 
     created_at > CONFIG.content_creation_restriction_days.days.ago
   end

@@ -93,7 +93,7 @@ class IdentificationForm extends React.Component {
             textareaClassName="form-control"
             mentions
           />
-          { currentUser?.canViewHelpfulIDTips( ) && (
+          { currentUser?.canNominateHelpfulIDTips( ) && (
             <div className="nomination">
               <input
                 type="checkbox"

@@ -9569,6 +9569,11 @@ en:
           # Placeholder text for a search field allowing users to search on identification
           # bodies, or search on usernames of who added the identifications
           search_identifications: Search Identifications by text or username
+          # Empty state message saying there are no identifications to show because
+          # none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            There are no nominated and upvoted identifications for this organism
+            right now, please check back soon!
           sort:
             # sort option for displaying results with the most votes first
             highest_to_lowest_votes: "Sort: Highest to lowest votes"

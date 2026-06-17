@@ -44,6 +44,9 @@ class ExemplarIdentification < ApplicationRecord
   def set_active
     unless identification.current? &&
         identification.taxon.species_or_lower? &&
+        !identification.hidden? &&
+        !identification.flagged? &&
+        identification.observation.appropriate? &&
         ( !identification.observation.taxon ||
           identification.observation.taxon.self_and_ancestor_ids.include?( identification.taxon_id )
         )

@@ -185,7 +185,7 @@ class IdentificationsTab extends Component {
       } else if ( v.vote_flag === false ) {
         votesAgainst.push( v );
       }
-      if ( v.user?.id === config.currentUser.id ) {
+      if ( v.user?.id === config.currentUser?.id ) {
         userVotedFor = ( v.vote_flag === true );
         userVotedAgainst = ( v.vote_flag === false );
       }
@@ -220,7 +220,9 @@ class IdentificationsTab extends Component {
         ) );
       }
     }
-    if ( result.nominated_by_user ) {
+    if ( result.nominated_by_user
+      && config?.currentUser?.canUnnominateIdentification( result.identification )
+    ) {
       nominationMenuItems.push( (
         <MenuItem
           key="id-unnominate"
@@ -229,7 +231,10 @@ class IdentificationsTab extends Component {
           { I18n.t( "identification_tips.remove_nomination" ) }
         </MenuItem>
       ) );
-    } else {
+    }
+    if ( !result.nominated_by_user
+      && config?.currentUser?.canNominateIdentification( result.identification )
+    ) {
       nominationMenuItems.push( (
         <MenuItem
           key="id-nominate"
@@ -250,7 +255,7 @@ class IdentificationsTab extends Component {
       />
     );
 
-    let nominatedByUserLink = result.nominated_by_user && (
+    const nominatedByUserLink = result.nominated_by_user && (
       <UserLink
         className="user"
         config={config}
@@ -337,7 +342,7 @@ class IdentificationsTab extends Component {
                   >
                     {moment.parseZone( result.nominated_at ).fromNow( )}
                   </time>
-                  { result.nominated_by_user && (
+                  { result.nominated_by_user && config.currentUser && (
                     <div className="votes">
                       <button
                         type="button"
@@ -422,8 +427,13 @@ class IdentificationsTab extends Component {
   identificationCategories( ) {
     const {
       identificationsQuery,
-      setIdentificationsQuery
+      setIdentificationsQuery,
+      config
     } = this.props;
+    if ( !config?.currentUser?.canNominateHelpfulIDTips( ) ) {
+      return null;
+    }
+
     const activeTab = this.activeTab( );
     const upvotedDisabled = this.categoryTabDisabled( "upvoted" );
     const downvotedDisabled = this.categoryTabDisabled( "downvoted" );
@@ -548,6 +558,72 @@ class IdentificationsTab extends Component {
     );
   }
 
+  searchForm( ) {
+    const {
+      identificationsQuery,
+      setIdentificationsQuery,
+      identificationsAvailable,
+      config
+    } = this.props;
+    if ( identificationsAvailable === false && !config?.currentUser?.canNominateHelpfulIDTips( ) ) {
+      return null;
+    }
+    return (
+      <form
+        className="search"
+        onSubmit={e => {
+          setIdentificationsQuery( {
+            ...identificationsQuery,
+            q: $( e.target ).find( "[name='q']" ).val( ),
+            page: null
+          } );
+          e.preventDefault( );
+        }}
+      >
+        <div className="input-group">
+          <div className="search-input">
+            <input
+              className="form-control"
+              name="q"
+              id="identifications_search_query"
+              type="text"
+              placeholder={I18n.t( "views.taxa.show.identifications.search_identifications" )}
+              autoComplete="off"
+              onChange={e => {
+                this.setSearchSearchTermPresent( !_.isEmpty( e.target.value ) );
+              }}
+            />
+            { this.state.searchSearchTermPresent && (
+              <span
+                type="button"
+                aria-hidden="true"
+                className="glyphicon glyphicon-remove-circle searchclear"
+                onClick={( ) => {
+                  $( "#identifications_search_query" ).val( "" );
+                  this.setSearchSearchTermPresent( false );
+                  setIdentificationsQuery( {
+                    ...identificationsQuery,
+                    q: null,
+                    page: null
+                  } );
+                }}
+              />
+            ) }
+          </div>
+          <span className="input-group-btn">
+            <input
+              type="submit"
+              className="btn btn-primary"
+              value={I18n.t( "search" )}
+            />
+          </span>
+          { this.sortSelect( ) }
+        </div>
+        { this.resultAnnotations( ) }
+      </form>
+    );
+  }
+
   sortSelect( ) {
     const {
       identificationsQuery,
@@ -643,6 +719,7 @@ class IdentificationsTab extends Component {
     const {
       response,
       identificationsQuery,
+      identificationsAvailable,
       setIdentificationsQuery,
       updateCurrentUser,
       bounds,
@@ -655,15 +732,17 @@ class IdentificationsTab extends Component {
     } = this.props;
     let content;
     let pagination;
-    if ( !currentUser?.canViewHelpfulIDTips( ) ) {
-      return null;
-    }
     const responsive = currentUser?.isAdmin
       && currentUser?.isInTestGroup( "responsive-taxon-detail" );
+    const activeTab = this.activeTab( );
     if ( response?.results?.length === 0 ) {
       content = (
         <div className="no-identifications">
-          { I18n.t( "no_results_found" ) }
+          {
+            activeTab === "upvoted" && identificationsAvailable === false
+              ? I18n.t( "views.taxa.show.identifications.no_nominated_and_upvoted_identifications" )
+              : I18n.t( "no_results_found" )
+          }
         </div>
       );
     } else if ( response?.results?.length > 0 ) {
@@ -693,58 +772,7 @@ class IdentificationsTab extends Component {
             </h2>
             <div className={`search-container${response?.loading ? " disabled" : ""}`}>
               {this.identificationCategories( )}
-              <form
-                className="search"
-                onSubmit={e => {
-                  setIdentificationsQuery( {
-                    ...identificationsQuery,
-                    q: $( e.target ).find( "[name='q']" ).val( ),
-                    page: null
-                  } );
-                  e.preventDefault( );
-                }}
-              >
-                <div className="input-group">
-                  <div className="search-input">
-                    <input
-                      className="form-control"
-                      name="q"
-                      id="identifications_search_query"
-                      type="text"
-                      placeholder={I18n.t( "views.taxa.show.identifications.search_identifications" )}
-                      autoComplete="off"
-                      onChange={e => {
-                        this.setSearchSearchTermPresent( !_.isEmpty( e.target.value ) );
-                      }}
-                    />
-                    { this.state.searchSearchTermPresent && (
-                      <span
-                        type="button"
-                        aria-hidden="true"
-                        className="glyphicon glyphicon-remove-circle searchclear"
-                        onClick={( ) => {
-                          $( "#identifications_search_query" ).val( "" );
-                          this.setSearchSearchTermPresent( false );
-                          setIdentificationsQuery( {
-                            ...identificationsQuery,
-                            q: null,
-                            page: null
-                          } );
-                        }}
-                      />
-                    ) }
-                  </div>
-                  <span className="input-group-btn">
-                    <input
-                      type="submit"
-                      className="btn btn-primary"
-                      value={I18n.t( "search" )}
-                    />
-                  </span>
-                  { this.sortSelect( ) }
-                </div>
-                { this.resultAnnotations( ) }
-              </form>
+              {this.searchForm( )}
             </div>
             { response?.loading ? (
               <div className="loading">
@@ -796,6 +824,7 @@ class IdentificationsTab extends Component {
 IdentificationsTab.propTypes = {
   response: PropTypes.object,
   identificationsQuery: PropTypes.object,
+  identificationsAvailable: PropTypes.bool,
   setIdentificationsQuery: PropTypes.func,
   updateCurrentUser: PropTypes.func,
   config: PropTypes.object,

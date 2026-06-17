@@ -348,6 +348,7 @@ class Photo < ApplicationRecord
       o.update_mappable
       Observation.set_quality_grade( o.id )
       o.elastic_index!
+      o.identifications.each( &:update_exemplar_identification )
     end
     if flags.any? {| f | !f.resolved? } && taxon_photos.any?
       taxon_photos.each( &:destroy )
@@ -366,6 +367,7 @@ class Photo < ApplicationRecord
       o.update_mappable
       Observation.set_quality_grade( o.id )
       o.elastic_index!
+      o.identifications.each( &:update_exemplar_identification )
     end
     taxa.each( &:elastic_index! )
   end
