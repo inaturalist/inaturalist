@@ -197,6 +197,7 @@ class IdentificationsTab extends Component {
       voteIdentification,
       unvoteIdentification
     } = this.props;
+    const userCanVote = config?.currentUser?.canUnnominateIdentification( result.identification );
     const annotations = (
       <div className="annotations">
         {_.map( result.identification.observation.annotations, annotation => (
@@ -354,17 +355,22 @@ class IdentificationsTab extends Component {
                   >
                     {moment.parseZone( result.nominated_at ).fromNow( )}
                   </time>
-                  { result.nominated_by_user && config.currentUser && (
+                  { result.nominated_by_user && (
                     <div className="votes">
-                      <button
-                        type="button"
-                        className="btn btn-nostyle"
-                        onClick={voteAction}
-                        aria-label={I18n.t( "agree_" )}
-                        title={I18n.t( "agree_" )}
-                      >
+                      { userCanVote && (
+                        <button
+                          type="button"
+                          className="btn btn-nostyle"
+                          onClick={voteAction}
+                          aria-label={I18n.t( "agree_" )}
+                          title={I18n.t( "agree_" )}
+                        >
+                          <i className={`fa ${agreeClass}`} />
+                        </button>
+                      ) }
+                      { !userCanVote && (
                         <i className={`fa ${agreeClass}`} />
-                      </button>
+                      )}
                       { !_.isEmpty( votesFor ) && (
                         <UsersPopover
                           users={_.map( votesFor, "user" )}
@@ -374,15 +380,20 @@ class IdentificationsTab extends Component {
                           )}
                         />
                       ) }
-                      <button
-                        type="button"
-                        onClick={unvoteAction}
-                        className="btn btn-nostyle"
-                        aria-label={I18n.t( "disagree_" )}
-                        title={I18n.t( "disagree_" )}
-                      >
+                      { userCanVote && (
+                        <button
+                          type="button"
+                          onClick={unvoteAction}
+                          className="btn btn-nostyle"
+                          aria-label={I18n.t( "disagree_" )}
+                          title={I18n.t( "disagree_" )}
+                        >
+                          <i className={`fa ${disagreeClass}`} />
+                        </button>
+                      ) }
+                      { !userCanVote && (
                         <i className={`fa ${disagreeClass}`} />
-                      </button>
+                      )}
                       { !_.isEmpty( votesAgainst ) && (
                         <UsersPopover
                           users={_.map( votesAgainst, "user" )}
