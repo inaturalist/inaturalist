@@ -15,8 +15,8 @@ class CloudfrontACLUpdater
 
     cf_config = YAML.load_file( File.join( Rails.root, "config", "cloudfront.yml" ) )
     @aws_client = ::Aws::WAFV2::Client.new(
-      access_key_id: cf_config["access_key_id"],
-      secret_access_key: cf_config["secret_access_key"],
+      access_key_id: cf_config["cloudfront_access_key_id"],
+      secret_access_key: cf_config["cloudfront_secret_access_key"],
       region: CONFIG.s3_region
     )
     @ip_set_v4 = get_ip_set_v4
