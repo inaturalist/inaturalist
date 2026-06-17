@@ -98,10 +98,17 @@ jobs:
 
     - name: Install dependencies
       timeout-minutes: 10
+      env:
+        APT_PACKAGES: libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
       run: |
         sudo apt-get update --fix-missing
-        sudo apt-get -y install nala
-        sudo nala install --assume-yes --no-autoremove libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg < /dev/null
+        sudo apt-get -y --print-uris install $APT_PACKAGES | grep -oP "(?<=')https?://[^']*" > "$RUNNER_TEMP/apt-uris.txt" || true
+        if [ -s "$RUNNER_TEMP/apt-uris.txt" ]; then
+          echo "Downloading $(wc -l < "$RUNNER_TEMP/apt-uris.txt") packages in parallel..."
+          sudo aria2c -d /var/cache/apt/archives -i "$RUNNER_TEMP/apt-uris.txt" \
+            -j 16 -x 4 --allow-overwrite=true --timeout=60 --max-tries=3 --retry-wait=5 -q || true
+        fi
+        sudo apt-get -y install $APT_PACKAGES
 
     - name: Use Ruby
       uses: ruby/setup-ruby@v1
