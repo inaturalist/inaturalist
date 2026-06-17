@@ -102,17 +102,101 @@ class IdentificationsTab extends Component {
     } );
   }
 
+  panelMenu( result ) {
+    const {
+      config,
+      nominateIdentification,
+      unnominateIdentification
+    } = this.props;
+    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
+    const nominationMenuItems = [];
+    if ( loggedInUser ) {
+      nominationMenuItems.push( (
+        <MenuItem
+          key={`id-flag-${result.id}`}
+          eventKey="flag"
+        >
+          { I18n.t( "flag" ) }
+        </MenuItem>
+      ) );
+      if ( loggedInUser.isCurator ) {
+        nominationMenuItems.push( (
+          <MenuItem
+            key={`id-hide-${result.uuid}`}
+            eventKey="hide"
+          >
+            { I18n.t( "hide_content" ) }
+          </MenuItem>
+        ) );
+      }
+    }
+    if ( result.nominated_by_user
+      && config?.currentUser?.canUnnominateIdentification( result.identification )
+    ) {
+      nominationMenuItems.push( (
+        <MenuItem
+          key="id-unnominate"
+          eventKey="unnominate"
+        >
+          { I18n.t( "identification_tips.remove_nomination" ) }
+        </MenuItem>
+      ) );
+    }
+    if ( !result.nominated_by_user
+      && config?.currentUser?.canNominateIdentification( result.identification )
+    ) {
+      nominationMenuItems.push( (
+        <MenuItem
+          key="id-nominate"
+          eventKey="nominate"
+        >
+          { I18n.t( "identification_tips.nominate" ) }
+        </MenuItem>
+      ) );
+    }
+    if ( _.isEmpty( nominationMenuItems ) ) {
+      return null;
+    }
+
+    return (
+      <div className="menu">
+        <span className="control-group">
+          <Dropdown
+            id="grouping-control"
+            onSelect={key => {
+              if ( key === "flag" ) {
+                const url = `/identifications/${result.identification.uuid}?_action=flag`;
+                window.open( url, "_blank", "noopener,noreferrer" );
+              } else if ( key === "hide" ) {
+                const url = `/identifications/${result.identification.uuid}?_action=hide`;
+                window.open( url, "_blank", "noopener,noreferrer" );
+              } else if ( key === "nominate" ) {
+                nominateIdentification( result.identification.uuid, result.id );
+              } else if ( key === "unnominate" ) {
+                unnominateIdentification( result.identification.uuid, result.id );
+              }
+            }}
+          >
+            <Dropdown.Toggle noCaret>
+              <i className="fa fa-chevron-down" />
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="dropdown-menu-right">
+              { nominationMenuItems }
+            </Dropdown.Menu>
+          </Dropdown>
+        </span>
+      </div>
+    );
+  }
+
   identificationPanel( result ) {
     const {
       config,
       identificationsQuery,
       setIdentificationsQuery,
-      nominateIdentification,
-      unnominateIdentification,
       voteIdentification,
       unvoteIdentification
     } = this.props;
-    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
     const annotations = (
       <div className="annotations">
         {_.map( result.identification.observation.annotations, annotation => (
@@ -199,52 +283,6 @@ class IdentificationsTab extends Component {
     const agreeClass = userVotedFor ? "fa-thumbs-up" : "fa-thumbs-o-up";
     const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
 
-    const nominationMenuItems = [];
-    if ( loggedInUser ) {
-      nominationMenuItems.push( (
-        <MenuItem
-          key={`id-flag-${result.id}`}
-          eventKey="flag"
-        >
-          { I18n.t( "flag" ) }
-        </MenuItem>
-      ) );
-      if ( loggedInUser.isCurator ) {
-        nominationMenuItems.push( (
-          <MenuItem
-            key={`id-hide-${result.uuid}`}
-            eventKey="hide"
-          >
-            { I18n.t( "hide_content" ) }
-          </MenuItem>
-        ) );
-      }
-    }
-    if ( result.nominated_by_user
-      && config?.currentUser?.canUnnominateIdentification( result.identification )
-    ) {
-      nominationMenuItems.push( (
-        <MenuItem
-          key="id-unnominate"
-          eventKey="unnominate"
-        >
-          { I18n.t( "identification_tips.remove_nomination" ) }
-        </MenuItem>
-      ) );
-    }
-    if ( !result.nominated_by_user
-      && config?.currentUser?.canNominateIdentification( result.identification )
-    ) {
-      nominationMenuItems.push( (
-        <MenuItem
-          key="id-nominate"
-          eventKey="nominate"
-        >
-          { I18n.t( "identification_tips.nominate" ) }
-        </MenuItem>
-      ) );
-    }
-
     const userLink = (
       <UserLink
         className="user"
@@ -290,33 +328,7 @@ class IdentificationsTab extends Component {
                     }}
                   />
                   {time}
-                  <div className="menu">
-                    <span className="control-group">
-                      <Dropdown
-                        id="grouping-control"
-                        onSelect={key => {
-                          if ( key === "flag" ) {
-                            const url = `/identifications/${result.identification.uuid}?_action=flag`;
-                            window.open( url, "_blank", "noopener,noreferrer" );
-                          } else if ( key === "hide" ) {
-                            const url = `/identifications/${result.identification.uuid}?_action=hide`;
-                            window.open( url, "_blank", "noopener,noreferrer" );
-                          } else if ( key === "nominate" ) {
-                            nominateIdentification( result.identification.uuid, result.id );
-                          } else if ( key === "unnominate" ) {
-                            unnominateIdentification( result.identification.uuid, result.id );
-                          }
-                        }}
-                      >
-                        <Dropdown.Toggle noCaret>
-                          <i className="fa fa-chevron-down" />
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu className="dropdown-menu-right">
-                          { nominationMenuItems }
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </span>
-                  </div>
+                  {this.panelMenu( result )}
                 </Panel.Title>
               </Panel.Heading>
               <Panel.Body>
