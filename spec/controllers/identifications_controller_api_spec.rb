@@ -365,3 +365,95 @@ describe IdentificationsController, "with an invalid JWT" do
     end
   end
 end
+
+describe IdentificationsController do
+  describe "nominate" do
+    before do
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+    end
+    let( :organizer ) do
+      old_organizer = User.make!( created_at: 2.days.ago )
+      UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: old_organizer )
+      old_organizer
+    end
+    let( :identification ) { Identification.make!( body: "the body" ) }
+    let( :exemplar_identification ) do
+      identification.exemplar_identification
+    end
+
+    it "allows admins to nominate" do
+      sign_in( make_admin )
+      post :nominate, format: :json, params: { id: identification.id }
+      expect( response ).to be_successful
+    end
+
+    it "allows curators to nominate" do
+      sign_in( make_curator )
+      post :nominate, format: :json, params: { id: identification.id }
+      expect( response ).to be_successful
+    end
+
+    it "allows older organizers to nominate" do
+      sign_in( organizer )
+      post :nominate, format: :json, params: { id: identification.id }
+      expect( response ).to be_successful
+    end
+
+    it "does not allow the identifier nominate" do
+      sign_in( identification.user )
+      post :nominate, format: :json, params: { id: identification.id }
+      expect( response ).not_to be_successful
+    end
+
+    it "does not allow other users to nominate" do
+      sign_in( User.make! )
+      post :nominate, format: :json, params: { id: identification.id }
+      expect( response ).not_to be_successful
+    end
+  end
+
+  describe "unnominate" do
+    before do
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+    end
+    let( :organizer ) do
+      old_organizer = User.make!( created_at: 2.days.ago )
+      UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: old_organizer )
+      old_organizer
+    end
+    let( :identification ) { Identification.make!( body: "the body" ) }
+    let( :exemplar_identification ) do
+      identification.exemplar_identification
+    end
+
+    it "allows admins to unnominate" do
+      sign_in( make_admin )
+      post :unnominate, format: :json, params: { id: identification.id }
+      expect( response ).to be_successful
+    end
+
+    it "allows curators to unnominate" do
+      sign_in( make_curator )
+      post :unnominate, format: :json, params: { id: identification.id }
+      expect( response ).to be_successful
+    end
+
+    it "allows older organizers to unnominate" do
+      sign_in( organizer )
+      post :unnominate, format: :json, params: { id: identification.id }
+      expect( response ).to be_successful
+    end
+
+    it "allows the identifier to unnominate" do
+      sign_in( identification.user )
+      post :unnominate, format: :json, params: { id: identification.id }
+      expect( response ).to be_successful
+    end
+
+    it "does not allow other users to unnominate" do
+      sign_in( User.make! )
+      post :unnominate, format: :json, params: { id: identification.id }
+      expect( response ).not_to be_successful
+    end
+  end
+end
