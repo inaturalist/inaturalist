@@ -51,14 +51,16 @@
 
 .dashboard-subscribe-actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+
+  @media ( min-width: $xl ) {
+    flex-direction: row;
+  }
 }
 
 .dashboard-subscribe-action {
-  width: 100%;
-  padding: 0 15px;
-
-  @media ( min-width: $md ) { width: 50%; }
+  @media ( min-width: $xl ) { flex: 1; }
 }
 
 .followee {
@@ -223,6 +225,12 @@ button.btn_expand .expand_active {
 }
 button.btn_expand .expand_inactive {
   display: none;
+}
+
+@media ( max-width: $sm-max ) {
+  .btn_expand_label {
+    display: none;
+  }
 }
 
 .sub-badge > i {
@@ -469,11 +477,7 @@ li.taxon_change > timeline-body > div {
   border: 1px solid transparent;
   border-radius: 4px;
 }
-li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid {
-  margin-right: -5px;
-  margin-left: -5px;
-}
-/*  Location Subscription Observations Added 
+/*  Location Subscription Observations Added
 ------------------------- */
 
 .location_observation_added > .timeline-badge {
@@ -517,19 +521,60 @@ li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-ob
 /* Observations Added - Gallery (Mulitiple Photos)
 ------------------------- */
 
-li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid > ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin-left: 0;
-  padding-left: 0;
-}
-li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid > ul > li.dashboard-obs-thumb {
-  width: 25%;
-  padding: 0 5px;
-}
-li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid > ul > li.dashboard-obs-thumb > a > .thumbnail {
-  margin-bottom: 10px;
+li.observation_multiple_added > .timeline-panel > .timeline-body > .dashboard-obs-grid {
+  margin-right: -5px;
+  margin-left: -5px;
+
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    row-gap: 10px;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+
+    > li.dashboard-obs-thumb {
+      width: 50%;
+      padding: 0 5px;
+
+      aspect-ratio: 9 / 10;
+      min-height: 0;
+      overflow: hidden;
+
+      margin-bottom: 0;
+
+      @media ( min-width: $sm ) { width: 25%; }
+
+      > .thumbnail {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin: 0 !important;
+        overflow: hidden;
+
+        > a {
+          display: block;
+          flex: 1 1 auto;
+          min-height: 0;
+          overflow: hidden;
+        }
+
+        .scaledimg,
+        a.icon_container {
+          height: 100%;
+          min-height: 0;
+        }
+
+        a.icon_container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+        }
+      }
+    }
+  }
 }
 
 /* Project Role Change

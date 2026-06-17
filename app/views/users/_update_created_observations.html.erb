@@ -26,8 +26,8 @@
     <% end %>
     <% if observations.count > 4 -%>
       <button type="button" class="btn btn-sm btn-default btn_expand collapsed pull-right" data-toggle="collapse" data-target="<%="#expand#{target_id}" %>" aria-pressed="false" autocomplete="off">
-        <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> <%= t(:show_more) %>...</span>
-        <span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> <%= t(:show_less) %></span>
+        <span class="expand_inactive"><i class="glyphicon glyphicon-collapse-down"></i> <span class="btn_expand_label"><%= t(:show_more) %>...</span></span>
+        <span class="expand_active"><i class="glyphicon glyphicon-collapse-up"></i> <span class="btn_expand_label"><%= t(:show_less) %></span></span>
       </button>
     <% end -%>    
   </div>
