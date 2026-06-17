@@ -66,6 +66,7 @@ gem "i18n-js", git: "https://github.com/fnando/i18n-js.git", tag: "v3.7.0"
 gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
 gem "irwi", git: "https://github.com/inaturalist/irwi.git", ref: "ruby3"
 gem "json"
+gem "jwt", "~> 2.7.0"
 gem "makara", git: "https://github.com/instacart/makara.git", ref: "9e7960558a75aed3f97ba4cbab61abb64687ec3c"
 gem "multi_json", "~> 1.15.0"
 gem "nokogiri"
