@@ -90,12 +90,16 @@ jobs:
       run: |
         curl --verbose --show-error http://localhost:9200
 
+    - name: Compute cache date
+      id: cache-date
+      run: echo "date=$(date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
     - name: Restore apt package cache
       id: apt-cache
       uses: actions/cache@v4
       with:
         path: ~/apt-packages
-        key: apt-packages-${{ runner.os }}-${{ hashFiles('.github/workflows/CI-pre-build.yml', '.github/workflows/CI-build-test.yml') }}
+        key: apt-packages-${{ runner.os }}-${{ steps.cache-date.outputs.date }}-${{ hashFiles('.github/workflows/CI-pre-build.yml', '.github/workflows/CI-build-test.yml') }}
 
     - name: Install dependencies
       timeout-minutes: 10
