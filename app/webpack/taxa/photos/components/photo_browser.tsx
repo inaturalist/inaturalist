@@ -118,12 +118,13 @@ const PhotoBrowser = ( {
   place,
   config = {}
 }: PhotoBrowserProps ) => {
-  const sortedGroupedPhotos = useMemo( ( ) => {
-    if ( grouping.param === "taxon_id" ) {
-      return _.sortBy( _.values( groupedPhotos ), group => group.groupObject.name );
-    }
-    return _.sortBy( _.values( groupedPhotos ), "groupName" );
-  }, [groupedPhotos, grouping.param] );
+  // Computed inline rather than memoized: the store mutates the groupedPhotos
+  // container in place (groups are set empty, then re-set with photos once the
+  // async fetch resolves) without changing its object identity, so memoizing on
+  // [groupedPhotos] would strand the empty groups and never render the photos.
+  const sortedGroupedPhotos = grouping.param === "taxon_id"
+    ? _.sortBy( _.values( groupedPhotos ), group => group.groupObject.name )
+    : _.sortBy( _.values( groupedPhotos ), "groupName" );
 
   const photoLicenses = useMemo( ( ) => _.sortBy(
     _.keys( _.pickBy( iNaturalist.Licenses, ( v, k ) => k.indexOf( "cc" ) === 0 ) ),
