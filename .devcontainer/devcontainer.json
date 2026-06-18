@@ -37,7 +37,7 @@
 
   // After image build: install gems and create/migrate both databases so tests
   // can run immediately without manual setup. Requires INAT_DB_HOST in .env.local.
-  "postCreateCommand": "cd /workspace && (bundle check || bundle install --jobs 4) && bundle exec rake db:create db:migrate && RAILS_ENV=test bundle exec rake db:create db:migrate && npm install"
+  "postCreateCommand": "cd /workspace && (bundle check || bundle install --jobs 4) && npm install"
 
   // No forwardPorts: the Rails/API servers run on the host and are reached via
   // host.docker.internal, not as container-listening ports.
