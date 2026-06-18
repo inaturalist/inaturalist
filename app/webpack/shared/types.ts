@@ -64,10 +64,15 @@ export interface Observation {
 export interface CurrentUser {
   // Always set by the CurrentUser model constructor / prototype.
   isAdmin: boolean;
+  isCurator: boolean;
+  loggedIn: boolean;
   isInTestGroup: ( group: string ) => boolean;
-  canViewHelpfulIDTips: ( ) => boolean;
+  canNominateHelpfulIDTips: ( ) => boolean;
+  canNominateIdentification: ( identification: object ) => boolean;
+  canUnnominateIdentification: ( identification: object ) => boolean;
   privilegedWith: ( perm: string ) => boolean;
   // Passthrough data fields — present only when the payload includes them.
+  id?: number;
   login?: string;
   roles?: string[];
   content_creation_restrictions?: boolean;
