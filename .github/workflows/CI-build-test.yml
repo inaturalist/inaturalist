@@ -99,7 +99,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/apt-packages
-        key: apt-packages-${{ runner.os }}-${{ steps.cache-date.outputs.date }}-${{ hashFiles('.github/workflows/CI-pre-build.yml', '.github/workflows/CI-build-test.yml') }}
+        key: apt-packages-${{ runner.os }}-${{ steps.cache-date.outputs.date }}-${{ hashFiles('.github/apt-packages.txt') }}
 
     - name: Install dependencies
       timeout-minutes: 10
@@ -114,10 +114,10 @@ jobs:
           echo "Cache miss - downloading from mirror..."
           sudo apt-get update --fix-missing
         fi
-        sudo apt-get install -y --no-install-recommends \
+        xargs sudo apt-get install -y --no-install-recommends \
           -o Acquire::Retries=5 \
           -o Acquire::http::Timeout="15" \
-          libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
+          < .github/apt-packages.txt
 
     - name: Use Ruby
       uses: ruby/setup-ruby@v1
