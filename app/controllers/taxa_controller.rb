@@ -1187,6 +1187,11 @@ class TaxaController < ApplicationController
       error_text = e.message
     end
     if summary.blank?
+      if wikipedia_recently_throttled?
+        render status: 429, plain: t( :wikipedia_summary_throttled )
+        return
+      end
+
       error_text ||= "Could't retrieve the Wikipedia " \
         "summary for #{@taxon.name}.  Make sure there is actually a " \
         "corresponding article on Wikipedia."
@@ -1290,6 +1295,18 @@ class TaxaController < ApplicationController
   end
 
   private
+
+  # Whether the Wikipedia endpoint for the current locale was throttled within
+  # the retry window, so we can tell the user to try again later rather than
+  # showing a generic "not found" message.
+  def wikipedia_recently_throttled?
+    endpoint = WikipediaService.new( locale: I18n.locale ).api_endpoint
+    return false unless endpoint
+
+    endpoint.api_endpoint_caches.
+      where( "request_completed_at > ?", ApiEndpointCache::THROTTLE_RETRY_MINUTES.minutes.ago ).
+      any?( &:throttled? )
+  end
 
   def build_edit_ivars
     @observations_exist = @taxon.observations_count.positive?

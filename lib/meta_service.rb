@@ -85,6 +85,10 @@ class MetaService
       return if api_endpoint_cache.in_progress?
 
       if api_endpoint_cache.cached? && !options[:force_update]
+        # A throttled response is not a valid API response; treat it as if there
+        # was no response rather than parsing the throttling message.
+        return if api_endpoint_cache.throttled?
+
         if options[:raw_response]
           return api_endpoint_cache.response
         end
@@ -110,11 +114,21 @@ class MetaService
       )
       raise Timeout::Error
     end
+    status_code = response.code.to_i
+    # A throttling response (e.g. "You are making too many requests") may have a
+    # non-blank body and even a 200 status, so detect it explicitly and never
+    # treat it as a successful, cacheable response.
+    throttled = status_code == 429 || response.body.to_s =~ /too many requests/i
     api_endpoint_cache&.update(
       request_completed_at: Time.now,
-      success: !response.body.blank?,
+      status_code: status_code,
+      success: !throttled && !response.body.blank?,
       response: response.body
     )
+    # Treat a throttled response as if there was no response, so callers don't
+    # attempt to parse the throttling message as a valid API response.
+    return if throttled
+
     if options[:raw_response]
       return response.body
     end
