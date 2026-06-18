@@ -81,3 +81,25 @@ export interface CurrentUser {
 export interface Config {
   currentUser?: CurrentUser;
 }
+
+export interface Place {
+  id: number;
+  display_name: string;
+  [key: string]: unknown;
+}
+
+// Controlled annotation vocabulary (attributes and their values).
+export interface ControlledAttribute {
+  id: number;
+  label: string;
+}
+
+export interface ControlledValue {
+  id: number;
+  label: string;
+}
+
+export interface TermValue {
+  controlled_attribute: ControlledAttribute;
+  controlled_value: ControlledValue;
+}

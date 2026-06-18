@@ -11,7 +11,8 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../../shared/components/taxon_photo";
 import { urlForTaxonPhotos } from "../../shared/util";
 import type {
-  Photo as BasePhoto, Taxon, Observation as BaseObservation, Config
+  Photo as BasePhoto, Taxon, Observation as BaseObservation, Config,
+  Place, ControlledAttribute, ControlledValue, TermValue
 } from "../../../shared/types";
 
 type Photo = BasePhoto & {
@@ -40,21 +41,6 @@ interface PhotoGroup {
   observationPhotos: ObservationPhoto[];
 }
 
-interface ControlledAttribute {
-  id: number;
-  label: string;
-}
-
-interface ControlledValue {
-  id: number;
-  label: string;
-}
-
-interface TermValue {
-  controlled_attribute: ControlledAttribute;
-  controlled_value: ControlledValue;
-}
-
 interface Grouping {
   param?: string;
   values?: number;
@@ -64,12 +50,6 @@ interface Params {
   order_by?: string;
   photo_license?: string;
   quality_grade?: string;
-  [key: string]: unknown;
-}
-
-interface Place {
-  id: number;
-  display_name: string;
   [key: string]: unknown;
 }
 
@@ -265,43 +245,46 @@ const PhotoBrowser = ( {
     }
     return I18n.t( "none" );
   }, [grouping, terms] );
-  let groupingMenuItems: React.ReactNode[] = [];
-  if ( showTaxonGrouping ) {
-    groupingMenuItems.push(
-      <MenuItem
-        key="grouping-menu-item-taxon-id"
-        eventKey="taxon_id"
-        active={grouping.param === "taxon_id"}
-      >
-        { groupingDisplay( "taxon_id" ) }
-      </MenuItem>
+  const groupingMenuItems = useMemo( ( ) => {
+    let items: React.ReactNode[] = [];
+    if ( showTaxonGrouping ) {
+      items.push(
+        <MenuItem
+          key="grouping-menu-item-taxon-id"
+          eventKey="taxon_id"
+          active={grouping.param === "taxon_id"}
+        >
+          { groupingDisplay( "taxon_id" ) }
+        </MenuItem>
+      );
+    }
+    items = items.concat(
+      _.map( terms, values => (
+        <MenuItem
+          key={`grouping-chooser-item-${values[0].controlled_attribute.label}`}
+          eventKey={values[0].controlled_attribute}
+          active={grouping.param === `field:${values[0].controlled_attribute.label}`}
+        >
+          { I18n.t(
+            `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
+            { defaultValue: values[0].controlled_attribute.label }
+          ) }
+        </MenuItem>
+      ) )
     );
-  }
-  groupingMenuItems = groupingMenuItems.concat(
-    _.map( terms, values => (
-      <MenuItem
-        key={`grouping-chooser-item-${values[0].controlled_attribute.label}`}
-        eventKey={values[0].controlled_attribute}
-        active={grouping.param === `field:${values[0].controlled_attribute.label}`}
-      >
-        { I18n.t(
-          `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
-          { defaultValue: values[0].controlled_attribute.label }
-        ) }
-      </MenuItem>
-    ) )
-  );
-  if ( groupingMenuItems.length > 0 ) {
-    groupingMenuItems.unshift(
-      <MenuItem
-        key="grouping-menu-item-none"
-        eventKey="none"
-        active={!grouping.param}
-      >
-        { groupingDisplay( null ) }
-      </MenuItem>
-    );
-  }
+    if ( items.length > 0 ) {
+      items.unshift(
+        <MenuItem
+          key="grouping-menu-item-none"
+          eventKey="none"
+          active={!grouping.param}
+        >
+          { groupingDisplay( null ) }
+        </MenuItem>
+      );
+    }
+    return items;
+  }, [showTaxonGrouping, terms, grouping.param, groupingDisplay] );
   return (
     <div className={`PhotoBrowser ${layout}`}>
       <div id="controls">
