@@ -66,7 +66,7 @@ $label-start: 7px;
   max-width: 500px;
 
   @media ( max-width: $md-max ) {
-    max-width: calc( 100vw - 30px );
+    max-width: calc( 100vw - 70px );
 
     .ac {
       min-width: 0;
@@ -89,6 +89,10 @@ $label-start: 7px;
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
+
+  @media ( max-width: $sm-max ) {
+    max-width: calc( 100vw - 90px );
   }
 }
 .ac-message[data-type='message'] {
