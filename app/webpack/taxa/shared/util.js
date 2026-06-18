@@ -14,6 +14,15 @@ const urlForTaxonPhotos = ( t, params ) => {
 const urlForUser = u => `/people/${u.login}`;
 const urlForPlace = p => `/places/${p.slug || p.id}`;
 
+const isCuratorOrAdmin = currentUser => (
+  currentUser
+  && currentUser.roles
+  && (
+    currentUser.roles.includes( "curator" )
+    || currentUser.roles.includes( "admin" )
+  )
+);
+
 const defaultObservationParams = ( state, options = { } ) => {
   const { config } = state;
   const params = {
@@ -306,6 +315,7 @@ const MAX_TAXON_PHOTOS = 12;
 
 export {
   urlForTaxon,
+  isCuratorOrAdmin,
   urlForTaxonPhotos,
   urlForUser,
   urlForPlace,
