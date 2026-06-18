@@ -118,10 +118,9 @@ const PhotoBrowser = ( {
   place,
   config = {}
 }: PhotoBrowserProps ) => {
-  // Computed inline rather than memoized: the store mutates the groupedPhotos
-  // container in place (groups are set empty, then re-set with photos once the
-  // async fetch resolves) without changing its object identity, so memoizing on
-  // [groupedPhotos] would strand the empty groups and never render the photos.
+  // Do not memoize - groupedPhotos is mutated in place, so its identity does not change when
+  // groups are filled with photos. Memoizing on it would strand the initial empty groups,
+  // so photos would never appear when grouping is selected.
   const sortedGroupedPhotos = grouping.param === "taxon_id"
     ? _.sortBy( _.values( groupedPhotos ), group => group.groupObject.name )
     : _.sortBy( _.values( groupedPhotos ), "groupName" );

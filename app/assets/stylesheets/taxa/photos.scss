@@ -4,8 +4,6 @@
   @include container-padding;
   max-width: 1300px;
   margin: 0 auto;
-  // Keep the page from collapsing while photos load or when there are none.
-  // Previously provided by the #hero wrapper that the TSX conversion removed.
   min-height: 500px;
   .photos {
     margin: -2.5px;
