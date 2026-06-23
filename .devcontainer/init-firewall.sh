@@ -15,7 +15,7 @@ IFS=$'\n\t'       # Stricter word splitting
 # connections, the host network/gateway, GitHub's published ranges, and the
 # resolved IPs of the allowed domains. Everything else is REJECTed.
 #
-# NOTE: this allowlists by IP. CDN-backed hosts (figma/npm/anthropic) rotate
+# NOTE: this allowlists by IP. CDN-backed hosts (figma/npm/anthropic/claude.ai) rotate
 # IPs and publish no ranges, so they're resolved at start and can go stale —
 # rebuild/restart to re-resolve. See README.md "What this sandbox stops".
 
@@ -88,6 +88,7 @@ for domain in \
     "rubygems.org" \
     "index.rubygems.org" \
     "api.anthropic.com" \
+    "claude.ai" \
     "api.figma.com" \
     "mcp.linear.app" \
     "sentry.io" \

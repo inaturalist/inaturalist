@@ -16,11 +16,13 @@
   // the host-run Rails/API servers and backing services (pg/redis/es/memcached).
   // --env-file loads credentials from a gitignored file (set once, no exporting
   // on each launch). Create it from .env.local.example. Required keys:
-  //   CLAUDE_CODE_OAUTH_TOKEN  (from `claude setup-token` on the host)
   //   GH_TOKEN                 (a dedicated READ-ONLY GitHub PAT — NOT your
   //                             normal write-capable gh login; gh/git use it)
+  // ~/.claude is mounted from the host so Claude Code uses your Team subscription
+  // credentials (with auto-refresh) rather than a hardcoded API key.
   "mounts": [
-    "source=${localWorkspaceFolder}/../iNaturalistAPI,target=/iNaturalistAPI,type=bind,consistency=cached"
+    "source=${localWorkspaceFolder}/../iNaturalistAPI,target=/iNaturalistAPI,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached"
   ],
 
   "runArgs": [
