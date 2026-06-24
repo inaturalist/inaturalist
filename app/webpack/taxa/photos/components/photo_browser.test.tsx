@@ -168,6 +168,13 @@ beforeEach( ( ) => {
   };
 } );
 
+afterEach( ( ) => {
+  // These are real globals, not jest mocks, so clearMocks won't reset them.
+  // Remove them so they can't leak into other test files in the same worker.
+  delete ( global as unknown as Record<string, unknown> ).iNaturalist;
+  delete ( global as unknown as Record<string, unknown> ).$;
+} );
+
 // --- Tests --------------------------------------------------------------
 
 describe( "PhotoBrowser layout", ( ) => {
@@ -393,7 +400,18 @@ describe( "PhotoBrowser grouping dropdown", ( ) => {
     expect( menu.getByRole( "menuitem", { name: "none" } ) ).toHaveAttribute( "data-active", "false" );
     expect( menu.getByRole( "menuitem", { name: "taxonomic" } ) ).toHaveAttribute( "data-active", "true" );
     expect( menu.getByRole( "menuitem", { name: "controlled_term_labels.life_stage" } ) )
-      .toBeInTheDocument( );
+      .toHaveAttribute( "data-active", "false" );
+  } );
+
+  it( "marks the per-term item active when that term grouping is selected", ( ) => {
+    // setGrouping stores the param as `terms:<attribute id>` (see ducks/photos),
+    // so the term menu item must compare against that, not a `field:<label>` form.
+    renderBrowser( { grouping: { param: "terms:1", values: 1 }, terms } );
+    const menu = within( screen.getByTestId( "dropdown-grouping-control" ) );
+    expect( menu.getByRole( "menuitem", { name: "none" } ) ).toHaveAttribute( "data-active", "false" );
+    expect( menu.getByRole( "menuitem", { name: "taxonomic" } ) ).toHaveAttribute( "data-active", "false" );
+    expect( menu.getByRole( "menuitem", { name: "controlled_term_labels.life_stage" } ) )
+      .toHaveAttribute( "data-active", "true" );
   } );
 
   it( "calls setGrouping(null) for none, ('taxon_id') for taxonomic, ('terms:<id>', id) for a term", ( ) => {
@@ -456,6 +474,15 @@ describe( "PhotoBrowser filter dropdowns", ( ) => {
     expect( dropdown.getByRole( "menuitem", { name: "date_added" } ) ).toHaveAttribute( "data-active", "false" );
     fireEvent.click( dropdown.getByRole( "menuitem", { name: "date_added" } ) );
     expect( setParam ).toHaveBeenCalledWith( "order_by", "created_at" );
+  } );
+
+  it( "marks date_added active when order_by is created_at", ( ) => {
+    // Guards against regressing the active check back to comparing the grouping
+    // object (which is never the string "created_at") instead of params.order_by.
+    renderBrowser( { params: { order_by: "created_at" } } );
+    const dropdown = within( screen.getByTestId( "dropdown-sort-control" ) );
+    expect( dropdown.getByRole( "menuitem", { name: "date_added" } ) ).toHaveAttribute( "data-active", "true" );
+    expect( dropdown.getByRole( "menuitem", { name: "faves" } ) ).toHaveAttribute( "data-active", "false" );
   } );
 
   it( "lists only cc* licenses and calls setParam", ( ) => {
