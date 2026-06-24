@@ -70,9 +70,26 @@ const renderDropdown = ( overrides: Partial<Props> = {} ) => render(
 // --- Tests --------------------------------------------------------------
 
 describe( "FilterDropdown", ( ) => {
-  it( "renders the label and current display in the toggle", ( ) => {
+  it( "renders the label and an explicit display in the toggle", ( ) => {
     renderDropdown( { label: "Order by", display: "Faves" } );
     expect( screen.getByTestId( "dropdown-toggle" ) ).toHaveTextContent( "Order by: Faves" );
+  } );
+
+  it( "derives the toggle display from the active option when display is omitted", ( ) => {
+    renderDropdown( { display: undefined, selected: "created_at" } );
+    expect( screen.getByTestId( "dropdown-toggle" ) ).toHaveTextContent( "Order by: Date added" );
+  } );
+
+  it( "derives the 'any' option label for the toggle when nothing is selected", ( ) => {
+    renderDropdown( {
+      display: undefined,
+      selected: undefined,
+      options: [
+        { value: "any", label: "Any license" },
+        { value: "cc_by", label: "CC BY" }
+      ]
+    } );
+    expect( screen.getByTestId( "dropdown-toggle" ) ).toHaveTextContent( "Order by: Any license" );
   } );
 
   it( "renders one MenuItem per option", ( ) => {

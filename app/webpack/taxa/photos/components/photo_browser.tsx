@@ -8,6 +8,7 @@ import {
 import GroupedPhotos from "./grouped_photos";
 import UngroupedPhotos from "./ungrouped_photos";
 import FilterDropdown from "./filter_dropdown";
+import { controlledTermLabel } from "../../../shared/util";
 import type {
   Config, Place, Taxon, ControlledAttribute, ControlledValue, TermValue
 } from "../../../shared/types";
@@ -93,11 +94,11 @@ const PhotoBrowser = ( {
       return I18n.t( "taxonomic" );
     }
     if ( param && grouping.values !== undefined && terms[grouping.values] ) {
-      const displayText = terms[grouping.values][0].controlled_attribute.label;
-      return I18n.t( `controlled_term_labels.${_.snakeCase( displayText )}`, { defaultValue: displayText } );
+      return controlledTermLabel( terms[grouping.values][0].controlled_attribute.label );
     }
     return I18n.t( "none" );
   }, [grouping, terms] );
+  // TODO: figure out a way to not need to build this way and pass as children
   const groupingMenuItems = useMemo( ( ) => {
     let items: React.ReactNode[] = [];
     if ( showTaxonGrouping ) {
@@ -118,10 +119,7 @@ const PhotoBrowser = ( {
           eventKey={values[0].controlled_attribute}
           active={grouping.param === `terms:${values[0].controlled_attribute.id}`}
         >
-          { I18n.t(
-            `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
-            { defaultValue: values[0].controlled_attribute.label }
-          ) }
+          { controlledTermLabel( values[0].controlled_attribute.label ) }
         </MenuItem>
       ) )
     );
@@ -192,22 +190,13 @@ const PhotoBrowser = ( {
             );
             const termOptions = values.map( v => ( {
               value: v.controlled_value.id,
-              label: I18n.t(
-                `controlled_term_labels.${_.snakeCase( v.controlled_value.label )}`,
-                { defaultValue: v.controlled_value.label }
-              )
+              label: controlledTermLabel( v.controlled_value.label )
             } ) );
             return (
               <FilterDropdown
                 key={`term-${attr.label}`}
                 id={`term-chooser-${attr.label}`}
-                label={I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } )}
-                display={isSelectedTerm
-                  ? I18n.t(
-                    `controlled_term_labels.${_.snakeCase( selectedTermValue!.label )}`,
-                    { defaultValue: selectedTermValue!.label }
-                  )
-                  : translatedAny}
+                label={controlledTermLabel( attr.label )}
                 selected={isSelectedTerm ? selectedTermValue!.id : undefined}
                 options={[{ value: "any", label: translatedAny }, ...termOptions]}
                 onSelect={( key: unknown ) => setTerm?.( attr.id, key as string )}
@@ -217,7 +206,6 @@ const PhotoBrowser = ( {
           <FilterDropdown
             id="sort-control"
             label={I18n.t( "order_by" )}
-            display={orderByDisplay( params.order_by )}
             selected={params.order_by}
             options={[
               { value: "votes", label: orderByDisplay( "votes" ) },
@@ -228,7 +216,6 @@ const PhotoBrowser = ( {
           <FilterDropdown
             id="license-control"
             label={I18n.t( "photo_licensing" )}
-            display={licenseDisplay( params.photo_license )}
             selected={params.photo_license}
             options={[
               { value: "any", label: I18n.t( "any_license" ) },
@@ -239,7 +226,6 @@ const PhotoBrowser = ( {
           <FilterDropdown
             id="quality-grade-control"
             label={I18n.t( "quality_grade_" )}
-            display={qualityGradeDisplay( params.quality_grade )}
             selected={params.quality_grade}
             options={[
               { value: "any", label: I18n.t( "any_quality_grade" ) },

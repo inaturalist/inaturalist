@@ -10,6 +10,18 @@ jest.mock( "../../shared/util", ( ) => ( {
   urlForTaxonPhotos: ( t: { id?: number } ) => `/taxa/${t?.id}/browse_photos`
 } ) );
 
+// controlledTermLabel lives in shared/util, which pulls in browser-only deps
+// (heic-to etc.); stub it to the translation key the real helper produces under
+// the I18n test stub.
+jest.mock( "../../../shared/util", ( ) => {
+  // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
+  const snakeCase = require( "lodash/snakeCase" );
+  return {
+    __esModule: true,
+    controlledTermLabel: ( label: string ) => `controlled_term_labels.${snakeCase( label )}`
+  };
+} );
+
 jest.mock( "../../../shared/components/split_taxon", ( ) => ( {
   __esModule: true,
   default: ( props: { taxon?: { id?: number }; url?: string } ) => (

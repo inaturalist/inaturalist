@@ -3,6 +3,7 @@ import _ from "lodash";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import ObservationPhotos from "./observation_photos";
 import { urlForTaxonPhotos } from "../../shared/util";
+import { controlledTermLabel } from "../../../shared/util";
 import type { Config, Taxon } from "../../../shared/types";
 import type {
   PhotoGroup, Grouping, Params, ShowTaxonPhotoModal
@@ -48,9 +49,7 @@ const GroupedPhotos = ( {
               )}
             />
           )
-          : I18n.t( `controlled_term_labels.${_.snakeCase( group.groupName )}`, {
-            defaultValue: group.groupName
-          } );
+          : controlledTermLabel( group.groupName );
         let obsUrl;
         if ( group?.groupObject?.id ) {
           if ( grouping.param === "taxon_id" ) {
