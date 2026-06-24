@@ -6066,6 +6066,10 @@ en:
   that_role_doesnt_exist: That role doesn't exist
   that_was_the_last_observation_matching_the_current_filters: That was the last observation matching the current filters.
   thats_not_a_real_date: That's not a real date!
+  # flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "The account %{user} has been suspended"
+  # flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "The account %{user} has been reinstated"
   the_admin_is_the_person_who: |
     The admin is the person who created the project. They can do everything
     managers and curators can do, as well as delete the project.
@@ -6193,6 +6197,8 @@ en:
   this_taxon_name_was_originally_imported: "This taxon name was originally imported from an external name provider:"
   this_taxon_was_originally_imported_from: "This taxon was originally imported from an external name provider:"
   this_user_has_been_suspended: This user has been suspended
+  # The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: This account has been suspended
   this_user_has_been_suspended_message: |
     If this is your account and you think this was done by mistake, please <a href="mailto:%{email}">contact us</a>.
   this_will_add_listed_taxa: This will add listed taxa from observations. This may take a while so please use sparingly and on small checklists
