@@ -5141,6 +5141,13 @@ en:
       not_external: not external
       not_internal: not internal
       error: error
+  # button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Reinstate account
+  # heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Reinstate %{user}
+  # instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Please explain why you are reinstating this account.
   relationships_user_settings: Relationships
   relationship_html: "Relationship: %{link}"
   reload_from_observations: Reload from observations
@@ -5319,6 +5326,8 @@ en:
   # translation keys like `your_identifications`. This is here in case we
   # forget to add a translation key like that.
   second_person_possessive_singular: "Your %{noun}"
+  # link above the suspension form that opens the account's moderation history
+  see_moderation_history: See moderation history
   see_something_wrong_with_taxon: See something wrong with this taxon?  Let the curators know.
   # Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5740,6 +5749,8 @@ en:
   supporting: Supporting
   # label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Suspension duration
+  # label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Suspension duration (%{link_start_tag}see guidelines%{link_end_tag})
   # a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 day
   # a select form option indicating a user will be suspended for three days
@@ -5760,6 +5771,8 @@ en:
   suspension_reason_custom: Custom
   # note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Please note this reason will be displayed to the suspended user.
+  # note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Please note this reason will be displayed to the suspended account.
   # note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Please update the reason and explain why you are changing the user's suspension.
   # label for the edit reason dropdown when editing a suspension
@@ -5809,6 +5822,8 @@ en:
   suspend_until: Suspend until
   # a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Date and time in your browser's local timezone.
+  # button/menu label for suspending an account
+  suspend_account: Suspend account
   suspend_user: Suspend user
   suspend_user_html: Suspend %{user}
   suspend_user_reason_instructions_html: |
