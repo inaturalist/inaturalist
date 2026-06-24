@@ -122,11 +122,11 @@ const PhotoBrowser = ( {
   // groups are filled with photos. Memoizing on it would strand the initial empty groups,
   // so photos would never appear when grouping is selected.
   const sortedGroupedPhotos = grouping.param === "taxon_id"
-    ? _.sortBy( _.values( groupedPhotos ), group => group.groupObject.name )
-    : _.sortBy( _.values( groupedPhotos ), "groupName" );
+    ? _.sortBy( Object.values( groupedPhotos ), group => group.groupObject.name )
+    : _.sortBy( Object.values( groupedPhotos ), "groupName" );
 
   const photoLicenses = useMemo( ( ) => _.sortBy(
-    _.keys( _.pickBy( iNaturalist.Licenses, ( v, k ) => k.indexOf( "cc" ) === 0 ) ),
+    Object.keys( iNaturalist.Licenses ).filter( k => k.startsWith( "cc" ) ),
     k => I18n.t( `${_.snakeCase( k )}_name`, { defaultValue: k } )
   ), [] );
 
@@ -259,11 +259,11 @@ const PhotoBrowser = ( {
       );
     }
     items = items.concat(
-      _.map( terms, values => (
+      Object.values( terms ).map( values => (
         <MenuItem
           key={`grouping-chooser-item-${values[0].controlled_attribute.label}`}
           eventKey={values[0].controlled_attribute}
-          active={grouping.param === `field:${values[0].controlled_attribute.label}`}
+          active={grouping.param === `terms:${values[0].controlled_attribute.id}`}
         >
           { I18n.t(
             `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
@@ -330,7 +330,7 @@ const PhotoBrowser = ( {
               </Dropdown>
             </span>
           ) }
-          { _.map( terms, values => {
+          { Object.values( terms ).map( values => {
             const attr = values[0].controlled_attribute;
             const translatedAny = I18n.t(
               `controlled_term_labels.any_${_.snakeCase( attr.label )}`,
@@ -430,7 +430,7 @@ const PhotoBrowser = ( {
                 >
                   { I18n.t( "any_license" ) }
                 </MenuItem>
-                { _.map( photoLicenses, k => (
+                { photoLicenses.map( k => (
                   <MenuItem
                     key={`license-chooser-${k}`}
                     eventKey={k}
