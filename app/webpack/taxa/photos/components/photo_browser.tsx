@@ -2,12 +2,11 @@ import React, { useCallback, useMemo } from "react";
 import _ from "lodash";
 import {
   ButtonGroup,
-  Button,
-  MenuItem
+  Button
 } from "react-bootstrap";
 import GroupedPhotos from "./grouped_photos";
 import UngroupedPhotos from "./ungrouped_photos";
-import FilterDropdown from "./filter_dropdown";
+import FilterDropdown, { FilterOption } from "./filter_dropdown";
 import { controlledTermLabel } from "../../../shared/util";
 import type {
   Config, Place, Taxon, ControlledAttribute, ControlledValue, TermValue
@@ -98,44 +97,23 @@ const PhotoBrowser = ( {
     }
     return I18n.t( "none" );
   }, [grouping, terms] );
-  // TODO: figure out a way to not need to build this way and pass as children
-  const groupingMenuItems = useMemo( ( ) => {
-    let items: React.ReactNode[] = [];
+  // Grouping options use canonical string values matching grouping.param
+  // ("taxon_id" / "terms:<id>"), plus a "none" sentinel, so a single
+  // selected={grouping.param ?? "none"} drives the active highlight.
+  const groupingOptions = useMemo( ( ) => {
+    const items: FilterOption[] = [];
     if ( showTaxonGrouping ) {
-      items.push(
-        <MenuItem
-          key="grouping-menu-item-taxon-id"
-          eventKey="taxon_id"
-          active={grouping.param === "taxon_id"}
-        >
-          { groupingDisplay( "taxon_id" ) }
-        </MenuItem>
-      );
+      items.push( { value: "taxon_id", label: groupingDisplay( "taxon_id" ) } );
     }
-    items = items.concat(
-      Object.values( terms ).map( values => (
-        <MenuItem
-          key={`grouping-chooser-item-${values[0].controlled_attribute.label}`}
-          eventKey={values[0].controlled_attribute}
-          active={grouping.param === `terms:${values[0].controlled_attribute.id}`}
-        >
-          { controlledTermLabel( values[0].controlled_attribute.label ) }
-        </MenuItem>
-      ) )
-    );
+    Object.values( terms ).forEach( values => {
+      const attr = values[0].controlled_attribute;
+      items.push( { value: `terms:${attr.id}`, label: controlledTermLabel( attr.label ) } );
+    } );
     if ( items.length > 0 ) {
-      items.unshift(
-        <MenuItem
-          key="grouping-menu-item-none"
-          eventKey="none"
-          active={!grouping.param}
-        >
-          { groupingDisplay( null ) }
-        </MenuItem>
-      );
+      items.unshift( { value: "none", label: groupingDisplay( null ) } );
     }
     return items;
-  }, [showTaxonGrouping, terms, grouping.param, groupingDisplay] );
+  }, [showTaxonGrouping, terms, groupingDisplay] );
 
   const hasGroups = Object.keys( groupedPhotos ).length > 0;
 
@@ -159,23 +137,23 @@ const PhotoBrowser = ( {
           </Button>
         </ButtonGroup>
         <div id="filters">
-          { groupingMenuItems.length === 0 ? null : (
+          { groupingOptions.length === 0 ? null : (
             <FilterDropdown
               id="grouping-control"
               label={I18n.t( "grouping" )}
-              display={groupingDisplay( grouping.param ?? null )}
-              onSelect={( key: unknown ) => {
+              selected={grouping.param ?? "none"}
+              options={groupingOptions}
+              onSelect={( key: string | number ) => {
                 if ( key === "none" ) {
                   setGrouping?.( null );
                 } else if ( key === "taxon_id" ) {
                   setGrouping?.( "taxon_id" );
-                } else if ( key && typeof key !== "string" ) {
-                  setGrouping?.( `terms:${( key as ControlledAttribute ).id}`, ( key as ControlledAttribute ).id );
+                } else if ( typeof key === "string" && key.startsWith( "terms:" ) ) {
+                  const id = Number( key.slice( "terms:".length ) );
+                  setGrouping?.( key, id );
                 }
               }}
-            >
-              { groupingMenuItems }
-            </FilterDropdown>
+            />
           ) }
           { Object.values( terms ).map( values => {
             const attr = values[0].controlled_attribute;
@@ -197,9 +175,9 @@ const PhotoBrowser = ( {
                 key={`term-${attr.label}`}
                 id={`term-chooser-${attr.label}`}
                 label={controlledTermLabel( attr.label )}
-                selected={isSelectedTerm ? selectedTermValue!.id : undefined}
+                selected={isSelectedTerm ? selectedTermValue!.id : "any"}
                 options={[{ value: "any", label: translatedAny }, ...termOptions]}
-                onSelect={( key: unknown ) => setTerm?.( attr.id, key as string )}
+                onSelect={( key: string | number ) => setTerm?.( attr.id, key as string )}
               />
             );
           } ) }
@@ -211,27 +189,27 @@ const PhotoBrowser = ( {
               { value: "votes", label: orderByDisplay( "votes" ) },
               { value: "created_at", label: orderByDisplay( "created_at" ) }
             ]}
-            onSelect={( key: unknown ) => setParam?.( "order_by", key as string )}
+            onSelect={( key: string | number ) => setParam?.( "order_by", key as string )}
           />
           <FilterDropdown
             id="license-control"
             label={I18n.t( "photo_licensing" )}
-            selected={params.photo_license}
+            selected={params.photo_license ?? "any"}
             options={[
               { value: "any", label: I18n.t( "any_license" ) },
               ...licenseOptions
             ]}
-            onSelect={( key: unknown ) => setParam?.( "photo_license", key as string )}
+            onSelect={( key: string | number ) => setParam?.( "photo_license", key as string )}
           />
           <FilterDropdown
             id="quality-grade-control"
             label={I18n.t( "quality_grade_" )}
-            selected={params.quality_grade}
+            selected={params.quality_grade ?? "any"}
             options={[
               { value: "any", label: I18n.t( "any_quality_grade" ) },
               { value: "research", label: qualityGradeDisplay( "research" ) }
             ]}
-            onSelect={( key: unknown ) => setParam?.( "quality_grade", key as string )}
+            onSelect={( key: string | number ) => setParam?.( "quality_grade", key as string )}
           />
         </div>
       </div>

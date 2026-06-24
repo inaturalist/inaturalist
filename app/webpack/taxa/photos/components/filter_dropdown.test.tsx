@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  render, screen, fireEvent, within
-} from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import FilterDropdown from "./filter_dropdown";
 
 // --- Mocks --------------------------------------------------------------
@@ -80,10 +78,10 @@ describe( "FilterDropdown", ( ) => {
     expect( screen.getByTestId( "dropdown-toggle" ) ).toHaveTextContent( "Order by: Date added" );
   } );
 
-  it( "derives the 'any' option label for the toggle when nothing is selected", ( ) => {
+  it( "derives the toggle display from the 'any' sentinel option", ( ) => {
     renderDropdown( {
       display: undefined,
-      selected: undefined,
+      selected: "any",
       options: [
         { value: "any", label: "Any license" },
         { value: "cc_by", label: "CC BY" }
@@ -105,9 +103,9 @@ describe( "FilterDropdown", ( ) => {
     expect( screen.getByRole( "menuitem", { name: "Faves" } ) ).toHaveAttribute( "data-active", "false" );
   } );
 
-  it( "marks the 'any' option active when nothing is selected", ( ) => {
+  it( "marks the option matching the caller's sentinel ('any') active", ( ) => {
     renderDropdown( {
-      selected: undefined,
+      selected: "any",
       options: [
         { value: "any", label: "Any license" },
         { value: "cc_by", label: "CC BY" }
@@ -132,16 +130,5 @@ describe( "FilterDropdown", ( ) => {
     } );
     fireEvent.click( screen.getByRole( "menuitem", { name: "Adult" } ) );
     expect( onSelect ).toHaveBeenCalledWith( 10 );
-  } );
-
-  it( "renders children instead of options when provided (escape hatch)", ( ) => {
-    renderDropdown( {
-      options: undefined,
-      children: (
-        <button type="button" role="menuitem" data-testid="custom-item">custom item</button>
-      )
-    } );
-    const menu = within( screen.getByTestId( "dropdown-menu" ) );
-    expect( menu.getByTestId( "custom-item" ) ).toBeInTheDocument( );
   } );
 } );

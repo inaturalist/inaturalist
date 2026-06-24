@@ -9,14 +9,15 @@ export interface FilterOption {
 interface Props {
   id: string;
   label: React.ReactNode;
-  onSelect: ( key: unknown ) => void;
+  onSelect: ( key: string | number ) => void;
+  // The active option is the one whose value === selected. Callers pass their
+  // "no selection" sentinel value (e.g. "any" / "none") rather than leaving it
+  // undefined, so the sentinel lives with the caller that owns it.
   selected?: string | number;
-  options?: FilterOption[];
+  options: FilterOption[];
   // Optional override for the bold value in the toggle. When omitted it is
-  // derived from the active option's label — pass it only when there are no
-  // options to derive from (e.g. the children escape hatch).
+  // derived from the active option's label.
   display?: React.ReactNode;
-  children?: React.ReactNode;
 }
 
 const FilterDropdown = ( {
@@ -25,12 +26,10 @@ const FilterDropdown = ( {
   onSelect,
   selected,
   options,
-  display,
-  children
+  display
 }: Props ) => {
-  const activeValue = selected ?? "any";
   const resolvedDisplay = display
-    ?? options?.find( option => option.value === activeValue )?.label;
+    ?? options.find( option => option.value === selected )?.label;
   return (
     <span className="control-group">
       <Dropdown id={id} onSelect={onSelect}>
@@ -40,11 +39,11 @@ const FilterDropdown = ( {
           <strong>{ resolvedDisplay }</strong>
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          { children ?? options?.map( option => (
+          { options.map( option => (
             <MenuItem
               key={`${id}-${option.value}`}
               eventKey={option.value}
-              active={option.value === activeValue}
+              active={option.value === selected}
             >
               { option.label }
             </MenuItem>
