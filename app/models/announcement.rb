@@ -342,9 +342,12 @@ class Announcement < ApplicationRecord
       last_observation_created_at = user.last_observation_created_at
       # if the user has never created an observation, don't show the announcement
       return false unless last_observation_created_at
+      # compare on calendar dates so the end date is inclusive of the whole day;
+      # the columns are dates, but last_observation_created_at is a timestamp
+      last_observation_date = last_observation_created_at.to_date
       # if the user has created an observation, but it's outside the date range, don't show
-      return false if last_observation_start_date && last_observation_created_at < last_observation_start_date
-      return false if last_observation_end_date && last_observation_created_at > last_observation_end_date
+      return false if last_observation_start_date && last_observation_date < last_observation_start_date
+      return false if last_observation_end_date && last_observation_date > last_observation_end_date
     end
 
     # If we're including obs apps, look for any obs the user has created with those apps

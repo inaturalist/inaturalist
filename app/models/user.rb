@@ -2011,12 +2011,17 @@ class User < ApplicationRecord
     nil
   end
 
+  def last_observation_created_at_cache_key
+    "users/#{id}/last_observation_created_at"
+  end
+
   # Creation datetime of the user's last observation by creation date. Note
   # that if the cache expiry time needs to be extended, more than a day will
   # probably be too limiting for announcement obs date targeting to be
-  # useful.
+  # useful. The cache is also cleared when the user creates or destroys an
+  # observation (see Observation#update_user_counter_caches_after_*).
   def last_observation_created_at
-    Rails.cache.fetch( "users/#{id}/last_observation_created_at", expires_in: 1.hour ) do
+    Rails.cache.fetch( last_observation_created_at_cache_key, expires_in: 1.hour ) do
       last_observation = Observation.elastic_query(
         user_id: id,
         order: "desc",
@@ -2025,6 +2030,10 @@ class User < ApplicationRecord
       ).first
       last_observation&.created_at
     end
+  end
+
+  def clear_last_observation_created_at_cache
+    Rails.cache.delete( last_observation_created_at_cache_key )
   end
 
   # Iterates over recently created accounts of unknown spammer status, zero
