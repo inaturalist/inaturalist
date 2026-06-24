@@ -26,7 +26,10 @@
     %p.nocontent.meta.center-block
       - if describer_is_wikipedia || @describer.blank?
         - if @taxon.shows_wikipedia?
-          =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
+          - if @taxon.wikipedia_throttled?
+            =t :wikipedia_summary_throttled
+          - else
+            =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
         - else
           =t "views.taxa.show.site_curators_disabled_wikipedia_html", url: @describer_url
       - elsif @describer

@@ -1500,6 +1500,8 @@ class Taxon < ApplicationRecord
     elsif locale.to_s =~ /^en-?/
       read_attribute( :wikipedia_summary )
     end
+    return nil if sum == "throttled"
+
     if sum&.match( /^\d\d\d\d-\d\d-\d\d$/ )
       last_try_date = DateTime.parse( sum )
       return nil if last_try_date > 1.week.ago
@@ -1516,6 +1518,10 @@ class Taxon < ApplicationRecord
         set_wikipedia_summary( locale: locale )
     end
     nil
+  end
+
+  def wikipedia_throttled?
+    read_attribute( :wikipedia_summary ) == "throttled"
   end
 
   def set_wikipedia_summary( options = {} )
@@ -1537,7 +1543,13 @@ class Taxon < ApplicationRecord
     end
 
     if details.blank? || details[:summary].blank?
-      Taxon.where( id: self ).update_all( wikipedia_summary: Date.today ) if locale.to_s =~ /^en-?/
+      if locale.to_s =~ /^en-?/
+        throttled = w.api_endpoint.api_endpoint_caches
+          .where( status_code: 429 )
+          .where( "request_completed_at > ?", ApiEndpointCache::THROTTLE_RETRY_MINUTES.minutes.ago )
+          .exists?
+        Taxon.where( id: self ).update_all( wikipedia_summary: throttled ? "throttled" : Date.today.to_s )
+      end
       return nil
     end
 

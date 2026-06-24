@@ -390,6 +390,51 @@ describe Taxon, "updating" do
     end
   end
 
+  describe "wikipedia_throttled?" do
+    let( :taxon ) { Taxon.make! }
+
+    it "is true when wikipedia_summary is 'throttled'" do
+      taxon.update_columns( wikipedia_summary: "throttled" )
+      expect( taxon.wikipedia_throttled? ).to be true
+    end
+
+    it "is false when wikipedia_summary is a normal summary" do
+      taxon.update_columns( wikipedia_summary: "Some summary text." )
+      expect( taxon.wikipedia_throttled? ).to be false
+    end
+
+    it "is false when wikipedia_summary is blank" do
+      expect( taxon.wikipedia_throttled? ).to be false
+    end
+  end
+
+  describe "set_wikipedia_summary" do
+    let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+    let( :endpoint ) { ApiEndpoint.make!( base_url: "https://en.wikipedia.org/w/api.php?", cache_hours: 720 ) }
+    let( :wikipedia ) { instance_double( WikipediaService, api_endpoint: endpoint ) }
+
+    before do
+      allow( wikipedia ).to receive( :page_details ).and_return( nil )
+    end
+
+    it "stores 'throttled' in wikipedia_summary when the endpoint was recently throttled" do
+      ApiEndpointCache.make!(
+        api_endpoint: endpoint,
+        status_code: 429,
+        success: false,
+        request_began_at: 1.minute.ago,
+        request_completed_at: 1.minute.ago
+      )
+      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to eq "throttled"
+    end
+
+    it "stores a date string in wikipedia_summary when not throttled" do
+      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to match( /^\d{4}-\d{2}-\d{2}$/ )
+    end
+  end
+
   it "should assign the updater if explicitly assigned" do
     creator = make_curator
     updater = make_curator

@@ -21,8 +21,6 @@ require "rubygems"
 require "nokogiri"
 
 class MetaService
-  attr_reader :timeout, :method_param, :service_name
-
   SERVICE_VERSION = 1
 
   def initialize( options = {} )
@@ -33,9 +31,7 @@ class MetaService
     @debug = options[:debug]
   end
 
-  def api_endpoint
-    @api_endpoint
-  end
+  attr_reader :timeout, :method_param, :service_name, :api_endpoint
 
   #
   # Sends a request to a service function, and returns an Hpricot object of
@@ -61,7 +57,7 @@ class MetaService
     end
   end
 
-  def method_missing( method, *args )
+  def method_missing( method, * )
     # puts "DEBUG: You tried to call '#{method}'" # test
     params = *args
     params = params.first if params.is_a?( Array ) && params.size == 1
@@ -69,7 +65,7 @@ class MetaService
       raise "#{@service_name}##{method} arguments must be a Hash"
     end
 
-    request( method, *args )
+    request( method, * )
   end
 
   def self.fetch_request_uri( options = {} )
@@ -137,6 +133,10 @@ class MetaService
   end
 
   def self.fetch_with_redirects( options, attempts = 3 )
+    return Net::HTTPTooManyRequests.new( "1.1", "429", "Too Many Requests" ).tap do | res |
+      res.instance_variable_set( :@body, "Too Many Requests" )
+      res.instance_variable_set( :@read, true )
+    end
     http = Net::HTTP.new( options[:request_uri].host, options[:request_uri].port )
     # using SSL if we have an https URL
     http.use_ssl = ( options[:request_uri].scheme == "https" )
