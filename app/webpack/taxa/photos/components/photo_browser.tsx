@@ -1,57 +1,19 @@
 import React, { useCallback, useMemo } from "react";
-import InfiniteScroll from "react-infinite-scroller";
 import _ from "lodash";
 import {
   ButtonGroup,
   Button,
-  MenuItem,
-  Dropdown
+  MenuItem
 } from "react-bootstrap";
-import SplitTaxon from "../../../shared/components/split_taxon";
-import TaxonPhoto from "../../../shared/components/taxon_photo";
-import { urlForTaxonPhotos } from "../../shared/util";
+import GroupedPhotos from "./grouped_photos";
+import UngroupedPhotos from "./ungrouped_photos";
+import FilterDropdown from "./filter_dropdown";
 import type {
-  Photo as BasePhoto, Taxon, Observation as BaseObservation, Config,
-  Place, ControlledAttribute, ControlledValue, TermValue
+  Config, Place, Taxon, ControlledAttribute, ControlledValue, TermValue
 } from "../../../shared/types";
-
-type Photo = BasePhoto & {
-  dimensions: () => { width: number; height: number } | null;
-};
-
-type Observation = BaseObservation & {
-  taxon: Taxon;
-};
-
-interface ObservationPhoto {
-  photo: Photo;
-  observation: Observation;
-}
-
-interface GroupObject {
-  id?: number;
-  name?: string;
-  label?: string;
-  [key: string]: unknown;
-}
-
-interface PhotoGroup {
-  groupName: string;
-  groupObject: GroupObject;
-  observationPhotos: ObservationPhoto[];
-}
-
-interface Grouping {
-  param?: string;
-  values?: number;
-}
-
-interface Params {
-  order_by?: string;
-  photo_license?: string;
-  quality_grade?: string;
-  [key: string]: unknown;
-}
+import type {
+  ObservationPhoto, PhotoGroup, Grouping, Params, ShowTaxonPhotoModal
+} from "./types";
 
 interface PhotoBrowserProps {
   config?: Config;
@@ -70,7 +32,7 @@ interface PhotoBrowserProps {
   setParam?: ( key: string, value: string ) => void;
   setTerm?: ( attrId: number, valueId: string ) => void;
   showTaxonGrouping?: boolean;
-  showTaxonPhotoModal: ( photo: Photo, taxon: Taxon, observation: Observation ) => void;
+  showTaxonPhotoModal: ShowTaxonPhotoModal;
   taxon?: Taxon;
   terms?: Record<string, TermValue[]>;
 }
@@ -118,123 +80,14 @@ const PhotoBrowser = ( {
   place,
   config = {}
 }: PhotoBrowserProps ) => {
-  // Do not memoize - groupedPhotos is mutated in place, so its identity does not change when
-  // groups are filled with photos. Memoizing on it would strand the initial empty groups,
-  // so photos would never appear when grouping is selected.
-  const sortedGroupedPhotos = grouping.param === "taxon_id"
-    ? _.sortBy( Object.values( groupedPhotos ), group => group.groupObject.name )
-    : _.sortBy( Object.values( groupedPhotos ), "groupName" );
-
-  const photoLicenses = useMemo( ( ) => _.sortBy(
-    Object.keys( iNaturalist.Licenses ).filter( k => k.startsWith( "cc" ) ),
-    k => I18n.t( `${_.snakeCase( k )}_name`, { defaultValue: k } )
+  // The cc* licenses as ready-to-use dropdown options, sorted by display label.
+  const licenseOptions = useMemo( ( ) => _.sortBy(
+    Object.keys( iNaturalist.Licenses )
+      .filter( k => k.startsWith( "cc" ) )
+      .map( k => ( { value: k, label: licenseDisplay( k ) } ) ),
+    "label"
   ), [] );
 
-  const renderObservationPhotos = useCallback( ( obsPhotos: ObservationPhoto[] | undefined ) => (
-    ( obsPhotos || [] ).map( observationPhoto => {
-      let itemDim: number | undefined;
-      let width: number | undefined;
-      if ( layout === "fluid" ) {
-        itemDim = 233;
-        const dims = observationPhoto.photo.dimensions( );
-        width = dims ? ( itemDim / dims.height ) * dims.width : itemDim;
-      }
-      return (
-        <TaxonPhoto
-          key={`taxon-photo-${observationPhoto.photo.id}`}
-          photo={observationPhoto.photo}
-          taxon={observationPhoto.observation.taxon}
-          observation={observationPhoto.observation}
-          width={width}
-          height={itemDim}
-          square={layout !== "fluid"}
-          showTaxonPhotoModal={( ) => showTaxonPhotoModal(
-            observationPhoto.photo,
-            observationPhoto.observation.taxon,
-            observationPhoto.observation
-          )}
-          showTaxon
-          linkTaxon
-          config={config}
-        />
-      );
-    } )
-  ), [layout, showTaxonPhotoModal, config] );
-
-  const loader = (
-    <div key="photo-browser-loader" className="loading">
-      <i className="fa fa-refresh fa-spin" />
-    </div>
-  );
-  const noObsNotice = (
-    <div key="photo-browser-no-obs-notice" className="nocontent text-muted">
-      { I18n.t( place ? "no_observations_from_this_place_yet" : "no_observations_yet" ) }
-    </div>
-  );
-  const renderUngroupedPhotos = ( ) => (
-    <InfiniteScroll
-      loadMore={( ) => loadMorePhotos( )}
-      hasMore={hasMorePhotos}
-      className="photos"
-      loader={loader}
-    >
-      { observationPhotos && observationPhotos.length === 0 ? noObsNotice : null }
-      { observationPhotos ? null : loader }
-      { renderObservationPhotos( observationPhotos ) }
-    </InfiniteScroll>
-  );
-  const renderGroupedPhotos = ( ) => (
-    <div>
-      { sortedGroupedPhotos.map( ( group, i ) => {
-        const title = grouping.param === "taxon_id" && group.groupObject
-          ? (
-            <SplitTaxon
-              taxon={group.groupObject}
-              user={config.currentUser}
-              url={urlForTaxonPhotos(
-                group.groupObject,
-                $.deparam( window.location.search.replace( /^\?/, "" ) )
-              )}
-            />
-          )
-          : I18n.t( `controlled_term_labels.${_.snakeCase( group.groupName )}`, {
-            defaultValue: group.groupName
-          } );
-        let obsUrl;
-        if ( group?.groupObject?.id ) {
-          if ( grouping.param === "taxon_id" ) {
-            const query = $.param( {
-              ...params,
-              taxon_id: group.groupObject.id
-            } );
-            obsUrl = `/observations?${query}`;
-          } else if ( grouping.param?.match( /terms/ ) ) {
-            const query = $.param( {
-              ...params,
-              taxon_id: taxon?.id,
-              term_id: grouping.values,
-              term_value_id: group.groupObject.id
-            } );
-            obsUrl = `/observations?${query}`;
-          }
-        }
-        return (
-          <div key={`group-${group.groupName}`} className={`photo-group ${i === 0 ? "first" : ""}`}>
-            <div className="photo-group-header">
-              <h3>{ title }</h3>
-              { obsUrl && <a href={obsUrl}>{ I18n.t( "view_observations" ) }</a> }
-            </div>
-            <div className="photos">
-              { group.observationPhotos.length === 0 ? (
-                <div className="nocontent text-muted">{ I18n.t( "no_observations_yet" ) }</div>
-              ) : null }
-              { renderObservationPhotos( group.observationPhotos ) }
-            </div>
-          </div>
-        );
-      } ) }
-    </div>
-  );
   const groupingDisplay = useCallback( ( param: string | null ) => {
     if ( param === "taxon_id" ) {
       return I18n.t( "taxonomic" );
@@ -285,6 +138,9 @@ const PhotoBrowser = ( {
     }
     return items;
   }, [showTaxonGrouping, terms, grouping.param, groupingDisplay] );
+
+  const hasGroups = Object.keys( groupedPhotos ).length > 0;
+
   return (
     <div className={`PhotoBrowser ${layout}`}>
       <div id="controls">
@@ -306,32 +162,26 @@ const PhotoBrowser = ( {
         </ButtonGroup>
         <div id="filters">
           { groupingMenuItems.length === 0 ? null : (
-            <span className="control-group">
-              <Dropdown
-                id="grouping-control"
-                onSelect={( key: string | ControlledAttribute ) => {
-                  if ( key === "none" ) {
-                    setGrouping?.( null );
-                  } else if ( key === "taxon_id" ) {
-                    setGrouping?.( "taxon_id" );
-                  } else if ( typeof key !== "string" ) {
-                    setGrouping?.( `terms:${key.id}`, key.id );
-                  }
-                }}
-              >
-                <Dropdown.Toggle bsStyle="link">
-                  { I18n.t( "grouping" ) }
-                  { ": " }
-                  <strong>{ groupingDisplay( grouping.param ?? null ) }</strong>
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  { groupingMenuItems }
-                </Dropdown.Menu>
-              </Dropdown>
-            </span>
+            <FilterDropdown
+              id="grouping-control"
+              label={I18n.t( "grouping" )}
+              display={groupingDisplay( grouping.param ?? null )}
+              onSelect={( key: unknown ) => {
+                if ( key === "none" ) {
+                  setGrouping?.( null );
+                } else if ( key === "taxon_id" ) {
+                  setGrouping?.( "taxon_id" );
+                } else if ( key && typeof key !== "string" ) {
+                  setGrouping?.( `terms:${( key as ControlledAttribute ).id}`, ( key as ControlledAttribute ).id );
+                }
+              }}
+            >
+              { groupingMenuItems }
+            </FilterDropdown>
           ) }
           { Object.values( terms ).map( values => {
             const attr = values[0].controlled_attribute;
+            const isSelectedTerm = selectedTerm?.id === attr.id && !!selectedTermValue;
             const translatedAny = I18n.t(
               `controlled_term_labels.any_${_.snakeCase( attr.label )}`,
               {
@@ -340,143 +190,89 @@ const PhotoBrowser = ( {
                 } )
               }
             );
+            const termOptions = values.map( v => ( {
+              value: v.controlled_value.id,
+              label: I18n.t(
+                `controlled_term_labels.${_.snakeCase( v.controlled_value.label )}`,
+                { defaultValue: v.controlled_value.label }
+              )
+            } ) );
             return (
-              <span key={`term-${attr.label}`} className="control-group">
-                <Dropdown
-                  id={`term-chooser-${attr.label}`}
-                  onSelect={( key: string ) => setTerm?.( attr.id, key )}
-                >
-                  <Dropdown.Toggle bsStyle="link">
-                    { I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } ) }
-                    { ": " }
-                    <strong>
-                      {( selectedTerm && selectedTerm.id === attr.id && selectedTermValue
-                        ? I18n.t(
-                          `controlled_term_labels.${_.snakeCase( selectedTermValue.label )}`,
-                          { defaultValue: selectedTermValue.label }
-                        )
-                        : translatedAny
-                          ) }
-                    </strong>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <MenuItem
-                      key={`term-chooser-item-${attr.label}-any`}
-                      eventKey="any"
-                      active={!selectedTermValue}
-                    >
-                      { translatedAny }
-                    </MenuItem>
-                    { values.map( v => {
-                      const value = v.controlled_value;
-                      return (
-                        <MenuItem
-                          key={`term-chooser-item-${attr.label}-${value.label}`}
-                          eventKey={value.id}
-                          active={selectedTermValue && selectedTermValue.id === value.id}
-                        >
-                          { I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}`, { defaultValue: value.label } ) }
-                        </MenuItem>
-                      );
-                    } ) }
-                  </Dropdown.Menu>
-                </Dropdown>
-              </span>
+              <FilterDropdown
+                key={`term-${attr.label}`}
+                id={`term-chooser-${attr.label}`}
+                label={I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } )}
+                display={isSelectedTerm
+                  ? I18n.t(
+                    `controlled_term_labels.${_.snakeCase( selectedTermValue!.label )}`,
+                    { defaultValue: selectedTermValue!.label }
+                  )
+                  : translatedAny}
+                selected={isSelectedTerm ? selectedTermValue!.id : undefined}
+                options={[{ value: "any", label: translatedAny }, ...termOptions]}
+                onSelect={( key: unknown ) => setTerm?.( attr.id, key as string )}
+              />
             );
           } ) }
-          <span className="control-group">
-            <Dropdown
-              id="sort-control"
-              onSelect={( key: string ) => {
-                setParam?.( "order_by", key );
-              }}
-            >
-              <Dropdown.Toggle bsStyle="link">
-                { I18n.t( "order_by" ) }
-                { ": " }
-                <strong>{ orderByDisplay( params.order_by ) }</strong>
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <MenuItem
-                  eventKey="votes"
-                  active={params.order_by === "votes"}
-                >
-                  { orderByDisplay( "votes" ) }
-                </MenuItem>
-                <MenuItem
-                  eventKey="created_at"
-                  active={params.order_by === "created_at"}
-                >
-                  { orderByDisplay( "created_at" ) }
-                </MenuItem>
-              </Dropdown.Menu>
-            </Dropdown>
-          </span>
-          <span className="control-group">
-            <Dropdown
-              id="license-control"
-              onSelect={( key: string ) => { setParam?.( "photo_license", key ); }}
-            >
-              <Dropdown.Toggle bsStyle="link">
-                { I18n.t( "photo_licensing" ) }
-                { ": " }
-                <strong>{ licenseDisplay( params.photo_license ) }</strong>
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <MenuItem
-                  key="license-chooser-any"
-                  eventKey="any"
-                  active={!params.photo_license}
-                >
-                  { I18n.t( "any_license" ) }
-                </MenuItem>
-                { photoLicenses.map( k => (
-                  <MenuItem
-                    key={`license-chooser-${k}`}
-                    eventKey={k}
-                    active={params.photo_license === k}
-                  >
-                    { licenseDisplay( k ) }
-                  </MenuItem>
-                ) ) }
-              </Dropdown.Menu>
-            </Dropdown>
-          </span>
-          <span className="control-group">
-            <Dropdown
-              id="quality-grade-control"
-              onSelect={( key: string ) => {
-                setParam?.( "quality_grade", key );
-              }}
-            >
-              <Dropdown.Toggle bsStyle="link">
-                { I18n.t( "quality_grade_" ) }
-                { ": " }
-                <strong>{ qualityGradeDisplay( params.quality_grade ) }</strong>
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <MenuItem
-                  key="quality-grade-chooser-any"
-                  eventKey="any"
-                  active={!params.quality_grade}
-                >
-                  { I18n.t( "any_quality_grade" ) }
-                </MenuItem>
-                <MenuItem
-                  key="quality-grade-chooser-research"
-                  eventKey="research"
-                  active={params.quality_grade === "research"}
-                >
-                  { qualityGradeDisplay( "research" ) }
-                </MenuItem>
-              </Dropdown.Menu>
-            </Dropdown>
-          </span>
+          <FilterDropdown
+            id="sort-control"
+            label={I18n.t( "order_by" )}
+            display={orderByDisplay( params.order_by )}
+            selected={params.order_by}
+            options={[
+              { value: "votes", label: orderByDisplay( "votes" ) },
+              { value: "created_at", label: orderByDisplay( "created_at" ) }
+            ]}
+            onSelect={( key: unknown ) => setParam?.( "order_by", key as string )}
+          />
+          <FilterDropdown
+            id="license-control"
+            label={I18n.t( "photo_licensing" )}
+            display={licenseDisplay( params.photo_license )}
+            selected={params.photo_license}
+            options={[
+              { value: "any", label: I18n.t( "any_license" ) },
+              ...licenseOptions
+            ]}
+            onSelect={( key: unknown ) => setParam?.( "photo_license", key as string )}
+          />
+          <FilterDropdown
+            id="quality-grade-control"
+            label={I18n.t( "quality_grade_" )}
+            display={qualityGradeDisplay( params.quality_grade )}
+            selected={params.quality_grade}
+            options={[
+              { value: "any", label: I18n.t( "any_quality_grade" ) },
+              { value: "research", label: qualityGradeDisplay( "research" ) }
+            ]}
+            onSelect={( key: unknown ) => setParam?.( "quality_grade", key as string )}
+          />
         </div>
       </div>
       <div>
-        { sortedGroupedPhotos && sortedGroupedPhotos.length > 0
-          ? renderGroupedPhotos( ) : renderUngroupedPhotos( ) }
+        { hasGroups
+          ? (
+            <GroupedPhotos
+              groupedPhotos={groupedPhotos}
+              grouping={grouping}
+              params={params}
+              taxon={taxon}
+              layout={layout}
+              showTaxonPhotoModal={showTaxonPhotoModal}
+              config={config}
+            />
+          )
+          : (
+            <UngroupedPhotos
+              observationPhotos={observationPhotos}
+              hasMorePhotos={hasMorePhotos}
+              loadMorePhotos={loadMorePhotos}
+              place={place}
+              layout={layout}
+              showTaxonPhotoModal={showTaxonPhotoModal}
+              config={config}
+            />
+          ) }
       </div>
     </div>
   );
