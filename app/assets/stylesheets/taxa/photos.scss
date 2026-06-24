@@ -96,6 +96,13 @@
       grid-template-columns: repeat( auto-fill, minmax( 130px, 1fr ) );
     }
   }
+
+  // Spacing in grid mode comes entirely from `gap`; clear the fluid-layout
+  // gutter margin so it doesn't add to the row spacing (overflowing horizontally
+  // but stacking vertically, which makes rows look farther apart than columns).
+  .TaxonPhoto {
+    margin: 0;
+  }
 }
 
 @media ( max-width: $sm-max ) {
