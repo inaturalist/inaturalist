@@ -395,11 +395,6 @@ body > [role="dialog"] .ActivityItemMenu {
   body > [role="dialog"] .ActivityItem .identification > .taxon {
     flex: 1 1 100%;
   }
-  // hide status-badge labels on mobile, leaving just the icon (title carries the text)
-  .ActivityItem .item-status .item-status-label,
-  body > [role="dialog"] .ActivityItem .item-status .item-status-label {
-    display: none;
-  }
   // keep the caret dropdown menu inside the right edge instead of overflowing
   .ActivityItemMenu .control-group .dropdown.btn-group .dropdown-menu,
   body > [role="dialog"] .ActivityItemMenu .control-group .dropdown.btn-group .dropdown-menu {
@@ -409,6 +404,14 @@ body > [role="dialog"] .ActivityItemMenu {
     .search-links {
       min-width: 0;
     }
+  }
+}
+
+@media ( max-width: $sm-max ) {
+  // hide status-badge labels on mobile, leaving just the icon (title carries the text)
+  .ActivityItem .item-status .item-status-label,
+  body > [role="dialog"] .ActivityItem .item-status .item-status-label {
+    display: none;
   }
 }
 

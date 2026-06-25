@@ -574,30 +574,30 @@ class ActivityItem extends React.Component {
         );
       }
     }
-    // if ( item.vision ) {
-    headerItems.push(
-      <OverlayTrigger
-        key={`itent-vision-${item.uuid}`}
-        container={$( "#wrapper.bootstrap" ).get( 0 )}
-        trigger="click"
-        rootClose
-        placement="top"
-        delayShow={200}
-        overlay={(
-          <Popover
-            id={`vision-popover-${item.uuid}`}
-            title={I18n.t( "computer_vision_suggestion" )}
-          >
-            {I18n.t( "computer_vision_suggestion_desc" )}
-          </Popover>
-          )}
-      >
-        <span className="vision-status">
-          <i className="icon-sparkly-label" />
-        </span>
-      </OverlayTrigger>
-    );
-    // }
+    if ( item.vision ) {
+      headerItems.push(
+        <OverlayTrigger
+          key={`itent-vision-${item.uuid}`}
+          container={$( "#wrapper.bootstrap" ).get( 0 )}
+          trigger="click"
+          rootClose
+          placement="top"
+          delayShow={200}
+          overlay={(
+            <Popover
+              id={`vision-popover-${item.uuid}`}
+              title={I18n.t( "computer_vision_suggestion" )}
+            >
+              {I18n.t( "computer_vision_suggestion_desc" )}
+            </Popover>
+            )}
+        >
+          <span className="vision-status">
+            <i className="icon-sparkly-label" />
+          </span>
+        </OverlayTrigger>
+      );
+    }
     if ( item.taxon && !item.current ) {
       headerItems.push(
         <span
