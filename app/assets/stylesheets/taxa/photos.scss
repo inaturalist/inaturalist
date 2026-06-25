@@ -88,9 +88,13 @@
 .PhotoBrowser.grid {
   .photos {
     display: grid;
-    grid-template-columns: repeat( auto-fill, minmax( 160px, 1fr ) );
+    grid-template-columns: repeat( auto-fill, minmax( 183px, 1fr ) );
     margin: 0;
     gap: 5px;
+
+    @media ( max-width: $md-max ) {
+      grid-template-columns: repeat( auto-fill, minmax( 150px, 1fr ) );
+    }
 
     @media ( max-width: $sm-max ) {
       grid-template-columns: repeat( auto-fill, minmax( 130px, 1fr ) );
