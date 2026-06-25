@@ -108,7 +108,6 @@ body.responsive {
     padding-top: 20px;
   }
   #ObservationShow {
-    // container-padding mixin is the single source of the responsive edge gutter
     @include container-padding;
     // stack the two-column layouts below the tablet breakpoint
     @media ( max-width: $md-max ) {
@@ -1197,6 +1196,10 @@ time {
     i {
       padding: 0px 2px;
     }
+  }
+
+  @media (max-width: $md-max) {
+    padding-right: 0px;
   }
 }
 
