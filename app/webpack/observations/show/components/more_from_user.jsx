@@ -106,7 +106,7 @@ const MoreFromUser = ( {
           ) : "" }
         </div>
       </h3>
-      <Carousel items={items} className="more-from-user" />
+      <Carousel items={items} />
     </div>
   );
 };
