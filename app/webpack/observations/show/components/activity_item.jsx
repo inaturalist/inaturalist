@@ -444,7 +444,6 @@ class ActivityItem extends React.Component {
       }
       contents = (
         <div className="identification">
-          {buttonDiv}
           <div className="taxon">
             {noTaxonLink ? taxonImageTag : (
               <a
@@ -464,6 +463,7 @@ class ActivityItem extends React.Component {
               showMemberGroup
             />
           </div>
+          {buttonDiv}
           {!_.isEmpty( idBody ) && (
             <div className="id-body-wrapper">
               { idBody }
