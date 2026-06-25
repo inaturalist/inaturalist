@@ -11,8 +11,13 @@ import "@testing-library/jest-dom";
 // iNaturalist is a Rails-injected global with static lookup tables.
 ( global as unknown as Record<string, unknown> ).iNaturalist = {
   Licenses: {
-    cc0: {}, cc_by: {}, cc_by_nc: {}, cc_by_sa: {}, cc_by_nd: {},
-    cc_by_nc_sa: {}, cc_by_nc_nd: {}
+    cc0: {},
+    cc_by: {},
+    cc_by_nc: {},
+    cc_by_sa: {},
+    cc_by_nd: {},
+    cc_by_nc_sa: {},
+    cc_by_nc_nd: {}
   }
 };
 
