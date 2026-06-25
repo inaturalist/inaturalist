@@ -2,9 +2,6 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Grid,
-  Row,
-  Col,
   SplitButton,
   MenuItem,
   OverlayTrigger,
@@ -212,22 +209,18 @@ class App extends React.Component {
       && ( !observation.sounds || observation.sounds.length === 0 )
     ) ? "empty" : null;
     const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
-    const responsive = config.currentUser?.isAdmin
-      && config.currentUser?.isInTestGroup( "responsive-obs-detail" );
     const description = observation.description
       ? (
-        <Row>
-          <Col xs={12}>
-            <h3>
-              {
-                I18n.t( "notes", {
-                  defaultValue: I18n.t( "activerecord.attributes.observation.description" )
-                } )
-              }
-            </h3>
-            <UserText text={observation.description} />
-          </Col>
-        </Row>
+        <div className="description">
+          <h3>
+            {
+              I18n.t( "notes", {
+                defaultValue: I18n.t( "activerecord.attributes.observation.description" )
+              } )
+            }
+          </h3>
+          <UserText text={observation.description} />
+        </div>
       )
       : "";
     const qualityGrade = observation.quality_grade === "research"
@@ -242,7 +235,6 @@ class App extends React.Component {
       qualityGradeTooltipHtml = I18n.t( "needs_id_tooltip_html2", {
         defaultValuePreFallback: I18n.t( "needs_id_tooltip_html" )
       } );
-
     } else {
       qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html2", {
         defaultValuePreFallback: I18n.t( "research_grade_tooltip_html" )
@@ -257,191 +249,149 @@ class App extends React.Component {
           showBlocks
         />
         <div className="upper">
-          <Grid>
-            <Row className="title_row">
-              <Col xs={10}>
-                <div className="ObservationTitle">
-                  <SplitTaxon
-                    taxon={observation.taxon}
-                    url={taxonUrl}
-                    placeholder={observation.species_guess}
-                    user={config.currentUser}
-                  />
-                  <ConservationStatusBadge observation={observation} />
-                  <EstablishmentMeansBadge observation={observation} />
-                  <OverlayTrigger
-                    placement="bottom"
-                    trigger={["hover", "click"]}
-                    delayHide={1000}
-                    overlay={(
-                      <Tooltip id="quality-grade-tooltip">
-                        <p
-                          // eslint-disable-next-line react/no-danger
-                          dangerouslySetInnerHTML={{ __html: qualityGradeTooltipHtml }}
-                        />
-                      </Tooltip>
-                    )}
-                    container={$( "#wrapper.bootstrap" ).get( 0 )}
+          <div className="title_row">
+            <div className="ObservationTitle">
+              <SplitTaxon
+                taxon={observation.taxon}
+                url={taxonUrl}
+                placeholder={observation.species_guess}
+                user={config.currentUser}
+              />
+              <ConservationStatusBadge observation={observation} />
+              <EstablishmentMeansBadge observation={observation} />
+              <OverlayTrigger
+                placement="bottom"
+                trigger={["hover", "click"]}
+                delayHide={1000}
+                overlay={(
+                  <Tooltip id="quality-grade-tooltip">
+                    <p
+                      // eslint-disable-next-line react/no-danger
+                      dangerouslySetInnerHTML={{ __html: qualityGradeTooltipHtml }}
+                    />
+                  </Tooltip>
+                )}
+                container={$( "#wrapper.bootstrap" ).get( 0 )}
+              >
+                <span className={`quality_grade ${observation.quality_grade} `}>
+                  { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
+                </span>
+              </OverlayTrigger>
+            </div>
+            { viewerIsObserver
+              ? (
+                <div className="edit-button">
+                  <SplitButton
+                    bsStyle="primary"
+                    className="edit"
+                    href={`/observations/${observation.id}/edit`}
+                    title={I18n.t( "edit" )}
+                    id="edit-dropdown"
+                    pullRight
+                    onSelect={key => {
+                      if ( key === "delete" ) {
+                        deleteObservation( );
+                      } else if ( key === "license" ) {
+                        setLicensingModalState( { show: true } );
+                      }
+                    }}
                   >
-                    <span className={`quality_grade ${observation.quality_grade} `}>
-                      { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
-                    </span>
-                  </OverlayTrigger>
-                </div>
-              </Col>
-              { viewerIsObserver
-                ? (
-                  <Col xs={2} className="edit-button">
-                    <SplitButton
-                      bsStyle="primary"
-                      className="edit"
+                    <MenuItem
+                      eventKey="edit"
                       href={`/observations/${observation.id}/edit`}
-                      title={I18n.t( "edit" )}
-                      id="edit-dropdown"
-                      pullRight
-                      onSelect={key => {
-                        if ( key === "delete" ) {
-                          deleteObservation( );
-                        } else if ( key === "license" ) {
-                          setLicensingModalState( { show: true } );
-                        }
-                      }}
                     >
-                      <MenuItem
-                        eventKey="edit"
-                        href={`/observations/${observation.id}/edit`}
-                      >
-                        <i className="fa fa-pencil" />
-                        { I18n.t( "edit" ) }
-                      </MenuItem>
-                      <MenuItem
-                        eventKey="duplicate"
-                        href={`/observations/new?copy=${observation.id}`}
-                      >
-                        <i className="fa fa-files-o" />
-                        { I18n.t( "duplicate_verb" ) }
-                      </MenuItem>
-                      <MenuItem eventKey="license">
-                        <i className="fa fa-copyright" />
-                        { I18n.t( "edit_license" ) }
-                      </MenuItem>
-                      <li role="separator" className="divider" />
-                      <MenuItem eventKey="delete">
-                        <i className="fa fa-trash" />
-                        { I18n.t( "delete" ) }
-                      </MenuItem>
-                    </SplitButton>
-                  </Col>
-                ) : config?.currentUserCanInteractWithResource( observation ) && (
-                  <FollowButtonContainer />
-                ) }
-            </Row>
-            <Row>
-              <Col xs={12}>
-                <Grid className="top_container">
-                  <Row className="top_row">
-                    <Col xs={responsive ? null : 7} sm={responsive ? 7 : null} className={`photos_column ${photosColClass}`}>
-                      <PhotoBrowserContainer />
-                    </Col>
-                    <Col xs={responsive ? null : 5} sm={responsive ? 5 : null} className="info_column">
-                      <div className="user_info">
-                        <PreviousNextButtonsContainer />
-                        <UserWithIcon
-                          config={config}
-                          user={observation.user}
-                          hideSubtitle={
-                            observation.obscured
-                            && !observation.private_geojson
-                          }
-                        />
-                      </div>
-                      <Row className="date_row">
-                        <Col xs={6}>
-                          <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
-                          {this.displayDateObserved( )}
-                          { observation.observed_on && !observation.obscured && (
-                            <Inativersary
-                              config={config}
-                              user={observation.user}
-                              date={observation.observed_on}
-                              uniqueKey="DateObserved"
-                            />
-                          ) }
-                        </Col>
-                        <Col xs={6}>
-                          <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
-                          {this.displayDateAdded( )}
-                        </Col>
-                      </Row>
-                      <MapContainer />
-                      <Row className="faves_row">
-                        <Col xs={12}>
-                          <FavesContainer />
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Grid>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={responsive ? null : 7} sm={responsive ? 7 : null} className="middle_left">
-                { description }
-                <Row>
-                  <Col xs={12}>
-                    <ActivityContainer />
-                  </Col>
-                </Row>
-              </Col>
-              <Col xs={responsive ? null : 5} sm={responsive ? 5 : null} className="opposite_activity">
-                <Row>
-                  <Col xs={12}>
-                    <CommunityIdentificationContainer />
-                  </Col>
-                </Row>
-                <Row>
-                  <LazyLoad
-                    debounce={false}
-                    offset={100}
-                  >
-                    <Col xs={12}>
-                      <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
-                    </Col>
-                  </LazyLoad>
-                </Row>
-                <Row>
-                  <Col xs={12}>
-                    <ProjectsContainer />
-                  </Col>
-                </Row>
-                { (
-                  ( config.currentUser && config.currentUser.id === observation.user.id )
-                  || ( observation && observation.tags && observation.tags.length > 0 )
-                ) && (
-                  <Row>
-                    <Col xs={12}>
-                      <TagsContainer />
-                    </Col>
-                  </Row>
-                ) }
-                <Row>
-                  <Col xs={12}>
-                    <ObservationFieldsContainer />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12}>
-                    <IdentifiersContainer />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12}>
-                    <CopyrightContainer />
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Grid>
+                      <i className="fa fa-pencil" />
+                      { I18n.t( "edit" ) }
+                    </MenuItem>
+                    <MenuItem
+                      eventKey="duplicate"
+                      href={`/observations/new?copy=${observation.id}`}
+                    >
+                      <i className="fa fa-files-o" />
+                      { I18n.t( "duplicate_verb" ) }
+                    </MenuItem>
+                    <MenuItem eventKey="license">
+                      <i className="fa fa-copyright" />
+                      { I18n.t( "edit_license" ) }
+                    </MenuItem>
+                    <li role="separator" className="divider" />
+                    <MenuItem eventKey="delete">
+                      <i className="fa fa-trash" />
+                      { I18n.t( "delete" ) }
+                    </MenuItem>
+                  </SplitButton>
+                </div>
+              ) : config?.currentUserCanInteractWithResource( observation ) && (
+                <FollowButtonContainer />
+              ) }
+          </div>
+          <div className="top_container">
+            <div className="top_row">
+              <div className={`photos_column ${photosColClass}`}>
+                <PhotoBrowserContainer />
+              </div>
+              <div className="info_column">
+                <div className="user_info">
+                  <PreviousNextButtonsContainer />
+                  <UserWithIcon
+                    config={config}
+                    user={observation.user}
+                    hideSubtitle={
+                      observation.obscured
+                      && !observation.private_geojson
+                    }
+                  />
+                </div>
+                <div className="date_row">
+                  <div>
+                    <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
+                    {this.displayDateObserved( )}
+                    { observation.observed_on && !observation.obscured && (
+                      <Inativersary
+                        config={config}
+                        user={observation.user}
+                        date={observation.observed_on}
+                        uniqueKey="DateObserved"
+                      />
+                    ) }
+                  </div>
+                  <div>
+                    <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
+                    {this.displayDateAdded( )}
+                  </div>
+                </div>
+                <MapContainer />
+                <div className="faves_row">
+                  <FavesContainer />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="middle">
+            <div className="middle_left">
+              { description }
+              <ActivityContainer />
+            </div>
+            <div className="opposite_activity">
+              <CommunityIdentificationContainer />
+              <LazyLoad
+                debounce={false}
+                offset={100}
+              >
+                <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
+              </LazyLoad>
+              <ProjectsContainer />
+              { (
+                ( config.currentUser && config.currentUser.id === observation.user.id )
+                || ( observation && observation.tags && observation.tags.length > 0 )
+              ) && (
+                <TagsContainer />
+              ) }
+              <ObservationFieldsContainer />
+              <IdentifiersContainer />
+              <CopyrightContainer />
+            </div>
+          </div>
         </div>
         <div className="data_quality_assessment">
           <AssessmentContainer innerWrapper={AssessmentLazyLoad} />
@@ -449,23 +399,17 @@ class App extends React.Component {
         { ( !observation.obscured || observation.private_geojson ) && (
           <LazyLoad debounce={false} offset={500}>
             <div className="more_from">
-              <Grid>
-                <Row>
-                  <Col xs={12}>
-                    <MoreFromUserContainer />
-                  </Col>
-                </Row>
-              </Grid>
-              <Grid>
-                <Row>
-                  <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
-                    <NearbyContainer />
-                  </Col>
-                  <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
-                    <SimilarContainer />
-                  </Col>
-                </Row>
-              </Grid>
+              <div className="more_from_user">
+                <MoreFromUserContainer />
+              </div>
+              <div className="nearby_similar">
+                <div className="nearby_col">
+                  <NearbyContainer />
+                </div>
+                <div className="similar_col">
+                  <SimilarContainer />
+                </div>
+              </div>
             </div>
           </LazyLoad>
         ) }
