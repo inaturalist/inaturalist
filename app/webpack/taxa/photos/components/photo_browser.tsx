@@ -59,6 +59,13 @@ const qualityGradeDisplay = ( key: string | undefined ) => {
   return I18n.t( "any_quality_grade" );
 };
 
+const licenseOptions: FilterOption[] = _.sortBy(
+  Object.keys( iNaturalist.Licenses )
+    .filter( k => k.startsWith( "cc" ) )
+    .map( k => ( { value: k, label: licenseDisplay( k ) } ) ),
+  "label"
+);
+
 const PhotoBrowser = ( {
   groupedPhotos = {},
   grouping = {},
@@ -80,14 +87,6 @@ const PhotoBrowser = ( {
   place,
   config = {}
 }: PhotoBrowserProps ) => {
-  // The cc* licenses as ready-to-use dropdown options, sorted by display label.
-  const licenseOptions = useMemo( ( ) => _.sortBy(
-    Object.keys( iNaturalist.Licenses )
-      .filter( k => k.startsWith( "cc" ) )
-      .map( k => ( { value: k, label: licenseDisplay( k ) } ) ),
-    "label"
-  ), [] );
-
   const groupingDisplay = useCallback( ( param: string | null ) => {
     if ( param === "taxon_id" ) {
       return I18n.t( "taxonomic" );
@@ -97,9 +96,7 @@ const PhotoBrowser = ( {
     }
     return I18n.t( "none" );
   }, [grouping, terms] );
-  // Grouping options use canonical string values matching grouping.param
-  // ("taxon_id" / "terms:<id>"), plus a "none" sentinel, so a single
-  // selected={grouping.param ?? "none"} drives the active highlight.
+
   const groupingOptions = useMemo( ( ) => {
     const items: FilterOption[] = [];
     if ( showTaxonGrouping ) {
