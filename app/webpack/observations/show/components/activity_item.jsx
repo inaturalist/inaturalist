@@ -498,15 +498,18 @@ class ActivityItem extends React.Component {
     if ( unresolvedFlags.length > 0 ) {
       panelClass = "flagged";
       headerItems.push(
-        <span key={`flagged-${item.uuid}`} className="item-status">
+        <span
+          key={`flagged-${item.uuid}`}
+          className="item-status"
+          title={I18n.t( "flagged_" )}
+        >
           <a
             href={`/${this.isID ? "identifications" : "comments"}/${item.uuid}/flags`}
             rel="nofollow noopener noreferrer"
             target="_blank"
           >
             <i className="fa fa-flag" />
-            {" "}
-            {I18n.t( "flagged_" )}
+            <span className="item-status-label">{` ${I18n.t( "flagged_" )}`}</span>
           </a>
         </span>
       );
@@ -516,30 +519,39 @@ class ActivityItem extends React.Component {
       if ( item.category === "maverick" ) {
         panelClass = "maverick";
         idCategory = (
-          <span key={`maverick-${item.uuid}`} className="item-status ident-category">
+          <span
+            key={`maverick-${item.uuid}`}
+            className="item-status ident-category"
+            title={I18n.t( "maverick" )}
+          >
             <i className="fa fa-bolt" />
-            {" "}
-            {I18n.t( "maverick" )}
+            <span className="item-status-label">{` ${I18n.t( "maverick" )}`}</span>
           </span>
         );
         idCategoryTooltipText = I18n.t( "id_categories.tooltips.maverick" );
       } else if ( item.category === "improving" ) {
         panelClass = "improving";
         idCategory = (
-          <span key={`improving-${item.uuid}`} className="item-status ident-category">
+          <span
+            key={`improving-${item.uuid}`}
+            className="item-status ident-category"
+            title={I18n.t( "improving" )}
+          >
             <i className="fa fa-trophy" />
-            {" "}
-            {I18n.t( "improving" )}
+            <span className="item-status-label">{` ${I18n.t( "improving" )}`}</span>
           </span>
         );
         idCategoryTooltipText = I18n.t( "id_categories.tooltips.improving" );
       } else if ( item.category === "leading" ) {
         panelClass = "leading";
         idCategory = (
-          <span key={`leading-${item.uuid}`} className="item-status ident-category">
+          <span
+            key={`leading-${item.uuid}`}
+            className="item-status ident-category"
+            title={I18n.t( "leading" )}
+          >
             <i className="icon-icn-leading-id" />
-            {" "}
-            {I18n.t( "leading" )}
+            <span className="item-status-label">{` ${I18n.t( "leading" )}`}</span>
           </span>
         );
         idCategoryTooltipText = I18n.t( "id_categories.tooltips.leading" );
@@ -562,36 +574,39 @@ class ActivityItem extends React.Component {
         );
       }
     }
-    if ( item.vision ) {
-      headerItems.push(
-        <OverlayTrigger
-          key={`itent-vision-${item.uuid}`}
-          container={$( "#wrapper.bootstrap" ).get( 0 )}
-          trigger="click"
-          rootClose
-          placement="top"
-          delayShow={200}
-          overlay={(
-            <Popover
-              id={`vision-popover-${item.uuid}`}
-              title={I18n.t( "computer_vision_suggestion" )}
-            >
-              {I18n.t( "computer_vision_suggestion_desc" )}
-            </Popover>
+    // if ( item.vision ) {
+    headerItems.push(
+      <OverlayTrigger
+        key={`itent-vision-${item.uuid}`}
+        container={$( "#wrapper.bootstrap" ).get( 0 )}
+        trigger="click"
+        rootClose
+        placement="top"
+        delayShow={200}
+        overlay={(
+          <Popover
+            id={`vision-popover-${item.uuid}`}
+            title={I18n.t( "computer_vision_suggestion" )}
+          >
+            {I18n.t( "computer_vision_suggestion_desc" )}
+          </Popover>
           )}
-        >
-          <span className="vision-status">
-            <i className="icon-sparkly-label" />
-          </span>
-        </OverlayTrigger>
-      );
-    }
+      >
+        <span className="vision-status">
+          <i className="icon-sparkly-label" />
+        </span>
+      </OverlayTrigger>
+    );
+    // }
     if ( item.taxon && !item.current ) {
       headerItems.push(
-        <span key={`ident-withdrawn-${item.uuid}`} className="item-status">
+        <span
+          key={`ident-withdrawn-${item.uuid}`}
+          className="item-status"
+          title={I18n.t( "id_withdrawn" )}
+        >
           <i className="fa fa-ban" />
-          {" "}
-          {I18n.t( "id_withdrawn" )}
+          <span className="item-status-label">{` ${I18n.t( "id_withdrawn" )}`}</span>
         </span>
       );
     }
