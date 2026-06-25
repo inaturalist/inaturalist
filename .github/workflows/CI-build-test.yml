@@ -96,7 +96,7 @@ jobs:
 
     - name: Restore apt package cache
       id: apt-cache
-      uses: actions/cache@v4
+      uses: actions/cache/restore@v4
       with:
         path: ~/apt-packages
         key: apt-packages-${{ runner.os }}-${{ steps.cache-date.outputs.date }}-${{ hashFiles('.github/apt-packages.txt') }}
