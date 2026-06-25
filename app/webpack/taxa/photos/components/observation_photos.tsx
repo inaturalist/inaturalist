@@ -3,7 +3,7 @@ import TaxonPhoto from "../../../shared/components/taxon_photo";
 import type { Config } from "../../../shared/types";
 import type { ObservationPhoto, ShowTaxonPhotoModal } from "./types";
 
-interface Props {
+interface ObservationPhotosProps {
   observationPhotos?: ObservationPhoto[];
   layout: string;
   showTaxonPhotoModal: ShowTaxonPhotoModal;
@@ -15,7 +15,7 @@ const ObservationPhotos = ( {
   layout,
   showTaxonPhotoModal,
   config = {}
-}: Props ) => (
+}: ObservationPhotosProps ) => (
   <>
     { ( observationPhotos || [] ).map( observationPhoto => {
       let itemDim: number | undefined;

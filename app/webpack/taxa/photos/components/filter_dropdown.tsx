@@ -6,7 +6,7 @@ export interface FilterOption {
   label: React.ReactNode;
 }
 
-interface Props {
+interface FilterDropdownProps {
   id: string;
   label: React.ReactNode;
   onSelect: ( key: string | number ) => void;
@@ -27,7 +27,7 @@ const FilterDropdown = ( {
   selected,
   options,
   display
-}: Props ) => {
+}: FilterDropdownProps ) => {
   const resolvedDisplay = display
     ?? options.find( option => option.value === selected )?.label;
   return (

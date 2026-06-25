@@ -9,7 +9,7 @@ import type {
   PhotoGroup, Grouping, Params, ShowTaxonPhotoModal
 } from "./types";
 
-interface Props {
+interface GroupedPhotosProps {
   groupedPhotos: Record<string, PhotoGroup>;
   grouping: Grouping;
   params: Params;
@@ -27,7 +27,7 @@ const GroupedPhotos = ( {
   layout,
   showTaxonPhotoModal,
   config = {}
-}: Props ) => {
+}: GroupedPhotosProps ) => {
   // Do not memoize - groupedPhotos is mutated in place, so its identity does not
   // change when groups are filled with photos. Memoizing on it would strand the
   // initial empty groups, so photos would never appear when grouping is selected.

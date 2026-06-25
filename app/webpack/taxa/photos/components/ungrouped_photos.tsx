@@ -4,7 +4,7 @@ import ObservationPhotos from "./observation_photos";
 import type { Config, Place } from "../../../shared/types";
 import type { ObservationPhoto, ShowTaxonPhotoModal } from "./types";
 
-interface Props {
+interface UngroupedPhotosProps {
   observationPhotos?: ObservationPhoto[];
   hasMorePhotos?: boolean;
   loadMorePhotos: () => void;
@@ -25,7 +25,7 @@ const UngroupedPhotos = ( {
   layout,
   showTaxonPhotoModal,
   config
-}: Props ) => {
+}: UngroupedPhotosProps ) => {
   const loader = (
     <div key="photo-browser-loader" className="loading">
       <i className="fa fa-refresh fa-spin" />
