@@ -124,6 +124,18 @@ class Emailer < ActionMailer::Base
     @user = user
     return if @user.email.blank?
 
+    # This is an account-critical email, so remove any suppressions that would
+    # otherwise prevent SendGrid from delivering it (mirrors DeviseMailer).
+    EmailSuppression.destroy_for_email(
+      @user.email,
+      only: [
+        EmailSuppression::ACCOUNT_EMAILS,
+        EmailSuppression::BLOCKS,
+        EmailSuppression::BOUNCES,
+        EmailSuppression::SPAM_REPORTS,
+        EmailSuppression::UNSUBSCRIBES
+      ]
+    )
     @reason = reason
     @site_name = site_name
     @x_smtpapi_headers[:asm_group_id] = CONFIG.sendgrid&.asm_group_ids&.account
@@ -139,6 +151,18 @@ class Emailer < ActionMailer::Base
     @user = user
     return if @user.email.blank?
 
+    # This is an account-critical email, so remove any suppressions that would
+    # otherwise prevent SendGrid from delivering it (mirrors DeviseMailer).
+    EmailSuppression.destroy_for_email(
+      @user.email,
+      only: [
+        EmailSuppression::ACCOUNT_EMAILS,
+        EmailSuppression::BLOCKS,
+        EmailSuppression::BOUNCES,
+        EmailSuppression::SPAM_REPORTS,
+        EmailSuppression::UNSUBSCRIBES
+      ]
+    )
     @reason = reason
     @indefinite = suspended_until.blank?
     @suspended_until = suspended_until
