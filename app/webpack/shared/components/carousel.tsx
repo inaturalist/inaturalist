@@ -3,6 +3,8 @@ import React, {
 } from "react";
 import css from "./carousel.module.css";
 
+const ITEM_GAP_SIZE = 5; // px
+
 export interface CarouselProps {
   items: React.ReactElement[];
   finalItem?: React.ReactElement;
@@ -96,9 +98,10 @@ const Carousel = ( {
   // measures the track, visibleCount switches to the real value and placeholders get sized.
   const INITIAL_VISIBLE = 2;
   const visibleCount = trackWidth && itemWidth
-    ? Math.ceil( trackWidth / itemWidth )
+    ? Math.ceil( trackWidth / ( itemWidth + ITEM_GAP_SIZE ) )
     : INITIAL_VISIBLE;
   const allItems = finalItem ? [...items, finalItem] : items;
+  const allItemsVisible = allItems.length < visibleCount;
   const renderedItems = allItems.map( ( item, index ) => {
     const distFromActive = Math.abs( index - activeIndex );
     return (
@@ -133,7 +136,7 @@ const Carousel = ( {
         <p className="text-muted text-center">{ noContent }</p>
       ) }
       <div className={css.body}>
-        { allItems.length > 0 && (
+        { allItems.length > 0 && !allItemsVisible && (
           <button
             type="button"
             className={`btn ${css.navbtn}`}
@@ -144,10 +147,10 @@ const Carousel = ( {
             ❮
           </button>
         ) }
-        <div className={css.track} ref={trackRef}>
+        <div className={allItemsVisible ? css.statictrack : css.track} ref={trackRef}>
           { renderedItems }
         </div>
-        { allItems.length > 0 && (
+        { allItems.length > 0 && !allItemsVisible && (
           <button
             type="button"
             className={`btn ${css.navbtn}`}

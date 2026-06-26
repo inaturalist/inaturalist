@@ -32,6 +32,13 @@
   display: none;
 }
 
+.statictrack {
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  width: 100%;
+}
+
 .item {
   scroll-snap-align: start;
   flex-shrink: 0;

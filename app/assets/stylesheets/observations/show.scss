@@ -109,6 +109,9 @@ body.responsive {
   }
   #ObservationShow {
     @include container-padding;
+    .data_quality_assessment .container {
+      width: auto;
+    }
     // stack the two-column layouts below the tablet breakpoint
     @media ( max-width: $md-max ) {
       .photos_column,
