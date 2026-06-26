@@ -357,6 +357,8 @@ ja:
   added_by: '追加者:'
   added_by_user_on_date_html: "%{user}さんが%{date}に追加しました"
   added_on_datetime: "追加日時%{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: 追加されたロール：
   added_to_favorites_html: |
     <a href="%{url}">お気に入り</a>に追加しました
   adding: "追加しています..."
@@ -1182,6 +1184,7 @@ ja:
   copy_and_paste_the_following_code_to: この評価を別のウェブページに埋め込めるには、以下のコードをコピーし、貼り付けてください。
   copy_and_paste_this_into_your_own_html: こちらをコピーし、自分のHTMLの中に貼り付けしてご利用ください。
   copy_guide_taxon_to: ガイド分類群を次の場所にコピーする：
+  copy_to_clipboard: クリップボードにコピー
   copied!: コピーしました！
   copyright:
     some_rights_reserved: いくつかの権利を保有
@@ -1797,6 +1800,9 @@ ja:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 階級指定
   except: を除いて
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: 除外
   exclude_places: 場所を除く
   exclude_projects: プロジェクトを除く
   exclude_taxa: 分類群を除く
@@ -2184,7 +2190,6 @@ ja:
   identification_saved: "判定が保存されました！"
   #Notice when an identification has been hidden by moderators
   identification_hidden: 同定は非表示
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: 同定を非表示
   #Notification when an identification has been updated
   identification_updated: 同定が更新されました
@@ -2367,6 +2372,8 @@ ja:
   large: 大
   last_active_with_date: "最後の活動: %{date}"
   last_confirmed_observation: 最後に確認された観察記録
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: 最終更新者
   last_observation: 最終観察記録
   last_observation_caps: 最終観察記録
   last_seen: 最終観察時
@@ -4233,6 +4240,8 @@ ja:
   ranks_lowercase_zoosubsection: 亜節
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: 上科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: 上科
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: 科
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
@@ -4394,6 +4403,7 @@ ja:
     1ページあたりの検索結果数が10,000を超えています。フィルタを適用して数を減らしてみてください。
   review_all: すべてを確認済みに
   reviewed: 確認済み
+  revoke_caps: 取り消す
   revoke_privacy_consent_warning: "この同意を取り消す唯一の方法は、お客様のアカウントおよび関連するすべてのデータを削除することです。"
   rg_observations: 研究用グレード観察記録のみ
   role: 役割
