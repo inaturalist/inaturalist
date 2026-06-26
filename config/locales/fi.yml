@@ -623,8 +623,6 @@ fi:
     Saatamme esittää lisäkysymyksiä suunnitelmastasi, ja pidätämme oikeuden hylätä hakemuksia mistä tahansa syystä.
   app_owner_application_inelligible: |
     Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 tunnistuksen parantamista viime kuussa.
-  app_owner_application_inelligible2: |
-    Hakemuksen jättämiseksi tilisi täytyy olla vähintään 2 kuukautta vanha ja olet tehnyt vähintään 10 tunnistusta muiden käyttäjien havaintoihin viimeisen kuukauden aikana.
   app_owner_application_fields_explanation_html: Kuvaile sovelluksesi toiminnallisuus ja miten aiot käyttää sitä.
   app_owner_application_success: Sovelluksen omistajan hakemus lähetetty
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -2237,7 +2235,6 @@ fi:
   identification_saved: "Tunnistus tallennettu!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Tunnistus piilotettu
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: Tunnistus näytetään
   #Notification when an identification has been updated
   identification_updated: Tunnistus päivitetty!
@@ -4754,19 +4751,25 @@ fi:
     #reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Solvaukset tai uhkaukset
     #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Seksuaalisesti eksplisiittinen sisältö
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Valeprofiilit
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Tahallinen väärien tunnistusten lisääminen
     #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
     machine_generated_content: Koneella tuotetut havainnot, tunnistukset ja kommentit
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Tekijänoikeusrikkomus jatkuu (varoituksen jälkeen)
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Keinotekoisesti luodun median jatkaminen (varoituksen jälkeen)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Datan laadun jatkuva heikentäminen (varoituksen jälkeen)
   #the time at which a users suspension ends
   suspend_until: Jäähyllä
