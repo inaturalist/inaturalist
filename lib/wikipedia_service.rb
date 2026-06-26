@@ -27,13 +27,6 @@ class WikipediaService < MetaService
     @default_params[:variant] = locale.downcase
   end
 
-  def self.fetch_with_redirects( options, attempts = 3 )
-    Net::HTTPTooManyRequests.new( "1.1", "429", "Too Many Requests" ).tap do |res|
-      res.instance_variable_set( :@body, "Too Many Requests" )
-      res.instance_variable_set( :@read, true )
-    end
-  end
-
   def url_for_title( title )
     "#{base_url}/#{@default_params[:variant] || 'wiki'}/#{title}"
   end

@@ -57,7 +57,7 @@ class MetaService
     end
   end
 
-  def method_missing( method, * )
+  def method_missing( method, *args )
     # puts "DEBUG: You tried to call '#{method}'" # test
     params = *args
     params = params.first if params.is_a?( Array ) && params.size == 1
@@ -65,7 +65,7 @@ class MetaService
       raise "#{@service_name}##{method} arguments must be a Hash"
     end
 
-    request( method, * )
+    request( method, *args )
   end
 
   def self.fetch_request_uri( options = {} )
@@ -133,10 +133,6 @@ class MetaService
   end
 
   def self.fetch_with_redirects( options, attempts = 3 )
-    return Net::HTTPTooManyRequests.new( "1.1", "429", "Too Many Requests" ).tap do | res |
-      res.instance_variable_set( :@body, "Too Many Requests" )
-      res.instance_variable_set( :@read, true )
-    end
     http = Net::HTTP.new( options[:request_uri].host, options[:request_uri].port )
     # using SSL if we have an https URL
     http.use_ssl = ( options[:request_uri].scheme == "https" )
