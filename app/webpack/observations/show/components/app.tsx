@@ -1,6 +1,5 @@
 import _ from "lodash";
 import React from "react";
-import PropTypes from "prop-types";
 import {
   SplitButton,
   MenuItem,
@@ -45,6 +44,50 @@ import ModeratorActionModalContainer from "../containers/moderator_action_modal_
 import ObservationModalContainer from "../containers/observation_modal_container";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 import AssessmentLazyLoad from "./assessment_lazy_load";
+import type {
+  Config, CurrentUser, Observation, User
+} from "../../../shared/types";
+
+interface DateDetails {
+  year?: number;
+  month?: number;
+  day?: number;
+}
+
+// The obs-show page observation/config carry many fields not on the shared
+// (intentionally narrow) types; intersect with the page-specific shape here.
+interface ShowObservation extends Observation {
+  uuid?: string;
+  user?: User & { id: number; login: string };
+  species_guess?: string;
+  description?: string;
+  quality_grade: string;
+  observed_on?: string;
+  observed_on_details: DateDetails;
+  time_observed_at?: string;
+  observed_time_zone?: string;
+  created_at?: string;
+  created_at_details: DateDetails;
+  created_time_zone?: string;
+  obscured?: boolean;
+  private_geojson?: unknown;
+  sounds?: unknown[];
+  tags?: unknown[];
+}
+
+interface ShowConfig extends Config {
+  currentUser?: CurrentUser & { id?: number; time_zone?: string };
+  currentUserCanInteractWithResource: ( resource: ShowObservation ) => boolean;
+}
+
+interface AppProps {
+  observation: ShowObservation;
+  config: ShowConfig;
+  deleteObservation: ( ) => void;
+  setLicensingModalState: ( state: { show: boolean } ) => void;
+}
+
+type SearchParameters = Record<string, string | number | null | undefined>;
 
 moment.updateLocale( "en", {
   relativeTime: {
@@ -64,14 +107,17 @@ moment.updateLocale( "en", {
   }
 } );
 
-class App extends React.Component {
-  linkDateToObservationSearch( dateString, searchParameters = { } ) {
+class App extends React.Component<AppProps> {
+  linkDateToObservationSearch(
+    dateString?: string | null,
+    searchParameters: SearchParameters = { }
+  ) {
     if ( _.isEmpty( dateString ) ) {
       return null;
     }
 
     const { observation } = this.props;
-    let url = `/observations?user_id=${observation.user.login}&place_id=any&verifiable=any&`;
+    let url = `/observations?user_id=${observation.user?.login}&place_id=any&verifiable=any&`;
     url += $.param( _.pickBy( searchParameters, v => !_.isNil( v ) ) );
     // dates are formatted with the `momentjs.datetime_with_offset` pattern. Currently
     // all locales separate the date part of the string from the time and zone part of
@@ -79,8 +125,8 @@ class App extends React.Component {
     // to attempt to only link the date and not the time. If the pattern is not found
     // (as would be the case when there is no time) link the entire string to the search
     if ( I18n.t( "momentjs.datetime_with_offset" )?.match( / · LT Z$/ )
-      && dateString.match( / · / ) ) {
-      const dateComponents = dateString.split( " · " );
+      && dateString!.match( / · / ) ) {
+      const dateComponents = dateString!.split( " · " );
       return (
         <span>
           <a href={url}>{dateComponents[0]}</a>
@@ -124,7 +170,7 @@ class App extends React.Component {
       }
     }
 
-    const searchParameters = observedYear && observedMonth && observedDay ? {
+    const searchParameters: SearchParameters = observedYear && observedMonth && observedDay ? {
       on: `${observedYear}-${observedMonth}-${observedDay}`
     } : {
       year: observedYear,
@@ -153,11 +199,11 @@ class App extends React.Component {
     let isoDateAdded = createdAt.format( );
     const addedYear = observation.created_at_details.year;
     const addedMonth = observation.created_at_details.month;
-    let addedDay = observation.created_at_details.day;
+    let addedDay: number | null | undefined = observation.created_at_details.day;
     let formattedDateAdded = formattedDateTimeInTimeZone(
       moment.tz(
-        observation.created_at,
-        observation.created_time_zone
+        observation.created_at as string,
+        observation.created_time_zone as string
       ),
       viewerTimeZone
     );
@@ -171,7 +217,7 @@ class App extends React.Component {
       addedDay = null;
     }
 
-    const searchParameters = addedYear && addedMonth && addedDay ? {
+    const searchParameters: SearchParameters = addedYear && addedMonth && addedDay ? {
       created_on: `${addedYear}-${addedMonth}-${addedDay}`
     } : {
       created_year: addedYear,
@@ -203,7 +249,7 @@ class App extends React.Component {
       );
     }
     const viewerIsObserver = config && config.currentUser
-      && config.currentUser.id === observation.user.id;
+      && config.currentUser.id === observation.user?.id;
     const photosColClass = (
       ( !observation.photos || observation.photos.length === 0 )
       && ( !observation.sounds || observation.sounds.length === 0 )
@@ -288,7 +334,7 @@ class App extends React.Component {
                     title={I18n.t( "edit" )}
                     id="edit-dropdown"
                     pullRight
-                    onSelect={key => {
+                    onSelect={( key: string ) => {
                       if ( key === "delete" ) {
                         deleteObservation( );
                       } else if ( key === "license" ) {
@@ -382,7 +428,7 @@ class App extends React.Component {
               </LazyLoad>
               <ProjectsContainer />
               { (
-                ( config.currentUser && config.currentUser.id === observation.user.id )
+                ( config.currentUser && config.currentUser.id === observation.user?.id )
                 || ( observation && observation.tags && observation.tags.length > 0 )
               ) && (
                 <TagsContainer />
@@ -427,12 +473,5 @@ class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-  config: PropTypes.object,
-  observation: PropTypes.object,
-  deleteObservation: PropTypes.func,
-  setLicensingModalState: PropTypes.func
-};
 
 export default App;
