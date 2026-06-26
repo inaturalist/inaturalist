@@ -181,9 +181,12 @@ class TaxaController < ApplicationController
 
     return render_404 unless @taxon
 
-    # Locale-prefixed URL (e.g. /fr/taxa/...) — return 404 if the taxon has no valid
-    # common name in the requested locale. Keeps locale URLs meaningful for search engines.
+    # Locale-prefixed URL (e.g. /fr/taxa/...) - return 404 if the taxon has no valid
+    # common name in the requested locale, or if it's not the default site.
+    # Keeps locale URLs meaningful for search engines.
     if ( url_locale = request.path_parameters[:locale].presence )
+      return render_404 unless @site == Site.default
+
       lexicon_key = TaxonName::LEXICONS_BY_LOCALE[url_locale]
       lexicon = lexicon_key && TaxonName::LEXICONS[lexicon_key.upcase.to_sym]
       return render_404 unless lexicon && @taxon.taxon_names.any? {| tn | tn.lexicon == lexicon && tn.is_valid? }
