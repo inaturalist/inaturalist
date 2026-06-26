@@ -219,6 +219,12 @@ describe Emailer, "user_unsuspended" do
     Emailer.user_unsuspended( user ).deliver_now
     expect( EmailSuppression.find_by_id( suppression.id ) ).not_to be_blank
   end
+
+  it "should not send a Sendgrid ASM group so no unsubscribe footer is added" do
+    mail = Emailer.user_unsuspended( user )
+    smtpapi = JSON.parse( mail["X-SMTPAPI"].value )
+    expect( smtpapi ).not_to have_key( "asm_group_id" )
+  end
 end
 
 describe Emailer, "user_suspended" do
@@ -284,6 +290,12 @@ describe Emailer, "user_suspended" do
       user: user, email: user.email, suppression_type: EmailSuppression::INVALID_EMAILS
     Emailer.user_suspended( user, "hate_speech", nil ).deliver_now
     expect( EmailSuppression.find_by_id( suppression.id ) ).not_to be_blank
+  end
+
+  it "should not send a Sendgrid ASM group so no unsubscribe footer is added" do
+    mail = Emailer.user_suspended( user, "hate_speech", nil )
+    smtpapi = JSON.parse( mail["X-SMTPAPI"].value )
+    expect( smtpapi ).not_to have_key( "asm_group_id" )
   end
 end
 
