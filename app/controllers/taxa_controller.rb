@@ -243,7 +243,8 @@ class TaxaController < ApplicationController
             sym = TaxonName::LEXICONS.invert[tn.lexicon]
             sym && TaxonName::LOCALES[sym.to_s.downcase]
           end
-        @taxon_hreflang_locales = hreflang_locales.uniq.reject {| l | l == "en" }.sort
+        routable_locales = ( I18N_SUPPORTED_LOCALES - ["en"] ).to_set
+        @taxon_hreflang_locales = hreflang_locales.uniq.select {| l | routable_locales.include?( l ) }.sort
 
         render layout: "bootstrap", action: "show"
       end
