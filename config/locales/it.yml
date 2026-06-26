@@ -629,8 +629,6 @@ it:
     domande sul tuo piano e ci riserviamo il diritto di rifiutare le domande per qualsiasi motivo.
   app_owner_application_inelligible: |
     Al fine di sottomettere un applicazione, il tuo account deve avere almeno 2 mesi di vita e deve aver effettuato almeno 10 identificazioni di miglioramento nell'ultimo mese.
-  app_owner_application_inelligible2: |
-    Al fine di sottomettere la richiesta, il tuo account deve avere almeno 2 mesi di vita e devi aver effettuato almeno 10 identificazioni di affinamento per altri utenti nell'ultimo mese.
   app_owner_application_fields_explanation_html: Descrivi la funzionalità che la tua app avrà e come intendi utilizzarla.
   app_owner_application_success: Domanda "proprietario dell'App" inviata
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -2388,7 +2386,6 @@ it:
   identification_saved: "Identificazione salvata!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Identificazione nascosta
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: Identificazione non nascosta
   #Notification when an identification has been updated
   identification_updated: Identificazione aggiornata!
@@ -5251,19 +5248,25 @@ it:
     #reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Insulti o minacce
     #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Contenuti sessualmente espliciti
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Account sockpuppet
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Aggiungendo intenzionalmente false identità o voti VDQ
     #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
     machine_generated_content: Osservazioni, identificazioni e commenti generati da macchina
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Violazione continua del copyright (dopo avvertimento)
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Continua la pubblicazione di media generati artificialmente (dopo avvertimento)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Riduzione continua della qualità dei dati (dopo avvertimento)
   #the time at which a users suspension ends
   suspend_until: Sospendere fino a quando non
