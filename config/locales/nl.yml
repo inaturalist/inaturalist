@@ -633,9 +633,6 @@ nl:
     vragen over jouw plan en we behouden ons het recht voor om aanvragen om welke reden dan ook af te wijzen.
   app_owner_application_inelligible: |
     Om een toepassing in te kunnen dienen moet je account minimaal 2 maanden oud zijn en moet minstens 10 verbeterende determinaties hebben gedaan in de afgelopen maand.
-  app_owner_application_inelligible2: |
-    Om een aanvraag in te dienen moet je account minstens 2 maanden oud zijn en tenminste 
-    10 verbeterende determinaties voor andere gebruikers gedaan hebben in de afgelopen maand.
   app_owner_application_fields_explanation_html: Beschrijf de functionaliteit van je app en hoe je deze gaat gebruiken.
   app_owner_application_success: App eigenaar aanvraag ingediend
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -1355,6 +1352,8 @@ nl:
   create_a_new_place: Een nieuw gebied aanmaken
   create_a_new_taxon: Een nieuw taxon aanmaken
   create_a_query: Een zoekopdracht aanmaken
+  #Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Maak een doelgerichte variant
   create_an_account: Account aanmaken
   create_an_atlas: Een atlas aanmaken
   create_export: Export aanmaken
@@ -2438,7 +2437,6 @@ nl:
   identification_saved: "Determinatie opgeslagen!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Determinatie verborgen
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: Determinatietekst weer tonen
   #Notification when an identification has been updated
   identification_updated: Determinatie bijgewerkt!
@@ -5380,19 +5378,25 @@ nl:
     #reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Beledigingen of bedreigingen
     #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Seksueel expliciete inhoud
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sockpuppet-accounts
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Opzettelijk valse ID's of DQA-stemmen toevoegen
     #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
     machine_generated_content: Machine gegenereerde waarnemingen, determinaties en opmerkingen
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Voortdurende schending van auteursrechten (na waarschuwing)
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Voortdurende plaatsing van kunstmatig gegenereerde media (na waarschuwing)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Voortdurende vermindering van de datakwaliteit (na waarschuwing)
   #the time at which a users suspension ends
   suspend_until: Opschorten tot
@@ -5424,6 +5428,8 @@ nl:
   take_me_flickr!: Ja, breng me naar Flickr!
   target_list_alert: Heb je ECHT geprobeerd om alle soorten te vinden die in je doellijst staan? Alles op je doellijst dat je niet hebt gevonden hebt wordt geïnterpreteerd als afwezig. Het is dus belangrijk dat je doellijst precies de soorten omvat die je gezocht hebt.
   target_list_warning: Denk eraan dat alles wat in je doellijst staat dat je niet hebt waargenomen binnen de straal en de duur van deze tocht zal worden geïnterpreteerd als een afwezigheid. Het is erg belangrijk dat je doellijst goed de soorten weergeeft die je probeerde te vinden. Als je niet geprobeerd hebt een soort op je doellijst, of alle soorten binnen een soortgroep op je doellijst te vinden, verwijder deze dan.
+  #Section heading on announcement show page listing linked announcement variants
+  targeted_variants: Gerichte varianten
   task_deleted: Taak verwijderd
   taxa: Taxa
   taxa_show_obs_photo_search_tip: |
@@ -6667,6 +6673,10 @@ nl:
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
         Een selectie toont de aankondiging aan alle gebruikers, ongeacht
         app.
+      #Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: Deze aankondiging is gericht aan een specifiek publiek en kan niet worden toegewezen aan een wereldwijde aankondiging.
+      #Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Selecteer een aankondiging die deze aankondiging moet vervangen voor gebruikers die aan de regels voldoen.
       site_ids_desc: |
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
         een selectie toont de aankondiging aan alle gebruikers, ongeacht ongeacht
@@ -7977,6 +7987,8 @@ nl:
           start_time: Starttijd
           #Label for a form field for a project's end time
           end_time: Eindtijd
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Inclusief de tijden
           #Label for a form select field allowing the editor to choose calendar months
           select_months: Selecteer een maand
         delete_project: Project verwijderen
@@ -9411,6 +9423,8 @@ nl:
         user_created_start_date: Vroegste aanmeldingsdatum gebruiker
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Laatste aanmeldingsdatum van gebruiker
+        #Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Schakel fundraise van ingebedde widgets in
       assessment:
         description: Beschrijving
       assessment_section:
@@ -9800,6 +9814,11 @@ nl:
                 moet meer dan 24 uur geleden hebben geregistreerd om te publiceren. We krijgen
                 veel spammers en dit is een soort van suffe manier om daarmee om te gaan.
                 Je kunt alsnog een kladversie opslaan, en als je de site morgen nog gebruikt kun je publiceren.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: De begindatum moet vóór de einddatum liggen
         project_fave:
           attributes:
             base:
