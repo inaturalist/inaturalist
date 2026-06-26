@@ -1,33 +1,37 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import type { Observation } from "../../../shared/types";
+import type { MoreFromUserProps } from "./more_from_user";
 
 // TaxonThumbnail transitively loads browser-only deps (heic-to) via split_taxon /
 // taxa/shared/util; stub them like the shared component tests do.
 jest.mock( "../../../taxa/shared/util", ( ) => ( {
-  urlForTaxon: t => ( t ? `/taxa/${t.id}` : null )
+  urlForTaxon: ( t: { id: number } | null ) => ( t ? `/taxa/${t.id}` : null )
 } ) );
 jest.mock( "../../../shared/components/cover_image", ( ) => ( {
   __esModule: true,
-  default: ( { src } ) => <div data-testid="cover" data-src={src} />
+  default: ( { src }: { src?: string } ) => <div data-testid="cover" data-src={src} />
 } ) );
 jest.mock( "../../../shared/components/split_taxon", ( ) => ( {
   __esModule: true,
-  default: ( { taxon } ) => <span>{ taxon?.name }</span>
+  default: ( { taxon }: { taxon?: { name?: string } } ) => <span>{ taxon?.name }</span>
 } ) );
 
 // eslint-disable-next-line import/first
 import MoreFromUser from "./more_from_user";
 
-const makeObs = i => ( {
+const makeObs = ( i: number ) => ( {
   id: 100 + i,
   uuid: `uuid-${i}`,
   taxon: {
     id: i, name: `Taxon ${i}`, rank: "species", iconic_taxon_name: "Insecta"
   },
-  photo: size => ( size ? `https://example.test/${size}-${i}.jpg` : `https://example.test/${i}.jpg` ),
+  photo: ( size?: string ) => (
+    size ? `https://example.test/${size}-${i}.jpg` : `https://example.test/${i}.jpg`
+  ),
   hasMedia: ( ) => true,
   hasSounds: ( ) => false
-} );
+} as unknown as Observation );
 
 const props = {
   observation: { id: 99, user: { login: "bob" }, observed_on: "2024-01-01" },
@@ -37,7 +41,7 @@ const props = {
   },
   showNewObservation: ( ) => undefined,
   config: { currentUser: { id: 1 } }
-};
+} as unknown as MoreFromUserProps;
 
 describe( "MoreFromUser", ( ) => {
   it( "renders a carousel of the user's other observations", ( ) => {
@@ -55,8 +59,9 @@ describe( "MoreFromUser", ( ) => {
         otherObservations={{ earlierUserObservations: [], laterUserObservations: [] }}
       />
     );
-    expect( container.firstChild.tagName ).toBe( "DIV" );
-    expect( container.firstChild.children.length ).toBe( 0 );
+    const root = container.firstChild as HTMLElement;
+    expect( root.tagName ).toBe( "DIV" );
+    expect( root.children.length ).toBe( 0 );
   } );
 
   it( "shows observations from earlierUserObservations when there are no later ones", ( ) => {
@@ -87,7 +92,7 @@ describe( "MoreFromUser", ( ) => {
       photo: ( ) => null,
       hasMedia: ( ) => false,
       hasSounds: ( ) => false
-    };
+    } as unknown as Observation;
     render(
       <MoreFromUser
         {...props}

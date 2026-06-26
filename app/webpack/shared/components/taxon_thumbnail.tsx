@@ -2,7 +2,7 @@ import React from "react";
 import CoverImage from "./cover_image";
 import SplitTaxon from "./split_taxon";
 import css from "./taxon_thumbnail.module.css";
-import type { Taxon, Config } from "../types";
+import type { Taxon, Config, Photo } from "../types";
 import { urlForTaxon as baseUrlForTaxon } from "../../taxa/shared/util";
 
 // baseUrlForTaxon returns `string | null`; coerce to the prop contract
@@ -18,6 +18,7 @@ export interface TaxonThumbnailBadge {
 
 export interface TaxonThumbnailProps {
   taxon: Taxon;
+  photo?: Photo;
   width?: number;
   className?: string;
   overlay?: React.ReactNode;
@@ -31,6 +32,7 @@ export interface TaxonThumbnailProps {
 
 const TaxonThumbnail = ( {
   taxon,
+  photo,
   width,
   className,
   overlay,
@@ -43,7 +45,10 @@ const TaxonThumbnail = ( {
 }: TaxonThumbnailProps ) => {
   let mediumURL: string | undefined;
   let squareURL: string | undefined;
-  if ( taxon.defaultPhoto && typeof taxon.defaultPhoto.photoUrl === "function" ) {
+  if ( photo && typeof photo.photoUrl === "function" ) {
+    mediumURL = photo.photoUrl( "medium" );
+    squareURL = photo.photoUrl( "square" );
+  } else if ( taxon.defaultPhoto && typeof taxon.defaultPhoto.photoUrl === "function" ) {
     mediumURL = taxon.defaultPhoto.photoUrl( "medium" );
     squareURL = taxon.defaultPhoto.photoUrl( "square" );
   } else if ( taxon.default_photo && typeof taxon.default_photo === "object" ) {
