@@ -294,6 +294,7 @@ th:
   add_leaves_breaking_leaf_buds: 'เพิ่มหมายเหตุ "ใบ: แตกใบอ่อน"'
   add_leaves_green_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบเขียว"'
   add_leaves_colored_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบเปลี่ยนสี"'
+  add_leaves_no_live_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบร่วงทั้งหมด"'
   add_life_stage_adult_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวเต็มวัย"'
   add_life_stage_teneral_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: หลังลอกคราบ"'
   add_life_stage_subimago_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวรองตัวเต็มวัย"'
@@ -837,8 +838,6 @@ th:
     %{user} เลิกซ่อน%{item}นี้ เนื่องจาก "%{reason}"
   #e.g. "With iNaturalist, you can contribute to real science"
   contribute: มีส่วนร่วม
-  #e.g. "Contribute to iNaturalist"
-  contribute_cta: มีส่วนร่วม
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: ไม่ระบุ
@@ -923,7 +922,7 @@ th:
     flower_buds: พบตาดอกที่หุบอยู่อย่างน้อยหนึ่งตา
     fruits_or_seeds: พบอย่างน้อยหนึ่งผลหรือเมล็ด
     green_leaves: มีใบเขียวหรือใบรูปเข็มอย่างน้อยหนึ่งใบ (หรือมีสีออกแดงซึ่งเป็นสีปกติและสุขภาพดี)
-    no_live_leaves: ไม่มีการแตกใบอ่อนหรือใบเขียวหรือใบเปลี่ยนสีหรือใบรูปเข็มปรากฏให้เห็น
+    no_live_leaves: ไม่มีการแตกใบอ่อน ใบเขียว ใบเปลี่ยนสี หรือใบรูปเข็มปรากฏให้เห็น
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
     hair: เส้นขนที่หลุดจากตัวสัตว์
     construction: สิ่งที่สัตว์เป็นผู้สร้างโดยขุดเอาหรือทำจากวัสดุอื่น ๆ
