@@ -621,8 +621,6 @@ tr:
     target="_blank">geliştirici tanımlama</a> yapmış olması gerekir. Planınızla ilgili sorular sorabiliriz ve herhangi bir nedenle başvuruları reddetme hakkını saklı tutarız.
   app_owner_application_inelligible: |
     Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 geliştirme tanımlaması yapmış olmanız gerekmektedir.
-  app_owner_application_inelligible2: |
-    Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde diğer kullanıcılar için en az 10 geliştirici tanımlama yapmış olması gerekir.
   app_owner_application_fields_explanation_html: Uygulamanızın sahip olacağı işlevselliği ve nasıl kullanmayı tasarladığınızı açıklayın.
   app_owner_application_success: Uygulama sahibi başvurusu gönderildi
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -2355,7 +2353,6 @@ tr:
   identification_saved: "Tanımlama kaydedildi!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Tanımlama gizlendi
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: Tanımlama ortaya çıkarıldı
   #Notification when an identification has been updated
   identification_updated: Tanımlama güncellendi!
@@ -5185,19 +5182,25 @@ tr:
     #reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Hakaret veya tehdit
     #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Cinsel içerikli yayın
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sahte hesap
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Kasıtlı olarak sahte tanımlamalar veya VND oyları eklemek
     #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
     machine_generated_content: Makine tarafından oluşturulan gözlemler, tanımlamalar ve yorumlar
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Telif hakkı ihlali devam etmesi (uyarıdan sonra)
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Yapay olarak üretilmiş içeriklerin paylaşımına devam edilmesi (uyarıdan sonra) 
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Veri niteliğindeki düşüşün devam etmesi (uyarıdan sonra)
   #the time at which a users suspension ends
   suspend_until: 'Şu tarihe kadar askıya al:'
