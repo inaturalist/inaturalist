@@ -47,4 +47,57 @@ describe( "MoreFromUser", ( ) => {
     // First observation's taxon shows in its thumbnail caption.
     expect( screen.getByText( "Taxon 0" ) ).toBeInTheDocument( );
   } );
+
+  it( "renders an empty div when there are no observations", ( ) => {
+    const { container } = render(
+      <MoreFromUser
+        {...props}
+        otherObservations={{ earlierUserObservations: [], laterUserObservations: [] }}
+      />
+    );
+    expect( container.firstChild.tagName ).toBe( "DIV" );
+    expect( container.firstChild.children.length ).toBe( 0 );
+  } );
+
+  it( "shows observations from earlierUserObservations when there are no later ones", ( ) => {
+    render(
+      <MoreFromUser
+        {...props}
+        otherObservations={{
+          earlierUserObservations: [0, 1, 2].map( makeObs ),
+          laterUserObservations: []
+        }}
+      />
+    );
+    expect( screen.getByText( "Taxon 0" ) ).toBeInTheDocument( );
+  } );
+
+  it( "shows date links when observation has an observed_on date", ( ) => {
+    const { container } = render( <MoreFromUser {...props} /> );
+    // The calendar link is only present when a date can be parsed from observed_on.
+    const calendarLinks = container.querySelectorAll( "a[href*='/calendar/']" );
+    expect( calendarLinks.length ).toBeGreaterThan( 0 );
+  } );
+
+  it( "shows unknown taxon label for observations without a taxon", ( ) => {
+    const noTaxonObs = {
+      id: 200,
+      uuid: "uuid-notaxon",
+      taxon: null,
+      photo: ( ) => null,
+      hasMedia: ( ) => false,
+      hasSounds: ( ) => false
+    };
+    render(
+      <MoreFromUser
+        {...props}
+        otherObservations={{
+          earlierUserObservations: [],
+          laterUserObservations: [noTaxonObs]
+        }}
+      />
+    );
+    // I18n stub returns the raw key; the unknown taxon renders with key "unknown".
+    expect( screen.getByText( "unknown" ) ).toBeInTheDocument( );
+  } );
 } );
