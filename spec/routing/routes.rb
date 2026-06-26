@@ -11,4 +11,31 @@ describe "routes" do
       )
     end
   end
+
+  describe "taxon routes" do
+    it "routes the default taxon URL" do
+      expect( get: "/taxa/891696-Pica-pica" ).to route_to(
+        controller: "taxa",
+        action: "show",
+        id: "891696-Pica-pica"
+      )
+    end
+
+    it "routes a locale-prefixed taxon URL" do
+      expect( get: "/fr/taxa/891696-Pica-pica" ).to route_to(
+        controller: "taxa",
+        action: "show",
+        id: "891696-Pica-pica",
+        locale: "fr"
+      )
+    end
+
+    it "does not route an English-prefixed taxon URL" do
+      expect( get: "/en/taxa/891696-Pica-pica" ).not_to be_routable
+    end
+
+    it "does not route an unknown locale taxon URL" do
+      expect( get: "/xx/taxa/891696-Pica-pica" ).not_to be_routable
+    end
+  end
 end
