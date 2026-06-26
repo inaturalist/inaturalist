@@ -59,7 +59,7 @@ const MoreFromUser = ( {
     moreEarlier.reverse( );
     observations = moreEarlier.concat( observations );
   }
-  const items = observations.map( o => {
+  const carouselItems = observations.map( o => {
     const taxon = o.taxon
       ? {
         ...o.taxon,
@@ -106,7 +106,7 @@ const MoreFromUser = ( {
           ) : "" }
         </div>
       </h3>
-      <Carousel items={items} />
+      <Carousel items={carouselItems} />
     </div>
   );
 };

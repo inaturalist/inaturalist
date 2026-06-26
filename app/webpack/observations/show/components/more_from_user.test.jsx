@@ -18,7 +18,6 @@ jest.mock( "../../../shared/components/split_taxon", ( ) => ( {
 // eslint-disable-next-line import/first
 import MoreFromUser from "./more_from_user";
 
-// ponytail: minimal fakes, just the bits more_from_user touches.
 const makeObs = i => ( {
   id: 100 + i,
   uuid: `uuid-${i}`,
