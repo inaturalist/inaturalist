@@ -644,9 +644,20 @@ da:
     mindst 2 måneder gammel og skal have foretaget mindst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">forbedrende identifikationer</a> den seneste måned. Vi kan have opfølgende
     spørgsmål om brugerens plan, og vi forbeholder os retten til at afvise ansøgninger uanset årsag.
+  app_owner_application_about_p2_2_html: |
+    Fra 2022 kræver vi manuel godkendelse for brugere, som ønsker at oprette API-klienter.
+    For at oprette tredjeparts-apps, skal der først indsendes en ansøgning om at blive
+    en "app-ejer." Denne ansøgning skal beskrive funktionaliteten af den foreslåede app,
+    samt hvordan den planlægges anvendt. For at indsende en ansøgning kræves en mindst 2 måneder gammel brugerkonto, samt at mindst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">forbedrende identifikationer</a>
+    <i>for andre brugere</i> er foretaget over den seneste måned. Vi kan stille opfølgende spørgsmål om den planlagte anvendelse og forbeholder os retten til at afvise ansøgninger af en hvilken som helst grund.
   app_owner_application_inelligible: |
     For at kunne indsende en ansøgning skal din konto være mindst 2 måneder gammel og skal
     have foretaget mindst 10 forbedrende identifikationer den seneste måned.
+  app_owner_application_inelligible2_html: |
+    For at indsende en ansøgning kræves en mindst 2 måneder gammel brugerkonto, samt at mindst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">forbedrende identifikationer</a>
+    <i>for andre brugere</i> er foretaget over den seneste måned.
   app_owner_application_fields_explanation_html: Beskriv funktionalitet, din app vil have, og hvordan du planlægger den brugt.
   app_owner_application_success: App-ejeransøgning indsendt
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -2456,6 +2467,15 @@ da:
   identification_saved: "Identifikation gemt!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Identifikation skjult
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Nominering
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Fjern nominering
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} nominerede dette som et ID-tip"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Nominér som et ID-tip (diagnostiske egenskaber, som lærer andre at identificere denne organisme) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Identifikation gjort synlig
   #Notification when an identification has been updated
   identification_updated: Identifikation opdateret!
@@ -3247,6 +3267,7 @@ da:
   mute_removed: Sluk fjernet
   muted_users: Slukkede brugere
   muting_description: Tavsgørelse af nogen undertrykker notifcering om vedkommendes aktiviteter, herunder "@"-omtale, beskeder eller kommentarer og identifikationer på dine observationer.
+  my_site: Mit Websted
   n_ago: "%{n} siden"
   n_people_agrees: "%{amount} personer er enige"
   n_people_disagrees: "%{amount} personer er uenige"
@@ -5422,24 +5443,36 @@ da:
     #reason displayed to users who have been suspended for posting sexually explicit content
     #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Seksuelt eksplicit indhold
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Opslag af seksuelt eksplicit menneskeligt indhold
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
     #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sockpuppet-konti
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Misbrug af en anden konto, såsom til bekræftelse af egne identifikationer
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
     #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Bevidst tilføjelse af falske ID'er eller DQA-stemmer
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Bevidst tilføjelse af falske data, såsom observationer, identifikationer eller Datakvalitetsvurdering-stemmer
     #reason displayed to users who have been suspended for posting machine generated content
     #REPLACED with adding_machine_generated_content below
     machine_generated_content: Maskingenererede observationer, identifikationer og kommentarer
+    #reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Tilføjelse af maskingenereret indhold
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
     #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Fortsat ophavsretskrænkelse (efter advarsel)
+    #reason displayed to users who have continued to post media to the platform without the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Fortsatte opslag (efter advarsel) af medier uden medieejers tilladelse
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Fortsat opslag af kunstigt genererede medier (efter advarsel)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
     #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Fortsat reduktion af datakvalitet (efter advarsel)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Fortsat reduktion af datakvalitet (efter advarsel), såsom tilføjelse af forkerte identifikationer
   #the time at which a users suspension ends
   suspend_until: Suspendér indtil
   #a note telling users to select the time in their local time zone
@@ -6207,6 +6240,8 @@ da:
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
   user_updated_an_observation_field_html: '%{user} føjede en værdi til "%{field_name}" på en observation fra %{owner}'
+  #An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Din konto er suspenderet"
   #An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Din kontosuspension er ophævet"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> skrev,
@@ -6632,6 +6667,8 @@ da:
   you_didnt_select_any_photos_to_tag: Du har ikke valgt nogle foto´s der skal tagges!
   you_dont_have_permission_to_do_that: Du har ikke tilladelse til at gøre det.
   you_dont_have_permission_to_edit_that_observation: "Du har ikke tilladelse til at redigere denne observation."
+  #Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: Manglende tilladelse til at redigere den bekendtgørelse.
   you_dont_have_permission_to_edit_that_project: Du har ikke tilladelse til at redigere dette projekt.
   you_dont_have_permission_to_edit_that_taxon: |
     Du har ikke tilladelse til at redigere den pågældende takson. Kontakt venligst en af taksonens kuratorer eller markér taksonet for at anmode om ændringer.
@@ -7995,10 +8032,26 @@ da:
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
         message: Din kontosuspension på %{site_name} er ophævet, og du kan bruge webstedet igen.
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Din kontosuspension på %{site_name} er ophævet, og indlogning er nu mulig igen.
         #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Din konto blev suspenderet af flg. årsag: %{reason}"
+        #A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        #longer future suspensions.
+        please_abide_html: 'Overhold venligst <a href="%{community_guidelines_url}">iNaturalist Fællesskabsretningslinjer</a> og <a href="%{terms_of_use_url}">Vilkår for brug</a>. Nye overtrædelser kan resultere i længere suspensioner.'
+        #A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'Ved evt. spørgsmål eller bekymringer, <a href="%{contact_us_url}">kontakt os</a> venligst.'
         #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Log ind på kontoen</a> for at fortsætte med at bruge siden.'
+      user_suspended:
+        #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "Din iNaturalist-konto er suspenderet af flg. årsag: %{reason}. Suspensionen ophæves igen om %{duration}."
+        #A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "Din iNaturalist-konto er suspenderet på ubestemt tid af flg. årsag: %{reason}."
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'Såfremt denne suspension anses for ubegrundet, eller den ønskes appelleret, <a href="%{contact_us_url}">kontakt venligst iNaturalist Support</a>. Husk, at brug af andre konti til at undgå suspension vil medfører suspension af disse konti samt fjernelse af offentligt indhold herfra.'
+        #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'Alle iNaturalist-medlemmer bedes overholde <a href="%{community_guidelines_url}">Fællesskabsretningslinjer</a> og <a href="%{terms_of_use_url}">Vilkår for brug</a>.'
       users_updates_suspended:
         message: |
           Du har været inaktiv på %{site_name} et stykke tid, så vi har suspenderet
@@ -8749,6 +8802,40 @@ da:
           er blevet observeret og hvor mange, der stadig mangler at blive observeret. Antal af arter i "komplette" taksa inkluderer ikke de arter, der ikke kan medregnes, som f.eks. uddøde eller inaktive arter og de omfatter kun arter, ikke infra-specifik taksa som
           underarter eller varianter.
         discoveries_desc: "Seneste nyligt identificerede arter i denne takson"
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Identifikationstips
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Søg efter identifikation efter tekst eller brugernavn
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Der er p.t. ingen nominerede og opstemte identifikationer for denne organisme. Tjek venligst igen snart!
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Sortér: Højeste til laveste stemmer"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Sortér: Laveste til højeste stemmer"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Sortér: Nyeste til ældste"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Sortér: Ældste til nyeste"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Sortér: Længste til korteste"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Stemt op
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: Stemt ned (skjult)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Ingen stemme
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Ikke nomineret
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Vis fuld samtale
         frequency:
           research: Forskningskvalitet
           verifiable: Verificerbar
