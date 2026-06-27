@@ -619,8 +619,17 @@ tr:
   app_owner_application_about_p2_html: |
     2022 itibariyle, API istemcileri oluşturmak isteyen kullanıcılar için manuel onay talep ediyoruz. Üçüncü taraf uygulamalar oluşturmak için, önce “uygulama sahibi” olmak üzere bir başvuru yapmanız gerekir. Bu başvuruda, önerdiğiniz uygulamanın işlevselliğini ve onu nasıl kullanmayı planladığınızı açıklamalısınız. Başvuru göndermek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">geliştirici tanımlama</a> yapmış olması gerekir. Planınızla ilgili sorular sorabiliriz ve herhangi bir nedenle başvuruları reddetme hakkını saklı tutarız.
+  app_owner_application_about_p2_2_html: |
+    2022 itibarıyla, API istemcileri oluşturmak isteyen kullanıcılar için manuel onay zorunluluğu getirdik.
+    Üçüncü taraf uygulamalar geliştirebilmek için öncelikle bir “uygulama sahibi” olmak üzere başvuru yapmanız gerekir. Bu başvuruda, önerdiğiniz uygulamanın işlevlerini ve onu nasıl kullanmayı planladığınızı açıklamalısınız.
+    Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde <i>diğer kullanıcılar için</i> en az 10 adet <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">geliştirici tanımlama</a> yapmış olmanız gerekir.
+    Planınız hakkında ek sorular sorabiliriz ve herhangi bir nedenle başvuruları reddetme hakkımız saklıdır.
   app_owner_application_inelligible: |
     Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 geliştirme tanımlaması yapmış olmanız gerekmektedir.
+  app_owner_application_inelligible2_html: |
+    Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde <i>diğer kullanıcılar için</i> en az 10 adet <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">geliştirici tanımlama</a> yapmış olmanız gerekir.
   app_owner_application_fields_explanation_html: Uygulamanızın sahip olacağı işlevselliği ve nasıl kullanmayı tasarladığınızı açıklayın.
   app_owner_application_success: Uygulama sahibi başvurusu gönderildi
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -2353,6 +2362,15 @@ tr:
   identification_saved: "Tanımlama kaydedildi!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Tanımlama gizlendi
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Aday Göster
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Adaylığı Kaldır
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} bunu bir tanımlama ipucu olarak aday gösterdi"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Tanımlama ipucu olarak aday göster (başkalarına bu organizmayı tanımlamayı öğreten ayırt edici özellikler) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Tanımlama ortaya çıkarıldı
   #Notification when an identification has been updated
   identification_updated: Tanımlama güncellendi!
@@ -3126,6 +3144,7 @@ tr:
   mute_removed: Sessize alma kaldırıldı
   muted_users: Sessize Alınmış Kullanıcılar
   muting_description: Birini sessize almak, "@" ifadeleri, mesajlar ya da gözlemlerinle ilgili yorumlar ve tanımlamalar dahil olmak üzere onun herhangi bir etkinliğinden haberdar olmanı engeller.
+  my_site: Sitem
   n_ago: "%{n} önce"
   n_people_agrees: "%{amount} kişi onaylıyor"
   n_people_disagrees: "%{amount} kişi onaylamıyor"
@@ -5184,24 +5203,36 @@ tr:
     #reason displayed to users who have been suspended for posting sexually explicit content
     #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Cinsel içerikli yayın
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Açık cinsel içerikli insan görselleri paylaşımı
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
     #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sahte hesap
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: İkinci bir hesabı kötüye kullanma, örneğin kendi tanımlamalarınızı doğrulamak için kullanma
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
     #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Kasıtlı olarak sahte tanımlamalar veya VND oyları eklemek
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Bilerek yanlış veri ekleme; örneğin gözlem, tanımlamalar veya Veri Nitelik Değerlendirmesi oyları
     #reason displayed to users who have been suspended for posting machine generated content
     #REPLACED with adding_machine_generated_content below
     machine_generated_content: Makine tarafından oluşturulan gözlemler, tanımlamalar ve yorumlar
+    #reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Makine tarafından üretilmiş içerik ekleme
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
     #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Telif hakkı ihlali devam etmesi (uyarıdan sonra)
+    #reason displayed to users who have continued to post media to the platform without the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Uyarıya rağmen medya sahibinin izni olmadan içerik paylaşmaya devam etme
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Yapay olarak üretilmiş içeriklerin paylaşımına devam edilmesi (uyarıdan sonra) 
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
     #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Veri niteliğindeki düşüşün devam etmesi (uyarıdan sonra)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Uyarıya rağmen veri niteliğini düşürmeye devam etme; örneğin yanlış tanımlamalar ekleme
   #the time at which a users suspension ends
   suspend_until: 'Şu tarihe kadar askıya al:'
   #a note telling users to select the time in their local time zone
@@ -5922,6 +5953,8 @@ tr:
   user_trusts_you_with_their_private_coordinates_desc: |
     Gözlemci, tüm gözlemlerinin gizli koordinatları ile size güvenmeyi tercih etti.
   user_updated_an_observation_field_html: '%{user}, %{owner} tarafından yapılan bir gözlemde "%{field_name}" için bir değeri güncelledi'
+  #An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Hesabınız askıya alındı"
   #An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Hesabınızın askıya alınma durumu kaldırıldı"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> yazdı,
@@ -6311,6 +6344,8 @@ tr:
   you_didnt_select_any_photos_to_tag: Etiketleyecek herhangi bir fotoğraf seçmedin!
   you_dont_have_permission_to_do_that: Bunu yapma iznine sahip değilsin.
   you_dont_have_permission_to_edit_that_observation: "Bu gözlemi düzenleme iznine sahip değilsin."
+  #Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: Bu duyuruyu düzenleme yetkiniz yok.
   you_dont_have_permission_to_edit_that_project: Bu projeyi düzenleme iznine sahip değilsin.
   you_dont_have_permission_to_edit_that_taxon: |
     Bu taksonu düzenleme iznin yok. Lütfen taksonun küratörlerinden biriyle iletişime geç ya da değişiklik talep etmek için taksonu işaretle.
@@ -7440,10 +7475,26 @@ tr:
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
         message: '%{site_name}''teki hesabınızın askıya alınma durumu kaldırıldı; artık siteyi tekrar kullanabilirsiniz.'
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: '%{site_name} hesabınız yeniden etkinleştirildi ve tekrar giriş yapabilirsiniz.'
         #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Hesabınız şu nedenle askıya alınmıştır: %{reason}"
+        #A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        #longer future suspensions.
+        please_abide_html: 'Lütfen <a href="%{community_guidelines_url}">iNaturalist Topluluk Kuralları</a> ve <a href="%{terms_of_use_url}">Kullanım Şartları</a>na uyunuz. Gelecekteki ihlaller daha uzun süreli askıya almalarla sonuçlanabilir.'
+        #A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'Sorularınız veya endişeleriniz varsa <a href="%{contact_us_url}">bizimle iletişime geçebilirsiniz</a>.'
         #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: 'Sitenin kullanımına devam etmek için <a href="%{login_url}">hesabınıza giriş yapın</a>.'
+      user_suspended:
+        #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "iNaturalist hesabınız şu nedenle askıya alınmıştır: %{reason}. Askıya alma işleminiz %{duration} sonra kaldırılacaktır."
+        #A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "iNaturalist hesabınız şu nedenle süresiz olarak askıya alınmıştır: %{reason}."
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'Bu askıya alma işleminin hatalı yapıldığını düşünüyorsanız veya itiraz etmek istiyorsanız, lütfen <a href="%{contact_us_url}">iNaturalist Destek ile iletişime geçin</a>. Askıya almayı aşmak için başka hesaplar kullanmanın, bu hesapların da askıya alınmasına ve herkese açık içeriklerinin kaldırılmasına yol açacağını unutmayın.'
+        #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'Tüm iNaturalist topluluk üyelerinin <a href="%{community_guidelines_url}">Topluluk Kuralları</a> ve <a href="%{terms_of_use_url}">Kullanım Şartları</a>na uyması beklenmektedir.'
       users_updates_suspended:
         message: |
           Bir süredir %{site_name}'te etkin değilsin, bu nedenle aboneliklerini askıya aldık. Site etkinliği ile ilgili güncellemeleri almaya devam etmek için lütfen hesabına tekrar <a href="%{login_url}">giriş yap</a>.
@@ -8017,6 +8068,40 @@ tr:
         complete_taxon_desc: |
           "Eksiksiz" taksonlar, sitenin veri tabanında belirli bir sıralamadaki tüm alt soylarına, mevcut sınıflara sahiptir. Örneğin, bir takson türlere tamamlandığında, kaç türünün gözlemlendiğini ve kaçının hâlâ gözlemlenmesi gerektiğini söyleyebiliriz. Türlere tamamlanmış "eksiksiz" taksonlar için tür sayıları, soyu tükenmiş türler ya da pasif tür kavramları gibi "sayılamayan" türleri içermez ve yalnızca türleri içerir, alt türler ya da varyeteler gibi spesifik olmayan taksonları içermez.
         discoveries_desc: "Bu taksonda en yeni tanımlanan türler"
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Tanımlama İpuçları
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Metin ya da kullanıcı adıyla tanımlama ara
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Bu organizma için şu anda aday gösterilmiş ve oy almış tanımlama bulunmuyor. Lütfen daha sonra tekrar kontrol edin!
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Sırala: En çok oydan en aza"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Sırala: En az oydan en çok oya"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Sırala: En yeniden en eskiye"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Sırala: En eskiden en yeniye"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Sırala: En uzun olandan en kısa olana"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Desteklenmiş
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: Desteklenmemiş (gizli)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Oy Yok
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Aday Gösterilmedi
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Tüm Konuşmayı Görüntüle
         frequency:
           research: Araştırma Sınıfı
           verifiable: Doğrulanabilir
@@ -9365,6 +9450,11 @@ tr:
             user:
               must_be_on_site_long_enough: |
                 yayınlamak için 24 saatten daha uzun süre önce kaydolmalıdır. Çok fazla istenmeyen ileti gönderen oluyor ve bu onlarla başa çıkmanın bir yolu. Yine de bir taslak kaydedebilirsin ve bir gün içinde siteyi hâlâ kullanıyorsan, yayınlayabilirsin.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: başlangıç tarihi bitiş tarihinden önce olmalıdır
         project_fave:
           attributes:
             base:
