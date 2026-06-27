@@ -1300,12 +1300,7 @@ class TaxaController < ApplicationController
   # the retry window, so we can tell the user to try again later rather than
   # showing a generic "not found" message.
   def wikipedia_recently_throttled?
-    endpoint = WikipediaService.new( locale: I18n.locale ).api_endpoint
-    return false unless endpoint
-
-    endpoint.api_endpoint_caches.
-      where( "request_completed_at > ?", ApiEndpointCache::THROTTLE_RETRY_MINUTES.minutes.ago ).
-      any?( &:throttled? )
+    WikipediaService.new( locale: I18n.locale ).api_endpoint&.recently_throttled? || false
   end
 
   def build_edit_ivars

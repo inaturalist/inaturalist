@@ -446,6 +446,66 @@ describe TaxaController do
     end
   end
 
+  describe "describe when Wikipedia is throttling" do
+    render_views
+    let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+
+    before do
+      # Simulate Wikipedia rate-limiting at the HTTP boundary so the live
+      # describer fetch comes back throttled (status 429) instead of an article.
+      throttled_response = double( "Net::HTTPResponse", code: "429",
+        body: "You are making too many requests." )
+      allow( MetaService ).to receive( :fetch_with_redirects ).and_return( throttled_response )
+    end
+
+    it "renders the throttled message instead of the Wikipedia summary" do
+      # The partial keys the throttled message off the persisted sentinel, and we
+      # request the Wikipedia describer directly so the iNaturalist fallback (which
+      # would otherwise fill the description from auto_summary) is bypassed.
+      taxon.update_columns( wikipedia_summary: "throttled" )
+      get :describe, params: { id: taxon.id, from: "Wikipedia" }
+      expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
+      expect( response.body ).not_to include I18n.t( :there_isnt_a_wikipedia_article_titled_x_html, x: taxon.name )
+    end
+  end
+
+  describe "describe caches the Wikipedia response" do
+    let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+
+    before do
+      # Sign in so the anonymous Rails.cache layer is skipped and the describer
+      # runs on every request — this isolates the ApiEndpointCache behavior, which
+      # is the same path the React "About"/articles tab uses (fetchDescription ->
+      # GET /taxa/:id/description).
+      sign_in make_curator
+    end
+
+    it "only hits Wikipedia once across repeated requests (served from ApiEndpointCache)" do
+      ok_response = double( "Net::HTTPResponse", code: "200",
+        body: "<parse title='Animalia' pageid='1'><text>Animals are a kingdom.</text></parse>" )
+      expect( MetaService ).to receive( :fetch_with_redirects ).once.and_return( ok_response )
+      2.times { get :describe, params: { id: taxon.id, from: "Wikipedia" } }
+      expect( ApiEndpointCache.where( success: true ).count ).to eq 1
+    end
+  end
+
+  describe "refresh_wikipedia_summary" do
+    let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+
+    before do
+      sign_in make_curator
+    end
+
+    it "responds 429 with the throttled message when the live fetch is throttled" do
+      throttled_response = double( "Net::HTTPResponse", code: "429",
+        body: "You are making too many requests." )
+      allow( MetaService ).to receive( :fetch_with_redirects ).and_return( throttled_response )
+      post :refresh_wikipedia_summary, params: { id: taxon.id }
+      expect( response.status ).to eq 429
+      expect( response.body ).to eq I18n.t( :wikipedia_summary_throttled )
+    end
+  end
+
   describe "map" do
     render_views
     before { load_test_taxa( iconic: true ) }

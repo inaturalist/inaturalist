@@ -1500,9 +1500,12 @@ class Taxon < ApplicationRecord
     elsif locale.to_s =~ /^en-?/
       read_attribute( :wikipedia_summary )
     end
-    return nil if sum == "throttled"
-
-    if sum&.match( /^\d\d\d\d-\d\d-\d\d$/ )
+    if sum == "throttled"
+      # Treat a throttled sentinel like an expired entry: don't render the
+      # literal "throttled" string, and fall through to the refresh_if_blank
+      # path so it re-fetches once the ApiEndpointCache retry window elapses.
+      options[:reload] = true
+    elsif sum&.match( /^\d\d\d\d-\d\d-\d\d$/ )
       last_try_date = DateTime.parse( sum )
       return nil if last_try_date > 1.week.ago
 
@@ -1544,10 +1547,7 @@ class Taxon < ApplicationRecord
 
     if details.blank? || details[:summary].blank?
       if locale.to_s =~ /^en-?/
-        throttled = w.api_endpoint.api_endpoint_caches
-          .where( status_code: 429 )
-          .where( "request_completed_at > ?", ApiEndpointCache::THROTTLE_RETRY_MINUTES.minutes.ago )
-          .exists?
+        throttled = w.api_endpoint.recently_throttled?
         Taxon.where( id: self ).update_all( wikipedia_summary: throttled ? "throttled" : Date.today.to_s )
       end
       return nil

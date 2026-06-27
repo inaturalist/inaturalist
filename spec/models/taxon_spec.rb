@@ -429,9 +429,45 @@ describe Taxon, "updating" do
       expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to eq "throttled"
     end
 
+    it "stores 'throttled' when the recent cache is throttled by body even with a 200 status" do
+      ApiEndpointCache.make!(
+        api_endpoint: endpoint,
+        status_code: 200,
+        success: false,
+        response: "You are making too many requests.",
+        request_began_at: 1.minute.ago,
+        request_completed_at: 1.minute.ago
+      )
+      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to eq "throttled"
+    end
+
     it "stores a date string in wikipedia_summary when not throttled" do
       taxon.set_wikipedia_summary( wikipedia: wikipedia )
       expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to match( /^\d{4}-\d{2}-\d{2}$/ )
+    end
+  end
+
+  describe "wikipedia_summary" do
+    let( :taxon ) { Taxon.make! }
+
+    it "returns nil rather than the literal sentinel when throttled" do
+      taxon.update_columns( wikipedia_summary: "throttled" )
+      expect( taxon.wikipedia_summary ).to be_nil
+    end
+
+    it "queues a refresh when throttled and refresh_if_blank is set" do
+      taxon.update_columns( wikipedia_summary: "throttled" )
+      expect do
+        taxon.wikipedia_summary( refresh_if_blank: true )
+      end.to change( Delayed::Job, :count ).by_at_least( 1 )
+    end
+
+    it "does not queue a refresh when throttled and refresh_if_blank is not set" do
+      taxon.update_columns( wikipedia_summary: "throttled" )
+      expect do
+        taxon.wikipedia_summary
+      end.to_not change( Delayed::Job, :count )
     end
   end
 
