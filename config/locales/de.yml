@@ -626,8 +626,18 @@ de:
     mindestens 2 Monate alt sein und mindestens 10 Monate alt sein <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">Verbesserung der Identifizierung</a> im letzten Monat. Wir können um Nachverfolgung bitten
     Fragen zu Ihrem Plan und wir behalten uns das Recht vor, Anträge aus beliebigem Grund abzulehnen.
+  app_owner_application_about_p2_2_html: |
+    Seit 2022 verlangen wir eine manuelle Genehmigung für Nutzer, die API-Clients erstellen möchten.
+    Um Drittanbieter-Apps zu erstellen, musst du zunächst einen Antrag stellen, um ein "App-Besitzer" zu werden. Dieser Antrag sollte die Funktionalität und geplante Nutzung deiner vorgeschlagenen App beschreiben. Um einen Antrag einzureichen, muss dein Konto mindestens 2 Monate alt sein und du musst mindestens 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">verfeinerte Bestimmungen</a>
+    <i>für andere Nutzer</i> im letzten Monat gemacht haben. Wir könnten Nachfragen zu deinem Vorhaben stellen und wir behalten uns das Recht vor, Anträge abzulehnen.
   app_owner_application_inelligible: |
     Um eine App einzureichen, musst du seit mindestens 2 Monaten ein Benutzerkonto haben, mit dem du im letzten Monat mindestens 10 verbessernde IDs beigetragen hast.
+  app_owner_application_inelligible2_html: |
+    Um einen Antrag einzureichen, muss dein Konto mindestens 2 Monate alt sein und du musst
+    mindestens 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">verfeinerte Bestimmungen</a>
+    <i>für andere Nutzer</i> im letzten Monat gemacht haben.
   app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
   app_owner_application_success: App owner application submitted
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -2356,6 +2366,15 @@ de:
   identification_saved: "Bestimmung gespeichert!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Bestimmung verborgen
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Nominieren
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Nominierung entfernen
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} hat dies als ID-Tipp nominiert"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Als ID-Tipp nominieren (wichtige Merkmale erkennbar, sodass die Beobachtung für andere hilfreich bei der Bestimmung sein könnte) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Bestimmung wieder sichtbar
   #Notification when an identification has been updated
   identification_updated: Bestimmung aktualisiert!
@@ -3130,6 +3149,7 @@ de:
   mute_removed: Sperre entfernt
   muted_users: Stummgestellte Benutzer
   muting_description: Jemanden stummschalten bedeutet, über keinerlei Aktivitäten benachrichtigt zu werden, einschließlich "@"-Erwähnungen, Nachrichten oder Kommentare, sowie Bestimmungen zu deinen Beobachtungen.
+  my_site: Meine Site
   n_ago: "vor %{n}"
   n_people_agrees: "%{amount} der Personen stimmen zu"
   n_people_disagrees: "%{amount} Personen widersprechen"
@@ -5227,24 +5247,36 @@ de:
     #reason displayed to users who have been suspended for posting sexually explicit content
     #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Sexuell explizite Inhalte
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Veröffentlichung sexuell expliziter Inhalte von Menschen
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
     #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sockpuppet-Konten
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Missbrauch eines zweiten Benutzerkontos, um zum Beispiel eigene Identifikationen zu bestätigen
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
     #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Absichtlich falsche Bestimmungen oder Datenqualitäts-Bewertungen
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Absichtliches Hinzufügen falscher Daten, wie Beobachtungen, Identifikationen oder Bewertungen zur Datenqualität
     #reason displayed to users who have been suspended for posting machine generated content
     #REPLACED with adding_machine_generated_content below
     machine_generated_content: Maschinell erzeugte Beobachtungen, Bestimmungen und Kommentare
+    #reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Hinzufügen maschinell erzeugter Inhalte
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
     #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Wiederholte Urheberrechtsverletzung (nach Verwarnung)
+    #reason displayed to users who have continued to post media to the platform without the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Medien ohne Erlaubnis des Medieninhabers weiter veröffentlicht (nach Warnung)
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Wiederholtes Hochladen künstlich generierter Medien (nach Verwarnung)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
     #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Wiederholte Verminderung der Datenqualität (nach Verwarnung)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Verminderung der Datenqualität, wie z.B. durch as Hinzufügen falscher Identifikationen (nach Warnung)
   #the time at which a users suspension ends
   suspend_until: Sperrung bis
   #a note telling users to select the time in their local time zone
@@ -5970,6 +6002,8 @@ de:
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat dir die verborgenen Koordinaten all seiner Beobachtungen anvertraut.
   user_updated_an_observation_field_html: 'Von %{user} wurde ein Wert für "%{field_name}" zu einer Beobachtung von %{owner} aktualisiert'
+  #An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Dein Benutzerkonto wurde gesperrt"
   #An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Dein Benutzerkonto wurde wieder entsperrt"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schrieb,
@@ -6372,6 +6406,8 @@ de:
   you_didnt_select_any_photos_to_tag: Du hast keine Bilder zum Taggen ausgewählt!
   you_dont_have_permission_to_do_that: Du hast keine Berechtigung dies zu tun.
   you_dont_have_permission_to_edit_that_observation: "Du hast keine Berechtigung diese Beobachtung zu bearbeiten."
+  #Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: Du hast keine Berechtigung diese Ankündigung zu bearbeiten.
   you_dont_have_permission_to_edit_that_project: Du hast keine Berechtigung dieses Projekt zu bearbeiten.
   you_dont_have_permission_to_edit_that_taxon: |
     Du hast nicht die Berechtigung, dieses Taxon zu bearbeiten. Bitte kontaktiere einen der Taxon-Kuratoren oder melde dieses Taxon, um Änderungen anzufragen.
@@ -7496,10 +7532,26 @@ de:
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
         message: Dein Konto auf %{site_name} wurde wieder entsperrt und du kannst die Seite wieder nutzen.
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Dein Konto auf %{site_name} wurde wieder entsperrt und du kannst die Seite wieder nutzen.
         #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Dein Konto wurde aus folgendem Grund gesperrt: %{reason}"
+        #A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        #longer future suspensions.
+        please_abide_html: 'Bitte halte dich an die <a href="%{community_guidelines_url}">Richtlinien der iNaturalist-Gemeinschaft</a> und <a href="%{terms_of_use_url}">Nutzungsbedingungen</a>. Zukünftige Verstöße können zu längeren Sperren führen.'
+        #A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'Wenn du Fragen oder Bedenken hast, kannst du uns <a href="%{contact_us_url}">kontaktieren</a>.'
         #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Melde dich mit deinem Konto an</a> um die Seite wieder zu nutzen.'
+      user_suspended:
+        #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "Dein iNaturalist-Konto wurde aus folgendem Grund gesperrt: %{reason}. Deine Sperre wird aufgehoben in %{duration}."
+        #A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "Dein iNaturalist-Konto wurde aus folgendem Grund auf unbestimmte Zeit gesperrt: %{reason}."
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'Wenn Du der Meinung bist, dass diese Suspendierung ein Fehler war oder Berufung einlegen möchtest, bitte <a href="%{contact_us_url}">kontaktiere den iNaturalist-Support</a>. Beachte, dass die Nutzung anderer Konten, um der Sperre zu entgehen, dazu führt, dass die anderen Konten gesperrt und deren öffentlichen Inhalte entfernt werden.'
+        #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'Alle Mitglieder der iNaturalist-Gemeinschaft werden gebeten, sich an die Vorschriften zu halten <a href="%{community_guidelines_url}">Gemeinschaftsrichtlinien</a> und <a href="%{terms_of_use_url}">Nutzungsbedingungen</a>.'
       users_updates_suspended:
         message: |
           Du warst eine ganze Weile nicht mehr aktiv auf %{site_name}, daher haben wir deine Abonnements ausgesetzt. Wenn du wieder Updates von Aktivitäten auf der Webseite erhalten möchtest, bitte <a href="%{login_url}">logge dich wiederin dein Konto ein</a>.
@@ -8113,6 +8165,41 @@ de:
         complete_taxon_desc: |
           Bei "vollständigen" Taxa sind alle untergeordneten Taxa eines bestimmten Rangs in der Datenbank vorhanden. Ist ein Taxon beispielsweise bis zur Ebene der Art vollständig, kann angezeigt werden, wie viele dieser Arten bereits beobachtet wurden und wie viele noch beobachtet werden müssen. Die Zahl der Arten für "vollständige" Taxa beinhaltet keine "nicht-zählbaren", wie ausgestorbene oder inaktive Arten; außerdem werden keine Taxa unterhalb der Art, wie Unterarten oder Varietäten, berücksichtigt.
         discoveries_desc: "Kürzlich neu identifizierte Arten in diesem Taxon"
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Bestimmungs-Tipps
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Identifikationen nach Text oder Benutzername suchen
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Für diesen Organismus gibt es derzeit keine nominierten oder positiv bewertete Bestimmungen.
+            Du kannst regelmäßig checken, ob sich hier etwas getan hat.
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Sortieren: Meiste bis wenigste Stimmen"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Sortieren: Wenigste bis meiste Stimmen"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Sortieren: von neu nach alt"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Sortieren: von alt nach neu"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Sortieren: von lang nach kurz"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Positiv bewertet
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: negativ bewertet (versteckt)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Keine Bewertung
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Nicht nominiert
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Gesamte Unterhaltung anzeigen
         frequency:
           research: Forschungsqualität
           verifiable: Verifizierbar
