@@ -42,32 +42,40 @@ RSpec.configure do | config |
 
   config.before( :suite ) do
     DatabaseCleaner.strategy = :transaction
-    Elasticsearch::Model.client.ping
-    es_classes = [
-      ControlledTerm,
-      ExemplarIdentification,
-      Identification,
-      ObservationField,
-      Observation,
-      Place,
-      Project,
-      Taxon,
-      TaxonPhoto,
-      UpdateAction,
-      User
-    ].freeze
-    print "Rebuilding #{es_classes.size} indexes"
-    es_classes.each do | klass |
-      print "."
-      begin
-        klass.__elasticsearch__.delete_index!
-      rescue StandardError => e
-        raise e unless e.class.to_s =~ /NotFound/
+    # Set SKIP_ES_SETUP=1 to run Elasticsearch-independent specs without a live
+    # ES (e.g. on a resource-constrained box where rebuilding every index is too
+    # heavy). Specs that exercise ES must stub it themselves (see the WebMock
+    # :9200 stub in the get_gbif_id specs) or they will fail.
+    if ENV["SKIP_ES_SETUP"]
+      puts "Skipping Elasticsearch index setup (SKIP_ES_SETUP is set)"
+    else
+      Elasticsearch::Model.client.ping
+      es_classes = [
+        ControlledTerm,
+        ExemplarIdentification,
+        Identification,
+        ObservationField,
+        Observation,
+        Place,
+        Project,
+        Taxon,
+        TaxonPhoto,
+        UpdateAction,
+        User
+      ].freeze
+      print "Rebuilding #{es_classes.size} indexes"
+      es_classes.each do | klass |
+        print "."
+        begin
+          klass.__elasticsearch__.delete_index!
+        rescue StandardError => e
+          raise e unless e.class.to_s =~ /NotFound/
+        end
+        klass.__elasticsearch__.create_index!
+        ElasticModel.wait_until_index_exists( klass.index_name, timeout: 1 )
       end
-      klass.__elasticsearch__.create_index!
-      ElasticModel.wait_until_index_exists( klass.index_name, timeout: 1 )
+      puts
     end
-    puts
   end
 
   config.before( :each ) do

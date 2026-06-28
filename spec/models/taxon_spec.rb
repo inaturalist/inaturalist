@@ -1554,6 +1554,24 @@ describe Taxon, "editable_by?" do
 end
 
 describe Taxon, "get_gbif_id" do
+  before do
+    # Taxon.make! indexes to Elasticsearch (elastic_index! does a PUT to _doc and,
+    # in the test env, a POST to _refresh). We don't want those writes recorded
+    # into the GBIF VCR cassette or to depend on a running ES, so catch every
+    # request to the ES host and return an empty 200. The GBIF species/match GETs
+    # are still served by the cassette below.
+    # The X-Elastic-Product header is required: the elasticsearch 8.x client
+    # verifies it on the first request and otherwise raises UnsupportedProductError.
+    stub_request( :any, %r{:9200/} ).to_return(
+      status: 200,
+      headers: {
+        "Content-Type" => "application/json",
+        "X-Elastic-Product" => "Elasticsearch"
+      },
+      body: "{}"
+    )
+  end
+
   it "should work" do
     VCR.use_cassette( "taxon_spec_get_gbif_id", record: :new_episodes ) do
       a = Taxon.make!( name: "Chordata", rank: "phylum" )
