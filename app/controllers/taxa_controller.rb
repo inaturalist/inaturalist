@@ -1157,6 +1157,13 @@ class TaxaController < ApplicationController
       response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end
+    # When Wikipedia rate-limits us the describer fetch comes back empty and we
+    # fall through to another source (often the iNaturalist auto-summary), or to a
+    # blank description. In those cases flag a recent throttle so the view can say
+    # "try again later" instead of implying the Wikipedia article doesn't exist.
+    @wikipedia_throttled = @taxon.shows_wikipedia? &&
+      ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) &&
+      wikipedia_recently_throttled?
     @description&.force_encoding( "UTF-8" )
     respond_to do | format |
       format.html { render partial: "description" }

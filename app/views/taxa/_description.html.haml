@@ -26,7 +26,7 @@
     %p.nocontent.meta.center-block
       - if describer_is_wikipedia || @describer.blank?
         - if @taxon.shows_wikipedia?
-          - if @taxon.wikipedia_throttled?
+          - if @taxon.wikipedia_throttled? || @wikipedia_throttled
             =t :wikipedia_summary_throttled
           - else
             =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
@@ -36,7 +36,13 @@
         =t :no_matching_article_from_x, :x => @describer.describer_name
   - else
     =raw @description
-  - if params[:wiki_prompt] && !@taxon.rank.blank? && !%w(stateofmatter parvorder zoosection zoosubsection supertribe subtribe genushybrid subgenus section subsection complex).include?( @taxon.rank ) && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) && @taxon.shows_wikipedia?
+  - if @wikipedia_throttled && @taxon.shows_wikipedia?
+    -# Wikipedia was rate-limiting us, so don't imply the article is missing or
+    -# prompt the user to create it; if we fell back to other content, note why.
+    - unless @description.blank?
+      %p.nocontent.meta.center-block
+        =t :wikipedia_summary_throttled
+  - elsif params[:wiki_prompt] && !@taxon.rank.blank? && !%w(stateofmatter parvorder zoosection zoosubsection supertribe subtribe genushybrid subgenus section subsection complex).include?( @taxon.rank ) && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) && @taxon.shows_wikipedia?
     %hr
     .alert.alert-warning.upstacked
       %p

@@ -467,6 +467,21 @@ describe TaxaController do
       expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
       expect( response.body ).not_to include I18n.t( :there_isnt_a_wikipedia_article_titled_x_html, x: taxon.name )
     end
+
+    it "shows a throttled notice instead of the create-page prompt when it falls back to iNaturalist" do
+      # No `from`, so the full chain runs: Wikipedia (throttled, returns nil) then
+      # falls back to the iNaturalist auto-summary. This is what the React
+      # About/#articles-tab does (it requests ?wiki_prompt=true). Stub the
+      # class-based fallback describers' #describe directly: in the RSpec process
+      # `describe` on a Module resolves to RSpec's globally-exposed DSL rather than
+      # the describer's method, so we pin the values we want here.
+      allow( TaxonDescribers::Eol ).to receive( :describe ).and_return( nil )
+      allow( TaxonDescribers::Inaturalist ).to receive( :describe ).and_return( "Animalia is a kingdom.".dup )
+      get :describe, params: { id: taxon.id, wiki_prompt: true }
+      expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
+      expect( response.body ).to include "Animalia is a kingdom."
+      expect( response.body ).not_to include "create this page on Wikipedia"
+    end
   end
 
   describe "describe caches the Wikipedia response" do
