@@ -81,24 +81,22 @@ class MetaService
       return if api_endpoint_cache.in_progress?
 
       if api_endpoint_cache.cached? && !options[:force_update]
-        # A throttled response is not a valid API response; treat it as if there
-        # was no response rather than parsing the throttling message.
-        return if api_endpoint_cache.throttled?
-
-        if options[:raw_response]
-          return api_endpoint_cache.response
-        end
-
-        return Nokogiri::XML( api_endpoint_cache.response )
+        # Serve a previously cached successful response if we have one — even
+        # while we're inside a throttle back-off window. If we're throttled with
+        # nothing good cached yet, this returns nil (treated as no response).
+        return cached_response( api_endpoint_cache, options )
       end
     end
     response = nil
+    # Remember when we last completed a real request so a throttle below can
+    # restore it rather than advancing the cache_hours freshness window.
+    previous_completed_at = api_endpoint_cache&.request_completed_at
     begin
+      # Flip the in-progress guard, but keep any previously cached response/
+      # success intact so a throttle (handled below) can't clobber it.
       api_endpoint_cache&.update(
         request_began_at: Time.now,
-        request_completed_at: nil,
-        success: nil,
-        response: nil
+        request_completed_at: nil
       )
       Timeout.timeout( options[:timeout] ) do
         response = fetch_with_redirects( options )
@@ -115,15 +113,27 @@ class MetaService
     # non-blank body and even a 200 status, so detect it explicitly and never
     # treat it as a successful, cacheable response.
     throttled = status_code == 429 || response.body.to_s =~ /too many requests/i
+    if throttled
+      # Record the throttle so cached?/recently_throttled? backs off, but do NOT
+      # overwrite a previously cached successful response with the throttle
+      # message — we'd rather keep serving the good (if stale) data. Restore the
+      # prior completion time (or stamp now if there was none) so we only clear
+      # the in-progress guard without faking a fresh successful fetch.
+      api_endpoint_cache&.update(
+        request_completed_at: previous_completed_at || Time.now,
+        status_code: status_code,
+        throttled_at: Time.now
+      )
+      # Serve the prior cached success if we have one; otherwise no response.
+      return cached_response( api_endpoint_cache, options )
+    end
     api_endpoint_cache&.update(
       request_completed_at: Time.now,
       status_code: status_code,
-      success: !throttled && !response.body.blank?,
+      throttled_at: nil,
+      success: !response.body.blank?,
       response: response.body
     )
-    # Treat a throttled response as if there was no response, so callers don't
-    # attempt to parse the throttling message as a valid API response.
-    return if throttled
 
     if options[:raw_response]
       return response.body
@@ -131,6 +141,17 @@ class MetaService
 
     Nokogiri::XML( response.body )
   end
+
+  # Returns the cached response in the requested form, or nil when there is no
+  # usable cached response to serve.
+  def self.cached_response( api_endpoint_cache, options )
+    return unless api_endpoint_cache&.usable_response?
+
+    return api_endpoint_cache.response if options[:raw_response]
+
+    Nokogiri::XML( api_endpoint_cache.response )
+  end
+  private_class_method :cached_response
 
   def self.fetch_with_redirects( options, attempts = 3 )
     http = Net::HTTP.new( options[:request_uri].host, options[:request_uri].port )

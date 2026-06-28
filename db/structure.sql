@@ -434,7 +434,8 @@ CREATE TABLE public.api_endpoint_caches (
     response text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    status_code integer
+    status_code integer,
+    throttled_at timestamp without time zone
 );
 
 
@@ -12216,6 +12217,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260511210120'),
 ('20260514211433'),
 ('20260514215925'),
-('20260618232456');
+('20260618232456'),
+('20260628190145');
 
 

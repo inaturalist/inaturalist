@@ -26,19 +26,19 @@ describe MetaService do
       cache = cache_for
       expect( cache.status_code ).to eq 200
       expect( cache.success ).to be true
-      expect( cache.throttled? ).to be false
+      expect( cache.throttled_at ).to be_nil
+      expect( cache.recently_throttled? ).to be false
     end
 
-    it "marks a 429 response as throttled, not a success, and returns nil" do
+    it "records a throttle and returns nil when there is nothing cached to serve" do
       stub_fetch( code: 429, body: "You are making too many requests." )
       result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
       expect( result ).to be_nil
       cache = cache_for
       expect( cache.status_code ).to eq 429
-      expect( cache.success ).to be false
-      expect( cache.throttled? ).to be true
-      # the throttle body is still stored for monitoring/inspection
-      expect( cache.response ).to match( /too many requests/i )
+      expect( cache.recently_throttled? ).to be true
+      # a throttle is never recorded as a usable, successful response
+      expect( cache.usable_response? ).to be false
     end
 
     it "treats a too-many-requests body as throttled even with a 200 status" do
@@ -47,28 +47,58 @@ describe MetaService do
         raw_response: true )
       expect( result ).to be_nil
       cache = cache_for
-      expect( cache.success ).to be false
-      expect( cache.throttled? ).to be true
+      expect( cache.recently_throttled? ).to be true
+      expect( cache.usable_response? ).to be false
     end
 
-    it "returns nil for a cached throttled response without re-fetching" do
+    it "does not overwrite a previously cached success with a throttle, and keeps serving it" do
+      # An expired-but-valid 200 (older than cache_hours) so the fetch path runs.
       ApiEndpointCache.make!( api_endpoint: api_endpoint, request_url: request_uri.to_s,
-        status_code: 429, success: false, response: "You are making too many requests.",
+        status_code: 200, success: true, response: "<parse><text>cached ok</text></parse>",
+        request_began_at: 721.hours.ago, request_completed_at: 721.hours.ago )
+      stub_fetch( code: 429, body: "You are making too many requests." )
+      result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
+      # the good cached body is served, not the throttle message
+      expect( result ).to be_a( Nokogiri::XML::Document )
+      expect( result.at( "text" ).text ).to eq "cached ok"
+      cache = cache_for
+      expect( cache.response ).to eq "<parse><text>cached ok</text></parse>"
+      expect( cache.success ).to be true
+      expect( cache.status_code ).to eq 429
+      expect( cache.recently_throttled? ).to be true
+    end
+
+    it "serves the cached success without re-fetching while throttled" do
+      ApiEndpointCache.make!( api_endpoint: api_endpoint, request_url: request_uri.to_s,
+        status_code: 200, success: true, response: "<parse><text>cached ok</text></parse>",
+        request_began_at: 721.hours.ago, request_completed_at: 721.hours.ago,
+        throttled_at: 1.minute.ago )
+      expect( MetaService ).not_to receive( :fetch_with_redirects )
+      result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
+      expect( result.at( "text" ).text ).to eq "cached ok"
+    end
+
+    it "returns nil for a throttled response with nothing cached, without re-fetching" do
+      ApiEndpointCache.make!( api_endpoint: api_endpoint, request_url: request_uri.to_s,
+        status_code: 429, success: false, throttled_at: 1.minute.ago,
         request_began_at: 1.minute.ago, request_completed_at: 1.minute.ago )
       expect( MetaService ).not_to receive( :fetch_with_redirects )
       result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
       expect( result ).to be_nil
     end
 
-    it "re-fetches a throttled response once the retry window has passed" do
+    it "re-fetches once the throttle retry window has passed" do
       ApiEndpointCache.make!( api_endpoint: api_endpoint, request_url: request_uri.to_s,
-        status_code: 429, success: false, response: "You are making too many requests.",
+        status_code: 429, success: false,
+        throttled_at: ( ApiEndpointCache::THROTTLE_RETRY_MINUTES + 1 ).minutes.ago,
         request_began_at: ( ApiEndpointCache::THROTTLE_RETRY_MINUTES + 1 ).minutes.ago,
         request_completed_at: ( ApiEndpointCache::THROTTLE_RETRY_MINUTES + 1 ).minutes.ago )
       stub_fetch( code: 200, body: "<parse><text>ok</text></parse>" )
       result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
       expect( result ).to be_a( Nokogiri::XML::Document )
-      expect( cache_for.success ).to be true
+      cache = cache_for
+      expect( cache.success ).to be true
+      expect( cache.throttled_at ).to be_nil
     end
   end
 end

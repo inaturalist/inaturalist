@@ -422,19 +422,7 @@ describe Taxon, "updating" do
         api_endpoint: endpoint,
         status_code: 429,
         success: false,
-        request_began_at: 1.minute.ago,
-        request_completed_at: 1.minute.ago
-      )
-      taxon.set_wikipedia_summary( wikipedia: wikipedia )
-      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to eq "throttled"
-    end
-
-    it "stores 'throttled' when the recent cache is throttled by body even with a 200 status" do
-      ApiEndpointCache.make!(
-        api_endpoint: endpoint,
-        status_code: 200,
-        success: false,
-        response: "You are making too many requests.",
+        throttled_at: 1.minute.ago,
         request_began_at: 1.minute.ago,
         request_completed_at: 1.minute.ago
       )
