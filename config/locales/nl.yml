@@ -631,8 +631,19 @@ nl:
     Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken. Om een aanvraag in te kunnen dienen moet jouw account minimaal 2 maanden oud zijn en minimaal 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">improving identifications</a> hebben gemaakt in de afgelopen maand. We kunnen follow-up vragen
     vragen over jouw plan en we behouden ons het recht voor om aanvragen om welke reden dan ook af te wijzen.
+  app_owner_application_about_p2_2_html: |
+    Vanaf 2022 is handmatige goedkeuring vereist voor gebruikers die API-clients willen maken.
+    Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken.
+    Om een aanvraag in te mogen dienen moet je account minstens 2 maanden oud zijn en moeten er minstens 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">Verbetering van determinaties</a>
+    <i>voor andere gebruikers</i> zijn gemaakt in de afgelopen maand. We kunnen vervolgvragen stellen over uw plan en wij behouden ons het recht voor om aanvragen om welke reden dan ook af te wijzen.
   app_owner_application_inelligible: |
     Om een toepassing in te kunnen dienen moet je account minimaal 2 maanden oud zijn en moet minstens 10 verbeterende determinaties hebben gedaan in de afgelopen maand.
+  app_owner_application_inelligible2_html: |
+    Om een aanvraag in te dienen moet je account minstens 2 maanden oud zijn en tenminste 
+    10  <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">verbeterende determinaties</a>
+    <i>voor andere gebruikers</i> in de afgelopen maand hebben gedaan.
   app_owner_application_fields_explanation_html: Beschrijf de functionaliteit van je app en hoe je deze gaat gebruiken.
   app_owner_application_success: App eigenaar aanvraag ingediend
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -1790,7 +1801,6 @@ nl:
   devise_unlock_instructions_unlock: Deblokkeer je account
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Ontdek
-  discover_nature_around_you: Ontdek de natuur om je heen
   discoveries: Ontdekkingen
   did_you_mean: 'Bedoelde u'
   did_you_photos_flickr?: Heb je foto's geplaatst op Flickr?
@@ -1846,7 +1856,6 @@ nl:
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulk-uploader</a> te gebruiken
   download_csv: CSV downloaden
   download_csv_template: CSV-sjabloon downloaden
-  download_inaturalist_app: Download iNaturalist in de App Store
   download_kml: KML downloaden
   downstream_coverage_rank: Afdalende dekkingrang
   downstream_coverage_colon_rank: "Onderliggende dekking: niveau %{rank}"
@@ -2437,6 +2446,15 @@ nl:
   identification_saved: "Determinatie opgeslagen!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Determinatie verborgen
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Nomineren
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Verwijder nominatie
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} heeft dit als een ID-tip genomineerd"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Nomineer als een ID tip (diagnostische kenmerken die anderen leren dit organisme te herkennen) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Determinatietekst weer tonen
   #Notification when an identification has been updated
   identification_updated: Determinatie bijgewerkt!
@@ -3231,6 +3249,7 @@ nl:
   mute_removed: Dempen verwijderd
   muted_users: Gedempte gebruikers
   muting_description: Het negeren van iemand voorkomt dat je meldingen krijgt over één van zijn activiteiten, inclusief "@"-vermeldingen, berichten of opmerkingen en determinaties van je waarnemingen.
+  my_site: Mijn site
   n_ago: "%{n} geleden"
   n_people_agrees: "%{amount} mensen gaan akkoord"
   n_people_disagrees: "%{amount} personen zijn het oneens"
@@ -5380,13 +5399,19 @@ nl:
     #reason displayed to users who have been suspended for posting sexually explicit content
     #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Seksueel expliciete inhoud
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Plaatsen seksueel expliciete menselijke inhoud
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
     #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sockpuppet-accounts
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Misbruik van een tweede account, zoals het bevestigen van je eigen determinaties
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
     #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Opzettelijk valse ID's of DQA-stemmen toevoegen
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Opzettelijk valse gegevens toevoegen, zoals waarnemingen, determinaties of stemmen voor de Kwaliteitsbeoordeling van de gegevens
     #reason displayed to users who have been suspended for posting machine generated content
     #REPLACED with adding_machine_generated_content below
     machine_generated_content: Machine gegenereerde waarnemingen, determinaties en opmerkingen
@@ -6034,7 +6059,6 @@ nl:
   url_identifier_of_a_project_derived_from: "URL/identifier van een project dat is afgeleid van een externe bron"
   url_of_this_taxon_on_the_source_website: URL van dit taxon op de website van de bron
   usage_stats: Gebruiksstatistieken
-  use_app: Gebruik de app
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> als een placeholder gebruiken
   use_this_form_to_create_a_new: |
@@ -8434,6 +8458,10 @@ nl:
           specifieke rang aanwezig in de database van de website. Wanneer een taxon al zijn soorten bevat, we kunnen bijvoorbeeld zeggen hoe veel  soorten al zijn waargenomen en welke nog niet. Bij de tellingen van
           soorten voor "volledige" taxa waar van al zijn soorten zijn opgenomen zijn niet inbegrepen "ontelbare" soorten zoals uitgestorven soorten of inactieve soortconcepten.Ze bevatten alleen soorten, niet infraspecifieke taxa zoals ondersoorten of variëteiten.
         discoveries_desc: "Meest recente nieuw-geïdentificeerde soorten in dit taxon"
+        identifications:
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Sorteer: Van hoogste naar laagste stemmen"
         frequency:
           research: Onderzoekskwaliteit
           verifiable: Verifieerbaar
@@ -9384,8 +9412,6 @@ nl:
         exclude_donor_start_date: Uitsluiten donor met startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Uitsluiten donor met einddatum
-        #Column header for countries excluded by IP address
-        exclude_ip_countries: IP-landen uitsluiten
         excludes_non_site: Verberg andere mededelingen in deze plaatsing zonder Site ID
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -9411,8 +9437,6 @@ nl:
         max_observations: Max waarnemingen
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min. waarnemingen
-        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
-        parent_announcement_id: Wereldwijde Aankondiging (optioneel)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Plaatsing
         #Preference for an announcement that is only shown to the user who created the announcement
