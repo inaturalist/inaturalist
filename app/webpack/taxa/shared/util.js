@@ -1,9 +1,11 @@
 import _ from "lodash";
 import { COLORS } from "../../shared/util";
 
-const urlForTaxon = t => (
-  t ? `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}` : null
-);
+const urlForTaxon = ( t, { localePrefix } = {} ) => {
+  if ( !t ) return null;
+  const base = `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}`;
+  return localePrefix ? `/${localePrefix}${base}` : base;
+};
 const urlForTaxonPhotos = ( t, params ) => {
   let url = `/taxa/${t.id}-${t.name.replace( /[^a-zA-Z0-9]/g, "-" )}/browse_photos`;
   if ( params ) {
@@ -13,6 +15,15 @@ const urlForTaxonPhotos = ( t, params ) => {
 };
 const urlForUser = u => `/people/${u.login}`;
 const urlForPlace = p => `/places/${p.slug || p.id}`;
+
+const isCuratorOrAdmin = currentUser => (
+  currentUser
+  && currentUser.roles
+  && (
+    currentUser.roles.includes( "curator" )
+    || currentUser.roles.includes( "admin" )
+  )
+);
 
 const defaultObservationParams = ( state, options = { } ) => {
   const { config } = state;
@@ -106,7 +117,7 @@ const commasAnd = items => {
   return `${items.join( separator )}${finalSeparator}${last}`;
 };
 
-const windowStateForTaxon = taxon => {
+const windowStateForTaxon = ( taxon, { localePrefix } = {} ) => {
   let scinameWithRank = taxon.name;
   if ( taxon.rank_level > 10 ) {
     scinameWithRank = `${I18n.t( `ranks.${taxon.rank.toString().toLowerCase()}` )} ${taxon.name}`;
@@ -150,7 +161,7 @@ const windowStateForTaxon = taxon => {
   return {
     state,
     title,
-    url: `${urlForTaxon( taxon )}${window.location.search}${tabHash ? `#${tabHash}` : ""}`
+    url: `${urlForTaxon( taxon, { localePrefix } )}${window.location.search}${tabHash ? `#${tabHash}` : ""}`
   };
 };
 
@@ -306,6 +317,7 @@ const MAX_TAXON_PHOTOS = 12;
 
 export {
   urlForTaxon,
+  isCuratorOrAdmin,
   urlForTaxonPhotos,
   urlForUser,
   urlForPlace,

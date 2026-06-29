@@ -19,7 +19,7 @@ class ModeratorAction < ApplicationRecord
 
   SUSPENSION_REASONS = {
     "insults_or_threats" => { default_duration: "1_day" },
-    "hate_speech" => { default_duration: "3_days" },
+    "hate_speech" => { default_duration: "1_week" },
     "posting_sexually_explicit_human_content" => { default_duration: "indefinite" },
     "misusing_a_second_account" => { default_duration: "1_week" },
     "intentionally_adding_false_data" => { default_duration: "1_day" },
@@ -215,11 +215,11 @@ class ModeratorAction < ApplicationRecord
 
   def set_resource_content
     return unless resource
-    
-    if action == RENAME
-      self.resource_content = resource.try_methods(:name, :title, :login)
+
+    self.resource_content = if action == RENAME
+      resource.try_methods( :name, :title, :login )
     else
-      self.resource_content = Flag.instance_content(resource)
+      Flag.instance_content( resource )
     end
   end
 

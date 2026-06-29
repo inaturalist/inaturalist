@@ -76,7 +76,7 @@ sharedStore.dispatch( fetchTaxonAssociates( taxon ) );
 // Replace state to contain taxon details, so when a user uses the back button
 // to get back from future page states we will be able to retrieve the original
 // taxon
-const s = windowStateForTaxon( taxon );
+const s = windowStateForTaxon( taxon, { localePrefix: serverPayload.localePrefix } );
 history.replaceState( s.state, s.title, s.url );
 
 window.onpopstate = e => {

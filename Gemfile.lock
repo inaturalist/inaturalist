@@ -244,7 +244,7 @@ GEM
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.12.1)
       aws-eventstream (~> 1, >= 1.0.2)
-    base64 (0.2.0)
+    base64 (0.3.0)
     bcrypt (3.1.22)
     bcrypt_pbkdf (1.1.0)
     better_errors (2.9.1)
@@ -423,8 +423,7 @@ GEM
       aes_key_wrap
       bindata
       httpclient
-    jwt (3.2.0)
-      base64
+    jwt (2.7.1)
     language_server-protocol (3.17.0.4)
     lefthook (0.7.7)
     lint_roller (1.1.0)
@@ -851,6 +850,7 @@ DEPENDENCIES
   icalendar
   irwi!
   json
+  jwt (~> 2.7.0)
   kt-paperclip!
   lefthook
   machinist!

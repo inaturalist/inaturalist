@@ -1,0 +1,166 @@
+import React, {
+  useState, useEffect, useRef, useCallback
+} from "react";
+import css from "./carousel.module.css";
+
+export interface CarouselProps {
+  items: React.ReactElement[];
+  finalItem?: React.ReactElement;
+  title?: string;
+  url?: string;
+  description?: string | React.ReactNode;
+  noContent?: string;
+  className?: string;
+}
+
+const Carousel = ( {
+  title,
+  items,
+  finalItem,
+  url,
+  description,
+  noContent,
+  className = ""
+}: CarouselProps ) => {
+  const [activeIndex, setActiveIndex] = useState( 0 );
+  const [trackWidth, setTrackWidth] = useState( 0 );
+  const [itemWidth, setItemWidth] = useState( 0 );
+  const trackRef = useRef<HTMLDivElement>( null );
+
+  const measureItemWidth = useCallback( () => {
+    if ( !trackRef.current ) return;
+    const child = Array.from( trackRef.current.children ).find( el => {
+      const h = el as HTMLElement;
+      return !h.style.width && h.getBoundingClientRect().width > 0;
+    } ) as HTMLElement | undefined;
+    if ( child ) {
+      const w = child.getBoundingClientRect().width;
+      setItemWidth( prev => ( prev !== w ? w : prev ) );
+    }
+  }, [] );
+
+  const scrollToIndex = useCallback( ( idx: number ) => {
+    const track = trackRef.current;
+    if ( !track ) return;
+    const item = track.children[idx] as HTMLElement;
+    if ( !item ) return;
+    const itemLeft = item.getBoundingClientRect().left - track.getBoundingClientRect().left;
+    const offset = track.scrollLeft + itemLeft;
+    track.scrollTo( { left: offset, behavior: "smooth" } );
+  }, [] );
+
+  useEffect( () => {
+    const track = trackRef.current;
+    if ( !track ) return () => {};
+    const resizeObserver = new ResizeObserver( () => {
+      const currentTrackWidth = track.getBoundingClientRect().width;
+      if ( currentTrackWidth > 0 ) {
+        setTrackWidth( prev => ( prev !== currentTrackWidth ? currentTrackWidth : prev ) );
+      }
+      measureItemWidth();
+    } );
+    resizeObserver.observe( track );
+    return () => resizeObserver.disconnect();
+  }, [measureItemWidth] );
+
+  useEffect( () => {
+    measureItemWidth();
+  }, [measureItemWidth, items] );
+
+  useEffect( () => {
+    const track = trackRef.current;
+    let raf: number;
+    const handleScroll = () => {
+      cancelAnimationFrame( raf );
+      raf = requestAnimationFrame( () => {
+        if ( !track ) return;
+        const trackLeft = track.getBoundingClientRect().left;
+        let closest = 0;
+        let minDist = Infinity;
+        Array.from( track.children ).forEach( ( child, i ) => {
+          const dist = Math.abs( child.getBoundingClientRect().left - trackLeft );
+          if ( dist < minDist ) { minDist = dist; closest = i; }
+        } );
+        setActiveIndex( closest );
+      } );
+    };
+    if ( track ) track.addEventListener( "scroll", handleScroll, { passive: true } );
+    return ( ) => {
+      if ( track ) track.removeEventListener( "scroll", handleScroll );
+      cancelAnimationFrame( raf );
+    };
+  }, [] );
+
+  // Until the carousel has been measured, render only a couple items so off-screen
+  // elements don't mount and fire network requests on first paint. After ResizeObserver
+  // measures the track, visibleCount switches to the real value and placeholders get sized.
+  const INITIAL_VISIBLE = 2;
+  const visibleCount = trackWidth && itemWidth
+    ? Math.ceil( trackWidth / itemWidth )
+    : INITIAL_VISIBLE;
+  const allItems = finalItem ? [...items, finalItem] : items;
+  const renderedItems = allItems.map( ( item, index ) => {
+    const distFromActive = Math.abs( index - activeIndex );
+    return (
+      <div
+        key={String( item.key )}
+        className={css.item}
+        style={distFromActive > visibleCount && itemWidth
+          ? { width: itemWidth }
+          : undefined}
+      >
+        { distFromActive <= visibleCount && item }
+      </div>
+    );
+  } );
+
+  const link = url && (
+    <a href={url} className={css.readmore}>
+      { I18n.t( "view_all_caps" ) }
+    </a>
+  );
+
+  return (
+    <div className={`${css.carousel}${className ? ` ${className}` : ""}`}>
+      { title && (
+        <div className={css.title}>
+          { title }
+          { link }
+        </div>
+      ) }
+      { description && <p>{ description }</p> }
+      { allItems.length === 0 && (
+        <p className="text-muted text-center">{ noContent }</p>
+      ) }
+      <div className={css.body}>
+        { allItems.length > 0 && (
+          <button
+            type="button"
+            className={`btn ${css.navbtn}`}
+            disabled={activeIndex === 0}
+            onClick={( ) => scrollToIndex( activeIndex - 1 )}
+            title={I18n.t( "previous_taxon_short" )}
+          >
+            ❮
+          </button>
+        ) }
+        <div className={css.track} ref={trackRef}>
+          { renderedItems }
+        </div>
+        { allItems.length > 0 && (
+          <button
+            type="button"
+            className={`btn ${css.navbtn}`}
+            disabled={activeIndex >= allItems.length - 1}
+            onClick={( ) => scrollToIndex( activeIndex + 1 )}
+            title={I18n.t( "next_taxon_short" )}
+          >
+            ❯
+          </button>
+        ) }
+      </div>
+    </div>
+  );
+};
+
+export default Carousel;

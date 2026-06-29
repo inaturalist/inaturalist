@@ -188,7 +188,7 @@ class ActivityCreatePanel extends React.Component {
               maxLength={5000}
               showCharsRemainingAt={4000}
             />
-            { currentUser?.canViewHelpfulIDTips( ) && (
+            { currentUser?.canNominateHelpfulIDTips( ) && (
               <div className="nomination">
                 <input
                   type="checkbox"

@@ -471,6 +471,7 @@ class Observation < ApplicationRecord
   after_save :set_taxon_photo
   after_save :create_observation_review
   after_save :reassess_annotations
+  after_save :reassess_exemplar_identifications
   after_create :set_uri
   after_commit :update_user_counter_caches_after_create, on: :create
   after_commit :update_user_counter_caches_after_destroy, on: :destroy
@@ -1479,29 +1480,31 @@ class Observation < ApplicationRecord
       !community_taxon_id.blank? && taxon_id == community_taxon_id
     end
   end
-  
-  def quality_metrics_pass?( metrics = QualityMetric::METRICS )
-    metrics.each do |metric|
-      return false unless passes_quality_metric?(metric)
+
+  def quality_metrics_pass?( metrics = [] )
+    metrics = QualityMetric::METRICS if metrics.blank?
+    metrics.each do | metric |
+      return false unless passes_quality_metric?( metric )
     end
     true
   end
 
-  def passes_quality_metric?(metric)
-    score = quality_metric_score(metric)
+  def passes_quality_metric?( metric )
+    score = quality_metric_score( metric )
     score.blank? || score >= 0.5
   end
 
-  def research_grade_candidate?
+  def research_grade_candidate?( options = {} )
     return false if human?
     return false unless georeferenced?
-    return false unless quality_metrics_pass?
+    return false unless quality_metrics_pass?( options[:metrics] )
     return false unless observed_on?
-    return false unless (photos? || sounds?)
+    return false unless ( photos? || sounds? )
     return false unless appropriate?
+
     true
   end
-  
+
   def human?
     t = community_taxon || taxon
     t && ( t.name =~ /^Homo / || t.name == "Homo" )
@@ -1545,8 +1548,14 @@ class Observation < ApplicationRecord
     observation.quality_grade
   end
 
-  def get_quality_grade
-    if !research_grade_candidate?
+  def quality_grade_if_not_captive
+    return nil unless captive_cultivated?
+
+    get_quality_grade( metrics: QualityMetric::METRICS - [QualityMetric::WILD] )
+  end
+
+  def get_quality_grade( options = {} )
+    if !research_grade_candidate?( options )
       CASUAL
     elsif voted_in_to_needs_id?
       NEEDS_ID
@@ -1584,7 +1593,7 @@ class Observation < ApplicationRecord
       NEEDS_ID
     end
   end
-  
+
   def coordinates_obscured?
     !private_latitude.blank? || !private_longitude.blank?
   end
@@ -2975,6 +2984,13 @@ class Observation < ApplicationRecord
     true
   end
 
+  def reassess_exemplar_identifications
+    return true unless saved_change_to_taxon_id?
+
+    identifications.reload
+    identifications.each( &:update_exemplar_identification )
+  end
+
   def create_deleted_observation
     DeletedObservation.create(
       observation_id: id,
@@ -3367,6 +3383,8 @@ class Observation < ApplicationRecord
     quality_grade_will_change!
     save
     evaluate_new_flag_for_spam(flag)
+    identifications.reload
+    identifications.each( &:update_exemplar_identification )
   end
 
   def mentioned_users
