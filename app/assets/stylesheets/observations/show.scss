@@ -113,7 +113,7 @@ body.responsive {
       width: auto;
     }
     // stack the two-column layouts below the tablet breakpoint
-    @media ( max-width: $md-max ) {
+    @media ( max-width: $lg-max ) {
       .photos_column,
       .info_column,
       .middle_left,
@@ -696,7 +696,7 @@ a.UserImage,
     background: #fff;
     border-top: 1px solid $border-grey;
 
-    @media (max-width: $md-max) {
+    @media (max-width: $lg-max) {
       margin-inline: -15px;;
 
       .container {
@@ -714,7 +714,7 @@ a.UserImage,
       margin: 0;
     }
 
-    @media (max-width: $md-max) {
+    @media (max-width: $lg-max) {
       margin-inline: -15px;;
 
     }
@@ -1201,7 +1201,7 @@ time {
     }
   }
 
-  @media (max-width: $md-max) {
+  @media (max-width: $lg-max) {
     padding-right: 0px;
   }
 }
