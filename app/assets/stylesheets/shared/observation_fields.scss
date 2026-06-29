@@ -39,25 +39,16 @@
 
 .ObservationFieldValue {
   margin-bottom: 10px;
-  display: flex;
-  align-items: baseline;
   overflow: hidden;
+  text-overflow: ellipsis;
   .field {
     font-weight: 700;
-    flex-shrink: 0;
+    display: inline;
     margin-right: 5px;
     cursor: pointer;
   }
   .value {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;
-    > * {
-      overflow: inherit;
-      text-overflow: inherit;
-      white-space: inherit;
-    }
+    display: inline;
     .dna {
       font-family: inherit;
     }
