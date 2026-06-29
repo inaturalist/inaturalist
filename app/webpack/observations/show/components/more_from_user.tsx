@@ -32,6 +32,29 @@ const MoreFromUser = ( {
   showNewObservation,
   config = {}
 }: MoreFromUserProps ) => {
+  const observations = useMemo( ( ) => {
+    // obs list starts with the previous 3 obs
+    let obs = _.take( otherObservations.earlierUserObservations, 3 );
+    // reverse them since they are ordered DESC, and we want to show them ASC
+    obs.reverse( );
+    // add the next 3 obs
+    obs = obs.concat( _.take( otherObservations.laterUserObservations, 3 ) );
+    if ( obs.length < 6 ) {
+      // if we don't have 6 yet, add the rest of the next obs
+      obs = obs.concat( otherObservations.laterUserObservations.slice( 3 ) );
+      obs = _.take( obs, 6 );
+    }
+    if ( obs.length < 6 ) {
+      // if we don't have 6 yet, add as many more previous obs as we need
+      const moreEarlier = _.take(
+        otherObservations.earlierUserObservations.slice( 3 ),
+        6 - obs.length
+      );
+      moreEarlier.reverse( );
+      obs = moreEarlier.concat( obs );
+    }
+    return obs;
+  }, [otherObservations] );
   if (
     !observation
     || !observation.user
@@ -60,34 +83,13 @@ const MoreFromUser = ( {
     showNewObservation( o, { useInstance: !testingApiV2 } );
   };
   const userLogin = observation.user.login;
-  const observations = useMemo( ( ) => {
-    // obs list starts with the previous 3 obs
-    let obs = _.take( otherObservations.earlierUserObservations, 3 );
-    // reverse them since they are ordered DESC, and we want to show them ASC
-    obs.reverse( );
-    // add the next 3 obs
-    obs = obs.concat( _.take( otherObservations.laterUserObservations, 3 ) );
-    if ( obs.length < 6 ) {
-      // if we don't have 6 yet, add the rest of the next obs
-      obs = obs.concat( otherObservations.laterUserObservations.slice( 3 ) );
-      obs = _.take( obs, 6 );
-    }
-    if ( obs.length < 6 ) {
-      // if we don't have 6 yet, add as many more previous obs as we need
-      const moreEarlier = _.take(
-        otherObservations.earlierUserObservations.slice( 3 ),
-        6 - obs.length
-      );
-      moreEarlier.reverse( );
-      obs = moreEarlier.concat( obs );
-    }
-    return obs;
-  }, [otherObservations] );
   const carouselItems = observations.map( o => (
     <TaxonThumbnail
       key={`more-obs-${o.uuid}`}
       taxon={o.taxon || { id: o.id, name: I18n.t( "unknown" ), iconic_taxon_name: "unknown" }}
-      photo={o.photos?.[0]}
+      // null (not undefined) so a photoless observation shows an iconic
+      // placeholder rather than borrowing the taxon's default photo.
+      photo={o.photos?.[0] ?? null}
       urlForTaxon={( ) => `/observations/${o.id}`}
       onClick={e => loadObservationCallback( e, o )}
       config={config}

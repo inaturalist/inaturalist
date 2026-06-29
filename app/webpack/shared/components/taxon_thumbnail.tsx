@@ -18,7 +18,9 @@ export interface TaxonThumbnailBadge {
 
 export interface TaxonThumbnailProps {
   taxon: Taxon;
-  photo?: Photo;
+  // undefined falls back to the taxon's default photo; null suppresses that
+  // fallback and forces the iconic placeholder (e.g. for a photoless observation).
+  photo?: Photo | null;
   width?: number;
   className?: string;
   overlay?: React.ReactNode;
@@ -48,12 +50,16 @@ const TaxonThumbnail = ( {
   if ( photo && typeof photo.photoUrl === "function" ) {
     mediumURL = photo.photoUrl( "medium" );
     squareURL = photo.photoUrl( "square" );
-  } else if ( taxon.defaultPhoto && typeof taxon.defaultPhoto.photoUrl === "function" ) {
-    mediumURL = taxon.defaultPhoto.photoUrl( "medium" );
-    squareURL = taxon.defaultPhoto.photoUrl( "square" );
-  } else if ( taxon.default_photo && typeof taxon.default_photo === "object" ) {
-    mediumURL = taxon.default_photo.medium_url;
-    squareURL = taxon.default_photo.square_url;
+  } else if ( photo !== null ) {
+    // only fall back to the taxon's default photo when no photo was passed;
+    // an explicit null means "this thing has no photo, show the placeholder".
+    if ( taxon.defaultPhoto && typeof taxon.defaultPhoto.photoUrl === "function" ) {
+      mediumURL = taxon.defaultPhoto.photoUrl( "medium" );
+      squareURL = taxon.defaultPhoto.photoUrl( "square" );
+    } else if ( taxon.default_photo && typeof taxon.default_photo === "object" ) {
+      mediumURL = taxon.default_photo.medium_url;
+      squareURL = taxon.default_photo.square_url;
+    }
   }
 
   const wrapperStyle: React.CSSProperties | undefined = width

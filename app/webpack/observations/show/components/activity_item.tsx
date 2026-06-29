@@ -210,7 +210,7 @@ const ActivityItem = ( props: ActivityItemProps ) => {
     if ( rootRef.current ) {
       $( "textarea", rootRef.current ).textcompleteUsers( );
     }
-  } );
+  }, [] );
 
   const onEdit = ( e: React.SyntheticEvent ) => {
     if ( inlineEditing ) {

@@ -59,6 +59,22 @@ describe( "TaxonThumbnail photo source", ( ) => {
     expect( container.querySelector( ".icon-iconic-aves" ) ).toBeTruthy( );
   } );
 
+  it( "suppresses the taxon's default photo when photo is explicitly null", ( ) => {
+    const defaultPhoto = {
+      id: 9,
+      photoUrl: ( size?: string ) => ( size === "medium" ? "default-med.jpg" : "default-sq.jpg" ),
+      dimensions: ( ) => ( { width: 1, height: 1 } )
+    } as Photo;
+    const taxon = {
+      id: 1, name: "X", iconic_taxon_name: "Aves", defaultPhoto
+    };
+    const { container } = render(
+      <TaxonThumbnail taxon={taxon} photo={null} />
+    );
+    expect( screen.queryByTestId( "cover" ) ).not.toBeInTheDocument( );
+    expect( container.querySelector( ".icon-iconic-aves" ) ).toBeTruthy( );
+  } );
+
   it( "uses the unknown icon when no iconic taxon is set", ( ) => {
     const { container } = render( <TaxonThumbnail taxon={{ id: 1, name: "X" }} /> );
     expect( container.querySelector( ".icon-iconic-unknown" ) ).toBeTruthy( );

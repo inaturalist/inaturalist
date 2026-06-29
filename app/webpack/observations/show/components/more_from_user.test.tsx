@@ -24,11 +24,15 @@ const makeObs = ( i: number ) => ( {
   id: 100 + i,
   uuid: `uuid-${i}`,
   taxon: {
-    id: i, name: `Taxon ${i}`, rank: "species", iconic_taxon_name: "Insecta"
+    id: i,
+    name: `Taxon ${i}`,
+    rank: "species",
+    iconic_taxon_name: "Insecta",
+    // typified Taxon instances carry a defaultPhoto; it must NOT stand in for
+    // the observation's own media in this view.
+    defaultPhoto: { photoUrl: ( size?: string ) => `https://example.test/taxon-${i}-${size}.jpg` }
   },
-  photo: ( size?: string ) => (
-    size ? `https://example.test/${size}-${i}.jpg` : `https://example.test/${i}.jpg`
-  ),
+  photos: [{ photoUrl: ( size?: string ) => `https://example.test/obs-${i}-${size}.jpg` }],
   hasMedia: ( ) => true,
   hasSounds: ( ) => false
 } as unknown as Observation );
@@ -50,6 +54,40 @@ describe( "MoreFromUser", ( ) => {
     expect( screen.getByTitle( "next_taxon_short" ) ).toBeInTheDocument( );
     // First observation's taxon shows in its thumbnail caption.
     expect( screen.getByText( "Taxon 0" ) ).toBeInTheDocument( );
+  } );
+
+  it( "renders the observation's own photo, not the taxon's default photo", ( ) => {
+    render( <MoreFromUser {...props} /> );
+    const cover = document.querySelector( "[data-testid='cover']" ) as HTMLElement;
+    expect( cover ).not.toBeNull( );
+    expect( cover.getAttribute( "data-src" ) ).toBe( "https://example.test/obs-0-medium.jpg" );
+  } );
+
+  it( "shows an iconic placeholder for a photoless observation instead of the taxon's default photo", ( ) => {
+    const soundOnlyObs = {
+      id: 300,
+      uuid: "uuid-soundonly",
+      taxon: {
+        id: 7,
+        name: "Taxon 7",
+        rank: "species",
+        iconic_taxon_name: "Aves",
+        defaultPhoto: { photoUrl: ( size?: string ) => `https://example.test/taxon-7-${size}.jpg` }
+      },
+      photos: [],
+      hasMedia: ( ) => true,
+      hasSounds: ( ) => true
+    } as unknown as Observation;
+    const { container } = render(
+      <MoreFromUser
+        {...props}
+        otherObservations={{ earlierUserObservations: [], laterUserObservations: [soundOnlyObs] }}
+      />
+    );
+    // No taxon stock photo should be rendered for an observation without its own media.
+    expect( container.querySelector( "[data-testid='cover']" ) ).toBeNull( );
+    // The iconic placeholder is shown instead.
+    expect( container.querySelector( "i.icon-iconic-aves" ) ).not.toBeNull( );
   } );
 
   it( "renders an empty div when there are no observations", ( ) => {
