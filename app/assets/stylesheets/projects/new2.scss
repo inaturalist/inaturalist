@@ -257,6 +257,11 @@ body>div>.popover[role="tooltip"].popover-error {
   .members-only label.inline {
     line-height: inherit;
   }
+  .not-casual-excluding-captive {
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
   .icon-previews {
     margin-top: 15px;
     .badge-div {

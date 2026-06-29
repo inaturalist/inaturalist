@@ -414,6 +414,9 @@ export function submitProject( ) {
         prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
         prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced,
         prefers_rule_members_only: _.isEmpty( project.rule_members_only ) ? "" : project.rule_members_only,
+        prefers_rule_not_casual_excluding_captive:
+          _.isEmpty( project.rule_not_casual_excluding_captive )
+            ? "" : project.rule_not_casual_excluding_captive,
         prefers_user_trust: project.prefers_user_trust === true
       }
     };
