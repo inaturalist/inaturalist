@@ -37,8 +37,6 @@
   - else
     =raw @description
   - if @wikipedia_throttled && @taxon.shows_wikipedia?
-    -# Wikipedia was rate-limiting us, so don't imply the article is missing or
-    -# prompt the user to create it; if we fell back to other content, note why.
     - unless @description.blank?
       %p.nocontent.meta.center-block
         =t :wikipedia_summary_throttled

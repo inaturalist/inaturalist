@@ -469,12 +469,6 @@ describe TaxaController do
     end
 
     it "shows a throttled notice instead of the create-page prompt when it falls back to iNaturalist" do
-      # No `from`, so the full chain runs: Wikipedia (throttled, returns nil) then
-      # falls back to the iNaturalist auto-summary. This is what the React
-      # About/#articles-tab does (it requests ?wiki_prompt=true). Stub the
-      # class-based fallback describers' #describe directly: in the RSpec process
-      # `describe` on a Module resolves to RSpec's globally-exposed DSL rather than
-      # the describer's method, so we pin the values we want here.
       allow( TaxonDescribers::Eol ).to receive( :describe ).and_return( nil )
       allow( TaxonDescribers::Inaturalist ).to receive( :describe ).and_return( "Animalia is a kingdom.".dup )
       get :describe, params: { id: taxon.id, wiki_prompt: true }
@@ -488,10 +482,6 @@ describe TaxaController do
     let( :taxon ) { Taxon.make!( name: "Animalia" ) }
 
     before do
-      # Sign in so the anonymous Rails.cache layer is skipped and the describer
-      # runs on every request — this isolates the ApiEndpointCache behavior, which
-      # is the same path the React "About"/articles tab uses (fetchDescription ->
-      # GET /taxa/:id/description).
       sign_in make_curator
     end
 

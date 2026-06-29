@@ -1157,10 +1157,6 @@ class TaxaController < ApplicationController
       response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end
-    # When Wikipedia rate-limits us the describer fetch comes back empty and we
-    # fall through to another source (often the iNaturalist auto-summary), or to a
-    # blank description. In those cases flag a recent throttle so the view can say
-    # "try again later" instead of implying the Wikipedia article doesn't exist.
     @wikipedia_throttled = @taxon.shows_wikipedia? &&
       ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) &&
       wikipedia_recently_throttled?
@@ -1303,9 +1299,6 @@ class TaxaController < ApplicationController
 
   private
 
-  # Whether the Wikipedia endpoint for the current locale was throttled within
-  # the retry window, so we can tell the user to try again later rather than
-  # showing a generic "not found" message.
   def wikipedia_recently_throttled?
     WikipediaService.new( locale: I18n.locale ).api_endpoint&.recently_throttled? || false
   end

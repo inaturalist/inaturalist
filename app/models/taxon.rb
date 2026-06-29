@@ -1501,9 +1501,6 @@ class Taxon < ApplicationRecord
       read_attribute( :wikipedia_summary )
     end
     if sum == "throttled"
-      # Treat a throttled sentinel like an expired entry: don't render the
-      # literal "throttled" string, and fall through to the refresh_if_blank
-      # path so it re-fetches once the ApiEndpointCache retry window elapses.
       options[:reload] = true
     elsif sum&.match( /^\d\d\d\d-\d\d-\d\d$/ )
       last_try_date = DateTime.parse( sum )

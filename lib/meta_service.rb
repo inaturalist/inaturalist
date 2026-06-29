@@ -121,8 +121,6 @@ class MetaService
       success: !throttled && !response.body.blank?,
       response: response.body
     )
-    # Treat a throttled response as if there was no response, so callers don't
-    # attempt to parse the throttling message as a valid API response.
     return if throttled
 
     if options[:raw_response]
