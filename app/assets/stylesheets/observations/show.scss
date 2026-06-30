@@ -697,7 +697,7 @@ a.UserImage,
     border-top: 1px solid $border-grey;
 
     @media (max-width: $lg-max) {
-      margin-inline: -15px;;
+      margin-inline: -15px;
 
       .container {
         padding: 0 15px;
@@ -715,7 +715,7 @@ a.UserImage,
     }
 
     @media (max-width: $lg-max) {
-      margin-inline: -15px;;
+      margin-inline: -15px;
 
     }
 
@@ -876,7 +876,7 @@ time {
     height: 230px;
     text-align: center;
     padding-top: 75px;
-    border-bottom: 1px solid $border-grey;;
+    border-bottom: 1px solid $border-grey;
     .fa {
       display: block;
       font-size: 60px;
