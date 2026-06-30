@@ -63,7 +63,7 @@ class WikipediaService < MetaService
       !node.inner_html.strip.blank?
     end || hxml ).inner_html.to_s.strip
     summary = sanitizer.sanitize( summary, tags: %w(p i em b strong) )
-    summary.gsub! /\[.*?\]/, ""
+    summary.gsub!( /\[.*?\]/, "" )
     summary
   end
 
