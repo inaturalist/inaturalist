@@ -21,7 +21,7 @@
             - else
               .timeline-badge.plain
                 = link_to update_image_for( notifying_update ), resource
-                %# TODO: verify sub-badge renders correctly after badge moved into timeline-heading (was absolutely positioned relative to li)
+                -# TODO: verify sub-badge renders correctly after badge moved into timeline-heading (was absolutely positioned relative to li)
                 - if ["activity","curator_change","invited","created_post"].include? notification
                   :ruby
                     glytype = case notification
