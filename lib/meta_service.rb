@@ -114,7 +114,7 @@ class MetaService
     # A throttling response (e.g. "You are making too many requests") may have a
     # non-blank body and even a 200 status, so detect it explicitly and never
     # treat it as a successful, cacheable response.
-    throttled = status_code == 429 || response.body.to_s =~ /too many requests/i
+    throttled = ApiEndpointCache.throttled_response?( status_code, response.body )
     api_endpoint_cache&.update(
       request_completed_at: Time.now,
       status_code: status_code,

@@ -7,11 +7,15 @@ class ApiEndpointCache < ApplicationRecord
     !!( request_began_at && !request_completed_at )
   end
 
-  def throttled?
-    return true if status_code == 429
-    return true if response.to_s =~ /too many requests/i
+  def self.throttled_response?( status_code, body )
+    return true if status_code.to_i == 429
+    return true if body.to_s =~ /too many requests/i
 
     false
+  end
+
+  def throttled?
+    self.class.throttled_response?( status_code, response )
   end
 
   def cached?
