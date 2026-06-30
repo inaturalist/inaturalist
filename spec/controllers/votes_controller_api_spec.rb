@@ -122,3 +122,60 @@ describe VotesController, "with authentication" do
   before { sign_in( user ) }
   it_behaves_like "a basic VotesController"
 end
+
+describe VotesController do
+  describe "exemplar identifications" do
+    before do
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+    end
+    let( :organizer ) do
+      old_organizer = User.make!( created_at: 2.days.ago )
+      UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: old_organizer )
+      old_organizer
+    end
+    let( :exemplar_identification ) do
+      identification = Identification.make!( body: "the body" )
+      identification.exemplar_identification
+    end
+
+    it "allows admins to vote" do
+      sign_in( make_admin )
+      post :vote, format: :json, params: {
+        resource_type: "exemplar_identification", resource_id: exemplar_identification.id
+      }
+      expect( response ).to be_successful
+    end
+
+    it "allows curators to vote" do
+      sign_in( make_curator )
+      post :vote, format: :json, params: {
+        resource_type: "exemplar_identification", resource_id: exemplar_identification.id
+      }
+      expect( response ).to be_successful
+    end
+
+    it "allows older organizers to vote" do
+      sign_in( organizer )
+      post :vote, format: :json, params: {
+        resource_type: "exemplar_identification", resource_id: exemplar_identification.id
+      }
+      expect( response ).to be_successful
+    end
+
+    it "allows the identifier vote" do
+      sign_in( exemplar_identification.identification.user )
+      post :vote, format: :json, params: {
+        resource_type: "exemplar_identification", resource_id: exemplar_identification.id
+      }
+      expect( response ).to be_successful
+    end
+
+    it "does not allow other users to vote" do
+      sign_in( User.make! )
+      post :vote, format: :json, params: {
+        resource_type: "exemplar_identification", resource_id: exemplar_identification.id
+      }
+      expect( response ).not_to be_successful
+    end
+  end
+end

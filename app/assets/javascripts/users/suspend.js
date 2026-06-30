@@ -21,13 +21,11 @@ $( function () {
         return toISOString( new Date( now.getTime() + 3 * 24 * 60 * 60 * 1000 ) );
       case "1_week":
         return toISOString( new Date( now.getTime() + 7 * 24 * 60 * 60 * 1000 ) );
+      case "2_weeks":
+        return toISOString( new Date( now.getTime() + 14 * 24 * 60 * 60 * 1000 ) );
       case "1_month":
         var d = new Date( now );
         d.setMonth( d.getMonth() + 1 );
-        return toISOString( d );
-      case "2_months":
-        var d = new Date( now );
-        d.setMonth( d.getMonth() + 2 );
         return toISOString( d );
       case "indefinite":
         return "";

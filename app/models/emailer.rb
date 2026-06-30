@@ -124,9 +124,23 @@ class Emailer < ActionMailer::Base
     @user = user
     return if @user.email.blank?
 
+    # This is an account-critical email, so remove any suppressions that would
+    # otherwise prevent SendGrid from delivering it (mirrors DeviseMailer).
+    EmailSuppression.destroy_for_email(
+      @user.email,
+      only: [
+        EmailSuppression::ACCOUNT_EMAILS,
+        EmailSuppression::BLOCKS,
+        EmailSuppression::BOUNCES,
+        EmailSuppression::SPAM_REPORTS,
+        EmailSuppression::UNSUBSCRIBES
+      ]
+    )
     @reason = reason
     @site_name = site_name
-    @x_smtpapi_headers[:asm_group_id] = CONFIG.sendgrid&.asm_group_ids&.account
+    # Mandatory account email: send without an ASM group so SendGrid does not
+    # inject a group-unsubscribe footer and users cannot opt out of it.
+    @x_smtpapi_headers.delete( :asm_group_id )
     mail_with_defaults(
       to: @user.email,
       subject: [:user_unsuspended_email_subject, { prefix: subject_prefix }]
@@ -139,11 +153,25 @@ class Emailer < ActionMailer::Base
     @user = user
     return if @user.email.blank?
 
+    # This is an account-critical email, so remove any suppressions that would
+    # otherwise prevent SendGrid from delivering it (mirrors DeviseMailer).
+    EmailSuppression.destroy_for_email(
+      @user.email,
+      only: [
+        EmailSuppression::ACCOUNT_EMAILS,
+        EmailSuppression::BLOCKS,
+        EmailSuppression::BOUNCES,
+        EmailSuppression::SPAM_REPORTS,
+        EmailSuppression::UNSUBSCRIBES
+      ]
+    )
     @reason = reason
     @indefinite = suspended_until.blank?
     @suspended_until = suspended_until
     @site_name = site_name
-    @x_smtpapi_headers[:asm_group_id] = CONFIG.sendgrid&.asm_group_ids&.account
+    # Mandatory account email: send without an ASM group so SendGrid does not
+    # inject a group-unsubscribe footer and users cannot opt out of it.
+    @x_smtpapi_headers.delete( :asm_group_id )
     mail_with_defaults(
       to: @user.email,
       subject: [:user_suspended_email_subject, { prefix: subject_prefix }]

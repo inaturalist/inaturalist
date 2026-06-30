@@ -203,6 +203,7 @@ class ActivityItem extends React.Component {
       return null;
     }
 
+    const userCanVote = config?.currentUser?.canUnnominateIdentification( item );
     const votesFor = [];
     const votesAgainst = [];
     let userVotedFor;
@@ -213,7 +214,7 @@ class ActivityItem extends React.Component {
       } else if ( v.vote_flag === false ) {
         votesAgainst.push( v );
       }
-      if ( v.user?.id === config.currentUser.id ) {
+      if ( v.user?.id === config.currentUser?.id ) {
         userVotedFor = ( v.vote_flag === true );
         userVotedAgainst = ( v.vote_flag === false );
       }
@@ -232,15 +233,20 @@ class ActivityItem extends React.Component {
     const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
     return (
       <div className="votes">
-        <button
-          type="button"
-          className="btn btn-nostyle"
-          onClick={voteAction}
-          aria-label={I18n.t( "agree_" )}
-          title={I18n.t( "agree_" )}
-        >
+        { userCanVote && (
+          <button
+            type="button"
+            className="btn btn-nostyle"
+            onClick={voteAction}
+            aria-label={I18n.t( "agree_" )}
+            title={I18n.t( "agree_" )}
+          >
+            <i className={`fa ${agreeClass}`} />
+          </button>
+        ) }
+        { !userCanVote && (
           <i className={`fa ${agreeClass}`} />
-        </button>
+        ) }
         { !_.isEmpty( votesFor ) && (
           <UsersPopover
             users={_.map( votesFor, "user" )}
@@ -248,15 +254,20 @@ class ActivityItem extends React.Component {
             contents={( <span>{votesFor.length === 0 ? null : votesFor.length}</span> )}
           />
         ) }
-        <button
-          type="button"
-          onClick={unvoteAction}
-          className="btn btn-nostyle"
-          aria-label={I18n.t( "disagree_" )}
-          title={I18n.t( "disagree_" )}
-        >
+        { userCanVote && (
+          <button
+            type="button"
+            onClick={unvoteAction}
+            className="btn btn-nostyle"
+            aria-label={I18n.t( "disagree_" )}
+            title={I18n.t( "disagree_" )}
+          >
+            <i className={`fa ${disagreeClass}`} />
+          </button>
+        ) }
+        { !userCanVote && (
           <i className={`fa ${disagreeClass}`} />
-        </button>
+        ) }
         { !_.isEmpty( votesAgainst ) && (
           <UsersPopover
             users={_.map( votesAgainst, "user" )}
@@ -303,7 +314,6 @@ class ActivityItem extends React.Component {
       return ( <div /> );
     }
     const { taxon } = item;
-    const { currentUser } = config;
     const loggedIn = config?.currentUser;
     const userCanInteract = config?.currentUserCanInteractWithResource( observation );
     const canSeeHidden = config && config.currentUser && (
@@ -666,7 +676,7 @@ class ActivityItem extends React.Component {
         />
       );
     }
-    if ( currentUser?.canViewHelpfulIDTips( ) && this.identificationHasNomination( ) ) {
+    if ( this.identificationHasNomination( ) ) {
       footers.nomination = (
         <>
           <span

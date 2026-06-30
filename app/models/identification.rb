@@ -463,6 +463,7 @@ class Identification < ApplicationRecord
 
   def flagged_with( flag, _options )
     evaluate_new_flag_for_spam( flag )
+    update_exemplar_identification
     elastic_index!
     return unless observation
 
@@ -644,6 +645,10 @@ class Identification < ApplicationRecord
     return false if ObservationFieldValue.where( observation: observation, user_id: user_id ).any?
 
     true
+  end
+
+  def moderated_with( _moderator_action )
+    update_exemplar_identification
   end
 
   # Static ##################################################################

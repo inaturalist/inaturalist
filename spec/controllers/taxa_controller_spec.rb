@@ -48,6 +48,38 @@ describe TaxaController do
       session[:preferred_taxon_page_place_id] = "string"
       expect { get( :show, params: { id: taxon.id } ) }.not_to raise_error
     end
+
+    describe "locale-prefixed URLs" do
+      let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
+
+      it "returns 404 when the taxon has no common name in the requested locale" do
+        get :show, params: { id: taxon.to_param, locale: "fr" }
+        expect( response ).to be_not_found
+      end
+
+      it "renders successfully when the taxon has a valid common name in the requested locale" do
+        create( :taxon_name, taxon: taxon, lexicon: TaxonName::FRENCH )
+        expect( INatAPIService ).to receive( "get_json" ) { {}.to_json }
+        get :show, params: { id: taxon.to_param, locale: "fr" }
+        expect( response ).to be_successful
+      end
+
+      it "renders a locale canonical tag on a locale page" do
+        create( :taxon_name, taxon: taxon, lexicon: TaxonName::FRENCH )
+        expect( INatAPIService ).to receive( "get_json" ) { {}.to_json }
+        get :show, params: { id: taxon.to_param, locale: "fr" }
+        expect( response.body ).to have_tag( "link[rel=canonical][href*='/fr/taxa/']" )
+      end
+
+      it "renders hreflang alternate tags for each locale with a common name" do
+        create( :taxon_name, taxon: taxon, lexicon: TaxonName::FRENCH )
+        expect( INatAPIService ).to receive( "get_json" ) { {}.to_json }
+        get :show, params: { id: taxon.id }
+        expect( response.body ).to have_tag( "link[rel=alternate][hreflang=fr]" )
+        expect( response.body ).to have_tag( "link[rel=alternate][hreflang=x-default]" )
+        expect( response.body ).to have_tag( "link[rel=alternate][hreflang=en]" )
+      end
+    end
   end
 
   describe "merge" do

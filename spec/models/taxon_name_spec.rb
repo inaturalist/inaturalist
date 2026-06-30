@@ -574,3 +574,14 @@ describe TaxonName, "provisional taxa scientific name validation" do
     expect( tn.name ).to eq( "Cortinarius testus" )
   end
 end
+
+describe "TaxonName::LEXICONS_BY_LOCALE" do
+  it "maps nb to norwegian, not norwegian_bokmal" do
+    expect( TaxonName::LEXICONS_BY_LOCALE["nb"] ).to eq( "norwegian" )
+  end
+
+  it "resolves nb to a valid LEXICONS entry" do
+    lexicon_key = TaxonName::LEXICONS_BY_LOCALE["nb"]
+    expect( TaxonName::LEXICONS[lexicon_key.upcase.to_sym] ).to eq( TaxonName::NORWEGIAN )
+  end
+end

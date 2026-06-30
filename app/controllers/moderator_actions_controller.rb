@@ -31,9 +31,9 @@ class ModeratorActionsController < ApplicationController
           when "User"
             case @moderator_action.action
             when ModeratorAction::SUSPEND
-              t( :the_user_x_has_been_suspended, user: @moderator_action.resource.login )
+              t( :the_account_x_has_been_suspended, user: @moderator_action.resource.login )
             when ModeratorAction::UNSUSPEND
-              t( :the_user_x_has_been_unsuspended, user: @moderator_action.resource.login )
+              t( :the_account_x_has_been_reinstated, user: @moderator_action.resource.login )
             else default_notice
             end
           when "Photo"

@@ -29,4 +29,34 @@ describe "taxa/show" do
     render layout: "layouts/bootstrap", template: "taxa/show"
     expect( rendered ).to have_tag( "title", text: /#{taxon_name.name}/ )
   end
+
+  it "renders hreflang alternate tags for each assigned locale" do
+    assign( :taxon_hreflang_locales, ["fr", "de"] )
+    render layout: "layouts/bootstrap", template: "taxa/show"
+    expect( rendered ).to have_tag( "link[rel=alternate][hreflang=fr]" )
+    expect( rendered ).to have_tag( "link[rel=alternate][hreflang=de]" )
+    expect( rendered ).to have_tag( "link[rel=alternate][hreflang=x-default]" )
+    expect( rendered ).to have_tag( "link[rel=alternate][hreflang=en]" )
+  end
+
+  it "renders no locale hreflang alternates when taxon_hreflang_locales is nil" do
+    assign( :taxon_hreflang_locales, nil )
+    render layout: "layouts/bootstrap", template: "taxa/show"
+    expect( rendered ).not_to have_tag( "link[rel=alternate][hreflang=fr]" )
+  end
+
+  it "renders a locale canonical when url_locale is set" do
+    assign( :url_locale, "fr" )
+    assign( :taxon_hreflang_locales, ["fr"] )
+    render layout: "layouts/bootstrap", template: "taxa/show"
+    expect( rendered ).to have_tag( "link[rel=canonical][href*='/fr/taxa/']" )
+  end
+
+  it "renders the default canonical when url_locale is nil" do
+    assign( :url_locale, nil )
+    assign( :taxon_hreflang_locales, [] )
+    render layout: "layouts/bootstrap", template: "taxa/show"
+    expect( rendered ).to have_tag( "link[rel=canonical][href*='/taxa/']" )
+    expect( rendered ).not_to have_tag( "link[rel=canonical][href*='/fr/taxa/']" )
+  end
 end
