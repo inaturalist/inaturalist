@@ -35,9 +35,10 @@ class UserInstallationStatistic < ApplicationRecord
         # Update user of installations if needed, but keep the first logged in date
         ( existing_records + new_records ).each do | installation_from_db |
           installation_from_kibana = installation_data[installation_from_db.installation_id]
-          if installation_from_db.user_id != installation_from_kibana[:user_id]
+          kibana_user_id = installation_from_kibana[:user_id]
+          if !kibana_user_id.nil? && installation_from_db.user_id != kibana_user_id
             installation_from_db.first_logged_in_at = at_time if installation_from_db.user_id.nil?
-            installation_from_db.user_id = installation_from_kibana[:user_id]
+            installation_from_db.user_id = kibana_user_id
           end
           next unless installation_from_db.changed?
 
@@ -64,7 +65,7 @@ class UserInstallationStatistic < ApplicationRecord
       installation_id: installation_id,
       oauth_application_id: 0,
       platform_id: "",
-      user_id: 0
+      user_id: nil
     }
   end
 
@@ -149,7 +150,7 @@ class UserInstallationStatistic < ApplicationRecord
         installation ||= default_installation( installation_id )
         installation[:oauth_application_id] = oauth_application_id
         installation[:platform_id] = platform_id
-        installation[:user_id] = bucket["key"]["user_id"]
+        installation[:user_id] = bucket["key"]["user_id"] unless bucket["key"]["user_id"].nil?
         installation_activity_data[installation_id] = installation
       end
 

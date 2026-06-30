@@ -10,6 +10,7 @@ jobs:
   pre-build:
     uses: ./.github/workflows/CI-pre-build.yml
   build-and-test:
+    needs: pre-build
     uses: ./.github/workflows/CI-build-test.yml
   e2e-tests:
     uses: ./.github/workflows/CI-e2e-tests.yml

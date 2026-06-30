@@ -2361,6 +2361,8 @@ class Observation < ApplicationRecord
     User.where( id: user_id ).update_all( observations_count: [user.observations_count.to_i + 1, 0].max )
     user.reload
     user.elastic_index!
+    # The user's most recent observation has changed
+    user.clear_last_observation_created_at_cache
     # For accuracy
     update_user_counter_caches
     true
@@ -2372,6 +2374,8 @@ class Observation < ApplicationRecord
     User.where( id: user_id ).update_all( observations_count: [user.observations_count.to_i - 1, 0].max )
     user.reload
     user.elastic_index!
+    # The destroyed observation may have been the user's most recent one
+    user.clear_last_observation_created_at_cache
     update_user_counter_caches
     true
   end
