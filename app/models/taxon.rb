@@ -1537,10 +1537,6 @@ class Taxon < ApplicationRecord
     end
 
     if details.blank? || details[:summary].blank?
-      # Only stamp the "last attempt" date for a genuine no-article result. When the
-      # endpoint is throttled we leave the column untouched so the blank state keeps
-      # triggering a refresh (deduped, and rate-limited by the cache back-off) rather
-      # than suppressing retries for a week.
       if locale.to_s =~ /^en-?/ && !w.api_endpoint.recently_throttled?
         Taxon.where( id: self ).update_all( wikipedia_summary: Date.today.to_s )
       end
