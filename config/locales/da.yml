@@ -4842,6 +4842,13 @@ da:
     not_external: ikke ekstern
     not_internal: ikke intern
     error: fejl
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Genaktivér konto
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Genaktivering af %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Oplys venligst, hvorfor denne konto genaktiveres.
   relationships_user_settings: Relationer
   relationship_html: "Forbindelse: %{link}"
   reload_from_observations: Genindlæs fra observationer
@@ -5020,6 +5027,8 @@ da:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Din %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Vis moderationshistorik
   see_something_wrong_with_taxon: Ser du noget galt med denne taxon? Giv kuratorerne besked.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5408,12 +5417,16 @@ da:
   supporting: Støtter
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Suspensionsvarighed
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Suspensionsvarighed (%{link_start_tag}se retningslinjer%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 dag
   #a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 dage
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 uge
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 uger
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 måned
   #a select form option indicating a user will be suspended for two months
@@ -5428,6 +5441,8 @@ da:
   suspension_reason_custom: Tilpasset
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Bemærk, at den suspenderede bruger vil kunne se denne årsag.
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Bemærk venligst, at denne årsag vil fremgå på den suspenderede konto.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Opdater årsagen og forklar, hvorfor brugerens suspension ændres.
   #label for the edit reason dropdown when editing a suspension
@@ -5477,6 +5492,8 @@ da:
   suspend_until: Suspendér indtil
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Dato og klokkeslæt i webbrowserens lokale tidszone.
+  #button/menu label for suspending an account
+  suspend_account: Suspendér konto
   suspend_user: Suspenderet bruger
   suspend_user_html: Suspendér %{user}
   suspend_user_reason_instructions_html: |
@@ -5716,6 +5733,10 @@ da:
   that_role_doesnt_exist: Denne rolle eksisterer ikke
   that_was_the_last_observation_matching_the_current_filters: Det var den sidste observation, der matchede de aktuelle filtre.
   thats_not_a_real_date: Det er ikke en rigtig dato!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "Kontoen %{user} er suspenderet"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "Kontoen %{user} er genaktiveret"
   the_admin_is_the_person_who: |
     Administratoren er den person, der oprettede projektet. De kan gøre alt
     ledere og kuratorer kan gøre, samt slette projektet.
@@ -5832,6 +5853,8 @@ da:
   this_taxon_name_was_originally_imported: "Denne takson navn blev oprindeligt importeret fra en ekstern navne leverandør:"
   this_taxon_was_originally_imported_from: "Dette taxon navn blev oprindeligt importeret fra en ekstern navne leverandør:"
   this_user_has_been_suspended: Denne bruger er blevet suspenderet
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Denne konto er suspenderet
   this_user_has_been_suspended_message: |
     Hvis dette er din konto og du mener, at dette er sket ved en fejl, bedes du <a href="mailto:%{email}"> kontakte os </a>.
   this_will_add_listed_taxa: Dette vil tilføje opførte taksa fra observationer. Det kan tage et stykke tid, så brug venligst denne mulighed sparsomt og på små tjeklister
