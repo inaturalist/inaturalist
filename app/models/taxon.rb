@@ -1500,9 +1500,7 @@ class Taxon < ApplicationRecord
     elsif locale.to_s =~ /^en-?/
       read_attribute( :wikipedia_summary )
     end
-    if sum == "throttled"
-      options[:reload] = true
-    elsif sum&.match( /^\d\d\d\d-\d\d-\d\d$/ )
+    if sum&.match( /^\d\d\d\d-\d\d-\d\d$/ )
       last_try_date = DateTime.parse( sum )
       return nil if last_try_date > 1.week.ago
 
@@ -1518,10 +1516,6 @@ class Taxon < ApplicationRecord
         set_wikipedia_summary( locale: locale )
     end
     nil
-  end
-
-  def wikipedia_throttled?
-    read_attribute( :wikipedia_summary ) == "throttled"
   end
 
   def set_wikipedia_summary( options = {} )
@@ -1543,9 +1537,12 @@ class Taxon < ApplicationRecord
     end
 
     if details.blank? || details[:summary].blank?
-      if locale.to_s =~ /^en-?/
-        throttled = w.api_endpoint.recently_throttled?
-        Taxon.where( id: self ).update_all( wikipedia_summary: throttled ? "throttled" : Date.today.to_s )
+      # Only stamp the "last attempt" date for a genuine no-article result. When the
+      # endpoint is throttled we leave the column untouched so the blank state keeps
+      # triggering a refresh (deduped, and rate-limited by the cache back-off) rather
+      # than suppressing retries for a week.
+      if locale.to_s =~ /^en-?/ && !w.api_endpoint.recently_throttled?
+        Taxon.where( id: self ).update_all( wikipedia_summary: Date.today.to_s )
       end
       return nil
     end

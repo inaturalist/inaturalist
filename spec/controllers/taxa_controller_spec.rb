@@ -459,10 +459,10 @@ describe TaxaController do
     end
 
     it "renders the throttled message instead of the Wikipedia summary" do
-      # The partial keys the throttled message off the persisted sentinel, and we
-      # request the Wikipedia describer directly so the iNaturalist fallback (which
-      # would otherwise fill the description from auto_summary) is bypassed.
-      taxon.update_columns( wikipedia_summary: "throttled" )
+      # The partial keys the throttled message off the live endpoint check
+      # (@wikipedia_throttled), which fires because the stubbed fetch above returns a
+      # 429. We request the Wikipedia describer directly so the iNaturalist fallback
+      # (which would otherwise fill the description from auto_summary) is bypassed.
       get :describe, params: { id: taxon.id, from: "Wikipedia" }
       expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
       expect( response.body ).not_to include I18n.t( :there_isnt_a_wikipedia_article_titled_x_html, x: taxon.name )

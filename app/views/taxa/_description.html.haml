@@ -26,7 +26,7 @@
     %p.nocontent.meta.center-block
       - if describer_is_wikipedia || @describer.blank?
         - if @taxon.shows_wikipedia?
-          - if @taxon.wikipedia_throttled? || @wikipedia_throttled
+          - if @wikipedia_throttled
             =t :wikipedia_summary_throttled
           - else
             =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
