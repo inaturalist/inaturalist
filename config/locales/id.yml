@@ -4672,6 +4672,13 @@ id:
     not_external: bukan ekstenal
     not_internal: bukan internal
     error: eror
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Kembalikan akun
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Kembalikan %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Jelaskan mengapa Anda ingin mengembalikan akun ini.
   relationships_user_settings: Relasi
   relationship_html: "Relasi: %{link}"
   reload_from_observations: Muat kembali dari pengamatan
@@ -4846,6 +4853,8 @@ id:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun} Anda"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Lihat riwayat moderasi
   see_something_wrong_with_taxon: Menemukan kesalahan pada takson ini? Beritahu kurator.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5173,12 +5182,16 @@ id:
   supporting: Pendukung
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Durasi penangguhan
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Durasi penangguhan (%{link_start_tag}lihat pedoman%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 hari
   #a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 hari
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 minggu
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 minggu
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 bulan
   #a select form option indicating a user will be suspended for two months
@@ -5193,6 +5206,8 @@ id:
   suspension_reason_custom: Kustom
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Harap dicatat bahwa alasan ini akan ditampilkan kepada pengguna yang ditangguhkan.
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Harap diingat bahwa alasan ini akan ditampilkan pada akun yang ditangguhkan.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Harap perbarui alasannya dan jelaskan mengapa Anda mengubah penangguhan pengguna.
   #label for the edit reason dropdown when editing a suspension
@@ -5242,6 +5257,8 @@ id:
   suspend_until: Tangguhkan sampai
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Tanggal dan waktu di zona waktu lokal browser Anda.
+  #button/menu label for suspending an account
+  suspend_account: Tangguhkan akun
   suspend_user: Tangguhkan pengguna
   suspend_user_html: Tangguhkan %{user}
   suspend_user_reason_instructions_html: |
@@ -5454,6 +5471,10 @@ id:
   that_role_doesnt_exist: Peran tersebut tidak ada.
   that_was_the_last_observation_matching_the_current_filters: Itu adalah pengamatan terakhir yang cocok dengan saringan ini.
   thats_not_a_real_date: Itu tanggal yang tidak ada!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "Akun %{user} telah ditangguhkan"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "Akun %{user} telah dikembalikan"
   the_admin_is_the_person_who: |
     Pengelola adalah orang yang menciptakan proyek. Mereka dapat melakukan segala sesuatu yang manajer dan kurator dapat lakukan, serta menghapus proyek.
   the_below_items_are_needed_to_achieve: |
@@ -5554,6 +5575,8 @@ id:
   this_taxon_name_was_originally_imported: "Nama takson ini awalnya diimpor dari penyedia nama eksternal:"
   this_taxon_was_originally_imported_from: "Takson ini awalnya diimpor dari penyedia nama eksternal:"
   this_user_has_been_suspended: Pengguna ini telah ditangguhkan
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Akun ini telah ditangguhkan
   this_user_has_been_suspended_message: |
     Jika ini adalah akunmu dan kamu pikir ini adalah kesalahan, silakan <a href="mailto:%{email}">kontak kami</a>.
   this_will_add_listed_taxa: Hal ini akan menambah taksa terdaftar dari pengamatan. Ini mungkin memakan waktu sebentar jadi silakan gunakan dengan hemat dan pada daftar checklist
