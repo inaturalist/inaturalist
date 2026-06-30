@@ -4689,6 +4689,13 @@ de:
     not_external: nicht extern
     not_internal: nicht intern
     error: Fehler
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Benutzerkonto wiederherstellen
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Wiedereinrichtung von %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Bitte gib eine Begründung für die Wiederherstellung dieses Benutzerkontos an
   relationships_user_settings: Beziehungen
   relationship_html: "Beziehung: %{link}"
   reload_from_observations: Neuladen aus Beobachtungen
@@ -4865,6 +4872,8 @@ de:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Dein %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Moderationsgeschichte ansehen
   see_something_wrong_with_taxon: Stimmt etwas nicht mit diesem Taxon?  Lass es die Kuratoren wissen.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5212,12 +5221,16 @@ de:
   supporting: bestätigend
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Dauer der Benutzer-Sperrung
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Dauer der Sperre (%{link_start_tag}siehe Richtlinien%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 Tag
   #a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 Tage
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 Woche
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 Wochen
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 Monat
   #a select form option indicating a user will be suspended for two months
@@ -5232,6 +5245,8 @@ de:
   suspension_reason_custom: Benutzerdefiniert
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Bitte beachte, dass diese Begründung dem suspendierten Nutzer angezeigt wird.
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Bitte beachte, dass diese Begründung auf dem gesperrten Konto angezeigt wird.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Bitte aktualisiere die Begründung und erkläre, warum du die Sperrung des Nutzers änderst.
   #label for the edit reason dropdown when editing a suspension
@@ -5281,6 +5296,8 @@ de:
   suspend_until: Sperrung bis
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Datum und Uhrzeit in der lokalen Zeitzone deines Browsers.
+  #button/menu label for suspending an account
+  suspend_account: Benutzerkonto sperren
   suspend_user: Benutzer sperren
   suspend_user_html: '%{user} sperren'
   suspend_user_reason_instructions_html: |
@@ -5505,6 +5522,10 @@ de:
   that_role_doesnt_exist: Diese Rolle existiert nicht.
   that_was_the_last_observation_matching_the_current_filters: Das war die letzte Beobachtung, die dem aktuellen Filter entsprach.
   thats_not_a_real_date: Das ist kein echtes Datum!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "Das Benutzerkonto %{user} wurde gesperrt"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "Das Benutzerkonto von %{user} wurde wieder eingerichtet"
   the_admin_is_the_person_who: |
     Der Administrator ist die Person, die das Projekt erstellt hat. Er kann alles tun, was
     Manager und Kuratoren tun können, sowie das Projekt löschen.
@@ -5608,6 +5629,8 @@ de:
   this_taxon_name_was_originally_imported: "Dieser Taxonname wurde ursprünglich von diesem externen Anbieter importiert:"
   this_taxon_was_originally_imported_from: "Dieses Taxon wurde ursprünglich von diesem externen Anbieter importiert:"
   this_user_has_been_suspended: Dieser Benutzer wurde gesperrt.
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Dieses Konto wurde gesperrt
   this_user_has_been_suspended_message: |
     Wenn dies Dein Konto ist und Du denkst, dass dies fälschlicherweise passiert ist, <a href="mailto:%{email}">kontaktiere uns</a> bitte.
   this_will_add_listed_taxa: Hiermit werden Taxa aus Beobachtungen hinzugefügt. Das könnte ein Weilchen dauern, deshalb bitte sparsam und für kleine Checklisten verwenden.
