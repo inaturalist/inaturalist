@@ -633,8 +633,10 @@ body>div>[role="dialog"] .modal-body {
     z-index: 99;
     box-shadow: 0 0 10px #999;
     background-color: white;
-    width: 100%;
     position: fixed;
+    left: 0;
+    right: 0;
+    padding: 15px;
   }
   .settings-head {
     top: 0;
@@ -642,10 +644,15 @@ body>div>[role="dialog"] .modal-body {
     .btncol {
       display: none;
     }
+    .settings-item {
+      margin: 0;
+    }
+    .mobile-menu {
+      margin: 0;
+    }
   }
   .settings-foot {
     bottom: 0;
-    padding: 15px 0;
   }
   .navcol {
     margin-bottom: 20px;
