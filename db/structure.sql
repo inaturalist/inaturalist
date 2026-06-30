@@ -8889,6 +8889,13 @@ CREATE INDEX index_api_endpoint_caches_on_api_endpoint_id ON public.api_endpoint
 
 
 --
+-- Name: index_api_endpoint_caches_on_api_endpoint_id_and_completed_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_api_endpoint_caches_on_api_endpoint_id_and_completed_at ON public.api_endpoint_caches USING btree (api_endpoint_id, request_completed_at);
+
+
+--
 -- Name: index_api_endpoint_caches_on_request_url; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12216,6 +12223,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260511210120'),
 ('20260514211433'),
 ('20260514215925'),
-('20260618232456');
+('20260618232456'),
+('20260630203548');
 
 
