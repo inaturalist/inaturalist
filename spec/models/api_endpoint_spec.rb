@@ -32,5 +32,12 @@ describe ApiEndpoint do
         request_began_at: 1.minute.ago, request_completed_at: 1.minute.ago )
       expect( endpoint.recently_throttled? ).to be false
     end
+
+    it "evaluates throttling in SQL without instantiating cache records" do
+      ApiEndpointCache.make!( api_endpoint: endpoint, success: false, status_code: 429,
+        request_began_at: 1.minute.ago, request_completed_at: 1.minute.ago )
+      expect( ApiEndpointCache ).not_to receive( :instantiate )
+      expect( endpoint.recently_throttled? ).to be true
+    end
   end
 end

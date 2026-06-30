@@ -4,7 +4,8 @@ class ApiEndpoint < ApplicationRecord
   def recently_throttled?
     api_endpoint_caches.
       where( "request_completed_at > ?", ApiEndpointCache::THROTTLE_RETRY_MINUTES.minutes.ago ).
-      any?( &:throttled? )
+      throttled.
+      exists?
   end
 
   def to_s
