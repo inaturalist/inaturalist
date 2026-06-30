@@ -4822,6 +4822,11 @@ nl:
     not_external: niet extern
     not_internal: niet intern
     error: fout
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Herstel %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Leg alsjeblieft uit waarom je dit account weer hersteld.
   relationships_user_settings: Relaties
   relationship_html: "Relatie: %{link}"
   reload_from_observations: Opnieuw laden vanuit de waarnemingen
@@ -4999,6 +5004,8 @@ nl:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Jouw %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Zie moderatiegeschiedenis
   see_something_wrong_with_taxon: Is er iets mis met dit taxon? Laat het de curators weten.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5370,6 +5377,8 @@ nl:
   suspension_duration_3_days: 3 dagen
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 week
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 weken
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 maand
   #a select form option indicating a user will be suspended for two months
@@ -5427,6 +5436,8 @@ nl:
   suspend_until: Opschorten tot
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Datum en tijd in de lokale tijdzone van je browser.
+  #button/menu label for suspending an account
+  suspend_account: Account opschorten
   suspend_user: Gebruiker schorsen
   suspend_user_html: Schors %{user}
   suspend_user_reason_instructions_html: |
