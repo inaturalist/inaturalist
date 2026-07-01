@@ -67,6 +67,7 @@ describe AnnouncementsController do
         expect( json["body"] ).to include( fru_announcement.body )
         expect( json["body"] ).to include( "<!DOCTYPE html>" )
         expect( json["body"] ).to include( "FundraiseUp" )
+        expect( json["prefers_embed_fru"] ).to be( true )
       end
 
       it "returns raw body when not prefers_embed_fru" do
