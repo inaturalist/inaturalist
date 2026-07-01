@@ -4666,6 +4666,13 @@ tr:
     not_external: harici değil
     not_internal: dahili değil
     error: hata
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Hesabı yeniden etkinleştir
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: '%{user} hesabını yeniden etkinleştir'
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Lütfen bu hesabı neden yeniden etkinleştirdiğinizi açıklayın.
   relationships_user_settings: İlişkiler
   relationship_html: "İlişki: %{link}"
   reload_from_observations: Gözlemlerden yeniden yükle
@@ -4842,6 +4849,8 @@ tr:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Senin %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Moderasyon geçmişini görüntüle
   see_something_wrong_with_taxon: Bu taksonla ilgili yanlış bir şey mi var? Küratörlere bildir.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5168,12 +5177,16 @@ tr:
   supporting: Destekleyici
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Askıya alınma süresi
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Askıya alma süresi (%{link_start_tag}yönergeleri inceleyin%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 gün
   #a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 gün
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 hafta
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 hafta
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 ay
   #a select form option indicating a user will be suspended for two months
@@ -5188,6 +5201,8 @@ tr:
   suspension_reason_custom: Özel
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Lütfen bu gerekçenin askıya alınan kullanıcıya gösterileceğini unutmayın.
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Lütfen bu gerekçenin askıya alınan hesaba gösterileceğini unutmayın.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Lütfen gerekçeyi güncelleyin ve kullanıcının askıya alınma durumunu neden değiştirdiğinizi açıklayın.
   #label for the edit reason dropdown when editing a suspension
@@ -5237,6 +5252,8 @@ tr:
   suspend_until: 'Şu tarihe kadar askıya al:'
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Tarayıcınızın yerel saat dilimindeki tarih ve saat.
+  #button/menu label for suspending an account
+  suspend_account: Hesabı askıya al
   suspend_user: Kullanıcıyı askıya al
   suspend_user_html: '%{user} kullanıcısını askıya al'
   suspend_user_reason_instructions_html: |
@@ -5462,6 +5479,10 @@ tr:
   that_role_doesnt_exist: Bu görev mevcut değil
   that_was_the_last_observation_matching_the_current_filters: Mevcut filtrelerle eşleşen son gözlem buydu.
   thats_not_a_real_date: Bu gerçek bir tarih değil!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "%{user} hesabı askıya alındı"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "%{user} hesabı yeniden etkinleştirildi"
   the_admin_is_the_person_who: |
     Yönetici, projeyi oluşturan kişidir. Yürütücülerin ve küratörlerin yapabildiği her şeyi yapabilir ve projeyi silebilirler.
   the_below_items_are_needed_to_achieve: |
@@ -5559,6 +5580,8 @@ tr:
   this_taxon_name_was_originally_imported: "Bu taksonun ismi aslında harici bir isim sağlayıcıdan içe aktarıldı:"
   this_taxon_was_originally_imported_from: "Bu takson aslında harici bir isim sağlayıcıdan içe aktarıldı:"
   this_user_has_been_suspended: Bu kullanıcı askıya alındı
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Bu hesap askıya alındı
   this_user_has_been_suspended_message: |
     Bu senin hesabın ise ve bunun yanlışlıkla yapıldığını düşünüyorsan, lütfen <a href="mailto:%{email}">bizimle iletişime geç</a>.
   this_will_add_listed_taxa: Bu, gözlemlerden listelenen taksonları ekleyecektir. Bu işlem biraz zaman alabilir, bu nedenle lütfen az miktarda ve küçük kontrol listelerinde kullanın
