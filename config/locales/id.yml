@@ -7793,6 +7793,15 @@ id:
         end_date_must_be_after_start_date: Tanggal akhir harus setelah tanggal mulai
         #validation error when a project's end time is earlier than its start time
         end_time_must_be_after_start_time: Waktu berakhir harus setelah waktu mulai
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Jangan masukkan pengamatan yang bertingkat kasual karena alasan apa pun selain ditandai sebagai peliharaan
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Jangan Masukkan Semua Kasual Kecuali Peliharaan
         include_annotated_observations: |
           Hanya masukkan pengamatan yang dicatat dengan atribut tertentu (seperti tahap kehidupan), atau atribut dan nilai tertentu (seperti tahap kehidupan = dewasa). Ada batasan sebanyak satu saringan catatan per proyek.
         leaderboards_among_individuals: Papan peringkat untuk <strong>individu</strong>
