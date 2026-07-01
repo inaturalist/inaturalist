@@ -11,6 +11,8 @@ class IdentificationsController < ApplicationController
   blocks_spam only: load_only, instance: :identification
   check_spam only: [:create, :update], instance: :identification
   before_action :require_owner, only: [:edit, :update, :destroy]
+  before_action :check_nominate_permissions, only: [:nominate]
+  before_action :check_unnominate_permissions, only: [:unnominate]
   cache_sweeper :comment_sweeper, only: [:create, :update, :destroy, :agree]
   caches_action :bold, expires_in: 6.hours, cache_path: proc {| c |
     c.params.merge( sequence: Digest::MD5.hexdigest( c.params[:sequence] ) )
@@ -405,7 +407,7 @@ class IdentificationsController < ApplicationController
     else
       respond_to do | format |
         format.html do
-          redirect_to @record
+          redirect_to @identification
         end
         format.json { head :no_content }
       end
@@ -432,7 +434,7 @@ class IdentificationsController < ApplicationController
     else
       respond_to do | format |
         format.html do
-          redirect_to @record
+          redirect_to @identification
         end
         format.json { head :no_content }
       end
@@ -461,5 +463,18 @@ class IdentificationsController < ApplicationController
     unless logged_in? && @identification.user_id == current_user.id
       redirect_to_hell
     end
+  end
+
+  def check_nominate_permissions
+    return unless current_user.content_creation_restrictions?
+
+    not_allowed_with_html_and_json_response( @identification )
+  end
+
+  def check_unnominate_permissions
+    return unless current_user.content_creation_restrictions?
+    return if current_user.id == @identification.user_id
+
+    not_allowed_with_html_and_json_response( @identification )
   end
 end
