@@ -111,7 +111,7 @@
   -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
   // margin-left: 10%;
-  // width: 90%
+  width: 100%
 }
 .hider {
   color: #fff;
@@ -198,7 +198,7 @@ h2.timeline-title { /* fix - added h2 */
   margin: 0;
   color: inherit;
   font-size: 1em;
-  padding: 15px
+  padding: 15px 5px;
 }
 .timeline-title .btn_subscription_settings {
   float: right
@@ -237,11 +237,12 @@ h2.timeline-title { /* fix - added h2 */
 
 .timeline-heading > .timeline-badge {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
   font-size: 1em;
   border-radius: 50%;
+  margin-left: 8px;
 }
 
 .timeline-heading > .timeline-badge > img {

@@ -414,10 +414,12 @@ module ApplicationHelper
   def user_image( user, options = {} )
     user ||= User.new
     size = ( options[:size] || :mini ).to_s
+    no_inline_dimensions = options.delete( :no_inline_dimensions )
     style = options[:style]
     css_class = "user_image #{options[:class]}"
     css_class += " usericon" if %w(mini small thumb).include?( size )
     css_class += " #{options[:class]}"
+    css_class += " user_image--#{size}"
     options[:alt] ||= user.login
     options[:title] ||= user.login
     widths = User.attachment_definitions[:icon][:styles].
@@ -425,19 +427,16 @@ module ApplicationHelper
       sort_by {| _, width | width }.
       to_h
     max_width = widths[size]
-    style = "#{style} max-width: #{max_width}px"
+    style = "#{style} max-width: #{max_width}px" unless no_inline_dimensions
     size_2x = widths.detect {| _, width | width >= widths[size] * 2 }.first
     size_2x ||= widths.detect {| _, width | width > widths[size] }.first
     if size_2x
       # the next size up from thumb is medium, which is not square cropped, so
       # we need to fudge that here
       if widths[size] >= widths["thumb"] && !options[:force_img]
-        return content_tag :div,
-          " ",
-          class: css_class,
-          style: "width: #{max_width}px; " \
-            "height: #{max_width}px; #{style}; " \
-            "background-image: url(#{user.icon.url( size_2x )}), url(#{user.icon.url( size )});"
+        div_style = no_inline_dimensions ? "" : "width: #{max_width}px; height: #{max_width}px; #{style}; "
+        div_style += "background-image: url(#{user.icon.url( size_2x )}), url(#{user.icon.url( size )});"
+        return content_tag :div, " ", class: css_class, style: div_style
       end
 
       options[:srcset] = "#{user.icon.url( size )} 1x, #{user.icon.url( size_2x )} 2x"
@@ -1020,13 +1019,13 @@ module ApplicationHelper
     resource = update.resource.flaggable if update.resource_type == "Flag"
     case resource.class.name
     when "User"
-      user_image( resource, size: "thumb" )
+      user_image( resource, { size: "thumb" }.merge( options.slice( :no_inline_dimensions ) ) )
     when "Observation"
       observation_image( resource, options.merge( style: "square" ) )
     when "Project"
       image_tag( resource.icon.url( :thumb ), options )
     when "ProjectUserInvitation"
-      user_image( resource.user, size: "thumb" )
+      user_image( resource.user, { size: "thumb" }.merge( options.slice( :no_inline_dimensions ) ) )
     when "AssessmentSection"
       image_tag( resource.assessment.project.icon.url( :thumb ), options )
     when "ListedTaxon"
@@ -1034,7 +1033,7 @@ module ApplicationHelper
     when "Post"
       case resource.parent_type
       when "User"
-        user_image( resource.user, size: "thumb" )
+        user_image( resource.user, { size: "thumb" }.merge( options.slice( :no_inline_dimensions ) ) )
       when "Project"
         image_tag( resource.parent.icon.url( :thumb ), options.merge( class: "projecticon" ) )
       else

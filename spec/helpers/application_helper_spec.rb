@@ -498,4 +498,32 @@ describe ApplicationHelper do
       )
     end
   end
+
+  describe "#user_image" do
+    let( :user ) { User.make! }
+
+    it "includes a size class" do
+      html = user_image( user, size: "thumb" )
+      expect( html ).to include( "user_image--thumb" )
+    end
+
+    it "includes inline dimensions by default" do
+      html = user_image( user, size: "thumb" )
+      expect( html ).to include( "width:" )
+      expect( html ).to include( "height:" )
+      expect( html ).to include( "max-width:" )
+    end
+
+    it "omits inline dimensions when no_inline_dimensions is true" do
+      html = user_image( user, size: "thumb", no_inline_dimensions: true )
+      expect( html ).not_to include( "width:" )
+      expect( html ).not_to include( "height:" )
+      expect( html ).not_to include( "max-width:" )
+    end
+
+    it "still sets background-image when no_inline_dimensions is true" do
+      html = user_image( user, size: "thumb", no_inline_dimensions: true )
+      expect( html ).to include( "background-image:" )
+    end
+  end
 end
