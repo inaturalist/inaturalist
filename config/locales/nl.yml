@@ -4822,6 +4822,8 @@ nl:
     not_external: niet extern
     not_internal: niet intern
     error: fout
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Herstellen van een account
   #heading on the reinstate page; %{user} is a link to the account being reinstated
   reinstate_account_html: Herstel %{user}
   #instructions on the reinstate page asking the moderator to explain the reinstatement
@@ -5371,6 +5373,8 @@ nl:
   supporting: Ondersteunend
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Opschortings duur
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Opschortingsduur (%{link_start_tag}zie richtlijnen%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 dag
   #a select form option indicating a user will be suspended for three days
@@ -5393,6 +5397,8 @@ nl:
   suspension_reason_custom: Gewoonte
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: 'Let op: deze reden zal worden weergegeven aan de geschorste gebruiker.'
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Houd er rekening mee dat deze reden zal worden getoond aan de geschorste gebruiker.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Werk de reden bij en leg uit waarom je de schorsing van de gebruiker verandert.
   #label for the edit reason dropdown when editing a suspension
@@ -5669,6 +5675,10 @@ nl:
   that_role_doesnt_exist: Die rol bestaat niet
   that_was_the_last_observation_matching_the_current_filters: Dat was de laatste waarneming die overeenkomt met de huidige filters.
   thats_not_a_real_date: Dit is geen echte datum!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "Het account %{user} is geschorst"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "Het account %{user} is hersteld"
   the_admin_is_the_person_who: |
     De administrator is de persoon die het project heeft gemaakt. Ze kunnen alles doen wat 
     beheerders en curatoren kunnen, plus het project verwijderen.
@@ -5777,6 +5787,8 @@ nl:
   this_taxon_name_was_originally_imported: "Deze taxon-naam is oorspronkelijk geïmporteerd van een externe naamaanbieder:"
   this_taxon_was_originally_imported_from: "Deze taxon is oorspronkelijk geïmporteerd van een externe naamaanbieder:"
   this_user_has_been_suspended: Deze gebruiker werd geschorst
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Dit account is geschorst
   this_user_has_been_suspended_message: |
     Als dit jouw account is en je denkt dat dit per abuis is gedaan, <a href="mailto:%{email}">neem dan contact met ons op</a>.
   this_will_add_listed_taxa: Hiermee worden taxa van waarnemingen op lijsten toegevoegd. Dit kan een tijdje duren dus gebruik dit alsjeblieft spaarzaam en op kleine checklijsten
