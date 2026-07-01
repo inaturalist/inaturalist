@@ -8323,6 +8323,15 @@ da:
         end_date_must_be_after_start_date: Slutdatoen skal være efter startdatoen
         #validation error when a project's end time is earlier than its start time
         end_time_must_be_after_start_time: Sluttiden skal være efter starttiden
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Udeluk observationer, som er tilfældige af andre grunde end at være markeret som fanget
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Udeluk Alle uformelle undtagen fangede
         include_annotated_observations: |
           Inkludér kun observationer kommenteret med én bestemt attribut (f.eks. Livsfase),
           eller én bestemt attribut og værdi (f.eks. livsfase = voksen).
