@@ -92,6 +92,7 @@ module INatAPIService
     "projects[]",
     "q",
     "quality_grade",
+    "not_casual_excluding_captive",
     "radius",
     "rank",
     "reviewed",

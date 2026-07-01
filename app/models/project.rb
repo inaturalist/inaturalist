@@ -110,13 +110,14 @@ class Project < ApplicationRecord
   preference :rule_native, :boolean
   preference :rule_introduced, :boolean
   preference :rule_members_only, :boolean
+  preference :rule_not_casual_excluding_captive, :boolean
   preference :delegation, :boolean, default: false
   preference :delegated_project_id, :integer
   RULE_PREFERENCES = [
     "rule_quality_grade", "rule_photos", "rule_sounds",
     "rule_observed_on", "rule_d1", "rule_d2", "rule_month",
     "rule_term_id", "rule_term_value_id", "rule_native",
-    "rule_introduced", "rule_members_only"
+    "rule_introduced", "rule_members_only", "rule_not_casual_excluding_captive"
   ].freeze
 
   SUBMISSION_BY_ANYONE = "any"
