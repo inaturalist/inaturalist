@@ -6082,6 +6082,7 @@ nl:
   url_identifier_of_a_project_derived_from: "URL/identifier van een project dat is afgeleid van een externe bron"
   url_of_this_taxon_on_the_source_website: URL van dit taxon op de website van de bron
   usage_stats: Gebruiksstatistieken
+  use_app: Gebruik app
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> als een placeholder gebruiken
   use_this_form_to_create_a_new: |
@@ -8048,6 +8049,15 @@ nl:
         end_date_must_be_after_start_date: De einddatum moet na de startdatum liggen
         #validation error when a project's end time is earlier than its start time
         end_time_must_be_after_start_time: De eindtijd moet na de begintijd liggen
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Sluit waarneming uit die om welke reden dan ook als Onvolledig worden gemarkeerd voor elke andere reden dan Niet wild.
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Alle Onvolledig uitsluiten behalve 'Niet Wild'
         include_annotated_observations: |
           Neem alleen waarnemingen op die een bepaalde aantekening hebben (bijv. levensstadium), of een bepaalde aantekening en waarde (bijv. levensstadium = adult).
           Er is een limiet van één aantekeningenfilter per project.
@@ -8482,9 +8492,20 @@ nl:
           soorten voor "volledige" taxa waar van al zijn soorten zijn opgenomen zijn niet inbegrepen "ontelbare" soorten zoals uitgestorven soorten of inactieve soortconcepten.Ze bevatten alleen soorten, niet infraspecifieke taxa zoals ondersoorten of variëteiten.
         discoveries_desc: "Meest recente nieuw-geïdentificeerde soorten in dit taxon"
         identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Determinatie Tips
           sort:
             #sort option for displaying results with the most votes first
             highest_to_lowest_votes: "Sorteer: Van hoogste naar laagste stemmen"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Sorteer: Laagste eerst"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Sorteer: Nieuwste eerst"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Sorteer: Oudste eerst"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Sorteer: Langste eerst"
         frequency:
           research: Onderzoekskwaliteit
           verifiable: Verifieerbaar
