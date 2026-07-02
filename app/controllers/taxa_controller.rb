@@ -254,6 +254,7 @@ class TaxaController < ApplicationController
   def browse_photos
     respond_to do | format |
       format.html do
+        @responsive = true
         options = {}
         options[:api_token] = current_user.api_token if current_user
         site_place = @site&.place
