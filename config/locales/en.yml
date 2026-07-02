@@ -8974,6 +8974,15 @@ en:
         end_date_must_be_after_start_date: End date must be after start date
         # validation error when a project's end time is earlier than its start time
         end_time_must_be_after_start_time: End time must be after start time
+        # description for a form option that excludes from the project any observation that
+        # has quality_grade casual, unless the only reason it is casual is because it is marked
+        # captive
+        exclude_casual_except_captive: |
+          Exclude observations that are casual for any reason other than being marked as captive
+        # label for a form field that excludes from the project any observation that
+        # has quality_grade casual, unless the only reason it is casual is because it is marked
+        # captive
+        exclude_all_casual_except_captive: Exclude All Casual Except Captive
         include_annotated_observations: |
           Include only observations annotated with a particular attribute (e.g. life stage),
           or a particular attribute and value (e.g life stage = adult).
