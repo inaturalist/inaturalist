@@ -38,8 +38,10 @@ const App = ( { taxon, config = {} }: Props ) => {
         placeChooser={<PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />}
         crumbsText={I18n.t( "photo_browser" )}
       />
-      <PhotoBrowserContainer />
-      <PhotoModalContainer />
+      <div id="hero">
+        <PhotoBrowserContainer />
+        <PhotoModalContainer />
+      </div>
     </div>
   );
 };
