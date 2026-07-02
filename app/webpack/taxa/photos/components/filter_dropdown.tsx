@@ -36,7 +36,7 @@ const FilterDropdown = ( {
         <Dropdown.Toggle bsStyle="link">
           { label }
           { ": " }
-          <strong>{ resolvedDisplay }</strong>
+          <strong>{ resolvedDisplay || "None" }</strong>
         </Dropdown.Toggle>
         <Dropdown.Menu>
           { options.map( option => (

@@ -131,4 +131,9 @@ describe( "FilterDropdown", ( ) => {
     fireEvent.click( screen.getByRole( "menuitem", { name: "Adult" } ) );
     expect( onSelect ).toHaveBeenCalledWith( 10 );
   } );
+
+  it( "shows 'None' when resolvedDisplay is null", ( ) => {
+    renderDropdown( { display: undefined, selected: "nonexistent" } );
+    expect( screen.getByTestId( "dropdown-toggle" ) ).toHaveTextContent( "Order by: None" );
+  } );
 } );
