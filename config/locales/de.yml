@@ -7799,6 +7799,15 @@ de:
         end_date_must_be_after_start_date: Das Enddatum muss nach dem Startdatum liegen
         #validation error when a project's end time is earlier than its start time
         end_time_must_be_after_start_time: Die Endzeit muss nach der Startzeit liegen
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Beobachtungen mit Hobbyqualität ausschließen, es sei denn, sie sind als 'nicht wild' markiert
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Alle Hobbyqualität-Beobachtungen ausßschließen, außer 'nicht wilde' Beobachtungen
         include_annotated_observations: |
           Nur Beobachtungen mit einer bestimmten Annotation (z.B. Entwicklungssstadium) 
           oder einer bestimmten Annotation + Wert (z.B. Entwicklungsstufe = Larve) werden angezeigt.
