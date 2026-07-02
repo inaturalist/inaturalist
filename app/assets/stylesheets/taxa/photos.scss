@@ -107,6 +107,10 @@
   .TaxonPhoto {
     margin: 0;
   }
+
+  .nocontent {
+    grid-column: 1 / -1;
+  }
 }
 
 @media ( max-width: $sm-max ) {
