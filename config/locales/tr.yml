@@ -7723,6 +7723,15 @@ tr:
         end_date_must_be_after_start_date: Bitiş tarihi başlangıç tarihinden sonra olmalıdır
         #validation error when a project's end time is earlier than its start time
         end_time_must_be_after_start_time: Bitiş zamanı başlangıç zamanından sonra olmalıdır
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Kısıtlanmış olarak işaretlenmiş olması dışındaki herhangi bir nedenle “sıradan” kabul edilen gözlemleri hariç tut
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Kısıtlanmışlar Dışında Tüm Sıradan Gözlemleri Hariç Tut
         include_annotated_observations: |
           Yalnızca belirli bir nitelikle (ör. yaşam evresi) ya da belirli bir nitelik ve değerle (ör. yaşam evresi = yetişkin) açıklanmış gözlemleri dahil et. Proje başına bir açıklama filtresi sınırı vardır.
         leaderboards_among_individuals: <strong>Kişiler</strong> arasında liderlik sıralaması
