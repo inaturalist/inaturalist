@@ -721,7 +721,7 @@ export function createFlag( className, id, flag, body ) {
       }
     };
     if ( body ) {
-      params.flag.flag_explanation = body;
+      params.flag_explanation = body;
     }
     iNaturalistJS.flags.create( params )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
