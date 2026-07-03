@@ -43,6 +43,12 @@ body.responsive {
   position: absolute;
   z-index: 2;
   margin-top: 15px;
+  // Keep the toolbar (map/grid/list, places, redo-search) on a single row
+  // across the top of the map instead of wrapping inside the narrow Bootstrap
+  // column. The left offset is managed in JS (updateViewControlsLayout) so it
+  // shifts into the map area when the Street View panel is open.
+  width: max-content;
+  max-width: none;
 }
 #layer-control li {
   padding: 0 10px;
@@ -404,7 +410,9 @@ inat-taxon.split-taxon .icon {display: none;}
   overflow-x: hidden;
   overflow-y: scroll;
   position: relative;
-  top: 15px;
+  // Pushed down so the observation list does not overlap the top toolbar
+  // (map/grid/list, places, redo-search) that sits over the map.
+  top: 55px;
 }
 #maprow {
   position: relative;
@@ -490,7 +498,7 @@ inat-taxon.split-taxon .icon {display: none;}
 
 [dir="rtl"] #filters h1 {
   float: right;
-} 
+}
 
 #filter-container,
 #filters .primary-filters {
@@ -957,7 +965,7 @@ inat-taxon.split-taxon .icon {display: none;}
     margin-inline-end: 12px;
     padding-bottom: 2px;
   }
-  
+
   #map-shape-controls {
     padding-top: 1px;
     float: right;

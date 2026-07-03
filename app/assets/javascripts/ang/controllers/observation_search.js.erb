@@ -2209,6 +2209,24 @@ var MapController = function (
     if ( !container ) { return; }
     container.style.setProperty( "--sv-split", $scope.streetViewSplitPercent + "%" );
   };
+  // Position the top toolbar (#view-controls) so it stays over the visible map
+  // area. When the Street View panel is open the map is pushed to the right, so
+  // shift the toolbar to the map's left edge. Computed from live rects to stay
+  // correct regardless of the centered container offset or the split ratio.
+  $scope.updateViewControlsLayout = function ( ) {
+    var vc = document.getElementById( "view-controls" );
+    if ( !vc ) { return; }
+    if ( !$scope.streetViewVisible ) {
+      vc.style.left = "";
+      return;
+    }
+    var col = vc.offsetParent;
+    var mapEl = document.getElementById( "map" );
+    if ( !col || !mapEl ) { return; }
+    var mapRect = mapEl.getBoundingClientRect( );
+    var colRect = col.getBoundingClientRect( );
+    vc.style.left = Math.round( mapRect.left - colRect.left + 15 ) + "px";
+  };
   $scope.triggerStreetViewResize = function ( ) {
     if ( $scope.map ) {
       google.maps.event.trigger( $scope.map, "resize" );
@@ -2293,6 +2311,7 @@ var MapController = function (
       }
       setTimeout( function ( ) {
         $scope.triggerStreetViewResize( );
+        $scope.updateViewControlsLayout( );
       }, 0 );
       return;
     }
@@ -2303,6 +2322,7 @@ var MapController = function (
     $scope.updateStreetViewSplitCSS( );
     setTimeout( function ( ) {
       $scope.triggerStreetViewResize( );
+      $scope.updateViewControlsLayout( );
       if ( $scope.streetViewPanorama && $scope.map ) {
         // re-bind the existing panorama so the pegman reappears on the map
         $scope.map.setStreetView( $scope.streetViewPanorama );
@@ -2347,6 +2367,7 @@ var MapController = function (
       $scope.streetViewSplitPercent = percent;
       $scope.updateStreetViewSplitCSS( );
       $scope.triggerStreetViewResize( );
+      $scope.updateViewControlsLayout( );
       if ( !$scope.$$phase ) { $scope.$apply( ); }
     };
     divider.addEventListener( "mousedown", function ( e ) {
@@ -2376,6 +2397,14 @@ var MapController = function (
       if ( !dragging ) { return; }
       dragging = false;
       divider.classList.remove( "is-dragging" );
+    } );
+    // The toolbar left offset is computed from live element rects, so recompute
+    // it on window resize while Street View is open to keep it aligned with the
+    // map panel edge.
+    window.addEventListener( "resize", function ( ) {
+      if ( $scope.streetViewVisible ) {
+        $scope.updateViewControlsLayout( );
+      }
     } );
   };
   // callback method when an observation is clicked on the map
