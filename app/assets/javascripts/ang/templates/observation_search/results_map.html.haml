@@ -1,4 +1,6 @@
-#obs-container{:class => "{{ fullscreen ? 'fullscreen-enabled' : '' }}"}
+#obs-container{:class => "{{ fullscreen ? 'fullscreen-enabled' : '' }} {{ streetViewVisible ? 'street-view-enabled' : '' }}"}
+  #observations-street-view{ "ng-show": "streetViewVisible" }
+  #street-view-divider{ "ng-show": "streetViewVisible" }
   #map{ enable_show_all_layer: 'false', :class => "{{ fullscreen ? 'fullscreen' : '' }}"}
   .container.container-fixed
     #maprow.row

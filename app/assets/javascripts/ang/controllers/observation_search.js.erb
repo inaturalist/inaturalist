@@ -42,6 +42,15 @@ var googleMapsBoundsToObject = function ( googleMapsBounds ) {
   };
 };
 
+var STREET_VIEW_SEARCH_RADII = [50, 200, 1000, 5000];
+var STREET_VIEW_SPLIT_MIN = 20;
+var STREET_VIEW_SPLIT_MAX = 80;
+var STREET_VIEW_DEFAULT_SPLIT = 40;
+// Zoom level applied to the map when panning to an observation while the
+// Street View panel is open. Tune this value as needed.
+var STREET_VIEW_PAN_ZOOM = 16;
+var STREET_VIEW_PEGMAN_ICON = "<%= asset_path( 'icon-street-view-60.png' ) %>";
+
 $( function ( ) {
   google.maps.importLibrary( "maps" ).then( function ( ) {
     return google.maps.importLibrary( "drawing" );
@@ -49,6 +58,8 @@ $( function ( ) {
     return google.maps.importLibrary( "geometry" );
   } ).then( function ( ) {
     return google.maps.importLibrary( "places" );
+  } ).then( function ( ) {
+    return google.maps.importLibrary( "streetView" );
   } )
     .then( function ( ) {
       loadMap3( );
@@ -1793,6 +1804,7 @@ var MapController = function (
     }
     $( "#map" ).taxonMap( taxonmapOptions );
     $scope.map = $( "#map" ).data( "taxonMap" );
+    $scope.map.setOptions( { streetViewControl: false } );
     $rootScope.map = $scope.map;
     $scope.map.mapTypes.set(
       iNaturalist.Map.MapTypes.LIGHT_NO_LABELS,
@@ -1927,6 +1939,13 @@ var MapController = function (
       $scope.map,
       { hideFeatured: true }
     );
+    $scope.streetViewService = new google.maps.StreetViewService( );
+    $scope.streetViewVisible = false;
+    $scope.streetViewSplitPercent = STREET_VIEW_DEFAULT_SPLIT;
+    $scope.streetViewPanorama = null;
+    $scope.updateStreetViewSplitCSS( );
+    $scope.setupStreetViewToggleControl( );
+    $scope.setupStreetViewDivider( );
   };
   $scope.updateParamsForCurrentRect = function ( ) {
     var bounds = $scope.$parent.mapBounds;
@@ -2185,9 +2204,187 @@ var MapController = function (
     }
   } );
   $scope.infoWindowCallbackStartTime = null;
+  $scope.updateStreetViewSplitCSS = function ( ) {
+    var container = document.getElementById( "obs-container" );
+    if ( !container ) { return; }
+    container.style.setProperty( "--sv-split", $scope.streetViewSplitPercent + "%" );
+  };
+  $scope.triggerStreetViewResize = function ( ) {
+    if ( $scope.map ) {
+      google.maps.event.trigger( $scope.map, "resize" );
+    }
+    if ( $scope.streetViewPanorama ) {
+      google.maps.event.trigger( $scope.streetViewPanorama, "resize" );
+    }
+  };
+  $scope.getStreetViewPanoramaWithRadius = function ( location, radius ) {
+    return new Promise( function ( resolve ) {
+      $scope.streetViewService.getPanorama( { location: location, radius: radius }, function ( data, status ) {
+        if ( status === google.maps.StreetViewStatus.OK ) {
+          resolve( data );
+          return;
+        }
+        resolve( null );
+      } );
+    } );
+  };
+  $scope.getStreetViewPanoramaWithFallback = function ( location ) {
+    var attempt = function ( index ) {
+      if ( index >= STREET_VIEW_SEARCH_RADII.length ) {
+        return Promise.resolve( null );
+      }
+      return $scope.getStreetViewPanoramaWithRadius( location, STREET_VIEW_SEARCH_RADII[index] )
+        .then( function ( data ) {
+          if ( data ) { return data; }
+          return attempt( index + 1 );
+        } );
+    };
+    return attempt( 0 );
+  };
+  $scope.mountOrUpdateStreetViewPanorama = function ( position ) {
+    var container = document.getElementById( "observations-street-view" );
+    if ( !container || !position ) { return; }
+    if ( $scope.streetViewPanorama ) {
+      $scope.map.setStreetView( null );
+      $scope.streetViewPanorama = null;
+    }
+    container.innerHTML = "";
+    $scope.streetViewPanorama = new google.maps.StreetViewPanorama( container, {
+      position: position,
+      pov: { heading: 165, pitch: 0 },
+      zoom: 1,
+      addressControl: true,
+      linksControl: true
+    } );
+    $scope.map.setStreetView( $scope.streetViewPanorama );
+    setTimeout( function ( ) {
+      $scope.triggerStreetViewResize( );
+    }, 0 );
+  };
+  $scope.loadStreetViewAt = function ( latLng ) {
+    if ( !latLng || !$scope.streetViewService ) { return; }
+    $scope.getStreetViewPanoramaWithFallback( latLng ).then( function ( data ) {
+      if ( !data || !data.location || !data.location.latLng ) { return; }
+      $scope.mountOrUpdateStreetViewPanorama( data.location.latLng );
+      if ( !$scope.$$phase ) { $scope.$apply( ); }
+    } );
+  };
+  $scope.showStreetViewNear = function ( latLng ) {
+    // Street View visibility (On/Off) is controlled only by the toggle button.
+    // When the panel is already open, update it to the given location and pan
+    // the map to that point; when it is closed, do nothing (do not auto-open).
+    if ( !latLng || !$scope.map || !$scope.streetViewVisible ) { return; }
+    // panTo animates (scrolls) smoothly when the target is within the current
+    // viewport. Only zoom in when the current zoom is below the target so we
+    // don't cancel that animation for nearby observations that are already
+    // close enough.
+    $scope.map.panTo( latLng );
+    if ( $scope.map.getZoom( ) < STREET_VIEW_PAN_ZOOM ) {
+      $scope.map.setZoom( STREET_VIEW_PAN_ZOOM );
+    }
+    $scope.loadStreetViewAt( latLng );
+  };
+  $scope.toggleStreetView = function ( ) {
+    if ( $scope.streetViewVisible ) {
+      $scope.streetViewVisible = false;
+      if ( $scope.map ) { $scope.map.setStreetView( null ); }
+      if ( $scope.streetViewToggleControl ) {
+        $scope.streetViewToggleControl.classList.remove( "is-active" );
+      }
+      setTimeout( function ( ) {
+        $scope.triggerStreetViewResize( );
+      }, 0 );
+      return;
+    }
+    $scope.streetViewVisible = true;
+    if ( $scope.streetViewToggleControl ) {
+      $scope.streetViewToggleControl.classList.add( "is-active" );
+    }
+    $scope.updateStreetViewSplitCSS( );
+    setTimeout( function ( ) {
+      $scope.triggerStreetViewResize( );
+      if ( $scope.streetViewPanorama && $scope.map ) {
+        // re-bind the existing panorama so the pegman reappears on the map
+        $scope.map.setStreetView( $scope.streetViewPanorama );
+      } else if ( $scope.map ) {
+        $scope.loadStreetViewAt( $scope.map.getCenter( ) );
+      }
+    }, 0 );
+  };
+  $scope.setupStreetViewToggleControl = function ( ) {
+    if ( !$scope.map || $scope.streetViewToggleControl ) { return; }
+    var controlDiv = document.createElement( "div" );
+    var button = document.createElement( "button" );
+    button.type = "button";
+    button.className = "street-view-toggle-control";
+    button.setAttribute( "aria-label", "Street View" );
+    button.title = "Street View";
+    var img = document.createElement( "img" );
+    img.src = STREET_VIEW_PEGMAN_ICON;
+    img.alt = "";
+    button.appendChild( img );
+    button.addEventListener( "click", function ( ) {
+      $scope.toggleStreetView( );
+      if ( !$scope.$$phase ) { $scope.$apply( ); }
+    } );
+    controlDiv.appendChild( button );
+    $scope.streetViewToggleControl = button;
+    var position = google.maps.ControlPosition.RIGHT_BOTTOM;
+    if ( $( "html[dir='rtl']" ).length > 0 ) {
+      position = google.maps.ControlPosition.LEFT_BOTTOM;
+    }
+    $scope.map.controls[position].push( controlDiv );
+  };
+  $scope.setupStreetViewDivider = function ( ) {
+    var divider = document.getElementById( "street-view-divider" );
+    var container = document.getElementById( "obs-container" );
+    if ( !divider || !container ) { return; }
+    var dragging = false;
+    var onMove = function ( clientX ) {
+      var rect = container.getBoundingClientRect( );
+      var percent = ( ( clientX - rect.left ) / rect.width ) * 100;
+      percent = Math.max( STREET_VIEW_SPLIT_MIN, Math.min( STREET_VIEW_SPLIT_MAX, percent ) );
+      $scope.streetViewSplitPercent = percent;
+      $scope.updateStreetViewSplitCSS( );
+      $scope.triggerStreetViewResize( );
+      if ( !$scope.$$phase ) { $scope.$apply( ); }
+    };
+    divider.addEventListener( "mousedown", function ( e ) {
+      dragging = true;
+      divider.classList.add( "is-dragging" );
+      e.preventDefault( );
+    } );
+    document.addEventListener( "mousemove", function ( e ) {
+      if ( !dragging ) { return; }
+      onMove( e.clientX );
+    } );
+    document.addEventListener( "mouseup", function ( ) {
+      if ( !dragging ) { return; }
+      dragging = false;
+      divider.classList.remove( "is-dragging" );
+    } );
+    divider.addEventListener( "touchstart", function ( e ) {
+      dragging = true;
+      divider.classList.add( "is-dragging" );
+      e.preventDefault( );
+    }, { passive: false } );
+    document.addEventListener( "touchmove", function ( e ) {
+      if ( !dragging || !e.touches[0] ) { return; }
+      onMove( e.touches[0].clientX );
+    }, { passive: true } );
+    document.addEventListener( "touchend", function ( ) {
+      if ( !dragging ) { return; }
+      dragging = false;
+      divider.classList.remove( "is-dragging" );
+    } );
+  };
   // callback method when an observation is clicked on the map
   // fetch the observation details, and render the snippet template
   $scope.infoWindowCallback = function ( map, iw, latLng, observation, options ) {
+    // Update Street View to this observation. Visibility (On/Off) is still
+    // controlled only by the toggle button: showStreetViewNear updates the
+    // panorama only while the panel is already open, and never auto-opens it.
+    $scope.showStreetViewNear( latLng );
     map.infoWindowSetContent( iw, latLng, "<div class='infowindow loading'>"
       + I18n.t( "loading" ) + "</div>", options );
     var time = new Date( ).getTime( );
