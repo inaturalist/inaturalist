@@ -1943,6 +1943,12 @@ var MapController = function (
     $scope.streetViewVisible = false;
     $scope.streetViewSplitPercent = STREET_VIEW_DEFAULT_SPLIT;
     $scope.streetViewPanorama = null;
+    // Overlays drawn on the map (right pane) while Street View is open, to
+    // mirror the inset mini-map of the official Street View: the blue
+    // road-coverage layer and a pegman at the current panorama position.
+    $scope.streetViewCoverageLayer = null;
+    $scope.streetViewPositionMarker = null;
+    $scope.hoverObservationMarker = null;
     $scope.updateStreetViewSplitCSS( );
     $scope.setupStreetViewToggleControl( );
     $scope.setupStreetViewDivider( );
@@ -2196,12 +2202,14 @@ var MapController = function (
       iwOpts.pixelOffset = new google.maps.Size( 0, 0 );
     }
     $scope.infoWindowCallback( $scope.map, $scope.snippetInfoWindow, latLng, o, iwOpts );
+    $scope.showHoverObservationMarker( o, latLng );
   } );
   $rootScope.$on( "hideInfowindow", function ( ) {
     $scope.snippetInfoWindowObservation = null;
     if ( $scope.snippetInfoWindow ) {
       $scope.snippetInfoWindow.close( );
     }
+    $scope.hideHoverObservationMarker( );
   } );
   $scope.infoWindowCallbackStartTime = null;
   $scope.updateStreetViewSplitCSS = function ( ) {
@@ -2259,6 +2267,77 @@ var MapController = function (
     };
     return attempt( 0 );
   };
+  // Build an observation-shaped object for iNaturalist.Map.createObservationIcon
+  // from the lighter search-result payload used in the list.
+  $scope.observationForMapIcon = function ( o ) {
+    var obs = {
+      quality_grade: o.quality_grade,
+      coordinates_obscured: o.coordinates_obscured || o.obscured || o.geoprivacy === "obscured",
+      iconic_taxon_name: o.iconic_taxon_name,
+      taxon: o.taxon
+    };
+    if ( !obs.iconic_taxon_name && o.taxon && o.taxon.iconic_taxon_id && window.ICONIC_TAXA ) {
+      var iconicTaxon = window.ICONIC_TAXA[o.taxon.iconic_taxon_id];
+      if ( iconicTaxon ) { obs.iconic_taxon_name = iconicTaxon.name; }
+    }
+    return obs;
+  };
+  // Pin the hovered observation on the map with the same iconic marker icon used
+  // elsewhere in iNaturalist (addObservation / createObservationIcon).
+  $scope.showHoverObservationMarker = function ( o, latLng ) {
+    if ( !$scope.map || !latLng ) { return; }
+    if ( !$scope.hoverObservationMarker ) {
+      $scope.hoverObservationMarker = new google.maps.Marker( {
+        clickable: false,
+        zIndex: 10001
+      } );
+    }
+    $scope.hoverObservationMarker.setIcon(
+      iNaturalist.Map.createObservationIcon( { observation: $scope.observationForMapIcon( o ) } )
+    );
+    $scope.hoverObservationMarker.setPosition( latLng );
+    $scope.hoverObservationMarker.setMap( $scope.map );
+  };
+  $scope.hideHoverObservationMarker = function ( ) {
+    if ( $scope.hoverObservationMarker ) {
+      $scope.hoverObservationMarker.setMap( null );
+    }
+  };
+  // Show/update the pegman on the map at the given Street View position.
+  $scope.updateStreetViewPositionMarker = function ( position ) {
+    if ( !$scope.map || !position ) { return; }
+    if ( !$scope.streetViewPositionMarker ) {
+      $scope.streetViewPositionMarker = new google.maps.Marker( {
+        clickable: false,
+        zIndex: 10000,
+        icon: {
+          url: STREET_VIEW_PEGMAN_ICON,
+          scaledSize: new google.maps.Size( 32, 32 ),
+          anchor: new google.maps.Point( 16, 32 )
+        }
+      } );
+    }
+    $scope.streetViewPositionMarker.setPosition( position );
+    $scope.streetViewPositionMarker.setMap( $scope.map );
+  };
+  // Draw the "mini-map" overlays on the map while Street View is open: the blue
+  // road-coverage layer plus the pegman at the current panorama position.
+  $scope.showStreetViewMapOverlays = function ( position ) {
+    if ( !$scope.map ) { return; }
+    if ( !$scope.streetViewCoverageLayer ) {
+      $scope.streetViewCoverageLayer = new google.maps.StreetViewCoverageLayer( );
+    }
+    $scope.streetViewCoverageLayer.setMap( $scope.map );
+    if ( position ) { $scope.updateStreetViewPositionMarker( position ); }
+  };
+  $scope.hideStreetViewMapOverlays = function ( ) {
+    if ( $scope.streetViewCoverageLayer ) {
+      $scope.streetViewCoverageLayer.setMap( null );
+    }
+    if ( $scope.streetViewPositionMarker ) {
+      $scope.streetViewPositionMarker.setMap( null );
+    }
+  };
   $scope.mountOrUpdateStreetViewPanorama = function ( position ) {
     var container = document.getElementById( "observations-street-view" );
     if ( !container || !position ) { return; }
@@ -2275,6 +2354,12 @@ var MapController = function (
       linksControl: true
     } );
     $scope.map.setStreetView( $scope.streetViewPanorama );
+    $scope.showStreetViewMapOverlays( position );
+    // Keep the map's pegman in sync as the user walks around the panorama.
+    google.maps.event.addListener( $scope.streetViewPanorama, "position_changed", function ( ) {
+      var pos = $scope.streetViewPanorama.getPosition( );
+      if ( pos ) { $scope.updateStreetViewPositionMarker( pos ); }
+    } );
     setTimeout( function ( ) {
       $scope.triggerStreetViewResize( );
     }, 0 );
@@ -2306,6 +2391,7 @@ var MapController = function (
     if ( $scope.streetViewVisible ) {
       $scope.streetViewVisible = false;
       if ( $scope.map ) { $scope.map.setStreetView( null ); }
+      $scope.hideStreetViewMapOverlays( );
       if ( $scope.streetViewToggleControl ) {
         $scope.streetViewToggleControl.classList.remove( "is-active" );
       }
@@ -2324,8 +2410,10 @@ var MapController = function (
       $scope.triggerStreetViewResize( );
       $scope.updateViewControlsLayout( );
       if ( $scope.streetViewPanorama && $scope.map ) {
-        // re-bind the existing panorama so the pegman reappears on the map
+        // re-bind the existing panorama and redraw the blue coverage layer and
+        // pegman on the map
         $scope.map.setStreetView( $scope.streetViewPanorama );
+        $scope.showStreetViewMapOverlays( $scope.streetViewPanorama.getPosition( ) );
       } else if ( $scope.map ) {
         $scope.loadStreetViewAt( $scope.map.getCenter( ) );
       }
