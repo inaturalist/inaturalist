@@ -406,16 +406,45 @@ inat-taxon.split-taxon .icon {display: none;}
 #obs {
   background-color: white;
   padding: 0px;
-  height: 420px;
+  // Make the list nearly as tall as the Google Map, but stop short of the
+  // bottom so it doesn't cover the map's bottom-right native controls (the
+  // Street View pegman and camera buttons). The map/container is
+  // calc(100vh - 420px) with a 550px min-height (see the #obs-container/#map
+  // rule above); subtract the 55px top offset below plus a ~108px bottom
+  // clearance (163px total) so the pegman/camera stay visible.
+  height: calc(100vh - 583px);
+  min-height: 388px;
   overflow-x: hidden;
   overflow-y: scroll;
-  position: relative;
+  // Anchor the list to the full-bleed #obs-container (position:relative, full
+  // map width) and pin it to the map's right edge. Using the Bootstrap column
+  // inside the centered .container-fixed (1157px) left it drifting further from
+  // the map's right edge as the window grew; absolute positioning keeps it a
+  // fixed 15px from the map's right edge at any width. The map's right edge is
+  // always the viewport edge (Street View only shifts the map's left edge), so
+  // this stays correct with Street View open too.
+  position: absolute;
+  width: 360px;
+  inset-inline-end: 15px;
   // Pushed down so the observation list does not overlap the top toolbar
   // (map/grid/list, places, redo-search) that sits over the map.
   top: 55px;
 }
+// Bootstrap grid columns are position:relative, which would trap #obs's
+// absolute positioning inside the narrow, centered .container-fixed. Make the
+// column static so #obs instead anchors to the full-width #obs-container and can
+// pin to the map's right edge on any window width.
+#maprow > .col-xs-4 {
+  position: static;
+}
 #maprow {
-  position: relative;
+  // Intentionally NOT position:relative so the absolutely-positioned map
+  // overlays inside it (#map-controls, #map-legend-control) anchor to the
+  // full-bleed #obs-container instead of the centered, width-limited
+  // .container-fixed (1157px). Anchoring to #maprow shifted them right by the
+  // container's side margin, so on wide screens the zoom/fullscreen buttons
+  // drifted away from the map's left edge. (#obs-container is position:relative
+  // and spans the full map width.)
   height: 0;
 }
 .fullscreen-enabled #maprow,
@@ -436,7 +465,11 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 #map-legend-control {
   position: absolute;
-  top: 500px;
+  // Pin to the map's bottom-left, vertically aligned with Google's bottom-right
+  // camera control (same offset from the map bottom edge). Using bottom instead
+  // of a fixed top keeps this correct as the map grows with the viewport.
+  bottom: 30px;
+  top: auto;
   inset-inline-start: 15px;
 }
 #map-legend {
@@ -475,7 +508,7 @@ inat-taxon.split-taxon .icon {display: none;}
   inset-inline-start: 20px;
 }
 .fullscreen-enabled #map-legend-control {
-  bottom: 40px;
+  bottom: 20px;
   top: auto;
   inset-inline-start: 20px;
 }
