@@ -386,7 +386,12 @@ inat-taxon.split-taxon .icon {display: none;}
 #obs-container,
 #obs-container .container,
 #map, #observations-map {
-  height: 550px;
+  // Fill the viewport down to the footer instead of a fixed 550px so there is
+  // no white gap above the sticky footer. 420px = map top offset (240px:
+  // header + filters + stats + view controls) + sticky footer reserve (180px,
+  // see #bodywrapper margin-bottom / ::after above).
+  height: calc(100vh - 420px);
+  min-height: 550px;
 }
 #observations-map {
   background-color: #e3eaf6;
