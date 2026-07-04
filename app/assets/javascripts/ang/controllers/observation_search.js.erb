@@ -1978,10 +1978,12 @@ var MapController = function (
     $scope.streetViewObservationLatLng = null;
     $scope.streetViewLocationDelta = null;
     $scope.streetViewLocationDeltaNear = false;
+    $scope.streetViewStacked = false;
     $scope.hoverObservationMarker = null;
     $scope.updateStreetViewSplitCSS( );
     $scope.setupStreetViewToggleControl( );
     $scope.setupStreetViewDivider( );
+    $scope.setupStreetViewLayoutListener( );
   };
   $scope.updateParamsForCurrentRect = function ( ) {
     var bounds = $scope.$parent.mapBounds;
@@ -2242,6 +2244,36 @@ var MapController = function (
     $scope.hideHoverObservationMarker( );
   } );
   $scope.infoWindowCallbackStartTime = null;
+  $scope.isStreetViewStacked = function ( ) {
+    return window.matchMedia && window.matchMedia( "(orientation: portrait)" ).matches;
+  };
+  $scope.syncStreetViewLayoutMode = function ( ) {
+    var stacked = $scope.isStreetViewStacked( );
+    if ( $scope.streetViewStacked === stacked ) { return; }
+    $scope.streetViewStacked = stacked;
+    setTimeout( function ( ) {
+      $scope.triggerStreetViewResize( );
+      $scope.updateViewControlsLayout( );
+      if ( !$scope.$$phase ) { $scope.$apply( ); }
+    }, 0 );
+  };
+  $scope.setupStreetViewLayoutListener = function ( ) {
+    if ( $scope._streetViewLayoutListener ) { return; }
+    $scope.streetViewStacked = $scope.isStreetViewStacked( );
+    $scope._streetViewLayoutListener = function ( ) {
+      $scope.syncStreetViewLayoutMode( );
+    };
+    window.addEventListener( "resize", $scope._streetViewLayoutListener );
+    window.addEventListener( "orientationchange", $scope._streetViewLayoutListener );
+    if ( window.matchMedia ) {
+      var mq = window.matchMedia( "(orientation: portrait)" );
+      if ( mq.addEventListener ) {
+        mq.addEventListener( "change", $scope._streetViewLayoutListener );
+      } else if ( mq.addListener ) {
+        mq.addListener( $scope._streetViewLayoutListener );
+      }
+    }
+  };
   $scope.updateStreetViewSplitCSS = function ( ) {
     var container = document.getElementById( "obs-container" );
     if ( !container ) { return; }
@@ -2572,6 +2604,7 @@ var MapController = function (
     if ( $scope.streetViewToggleControl ) {
       $scope.streetViewToggleControl.classList.add( "is-active" );
     }
+    $scope.streetViewStacked = $scope.isStreetViewStacked( );
     $scope.updateStreetViewSplitCSS( );
     setTimeout( function ( ) {
       $scope.triggerStreetViewResize( );
@@ -2615,9 +2648,14 @@ var MapController = function (
     var container = document.getElementById( "obs-container" );
     if ( !divider || !container ) { return; }
     var dragging = false;
-    var onMove = function ( clientX ) {
+    var onMove = function ( clientX, clientY ) {
       var rect = container.getBoundingClientRect( );
-      var percent = ( ( clientX - rect.left ) / rect.width ) * 100;
+      var percent;
+      if ( $scope.isStreetViewStacked( ) ) {
+        percent = ( ( clientY - rect.top ) / rect.height ) * 100;
+      } else {
+        percent = ( ( clientX - rect.left ) / rect.width ) * 100;
+      }
       percent = Math.max( STREET_VIEW_SPLIT_MIN, Math.min( STREET_VIEW_SPLIT_MAX, percent ) );
       $scope.streetViewSplitPercent = percent;
       $scope.updateStreetViewSplitCSS( );
@@ -2632,7 +2670,7 @@ var MapController = function (
     } );
     document.addEventListener( "mousemove", function ( e ) {
       if ( !dragging ) { return; }
-      onMove( e.clientX );
+      onMove( e.clientX, e.clientY );
     } );
     document.addEventListener( "mouseup", function ( ) {
       if ( !dragging ) { return; }
@@ -2646,7 +2684,7 @@ var MapController = function (
     }, { passive: false } );
     document.addEventListener( "touchmove", function ( e ) {
       if ( !dragging || !e.touches[0] ) { return; }
-      onMove( e.touches[0].clientX );
+      onMove( e.touches[0].clientX, e.touches[0].clientY );
     }, { passive: true } );
     document.addEventListener( "touchend", function ( ) {
       if ( !dragging ) { return; }

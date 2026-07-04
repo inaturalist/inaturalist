@@ -1,4 +1,4 @@
-#obs-container{:class => "{{ fullscreen ? 'fullscreen-enabled' : '' }} {{ streetViewVisible ? 'street-view-enabled' : '' }}"}
+#obs-container{:class => "{{ fullscreen ? 'fullscreen-enabled' : '' }} {{ streetViewVisible ? 'street-view-enabled' : '' }} {{ streetViewStacked ? 'street-view-stacked' : '' }}"}
   #observations-street-view-panel{ "ng-show": "streetViewVisible" }
     .street-view-location-delta.ng-cloak{ "ng-show": "streetViewLocationDelta", "ng-class": "{ 'is-near': streetViewLocationDeltaNear }" }
       %span.street-view-location-delta-icon{"aria-hidden": "true"} 📍
