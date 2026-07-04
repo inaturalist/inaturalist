@@ -46,6 +46,7 @@ var STREET_VIEW_SEARCH_RADII = [50, 200, 1000, 5000];
 var STREET_VIEW_SPLIT_MIN = 20;
 var STREET_VIEW_SPLIT_MAX = 80;
 var STREET_VIEW_DEFAULT_SPLIT = 40;
+var STREET_VIEW_STACKED_MAX_WIDTH = 767;
 // Zoom level applied to the map when panning to an observation while the
 // Street View panel is open. Tune this value as needed.
 var STREET_VIEW_PAN_ZOOM = 16;
@@ -1980,6 +1981,7 @@ var MapController = function (
     $scope.streetViewLocationDeltaNear = false;
     $scope.streetViewStacked = false;
     $scope.listSelectedObservation = null;
+    $scope.streetViewLoadGeneration = 0;
     $scope.hoverObservationMarker = null;
     $scope.updateStreetViewSplitCSS( );
     $scope.setupStreetViewToggleControl( );
@@ -2271,7 +2273,16 @@ var MapController = function (
     }, 0 );
   };
   $scope.isStreetViewStacked = function ( ) {
-    return window.matchMedia && window.matchMedia( "(orientation: portrait)" ).matches;
+    if ( window.matchMedia ) {
+      if ( window.matchMedia( "(orientation: portrait)" ).matches ) {
+        return true;
+      }
+      if ( window.matchMedia( "(max-width: " + STREET_VIEW_STACKED_MAX_WIDTH + "px)" ).matches ) {
+        return true;
+      }
+      return false;
+    }
+    return window.innerHeight > window.innerWidth;
   };
   $scope.syncStreetViewLayoutMode = function ( ) {
     var stacked = $scope.isStreetViewStacked( );
@@ -2292,12 +2303,18 @@ var MapController = function (
     window.addEventListener( "resize", $scope._streetViewLayoutListener );
     window.addEventListener( "orientationchange", $scope._streetViewLayoutListener );
     if ( window.matchMedia ) {
-      var mq = window.matchMedia( "(orientation: portrait)" );
-      if ( mq.addEventListener ) {
-        mq.addEventListener( "change", $scope._streetViewLayoutListener );
-      } else if ( mq.addListener ) {
-        mq.addListener( $scope._streetViewLayoutListener );
-      }
+      $scope._addStreetViewLayoutMediaListener = function ( query ) {
+        var mq = window.matchMedia( query );
+        if ( mq.addEventListener ) {
+          mq.addEventListener( "change", $scope._streetViewLayoutListener );
+        } else if ( mq.addListener ) {
+          mq.addListener( $scope._streetViewLayoutListener );
+        }
+      };
+      $scope._addStreetViewLayoutMediaListener( "(orientation: portrait)" );
+      $scope._addStreetViewLayoutMediaListener(
+        "(max-width: " + STREET_VIEW_STACKED_MAX_WIDTH + "px)"
+      );
     }
   };
   $scope.updateStreetViewSplitCSS = function ( ) {
@@ -2565,6 +2582,7 @@ var MapController = function (
     }
   };
   $scope.mountOrUpdateStreetViewPanorama = function ( position, lookAtLatLng ) {
+    if ( !$scope.streetViewVisible ) { return; }
     var container = document.getElementById( "observations-street-view" );
     if ( !container || !position ) { return; }
     if ( $scope.streetViewPanorama ) {
@@ -2591,8 +2609,12 @@ var MapController = function (
   };
   $scope.loadStreetViewAt = function ( latLng, lookAtLatLng ) {
     if ( !latLng || !$scope.streetViewService ) { return; }
+    $scope.streetViewLoadGeneration += 1;
+    var loadGeneration = $scope.streetViewLoadGeneration;
     $scope.streetViewObservationLatLng = lookAtLatLng || null;
     $scope.getStreetViewPanoramaWithFallback( latLng ).then( function ( data ) {
+      if ( loadGeneration !== $scope.streetViewLoadGeneration ) { return; }
+      if ( !$scope.streetViewVisible ) { return; }
       if ( !data || !data.location || !data.location.latLng ) { return; }
       $scope.mountOrUpdateStreetViewPanorama( data.location.latLng, lookAtLatLng );
       if ( !$scope.$$phase ) { $scope.$apply( ); }
@@ -2611,6 +2633,7 @@ var MapController = function (
   $scope.toggleStreetView = function ( ) {
     if ( $scope.streetViewVisible ) {
       $scope.streetViewVisible = false;
+      $scope.streetViewLoadGeneration += 1;
       if ( $scope.map ) { $scope.map.setStreetView( null ); }
       $scope.clearStreetViewPegmanListeners( );
       $scope.hideStreetViewMapOverlays( );
