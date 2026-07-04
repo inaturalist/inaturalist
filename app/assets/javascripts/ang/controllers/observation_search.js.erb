@@ -2292,6 +2292,13 @@ var MapController = function (
     };
     return attempt( 0 );
   };
+  // Bearing from a Street View camera position toward an observation (degrees, 0 = north).
+  $scope.streetViewHeadingToward = function ( from, to ) {
+    if ( !from || !to || !google.maps.geometry ) { return null; }
+    var heading = google.maps.geometry.spherical.computeHeading( from, to );
+    if ( !_.isNumber( heading ) || _.isNaN( heading ) ) { return null; }
+    return heading;
+  };
   // Build an observation-shaped object for iNaturalist.Map.createObservationIcon
   // from the lighter search-result payload used in the list.
   $scope.observationForMapIcon = function ( o ) {
@@ -2317,6 +2324,7 @@ var MapController = function (
         zIndex: HOVER_OBSERVATION_MARKER_Z_INDEX
       } );
     }
+    $scope.hoverObservationMarker.setZIndex( HOVER_OBSERVATION_MARKER_Z_INDEX );
     $scope.hoverObservationMarker.setIcon(
       iNaturalist.Map.createObservationIcon( { observation: $scope.observationForMapIcon( o ) } )
     );
@@ -2414,7 +2422,7 @@ var MapController = function (
       $scope.streetViewDirectionArrow.setMap( null );
     }
   };
-  $scope.mountOrUpdateStreetViewPanorama = function ( position ) {
+  $scope.mountOrUpdateStreetViewPanorama = function ( position, lookAtLatLng ) {
     var container = document.getElementById( "observations-street-view" );
     if ( !container || !position ) { return; }
     if ( $scope.streetViewPanorama ) {
@@ -2423,9 +2431,10 @@ var MapController = function (
       $scope.streetViewPanorama = null;
     }
     container.innerHTML = "";
+    var heading = $scope.streetViewHeadingToward( position, lookAtLatLng ) || 165;
     $scope.streetViewPanorama = new google.maps.StreetViewPanorama( container, {
       position: position,
-      pov: { heading: 165, pitch: 0 },
+      pov: { heading: heading, pitch: 0 },
       zoom: 1,
       addressControl: true,
       linksControl: true
@@ -2437,11 +2446,11 @@ var MapController = function (
       $scope.triggerStreetViewResize( );
     }, 0 );
   };
-  $scope.loadStreetViewAt = function ( latLng ) {
+  $scope.loadStreetViewAt = function ( latLng, lookAtLatLng ) {
     if ( !latLng || !$scope.streetViewService ) { return; }
     $scope.getStreetViewPanoramaWithFallback( latLng ).then( function ( data ) {
       if ( !data || !data.location || !data.location.latLng ) { return; }
-      $scope.mountOrUpdateStreetViewPanorama( data.location.latLng );
+      $scope.mountOrUpdateStreetViewPanorama( data.location.latLng, lookAtLatLng );
       if ( !$scope.$$phase ) { $scope.$apply( ); }
     } );
   };
@@ -2458,7 +2467,8 @@ var MapController = function (
     if ( $scope.map.getZoom( ) < STREET_VIEW_PAN_ZOOM ) {
       $scope.map.setZoom( STREET_VIEW_PAN_ZOOM );
     }
-    $scope.loadStreetViewAt( latLng );
+    // lookAtLatLng is the observation; the nearest panorama may be offset.
+    $scope.loadStreetViewAt( latLng, latLng );
   };
   $scope.toggleStreetView = function ( ) {
     if ( $scope.streetViewVisible ) {
