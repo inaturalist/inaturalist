@@ -50,6 +50,14 @@ var STREET_VIEW_DEFAULT_SPLIT = 40;
 // Street View panel is open. Tune this value as needed.
 var STREET_VIEW_PAN_ZOOM = 16;
 var STREET_VIEW_PEGMAN_ICON = "<%= asset_path( 'icon-street-view-60.png' ) %>";
+// Clock-hand direction arrow in screen pixels (fixed size at all zoom levels).
+var STREET_VIEW_PEGMAN_ARROW_TIP_PX = 34;
+var STREET_VIEW_PEGMAN_ARROW_BASE_HALF_WIDTH_PX = 7;
+// Keep the direction arrow beneath map markers so it does not obscure them.
+var STREET_VIEW_PEGMAN_ARROW_Z_INDEX = 1;
+var STREET_VIEW_PEGMAN_MARKER_Z_INDEX = 2;
+// Same priority as google.maps.Marker.MAX_ZINDEX (avoid referencing before maps load).
+var HOVER_OBSERVATION_MARKER_Z_INDEX = 1000000;
 
 $( function ( ) {
   google.maps.importLibrary( "maps" ).then( function ( ) {
@@ -1943,11 +1951,14 @@ var MapController = function (
     $scope.streetViewVisible = false;
     $scope.streetViewSplitPercent = STREET_VIEW_DEFAULT_SPLIT;
     $scope.streetViewPanorama = null;
-    // Overlays drawn on the map (right pane) while Street View is open, to
-    // mirror the inset mini-map of the official Street View: the blue
-    // road-coverage layer and a pegman at the current panorama position.
+    // Overlays drawn on the map (right pane) while Street View is open: the blue
+    // road-coverage layer plus a pegman marker and directional wedge (the native
+    // map pegman from setStreetView alone is unreliable when the panorama lives
+    // in our external left-hand panel).
     $scope.streetViewCoverageLayer = null;
     $scope.streetViewPositionMarker = null;
+    $scope.streetViewDirectionArrow = null;
+    $scope.streetViewPegmanListeners = [];
     $scope.hoverObservationMarker = null;
     $scope.updateStreetViewSplitCSS( );
     $scope.setupStreetViewToggleControl( );
@@ -2289,7 +2300,7 @@ var MapController = function (
     if ( !$scope.hoverObservationMarker ) {
       $scope.hoverObservationMarker = new google.maps.Marker( {
         clickable: false,
-        zIndex: 10001
+        zIndex: HOVER_OBSERVATION_MARKER_Z_INDEX
       } );
     }
     $scope.hoverObservationMarker.setIcon(
@@ -2303,13 +2314,39 @@ var MapController = function (
       $scope.hoverObservationMarker.setMap( null );
     }
   };
-  // Show/update the pegman on the map at the given Street View position.
-  $scope.updateStreetViewPositionMarker = function ( position ) {
-    if ( !$scope.map || !position ) { return; }
+  $scope.clearStreetViewPegmanListeners = function ( ) {
+    _.each( $scope.streetViewPegmanListeners, function ( listener ) {
+      google.maps.event.removeListener( listener );
+    } );
+    $scope.streetViewPegmanListeners = [];
+  };
+  // Fixed-pixel clock-hand triangle anchored at the pegman position.
+  $scope.streetViewPegmanArrowIcon = function ( heading ) {
+    var w = STREET_VIEW_PEGMAN_ARROW_BASE_HALF_WIDTH_PX;
+    var tip = STREET_VIEW_PEGMAN_ARROW_TIP_PX;
+    return {
+      path: "M 0,-" + tip + " L " + w + ",0 L " + ( -w ) + ",0 Z",
+      fillColor: "#3F3F3F",
+      fillOpacity: 1,
+      strokeColor: "#F0F0F0",
+      strokeWeight: 2,
+      scale: 1,
+      rotation: heading,
+      anchor: new google.maps.Point( 0, 0 )
+    };
+  };
+  // Pegman icon plus a clock-hand direction arrow on the map, kept in sync with
+  // the external Street View panel via position_changed / pov_changed.
+  $scope.updateStreetViewPegmanOverlays = function ( ) {
+    if ( !$scope.map || !$scope.streetViewPanorama || !$scope.streetViewVisible ) { return; }
+    var position = $scope.streetViewPanorama.getPosition( );
+    if ( !position ) { return; }
+    var pov = $scope.streetViewPanorama.getPov( ) || { heading: 0 };
+    var heading = pov.heading || 0;
     if ( !$scope.streetViewPositionMarker ) {
       $scope.streetViewPositionMarker = new google.maps.Marker( {
         clickable: false,
-        zIndex: 10000,
+        zIndex: STREET_VIEW_PEGMAN_MARKER_Z_INDEX,
         icon: {
           url: STREET_VIEW_PEGMAN_ICON,
           scaledSize: new google.maps.Size( 32, 32 ),
@@ -2318,17 +2355,39 @@ var MapController = function (
       } );
     }
     $scope.streetViewPositionMarker.setPosition( position );
+    $scope.streetViewPositionMarker.setZIndex( STREET_VIEW_PEGMAN_MARKER_Z_INDEX );
     $scope.streetViewPositionMarker.setMap( $scope.map );
+    if ( !$scope.streetViewDirectionArrow ) {
+      $scope.streetViewDirectionArrow = new google.maps.Marker( {
+        clickable: false,
+        zIndex: STREET_VIEW_PEGMAN_ARROW_Z_INDEX
+      } );
+    }
+    $scope.streetViewDirectionArrow.setPosition( position );
+    $scope.streetViewDirectionArrow.setIcon( $scope.streetViewPegmanArrowIcon( heading ) );
+    $scope.streetViewDirectionArrow.setZIndex( STREET_VIEW_PEGMAN_ARROW_Z_INDEX );
+    $scope.streetViewDirectionArrow.setMap( $scope.map );
   };
-  // Draw the "mini-map" overlays on the map while Street View is open: the blue
-  // road-coverage layer plus the pegman at the current panorama position.
-  $scope.showStreetViewMapOverlays = function ( position ) {
+  $scope.bindStreetViewPegmanListeners = function ( ) {
+    $scope.clearStreetViewPegmanListeners( );
+    if ( !$scope.streetViewPanorama ) { return; }
+    $scope.streetViewPegmanListeners.push(
+      google.maps.event.addListener( $scope.streetViewPanorama, "position_changed", function ( ) {
+        $scope.updateStreetViewPegmanOverlays( );
+      } ),
+      google.maps.event.addListener( $scope.streetViewPanorama, "pov_changed", function ( ) {
+        $scope.updateStreetViewPegmanOverlays( );
+      } )
+    );
+  };
+  // Draw the blue road-coverage layer on the map while Street View is open.
+  $scope.showStreetViewMapOverlays = function ( ) {
     if ( !$scope.map ) { return; }
     if ( !$scope.streetViewCoverageLayer ) {
       $scope.streetViewCoverageLayer = new google.maps.StreetViewCoverageLayer( );
     }
     $scope.streetViewCoverageLayer.setMap( $scope.map );
-    if ( position ) { $scope.updateStreetViewPositionMarker( position ); }
+    $scope.updateStreetViewPegmanOverlays( );
   };
   $scope.hideStreetViewMapOverlays = function ( ) {
     if ( $scope.streetViewCoverageLayer ) {
@@ -2337,11 +2396,15 @@ var MapController = function (
     if ( $scope.streetViewPositionMarker ) {
       $scope.streetViewPositionMarker.setMap( null );
     }
+    if ( $scope.streetViewDirectionArrow ) {
+      $scope.streetViewDirectionArrow.setMap( null );
+    }
   };
   $scope.mountOrUpdateStreetViewPanorama = function ( position ) {
     var container = document.getElementById( "observations-street-view" );
     if ( !container || !position ) { return; }
     if ( $scope.streetViewPanorama ) {
+      $scope.clearStreetViewPegmanListeners( );
       $scope.map.setStreetView( null );
       $scope.streetViewPanorama = null;
     }
@@ -2354,12 +2417,8 @@ var MapController = function (
       linksControl: true
     } );
     $scope.map.setStreetView( $scope.streetViewPanorama );
-    $scope.showStreetViewMapOverlays( position );
-    // Keep the map's pegman in sync as the user walks around the panorama.
-    google.maps.event.addListener( $scope.streetViewPanorama, "position_changed", function ( ) {
-      var pos = $scope.streetViewPanorama.getPosition( );
-      if ( pos ) { $scope.updateStreetViewPositionMarker( pos ); }
-    } );
+    $scope.showStreetViewMapOverlays( );
+    $scope.bindStreetViewPegmanListeners( );
     setTimeout( function ( ) {
       $scope.triggerStreetViewResize( );
     }, 0 );
@@ -2391,6 +2450,7 @@ var MapController = function (
     if ( $scope.streetViewVisible ) {
       $scope.streetViewVisible = false;
       if ( $scope.map ) { $scope.map.setStreetView( null ); }
+      $scope.clearStreetViewPegmanListeners( );
       $scope.hideStreetViewMapOverlays( );
       if ( $scope.streetViewToggleControl ) {
         $scope.streetViewToggleControl.classList.remove( "is-active" );
@@ -2410,10 +2470,10 @@ var MapController = function (
       $scope.triggerStreetViewResize( );
       $scope.updateViewControlsLayout( );
       if ( $scope.streetViewPanorama && $scope.map ) {
-        // re-bind the existing panorama and redraw the blue coverage layer and
-        // pegman on the map
+        // re-bind the existing panorama and redraw map overlays
         $scope.map.setStreetView( $scope.streetViewPanorama );
-        $scope.showStreetViewMapOverlays( $scope.streetViewPanorama.getPosition( ) );
+        $scope.showStreetViewMapOverlays( );
+        $scope.bindStreetViewPegmanListeners( );
       } else if ( $scope.map ) {
         $scope.loadStreetViewAt( $scope.map.getCenter( ) );
       }
