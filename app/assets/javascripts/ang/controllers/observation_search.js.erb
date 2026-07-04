@@ -2265,6 +2265,51 @@ var MapController = function (
     var colRect = col.getBoundingClientRect( );
     vc.style.left = Math.round( mapRect.left - colRect.left + 15 ) + "px";
   };
+  // Pan once so latLng sits at the horizontal center of the map area not covered by #obs.
+  // Uses spherical offset (not OverlayView pixels) so the first pan is correct even
+  // before the projection overlay has drawn.
+  $scope.panMapToLatLngAccountingForObsList = function ( latLng ) {
+    if ( !$scope.map || !latLng ) { return; }
+    var panOnce = function ( ) {
+      if ( !$scope.streetViewVisible || $scope.fullscreen ) {
+        $scope.map.panTo( latLng );
+        return;
+      }
+      var mapDiv = $scope.map.getDiv( );
+      var obsEl = document.getElementById( "obs" );
+      if ( !mapDiv || !obsEl || !google.maps.geometry ) {
+        $scope.map.panTo( latLng );
+        return;
+      }
+      var mapRect = mapDiv.getBoundingClientRect( );
+      var obsRect = obsEl.getBoundingClientRect( );
+      var overlapLeft = Math.max( mapRect.left, obsRect.left );
+      var overlapRight = Math.min( mapRect.right, obsRect.right );
+      var overlapWidth = Math.max( 0, overlapRight - overlapLeft );
+      if ( overlapWidth <= 0 ) {
+        $scope.map.panTo( latLng );
+        return;
+      }
+      var zoom = $scope.map.getZoom( );
+      var lat = latLng.lat( );
+      var metersPerPixel = 156543.03392 * Math.cos( lat * Math.PI / 180 ) / Math.pow( 2, zoom );
+      var offsetMeters = ( overlapWidth / 2 ) * metersPerPixel;
+      var isRtl = $( "html[dir='rtl']" ).length > 0;
+      // Place the map center east of the observation so the marker sits left of center.
+      var newCenter = google.maps.geometry.spherical.computeOffset(
+        latLng,
+        offsetMeters,
+        isRtl ? 270 : 90
+      );
+      $scope.map.panTo( newCenter );
+    };
+    if ( $scope.map.getZoom( ) < STREET_VIEW_PAN_ZOOM ) {
+      $scope.map.setZoom( STREET_VIEW_PAN_ZOOM );
+      google.maps.event.addListenerOnce( $scope.map, "idle", panOnce );
+    } else {
+      panOnce( );
+    }
+  };
   $scope.triggerStreetViewResize = function ( ) {
     if ( $scope.map ) {
       google.maps.event.trigger( $scope.map, "resize" );
@@ -2500,14 +2545,8 @@ var MapController = function (
     // When the panel is already open, update it to the given location and pan
     // the map to that point; when it is closed, do nothing (do not auto-open).
     if ( !latLng || !$scope.map || !$scope.streetViewVisible ) { return; }
-    // panTo animates (scrolls) smoothly when the target is within the current
-    // viewport. Only zoom in when the current zoom is below the target so we
-    // don't cancel that animation for nearby observations that are already
-    // close enough.
-    $scope.map.panTo( latLng );
-    if ( $scope.map.getZoom( ) < STREET_VIEW_PAN_ZOOM ) {
-      $scope.map.setZoom( STREET_VIEW_PAN_ZOOM );
-    }
+    // Center on the observation in the map area left of #obs, not under the list.
+    $scope.panMapToLatLngAccountingForObsList( latLng );
     // lookAtLatLng is the observation; the nearest panorama may be offset.
     $scope.loadStreetViewAt( latLng, latLng );
   };
