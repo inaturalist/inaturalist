@@ -60,6 +60,8 @@ var STREET_VIEW_PEGMAN_MARKER_Z_INDEX = 2;
 var HOVER_OBSERVATION_MARKER_Z_INDEX = 1000000;
 // Delay before list hover selects an observation on the map.
 var OBS_LIST_HOVER_DELAY_MS = 200;
+// Lat/lng deltas at or below this are treated as "near" the panorama position.
+var STREET_VIEW_LOCATION_NEAR_THRESHOLD = 0.0001;
 
 $( function ( ) {
   google.maps.importLibrary( "maps" ).then( function ( ) {
@@ -1973,6 +1975,9 @@ var MapController = function (
     $scope.streetViewPositionMarker = null;
     $scope.streetViewDirectionArrow = null;
     $scope.streetViewPegmanListeners = [];
+    $scope.streetViewObservationLatLng = null;
+    $scope.streetViewLocationDelta = null;
+    $scope.streetViewLocationDeltaNear = false;
     $scope.hoverObservationMarker = null;
     $scope.updateStreetViewSplitCSS( );
     $scope.setupStreetViewToggleControl( );
@@ -2299,6 +2304,38 @@ var MapController = function (
     if ( !_.isNumber( heading ) || _.isNaN( heading ) ) { return null; }
     return heading;
   };
+  // Arrow + magnitude for observation offset from the panorama (lat/lng deltas).
+  // Lat +: ← (observation north), lat -: →; lng +: ↓ (east), lng -: ↑ (west).
+  $scope.formatStreetViewLatDelta = function ( dLat ) {
+    if ( !_.isNumber( dLat ) || _.isNaN( dLat ) ) { return "←0"; }
+    var rounded = Math.round( dLat * 10000 ) / 10000;
+    var trimmed = Math.abs( rounded ).toFixed( 4 ).replace( /\.?0+$/, "" );
+    if ( rounded === 0 ) { return "←0"; }
+    return ( rounded > 0 ? "←" : "→" ) + trimmed;
+  };
+  $scope.formatStreetViewLngDelta = function ( dLng ) {
+    if ( !_.isNumber( dLng ) || _.isNaN( dLng ) ) { return "↓0"; }
+    var rounded = Math.round( dLng * 10000 ) / 10000;
+    var trimmed = Math.abs( rounded ).toFixed( 4 ).replace( /\.?0+$/, "" );
+    if ( rounded === 0 ) { return "↓0"; }
+    return ( rounded > 0 ? "↓" : "↑" ) + trimmed;
+  };
+  $scope.updateStreetViewLocationDelta = function ( ) {
+    var obs = $scope.streetViewObservationLatLng;
+    var pano = $scope.streetViewPanorama && $scope.streetViewPanorama.getPosition( );
+    if ( !obs || !pano || !$scope.streetViewVisible ) {
+      $scope.streetViewLocationDelta = null;
+      $scope.streetViewLocationDeltaNear = false;
+      return;
+    }
+    var dLat = obs.lat( ) - pano.lat( );
+    var dLng = obs.lng( ) - pano.lng( );
+    $scope.streetViewLocationDeltaNear = Math.abs( dLat ) <= STREET_VIEW_LOCATION_NEAR_THRESHOLD
+      && Math.abs( dLng ) <= STREET_VIEW_LOCATION_NEAR_THRESHOLD;
+    $scope.streetViewLocationDelta = "("
+      + $scope.formatStreetViewLatDelta( dLat ) + ", "
+      + $scope.formatStreetViewLngDelta( dLng ) + ")";
+  };
   // Build an observation-shaped object for iNaturalist.Map.createObservationIcon
   // from the lighter search-result payload used in the list.
   $scope.observationForMapIcon = function ( o ) {
@@ -2396,6 +2433,8 @@ var MapController = function (
     $scope.streetViewPegmanListeners.push(
       google.maps.event.addListener( $scope.streetViewPanorama, "position_changed", function ( ) {
         $scope.updateStreetViewPegmanOverlays( );
+        $scope.updateStreetViewLocationDelta( );
+        if ( !$scope.$$phase ) { $scope.$apply( ); }
       } ),
       google.maps.event.addListener( $scope.streetViewPanorama, "pov_changed", function ( ) {
         $scope.updateStreetViewPegmanOverlays( );
@@ -2442,12 +2481,14 @@ var MapController = function (
     $scope.map.setStreetView( $scope.streetViewPanorama );
     $scope.showStreetViewMapOverlays( );
     $scope.bindStreetViewPegmanListeners( );
+    $scope.updateStreetViewLocationDelta( );
     setTimeout( function ( ) {
       $scope.triggerStreetViewResize( );
     }, 0 );
   };
   $scope.loadStreetViewAt = function ( latLng, lookAtLatLng ) {
     if ( !latLng || !$scope.streetViewService ) { return; }
+    $scope.streetViewObservationLatLng = lookAtLatLng || null;
     $scope.getStreetViewPanoramaWithFallback( latLng ).then( function ( data ) {
       if ( !data || !data.location || !data.location.latLng ) { return; }
       $scope.mountOrUpdateStreetViewPanorama( data.location.latLng, lookAtLatLng );
@@ -2476,6 +2517,9 @@ var MapController = function (
       if ( $scope.map ) { $scope.map.setStreetView( null ); }
       $scope.clearStreetViewPegmanListeners( );
       $scope.hideStreetViewMapOverlays( );
+      $scope.streetViewObservationLatLng = null;
+      $scope.streetViewLocationDelta = null;
+      $scope.streetViewLocationDeltaNear = false;
       if ( $scope.streetViewToggleControl ) {
         $scope.streetViewToggleControl.classList.remove( "is-active" );
       }

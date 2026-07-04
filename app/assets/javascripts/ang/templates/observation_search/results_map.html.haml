@@ -1,5 +1,9 @@
 #obs-container{:class => "{{ fullscreen ? 'fullscreen-enabled' : '' }} {{ streetViewVisible ? 'street-view-enabled' : '' }}"}
-  #observations-street-view{ "ng-show": "streetViewVisible" }
+  #observations-street-view-panel{ "ng-show": "streetViewVisible" }
+    .street-view-location-delta.ng-cloak{ "ng-show": "streetViewLocationDelta", "ng-class": "{ 'is-near': streetViewLocationDeltaNear }" }
+      %span.street-view-location-delta-icon{"aria-hidden": "true"} 📍
+      {{ streetViewLocationDelta }}
+    #observations-street-view
   #street-view-divider{ "ng-show": "streetViewVisible" }
   #map{ enable_show_all_layer: 'false', :class => "{{ fullscreen ? 'fullscreen' : '' }}"}
   .container.container-fixed

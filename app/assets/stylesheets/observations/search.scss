@@ -319,7 +319,7 @@ inat-taxon.split-taxon .icon {display: none;}
   top: 0;
   inset-inline-start: 0;
 }
-#observations-street-view {
+#observations-street-view-panel {
   display: none;
   position: absolute;
   top: 0;
@@ -328,6 +328,40 @@ inat-taxon.split-taxon .icon {display: none;}
   width: var(--sv-split, 50%);
   background-color: #e3eaf6;
   z-index: 1;
+}
+#observations-street-view {
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  width: 100%;
+  height: 100%;
+}
+// Align with Google Street View fullscreen control (40×40px, 10px from top/end).
+.street-view-location-delta {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: calc(10px + 40px + 8px);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.65);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.street-view-location-delta-icon {
+  margin-inline-end: 4px;
+}
+.street-view-location-delta.is-near {
+  background: rgba(34, 120, 60, 0.92);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 #street-view-divider {
   display: none;
@@ -349,7 +383,7 @@ inat-taxon.split-taxon .icon {display: none;}
 #obs-container.street-view-enabled {
   --sv-split: 40%;
 }
-#obs-container.street-view-enabled #observations-street-view,
+#obs-container.street-view-enabled #observations-street-view-panel,
 #obs-container.street-view-enabled #street-view-divider {
   display: block;
 }
