@@ -58,6 +58,8 @@ var STREET_VIEW_PEGMAN_ARROW_Z_INDEX = 1;
 var STREET_VIEW_PEGMAN_MARKER_Z_INDEX = 2;
 // Same priority as google.maps.Marker.MAX_ZINDEX (avoid referencing before maps load).
 var HOVER_OBSERVATION_MARKER_Z_INDEX = 1000000;
+// Delay before list hover selects an observation on the map.
+var OBS_LIST_HOVER_DELAY_MS = 200;
 
 $( function ( ) {
   google.maps.importLibrary( "maps" ).then( function ( ) {
@@ -1702,10 +1704,22 @@ var SearchController = function (
     delete urlParams.observationFields;
     return $.param( urlParams );
   };
+  $scope.obsListHoverTimeout = null;
+  $scope.clearObsListHoverTimeout = function ( ) {
+    if ( $scope.obsListHoverTimeout ) {
+      clearTimeout( $scope.obsListHoverTimeout );
+      $scope.obsListHoverTimeout = null;
+    }
+  };
   $scope.showInfowindow = function ( o ) {
-    $rootScope.$emit( "showInfowindow", o );
+    $scope.clearObsListHoverTimeout( );
+    $scope.obsListHoverTimeout = setTimeout( function ( ) {
+      $scope.obsListHoverTimeout = null;
+      $rootScope.$emit( "showInfowindow", o );
+    }, OBS_LIST_HOVER_DELAY_MS );
   };
   $scope.hideInfowindow = function ( ) {
+    $scope.clearObsListHoverTimeout( );
     $rootScope.$emit( "hideInfowindow" );
   };
   $scope.toggleShowViewerObservations = function ( ) {
