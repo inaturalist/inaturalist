@@ -785,6 +785,14 @@ inat-taxon.split-taxon .icon {display: none;}
 #obs .observation:hover {
   background-color: #EEF8DE;
 }
+// Selected list item (map pan + Street View target); inset so layout size is unchanged.
+#obs observation-snippet.is-list-selected .observation {
+  background-color: #C5E3A8;
+  box-shadow: inset 0 0 0 2px #5a9200;
+}
+#obs observation-snippet.is-list-selected .observation:hover {
+  background-color: #B5DB98;
+}
 #obs-container .observation .userimage {
   width: 36px;
   height: 36px;

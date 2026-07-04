@@ -1979,6 +1979,7 @@ var MapController = function (
     $scope.streetViewLocationDelta = null;
     $scope.streetViewLocationDeltaNear = false;
     $scope.streetViewStacked = false;
+    $scope.listSelectedObservation = null;
     $scope.hoverObservationMarker = null;
     $scope.updateStreetViewSplitCSS( );
     $scope.setupStreetViewToggleControl( );
@@ -2218,6 +2219,7 @@ var MapController = function (
       $scope.snippetInfoWindow.close( );
     }
     $scope.snippetInfoWindowObservation = o;
+    $scope.setListSelectedObservation( o );
     $scope.snippetInfoWindow = $scope.snippetInfoWindow
       || $scope.map.getInfoWindow( { disableAutoPan: true } );
     if ( !o.location ) {
@@ -2244,6 +2246,30 @@ var MapController = function (
     $scope.hideHoverObservationMarker( );
   } );
   $scope.infoWindowCallbackStartTime = null;
+  $scope.setListSelectedObservation = function ( observation ) {
+    if ( !observation || observation.id == null ) { return; }
+    var observations = $scope.$parent.observations;
+    if ( observations && observations.length ) {
+      var match = _.find( observations, function ( o ) {
+        return o.id == observation.id;
+      } );
+      if ( match ) {
+        $scope.listSelectedObservation = match;
+        return;
+      }
+    }
+    $scope.listSelectedObservation = observation;
+  };
+  $scope.scrollListToSelectedObservation = function ( ) {
+    if ( !$scope.listSelectedObservation || $scope.listSelectedObservation.id == null ) { return; }
+    var obsId = $scope.listSelectedObservation.id;
+    setTimeout( function ( ) {
+      var item = document.getElementById( "obs-list-item-" + obsId );
+      if ( item ) {
+        item.scrollIntoView( { block: "nearest", behavior: "smooth" } );
+      }
+    }, 0 );
+  };
   $scope.isStreetViewStacked = function ( ) {
     return window.matchMedia && window.matchMedia( "(orientation: portrait)" ).matches;
   };
@@ -2706,6 +2732,12 @@ var MapController = function (
     // Update Street View to this observation. Visibility (On/Off) is still
     // controlled only by the toggle button: showStreetViewNear updates the
     // panorama only while the panel is already open, and never auto-opens it.
+    $scope.setListSelectedObservation( observation );
+    if ( !$scope.$$phase ) { $scope.$apply( ); }
+    // Marker clicks use a fresh info window; list hover reuses snippetInfoWindow.
+    if ( iw !== $scope.snippetInfoWindow ) {
+      $scope.scrollListToSelectedObservation( );
+    }
     $scope.showStreetViewNear( latLng );
     map.infoWindowSetContent( iw, latLng, "<div class='infowindow loading'>"
       + I18n.t( "loading" ) + "</div>", options );
