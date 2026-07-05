@@ -3576,6 +3576,8 @@ pl:
   photo_browser: Przeglądarka zdjęć
   photo_by_id_attribution: "Zdjęcie %{id}, %{attribution}"
   photo_deleted: Zdjęcie usunięte
+  #Message displayed after a photo has been hidden
+  photo_hidden: Zdjęcie ukryte
   photo_licensing: Licencja zdjęć
   photo_type: Typ zdjęcia
   photo_urls_repaired: Adresy URL zdjęć naprawione
@@ -4044,6 +4046,7 @@ pl:
   quality_grade_colon: "Stopień jakości:"
   query: Zapytanie
   radius: Promień (m)
+  radius_km: Promień (km)
   radius_value: "Promień (m): %{radius}"
   random: Losowo
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
@@ -4514,6 +4517,7 @@ pl:
     sexually_explicit_content: Treści o charakterze seksualnym
   suspend_user: Zawieś użytkownika
   sync: Zsynchronizować?
+  synonyms: Synonimy
   tagging: 'Tagowanie...'
   tags: Tagi
   take_me_flickr!: Tak, zabierz mnie do Flickr!
@@ -4630,8 +4634,10 @@ pl:
   terms_service: Warunki użytkowania
   terrain: teren
   text: Tekst
+  thank_you!: Dziękujemy!
   thanks!: Dzięki!
   thanks_from_all_of_us_here_at: Podziękowania od nas wszystkich tutaj w
+  that_account_is_already_connected: To konto jest już połączone z innym użytkownikiem
   that_photo_doesnt_exist: To zdjęcie nie istnieje.
   that_observation_doesnt_exist: Ta obserwacja nie istnieje.
   that_observation_doesnt_have_any_photos: "Ta obserwacja nie ma żadnych zdjęć."
@@ -4932,6 +4938,7 @@ pl:
   view: Zobacz
   view_all: Zobacz wszystkie
   view_all_caps: ZOBACZ WSZYSTKO
+  view_all_fields: Zobacz wszystkie pola
   view_all_flags: Zobacz wszystkie zgłoszenia
   view_all_members: Zobacz wszystkich użytkowników
   view_all_observations: Zobacz wszystkie obserwacje
