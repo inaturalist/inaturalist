@@ -236,6 +236,8 @@ zh-TW:
   add_a_new_change_group: 增加一新變更群組
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: 加入編號列表
+  #Placeholder for a project autocomplete field
+  add_a_project: 新增專案
   add_a_single_observation: 新增一項觀察記錄
   add_a_taxon: 新增分類群
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -557,6 +559,15 @@ zh-TW:
     至少 2 個月大，並且必須在過去一個月內至少完成 10筆 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">改進中鑑定</a> 。我們可能會要求跟進
     對您的計劃有疑問，我們保留以任何理由拒絕申請的權利。
+  app_owner_application_about_p2_2_html: |
+    自 2022 年起，我們要求希望建立 API 客戶端的用戶必須手動審核。
+    要建立第三方應用程式，您必須先提交申請以成為
+    一個「應用程式使用者」。此應用程式應描述您擬建立應用程式的功能
+    以及您打算如何使用它。提交申請時，您的帳號建立時間必須
+    至少有兩個月，且在過去一個月內至少有十筆<i>幫其他使用者</i> 的<a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">改進鑑定(improving identification)</a>
+    。我們可能會針對您的計畫提出後續問題並
+    保留拒絕申請的權利。
   app_owner_application_inelligible: |
     在提交申請前，你的帳號註冊時間需要至少2個月以上，並在過去的一個月內完成10次改進中鑑定。
   app_owner_application_fields_explanation_html: 描述您的app將具有的功能以及您計畫如何使用它。
@@ -1526,6 +1537,9 @@ zh-TW:
         請確認您的電子郵件，並點選郵件內附帶的連結，以驗證您的帳號。
       user:
         suspended: 您的帳號已被停用
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "原因： %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: 重置密碼令牌無效。請使用最近發送的重置密碼電子郵件中的連結，或 <a href="%{url}">申請新的</a>.
     sessions:
@@ -1586,6 +1600,7 @@ zh-TW:
   devise_unlock_instructions_unlock: 解鎖您的帳號
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: 探索
+  discover_nature_around_you: 探索您周圍的大自然
   discoveries: 發現
   did_you_mean: '您是指'
   did_you_photos_flickr?: 您有上傳任何圖片在 Flickr 上嗎？
@@ -1596,6 +1611,8 @@ zh-TW:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: 分歧
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: 展示不同鑑定的觀察紀錄
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: 取消連結
@@ -1812,6 +1829,9 @@ zh-TW:
   export: 匯出
   export_observations: 匯出觀察
   export_with_private_coordinates: 以隱藏座標匯出
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
+  exported_at_datetime: 匯出於 %{datetime}
   exporting: "匯出中..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -1821,6 +1841,7 @@ zh-TW:
   external_taxon_including_children: 外部分類（包含子項）
   extinct: 絕種
   extinct_in_the_wild: 在野外絕種
+  provisional_taxon: 臨時
   extra_properties: 額外屬性
   evidence_accurately_depicts_organism_or_scene: 證據準確地描繪了有機體或場景
   evidence_of_organism: 生物證據
@@ -1835,6 +1856,12 @@ zh-TW:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: 最愛
   Family: 科
+  #Header for a section showing the user's favorite projects
+  favorite_projects: 最喜愛的專案
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    最多選擇七個以連結形式出現在標題中的專案。更新
+    在重新整理頁面後才會出現。
   favorite_taxa: 個人最愛物種分類
   favorites: "我的最愛"
   feature_this_project_: "精選此專案"
@@ -2190,6 +2217,11 @@ zh-TW:
   identification_saved: "鑑定已儲存！"
   #Notice when an identification has been hidden by moderators
   identification_hidden: 隱藏鑑定
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: 提名
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: 移除提名
   identification_unhidden: 取消隱藏鑑定
   #Notification when an identification has been updated
   identification_updated: 鑑定已更新！
@@ -2200,6 +2232,8 @@ zh-TW:
   inaturalist_global_year_in_review: "愛自然的全球 %{year} 年回顧"
   inaturalist_is_an_independent_nonprofit: |
     《愛自然(iNaturalist)》是位於美國的獨立 501(c)(3) 免稅、非營利組織（稅籍編號：92-1296468）。
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist依據%{user}的建議更新了這筆鑑定
   computer_vision_suggestion: 電腦視覺建議
   computer_vision_suggestion_desc: |
     電腦視覺是一種教導電腦識別圖片方面形態的程序。我們所提供的工具，使用了以社群照片所培訓出的電腦視覺模組來提供鑑定建議，像是自動完成與比較的功能。此標籤代表著有人是使用這些工具其一來添加鑑定。
@@ -2304,6 +2338,8 @@ zh-TW:
   internal_taxon_rank: 內部分類級別
   introduced: 引進
   introduced_in_place: "在%{place}引進"
+  #Error message shown when a date format is invalid
+  invalid_date: 日期無效
   invitation: 邀請
   invite: 邀請
   invite_people: 邀請人們
@@ -3136,6 +3172,10 @@ zh-TW:
   observation_: 觀察
   observation_accuracy_experiment_research_grade_results: "研究等級結果"
   observation_accuracy_experiment_verifiable_results: "可證實的結果"
+  observation_accuracy_experiment_correct: "正確"
+  observation_accuracy_experiment_uncertain: "不確定"
+  observation_accuracy_experiment_incorrect2: "錯誤"
+  observation_accuracy_experiment_accuracy: "精度"
   observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
     <b>請不要回覆此訊息。如果您有任何問題或反饋，請發送電子郵件至 <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "觀察已添加至專案「%{project}」"
@@ -3374,6 +3414,7 @@ zh-TW:
   organism_is_wild: 野生生物
   organisms: 生物
   original: 原有
+  original_flag: 原始標記
   originally_flagged_by: 原有標記由
   originally_imported_from_url_html: "最初從 <a href='%{url}'>%{url}</a> 所匯入"
   original_page_url_for_this_photo: "此照片的原始 URL。"
@@ -5336,6 +5377,11 @@ zh-TW:
   user_observed_on_on_date_in_place: |
     %{user} 於 %{date} 在%{place}觀察了一個
   user_suggested_an_id: "%{user} 建議了一個鑑定"
+  user_trusts_this_project_for_none: 使用者不信任此專案擁有任何被遮蔽的座標。
+  user_trusts_this_project_for_any: |
+    使用者信任此專案，並允許其使用因任何原因而被遮蔽的分類群座標。
+  user_trusts_this_project_for_taxon: |
+    使用者信任此專案，並僅允許其使用因受威脅而被遮蔽的分類群座標。
   user_trusts_this_project_when_added_by_any: |
     使用者信任添加了觀測點隱藏座標的專案策展人
     到專案。
