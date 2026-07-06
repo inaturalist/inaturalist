@@ -146,7 +146,6 @@ class ModeratorAction < ApplicationRecord
       most_recent = ModeratorAction.where( resource: resource, action: SUSPEND ).order( created_at: :desc ).first
       return false if most_recent && most_recent.id != id
     end
-    return true if editor.is_admin?
 
     editor == user
   end
