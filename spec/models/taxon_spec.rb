@@ -412,13 +412,9 @@ describe Taxon, "updating" do
     end
 
     it "leaves wikipedia_summary untouched when throttled by body even with a 200 status" do
-      ApiEndpointCache.make!(
-        api_endpoint: endpoint,
-        status_code: 200,
-        success: false,
-        response: "You are making too many requests.",
-        request_began_at: 1.minute.ago,
-        request_completed_at: 1.minute.ago
+      cache = ApiEndpointCache.make!( api_endpoint: endpoint, request_began_at: 1.minute.ago )
+      cache.cache_response(
+        double( "Net::HTTPResponse", code: "200", body: "You are making too many requests." )
       )
       taxon.set_wikipedia_summary( wikipedia: wikipedia )
       expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to be_nil
