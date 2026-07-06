@@ -39,6 +39,18 @@ class ApiEndpointCache < ApplicationRecord
     api_endpoint.update( last_throttled_at: request_completed_at ) if throttled?
   end
 
+  # Record a completed request that was throttled without an HTTP response to
+  # inspect, e.g. when a client library surfaces throttling as an exception
+  def cache_throttled!( body = nil )
+    update(
+      request_completed_at: Time.now,
+      status_code: THROTTLED_STATUS_CODE,
+      success: false,
+      response: body
+    )
+    api_endpoint.update( last_throttled_at: request_completed_at )
+  end
+
   def cached?
     if throttled?
       return false if request_completed_at.nil?

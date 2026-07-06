@@ -69,6 +69,26 @@ describe ApiEndpointCache do
     end
   end
 
+  describe "cache_throttled!" do
+    let( :cache ) { ApiEndpointCache.make! }
+
+    it "records a throttled response and stamps the endpoint" do
+      cache.cache_throttled!( "Too many requests" )
+      expect( cache.status_code ).to eq ApiEndpointCache::THROTTLED_STATUS_CODE
+      expect( cache.success ).to be false
+      expect( cache.response ).to eq "Too many requests"
+      expect( cache.request_completed_at ).not_to be_nil
+      expect( cache.api_endpoint.last_throttled_at ).to eq cache.request_completed_at
+      expect( cache.api_endpoint.recently_throttled? ).to be true
+    end
+
+    it "does not require a body" do
+      cache.cache_throttled!
+      expect( cache.throttled? ).to be true
+      expect( cache.response ).to be_nil
+    end
+  end
+
   describe "cache_response" do
     let( :cache ) { ApiEndpointCache.make! }
 

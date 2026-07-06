@@ -2883,7 +2883,7 @@ class ObservationsController < ApplicationController
   end
 
   def ensure_photos_are_local_photos( photos )
-    photos.map { |photo|
+    local_photos = photos.map { |photo|
       if photo.is_a?( LocalPhoto )
         photo
       elsif photo.new_record?
@@ -2893,6 +2893,12 @@ class ObservationsController < ApplicationController
         Photo.find_by_id( photo.id ) # || photo.becomes( LocalPhoto ) # ensure we have an object loaded with the right class
       end
     }.compact.uniq
+    if local_photos.size < photos.compact.uniq.size &&
+        FlickrCache.api_endpoint.recently_throttled?
+      # let the user know why some of their photos could not be imported
+      flash[:error] ||= t( :flickr_photo_import_throttled )
+    end
+    local_photos
   end
 
   def ensure_sounds_are_local_sounds( sounds )

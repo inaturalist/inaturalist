@@ -98,7 +98,8 @@ class MetaService
         request_began_at: Time.now,
         request_completed_at: nil,
         success: nil,
-        response: nil
+        response: nil,
+        status_code: nil
       )
       Timeout.timeout( options[:timeout] ) do
         response = fetch_with_redirects( options )

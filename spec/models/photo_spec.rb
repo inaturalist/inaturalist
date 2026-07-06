@@ -96,6 +96,41 @@ describe Photo do
       expect( lp.subtype ).to eq "FlickrPhoto"
       expect( lp.native_original_image_url ).to eq fp.original_url
     end
+
+    describe "when Flickr throttles the download" do
+      let( :flickr_image_url ) { "https://live.staticflickr.com/65535/1234_abcd_o.jpg" }
+      let( :remote_photo ) { FlickrPhoto.new( remote_original_url: flickr_image_url ) }
+
+      it "records the throttling and returns nothing when the download gets a 429" do
+        stub_request( :get, flickr_image_url ).
+          to_return( status: 429, body: "Too many requests" )
+        expect( Photo.local_photo_from_remote_photo( remote_photo ) ).to be_nil
+        expect( FlickrCache.api_endpoint.recently_throttled? ).to be true
+      end
+
+      it "does not attempt downloads while the endpoint was recently throttled" do
+        stub_request( :get, flickr_image_url )
+        FlickrCache.api_endpoint.update( last_throttled_at: 1.minute.ago )
+        expect( Photo.local_photo_from_remote_photo( remote_photo ) ).to be_nil
+        expect( a_request( :get, flickr_image_url ) ).not_to have_been_made
+      end
+
+      it "raises on a 429 from a host other than Flickr" do
+        url = "https://static.inaturalist.org/some.jpg"
+        stub_request( :get, url ).to_return( status: 429 )
+        fp = FlickrPhoto.new( remote_original_url: url )
+        expect { Photo.local_photo_from_remote_photo( fp ) }.to raise_error( OpenURI::HTTPError )
+      end
+
+      it "still builds a LocalPhoto when Flickr responds normally" do
+        stub_request( :get, flickr_image_url ).to_return(
+          status: 200,
+          body: File.read( Rails.root.join( "spec", "fixtures", "files", "cuthona_abronia.jpg" ) ),
+          headers: { "Content-Type" => "image/jpeg" }
+        )
+        expect( Photo.local_photo_from_remote_photo( remote_photo ) ).to be_a LocalPhoto
+      end
+    end
   end
 
   describe "turn_remote_photo_into_local_photo" do
@@ -123,6 +158,32 @@ describe Photo do
       Photo.turn_remote_photo_into_local_photo(fp)
       expect(fp.type).to eq "LocalPhoto"
       expect(fp.native_original_image_url).to eq fp.large_url
+    end
+
+    describe "when Flickr throttles the download" do
+      let( :flickr_image_url ) { "https://live.staticflickr.com/65535/1234_abcd_o.jpg" }
+      let( :remote_photo ) { FlickrPhoto.new( remote_original_url: flickr_image_url ) }
+
+      before do
+        stub_request( :head, flickr_image_url ).
+          to_return( status: 200, headers: { "Content-Type" => "image/jpeg" } )
+      end
+
+      it "records the throttling and does not save the photo when the download gets a 429" do
+        stub_request( :get, flickr_image_url ).
+          to_return( status: 429, body: "Too many requests" )
+        Photo.turn_remote_photo_into_local_photo( remote_photo )
+        expect( remote_photo ).not_to be_persisted
+        expect( FlickrCache.api_endpoint.recently_throttled? ).to be true
+      end
+
+      it "does not attempt downloads while the endpoint was recently throttled" do
+        stub_request( :get, flickr_image_url )
+        FlickrCache.api_endpoint.update( last_throttled_at: 1.minute.ago )
+        Photo.turn_remote_photo_into_local_photo( remote_photo )
+        expect( remote_photo.type ).to eq "FlickrPhoto"
+        expect( a_request( :get, flickr_image_url ) ).not_to have_been_made
+      end
     end
   end
 

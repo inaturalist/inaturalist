@@ -48,6 +48,9 @@ class Photo < ApplicationRecord
 
   MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /heic/i, /heif/i, /octet-stream/].freeze
 
+  # Matches Flickr's image hosts, e.g. live.staticflickr.com, farm1.static.flickr.com
+  FLICKR_HOSTED_URL_PATTERN = %r{\Ahttps?://[^/]*static\.?flickr\.com/}i
+
   class MissingPhotoError < StandardError; end
 
   def parse_extension
@@ -415,7 +418,19 @@ class Photo < ApplicationRecord
       end
 
       # if that succeded, update this photo with the repaired remote URL
-      photo.file = URI( repaired.best_available_url )
+      repaired_url = repaired.best_available_url
+      if flickr_download_throttled?( repaired_url )
+        return [photo, { base: "Flickr is currently throttling requests" }]
+      end
+
+      begin
+        photo.file = URI( repaired_url )
+      rescue OpenURI::HTTPError => e
+        raise e unless flickr_throttled_error?( e, repaired_url )
+
+        FlickrCache.throttled!
+        return [photo, { base: "Flickr is currently throttling requests" }]
+      end
       photo.save
       return [photo, {}]
     end
@@ -426,6 +441,21 @@ class Photo < ApplicationRecord
       Photo.turn_remote_photo_into_local_photo( repaired_photo )
     end
     [repaired_photo, errors]
+  end
+
+  def self.flickr_hosted?( url )
+    !!( url.to_s =~ FLICKR_HOSTED_URL_PATTERN )
+  end
+
+  # Returns whether a photo download failure was Flickr throttling us
+  def self.flickr_throttled_error?( error, url )
+    flickr_hosted?( url ) && error.io.status.first.to_i == ApiEndpointCache::THROTTLED_STATUS_CODE
+  end
+
+  # Returns whether photo downloads from this URL should be skipped because
+  # Flickr recently throttled us
+  def self.flickr_download_throttled?( url )
+    flickr_hosted?( url ) && FlickrCache.api_endpoint.recently_throttled?
   end
 
   # used in the ObservationsController to create an un-saved
@@ -443,6 +473,7 @@ class Photo < ApplicationRecord
       remote_photo.instance_variable_get( "@remote_#{s}_url" )
     end.compact.first
     return unless photo_url
+    return if flickr_download_throttled?( photo_url )
 
     if photo_url.size <= 512
       remote_photo_attrs["native_original_image_url"] = photo_url
@@ -451,12 +482,18 @@ class Photo < ApplicationRecord
     # stub this LocalPhoto's file with the remote photo URL
     remote_photo_attrs["file"] = URI( photo_url )
     LocalPhoto.new( remote_photo_attrs )
+  rescue OpenURI::HTTPError => e
+    raise e unless flickr_throttled_error?( e, photo_url )
+
+    FlickrCache.throttled!
+    nil
   end
 
   # to be used primarly for retroactive caching of remote photos
   def self.turn_remote_photo_into_local_photo( remote_photo )
     return unless remote_photo && remote_photo.class < Photo
     return unless ( fetch_url = remote_photo.best_available_url )
+    return if flickr_download_throttled?( fetch_url )
 
     remote_photo.type = "LocalPhoto"
     remote_photo.subtype = remote_photo.class.name
@@ -466,6 +503,11 @@ class Photo < ApplicationRecord
     remote_photo = remote_photo.becomes( LocalPhoto )
     remote_photo.file = URI( fetch_url )
     remote_photo.save
+  rescue OpenURI::HTTPError => e
+    raise e unless flickr_throttled_error?( e, fetch_url )
+
+    FlickrCache.throttled!
+    false
   end
 
   # to be used primarly for turn_remote_photo_into_local_photo
