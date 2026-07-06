@@ -390,6 +390,55 @@ describe Taxon, "updating" do
     end
   end
 
+  describe "wikipedia_url" do
+    let( :taxon ) { Taxon.make! }
+
+    it "returns the URL for the requested locale" do
+      create :taxon_description,
+        taxon: taxon,
+        provider: "Wikipedia",
+        locale: "fr",
+        url: "https://fr.wikipedia.org/wiki/Merle_noir"
+      create :taxon_description,
+        taxon: taxon,
+        provider: "Wikipedia",
+        locale: "en",
+        url: "https://en.wikipedia.org/wiki/Common_blackbird"
+
+      expect( taxon.wikipedia_url( locale: "fr" ) ).to eq "https://fr.wikipedia.org/wiki/Merle_noir"
+    end
+
+    it "falls back to a matching language variant" do
+      create :taxon_description,
+        taxon: taxon,
+        provider: "Wikipedia",
+        locale: "pt",
+        url: "https://pt.wikipedia.org/wiki/Melro-preto"
+
+      expect( taxon.wikipedia_url( locale: "pt" ) ).to eq "https://pt.wikipedia.org/wiki/Melro-preto"
+    end
+
+    it "falls back to an English Wikipedia URL" do
+      create :taxon_description,
+        taxon: taxon,
+        provider: "Wikipedia",
+        locale: "en",
+        url: "https://en.wikipedia.org/wiki/Common_blackbird"
+
+      expect( taxon.wikipedia_url( locale: "fr" ) ).to eq "https://en.wikipedia.org/wiki/Common_blackbird"
+    end
+
+    it "does not return a guessed URL when no stored Wikipedia URL exists" do
+      create :taxon_description,
+        taxon: taxon,
+        provider: "Wikipedia",
+        locale: "fr",
+        url: nil
+
+      expect( taxon.wikipedia_url( locale: "fr" ) ).to be_nil
+    end
+  end
+
   it "should assign the updater if explicitly assigned" do
     creator = make_curator
     updater = make_curator
