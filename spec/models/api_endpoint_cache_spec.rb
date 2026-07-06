@@ -63,14 +63,45 @@ describe ApiEndpointCache do
       expect( cache.throttled? ).to be true
     end
 
-    it "is true when the response body indicates too many requests" do
-      cache = ApiEndpointCache.make!( status_code: 200,
-        response: "You are making too many requests.\nPlease reduce your request rate." )
+    it "is false for a normal successful response" do
+      cache = ApiEndpointCache.make!( status_code: 200, response: "<parse><text>ok</text></parse>" )
+      expect( cache.throttled? ).to be false
+    end
+  end
+
+  describe "cache_response" do
+    let( :cache ) { ApiEndpointCache.make! }
+
+    def http_response( code:, body: )
+      double( "Net::HTTPResponse", code: code.to_s, body: body )
+    end
+
+    it "stores a successful response" do
+      cache.cache_response( http_response( code: 200, body: "<parse><text>ok</text></parse>" ) )
+      expect( cache.status_code ).to eq 200
+      expect( cache.success ).to be true
+      expect( cache.throttled? ).to be false
+      expect( cache.request_completed_at ).not_to be_nil
+    end
+
+    it "marks a 429 response as throttled and not a success" do
+      cache.cache_response( http_response( code: 429, body: "Slow down!" ) )
+      expect( cache.status_code ).to eq 429
+      expect( cache.success ).to be false
       expect( cache.throttled? ).to be true
     end
 
-    it "is false for a normal successful response" do
-      cache = ApiEndpointCache.make!( status_code: 200, response: "<parse><text>ok</text></parse>" )
+    it "translates a too-many-requests body to a throttled status code even with a 200 status" do
+      cache.cache_response( http_response( code: 200,
+        body: "You are making too many requests.\nPlease reduce your request rate." ) )
+      expect( cache.status_code ).to eq ApiEndpointCache::THROTTLED_STATUS_CODE
+      expect( cache.success ).to be false
+      expect( cache.throttled? ).to be true
+    end
+
+    it "does not mark a blank response as a success" do
+      cache.cache_response( http_response( code: 200, body: "" ) )
+      expect( cache.success ).to be false
       expect( cache.throttled? ).to be false
     end
   end

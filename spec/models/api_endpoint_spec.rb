@@ -12,10 +12,11 @@ describe ApiEndpoint do
       expect( endpoint.recently_throttled? ).to be true
     end
 
-    it "is true when a recent cache has a too-many-requests body but a 200 status code" do
-      ApiEndpointCache.make!( api_endpoint: endpoint, success: false, status_code: 200,
-        response: "You are making too many requests.",
-        request_began_at: 1.minute.ago, request_completed_at: 1.minute.ago )
+    it "is true when a recent response had a too-many-requests body but a 200 status code" do
+      cache = ApiEndpointCache.make!( api_endpoint: endpoint, request_began_at: 1.minute.ago )
+      cache.cache_response(
+        double( "Net::HTTPResponse", code: "200", body: "You are making too many requests." )
+      )
       expect( endpoint.recently_throttled? ).to be true
     end
 

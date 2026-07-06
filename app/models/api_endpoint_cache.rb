@@ -21,8 +21,26 @@ class ApiEndpointCache < ApplicationRecord
     false
   end
 
+  def self.translated_status_code( status_code, body )
+    throttled_response?( status_code, body ) ? THROTTLED_STATUS_CODE : status_code
+  end
+
   def throttled?
     status_code.to_i == THROTTLED_STATUS_CODE
+  end
+
+  # Record a completed HTTP response, translating throttled responses (which
+  # may arrive with a 200 status and a "too many requests" body) to a 429
+  # status code so they are never treated as successful. The throttled body is
+  # still stored for monitoring/inspection.
+  def cache_response( response )
+    status_code = self.class.translated_status_code( response.code.to_i, response.body )
+    update(
+      request_completed_at: Time.now,
+      status_code: status_code,
+      success: status_code != THROTTLED_STATUS_CODE && !response.body.blank?,
+      response: response.body
+    )
   end
 
   def cached?
