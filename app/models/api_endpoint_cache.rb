@@ -7,7 +7,7 @@ class ApiEndpointCache < ApplicationRecord
   belongs_to :api_endpoint
 
   scope :throttled, lambda {
-    where( "status_code = ? OR response ILIKE ?", THROTTLED_STATUS_CODE, "%#{THROTTLED_BODY_PHRASE}%" )
+    where( status_code: THROTTLED_STATUS_CODE )
   }
 
   def in_progress?
@@ -22,7 +22,7 @@ class ApiEndpointCache < ApplicationRecord
   end
 
   def throttled?
-    self.class.throttled_response?( status_code, response )
+    status_code.to_i == THROTTLED_STATUS_CODE
   end
 
   def cached?
