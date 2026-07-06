@@ -91,12 +91,24 @@ describe ApiEndpointCache do
       expect( cache.throttled? ).to be true
     end
 
+    it "records a 429 response on the endpoint as last_throttled_at" do
+      cache.cache_response( http_response( code: 429, body: "Slow down!" ) )
+      expect( cache.api_endpoint.last_throttled_at ).to eq cache.request_completed_at
+      expect( cache.api_endpoint.recently_throttled? ).to be true
+    end
+
     it "translates a too-many-requests body to a throttled status code even with a 200 status" do
       cache.cache_response( http_response( code: 200,
         body: "You are making too many requests.\nPlease reduce your request rate." ) )
       expect( cache.status_code ).to eq ApiEndpointCache::THROTTLED_STATUS_CODE
       expect( cache.success ).to be false
       expect( cache.throttled? ).to be true
+      expect( cache.api_endpoint.last_throttled_at ).not_to be_nil
+    end
+
+    it "does not record last_throttled_at on the endpoint for a successful response" do
+      cache.cache_response( http_response( code: 200, body: "<parse><text>ok</text></parse>" ) )
+      expect( cache.api_endpoint.last_throttled_at ).to be_nil
     end
 
     it "does not mark a blank response as a success" do

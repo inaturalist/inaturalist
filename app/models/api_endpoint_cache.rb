@@ -1,14 +1,9 @@
 class ApiEndpointCache < ApplicationRecord
   THROTTLE_RETRY_MINUTES = 30
   THROTTLED_STATUS_CODE = 429
-  # Shared by .throttled_response? (Ruby) and the .throttled scope (SQL) — keep in sync.
   THROTTLED_BODY_PHRASE = "too many requests".freeze
 
   belongs_to :api_endpoint
-
-  scope :throttled, lambda {
-    where( status_code: THROTTLED_STATUS_CODE )
-  }
 
   def in_progress?
     !!( request_began_at && !request_completed_at )
@@ -41,6 +36,7 @@ class ApiEndpointCache < ApplicationRecord
       success: status_code != THROTTLED_STATUS_CODE && !response.body.blank?,
       response: response.body
     )
+    api_endpoint.update( last_throttled_at: request_completed_at ) if throttled?
   end
 
   def cached?
