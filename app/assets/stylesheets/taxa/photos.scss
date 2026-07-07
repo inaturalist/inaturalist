@@ -1,4 +1,10 @@
+@import "../breakpoints";
+
 .PhotoBrowser {
+  @include container-padding;
+  max-width: 1300px;
+  margin: 0 auto;
+  min-height: 500px;
   .photos {
     margin: -2.5px;
     line-height: 0;
@@ -26,6 +32,7 @@
   }
   .TaxonPhoto {
     flex-grow: 1;
+    max-width: 100% !important;
   }
 }
 
@@ -61,10 +68,6 @@
   }
 }
 
-#hero {
-  min-height: 500px;
-}
-
 .photo-group {
   margin-bottom: 20px;
   .photo-group-header {
@@ -81,3 +84,56 @@
   }
 }
 .photo-group.first h3 { margin-top: 0px; }
+
+.PhotoBrowser.grid {
+  .photos {
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax( 183px, 1fr ) );
+    margin: 0;
+    gap: 5px;
+
+    @media ( max-width: $md-max ) {
+      grid-template-columns: repeat( auto-fill, minmax( 150px, 1fr ) );
+    }
+
+    @media ( max-width: $sm-max ) {
+      grid-template-columns: repeat( auto-fill, minmax( 130px, 1fr ) );
+    }
+  }
+
+  // Spacing in grid mode comes entirely from `gap`; clear the fluid-layout
+  // gutter margin so it doesn't add to the row spacing (overflowing horizontally
+  // but stacking vertically, which makes rows look farther apart than columns).
+  .TaxonPhoto {
+    margin: 0;
+  }
+
+  .nocontent {
+    grid-column: 1 / -1;
+  }
+}
+
+@media ( max-width: $sm-max ) {
+  .PhotoBrowser {
+    padding-bottom: 30px;
+  }
+
+  #controls {
+    flex-direction: column;
+
+    #layout-control {
+      margin-bottom: 10px;
+    }
+
+    #filters {
+      display: flex;
+      flex-wrap: wrap;
+      line-height: normal;
+
+      .control-group {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+}
