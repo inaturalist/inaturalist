@@ -31,8 +31,6 @@ class Assessment extends React.Component {
     } = this.props;
     if ( !observation ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
-    const responsive = config.currentUser?.isAdmin
-      && config.currentUser?.isInTestGroup( "responsive-obs-detail" );
     const { open } = this.state;
     const InnerWrapper = innerWrapper || ( props => (
       <div>
@@ -193,10 +191,10 @@ class Assessment extends React.Component {
             <Panel.Collapse>
               <InnerWrapper config={config}>
                 <Row>
-                  <Col xs={responsive ? null : 7} sm={responsive ? 7 : null}>
+                  <Col sm={7}>
                     <QualityMetricsContainer />
                   </Col>
-                  <Col xs={responsive ? null : 5} sm={responsive ? 5 : null}>
+                  <Col sm={5}>
                     <ResearchGradeProgressContainer />
                   </Col>
                 </Row>

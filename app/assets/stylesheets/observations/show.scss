@@ -116,14 +116,31 @@ body.responsive {
     @media ( max-width: $lg-max ) {
       .photos_column,
       .info_column,
-      .middle_left,
-      .opposite_activity,
       .nearby_col,
       .similar_col {
         flex: 1 1 100%;
       }
-      .middle_left {
-        padding-right: 0;
+      .photos_column {
+        border-right: none;
+      }
+      .middle {
+        flex-direction: column;
+      }
+      .middle_left,
+      .middle_right {
+        display: contents;
+      }
+      .notes_col {
+        order: 1;
+      }
+      .community_taxon_col {
+        order: 2;
+      }
+      .activity_col {
+        order: 3;
+      }
+      .opposite_activity {
+        order: 4;
       }
     }
   }
@@ -639,8 +656,17 @@ a.UserImage,
       margin-bottom: 20px;
     }
   }
-  .opposite_activity {
+  .middle_right {
     flex: 5 1 0;
+    min-width: 0;
+  }
+  .community_taxon_col {
+    margin-bottom: 15px;
+    .CommunityIdentification h4 {
+      margin-top: 30px;
+    }
+  }
+  .opposite_activity {
     min-width: 0;
     & > * {
       margin-bottom: 15px;
@@ -648,8 +674,15 @@ a.UserImage,
     h4 {
       margin-top: 15px;
     }
-    .CommunityIdentification h4 {
-      margin-top: 30px;
+  }
+  .description {
+    font-style: normal;
+    color: inherit;
+  }
+  @media ( max-width: $mobile-max ) {
+    .compare-obs-btn,
+    .community-id-about-btn {
+      display: none;
     }
   }
   .ObservationTitle {
@@ -695,28 +728,40 @@ a.UserImage,
   .data_quality_assessment {
     background: #fff;
     border-top: 1px solid $border-grey;
+    margin-inline: -60px;
+    padding-inline: 60px;
 
-    @media (max-width: $lg-max) {
+    .container {
+      margin: 0;
+    }
+
+    @media ( max-width: $md-max ) {
+      margin-inline: -30px;
+      padding-inline: 30px;
+    }
+    @media ( max-width: $sm-max ) {
       margin-inline: -15px;
-
-      .container {
-        padding: 0 15px;
-        margin: 0;
-      }
+      padding-inline: 15px;
     }
   }
   .more_from {
     background: #eee;
     border-top: 1px solid $border-grey;
+    margin-inline: -60px;
+    padding-inline: 60px;
 
     .more_from_user {
       padding: 0 15px;
       margin: 0;
     }
 
-    @media (max-width: $lg-max) {
+    @media ( max-width: $md-max ) {
+      margin-inline: -30px;
+      padding-inline: 30px;
+    }
+    @media ( max-width: $sm-max ) {
       margin-inline: -15px;
-
+      padding-inline: 15px;
     }
 
     .MoreFromUser {
@@ -958,6 +1003,17 @@ time {
   min-width: 550px;
   padding: 20px;
   display: inline-block;
+
+  @media ( max-width: $mobile-max ) {
+    min-width: 0;
+    max-width: 100vw;
+    .standard, .community {
+      float: none;
+      min-width: 0;
+      max-width: 100%;
+    }
+  }
+
   .attr {
     font-weight: 600;
   }

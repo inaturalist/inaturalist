@@ -415,27 +415,35 @@ class App extends React.Component<AppProps> {
           </div>
           <div className="middle">
             <div className="middle_left">
-              { description }
-              <ActivityContainer />
+              <div className="notes_col">
+                { description }
+              </div>
+              <div className="activity_col">
+                <ActivityContainer />
+              </div>
             </div>
-            <div className="opposite_activity">
-              <CommunityIdentificationContainer />
-              <LazyLoad
-                debounce={false}
-                offset={100}
-              >
-                <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
-              </LazyLoad>
-              <ProjectsContainer />
-              { (
-                ( config.currentUser && config.currentUser.id === observation.user?.id )
-                || ( observation && observation.tags && observation.tags.length > 0 )
-              ) && (
-                <TagsContainer />
-              ) }
-              <ObservationFieldsContainer />
-              <IdentifiersContainer />
-              <CopyrightContainer />
+            <div className="middle_right">
+              <div className="community_taxon_col">
+                <CommunityIdentificationContainer />
+              </div>
+              <div className="opposite_activity">
+                <LazyLoad
+                  debounce={false}
+                  offset={100}
+                >
+                  <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
+                </LazyLoad>
+                <ProjectsContainer />
+                { (
+                  ( config.currentUser && config.currentUser.id === observation.user?.id )
+                  || ( observation && observation.tags && observation.tags.length > 0 )
+                ) && (
+                  <TagsContainer />
+                ) }
+                <ObservationFieldsContainer />
+                <IdentifiersContainer />
+                <CopyrightContainer />
+              </div>
             </div>
           </div>
         </div>

@@ -96,6 +96,8 @@ body > [role="dialog"] .ActivityItem {
     font-size: 14px;
     .title_text {
       flex: 2;
+      min-width: 0;
+      overflow-wrap: anywhere;
       margin-inline-end: 20px;
       overflow: hidden;
       text-overflow: ellipsis;

@@ -457,7 +457,7 @@ const ActivityItem = ( props: ActivityItemProps ) => {
         <button
           key={`id-compare-${item.uuid}`}
           type="button"
-          className="btn btn-default btn-sm"
+          className="btn btn-default btn-sm compare-obs-btn"
           onClick={e => {
             if ( onClickCompare ) {
               return onClickCompare(
