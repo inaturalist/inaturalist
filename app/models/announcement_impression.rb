@@ -11,7 +11,6 @@ class AnnouncementImpression < ApplicationRecord
 
   def self.increment_for_announcement( announcement, options = {} )
     return unless announcement.is_a?( Announcement )
-    return unless options[:user_id] || options[:user] || options[:request_ip]
 
     base_impression_options = {
       announcement_id: announcement.id,
@@ -19,7 +18,7 @@ class AnnouncementImpression < ApplicationRecord
     }
 
     if options[:user_id] || options[:user]
-      user_impression_options = base_impression_options.merge( user: options[:user_id] || options[:user] )
+      user_impression_options = base_impression_options.merge( user_id: options[:user_id] || options[:user].id )
       existing_impression = AnnouncementImpression.where( user_impression_options ).first
       if existing_impression
         existing_impression.update(
