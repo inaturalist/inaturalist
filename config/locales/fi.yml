@@ -621,8 +621,18 @@ fi:
     Hakemuksen lähettäminen edellyttää, että tilisi on ollut olemassa vähintään 2 kuukautta ja että olet tehnyt vähintään 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241" target="_blank">parantavaa tunnistusta</a> viimeisen kuukauden aikana.
 
     Saatamme esittää lisäkysymyksiä suunnitelmastasi, ja pidätämme oikeuden hylätä hakemuksia mistä tahansa syystä.
+  app_owner_application_about_p2_2_html: |
+    Vuodesta 2022 lähtien API-asiakkaiden luominen on edellyttänyt manuaalista hyväksyntää. Jos haluat luoda kolmannen osapuolen sovelluksen, sinun tulee ensin hakea sovelluksen omistajaksi.
+    Hakemuksessa tulee kuvata suunnitellun sovelluksen toiminnallisuus sekä se, miten aiot käyttää sitä. Hakemuksen jättämisen edellytyksenä on, että käyttäjätilisi on ollut olemassa vähintään kaksi kuukautta ja että olet viimeisen kuukauden aikana tehnyt vähintään 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">tunnistuksen parannusta</a>
+    <i>muiden käyttäjien</i> havaintoihin.
+    Saatamme pyytää lisätietoja suunnitelmastasi, ja pidätämme oikeuden hylätä hakemuksen harkintamme mukaan.
   app_owner_application_inelligible: |
     Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 tunnistuksen parantamista viime kuussa.
+  app_owner_application_inelligible2_html: |
+    Hakemuksen jättämisen edellytyksenä on, että käyttäjätilisi on ollut olemassa vähintään kaksi kuukautta ja että olet viimeisen kuukauden aikana tehnyt vähintään 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">tunnistuksen parantamista</a>
+    <i>muiden käyttäjien</i> havaintoihin.
   app_owner_application_fields_explanation_html: Kuvaile sovelluksesi toiminnallisuus ja miten aiot käyttää sitä.
   app_owner_application_success: Sovelluksen omistajan hakemus lähetetty
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -2235,6 +2245,15 @@ fi:
   identification_saved: "Tunnistus tallennettu!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Tunnistus piilotettu
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Ehdota
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Poista ehdotus
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} nimesi tämän tunnistusvinkiksi."
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Ehdota tunnistusvinkiksi (keskeiset tuntomerkit, joiden avulla muut voivat tunnistaa tämän eliön) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Tunnistus näytetään
   #Notification when an identification has been updated
   identification_updated: Tunnistus päivitetty!
@@ -2955,6 +2974,7 @@ fi:
   mute_removed: Hiljennys poistettu
   muted_users: Hiljennetyt käyttäjät
   muting_description: Jonkun mykistäminen estää sinua saamasta ilmoitusta heidän toiminnastaan, mukaan lukien "@" maininnat, viestit tai kommentit ja tunnisteet havaintoihisi.
+  my_site: Oma sivusto
   n_ago: "%{n} sitten"
   n_people_agrees: "%{amount} ihmistä samaa mieltä"
   n_people_disagrees: "%{amount} ihmistä ovat eri mieltä"
@@ -4300,6 +4320,13 @@ fi:
     not_external: ei ulkoinen
     not_internal: ei sisäinen
     error: virhe
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Tilin palauttaminen
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Palauta %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Kerro, miksi palautat tämän tilin?
   relationships_user_settings: Kaverit
   relationship_html: "Suhde: %{link}"
   reload_from_observations: Päivitä luettelo havaintojesi perusteella
@@ -4457,6 +4484,8 @@ fi:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Sinun %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Katso moderointihistoria
   see_something_wrong_with_taxon: Onko tässä taksonissa jotain vikaa? Ilmoita asiasta kuraattoreille.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -4722,12 +4751,16 @@ fi:
   supporting: Tukee määritystä
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Jäähyn kesto
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Jäähyn kesto (%{link_start_tag}katso ohjeet%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 päivä
   #a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 päivää
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 viikko
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 viikkoa
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 kuukausi
   #a select form option indicating a user will be suspended for two months
@@ -4742,6 +4775,8 @@ fi:
   suspension_reason_custom: Mukautettu
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Huomioithan, että tämä syy näytetään jäähylle joutuneelle käyttäjälle.
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Huomioithan, että tämä syy näytetään jäähylle joutuneelle tilille.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Päivitä syy ja selitä, miksi vaihdat käyttäjän jäähyn syytä.
   #predefined reasons for user suspension which are listed to curators in the user suspension form
@@ -4753,28 +4788,42 @@ fi:
     #reason displayed to users who have been suspended for posting sexually explicit content
     #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Seksuaalisesti eksplisiittinen sisältö
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Seksuaalisen sisällön julkaiseminen
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
     #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Valeprofiilit
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Toisen tilin väärinkäyttö, kuten omien tunnistusten vahvistaminen
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
     #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Tahallinen väärien tunnistusten lisääminen
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Tahallinen väärän datan, kuten havaintojen, tunnistusten tai Data Quality Assessment -äänien lisääminen
     #reason displayed to users who have been suspended for posting machine generated content
     #REPLACED with adding_machine_generated_content below
     machine_generated_content: Koneella tuotetut havainnot, tunnistukset ja kommentit
+    #reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Koneellisesti luodun sisällön lisääminen
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
     #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Tekijänoikeusrikkomus jatkuu (varoituksen jälkeen)
+    #reason displayed to users who have continued to post media to the platform without the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Jatkoi median julkaisemista ilman median omistajan lupaa (varoituksen jälkeen)
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Keinotekoisesti luodun median jatkaminen (varoituksen jälkeen)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
     #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Datan laadun jatkuva heikentäminen (varoituksen jälkeen)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Datan laadun jatkuva heikentäminen, kuten virheellisten tunnistusten lisääminen (varoituksen jälkeen)
   #the time at which a users suspension ends
   suspend_until: Jäähyllä
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Päivämäärä ja aika selaimesi paikallisella aikavyöhykkeellä.
+  #button/menu label for suspending an account
+  suspend_account: Jäädytä tili
   suspend_user: Hyllytä käyttäjä
   suspend_user_html: Hyllytä %{user}
   suspend_user_reason_instructions_html: |
@@ -4953,6 +5002,10 @@ fi:
   that_role_doesnt_exist: Tätä roolia ei ole olemassa
   that_was_the_last_observation_matching_the_current_filters: Tämä oli viimeinen valitsemiasi suodattimia vastaava havainto.
   thats_not_a_real_date: Tuo ei ole oikea päivämäärä!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "Tili %{user} on jäädytetty"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "Tili %{user} on palautettu"
   the_admin_is_the_person_who: |
     Ylläpitäjä on henkilö, joka loi projektin. He voivat tehdä saman mitä managerit ja kuraattorit, ja myös poistaa projektin.
   the_below_items_are_needed_to_achieve: |
@@ -5015,6 +5068,8 @@ fi:
   this_taxon_is_inactive_this_means: |
     Tämä taksoni on <strong>ei-aktiivinen</strong>. Tämä tarkoittaa, että %{site_name}'n kuraattorit ovat korvanneet sen nykyisin voimassaolevalla taksonikonseptilla.
   this_user_has_been_suspended: Tämä käyttäjä on hyllytetty
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Tämä tili on jäädytetty
   this_user_has_been_suspended_message: |
     Jos tämä on sinun tilisi ja luulet että tämä on tehty vahingossa, <a href="mailto:%{email}">ota yhteyttä</a>.
   this_will_add_listed_taxa: Tämä päivittää luettelon havaintojesi perusteella. Tämä voi kestää jonkin aikaa, joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
@@ -5346,6 +5401,8 @@ fi:
   user_trusts_this_project_when_added_by_none: |
     Käyttäjä ei salli piilotettujen koordinaattien näkymistä kuraattoreille.
   user_updated_an_observation_field_html: '%{user} päivitti arvon kentälle "%{field_name}" havaintoon, jonka teki %{owner}'
+  #An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Tilisi on jäädytetty"
   #An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Tilisi on vapautettu jäähyltä"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> kirjoitti,
@@ -5690,6 +5747,8 @@ fi:
   you_didnt_select_any_observations: Et valinnut yhtään havaintoa
   you_dont_have_permission_to_do_that: Sinulla ei ole oikeutta tehdä sitä.
   you_dont_have_permission_to_edit_that_observation: "Sinulla ei ole oikeutta muokata tätä havaintoa."
+  #Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: Sinulla ei ole oikeutta muokata tätä ilmoitusta.
   you_dont_have_permission_to_edit_that_project: Sinulla ei ole oikeutta muokata tätä projektia.
   you_dont_have_permission_to_edit_that_taxon: |
     Sinulla ei ole oikeuksia muokata tätä taksonia. Ole hyvä ja ota yhtyettä taksonin kuraattoriin tai liputa taksoni pyytääksesi muutoksia.
@@ -6381,10 +6440,26 @@ fi:
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
         message: Tilisi on %{site_name} on vapautettu ja voit taas käyttää sivustoa.
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Tilisi %{site_name} on palautettu ja voit kirjautua sisään uudelleen.
         #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Tilisi laitettiin jäähylle seuraavasta syystä: %{reason}"
+        #A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        #longer future suspensions.
+        please_abide_html: 'Ole hyvä ja noudata <a href="%{community_guidelines_url}">iNaturalist-yhteisön ohjeita</a> ja <a href="%{terms_of_use_url}">käyttöehtoja</a>. Tulevat rikkomukset voivat johtaa pidempään keskeytykseen.'
+        #A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'Jos sinulla on kysymyksiä tai huolenaiheita, voit <a href="%{contact_us_url}">ottaa yhteyttä</a>.'
         #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Kirjaudu tilillesi</a> jatkaaksesi sivuston käyttöä.'
+      user_suspended:
+        #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "INaturalist-tilisi on jäädytettyy seuraavasta syystä: %{reason}. Jäädytys poistetaan %{duration}."
+        #A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "iNaturalist-tilisi on suljettu toistaiseksi seuraavasta syystä: %{reason}."
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'Jos uskot, että tämä jäädytys tehtiin vahingossa tai haluat valittaa, ole hyvä <a href="%{contact_us_url}">ota yhteyttä iNaturalist-tukeen</a>. Muista, että muiden tilien käyttäminen jäädytyksen välttämiseksi johtaa muiden tilien jäädyttämiseen ja niiden julkisen sisällön poistamiseen.'
+        #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'Kaikkia iNaturalist-yhteisön jäseniä pyydetään noudattamaan <a href="%{community_guidelines_url}">yhteisön ohjeita</a> ja <a href="%{terms_of_use_url}">käyttöehtoja</a>.'
       users_updates_suspended:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
@@ -6551,6 +6626,15 @@ fi:
         delete_project: Poista projekti
         display_project_name: Näytä projektin nimi
         duplicate_project: Kopioi projekti
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Sulje pois havainnot, jotka ovat satunnaisia muusta syystä kuin siitä, että ne on merkitty vangituiksi
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Sulje pois kaikki satunnaiset paitsi vangitut
         include_annotated_observations: |
           Sisällytä vain havainnot, joilla on tietty merkintä (esim. elinvaihe), tai tietty ominaisuus ja arvo (esim. elinvaihe = aikuinen). Yksi projekti voi käyttää vain yhtä tällaista suodatinta.
         leaderboards_among_individuals: <strong>Käyttäjien</strong> välinen tulostaulukko
@@ -6855,6 +6939,40 @@ fi:
           Tämä kaavio näyttää taksonin havaintojen lukumäärän kuukausittain viimeisten kymmenen vuoden ajalta. Havaintojen lukumääriin vaikuttaa havainnoijien lukumäärä, mutta kaaviosta näkee epätavalliset piikit havainnoissa, ja jos kaavio näyttää tasaiselta tai laskevalta havainnoijien lukumäärän kasvusta huolimatta, voi tämä kertoa muutoksesta taksonin runsaudessa.
         charts_help_relative_observations: |
           Frekvenssin näyttäminen suhteessa kokonaishavaintomäärään auttaa tasoittamaan iNaturalistin käyttäjämäärän kasvua. Esimerkiksi jos käyttäjien ja havaintojen määrä kasvaa joka vuosi, saamme enemmän havaintoja jostakin lajista. Tämä ei kerro että ko. lajia olisi enemmän, vaan että suurempi määrä ihmisiä havainnoi sitä. Suhteellisen frekvenssin näyttäminen tarkoittaa että jos havaintoja on 100 ja niistä 20 on tästä lajista, suhdeluku on 0,2 (20 / 100). Jos käyttäjät tekevät 2000 havaintoa seuraavana vuonna ja niistä 400 on tästä lajista, suhdeluku on edelleen 0,2 (400 / 2000). Tämä laskutapa aiheuttaa joitakin poikkeuksia kun alueella on hyvin vähän havainnoijia tai kun lajia havaitaan hyvin harvoin. Kuitenkin myös havaintojen kokonaismäärässä on on sama ongelma.
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Tunnistusvinkit
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Hae tunnistuksia tekstin tai käyttäjänimen perusteella
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Tälle organismille ei ole ehdotettuja tai äänestettyjä tunnistuksia tällä hetkellä. Tarkista myöhemmin uudelleen.
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Järjestä: Korkeimmasta alimpaan äänimäärään"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Järjestä: Alimmasta korkeimpaan äänimäärään"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Järjestä: Uusimmasta vanhimpaan"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Järjestä: Vanhimmasta uusimpaan"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Järjestä: Pisimmästä lyhimpään"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Kannatettu
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: Annettu miinusääni (piilotettu)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Ei ääniä
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Ei ehdolla
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Näytä koko keskustelu
         frequency:
           research: Tutkimustaso
           verifiable: Todennettavissa
