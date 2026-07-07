@@ -603,44 +603,48 @@ class IdentificationsTab extends Component {
           e.preventDefault( );
         }}
       >
-        <div className="input-group">
-          <div className="search-input">
-            <input
-              className="form-control"
-              name="q"
-              id="identifications_search_query"
-              type="text"
-              placeholder={I18n.t( "views.taxa.show.identifications.search_identifications" )}
-              autoComplete="off"
-              onChange={e => {
-                this.setSearchSearchTermPresent( !_.isEmpty( e.target.value ) );
-              }}
-            />
-            { this.state.searchSearchTermPresent && (
-              <span
-                type="button"
-                aria-hidden="true"
-                className="glyphicon glyphicon-remove-circle searchclear"
-                onClick={( ) => {
-                  $( "#identifications_search_query" ).val( "" );
-                  this.setSearchSearchTermPresent( false );
-                  setIdentificationsQuery( {
-                    ...identificationsQuery,
-                    q: null,
-                    page: null
-                  } );
+        <div className="search-bar-row">
+          <div className="input-group">
+            <div className="search-input">
+              <input
+                className="form-control"
+                name="q"
+                id="identifications_search_query"
+                type="text"
+                placeholder={I18n.t( "views.taxa.show.identifications.search_identifications" )}
+                autoComplete="off"
+                onChange={e => {
+                  this.setSearchSearchTermPresent( !_.isEmpty( e.target.value ) );
                 }}
               />
-            ) }
+              { this.state.searchSearchTermPresent && (
+                <span
+                  type="button"
+                  aria-hidden="true"
+                  className="glyphicon glyphicon-remove-circle searchclear"
+                  onClick={( ) => {
+                    $( "#identifications_search_query" ).val( "" );
+                    this.setSearchSearchTermPresent( false );
+                    setIdentificationsQuery( {
+                      ...identificationsQuery,
+                      q: null,
+                      page: null
+                    } );
+                  }}
+                />
+              ) }
+            </div>
+            <span className="input-group-btn">
+              <input
+                type="submit"
+                className="btn btn-primary"
+                value={I18n.t( "search" )}
+              />
+            </span>
           </div>
-          <span className="input-group-btn">
-            <input
-              type="submit"
-              className="btn btn-primary"
-              value={I18n.t( "search" )}
-            />
-          </span>
-          { this.sortSelect( ) }
+          <div className="sort-row">
+            { this.sortSelect( ) }
+          </div>
         </div>
         { this.resultAnnotations( ) }
       </form>

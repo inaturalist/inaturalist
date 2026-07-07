@@ -170,6 +170,7 @@ class TaxaController < ApplicationController
   end
 
   def show
+    @responsive = true
     if params[:id]
       begin
         @taxon ||= Taxon.where( id: params[:id] ).includes( { taxon_names: :place_taxon_names } ).first
@@ -228,10 +229,7 @@ class TaxaController < ApplicationController
         else
           session[:preferred_taxon_page_ancestors_shown]
         end
-        if current_user&.in_test_group?( "responsive-header" ) &&
-            current_user.in_test_group?( "responsive-taxon-detail" )
-          @skip_min_width = true
-        end
+        @skip_min_width = true
 
         # Build the list of all locale URLs available for this taxon (all locales with a valid
         # common name). Used by the view to render hreflang alternate tags on every page variant.
