@@ -679,8 +679,12 @@ a.UserImage,
     font-style: normal;
     color: inherit;
   }
-  @media ( max-width: $mobile-max ) {
-    .compare-obs-btn,
+  @media ( max-width: $md-max ) {
+    .compare-obs-btn {
+      display: none;
+    }
+  }
+  @media ( max-width: $lg-max ) {
     .community-id-about-btn {
       display: none;
     }
@@ -1004,7 +1008,7 @@ time {
   padding: 20px;
   display: inline-block;
 
-  @media ( max-width: $mobile-max ) {
+  @media ( max-width: $md-max ) {
     min-width: 0;
     max-width: 100vw;
     .standard, .community {

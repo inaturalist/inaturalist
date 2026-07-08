@@ -1,10 +1,11 @@
 @import "../colors";
+@import "../breakpoints";
 
 body > div > [role="dialog"] .modal-body {
   max-height: none;
 }
 
-@media ( max-width: 767px ) {
+@media ( max-width: $md-max ) {
   .ConfirmModal .modal-dialog,
   .FlaggingModal .modal-dialog {
     width: auto;
