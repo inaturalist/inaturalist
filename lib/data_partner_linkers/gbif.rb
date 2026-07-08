@@ -2,8 +2,10 @@
 
 module DataPartnerLinkers
   class GBIF < DataPartnerLinkers::DataPartnerLinker
+    MAX_OBSERVATION_INDEX_QUEUE_SIZE = 1000
+
     def initialize( data_partner, options = {} )
-      super( data_partner, options )
+      super
       @username = options[:username] || CONFIG.gbif.username
       @password = options[:password] || CONFIG.gbif.password
       @notification_address = options[:notification_address] || CONFIG.gbif.notification_address
@@ -67,76 +69,145 @@ module DataPartnerLinkers
       system_call "unzip -d #{@tmp_path} #{@tmp_path}/#{filename}"
     end
 
+    def process_result
+      @total_records = @status["totalRecords"]
+      @observation_index_queue = []
+      @process_start_time = Time.now
+      @processed_count = 0
+      @old_count = 0
+      @new_count = 0
+      @missing_count = 0
+      rows_queue = []
+      occurrence_path = File.join( @tmp_path, "occurrence.txt" )
+      # "\x00" is an unprintable character that I hope we can assume will
+      #   never appear in the data. If it does, CSV will choke
+      CSV.foreach( occurrence_path, col_sep: "\t", headers: true, quote_char: "\x00" ) do | row |
+        rows_queue << row
+        if rows_queue.size >= 1000
+          process_rows( rows_queue )
+          rows_queue = []
+        end
+      end
+      process_rows( rows_queue )
+    end
+
+    def process_rows( rows )
+      return if rows.empty?
+
+      ObservationLink.transaction do
+        rows.each do | row |
+          gbif_id = row["gbifID"]
+          inaturalist_observation_id = row["catalogNumber"]
+          if ( @processed_count % 1000 ).zero?
+            percent_finished = ( @processed_count / @total_records.to_f * 100 ).round( 2 )
+            run_time = Time.now - @process_start_time
+            minutes_elapsed = ( run_time / 60.0 ).round( 2 )
+            avg_row_time = run_time / @processed_count
+            minutes_left = ( ( ( @total_records - @processed_count ) * avg_row_time ) / 60 ).round( 2 )
+
+            logger.info( [
+              gbif_id.to_s.ljust( 20 ),
+              "#{@processed_count} of #{@total_records} (#{percent_finished}%)".ljust( 30 ),
+              "#{minutes_elapsed} min in".ljust( 15 ),
+              "#{minutes_left} min left".ljust( 15 ),
+              "Old: #{@old_count}",
+              "New: #{@new_count}",
+              "Missing: #{@missing_count}"
+            ].join( " " ) )
+          end
+
+          href = "http://www.gbif.org/occurrence/#{gbif_id}"
+          count_touched = if @opts[:debug]
+            ObservationLink.where( observation_id: inaturalist_observation_id, href: href ).count
+          else
+            ObservationLink.where( observation_id: inaturalist_observation_id, href: href ).touch_all
+          end
+          if count_touched.positive?
+            @old_count += 1
+            @processed_count += 1
+            next
+          end
+
+          unless Observation.where( id: inaturalist_observation_id ).exists?
+            if @opts[:debug]
+              logger.info( "\tobservation #{inaturalist_observation_id} doesn't exist, skipping..." )
+            end
+            @missing_count += 1
+            @processed_count += 1
+            next
+          end
+
+          observation_link = ObservationLink.new(
+            observation_id: inaturalist_observation_id,
+            href: href,
+            href_name: "GBIF",
+            rel: "alternate"
+          )
+          observation_link.save unless @opts[:debug]
+          @new_count += 1
+          add_observation_to_index_queue( inaturalist_observation_id.to_i )
+          @processed_count += 1
+        end
+      end
+    end
+
+    def add_observation_to_index_queue( observation_id )
+      @observation_index_queue ||= []
+      @observation_index_queue << observation_id
+      return unless @observation_index_queue.size >= MAX_OBSERVATION_INDEX_QUEUE_SIZE
+
+      index_observation_queue
+    end
+
+    def index_observation_queue
+      return if @observation_index_queue.blank?
+
+      @total_indexed_observations ||= 0
+      @total_indexed_observations += @observation_index_queue.size
+      logger.info( "\tIndexing #{@observation_index_queue.size} observations" )
+      logger.info( "\tTotal indexed: #{@total_indexed_observations}" )
+      unless @opts[:debug]
+        # adding a small delay to the indexing job as some processing is done
+        # in transactions and may not immediately available to other processes
+        Observation.elastic_index!(
+          ids: @observation_index_queue,
+          delay: true,
+          batch_size: MAX_OBSERVATION_INDEX_QUEUE_SIZE,
+          run_at: 1.minute.from_now
+        )
+      end
+      @observation_index_queue = []
+    end
+
     def run
       start_time = Time.now
-      new_count = 0
-      old_count = 0
-      count = 0
+      # send a request to generate an offline download
       request
-      logger.info "[#{Time.now}] Waiting for archive to generate..."
+      # wait for the download file to generate
+      logger.info( "[#{Time.now}] Waiting for archive to generate..." )
       while generating
         print "."
         sleep 3
       end
-      logger.info
-      logger.info "[#{Time.now}] Downloading archive..."
+
+      # download the resulting zip file
+      logger.info( "[#{Time.now}] Downloading archive..." )
       download
-      obs_ids_to_index = []
-      # "\x00" is an unprintable character that I hope we can assume will
-      #   never appear in the data. If it does, CSV will choke
-      CSV.foreach(
-        File.join( @tmp_path, "occurrence.txt" ),
-        col_sep: "\t",
-        headers: true,
-        quote_char: "\x00"
-      ) do | row |
-        # puts "row['gbifID']: #{row['gbifID']}\t\trow['catalogNumber']: #{row['catalogNumber']}"
-        observation_id = row["catalogNumber"]
-        gbif_id = row["gbifID"]
-        total_records = @status["totalRecords"]
-        logger.info [
-          gbif_id.to_s.ljust( 20 ),
-          "#{count} of #{total_records} (#{( count / total_records.to_f * 100 ).round( 2 )}%)".ljust( 30 ),
-          "#{( ( Time.now - start_time ) / 60.0 ).round( 2 )} mins"
-        ].join( " " )
-        observation = Observation.find_by_id( observation_id )
-        if observation.blank?
-          logger.info "\tobservation #{observation_id} doesn't exist, skipping..." if @opts[:debug]
-          next
-        end
-        href = "http://www.gbif.org/occurrence/#{gbif_id}"
-        existing = ObservationLink.where( observation_id: observation_id, href: href ).first
-        if existing
-          existing.touch unless @opts[:debug]
-          old_count += 1
-          logger.info "\tobservation link already exists for observation #{observation_id}, skipping" if @opts[:debug]
-        else
-          ol = ObservationLink.new( observation: observation, href: href, href_name: "GBIF", rel: "alternate" )
-          ol.save unless @opts[:debug]
-          new_count += 1
-          obs_ids_to_index << observation.id
-          # puts "\tCreated #{ol}"
-        end
-        count += 1
-      end
+      # process the download to add and update links
+      logger.info( "[#{Time.now}] Creating/Updating ObservationLinks..." )
+      process_result
+      # index any observations left in the queue
+      index_observation_queue
 
       links_to_delete_scope = ObservationLink.where( "href_name = 'GBIF' AND updated_at < ?", start_time )
       delete_count = links_to_delete_scope.count
-      logger.info
-      logger.info "[#{Time.now}] Deleting #{delete_count} observation links..."
-      obs_ids_to_index += links_to_delete_scope.pluck( :observation_id )
-      obs_ids_to_index = obs_ids_to_index.compact.uniq
+      logger.info( "[#{Time.now}] Deleting #{delete_count} observation links..." )
+      @observation_index_queue = links_to_delete_scope.pluck( :observation_id ).uniq
       links_to_delete_scope.delete_all unless @opts[:debug]
+      index_observation_queue
 
-      logger.info
-      logger.info "[#{Time.now}] Re-indexing #{obs_ids_to_index.size} observations..."
-      obs_ids_to_index.in_groups_of( 500 ) do | group |
-        Observation.elastic_index!( ids: group.compact, wait_for_index_refresh: true ) unless @opts[:debug]
-        num_indexed += group_size
-        num_obs_ids_to_index = obs_ids_to_index.size.to_f
-        puts "[#{Time.now}] #{num_indexed} re-indexed (#{( num_indexed / num_obs_ids_to_index * 100 ).round( 2 )})"
-      end
-      logger.info "[#{Time.now}] Finished linking for #{@data_partner}"
+      logger.info( "[#{Time.now}] Finished linking for #{@data_partner}" )
+      logger.info( "[#{Time.now}] Indexing may continue in delayed jobs\n\n" )
     end
   end
 end
