@@ -109,9 +109,6 @@ body.responsive {
   }
   #ObservationShow {
     @include container-padding;
-    .data_quality_assessment .container {
-      width: auto;
-    }
     // stack the two-column layouts below the tablet breakpoint
     @media ( max-width: $lg-max ) {
       .photos_column,
@@ -728,6 +725,26 @@ a.UserImage,
   }
   .upper {
     margin-bottom: 40px;
+  }
+  .assessment_metrics {
+    @media ( max-width: $md-max ) {
+      display: flex;
+      flex-direction: column;
+      > .row,
+      .row > [class*="col-"],
+      .QualityMetrics {
+        display: contents;
+      }
+      .QualityMetrics > div {
+        order: 1;
+      }
+      .ResearchGradeProgress {
+        order: 2;
+      }
+      .QualityMetrics > table {
+        order: 3;
+      }
+    }
   }
   .data_quality_assessment {
     background: #fff;
