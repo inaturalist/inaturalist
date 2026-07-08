@@ -21,8 +21,6 @@ require "rubygems"
 require "nokogiri"
 
 class MetaService
-  attr_reader :timeout, :method_param, :service_name
-
   SERVICE_VERSION = 1
 
   def initialize( options = {} )
@@ -33,9 +31,7 @@ class MetaService
     @debug = options[:debug]
   end
 
-  def api_endpoint
-    @api_endpoint
-  end
+  attr_reader :timeout, :method_param, :service_name, :api_endpoint
 
   #
   # Sends a request to a service function, and returns an Hpricot object of
@@ -85,6 +81,10 @@ class MetaService
       return if api_endpoint_cache.in_progress?
 
       if api_endpoint_cache.cached? && !options[:force_update]
+        # A throttled response is not a valid API response; treat it as if there
+        # was no response rather than parsing the throttling message.
+        return if api_endpoint_cache.throttled?
+
         if options[:raw_response]
           return api_endpoint_cache.response
         end
@@ -110,11 +110,15 @@ class MetaService
       )
       raise Timeout::Error
     end
-    api_endpoint_cache&.update(
-      request_completed_at: Time.now,
-      success: !response.body.blank?,
-      response: response.body
-    )
+    # A throttled response is not a valid API response; return nothing rather
+    # than parsing the throttling message.
+    if api_endpoint_cache
+      api_endpoint_cache.cache_response( response )
+      return if api_endpoint_cache.throttled?
+    elsif ApiEndpointCache.throttled_response?( response.code.to_i, response.body )
+      return
+    end
+
     if options[:raw_response]
       return response.body
     end
