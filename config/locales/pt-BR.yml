@@ -907,6 +907,7 @@ pt-BR:
   casual: casual
   casual_: Casual
   casual_tooltip_html: 'Observações "casuais" não possuem mídia, localização ou data, ou não atendem aos requisitos dos níveis de qualidade "Pesquisa" ou "Precisa de ID" por outras razões <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre os níveis de qualidade</a>'
+  casual_tooltip_html2: 'Nas observações "casuais" faltam mídia, localização ou data, ou não atendem aos requisitos das classificações de qualidade "Pesquisa" ou "Precisa de ID" por outros motivos. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Saiba mais sobre notas de qualidade</a>'
   categories: Categorias
   cc_0_description: "Esta licença libera a sua obra em domínio público, de modo que outros podem copiar, modificar, distribuir e levar a termo o seu trabalho, inclusive com finalidade comercial, sem pedir permissão, ou dar-lhe crédito. Esta é a licença mais livre das que se oferecem. Recomendado para uma máxima difusão e uso dos materiais licenciados."
   cc_0_name: Sem direitos de autor (CC0)
@@ -1337,6 +1338,10 @@ pt-BR:
   couldnt_change_your_password: "Não foi possível mudas a sua senha: %{e}"
   couldnt_find_a_user_matching_x_param: "Não foi possível encontrar um usuário com parâmetros %{id}"
   couldnt_find_that_taxon: Não foi possível encontrar uma espécie ou grupo.
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: Ordenação descendente
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: Ordenação ascendente
   create: Criar
   create_a_guide: Crie um guia
   create_a_new_field: Crie um novo campo
@@ -1366,6 +1371,7 @@ pt-BR:
   curating: Em avaliação
   curation: Supervisão pelo Curador
   curator: Coordenador
+  curators_with_most_ids_of_the_input_taxon: "Curadores com mais IDs do táxon de entrada"
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     Os curadores de sites do iNaturalist são voluntários confiáveis que têm a capacidade de
@@ -1525,6 +1531,42 @@ pt-BR:
     pilot_participate: "Sim! Eu gostaria de participar."
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "Piloto de lacunas de identificação: Precisa identificar espécies desejadas"
+    #description of a pilot explaining the instructions introducing 2 conditions for observations to be included in the list
+    gaps_id_pilot_intro: "Ajude-nos a preencher lacunas se inscrevendo para receber um link diário para observações:"
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_id_pilot_check_back_body: "Se não tiver um link, pode não haver observações que correspondam a esses critérios que precisam de ID. Haverá uma verificação uma vez por dia."
+    #title for a pilot asking users to help fill species gaps by observing nearby species not in the computer vision model
+    gaps_obs_pilot_title: "Piloto de lacunas de observação: espécies desejadas próximas"
+    #description of a pilot explaining the instructions introducing 3 conditions for observations to be included in the list
+    gaps_obs_pilot_intro: "Amanhã, você receberá uma lista de espécies que:"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "Ainda não estão no Modelo de Visão Computacional"
+    #description of a pilot explaining the instructions, the second condition for observations to be included in the list
+    gaps_obs_pilot_condition_2: "Foram observadas nesta estação perto de sua última observação"
+    #description of a pilot explaining the instructions, the third condition for observations to be included in the list
+    gaps_obs_pilot_condition_3: "São determinadas por uma amostra de até 200 observações de até 300 espécies que priorizam plantas"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_body: "Observando estas espécies, você ajudará a melhorar o modelo e preencher as lacunas de dados da biodiversidade. Esta lista será atualizada quando atualizar o Modelo. Você pode optar por sair a qualquer momento."
+    #instructions once people have participated explaining the list of observations introducing 2 conditions for observations in the list
+    gaps_obs_pilot_current_intro: "Aqui está sua lista atual de espécies que:"
+    #instructions once people have participated explaining the list of observations, the second condition for observations in the list
+    gaps_obs_pilot_current_condition_2: "Foram observadas perto do seu último local nesta estação"
+    #instructions showing the benefit of participating in the pilot
+    gaps_obs_pilot_current_body: "Suas observações ajudam a melhorar o reconhecimento de espécies e a preencher lacunas críticas."
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "Procurar espécies"
+    #instructions once people have participated if the list of observaitons is not ready
+    gaps_obs_pilot_check_back: "Volte amanhã para uma lista personalizada de espécies que ainda não estão no Modelo de Visão Computacional, observadas nesta estação. A lista personalizada usará o local da sua observação mais recente."
+    #instructions once people have participated if the list of observaitons is not ready explaining why
+    gaps_obs_pilot_check_back_body: "Se não houver um link, pode não ter espécies que correspondam a esses critérios perto de você."
+    #title for a pilot asking users to help onboard new users by identifying their obs
+    identification_pilot_title: "Piloto de Identificação: Integração de Novos Usuários"
+    #instructions explaining the pilot
+    identification_pilot_body_intro: "A partir de amanhã, receba até 30 observações diárias que correspondam às suas habilidades de identificação, ajudando a integrar novos usuários. Você pode optar por sair a qualquer momento."
+    #instructions for people participating in the pilot if the list is ready
+    identification_pilot_current_intro: "Abaixo estão até 30 observações que correspondem às suas habilidades de identificação."
+    #instructions for people participating in the pilot if the list is not ready
+    identification_pilot_check_back: "Volte amanhã para receber um link para observações que correspondam às suas habilidades de identificação."
   data_deficient: Dados insuficientes
   data_quality: Qualidade dos Dados
   data_quality_assessment: Avaliação da Qualidade dos Dados
@@ -1663,6 +1705,9 @@ pt-BR:
         para confirmar sua conta.
       user:
         suspended: Sua conta foi suspensa
+        #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        #with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Sua suspensão será levantada em %{until}."
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: O token de redefinição de senha é inválido. Use o link no e-mail de redefinição de senha enviado mais recentemente ou <a href="%{url}">Solicite um novo</a>.
     sessions:
@@ -1813,6 +1858,10 @@ pt-BR:
   edit: Editar
   #Title of the moderation note editor
   edit_moderator_note: Editar nota do moderador
+  #Text on a button allowing you to edit the suspension reason or end date for a user
+  edit_suspension: Editar suspensão
+  #Text added to the unsuspend user page informing users they could alternatively update the reason and expiration date.
+  edit_suspension_alternative_html: Se você só precisar atualizar o motivo ou a data de validade, pode <a href="%{edit_link}">editar a suspensão</a> em vez disso.
   edit_a_batch_of_observations: Editar um grupo de observações
   edit_account_settings_and_profile: "Edite as configurações da conta &amp; perfil"
   edit_assessment: Editar avaliação
@@ -2304,6 +2353,8 @@ pt-BR:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Ocultar observações com localização privadas
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Ocultar táxons provisórios
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Ocultar total Cumulativo
   hide_uncountable_species: Ocultar espécies incontáveis
@@ -2368,7 +2419,6 @@ pt-BR:
   identification_saved: "Identificação salva!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Identificação ocultada
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: Identificação reexibida
   #Notification when an identification has been updated
   identification_updated: Identificação atualizada!
@@ -2466,6 +2516,7 @@ pt-BR:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inativo
   inactive_taxon_concepts_are: Táxons inativos se referem ou a táxons desatualizados, ou a táxons que estão sendo revisados para uma mudança de táxon. Táxons desatualizados são mantidos para manter o histórico e a compatibilidade com alguns sites parceiros.
+  provisional_taxa_are_not_published: 'Táxons provisórios não foram publicados e estão sujeitos a grandes mudanças. Atualmente, eles são permitidos apenas para Fungos e devem estar associados a uma observação com uma sequência de DNA. Por favor, observe o conteúdo linkado no campo "Por que você está fazendo essa mudança?".'
   inappropriate_content: Conteúdo inapropriado?
   inat_account_action: "%{site_name} &#58; Conta &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} acredita que é uma lista completa de táxons deste local."
@@ -2501,6 +2552,8 @@ pt-BR:
   introduced_in_place: "Introduzido em %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Data inválida
+  #Error message shown when a time format is invalid
+  invalid_time: Hora inválida
   invitation: Convite
   invite: convidar
   invite_people: Convide pessoas
@@ -3011,6 +3064,10 @@ pt-BR:
   misidentifications: Identificações erradas
   misleading_or_illegal_content_html: |
     Conteúdo ilegal ou falso, insultos étnicos e raciais, etc. Para mais sobre nossa definição de "apropriado", veja as <a href="/help#inappropriate">Perguntas frequentes</a>.
+  misleading_or_illegal_content_html2: |
+    Conteúdo enganoso ou ilegal, insultos raciais ou étnicos, etc. Para mais informações sobre
+    nossa definição de "apropriado", veja
+    <a href="https://help.inaturalist.org/en/support/solutions/articles/151000169915">FAQ</a>.
   #Label shown when a date has not been entered
   missing_date: Data faltando
   mobile: Móvel
@@ -3175,6 +3232,7 @@ pt-BR:
   needs_id_: Precisa de Identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_id_tooltip_html: 'Observações "Precisa de ID" possuem mídia, localização e data, mas ainda exigem consenso da comunidade sobre uma identificação exata. <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre os níveis de qualidade</a>'
+  needs_id_tooltip_html2: 'As observações marcadas "Precisa de ID" têm mídia, localização e uma data, mas ainda requerem o consenso da comunidade para a identificação. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Saiba mais sobre os graus de qualidade</a>'
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, parte da rede internacional iNaturalist, está focado na biodiversidade e nas pessoas de %{place}. Gostaria de mudar sua afiliação de conta de <strong>%{inat_site_name}</strong> para <strong>%{site_name}</strong> e compartilhar dados com instituições locais?
@@ -4772,6 +4830,7 @@ pt-BR:
   research_grade: Nível de Pesquisa
   research_grade_short_html: "P<span class='full'>esquisa </span>N<span class='full'>ível</span>"
   research_grade_tooltip_html: 'Observações "Nível de Pesquisa" possuem mídia, localização, uma data e consenso da comunidade sobre uma identificação precisa (geralmente ao nível de espécie). <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre os níveis de qualidade</a>'
+  research_grade_tooltip_html2: 'Observações "Nível de Pesquisa" possuem mídia, localização, data e consenso da comunidade sobre a identificação (geralmente no nível de espécie). <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre os graus de qualidade</a>'
   research_grade_observations_have: '"Categoria Pesquisa" observação devem incluir data, foto, coordenadas, e uma ID aprovada pela comunidade. Clique para visualizar a avaliação da qualidade dos dados.'
   research_grade_qualification: Qualificação à Nível de Pesquisa
   #Label for a button that re-sends the account confirmation email and signs
@@ -7565,6 +7624,9 @@ pt-BR:
           <p>
           Seu filho poderá então postar observações na conta iNaturalist dele utilizando o aplicativo Seek para que elas possam ser visualizadas em iNaturalist.org.
           </p>
+      user_unsuspended:
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message: Sua conta em %{site_name} foi reabilitada e você pode usar o site novamente.
       users_updates_suspended:
         message: |
           Você esteve inativo em %{site_name} por algum tempo, por este motivo suspendemos suas inscrições. Para receber o resumo de atualizações neste local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
@@ -7754,11 +7816,20 @@ pt-BR:
         contain_entire_image_without_cropping: Contém imagem inteira sem cortar
         custom_banner_icon_and_project_description: Banner personalizado, ícone e descrição do projeto
         data_visualizations: Visualizações de dados
+        date_pickers:
+          #Label for a form field for a project's end time
+          end_time: Hora de término
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Selecionar meses
         delete_project: Apagar Projeto
         display_project_name: Exibir nome do projeto
         do_you_need_features_from_traditional2: |
           Você precisa de características de projetos tradicionais, tais como campos personalizados para observações ou adicionar observações individuais que não podem ser filtradas automaticamente?
         duplicate_project: Duplicar o Projeto
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: A data de término deve ser posterior à data de início
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: O horário de término deve ser posterior ao horário de início
         include_annotated_observations: |
           Inclua apenas observações anotadas com um atributo em particular (por exemplo, fase de vida), ou um atributo e valor específicos (por exemplo, estágio de vida = adulto).
           Existe um limite de um filtro de anotação por projeto.
@@ -8214,14 +8285,32 @@ pt-BR:
       something_went_wrong_tags: |
         Algo deu errado ao tentar postar essas tags: %{message}
     taxon_changes:
+      #warning when changing taxon change status from withdrawn back to draft
+      are_you_sure_you_want_to_restore_this_taxon_change: Tem certeza que deseja restaurar as alterações neste táxon?
+      #warning when changing taxon change status from draft to withdrawn
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Tem certeza que deseja retirar as alterações neste táxon?
       move_children_desc: |
         Filhos do táxon de entrada que são mais ou menos generosos serão movidos para
         a saída; espécies, subespécies, variedades, etc. serão convertidos em
         equivalentes com o novo nome de gênero ou espécie.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Restaurar
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: restaurando
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Retirar
+      #state of an abandoned taxon change
+      withdrawn: retirado
+      #state of a committed taxon change
+      committed: submetido
       #state of a pending taxon change
       pending: pendente
       #state of a approved taxon change
       approved: aprovado
+      #state of a draft taxon change
+      draft: rascunho
+      #the status of a taxon change: draft, withdrawn or committed
+      status: status
       form:
         move_children_desc2_html: |
           Marcar esra caixa moverá os descendentes do táxon de entrada para o táxon de saída durante Trocas de Táxons e Fusões de Táxons quando essa alteração for confirmada. Se
@@ -8251,6 +8340,10 @@ pt-BR:
       no_changes_specified: Nenhuma alteração especificada
       #a message when a taxon change was successfully created
       taxon_change_successfully_created: Mudança de táxon foi criada com sucesso.
+      #message indicating the taxon change requires approval by count number of other curators to go from pending to approved
+      requires_approval:
+        one: "Requer aprovação de 1 outro curador para vigorar"
+        other: "Requer aprovação de mais %{count} outros curadores para vigorar"
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -9793,6 +9886,32 @@ pt-BR:
         Protozoa: Protozoários
         Mollusca: Moluscos
         Chromista: Algas Pardas e Afins
+  id_summary_reference_dqa:
+    public_metrics:
+      matches_taxon: "O comentário se refere a %{taxon}"
+  id_summaries:
+    demo:
+      app:
+        info_line_one: "Este demo explora o uso de IA para resumir comentários no iNaturalist com o objetivo de"
+        info_line_two: "Tornando a habilidade em identificação mais acessível."
+        service_unavailable: "Detalhes do resumo de identificação estão temporariamente indisponíveis."
+      summary_list:
+        empty: "Não há resumos de identificações disponíveis para esta espécie."
+        refreshing: "Atualizando resumos..."
+        heading: "Resumos de identificação"
+        sign_in_required: "Faça login para votar no feedback do resumo de identificação."
+        submit_failed: "Falha ao enviar feedback."
+      summary_item:
+        reference_commented: "comentou"
+      reference_feedback:
+        loading: "Carregando feedback da referência..."
+        sign_in_required: "Faça login para votar nos comentários da referência."
+        service_unavailable: "O serviço de feedback de referências não está disponível no momento."
+      taxa_list:
+        group_labels:
+          plantae: "Plantas"
+          fungi: "Fungos"
+        other_group: "Outros"
   #Title of a section warning the user about something
   warning_title: Atenção
   wikimedia: Wikimedia

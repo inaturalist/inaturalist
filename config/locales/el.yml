@@ -1607,8 +1607,8 @@ el:
   flag: Αναφορά
   flag_as_inappropriate: Αναφορά ως ακατάλληλο
   flag_an_item: Αναφορά αντικειμένου
-  flag_as_spammer: Αναφορά ως Αποστολέα Ανεπιθύμητων Μηνυμάτων
-  flag_as_non_spammer: Αναφορά ως Μη-Αποστολέα Ανεπιθύμητων Μηνυμάτων
+  flag_as_spammer: Αναφορά ως Σπάμερ
+  flag_as_non_spammer: Αναφορά ως μη-Σπάμερ
   #Label for the date/time when a flag was created
   flag_created: Αναφορά Δημιουργήθηκε
   flag_description: Αναφέρετε αυτό το περιεχόμενο ώστε να ενημερώσετε τους επιμελητές ότι κάτι πήγε στραβά με αυτό.
@@ -1794,7 +1794,7 @@ el:
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Κρύψτε το Τρεχούμενο Σύνολο 
   hide_uncountable_species: Απόκρυψη μη μετρήσιμων ειδών
-  high: υψηλό
+  high: Υψηλή
   #Highest taxonomic rank to filter by, where the "highest" possible rank is
   #kingdom
   highest_rank: Υψηλότερη κατάταξη
@@ -2203,7 +2203,7 @@ el:
   looks_like_neither_have!: Φαίνεται ότι κανείς δεν έχει taxa!
   looks_like_no_species_in_guide: Φαίνεται πως δεν έχετε κάποιο είδος στον οδηγό σας ακόμα.
   lookup: Αναζήτηση
-  low: χαμηλό
+  low: Χαμηλή
   #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
   #subspecies or variety
   lowest_rank: Χαμηλότερη κατάταξη
@@ -2819,10 +2819,10 @@ el:
   other_taxa_commonly_misidentified_as_this_complex_in_place_html: Άλλα είδη που συνήθως αναγνωρίζονται λανθασμένα ως αυτό το σύμπλοκο σε <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genus: Άλλα taxa που συνήθως ταυτοποιούνται λανθασμένα σαν αυτό το γένος
   other_taxa_commonly_misidentified_as_this_genus_in_place_html: Άλλα είδη που συνήθως αναγνωρίζονται λανθασμένα σαν αυτό το γένος σε <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_genushybrid: Άλλα taxa που συνήθως ταυτοποιούνται λανθασμένα σαν αυτό το genushybrid
-  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Άλλα taxa που συνήθως ταυτοποιούνται λανθασμένα σαν αυτό το genushybrid σε <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_hybrid: Άλλα taxa που συνήθως ταυτοποιούνται λανθασμένα σαν αυτό το υβρίδιο
-  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Άλλα taxa που συνήθως ταυτοποιούνται λανθασμένα σαν αυτό το υβρίδιο σε <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid: Άλλες ταξινομικές μονάδες που συνήθως ταυτοποιούνται λανθασμένα ως αυτό το διαγενικό υβρίδιο
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: 'Άλλες ταξινομικές μονάδες που συνήθως ταυτοποιούνται λανθασμένα ως αυτό το διαγενικό υβρίδιο στην περιοχή: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_hybrid: Άλλες ταξινομικές μονάδες που συνήθως ταυτοποιούνται λανθασμένα ως αυτό το υβρίδιο
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: 'Άλλες ταξινομικές μονάδες που συνήθως ταυτοποιούνται λανθασμένα ως αυτό το υβρίδιο στην περιοχή: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_rank: Άλλα taxa που συνήθως ταυτοποιούνται λανθασμένα σαν αυτό %{rank}
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: Άλλα είδη που συνήθως αναγνωρίζονται λανθασμένα σαν αυτό %{rank} σε <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: Άλλα taxa που συνήθως ταυτοποιούνται λανθασμένα όπως αυτό το τμήμα
@@ -3479,7 +3479,7 @@ el:
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
-    genus: Γένος / Genushybrid
+    genus: Γένος / Διαγενικό Υβρίδιο
     #Label when displaying species level, which is the same for species and
     #hybrid
     species: Είδος / Υβρίδιο
@@ -3537,7 +3537,7 @@ el:
     x_genera:
       one: Γένος
       other: Γένη
-    genushybrid: Γονυβρίδιο
+    genushybrid: Διαγενικό Υβρίδιο
     subgenus: Υπογένος
     section: τμήμα
     subsection: υποτμήμα
@@ -3664,7 +3664,7 @@ el:
   resolve_this_flag: Επίλυση αυτής της αναφοράς
   resolved: Επιλυμένος
   resolved_by: Επιλυμένο από
-  resolved_by_user_on_date_html: Επιδιορθώθηκε από τον χρήστη %{user} στις %{date}
+  resolved_by_user_on_date_html: Επιλύθηκε από το χρήστη %{user} στις %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} είπε,</span> %{x}'
   restart: Επανεκκίνηση
   restore: Επαναφορά
@@ -3769,7 +3769,7 @@ el:
   select_one_of_friends_albums: Επιλέξτε ένα από τα άλμπουμ του %{friend}
   select_one_of_your_albums: Επέλεξε ένα από τα άλμπουμ σου
   select_one_or_more_photos: 'Επιλέξτε μια ή περισσότερες φωτογραφίες'
-  select_options: Επιλογή επιλογών
+  select_options: Επιλογή
   select_photos_from_your_photo_stream: |
     Επιλέξτε φωτογραφίες από εξωτερικούς ιστοτόπους κοινής χρήσης φωτογραφιών για να τις μετατρέψετε σε %{site_name} παρατηρήσεις. Θα συμπληρώσουμε την ημερομηνία,ώρα και τοποθεσία από τα μεταδεδομένα της φωτογραφίας και θα προσπαθήσουμε να εντοπίσουμε ονόματα ειδών από τις ετικέτες.
   selected: Επιλεγμένα
@@ -3930,7 +3930,7 @@ el:
   sources_and_credits: Πηγές και Συντελεστές
   sourcing: Πηγές
   spam: Σπαμ
-  spammer: Αποστολέας ανεπιθύμητης ηλεκτρονικής αλληλογραφίας
+  spammer: Σπάμερ
   #Plural
   species: Είδη
   species_by_category: είδη ανά κατηγορία
@@ -4219,7 +4219,7 @@ el:
   there_were_some_problems_with_these_files: "Προέκυψαν προβλήματα με αυτά τα αρχεία:"
   theres_something_wrong_with_taxon_framework_relationship: Κάτι πάει λάθος εδώ-δεν μπορούμε να προσδιορίσουμε τη σχέση μεταξύ εσωτερικών και εξωτερικών ταξινομικών βαθμίδων
   these_are_items_people_on: |
-    Αυτά είναι χωρία που άνθρωποι σε αυτόν τον ιστότοπο έχουν επισημάνει ότι χρειάζονται επιμέλεια.Τα ανεπιθύμητα σχόλια πρέπει να διαγράφονται και οι χρήστες που τα καταχωρούν να αδρανοποιούνται( πηγαίνετε στη σελίδα του προφίλ τους και πατήστε "Αδρανοποίηση χρήστη" κάτω δεξιά για να τους απαγορεύσετε την είσοδο). Άλλα επισημασμένα χωρία πρέπει να διαγράφονται μόνο εάν έχουν εχθρικό ή παράνομο περιεχόμενο, πχ Αγένεια, προσβλητική γλώσσα κτλ πρέπει να τα χειριζόμαστε με ευγενικά σχόλια. Οι χρήστες που προσβάλλουν επανειλλημένες φορές θα πρέπει να αναφέρονται σε κάποιον από τους διαχειριστές του ιστοτόπου ή στο %{email}
+    Αυτά είναι σχόλια και δημοσιεύσεις που έχουν επισημανθεί ως χρήζοντα επιμέλειας από τους χρήστες της σελίδας. Τα σχόλια με σπαμ πρέπει να διαγράφονται και οι χρήστες που ανεβάζουν σπαμ πρέπει να αδρανοποιούνται (πηγαίνετε στη σελίδα του προφίλ τους και πατήστε "Αδρανοποίηση χρήστη" κάτω δεξιά για να τους απαγορεύσετε την είσοδο). Άλλα επισημασμένα αντικείμενα πρέπει να διαγράφονται μόνο εάν έχουν εχθρικό ή παράνομο περιεχόμενο. Η αγένεια και η προσβλητική γλώσσα πρέπει να αντιμετωπίζονται με ένα ευγενικό σχόλιο. Οι χρήστες με επαναλαμβανόμενα παραπτώματα θα πρέπει να αναφέρονται σε κάποιον από τους διαχειριστές του ιστοτόπου ή στο %{email}
   these_are_taxa_that: |
     Αυτές είναι ταξινομικές βαθμίδες που το %{site} δεν μπόρεσε να προσθέσει αυτόματα στο δέντρο μας για κάποιο λόγο. Μπορείτε να τα προσθέσετε μετά από επεξεργασία της ταξινομικής ομάδας και επιλέγοντας έναν γονέα. Για παράδειγμα, ο γονέας του είδους Homo sapiens είναι το γένος Homo. Επιπλέον, μπορείτε να ελέγξετε την ύπαρξη συνώνυμων ταξινομικών βαθμίδων και να τα συνδέσετε.
   these_folks_kindly_volunteer_to: Αυτοί οι άνθρωποι εθελοντικά έχουν αναλάβει την διατήρηση της ταξινόμησης και την διαχείριση άλλων δεδομένων
@@ -4475,8 +4475,8 @@ el:
   user_disagrees_this_is_taxon: "Ο/Η %{user} διαφωνεί ότι αυτό είναι %{taxon}"
   user_disagrees_with_previous_finer_identifications: "Ο/Η %{user} διαφωνεί με προηγούμενες καλύτερες ταυτοποιήσεις"
   user_faved_this_observation: "Ο χρήστης %{user} προσέθεσε αυτήν την παρατήρηση στα αγαπημένα του"
-  user_flagged_as_a_non_spammer_html: "Ο/Η %{user} έχει σημειωθεί ως όχι σπάμερ"
-  user_flagged_as_a_spammer_html: "Ο/Η %{user} έχει σημειωθεί ως σπάμερ"
+  user_flagged_as_a_non_spammer_html: "Ο χρήστης %{user} επισημάνθηκε ως μη-σπάμερ"
+  user_flagged_as_a_spammer_html: "Ο χρήστης %{user} επισημάνθηκε ως σπάμερ"
   user_has_opted_out_of_community_id: Ο χρήστης απορρίπτει την κοινοτική ταξινομική μονάδα
   user_hasnt_joined_any_projects: "Ο/Η %{user} δεν συμμετέχει σε καμία εργασία"
   user_helped_x_people_with_y_ids_html: "Ο/Η %{user} βοήθησε <strong>%{x} άτομα</strong> με <strong>%{y} ταυτοποιήσεις</strong>"
@@ -4499,8 +4499,7 @@ el:
     Ο χρήστης εμπιστεύεται τους επιμελητές έργων με κρυφές συντεταγμένες παρατηρήσεων που προστέθηκαν
     στο έργο από οποιονδήποτε.
   user_trusts_this_project_when_added_by_observer: |
-    Ο χρήστης εμπιστεύεται τους επιμελητές έργων με κρυφές συντεταγμένες παρατηρήσεων που προστέθηκαν
-    στο έργο από τον παρατηρητή.
+    Ο χρήστης εμπιστεύεται τους επιμελητές του πρότζεκτ με τις κρυφές συντεταγμένες των παρατηρήσεων που προστέθηκαν από αυτόν στο πρότζεκτ.
   user_trusts_this_project_when_added_by_none: |
     Ο χρήστης δεν εμπιστεύεται τους επιμελητές έργων με κρυφές συντεταγμένες.
   user_trusts_you_with_their_private_coordinates: "%{user} σας εμπιστεύεται με τις κρυμμένες συντεταγμένες"
@@ -4786,7 +4785,7 @@ el:
   you_are_not_editing_any_guides_add_one_html: |
     Δεν επεξεργάζεστε κανέναν οδηγό. <a href="/guides/new"> Προσθέστε έναν </a>
   you_are_already_a_member_of_this_project: "Είστε ήδη μέλος αυτού του πρότζεκτ!"
-  you_are_no_longer_following_x: "Δεν ακολουθείτε πλέον τον χρήστη %{friend}."
+  you_are_no_longer_following_x: "Δεν ακολουθείτε πλέον το χρήστη %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Δίνετε εντολή σε αυτό το πρότζεκτ να συγκεντρώσει όλες τις παρατηρήσεις που πληρούν τους κανόνες: %{rules}. Θέλετε να συνεχίσετε;
   you_are_submitting_obs_with_no_date_or_no_location: |
@@ -5227,8 +5226,8 @@ el:
       to: Προς
       subject_body: Θέμα / Σώμα
       index:
-        show_messages_from_user: Εμφάνιση μηνυμάτων από τον χρήστη %{user}
-        show_messages_to_user: Εμφάνιση μηνυμάτων στον χρήστη %{user}
+        show_messages_from_user: Εμφάνιση μηνυμάτων από το χρήστη %{user}
+        show_messages_to_user: Εμφάνιση μηνυμάτων προς το χρήστη %{user}
         #Users cannot create messages if they lack the criteria for
         #earning speech privilege
         speech_privilege_notice: |
@@ -5352,7 +5351,7 @@ el:
           Έχετε μια <a href="%{url}">εξαγωγή σε εξέλιξη</a>. Θα χρειαστεί να περιμένετε
           ώσπου να ολοκληρωθεί για να μπορέσετε να προσθέσετε μια άλλη εξαγωγή στην ουρά.
         ident_by_user_desc_html: |
-          Στήλες για την παρούσα ταυτοποίηση από τον χρήστη %{user}
+          Στήλες για την παρούσα ταυτοποίηση από το χρήστη %{user}
         limit_alert: Η εξαγωγή σας θα είναι πολύ μεγάλη. Αλλάξτε τα φίλτρα σας μέχρι να υπάρχουν λιγότερες από 200.000 παρατηρήσεις.
         query_placeholder: "Επιλέξτε τις παρακάτω παραμέτρους για αναζήτηση ή επικολλήστε σε μια διεύθυνση URL παρατηρήσεων"
         taxon_extras_help_html: "Σημείωση: αυτές οι στήλες θα καθυστερήσουν την παραγωγή της εξαγωγής σας"
