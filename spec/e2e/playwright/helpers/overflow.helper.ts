@@ -1,0 +1,37 @@
+import { test, expect, Page } from "@playwright/test";
+import { BREAKPOINTS, BreakpointName, VIEWPORTS } from "../../shared/breakpoints";
+
+async function measureHorizontalOverflow(
+  page: Page
+): Promise<{ bodyWidth: number; viewportWidth: number }> {
+  return page.evaluate( () => ( {
+    bodyWidth: document.body.scrollWidth,
+    viewportWidth: window.innerWidth
+  } ) );
+}
+
+export function expectNoHorizontalOverflow(
+  path = "/",
+  options: { waitForSelector?: string } = {}
+): void {
+  test.describe( "no horizontal overflow", () => {
+    for ( const name of Object.keys( VIEWPORTS ) as BreakpointName[] ) {
+      const viewport = VIEWPORTS[name];
+
+      test( `the document body does not overflow the viewport at the ${name} breakpoint (${viewport.width}px)`, async ( { page } ) => {
+        await page.setViewportSize( viewport );
+        await page.goto( path );
+        await page.locator( options.waitForSelector || "#header" ).waitFor();
+
+        const { bodyWidth, viewportWidth } = await measureHorizontalOverflow( page );
+
+        expect( viewportWidth ).toBeGreaterThanOrEqual( BREAKPOINTS[name].minWidth );
+
+        expect(
+          bodyWidth,
+          `body (${bodyWidth}px) overflows the ${name} viewport (${viewportWidth}px)`
+        ).toBeLessThanOrEqual( viewportWidth + 1 );
+      } );
+    }
+  } );
+}

@@ -1,0 +1,195 @@
+User-agent: *
+
+Allow: /
+
+#
+# Routes with exceptions
+#
+
+# Blog
+Disallow: /blog/new$
+Disallow: /blog/*/*
+Allow: /blog/archives/*/*$
+
+# Journal
+Disallow: /journal/*/new$
+Disallow: /journal/*/archives$
+Disallow: /journal/*/*/*
+
+# Observations
+Disallow: /observations/*
+
+# Pages
+Disallow: /pages$
+Disallow: /pages/$
+Disallow: /pages/all$
+Disallow: /pages/*/*
+
+# People
+Disallow: /people/leaderboard$
+Disallow: /people/new$
+Disallow: /people/*/*
+
+# Places
+Disallow: /places/autocomplete$
+Disallow: /places/cached_guide$
+Disallow: /places/geometry$
+Disallow: /places/guide$
+Disallow: /places/guide_widget$
+Disallow: /places/new$
+Disallow: /places/planner$
+Disallow: /places/search$
+Disallow: /places/wikipedia$
+Disallow: /places/*/*
+
+# Posts
+Disallow: /posts$
+Disallow: /posts/$
+Disallow: /posts/for_project_user$
+Disallow: /posts/for_user$
+Disallow: /posts/new$
+Disallow: /posts/search$
+Disallow: /posts/*/*
+
+# Projects
+Disallow: /projects/browse$
+Disallow: /projects/calendar$
+Disallow: /projects/new$
+Disallow: /projects/new_traditional$
+Disallow: /projects/search$
+Disallow: /projects/user$
+Disallow: /projects/*/*
+Disallow: /projects/*/journal/new$
+Disallow: /projects/*/journal/*/*
+
+# Sites
+Disallow: /sites$
+Disallow: /sites/$
+Disallow: /sites/*$
+
+# Stats
+Disallow: /stats/*
+Allow: /stats/20*$
+
+# Taxa
+Disallow: /taxa/auto_complete_name$
+Disallow: /taxa/autocomplete$
+Disallow: /taxa/curation$
+Disallow: /taxa/flickr_photos_tagged$
+Disallow: /taxa/flickr_tagger$
+Disallow: /taxa/map$
+Disallow: /taxa/names$
+Disallow: /taxa/new$
+Disallow: /taxa/observation_photos$
+Disallow: /taxa/occur_in$
+Disallow: /taxa/search$
+Disallow: /taxa/synonyms$
+Disallow: /taxa/*/*
+
+# Translations
+Disallow: /translations/*
+
+# User Parents
+Disallow: /user_parents/*
+
+#
+# Routes with parameters
+#
+Disallow: /*?*
+
+#
+# Routes with formats
+#
+Disallow: /*.atom*
+Disallow: /*.csv*
+Disallow: /*.json*
+
+#
+# Routes entirely disallowed
+#
+
+Disallow: /activate
+Disallow: /admin
+Disallow: /annotations
+Disallow: /announcements
+Disallow: /assessment_sections
+Disallow: /assessments
+Disallow: /atlases
+Disallow: /auth
+Disallow: /build_info
+Disallow: /calendar
+Disallow: /check_lists
+Disallow: /comments
+Disallow: /complete_sets
+Disallow: /computer_vision_demo
+Disallow: /computer_vision_demo_uploads
+Disallow: /computer_vision_eval
+Disallow: /conservation_statuses
+Disallow: /controlled_terms
+Disallow: /curator_applications
+Disallow: /custom_projects
+Disallow: /data_partners
+Disallow: /email_suppressions
+Disallow: /eol
+Disallow: /exploded_atlas_places
+Disallow: /faves
+Disallow: /flags
+Disallow: /flickr
+Disallow: /flow_tasks
+Disallow: /geo_model
+Disallow: /guide_photos
+Disallow: /guide_ranges
+Disallow: /guide_sections
+Disallow: /guide_taxa
+Disallow: /guide_users
+Disallow: /guides
+Disallow: /identifications
+Disallow: /lifelists
+Disallow: /listed_taxa
+Disallow: /lists
+Disallow: /logout
+Disallow: /messages
+Disallow: /moderator_actions
+Disallow: /moderator_notes
+Disallow: /oauth
+Disallow: /observation_accuracy_experiments
+Disallow: /observation_fields
+Disallow: /observation_photos
+Disallow: /observation_sounds
+Disallow: /photos
+Disallow: /picasa
+Disallow: /ping
+Disallow: /project/*$
+Disallow: /project_assets
+Disallow: /project_lists
+Disallow: /rails
+Disallow: /redirect_links
+Disallow: /relationships
+Disallow: /saved_locations
+Disallow: /search
+Disallow: /set_locale
+Disallow: /soundcloud_sounds
+Disallow: /sounds
+Disallow: /sources
+Disallow: /subscriptions
+Disallow: /supportersurvey
+Disallow: /taxon_change_taxa
+Disallow: /taxon_changes
+Disallow: /taxon_curators
+Disallow: /taxon_drops
+Disallow: /taxon_framework_relationships
+Disallow: /taxon_frameworks
+Disallow: /taxon_links
+Disallow: /taxon_merges
+Disallow: /taxon_names
+Disallow: /taxon_photos
+Disallow: /taxon_ranges
+Disallow: /taxon_scheme_taxa
+Disallow: /taxon_schemes
+Disallow: /taxon_splits
+Disallow: /taxon_stages
+Disallow: /taxon_swaps
+Disallow: /trips
+Disallow: /users
+Disallow: /votes
+Disallow: /wikimedia_commons

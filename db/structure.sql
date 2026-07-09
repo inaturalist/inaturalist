@@ -386,7 +386,8 @@ CREATE TABLE public.announcements (
     excludes_non_site boolean DEFAULT false,
     include_virtuous_tags text[] DEFAULT '{}'::text[],
     exclude_virtuous_tags text[] DEFAULT '{}'::text[],
-    exclude_ip_countries character varying[] DEFAULT '{}'::character varying[]
+    exclude_ip_countries character varying[] DEFAULT '{}'::character varying[],
+    parent_announcement_id integer
 );
 
 
@@ -432,7 +433,8 @@ CREATE TABLE public.api_endpoint_caches (
     success boolean,
     response text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    status_code integer
 );
 
 
@@ -467,7 +469,8 @@ CREATE TABLE public.api_endpoints (
     base_url character varying,
     cache_hours integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    last_throttled_at timestamp without time zone
 );
 
 
@@ -8845,6 +8848,13 @@ CREATE INDEX index_announcement_impressions_on_user_id_and_id ON public.announce
 
 
 --
+-- Name: index_announcements_on_parent_announcement_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcements_on_parent_announcement_id ON public.announcements USING btree (parent_announcement_id);
+
+
+--
 -- Name: index_announcements_on_start_and_end; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9184,7 +9194,7 @@ CREATE INDEX index_custom_projects_on_project_id ON public.custom_projects USING
 -- Name: index_delayed_jobs_on_unique_hash; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_delayed_jobs_on_unique_hash ON public.delayed_jobs USING btree (unique_hash);
+CREATE UNIQUE INDEX index_delayed_jobs_on_unique_hash ON public.delayed_jobs USING btree (unique_hash);
 
 
 --
@@ -11368,7 +11378,7 @@ CREATE INDEX index_users_on_curator_sponsor_id ON public.users USING btree (cura
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_users_on_email ON public.users USING btree (email);
+CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
 
 
 --
@@ -11642,6 +11652,14 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 --
 
 CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
+
+
+--
+-- Name: announcements fk_rails_7acaf995fb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.announcements
+    ADD CONSTRAINT fk_rails_7acaf995fb FOREIGN KEY (parent_announcement_id) REFERENCES public.announcements(id) ON DELETE SET NULL;
 
 
 --
@@ -12194,6 +12212,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260319212735'),
 ('20260326000001'),
 ('20260326000002'),
-('20260406164708');
+('20260406164708'),
+('20260507201412'),
+('20260511210120'),
+('20260514211433'),
+('20260514215925'),
+('20260618232456'),
+('20260706194405');
 
 

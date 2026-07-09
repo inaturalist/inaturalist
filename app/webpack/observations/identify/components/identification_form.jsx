@@ -93,11 +93,12 @@ class IdentificationForm extends React.Component {
             textareaClassName="form-control"
             mentions
           />
-          { currentUser?.canViewHelpfulIDTips( ) && (
+          { currentUser?.canNominateHelpfulIDTips( ) && (
             <div className="nomination">
               <input
                 type="checkbox"
                 id="nominate-id"
+                tabIndex={-1}
                 defaultChecked={nominate}
                 disabled={_.size( content ) === 0}
                 onChange={e => {
@@ -108,7 +109,7 @@ class IdentificationForm extends React.Component {
                 className="identificationNomination"
                 htmlFor="nominate-id"
               >
-                Nominate as an ID Tip (diagnostic characteristics that teach others to identify this organism)
+                { I18n.t( "identification_tips.nominate_as_an_id_tip_with_explanation" ) }
               </label>
             </div>
           ) }

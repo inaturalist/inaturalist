@@ -1537,7 +1537,9 @@ class Taxon < ApplicationRecord
     end
 
     if details.blank? || details[:summary].blank?
-      Taxon.where( id: self ).update_all( wikipedia_summary: Date.today ) if locale.to_s =~ /^en-?/
+      if locale.to_s =~ /^en-?/ && !w.api_endpoint.recently_throttled?
+        Taxon.where( id: self ).update_all( wikipedia_summary: Date.today.to_s )
+      end
       return nil
     end
 

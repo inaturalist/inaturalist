@@ -58,6 +58,26 @@ describe AnnouncementsController do
       end
     end
 
+    describe "body_for_mobile" do
+      it "wraps body in a full HTML document with FRU script when prefers_embed_fru" do
+        fru_announcement = create :announcement, prefers_embed_fru: true, body: "<p>Donate now</p>"
+        get :active, format: :json
+        json = response.parsed_body.find {| a | a["id"] == fru_announcement.id }
+        expect( json["id"] ).to eq( fru_announcement.id )
+        expect( json["body"] ).to include( fru_announcement.body )
+        expect( json["body"] ).to include( "<!DOCTYPE html>" )
+        expect( json["body"] ).to include( "FundraiseUp" )
+      end
+
+      it "returns raw body when not prefers_embed_fru" do
+        standard_announcement = create :announcement, body: "<p>Hello</p>"
+        get :active, format: :json
+        json = response.parsed_body.find {| a | a["id"] == standard_announcement.id }
+        expect( json["id"] ).to eq( standard_announcement.id )
+        expect( json["body"] ).to eq( standard_announcement.body )
+      end
+    end
+
     describe "basic filters" do
       it "only returns announcements that are active" do
         _inactive_announcement = create :announcement, start: 1.day.from_now, end: 2.days.from_now
@@ -92,7 +112,25 @@ describe AnnouncementsController do
         create :announcement, locales: ["es"]
         no_locale_announcement = create :announcement
         get :active, format: :json, params: { locale: "ja" }
-        expect( response.parsed_body.map {| a | a["id"] } ).to eq( [no_locale_announcement.id] )
+        expect( response.parsed_body.map {| a | a["id"] } ).to include( no_locale_announcement.id )
+      end
+
+      it "returns both locale-specific and unrelated global announcements" do
+        es_announcement = create :announcement, locales: ["es"]
+        global_announcement = create :announcement
+        get :active, format: :json, params: { locale: "es" }
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).to include( es_announcement.id )
+        expect( annc_ids ).to include( global_announcement.id )
+      end
+
+      it "deduplicates linked translation variants by locale" do
+        parent = create :announcement, locales: ["en"]
+        child_es = create :announcement, locales: ["es"], parent_announcement_id: parent.id
+        get :active, format: :json, params: { locale: "es" }
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).to include( child_es.id )
+        expect( annc_ids ).not_to include( parent.id )
       end
 
       it "only returns announcements targeting the requested client" do
@@ -294,6 +332,218 @@ describe AnnouncementsController do
         get :active, format: :json
       end.to change( AnnouncementImpression, :count ).by( 1 )
       expect( AnnouncementImpression.last.announcement ).to eq( announcement )
+    end
+  end
+
+  describe "load_parent_announcement_options" do
+    let( :site ) { create :site }
+    let( :user ) { create :user }
+    before do
+      create( :site ) unless Site.default
+      SiteAdmin.create!( site: site, user: user )
+      sign_in user
+    end
+
+    it "includes announcements from any site" do
+      other_site = create :site
+      other_site_announcement = create :announcement, sites: [other_site]
+      get :new, params: { inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( other_site_announcement.id )
+    end
+
+    it "excludes child announcements" do
+      parent = create :announcement
+      child = create :announcement, parent_announcement_id: parent.id
+      get :new, params: { inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( parent.id )
+      expect( option_ids ).not_to include( child.id )
+    end
+
+    it "excludes announcements that ended more than 30 days ago" do
+      old_announcement = create :announcement, start: 60.days.ago, end: 31.days.ago
+      recent_announcement = create :announcement
+      get :new, params: { inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( recent_announcement.id )
+      expect( option_ids ).not_to include( old_announcement.id )
+    end
+
+    it "includes current parent even when older than 30 days" do
+      old_parent = create :announcement, start: 60.days.ago, end: 31.days.ago
+      child = create :announcement, parent_announcement_id: old_parent.id, sites: [site]
+      get :edit, params: { id: child.id, inat_site_id: site.id }
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( old_parent.id )
+    end
+  end
+
+  describe "duplicate" do
+    let( :site ) { create :site }
+    let( :user ) { create :user }
+    before do
+      create( :site ) unless Site.default
+      SiteAdmin.create!( site: site, user: user )
+      sign_in user
+    end
+
+    it "pre-selects parent announcement when variant param is present" do
+      announcement = create :announcement
+      get :duplicate, params: { id: announcement.id, variant: true, inat_site_id: site.id }
+      expect( assigns( :announcement ).parent_announcement_id ).to eq( announcement.id )
+      option_ids = assigns( :parent_announcement_options ).map( &:last )
+      expect( option_ids ).to include( announcement.id )
+    end
+
+    it "maintains existing parent_announcement_id for standard duplicate button" do
+      parent_announcement = create :announcement
+      announcement = create :announcement, parent_announcement_id: parent_announcement.id
+      get :duplicate, params: { id: announcement.id, inat_site_id: site.id }
+      expect( assigns( :announcement ).parent_announcement_id ).to be parent_announcement.id
+    end
+  end
+
+  describe "index" do
+    describe "as site admin" do
+      let( :site ) { create :site }
+      let( :other_site ) { create :site }
+      let( :user ) { create :user }
+      before do
+        create( :site ) unless Site.default
+        SiteAdmin.create!( site: site, user: user )
+        sign_in user
+      end
+
+      it "shows announcements targeted to the admin's site" do
+        site_announcement = create :announcement, sites: [site]
+        get :index, params: { inat_site_id: site.id }
+        expect( assigns( :announcements ) ).to include( site_announcement )
+      end
+
+      it "excludes global announcements by default" do
+        global_announcement = create :announcement
+        get :index, params: { inat_site_id: site.id }
+        expect( assigns( :announcements ) ).not_to include( global_announcement )
+      end
+
+      it "excludes announcements for other sites by default" do
+        other_announcement = create :announcement, sites: [other_site]
+        get :index, params: { inat_site_id: site.id }
+        expect( assigns( :announcements ) ).not_to include( other_announcement )
+      end
+
+      it "shows all announcements when site_filter is all" do
+        site_announcement = create :announcement, sites: [site]
+        other_announcement = create :announcement, sites: [other_site]
+        global_announcement = create :announcement
+        get :index, params: { inat_site_id: site.id, site_filter: "all" }
+        expect( assigns( :announcements ) ).to include( site_announcement )
+        expect( assigns( :announcements ) ).to include( other_announcement )
+        expect( assigns( :announcements ) ).to include( global_announcement )
+      end
+    end
+  end
+
+  describe "edit" do
+    describe "as site admin" do
+      let( :site ) { create :site }
+      let( :other_site ) { create :site }
+      let( :user ) { create :user }
+      before do
+        create( :site ) unless Site.default
+        SiteAdmin.create!( site: site, user: user )
+        sign_in user
+      end
+
+      it "allows editing announcements targeted to the admin's site" do
+        announcement = create :announcement, sites: [site]
+        get :edit, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to be_successful
+      end
+
+      it "denies editing announcements targeted to another site" do
+        announcement = create :announcement, sites: [other_site]
+        get :edit, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to redirect_to( announcement )
+        expect( flash[:error] ).to be_present
+      end
+
+      it "denies editing global announcements" do
+        announcement = create :announcement
+        get :edit, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to redirect_to( announcement )
+      end
+    end
+
+    describe "as staff admin" do
+      let( :admin ) { make_admin }
+      before { sign_in admin }
+
+      it "can edit any announcement" do
+        announcement = create :announcement
+        get :edit, params: { id: announcement.id }
+        expect( response ).to be_successful
+      end
+    end
+  end
+
+  describe "update" do
+    describe "as site admin" do
+      let( :site ) { create :site }
+      let( :other_site ) { create :site }
+      let( :user ) { create :user }
+      before do
+        create( :site ) unless Site.default
+        SiteAdmin.create!( site: site, user: user )
+        sign_in user
+      end
+
+      it "allows updating announcements targeted to the admin's site" do
+        announcement = create :announcement, sites: [site]
+        put :update, params: { id: announcement.id, inat_site_id: site.id, announcement: { body: "updated" } }
+        expect( response ).to redirect_to( announcement )
+      end
+
+      it "denies updating announcements targeted to another site" do
+        announcement = create :announcement, sites: [other_site]
+        put :update, params: { id: announcement.id, inat_site_id: site.id, announcement: { body: "updated" } }
+        expect( response ).to redirect_to( announcement )
+        expect( flash[:error] ).to be_present
+      end
+    end
+  end
+
+  describe "destroy" do
+    describe "as site admin" do
+      let( :site ) { create :site }
+      let( :other_site ) { create :site }
+      let( :user ) { create :user }
+      before do
+        create( :site ) unless Site.default
+        SiteAdmin.create!( site: site, user: user )
+        sign_in user
+      end
+
+      it "allows destroying announcements targeted to the admin's site" do
+        announcement = create :announcement, sites: [site]
+        delete :destroy, params: { id: announcement.id, inat_site_id: site.id }
+        expect( Announcement.find_by_id( announcement.id ) ).to be_nil
+      end
+
+      it "denies destroying announcements targeted to another site" do
+        announcement = create :announcement, sites: [other_site]
+        delete :destroy, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to redirect_to( announcement )
+        expect( Announcement.find_by_id( announcement.id ) ).not_to be_nil
+      end
+
+      it "denies destroying global announcements" do
+        announcement = create :announcement
+        delete :destroy, params: { id: announcement.id, inat_site_id: site.id }
+        expect( response ).to redirect_to( announcement )
+        expect( Announcement.find_by_id( announcement.id ) ).not_to be_nil
+      end
     end
   end
 end

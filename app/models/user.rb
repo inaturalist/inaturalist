@@ -233,6 +233,7 @@ class User < ApplicationRecord
   has_many :redirect_links, dependent: :nullify
   has_many :announcements, dependent: :nullify
   has_many :user_virtuous_tags, dependent: :delete_all
+  has_many :exemplar_identifications, through: :identifications
 
   file_options = {
     processors: [:deanimator],
@@ -319,6 +320,7 @@ class User < ApplicationRecord
     true
   }
   after_update :check_privileges_if_confirmed
+  after_update :reindex_exemplar_identifications_after_login_change_later
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
@@ -1366,9 +1368,10 @@ class User < ApplicationRecord
         secret_access_key: s3_config["secret_access_key"],
         region: CONFIG.s3_region
       )
+      cf_config = YAML.load_file( File.join( Rails.root, "config", "cloudfront.yml" ) )
       cf_client = ::Aws::CloudFront::Client.new(
-        access_key_id: s3_config["access_key_id"],
-        secret_access_key: s3_config["secret_access_key"],
+        access_key_id: cf_config["cloudfront_access_key_id"],
+        secret_access_key: cf_config["cloudfront_secret_access_key"],
         region: CONFIG.s3_region
       )
 
@@ -1551,6 +1554,27 @@ class User < ApplicationRecord
     true
   end
 
+  def self.reindex_exemplar_identifications_after_login_change( user_id )
+    return unless ( user = User.find_by_id( user_id ) )
+
+    exemplar_identification_ids = user.exemplar_identifications.pluck( :id )
+    return if exemplar_identification_ids.empty?
+
+    # batch the reindexing in potentially multiple delayed jobs
+    ExemplarIdentification.elastic_index!(
+      ids: exemplar_identification_ids,
+      delay: true
+    )
+  end
+
+  def reindex_exemplar_identifications_after_login_change_later
+    return unless saved_change_to_login?
+
+    # determining what IDs need to be reindexed might take a while,
+    # so delay that operation, which will ultimately create more delayed jobs
+    User.delay.reindex_exemplar_identifications_after_login_change( id )
+  end
+
   def generate_csv(path, columns, options = {})
     of_names = ObservationField.joins(observation_field_values: :observation).
       where("observations.user_id = ?", id).
@@ -1583,6 +1607,10 @@ class User < ApplicationRecord
     Message.
       delay( priority: USER_INTEGRITY_PRIORITY ).
       resend_unsent_for_user( id )
+  end
+
+  def send_suspended_email( reason, suspended_until )
+    Emailer.delay.user_suspended( self, reason, suspended_until )
   end
 
   def send_unsuspended_email( reason = nil )
@@ -1820,9 +1848,11 @@ class User < ApplicationRecord
         self.suspended_by_user = moderator_action.user
         suspend!( moderator_action.reason )
       end
+      send_suspended_email( moderator_action.reason, moderator_action.suspended_until )
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      email_reason = suspended_until.present? ? suspension_reason : moderator_action.reason
       unsuspend!
-      send_unsuspended_email( moderator_action.reason )
+      send_unsuspended_email( email_reason )
     elsif moderator_action.action == ModeratorAction::RENAME
       new_login = User.suggest_login( User::DEFAULT_LOGIN )
       self.login = new_login
@@ -1982,12 +2012,17 @@ class User < ApplicationRecord
     nil
   end
 
+  def last_observation_created_at_cache_key
+    "users/#{id}/last_observation_created_at"
+  end
+
   # Creation datetime of the user's last observation by creation date. Note
   # that if the cache expiry time needs to be extended, more than a day will
   # probably be too limiting for announcement obs date targeting to be
-  # useful.
+  # useful. The cache is also cleared when the user creates or destroys an
+  # observation (see Observation#update_user_counter_caches_after_*).
   def last_observation_created_at
-    Rails.cache.fetch( "users/#{id}/last_observation_created_at", expires_in: 1.hour ) do
+    Rails.cache.fetch( last_observation_created_at_cache_key, expires_in: 1.hour ) do
       last_observation = Observation.elastic_query(
         user_id: id,
         order: "desc",
@@ -1996,6 +2031,10 @@ class User < ApplicationRecord
       ).first
       last_observation&.created_at
     end
+  end
+
+  def clear_last_observation_created_at_cache
+    Rails.cache.delete( last_observation_created_at_cache_key )
   end
 
   # Iterates over recently created accounts of unknown spammer status, zero

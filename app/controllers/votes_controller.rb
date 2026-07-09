@@ -5,6 +5,7 @@ class VotesController < ApplicationController
   before_action :load_user_by_login, only: :by_login
   before_action :load_vote, only: [:destroy]
   before_action :require_owner, only: [:destroy]
+  before_action :exemplar_voter_must_have_permission, except: [:by_login]
 
   layout "bootstrap"
 
@@ -97,5 +98,14 @@ class VotesController < ApplicationController
 
   def load_vote
     load_record klass: ActsAsVotable::Vote
+  end
+
+  def exemplar_voter_must_have_permission
+    return unless @record.is_a?( ExemplarIdentification )
+
+    if current_user.content_creation_restrictions? &&
+        @record.identification.user_id != current_user.id
+      not_allowed_with_html_and_json_response( @record )
+    end
   end
 end

@@ -5,11 +5,11 @@
 module ApplicationHelper
   include Ambidextrous
 
-  def t_with_fallback( new_key, old_key )
+  def t_with_fallback( new_key, old_key, ** )
     if I18n.has_t?( old_key ) && !I18n.has_t?( new_key )
-      I18n.t( old_key )
+      I18n.t( old_key, ** )
     else
-      I18n.t( new_key )
+      I18n.t( new_key, ** )
     end
   end
 

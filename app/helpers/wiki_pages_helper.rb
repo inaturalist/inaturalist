@@ -15,15 +15,7 @@ module WikiPagesHelper
       page_titles = match[/nav(.*?)\}/, 1].split( "," )
       html = "<ul class='leftmenu'>"
       page_titles.each do | page_title |
-        page_title.strip!
-        link_class = ( @page && @page.title.downcase == page_title.downcase ) ? "active" : nil
-        html += content_tag :li do
-          page = WikiPage.find_by_title( page_title )
-          if page&.title != page_title
-            page = WikiPage.find_by_path( page_title.parameterize )
-          end
-          link_to ( page&.title || page_title ), wiki_link( page&.path || page_title ), class: link_class
-        end
+        html += parse_title( page_title )
       end
       html += "</ul>"
       html
@@ -39,15 +31,7 @@ module WikiPagesHelper
     html = "<ul class='topmenu'>"
     page_titles = navtxt[/nav(.*?)\}/, 1].split( "," )
     page_titles.each do | page_title |
-      page_title.strip!
-      link_class = ( @page && @page.title.downcase == page_title.downcase ) ? "active" : nil
-      html += content_tag :li do
-        page = WikiPage.find_by_title( page_title )
-        if page&.title != page_title
-          page = WikiPage.find_by_path( page_title.parameterize )
-        end
-        link_to ( page&.title || page_title ), wiki_link( page&.path || page_title ), class: link_class
-      end
+      html += parse_title( page_title )
     end
     html += "</ul>"
     raw html
@@ -106,5 +90,21 @@ module WikiPagesHelper
 
   def wiki_user( user )
     "#{link_to( user_image( user ), user )} #{link_to_user( user )}".html_safe
+  end
+
+  private
+
+  def parse_title( page_title )
+    page_title.strip!
+    page_identifier, custom_label = page_title.split( "|", 2 ).map( &:strip )
+    link_class = ( @page && @page.title.downcase == page_identifier.downcase ) ? "active" : nil
+    content_tag :li do
+      page = WikiPage.find_by_title( page_identifier )
+      if page&.title != page_identifier
+        page = WikiPage.find_by_path( page_identifier.parameterize )
+      end
+      link_text = custom_label || page&.title || page_identifier
+      link_to link_text, wiki_link( page&.path || page_identifier ), class: link_class
+    end
   end
 end

@@ -13,6 +13,7 @@ function mapStateToProps( state ) {
   const props = {
     response: state.taxon.identifications,
     identificationsQuery: state.taxon.identificationsQuery || {},
+    identificationsAvailable: state.taxon.identificationsAvailable,
     config: state.config,
     currentUser: state.config.currentUser,
     taxon: state.taxon.taxon

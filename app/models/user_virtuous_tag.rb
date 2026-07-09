@@ -11,5 +11,7 @@ class UserVirtuousTag < ApplicationRecord
     FoundationProspect
     FRU\ donors\ temporary
     Ambassador
+    Do\ Not\ Contact
+    Mid-Range\ Donors
   ).freeze
 end

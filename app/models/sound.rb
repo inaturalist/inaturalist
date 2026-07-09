@@ -205,6 +205,7 @@ class Sound < ApplicationRecord
       o.update_mappable
       Observation.set_quality_grade( o.id )
       o.elastic_index!
+      o.identifications.each( &:update_exemplar_identification )
     end
   end
 
@@ -215,6 +216,7 @@ class Sound < ApplicationRecord
       o.update_mappable
       Observation.set_quality_grade( o.id )
       o.elastic_index!
+      o.identifications.each( &:update_exemplar_identification )
     end
   end
 

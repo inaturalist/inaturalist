@@ -33,31 +33,31 @@ class IdentificationsTab extends Component {
     const allSorts = {
       votesDesc: {
         key: "votesDesc",
-        label: "Highest to lowest votes",
+        label: I18n.t( "views.taxa.show.identifications.sort.highest_to_lowest_votes" ),
         order_by: "votes",
         order: "desc"
       },
       votesAsc: {
         key: "votesAsc",
-        label: "Lowest to higest votes",
+        label: I18n.t( "views.taxa.show.identifications.sort.lowest_to_highest_votes" ),
         order_by: "votes",
         order: "asc"
       },
       newest: {
         key: "newest",
-        label: "Newest to oldest",
+        label: I18n.t( "views.taxa.show.identifications.sort.newest_to_oldest" ),
         order_by: "created_at",
         order: "desc"
       },
       oldest: {
         key: "oldest",
-        label: "Oldest to newest",
+        label: I18n.t( "views.taxa.show.identifications.sort.oldest_to_newest" ),
         order_by: "created_at",
         order: "asc"
       },
       lengthDesc: {
         key: "lengthDesc",
-        label: "Longest to shortest",
+        label: I18n.t( "views.taxa.show.identifications.sort.longest_to_shortest" ),
         order_by: "word_count",
         order: "desc"
       }
@@ -102,17 +102,102 @@ class IdentificationsTab extends Component {
     } );
   }
 
+  panelMenu( result ) {
+    const {
+      config,
+      nominateIdentification,
+      unnominateIdentification
+    } = this.props;
+    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
+    const nominationMenuItems = [];
+    if ( loggedInUser ) {
+      nominationMenuItems.push( (
+        <MenuItem
+          key={`id-flag-${result.id}`}
+          eventKey="flag"
+        >
+          { I18n.t( "flag" ) }
+        </MenuItem>
+      ) );
+      if ( loggedInUser.isCurator ) {
+        nominationMenuItems.push( (
+          <MenuItem
+            key={`id-hide-${result.uuid}`}
+            eventKey="hide"
+          >
+            { I18n.t( "hide_content" ) }
+          </MenuItem>
+        ) );
+      }
+    }
+    if ( result.nominated_by_user
+      && config?.currentUser?.canUnnominateIdentification( result.identification )
+    ) {
+      nominationMenuItems.push( (
+        <MenuItem
+          key="id-unnominate"
+          eventKey="unnominate"
+        >
+          { I18n.t( "identification_tips.remove_nomination" ) }
+        </MenuItem>
+      ) );
+    }
+    if ( !result.nominated_by_user
+      && config?.currentUser?.canNominateIdentification( result.identification )
+    ) {
+      nominationMenuItems.push( (
+        <MenuItem
+          key="id-nominate"
+          eventKey="nominate"
+        >
+          { I18n.t( "identification_tips.nominate" ) }
+        </MenuItem>
+      ) );
+    }
+    if ( _.isEmpty( nominationMenuItems ) ) {
+      return null;
+    }
+
+    return (
+      <div className="menu">
+        <span className="control-group">
+          <Dropdown
+            id="grouping-control"
+            onSelect={key => {
+              if ( key === "flag" ) {
+                const url = `/identifications/${result.identification.uuid}?_action=flag`;
+                window.open( url, "_blank", "noopener,noreferrer" );
+              } else if ( key === "hide" ) {
+                const url = `/identifications/${result.identification.uuid}?_action=hide`;
+                window.open( url, "_blank", "noopener,noreferrer" );
+              } else if ( key === "nominate" ) {
+                nominateIdentification( result.identification.uuid, result.id );
+              } else if ( key === "unnominate" ) {
+                unnominateIdentification( result.identification.uuid, result.id );
+              }
+            }}
+          >
+            <Dropdown.Toggle noCaret>
+              <i className="fa fa-chevron-down" />
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="dropdown-menu-right">
+              { nominationMenuItems }
+            </Dropdown.Menu>
+          </Dropdown>
+        </span>
+      </div>
+    );
+  }
+
   identificationPanel( result ) {
     const {
       config,
       identificationsQuery,
       setIdentificationsQuery,
-      nominateIdentification,
-      unnominateIdentification,
       voteIdentification,
       unvoteIdentification
     } = this.props;
-    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
+    const userCanVote = config?.currentUser?.canUnnominateIdentification( result.identification );
     const annotations = (
       <div className="annotations">
         {_.map( result.identification.observation.annotations, annotation => (
@@ -185,7 +270,7 @@ class IdentificationsTab extends Component {
       } else if ( v.vote_flag === false ) {
         votesAgainst.push( v );
       }
-      if ( v.user?.id === config.currentUser.id ) {
+      if ( v.user?.id === config.currentUser?.id ) {
         userVotedFor = ( v.vote_flag === true );
         userVotedAgainst = ( v.vote_flag === false );
       }
@@ -199,47 +284,6 @@ class IdentificationsTab extends Component {
     const agreeClass = userVotedFor ? "fa-thumbs-up" : "fa-thumbs-o-up";
     const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
 
-    const nominationMenuItems = [];
-    if ( loggedInUser ) {
-      nominationMenuItems.push( (
-        <MenuItem
-          key={`id-flag-${result.id}`}
-          eventKey="flag"
-        >
-          { I18n.t( "flag" ) }
-        </MenuItem>
-      ) );
-      if ( loggedInUser.isCurator ) {
-        nominationMenuItems.push( (
-          <MenuItem
-            key={`id-hide-${result.uuid}`}
-            eventKey="hide"
-          >
-            { I18n.t( "hide_content" ) }
-          </MenuItem>
-        ) );
-      }
-    }
-    if ( result.nominated_by_user ) {
-      nominationMenuItems.push( (
-        <MenuItem
-          key="id-unnominate"
-          eventKey="unnominate"
-        >
-          Remove Nomination
-        </MenuItem>
-      ) );
-    } else {
-      nominationMenuItems.push( (
-        <MenuItem
-          key="id-nominate"
-          eventKey="nominate"
-        >
-          Nominate
-        </MenuItem>
-      ) );
-    }
-
     const userLink = (
       <UserLink
         className="user"
@@ -247,6 +291,16 @@ class IdentificationsTab extends Component {
         noInativersary
         href={`/identifications/${result.identification.uuid}`}
         user={result.identification.user}
+      />
+    );
+
+    const nominatedByUserLink = result.nominated_by_user && (
+      <UserLink
+        className="user"
+        config={config}
+        noInativersary
+        href={`/identifications/${result.identification.uuid}`}
+        user={result.nominated_by_user}
       />
     );
 
@@ -275,33 +329,7 @@ class IdentificationsTab extends Component {
                     }}
                   />
                   {time}
-                  <div className="menu">
-                    <span className="control-group">
-                      <Dropdown
-                        id="grouping-control"
-                        onSelect={key => {
-                          if ( key === "flag" ) {
-                            const url = `/identifications/${result.identification.uuid}?_action=flag`;
-                            window.open( url, "_blank", "noopener,noreferrer" );
-                          } else if ( key === "hide" ) {
-                            const url = `/identifications/${result.identification.uuid}?_action=hide`;
-                            window.open( url, "_blank", "noopener,noreferrer" );
-                          } else if ( key === "nominate" ) {
-                            nominateIdentification( result.identification.uuid, result.id );
-                          } else if ( key === "unnominate" ) {
-                            unnominateIdentification( result.identification.uuid, result.id );
-                          }
-                        }}
-                      >
-                        <Dropdown.Toggle noCaret>
-                          <i className="fa fa-chevron-down" />
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu className="dropdown-menu-right">
-                          { nominationMenuItems }
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </span>
-                  </div>
+                  {this.panelMenu( result )}
                 </Panel.Title>
               </Panel.Heading>
               <Panel.Body>
@@ -309,18 +337,17 @@ class IdentificationsTab extends Component {
                   <UserText text={result.identification.body} className="id_body" />
                 </div>
               </Panel.Body>
-              { result.nominated_by_user && (
+              { nominatedByUserLink && (
                 <Panel.Footer>
-                  <span className="footer-text">
-                    <UserLink
-                      className="user"
-                      config={config}
-                      noInativersary
-                      href={`/identifications/${result.identification.uuid}`}
-                      user={result.nominated_by_user}
-                    />
-                    &nbsp;nominated this as an ID tip
-                  </span>
+                  <span
+                    className="footer-text"
+                    // eslint-disable-next-line react/no-danger
+                    dangerouslySetInnerHTML={{
+                      __html: I18n.t( "identification_tips.user_nominated_this_as_an_id_tip_html", {
+                        user: ReactDOMServer.renderToString( nominatedByUserLink )
+                      } )
+                    }}
+                  />
                   <time
                     className="time"
                     dateTime={result.nominated_at}
@@ -330,15 +357,20 @@ class IdentificationsTab extends Component {
                   </time>
                   { result.nominated_by_user && (
                     <div className="votes">
-                      <button
-                        type="button"
-                        className="btn btn-nostyle"
-                        onClick={voteAction}
-                        aria-label={I18n.t( "agree_" )}
-                        title={I18n.t( "agree_" )}
-                      >
+                      { userCanVote && (
+                        <button
+                          type="button"
+                          className="btn btn-nostyle"
+                          onClick={voteAction}
+                          aria-label={I18n.t( "agree_" )}
+                          title={I18n.t( "agree_" )}
+                        >
+                          <i className={`fa ${agreeClass}`} />
+                        </button>
+                      ) }
+                      { !userCanVote && (
                         <i className={`fa ${agreeClass}`} />
-                      </button>
+                      )}
                       { !_.isEmpty( votesFor ) && (
                         <UsersPopover
                           users={_.map( votesFor, "user" )}
@@ -348,15 +380,20 @@ class IdentificationsTab extends Component {
                           )}
                         />
                       ) }
-                      <button
-                        type="button"
-                        onClick={unvoteAction}
-                        className="btn btn-nostyle"
-                        aria-label={I18n.t( "disagree_" )}
-                        title={I18n.t( "disagree_" )}
-                      >
+                      { userCanVote && (
+                        <button
+                          type="button"
+                          onClick={unvoteAction}
+                          className="btn btn-nostyle"
+                          aria-label={I18n.t( "disagree_" )}
+                          title={I18n.t( "disagree_" )}
+                        >
+                          <i className={`fa ${disagreeClass}`} />
+                        </button>
+                      ) }
+                      { !userCanVote && (
                         <i className={`fa ${disagreeClass}`} />
-                      </button>
+                      )}
                       { !_.isEmpty( votesAgainst ) && (
                         <UsersPopover
                           users={_.map( votesAgainst, "user" )}
@@ -376,7 +413,7 @@ class IdentificationsTab extends Component {
               {result.identification.observation.discussion_count > 1 && (
                 <div className="conversation">
                   <a href={`/observations/${result.identification.observation.id}`}>
-                    View Full Conversation
+                    { I18n.t( "views.taxa.show.identifications.view_full_conversation" ) }
                   </a>
                 </div>
               )}
@@ -413,8 +450,13 @@ class IdentificationsTab extends Component {
   identificationCategories( ) {
     const {
       identificationsQuery,
-      setIdentificationsQuery
+      setIdentificationsQuery,
+      config
     } = this.props;
+    if ( !config?.currentUser?.canNominateHelpfulIDTips( ) ) {
+      return null;
+    }
+
     const activeTab = this.activeTab( );
     const upvotedDisabled = this.categoryTabDisabled( "upvoted" );
     const downvotedDisabled = this.categoryTabDisabled( "downvoted" );
@@ -448,7 +490,7 @@ class IdentificationsTab extends Component {
             $( "#identifications_search_query" ).val( "" );
           }}
         >
-          Upvoted
+          { I18n.t( "views.taxa.show.identifications.upvoted" ) }
         </button>
         <button
           type="button"
@@ -476,7 +518,7 @@ class IdentificationsTab extends Component {
             $( "#identifications_search_query" ).val( "" );
           }}
         >
-          Downvoted (hidden)
+          { I18n.t( "views.taxa.show.identifications.downvoted_and_hidden" ) }
         </button>
         <button
           type="button"
@@ -504,7 +546,7 @@ class IdentificationsTab extends Component {
             $( "#identifications_search_query" ).val( "" );
           }}
         >
-          No Votes
+          { I18n.t( "views.taxa.show.identifications.no_votes" ) }
         </button>
         <button
           type="button"
@@ -533,9 +575,75 @@ class IdentificationsTab extends Component {
             $( "#identifications_search_query" ).val( "" );
           }}
         >
-          Not Nominated
+          { I18n.t( "views.taxa.show.identifications.not_nominated" ) }
         </button>
       </div>
+    );
+  }
+
+  searchForm( ) {
+    const {
+      identificationsQuery,
+      setIdentificationsQuery,
+      identificationsAvailable,
+      config
+    } = this.props;
+    if ( identificationsAvailable === false && !config?.currentUser?.canNominateHelpfulIDTips( ) ) {
+      return null;
+    }
+    return (
+      <form
+        className="search"
+        onSubmit={e => {
+          setIdentificationsQuery( {
+            ...identificationsQuery,
+            q: $( e.target ).find( "[name='q']" ).val( ),
+            page: null
+          } );
+          e.preventDefault( );
+        }}
+      >
+        <div className="input-group">
+          <div className="search-input">
+            <input
+              className="form-control"
+              name="q"
+              id="identifications_search_query"
+              type="text"
+              placeholder={I18n.t( "views.taxa.show.identifications.search_identifications" )}
+              autoComplete="off"
+              onChange={e => {
+                this.setSearchSearchTermPresent( !_.isEmpty( e.target.value ) );
+              }}
+            />
+            { this.state.searchSearchTermPresent && (
+              <span
+                type="button"
+                aria-hidden="true"
+                className="glyphicon glyphicon-remove-circle searchclear"
+                onClick={( ) => {
+                  $( "#identifications_search_query" ).val( "" );
+                  this.setSearchSearchTermPresent( false );
+                  setIdentificationsQuery( {
+                    ...identificationsQuery,
+                    q: null,
+                    page: null
+                  } );
+                }}
+              />
+            ) }
+          </div>
+          <span className="input-group-btn">
+            <input
+              type="submit"
+              className="btn btn-primary"
+              value={I18n.t( "search" )}
+            />
+          </span>
+          { this.sortSelect( ) }
+        </div>
+        { this.resultAnnotations( ) }
+      </form>
     );
   }
 
@@ -567,9 +675,7 @@ class IdentificationsTab extends Component {
             value={sortOption.key}
             key={`params-order-by-${sortOption.key}`}
           >
-            Sort:
-            {" "}
-            { I18n.t( sortOption.label, { defaultValue: sortOption.label } ) }
+            { sortOption.label }
           </option>
         ) ) }
       </select>
@@ -636,6 +742,7 @@ class IdentificationsTab extends Component {
     const {
       response,
       identificationsQuery,
+      identificationsAvailable,
       setIdentificationsQuery,
       updateCurrentUser,
       bounds,
@@ -648,15 +755,17 @@ class IdentificationsTab extends Component {
     } = this.props;
     let content;
     let pagination;
-    if ( !currentUser?.canViewHelpfulIDTips( ) ) {
-      return null;
-    }
     const responsive = currentUser?.isAdmin
       && currentUser?.isInTestGroup( "responsive-taxon-detail" );
+    const activeTab = this.activeTab( );
     if ( response?.results?.length === 0 ) {
       content = (
         <div className="no-identifications">
-          No results
+          {
+            activeTab === "upvoted" && identificationsAvailable === false
+              ? I18n.t( "views.taxa.show.identifications.no_nominated_and_upvoted_identifications" )
+              : I18n.t( "no_results_found" )
+          }
         </div>
       );
     } else if ( response?.results?.length > 0 ) {
@@ -682,62 +791,11 @@ class IdentificationsTab extends Component {
         <Row>
           <Col xs={responsive ? null : 8} sm={responsive ? 12 : null}>
             <h2>
-              {I18n.t( "identifications" )}
+              {I18n.t( "views.taxa.show.identifications.identification_tips" )}
             </h2>
             <div className={`search-container${response?.loading ? " disabled" : ""}`}>
               {this.identificationCategories( )}
-              <form
-                className="search"
-                onSubmit={e => {
-                  setIdentificationsQuery( {
-                    ...identificationsQuery,
-                    q: $( e.target ).find( "[name='q']" ).val( ),
-                    page: null
-                  } );
-                  e.preventDefault( );
-                }}
-              >
-                <div className="input-group">
-                  <div className="search-input">
-                    <input
-                      className="form-control"
-                      name="q"
-                      id="identifications_search_query"
-                      type="text"
-                      placeholder="Search Identifications"
-                      autoComplete="off"
-                      onChange={e => {
-                        this.setSearchSearchTermPresent( !_.isEmpty( e.target.value ) );
-                      }}
-                    />
-                    { this.state.searchSearchTermPresent && (
-                      <span
-                        type="button"
-                        aria-hidden="true"
-                        className="glyphicon glyphicon-remove-circle searchclear"
-                        onClick={( ) => {
-                          $( "#identifications_search_query" ).val( "" );
-                          this.setSearchSearchTermPresent( false );
-                          setIdentificationsQuery( {
-                            ...identificationsQuery,
-                            q: null,
-                            page: null
-                          } );
-                        }}
-                      />
-                    ) }
-                  </div>
-                  <span className="input-group-btn">
-                    <input
-                      type="submit"
-                      className="btn btn-primary"
-                      value="Search"
-                    />
-                  </span>
-                  { this.sortSelect( ) }
-                </div>
-                { this.resultAnnotations( ) }
-              </form>
+              {this.searchForm( )}
             </div>
             { response?.loading ? (
               <div className="loading">
@@ -789,6 +847,7 @@ class IdentificationsTab extends Component {
 IdentificationsTab.propTypes = {
   response: PropTypes.object,
   identificationsQuery: PropTypes.object,
+  identificationsAvailable: PropTypes.bool,
   setIdentificationsQuery: PropTypes.func,
   updateCurrentUser: PropTypes.func,
   config: PropTypes.object,

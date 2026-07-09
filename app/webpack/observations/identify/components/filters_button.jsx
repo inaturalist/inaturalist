@@ -139,11 +139,15 @@ class FiltersButton extends React.Component {
       params.observationFields && _.size( params.observationFields ) > 0
     );
     const iconicTaxonButton = ( t, i ) => {
+      const isUnknown = t.name === "unknown";
       let cssClass = "iconic-taxon";
       if ( ( i + 1 ) % 6 === 0 ) {
         cssClass += " last";
       }
-      if ( _.includes( params.iconic_taxa, t.name ) ) {
+      const isActive = isUnknown
+        ? params.identified === false
+        : _.includes( params.iconic_taxa, t.name );
+      if ( isActive ) {
         cssClass += " filter-changed active";
       }
       return (
@@ -152,16 +156,27 @@ class FiltersButton extends React.Component {
           title={I18n.t( `all_taxa.${t.label}`, { defaultValue: I18n.t( t.label ) } )}
           key={`btn-${t.name}`}
           onClick={( ) => {
-            let newIconicTaxa;
-            if ( _.includes( params.iconic_taxa, t.name ) ) {
-              newIconicTaxa = _.without( params.iconic_taxa, t.name );
+            if ( isUnknown ) {
+              if ( params.identified === false ) {
+                updateSearchParams( { identified: null } );
+              } else {
+                updateSearchParams( { iconic_taxa: [], identified: false } );
+              }
             } else {
-              newIconicTaxa = params.iconic_taxa.map( n => n );
-              newIconicTaxa.push( t.name );
+              let newIconicTaxa;
+              const newParams = {};
+              if ( _.includes( params.iconic_taxa, t.name ) ) {
+                newIconicTaxa = _.without( params.iconic_taxa, t.name );
+              } else {
+                newIconicTaxa = params.iconic_taxa.map( n => n );
+                newIconicTaxa.push( t.name );
+              }
+              newParams.iconic_taxa = newIconicTaxa;
+              if ( params.identified === false ) {
+                newParams.identified = null;
+              }
+              updateSearchParams( newParams );
             }
-            updateSearchParams( {
-              iconic_taxa: newIconicTaxa
-            } );
           }}
         >
           <i className={`icon-iconic-${t.name.toLowerCase( )}`} />

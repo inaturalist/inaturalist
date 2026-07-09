@@ -1012,7 +1012,7 @@ $nav-btn-dim: 40px;
     }
     select[name="sort"] {
       margin-left: 10px;
-      min-width: 195px;
+      min-width: 215px;
     }
   }
   .annotation-search {
@@ -1133,7 +1133,7 @@ $nav-btn-dim: 40px;
         .vote-count {
           margin-left: 3px;
         }
-        & button {
+        & .fa {
           margin-left: 10px;
         }
       }

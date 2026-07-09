@@ -14,7 +14,7 @@ RUN git clone https://github.com/strukturag/libheif.git && cd libheif && mkdir b
 
 RUN echo "/usr/local/lib" > /etc/ld.so.conf.d/aaa_libheif.conf && ldconfig
 
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -\
+RUN curl -sL https://deb.nodesource.com/setup_24.x | bash -\
   && apt-get update -qq && apt-get install -qq --no-install-recommends \
     nodejs \
   && apt-get upgrade -qq \

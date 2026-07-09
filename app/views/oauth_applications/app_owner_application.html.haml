@@ -10,7 +10,7 @@
     .col-xs-8.col-xs-offset-2
       %h1= @title
       %p=t :app_owner_application_about_p1a_html
-      %p=t :app_owner_application_about_p2_html
+      %p=t_with_fallback( :app_owner_application_about_p2_2_html, :app_owner_application_about_p2_html ).html_safe
       - if @eligible
         %h2=t :apply_app_owner
         = form_for :application, url: {action: "create_app_owner_application"}, builder: BootstrapFormBuilder do |f|
@@ -18,8 +18,4 @@
           = f.submit t(:apply_app_owner), class: "btn btn-primary"
       - else
         .alert.alert-warning
-          %p
-            - if has_t?( :app_owner_application_inelligible ) && !has_t?( :app_owner_application_inelligible2 )
-              = t( :app_owner_application_inelligible )
-            - else
-              = t( :app_owner_application_inelligible2 )
+          %p=t_with_fallback( :app_owner_application_inelligible2_html, :app_owner_application_inelligible ).html_safe

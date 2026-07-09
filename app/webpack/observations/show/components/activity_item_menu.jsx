@@ -113,23 +113,27 @@ const ActivityItemMenu = ( {
         ) );
       }
     }
-    if ( config?.currentUser?.canUnnominateIdentification( item ) ) {
+    if ( item.exemplar_identification?.nominated_by_user
+      && config?.currentUser?.canUnnominateIdentification( item )
+    ) {
       menuItems.push( (
         <MenuItem
           key="id-unnominate"
           eventKey="unnominate"
-          title="Remove nomination"
         >
-          Remove Nomination
+          { I18n.t( "identification_tips.remove_nomination" ) }
         </MenuItem>
       ) );
-    } else if ( config?.currentUser?.canNominateIdentification( item ) ) {
+    }
+    if ( !item.exemplar_identification?.nominated_by_user
+      && config?.currentUser?.canNominateIdentification( item )
+    ) {
       menuItems.push( (
         <MenuItem
           key="id-nominate"
           eventKey="nominate"
         >
-          Nominate
+          { I18n.t( "identification_tips.nominate" ) }
         </MenuItem>
       ) );
     }

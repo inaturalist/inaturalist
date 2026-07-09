@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   id_param_pattern = /(\d+([\w\-%]*))|#{uuid_pattern}/
   simplified_login_regex = %r{\w[^.,/]+}
   root to: "welcome#index"
+  get "/robots.txt", to: "robots_txt#robots", format: false
 
   # legacy routes
   get "/set_locale", to: "application#set_locale", as: :set_locale
@@ -459,6 +460,15 @@ Rails.application.routes.draw do
     :constraints => { login: simplified_login_regex }
   resources :taxon_photos, constraints: { id: id_param_pattern }, only: [:new, :create]
   get "taxa/names" => "taxon_names#index"
+
+  # Locale-prefixed taxon pages, e.g. /fr/taxa/891696-Pica-pica
+  # English is excluded — /taxa/... already serves English, so /en/taxa/... would be duplicate content.
+  # Whether a taxon has a common name in the requested locale is enforced in the controller, not here.
+  locales_for_taxon_routes = ( I18N_SUPPORTED_LOCALES - ["en"] ).join( "|" )
+  scope "/:locale", locale: /#{locales_for_taxon_routes}/ do
+    get "taxa/:id", to: "taxa#show", as: :localized_taxon, constraints: { id: id_param_pattern }
+  end
+
   resources :taxa, constraints: { id: id_param_pattern } do
     resources :flags
     resources :taxon_names, controller: :taxon_names, shallow: true

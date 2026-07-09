@@ -15,18 +15,18 @@ class ModeratorAction < ApplicationRecord
   ].freeze
   MINIMUM_REASON_LENGTH = 10
   MAXIMUM_REASON_LENGTH = 2048
-  MAXIMUM_SUSPEND_REASON_LENGTH = 100
+  MAXIMUM_SUSPEND_REASON_LENGTH = 250
 
   SUSPENSION_REASONS = {
     "insults_or_threats" => { default_duration: "1_day" },
-    "hate_speech" => { default_duration: "3_days" },
-    "sexually_explicit_content" => { default_duration: "indefinite" },
-    "sockpuppet_accounts" => { default_duration: "1_week" },
-    "false_ids_or_dqa_votes" => { default_duration: "1_day" },
-    "machine_generated_content" => { default_duration: "indefinite" },
-    "continued_copyright_infringement_after_warning" => { default_duration: "1_day" },
+    "hate_speech" => { default_duration: "1_week" },
+    "posting_sexually_explicit_human_content" => { default_duration: "indefinite" },
+    "misusing_a_second_account" => { default_duration: "1_week" },
+    "intentionally_adding_false_data" => { default_duration: "1_day" },
+    "adding_machine_generated_content" => { default_duration: "indefinite" },
+    "continued_posting_media_without_owners_permission_after_warning" => { default_duration: "1_day" },
     "continued_posting_of_artificially_generated_media_after_warning" => { default_duration: "1_day" },
-    "continued_reduction_of_data_quality_after_warning" => { default_duration: "3_days" }
+    "continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning" => { default_duration: "3_days" }
   }.freeze
 
   PRIVATE_MEDIA_RETENTION_TIME = 2.months
@@ -215,11 +215,11 @@ class ModeratorAction < ApplicationRecord
 
   def set_resource_content
     return unless resource
-    
-    if action == RENAME
-      self.resource_content = resource.try_methods(:name, :title, :login)
+
+    self.resource_content = if action == RENAME
+      resource.try_methods( :name, :title, :login )
     else
-      self.resource_content = Flag.instance_content(resource)
+      Flag.instance_content( resource )
     end
   end
 

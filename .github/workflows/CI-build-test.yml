@@ -3,9 +3,39 @@ name: Rails Build and Test
 on:
   workflow_call:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
+  js-checks:
+    name: JS Lint/Typecheck
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - run: npm install
+    - name: Run restricted eslint
+      run: |
+        npm run eslint -- \
+          --no-error-on-unmatched-pattern \
+          app/webpack/computer_vision/language \
+          "app/webpack/**/*.tsx" \
+          "app/webpack/**/*.ts"
+    - name: Run TypeScript type check
+      run: npm run typecheck
+
+  js-unit-tests:
+    name: JS Unit Tests
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - run: npm install
+    - name: Run JS unit tests
+      run: npm run test:unit -- --ci
+
+  # WEB-1046: Might be worth considering building a container image for this job and reusing that
+  # instead of building the image for each matrix step.
   build-and-test:
-    name: Build/Test 
+    name: Build/Test
     runs-on: ubuntu-22.04
     services:
       postgres:
@@ -40,7 +70,7 @@ jobs:
           - spec/helpers spec/initializers spec/lib spec/views spec/features
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Configure sysctl limits
       run: |
@@ -60,10 +90,34 @@ jobs:
       run: |
         curl --verbose --show-error http://localhost:9200
 
+    - name: Compute cache date
+      id: cache-date
+      run: echo "date=$(date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+    - name: Restore apt package cache
+      id: apt-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: ~/apt-packages
+        key: apt-packages-${{ runner.os }}-${{ steps.cache-date.outputs.date }}-${{ hashFiles('.github/apt-packages.txt') }}
+
     - name: Install dependencies
+      timeout-minutes: 10
       run: |
-        sudo apt-get -qq update --fix-missing
-        sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
+        sudo rm -f /var/lib/man-db/auto-update
+        sudo ln -sf /bin/true /usr/bin/mandb
+        if [ -d ~/apt-packages/archives ] && ls ~/apt-packages/archives/*.deb &>/dev/null; then
+          echo "Restoring cached packages and lists..."
+          sudo cp ~/apt-packages/archives/*.deb /var/cache/apt/archives/
+          sudo cp -a ~/apt-packages/lists/. /var/lib/apt/lists/
+        else
+          echo "Cache miss - downloading from mirror..."
+          sudo apt-get update --fix-missing
+        fi
+        xargs sudo apt-get install -y --no-install-recommends \
+          -o Acquire::Retries=5 \
+          -o Acquire::http::Timeout="15" \
+          < .github/apt-packages.txt
 
     - name: Use Ruby
       uses: ruby/setup-ruby@v1
@@ -94,8 +148,6 @@ jobs:
         TRAVIS_CI: true
         CI: true
 
+    # WEB-1046: This is running for each matrix step (14x) when it should only be running once.
     - name: Run restricted rubocop
       run: bundle exec rubocop ./app/controllers/users ./app/controllers/admin ./app/es_indices
-
-    - name: Run restricted eslint
-      run: npm run eslint app/webpack/computer_vision/language

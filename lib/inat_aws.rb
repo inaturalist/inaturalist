@@ -1,24 +1,24 @@
 #encoding: utf-8
 class INatAWS
 
-  def self.config
-    YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
+  def self.config_cloudfront
+    YAML.load_file(File.join(Rails.root, "config", "cloudfront.yml"))
   end
 
   def self.cloudfront_invalidate(path)
-    config = INatAWS.config
+    config = INatAWS.config_cloudfront
     return unless Rails.env.production? &&
       path &&
-      config["access_key_id"] &&
-      config["secret_access_key"] &&
+      config["cloudfront_access_key_id"] &&
+      config["cloudfront_secret_access_key"] &&
       config["cloudfront_distribution"]
     # AWS expects paths to begin with /
     if path[0] != "/"
       path = "/" + path
     end
     client = ::Aws::CloudFront::Client.new(
-      access_key_id: config["access_key_id"],
-      secret_access_key: config["secret_access_key"],
+      access_key_id: config["cloudfront_access_key_id"],
+      secret_access_key: config["cloudfront_secret_access_key"],
       region: CONFIG.s3_region
     )
     client.create_invalidation(

@@ -3,6 +3,9 @@ name: Pre Build
 on:
   workflow_call:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   pre-build:
     name: Pre-build
@@ -12,3 +15,29 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         cancel_others: true
+    - uses: actions/checkout@v5
+
+    - name: Compute cache date
+      id: cache-date
+      run: echo "date=$(date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+    - name: Cache apt packages
+      id: apt-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/apt-packages
+        key: apt-packages-${{ runner.os }}-${{ steps.cache-date.outputs.date }}-${{ hashFiles('.github/apt-packages.txt') }}
+
+    - name: Download apt packages
+      timeout-minutes: 10
+      if: steps.apt-cache.outputs.cache-hit != 'true'
+      run: |
+        sudo apt-get update --fix-missing
+        xargs sudo apt-get install -y --no-install-recommends -d \
+          -o Acquire::Retries=5 \
+          -o Acquire::http::Timeout="15" \
+          < .github/apt-packages.txt
+        mkdir -p ~/apt-packages/archives ~/apt-packages/lists
+        cp /var/cache/apt/archives/*.deb ~/apt-packages/archives/
+        sudo rsync -a --exclude='partial' --exclude='lock' /var/lib/apt/lists/ ~/apt-packages/lists/
+        sudo chown -R $USER:$USER ~/apt-packages/

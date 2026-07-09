@@ -180,12 +180,6 @@ describe Emailer, "user_unsuspended" do
     expect( mail.body ).to be_blank
   end
 
-  it "should not deliver to a user who prefers no email" do
-    user.update( prefers_no_email: true )
-    mail = Emailer.user_unsuspended( user )
-    expect( mail.body ).to be_blank
-  end
-
   it "should include reason when provided" do
     mail = Emailer.user_unsuspended( user, "spamming" )
     expect( mail.body ).to match( /spamming/ )
@@ -194,6 +188,114 @@ describe Emailer, "user_unsuspended" do
   it "should not include reason when not provided" do
     mail = Emailer.user_unsuspended( user )
     expect( mail.body ).not_to match( /Reason/ )
+  end
+
+  it "should translate a predefined reason key" do
+    mail = Emailer.user_unsuspended( user, "hate_speech" )
+    expect( mail.body ).to match( /#{I18n.t( 'suspension_reasons.hate_speech' )}/ )
+  end
+
+  it "should translate reason in the user's locale" do
+    user.update( locale: "es" )
+    allow( ModeratorAction ).to receive( :translate_reason ) do | reason |
+      expect( I18n.locale.to_s ).to eq "es"
+      reason
+    end
+    Emailer.user_unsuspended( user, "hate_speech" )
+  end
+
+  it "should delete an account-email suppression before sending" do
+    allow( RestClient ).to receive( :delete )
+    suppression = create :email_suppression,
+      user: user, email: user.email, suppression_type: EmailSuppression::BOUNCES
+    Emailer.user_unsuspended( user ).deliver_now
+    expect( EmailSuppression.find_by_id( suppression.id ) ).to be_blank
+  end
+
+  it "should not delete an unrelated suppression" do
+    allow( RestClient ).to receive( :delete )
+    suppression = create :email_suppression,
+      user: user, email: user.email, suppression_type: EmailSuppression::INVALID_EMAILS
+    Emailer.user_unsuspended( user ).deliver_now
+    expect( EmailSuppression.find_by_id( suppression.id ) ).not_to be_blank
+  end
+
+  it "should not send a Sendgrid ASM group so no unsubscribe footer is added" do
+    mail = Emailer.user_unsuspended( user )
+    smtpapi = JSON.parse( mail["X-SMTPAPI"].value )
+    expect( smtpapi ).not_to have_key( "asm_group_id" )
+  end
+end
+
+describe Emailer, "user_suspended" do
+  let( :user ) { User.make! }
+
+  it "should work for indefinite suspension" do
+    mail = Emailer.user_suspended( user, "hate_speech", nil )
+    expect( mail.body ).not_to be_blank
+  end
+
+  it "should work for timed suspension" do
+    mail = Emailer.user_suspended( user, "hate_speech", 7.days.from_now )
+    expect( mail.body ).not_to be_blank
+  end
+
+  it "should not deliver to a user with no email" do
+    user.update( email: "" )
+    mail = Emailer.user_suspended( user, "hate_speech", nil )
+    expect( mail.body ).to be_blank
+  end
+
+  it "should translate a predefined reason key" do
+    mail = Emailer.user_suspended( user, "hate_speech", nil )
+    expect( mail.body ).to match( /#{I18n.t( 'suspension_reasons.hate_speech' )}/ )
+  end
+
+  it "should include custom reason text unchanged" do
+    mail = Emailer.user_suspended( user, "spamming", nil )
+    expect( mail.body ).to match( /spamming/ )
+  end
+
+  it "should include duration for timed suspensions" do
+    suspended_until = 7.days.from_now
+    mail = Emailer.user_suspended( user, "hate_speech", suspended_until )
+    expect( mail.body ).to match( /lifted/ )
+  end
+
+  it "should show indefinite message when no suspended_until" do
+    mail = Emailer.user_suspended( user, "hate_speech", nil )
+    expect( mail.body ).to match( /indefinitely/ )
+  end
+
+  it "should translate reason in the user's locale" do
+    user.update( locale: "es" )
+    allow( ModeratorAction ).to receive( :translate_reason ) do | reason |
+      expect( I18n.locale.to_s ).to eq "es"
+      reason
+    end
+    Emailer.user_suspended( user, "hate_speech", nil )
+  end
+
+  it "should delete an account-email suppression before sending" do
+    allow( RestClient ).to receive( :delete )
+    suppression = create :email_suppression,
+      user: user, email: user.email, suppression_type: EmailSuppression::BOUNCES
+    Emailer.user_suspended( user, "hate_speech", nil ).deliver_now
+    expect( EmailSuppression.find_by_id( suppression.id ) ).to be_blank
+  end
+
+  it "should not delete an unrelated suppression" do
+    allow( RestClient ).to receive( :delete )
+    suppression = create :email_suppression,
+      user: user, email: user.email, suppression_type: EmailSuppression::INVALID_EMAILS
+    Emailer.user_suspended( user, "hate_speech", nil ).deliver_now
+    expect( EmailSuppression.find_by_id( suppression.id ) ).not_to be_blank
+  end
+
+  it "should not send a Sendgrid ASM group so no unsubscribe footer is added" do
+    mail = Emailer.user_suspended( user, "hate_speech", nil )
+    smtpapi = JSON.parse( mail["X-SMTPAPI"].value )
+    expect( smtpapi ).not_to have_key( "asm_group_id" )
   end
 end
 

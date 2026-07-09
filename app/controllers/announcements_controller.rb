@@ -4,8 +4,10 @@ class AnnouncementsController < ApplicationController
   before_action :authenticate_user!, except: [:active]
   before_action :site_admin_required, except: [:active, :dismiss]
   before_action :load_announcement, only: [:show, :edit, :update, :destroy, :dismiss, :duplicate]
-  before_action :load_sites, only: [:new, :edit, :create, :duplicate]
-  before_action :load_oauth_applications, only: [:new, :edit, :create, :duplicate]
+  before_action :ensure_can_edit_announcement, only: [:edit, :update, :destroy]
+  before_action :load_sites, only: [:new, :edit, :create, :update, :duplicate]
+  before_action :load_oauth_applications, only: [:new, :edit, :create, :update, :duplicate]
+  before_action :load_parent_announcement_options, only: [:new, :edit, :create, :update, :duplicate]
 
   layout "bootstrap"
 
@@ -13,8 +15,15 @@ class AnnouncementsController < ApplicationController
   # GET /announcements.xml
   def index
     @announcements = Announcement.includes( :sites ).order( "announcements.id desc" ).page( params[:page] )
-    @announcements = @announcements.where( sites: { id: current_user_site_ids } ) unless current_user_site_ids.blank?
-    @announcements = @announcements.where( "body ilike ?", "%#{params[:q]}%" ) unless params[:q].blank?
+    if current_user_site_ids.present? && params[:site_filter] != "all"
+      @announcements = @announcements.where( sites: { id: current_user_site_ids } )
+    end
+    unless params[:q].blank?
+      sanitized_q = Announcement.sanitize_sql_like( params[:q] )
+      @announcements = @announcements.where(
+        "body ilike ?", "%#{sanitized_q}%"
+      )
+    end
     @active = params[:active].yesish?
     @announcements = @announcements.where( "\"end\" > ?", Time.now ) if @active
     @placement = params[:placement] if Announcement::PLACEMENTS.include?( params[:placement] )
@@ -40,6 +49,13 @@ class AnnouncementsController < ApplicationController
   end
 
   def show
+    @family_root = @announcement.parent_announcement || @announcement
+    @translation_variants = if @announcement.parent_announcement_id.present?
+      [@family_root] + @family_root.child_announcements.includes( :sites ).where.not( id: @announcement.id ).order( :id )
+    else
+      @announcement.child_announcements.includes( :sites ).order( :id )
+    end
+
     respond_to do | format |
       format.html do
         if params[:body]
@@ -111,9 +127,13 @@ class AnnouncementsController < ApplicationController
   end
 
   def duplicate
-    @announcement = @announcement.duplicate_as_user( current_user )
-
-    # Show the form with all fields prefilled (unsaved record)
+    original = @announcement
+    @announcement = original.duplicate_as_user( current_user )
+    if params[:variant]
+      @parent_announcement_options.unshift( [original.dropdown_label, original.id] ) unless
+        @parent_announcement_options.any? {| _label, id | id == @announcement.parent_announcement_id }
+      @announcement.parent_announcement_id = original.parent_announcement_id || original.id
+    end
     render :new
   end
 
@@ -121,6 +141,28 @@ class AnnouncementsController < ApplicationController
 
   def current_user_site_ids
     @current_user_site_ids ||= current_user.site_admins.pluck( :site_id )
+  end
+
+  def announcement_editable_by_current_user?( announcement = @announcement )
+    return true if current_user.is_admin?
+    return false if current_user_site_ids.blank?
+
+    announcement.site_ids.intersect?( current_user_site_ids )
+  end
+  helper_method :announcement_editable_by_current_user?, :current_user_site_ids
+
+  def ensure_can_edit_announcement
+    return if announcement_editable_by_current_user?
+
+    respond_to do | format |
+      format.html do
+        flash[:error] = t( :you_dont_have_permission_to_edit_that_announcement )
+        redirect_to @announcement
+      end
+      format.json do
+        render status: :forbidden, json: { error: t( :you_dont_have_permission_to_edit_that_announcement ) }
+      end
+    end
   end
 
   def load_announcement
@@ -136,6 +178,21 @@ class AnnouncementsController < ApplicationController
       "official AND scopes LIKE '%write%'"
     )
     @oauth_applications.sort_by!( &:name )
+  end
+
+  def load_parent_announcement_options
+    candidates = Announcement.
+      where( parent_announcement_id: nil ).
+      where( '"end" > ?', 30.days.ago ).
+      order( id: :desc ).
+      limit( 100 )
+    candidates = candidates.where.not( id: @announcement.id ) if @announcement&.persisted?
+    @parent_announcement_options = candidates.map {| a | [a.dropdown_label, a.id] }
+    if @announcement&.parent_announcement_id.present? &&
+        @parent_announcement_options.none? {| _label, id | id == @announcement.parent_announcement_id }
+      parent = Announcement.find_by_id( @announcement.parent_announcement_id )
+      @parent_announcement_options.unshift( [parent.dropdown_label, parent.id] ) if parent
+    end
   end
 
   def user_agent_client

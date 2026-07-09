@@ -27,19 +27,19 @@ describe "User Index" do
     expect( doc[:votes] ).to be_empty
     expect( doc[:cached_votes_total] ).to eq 0
 
-    exemplar_identification.vote_up( User.make! )
+    exemplar_identification.vote_up( make_admin )
     exemplar_identification.reload
     doc = exemplar_identification.as_indexed_json
     expect( doc[:votes].length ).to eq 1
     expect( doc[:cached_votes_total] ).to eq 1
 
-    exemplar_identification.vote_down( User.make! )
+    exemplar_identification.vote_down( make_admin )
     exemplar_identification.reload
     doc = exemplar_identification.as_indexed_json
     expect( doc[:votes].length ).to eq 2
     expect( doc[:cached_votes_total] ).to eq 0
 
-    exemplar_identification.vote_down( User.make! )
+    exemplar_identification.vote_down( make_admin )
     exemplar_identification.reload
     doc = exemplar_identification.as_indexed_json
     expect( doc[:votes].length ).to eq 3

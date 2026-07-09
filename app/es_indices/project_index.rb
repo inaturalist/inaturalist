@@ -30,6 +30,7 @@ class Project < ApplicationRecord
       indexes :ancestor_place_ids, type: "keyword"
       indexes :associated_place_ids, type: "keyword"
       indexes :banner_color, type: "keyword", index: false
+      indexes :membership_model, type: "keyword"
       indexes :created_at, type: "date"
       indexes :description, analyzer: "ascii_snowball_analyzer"
       indexes :flags do
@@ -273,6 +274,7 @@ class Project < ApplicationRecord
       site_features: site_featured_projects.map( &:as_indexed_json ),
       umbrella_project_ids: within_umbrella_ids,
       prefers_user_trust: prefers_user_trust,
+      membership_model: preferred_membership_model,
       observation_requirements_updated_at: observation_requirements_updated_at
     }
     if project_type == "umbrella"

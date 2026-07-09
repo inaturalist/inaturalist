@@ -514,6 +514,63 @@ describe User do
         expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
       end
     end
+
+    describe "reindex ExemplarIdentifications" do
+      elastic_models( ExemplarIdentification )
+      let( :old_login ) { "old_login" }
+      let( :new_login ) { "new_login" }
+      let!( :user ) do
+        user = User.make( login: old_login )
+        Identification.make!( user: user, body: "the body" )
+        user
+      end
+
+      it "queues a reindex job if login changes" do
+        Delayed::Job.delete_all
+        expect( Delayed::Job.where(
+          "handler LIKE '%reindex_exemplar_identifications_after_login_change%'"
+        ).count ).to eq 0
+
+        user.update( login: new_login )
+
+        expect( Delayed::Job.where(
+          "handler LIKE '%reindex_exemplar_identifications_after_login_change%'"
+        ).count ).to eq 1
+      end
+
+      it "does not queue a reindex job if login does not change" do
+        Delayed::Job.delete_all
+        expect( Delayed::Job.where(
+          "handler LIKE '%reindex_exemplar_identifications_after_login_change%'"
+        ).count ).to eq 0
+
+        user.update( description: "new description" )
+
+        expect( Delayed::Job.where(
+          "handler LIKE '%reindex_exemplar_identifications_after_login_change%'"
+        ).count ).to eq 0
+      end
+
+      it "queues a job that updates logins in indexed exemplar_identifications" do
+        expect( ExemplarIdentification.elastic_search(
+          where: { "identification.user.login": old_login }
+        ).size ).to eq 1
+        expect( ExemplarIdentification.elastic_search(
+          where: { "identification.user.login": new_login }
+        ).size ).to eq 0
+
+        user.update( login: new_login )
+        Delayed::Worker.new.work_off
+        Delayed::Worker.new.work_off
+
+        expect( ExemplarIdentification.elastic_search(
+          where: { "identification.user.login": old_login }
+        ).size ).to eq 0
+        expect( ExemplarIdentification.elastic_search(
+          where: { "identification.user.login": new_login }
+        ).size ).to eq 1
+      end
+    end
   end
 
   #
@@ -870,29 +927,33 @@ describe User do
       expect( mail.subject ).to match( /unsuspended/ )
     end
 
-    it "includes unsuspension reason in unsuspended email for timed suspensions" do
+    it "includes suspension reason in unsuspended email for timed suspensions" do
       user = User.make!(
         suspended_at: Time.zone.now,
-        suspended_until: 7.days.from_now
+        suspended_until: 7.days.from_now,
+        suspension_reason: "they were spamming"
       )
       user.reload
       without_delay do
-        ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user, reason: "they were spamming" )
+        ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user )
       end
       mail = ActionMailer::Base.deliveries.last
       expect( mail.body ).to match( /spamming/ )
     end
 
-    it "does not include reason in unsuspended email from user reason" do
+    it "includes unsuspension reason in unsuspended email for indefinite suspensions" do
       user = User.make!(
         suspended_at: Time.zone.now,
         suspended_until: nil,
         suspension_reason: "historical reason"
       )
       user.reload
-      without_delay { ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user ) }
+      without_delay do
+        ModeratorAction.make!( action: ModeratorAction::UNSUSPEND, resource: user, reason: "unsuspension reason" )
+      end
       mail = ActionMailer::Base.deliveries.last
       expect( mail.body ).not_to match( /historical reason/ )
+      expect( mail.body ).to match( /unsuspension reason/ )
     end
 
     it "suspends the user when given a SUSPEND action" do
@@ -1463,8 +1524,8 @@ describe User do
   describe "merge" do
     elastic_models( Observation, Identification )
 
-    let(:keeper) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
-    let(:reject) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+    let( :keeper ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+    let( :reject ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
     it "should move observations" do
       o = Observation.make!( user: reject )
@@ -1591,14 +1652,14 @@ describe User do
       Delayed::Worker.new.work_off
       expect( reject.project_users.count ).to eq 1
       expect( keeper.project_users.count ).to eq 0
-      expect( project.as_indexed_json[:admins].select do |admin|
+      expect( project.as_indexed_json[:admins].select do | admin |
         admin[:user_id] === reject.id && admin[:role] == "manager"
       end ).not_to be_empty
-      expect( project.as_indexed_json[:admins].map{ |a| a[:user_id] } ).not_to include( keeper.id )
+      expect( project.as_indexed_json[:admins].map {| a | a[:user_id] } ).not_to include( keeper.id )
       without_delay { keeper.merge( reject ) }
       project.reload
       expect( keeper.project_users.count ).to eq 1
-      expect( project.as_indexed_json[:admins].select do |admin|
+      expect( project.as_indexed_json[:admins].select do | admin |
         admin[:user_id] === keeper.id && admin[:role] == "manager"
       end ).not_to be_empty
     end
@@ -2439,6 +2500,29 @@ describe User do
     u = User.new( opts )
     u.save
     u
+  end
+end
+
+describe User, "last_observation_created_at" do
+  elastic_models( Observation )
+
+  it "reflects a newly created observation" do
+    user = User.make!
+    Observation.make!( user: user, created_at: 3.days.ago )
+    # warm the cache with the older observation
+    expect( user.last_observation_created_at.to_date ).to eq 3.days.ago.to_date
+    Observation.make!( user: user, created_at: Time.now )
+    expect( user.last_observation_created_at.to_date ).to eq Time.now.to_date
+  end
+
+  it "reflects destruction of the most recent observation" do
+    user = User.make!
+    Observation.make!( user: user, created_at: 3.days.ago )
+    recent = Observation.make!( user: user, created_at: Time.now )
+    # warm the cache with the most recent observation
+    expect( user.last_observation_created_at.to_date ).to eq Time.now.to_date
+    recent.destroy
+    expect( user.last_observation_created_at.to_date ).to eq 3.days.ago.to_date
   end
 end
 # rubocop:enable Style/FrozenStringLiteralComment

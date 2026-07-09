@@ -138,11 +138,11 @@ module Inaturalist
         trackers: [
           {
             id: lambda {| env |
-              return env["inat_ga_trackers"][0][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][0]
+              env["inat_ga_trackers"][0][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][0]
             }
           }, {
             id: lambda {| env |
-              return env["inat_ga_trackers"][1][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][1]
+              env["inat_ga_trackers"][1][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][1]
             }
           }
         ]
