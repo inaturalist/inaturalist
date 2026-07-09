@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 
 const InteractionsTab = ( { interactions } ) => {
@@ -35,9 +34,9 @@ const InteractionsTab = ( { interactions } ) => {
     );
   }
   return (
-    <Grid className="InteractionsTab">
-      <Row>
-        <Col xs={8}>
+    <div className="InteractionsTab">
+      <div className="tab-row">
+        <div className="tab-main">
           { status }
           <ul>
             { _.map( interactionsByType, ( typedInteractions, type ) => (
@@ -80,14 +79,17 @@ const InteractionsTab = ( { interactions } ) => {
               </li>
             ) ) }
           </ul>
-        </Col>
-        <Col xs={4}>
+        </div>
+        <div className="tab-side">
           <h3>About Interactions</h3>
           <p>
             Most organisms interact with other organisms in some way or
             another, and how they do so usually defines how they fit into an
             ecosystem. These interactions come to us
-            from <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>,
+            from
+            {" "}
+            <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>
+            ,
             a database and webservice that combines
             interaction data from numerous sources, including iNaturalist.
             You can actually contribute to this database by adding the
@@ -125,9 +127,9 @@ const InteractionsTab = ( { interactions } ) => {
               ) )
             }
           </ul>
-        </Col>
-      </Row>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
 

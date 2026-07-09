@@ -491,12 +491,50 @@ $photoPreviewThumbGutterTop: 3px;
   opacity: 1;
 }
 
-.tab-section > [class*="col-"] {
+// Shared two-column tab layout, replaces react-bootstrap Grid/Row/Col.
+// Main content and sidebar sit 2:1 side by side, stacking below the tab bar's
+// breakpoint (where the TabDrawer takes over).
+.tab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  > .tab-main {
+    flex: 2 1 0;
+    min-width: 0;
+  }
+  > .tab-side {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+@media ( max-width: $md-max ) {
+  .tab-row {
+    display: block;
+
+    > .tab-side {
+      margin-top: 20px;
+    }
+  }
+}
+
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  > .status-row-item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.tab-section {
   border-top: 1px solid #ddd;
   padding-top: 20px;
   margin-top: 20px;
 }
-.tab-section:first-child > [class*="col-"] {
+.tab-section:first-child {
   border-top: 0 transparent;
   padding-top: 0;
 }
@@ -924,6 +962,30 @@ $introducedColor: #E4007C;
 }
 
 .IdentificationsTab {
+  .ident-layout {
+    display: flex;
+    gap: 30px;
+
+    > .ident-main {
+      flex: 2 1 0;
+      min-width: 0;
+    }
+    > .ident-side {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    // Test-group responsive variant: main spans full width, map stacks below
+    // and is hidden on small screens via the hidden-xs utility on the element.
+    &.responsive {
+      flex-wrap: wrap;
+
+      > .ident-main,
+      > .ident-side {
+        flex: 1 1 100%;
+      }
+    }
+  }
   .loading {
     text-align: center;
     .loading_spinner {
@@ -1403,9 +1465,7 @@ table.regional-names {
   }
 
   .IdentificationsTab {
-    &.container {
-      padding: 0;
-    }
+    padding: 0;
     .btn-group.identification-categories {
       display: flex;
       flex-wrap: wrap;

@@ -1,11 +1,8 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import {
-  Col,
-  Grid,
   OverlayTrigger,
-  Popover,
-  Row
+  Popover
 } from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
@@ -338,43 +335,42 @@ const StatusTab = ( {
     );
   }
   return (
-    <Grid className="StatusTab">
-      <Row className="conservation-status tab-section">
-        <Col xs={12}>
-          <Row>
-            <Col sm={8}>
-              <h3>{ I18n.t( "conservation_status" ) }</h3>
-              { statusSection || I18n.t( "we_have_no_conservation_status_for_this_taxon" ) }
-            </Col>
-            <Col sm={4}>
-              <h4>{ I18n.t( "about_conservation_status" ) }</h4>
-              <p>
-                { I18n.t( "views.taxa.show.about_conservation_status_desc" ) }
+    <div className="StatusTab">
+      <div className="conservation-status tab-section">
+        <div className="tab-row">
+          <div className="tab-main">
+            <h3>{ I18n.t( "conservation_status" ) }</h3>
+            { statusSection || I18n.t( "we_have_no_conservation_status_for_this_taxon" ) }
+          </div>
+          <div className="tab-side">
+            <h4>{ I18n.t( "about_conservation_status" ) }</h4>
+            <p>
+              { I18n.t( "views.taxa.show.about_conservation_status_desc" ) }
+              { " " }
+              <a href="https://en.wikipedia.org/wiki/Conservation_status">
+                { I18n.t( "more__context_conservation_statuses", {
+                  defaultValue: I18n.t( "more" )
+                } ) }
                 { " " }
-                <a href="https://en.wikipedia.org/wiki/Conservation_status">
-                  { I18n.t( "more__context_conservation_statuses", {
-                    defaultValue: I18n.t( "more" )
-                  } ) }
-                  { " " }
-                  <i className="icon-link-external" />
-                </a>
-              </p>
-              { isCurator ? (
-                <ul className="tab-links list-group">
-                  <li className="list-group-item internal">
-                    <a
-                      href={`/taxa/${taxon?.id}/conservation_statuses/new`}
-                      rel="nofollow"
-                    >
-                      <i className="fa fa-plus accessory-icon" />
-                      { I18n.t( "add_a_conservation_status" ) }
-                    </a>
-                  </li>
-                </ul>
-              ) : null }
-              <h4>{ I18n.t( "examples_of_ranking_organizations" ) }</h4>
-              <ul className="tab-links list-group iconified-list-group">
-                {
+                <i className="icon-link-external" />
+              </a>
+            </p>
+            { isCurator ? (
+              <ul className="tab-links list-group">
+                <li className="list-group-item internal">
+                  <a
+                    href={`/taxa/${taxon?.id}/conservation_statuses/new`}
+                    rel="nofollow"
+                  >
+                    <i className="fa fa-plus accessory-icon" />
+                    { I18n.t( "add_a_conservation_status" ) }
+                  </a>
+                </li>
+              </ul>
+            ) : null }
+            <h4>{ I18n.t( "examples_of_ranking_organizations" ) }</h4>
+            <ul className="tab-links list-group iconified-list-group">
+              {
                   [
                     {
                       id: 1,
@@ -402,35 +398,32 @@ const StatusTab = ( {
                     </li>
                   ) )
                 }
-              </ul>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      <Row className="establishment-means tab-section">
-        <Col xs={12}>
-          <Row>
-            <Col sm={8}>
-              <h3>{ I18n.t( "establishment_means" ) }</h3>
-              { establishmentSection || I18n.t( "we_have_no_establishment_data_for_this_taxon" ) }
-            </Col>
-            <Col sm={4}>
-              <h4>{ I18n.t( "about_establishment_means" ) }</h4>
-              <p>
-                { I18n.t( "views.taxa.show.about_establishment_desc" ) }
-                <a href="https://dwc.tdwg.org/list/#dwc_establishmentMeans">
-                  { I18n.t( "more__context_establishment_means", {
-                    defaultValue: I18n.t( "more" )
-                  } ) }
-                  { " " }
-                  <i className="icon-link-external" />
-                </a>
-              </p>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </Grid>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="establishment-means tab-section">
+        <div className="tab-row">
+          <div className="tab-main">
+            <h3>{ I18n.t( "establishment_means" ) }</h3>
+            { establishmentSection || I18n.t( "we_have_no_establishment_data_for_this_taxon" ) }
+          </div>
+          <div className="tab-side">
+            <h4>{ I18n.t( "about_establishment_means" ) }</h4>
+            <p>
+              { I18n.t( "views.taxa.show.about_establishment_desc" ) }
+              <a href="https://dwc.tdwg.org/list/#dwc_establishmentMeans">
+                { I18n.t( "more__context_establishment_means", {
+                  defaultValue: I18n.t( "more" )
+                } ) }
+                { " " }
+                <i className="icon-link-external" />
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

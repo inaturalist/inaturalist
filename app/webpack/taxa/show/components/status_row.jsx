@@ -1,29 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Row, Col } from "react-bootstrap";
 import StatusHeader from "./status_header";
 import EstablishmentHeaderContainer from "../containers/establishment_header_container";
 
 const StatusRow = ( { conservationStatus, establishmentMeans } ) => {
   if ( conservationStatus && establishmentMeans ) {
     return (
-      <Row>
-        <Col xs={6}>
+      <div className="status-row">
+        <div className="status-row-item">
           <StatusHeader status={conservationStatus} />
-        </Col>
-        <Col xs={6}>
+        </div>
+        <div className="status-row-item">
           <EstablishmentHeaderContainer />
-        </Col>
-      </Row>
+        </div>
+      </div>
     );
   }
   if ( conservationStatus ) {
-    return <Row><Col xs={12}><StatusHeader status={conservationStatus} /></Col></Row>;
+    return <StatusHeader status={conservationStatus} />;
   }
   if ( establishmentMeans ) {
-    return <Row><Col xs={12}><EstablishmentHeaderContainer /></Col></Row>;
+    return <EstablishmentHeaderContainer />;
   }
-  return <Row />;
+  return null;
 };
 
 StatusRow.propTypes = {

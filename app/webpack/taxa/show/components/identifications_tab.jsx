@@ -3,10 +3,7 @@ import React, { Component } from "react";
 import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import {
-  Col,
-  Grid,
   Panel,
-  Row,
   Dropdown,
   MenuItem
 } from "react-bootstrap";
@@ -791,9 +788,9 @@ class IdentificationsTab extends Component {
       );
     }
     return (
-      <Grid className="IdentificationsTab">
-        <Row>
-          <Col xs={responsive ? null : 8} sm={responsive ? 12 : null}>
+      <div className="IdentificationsTab">
+        <div className={`ident-layout${responsive ? " responsive" : ""}`}>
+          <div className="ident-main">
             <h2>
               {I18n.t( "views.taxa.show.identifications.identification_tips" )}
             </h2>
@@ -811,39 +808,37 @@ class IdentificationsTab extends Component {
                 {pagination}
               </>
             ) }
-          </Col>
-          <Col xs={responsive ? null : 4} sm={responsive ? 4 : null} className={responsive ? "hidden-xs" : null}>
-            <Row>
-              <div className="taxon-map-container">
-                <TaxonMap
-                  placement="taxa-show-identifications"
-                  showAllLayer={false}
-                  minZoom={1}
-                  gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
-                  taxonLayers={[
-                    taxonLayerForTaxon( taxon, {
-                      currentUser: config.currentUser,
-                      updateCurrentUser
-                    } )
-                  ]}
-                  minX={bounds ? bounds.swlng : null}
-                  minY={bounds ? bounds.swlat : null}
-                  maxX={bounds ? bounds.nelng : null}
-                  maxY={bounds ? bounds.nelat : null}
-                  latitude={latitude}
-                  longitude={longitude}
-                  zoomLevel={zoomLevel}
-                  gestureHandling="auto"
-                  currentUser={config.currentUser}
-                  updateCurrentUser={updateCurrentUser}
-                  reloadKey={`taxa-show-identifications-map-${taxon.id}${bounds ? "-bounds" : ""}`}
-                  showLegend
-                />
-              </div>
-            </Row>
-          </Col>
-        </Row>
-      </Grid>
+          </div>
+          <div className={`ident-side${responsive ? " hidden-xs" : ""}`}>
+            <div className="taxon-map-container">
+              <TaxonMap
+                placement="taxa-show-identifications"
+                showAllLayer={false}
+                minZoom={1}
+                gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
+                taxonLayers={[
+                  taxonLayerForTaxon( taxon, {
+                    currentUser: config.currentUser,
+                    updateCurrentUser
+                  } )
+                ]}
+                minX={bounds ? bounds.swlng : null}
+                minY={bounds ? bounds.swlat : null}
+                maxX={bounds ? bounds.nelng : null}
+                maxY={bounds ? bounds.nelat : null}
+                latitude={latitude}
+                longitude={longitude}
+                zoomLevel={zoomLevel}
+                gestureHandling="auto"
+                currentUser={config.currentUser}
+                updateCurrentUser={updateCurrentUser}
+                reloadKey={`taxa-show-identifications-map-${taxon.id}${bounds ? "-bounds" : ""}`}
+                showLegend
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

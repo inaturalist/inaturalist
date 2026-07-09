@@ -1,5 +1,4 @@
 import React from "react";
-import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
 import type { Taxon, Config } from "../../../shared/types";
@@ -122,14 +121,10 @@ const SimilarTab = ( {
     );
   }
   return (
-    <Grid className="SimilarTab">
-      <Row>
-        <Col xs={12}>
-          <h2>{ title }</h2>
-          { content }
-        </Col>
-      </Row>
-    </Grid>
+    <div className="SimilarTab">
+      <h2>{ title }</h2>
+      { content }
+    </div>
   );
 };
 

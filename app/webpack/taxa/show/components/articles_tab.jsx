@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 
 const ArticlesTab = ( {
@@ -16,9 +15,9 @@ const ArticlesTab = ( {
     || currentUser.roles.indexOf( "admin" ) >= 0
   );
   return (
-    <Grid className="ArticlesTab">
-      <Row>
-        <Col sm={8}>
+    <div className="ArticlesTab">
+      <div className="tab-row">
+        <div className="tab-main">
           <h2
             className={`text-center ${description ? "hidden" : ""}`}
           >
@@ -38,8 +37,8 @@ const ArticlesTab = ( {
             </h2>
             <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
-        </Col>
-        <Col sm={3} smOffset={1}>
+        </div>
+        <div className="tab-side">
           <h2>{ I18n.t( "more_info_title" ) }</h2>
           <ul className="list-group iconified-list-group">
             { _.sortBy( links, l => _.lowerCase( l.taxon_link.site_title ) ).map( link => {
@@ -112,9 +111,9 @@ const ArticlesTab = ( {
               ) }
             </div>
           ) }
-        </Col>
-      </Row>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
 

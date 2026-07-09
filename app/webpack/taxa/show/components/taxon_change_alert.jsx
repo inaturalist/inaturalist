@@ -1,7 +1,6 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Row, Col } from "react-bootstrap";
 import moment from "moment";
 import { urlForTaxon, commasAnd } from "../../shared/util";
 
@@ -102,23 +101,19 @@ const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
       content = null;
   }
   return (
-    <Row>
-      <Col xs={12}>
-        <div className="alert alert-warning">
-          <strong>
-            { I18n.t( "label_colon", { label: I18n.t( "heads_up" ) } ) }
-          </strong>
-          { " " }
-          { taxon.is_active ? null : `${I18n.t( "this_taxon_concept_is_inactive" )}.` }
-          { " " }
-          { content && <span dangerouslySetInnerHTML={{ __html: `${content}.` }} /> }
-          { " " }
-          <a className="readmore" href={`/taxon_changes/${taxonChange.id}`}>
-            { I18n.t( "view_taxon_change" ) }
-          </a>
-        </div>
-      </Col>
-    </Row>
+    <div className="alert alert-warning">
+      <strong>
+        { I18n.t( "label_colon", { label: I18n.t( "heads_up" ) } ) }
+      </strong>
+      { " " }
+      { taxon.is_active ? null : `${I18n.t( "this_taxon_concept_is_inactive" )}.` }
+      { " " }
+      { content && <span dangerouslySetInnerHTML={{ __html: `${content}.` }} /> }
+      { " " }
+      <a className="readmore" href={`/taxon_changes/${taxonChange.id}`}>
+        { I18n.t( "view_taxon_change" ) }
+      </a>
+    </div>
   );
 };
 
