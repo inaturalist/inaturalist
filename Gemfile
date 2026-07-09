@@ -32,7 +32,7 @@ gem "chroma"
 gem "chronic", git: "https://github.com/stanhu/chronic.git", ref: "7ea371f"
 gem "cocoon" # JY: Added to support nested attributes for assessment_sections on assessments
 # gem "coffee-rails"
-gem "concurrent-ruby", "1.3.4"
+gem "concurrent-ruby", "1.3.7"
 gem "daemons"
 gem "dalli"
 gem 'damerau-levenshtein', '~> 1.3', '>= 1.3.3'
