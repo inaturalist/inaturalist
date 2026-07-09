@@ -754,8 +754,8 @@ a.UserImage,
     padding-inline: 60px;
 
     @media ( min-width: #{$xl + 121px} ) {
-      margin-inline: calc(-50vw + 50%);
-      padding-inline: calc(50vw - 50%);
+      margin-inline: calc(-50vw + 600px);
+      padding-inline: calc(50vw - 600px);
     }
 
     .container {
@@ -778,8 +778,8 @@ a.UserImage,
     padding-inline: 60px;
 
     @media ( min-width: #{$xl + 121px} ) {
-      margin-inline: calc(-50vw + 50%);
-      padding-inline: calc(50vw - 50%);
+      margin-inline: calc(-50vw + 600px);
+      padding-inline: calc(50vw - 600px);
     }
 
     .more_from_user {

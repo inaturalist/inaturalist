@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { ObservationDetailPage } from "../../page-objects/observation-detail.page";
 import { mockObservationFetch } from "../../fixtures/observation-response";
 import { app, appMake } from "../../support/on-rails";
+import { login } from "../../helpers/auth.helper";
 import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
 
 test.describe( "Observation detail page", () => {
@@ -77,5 +78,22 @@ test.describe( "Observation detail page", () => {
         ]
       } );
     }
+  } );
+
+  test.describe( "with RtlTestGroupToggle", () => {
+    const CURATOR_PASSWORD = "TestPass123!";
+    let curator: Record<string, unknown>;
+
+    test.beforeAll( async () => {
+      curator = await app( "make_curator", { password: CURATOR_PASSWORD } ) as Record<string, unknown>;
+    } );
+
+    expectNoHorizontalOverflow( () => `/observations/${obs.id}`, {
+      waitForSelector: "#ObservationShow .TestGroupToggle",
+      setup: async page => {
+        await login( page, curator.email as string, CURATOR_PASSWORD );
+        await mockObservationFetch( page, obs );
+      }
+    } );
   } );
 } );
