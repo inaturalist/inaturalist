@@ -6191,6 +6191,8 @@ id:
   wikipedia_attribution_cc_by_sa_3_html: |
     Artikel ini menggunakan materi dari artikel Wikipedia <a href="%{url}">"%{title}"</a>, yang diluncurkan di bawah <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Atribusi-BerbagiSerupa Lisensi 3.0</a>. Konten mungkin sudah dihilangkan dari aslinya, tetapi tidak ada konten yang diubah atau ditambahkan.
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: Ringkasan Wikipedia tidak dapat diambil untuk saat ini. Silakan coba lagi dalam 30 menit.
   with: dengan
   #Filter for observations not in a particular taxon
   without_taxon: Tidak berada di dalam takson
