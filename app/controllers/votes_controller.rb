@@ -105,16 +105,7 @@ class VotesController < ApplicationController
 
     if current_user.content_creation_restrictions? &&
         @record.identification.user_id != current_user.id
-      msg = t( :you_dont_have_permission_to_do_that )
-      respond_to do | format |
-        format.html do
-          flash[:error] = msg
-          return redirect_to @record
-        end
-        format.json do
-          return render json: { error: msg }, status: :forbidden
-        end
-      end
+      not_allowed_with_html_and_json_response( @record )
     end
   end
 end

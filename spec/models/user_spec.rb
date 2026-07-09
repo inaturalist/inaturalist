@@ -2502,4 +2502,27 @@ describe User do
     u
   end
 end
+
+describe User, "last_observation_created_at" do
+  elastic_models( Observation )
+
+  it "reflects a newly created observation" do
+    user = User.make!
+    Observation.make!( user: user, created_at: 3.days.ago )
+    # warm the cache with the older observation
+    expect( user.last_observation_created_at.to_date ).to eq 3.days.ago.to_date
+    Observation.make!( user: user, created_at: Time.now )
+    expect( user.last_observation_created_at.to_date ).to eq Time.now.to_date
+  end
+
+  it "reflects destruction of the most recent observation" do
+    user = User.make!
+    Observation.make!( user: user, created_at: 3.days.ago )
+    recent = Observation.make!( user: user, created_at: Time.now )
+    # warm the cache with the most recent observation
+    expect( user.last_observation_created_at.to_date ).to eq Time.now.to_date
+    recent.destroy
+    expect( user.last_observation_created_at.to_date ).to eq 3.days.ago.to_date
+  end
+end
 # rubocop:enable Style/FrozenStringLiteralComment

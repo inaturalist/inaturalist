@@ -64,6 +64,36 @@ $label-start: 7px;
 }
 .ui-autocomplete.taxon-autocomplete {
   max-width: 500px;
+
+  @media ( max-width: $md-max ) {
+    max-width: calc( 100vw - 70px );
+
+    .ac {
+      min-width: 0;
+    }
+
+    .ac-label {
+      min-width: 0;
+      overflow: hidden;
+
+      > div {
+        min-width: 0;
+        overflow: hidden;
+        width: 100%;
+      }
+    }
+
+    .ac-label .title,
+    .ac-label .subtitle {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  @media ( max-width: $sm-max ) {
+    max-width: calc( 100vw - 90px );
+  }
 }
 
 @media ( max-width: $md-max ) {

@@ -390,6 +390,57 @@ describe Taxon, "updating" do
     end
   end
 
+  describe "set_wikipedia_summary" do
+    let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+    let( :endpoint ) { ApiEndpoint.make!( base_url: "https://en.wikipedia.org/w/api.php?", cache_hours: 720 ) }
+    let( :wikipedia ) { instance_double( WikipediaService, api_endpoint: endpoint ) }
+
+    before do
+      allow( wikipedia ).to receive( :page_details ).and_return( nil )
+    end
+
+    it "leaves wikipedia_summary untouched when the endpoint was recently throttled" do
+      endpoint.update( last_throttled_at: 1.minute.ago )
+      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to be_nil
+    end
+
+    it "leaves wikipedia_summary untouched when throttled by body even with a 200 status" do
+      cache = ApiEndpointCache.make!( api_endpoint: endpoint, request_began_at: 1.minute.ago )
+      cache.cache_response(
+        double( "Net::HTTPResponse", code: "200", body: "You are making too many requests." )
+      )
+      # machinist's make! reloads the cache, so cache_response stamped a fresh
+      # copy of the endpoint; pick up last_throttled_at on this instance
+      endpoint.reload
+      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to be_nil
+    end
+
+    it "stores a date string in wikipedia_summary when not throttled" do
+      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to match( /^\d{4}-\d{2}-\d{2}$/ )
+    end
+  end
+
+  describe "wikipedia_summary" do
+    let( :taxon ) { Taxon.make! }
+
+    it "queues a refresh when the summary is blank and refresh_if_blank is set" do
+      expect( taxon.read_attribute( :wikipedia_summary ) ).to be_blank
+      expect do
+        taxon.wikipedia_summary( refresh_if_blank: true )
+      end.to change( Delayed::Job, :count ).by_at_least( 1 )
+    end
+
+    it "does not queue a refresh when the summary is blank and refresh_if_blank is not set" do
+      expect( taxon.read_attribute( :wikipedia_summary ) ).to be_blank
+      expect do
+        taxon.wikipedia_summary
+      end.to_not change( Delayed::Job, :count )
+    end
+  end
+
   it "should assign the updater if explicitly assigned" do
     creator = make_curator
     updater = make_curator

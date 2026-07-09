@@ -7,7 +7,8 @@
       taxon: #{ @node_taxon_json.encode.html_safe }.results[0],
       place: #{ @node_place_json ? @node_place_json.encode.html_safe+".results[0]" : "null" },
       chosenTab: #{ @chosen_tab.to_json.html_safe },
-      ancestorsShown: #{ @ancestors_shown.to_json.html_safe }
+      ancestorsShown: #{ @ancestors_shown.to_json.html_safe },
+      localePrefix: #{ @url_locale.to_json.html_safe }
     };
     SERVER_PAYLOAD.taxon.wikipedia_summary = #{ @taxon.wikipedia_summary.to_json.html_safe };
     SERVER_PAYLOAD.taxon.auto_summary = #{ @taxon.wikipedia_summary.blank? ? @taxon.auto_summary.to_json.html_safe : "null" };
@@ -27,7 +28,9 @@
     %meta{ property: "og:image", content: ( @shareable_image_url = @taxon.photos.first.medium_url ) }
     %meta{ property: "twitter:image", content: @shareable_image_url }
     %meta{ property: "twitter:card", content: "summary_large_image" }
-  %meta{ property: "og:url", content: taxon_url( @taxon ) }
+  - taxon_default_url = taxon_url( @taxon, host: Site.default.url )
+  - taxon_canonical_url = @url_locale ? localized_taxon_url( locale: @url_locale, id: @taxon.to_param, host: Site.default.url ) : taxon_default_url
+  %meta{ property: "og:url", content: taxon_canonical_url }
   - if @taxon.wikipedia_summary.blank?
     - description = @taxon.auto_summary
   - else
@@ -37,7 +40,11 @@
     - description = "#{description} (#{attribution})"
   %meta{ name: "description", content: html_attributize( description ) }
   %meta{ property: "og:description", content: html_attributize( description ) }
-  %link{ rel: "canonical", href: taxon_url( @taxon, host: Site.default.url ) }
+  %link{ rel: "canonical", href: taxon_canonical_url }
+  %link{ rel: "alternate", hreflang: "x-default", href: taxon_default_url }
+  %link{ rel: "alternate", hreflang: "en", href: taxon_default_url }
+  - ( @taxon_hreflang_locales || [] ).each do |locale|
+    %link{ rel: "alternate", hreflang: locale, href: localized_taxon_url( locale: locale, id: @taxon.to_param, host: Site.default.url ) }
 #app
   #initial-loading.text-center
     = loading nil, class: "bigloading"
