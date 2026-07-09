@@ -100,6 +100,7 @@ button.linky,
 
 body.responsive {
   min-width: auto;
+  overflow-x: clip;
   #header {
     margin-bottom: 0px;
   }
@@ -752,6 +753,11 @@ a.UserImage,
     margin-inline: -60px;
     padding-inline: 60px;
 
+    @media ( min-width: #{$xl + 121px} ) {
+      margin-inline: calc(-50vw + 50%);
+      padding-inline: calc(50vw - 50%);
+    }
+
     .container {
       margin: 0;
     }
@@ -770,6 +776,11 @@ a.UserImage,
     border-top: 1px solid $border-grey;
     margin-inline: -60px;
     padding-inline: 60px;
+
+    @media ( min-width: #{$xl + 121px} ) {
+      margin-inline: calc(-50vw + 50%);
+      padding-inline: calc(50vw - 50%);
+    }
 
     .more_from_user {
       padding: 0 15px;
@@ -1264,7 +1275,8 @@ time {
 }
 
 .QualityMetrics {
-  margin-bottom: 10px;
+  margin-bottom: 0;
+  padding-bottom: 10px;
   padding-right: 20px;
   .grade {
     margin: 15px 0px 25px;
