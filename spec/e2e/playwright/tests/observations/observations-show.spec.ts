@@ -5,32 +5,6 @@ import { app, appMake } from "../../support/on-rails";
 import { expectNoHorizontalOverflow } from "../../helpers/overflow.helper";
 
 test.describe( "Observation detail page", () => {
-  let detailPage: ObservationDetailPage;
-
-  test.beforeEach( async ( { page } ) => {
-    const user = await appMake( "create", "user", {} );
-    const taxon = await appMake( "create", "taxon", {} );
-    const obs = await appMake( "create", "observation", {
-      user_id: user.id,
-      taxon_id: taxon.id,
-      latitude: 1,
-      longitude: 1,
-      observed_on_string: "yesterday"
-    } );
-    await mockObservationFetch( page, obs );
-    detailPage = new ObservationDetailPage( page );
-    await detailPage.goto( obs.id as number );
-  } );
-
-  test( "loads and displays core observation content", async () => {
-    await expect( detailPage.getPhoto() ).toBeVisible( { timeout: 15_000 } );
-    await expect( detailPage.getTaxonName() ).toBeVisible( { timeout: 15_000 } );
-    await expect( detailPage.getObserver() ).toBeVisible( { timeout: 15_000 } );
-    await expect( detailPage.getMap() ).toBeVisible( { timeout: 15_000 } );
-  } );
-} );
-
-test.describe( "Observation detail page — long-username activity item", () => {
   let obs: Record<string, unknown>;
   const LONG_LOGIN = "jean_sebastien_chartier_dumais_de_montreal_quebec";
 
@@ -44,6 +18,19 @@ test.describe( "Observation detail page — long-username activity item", () => 
       longitude: 1,
       observed_on_string: "yesterday"
     } );
+  } );
+
+  test.beforeEach( async ( { page } ) => {
+    await mockObservationFetch( page, obs );
+  } );
+
+  test( "loads and displays core observation content", async ( { page } ) => {
+    const detailPage = new ObservationDetailPage( page );
+    await detailPage.goto( obs.id as number );
+    await expect( detailPage.getPhoto() ).toBeVisible( { timeout: 15_000 } );
+    await expect( detailPage.getTaxonName() ).toBeVisible( { timeout: 15_000 } );
+    await expect( detailPage.getObserver() ).toBeVisible( { timeout: 15_000 } );
+    await expect( detailPage.getMap() ).toBeVisible( { timeout: 15_000 } );
   } );
 
   expectNoHorizontalOverflow( () => `/observations/${obs.id}`, {
@@ -61,6 +48,31 @@ test.describe( "Observation detail page — long-username activity item", () => 
             flags: [],
             moderator_actions: [],
             user: { id: 987654, login: LONG_LOGIN, name: LONG_LOGIN }
+          }
+        ],
+        ofvs: [
+          {
+            id: 1,
+            uuid: "00000000-0000-0000-0000-000000000001",
+            value: "1231204954092834509283450923845092834059823049582304958203495802394850923845098234509283405982034958",
+            observation_field: {
+              id: 1,
+              uuid: "00000000-0000-0000-0000-000000000010",
+              name: "Shell Breadth (ShB) in mm",
+              datatype: "numeric"
+            }
+          },
+          {
+            id: 2,
+            uuid: "00000000-0000-0000-0000-000000000002",
+            value: "More than 10,000",
+            observation_field: {
+              id: 2,
+              uuid: "00000000-0000-0000-0000-000000000020",
+              name: "How many flower buds are present? For species in which individual flowers are clustered in flower heads, spikes or catkins (inflorescences), simply estimate the number of flower heads and not the number of individual flowers. Skip question for oaks.",
+              datatype: "text",
+              allowed_values: "None|1|2-5|6-20|21-100|101-500|501-1,000|1,001-10,000|More than 10,000"
+            }
           }
         ]
       } );
