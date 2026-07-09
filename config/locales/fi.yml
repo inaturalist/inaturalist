@@ -5596,6 +5596,8 @@ fi:
   widget_for: Pienoisohjelma
   wikipedia_attribution_cc_by_sa_3: |
     Lähde: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: Wikipedian yhteenvetoa ei voitu hakea juuri nyt. Yritä uudelleen 30 minuutin kuluttua.
   #Filter for observations not in a particular taxon
   without_taxon: Ei taksonissa
   #Label for a button to withdraw an identification, i.e. to deactivate it
