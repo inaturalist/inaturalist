@@ -4,6 +4,9 @@ module DataPartnerLinkers
   class GBIF < DataPartnerLinkers::DataPartnerLinker
     MAX_OBSERVATION_INDEX_QUEUE_SIZE = 1000
 
+    # GBIF dataset key for the iNaturalist Research-grade Observations dataset
+    DATASET_KEY = "50c9509d-22c7-4a22-a47d-8c48425ef4a7"
+
     def initialize( data_partner, options = {} )
       super
       @username = options[:username] || CONFIG.gbif.username
@@ -22,9 +25,7 @@ module DataPartnerLinkers
             {
               type: "equals",
               key: "DATASET_KEY",
-              # I know, hardcoding, not great, but does this really need to be
-              # configurable?
-              value: "50c9509d-22c7-4a22-a47d-8c48425ef4a7"
+              value: DATASET_KEY
             }
             # {
             #   type: "equals",
@@ -36,6 +37,24 @@ module DataPartnerLinkers
             # }
           ]
         }
+      }.to_json
+      logger.debug "Requesting #{url}"
+      logger.debug "With JSON: #{json}"
+      @key = RestClient.post url, json, content_type: :json, accept: :json
+      logger.debug "Received key: #{@key}"
+    end
+
+    # Requests an occurrence download via GBIF's SQL Downloads API instead of
+    # the predicate API. The SQL selects only the columns process_result reads
+    # (gbifID, catalogNumber), so GBIF generates a much smaller archive.
+    # See https://techdocs.gbif.org/en/data-use/api-sql-downloads
+    def request_filtered
+      url = "https://#{@username}:#{@password}@api.gbif.org/v1/occurrence/download/request"
+      json = {
+        sendNotification: true,
+        notificationAddresses: [@notification_address],
+        format: "SQL_TSV_ZIP",
+        sql: "SELECT gbifID, catalogNumber FROM occurrence WHERE datasetKey = '#{DATASET_KEY}'"
       }.to_json
       logger.debug "Requesting #{url}"
       logger.debug "With JSON: #{json}"
@@ -185,8 +204,14 @@ module DataPartnerLinkers
 
     def run
       start_time = Time.now
-      # send a request to generate an offline download
-      request
+      # send a request to generate an offline download. The SQL Downloads API
+      # (request_filtered) returns only the columns we use, for a smaller
+      # archive; the predicate API (request) returns the full occurrence record.
+      if @opts[:sql_download]
+        request_filtered
+      else
+        request
+      end
       # wait for the download file to generate
       logger.info( "[#{Time.now}] Waiting for archive to generate..." )
       # It takes about 40 minutes for GBIF to succesfully generate the export.

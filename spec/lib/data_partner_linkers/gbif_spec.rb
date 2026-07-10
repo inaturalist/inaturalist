@@ -49,6 +49,44 @@ describe DataPartnerLinkers::GBIF do
     allow( Observation ).to receive( :elastic_index! )
   end
 
+  describe "request_filtered" do
+    it "posts an SQL_TSV_ZIP download request selecting only the fields process_result uses" do
+      allow( RestClient ).to receive( :post ).and_return( "sql-download-key" )
+      linker.request_filtered
+      expect( RestClient ).to have_received( :post ) do | url, payload, _headers |
+        expect( url ).to eq "https://testuser:testpass@api.gbif.org/v1/occurrence/download/request"
+        body = JSON.parse( payload )
+        expect( body["format"] ).to eq "SQL_TSV_ZIP"
+        expect( body["sql"] ).to match( /\ASELECT\s+gbifID,\s*catalogNumber\s+FROM\s+occurrence/i )
+        expect( body["sql"] ).to include( DataPartnerLinkers::GBIF::DATASET_KEY )
+      end
+      expect( linker.instance_variable_get( :@key ) ).to eq "sql-download-key"
+    end
+  end
+
+  describe "run with the sql_download option" do
+    let( :options ) do
+      {
+        username: "testuser",
+        password: "testpass",
+        notification_address: "tester@example.com",
+        logger: Logger.new( IO::NULL ),
+        sql_download: true
+      }
+    end
+
+    it "requests via request_filtered instead of request" do
+      observation = Observation.make!
+      stub_archive( [{ gbif_id: 888, catalog_number: observation.id }] )
+      allow( linker ).to receive( :request )
+      allow( linker ).to receive( :request_filtered )
+      stub_elastic_index
+      linker.run
+      expect( linker ).to have_received( :request_filtered )
+      expect( linker ).not_to have_received( :request )
+    end
+  end
+
   describe "run" do
     it "touches existing links with one update and does not reindex them" do
       observation = Observation.make!
