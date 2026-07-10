@@ -96,6 +96,9 @@ module DataPartnerLinkers
       @old_count = 0
       @new_count = 0
       @missing_count = 0
+
+      logger.info( "[#{@process_start_time}] #process_result begun" )
+
       rows_queue = []
       # "\x00" is an unprintable character that I hope we can assume will
       #   never appear in the data. If it does, CSV will choke.
@@ -119,6 +122,7 @@ module DataPartnerLinkers
         end
       end
       process_rows( rows_queue )
+      logger.info( "[#{Time.now}]<#{@process_start_time}> process_result done on #{@processed_count} records in #{Time.now - @process_start_time}" )
     end
 
     # The predicate API returns a Darwin Core Archive with an "occurrence.txt".
