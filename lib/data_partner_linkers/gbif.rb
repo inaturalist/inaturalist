@@ -2,7 +2,7 @@
 
 module DataPartnerLinkers
   class GBIF < DataPartnerLinkers::DataPartnerLinker
-    MAX_OBSERVATION_INDEX_QUEUE_SIZE = 1000
+    MAX_OBSERVATION_INDEX_QUEUE_SIZE = 10_000
 
     # GBIF dataset key for the iNaturalist Research-grade Observations dataset
     DATASET_KEY = "50c9509d-22c7-4a22-a47d-8c48425ef4a7"
@@ -110,7 +110,7 @@ module DataPartnerLinkers
       }
       CSV.foreach( occurrence_file_path, **csv_options ) do | row |
         rows_queue << row
-        if rows_queue.size >= 1000
+        if rows_queue.size >= MAX_OBSERVATION_INDEX_QUEUE_SIZE
           # We could also hand off each batch of rows to a DelayedJob,
           # however we would need a way to only delete all the non-updated
           # ObservationLinks only when all rows have succesfully processed.
@@ -138,26 +138,33 @@ module DataPartnerLinkers
       return if rows.empty?
 
       observation_ids = rows.map {| row | row["catalognumber"].to_i }
-      # Exact (observation_id, href) pairs for this batch. A row-value tuple IN
-      # matches these pairs exactly; where( observation_id: ids, href: hrefs )
-      # would match the cartesian product and wrongly touch cross pairings.
-      pairs = rows.map {| row | [row["catalognumber"].to_i, gbif_href( row["gbifid"] )] }
-      placeholders = Array.new( pairs.size, "(?, ?)" ).join( ", " )
-      existing_links_scope = ObservationLink.where(
-        "(observation_id, href) IN (#{placeholders})", *pairs.flatten
-      )
+      # The exact (observation_id, href) pairs we want to keep/create this batch.
+      wanted_pairs = rows.to_set {| row | [row["catalognumber"].to_i, gbif_href( row["gbifid"] )] }
 
-      # Hash-backed O(1) lookups fetched in one query each, replacing the
-      # per-row touch_all and existence SELECT
-      existing_link_pairs = existing_links_scope.pluck( :observation_id, :href ).to_set
+      # Fetch this batch's existing GBIF links with a single-column IN, then
+      # match the exact pairs in memory. A row-value tuple IN of the pairs would
+      # match exactly too, but Postgres expands (a,b) IN (...) into a deep
+      # boolean tree that overflows max_stack_depth for large batches
+      # (PG::StatementTooComplex). A single-column integer IN does not.
+      existing_link_pairs = Set.new
+      matching_link_ids = []
+      ObservationLink.where( href_name: "GBIF", observation_id: observation_ids ).
+        pluck( :id, :observation_id, :href ).each do | link_id, link_observation_id, link_href |
+        pair = [link_observation_id, link_href]
+        next unless wanted_pairs.include?( pair )
+
+        existing_link_pairs << pair
+        matching_link_ids << link_id
+      end
+
       existing_observation_ids = Observation.where( id: observation_ids ).pluck( :id ).to_set
-      existing_links_scope.touch_all unless @opts[:debug]
+      ObservationLink.where( id: matching_link_ids ).touch_all unless @opts[:debug]
 
       ObservationLink.transaction do
         rows.each do | row |
           gbif_id = row["gbifid"]
           inaturalist_observation_id = row["catalognumber"].to_i
-          if ( @processed_count % 1000 ).zero?
+          if ( @processed_count % MAX_OBSERVATION_INDEX_QUEUE_SIZE ).zero?
             percent_finished = ( @processed_count / @total_records.to_f * 100 ).round( 2 )
             run_time = Time.now - @process_start_time
             minutes_elapsed = ( run_time / 60.0 ).round( 2 )
