@@ -97,10 +97,18 @@ module DataPartnerLinkers
       @new_count = 0
       @missing_count = 0
       rows_queue = []
-      occurrence_path = File.join( @tmp_path, "occurrence.txt" )
       # "\x00" is an unprintable character that I hope we can assume will
-      #   never appear in the data. If it does, CSV will choke
-      CSV.foreach( occurrence_path, col_sep: "\t", headers: true, quote_char: "\x00" ) do | row |
+      #   never appear in the data. If it does, CSV will choke.
+      # Headers are downcased so both the predicate DwC-A ("gbifID",
+      # "catalogNumber") and the SQL download ("gbifid", "catalognumber")
+      # resolve to the same keys in process_rows.
+      csv_options = {
+        col_sep: "\t",
+        headers: true,
+        header_converters: ->( header ) { header.to_s.downcase },
+        quote_char: "\x00"
+      }
+      CSV.foreach( occurrence_file_path, **csv_options ) do | row |
         rows_queue << row
         if rows_queue.size >= 1000
           # We could also hand off each batch of rows to a DelayedJob,
@@ -113,13 +121,22 @@ module DataPartnerLinkers
       process_rows( rows_queue )
     end
 
+    # The predicate API returns a Darwin Core Archive with an "occurrence.txt".
+    # The SQL Downloads API returns a single tab-separated data file named for
+    # the download key (e.g. "0000379-xxx.csv"), so locate it by extension.
+    def occurrence_file_path
+      return File.join( @tmp_path, "occurrence.txt" ) unless @opts[:sql_download]
+
+      Dir.glob( File.join( @tmp_path, "*.{csv,tsv}" ) ).first
+    end
+
     def process_rows( rows )
       return if rows.empty?
 
       ObservationLink.transaction do
         rows.each do | row |
-          gbif_id = row["gbifID"]
-          inaturalist_observation_id = row["catalogNumber"]
+          gbif_id = row["gbifid"]
+          inaturalist_observation_id = row["catalognumber"]
           if ( @processed_count % 1000 ).zero?
             percent_finished = ( @processed_count / @total_records.to_f * 100 ).round( 2 )
             run_time = Time.now - @process_start_time

@@ -29,16 +29,27 @@ describe DataPartnerLinkers::GBIF do
     link
   end
 
-  # Writes a minimal occurrence.txt archive and stubs the linker's network
-  # methods so `run` processes the fixture rows directly
+  # Writes a minimal archive and stubs the linker's network methods so `run`
+  # processes the fixture rows directly. In sql_download mode this mimics the
+  # SQL Downloads API output: a TSV file (not a DwC-A "occurrence.txt") with
+  # lowercase gbifid/catalognumber headers.
   def stub_archive( rows )
     tmp_path = Dir.mktmpdir
-    lines = [%w(gbifID catalogNumber species).join( "\t" )]
-    rows.each do | row |
-      lines << [row[:gbif_id], row[:catalog_number], "Clarkia breweri"].join( "\t" )
+    if linker.instance_variable_get( :@opts )[:sql_download]
+      lines = [%w(gbifid catalognumber).join( "\t" )]
+      rows.each do | row |
+        lines << [row[:gbif_id], row[:catalog_number]].join( "\t" )
+      end
+      File.write( File.join( tmp_path, "0000000-000000000000000.csv" ), lines.join( "\n" ) )
+    else
+      lines = [%w(gbifID catalogNumber species).join( "\t" )]
+      rows.each do | row |
+        lines << [row[:gbif_id], row[:catalog_number], "Clarkia breweri"].join( "\t" )
+      end
+      File.write( File.join( tmp_path, "occurrence.txt" ), lines.join( "\n" ) )
     end
-    File.write( File.join( tmp_path, "occurrence.txt" ), lines.join( "\n" ) )
     allow( linker ).to receive( :request )
+    allow( linker ).to receive( :request_filtered )
     allow( linker ).to receive( :generating ).and_return( false )
     allow( linker ).to receive( :download )
     linker.instance_variable_set( :@tmp_path, tmp_path )
@@ -78,12 +89,23 @@ describe DataPartnerLinkers::GBIF do
     it "requests via request_filtered instead of request" do
       observation = Observation.make!
       stub_archive( [{ gbif_id: 888, catalog_number: observation.id }] )
-      allow( linker ).to receive( :request )
-      allow( linker ).to receive( :request_filtered )
       stub_elastic_index
       linker.run
       expect( linker ).to have_received( :request_filtered )
       expect( linker ).not_to have_received( :request )
+    end
+
+    it "processes the TSV output with lowercase headers into links" do
+      observation = Observation.make!
+      stub_archive( [{ gbif_id: 999, catalog_number: observation.id }] )
+      stub_elastic_index
+      expect do
+        linker.run
+      end.to change( ObservationLink, :count ).by( 1 )
+      link = ObservationLink.last
+      expect( link.observation_id ).to eq observation.id
+      expect( link.href ).to eq gbif_href( 999 )
+      expect( link.href_name ).to eq "GBIF"
     end
   end
 
