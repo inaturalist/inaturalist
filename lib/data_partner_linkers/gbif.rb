@@ -84,6 +84,9 @@ module DataPartnerLinkers
       CSV.foreach( occurrence_path, col_sep: "\t", headers: true, quote_char: "\x00" ) do | row |
         rows_queue << row
         if rows_queue.size >= 1000
+          # We could also hand off each batch of rows to a DelayedJob,
+          # however we would need a way to only delete all the non-updated
+          # ObservationLinks only when all rows have succesfully processed.
           process_rows( rows_queue )
           rows_queue = []
         end
@@ -123,6 +126,7 @@ module DataPartnerLinkers
             ObservationLink.where( observation_id: inaturalist_observation_id, href: href ).touch_all
           end
           if count_touched.positive?
+            # should this be incrementing by count_touched?
             @old_count += 1
             @processed_count += 1
             next
@@ -185,9 +189,12 @@ module DataPartnerLinkers
       request
       # wait for the download file to generate
       logger.info( "[#{Time.now}] Waiting for archive to generate..." )
+      # It takes about 40 minutes for GBIF to succesfully generate the export.
+      # We should probably handle this delay with a delayed job with retry behavior,
+      # rather than a while loop in process.
       while generating
         print "."
-        sleep 3
+        sleep 60
       end
 
       # download the resulting zip file
