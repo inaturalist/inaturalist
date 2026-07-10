@@ -130,13 +130,33 @@ module DataPartnerLinkers
       Dir.glob( File.join( @tmp_path, "*.{csv,tsv}" ) ).first
     end
 
+    def gbif_href( gbif_id )
+      "http://www.gbif.org/occurrence/#{gbif_id}"
+    end
+
     def process_rows( rows )
       return if rows.empty?
+
+      observation_ids = rows.map {| row | row["catalognumber"].to_i }
+      # Exact (observation_id, href) pairs for this batch. A row-value tuple IN
+      # matches these pairs exactly; where( observation_id: ids, href: hrefs )
+      # would match the cartesian product and wrongly touch cross pairings.
+      pairs = rows.map {| row | [row["catalognumber"].to_i, gbif_href( row["gbifid"] )] }
+      placeholders = Array.new( pairs.size, "(?, ?)" ).join( ", " )
+      existing_links_scope = ObservationLink.where(
+        "(observation_id, href) IN (#{placeholders})", *pairs.flatten
+      )
+
+      # Hash-backed O(1) lookups fetched in one query each, replacing the
+      # per-row touch_all and existence SELECT
+      existing_link_pairs = existing_links_scope.pluck( :observation_id, :href ).to_set
+      existing_observation_ids = Observation.where( id: observation_ids ).pluck( :id ).to_set
+      existing_links_scope.touch_all unless @opts[:debug]
 
       ObservationLink.transaction do
         rows.each do | row |
           gbif_id = row["gbifid"]
-          inaturalist_observation_id = row["catalognumber"]
+          inaturalist_observation_id = row["catalognumber"].to_i
           if ( @processed_count % 1000 ).zero?
             percent_finished = ( @processed_count / @total_records.to_f * 100 ).round( 2 )
             run_time = Time.now - @process_start_time
@@ -155,20 +175,14 @@ module DataPartnerLinkers
             ].join( " " ) )
           end
 
-          href = "http://www.gbif.org/occurrence/#{gbif_id}"
-          count_touched = if @opts[:debug]
-            ObservationLink.where( observation_id: inaturalist_observation_id, href: href ).count
-          else
-            ObservationLink.where( observation_id: inaturalist_observation_id, href: href ).touch_all
-          end
-          if count_touched.positive?
-            # should this be incrementing by count_touched?
+          href = gbif_href( gbif_id )
+          if existing_link_pairs.include?( [inaturalist_observation_id, href] )
             @old_count += 1
             @processed_count += 1
             next
           end
 
-          unless Observation.where( id: inaturalist_observation_id ).exists?
+          unless existing_observation_ids.include?( inaturalist_observation_id )
             if @opts[:debug]
               logger.info( "\tobservation #{inaturalist_observation_id} doesn't exist, skipping..." )
             end
@@ -185,7 +199,7 @@ module DataPartnerLinkers
           )
           observation_link.save unless @opts[:debug]
           @new_count += 1
-          add_observation_to_index_queue( inaturalist_observation_id.to_i )
+          add_observation_to_index_queue( inaturalist_observation_id )
           @processed_count += 1
         end
       end

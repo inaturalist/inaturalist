@@ -174,6 +174,59 @@ describe DataPartnerLinkers::GBIF do
       )
     end
 
+    it "bulk-touches only exact (observation_id, href) pairs, not the cartesian product" do
+      observation_a = Observation.make!
+      observation_b = Observation.make!
+      # exact pairs present in the batch
+      link_a111 = make_gbif_link( observation_a, 111, updated_at: 1.month.ago )
+      link_b222 = make_gbif_link( observation_b, 222, updated_at: 1.month.ago )
+      # cross pairing NOT in the batch: a cartesian where( observation_id: [a,b],
+      # href: [111,222] ) would wrongly match and touch this link
+      trap_link = make_gbif_link( observation_a, 222, updated_at: 1.month.ago )
+      stub_archive( [
+                     { gbif_id: 111, catalog_number: observation_a.id },
+                     { gbif_id: 222, catalog_number: observation_b.id }
+                   ] )
+      stub_elastic_index
+      # only the trap link is stale, so exactly one link is deleted
+      expect do
+        linker.run
+      end.to change( ObservationLink, :count ).by( -1 )
+      expect( link_a111.reload.updated_at ).to be > 1.hour.ago
+      expect( link_b222.reload.updated_at ).to be > 1.hour.ago
+      expect( ObservationLink.where( id: trap_link.id ) ).not_to exist
+      expect( linker.instance_variable_get( :@old_count ) ).to eq 2
+      # the trap link's observation is queued for reindex as part of stale cleanup
+      expect( Observation ).to have_received( :elastic_index! ).with(
+        hash_including( delay: true, ids: [observation_a.id] )
+      )
+    end
+
+    it "processes a mixed batch of old, new, and missing rows in one call" do
+      old_observation = Observation.make!
+      new_observation = Observation.make!
+      old_link = make_gbif_link( old_observation, 111, updated_at: 1.month.ago )
+      missing_observation_id = Observation.maximum( :id ).to_i + 1000
+      stub_archive( [
+                     { gbif_id: 111, catalog_number: old_observation.id },
+                     { gbif_id: 222, catalog_number: new_observation.id },
+                     { gbif_id: 333, catalog_number: missing_observation_id }
+                   ] )
+      stub_elastic_index
+      expect do
+        linker.run
+      end.to change( ObservationLink, :count ).by( 1 )
+      expect( old_link.reload.updated_at ).to be > 1.hour.ago
+      expect( ObservationLink.where( observation_id: new_observation.id, href: gbif_href( 222 ) ) ).to exist
+      expect( linker.instance_variable_get( :@old_count ) ).to eq 1
+      expect( linker.instance_variable_get( :@new_count ) ).to eq 1
+      expect( linker.instance_variable_get( :@missing_count ) ).to eq 1
+      # only the genuinely-new observation is queued for indexing
+      expect( Observation ).to have_received( :elastic_index! ).with(
+        hash_including( delay: true, ids: [new_observation.id] )
+      )
+    end
+
     describe "in debug mode" do
       let( :options ) do
         {
