@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import UserText from "../../../shared/components/user_text";
 import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
+import { isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon, CurrentUser } from "../../../shared/types";
 
 interface PlaceTaxonName {
@@ -48,20 +49,18 @@ const TaxonomyTab = ( {
   toggleProvisionalChildrenShown,
   currentUser
 }: Props ) => {
-  const viewerIsCurator = currentUser && currentUser.roles && (
-    currentUser.roles.indexOf( "admin" ) >= 0 || currentUser.roles.indexOf( "curator" ) >= 0
+  const viewerIsCurator = isCuratorOrAdmin( currentUser );
+  const lexiconLabel = ( n: TaxonName ) => (
+    I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } )
   );
-  const sortedNames = _.sortBy( names, [
-    n => I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ),
-    n => n.position
-  ] );
+  const sortedNames = _.sortBy( names, [lexiconLabel, n => n.position] );
   const namesGroupedByPlace: Record<string, TaxonName[]> = { };
   const places: Record<string, { id: number; name: string }> = { };
-  _.each( names, n => {
+  names.forEach( n => {
     if ( n.lexicon === "Scientific Names" ) {
       return;
     }
-    _.each( n.place_taxon_names, ptn => {
+    n.place_taxon_names?.forEach( ptn => {
       if ( !ptn.place ) {
         return;
       }
@@ -70,6 +69,9 @@ const TaxonomyTab = ( {
       namesGroupedByPlace[ptn.place_id].push( { ...n, position: ptn.position } );
     } );
   } );
+  const placeLabel = ( placeID: string ) => (
+    I18n.t( `places_name.${_.snakeCase( places[placeID].name )}`, { defaultValue: places[placeID].name } )
+  );
   return (
     <div className="TaxonomyTab">
       <div className="tab-section">
@@ -141,7 +143,7 @@ const TaxonomyTab = ( {
                     className={n.is_valid ? "" : "outdated"}
                   >
                     <td>
-                      { I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ) }
+                      { lexiconLabel( n ) }
                     </td>
                     <td
                       className={n.lexicon && _.snakeCase( n.lexicon ).match( /scientific/ ) ? "sciname" : "comname"}
@@ -177,35 +179,35 @@ const TaxonomyTab = ( {
                     </tr>
                   </thead>
                   <tbody>
-                    { _.map( _.sortBy( _.keys( namesGroupedByPlace ), placeID => (
-                      I18n.t( `places_name.${_.snakeCase( places[placeID].name )}`, { defaultValue: places[placeID].name } )
-                    ) ), placeID => (
-                      _.sortBy( namesGroupedByPlace[placeID], "position" ).map( n => (
-                        <tr
-                          key={`taxon-names-${n.id}`}
-                          className={n.is_valid ? "" : "outdated"}
-                        >
-                          <td>
-                            <a href={`/places/${placeID}`}>
-                              { I18n.t( `places_name.${_.snakeCase( places[placeID].name )}`, { defaultValue: places[placeID].name } ) }
-                            </a>
-                          </td>
-                          <td className="comname">
-                            { n.name }
-                          </td>
-                          <td>
-                            { I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ) }
-                          </td>
-                          { currentUser ? (
-                            <td>
-                              { viewerIsCurator || n.creator_id === currentUser.id ? (
-                                <a href={`/taxon_names/${n.id}/edit`}>{ I18n.t( "edit" ) }</a>
+                    { _.sortBy( Object.keys( namesGroupedByPlace ), placeLabel )
+                      .map( placeID => (
+                        _.sortBy( namesGroupedByPlace[placeID], "position" )
+                          .map( n => (
+                            <tr
+                              key={`taxon-names-${n.id}`}
+                              className={n.is_valid ? "" : "outdated"}
+                            >
+                              <td>
+                                <a href={`/places/${placeID}`}>
+                                  { placeLabel( placeID ) }
+                                </a>
+                              </td>
+                              <td className="comname">
+                                { n.name }
+                              </td>
+                              <td>
+                                { lexiconLabel( n ) }
+                              </td>
+                              { currentUser ? (
+                                <td>
+                                  { viewerIsCurator || n.creator_id === currentUser.id ? (
+                                    <a href={`/taxon_names/${n.id}/edit`}>{ I18n.t( "edit" ) }</a>
+                                  ) : null }
+                                </td>
                               ) : null }
-                            </td>
-                          ) : null }
-                        </tr>
-                      ) )
-                    ) ) }
+                            </tr>
+                          ) )
+                      ) ) }
                   </tbody>
                 </table>
               </div>

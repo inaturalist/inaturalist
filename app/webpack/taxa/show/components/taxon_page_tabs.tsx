@@ -14,6 +14,7 @@ import SimilarTabContainer from "../containers/similar_tab_container";
 import IdentificationsTabContainer from "../containers/identifications_tab_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
 import TabDrawer, { TabItem } from "../../../shared/components/tab_drawer";
+import { isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon as BaseTaxon, CurrentUser as BaseCurrentUser } from "../../../shared/types";
 
 const MAIN_TAB_VALUES = new Set( [
@@ -85,9 +86,8 @@ const TaxonPageTabs = ( {
   const flagsCount = taxon.flag_counts
     ? ( taxon.flag_counts.resolved ?? 0 ) + ( taxon.flag_counts.unresolved ?? 0 )
     : 0;
-  const isCurator = !!currentUser?.roles.includes( "curator" )
-    || !!currentUser?.roles.includes( "admin" );
-  const isAdmin = !!currentUser?.roles.includes( "admin" );
+  const isCurator = !!isCuratorOrAdmin( currentUser );
+  const isAdmin = !!currentUser?.roles?.includes( "admin" );
 
   const tabLabels: Record<string, string> = {
     map: I18n.t( "map" ),

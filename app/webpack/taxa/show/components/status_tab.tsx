@@ -151,8 +151,7 @@ const StatusTab = ( {
               } else if ( status.user ) {
                 source = <a href={`/people/${status.user.login}`}>{ status.user.login }</a>;
               }
-              const statusTaxon = _.find(
-                taxon?.ancestors,
+              const statusTaxon = taxon?.ancestors?.find(
                 ancestor => ancestor.id === status.taxon_id
               );
               return (

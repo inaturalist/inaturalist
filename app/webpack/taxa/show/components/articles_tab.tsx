@@ -1,5 +1,6 @@
 import React from "react";
 import _ from "lodash";
+import { isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon, CurrentUser } from "../../../shared/types";
 
 type TaxonWithVision = Taxon & { vision?: boolean };
@@ -29,10 +30,7 @@ const ArticlesTab = ( {
   links = [],
   currentUser
 }: Props ) => {
-  const isCurator = currentUser && currentUser.roles && (
-    currentUser.roles.indexOf( "curator" ) >= 0
-    || currentUser.roles.indexOf( "admin" ) >= 0
-  );
+  const isCurator = isCuratorOrAdmin( currentUser );
   return (
     <div className="ArticlesTab">
       <div className="tab-row">
