@@ -49,6 +49,16 @@ test.describe( "Observation detail page", () => {
             flags: [],
             moderator_actions: [],
             user: { id: 987654, login: LONG_LOGIN, name: LONG_LOGIN }
+          },
+          {
+            id: 999998,
+            uuid: "00000000-0000-0000-0000-000000000998",
+            created_at: "2024-06-01T12:01:00+00:00",
+            body: "Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquaenimadminimveniam",
+            hidden: false,
+            flags: [],
+            moderator_actions: [],
+            user: { id: 987654, login: LONG_LOGIN, name: LONG_LOGIN }
           }
         ],
         ofvs: [

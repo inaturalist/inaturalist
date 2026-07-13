@@ -22,7 +22,7 @@ export function expectNoHorizontalOverflow(
         await page.setViewportSize( viewport );
         if ( options.setup ) { await options.setup( page ); }
         await page.goto( typeof path === "function" ? path() : path );
-        await page.locator( options.waitForSelector || "#header" ).waitFor();
+        await page.locator( options.waitForSelector || "#header" ).first().waitFor();
 
         const { bodyWidth, viewportWidth } = await measureHorizontalOverflow( page );
 
