@@ -3,7 +3,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Grid,
   Row,
   Col,
   Panel,
@@ -31,8 +30,6 @@ class Assessment extends React.Component {
     } = this.props;
     if ( !observation ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
-    const responsive = config.currentUser?.isAdmin
-      && config.currentUser?.isInTestGroup( "responsive-obs-detail" );
     const { open } = this.state;
     const InnerWrapper = innerWrapper || ( props => (
       <div>
@@ -43,7 +40,7 @@ class Assessment extends React.Component {
       </div>
     ) );
     return (
-      <Grid>
+      <div className="assessment_container">
         <div className="QualityMetrics collapsible-section">
           <div>
             <h3 className="collapsible">
@@ -192,19 +189,21 @@ class Assessment extends React.Component {
           <Panel expanded={open} onToggle={() => {}}>
             <Panel.Collapse>
               <InnerWrapper config={config}>
-                <Row>
-                  <Col xs={responsive ? null : 7} sm={responsive ? 7 : null}>
-                    <QualityMetricsContainer />
-                  </Col>
-                  <Col xs={responsive ? null : 5} sm={responsive ? 5 : null}>
-                    <ResearchGradeProgressContainer />
-                  </Col>
-                </Row>
+                <div className="assessment_metrics">
+                  <Row>
+                    <Col sm={7}>
+                      <QualityMetricsContainer />
+                    </Col>
+                    <Col sm={5}>
+                      <ResearchGradeProgressContainer />
+                    </Col>
+                  </Row>
+                </div>
               </InnerWrapper>
             </Panel.Collapse>
           </Panel>
         </div>
-      </Grid>
+      </div>
     );
   }
 }

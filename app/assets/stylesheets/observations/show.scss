@@ -15,6 +15,7 @@
 @import "../users/user_popover";
 @import "./identify/observation_modal";
 @import "./identify/suggestions";
+@import "../breakpoints";
 
 @mixin editor-textarea {
   textarea {
@@ -99,12 +100,57 @@ button.linky,
 
 body.responsive {
   min-width: auto;
+  overflow-x: clip;
   #header {
     margin-bottom: 0px;
   }
   #app {
     min-width: 980px;
     padding-top: 20px;
+  }
+  #ObservationShow {
+    @include container-padding;
+    // stack the two-column layouts below the tablet breakpoint
+    @media ( max-width: $lg-max ) {
+      .photos_column,
+      .info_column,
+      .nearby_col,
+      .similar_col {
+        flex: 1 1 100%;
+      }
+      .photos_column {
+        border-right: none;
+      }
+      .middle {
+        flex-direction: column;
+      }
+      .middle_left,
+      .middle_right {
+        display: contents;
+      }
+      // When stacked, these columns become cross-axis items of the column-flex
+      // .middle. Without a width cap, non-wrapping content (e.g. a <pre> code
+      // block in a comment) sets their min-content and overflows the viewport
+      // horizontally. min-width: 0 does not help on the cross axis.
+      .notes_col,
+      .community_taxon_col,
+      .activity_col,
+      .opposite_activity {
+        max-width: 100%;
+      }
+      .notes_col {
+        order: 1;
+      }
+      .community_taxon_col {
+        order: 2;
+      }
+      .activity_col {
+        order: 3;
+      }
+      .opposite_activity {
+        order: 4;
+      }
+    }
   }
 }
 
@@ -202,12 +248,23 @@ a.UserImage,
     width: auto;
   }
   .title_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
     margin: 10px 0px 10px;
+    .ObservationTitle {
+      flex: 1;
+    }
   }
   .top_row {
+    display: flex;
+    flex-wrap: wrap;
     background: #fff;
     border: 1px solid $border-grey;
     .photos_column {
+      flex: 7 1 0;
+      min-width: 0;
       padding: 0px;
       border-right: 1px solid $border-grey;
       &.empty {
@@ -449,6 +506,8 @@ a.UserImage,
       }
     }
     .info_column {
+      flex: 5 1 0;
+      min-width: 0;
       border-left: 1px solid $border-grey;
       margin-left: -1px;
       padding: 20px 0px;
@@ -461,8 +520,10 @@ a.UserImage,
         }
       }
       .date_row {
+        display: flex;
         margin: 20px;
         & > div {
+          flex: 1 1 0;
           padding: 0px;
         }
         .bold_label {
@@ -591,21 +652,49 @@ a.UserImage,
       }
     }
   }
+  .middle {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .middle_left {
+    flex: 7 1 0;
+    min-width: 0;
     padding-right: 40px;
     h3 {
       margin-bottom: 20px;
     }
   }
+  .middle_right {
+    flex: 5 1 0;
+    min-width: 0;
+  }
+  .community_taxon_col {
+    margin-bottom: 15px;
+    .CommunityIdentification h4 {
+      margin-top: 30px;
+    }
+  }
   .opposite_activity {
-    & > .row .col-xs-12 > div {
+    min-width: 0;
+    & > * {
       margin-bottom: 15px;
     }
     h4 {
       margin-top: 15px;
     }
-    .CommunityIdentification h4 {
-      margin-top: 30px;
+  }
+  .description {
+    font-style: normal;
+    color: inherit;
+  }
+  @media ( max-width: $md-max ) {
+    .compare-obs-btn {
+      display: none;
+    }
+  }
+  @media ( max-width: $lg-max ) {
+    .community-id-about-btn {
+      display: none;
     }
   }
   .ObservationTitle {
@@ -648,13 +737,116 @@ a.UserImage,
   .upper {
     margin-bottom: 40px;
   }
+  .assessment_metrics {
+    @media ( max-width: $md-max ) {
+      display: flex;
+      flex-direction: column;
+      > .row,
+      .row > [class*="col-"],
+      .QualityMetrics {
+        display: contents;
+      }
+      .QualityMetrics > div {
+        order: 1;
+      }
+      .ResearchGradeProgress {
+        order: 2;
+      }
+      .QualityMetrics > table {
+        order: 3;
+      }
+    }
+  }
   .data_quality_assessment {
     background: #fff;
     border-top: 1px solid $border-grey;
+    margin-inline: -60px;
+    padding-inline: 60px;
+
+    @media ( min-width: #{$xl + 121px} ) {
+      margin-inline: calc(-50vw + 600px);
+      padding-inline: calc(50vw - 600px);
+    }
+
+    .container {
+      margin: 0;
+    }
+
+    @media ( max-width: $md-max ) {
+      margin-inline: -30px;
+      padding-inline: 30px;
+    }
+    @media ( max-width: $sm-max ) {
+      margin-inline: -15px;
+      padding-inline: 15px;
+    }
   }
   .more_from {
     background: #eee;
     border-top: 1px solid $border-grey;
+    margin-inline: -60px;
+    padding-inline: 60px;
+
+    @media ( min-width: #{$xl + 121px} ) {
+      margin-inline: calc(-50vw + 600px);
+      padding-inline: calc(50vw - 600px);
+    }
+
+    .more_from_user {
+      padding: 0 15px;
+      margin: 0;
+    }
+
+    @media ( max-width: $md-max ) {
+      margin-inline: -30px;
+      padding-inline: 30px;
+    }
+    @media ( max-width: $sm-max ) {
+      margin-inline: -15px;
+      padding-inline: 15px;
+    }
+
+    .MoreFromUser {
+      display: inline-block;
+      padding-bottom: 30px;
+      width: 100%;
+      h3 {
+        padding: 0 15px;
+        & > span a {
+          font-weight: 600;
+        }
+        .links {
+          float: right;
+          font-size: 14px;
+          a {
+            color: $other-link-color;
+          }
+          .separator {
+            margin: 0px 5px;
+          }
+        }
+      }
+      .view {
+        font-weight: 700;
+        margin-inline-end: 5px;
+      }
+    }
+  }
+  [dir = "rtl"] .MoreFromUser{
+    h3 {
+      .links {
+        float: left;
+      }
+    }
+  }
+  .nearby_similar {
+    display: flex;
+    flex-wrap: wrap;
+    .nearby_col,
+    .similar_col {
+      flex: 1 1 0;
+      min-width: 0;
+    }
   }
   .other_observations {
     background: #f4f4f4;
@@ -677,10 +869,6 @@ a.UserImage,
   .FollowButton {
     float: left;
   }
-}
-
-.more_from > .container > .row > .col-xs-12 {
-  padding: 0;
 }
 
 .other_observations > .container > .row > .col-xs-6 {
@@ -775,7 +963,7 @@ time {
     height: 230px;
     text-align: center;
     padding-top: 75px;
-    border-bottom: 1px solid $border-grey;;
+    border-bottom: 1px solid $border-grey;
     .fa {
       display: block;
       font-size: 60px;
@@ -857,6 +1045,17 @@ time {
   min-width: 550px;
   padding: 20px;
   display: inline-block;
+
+  @media ( max-width: $md-max ) {
+    min-width: 0;
+    max-width: 100vw;
+    .standard, .community {
+      float: none;
+      min-width: 0;
+      max-width: 100%;
+    }
+  }
+
   .attr {
     font-weight: 600;
   }
@@ -1086,7 +1285,8 @@ time {
 }
 
 .QualityMetrics {
-  margin-bottom: 10px;
+  margin-bottom: 0;
+  padding-bottom: 10px;
   padding-right: 20px;
   .grade {
     margin: 15px 0px 25px;
@@ -1098,6 +1298,10 @@ time {
     i {
       padding: 0px 2px;
     }
+  }
+
+  @media (max-width: $lg-max) {
+    padding-right: 0px;
   }
 }
 
@@ -1264,96 +1468,6 @@ time {
       .reason_icon {
         float: right;
       }
-    }
-  }
-}
-
-.MoreFromUser {
-  display: inline-block;
-  padding-bottom: 30px;
-  width: 100%;
-  h3 {
-    & > span a {
-      font-weight: 600;
-    }
-    .links {
-      float: right;
-      font-size: 14px;
-      a {
-        color: $other-link-color;
-      }
-      .separator {
-        margin: 0px 5px;
-      }
-    }
-  }
-  .list {
-    text-align: center;
-    padding-left: 5px;
-    padding-right: 5px;
-    width: 100%;
-    .col-xs-2 {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-  }
-  .obs {
-    width: 100%;
-    vertical-align: top;
-    border-radius: 2px;
-    border: 1px solid #D0D0D0;
-    background: #fff;
-  }
-  .photo {
-    width: 100%;
-    height: 140px;
-    a {
-      width: 100%;
-      height: 100%;
-      display: block;
-      background-size: cover;
-      background-position: center;
-      margin: 0px auto;
-      text-align: center;
-      &:hover {
-        opacity: 1;
-      }
-    }
-
-    .icon, .sound-icon {
-      display: none;
-      color: #aaa;
-      opacity: 0.8;
-      font-size: 105px;
-      margin-top: 20px;
-    }
-    a.sound .sound-icon, a.iconic .icon {
-      display: inline-block;
-    }
-
-  }
-  .caption {
-    padding: 8px;
-    min-height: 56px;
-    text-align: start;
-    .SplitTaxon .display-name {
-      color: #000;
-    }
-    .SplitTaxon > .display-name, .display-names,
-    .SplitTaxon > .secondary-name, .secondary-names {
-      display: block;
-    }
-  }
-  .view {
-    font-weight: 700;
-    margin-inline-end: 5px;
-  }
-}
-
-[dir = "rtl"] .MoreFromUser{
-  h3 {
-    .links {
-      float: left;
     }
   }
 }
@@ -2214,13 +2328,6 @@ time {
 }
 
 @media (min-width: 1200px) {
-  .MoreFromUser .photo {
-    height: 171px;
-    .icon, .sound-icon {
-      font-size: 125px;
-      margin-top: 25px;
-    }
-  }
   .ObservationsHighlight .photo {
     height: 84px;
   }

@@ -1,4 +1,5 @@
 @import "../colors";
+@import "../breakpoints";
 
 .ActivityItem,
 body > [role="dialog"] .ActivityItem {
@@ -11,7 +12,10 @@ body > [role="dialog"] .ActivityItem {
     overflow: inherit;
   }
   .identification {
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
     width: 100%;
     > .taxon {
       display: flex;
@@ -28,14 +32,14 @@ body > [role="dialog"] .ActivityItem {
     }
   }
   .buttons {
-    float: right;
+    display: flex;
+    align-items: center;
   }
   .taxon-image {
     width: 44px;
     height: 44px;
     border: 1px solid $border-grey;
     border-radius: 2px;
-    float: left;
     margin-inline-end: 15px;
     display: inline-block;
   }
@@ -92,7 +96,11 @@ body > [role="dialog"] .ActivityItem {
     font-size: 14px;
     .title_text {
       flex: 2;
+      min-width: 0;
+      overflow-wrap: anywhere;
       margin-inline-end: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     a.user {
       font-weight: 600;
@@ -100,7 +108,6 @@ body > [role="dialog"] .ActivityItem {
     }
     .item-status {
       margin-inline-end: 15px;
-      white-space: nowrap;
      .fa, i {
         width: 20px;
         text-align: center;
@@ -383,6 +390,32 @@ body > [role="dialog"] .ActivityItemMenu {
         }
       }
     }
+  }
+}
+
+@media ( max-width: $md-max ) {
+  // taxon photo + name take the whole row; action buttons wrap below
+  .ActivityItem .identification > .taxon,
+  body > [role="dialog"] .ActivityItem .identification > .taxon {
+    flex: 1 1 100%;
+  }
+  // keep the caret dropdown menu inside the right edge instead of overflowing
+  .ActivityItemMenu .control-group .dropdown.btn-group .dropdown-menu,
+  body > [role="dialog"] .ActivityItemMenu .control-group .dropdown.btn-group .dropdown-menu {
+    margin-right: 0;
+    right: 0;
+    max-width: calc( 100vw - 30px );
+    .search-links {
+      min-width: 0;
+    }
+  }
+}
+
+@media ( max-width: $sm-max ) {
+  // hide status-badge labels on mobile, leaving just the icon (title carries the text)
+  .ActivityItem .item-status .item-status-label,
+  body > [role="dialog"] .ActivityItem .item-status .item-status-label {
+    display: none;
   }
 }
 
