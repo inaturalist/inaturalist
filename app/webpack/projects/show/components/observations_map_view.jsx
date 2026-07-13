@@ -8,6 +8,10 @@ import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_conta
 
 const ObservationsMapView = ( { project, config, updateCurrentUser } ) => {
   const totalBounds = project.recent_observations && project.recent_observations.total_bounds;
+  const observationLayerParams = _.omit( {
+    ...project.search_params,
+    color: "iconic"
+  }, "any" );
   return (
     <div className="ObservationsMapView">
       <Grid>
@@ -15,7 +19,7 @@ const ObservationsMapView = ( { project, config, updateCurrentUser } ) => {
           <Col xs={12}>
             <TaxonMap
               placement="projects-show-observations"
-              observationLayers={[Object.assign( { captive: "any" }, project.search_params, { color: "iconic" } )]}
+              observationLayers={[observationLayerParams]}
               showAccuracy
               enableShowAllLayer={false}
               overlayMenu={false}

@@ -64,7 +64,7 @@ class UmbrellaMap extends Component {
             <TaxonMap
               placement="projects-show-umbrella"
               key={`umbrellamap${project.id}`}
-              observationLayers={[{ captive: "any", ...project.search_params, color: "iconic" }]}
+              observationLayers={[{ ...project.search_params, color: "iconic" }]}
               showAccuracy
               enableShowAllLayer={false}
               clickable={false}
