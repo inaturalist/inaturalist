@@ -21,6 +21,10 @@ interface JQueryStubResult {
   data: ( key: string ) => unknown;
   get: ( index: number ) => Element | undefined;
   taxonMap: ( options?: unknown ) => void;
+  animate: ( properties: Record<string, unknown>, duration?: number ) => JQueryStubResult;
+  offset: ( ) => { top: number; left: number };
+  val: ( value?: string ) => string;
+  find: ( selector: string ) => JQueryStubResult;
 }
 interface JQueryDeparam {
   ( str: string ): Record<string, unknown>;

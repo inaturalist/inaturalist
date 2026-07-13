@@ -1,8 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
 import _ from "lodash";
 
-const InteractionsTab = ( { interactions } ) => {
+interface Interaction {
+  interaction_type: string;
+  target: {
+    path?: string;
+    name: string;
+  };
+  target_taxon_external_id: string;
+}
+
+interface Props {
+  interactions?: Interaction[];
+}
+
+const InteractionsTab = ( { interactions }: Props ) => {
   const interactionsByType = _.groupBy( interactions || [], "interaction_type" );
   const iconicTaxonNames = [
     "Protozoa",
@@ -131,10 +143,6 @@ const InteractionsTab = ( { interactions } ) => {
       </div>
     </div>
   );
-};
-
-InteractionsTab.propTypes = {
-  interactions: PropTypes.array
 };
 
 export default InteractionsTab;

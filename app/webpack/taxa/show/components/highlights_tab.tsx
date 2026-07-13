@@ -1,7 +1,6 @@
 import React from "react";
 import LazyLoad from "react-lazy-load";
 import moment from "moment";
-import _ from "lodash";
 import HighlightsCarousel from "./highlights_carousel";
 import type { Taxon, Config } from "../../../shared/types";
 
@@ -44,7 +43,7 @@ const HighlightsTab = ( {
   fetchWanted
 }: HighlightsTabProps ) => {
   const discoveryCaptionForTaxon = ( taxon: Taxon ) => {
-    const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
+    const discovery = discoveries && discoveries.find( d => d.taxon.id === taxon.id );
     if ( !discoveries || !discovery ) {
       return <span />;
     }
@@ -61,7 +60,7 @@ const HighlightsTab = ( {
   };
 
   const discoveryUrlForTaxon = ( taxon: Taxon ) => {
-    const discovery = discoveries && _.find( discoveries, d => d.taxon.id === taxon.id );
+    const discovery = discoveries && discoveries.find( d => d.taxon.id === taxon.id );
     return discovery
       ? `/observations/${discovery.identification.observation.id}`
       : undefined;

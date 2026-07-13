@@ -1,33 +1,141 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import ReactDOMServer from "react-dom/server";
-import PropTypes from "prop-types";
 import {
   Panel,
   Dropdown,
   MenuItem
 } from "react-bootstrap";
 import moment from "moment-timezone";
-import Pagination from "rc-pagination";
+// @ts-ignore
+import Pagination from "rc-pagination"; // eslint-disable-line
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import { taxonLayerForTaxon } from "../../shared/util";
 import UserText from "../../../shared/components/user_text";
 import UsersPopover from "../../../observations/show/components/users_popover";
 import UserLink from "../../../shared/components/user_link";
+import type {
+  Taxon, CurrentUser, Config, User
+} from "../../../shared/types";
 
 // Use custom relative times for moment
-const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const i18nMomentjs = I18n.t( "momentjs" ) as any;
+const shortRelativeTime = i18nMomentjs ? i18nMomentjs.shortRelativeTime : null;
 const relativeTime = {
-  ...I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
+  ...( I18n.t( "momentjs", { locale: "en" } ) as any ).shortRelativeTime,
   ...shortRelativeTime
 };
-moment.locale( I18n.locale );
+moment.locale( ( I18n as any ).locale );
 moment.updateLocale( moment.locale( ), { relativeTime } );
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
-class IdentificationsTab extends Component {
-  constructor( props, context ) {
+interface SortOption {
+  key: string;
+  label: string;
+  order_by: string;
+  order: string;
+}
+
+interface IdentificationsQuery {
+  downvoted?: string | null;
+  upvoted?: string | null;
+  nominated?: string | null;
+  q?: string | null;
+  term_value_id?: number | null;
+  order_by?: string;
+  order?: string;
+  sortKey?: string;
+  page?: number | null;
+}
+
+interface IdentificationVote {
+  vote_flag: boolean;
+  user?: { id: number };
+}
+
+interface AnnotationValue {
+  id: number;
+  label: string;
+}
+
+interface IdentificationObservation {
+  id: number;
+  photos: { photoUrl: ( size?: string ) => string }[];
+  annotations: {
+    uuid: string;
+    controlled_attribute: AnnotationValue;
+    controlled_value: AnnotationValue;
+  }[];
+  discussion_count: number;
+}
+
+interface Identification {
+  uuid: string;
+  id: number;
+  user: User;
+  observation: IdentificationObservation;
+  body: string;
+  created_at: string;
+}
+
+interface IdentificationResult {
+  id: number;
+  identification: Identification;
+  votes: IdentificationVote[];
+  nominated_by_user?: User;
+  nominated_at?: string;
+}
+
+interface IdentificationsResponse {
+  results?: IdentificationResult[];
+  total_results?: number;
+  page?: number;
+  per_page?: number;
+  loading?: boolean;
+  category_counts?: Record<string, number>;
+  category_controlled_terms?: {
+    controlled_attribute: AnnotationValue;
+    controlled_value: AnnotationValue;
+  }[];
+}
+
+interface Bounds {
+  swlng?: number;
+  swlat?: number;
+  nelng?: number;
+  nelat?: number;
+}
+
+interface Props {
+  response?: IdentificationsResponse;
+  identificationsQuery: IdentificationsQuery;
+  identificationsAvailable?: boolean;
+  setIdentificationsQuery: ( query: IdentificationsQuery ) => void;
+  updateCurrentUser?: ( user: Partial<CurrentUser> ) => void;
+  config: Config;
+  currentUser?: CurrentUser;
+  bounds?: Bounds;
+  latitude?: number;
+  longitude?: number;
+  zoomLevel?: number;
+  taxon: Taxon;
+  nominateIdentification?: ( uuid: string, id: number ) => void;
+  unnominateIdentification?: ( uuid: string, id: number ) => void;
+  voteIdentification?: ( id: number, type?: string ) => void;
+  unvoteIdentification?: ( id: number ) => void;
+}
+
+interface State {
+  searchSearchTermPresent: boolean | null;
+  allSorts: Record<string, SortOption>;
+  tabSorts: Record<string, SortOption[]>;
+}
+
+class IdentificationsTab extends Component<Props, State> {
+  constructor( props: Props, context: unknown ) {
     super( props, context );
-    const allSorts = {
+    const allSorts: Record<string, SortOption> = {
       votesDesc: {
         key: "votesDesc",
         label: I18n.t( "views.taxa.show.identifications.sort.highest_to_lowest_votes" ),
@@ -59,7 +167,7 @@ class IdentificationsTab extends Component {
         order: "desc"
       }
     };
-    const tabSorts = {
+    const tabSorts: Record<string, SortOption[]> = {
       upvoted: [
         allSorts.votesDesc,
         allSorts.votesAsc,
@@ -89,7 +197,7 @@ class IdentificationsTab extends Component {
     };
   }
 
-  setSearchSearchTermPresent( present ) {
+  setSearchSearchTermPresent( present: boolean ) {
     if ( this.state.searchSearchTermPresent === present ) {
       return;
     }
@@ -99,7 +207,7 @@ class IdentificationsTab extends Component {
     } );
   }
 
-  panelMenu( result ) {
+  panelMenu( result: IdentificationResult ) {
     const {
       config,
       nominateIdentification,
@@ -119,7 +227,7 @@ class IdentificationsTab extends Component {
       if ( loggedInUser.isCurator ) {
         nominationMenuItems.push( (
           <MenuItem
-            key={`id-hide-${result.uuid}`}
+            key={`id-hide-${result.identification.uuid}`}
             eventKey="hide"
           >
             { I18n.t( "hide_content" ) }
@@ -160,7 +268,7 @@ class IdentificationsTab extends Component {
         <span className="control-group">
           <Dropdown
             id="grouping-control"
-            onSelect={key => {
+            onSelect={( key: string ) => {
               if ( key === "flag" ) {
                 const url = `/identifications/${result.identification.uuid}?_action=flag`;
                 window.open( url, "_blank", "noopener,noreferrer" );
@@ -168,9 +276,9 @@ class IdentificationsTab extends Component {
                 const url = `/identifications/${result.identification.uuid}?_action=hide`;
                 window.open( url, "_blank", "noopener,noreferrer" );
               } else if ( key === "nominate" ) {
-                nominateIdentification( result.identification.uuid, result.id );
+                nominateIdentification?.( result.identification.uuid, result.id );
               } else if ( key === "unnominate" ) {
-                unnominateIdentification( result.identification.uuid, result.id );
+                unnominateIdentification?.( result.identification.uuid, result.id );
               }
             }}
           >
@@ -186,7 +294,7 @@ class IdentificationsTab extends Component {
     );
   }
 
-  identificationPanel( result ) {
+  identificationPanel( result: IdentificationResult ) {
     const {
       config,
       identificationsQuery,
@@ -257,10 +365,10 @@ class IdentificationsTab extends Component {
         </a>
       </time>
     );
-    const votesFor = [];
-    const votesAgainst = [];
-    let userVotedFor;
-    let userVotedAgainst;
+    const votesFor: IdentificationVote[] = [];
+    const votesAgainst: IdentificationVote[] = [];
+    let userVotedFor = false;
+    let userVotedAgainst = false;
     _.each( result.votes, v => {
       if ( v.vote_flag === true ) {
         votesFor.push( v );
@@ -273,10 +381,10 @@ class IdentificationsTab extends Component {
       }
     } );
     const voteAction = () => (
-      userVotedFor ? unvoteIdentification( result.id ) : voteIdentification( result.id )
+      userVotedFor ? unvoteIdentification?.( result.id ) : voteIdentification?.( result.id )
     );
     const unvoteAction = () => (
-      userVotedAgainst ? unvoteIdentification( result.id ) : voteIdentification( result.id, "bad" )
+      userVotedAgainst ? unvoteIdentification?.( result.id ) : voteIdentification?.( result.id, "bad" )
     );
     const agreeClass = userVotedFor ? "fa-thumbs-up" : "fa-thumbs-o-up";
     const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
@@ -436,7 +544,7 @@ class IdentificationsTab extends Component {
     return activeTab;
   }
 
-  categoryTabDisabled( category ) {
+  categoryTabDisabled( category: string ) {
     const { response } = this.props;
     if ( !response?.category_counts ) {
       return true;
@@ -594,7 +702,7 @@ class IdentificationsTab extends Component {
         onSubmit={e => {
           setIdentificationsQuery( {
             ...identificationsQuery,
-            q: $( e.target ).find( "[name='q']" ).val( ),
+            q: $( e.target as Element ).find( "[name='q']" ).val( ),
             page: null
           } );
           e.preventDefault( );
@@ -616,7 +724,7 @@ class IdentificationsTab extends Component {
               />
               { this.state.searchSearchTermPresent && (
                 <span
-                  type="button"
+                  role="button"
                   aria-hidden="true"
                   className="glyphicon glyphicon-remove-circle searchclear"
                   onClick={( ) => {
@@ -690,9 +798,9 @@ class IdentificationsTab extends Component {
       setIdentificationsQuery
     } = this.props;
 
-    const allAttributeValues = [];
-    if ( response?.results?.length > 0 ) {
-      _.each( response.category_controlled_terms, annotation => {
+    const allAttributeValues: { term: AnnotationValue; value: AnnotationValue }[] = [];
+    if ( ( response?.results?.length ?? 0 ) > 0 ) {
+      _.each( response?.category_controlled_terms, annotation => {
         allAttributeValues.push( {
           term: annotation.controlled_attribute,
           value: annotation.controlled_value
@@ -769,18 +877,18 @@ class IdentificationsTab extends Component {
           }
         </div>
       );
-    } else if ( response?.results?.length > 0 ) {
-      content = _.map( response.results, result => this.identificationPanel( result ) );
+    } else if ( ( response?.results?.length ?? 0 ) > 0 ) {
+      content = _.map( response?.results, result => this.identificationPanel( result ) );
       pagination = (
         <Pagination
-          total={response.total_results}
-          current={response.page}
-          pageSize={response.per_page}
+          total={response?.total_results}
+          current={response?.page}
+          pageSize={response?.per_page}
           locale={{
             prev_page: I18n.t( "previous_page_short" ),
             next_page: I18n.t( "next_page_short" )
           }}
-          onChange={page => setIdentificationsQuery( {
+          onChange={( page: number ) => setIdentificationsQuery( {
             ...identificationsQuery,
             page
           } )}
@@ -842,24 +950,5 @@ class IdentificationsTab extends Component {
     );
   }
 }
-
-IdentificationsTab.propTypes = {
-  response: PropTypes.object,
-  identificationsQuery: PropTypes.object,
-  identificationsAvailable: PropTypes.bool,
-  setIdentificationsQuery: PropTypes.func,
-  updateCurrentUser: PropTypes.func,
-  config: PropTypes.object,
-  currentUser: PropTypes.object,
-  bounds: PropTypes.object,
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
-  zoomLevel: PropTypes.number,
-  taxon: PropTypes.object,
-  nominateIdentification: PropTypes.func,
-  unnominateIdentification: PropTypes.func,
-  voteIdentification: PropTypes.func,
-  unvoteIdentification: PropTypes.func
-};
 
 export default IdentificationsTab;

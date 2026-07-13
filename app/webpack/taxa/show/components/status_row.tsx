@@ -1,9 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import StatusHeader from "./status_header";
 import EstablishmentHeaderContainer from "../containers/establishment_header_container";
 
-const StatusRow = ( { conservationStatus, establishmentMeans } ) => {
+interface Props {
+  conservationStatus?: object | null;
+  establishmentMeans?: object | null;
+}
+
+const StatusRow = ( { conservationStatus, establishmentMeans }: Props ) => {
   if ( conservationStatus && establishmentMeans ) {
     return (
       <div className="status-row">
@@ -23,11 +27,6 @@ const StatusRow = ( { conservationStatus, establishmentMeans } ) => {
     return <EstablishmentHeaderContainer />;
   }
   return null;
-};
-
-StatusRow.propTypes = {
-  conservationStatus: PropTypes.object,
-  establishmentMeans: PropTypes.object
 };
 
 export default StatusRow;

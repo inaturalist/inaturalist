@@ -1,15 +1,34 @@
 import React from "react";
-import PropTypes from "prop-types";
 import _ from "lodash";
+import type { Taxon, CurrentUser } from "../../../shared/types";
+
+type TaxonWithVision = Taxon & { vision?: boolean };
+
+interface TaxonLink {
+  taxon_link: {
+    id: number;
+    site_title: string;
+  };
+  url: string;
+}
+
+interface Props {
+  taxon: TaxonWithVision;
+  description?: string;
+  descriptionSource?: string;
+  descriptionSourceUrl?: string;
+  links?: TaxonLink[];
+  currentUser?: CurrentUser;
+}
 
 const ArticlesTab = ( {
   taxon,
   description,
   descriptionSource,
   descriptionSourceUrl,
-  links,
+  links = [],
   currentUser
-} ) => {
+}: Props ) => {
   const isCurator = currentUser && currentUser.roles && (
     currentUser.roles.indexOf( "curator" ) >= 0
     || currentUser.roles.indexOf( "admin" ) >= 0
@@ -35,7 +54,7 @@ const ArticlesTab = ( {
                 </a>
               ) }
             </h2>
-            <div dangerouslySetInnerHTML={{ __html: description }} />
+            <div dangerouslySetInnerHTML={{ __html: description || "" }} />
           </div>
         </div>
         <div className="tab-side">
@@ -116,16 +135,5 @@ const ArticlesTab = ( {
     </div>
   );
 };
-
-ArticlesTab.propTypes = {
-  taxon: PropTypes.object.isRequired,
-  description: PropTypes.string,
-  descriptionSource: PropTypes.string,
-  descriptionSourceUrl: PropTypes.string,
-  links: PropTypes.array,
-  currentUser: PropTypes.object
-};
-
-ArticlesTab.defaultProps = { links: [] };
 
 export default ArticlesTab;

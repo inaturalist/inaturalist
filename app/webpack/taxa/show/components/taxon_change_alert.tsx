@@ -1,10 +1,30 @@
 import _ from "lodash";
 import React from "react";
-import PropTypes from "prop-types";
 import moment from "moment";
 import { urlForTaxon, commasAnd } from "../../shared/util";
+import type { Taxon } from "../../../shared/types";
 
-const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
+interface TaxonChangeInput {
+  id: number;
+  name: string;
+  rank: string;
+}
+
+interface TaxonChange {
+  id: number;
+  type: "TaxonSwap" | "TaxonSplit" | "TaxonMerge" | "TaxonDrop";
+  status: string;
+  input_taxa: TaxonChangeInput[];
+  output_taxa: TaxonChangeInput[];
+  committed_on?: string;
+}
+
+interface Props {
+  taxon: Taxon;
+  taxonChange?: TaxonChange;
+}
+
+const TaxonChangeAlert = ( { taxon, taxonChange }: Props ) => {
   if ( !taxonChange ) return ( <div /> );
 
   const { status } = taxonChange; // "draft" | "committed" | "withdrawn" | ...
@@ -25,13 +45,13 @@ const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
     return ( <div /> );
   }
 
-  // new: don’t show alerts for withdrawn (or any non-draft/non-committed state)
+  // new: don't show alerts for withdrawn (or any non-draft/non-committed state)
   if ( !isDraft && !isCommitted ) {
     return ( <div /> );
   }
 
   const committedOn = taxonChange.committed_on ? moment( taxonChange.committed_on ) : null;
-  const linkToTaxon = t => {
+  const linkToTaxon = ( t: TaxonChangeInput | undefined ) => {
     if ( !t ) {
       return I18n.t( "unknown" );
     }
@@ -115,11 +135,6 @@ const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
       </a>
     </div>
   );
-};
-
-TaxonChangeAlert.propTypes = {
-  taxon: PropTypes.object,
-  taxonChange: PropTypes.object
 };
 
 export default TaxonChangeAlert;

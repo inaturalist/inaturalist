@@ -1,21 +1,53 @@
 import _ from "lodash";
 import React from "react";
-import PropTypes from "prop-types";
 import UserText from "../../../shared/components/user_text";
 import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
+import type { Taxon, CurrentUser } from "../../../shared/types";
+
+interface PlaceTaxonName {
+  place_id: number;
+  position: number;
+  place?: {
+    id: number;
+    name: string;
+  };
+}
+
+interface TaxonName {
+  id: number;
+  is_valid: boolean;
+  lexicon: string;
+  name: string;
+  position?: number;
+  creator_id?: number;
+  place_taxon_names?: PlaceTaxonName[];
+}
+
+interface Props {
+  taxon: Taxon;
+  taxonChangesCount?: number;
+  taxonSchemesCount?: number;
+  names?: TaxonName[];
+  showNewTaxon?: ( taxon: Taxon, opts?: { skipScrollTop?: boolean } ) => void;
+  allChildrenShown?: boolean;
+  toggleAllChildrenShown?: ( ) => void;
+  provisionalChildrenShown?: boolean;
+  toggleProvisionalChildrenShown?: ( ) => void;
+  currentUser?: CurrentUser;
+}
 
 const TaxonomyTab = ( {
   taxon,
-  taxonChangesCount,
-  taxonSchemesCount,
-  names,
+  taxonChangesCount = 0,
+  taxonSchemesCount = 0,
+  names = [],
   showNewTaxon,
-  allChildrenShown,
+  allChildrenShown = false,
   toggleAllChildrenShown,
-  provisionalChildrenShown,
+  provisionalChildrenShown = false,
   toggleProvisionalChildrenShown,
   currentUser
-} ) => {
+}: Props ) => {
   const viewerIsCurator = currentUser && currentUser.roles && (
     currentUser.roles.indexOf( "admin" ) >= 0 || currentUser.roles.indexOf( "curator" ) >= 0
   );
@@ -23,8 +55,8 @@ const TaxonomyTab = ( {
     n => I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ),
     n => n.position
   ] );
-  const namesGroupedByPlace = { };
-  const places = { };
+  const namesGroupedByPlace: Record<string, TaxonName[]> = { };
+  const places: Record<string, { id: number; name: string }> = { };
   _.each( names, n => {
     if ( n.lexicon === "Scientific Names" ) {
       return;
@@ -46,7 +78,7 @@ const TaxonomyTab = ( {
             <h3>{ I18n.t( "taxonomy" ) }</h3>
             <TaxonomicBranch
               taxon={taxon}
-              chooseTaxon={t => showNewTaxon( t, { skipScrollTop: true } )}
+              chooseTaxon={t => showNewTaxon?.( t, { skipScrollTop: true } )}
               toggleAllChildrenShown={toggleAllChildrenShown}
               allChildrenShown={allChildrenShown}
               provisionalChildrenShown={provisionalChildrenShown}
@@ -216,27 +248,6 @@ const TaxonomyTab = ( {
       </div>
     </div>
   );
-};
-
-TaxonomyTab.propTypes = {
-  taxon: PropTypes.object,
-  taxonChangesCount: PropTypes.number,
-  taxonSchemesCount: PropTypes.number,
-  names: PropTypes.array,
-  showNewTaxon: PropTypes.func,
-  allChildrenShown: PropTypes.bool,
-  toggleAllChildrenShown: PropTypes.func,
-  provisionalChildrenShown: PropTypes.bool,
-  toggleProvisionalChildrenShown: PropTypes.func,
-  currentUser: PropTypes.object
-};
-
-TaxonomyTab.defaultProps = {
-  names: [],
-  taxonChangesCount: 0,
-  taxonSchemesCount: 0,
-  allChildrenShown: false,
-  provisionalChildrenShown: false
 };
 
 export default TaxonomyTab;
