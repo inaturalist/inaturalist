@@ -105,7 +105,7 @@ const InteractionsTab = ( { interactions }: Props ) => {
             a database and webservice that combines
             interaction data from numerous sources, including iNaturalist.
             You can actually contribute to this database by adding the
-            "Eating", "Eaten by", and "Host" observation fields to
+            &quot;Eating&quot;, &quot;Eaten by&quot;, and &quot;Host&quot; observation fields to
             observations that demonstrate those interactions.
           </p>
           <h3>Learn More</h3>

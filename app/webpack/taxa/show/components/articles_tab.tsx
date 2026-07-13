@@ -49,7 +49,7 @@ const ArticlesTab = ( {
               { descriptionSource }
               { " " }
               { descriptionSourceUrl && (
-                <a href={descriptionSourceUrl}>
+                <a href={descriptionSourceUrl} aria-label={I18n.t( "source_url" )}>
                   <i className="icon-link-external" />
                 </a>
               ) }
@@ -76,7 +76,7 @@ const ArticlesTab = ( {
                     { link.taxon_link.site_title }
                   </a>
                   { isCurator ? (
-                    <a href={`/taxon_links/${link.taxon_link.id}/edit`}>
+                    <a href={`/taxon_links/${link.taxon_link.id}/edit`} aria-label={I18n.t( "edit" )}>
                       <i className="fa fa-pencil" />
                     </a>
                   ) : null }
