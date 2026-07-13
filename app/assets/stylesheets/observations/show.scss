@@ -128,6 +128,16 @@ body.responsive {
       .middle_right {
         display: contents;
       }
+      // When stacked, these columns become cross-axis items of the column-flex
+      // .middle. Without a width cap, non-wrapping content (e.g. a <pre> code
+      // block in a comment) sets their min-content and overflows the viewport
+      // horizontally. min-width: 0 does not help on the cross axis.
+      .notes_col,
+      .community_taxon_col,
+      .activity_col,
+      .opposite_activity {
+        max-width: 100%;
+      }
       .notes_col {
         order: 1;
       }

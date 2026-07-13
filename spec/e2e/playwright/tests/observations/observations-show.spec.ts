@@ -59,6 +59,20 @@ test.describe( "Observation detail page", () => {
             flags: [],
             moderator_actions: [],
             user: { id: 987654, login: LONG_LOGIN, name: LONG_LOGIN }
+          },
+          {
+            // A bare <pre> block with a long non-wrapping line (as seen on the
+            // real Gerald observation). Below the tablet breakpoint the activity
+            // column is a cross-axis item of a column-flex, so this sets the
+            // column's min-content and overflows the viewport unless capped.
+            id: 999997,
+            uuid: "00000000-0000-0000-0000-000000000997",
+            created_at: "2024-06-01T12:02:00+00:00",
+            body: "<pre>$ curl -s \"https://api.inaturalist.org/v1/observations/5890862\" | python -m json.tool | grep comments_count</pre>",
+            hidden: false,
+            flags: [],
+            moderator_actions: [],
+            user: { id: 987654, login: LONG_LOGIN, name: LONG_LOGIN }
           }
         ],
         ofvs: [

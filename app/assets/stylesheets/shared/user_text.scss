@@ -16,6 +16,10 @@
     img {
       max-width: 100%;
     }
+    pre {
+      max-width: 100%;
+      overflow-x: auto;
+    }
     > p:last-child,
     > ul:last-child,
     > ol:last-child,
