@@ -522,6 +522,10 @@ $photoPreviewThumbGutterTop: 3px;
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  @include container-padding;
+  padding-top: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
 
   > .status-row-item {
     flex: 1 1 0;
@@ -964,26 +968,13 @@ $introducedColor: #E4007C;
 .IdentificationsTab {
   .ident-layout {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
 
-    > .ident-main {
-      flex: 2 1 0;
-      min-width: 0;
-    }
+    > .ident-main,
     > .ident-side {
-      flex: 1 1 0;
+      flex: 1 1 100%;
       min-width: 0;
-    }
-
-    // Test-group responsive variant: main spans full width, map stacks below
-    // and is hidden on small screens via the hidden-xs utility on the element.
-    &.responsive {
-      flex-wrap: wrap;
-
-      > .ident-main,
-      > .ident-side {
-        flex: 1 1 100%;
-      }
     }
   }
   .loading {
@@ -1332,16 +1323,7 @@ body > [role="dialog"] .PhotoChooserModal {
     .carousel-item {
       aspect-ratio: 1 / 1;
     }
-  
-    .viewall {
-      background-color: #333;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-    }
-  
+
     .CoverImage {
       height: 100%;
     }

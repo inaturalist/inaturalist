@@ -8,25 +8,21 @@ interface Props {
 }
 
 const StatusRow = ( { conservationStatus, establishmentMeans }: Props ) => {
-  if ( conservationStatus && establishmentMeans ) {
-    return (
-      <div className="status-row">
+  if ( !conservationStatus && !establishmentMeans ) return null;
+  return (
+    <div className="status-row">
+      { conservationStatus && (
         <div className="status-row-item">
           <StatusHeader status={conservationStatus} />
         </div>
+      ) }
+      { establishmentMeans && (
         <div className="status-row-item">
           <EstablishmentHeaderContainer />
         </div>
-      </div>
-    );
-  }
-  if ( conservationStatus ) {
-    return <StatusHeader status={conservationStatus} />;
-  }
-  if ( establishmentMeans ) {
-    return <EstablishmentHeaderContainer />;
-  }
-  return null;
+      ) }
+    </div>
+  );
 };
 
 export default StatusRow;

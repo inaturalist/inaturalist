@@ -217,6 +217,7 @@ const PhotoPreview = ( {
   }
   return (
     <GalleryPreview
+      key={taxon.id}
       taxon={taxon}
       taxonPhotos={taxonPhotos}
       showTaxonPhotoModal={showTaxonPhotoModal}

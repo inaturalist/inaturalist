@@ -114,7 +114,6 @@ interface Props {
   setIdentificationsQuery: ( query: IdentificationsQuery ) => void;
   updateCurrentUser?: ( user: Partial<CurrentUser> ) => void;
   config: Config;
-  currentUser?: CurrentUser;
   bounds?: Bounds;
   latitude?: number;
   longitude?: number;
@@ -859,13 +858,10 @@ class IdentificationsTab extends Component<Props, State> {
       longitude,
       zoomLevel,
       config,
-      taxon,
-      currentUser
+      taxon
     } = this.props;
     let content;
     let pagination;
-    const responsive = currentUser?.isAdmin
-      && currentUser?.isInTestGroup( "responsive-taxon-detail" );
     const activeTab = this.activeTab( );
     if ( response?.results?.length === 0 ) {
       content = (
@@ -897,7 +893,7 @@ class IdentificationsTab extends Component<Props, State> {
     }
     return (
       <div className="IdentificationsTab">
-        <div className={`ident-layout${responsive ? " responsive" : ""}`}>
+        <div className="ident-layout">
           <div className="ident-main">
             <h2>
               {I18n.t( "views.taxa.show.identifications.identification_tips" )}
@@ -917,7 +913,7 @@ class IdentificationsTab extends Component<Props, State> {
               </>
             ) }
           </div>
-          <div className={`ident-side${responsive ? " hidden-xs" : ""}`}>
+          <div className="ident-side hidden-xs">
             <div className="taxon-map-container">
               <TaxonMap
                 placement="taxa-show-identifications"

@@ -155,7 +155,7 @@ const TaxonPageTabs = ( {
       onClick: ( ) => showPhotoChooserModal( ),
       label: I18n.t( "edit_photos" ),
       icon: "fa-picture-o",
-      visible: !taxon.photos_locked && !currentUser.content_creation_restrictions
+      visible: ( !taxon.photos_locked || isAdmin ) && !currentUser.content_creation_restrictions
     },
     {
       kind: "link",

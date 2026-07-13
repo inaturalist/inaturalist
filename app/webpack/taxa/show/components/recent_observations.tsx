@@ -11,9 +11,10 @@ interface RecentObservation extends Observation {
 interface Props {
   observations?: RecentObservation[];
   showPhotoModal?: ( photo: Photo, taxon: Taxon, observation: Observation ) => void;
+  url?: string;
 }
 
-const RecentObservations = ( { observations, showPhotoModal }: Props ) => {
+const RecentObservations = ( { observations, showPhotoModal, url }: Props ) => {
   if ( !observations ) return null;
 
   const items = observations
@@ -38,6 +39,7 @@ const RecentObservations = ( { observations, showPhotoModal }: Props ) => {
         title={I18n.t( "recent_observations_" )}
         noContent={I18n.t( "no_observations_yet" )}
         items={items}
+        url={url}
       />
     </div>
   );
