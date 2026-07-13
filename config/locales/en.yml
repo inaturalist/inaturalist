@@ -1031,6 +1031,9 @@ en:
   card: Card
   casual: casual
   casual_: Casual
+  # Label for the Casual quality grade, but indicating it only includes observations that are marked
+  # casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Casual (non-wild only)
   casual_tooltip_html: '"Casual" observations are missing media, location, or a date, or do not meet the requirements of the "Research" or "Needs ID" quality grades for other reasons. <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   casual_tooltip_html2: '"Casual" observations are missing media, location, or a date, or do not meet the requirements of the "Research" or "Needs ID" quality grades for other reasons. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Learn more about quality grades</a>'
   categories: Categories
