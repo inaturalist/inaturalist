@@ -125,10 +125,7 @@ $(document).ready(function() {
   })
   var preserveViewport = PROJECT.latitude && PROJECT.zoom_level
   if (typeof(KML_ASSET_URLS) != 'undefined' && KML_ASSET_URLS != null) {
-    for (var i=0; i < KML_ASSET_URLS.length; i++) {
-      lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i], {preserveViewport: preserveViewport})
-      map.addOverlay('KML Layer', lyr)
-    }
+    map.addKmlAssets(KML_ASSET_URLS, {preserveViewport: preserveViewport})
   }
   map.setMapTypeId(PROJECT.map_type)
   if (PROJECT.zoom_level) {
