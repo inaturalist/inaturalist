@@ -7,6 +7,8 @@ module DataPartnerLinkers
     # GBIF dataset key for the iNaturalist Research-grade Observations dataset
     DATASET_KEY = "50c9509d-22c7-4a22-a47d-8c48425ef4a7"
 
+    DOWNLOAD_REQUEST_ENDPOINT = "api.gbif.org/v1/occurrence/download/request"
+
     def initialize( data_partner, options = {} )
       super
       @username = options[:username] || CONFIG.gbif.username
@@ -15,7 +17,6 @@ module DataPartnerLinkers
     end
 
     def request
-      url = "https://#{@username}:#{@password}@api.gbif.org/v1/occurrence/download/request"
       json = {
         creator: @username,
         notification_address: [@notification_address],
@@ -38,9 +39,9 @@ module DataPartnerLinkers
           ]
         }
       }.to_json
-      logger.debug "Requesting #{url}"
+      logger.debug "Requesting https://#{DOWNLOAD_REQUEST_ENDPOINT}"
       logger.debug "With JSON: #{json}"
-      @key = RestClient.post url, json, content_type: :json, accept: :json
+      @key = RestClient.post download_request_url, json, content_type: :json, accept: :json
       logger.debug "Received key: #{@key}"
     end
 
@@ -49,17 +50,23 @@ module DataPartnerLinkers
     # (gbifID, catalogNumber), so GBIF generates a much smaller archive.
     # See https://techdocs.gbif.org/en/data-use/api-sql-downloads
     def request_filtered
-      url = "https://#{@username}:#{@password}@api.gbif.org/v1/occurrence/download/request"
       json = {
         sendNotification: true,
         notificationAddresses: [@notification_address],
         format: "SQL_TSV_ZIP",
         sql: "SELECT gbifID, catalogNumber FROM occurrence WHERE datasetKey = '#{DATASET_KEY}'"
       }.to_json
-      logger.debug "Requesting #{url}"
+      logger.debug "Requesting https://#{DOWNLOAD_REQUEST_ENDPOINT}"
       logger.debug "With JSON: #{json}"
-      @key = RestClient.post url, json, content_type: :json, accept: :json
+      @key = RestClient.post download_request_url, json, content_type: :json, accept: :json
       logger.debug "Received key: #{@key}"
+    end
+
+    # Credentials must be escaped or characters like "@" would break the URI.
+    # RestClient unescapes URI userinfo before using it for basic auth. Never
+    # log this URL: it contains the credentials.
+    def download_request_url
+      "https://#{CGI.escape( @username )}:#{CGI.escape( @password )}@#{DOWNLOAD_REQUEST_ENDPOINT}"
     end
 
     def generating
@@ -122,7 +129,10 @@ module DataPartnerLinkers
         end
       end
       process_rows( rows_queue )
-      logger.info( "[#{Time.now}]<#{@process_start_time}> process_result done on #{@processed_count} records in #{Time.now - @process_start_time}" )
+      logger.info(
+        "[#{Time.now}]<#{@process_start_time}> process_result done on " \
+          "#{@processed_count} records in #{Time.now - @process_start_time}"
+      )
     end
 
     # The predicate API returns a Darwin Core Archive with an "occurrence.txt".
@@ -280,7 +290,7 @@ module DataPartnerLinkers
       links_to_delete_scope.delete_all unless @opts[:debug]
       index_observation_queue
 
-      logger.info( "[#{Time.now}] Finished linking for #{@data_partner}" )
+      logger.info( "[#{Time.now}] Finished linking for #{@data_partner || 'GBIF'}" )
       logger.info( "[#{Time.now}] Indexing may continue in delayed jobs\n\n" )
     end
   end
