@@ -39,8 +39,6 @@
 
 .ObservationFieldValue {
   margin-bottom: 10px;
-  overflow: hidden;
-  contain: inline-size;
   .field {
     font-weight: 700;
     display: inline;
@@ -48,10 +46,7 @@
     cursor: pointer;
   }
   .value {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: inline;
     .dna {
       font-family: inherit;
     }

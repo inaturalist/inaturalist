@@ -21,7 +21,6 @@ interface JQueryStubResult {
   data: ( key: string ) => unknown;
   get: ( index: number ) => Element | undefined;
   taxonMap: ( options?: unknown ) => void;
-  textcompleteUsers: ( ) => void;
 }
 interface JQueryDeparam {
   ( str: string ): Record<string, unknown>;

@@ -462,7 +462,7 @@ class CommunityIdentification extends React.Component {
             { loggedIn && !observation.communityTaxon && (
               <button
                 type="button"
-                className="btn btn-nostyle linky compare-link compare-obs-btn"
+                className="btn btn-nostyle linky compare-link"
                 onClick={e => {
                   if ( onClickCompare ) {
                     return onClickCompare( e, observation.taxon, observation );
@@ -475,7 +475,7 @@ class CommunityIdentification extends React.Component {
             ) }
             <button
               type="button"
-              className="btn btn-nostyle linky community-id-about-btn"
+              className="btn btn-nostyle linky"
               onClick={this.showCommunityIDModal}
             >
               { I18n.t( "whats_this?" ) }
@@ -514,7 +514,7 @@ class CommunityIdentification extends React.Component {
               <div className="btn-space">
                 <button
                   type="button"
-                  className="btn btn-default compare-obs-btn"
+                  className="btn btn-default"
                   onClick={e => {
                     if ( onClickCompare ) {
                       return onClickCompare( e, communityTaxon, observation );
@@ -531,7 +531,7 @@ class CommunityIdentification extends React.Component {
             <div className="btn-space">
               <button
                 type="button"
-                className="btn btn-default community-id-about-btn"
+                className="btn btn-default"
                 onClick={this.showCommunityIDModal}
               >
                 <i className="fa fa-info-circle" />
