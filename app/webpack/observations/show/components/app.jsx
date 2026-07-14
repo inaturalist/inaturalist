@@ -1,6 +1,10 @@
 import _ from "lodash";
 import React from "react";
+import PropTypes from "prop-types";
 import {
+  Grid,
+  Row,
+  Col,
   SplitButton,
   MenuItem,
   OverlayTrigger,
@@ -44,50 +48,6 @@ import ModeratorActionModalContainer from "../containers/moderator_action_modal_
 import ObservationModalContainer from "../containers/observation_modal_container";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 import AssessmentLazyLoad from "./assessment_lazy_load";
-import type {
-  Config, CurrentUser, Observation, User
-} from "../../../shared/types";
-
-interface DateDetails {
-  year?: number;
-  month?: number;
-  day?: number;
-}
-
-// The obs-show page observation/config carry many fields not on the shared
-// (intentionally narrow) types; intersect with the page-specific shape here.
-interface ShowObservation extends Observation {
-  uuid?: string;
-  user?: User & { id: number; login: string };
-  species_guess?: string;
-  description?: string;
-  quality_grade: string;
-  observed_on?: string;
-  observed_on_details: DateDetails;
-  time_observed_at?: string;
-  observed_time_zone?: string;
-  created_at?: string;
-  created_at_details: DateDetails;
-  created_time_zone?: string;
-  obscured?: boolean;
-  private_geojson?: unknown;
-  sounds?: unknown[];
-  tags?: unknown[];
-}
-
-interface ShowConfig extends Config {
-  currentUser?: CurrentUser & { id?: number; time_zone?: string };
-  currentUserCanInteractWithResource: ( resource: ShowObservation ) => boolean;
-}
-
-interface AppProps {
-  observation: ShowObservation;
-  config: ShowConfig;
-  deleteObservation: ( ) => void;
-  setLicensingModalState: ( state: { show: boolean } ) => void;
-}
-
-type SearchParameters = Record<string, string | number | null | undefined>;
 
 moment.updateLocale( "en", {
   relativeTime: {
@@ -107,17 +67,14 @@ moment.updateLocale( "en", {
   }
 } );
 
-class App extends React.Component<AppProps> {
-  linkDateToObservationSearch(
-    dateString?: string | null,
-    searchParameters: SearchParameters = { }
-  ) {
+class App extends React.Component {
+  linkDateToObservationSearch( dateString, searchParameters = { } ) {
     if ( _.isEmpty( dateString ) ) {
       return null;
     }
 
     const { observation } = this.props;
-    let url = `/observations?user_id=${observation.user?.login}&place_id=any&verifiable=any&`;
+    let url = `/observations?user_id=${observation.user.login}&place_id=any&verifiable=any&`;
     url += $.param( _.pickBy( searchParameters, v => !_.isNil( v ) ) );
     // dates are formatted with the `momentjs.datetime_with_offset` pattern. Currently
     // all locales separate the date part of the string from the time and zone part of
@@ -125,8 +82,8 @@ class App extends React.Component<AppProps> {
     // to attempt to only link the date and not the time. If the pattern is not found
     // (as would be the case when there is no time) link the entire string to the search
     if ( I18n.t( "momentjs.datetime_with_offset" )?.match( / · LT Z$/ )
-      && dateString!.match( / · / ) ) {
-      const dateComponents = dateString!.split( " · " );
+      && dateString.match( / · / ) ) {
+      const dateComponents = dateString.split( " · " );
       return (
         <span>
           <a href={url}>{dateComponents[0]}</a>
@@ -170,7 +127,7 @@ class App extends React.Component<AppProps> {
       }
     }
 
-    const searchParameters: SearchParameters = observedYear && observedMonth && observedDay ? {
+    const searchParameters = observedYear && observedMonth && observedDay ? {
       on: `${observedYear}-${observedMonth}-${observedDay}`
     } : {
       year: observedYear,
@@ -199,11 +156,11 @@ class App extends React.Component<AppProps> {
     let isoDateAdded = createdAt.format( );
     const addedYear = observation.created_at_details.year;
     const addedMonth = observation.created_at_details.month;
-    let addedDay: number | null | undefined = observation.created_at_details.day;
+    let addedDay = observation.created_at_details.day;
     let formattedDateAdded = formattedDateTimeInTimeZone(
       moment.tz(
-        observation.created_at as string,
-        observation.created_time_zone as string
+        observation.created_at,
+        observation.created_time_zone
       ),
       viewerTimeZone
     );
@@ -217,7 +174,7 @@ class App extends React.Component<AppProps> {
       addedDay = null;
     }
 
-    const searchParameters: SearchParameters = addedYear && addedMonth && addedDay ? {
+    const searchParameters = addedYear && addedMonth && addedDay ? {
       created_on: `${addedYear}-${addedMonth}-${addedDay}`
     } : {
       created_year: addedYear,
@@ -249,24 +206,28 @@ class App extends React.Component<AppProps> {
       );
     }
     const viewerIsObserver = config && config.currentUser
-      && config.currentUser.id === observation.user?.id;
+      && config.currentUser.id === observation.user.id;
     const photosColClass = (
       ( !observation.photos || observation.photos.length === 0 )
       && ( !observation.sounds || observation.sounds.length === 0 )
     ) ? "empty" : null;
     const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
+    const responsive = config.currentUser?.isAdmin
+      && config.currentUser?.isInTestGroup( "responsive-obs-detail" );
     const description = observation.description
       ? (
-        <div className="description">
-          <h3>
-            {
-              I18n.t( "notes", {
-                defaultValue: I18n.t( "activerecord.attributes.observation.description" )
-              } )
-            }
-          </h3>
-          <UserText text={observation.description} />
-        </div>
+        <Row>
+          <Col xs={12}>
+            <h3>
+              {
+                I18n.t( "notes", {
+                  defaultValue: I18n.t( "activerecord.attributes.observation.description" )
+                } )
+              }
+            </h3>
+            <UserText text={observation.description} />
+          </Col>
+        </Row>
       )
       : "";
     const qualityGrade = observation.quality_grade === "research"
@@ -281,6 +242,7 @@ class App extends React.Component<AppProps> {
       qualityGradeTooltipHtml = I18n.t( "needs_id_tooltip_html2", {
         defaultValuePreFallback: I18n.t( "needs_id_tooltip_html" )
       } );
+
     } else {
       qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html2", {
         defaultValuePreFallback: I18n.t( "research_grade_tooltip_html" )
@@ -295,157 +257,191 @@ class App extends React.Component<AppProps> {
           showBlocks
         />
         <div className="upper">
-          <div className="title_row">
-            <div className="ObservationTitle">
-              <SplitTaxon
-                taxon={observation.taxon}
-                url={taxonUrl}
-                placeholder={observation.species_guess}
-                user={config.currentUser}
-              />
-              <ConservationStatusBadge observation={observation} />
-              <EstablishmentMeansBadge observation={observation} />
-              <OverlayTrigger
-                placement="bottom"
-                trigger={["hover", "click"]}
-                delayHide={1000}
-                overlay={(
-                  <Tooltip id="quality-grade-tooltip">
-                    <p
-                      // eslint-disable-next-line react/no-danger
-                      dangerouslySetInnerHTML={{ __html: qualityGradeTooltipHtml }}
-                    />
-                  </Tooltip>
-                )}
-                container={$( "#wrapper.bootstrap" ).get( 0 )}
-              >
-                <span className={`quality_grade ${observation.quality_grade} `}>
-                  { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
-                </span>
-              </OverlayTrigger>
-            </div>
-            { viewerIsObserver
-              ? (
-                <div className="edit-button">
-                  <SplitButton
-                    bsStyle="primary"
-                    className="edit"
-                    href={`/observations/${observation.id}/edit`}
-                    title={I18n.t( "edit" )}
-                    id="edit-dropdown"
-                    pullRight
-                    onSelect={( key: string ) => {
-                      if ( key === "delete" ) {
-                        deleteObservation( );
-                      } else if ( key === "license" ) {
-                        setLicensingModalState( { show: true } );
-                      }
-                    }}
-                  >
-                    <MenuItem
-                      eventKey="edit"
-                      href={`/observations/${observation.id}/edit`}
-                    >
-                      <i className="fa fa-pencil" />
-                      { I18n.t( "edit" ) }
-                    </MenuItem>
-                    <MenuItem
-                      eventKey="duplicate"
-                      href={`/observations/new?copy=${observation.id}`}
-                    >
-                      <i className="fa fa-files-o" />
-                      { I18n.t( "duplicate_verb" ) }
-                    </MenuItem>
-                    <MenuItem eventKey="license">
-                      <i className="fa fa-copyright" />
-                      { I18n.t( "edit_license" ) }
-                    </MenuItem>
-                    <li role="separator" className="divider" />
-                    <MenuItem eventKey="delete">
-                      <i className="fa fa-trash" />
-                      { I18n.t( "delete" ) }
-                    </MenuItem>
-                  </SplitButton>
-                </div>
-              ) : config?.currentUserCanInteractWithResource( observation ) && (
-                <FollowButtonContainer />
-              ) }
-          </div>
-          <div className="top_container">
-            <div className="top_row">
-              <div className={`photos_column ${photosColClass}`}>
-                <PhotoBrowserContainer />
-              </div>
-              <div className="info_column">
-                <div className="user_info">
-                  <PreviousNextButtonsContainer />
-                  <UserWithIcon
-                    config={config}
-                    user={observation.user}
-                    hideSubtitle={
-                      observation.obscured
-                      && !observation.private_geojson
-                    }
+          <Grid>
+            <Row className="title_row">
+              <Col xs={10}>
+                <div className="ObservationTitle">
+                  <SplitTaxon
+                    taxon={observation.taxon}
+                    url={taxonUrl}
+                    placeholder={observation.species_guess}
+                    user={config.currentUser}
                   />
+                  <ConservationStatusBadge observation={observation} />
+                  <EstablishmentMeansBadge observation={observation} />
+                  <OverlayTrigger
+                    placement="bottom"
+                    trigger={["hover", "click"]}
+                    delayHide={1000}
+                    overlay={(
+                      <Tooltip id="quality-grade-tooltip">
+                        <p
+                          // eslint-disable-next-line react/no-danger
+                          dangerouslySetInnerHTML={{ __html: qualityGradeTooltipHtml }}
+                        />
+                      </Tooltip>
+                    )}
+                    container={$( "#wrapper.bootstrap" ).get( 0 )}
+                  >
+                    <span className={`quality_grade ${observation.quality_grade} `}>
+                      { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
+                    </span>
+                  </OverlayTrigger>
                 </div>
-                <div className="date_row">
-                  <div>
-                    <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
-                    {this.displayDateObserved( )}
-                    { observation.observed_on && !observation.obscured && (
-                      <Inativersary
-                        config={config}
-                        user={observation.user}
-                        date={observation.observed_on}
-                        uniqueKey="DateObserved"
-                      />
-                    ) }
-                  </div>
-                  <div>
-                    <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
-                    {this.displayDateAdded( )}
-                  </div>
-                </div>
-                <MapContainer />
-                <div className="faves_row">
-                  <FavesContainer />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="middle">
-            <div className="middle_left">
-              <div className="notes_col">
+              </Col>
+              { viewerIsObserver
+                ? (
+                  <Col xs={2} className="edit-button">
+                    <SplitButton
+                      bsStyle="primary"
+                      className="edit"
+                      href={`/observations/${observation.id}/edit`}
+                      title={I18n.t( "edit" )}
+                      id="edit-dropdown"
+                      pullRight
+                      onSelect={key => {
+                        if ( key === "delete" ) {
+                          deleteObservation( );
+                        } else if ( key === "license" ) {
+                          setLicensingModalState( { show: true } );
+                        }
+                      }}
+                    >
+                      <MenuItem
+                        eventKey="edit"
+                        href={`/observations/${observation.id}/edit`}
+                      >
+                        <i className="fa fa-pencil" />
+                        { I18n.t( "edit" ) }
+                      </MenuItem>
+                      <MenuItem
+                        eventKey="duplicate"
+                        href={`/observations/new?copy=${observation.id}`}
+                      >
+                        <i className="fa fa-files-o" />
+                        { I18n.t( "duplicate_verb" ) }
+                      </MenuItem>
+                      <MenuItem eventKey="license">
+                        <i className="fa fa-copyright" />
+                        { I18n.t( "edit_license" ) }
+                      </MenuItem>
+                      <li role="separator" className="divider" />
+                      <MenuItem eventKey="delete">
+                        <i className="fa fa-trash" />
+                        { I18n.t( "delete" ) }
+                      </MenuItem>
+                    </SplitButton>
+                  </Col>
+                ) : config?.currentUserCanInteractWithResource( observation ) && (
+                  <FollowButtonContainer />
+                ) }
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <Grid className="top_container">
+                  <Row className="top_row">
+                    <Col xs={responsive ? null : 7} sm={responsive ? 7 : null} className={`photos_column ${photosColClass}`}>
+                      <PhotoBrowserContainer />
+                    </Col>
+                    <Col xs={responsive ? null : 5} sm={responsive ? 5 : null} className="info_column">
+                      <div className="user_info">
+                        <PreviousNextButtonsContainer />
+                        <UserWithIcon
+                          config={config}
+                          user={observation.user}
+                          hideSubtitle={
+                            observation.obscured
+                            && !observation.private_geojson
+                          }
+                        />
+                      </div>
+                      <Row className="date_row">
+                        <Col xs={6}>
+                          <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
+                          {this.displayDateObserved( )}
+                          { observation.observed_on && !observation.obscured && (
+                            <Inativersary
+                              config={config}
+                              user={observation.user}
+                              date={observation.observed_on}
+                              uniqueKey="DateObserved"
+                            />
+                          ) }
+                        </Col>
+                        <Col xs={6}>
+                          <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
+                          {this.displayDateAdded( )}
+                        </Col>
+                      </Row>
+                      <MapContainer />
+                      <Row className="faves_row">
+                        <Col xs={12}>
+                          <FavesContainer />
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Grid>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={responsive ? null : 7} sm={responsive ? 7 : null} className="middle_left">
                 { description }
-              </div>
-              <div className="activity_col">
-                <ActivityContainer />
-              </div>
-            </div>
-            <div className="middle_right">
-              <div className="community_taxon_col">
-                <CommunityIdentificationContainer />
-              </div>
-              <div className="opposite_activity">
-                <LazyLoad
-                  debounce={false}
-                  offset={100}
-                >
-                  <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
-                </LazyLoad>
-                <ProjectsContainer />
+                <Row>
+                  <Col xs={12}>
+                    <ActivityContainer />
+                  </Col>
+                </Row>
+              </Col>
+              <Col xs={responsive ? null : 5} sm={responsive ? 5 : null} className="opposite_activity">
+                <Row>
+                  <Col xs={12}>
+                    <CommunityIdentificationContainer />
+                  </Col>
+                </Row>
+                <Row>
+                  <LazyLoad
+                    debounce={false}
+                    offset={100}
+                  >
+                    <Col xs={12}>
+                      <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
+                    </Col>
+                  </LazyLoad>
+                </Row>
+                <Row>
+                  <Col xs={12}>
+                    <ProjectsContainer />
+                  </Col>
+                </Row>
                 { (
-                  ( config.currentUser && config.currentUser.id === observation.user?.id )
+                  ( config.currentUser && config.currentUser.id === observation.user.id )
                   || ( observation && observation.tags && observation.tags.length > 0 )
                 ) && (
-                  <TagsContainer />
+                  <Row>
+                    <Col xs={12}>
+                      <TagsContainer />
+                    </Col>
+                  </Row>
                 ) }
-                <ObservationFieldsContainer />
-                <IdentifiersContainer />
-                <CopyrightContainer />
-              </div>
-            </div>
-          </div>
+                <Row>
+                  <Col xs={12}>
+                    <ObservationFieldsContainer />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12}>
+                    <IdentifiersContainer />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12}>
+                    <CopyrightContainer />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Grid>
         </div>
         <div className="data_quality_assessment">
           <AssessmentContainer innerWrapper={AssessmentLazyLoad} />
@@ -453,17 +449,23 @@ class App extends React.Component<AppProps> {
         { ( !observation.obscured || observation.private_geojson ) && (
           <LazyLoad debounce={false} offset={500}>
             <div className="more_from">
-              <div className="more_from_user">
-                <MoreFromUserContainer />
-              </div>
-              <div className="nearby_similar">
-                <div className="nearby_col">
-                  <NearbyContainer />
-                </div>
-                <div className="similar_col">
-                  <SimilarContainer />
-                </div>
-              </div>
+              <Grid>
+                <Row>
+                  <Col xs={12}>
+                    <MoreFromUserContainer />
+                  </Col>
+                </Row>
+              </Grid>
+              <Grid>
+                <Row>
+                  <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                    <NearbyContainer />
+                  </Col>
+                  <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                    <SimilarContainer />
+                  </Col>
+                </Row>
+              </Grid>
             </div>
           </LazyLoad>
         ) }
@@ -481,5 +483,12 @@ class App extends React.Component<AppProps> {
     );
   }
 }
+
+App.propTypes = {
+  config: PropTypes.object,
+  observation: PropTypes.object,
+  deleteObservation: PropTypes.func,
+  setLicensingModalState: PropTypes.func
+};
 
 export default App;

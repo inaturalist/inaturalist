@@ -1,5 +1,4 @@
 @import "../colors";
-@import "../breakpoints";
 
 body > div > [role="dialog"] .modal-body {
   max-height: none;
@@ -101,16 +100,6 @@ body > div > [role="dialog"] .modal-body {
         cursor: pointer;
       }
     }
-  }
-}
-
-@media ( max-width: $md-max ) {
-  .ConfirmModal.confirm .modal-dialog,
-  .FlaggingModal.modal .modal-dialog {
-    width: auto;
-    min-width: 0;
-    max-width: 100%;
-    margin: 10px;
   }
 }
 

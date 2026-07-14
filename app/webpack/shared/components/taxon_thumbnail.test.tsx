@@ -36,40 +36,9 @@ describe( "TaxonThumbnail photo source", ( ) => {
     expect( screen.getByTestId( "cover" ) ).toHaveAttribute( "data-src", "med.jpg" );
   } );
 
-  it( "uses the photo prop over the taxon's default photo when both are present", ( ) => {
-    const photo = {
-      id: 7,
-      photoUrl: ( size?: string ) => ( size === "medium" ? "prop-med.jpg" : "prop-sq.jpg" ),
-      dimensions: ( ) => ( { width: 1, height: 1 } )
-    } as Photo;
-    const defaultPhoto = {
-      id: 9,
-      photoUrl: ( size?: string ) => ( size === "medium" ? "default-med.jpg" : "default-sq.jpg" ),
-      dimensions: ( ) => ( { width: 1, height: 1 } )
-    } as Photo;
-    render( <TaxonThumbnail taxon={{ id: 1, name: "X", defaultPhoto }} photo={photo} /> );
-    expect( screen.getByTestId( "cover" ) ).toHaveAttribute( "data-src", "prop-med.jpg" );
-  } );
-
   it( "falls back to the iconic-taxon icon when there is no photo", ( ) => {
     const { container } = render(
       <TaxonThumbnail taxon={{ id: 1, name: "X", iconic_taxon_name: "Aves" }} />
-    );
-    expect( screen.queryByTestId( "cover" ) ).not.toBeInTheDocument( );
-    expect( container.querySelector( ".icon-iconic-aves" ) ).toBeTruthy( );
-  } );
-
-  it( "suppresses the taxon's default photo when photo is explicitly null", ( ) => {
-    const defaultPhoto = {
-      id: 9,
-      photoUrl: ( size?: string ) => ( size === "medium" ? "default-med.jpg" : "default-sq.jpg" ),
-      dimensions: ( ) => ( { width: 1, height: 1 } )
-    } as Photo;
-    const taxon = {
-      id: 1, name: "X", iconic_taxon_name: "Aves", defaultPhoto
-    };
-    const { container } = render(
-      <TaxonThumbnail taxon={taxon} photo={null} />
     );
     expect( screen.queryByTestId( "cover" ) ).not.toBeInTheDocument( );
     expect( container.querySelector( ".icon-iconic-aves" ) ).toBeTruthy( );

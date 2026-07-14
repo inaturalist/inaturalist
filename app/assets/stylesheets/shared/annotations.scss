@@ -39,10 +39,15 @@ body > [role="dialog"] .Annotations {
   .attribute {
     font-weight: 600;
     cursor: pointer;
-    overflow: hidden;
+    min-width: 140px;
   }
   .value {
-    display: flex;
+    white-space: nowrap;
+    text-indent: -27px;
+    padding-inline-start: 35px;
+    .value-label {
+      white-space: normal;
+    }
   }
   .UserImage {
     min-width: 22px;
@@ -56,7 +61,6 @@ body > [role="dialog"] .Annotations {
   }
   .agree, .disagree {
     text-align: left;
-    padding: 8px 4px;
   }
 
   tr.disabled td {

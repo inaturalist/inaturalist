@@ -1,7 +1,6 @@
 .taxon-thumbnail {
   --taxon-thumbnail-width: 200px;
   width: var(--taxon-thumbnail-width);
-  container-type: inline-size;
   aspect-ratio: 3 / 4;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -14,11 +13,13 @@
   box-sizing: border-box;
   transition: border 0.2s ease-in-out;
   font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  line-height: 1.4;
+  font-size: 14px;
+  line-height: 20px;
   color: #333;
 
   @media (max-width: 768px) {
     width: calc(var(--taxon-thumbnail-width) * 0.75);
+    line-height: 15px;
   }
 }
 
@@ -27,7 +28,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 50cqi;
+  font-size: 100px;
   overflow: hidden;
   position: relative;
 }
@@ -49,12 +50,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 4.5cqi;
+  padding: 9px;
   box-sizing: border-box;
   overflow: hidden;
-  font-size: clamp(11px, 7cqi, 18px);
 
   @media (max-width: 768px) {
+    padding: 6px;
     flex: 1.5;
   }
 }
@@ -76,8 +77,12 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   color: #000;
-  font-size: clamp(12px, 8.5cqi, 22px);
+  font-size: 120%;
   font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: 100%;
+  }
 }
 
 .caption :global(.secondary-name) {
@@ -88,7 +93,10 @@
   color: #aaa;
   font-style: italic;
   white-space: normal;
-  font-size: clamp(10px, 7cqi, 18px);
+
+  @media (max-width: 768px) {
+    font-size: 80%;
+  }
 }
 
 .overlay {
