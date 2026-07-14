@@ -7,7 +7,7 @@
     var PROJECT = <%=json_escape @project.to_json.html_safe %>,
         PLACE = <%=json_escape @project.place.to_json(:methods => [:kml_url]).html_safe %>,
         SHOW_PLACE_GEOMETRY = <%= @place_geometry ? "true" : "false" %>,
-        KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
+        KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| a.asset.url}.inspect.html_safe : "[]" %>
     $( function( ) {
       $("form.project_form").confirmModal({
         condition: function( ) {
@@ -36,6 +36,7 @@
                              "jquery/plugins/jquery.latLonSelector.js",
                              "jquery/plugins/inat/datepicker.js",
                              "projects/form" %>
+  <%= javascript_include_tag "webpack/kml-webpack" if @kml_assets.present? %>
 <%- end -%>
 <%- project ||= @project -%>
 <%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true, :class => "project_form"} do |f| %>

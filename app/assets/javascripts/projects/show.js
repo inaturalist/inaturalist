@@ -2,11 +2,7 @@ $( document ).ready( function( ) {
 
   $( "#map" ).taxonMap( { preserveViewport: PRESERVE_VIEWPORT, placement: "projects-show-traditional" } );
   window.map = $( "#map" ).data( "taxonMap" );
-  for ( var i=0; i < KML_ASSET_URLS.length; i++ ) {
-    lyr = new google.maps.KmlLayer( KML_ASSET_URLS[i], { preserveViewport: PRESERVE_VIEWPORT } );
-    lyr.setMap( window.map );
-    kmlSet = true;
-  }
+  window.map.addKmlAssets( KML_ASSET_URLS, { preserveViewport: PRESERVE_VIEWPORT } );
 
   $( "#recent_observations .observations" ).loadObservations( {
     url: OBSERVATIONS_URL + "&per_page=24", style: "grid",

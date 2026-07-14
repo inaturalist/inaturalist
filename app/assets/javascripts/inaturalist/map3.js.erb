@@ -1026,6 +1026,73 @@ google.maps.Map.prototype.getOverlay = function(name) {
   }
 }
 
+// Renders user-uploaded KML/KMZ assets as google.maps.Data layers, replacing
+// the deprecated google.maps.KmlLayer. Requires the kml-webpack bundle, which
+// defines window.KmlAssets (see app/webpack/kml/webpack-entry.js).
+// options:
+//   preserveViewport: when falsy, fit the map to the loaded features
+//   suppressInfoWindows: don't open info windows with Placemark name/description
+//   click: click handler for the layers (receives a google.maps.Data.MouseEvent)
+//   name: overlay name shown in the OverlayControl
+google.maps.Map.prototype.addKmlAssets = function( urls, options ) {
+  options = options || { };
+  var map = this;
+  if ( typeof ( window.KmlAssets ) === "undefined" ) {
+    console.error( "addKmlAssets requires the webpack/kml-webpack bundle" );
+    return;
+  }
+  // one shared bounds so multiple assets fit together, like KmlLayer did
+  var bounds = new google.maps.LatLngBounds( );
+  _.each( urls, function( url ) {
+    window.KmlAssets.fetchGeoJSON( url ).then( function( geojson ) {
+      var layer = new google.maps.Data( );
+      var features = layer.addGeoJson( geojson );
+      layer.setStyle( function( feature ) {
+        // togeojson translates KML styles into simplestyle-spec properties
+        return {
+          strokeColor: feature.getProperty( "stroke" ) || "#FF7F00",
+          strokeOpacity: typeof ( feature.getProperty( "stroke-opacity" ) ) === "number"
+            ? feature.getProperty( "stroke-opacity" ) : 1,
+          strokeWeight: feature.getProperty( "stroke-width" ) || 2,
+          fillColor: feature.getProperty( "fill" ) || "#FF7F00",
+          fillOpacity: typeof ( feature.getProperty( "fill-opacity" ) ) === "number"
+            ? feature.getProperty( "fill-opacity" ) : 0.3,
+          clickable: true
+        };
+      } );
+      if ( options.click ) {
+        layer.addListener( "click", options.click );
+      } else if ( !options.suppressInfoWindows ) {
+        layer.addListener( "click", function( e ) {
+          var name = e.feature.getProperty( "name" );
+          var description = e.feature.getProperty( "description" );
+          if ( !name && !description ) { return; }
+          var content = $( "<div/>" );
+          if ( name ) { content.append( $( "<strong/>" ).text( name ) ); }
+          if ( description ) {
+            content.append( $( "<div/>" ).html( window.KmlAssets.sanitizeDescription( description ) ) );
+          }
+          iNaturalist.Map.infoWindow = iNaturalist.Map.infoWindow || new google.maps.InfoWindow( );
+          iNaturalist.Map.infoWindow.setContent( content.get( 0 ) );
+          iNaturalist.Map.infoWindow.setPosition( e.latLng );
+          iNaturalist.Map.infoWindow.open( map );
+        } );
+      }
+      map.addOverlay( options.name || "KML Layer", layer );
+      if ( !options.preserveViewport ) {
+        _.each( features, function( feature ) {
+          feature.getGeometry( ).forEachLatLng( function( latLng ) {
+            bounds.extend( latLng );
+          } );
+        } );
+        if ( !bounds.isEmpty( ) ) { map.fitBounds( bounds ); }
+      }
+    } ).catch( function( err ) {
+      console.error( "Failed to render KML asset " + url + ": " + err );
+    } );
+  } );
+};
+
 // given a URL and an options hash which should include an options.validParams
 // array of strings, this will take all the options hash values for the keys
 // in validParams and append them as HTTP GET attributes to the URL
