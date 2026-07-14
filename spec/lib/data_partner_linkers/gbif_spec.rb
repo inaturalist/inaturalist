@@ -73,6 +73,34 @@ describe DataPartnerLinkers::GBIF do
       end
       expect( linker.instance_variable_get( :@key ) ).to eq "sql-download-key"
     end
+
+    describe "with URI-unsafe credentials" do
+      let( :options ) do
+        {
+          username: "test@user.com",
+          password: "p@ss word",
+          notification_address: "tester@example.com",
+          logger: Logger.new( log_output )
+        }
+      end
+      let( :log_output ) { StringIO.new }
+
+      it "escapes the credentials in the request URL" do
+        allow( RestClient ).to receive( :post ).and_return( "sql-download-key" )
+        linker.request_filtered
+        expect( RestClient ).to have_received( :post ) do | url, _payload, _headers |
+          expect( url ).to eq "https://test%40user.com:p%40ss+word@api.gbif.org/v1/occurrence/download/request"
+        end
+      end
+
+      it "does not log the credentials" do
+        log_output.truncate( 0 )
+        allow( RestClient ).to receive( :post ).and_return( "sql-download-key" )
+        linker.request_filtered
+        expect( log_output.string ).not_to include "p@ss word"
+        expect( log_output.string ).not_to include "p%40ss+word"
+      end
+    end
   end
 
   describe "run with the sql_download option" do

@@ -65,5 +65,18 @@ describe "gbif_observation_links tasks" do
         hash_including( delay: true, ids: [drifted.id] )
       )
     end
+
+    it "queues a separate indexing job per INDEX_BATCH_SIZE drifted observations" do
+      drifted = Array.new( 2 ) { Observation.make! }
+      drifted.each {| observation | make_gbif_link( observation ) }
+      allow( Observation ).to receive( :elastic_index! )
+      stub_const( "ENV", ENV.to_h.merge( "INDEX_BATCH_SIZE" => "1" ) )
+      task.invoke
+      drifted.each do | observation |
+        expect( Observation ).to have_received( :elastic_index! ).with(
+          hash_including( delay: true, ids: [observation.id] )
+        )
+      end
+    end
   end
 end
