@@ -758,52 +758,46 @@ a.UserImage,
     }
   }
   .data_quality_assessment {
-    background: #fff;
-    border-top: 1px solid $border-grey;
-    margin-inline: -60px;
-    padding-inline: 60px;
+    position: relative;
+    z-index: 0;
 
-    @media ( min-width: #{$xl + 121px} ) {
-      margin-inline: calc(-50vw + 600px);
-      padding-inline: calc(50vw - 600px);
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+      background: #fff;
+      border-top: 1px solid $border-grey;
+      z-index: -1;
     }
 
     .container {
       margin: 0;
     }
-
-    @media ( max-width: $md-max ) {
-      margin-inline: -30px;
-      padding-inline: 30px;
-    }
-    @media ( max-width: $sm-max ) {
-      margin-inline: -15px;
-      padding-inline: 15px;
-    }
   }
   .more_from {
-    background: #eee;
-    border-top: 1px solid $border-grey;
-    margin-inline: -60px;
-    padding-inline: 60px;
+    position: relative;
+    z-index: 0;
 
-    @media ( min-width: #{$xl + 121px} ) {
-      margin-inline: calc(-50vw + 600px);
-      padding-inline: calc(50vw - 600px);
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+      background: #eee;
+      border-top: 1px solid $border-grey;
+      z-index: -1;
     }
 
     .more_from_user {
       padding: 0 15px;
       margin: 0;
-    }
-
-    @media ( max-width: $md-max ) {
-      margin-inline: -30px;
-      padding-inline: 30px;
-    }
-    @media ( max-width: $sm-max ) {
-      margin-inline: -15px;
-      padding-inline: 15px;
     }
 
     .MoreFromUser {
