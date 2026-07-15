@@ -65,8 +65,13 @@ namespace :gbif_observation_links do
     index_queue = []
 
     gbif_es_drifted_observation_ids do | drifted_ids |
+      # Each batch is of observations yields to this block.
+      # We append to the queue and immediately shift from it
+      # to keep the index_queue array from growing too large.
       index_queue.concat( drifted_ids )
-      queue_index_job( index_queue.shift( index_batch_size ) ) while index_queue.size >= index_batch_size
+      while index_queue.size >= index_batch_size
+        queue_index_job( index_queue.shift( index_batch_size ) )
+      end
     end
     queue_index_job( index_queue ) if index_queue.any?
     puts "[#{Time.now}] #{@queued_count} observations have GBIF ObservationLinks not represented in ES"
