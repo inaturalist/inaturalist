@@ -21,11 +21,6 @@ body > [role="dialog"] .ActivityItem {
       display: flex;
       overflow: hidden;
     }
-    @media ( max-width: $md-max ) {
-      > .taxon {
-        flex: 1 1 100%;
-      }
-    }
     .hidden-content {
       display: flex;
       align-items: flex-start;
