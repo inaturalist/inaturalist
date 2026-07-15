@@ -141,7 +141,7 @@ module DataPartnerLinkers
 
       # The exact (observation_id, href) pairs we want to keep/create this batch.
       wanted_pairs = rows.to_set {| row | [row["catalognumber"].to_i, gbif_href( row["gbifid"] )] }
-      observation_ids = wanted_pairs.map(&:first)
+      observation_ids = wanted_pairs.map(&:first).uniq
 
       existing_link_pairs = Set.new
       matching_link_ids = []
