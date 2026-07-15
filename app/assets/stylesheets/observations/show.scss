@@ -687,13 +687,8 @@ a.UserImage,
     font-style: normal;
     color: inherit;
   }
-  @media ( max-width: $md-max ) {
+  @media ( max-width: $sm-max ) {
     .compare-obs-btn {
-      display: none;
-    }
-  }
-  @media ( max-width: $lg-max ) {
-    .community-id-about-btn {
       display: none;
     }
   }
@@ -1880,6 +1875,10 @@ time {
     height: 85%;
     max-width: 950px;
     min-width: 750px;
+    @media (max-width: $md-max) {
+      width: 95%;
+      min-width: 0;
+    }
     .modal-content {
       max-height: none;
       height: 100%;
@@ -1888,7 +1887,8 @@ time {
     }
     .modal-body {
       height: 100%;
-      overflow-x: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       max-height: none;
     }
   }
@@ -1945,6 +1945,9 @@ time {
       margin: 30px 0px 10px;
     }
     table {
+      width: 100%;
+      overflow-x: auto;
+      display: block;
       font-size: 13px;
       th:not(:first-child) {
         max-width: 100px;
