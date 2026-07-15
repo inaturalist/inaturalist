@@ -28,7 +28,9 @@ describe "gbif_observation_links tasks" do
       # the link is created after the observation was indexed, and creating a
       # link does not reindex the observation, so the ES doc has no outlink
       make_gbif_link( drifted )
-      expect( gbif_es_drifted_observation_ids ).to include drifted.id
+      reported_ids = []
+      gbif_es_drifted_observation_ids {| drifted_ids, _drifted_count | reported_ids.concat( drifted_ids ) }
+      expect( reported_ids ).to include drifted.id
     end
 
     it "does not report observations whose ES doc includes their GBIF link" do
