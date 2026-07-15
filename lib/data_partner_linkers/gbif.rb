@@ -90,7 +90,7 @@ module DataPartnerLinkers
     end
 
     def process_result
-      @total_records = @status["totalRecords"]
+      @total_records = @status["totalRecords"].to_f
       @observation_index_queue = []
       @process_start_time = Time.now
       @processed_count = 0
@@ -162,7 +162,7 @@ module DataPartnerLinkers
           gbif_id = row["gbifid"]
           inaturalist_observation_id = row["catalognumber"].to_i
           if ( @processed_count % MAX_OBSERVATION_INDEX_QUEUE_SIZE ).zero?
-            percent_finished = ( @processed_count / @total_records.to_f * 100 ).round( 2 )
+            percent_finished = ( @processed_count / @total_records * 100 ).round( 2 )
             run_time = Time.now - @process_start_time
             minutes_elapsed = ( run_time / 60.0 ).round( 2 )
             avg_row_time = run_time / @processed_count
