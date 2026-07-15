@@ -29,11 +29,9 @@ def gbif_es_drifted_observation_ids( batch_size: 1000 )
       batch_drifted_ids << observation_id
     end
     drifted_count += batch_drifted_ids.size
-    if block_given?
-      yield batch_drifted_ids if batch_drifted_ids.any?
-    else
-      drifted_ids.concat( batch_drifted_ids )
-    end
+
+    yield batch_drifted_ids, drifted_count if batch_drifted_ids.any?
+
     checked_links += batch.size
     percent_checked = ( checked_links / total_links.to_f * 100 ).round( 2 )
     puts "[#{Time.now}] Checked #{checked_links} of #{total_links} (#{percent_checked}%), " \
@@ -51,8 +49,11 @@ end
 namespace :gbif_observation_links do
   desc "Report observations whose GBIF ObservationLinks are missing from their Elasticsearch docs"
   task assess_es_drift: :environment do
-    drifted_ids = gbif_es_drifted_observation_ids
-    puts "[#{Time.now}] #{drifted_ids.size} observations have GBIF ObservationLinks not represented in ES"
+    @drifted_ids_count = 0
+    gbif_es_drifted_observation_ids do | _drifted_ids, drifted_count |
+      @drifted_ids_count += drifted_count
+    end
+    puts "[#{Time.now}] #{@drifted_ids_count} observations have GBIF ObservationLinks not represented in ES"
     puts drifted_ids.join( "," ) if drifted_ids.any? && ENV["PRINT_IDS"]
   end
 
@@ -64,7 +65,7 @@ namespace :gbif_observation_links do
     index_batch_size = args.index_batch_size.to_i.nonzero? || 1000
     index_queue = []
 
-    gbif_es_drifted_observation_ids do | drifted_ids |
+    gbif_es_drifted_observation_ids do | drifted_ids, _drifted_count |
       # Each batch is of observations yields to this block.
       # We append to the queue and immediately shift from it
       # to keep the index_queue array from growing too large.
