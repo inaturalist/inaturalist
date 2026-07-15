@@ -687,13 +687,8 @@ a.UserImage,
     font-style: normal;
     color: inherit;
   }
-  @media ( max-width: $md-max ) {
+  @media ( max-width: $sm-max ) {
     .compare-obs-btn {
-      display: none;
-    }
-  }
-  @media ( max-width: $lg-max ) {
-    .community-id-about-btn {
       display: none;
     }
   }
@@ -758,52 +753,46 @@ a.UserImage,
     }
   }
   .data_quality_assessment {
-    background: #fff;
-    border-top: 1px solid $border-grey;
-    margin-inline: -60px;
-    padding-inline: 60px;
+    position: relative;
+    z-index: 0;
 
-    @media ( min-width: #{$xl + 121px} ) {
-      margin-inline: calc(-50vw + 600px);
-      padding-inline: calc(50vw - 600px);
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+      background: #fff;
+      border-top: 1px solid $border-grey;
+      z-index: -1;
     }
 
     .container {
       margin: 0;
     }
-
-    @media ( max-width: $md-max ) {
-      margin-inline: -30px;
-      padding-inline: 30px;
-    }
-    @media ( max-width: $sm-max ) {
-      margin-inline: -15px;
-      padding-inline: 15px;
-    }
   }
   .more_from {
-    background: #eee;
-    border-top: 1px solid $border-grey;
-    margin-inline: -60px;
-    padding-inline: 60px;
+    position: relative;
+    z-index: 0;
 
-    @media ( min-width: #{$xl + 121px} ) {
-      margin-inline: calc(-50vw + 600px);
-      padding-inline: calc(50vw - 600px);
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+      background: #eee;
+      border-top: 1px solid $border-grey;
+      z-index: -1;
     }
 
     .more_from_user {
-      padding: 0 15px;
+      padding: 0;
       margin: 0;
-    }
-
-    @media ( max-width: $md-max ) {
-      margin-inline: -30px;
-      padding-inline: 30px;
-    }
-    @media ( max-width: $sm-max ) {
-      margin-inline: -15px;
-      padding-inline: 15px;
     }
 
     .MoreFromUser {
@@ -811,7 +800,6 @@ a.UserImage,
       padding-bottom: 30px;
       width: 100%;
       h3 {
-        padding: 0 15px;
         & > span a {
           font-weight: 600;
         }
@@ -842,6 +830,7 @@ a.UserImage,
   .nearby_similar {
     display: flex;
     flex-wrap: wrap;
+    gap: 30px;
     .nearby_col,
     .similar_col {
       flex: 1 1 0;
@@ -1886,6 +1875,10 @@ time {
     height: 85%;
     max-width: 950px;
     min-width: 750px;
+    @media (max-width: $md-max) {
+      width: 95%;
+      min-width: 0;
+    }
     .modal-content {
       max-height: none;
       height: 100%;
@@ -1894,7 +1887,8 @@ time {
     }
     .modal-body {
       height: 100%;
-      overflow-x: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       max-height: none;
     }
   }
@@ -1951,6 +1945,9 @@ time {
       margin: 30px 0px 10px;
     }
     table {
+      width: 100%;
+      overflow-x: auto;
+      display: block;
       font-size: 13px;
       th:not(:first-child) {
         max-width: 100px;

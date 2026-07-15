@@ -498,9 +498,7 @@ const ActivityItem = ( props: ActivityItemProps ) => {
     }
     const buttonDiv = (
       <div className="buttons">
-        <div className="btn-space">
-          {buttons}
-        </div>
+        {buttons}
       </div>
     );
     const taxonImageTag = util.taxonImage( taxon );

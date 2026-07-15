@@ -34,6 +34,7 @@ body > [role="dialog"] .ActivityItem {
   .buttons {
     display: flex;
     align-items: center;
+    gap: 10px;
   }
   .taxon-image {
     width: 44px;
@@ -259,7 +260,6 @@ body > [role="dialog"] .ActivityItem {
   }
   .buttons {
     button {
-      margin-inline-start: 10px;
       .fa {
         color: $inat-green;
       }
@@ -286,6 +286,7 @@ body > [role="dialog"] .ActivityItem {
   .id-body-wrapper {
     margin-top: 15px;
     display: flex;
+    width: 100%;
   }
   .id_body {
     flex-grow: 1;
@@ -394,11 +395,6 @@ body > [role="dialog"] .ActivityItemMenu {
 }
 
 @media ( max-width: $md-max ) {
-  // taxon photo + name take the whole row; action buttons wrap below
-  .ActivityItem .identification > .taxon,
-  body > [role="dialog"] .ActivityItem .identification > .taxon {
-    flex: 1 1 100%;
-  }
   // keep the caret dropdown menu inside the right edge instead of overflowing
   .ActivityItemMenu .control-group .dropdown.btn-group .dropdown-menu,
   body > [role="dialog"] .ActivityItemMenu .control-group .dropdown.btn-group .dropdown-menu {

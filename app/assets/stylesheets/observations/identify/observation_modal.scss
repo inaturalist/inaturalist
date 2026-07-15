@@ -1,4 +1,5 @@
 @import "../../colors";
+@import "../../breakpoints";
 @import "../../shared/activity_item";
 @import "../../shared/annotations";
 @import "../../shared/observation_fields";
@@ -24,6 +25,9 @@ body > [role="dialog"] .ObservationModal {
     color: black;
   }
   .modal-dialog {
+    @media ( max-width: $md-max ) {
+      margin-top: 40px;
+    }
     .modal-content {
       .left-col,
       .right-col {
