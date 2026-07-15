@@ -42,6 +42,12 @@ def gbif_es_drifted_observation_ids( batch_size: 1000 )
   drifted_ids
 end
 
+def queue_index_job( ids )
+  Observation.elastic_index!( ids: ids, delay: true, run_at: 1.minute.from_now )
+  @queued_count += ids.size
+  puts "[#{Time.now}] Queued delayed jobs to reindex #{@queued_count} observations so far..."
+end
+
 namespace :gbif_observation_links do
   desc "Report observations whose GBIF ObservationLinks are missing from their Elasticsearch docs"
   task assess_es_drift: :environment do
@@ -54,21 +60,17 @@ namespace :gbif_observation_links do
   task backfill_es_drift: :environment do
     # Queue indexing jobs in fixed-size batches as drifted IDs are found so a
     # large drift never queues one delayed job with millions of IDs in it
-    index_batch_size = ( ENV["INDEX_BATCH_SIZE"] || 1000 ).to_i
-    queued_count = 0
+    @queued_count = 0
+    index_batch_size = ( ENV["INDEX_BATCH_SIZE"] || 1 ).to_i
     index_queue = []
-    queue_index_job = proc do | ids |
-      Observation.elastic_index!( ids: ids, delay: true, run_at: 1.minute.from_now )
-      queued_count += ids.size
-      puts "[#{Time.now}] Queued delayed jobs to reindex #{queued_count} observations so far..."
-    end
+
     gbif_es_drifted_observation_ids do | drifted_ids |
       index_queue.concat( drifted_ids )
-      queue_index_job.call( index_queue.shift( index_batch_size ) ) while index_queue.size >= index_batch_size
+      queue_index_job( index_queue.shift( index_batch_size ) ) while index_queue.size >= index_batch_size
     end
-    queue_index_job.call( index_queue ) if index_queue.any?
-    puts "[#{Time.now}] #{queued_count} observations have GBIF ObservationLinks not represented in ES"
-    if queued_count.zero?
+    queue_index_job( index_queue ) if index_queue.any?
+    puts "[#{Time.now}] #{@queued_count} observations have GBIF ObservationLinks not represented in ES"
+    if @queued_count.zero?
       puts "[#{Time.now}] Nothing to reindex"
       next
     end
