@@ -45,10 +45,7 @@ module DataPartnerLinkers
       logger.debug "Received key: #{@key}"
     end
 
-    # Requests an occurrence download via GBIF's SQL Downloads API instead of
-    # the predicate API. The SQL selects only the columns process_result reads
-    # (gbifID, catalogNumber), so GBIF generates a much smaller archive.
-    # See https://techdocs.gbif.org/en/data-use/api-sql-downloads
+    # filtered alternative to #request with substantially smaller response
     def request_filtered
       json = {
         sendNotification: true,
@@ -62,9 +59,6 @@ module DataPartnerLinkers
       logger.debug "Received key: #{@key}"
     end
 
-    # Credentials must be escaped or characters like "@" would break the URI.
-    # RestClient unescapes URI userinfo before using it for basic auth. Never
-    # log this URL: it contains the credentials.
     def download_request_url
       "https://#{CGI.escape( @username )}:#{CGI.escape( @password )}@#{DOWNLOAD_REQUEST_ENDPOINT}"
     end
@@ -121,9 +115,6 @@ module DataPartnerLinkers
       CSV.foreach( occurrence_file_path, **csv_options ) do | row |
         rows_queue << row
         if rows_queue.size >= MAX_OBSERVATION_INDEX_QUEUE_SIZE
-          # We could also hand off each batch of rows to a DelayedJob,
-          # however we would need a way to only delete all the non-updated
-          # ObservationLinks only when all rows have succesfully processed.
           process_rows( rows_queue )
           rows_queue = []
         end
@@ -135,9 +126,6 @@ module DataPartnerLinkers
       )
     end
 
-    # The predicate API returns a Darwin Core Archive with an "occurrence.txt".
-    # The SQL Downloads API returns a single tab-separated data file named for
-    # the download key (e.g. "0000379-xxx.csv"), so locate it by extension.
     def occurrence_file_path
       return File.join( @tmp_path, "occurrence.txt" ) unless @opts[:sql_download]
 
@@ -151,15 +139,10 @@ module DataPartnerLinkers
     def process_rows( rows )
       return if rows.empty?
 
-      observation_ids = rows.map {| row | row["catalognumber"].to_i }
       # The exact (observation_id, href) pairs we want to keep/create this batch.
       wanted_pairs = rows.to_set {| row | [row["catalognumber"].to_i, gbif_href( row["gbifid"] )] }
+      observation_ids = wanted_pairs.map(&:first)
 
-      # Fetch this batch's existing GBIF links with a single-column IN, then
-      # match the exact pairs in memory. A row-value tuple IN of the pairs would
-      # match exactly too, but Postgres expands (a,b) IN (...) into a deep
-      # boolean tree that overflows max_stack_depth for large batches
-      # (PG::StatementTooComplex). A single-column integer IN does not.
       existing_link_pairs = Set.new
       matching_link_ids = []
       ObservationLink.where( href_name: "GBIF", observation_id: observation_ids ).
@@ -256,9 +239,6 @@ module DataPartnerLinkers
 
     def run
       start_time = Time.now
-      # send a request to generate an offline download. The SQL Downloads API
-      # (request_filtered) returns only the columns we use, for a smaller
-      # archive; the predicate API (request) returns the full occurrence record.
       if @opts[:sql_download]
         request_filtered
       else
@@ -266,9 +246,7 @@ module DataPartnerLinkers
       end
       # wait for the download file to generate
       logger.info( "[#{Time.now}] Waiting for archive to generate..." )
-      # It takes about 40 minutes for GBIF to succesfully generate the export.
-      # We should probably handle this delay with a delayed job with retry behavior,
-      # rather than a while loop in process.
+      # TODO: could take over 1hr, schedule with Delayed Jobs rather than looping
       while generating
         print "."
         sleep 60
