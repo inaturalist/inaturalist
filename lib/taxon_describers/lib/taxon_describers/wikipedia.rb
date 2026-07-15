@@ -2,9 +2,18 @@
 
 module TaxonDescribers
   class Wikipedia < Base
+    # The outcome of the most recent content fetch, so callers can distinguish
+    # "Wikipedia has no article" from "we couldn't reach Wikipedia" (e.g. while
+    # being throttled with nothing usable cached):
+    #   :article — we retrieved article content
+    #   :absent  — we got a response but it had no usable article content
+    #   :unknown — we got no response at all (throttled/no cache, or timed out)
+    attr_reader :content_state
+
     def initialize( options = {} )
       @locale = options[:locale]
       @page_urls = {}
+      @content_state = nil
       super()
     end
 
@@ -97,17 +106,31 @@ module TaxonDescribers
       page_title = title
       begin
         response = wikipedia.parse( page: title, redirects: true )
-        return [title, nil] if response.nil?
+        # No response at all: throttled with nothing usable cached, in progress,
+        # etc. We can't tell whether an article exists.
+        if response.nil?
+          @content_state = :unknown
+          return [title, nil]
+        end
 
         parsed = response.at( "text" ).try( :inner_text ).to_s if response.at( "text" )
-        return [title, nil] if parsed.blank?
+        # We got a response but it has no usable article content.
+        if parsed.blank?
+          @content_state = :absent
+          return [title, nil]
+        end
 
         content = clean_html( parsed ) if parsed
-        return [title, nil] if content.blank?
+        if content.blank?
+          @content_state = :absent
+          return [title, nil]
+        end
 
         page_title = response.at( "parse" )[:title] if response.at( "parse" )
+        @content_state = :article
       rescue Timeout::Error => e
         Rails.logger.info "[INFO] Wikipedia API call failed: #{e.message}"
+        @content_state = :unknown
       end
       [page_title, content]
     end

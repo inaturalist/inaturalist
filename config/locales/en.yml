@@ -6737,6 +6737,9 @@ en:
   view_observations_of_this_taxon_by: View observations of this taxon by
   view_on: View on
   view_on_flickr: View on Flickr
+  # Link shown when a Wikipedia summary can't be loaded (e.g. we're being
+  # rate-limited by Wikipedia); takes the user directly to the article on Wikipedia
+  view_on_wikipedia: View on Wikipedia
   view_original: "View Original"
   view_original_by: "View original by %{by} on %{photo}"
   view_original_ccD_photo: "View original CC'd photo by %{owner}"

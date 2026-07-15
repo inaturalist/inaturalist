@@ -81,24 +81,21 @@ class MetaService
       return if api_endpoint_cache.in_progress?
 
       if api_endpoint_cache.cached? && !options[:force_update]
-        # A throttled response is not a valid API response; treat it as if there
-        # was no response rather than parsing the throttling message.
-        return if api_endpoint_cache.throttled?
-
-        if options[:raw_response]
-          return api_endpoint_cache.response
-        end
-
-        return Nokogiri::XML( api_endpoint_cache.response )
+        # Serve the previously cached response, even inside a throttle back-off
+        # window. If the row is throttled with no usable prior response, this
+        # returns nil (treated as if there was no response) rather than parsing
+        # the throttling message.
+        return cached_response( api_endpoint_cache, options )
       end
     end
     response = nil
     begin
+      # Flip the in-progress guard but keep any previously cached
+      # success/response intact so a throttle (handled below) can fall back to
+      # the last real response rather than clobbering it.
       api_endpoint_cache&.update(
         request_began_at: Time.now,
-        request_completed_at: nil,
-        success: nil,
-        response: nil
+        request_completed_at: nil
       )
       Timeout.timeout( options[:timeout] ) do
         response = fetch_with_redirects( options )
@@ -110,12 +107,16 @@ class MetaService
       )
       raise Timeout::Error
     end
-    # A throttled response is not a valid API response; return nothing rather
-    # than parsing the throttling message.
     if api_endpoint_cache
+      # cache_response keeps the prior response/success when throttled, so this
+      # serves the stale (if any) response during the back-off window and the
+      # fresh response otherwise. Returns nil when a throttle leaves us with no
+      # usable response.
       api_endpoint_cache.cache_response( response )
-      return if api_endpoint_cache.throttled?
+      return cached_response( api_endpoint_cache, options )
     elsif ApiEndpointCache.throttled_response?( response.code.to_i, response.body )
+      # A throttled response is not a valid API response; return nothing rather
+      # than parsing the throttling message.
       return
     end
 
@@ -125,6 +126,17 @@ class MetaService
 
     Nokogiri::XML( response.body )
   end
+
+  # Returns the cached response in the requested form, or nil when there is no
+  # usable cached response to serve (e.g. a throttle with nothing good cached).
+  def self.cached_response( api_endpoint_cache, options )
+    return unless api_endpoint_cache&.usable_response?
+
+    return api_endpoint_cache.response if options[:raw_response]
+
+    Nokogiri::XML( api_endpoint_cache.response )
+  end
+  private_class_method :cached_response
 
   def self.fetch_with_redirects( options, attempts = 3 )
     http = Net::HTTP.new( options[:request_uri].host, options[:request_uri].port )

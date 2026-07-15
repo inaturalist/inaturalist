@@ -87,8 +87,34 @@ describe ApiEndpointCache do
     it "marks a 429 response as throttled and not a success" do
       cache.cache_response( http_response( code: 429, body: "Slow down!" ) )
       expect( cache.status_code ).to eq 429
-      expect( cache.success ).to be false
+      expect( cache.success ).to be_falsey
       expect( cache.throttled? ).to be true
+    end
+
+    it "does not persist the throttled response body" do
+      cache.cache_response( http_response( code: 429, body: "You are making too many requests." ) )
+      expect( cache.response ).to be_blank
+    end
+
+    it "retains a previously cached successful response when throttled" do
+      cache.cache_response( http_response( code: 200, body: "<parse><text>ok</text></parse>" ) )
+      cache.cache_response( http_response( code: 429, body: "You are making too many requests." ) )
+      expect( cache.throttled? ).to be true
+      # the last real response/success survive the throttle so we can serve them
+      expect( cache.success ).to be true
+      expect( cache.response ).to eq "<parse><text>ok</text></parse>"
+      expect( cache.usable_response? ).to be true
+    end
+
+    it "logs the throttled response to Logstasher" do
+      expect( Logstasher ).to receive( :write_hash ).with(
+        hash_including(
+          subtype: "ApiEndpointThrottled",
+          status_code: ApiEndpointCache::THROTTLED_STATUS_CODE,
+          error_message: "You are making too many requests."
+        )
+      )
+      cache.cache_response( http_response( code: 429, body: "You are making too many requests." ) )
     end
 
     it "records a 429 response on the endpoint as last_throttled_at" do
@@ -101,7 +127,7 @@ describe ApiEndpointCache do
       cache.cache_response( http_response( code: 200,
         body: "You are making too many requests.\nPlease reduce your request rate." ) )
       expect( cache.status_code ).to eq ApiEndpointCache::THROTTLED_STATUS_CODE
-      expect( cache.success ).to be false
+      expect( cache.success ).to be_falsey
       expect( cache.throttled? ).to be true
       expect( cache.api_endpoint.last_throttled_at ).not_to be_nil
     end
@@ -115,6 +141,23 @@ describe ApiEndpointCache do
       cache.cache_response( http_response( code: 200, body: "" ) )
       expect( cache.success ).to be false
       expect( cache.throttled? ).to be false
+    end
+  end
+
+  describe "usable_response?" do
+    it "is true for a successful response with a body" do
+      cache = ApiEndpointCache.make!( success: true, response: "<parse><text>ok</text></parse>" )
+      expect( cache.usable_response? ).to be true
+    end
+
+    it "is false when there is no cached response body" do
+      cache = ApiEndpointCache.make!( success: true, response: nil )
+      expect( cache.usable_response? ).to be false
+    end
+
+    it "is false when the last real fetch was not a success" do
+      cache = ApiEndpointCache.make!( success: false, response: "whatever" )
+      expect( cache.usable_response? ).to be false
     end
   end
 end

@@ -28,6 +28,8 @@
         - if @taxon.shows_wikipedia?
           - if @wikipedia_throttled
             =t :wikipedia_summary_throttled
+            - if @wikipedia_url
+              = link_to t(:view_on_wikipedia), @wikipedia_url, :class => "externallink ui"
           - else
             =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
         - else
@@ -36,10 +38,12 @@
         =t :no_matching_article_from_x, :x => @describer.describer_name
   - else
     =raw @description
-  - if @wikipedia_throttled && @taxon.shows_wikipedia?
+  - if @wikipedia_throttled || @wikipedia_stale
     - unless @description.blank?
       %p.nocontent.meta.center-block
         =t :wikipedia_summary_throttled
+        - if @wikipedia_url
+          = link_to t(:view_on_wikipedia), @wikipedia_url, :class => "externallink ui"
   - elsif params[:wiki_prompt] && !@taxon.rank.blank? && !%w(stateofmatter parvorder zoosection zoosubsection supertribe subtribe genushybrid subgenus section subsection complex).include?( @taxon.rank ) && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) && @taxon.shows_wikipedia?
     %hr
     .alert.alert-warning.upstacked

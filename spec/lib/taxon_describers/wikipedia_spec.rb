@@ -57,5 +57,31 @@ describe "TaxonDescribers" do
       t = Taxon.make!( name: "Some great name" )
       expect( wikipedia.page_url( t ) ).to eq( "https://en.wikipedia.org/wiki/Some_great_name" )
     end
+
+    describe "content_state" do
+      def stub_fetch( code:, body: )
+        response = double( "Net::HTTPResponse", code: code.to_s, body: body )
+        allow( MetaService ).to receive( :fetch_with_redirects ).and_return( response )
+      end
+
+      it "is :article when article content is retrieved" do
+        stub_fetch( code: 200,
+          body: "<parse title='Animalia' pageid='1'><text>Animals are a kingdom.</text></parse>" )
+        wikipedia.describe( animalia )
+        expect( wikipedia.content_state ).to eq :article
+      end
+
+      it "is :absent when Wikipedia responds without article content" do
+        stub_fetch( code: 200, body: "<parse></parse>" )
+        wikipedia.describe( animalia )
+        expect( wikipedia.content_state ).to eq :absent
+      end
+
+      it "is :unknown when the request is throttled with nothing usable cached" do
+        stub_fetch( code: 429, body: "You are making too many requests." )
+        wikipedia.describe( animalia )
+        expect( wikipedia.content_state ).to eq :unknown
+      end
+    end
   end
 end

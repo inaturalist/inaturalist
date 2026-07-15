@@ -508,6 +508,51 @@ describe TaxaController do
       expect( response.body ).to include "Animalia is a kingdom."
       expect( response.body ).not_to include "create this page on Wikipedia"
     end
+
+    it "renders the throttled message with a direct Wikipedia link" do
+      get :describe, params: { id: taxon.id, from: "Wikipedia" }
+      expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
+      expect( response.body ).to include I18n.t( :view_on_wikipedia )
+      expect( response.body ).to include "en.wikipedia.org/wiki/Animalia"
+    end
+  end
+
+  describe "describe while throttled with a cached response for the page" do
+    render_views
+    let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+    let( :page_url ) do
+      "https://en.wikipedia.org/w/api.php?page=Animalia&redirects=true&action=parse&format=xml"
+    end
+
+    before do
+      # The endpoint is throttled, but we already have a usable cached response
+      # for this specific page, so we should serve it rather than re-fetching.
+      endpoint = WikipediaService.new.api_endpoint
+      endpoint.update( last_throttled_at: 1.minute.ago )
+      expect( MetaService ).not_to receive( :fetch_with_redirects )
+    end
+
+    it "shows the 'no article' message (not the throttled message) when the cache found no article" do
+      ApiEndpointCache.make!( api_endpoint: WikipediaService.new.api_endpoint, request_url: page_url,
+        status_code: 429, success: true, response: "<parse></parse>",
+        request_began_at: 1.minute.ago, request_completed_at: 1.minute.ago )
+      get :describe, params: { id: taxon.id, from: "Wikipedia" }
+      expect( response.body ).to include(
+        I18n.t( :there_isnt_a_wikipedia_article_titled_x_html, x: taxon.name )
+      )
+      expect( response.body ).not_to include I18n.t( :wikipedia_summary_throttled )
+    end
+
+    it "serves the stale summary with a throttled notice and a direct link when the cache had an article" do
+      ApiEndpointCache.make!( api_endpoint: WikipediaService.new.api_endpoint, request_url: page_url,
+        status_code: 429, success: true,
+        response: "<parse title='Animalia' pageid='1'><text>Animals are a kingdom.</text></parse>",
+        request_began_at: 1.minute.ago, request_completed_at: 1.minute.ago )
+      get :describe, params: { id: taxon.id, from: "Wikipedia" }
+      expect( response.body ).to include "Animals are a kingdom."
+      expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
+      expect( response.body ).to include I18n.t( :view_on_wikipedia )
+    end
   end
 
   describe "describe caches the Wikipedia response" do

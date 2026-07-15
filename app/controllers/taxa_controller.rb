@@ -1151,6 +1151,7 @@ class TaxaController < ApplicationController
       if describer_klass
         @describer = describer_klass.new( locale: I18n.locale )
         @description = @describer.describe( @taxon )
+        @wikipedia_content_state = @describer.content_state if @describer.is_a?( TaxonDescribers::Wikipedia )
       else
         @describers.each do | d |
           @describer = d
@@ -1159,6 +1160,9 @@ class TaxaController < ApplicationController
           rescue OpenURI::HTTPError, Timeout::Error
             nil
           end
+          # Remember what Wikipedia told us (article / absent / unknown) even if
+          # we go on to fall back to another describer.
+          @wikipedia_content_state = d.content_state if d.is_a?( TaxonDescribers::Wikipedia )
           break unless @description.blank?
         end
       end
@@ -1183,9 +1187,22 @@ class TaxaController < ApplicationController
       response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end
+    # We tried Wikipedia, it rate-limited us, and we had nothing usable cached to
+    # fall back on. Surface the throttle notice + a direct link whether the
+    # description is blank or came from a fallback describer. A known-absent
+    # article (:absent) deliberately does NOT set this, so taxa we already know
+    # have no Wikipedia article keep showing the normal "no article" message.
     @wikipedia_throttled = @taxon.shows_wikipedia? &&
-      ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) &&
-      wikipedia_recently_throttled?
+      wikipedia_recently_throttled? &&
+      @wikipedia_content_state == :unknown
+    # We're showing a possibly-stale Wikipedia article served from the cache
+    # while Wikipedia is throttling us.
+    @wikipedia_stale = @taxon.shows_wikipedia? &&
+      wikipedia_recently_throttled? &&
+      @wikipedia_content_state == :article &&
+      @describer.is_a?( TaxonDescribers::Wikipedia ) &&
+      @description.present?
+    @wikipedia_url = wikipedia_article_url if @wikipedia_throttled || @wikipedia_stale
     @description&.force_encoding( "UTF-8" )
     respond_to do | format |
       format.html { render partial: "description" }
@@ -1327,6 +1344,15 @@ class TaxaController < ApplicationController
 
   def wikipedia_recently_throttled?
     WikipediaService.new( locale: I18n.locale ).api_endpoint&.recently_throttled? || false
+  end
+
+  # A direct link to the taxon's Wikipedia article, so users can read it on
+  # Wikipedia while we're throttled. Reuses the already-computed describer URL
+  # when the current describer is Wikipedia to avoid an extra Wikidata lookup.
+  def wikipedia_article_url
+    return @describer_url if @describer.is_a?( TaxonDescribers::Wikipedia ) && @describer_url.present?
+
+    TaxonDescribers::Wikipedia.new( locale: I18n.locale ).page_url( @taxon )
   end
 
   def build_edit_ivars
