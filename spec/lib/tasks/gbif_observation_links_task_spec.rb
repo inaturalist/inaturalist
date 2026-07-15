@@ -2,6 +2,7 @@
 
 require "spec_helper"
 require "rake"
+require "timeout"
 
 describe "gbif_observation_links tasks" do
   before( :all ) do
@@ -76,6 +77,18 @@ describe "gbif_observation_links tasks" do
           hash_including( delay: true, ids: [observation.id] )
         )
       end
+    end
+
+    it "falls back to the default batch size instead of looping forever when given a non-positive size" do
+      drifted = Observation.make!
+      make_gbif_link( drifted )
+      allow( Observation ).to receive( :elastic_index! )
+      # A non-positive size used to spin the queue-draining loop forever; the
+      # Timeout guards against a regression hanging the suite.
+      Timeout.timeout( 30 ) { task.invoke( "0" ) }
+      expect( Observation ).to have_received( :elastic_index! ).with(
+        hash_including( delay: true, ids: [drifted.id] )
+      )
     end
   end
 end

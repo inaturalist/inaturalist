@@ -61,7 +61,7 @@ namespace :gbif_observation_links do
     # Queue indexing jobs in fixed-size batches as drifted IDs are found so a
     # large drift never queues one delayed job with millions of IDs in it
     @queued_count = 0
-    index_batch_size = ( args.index_batch_size || 1000 ).to_i
+    index_batch_size = args.index_batch_size.to_i.nonzero? || 1000
     index_queue = []
 
     gbif_es_drifted_observation_ids do | drifted_ids |
