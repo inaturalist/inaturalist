@@ -329,6 +329,7 @@ namespace :inaturalist do
       "browse",
       "captive_observations",
       "casual",
+      "casual_non_wild_only_",
       "checklist",
       "copyright",
       "data_quality",

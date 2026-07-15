@@ -568,10 +568,15 @@ id:
     berusia minimal 2 bulan dan harus telah membuat setidaknya 10 bulan <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">meningkatkan identifikasi</a> dalam sebulan terakhir. Kami mungkin meminta tindak lanjut
     pertanyaan tentang paket Anda dan kami berhak menolak aplikasi dengan alasan apa pun.
+  app_owner_application_about_p2_2_html: |
+    Mulai tahun 2022, kami memerlukan persetujuan manual bagi pengguna yang ingin membuat klien API. Untuk membuat aplikasi pihak ketiga, Anda harus mengajukan permohonan untuk menjadi
+    "pemilik aplikasi". Permohonan ini harus menjelaskan fungsionalitas aplikasi yang Anda usulkan serta bagaimana rencana Anda untuk menggunakannya. Untuk mengajukan permohonan, akun Anda harus berusia minimal 2 bulan dan harus sudah membuat setidaknya 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">peningkatan identifikasi</a> <i>untuk pengguna lain</i> dalam sebulan terakhir. Kami dapat meminta pertanyaan lebih lanjut mengenai rencana Anda dan berhak menolak permohonannya dengan alasan apa pun.
   app_owner_application_inelligible: |
     Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 identifikasi pengembang dalam sebulan terakhir.
-  app_owner_application_inelligible2: |
-    Untuk mengajukan permohonan, akun Anda harus berumur setidaknya 2 bulan dan harus sudah membuat setidaknya 10 identifikasi pengembang untuk pengguna lain dalam sebulan terakhir.
+  app_owner_application_inelligible2_html: |
+    Untuk mengajukan permohonan, akun Anda harus berumur setidaknya 2 bulan dan harus sudah membuat setidaknya 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">identifikasi pengembang</a> <i>untuk pengguna lain</i> dalam sebulan terakhir.
   app_owner_application_fields_explanation_html: Jelaskan fungsi yang akan dimiliki aplikasi Anda dan bagaimana rencana Anda untuk menggunakannya.
   app_owner_application_success: Permohonan menjadi pemilik aplikasi telah dikirim
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -1266,6 +1271,8 @@ id:
   create_a_new_place: Membuat lokasi baru
   create_a_new_taxon: Membuat taksa baru
   create_a_query: Membuat pertanyaan
+  #Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Buat varian yang ditargetkan
   create_an_account: Buat akun
   create_an_atlas: Buat Atlas
   create_export: Buat Ekspor
@@ -1702,6 +1709,7 @@ id:
   devise_unlock_instructions_unlock: Buka Akun Anda
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Temukan
+  discover_nature_around_you: Temukan alam di sekitar Anda
   discoveries: Penemuan
   did_you_mean: 'Apakah maksud Anda'
   did_you_photos_flickr?: Apakah Anda pernah menempatkan foto di Flickr?
@@ -1756,6 +1764,7 @@ id:
     <a href="%{url}">Unduh template</a> untuk digunakan di <a href="/observations/import?project_id=%{project_id}#csv_import">pengunggahan sekaligus</a>
   download_csv: Unduh CSV
   download_csv_template: Unduh Template CSV
+  download_inaturalist_app: Unduh iNaturalist di App Store
   download_kml: Unduh KML
   downstream_coverage_rank: Tingkat cakupan arus bawah
   downstream_coverage_colon_rank: "Cakupan arus bawah: tingkat %{rank}"
@@ -2328,7 +2337,15 @@ id:
   identification_saved: "Identifikasi telah disimpan!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Identifikasi disembunyikan
-  #Notice when an identification has been unhidden by moderators
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Nominasikan
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Hapus Nominasi
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} menominasikan ini sebagai tip ID"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Nominasikan sebagai Tip ID (karakteristik diagnostik yang mengajarkan orang lain untuk mengidentifikasi organisme ini) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Teks identifikasi ditampilkan kembali
   #Notification when an identification has been updated
   identification_updated: Identifikasi telah diperbarui!
@@ -2463,6 +2480,8 @@ id:
   introduced_in_place: "Diperkenalkan di %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Tanggal tidak sah
+  #Error message shown when a time format is invalid
+  invalid_time: Waktu tidak valid
   invitation: Undangan
   invite: undang
   invite_people: Undang orang
@@ -3109,6 +3128,7 @@ id:
   mute_removed: Peredaman dicabut
   muted_users: Pengguna Yang Diredam
   muting_description: Meredam seseorang mencegah masuknya pemberitahuan tentang semua aktivitas mereka, termasuk penyebutan menggunakan "@", pesan, atau komentar dan identifikasi pada pengamatan Anda.
+  my_site: Situs Saya
   n_ago: "%{n} yang lalu"
   n_people_agrees: "%{amount} orang setuju"
   n_people_disagrees: "%{amount} orang tidak setuju"
@@ -4652,6 +4672,13 @@ id:
     not_external: bukan ekstenal
     not_internal: bukan internal
     error: eror
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Kembalikan akun
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Kembalikan %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Jelaskan mengapa Anda ingin mengembalikan akun ini.
   relationships_user_settings: Relasi
   relationship_html: "Relasi: %{link}"
   reload_from_observations: Muat kembali dari pengamatan
@@ -4826,6 +4853,8 @@ id:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun} Anda"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Lihat riwayat moderasi
   see_something_wrong_with_taxon: Menemukan kesalahan pada takson ini? Beritahu kurator.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5153,12 +5182,16 @@ id:
   supporting: Pendukung
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Durasi penangguhan
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Durasi penangguhan (%{link_start_tag}lihat pedoman%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 hari
   #a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 hari
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 minggu
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 minggu
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 bulan
   #a select form option indicating a user will be suspended for two months
@@ -5173,8 +5206,14 @@ id:
   suspension_reason_custom: Kustom
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Harap dicatat bahwa alasan ini akan ditampilkan kepada pengguna yang ditangguhkan.
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Harap diingat bahwa alasan ini akan ditampilkan pada akun yang ditangguhkan.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Harap perbarui alasannya dan jelaskan mengapa Anda mengubah penangguhan pengguna.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Alasan untuk mengedit
+  #label for the edit reason field in the moderation history table
+  edit_reason: Alasan editan
   #predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     #reason displayed to users who have been suspended for posting hate speech
@@ -5182,24 +5221,44 @@ id:
     #reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Penghinaan atau ancaman
     #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Konten seksual eksplisit
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Mengunggah konten manusia yang mengumbar hal-hal berbau seksual
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Akun siluman
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Menyalahgunakan akun kedua, seperti mengonfirmasi identifikasi Anda sendiri
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Sengaja menambahkan ID atau suara PKD palsu
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Sengaja menambahkan data palsu, seperti pengamatan, identifikasi, atau suara Penilaian Kualitas Data
     #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
     machine_generated_content: Pengamatan, identifikasi, dan komentar yang dihasilkan bot
+    #reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Menambahkan konten yang dibuat mesin
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Pelanggaran hak cipta yang berkelanjutan (setelah peringatan)
+    #reason displayed to users who have continued to post media to the platform without the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Kembali mengunggah media tanpa izin pemilik media (setelah peringatan)
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Tetap mengunggah media yang dibuat AI (setelah peringatan)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Pengurangan kualitas data yang berkelanjutan (setelah peringatan)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Pengurangan kualitas data yang berkelanjutan, seperti menambahkan identifikasi yang salah (setelah peringatan)
   #the time at which a users suspension ends
   suspend_until: Tangguhkan sampai
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Tanggal dan waktu di zona waktu lokal browser Anda.
+  #button/menu label for suspending an account
+  suspend_account: Tangguhkan akun
   suspend_user: Tangguhkan pengguna
   suspend_user_html: Tangguhkan %{user}
   suspend_user_reason_instructions_html: |
@@ -5224,6 +5283,8 @@ id:
   take_me_flickr!: Ya, bawa saya ke Flickr!
   target_list_alert: Apakah Anda yakin bahwa Anda telah mencoba untuk mengamati semua spesies yang dicakup dalam daftar target Anda? Ingat bahwa apapun yang dicakup dalam daftar target Anda yang tidak Anda amati akan ditafsirkan sebagai ketidakberadaan, jadi daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan
   target_list_warning: Ingat bahwa semua yang dicakup daftar target Anda yang tidak Anda amati dalam radius dan waktu perjalanan ini akan ditafsirkan sebagai ketidakberadaan. Daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan. Jika Anda belum mencoba untuk menemukan suatu spesies dalam daftar target Anda atau semua spesies yang dicakup dalam suatu kelompok di daftar target Anda, harap menghapusnya.
+  #Section heading on announcement show page listing linked announcement variants
+  targeted_variants: Varian yang Ditargetkan
   task_deleted: Tugas dihapus
   taxa: Taksa
   taxa_show_obs_photo_search_tip: |
@@ -5410,6 +5471,10 @@ id:
   that_role_doesnt_exist: Peran tersebut tidak ada.
   that_was_the_last_observation_matching_the_current_filters: Itu adalah pengamatan terakhir yang cocok dengan saringan ini.
   thats_not_a_real_date: Itu tanggal yang tidak ada!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "Akun %{user} telah ditangguhkan"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "Akun %{user} telah dikembalikan"
   the_admin_is_the_person_who: |
     Pengelola adalah orang yang menciptakan proyek. Mereka dapat melakukan segala sesuatu yang manajer dan kurator dapat lakukan, serta menghapus proyek.
   the_below_items_are_needed_to_achieve: |
@@ -5510,6 +5575,8 @@ id:
   this_taxon_name_was_originally_imported: "Nama takson ini awalnya diimpor dari penyedia nama eksternal:"
   this_taxon_was_originally_imported_from: "Takson ini awalnya diimpor dari penyedia nama eksternal:"
   this_user_has_been_suspended: Pengguna ini telah ditangguhkan
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Akun ini telah ditangguhkan
   this_user_has_been_suspended_message: |
     Jika ini adalah akunmu dan kamu pikir ini adalah kesalahan, silakan <a href="mailto:%{email}">kontak kami</a>.
   this_will_add_listed_taxa: Hal ini akan menambah taksa terdaftar dari pengamatan. Ini mungkin memakan waktu sebentar jadi silakan gunakan dengan hemat dan pada daftar checklist
@@ -5802,6 +5869,7 @@ id:
   url_identifier_of_a_project_derived_from: "URL / pengenal dari sebuah proyek yang berasal dari beberapa sumber eksternal"
   url_of_this_taxon_on_the_source_website: URL takson ini pada situs sumber
   usage_stats: Statistik penggunaan
+  use_app: Gunakan aplikasi
   use_name_as_a_placeholder: |
     Pakai <span class='ac-placeholder'>%{name}</span> sebagai penampung
   use_this_form_to_create_a_new: |
@@ -5909,6 +5977,8 @@ id:
   user_trusts_you_with_their_private_coordinates_desc: |
     Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.
   user_updated_an_observation_field_html: '%{user} memperbarui nilai untuk "%{field_name}" pada pengamatan oleh %{owner}'
+  #An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Akun Anda telah ditangguhkan"
   #An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Akun Anda telah bebas dari penangguhan"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> menulis,
@@ -6314,6 +6384,8 @@ id:
   you_didnt_select_any_photos_to_tag: Anda tidak memilih foto apapun untuk diberi tag!
   you_dont_have_permission_to_do_that: Anda tidak memiliki izin untuk melakukan itu.
   you_dont_have_permission_to_edit_that_observation: "Anda tidak memiliki izin untuk mengubah pengamatan itu."
+  #Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: Anda tidak memiliki izin untuk mengedit pengumuman tersebut.
   you_dont_have_permission_to_edit_that_project: Anda tidak memiliki izin untuk mengubah proyek tersebut.
   you_dont_have_permission_to_edit_that_taxon: |
     Anda tidak memiliki izin untuk mengubah takson tersebut. Silakan menghubungi salah satu kurator takson atau menandai takson untuk mengajukan perubahan.
@@ -6416,6 +6488,10 @@ id:
         Perhatikan bahwa tanggal pembuatan pengamatan yang paling baru dibuat oleh pengguna di-cache, jadi mungkin perlu beberapa jam hingga penargetannya diterapkan
       observation_oauth_application_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang aplikasinya.
+      #Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: Pengumuman ini memiliki varian yang ditargetkan dan tidak dapat ditetapkan sebagai pengumuman global.
+      #Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Pilih pengumuman yang harus digantikan oleh pengumuman ini untuk pengguna yang memenuhi aturan penargetan.
       site_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang afiliasi situsnya.
       start_desc: |
@@ -7494,10 +7570,26 @@ id:
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
         message: Akun Anda di %{site_name} telah bebas dari penangguhan dan Anda dapat menggunakan situsnya lagi.
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Akun Anda di %{site_name} telah dipulihkan dan Anda dapat kembali masuk lagi.
         #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Akun Anda ditangguhkan karena alasan berikut: %{reason}"
+        #A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        #longer future suspensions.
+        please_abide_html: 'Harap patuhi <a href="%{community_guidelines_url}">Pedoman Komunitas iNaturalist</a> serta <a href="%{terms_of_use_url}">Ketentuan Penggunaan</a>nya. Pelanggaran di masa yang akan datang dapat mengakibatkan penangguhan yang lebih lama.'
+        #A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'Jika Anda memiliki pertanyaan atau masalah, Anda dapat <a href="%{contact_us_url}">menghubungi kami</a>.'
         #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Masuk ke akun Anda</a> untuk kembali menggunakan situs.'
+      user_suspended:
+        #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "Akun iNaturalist Anda telah ditangguhkan karena alasan berikut: %{reason}. Suspensi Anda akan dicabut dalam %{duration}."
+        #A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "Akun iNaturalist Anda telah ditangguhkan hingga batas waktu yang tidak dapat ditentukan karena alasan berikut: %{reason}."
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'Jika Anda yakin penangguhan ini salah atau ingin mengajukan banding, silakan <a href="%{contact_us_url}">hubungi Dukungan iNaturalist</a>. Harap diingat bahwa menggunakan akun lain untuk menghindari penangguhan akan mengakibatkan penangguhan akun lain tersebut dan konten publiknya akan dihapus.'
+        #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'Semua anggota komunitas iNaturalist diharapkan dapat mematuhi <a href="%{community_guidelines_url}">Pedoman Komunitas</a> dan <a href="%{terms_of_use_url}">Ketentuan Penggunaan</a>.'
       users_updates_suspended:
         message: |
           Anda tidak aktif di %{site_name} selama beberapa saat, jadi kami telah menahan langganan Anda. Untuk kembali mendapatkan kabar tentang aktivitas di situs, harap <a href="%{login_url}">masuk ke akun Anda</a> lagi.
@@ -7677,11 +7769,39 @@ id:
         contain_entire_image_without_cropping: Muat seluruh gambar tanpa dipotong
         custom_banner_icon_and_project_description: Sampul, ikon, dan deskripsi proyek kustom
         data_visualizations: Visualisasi data
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Tanggal
+          #Label for a form field for a project's starting date
+          start_date: Tanggal Mulai
+          #Label for a form field for a project's end date
+          end_date: Tanggal Selesai
+          #Label for a form field for a project's starting time
+          start_time: Waktu Mulai
+          #Label for a form field for a project's end time
+          end_time: Waktu Selesai
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Sertakan Waktu
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Pilih Bulan
         delete_project: Hapus Proyek
         display_project_name: Hapus nama proyek
         do_you_need_features_from_traditional2: |
           Apakah Anda memerlukan fitur dari proyek tradisional, seperti kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
         duplicate_project: Gandakan Proyek
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: Tanggal akhir harus setelah tanggal mulai
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: Waktu berakhir harus setelah waktu mulai
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Jangan masukkan pengamatan yang bertingkat kasual karena alasan apa pun selain ditandai sebagai peliharaan
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Jangan Masukkan Semua Kasual Kecuali Peliharaan
         include_annotated_observations: |
           Hanya masukkan pengamatan yang dicatat dengan atribut tertentu (seperti tahap kehidupan), atau atribut dan nilai tertentu (seperti tahap kehidupan = dewasa). Ada batasan sebanyak satu saringan catatan per proyek.
         leaderboards_among_individuals: Papan peringkat untuk <strong>individu</strong>
@@ -8039,6 +8159,40 @@ id:
         complete_taxon_desc: |
           Taksa yang "lengkap" memiliki semua taksa turunannya yang masih ada dari tingkat tertentu yang tersimpan di dalam database situs. Ketika suatu takson lengkap hingga ke tingkat spesies, contohnya, kita bisa bilang berapa banyak dari spesiesnya yang sudah diamati dan berapa banyak lagi yang masih belum diamati. Jumlah spesies untuk taksa yang "lengkap" hingga ke tingkat spesies tidak menyertakan spesies yang "tidak terhitung" seperti spesies yang sudah punah atau konsep spesies yang tidak aktif. Selain itu, mereka hanya memasukkan spesies, bukan taksa infraspesifik seperti subspesies atau varietas.
         discoveries_desc: "Spesies terkini yang baru diidentifikasi dalam takson ini"
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Tips Identifikasi
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Cari Identifikasi berdasarkan teks atau nama pengguna
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Belum ada identifikasi yang dinominasikan dan dipilih untuk organisme ini untuk saat ini, periksa lagi nanti!
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Urutkan: Suara tertinggi ke terendah"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Urutkan: Suara terendah ke tertinggi"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Urutkan: Terbaru ke terlama"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Urutkan: Terlama ke terbaru"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Urutkan: Terpanjang ke terpendek"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Suara Positif
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: Suara Negatif (disembunyikan)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Tanpa Suara
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Belum Dinominasikan
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Lihat Percakapan Selengkapnya
         frequency:
           research: Kelas Riset
           verifiable: Dapat Diverifikasi
@@ -8930,6 +9084,8 @@ id:
         exclude_donor_start_date: Kecualikan tanggal mulai donor
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kecualikan tanggal akhir donor
+        #Column header for countries excluded by IP address
+        exclude_ip_countries: Kecualikan Negara IP
         excludes_non_site: Menyembunyikan pengumuman lain di penempatan ini yang tidak memiliki ID Situs
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -8955,6 +9111,8 @@ id:
         max_observations: Pengamatan maks
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Pengamatan min
+        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Pengumuman Global (opsional)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Penempatan
         #Preference for an announcement that is only shown to the user who created the announcement
@@ -8965,6 +9123,8 @@ id:
         user_created_start_date: Tanggal pendaftaran pengguna terawal
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Tanggal pendaftaran pengguna terbaru
+        #Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Aktifkan widget fundraise up yang disematkan
       assessment:
         description: Deskripsi
       assessment_section:
@@ -9003,6 +9163,8 @@ id:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Alasan
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Alasan editan
       observation:
         description: Catatan
         geo_x: Arah Timur
@@ -9202,6 +9364,13 @@ id:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: harus valid untuk penempatan yang tertera
+            parent_announcement_id:
+              #Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: tidak boleh merujuk kepada dirinya sendiri
+              #Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: tidak boleh merujuk kepada pengumuman yang merupakan varian juga (hanya satu tingkat bersarang yang diizinkan)
+              #Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: tidak dapat diatur pada pengumuman yang sudah memiliki varian (hanya satu tingkat bersarang yang diizinkan)
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
@@ -9332,6 +9501,11 @@ id:
             user:
               must_be_on_site_long_enough: |
                 harus terdaftar lebih dari 24 jam yang lalu untuk menerbitkan. Kami mendapatkan banyak spammer, dan ini adalah semacam cara yang kurang baik untuk berurusan dengan mereka. Anda masih dapat menyimpan draf, dan jika Anda masih menggunakan situs ini dalam satu hari, Anda bisa menerbitkan.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: tanggal mulai harus sebelum tanggal akhir
         project_fave:
           attributes:
             base:

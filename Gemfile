@@ -32,7 +32,7 @@ gem "chroma"
 gem "chronic", git: "https://github.com/stanhu/chronic.git", ref: "7ea371f"
 gem "cocoon" # JY: Added to support nested attributes for assessment_sections on assessments
 # gem "coffee-rails"
-gem "concurrent-ruby", "1.3.4"
+gem "concurrent-ruby", "1.3.7"
 gem "daemons"
 gem "dalli"
 gem 'damerau-levenshtein', '~> 1.3', '>= 1.3.3'
@@ -66,7 +66,7 @@ gem "i18n-js", git: "https://github.com/fnando/i18n-js.git", tag: "v3.7.0"
 gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
 gem "irwi", git: "https://github.com/inaturalist/irwi.git", ref: "ruby3"
 gem "json"
-gem "jwt", "~> 2.7.0"
+gem "jwt", "~> 2.10.3"
 gem "makara", git: "https://github.com/instacart/makara.git", ref: "9e7960558a75aed3f97ba4cbab61abb64687ec3c"
 gem "multi_json", "~> 1.15.0"
 gem "nokogiri"

@@ -3,11 +3,13 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import _ from "lodash";
 import moment from "moment";
+import inatjs from "inaturalistjs";
 
 import reducers from "./reducers";
 import Uploader from "./containers/uploader";
 import { fetchSavedLocations } from "./ducks/saved_locations";
 import sharedStore from "../../shared/shared_store";
+import { setConfig } from "../../shared/ducks/config";
 
 moment.locale( I18n.locale );
 
@@ -15,6 +17,18 @@ sharedStore.injectReducers( reducers );
 
 if ( !_.isEmpty( CURRENT_USER ) ) {
   sharedStore.dispatch( fetchSavedLocations( ) );
+}
+
+const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+const defaultApiUrl = element && element.getAttribute( "content" );
+if ( defaultApiUrl ) {
+  sharedStore.dispatch( setConfig( {
+    testingApiV2: true
+  } ) );
+  inatjs.setConfig( {
+    apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+    writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+  } );
 }
 
 render(
