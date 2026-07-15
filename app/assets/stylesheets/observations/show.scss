@@ -791,7 +791,7 @@ a.UserImage,
     }
 
     .more_from_user {
-      padding: 0 15px;
+      padding: 0;
       margin: 0;
     }
 
@@ -800,7 +800,6 @@ a.UserImage,
       padding-bottom: 30px;
       width: 100%;
       h3 {
-        padding: 0 15px;
         & > span a {
           font-weight: 600;
         }
@@ -831,6 +830,7 @@ a.UserImage,
   .nearby_similar {
     display: flex;
     flex-wrap: wrap;
+    gap: 30px;
     .nearby_col,
     .similar_col {
       flex: 1 1 0;
