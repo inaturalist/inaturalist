@@ -631,11 +631,19 @@ nl:
     Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken. Om een aanvraag in te kunnen dienen moet jouw account minimaal 2 maanden oud zijn en minimaal 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">improving identifications</a> hebben gemaakt in de afgelopen maand. We kunnen follow-up vragen
     vragen over jouw plan en we behouden ons het recht voor om aanvragen om welke reden dan ook af te wijzen.
+  app_owner_application_about_p2_2_html: |
+    Vanaf 2022 is handmatige goedkeuring vereist voor gebruikers die API-clients willen maken.
+    Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken.
+    Om een aanvraag in te mogen dienen moet je account minstens 2 maanden oud zijn en moeten er minstens 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">Verbetering van determinaties</a>
+    <i>voor andere gebruikers</i> zijn gemaakt in de afgelopen maand. We kunnen vervolgvragen stellen over uw plan en wij behouden ons het recht voor om aanvragen om welke reden dan ook af te wijzen.
   app_owner_application_inelligible: |
     Om een toepassing in te kunnen dienen moet je account minimaal 2 maanden oud zijn en moet minstens 10 verbeterende determinaties hebben gedaan in de afgelopen maand.
-  app_owner_application_inelligible2: |
+  app_owner_application_inelligible2_html: |
     Om een aanvraag in te dienen moet je account minstens 2 maanden oud zijn en tenminste 
-    10 verbeterende determinaties voor andere gebruikers gedaan hebben in de afgelopen maand.
+    10  <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">verbeterende determinaties</a>
+    <i>voor andere gebruikers</i> in de afgelopen maand hebben gedaan.
   app_owner_application_fields_explanation_html: Beschrijf de functionaliteit van je app en hoe je deze gaat gebruiken.
   app_owner_application_success: App eigenaar aanvraag ingediend
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -1355,6 +1363,8 @@ nl:
   create_a_new_place: Een nieuw gebied aanmaken
   create_a_new_taxon: Een nieuw taxon aanmaken
   create_a_query: Een zoekopdracht aanmaken
+  #Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Maak een doelgerichte variant
   create_an_account: Account aanmaken
   create_an_atlas: Een atlas aanmaken
   create_export: Export aanmaken
@@ -2436,7 +2446,15 @@ nl:
   identification_saved: "Determinatie opgeslagen!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Determinatie verborgen
-  #Notice when an identification has been unhidden by moderators
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Nomineren
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Verwijder nominatie
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} heeft dit als een ID-tip genomineerd"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Nomineer als een ID tip (diagnostische kenmerken die anderen leren dit organisme te herkennen) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Determinatietekst weer tonen
   #Notification when an identification has been updated
   identification_updated: Determinatie bijgewerkt!
@@ -2571,6 +2589,8 @@ nl:
   introduced_in_place: "Geïntroduceerd in %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Ongeldige datum
+  #Error message shown when a time format is invalid
+  invalid_time: Ongeldige tijd
   invitation: Uitnodiging
   invite: uitnodigen
   invite_people: Mensen uitnodigen
@@ -3229,6 +3249,7 @@ nl:
   mute_removed: Dempen verwijderd
   muted_users: Gedempte gebruikers
   muting_description: Het negeren van iemand voorkomt dat je meldingen krijgt over één van zijn activiteiten, inclusief "@"-vermeldingen, berichten of opmerkingen en determinaties van je waarnemingen.
+  my_site: Mijn site
   n_ago: "%{n} geleden"
   n_people_agrees: "%{amount} mensen gaan akkoord"
   n_people_disagrees: "%{amount} personen zijn het oneens"
@@ -4801,6 +4822,13 @@ nl:
     not_external: niet extern
     not_internal: niet intern
     error: fout
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Herstellen van een account
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Herstel %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Leg alsjeblieft uit waarom je dit account weer hersteld.
   relationships_user_settings: Relaties
   relationship_html: "Relatie: %{link}"
   reload_from_observations: Opnieuw laden vanuit de waarnemingen
@@ -4978,6 +5006,8 @@ nl:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Jouw %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Zie moderatiegeschiedenis
   see_something_wrong_with_taxon: Is er iets mis met dit taxon? Laat het de curators weten.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5343,12 +5373,16 @@ nl:
   supporting: Ondersteunend
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Opschortings duur
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Opschortingsduur (%{link_start_tag}zie richtlijnen%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 dag
   #a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 dagen
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 week
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 weken
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 maand
   #a select form option indicating a user will be suspended for two months
@@ -5363,8 +5397,14 @@ nl:
   suspension_reason_custom: Gewoonte
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: 'Let op: deze reden zal worden weergegeven aan de geschorste gebruiker.'
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Houd er rekening mee dat deze reden zal worden getoond aan de geschorste gebruiker.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Werk de reden bij en leg uit waarom je de schorsing van de gebruiker verandert.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Reden voor de bewerking
+  #label for the edit reason field in the moderation history table
+  edit_reason: Reden voor bewerking.
   #predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     #reason displayed to users who have been suspended for posting hate speech
@@ -5372,24 +5412,38 @@ nl:
     #reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Beledigingen of bedreigingen
     #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Seksueel expliciete inhoud
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Plaatsen seksueel expliciete menselijke inhoud
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sockpuppet-accounts
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Misbruik van een tweede account, zoals het bevestigen van je eigen determinaties
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Opzettelijk valse ID's of DQA-stemmen toevoegen
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Opzettelijk valse gegevens toevoegen, zoals waarnemingen, determinaties of stemmen voor de Kwaliteitsbeoordeling van de gegevens
     #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
     machine_generated_content: Machine gegenereerde waarnemingen, determinaties en opmerkingen
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Voortdurende schending van auteursrechten (na waarschuwing)
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Voortdurende plaatsing van kunstmatig gegenereerde media (na waarschuwing)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Voortdurende vermindering van de datakwaliteit (na waarschuwing)
   #the time at which a users suspension ends
   suspend_until: Opschorten tot
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Datum en tijd in de lokale tijdzone van je browser.
+  #button/menu label for suspending an account
+  suspend_account: Account opschorten
   suspend_user: Gebruiker schorsen
   suspend_user_html: Schors %{user}
   suspend_user_reason_instructions_html: |
@@ -5416,6 +5470,8 @@ nl:
   take_me_flickr!: Ja, breng me naar Flickr!
   target_list_alert: Heb je ECHT geprobeerd om alle soorten te vinden die in je doellijst staan? Alles op je doellijst dat je niet hebt gevonden hebt wordt geïnterpreteerd als afwezig. Het is dus belangrijk dat je doellijst precies de soorten omvat die je gezocht hebt.
   target_list_warning: Denk eraan dat alles wat in je doellijst staat dat je niet hebt waargenomen binnen de straal en de duur van deze tocht zal worden geïnterpreteerd als een afwezigheid. Het is erg belangrijk dat je doellijst goed de soorten weergeeft die je probeerde te vinden. Als je niet geprobeerd hebt een soort op je doellijst, of alle soorten binnen een soortgroep op je doellijst te vinden, verwijder deze dan.
+  #Section heading on announcement show page listing linked announcement variants
+  targeted_variants: Gerichte varianten
   task_deleted: Taak verwijderd
   taxa: Taxa
   taxa_show_obs_photo_search_tip: |
@@ -5619,6 +5675,10 @@ nl:
   that_role_doesnt_exist: Die rol bestaat niet
   that_was_the_last_observation_matching_the_current_filters: Dat was de laatste waarneming die overeenkomt met de huidige filters.
   thats_not_a_real_date: Dit is geen echte datum!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "Het account %{user} is geschorst"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "Het account %{user} is hersteld"
   the_admin_is_the_person_who: |
     De administrator is de persoon die het project heeft gemaakt. Ze kunnen alles doen wat 
     beheerders en curatoren kunnen, plus het project verwijderen.
@@ -5727,6 +5787,8 @@ nl:
   this_taxon_name_was_originally_imported: "Deze taxon-naam is oorspronkelijk geïmporteerd van een externe naamaanbieder:"
   this_taxon_was_originally_imported_from: "Deze taxon is oorspronkelijk geïmporteerd van een externe naamaanbieder:"
   this_user_has_been_suspended: Deze gebruiker werd geschorst
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Dit account is geschorst
   this_user_has_been_suspended_message: |
     Als dit jouw account is en je denkt dat dit per abuis is gedaan, <a href="mailto:%{email}">neem dan contact met ons op</a>.
   this_will_add_listed_taxa: Hiermee worden taxa van waarnemingen op lijsten toegevoegd. Dit kan een tijdje duren dus gebruik dit alsjeblieft spaarzaam en op kleine checklijsten
@@ -6020,6 +6082,7 @@ nl:
   url_identifier_of_a_project_derived_from: "URL/identifier van een project dat is afgeleid van een externe bron"
   url_of_this_taxon_on_the_source_website: URL van dit taxon op de website van de bron
   usage_stats: Gebruiksstatistieken
+  use_app: Gebruik app
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> als een placeholder gebruiken
   use_this_form_to_create_a_new: |
@@ -6658,6 +6721,10 @@ nl:
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of niet maken
         Een selectie toont de aankondiging aan alle gebruikers, ongeacht
         app.
+      #Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: Deze aankondiging is gericht aan een specifiek publiek en kan niet worden toegewezen aan een wereldwijde aankondiging.
+      #Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Selecteer een aankondiging die deze aankondiging moet vervangen voor gebruikers die aan de regels voldoen.
       site_ids_desc: |
         CMD- of SHIFT-klik om er meerdere te selecteren. "Alles" selecteren of het niet maken van 
         een selectie toont de aankondiging aan alle gebruikers, ongeacht ongeacht
@@ -7957,12 +8024,40 @@ nl:
         contain_entire_image_without_cropping: Bevat de volledige afbeelding zonder bij te snijden
         custom_banner_icon_and_project_description: Aangepaste banner, pictogram en projectbeschrijving
         data_visualizations: Data visualisaties
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Datum
+          #Label for a form field for a project's starting date
+          start_date: Startdatum
+          #Label for a form field for a project's end date
+          end_date: Einddatum
+          #Label for a form field for a project's starting time
+          start_time: Starttijd
+          #Label for a form field for a project's end time
+          end_time: Eindtijd
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Inclusief de tijden
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Selecteer een maand
         delete_project: Project verwijderen
         display_project_name: Toon project naam
         do_you_need_features_from_traditional2: |
           Heb je functies nodig van traditionele projecten, zoals op maat gemaakte waarnemingsvelden,
           of individuele waarnemingen toevoegen die niet automatisch kunnen worden gefilterd?
         duplicate_project: Kopieer Project
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: De einddatum moet na de startdatum liggen
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: De eindtijd moet na de begintijd liggen
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Sluit waarneming uit die om welke reden dan ook als Onvolledig worden gemarkeerd voor elke andere reden dan Niet wild.
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Alle Onvolledig uitsluiten behalve 'Niet Wild'
         include_annotated_observations: |
           Neem alleen waarnemingen op die een bepaalde aantekening hebben (bijv. levensstadium), of een bepaalde aantekening en waarde (bijv. levensstadium = adult).
           Er is een limiet van één aantekeningenfilter per project.
@@ -8396,6 +8491,21 @@ nl:
           specifieke rang aanwezig in de database van de website. Wanneer een taxon al zijn soorten bevat, we kunnen bijvoorbeeld zeggen hoe veel  soorten al zijn waargenomen en welke nog niet. Bij de tellingen van
           soorten voor "volledige" taxa waar van al zijn soorten zijn opgenomen zijn niet inbegrepen "ontelbare" soorten zoals uitgestorven soorten of inactieve soortconcepten.Ze bevatten alleen soorten, niet infraspecifieke taxa zoals ondersoorten of variëteiten.
         discoveries_desc: "Meest recente nieuw-geïdentificeerde soorten in dit taxon"
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Determinatie Tips
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Sorteer: Van hoogste naar laagste stemmen"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Sorteer: Laagste eerst"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Sorteer: Nieuwste eerst"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Sorteer: Oudste eerst"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Sorteer: Langste eerst"
         frequency:
           research: Onderzoekskwaliteit
           verifiable: Verifieerbaar
@@ -9381,6 +9491,8 @@ nl:
         user_created_start_date: Vroegste aanmeldingsdatum gebruiker
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Laatste aanmeldingsdatum van gebruiker
+        #Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Schakel fundraise van ingebedde widgets in
       assessment:
         description: Beschrijving
       assessment_section:
@@ -9419,6 +9531,8 @@ nl:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Reden
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Reden voor bewerking.
       observation:
         description: Notities
         geo_x: Oostwaarde
@@ -9627,6 +9741,13 @@ nl:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: moet geldig zijn voor opgegeven plaatsing
+            parent_announcement_id:
+              #Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: kan niet naar zichzelf verwijzen
+              #Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: kan niet verwijzen naar een aankondiging die zelf een variant is (slechts één niveau van nesten toegestaan)
+              #Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: Kan niet worden ingesteld op een aankondiging die al varianten heeft (slechts één niveau van nesten toegestaan)
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
@@ -9761,6 +9882,11 @@ nl:
                 moet meer dan 24 uur geleden hebben geregistreerd om te publiceren. We krijgen
                 veel spammers en dit is een soort van suffe manier om daarmee om te gaan.
                 Je kunt alsnog een kladversie opslaan, en als je de site morgen nog gebruikt kun je publiceren.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: De begindatum moet vóór de einddatum liggen
         project_fave:
           attributes:
             base:

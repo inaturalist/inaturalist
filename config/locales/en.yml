@@ -1031,6 +1031,9 @@ en:
   card: Card
   casual: casual
   casual_: Casual
+  # Label for the Casual quality grade, but indicating it only includes observations that are marked
+  # casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Casual (non-wild only)
   casual_tooltip_html: '"Casual" observations are missing media, location, or a date, or do not meet the requirements of the "Research" or "Needs ID" quality grades for other reasons. <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   casual_tooltip_html2: '"Casual" observations are missing media, location, or a date, or do not meet the requirements of the "Research" or "Needs ID" quality grades for other reasons. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Learn more about quality grades</a>'
   categories: Categories
@@ -6852,6 +6855,8 @@ en:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
+  # Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: The Wikipedia summary could not be fetched right now. Please try again in 30 minutes.
   with: with
   # Filter for observations not in a particular taxon
   without_taxon: Not in taxon
