@@ -19,16 +19,14 @@ import type {
 } from "../../../shared/types";
 
 // Use custom relative times for moment
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const i18nMomentjs = I18n.t( "momentjs" ) as any;
-const shortRelativeTime = i18nMomentjs ? i18nMomentjs.shortRelativeTime : null;
+const i18nMomentjs = I18n.t( "momentjs" );
+const shortRelativeTime = i18nMomentjs?.shortRelativeTime ?? null;
 const relativeTime = {
-  ...( I18n.t( "momentjs", { locale: "en" } ) as any ).shortRelativeTime,
+  ...I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
   ...shortRelativeTime
 };
-moment.locale( ( I18n as any ).locale );
+moment.locale( I18n.locale );
 moment.updateLocale( moment.locale( ), { relativeTime } );
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 interface SortOption {
   key: string;

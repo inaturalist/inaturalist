@@ -956,10 +956,16 @@ $introducedColor: #E4007C;
     flex-wrap: wrap;
     gap: 30px;
 
-    > .ident-main,
-    > .ident-side {
-      flex: 1 1 100%;
+    > .ident-main {
+      flex: 2 1 0;
       min-width: 0;
+    }
+    > .ident-side {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    @media ( max-width: $md-max ) {
+      display: block;
     }
   }
   .loading {
