@@ -63,12 +63,15 @@ class WikipediaService < MetaService
       !node.inner_html.strip.blank?
     end || hxml ).inner_html.to_s.strip
     summary = sanitizer.sanitize( summary, tags: %w(p i em b strong) )
-    summary.gsub! /\[.*?\]/, ""
+    summary.gsub!( /\[.*?\]/, "" )
     summary
   end
 
   def parsed_response( title, options = {} )
     parsed = parse( options.merge( page: title, redirects: true ) )
+    # parse can return nil when the request is in progress or was throttled
+    return unless parsed
+
     parsed.at( "text" ).try( :inner_text ) ? parsed : nil
   rescue Timeout::Error => e
     Rails.logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"

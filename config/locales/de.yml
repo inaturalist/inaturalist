@@ -626,8 +626,18 @@ de:
     mindestens 2 Monate alt sein und mindestens 10 Monate alt sein <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">Verbesserung der Identifizierung</a> im letzten Monat. Wir können um Nachverfolgung bitten
     Fragen zu Ihrem Plan und wir behalten uns das Recht vor, Anträge aus beliebigem Grund abzulehnen.
+  app_owner_application_about_p2_2_html: |
+    Seit 2022 verlangen wir eine manuelle Genehmigung für Nutzer, die API-Clients erstellen möchten.
+    Um Drittanbieter-Apps zu erstellen, musst du zunächst einen Antrag stellen, um ein "App-Besitzer" zu werden. Dieser Antrag sollte die Funktionalität und geplante Nutzung deiner vorgeschlagenen App beschreiben. Um einen Antrag einzureichen, muss dein Konto mindestens 2 Monate alt sein und du musst mindestens 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">verfeinerte Bestimmungen</a>
+    <i>für andere Nutzer</i> im letzten Monat gemacht haben. Wir könnten Nachfragen zu deinem Vorhaben stellen und wir behalten uns das Recht vor, Anträge abzulehnen.
   app_owner_application_inelligible: |
     Um eine App einzureichen, musst du seit mindestens 2 Monaten ein Benutzerkonto haben, mit dem du im letzten Monat mindestens 10 verbessernde IDs beigetragen hast.
+  app_owner_application_inelligible2_html: |
+    Um einen Antrag einzureichen, muss dein Konto mindestens 2 Monate alt sein und du musst
+    mindestens 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">verfeinerte Bestimmungen</a>
+    <i>für andere Nutzer</i> im letzten Monat gemacht haben.
   app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
   app_owner_application_success: App owner application submitted
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -840,6 +850,9 @@ de:
     Weil wir davon ausgehen, dass diese Änderung zu mehr als 10 unbeabsichtigten
     Widersprüchen führen wird, <strong>empfehlen wir dir auch eine Taxonänderung von
     %{old_parent} durchzuführen, wie zum Beispiel der Trennung von %{new_parent} und %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Da wir davon ausgehen, dass diese Änderung zu 10 oder weniger unbeabsichtigten Unstimmigkeiten führen wird, <strong> ist eine Taxon-Änderung mit %{old_parent} wahrscheinlich nicht notwendig.</strong>
   become_a_donor_caps: Unterstützer werden
   become_a_donor_today_caps: Werde heute ein Unterstützer
   before_importing_photos: vor dem Importieren von Bildern verlinken
@@ -924,6 +937,8 @@ de:
   change_group: Gruppen ändern
   change_icon: Symbol ändern
   change_password: Passwort ändern
+  #Message shown after you change your email address
+  change_to_email_requested_html: Änderung zu <strong>%{email}</strong> angefragt. Überprüfen Sie Ihre E-Mail unter dieser Adresse, um die Änderung zu bestätigen.
   change_types:
     activated_soon: bald aktiviert
     change_types: Typen ändern
@@ -1737,7 +1752,8 @@ de:
     Klicke auf untenstehenden Link, um Dein Konto zu entsperren
   devise_unlock_instructions_unlock: Konto entsperren
   #e.g. "With iNaturalist, you can discover nature nearby"
-  discover: Entdecke
+  discover: Auf Entdeckungsreise gehen
+  discover_nature_around_you: Entdecke die Natur um dich herum
   discoveries: Entdeckungen
   did_you_mean: 'Meintest du'
   did_you_photos_flickr?: Hast du Bilder auf Flickr hinzugefügt?
@@ -1793,8 +1809,15 @@ de:
     <a href="/observations/import?project_id=%{project_id}#csv_import">"Bulk-Uploader"</a>
   download_csv: CSV herunterladen
   download_csv_template: CSV-Vorlage herunterladen
+  download_inaturalist_app: Lade iNaturalist im App Store herunter
   download_kml: KML herunterladen
+  downstream_coverage_rank: Rang der Abdeckung auf niedrigerer Taxon-Ebene
+  downstream_coverage_colon_rank: "Abdeckung auf niedrigerer Taxon-Ebene: Rang %{rank}"
   downstream_deviations: Downstream-Abweichungen
+  downstream_deviations_for_taxon: "Abweichungen auf niedrigerer Taxon-Ebene für %{taxon}"
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: Auf niedrigerer Taxon-Ebene markierte Taxa
   #Noun, as in a journal post that has not been published
   draft: Entwurf
   #Noun, as in a journal post that has not been published
@@ -1853,6 +1876,8 @@ de:
   edit_taxon_link: Taxonlink bearbeiten
   edit_taxon_range: Verbreitungsgebiet bearbeiten
   edit_the_observation: Die Beobachtung bearbeiten
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Bearbeiten Sie dieses Taxon, nachdem Sie es erstellt haben, um einen Schutzstatus hinzuzufügen
   edit_your_account_and_profile_html: "Bearbeite dein Konto & Profil"
   edit_your_default_settings: "Deine Standardeinstellungen bearbeiten"
   edit_your_global_project_settings: Die globalen Projekteinstellungen bearbeiten
@@ -2341,7 +2366,15 @@ de:
   identification_saved: "Bestimmung gespeichert!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Bestimmung verborgen
-  #Notice when an identification has been unhidden by moderators
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Nominieren
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Nominierung entfernen
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} hat dies als ID-Tipp nominiert"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Als ID-Tipp nominieren (wichtige Merkmale erkennbar, sodass die Beobachtung für andere hilfreich bei der Bestimmung sein könnte) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Bestimmung wieder sichtbar
   #Notification when an identification has been updated
   identification_updated: Bestimmung aktualisiert!
@@ -2402,8 +2435,16 @@ de:
   inaturalist_network_affiliation: iNaturalist-Netzwerk
   #Label for messages you've received
   inbox: Posteingang
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Einbeziehen
   include_places: Gebiete einbeziehen
   include_projects: Projekte einbeziehen
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Taxa der Vorfahren einschließen / ausschließen
   include_suggestions_not_seen_nearby: Vorschläge einbeziehen, die nicht aus der Nähe stammen
   include_suggestions_not_expected_nearby: Vorschläge einbeziehen, die nicht in der Nähe erwartet werden
   include_taxa: Taxa einbeziehen
@@ -2455,6 +2496,8 @@ de:
   introduced_in_place: "Eingeführt in %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Ungültiges Datum
+  #Error message shown when a time format is invalid
+  invalid_time: Ungültige Zeit
   invitation: Einladung
   invite: einladen
   invite_people: andere Personen einladen
@@ -3106,6 +3149,7 @@ de:
   mute_removed: Sperre entfernt
   muted_users: Stummgestellte Benutzer
   muting_description: Jemanden stummschalten bedeutet, über keinerlei Aktivitäten benachrichtigt zu werden, einschließlich "@"-Erwähnungen, Nachrichten oder Kommentare, sowie Bestimmungen zu deinen Beobachtungen.
+  my_site: Meine Site
   n_ago: "vor %{n}"
   n_people_agrees: "%{amount} der Personen stimmen zu"
   n_people_disagrees: "%{amount} Personen widersprechen"
@@ -3423,6 +3467,10 @@ de:
     Wir sind sehr dankbar für deine Bestimmungs-Hilfe auf iNaturalist und vielen Dank für die Teilnahme an dieser Studie. Mehr über die Methoden zu diesem Experiment kannst du <a href="%{url}">hier</a> erfahren.
   observation_accuracy_validator_email_with_gratitude: In Dankbarkeit,
   observation_accuracy_validator_email_the_inaturalist_team: das Team von iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b> Bitte antworte nicht auf diese Nachricht. Wenn du Fragen oder Feedback hast, kommentiere bitte unter <a href="%{url}">diesem Blogpost</a> oder schreibe eine Mail <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Bitte antworten Sie nicht auf diese Nachricht. Wenn Sie Fragen oder Feedback haben, bitte kontaktieren Sie uns unter <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
   observation_aggregation: Beobachtungs Ansammlung
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3633,6 +3681,8 @@ de:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "Einer der folgenden Punkte muss zutreffen:"
   one_of_your_lists: "einer deiner Listen..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Ein oder mehrere Eingabetaxa sind mit mehr als 1000 Beobachtungen verknüpft, so dass die Durchführung einige Zeit in Anspruch nehmen kann. Sind Sie sicher, dass diese Taxonänderung notwendig ist? Denken Sie daran, dass Taxonänderungen nicht rückgängig gemacht werden können.
   only_a_project_manager_can_add: Nur ein Projektmanager kann den Status eines Projektkurators hinzufügen.
   only_administrators_may_access_that_page: Nur Administratoren dürfen auf diese Seite zugreifen
   only_an_admin_can_remove_project_users: Nur Administratoren können Projektbenutzer entfernen.
@@ -4639,6 +4689,13 @@ de:
     not_external: nicht extern
     not_internal: nicht intern
     error: Fehler
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Benutzerkonto wiederherstellen
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Wiedereinrichtung von %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Bitte gib eine Begründung für die Wiederherstellung dieses Benutzerkontos an
   relationships_user_settings: Beziehungen
   relationship_html: "Beziehung: %{link}"
   reload_from_observations: Neuladen aus Beobachtungen
@@ -4691,7 +4748,7 @@ de:
   research: Forschung
   research_: Forschung
   research_grade: Forschungsqualität
-  research_grade_short_html: "F<span class='full'>orschungs</span>Q<span class='full'>ualität</span>"
+  research_grade_short_html: "F<span class='full'>orschungs</span>q<span class='full'>ualität</span>"
   research_grade_tooltip_html: '"Forschungsqualität (FQ)"-Beobachtungen erfüllen die Anforderungen: <br>- Koordinaten <br>- Datum <br>-Medien (Foto/Audio) <br> und die Community stimmt der genauen Bestimmung (gewöhnlich auf Artniveau) zu. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   research_grade_tooltip_html2: '"Forschungsqualität (FQ)"-Beobachtungen erfüllen die Anforderungen: <br>- Koordinaten <br>- Datum <br>-Medien (Foto/Audio) <br> und die Community stimmt der genauen Bestimmung (normalerweise auf Artniveau) zu. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Erfahre hier mehr über Qualitätsstufen</a>'
   research_grade_observations_have: 'Beobachtungen mit <em>Forschungsqualität</em> enthalten ein Datum, Bild- oder Tonaufnahmen, Koordinaten und eine mehrheitliche Bestimmung (ID) durch die Community. Durch Anklicken wird die Bewertung der Datenqualität angezeigt.'
@@ -4815,6 +4872,8 @@ de:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Dein %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Moderationsgeschichte ansehen
   see_something_wrong_with_taxon: Stimmt etwas nicht mit diesem Taxon?  Lass es die Kuratoren wissen.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5162,12 +5221,16 @@ de:
   supporting: bestätigend
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Dauer der Benutzer-Sperrung
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Dauer der Sperre (%{link_start_tag}siehe Richtlinien%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 Tag
   #a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 Tage
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 Woche
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 Wochen
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 Monat
   #a select form option indicating a user will be suspended for two months
@@ -5182,8 +5245,14 @@ de:
   suspension_reason_custom: Benutzerdefiniert
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Bitte beachte, dass diese Begründung dem suspendierten Nutzer angezeigt wird.
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Bitte beachte, dass diese Begründung auf dem gesperrten Konto angezeigt wird.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Bitte aktualisiere die Begründung und erkläre, warum du die Sperrung des Nutzers änderst.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Begründung für die Bearbeitung
+  #label for the edit reason field in the moderation history table
+  edit_reason: Bearbeitungsgrund
   #predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     #reason displayed to users who have been suspended for posting hate speech
@@ -5191,24 +5260,44 @@ de:
     #reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Beleidigungen oder Drohungen
     #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Sexuell explizite Inhalte
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Veröffentlichung sexuell expliziter Inhalte von Menschen
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sockpuppet-Konten
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Missbrauch eines zweiten Benutzerkontos, um zum Beispiel eigene Identifikationen zu bestätigen
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Absichtlich falsche Bestimmungen oder Datenqualitäts-Bewertungen
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Absichtliches Hinzufügen falscher Daten, wie Beobachtungen, Identifikationen oder Bewertungen zur Datenqualität
     #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
     machine_generated_content: Maschinell erzeugte Beobachtungen, Bestimmungen und Kommentare
+    #reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Hinzufügen maschinell erzeugter Inhalte
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Wiederholte Urheberrechtsverletzung (nach Verwarnung)
+    #reason displayed to users who have continued to post media to the platform without the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Medien ohne Erlaubnis des Medieninhabers weiter veröffentlicht (nach Warnung)
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Wiederholtes Hochladen künstlich generierter Medien (nach Verwarnung)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Wiederholte Verminderung der Datenqualität (nach Verwarnung)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Verminderung der Datenqualität, wie z.B. durch as Hinzufügen falscher Identifikationen (nach Warnung)
   #the time at which a users suspension ends
   suspend_until: Sperrung bis
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Datum und Uhrzeit in der lokalen Zeitzone deines Browsers.
+  #button/menu label for suspending an account
+  suspend_account: Benutzerkonto sperren
   suspend_user: Benutzer sperren
   suspend_user_html: '%{user} sperren'
   suspend_user_reason_instructions_html: |
@@ -5433,6 +5522,10 @@ de:
   that_role_doesnt_exist: Diese Rolle existiert nicht.
   that_was_the_last_observation_matching_the_current_filters: Das war die letzte Beobachtung, die dem aktuellen Filter entsprach.
   thats_not_a_real_date: Das ist kein echtes Datum!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "Das Benutzerkonto %{user} wurde gesperrt"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "Das Benutzerkonto von %{user} wurde wieder eingerichtet"
   the_admin_is_the_person_who: |
     Der Administrator ist die Person, die das Projekt erstellt hat. Er kann alles tun, was
     Manager und Kuratoren tun können, sowie das Projekt löschen.
@@ -5536,6 +5629,8 @@ de:
   this_taxon_name_was_originally_imported: "Dieser Taxonname wurde ursprünglich von diesem externen Anbieter importiert:"
   this_taxon_was_originally_imported_from: "Dieses Taxon wurde ursprünglich von diesem externen Anbieter importiert:"
   this_user_has_been_suspended: Dieser Benutzer wurde gesperrt.
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Dieses Konto wurde gesperrt
   this_user_has_been_suspended_message: |
     Wenn dies Dein Konto ist und Du denkst, dass dies fälschlicherweise passiert ist, <a href="mailto:%{email}">kontaktiere uns</a> bitte.
   this_will_add_listed_taxa: Hiermit werden Taxa aus Beobachtungen hinzugefügt. Das könnte ein Weilchen dauern, deshalb bitte sparsam und für kleine Checklisten verwenden.
@@ -5829,6 +5924,7 @@ de:
   url_identifier_of_a_project_derived_from: "URL/ Identifikation eines Projekts, welches von einer externen Quelle abgeleitet wurde"
   url_of_this_taxon_on_the_source_website: URL dieses Taxons auf der Website der Quelle
   usage_stats: Nutzungsstatistiken
+  use_app: App verwenden
   use_name_as_a_placeholder: |
     Benutze <span class='ac-placeholder'>"%{name}"</span> als Platzhalter
   use_this_form_to_create_a_new: |
@@ -5875,6 +5971,7 @@ de:
     one: "%{user} hat %{count} Beobachtung hinzugefügt"
     other: "%{user} hat %{count} Beobachtungen hinzugefügt"
   user_already_authenticated: Der Benutzer ist bereits authentifiziert
+  user_already_app_owner: Nutzer besitzt diese App bereits.
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
@@ -5928,6 +6025,8 @@ de:
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat dir die verborgenen Koordinaten all seiner Beobachtungen anvertraut.
   user_updated_an_observation_field_html: 'Von %{user} wurde ein Wert für "%{field_name}" zu einer Beobachtung von %{owner} aktualisiert'
+  #An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Dein Benutzerkonto wurde gesperrt"
   #An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Dein Benutzerkonto wurde wieder entsperrt"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schrieb,
@@ -6330,6 +6429,8 @@ de:
   you_didnt_select_any_photos_to_tag: Du hast keine Bilder zum Taggen ausgewählt!
   you_dont_have_permission_to_do_that: Du hast keine Berechtigung dies zu tun.
   you_dont_have_permission_to_edit_that_observation: "Du hast keine Berechtigung diese Beobachtung zu bearbeiten."
+  #Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: Du hast keine Berechtigung diese Ankündigung zu bearbeiten.
   you_dont_have_permission_to_edit_that_project: Du hast keine Berechtigung dieses Projekt zu bearbeiten.
   you_dont_have_permission_to_edit_that_taxon: |
     Du hast nicht die Berechtigung, dieses Taxon zu bearbeiten. Bitte kontaktiere einen der Taxon-Kuratoren oder melde dieses Taxon, um Änderungen anzufragen.
@@ -6366,6 +6467,8 @@ de:
   your_account_has_been_activated: Dein Benutzerkonto wurde aktiviert!
   your_account_has_been_verified: "Dein %{site_name} Konto wurde verifiziert! Bitte melde dich an, um fortzufahren."
   your_activation_code_was_missing: "Dein Aktivierungscode fehlte. Bitte folge der URL aus deiner E-Mail."
+  #Title for a list of 3rd party applications you control
+  your_applications: Ihre Bewerbungen
   your_browser_does_not_support_the_audio_element: Dein Browser unterstützt das Audio-Element nicht.
   your_comment_was_saved: Der Inhalt wurde gespeichert
   your_content: Deine Inhalte
@@ -6651,6 +6754,7 @@ de:
           #Expected Nearby range that the user can download
           download_expected_nearby_map_as_geojson: Download der 'In der Nähe zu erwarten' Karte als GeoJSON
         unthresholded_map:
+          unthresholded_map: Unbegrenzte Karte
           figure_alt_text: Das Geomodell gewichtet die Ergebnisse der Computer-Vision
         range_comparison:
           expected_nearby_vs_taxon_range: Erwartet in der Umgebung vs. Taxon-Verbreitung
@@ -7084,13 +7188,21 @@ de:
         place_guess: Gebietsbeschreibung, wie vom Beobachter eingegeben
         positional_accuracy: "Genauigkeit der Koordinaten (ja, ja, ja, Genauigkeit! = Präzision -- schlechte Terminologie)"
         private_latitude: "Privater Breitengrad, falls Beobachtung privat oder verschleiert"
+        private_longitude: "Privater Längengrad, wird gesetzt, wenn die Beobachtung privat oder verdeckt ist"
         geoprivacy: "Ob der Beobachter die Koordinaten verschleiert oder versteckt hat. Siehe https://help.inaturalist.org/support/solutions/articles/151000169938"
+        taxon_geoprivacy: "Die konservativste Geoprivatisierung wurde aufgrund des Schutzstatus der Taxa bei der aktuellen Bestimmung angewandt."
         coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, entweder aufgrund von Geo-Privatsphäre oder eines Gefährdungsstatus"
         out_of_range: Ob diese Beobachtung außerhalb der bekannten Verbreitung des Taxons liegt oder nicht
+        user_id: Eindeutige, sequentielle Kennung für den Beobachter
+        user_login: Handle / Benutzername des Beobachters, d.h. eine kurze, eindeutige, alphanumerische Kennung für einen Benutzer
+        user_name: |
+          Name des Beobachters, der in der Regel für die Zuordnung auf der Webseite verwendet wird.
+          Dies ist ein optionales Feld und der Name kann auch ein Pseudonym sein.
         created_at: Zeitpunkt an dem die Beobachtung erstellt wurde
         updated_at: Datetime der Aktualisierung der Beobachtung
         quality_grade: Qualitätsbewertung dieser Beobachtung. Weitere Informationen hierzu sind unter https://help.inaturalist.org/support/solutions/articles/151000169936 zu finden
         url: URL der Beobachtung
+        image_url: URL für das erste Foto, das der Beobachtung zugeordnet ist
         tag_list: Komma-getrennte Liste der Stichwörter.
         place_admin1_name: Name des administrativen Ortes ein Rang unterhalb der Landesebene
         place_admin2_name: Name des administrativen Ortes zwei Ränge unterhalb der Landesebene
@@ -7110,6 +7222,34 @@ de:
         private_place_guess: |
           Beobachtungsort, wie er vom Beobachter geschrieben wurde, wenn der Standort verdeckt ist
         public_positional_accuracy: Maximale horizontale Positionsunsicherheit in Metern; beinhaltet Unsicherheit durch Verschleierung der Koordinaten
+        taxon_class_name: |
+          Name der taxonomischen Klasse, die das beobachtete Taxon enthält
+        taxon_family_name: |
+          Name der taxonomischen Familie, die das beobachtete Taxon enthält
+        taxon_genus_name: |
+          Name der taxonomischen Gattung, die das beobachtete Taxon enthält
+        taxon_genushybrid_name: |
+          Name der taxonomischen Hybridgattung, die das beobachtete Taxon enthält
+        taxon_hybrid_name: |
+          Name des taxonomischen Hybrids, der das beobachtete Taxon enthält
+        taxon_kingdom_name: |
+          Name des taxonomischen Reichs, das das beobachtete Taxon enthält
+        taxon_order_name: |
+          Name der taxonomischen Ordnung, die das beobachtete Taxon enthält
+        taxon_phylum_name: |
+          Name des taxonomischen Stammes, der das beobachtete Taxon enthält
+        taxon_species_name: |
+          Name der taxonomischen Art, die das beobachtete Taxon enthält
+        taxon_subclass_name: |
+          Name der taxonomischen Unterklasse, die das beobachtete Taxon enthält
+        taxon_subfamily_name: |
+          Name der taxonomischen Unterfamilie, die das beobachtete Taxon enthält
+        taxon_suborder_name: |
+          Name der taxonomischen Unterordnung, die das beobachtete Taxon enthält
+        taxon_subphylum_name: |
+          Name des taxonomischen Unterstammes, der das beobachtete Taxon enthält
+        taxon_subspecies_name: |
+          Name der taxonomischen Unterart, die das beobachtete Taxon enthält
       identify:
         #message for a banner linking to a tutorial on how to use the Identify page
         learn_how_to_use_this_page: |
@@ -7415,10 +7555,26 @@ de:
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
         message: Dein Konto auf %{site_name} wurde wieder entsperrt und du kannst die Seite wieder nutzen.
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Dein Konto auf %{site_name} wurde wieder entsperrt und du kannst die Seite wieder nutzen.
         #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Dein Konto wurde aus folgendem Grund gesperrt: %{reason}"
+        #A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        #longer future suspensions.
+        please_abide_html: 'Bitte halte dich an die <a href="%{community_guidelines_url}">Richtlinien der iNaturalist-Gemeinschaft</a> und <a href="%{terms_of_use_url}">Nutzungsbedingungen</a>. Zukünftige Verstöße können zu längeren Sperren führen.'
+        #A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'Wenn du Fragen oder Bedenken hast, kannst du uns <a href="%{contact_us_url}">kontaktieren</a>.'
         #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Melde dich mit deinem Konto an</a> um die Seite wieder zu nutzen.'
+      user_suspended:
+        #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "Dein iNaturalist-Konto wurde aus folgendem Grund gesperrt: %{reason}. Deine Sperre wird aufgehoben in %{duration}."
+        #A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "Dein iNaturalist-Konto wurde aus folgendem Grund auf unbestimmte Zeit gesperrt: %{reason}."
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'Wenn Du der Meinung bist, dass diese Suspendierung ein Fehler war oder Berufung einlegen möchtest, bitte <a href="%{contact_us_url}">kontaktiere den iNaturalist-Support</a>. Beachte, dass die Nutzung anderer Konten, um der Sperre zu entgehen, dazu führt, dass die anderen Konten gesperrt und deren öffentlichen Inhalte entfernt werden.'
+        #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'Alle Mitglieder der iNaturalist-Gemeinschaft werden gebeten, sich an die Vorschriften zu halten <a href="%{community_guidelines_url}">Gemeinschaftsrichtlinien</a> und <a href="%{terms_of_use_url}">Nutzungsbedingungen</a>.'
       users_updates_suspended:
         message: |
           Du warst eine ganze Weile nicht mehr aktiv auf %{site_name}, daher haben wir deine Abonnements ausgesetzt. Wenn du wieder Updates von Aktivitäten auf der Webseite erhalten möchtest, bitte <a href="%{login_url}">logge dich wiederin dein Konto ein</a>.
@@ -7619,11 +7775,39 @@ de:
         contain_entire_image_without_cropping: Gesamtes Bild ohne Zuschneiden
         custom_banner_icon_and_project_description: Benutzerdefinierte Banner, Symbol und Projektbeschreibung
         data_visualizations: Datenvisualisierung
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Datum
+          #Label for a form field for a project's starting date
+          start_date: Startdatum
+          #Label for a form field for a project's end date
+          end_date: Enddatum
+          #Label for a form field for a project's starting time
+          start_time: Startzeit
+          #Label for a form field for a project's end time
+          end_time: Endzeit
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Zeit einbeziehen
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Monate auswählen
         delete_project: Projekt löschen
         display_project_name: Projektname anzeigen
         do_you_need_features_from_traditional2: |
           Brauchst du Funktionen aus traditionellen Projekten, wie etwa benutzerdefinierte Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht automatisch gefiltert werden können?
         duplicate_project: Projekt duplizieren
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: Das Enddatum muss nach dem Startdatum liegen
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: Die Endzeit muss nach der Startzeit liegen
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Beobachtungen mit Hobbyqualität ausschließen, es sei denn, sie sind als 'nicht wild' markiert
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Alle Hobbyqualität-Beobachtungen ausßschließen, außer 'nicht wilde' Beobachtungen
         include_annotated_observations: |
           Nur Beobachtungen mit einer bestimmten Annotation (z.B. Entwicklungssstadium) 
           oder einer bestimmten Annotation + Wert (z.B. Entwicklungsstufe = Larve) werden angezeigt.
@@ -8013,6 +8197,41 @@ de:
         complete_taxon_desc: |
           Bei "vollständigen" Taxa sind alle untergeordneten Taxa eines bestimmten Rangs in der Datenbank vorhanden. Ist ein Taxon beispielsweise bis zur Ebene der Art vollständig, kann angezeigt werden, wie viele dieser Arten bereits beobachtet wurden und wie viele noch beobachtet werden müssen. Die Zahl der Arten für "vollständige" Taxa beinhaltet keine "nicht-zählbaren", wie ausgestorbene oder inaktive Arten; außerdem werden keine Taxa unterhalb der Art, wie Unterarten oder Varietäten, berücksichtigt.
         discoveries_desc: "Kürzlich neu identifizierte Arten in diesem Taxon"
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Bestimmungs-Tipps
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Identifikationen nach Text oder Benutzername suchen
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Für diesen Organismus gibt es derzeit keine nominierten oder positiv bewertete Bestimmungen.
+            Du kannst regelmäßig checken, ob sich hier etwas getan hat.
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Sortieren: Meiste bis wenigste Stimmen"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Sortieren: Wenigste bis meiste Stimmen"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Sortieren: von neu nach alt"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Sortieren: von alt nach neu"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Sortieren: von lang nach kurz"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Positiv bewertet
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: negativ bewertet (versteckt)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Keine Bewertung
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Nicht nominiert
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Gesamte Unterhaltung anzeigen
         frequency:
           research: Forschungsqualität
           verifiable: Verifizierbar
@@ -8083,6 +8302,10 @@ de:
       withdrawn: zurückgezogen
       #state of a committed taxon change
       committed: engagiert
+      #state of a pending taxon change
+      pending: ausstehend
+      #state of a approved taxon change
+      approved: genehmigt
       #state of a draft taxon change
       draft: Entwurf
       #the status of a taxon change: draft, withdrawn or committed
@@ -8215,6 +8438,7 @@ de:
           Leute, bitte <a href="mailto:%{help_email}">kontaktieren Sie uns</a>.
         block_desc_there_are_two_exceptions: |
           Es gibt zwei Situationen, in denen das Blockieren die Interaktion nicht verhindert:
+        block_desc_comments_on_taxon_flags: Kommentare zu von dir erstellten Taxon-Meldungen
         common_scientific_name_display_order: Reihenfolge für wissenschaftliche/ Trivialnamen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wenn du deine Meinung änderst, kannst du jederzeit
@@ -8461,13 +8685,13 @@ de:
           identify_desc: Pflanzen, Tiere, Pilze und mehr
           #Description of what users can Track
           #Read as "{Track} species you've seen worldwide"
-          track_desc: Arten, die du weltweit gesehen hast
+          track_desc: über die Arten, die du beobachtest hast
           #Description of where users can Contribute
           #Read as "{Contribute} to real science"
           contribute_desc: für die Forschung
           #Description of what users can Discover
           #Read as "{Discover} nature nearby"
-          discover_desc: Natur in der Nähe
+          discover_desc: und die Natur in der Umgebung erkunden
           #Description of what users can Learn
           #Read as "{Learn} from a global community of naturalists"
           learn_desc: durch eine weltweite Gemeinschaft von Naturbeobachtern
@@ -8555,7 +8779,7 @@ de:
           fachetti_title: Umwelttechniker und Hobbyfotograf, Brasilien
           #Quote from the testimonial author (last name Velazco)
           velazco_quote: >
-            Egal, wo auf der Welt Sie sich befinden, ob Sie einen Doktortitel haben oder einfach nur die Natur lieben – iNaturalist bringt Sie der Natur und vielen anderen Naturforschern näher.
+            Egal, wo auf der Welt du dich befindest, ob du einen Doktortitel hast oder einfach nur die Natur liebst – iNaturalist bringt dich der Natur näher und mit mit vielen anderen Naturforschern zusammen.
           #Job title and location of the testimonial author (last name Velazco)
           velazco_title: Biologe, Mexiko
         everyone:
@@ -8896,6 +9120,7 @@ de:
         #announcement should be shown on
         site_ids: Website-IDs
         prefers_exclude_monthly_supporters: Monatliche Unterstützer ausschließen
+        clients: Kunden
         #Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: Startdatum des Spenders ausschließen
         #End of a date range that the viewer must not have donated in to see the announcement
@@ -8929,6 +9154,8 @@ de:
         user_created_start_date: Datum der frühesten Benutzeranmeldung
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Datum der letzten Benutzeranmeldung
+        #Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Eingebettete Widgets von Fundraiseup aktivieren
       assessment:
         description: Beschreibung
       assessment_section:
@@ -8967,6 +9194,8 @@ de:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Begründung
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Bearbeitungsgrund
       observation:
         description: Bemerkungen
         geo_x: Rechtswert
@@ -8995,6 +9224,8 @@ de:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Vertraulich
+      place_taxon_name:
+        position: Position
       post:
         title: Titel
         body: Text
@@ -9002,6 +9233,8 @@ de:
         title: Titel
         project_icon: Projektsymbol
         project_type: Projekttyp
+        preferred_count_by: Bevorzugte Zählung nach
+        prefers_count_from_list: Bevorzugt die Zählung aus der Liste
         description: Beschreibung
         end_time: Endzeit
         event_url: Event registrierungs URL
@@ -9026,6 +9259,7 @@ de:
         parent_id: übergeordnet
         place_type: Gebiets-Typ
         prefers_check_lists: Checklisten erlaubt?
+        woeid: WOEID
       site:
         logo: Wortzeichen
         logo_email_banner: Email-Banner
@@ -9036,6 +9270,7 @@ de:
         citation: Zitierung
       taxon:
         ancestry: Ancestry
+        auto_photos: Automatische Fotos
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Schutzstatus
         #Datetime this taxon was featured for display on /taxa
@@ -9044,6 +9279,9 @@ de:
         iconic_taxon_id: Symboltaxon-ID
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktiv?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Ikonisch?
         locked: Gesperrt
         name: Name
         #External source of the taxon, e.g. Catalogue of Life
@@ -9145,6 +9383,23 @@ de:
           one: "%{count} Fehler verhinderte das Speichern von %{model}"
           other: '%{count} Fehler verhinderten das Speichern von %{model}'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this text, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: muss für die angegebene Platzierung gültig sein
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: muss für die angegebene Zielgruppe gültig sein
         application:
           attributes:
             redirect_uri:
@@ -9241,6 +9496,10 @@ de:
             place_geometry:
               is_too_large_to_edit: ist zu groß zum Bearbeiten
               is_too_large_to_import: ist zu groß zum importieren
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: ist zu groß oder kompliziert, um sie vor dem Timeout zu verarbeiten
               contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
               cannot_be_blank: darf nicht leer sein
               invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
@@ -9266,6 +9525,11 @@ de:
             user:
               must_be_on_site_long_enough: |
                 muss sich vor mehr als 24 Stunden registriert haben, um zu veröffentlichen. Wir haben viele Spammer, und dies ist eine Art mit ihnen umzugehen. Du kannst immer noch einen Entwurf speichern, und wenn du die Seite in einem Tag immer noch benutzt, kannst du den Post veröffentlichen.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: Das Startdatum muss vor dem Enddatum liegen
         project_fave:
           attributes:
             base:
@@ -9323,6 +9587,18 @@ de:
               bad_format: |
                 kann nur lateinische Standardzeichen, Bindestriche, Leerzeichen und
                 × enthalten; beachte bitte, dass strittige Taxa und Kultivare nicht erlaubt sind
+              #Error message trying to change name for a taxon coarser than species
+              coarser_than_species: "Namensänderungen sind für Ränge, die gröber als Arten sind, nicht erlaubt"
+              #Error message trying to change name like this Taricha torosa x granulosa
+              hybrid_formulas: "Namensänderungen sind für Hybrid-Formeln nicht erlaubt"
+              #Error message trying to change the genus part of a ssp or sp
+              genus_cannot_change: "Die Gattung kann sich nicht ändern"
+              #Error message trying make major changes to a species name other than minor changes or 'x'/'×' removal or '×' addition
+              nonstandard_species_marker_only: "Nicht-standardisierter Artname: Nur das Entfernen von 'x'/'×' oder das Hinzufügen von '×' ist erlaubt"
+              #Error message trying make major changes to sp epithet
+              specific_epithet_similar: "Der spezifische Beiname muss ähnlich sein (nur kleiner Tippfehler/Geschlecht)"
+              #Error message trying make major changes to the ssp epithet
+              first_letter_of_epithet_cannot_change: "Der erste Buchstabe eines Beinamens kann sich nicht ändern."
         taxon_change:
           attributes:
             base:
@@ -9594,6 +9870,8 @@ de:
         language_label: "Sprache"
       summary_list:
         feedback_toggle: "Feedback zu ID-Zusammenfassungen"
+      summary_feedback:
+        sign_in_tooltip: "Melde dich an, um über diese Zusammenfassung abzustimmen"
       summary_item:
         disclaimer: "Diese Zusammenfassung der Benutzerkommentare von iNaturalist wurde von der KI generiert und ist möglicherweise falsch. Du kannst uns durch dein Feedback helfen, diese Zusammenfassung zu verbessern."
         copy_link: "Link zu dieser Zusammenfassung kopieren"

@@ -1181,6 +1181,9 @@ class TaxaController < ApplicationController
       response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end
+    @wikipedia_throttled = @taxon.shows_wikipedia? &&
+      ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) &&
+      wikipedia_recently_throttled?
     @description&.force_encoding( "UTF-8" )
     respond_to do | format |
       format.html { render partial: "description" }
@@ -1211,6 +1214,11 @@ class TaxaController < ApplicationController
       error_text = e.message
     end
     if summary.blank?
+      if wikipedia_recently_throttled?
+        render status: 429, plain: t( :wikipedia_summary_throttled )
+        return
+      end
+
       error_text ||= "Could't retrieve the Wikipedia " \
         "summary for #{@taxon.name}.  Make sure there is actually a " \
         "corresponding article on Wikipedia."
@@ -1314,6 +1322,10 @@ class TaxaController < ApplicationController
   end
 
   private
+
+  def wikipedia_recently_throttled?
+    WikipediaService.new( locale: I18n.locale ).api_endpoint&.recently_throttled? || false
+  end
 
   def build_edit_ivars
     @observations_exist = @taxon.observations_count.positive?

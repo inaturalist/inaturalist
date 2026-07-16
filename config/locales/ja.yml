@@ -357,6 +357,8 @@ ja:
   added_by: '追加者:'
   added_by_user_on_date_html: "%{user}さんが%{date}に追加しました"
   added_on_datetime: "追加日時%{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: 追加されたロール：
   added_to_favorites_html: |
     <a href="%{url}">お気に入り</a>に追加しました
   adding: "追加しています..."
@@ -1182,6 +1184,7 @@ ja:
   copy_and_paste_the_following_code_to: この評価を別のウェブページに埋め込めるには、以下のコードをコピーし、貼り付けてください。
   copy_and_paste_this_into_your_own_html: こちらをコピーし、自分のHTMLの中に貼り付けしてご利用ください。
   copy_guide_taxon_to: ガイド分類群を次の場所にコピーする：
+  copy_to_clipboard: クリップボードにコピー
   copied!: コピーしました！
   copyright:
     some_rights_reserved: いくつかの権利を保有
@@ -1212,6 +1215,10 @@ ja:
   couldnt_change_your_password: "パスワードを変えることができませんでした：%{e}"
   couldnt_find_a_user_matching_x_param: "%{id}というユーザーが見つかりません"
   couldnt_find_that_taxon: お探しのタクソンが見つかりません
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: 降順カウント
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: 昇順カウント
   create: 作成
   create_a_guide: ガイドを作成
   create_a_new_field: 新規フィールドを作成
@@ -1377,8 +1384,20 @@ ja:
   dashboard_pilots:
     #button asking to participate in a pilot
     pilot_participate: "はい！参加したいです。"
+    #state of button asking to participate in a pilot after participating
+    pilot_stop: "参加をやめる"
+    #link to a blog post
+    pilot_read_more: "詳しくは当ブログをご覧ください。"
     #title for a pilot asking users to help fill species gaps by identifiying needs_id observations of species not in the computer vision model
     gaps_id_pilot_title: "識別ギャップパイロット:IDが必要な種を指名手配"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_id_pilot_condition_1: "まだコンピュータビジョンモデルには含まれていません"
+    #description of a pilot explaining the instructions, the first condition for observations to be included in the list
+    gaps_obs_pilot_condition_1: "まだコンピュータビジョンモデルには含まれていません"
+    #instructions once people have participated explaining the list of observations, the first condition for observations in the list
+    gaps_obs_pilot_current_condition_1: "まだコンピュータビジョンモデルでは非対応"
+    #label of link to explore species view
+    gaps_obs_pilot_browse: "種を見る"
   data_deficient: データ不足
   data_quality: データ品質
   data_quality_assessment: データ品質評価
@@ -1781,6 +1800,9 @@ ja:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 階級指定
   except: を除いて
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: 除外
   exclude_places: 場所を除く
   exclude_projects: プロジェクトを除く
   exclude_taxa: 分類群を除く
@@ -2168,7 +2190,6 @@ ja:
   identification_saved: "判定が保存されました！"
   #Notice when an identification has been hidden by moderators
   identification_hidden: 同定は非表示
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: 同定を非表示
   #Notification when an identification has been updated
   identification_updated: 同定が更新されました
@@ -2283,6 +2304,8 @@ ja:
   introduced_in_place: "%{place}の外来種"
   #Error message shown when a date format is invalid
   invalid_date: 無効な日付
+  #Error message shown when a time format is invalid
+  invalid_time: 無効な時間
   invitation: 招待
   invite: 招待する
   invite_people: ユーザーを紹介する
@@ -2349,6 +2372,8 @@ ja:
   large: 大
   last_active_with_date: "最後の活動: %{date}"
   last_confirmed_observation: 最後に確認された観察記録
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: 最終更新者
   last_observation: 最終観察記録
   last_observation_caps: 最終観察記録
   last_seen: 最終観察時
@@ -2771,6 +2796,9 @@ ja:
   misidentifications: 誤同定
   misleading_or_illegal_content_html: |
     紛らわしいまたは違法な内容、人種及び民族に対する差別的な内容、など
+  misleading_or_illegal_content_html2: |
+    誤解を招く内容や違法な内容、人種的・民族的な侮蔑表現など。不適切な表現についての詳細はこちらをご覧ください：
+    <a href="https://help.inaturalist.org/en/support/solutions/articles/151000169915">FAQ</a>.
   #Label shown when a date has not been entered
   missing_date: 日付がありません
   mobile: モバイル
@@ -2920,6 +2948,7 @@ ja:
   needs_id_: 要同定
   needs_id_expandable_html: "<span class='full'>要</span>ID"
   needs_id_tooltip_html: '"要同定"の観察記録は、メディア、位置、日付が特定されていますが、正確な同定にするためにコミュニティの合意がさらに必要です。<a href="https://www.inaturalist.org/pages/help#quality">品質グレードの詳細</a>'
+  needs_id_tooltip_html2: '「要同定」の観察記録は、メディア、位置、日付データが揃っていますが、正確な同定にするためにコミュニティの合意がさらに必要なものです。<a href="https://www.inaturalist.org/pages/help#quality">品質グレードの詳細</a>'
   network_affiliation_prompt_from_other_site_html: |
     所属を<strong>%{other_site_name}</strong> から<strong>%{site_name}</strong> に変更しますか?
   #Column header in a table listing iNaturalist Network members
@@ -4211,6 +4240,8 @@ ja:
   ranks_lowercase_zoosubsection: 亜節
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: 上科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: 上科
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: 科
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
@@ -4348,6 +4379,7 @@ ja:
   research_grade: 研究用
   research_grade_short_html: "研究<span class='full'>用データ</span>"
   research_grade_tooltip_html: '"研究用"グレードの観察記録は、メディア、位置、日付、そして正確な同定（通常は種レベル）についてコミュニティの合意が得られています。<a href="https://www.inaturalist.org/pages/help#quality">品質グレードの詳細</a>'
+  research_grade_tooltip_html2: '「研究用」グレードの観察記録は、メディア、位置、日付、そして同定（通常は種レベル）についてコミュニティの合意が得られています。しかし、名称は便宜的なもので、誤同定も存在します。その場合、コミュニティが否定的な同定を追加することで多数決により修正することができます。<a href="https://www.inaturalist.org/pages/help#quality">品質グレードの詳細</a>'
   research_grade_observations_have: '"研究用グレード"の観察記録には、日付、写真、座標、コミュニティが支持する同定が含まれています。クリックすると、データ品質評価を見ることができます。'
   research_grade_qualification: 研究用グレードの資格
   #Label for a button that re-sends the account confirmation email and signs
@@ -4371,6 +4403,7 @@ ja:
     1ページあたりの検索結果数が10,000を超えています。フィルタを適用して数を減らしてみてください。
   review_all: すべてを確認済みに
   reviewed: 確認済み
+  revoke_caps: 取り消す
   revoke_privacy_consent_warning: "この同意を取り消す唯一の方法は、お客様のアカウントおよび関連するすべてのデータを削除することです。"
   rg_observations: 研究用グレード観察記録のみ
   role: 役割
@@ -6787,6 +6820,30 @@ ja:
           これはかなりの混乱を引き起こす可能性があるので、場合によってはフラグを立てるなどして、慎重に使用してください。
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>出版物や研究報告等で使用実績のある名称を追加してください。混乱を招くので、絶対にiNaturalist上で新しい名称を提唱しないでください。</p></li>
+          <li><p>基本的に、名称が重複しないようにしてください。
+          しかし、全く異なる分類群で偶然名前が同じ場合は除きます。
+          たとえばゴイサギ（鳥）とゴイサギ（二枚貝）は両方存在していても問題ありません。
+          標準和名ではなく、市場名や漢字表記を追加することも可能です。しかし、その場合、必ず「この分類群ではこの一般名をデフォルトで表示すべきですか？」欄で「偽」と選択してください。</p></li>
+          <li><p>上位分類群と下位分類群の名称が重複する場合、たとえば「キジバト」「亜種キジバト」などとして区別し、同一にならないように注意してください。</p></li>
+          <li>
+          <p>
+          「絶滅危惧種」「シノニムの可能性がある」など、学名以外の情報を追加しないでください。
+          </p>
+          </li>
+          <li>
+          <p>
+          新たな言語名を追加する場合、その言語名は（その言語での言語名の名称ではなく）、英語で表記してください。
+          </p>
+          </li>
+          <li>
+          <p>和名を追加する場合、場所欄には「Japan」と入力してください。
+          <a class="readmore" href="/pages/translate">iNatの翻訳について</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           場所に名前を追加して、その場所のサイトやユーザーに優先順位をつけます。1つの場所に複数の名前がある場合は、 <a href="%{url}">ここ</a>で優先順位をつけることができます。 <strong>名前が使われているすべての場所に名前を追加するのではなく</strong>、他の場所と競合する場所にだけ名前を追加してください。
     users:

@@ -55,6 +55,10 @@ class UmbrellaMap extends Component {
       place: { id: chunk },
       name: "Places"
     } ) );
+    const observationLayerParams = _.omit( {
+      ...project.search_params,
+      color: "iconic"
+    }, "any" );
     const totalBounds = project.recent_observations && project.recent_observations.total_bounds;
     return (
       <Grid>
@@ -64,7 +68,7 @@ class UmbrellaMap extends Component {
             <TaxonMap
               placement="projects-show-umbrella"
               key={`umbrellamap${project.id}`}
-              observationLayers={[{ captive: "any", ...project.search_params, color: "iconic" }]}
+              observationLayers={[observationLayerParams]}
               showAccuracy
               enableShowAllLayer={false}
               clickable={false}

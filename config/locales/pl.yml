@@ -2522,7 +2522,6 @@ pl:
   identification_saved: "Oznaczenie zapisane!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Oznaczenie ukryte
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: Oznaczenie odkryte
   #Notification when an identification has been updated
   identification_updated: Oznaczenie zaktualizowane!
@@ -2965,7 +2964,7 @@ pl:
   log_out_caps: WYLOGUJ
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Wylogować z %{site_name}?"
-  log_scale_label: Dziennik
+  log_scale_label: Logarytmiczna
   #Adjectival phrase describing state of being logged in
   logged_in: Zalogowany
   #Adjectival phrase describing state of being logged out
@@ -3577,6 +3576,8 @@ pl:
   photo_browser: Przeglądarka zdjęć
   photo_by_id_attribution: "Zdjęcie %{id}, %{attribution}"
   photo_deleted: Zdjęcie usunięte
+  #Message displayed after a photo has been hidden
+  photo_hidden: Zdjęcie ukryte
   photo_licensing: Licencja zdjęć
   photo_type: Typ zdjęcia
   photo_urls_repaired: Adresy URL zdjęć naprawione
@@ -4045,7 +4046,11 @@ pl:
   quality_grade_colon: "Stopień jakości:"
   query: Zapytanie
   radius: Promień (m)
+  radius_km: Promień (km)
   radius_value: "Promień (m): %{radius}"
+  random: Losowo
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  rank: Ranga
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
@@ -4256,7 +4261,7 @@ pl:
   required_field: pole wymagane
   research_: Badawczy
   research_grade: Stopień badawczy
-  research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
+  research_grade_short_html: "S<span class='full'>topień </span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
   #Label for a button that re-sends the account confirmation email and signs
   #you out until you do
@@ -4489,8 +4494,30 @@ pl:
   suggest_an_identification: Zasugeruj oznaczenie
   suggestions: Sugestie
   summary: Podsumowanie
+  #a select form option indicating a user will be suspended for one day
+  suspension_duration_1_day: 1 dzień
+  #a select form option indicating a user will be suspended for three days
+  suspension_duration_3_days: 3 dni
+  #a select form option indicating a user will be suspended for one week
+  suspension_duration_1_week: 1 tydzień
+  #a select form option indicating a user will be suspended for one month
+  suspension_duration_1_month: 1 miesiąc
+  #a select form option indicating a user will be suspended for two months
+  suspension_duration_2_months: 2 miesiące
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Powód edycji
+  #predefined reasons for user suspension which are listed to curators in the user suspension form
+  suspension_reasons:
+    #reason displayed to users who have been suspended for posting hate speech
+    hate_speech: Mowa nienawiści
+    #reason displayed to users who have been suspended for posting of insults or threats
+    insults_or_threats: Obelgi lub groźby
+    #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
+    sexually_explicit_content: Treści o charakterze seksualnym
   suspend_user: Zawieś użytkownika
   sync: Zsynchronizować?
+  synonyms: Synonimy
   tagging: 'Tagowanie...'
   tags: Tagi
   take_me_flickr!: Tak, zabierz mnie do Flickr!
@@ -4607,8 +4634,10 @@ pl:
   terms_service: Warunki użytkowania
   terrain: teren
   text: Tekst
+  thank_you!: Dziękujemy!
   thanks!: Dzięki!
   thanks_from_all_of_us_here_at: Podziękowania od nas wszystkich tutaj w
+  that_account_is_already_connected: To konto jest już połączone z innym użytkownikiem
   that_photo_doesnt_exist: To zdjęcie nie istnieje.
   that_observation_doesnt_exist: Ta obserwacja nie istnieje.
   that_observation_doesnt_have_any_photos: "Ta obserwacja nie ma żadnych zdjęć."
@@ -4909,6 +4938,7 @@ pl:
   view: Zobacz
   view_all: Zobacz wszystkie
   view_all_caps: ZOBACZ WSZYSTKO
+  view_all_fields: Zobacz wszystkie pola
   view_all_flags: Zobacz wszystkie zgłoszenia
   view_all_members: Zobacz wszystkich użytkowników
   view_all_observations: Zobacz wszystkie obserwacje
@@ -5349,6 +5379,9 @@ pl:
       new:
         are_you_sure_you_want_to_delete: Czy jesteś pewien, że chcesz usunąć ten projekt?
         data_visualizations: Wizualizacje danych
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Data
         delete_project: Usuń projekt
         display_project_name: Wyświetlaj nazwę projektu
         duplicate_project: Duplikuj projekt
@@ -5523,10 +5556,20 @@ pl:
     taxon_changes:
       move_children_desc: |
         Taksony podrzędne taksonu wejściowego, które są rodzajami lub taksonami wyższej rangi, zostaną przeniesione do taksonu wyjściowego; gatunki, podgatunki, odmiany itd. zostaną zastąpione odpowiadającymi im taksonami z nową nazwą rodzaju lub gatunku.
+      #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restore: Przywróć
+      #in process of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
+      restoring: przywracanie
+      #act of changing a taxon change status from draft to withdrawn meaning abandoned
+      withdraw: Wycofaj
       #state of a pending taxon change
       pending: Oczekujące
       #state of a approved taxon change
       approved: zatwierdzony
+      #state of a draft taxon change
+      draft: szkic
+      #the status of a taxon change: draft, withdrawn or committed
+      status: stan
       #for taxon changes requiring approval votes, a message indicating to the user that they voted
       vote_added: Głos dodany
       #for taxon changes requiring approval votes, a message indicating to the user that they removed their vote
@@ -5727,6 +5770,8 @@ pl:
           #Body text for the mantis discovery story
           mantis_body_html: >
             <span class="italic">Inimia nat</span> — w skrócie <span class="italic">I. nat</span> — to nowy w nauce gatunek modliszki znaleziony przez kobietę w Australii spacerującą po jej okolicy.
+          #Alt text for the praying mantis story image
+          inat_img_alt: "Modliszka"
           #Heading for the story about volunteers protecting amphibians
           amphibian_heading: Ochrona lokalnych ekosystemów
           #Body text for the amphibian protection story
@@ -5737,6 +5782,8 @@ pl:
         observation:
           #Heading for the sample observation section
           heading: Każda obserwacja opowiada historię
+          #Alt text for the sample observation photo
+          photo_alt: "Zielona żaba na liściu"
         stats:
           #Description label for the observations statistic
           #Prepended by count, e.g. "350M+ observations contributing to biodiversity science"
@@ -5993,6 +6040,26 @@ pl:
         few: '%{count} sekundy'
         many: '%{count} sekund'
         other: '%{count} sekundy'
+      #the number of hours for distance in time from now
+      x_hours:
+        #a singular hour
+        one: "%{count} godzina"
+        #multiple hours (plural)
+        few: "%{count} godziny"
+        #multiple hours (plural)
+        many: "%{count} godzin"
+        #multiple hours (plural)
+        other: "%{count} godziny"
+      #the number of years for distance in time from now
+      x_years:
+        #a singular year
+        one: "%{count} rok"
+        #multiple years (plural)
+        few: "%{count} lata"
+        #multiple years (plural)
+        many: "%{count} lat"
+        #multiple years (plural)
+        other: "%{count} roku"
     countdown_x_days:
       one: dzień
       few: dni
@@ -6666,8 +6733,16 @@ pl:
         Chromista: Chromisty
   id_summaries:
     demo:
+      filters:
+        language_label: "Język"
+      summary_feedback:
+        sign_in_tooltip: "Zaloguj się, aby zagłosować na to podsumowanie"
+        submitting_tooltip: "Przesyłanie opinii..."
       summary_item:
+        copy_link: "Skopiuj link do tego podsumowania"
         view_comment: "Zobacz komentarz"
+      taxon_detail:
+        last_updated: "Ostatnia aktualizacja"
       taxa_list:
         group_labels:
           animalia: "Inne zwierzęta"

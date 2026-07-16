@@ -1,4 +1,28 @@
 es-CR:
+  x_comments:
+    one: '%{count} comentario'
+    other: '%{count} comentarios'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> comentario'
+    other: '<span class="count">%{count}</span> comentarios'
+  x_faves:
+    one: '%{count} favorito'
+    other: '%{count} favoritos'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> marca resuelta"
+    other: "<span class='count'>%{count}</span> marcas resueltas"
+  x_identifications:
+    one: '%{count} identificacione'
+    other: '%{count} identificaciones'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> identificacione'
+    other: '<span class="count">%{count}</span> identificaciones'
+  x_identifications_:
+    one: '%{count} Identificacione'
+    other: '%{count} Identificaciones'
+  x_languages:
+    one: "%{count} idioma"
+    other: "%{count} idiomas"
   add_annotations_for_controlled_attribute:
     evidence_of_presence: Añadir Anotaciones para "Evidencia de Presencia"
   add_evidence_of_presence_organism_annotation: 'Añadir anotación "Evidencia de Presencia: organismo"'
