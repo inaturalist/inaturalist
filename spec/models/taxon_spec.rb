@@ -399,26 +399,42 @@ describe Taxon, "updating" do
       allow( wikipedia ).to receive( :page_details ).and_return( nil )
     end
 
-    it "leaves wikipedia_summary untouched when the endpoint was recently throttled" do
+    it "leaves wikipedia_summary untouched when the request was throttled or returned no response" do
+      allow( wikipedia ).to receive( :content_state ).and_return( :unknown )
+      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to be_nil
+    end
+
+    it "stores a date string in wikipedia_summary when Wikipedia has no article" do
+      allow( wikipedia ).to receive( :content_state ).and_return( :absent )
+      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to match( /^\d{4}-\d{2}-\d{2}$/ )
+    end
+
+    it "records the no-article sentinel even when the endpoint was recently throttled by another request" do
+      # Regression (persistent "throttled" on no-article pages): a definitive
+      # no-article result must still be recorded so the taxon stops re-fetching
+      # on every page view, which otherwise sustains the throttling in a loop.
       endpoint.update( last_throttled_at: 1.minute.ago )
+      allow( wikipedia ).to receive( :content_state ).and_return( :absent )
       taxon.set_wikipedia_summary( wikipedia: wikipedia )
-      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to be_nil
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to match( /^\d{4}-\d{2}-\d{2}$/ )
     end
 
-    it "leaves wikipedia_summary untouched when throttled by body even with a 200 status" do
-      cache = ApiEndpointCache.make!( api_endpoint: endpoint, request_began_at: 1.minute.ago )
-      cache.cache_response(
-        double( "Net::HTTPResponse", code: "200", body: "You are making too many requests." )
+    it "records the no-article sentinel from a cached response while the endpoint is throttled, without re-fetching" do
+      # End-to-end version of the regression using the real service + cache: the
+      # endpoint is throttled, but this page has a cached "no article" response,
+      # so we read it and record the sentinel rather than hammering Wikipedia.
+      service = WikipediaService.new
+      service.api_endpoint.update( last_throttled_at: 1.minute.ago )
+      ApiEndpointCache.make!(
+        api_endpoint: service.api_endpoint,
+        request_url: "https://en.wikipedia.org/w/api.php?page=Animalia&redirects=true&action=parse&format=xml",
+        status_code: 200, success: true, response: "<parse></parse>",
+        request_began_at: 1.minute.ago, request_completed_at: 1.minute.ago
       )
-      # machinist's make! reloads the cache, so cache_response stamped a fresh
-      # copy of the endpoint; pick up last_throttled_at on this instance
-      endpoint.reload
-      taxon.set_wikipedia_summary( wikipedia: wikipedia )
-      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to be_nil
-    end
-
-    it "stores a date string in wikipedia_summary when not throttled" do
-      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( MetaService ).not_to receive( :fetch_with_redirects )
+      taxon.set_wikipedia_summary
       expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to match( /^\d{4}-\d{2}-\d{2}$/ )
     end
   end

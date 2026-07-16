@@ -1537,7 +1537,15 @@ class Taxon < ApplicationRecord
     end
 
     if details.blank? || details[:summary].blank?
-      if locale.to_s =~ /^en-?/ && !w.api_endpoint.recently_throttled?
+      # Record a "checked on this date, no article" sentinel only when we
+      # actually reached Wikipedia and it had no article for this taxon
+      # (content_state :absent). We must not write it when the request was
+      # throttled or otherwise returned no response (:unknown), or we'd cache a
+      # false "no article" — and, crucially, skipping the write purely because
+      # the endpoint was recently throttled by some *other* request left these
+      # taxa permanently blank, re-fetching on every page view and sustaining
+      # the throttling in a feedback loop.
+      if locale.to_s =~ /^en-?/ && w.content_state == :absent
         Taxon.where( id: self ).update_all( wikipedia_summary: Date.today.to_s )
       end
       return nil

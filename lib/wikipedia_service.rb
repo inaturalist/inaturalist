@@ -3,6 +3,15 @@
 class WikipediaService < MetaService
   attr_accessor :base_url
 
+  # The outcome of the most recent parsed_response, so callers can tell "we
+  # reached Wikipedia and there is no article" (:absent) apart from "we couldn't
+  # reach Wikipedia" (:unknown — e.g. throttled or timed out). Both otherwise
+  # look identical (page_details/summary return nil for each).
+  #   :article — a page with article content
+  #   :absent  — a valid response with no article content
+  #   :unknown — no response at all (throttled/in progress/timed out)
+  attr_reader :content_state
+
   CACHE_HOURS = 720
 
   def initialize( options = {} )
@@ -68,13 +77,23 @@ class WikipediaService < MetaService
   end
 
   def parsed_response( title, options = {} )
+    @content_state = :unknown
     parsed = parse( options.merge( page: title, redirects: true ) )
     # parse can return nil when the request is in progress or was throttled
     return unless parsed
 
-    parsed.at( "text" ).try( :inner_text ) ? parsed : nil
+    if parsed.at( "text" ).try( :inner_text )
+      @content_state = :article
+      parsed
+    else
+      # We reached Wikipedia and it has no article for this title.
+      @content_state = :absent
+      nil
+    end
   rescue Timeout::Error => e
     Rails.logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"
+    @content_state = :unknown
+    nil
   end
 
   def sanitizer
