@@ -244,6 +244,9 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 20px 0;
+  @media ( max-width: $md-max ) {
+    max-width: 400px;
+  }
 
   .LeadersGrid {
     display: grid;
@@ -753,6 +756,9 @@ $introducedColor: #E4007C;
 #main-tabs {
   display: flex;
   @include container-padding;
+  @media ( max-width: $md-max ) {
+    display: none;
+  }
 }
 #main-tabs.nav-tabs > li {
   float: none;
@@ -942,6 +948,9 @@ $introducedColor: #E4007C;
 }
 
 .IdentificationsTab {
+  @media ( max-width: $md-max ) {
+    padding: 0;
+  }
   .ident-layout {
     display: flex;
     flex-wrap: wrap;
@@ -971,6 +980,14 @@ $introducedColor: #E4007C;
   }
   .btn-group.identification-categories {
     margin-bottom: 10px;
+    @media ( max-width: $md-max ) {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      .btn {
+        flex: 1 1 auto;
+      }
+    }
   }
   .search {
     margin-bottom: 40px;
@@ -1007,6 +1024,12 @@ $introducedColor: #E4007C;
     }
     select[name="sort"] {
       min-width: 195px;
+      @media ( max-width: $md-max ) {
+        min-width: 0;
+        width: 100%;
+        margin-left: 0;
+        margin-top: 5px;
+      }
     }
   }
   .annotation-search {
@@ -1039,6 +1062,9 @@ $introducedColor: #E4007C;
     margin-bottom: 25px;
     .contents {
       display: flex;
+      @media ( max-width: $md-max ) {
+        flex-direction: column;
+      }
     }
     .preview {
       width: 120px;
@@ -1052,10 +1078,21 @@ $introducedColor: #E4007C;
         font-size: 100px;
         color: #ccc;
       }
+      @media ( max-width: $md-max ) {
+        width: 100%;
+        margin-bottom: 10px;
+        .image {
+          width: 100%;
+          height: 200px;
+        }
+      }
     }
     .content {
       flex: 1;
       padding-left: 10px;
+      @media ( max-width: $md-max ) {
+        padding-left: 0;
+      }
     }
     .panel {
       margin-bottom: 0px;
@@ -1401,50 +1438,4 @@ table.regional-names {
   // .bb-xgrid-line line {
   //   stroke-dasharray: 1 2;
   // }
-}
-
-
-@media ( max-width: $md-max ) {
-  #main-tabs {
-    display: none;
-  }
-  .TaxonPageTabs {
-  }
-
-  .IdentificationsTab {
-    padding: 0;
-    .btn-group.identification-categories {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      .btn {
-        flex: 1 1 auto;
-      }
-    }
-    .search select[name="sort"] {
-      min-width: 0;
-      width: 100%;
-      margin-left: 0;
-      margin-top: 5px;
-    }
-    .Identification {
-      .contents {
-        flex-direction: column;
-      }
-      .preview {
-        width: 100%;
-        margin-bottom: 10px;
-        .image {
-          width: 100%;
-          height: 200px;
-        }
-      }
-      .content {
-        padding-left: 0;
-      }
-    }
-  }
-  .Leaders {
-    max-width: 400px;
-  }
 }
