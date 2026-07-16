@@ -748,30 +748,6 @@ $introducedColor: #E4007C;
 }
 .HighlightsTab {
   padding-top: 20px;
-
-  .Carousel {
-    --carousel-item-width: 200px;
-    padding-bottom: 20px;
-
-    @media ( max-width: $md-max ) {
-      --carousel-item-width: 100px;
-    }
-  }
-  .carousel-item {
-    aspect-ratio: 3 / 4;
-    .TaxonThumbnail {
-      height: 100%;
-      > a {
-        flex: 3;
-        .photo {
-          height: 100%;
-        }
-      }
-      .caption {
-        flex: 1;
-      }
-    }
-  }
 }
 
 #main-tabs {
@@ -1318,17 +1294,6 @@ body > [role="dialog"] .PhotoChooserModal {
   content: '';
 }
 .AkaNames .name { color: black; }
-.MapTab {
-  .Carousel {
-    .carousel-item {
-      aspect-ratio: 1 / 1;
-    }
-
-    .CoverImage {
-      height: 100%;
-    }
-  }
-}
 .iconified-list-group .list-group-item {
   display: flex;
 }
