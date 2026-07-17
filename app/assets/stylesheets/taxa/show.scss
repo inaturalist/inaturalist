@@ -750,6 +750,9 @@ $introducedColor: #E4007C;
   margin-left: 10px;
 }
 .HighlightsTab {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   padding-top: 20px;
 }
 
