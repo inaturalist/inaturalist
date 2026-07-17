@@ -55,10 +55,10 @@ class UmbrellaMap extends Component {
       place: { id: chunk },
       name: "Places"
     } ) );
-    const observationLayerParams = _.omit( {
+    const observationLayerParams = _.omitBy( {
       ...project.search_params,
       color: "iconic"
-    }, "any" );
+    }, v => v === "any" );
     const totalBounds = project.recent_observations && project.recent_observations.total_bounds;
     return (
       <Grid>
