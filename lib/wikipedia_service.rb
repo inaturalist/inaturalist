@@ -3,7 +3,8 @@
 class WikipediaService < MetaService
   attr_accessor :base_url
 
-  CACHE_HOURS = 720
+  # 45 days
+  CACHE_HOURS = 1080
 
   def initialize( options = {} )
     super
