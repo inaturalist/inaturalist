@@ -26,6 +26,17 @@ describe MetaService do
       expect( MetaService ).to have_received( :fetch_with_redirects ).
         with( hash_including( user_agent: expected_user_agent ) )
     end
+
+    it "passes just sitename to fetch_with_redirects from fetch_request_uri" do
+      service = MetaService.new
+      service.instance_variable_set( :@endpoint, "https://example.com/api?" )
+      expected_user_agent = "#{Site.default.name}/MetaService/#{MetaService::SERVICE_VERSION}"
+      response = double( "Net::HTTPResponse", code: "200", body: "<result>ok</result>" )
+      allow( MetaService ).to receive( :fetch_with_redirects ).and_return( response )
+      service.parse( page: "Animalia" )
+      expect( MetaService ).to have_received( :fetch_with_redirects ).
+        with( hash_including( user_agent: expected_user_agent ) )
+    end
   end
 
   describe ".fetch_request_uri" do
