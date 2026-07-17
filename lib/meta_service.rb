@@ -29,6 +29,7 @@ class MetaService
     @method_param ||= "function"
     @default_params = {}
     @debug = options[:debug]
+    @user_agent = "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}"
   end
 
   attr_reader :timeout, :method_param, :service_name, :api_endpoint
@@ -50,7 +51,7 @@ class MetaService
         request_uri: request_uri,
         timeout: @timeout,
         api_endpoint: api_endpoint,
-        user_agent: USER_AGENT || "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}"
+        user_agent: @user_agent
       ) )
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
@@ -72,7 +73,7 @@ class MetaService
     return unless options[:request_uri]
 
     options[:timeout] ||= 5
-    options[:user_agent] ||= USER_AGENT || Site.default.name
+    options[:user_agent] ||= @user_agent
     if options[:api_endpoint]
       api_endpoint_cache = ApiEndpointCache.find_or_create_by(
         api_endpoint: options[:api_endpoint],

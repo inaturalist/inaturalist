@@ -5,7 +5,6 @@ class WikipediaService < MetaService
 
   # 45 days
   CACHE_HOURS = 1080
-  USER_AGENT = "#{Site.default.name}/#{SERVICE_VERSION} (#{Site.default.url}; devops@inaturalist.org)"
 
   def initialize( options = {} )
     super
@@ -24,6 +23,8 @@ class WikipediaService < MetaService
     @default_params = {
       format: "xml"
     }
+    @user_agent = "#{Site.default.name}/#{SERVICE_VERSION} (#{Site.default.url}; devops@inaturalist.org) <WikipediaService/Rails/#{SERVICE_VERSION}>"
+
     return unless subdomain.downcase == "zh"
 
     @default_params[:variant] = locale.downcase
