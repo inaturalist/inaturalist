@@ -49,15 +49,16 @@ class AdminController < ApplicationController
     @display_user ||= User.find_by_email( params[:id].downcase ) unless params[:id].blank?
     if @display_user
       @observations = Observation.page_of_results( user_id: @display_user.id )
-      geoip_response = INatAPIService.geoip_lookup( { ip: @display_user.last_ip } )
-      if geoip_response&.results && geoip_response.results.country
+      geoip_response = INatAPIService.geoip_lookup( { ip: @display_user.last_ip, fields: "all" }, v2: true )
+      geoip_result = geoip_response&.results&.first
+      if geoip_result && !geoip_result["country"].blank?
         @geoip_location = [
-          geoip_response.results.city,
-          geoip_response.results.region,
-          geoip_response.results.country
+          geoip_result["city"],
+          geoip_result["region"],
+          geoip_result["country"]
         ].join( ", " )
-        if geoip_response.results.ll
-          @geoip_latitude, @geoip_longitude = geoip_response.results.ll
+        if geoip_result["ll"]
+          @geoip_latitude, @geoip_longitude = geoip_result["ll"]
         end
       end
       @email_suppressions = [

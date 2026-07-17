@@ -1027,7 +1027,7 @@ function getMessagesCount() {
 function getHeaderCounts() {
   var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
   $.ajax({
-    url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/notification_counts",
+    url: "<%= CONFIG.node_api_url_v2 %>/users/notification_counts",
     headers: {
       Authorization: apiToken
     },

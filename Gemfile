@@ -35,7 +35,7 @@ gem "cocoon" # JY: Added to support nested attributes for assessment_sections on
 gem "concurrent-ruby", "1.3.7"
 gem "daemons"
 gem "dalli"
-gem 'damerau-levenshtein', '~> 1.3', '>= 1.3.3'
+gem "damerau-levenshtein", "~> 1.3", ">= 1.3.3"
 gem "dbf" # Needed for georuby shapefile support
 gem "delayed_job"
 gem "delayed_job_active_record", "~> 4.1.11"
@@ -67,6 +67,7 @@ gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
 gem "irwi", git: "https://github.com/inaturalist/irwi.git", ref: "ruby3"
 gem "json"
 gem "jwt", "~> 2.10.3"
+gem "kt-paperclip", git: "https://github.com/inaturalist/kt-paperclip.git", ref: "reset-original-content-type"
 gem "makara", git: "https://github.com/instacart/makara.git", ref: "9e7960558a75aed3f97ba4cbab61abb64687ec3c"
 gem "multi_json", "~> 1.15.0"
 gem "nokogiri"
@@ -84,11 +85,9 @@ gem "omniauth-rails_csrf_protection"
 gem "omniauth-soundcloud", git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem "omniauth-twitter"
 gem "optimist"
-gem "kt-paperclip", git: "https://github.com/inaturalist/kt-paperclip.git", ref: "reset-original-content-type"
 gem "parallel"
 gem "patron"
 gem "pg", "~> 1.5.9"
-gem "rqrcode", "~> 2.0"
 gem "rack-cors"
 gem "rack-mobile-detect"
 gem "rack-tracker"
@@ -107,6 +106,8 @@ gem "rgeo-proj4", "~> 3.1.1"
 gem "rgeo-shapefile"
 gem "rinku", "~> 2.0"
 gem "riparian", git: "https://github.com/inaturalist/riparian.git", ref: "rails6"
+gem "rison-rb", "0.1.0"
+gem "rqrcode", "~> 2.0"
 gem "rubyzip", "~> 2.3.0"
 gem "sass-rails"
 gem "savon" # allow to consume soap services with WSDL
@@ -145,13 +146,13 @@ group :test, :development, :prod_dev do
 end
 
 group :test, :development do
-  gem 'cypress-on-rails', '~> 1.0'
+  gem "cypress-on-rails", "~> 1.0"
 end
 
 group :development do
   # The following are required for ed25519 ssh keys
-  gem "ed25519"
   gem "bcrypt_pbkdf"
+  gem "ed25519"
 end
 
 group :test do
@@ -162,6 +163,6 @@ group :test do
   gem "rspec-rails"
   gem "shoulda-matchers"
   gem "simplecov", require: false
-  gem "webmock"
   gem "vcr"
+  gem "webmock"
 end
