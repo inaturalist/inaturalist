@@ -45,6 +45,9 @@
   cursor: pointer;
   font-family: inherit;
   box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
 .modal-btn i {
@@ -68,6 +71,7 @@
   gap: 4px;
   pointer-events: none;
   box-sizing: border-box;
+  margin-top: auto;
 }
 
 .taxon-label a {
@@ -84,6 +88,11 @@
 .taxon-label :global(.SplitTaxon > .display-name),
 .taxon-label :global(.display-names) {
   display: block;
+}
+
+.taxon-label :global(.SplitTaxon a.display-name),
+.taxon-label :global(.SplitTaxon a.secondary-name) {
+  color: white;
 }
 
 .taxon-label :global(.display-name) {
