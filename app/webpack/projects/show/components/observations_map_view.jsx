@@ -8,10 +8,10 @@ import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_conta
 
 const ObservationsMapView = ( { project, config, updateCurrentUser } ) => {
   const totalBounds = project.recent_observations && project.recent_observations.total_bounds;
-  const observationLayerParams = _.omit( {
+  const observationLayerParams = _.omitBy( {
     ...project.search_params,
     color: "iconic"
-  }, "any" );
+  }, v => v === "any" );
   return (
     <div className="ObservationsMapView">
       <Grid>
