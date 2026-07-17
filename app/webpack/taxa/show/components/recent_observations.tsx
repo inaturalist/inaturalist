@@ -40,6 +40,9 @@ const RecentObservations = ( { observations, showPhotoModal, url }: Props ) => {
         noContent={I18n.t( "no_observations_yet" )}
         items={items}
         url={url}
+        className="recent-observations-carousel"
+        titleClassName="recent-observations-title"
+        linkClassName="recent-observations-link"
       />
     </div>
   );

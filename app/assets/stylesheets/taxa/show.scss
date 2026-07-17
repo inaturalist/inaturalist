@@ -230,6 +230,24 @@
 .RecentObservations {
   padding-bottom: 20px;
 
+  @media ( min-width: $md ) {
+    .recent-observations-carousel {
+      position: relative;
+      top: -40px;
+    }
+    .recent-observations-title {
+      font-size: 18px;
+      margin-bottom: 20px;
+      border-radius: 0 2px 0 0;
+      background-color: white;
+      padding: 10px;
+      margin: 0;
+    }
+    .recent-observations-link {
+      font-size: 10px;
+    }
+  }
+
   .TaxonPhoto {
     width: 150px;
 

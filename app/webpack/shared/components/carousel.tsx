@@ -11,6 +11,9 @@ export interface CarouselProps {
   description?: string | React.ReactNode;
   noContent?: string;
   className?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+  linkClassName?: string;
 }
 
 const Carousel = ( {
@@ -20,7 +23,10 @@ const Carousel = ( {
   url,
   description,
   noContent,
-  className = ""
+  className = "",
+  titleClassName = "",
+  descriptionClassName = "",
+  linkClassName = ""
 }: CarouselProps ) => {
   const [activeIndex, setActiveIndex] = useState( 0 );
   const [trackWidth, setTrackWidth] = useState( 0 );
@@ -115,7 +121,7 @@ const Carousel = ( {
   } );
 
   const link = url && (
-    <a href={url} className={css.readmore}>
+    <a href={url} className={[css.readmore, linkClassName].filter( Boolean ).join( " " )}>
       { I18n.t( "view_all_caps" ) }
     </a>
   );
@@ -123,12 +129,16 @@ const Carousel = ( {
   return (
     <div className={`${css.carousel}${className ? ` ${className}` : ""}`}>
       { title && (
-        <div className={css.title}>
+        <div className={[css.title, titleClassName].filter( Boolean ).join( " " )}>
           { title }
           { link }
         </div>
       ) }
-      { description && <p>{ description }</p> }
+      { description && (
+        <p className={[css.description, descriptionClassName].filter( Boolean ).join( " " )}>
+          { description }
+        </p>
+      ) }
       { allItems.length === 0 && (
         <p className="text-muted text-center">{ noContent }</p>
       ) }
