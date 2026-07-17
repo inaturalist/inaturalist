@@ -1,20 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 
-interface Interaction {
-  interaction_type: string;
-  target: {
-    path?: string;
-    name: string;
-  };
-  target_taxon_external_id: string;
-}
-
-interface Props {
-  interactions?: Interaction[];
-}
-
-const InteractionsTab = ( { interactions }: Props ) => {
+const InteractionsTab = ( { interactions } ) => {
   const interactionsByType = _.groupBy( interactions || [], "interaction_type" );
   const iconicTaxonNames = [
     "Protozoa",
@@ -46,9 +35,9 @@ const InteractionsTab = ( { interactions }: Props ) => {
     );
   }
   return (
-    <div className="InteractionsTab">
-      <div className="tab-row">
-        <div className="tab-main">
+    <Grid className="InteractionsTab">
+      <Row>
+        <Col xs={8}>
           { status }
           <ul>
             { _.map( interactionsByType, ( typedInteractions, type ) => (
@@ -91,21 +80,18 @@ const InteractionsTab = ( { interactions }: Props ) => {
               </li>
             ) ) }
           </ul>
-        </div>
-        <div className="tab-side">
+        </Col>
+        <Col xs={4}>
           <h3>About Interactions</h3>
           <p>
             Most organisms interact with other organisms in some way or
             another, and how they do so usually defines how they fit into an
             ecosystem. These interactions come to us
-            from
-            {" "}
-            <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>
-            ,
+            from <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>,
             a database and webservice that combines
             interaction data from numerous sources, including iNaturalist.
             You can actually contribute to this database by adding the
-            &quot;Eating&quot;, &quot;Eaten by&quot;, and &quot;Host&quot; observation fields to
+            "Eating", "Eaten by", and "Host" observation fields to
             observations that demonstrate those interactions.
           </p>
           <h3>Learn More</h3>
@@ -139,10 +125,14 @@ const InteractionsTab = ( { interactions }: Props ) => {
               ) )
             }
           </ul>
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Grid>
   );
+};
+
+InteractionsTab.propTypes = {
+  interactions: PropTypes.array
 };
 
 export default InteractionsTab;
