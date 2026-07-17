@@ -5,7 +5,7 @@ class WikipediaService < MetaService
 
   # 45 days
   CACHE_HOURS = 1080
-  USER_AGENT = "#{Site.default.name}/#{SERVICE_VERSION} (#{Site.default.url}; help+api@inaturalist.org)"
+  USER_AGENT = "#{Site.default.name}/#{SERVICE_VERSION} (#{Site.default.url}; devops@inaturalist.org)"
 
   def initialize( options = {} )
     super
