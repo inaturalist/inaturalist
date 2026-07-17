@@ -148,7 +148,7 @@ const GalleryPreview = ( {
   ) : null;
 
   return (
-    <div className={`PhotoPreview gallery${backgroundSize === "cover" ? " cover-bg" : ""}`}>
+    <div className="PhotoPreview gallery">
       { bgImage }
       <div className="foreground-container">
         { currentPhoto }
