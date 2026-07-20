@@ -6,7 +6,7 @@
   @media (max-width: 768px) {
     display: block;
     position: relative;
-    z-index: 100;
+    z-index: 1000;
   }
 }
 
@@ -58,7 +58,7 @@
 
 .item-icon {
   color: var(--green);
-  margin-right: 6px;
+  margin-right: 10px;
 }
 
 .drawer li a,

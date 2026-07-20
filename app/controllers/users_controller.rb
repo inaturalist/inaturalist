@@ -485,6 +485,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    @responsive = true
     @has_updates = current_user.recent_notifications.count.positive?
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content

@@ -1,43 +1,40 @@
+:ruby
+  subnav_items = []
+  subnav_items << { kind: "link", value: "home",             label: t(:home),             icon: "glyphicon glyphicon-home",          href: home_path }                                                    if is_me?( user )
+  subnav_items << { kind: "link", value: "profile",          label: t(:profile),          icon: "glyphicon glyphicon-user",          href: person_by_login_path( login: user.login ) }
+  subnav_items << { kind: "link", value: "observations",     label: t(:observations),     icon: "fa fa-binoculars",                  href: observations_path( user_id: user.login, verifiable: "any", place_id: "any" ) }
+  subnav_items << { kind: "link", value: "edit_observations",label: t(:edit_observations),icon: "fa fa-pencil",                     href: observations_by_login_path( user.login ) }                      if is_me?( user )
+  subnav_items << { kind: "link", value: "calendar",         label: t(:calendar),         icon: "glyphicon glyphicon-calendar",      href: calendar_path( user.login ) }
+  subnav_items << { kind: "link", value: "ids",              label: t(:ids),              icon: "glyphicon icon icon-identification", href: identifications_by_login_path( login: user.login ) }
+  subnav_items << { kind: "link", value: "lists",            label: t(:lists),            icon: "glyphicon glyphicon-list",          href: lists_by_login_path( user.login ) }
+  subnav_items << { kind: "link", value: "journal",          label: t(:journal),          icon: "glyphicon glyphicon-book",          href: journal_by_login_path( login: user.login ) }
+  subnav_items << { kind: "link", value: "favorites",        label: t(:favorites),        icon: "glyphicon glyphicon-star",          href: faves_by_login_path( user.login ) }
+  subnav_items << { kind: "link", value: "projects",         label: t(:projects),         icon: "glyphicon glyphicon-briefcase",     href: projects_by_login_path( login: user.login ) }
+  active_value = if controller.controller_name == "users" && controller.action_name == "dashboard"
+    "home"
+  elsif controller.controller_name == "users" && controller.action_name == "show"
+    "profile"
+  elsif current_page?( observations_by_login_path( login: user.login ) )
+    "edit_observations"
+  elsif controller.is_a?( CalendarsController )
+    "calendar"
+  elsif current_page?( identifications_by_login_path( login: user.login ) )
+    "ids"
+  elsif current_page?( lists_by_login_path( user.login ) )
+    "lists"
+  elsif request.fullpath =~ /\/journal\//
+    "journal"
+  elsif current_page?( faves_by_login_path( user.login ) )
+    "favorites"
+  elsif current_page?( projects_by_login_path( user.login ) )
+    "projects"
+  else
+    "observations"
+  end
+#UserSubnavTabDrawer{ data: { items: subnav_items.to_json, selected_value: active_value } }
 %ul.nav.nav-tabs.user-subnav
-  - if is_me?( user )
-    %li{:class => ( "active" if controller.controller_name=="users" && controller.action_name=="dashboard" )}
-      = link_to home_path do
-        %span.glyphicon.glyphicon-home
-        =t :home
-  %li{:class => ( "active" if controller.controller_name=="users" && controller.action_name=="show" )}
-    = link_to person_by_login_path(:login => user.login) do
-      %span.glyphicon.glyphicon-user
-      =t :profile
-  %li
-    = link_to observations_path( user_id: user.login, verifiable: "any", place_id: "any" ) do
-      %i.fa.fa-binoculars
-      =t :observations
-  - if is_me?( user )
-    %li{:class => ( "active" if current_page?( observations_by_login_path( login: user.login ) ) )}
-      = link_to observations_by_login_path(user.login) do
-        %i.fa.fa-pencil
-        =t :edit_observations
-  %li{:class => ( "active" if controller.is_a?(CalendarsController) )}
-    = link_to calendar_path(user.login) do
-      %span.glyphicon.glyphicon-calendar
-      =t :calendar
-  %li{:class => ( "active" if current_page?( identifications_by_login_path( login: user.login ) ) )}
-    = link_to identifications_by_login_path(:login => user.login) do
-      %i.glyphicon.icon.icon-identification
-      =t :ids
-  %li{:class => ( "active" if current_page?( lists_by_login_path( login: user.login ) ) )}
-    = link_to lists_by_login_path(user.login) do
-      %span.glyphicon.glyphicon-list
-      =t :lists
-  %li{:class => ( "active" if request.fullpath =~ /\/journal\// )}
-    = link_to journal_by_login_path(:login => user.login) do
-      %span.glyphicon.glyphicon-book
-      =t :journal
-  %li{:class => ( "active" if current_page?( faves_by_login_path( login: user.login ) ) )}
-    = link_to faves_by_login_path(user.login) do
-      %span.glyphicon.glyphicon-star
-      =t :favorites
-  %li{:class => ( "active" if current_page?( projects_by_login_path( login: user.login ) ) )}
-    = link_to projects_by_login_path(:login => user.login) do
-      %span.glyphicon.glyphicon-briefcase
-      =t :projects
+  - subnav_items.each do |item|
+    %li{ class: ( "active" if item[:value] == active_value ) }
+      = link_to item[:href] do
+        %i{ class: item[:icon] }
+        = item[:label]

@@ -1,5 +1,9 @@
 @import "breakpoints";
 
+.dashboard-container .nav-tabs.user-subnav {
+  @media ( max-width: $md-max ) { display: none; }
+}
+
 .container.main {
    min-width:950px;
    width: auto !important;

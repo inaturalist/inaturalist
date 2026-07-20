@@ -27,11 +27,11 @@ const TabDrawer = ( {
   // Unique per instance so multiple drawers on one page don't collide on the DOM id.
   const [drawerId] = useState( ( ) => _.uniqueId( "tab-drawer-" ) );
 
-  const selectedLabel = items.find(
+  const selectedItem = items.find(
     ( item ): item is Exclude<TabItem, { kind: "separator" }> => (
       item.kind !== "separator" && item.value === selectedValue
     )
-  )?.label;
+  );
 
   return (
     <div className={`${css.container}${open ? ` ${css.open}` : ""}`}>
@@ -42,7 +42,10 @@ const TabDrawer = ( {
         aria-controls={drawerId}
         onClick={() => setOpen( o => !o )}
       >
-        { selectedLabel }
+        <div>
+          { selectedItem?.icon && <i className={`${selectedItem.icon} ${css["item-icon"]}`} /> }
+          { selectedItem?.label }
+        </div>
         <i className={`fa fa-chevron-${open ? "up" : "down"}`} />
       </button>
       <ul id={drawerId} className={css.drawer}>
@@ -53,7 +56,7 @@ const TabDrawer = ( {
               return <li key={item.value} className={css.separator} />;
             }
             const itemIcon = item.icon
-              ? <i className={`fa ${item.icon} ${css["item-icon"]}`} />
+              ? <i className={`${item.icon} ${css["item-icon"]}`} />
               : null;
             if ( item.kind === "link" ) {
               return (
