@@ -15,7 +15,10 @@ import {
 import { getChosenTab } from "../../shared/util";
 
 function mapStateToProps( state ) {
-  const chosenTab = getChosenTab( state.config.chosenTab, state.taxon.taxon.rank_level );
+  const chosenTab = getChosenTab(
+    state.config.chosenTab,
+    state.taxon.taxon.rank_level
+  ) || "articles";
 
   return {
     taxon: state.taxon.taxon,

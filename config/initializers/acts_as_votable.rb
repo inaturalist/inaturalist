@@ -17,6 +17,8 @@ module ActsAsVotable
     validates_uniqueness_of :vote_scope,
       scope: [:votable_type, :votable_id, :voter_type, :voter_id]
 
+    validate :exemplar_voter_must_have_permission
+
     notifies_owner_of :votable, notification: "activity",
       unless: lambda {| record |
         !record.vote_scope.blank? || record.user_id == record.votable.try( :user_id )
@@ -33,6 +35,15 @@ module ActsAsVotable
 
     def user_id
       voter_id
+    end
+
+    def exemplar_voter_must_have_permission
+      return unless votable.is_a?( ExemplarIdentification )
+
+      if user&.content_creation_restrictions? &&
+          votable.identification.user_id != user.id
+        errors.add( :base, I18n.t( :you_dont_have_permission_to_do_that ) )
+      end
     end
 
     def unsubscribable?

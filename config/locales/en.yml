@@ -1031,6 +1031,9 @@ en:
   card: Card
   casual: casual
   casual_: Casual
+  # Label for the Casual quality grade, but indicating it only includes observations that are marked
+  # casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Casual (non-wild only)
   casual_tooltip_html: '"Casual" observations are missing media, location, or a date, or do not meet the requirements of the "Research" or "Needs ID" quality grades for other reasons. <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   casual_tooltip_html2: '"Casual" observations are missing media, location, or a date, or do not meet the requirements of the "Research" or "Needs ID" quality grades for other reasons. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Learn more about quality grades</a>'
   categories: Categories
@@ -2669,6 +2672,16 @@ en:
   identification_saved: "Identification saved!"
   # Notice when an identification has been hidden by moderators
   identification_hidden: Identification hidden
+  identification_tips:
+    # Label for a menu option to nominate an identification as an ID tip
+    nominate: Nominate
+    # Label for a menu option to remove a nomination on an identification
+    remove_nomination: Remove Nomination
+    # displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} nominated this as an ID tip"
+    # displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation:
+      Nominate as an ID Tip (diagnostic characteristics that teach others to identify this organism)
   # Notice when an identification has been unhidden by moderators
   identification_unhidden: Identification unhidden
   # Notification when an identification has been updated
@@ -3491,6 +3504,8 @@ en:
   muted_users: Muted Users
   muting_description: Muting someone prevents you from being notified about any of their activity,
     including "@" mentions, messages, or comments and identifications on your observations.
+  # Label for the default site filter option on the announcements index, showing only announcements for the admin's site
+  my_site: My Site
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -5129,6 +5144,13 @@ en:
       not_external: not external
       not_internal: not internal
       error: error
+  # button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Reinstate account
+  # heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Reinstate %{user}
+  # instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Please explain why you are reinstating this account.
   relationships_user_settings: Relationships
   relationship_html: "Relationship: %{link}"
   reload_from_observations: Reload from observations
@@ -5307,6 +5329,8 @@ en:
   # translation keys like `your_identifications`. This is here in case we
   # forget to add a translation key like that.
   second_person_possessive_singular: "Your %{noun}"
+  # link above the suspension form that opens the account's moderation history
+  see_moderation_history: See moderation history
   see_something_wrong_with_taxon: See something wrong with this taxon?  Let the curators know.
   # Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5728,12 +5752,16 @@ en:
   supporting: Supporting
   # label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Suspension duration
+  # label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Suspension duration (%{link_start_tag}see guidelines%{link_end_tag})
   # a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 day
   # a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 days
   # a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 week
+  # a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 weeks
   # a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 month
   # a select form option indicating a user will be suspended for two months
@@ -5748,6 +5776,8 @@ en:
   suspension_reason_custom: Custom
   # note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Please note this reason will be displayed to the suspended user.
+  # note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Please note this reason will be displayed to the suspended account.
   # note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Please update the reason and explain why you are changing the user's suspension.
   # label for the edit reason dropdown when editing a suspension
@@ -5797,6 +5827,8 @@ en:
   suspend_until: Suspend until
   # a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Date and time in your browser's local timezone.
+  # button/menu label for suspending an account
+  suspend_account: Suspend account
   suspend_user: Suspend user
   suspend_user_html: Suspend %{user}
   suspend_user_reason_instructions_html: |
@@ -6039,6 +6071,10 @@ en:
   that_role_doesnt_exist: That role doesn't exist
   that_was_the_last_observation_matching_the_current_filters: That was the last observation matching the current filters.
   thats_not_a_real_date: That's not a real date!
+  # flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "The account %{user} has been suspended"
+  # flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "The account %{user} has been reinstated"
   the_admin_is_the_person_who: |
     The admin is the person who created the project. They can do everything
     managers and curators can do, as well as delete the project.
@@ -6166,6 +6202,9 @@ en:
   this_taxon_name_was_originally_imported: "This taxon name was originally imported from an external name provider:"
   this_taxon_was_originally_imported_from: "This taxon was originally imported from an external name provider:"
   this_user_has_been_suspended: This user has been suspended
+
+  # The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: This account has been suspended
   this_user_has_been_suspended_message: |
     If this is your account and you think this was done by mistake, please <a href="mailto:%{email}">contact us</a>.
   this_will_add_listed_taxa: This will add listed taxa from observations. This may take a while so please use sparingly and on small checklists
@@ -6707,6 +6746,8 @@ en:
   view_projects_from_place: "View projects from %{place}"
   view_sample: View Sample
   view_stats: View Stats
+  # Text for a link that takes the user to the relevant taxon details page
+  view_taxon: View Taxon
   view_taxon_change: View Taxon Change
   view_taxon_changes: View Taxon Changes
   view_taxon_framework_relationship: View taxon framework relationship
@@ -6816,6 +6857,8 @@ en:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
+  # Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: The Wikipedia summary could not be fetched right now. Please try again in 30 minutes.
   with: with
   # Filter for observations not in a particular taxon
   without_taxon: Not in taxon
@@ -7040,6 +7083,8 @@ en:
   you_didnt_select_any_photos_to_tag: You didn't select any photos to tag!
   you_dont_have_permission_to_do_that: You don't have permission to do that.
   you_dont_have_permission_to_edit_that_observation: "You don't have permission to edit that observation."
+  # Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: You don't have permission to edit that announcement.
   you_dont_have_permission_to_edit_that_project: You don't have permission to edit that project.
   you_dont_have_permission_to_edit_that_taxon: |
     You don't have permission to edit that taxon. Please contact one of the
@@ -8936,6 +8981,15 @@ en:
         end_date_must_be_after_start_date: End date must be after start date
         # validation error when a project's end time is earlier than its start time
         end_time_must_be_after_start_time: End time must be after start time
+        # description for a form option that excludes from the project any observation that
+        # has quality_grade casual, unless the only reason it is casual is because it is marked
+        # captive
+        exclude_casual_except_captive: |
+          Exclude observations that are casual for any reason other than being marked as captive
+        # label for a form field that excludes from the project any observation that
+        # has quality_grade casual, unless the only reason it is casual is because it is marked
+        # captive
+        exclude_all_casual_except_captive: Exclude All Casual Except Captive
         include_annotated_observations: |
           Include only observations annotated with a particular attribute (e.g. life stage),
           or a particular attribute and value (e.g life stage = adult).
@@ -9548,6 +9602,41 @@ en:
           concepts, and they only include species, not infraspecific taxa like
           subspecies or varieties.
         discoveries_desc: "Most recent newly-identified species in this taxon"
+        identifications:
+          # Label for a a taxon page tab that displays Identifications with remarks
+          # that make them useful information or advice for how to identify the organism
+          identification_tips: Identification Tips
+          # Placeholder text for a search field allowing users to search on identification
+          # bodies, or search on usernames of who added the identifications
+          search_identifications: Search Identifications by text or username
+          # Empty state message saying there are no identifications to show because
+          # none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            There are no nominated and upvoted identifications for this organism
+            right now, please check back soon!
+          sort:
+            # sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Sort: Highest to lowest votes"
+            # sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Sort: Lowest to higest votes"
+            # sort option for displaying the newest results first
+            newest_to_oldest: "Sort: Newest to oldest"
+            # sort option for displaying the oldest results first
+            oldest_to_newest: "Sort: Oldest to newest"
+            # sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Sort: Longest to shortest"
+          # label for a subtab that displays only IDs that have been upvoted
+          upvoted: Upvoted
+          # label for a subtab that displays only IDs that have been downvoted, and
+          # as a result are not visible to most users
+          downvoted_and_hidden: Downvoted (hidden)
+          # label for a subtab that displays only IDs that have not received any votes
+          no_votes: No Vote
+          # label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Not Nominated
+          # label for a link to view an identification in the context of its associated
+          # observation so users can view other remarks relevant to the conversation
+          view_full_conversation: View Full Conversation
         frequency:
           research: Research Grade
           verifiable: Verifiable

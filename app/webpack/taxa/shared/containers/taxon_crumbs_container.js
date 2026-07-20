@@ -1,22 +1,22 @@
 import { connect } from "react-redux";
-import { urlForTaxon } from "../../shared/util";
-import TaxonCrumbs from "../../shared/components/taxon_crumbs";
+import { urlForTaxon } from "../util";
+import TaxonCrumbs from "../components/taxon_crumbs";
 import { setConfig } from "../../../shared/ducks/config";
 import { updateSession } from "../../../shared/util";
 
-function mapStateToProps( state ) {
-  const taxon = state.taxon.taxon;
+function mapStateToProps( state, ownProps ) {
+  const { taxon } = state.taxon;
   return {
     taxon,
     ancestors: taxon.ancestors,
     url: urlForTaxon( taxon ),
-    currentText: I18n.t( "photo_browser" ),
+    currentText: ownProps.currentText,
     ancestorsShown: state.config.ancestorsShown,
     config: state.config
   };
 }
 
-function mapDispatchToProps( dispatch ) {
+function mapDispatchToProps( dispatch, ownProps ) {
   return {
     showAncestors: ( ) => {
       dispatch( setConfig( { ancestorsShown: true } ) );
@@ -25,7 +25,8 @@ function mapDispatchToProps( dispatch ) {
     hideAncestors: ( ) => {
       dispatch( setConfig( { ancestorsShown: false } ) );
       updateSession( { preferred_taxon_page_ancestors_shown: false } );
-    }
+    },
+    ...( ownProps.showNewTaxon ? { showNewTaxon: ownProps.showNewTaxon } : {} )
   };
 }
 

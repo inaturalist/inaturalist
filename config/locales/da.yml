@@ -644,12 +644,20 @@ da:
     mindst 2 måneder gammel og skal have foretaget mindst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
     target="_blank">forbedrende identifikationer</a> den seneste måned. Vi kan have opfølgende
     spørgsmål om brugerens plan, og vi forbeholder os retten til at afvise ansøgninger uanset årsag.
+  app_owner_application_about_p2_2_html: |
+    Fra 2022 kræver vi manuel godkendelse for brugere, som ønsker at oprette API-klienter.
+    For at oprette tredjeparts-apps, skal der først indsendes en ansøgning om at blive
+    en "app-ejer." Denne ansøgning skal beskrive funktionaliteten af den foreslåede app,
+    samt hvordan den planlægges anvendt. For at indsende en ansøgning kræves en mindst 2 måneder gammel brugerkonto, samt at mindst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">forbedrende identifikationer</a>
+    <i>for andre brugere</i> er foretaget over den seneste måned. Vi kan stille opfølgende spørgsmål om den planlagte anvendelse og forbeholder os retten til at afvise ansøgninger af en hvilken som helst grund.
   app_owner_application_inelligible: |
     For at kunne indsende en ansøgning skal din konto være mindst 2 måneder gammel og skal
     have foretaget mindst 10 forbedrende identifikationer den seneste måned.
-  app_owner_application_inelligible2: |
-    For at indsende en ansøgning skal din konto være mindst 2 måneder gammel og
-    have foretaget mindst 10 identifikationsforbedringer for andre brugere over den seneste måned.
+  app_owner_application_inelligible2_html: |
+    For at indsende en ansøgning kræves en mindst 2 måneder gammel brugerkonto, samt at mindst 10 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">forbedrende identifikationer</a>
+    <i>for andre brugere</i> er foretaget over den seneste måned.
   app_owner_application_fields_explanation_html: Beskriv funktionalitet, din app vil have, og hvordan du planlægger den brugt.
   app_owner_application_success: App-ejeransøgning indsendt
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -1368,6 +1376,8 @@ da:
   create_a_new_place: Opret et nyt sted
   create_a_new_taxon: Opret en ny takson
   create_a_query: Lav en forespørgsel
+  #Button on announcement show page to duplicate the announcement as a linked targeted variant
+  create_a_targeted_variant: Skab en Målrettet variant
   create_an_account: Opret en konto
   create_an_atlas: Opret et atlas
   create_export: Opret eksport
@@ -1808,6 +1818,7 @@ da:
   devise_unlock_instructions_unlock: Oplås din konto
   #e.g. "With iNaturalist, you can discover nature nearby"
   discover: Opdag
+  discover_nature_around_you: Oplev den omgivende natur
   discoveries: Opdagelser
   did_you_mean: 'Mente du'
   did_you_photos_flickr?: Har du lagt billeder på Flickr?
@@ -1865,6 +1876,7 @@ da:
     <a href="/observations/import?project_id=%{project_id}#csv_import">multiuploader</a>
   download_csv: Download CSV
   download_csv_template: Download CSV skabelon
+  download_inaturalist_app: Download iNaturalist i App Store
   download_kml: Download KML
   downstream_coverage_rank: Downstream dækning rang
   downstream_coverage_colon_rank: "Downstream-dækning: Omfang %{rank}"
@@ -2455,7 +2467,15 @@ da:
   identification_saved: "Identifikation gemt!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Identifikation skjult
-  #Notice when an identification has been unhidden by moderators
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: Nominering
+    #Label for a menu option to remove a nomination on an identification
+    remove_nomination: Fjern nominering
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} nominerede dette som et ID-tip"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: Nominér som et ID-tip (diagnostiske egenskaber, som lærer andre at identificere denne organisme) #Notice when an identification has been unhidden by moderators
   identification_unhidden: Identifikation gjort synlig
   #Notification when an identification has been updated
   identification_updated: Identifikation opdateret!
@@ -2587,6 +2607,8 @@ da:
   introduced_in_place: "indført i %{place}"
   #Error message shown when a date format is invalid
   invalid_date: Ugyldig dato
+  #Error message shown when a time format is invalid
+  invalid_time: Ugyldig tid
   invitation: Invitation
   invite: invitér
   invite_people: Invitér personer
@@ -3245,6 +3267,7 @@ da:
   mute_removed: Sluk fjernet
   muted_users: Slukkede brugere
   muting_description: Tavsgørelse af nogen undertrykker notifcering om vedkommendes aktiviteter, herunder "@"-omtale, beskeder eller kommentarer og identifikationer på dine observationer.
+  my_site: Mit Websted
   n_ago: "%{n} siden"
   n_people_agrees: "%{amount} personer er enige"
   n_people_disagrees: "%{amount} personer er uenige"
@@ -4819,6 +4842,13 @@ da:
     not_external: ikke ekstern
     not_internal: ikke intern
     error: fejl
+  #button/menu label for reinstating (un-suspending) an account
+  reinstate_account: Genaktivér konto
+  #heading on the reinstate page; %{user} is a link to the account being reinstated
+  reinstate_account_html: Genaktivering af %{user}
+  #instructions on the reinstate page asking the moderator to explain the reinstatement
+  reinstate_account_reason_instructions: |
+    Oplys venligst, hvorfor denne konto genaktiveres.
   relationships_user_settings: Relationer
   relationship_html: "Forbindelse: %{link}"
   reload_from_observations: Genindlæs fra observationer
@@ -4997,6 +5027,8 @@ da:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Din %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: Vis moderationshistorik
   see_something_wrong_with_taxon: Ser du noget galt med denne taxon? Giv kuratorerne besked.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5385,12 +5417,16 @@ da:
   supporting: Støtter
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: Suspensionsvarighed
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: Suspensionsvarighed (%{link_start_tag}se retningslinjer%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1 dag
   #a select form option indicating a user will be suspended for three days
   suspension_duration_3_days: 3 dage
   #a select form option indicating a user will be suspended for one week
   suspension_duration_1_week: 1 uge
+  #a select form option indicating a user will be suspended for two weeks
+  suspension_duration_2_weeks: 2 uger
   #a select form option indicating a user will be suspended for one month
   suspension_duration_1_month: 1 måned
   #a select form option indicating a user will be suspended for two months
@@ -5405,8 +5441,14 @@ da:
   suspension_reason_custom: Tilpasset
   #note displayed when entering a custom suspension reason
   suspension_reason_custom_note: Bemærk, at den suspenderede bruger vil kunne se denne årsag.
+  #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
+  suspension_reason_custom_note_account: Bemærk venligst, at denne årsag vil fremgå på den suspenderede konto.
   #note displayed when a curator is editing a suspension
   suspension_reason_edit_note: Opdater årsagen og forklar, hvorfor brugerens suspension ændres.
+  #label for the edit reason dropdown when editing a suspension
+  edit_reason_label: Årsag til redigering
+  #label for the edit reason field in the moderation history table
+  edit_reason: Redigeringsårsag
   #predefined reasons for user suspension which are listed to curators in the user suspension form
   suspension_reasons:
     #reason displayed to users who have been suspended for posting hate speech
@@ -5414,24 +5456,44 @@ da:
     #reason displayed to users who have been suspended for posting of insults or threats
     insults_or_threats: Fornærmelser eller trusler
     #reason displayed to users who have been suspended for posting sexually explicit content
+    #REPLACED with posting_sexually_explicit_human_content below
     sexually_explicit_content: Seksuelt eksplicit indhold
+    #reason displayed to users who have been suspended for posting sexually explicit content of humans
+    posting_sexually_explicit_human_content: Opslag af seksuelt eksplicit menneskeligt indhold
     #reason displayed to users who are creating false accounts to circumvent suspensions,
     #https://en.wikipedia.org/wiki/Sock_puppet_account
+    #REPLACED with misusing_a_second_account below
     sockpuppet_accounts: Sockpuppet-konti
+    #reason displayed to users who are creating false accounts to circumvent suspensions or confirm their own identifications
+    misusing_a_second_account: Misbrug af en anden konto, såsom til bekræftelse af egne identifikationer
     #reason displayed to users who have been suspended for intentionally posting false IDs or DQA votes
+    #REPLACED with intentionally_adding_false_data below
     false_ids_or_dqa_votes: Bevidst tilføjelse af falske ID'er eller DQA-stemmer
+    #reason displayed to users who have been suspended for intentionally adding false data
+    intentionally_adding_false_data: Bevidst tilføjelse af falske data, såsom observationer, identifikationer eller Datakvalitetsvurdering-stemmer
     #reason displayed to users who have been suspended for posting machine generated content
+    #REPLACED with adding_machine_generated_content below
     machine_generated_content: Maskingenererede observationer, identifikationer og kommentarer
+    #reason displayed to users who have been suspended for posting machine generated content
+    adding_machine_generated_content: Tilføjelse af maskingenereret indhold
     #reason displayed to users who have continued to post copyrighted material to the platform after being warned not to
+    #REPLACED with continued_posting_media_without_owners_permission_after_warning below
     continued_copyright_infringement_after_warning: Fortsat ophavsretskrænkelse (efter advarsel)
+    #reason displayed to users who have continued to post media to the platform without the media owner's permission after being warned not to
+    continued_posting_media_without_owners_permission_after_warning: Fortsatte opslag (efter advarsel) af medier uden medieejers tilladelse
     #reason displayed to users who have continued to post artificially generated media to the platform after being warned not to
     continued_posting_of_artificially_generated_media_after_warning: Fortsat opslag af kunstigt genererede medier (efter advarsel)
     #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    #REPLACED with continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning below
     continued_reduction_of_data_quality_after_warning: Fortsat reduktion af datakvalitet (efter advarsel)
+    #reason displayed to users who have continued to reduce data quality on the platform after being warned not to
+    continued_reduction_of_data_quality_such_as_incorrect_ids_after_warning: Fortsat reduktion af datakvalitet (efter advarsel), såsom tilføjelse af forkerte identifikationer
   #the time at which a users suspension ends
   suspend_until: Suspendér indtil
   #a note telling users to select the time in their local time zone
   suspend_until_local_timezone_note: Dato og klokkeslæt i webbrowserens lokale tidszone.
+  #button/menu label for suspending an account
+  suspend_account: Suspendér konto
   suspend_user: Suspenderet bruger
   suspend_user_html: Suspendér %{user}
   suspend_user_reason_instructions_html: |
@@ -5458,6 +5520,8 @@ da:
   take_me_flickr!: Ja, før mig til Flickr!
   target_list_alert: Sikker på, at du forsøgte at observere alle arter på mållisten? Husk, at alt indeholdt på din målliste, som ikke blev observeret, tolkes som fravær, så det er meget vigtigt, at mållisten nøjagtigt afspejler det sæt arter, der blev forsøgt registreret
   target_list_warning: Husk, at alt dækket af mållisten, som ikke blev observeret inden for denne rejses radius og varighed, tolkes som et fravær. Det er meget vigtigt, at mållisten afspejler præcis de arter, som blev forsøgt observeret. Forsøgte du ikke at observere en art på din målliste, eller alle arter dækket af en gruppe på din målliste, så fjern den venligst.
+  #Section heading on announcement show page listing linked announcement variants
+  targeted_variants: Målrettede varianter
   task_deleted: Opgave slettet
   taxa: Taksa
   taxa_show_obs_photo_search_tip: |
@@ -5669,6 +5733,10 @@ da:
   that_role_doesnt_exist: Denne rolle eksisterer ikke
   that_was_the_last_observation_matching_the_current_filters: Det var den sidste observation, der matchede de aktuelle filtre.
   thats_not_a_real_date: Det er ikke en rigtig dato!
+  #flash confirmation shown after an account is suspended; %{user} is the account's login
+  the_account_x_has_been_suspended: "Kontoen %{user} er suspenderet"
+  #flash confirmation shown after an account is reinstated (un-suspended); %{user} is the account's login
+  the_account_x_has_been_reinstated: "Kontoen %{user} er genaktiveret"
   the_admin_is_the_person_who: |
     Administratoren er den person, der oprettede projektet. De kan gøre alt
     ledere og kuratorer kan gøre, samt slette projektet.
@@ -5785,6 +5853,8 @@ da:
   this_taxon_name_was_originally_imported: "Denne takson navn blev oprindeligt importeret fra en ekstern navne leverandør:"
   this_taxon_was_originally_imported_from: "Dette taxon navn blev oprindeligt importeret fra en ekstern navne leverandør:"
   this_user_has_been_suspended: Denne bruger er blevet suspenderet
+  #The text displayed to curators after they have suspended an account and are redirected to that accounts page.
+  this_account_has_been_suspended: Denne konto er suspenderet
   this_user_has_been_suspended_message: |
     Hvis dette er din konto og du mener, at dette er sket ved en fejl, bedes du <a href="mailto:%{email}"> kontakte os </a>.
   this_will_add_listed_taxa: Dette vil tilføje opførte taksa fra observationer. Det kan tage et stykke tid, så brug venligst denne mulighed sparsomt og på små tjeklister
@@ -6081,6 +6151,7 @@ da:
   url_identifier_of_a_project_derived_from: "URL / identifikator for et projekt afledt af en ekstern ressource"
   url_of_this_taxon_on_the_source_website: URL for denne takson på kildens hjemmeside
   usage_stats: Anvendelses statistik
+  use_app: Brug appen
   use_name_as_a_placeholder: |
     Brug <span class='ac-placeholder'>"%{name}"</span> som en pladsholder
   use_this_form_to_create_a_new: |
@@ -6192,6 +6263,8 @@ da:
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
   user_updated_an_observation_field_html: '%{user} føjede en værdi til "%{field_name}" på en observation fra %{owner}'
+  #An email subject line for an email informing a user that their account has been suspended.
+  user_suspended_email_subject: "%{prefix} Din konto er suspenderet"
   #An email subject line for an email informing a user that their account has been unsuspended.
   user_unsuspended_email_subject: "%{prefix} Din kontosuspension er ophævet"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> skrev,
@@ -6617,6 +6690,8 @@ da:
   you_didnt_select_any_photos_to_tag: Du har ikke valgt nogle foto´s der skal tagges!
   you_dont_have_permission_to_do_that: Du har ikke tilladelse til at gøre det.
   you_dont_have_permission_to_edit_that_observation: "Du har ikke tilladelse til at redigere denne observation."
+  #Error message shown when a site admin tries to edit an announcement that is not targeted to their site
+  you_dont_have_permission_to_edit_that_announcement: Manglende tilladelse til at redigere den bekendtgørelse.
   you_dont_have_permission_to_edit_that_project: Du har ikke tilladelse til at redigere dette projekt.
   you_dont_have_permission_to_edit_that_taxon: |
     Du har ikke tilladelse til at redigere den pågældende takson. Kontakt venligst en af taksonens kuratorer eller markér taksonet for at anmode om ændringer.
@@ -6731,6 +6806,10 @@ da:
       observation_oauth_application_ids_desc: |
         CMD- eller SHIFT-klik for valg af flere. Valg af "Alle", eller intet valg,
         viser meddelelsen til alle brugere uanset app.
+      #Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: Denne bekendtgørelse har målrettet varianter og kan ikke tildeles en global bekendtgørelse.
+      #Tooltip for the global announcement select field on the announcement form
+      parent_announcement_desc: Vælg en bekendtgørelse denne bekendtgørelse bør erstatte for brugere, som opfylder målretningsreglerne.
       site_ids_desc: |
         CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
         intet valg, vises bekendtgørelsen til alle brugere uanset webstedstilknytning.
@@ -7976,10 +8055,26 @@ da:
       user_unsuspended:
         #A line in an email telling a user their account suspension is being lifted lifted.
         message: Din kontosuspension på %{site_name} er ophævet, og du kan bruge webstedet igen.
+        #A line in an email telling a user their account suspension is being lifted lifted.
+        message_2: Din kontosuspension på %{site_name} er ophævet, og indlogning er nu mulig igen.
         #A line in an email telling a user why their account was suspended, with a variable for the custom reason.
         reason: "Din konto blev suspenderet af flg. årsag: %{reason}"
+        #A message included in account unsuspension emails requesting that users abide by guidelines and warning of
+        #longer future suspensions.
+        please_abide_html: 'Overhold venligst <a href="%{community_guidelines_url}">iNaturalist Fællesskabsretningslinjer</a> og <a href="%{terms_of_use_url}">Vilkår for brug</a>. Nye overtrædelser kan resultere i længere suspensioner.'
+        #A message in account reinstatement emails telling users how to contact support, with a link.
+        contact_us_html: 'Ved evt. spørgsmål eller bekymringer, <a href="%{contact_us_url}">kontakt os</a> venligst.'
         #A link in an email to the login page of the website to prompt the user to login to to regain access their account after it has been unsuspended.
         login_prompt: '<a href="%{login_url}">Log ind på kontoen</a> for at fortsætte med at bruge siden.'
+      user_suspended:
+        #A message in a suspension notification email for timed suspensions, with the reason and relative time until the suspension is lifted.
+        message_timed: "Din iNaturalist-konto er suspenderet af flg. årsag: %{reason}. Suspensionen ophæves igen om %{duration}."
+        #A message in a suspension notification email for indefinite suspensions, with the reason.
+        message_indefinite: "Din iNaturalist-konto er suspenderet på ubestemt tid af flg. årsag: %{reason}."
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: 'Såfremt denne suspension anses for ubegrundet, eller den ønskes appelleret, <a href="%{contact_us_url}">kontakt venligst iNaturalist Support</a>. Husk, at brug af andre konti til at undgå suspension vil medfører suspension af disse konti samt fjernelse af offentligt indhold herfra.'
+        #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
+        abide_html: 'Alle iNaturalist-medlemmer bedes overholde <a href="%{community_guidelines_url}">Fællesskabsretningslinjer</a> og <a href="%{terms_of_use_url}">Vilkår for brug</a>.'
       users_updates_suspended:
         message: |
           Du har været inaktiv på %{site_name} et stykke tid, så vi har suspenderet
@@ -8203,12 +8298,40 @@ da:
         contain_entire_image_without_cropping: Bibehold hele billedet uden beskæring
         custom_banner_icon_and_project_description: Brugerdefineret banner, ikon og projektbeskrivelse
         data_visualizations: Data visualiseringer
+        date_pickers:
+          #Label for a form field for a project's exact date
+          date: Dato
+          #Label for a form field for a project's starting date
+          start_date: Startdato
+          #Label for a form field for a project's end date
+          end_date: Slutdato
+          #Label for a form field for a project's starting time
+          start_time: Starttid
+          #Label for a form field for a project's end time
+          end_time: Sluttid
+          #Label for a form field allowing projects to specify start/end times in addition to dates
+          include_times: Inkludér tider
+          #Label for a form select field allowing the editor to choose calendar months
+          select_months: Udvalgte måneder
         delete_project: Slet projekt
         display_project_name: Vis projektnavn
         do_you_need_features_from_traditional2: |
           Brug for funktioner fra traditionelle projekter, såsom tilpassede observationsfelter,
           eller tilføjelse af individuelle observationer, som ikke automatisk kan filtreres?
         duplicate_project: Duplikér Projekt
+        #validation error when a project's end date is earlier than its start date
+        end_date_must_be_after_start_date: Slutdatoen skal være efter startdatoen
+        #validation error when a project's end time is earlier than its start time
+        end_time_must_be_after_start_time: Sluttiden skal være efter starttiden
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          Udeluk observationer, som er tilfældige af andre grunde end at være markeret som fanget
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: Udeluk Alle uformelle undtagen fangede
         include_annotated_observations: |
           Inkludér kun observationer kommenteret med én bestemt attribut (f.eks. Livsfase),
           eller én bestemt attribut og værdi (f.eks. livsfase = voksen).
@@ -8711,6 +8834,40 @@ da:
           er blevet observeret og hvor mange, der stadig mangler at blive observeret. Antal af arter i "komplette" taksa inkluderer ikke de arter, der ikke kan medregnes, som f.eks. uddøde eller inaktive arter og de omfatter kun arter, ikke infra-specifik taksa som
           underarter eller varianter.
         discoveries_desc: "Seneste nyligt identificerede arter i denne takson"
+        identifications:
+          #Label for a a taxon page tab that displays Identifications with remarks
+          #that make them useful information or advice for how to identify the organism
+          identification_tips: Identifikationstips
+          #Placeholder text for a search field allowing users to search on identification
+          #bodies, or search on usernames of who added the identifications
+          search_identifications: Søg efter identifikation efter tekst eller brugernavn
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            Der er p.t. ingen nominerede og opstemte identifikationer for denne organisme. Tjek venligst igen snart!
+          sort:
+            #sort option for displaying results with the most votes first
+            highest_to_lowest_votes: "Sortér: Højeste til laveste stemmer"
+            #sort option for displaying results with the least votes first
+            lowest_to_highest_votes: "Sortér: Laveste til højeste stemmer"
+            #sort option for displaying the newest results first
+            newest_to_oldest: "Sortér: Nyeste til ældste"
+            #sort option for displaying the oldest results first
+            oldest_to_newest: "Sortér: Ældste til nyeste"
+            #sort option for displaying results with the longest descriptions first
+            longest_to_shortest: "Sortér: Længste til korteste"
+          #label for a subtab that displays only IDs that have been upvoted
+          upvoted: Stemt op
+          #label for a subtab that displays only IDs that have been downvoted, and
+          #as a result are not visible to most users
+          downvoted_and_hidden: Stemt ned (skjult)
+          #label for a subtab that displays only IDs that have not received any votes
+          no_votes: Ingen stemme
+          #label for a subtab that displays only IDs that have not yet been nominated
+          not_nominated: Ikke nomineret
+          #label for a link to view an identification in the context of its associated
+          #observation so users can view other remarks relevant to the conversation
+          view_full_conversation: Vis fuld samtale
         frequency:
           research: Forskningskvalitet
           verifiable: Verificerbar
@@ -9724,6 +9881,8 @@ da:
         exclude_donor_start_date: Undtag donationsstartdato
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Undtag donationsslutdato
+        #Column header for countries excluded by IP address
+        exclude_ip_countries: Undtag IP-lande
         excludes_non_site: Skjul andre meddelelser uden Websteds-ID på denne placering
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
@@ -9749,6 +9908,8 @@ da:
         max_observations: Maks. observationer
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Min. observationer
+        #A selection dropdown to choose the global announcement that this targeted announcement variant is based on
+        parent_announcement_id: Global bekendtgørelse (valgfrit)
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Placering
         #Preference for an announcement that is only shown to the user who created the announcement
@@ -9759,6 +9920,8 @@ da:
         user_created_start_date: Tidligste brugertilmeldingsdato
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Seneste brugertilmeldingsdato
+        #Describes a setting on inaturalist announcements to enable embedded widgets from the fundraiseup fundraising platform
+        prefers_embed_fru: Aktivér Fundraise Up indlejrede widgets
       assessment:
         description: Beskrivelse
       assessment_section:
@@ -9797,6 +9960,8 @@ da:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Årsag
+        #The reason provided when editing a suspension, stored as an audit comment
+        audit_comment: Redigeringsårsag
       observation:
         description: Notater
         geo_x: Østlig
@@ -10006,6 +10171,13 @@ da:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: skal være gyldig for angivet placering
+            parent_announcement_id:
+              #Error shown when an announcement's global announcement field references itself
+              cannot_reference_self: kan ikke referere til sig selv
+              #Error shown when an announcement's global announcement is itself a variant of another announcement
+              cannot_reference_variant: kan ikke referere til en bekendtgørelse, der selv er en variant (kun ét indlejringsniveau tilladt)
+              #Error shown when trying to set an global announcement on an announcement that already has variants
+              cannot_have_variants: kan ikke sættes på en bekendtgørelse, der allerede har varianter (kun ét indlejringsniveau tilladt)
             target_group_partition:
               #Error message shown when an Announcement has a value in the
               #target_group_partition attribute that is not a valid partition in the
@@ -10140,6 +10312,11 @@ da:
               must_be_on_site_long_enough: |
                 skal være registreret i mere end 24 timer for at kunne publicere. Vi får
                 en masse spammere, og dette er vores måde at håndtere dem på. Du kan stadig gemme som kladde og publicere det på et senere tidspunkt.
+        project:
+          attributes:
+            base:
+              #Error message indicating a project start date must be before its end date
+              start_date_must_be_before_end_date: startdato skal være før slutdato
         project_fave:
           attributes:
             base:

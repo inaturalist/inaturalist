@@ -43,7 +43,7 @@
   <%- else %>
     <%- if @user.suspended? %>
       <div class="alert alert-warning">
-        <strong><%=t :this_user_has_been_suspended %></strong>
+        <strong><%=t :this_account_has_been_suspended %></strong>
         <p class="unstacked"><%= t(:this_user_has_been_suspended_message, email: @site.email_help || CONFIG.help_email ).html_safe %></p>
       </div>
     <% end %>

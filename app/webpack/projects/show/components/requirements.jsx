@@ -90,11 +90,17 @@ const Requirements = ( {
         { r.project.title }
       </a>
     ) );
-  const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any_quality_grade" )
-    : _.map(
-      _.keys( project.rule_quality_grade ),
-      q => I18n.t( q === "research" ? "research_grade" : `${q}_` )
-    ).join( ", " );
+  const qualityGradeRules = _.isEmpty( project.rule_quality_grade )
+    ? I18n.t( "any_quality_grade" )
+    : _.map( _.keys( project.rule_quality_grade ), q => {
+      let i18nKey = `${q}_`;
+      if ( q === "research" ) {
+        i18nKey = "research_grade";
+      } else if ( q === "casual" && project.rule_not_casual_excluding_captive ) {
+        i18nKey = "casual_non_wild_only_";
+      }
+      return I18n.t( i18nKey );
+    } ).join( ", " );
   const media = [];
   if ( project.rule_photos ) {
     media.push( I18n.t( "photo" ) );

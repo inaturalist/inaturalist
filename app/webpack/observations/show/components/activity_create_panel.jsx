@@ -188,7 +188,7 @@ class ActivityCreatePanel extends React.Component {
               maxLength={5000}
               showCharsRemainingAt={4000}
             />
-            { currentUser?.canViewHelpfulIDTips( ) && (
+            { currentUser?.canNominateHelpfulIDTips( ) && (
               <div className="nomination">
                 <input
                   type="checkbox"
@@ -198,12 +198,13 @@ class ActivityCreatePanel extends React.Component {
                   onChange={e => {
                     setNominateOnSubmit( e.target.checked );
                   }}
+                  tabIndex={-1}
                 />
                 <label
                   className="identificationNomination"
                   htmlFor="nominate-id"
                 >
-                  Nominate as an ID Tip (diagnostic characteristics that teach others to identify this organism)
+                  { I18n.t( "identification_tips.nominate_as_an_id_tip_with_explanation" ) }
                 </label>
               </div>
             ) }

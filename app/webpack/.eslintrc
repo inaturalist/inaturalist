@@ -102,7 +102,7 @@
       }
     },
     {
-      "files": ["*.test.ts", "*.test.tsx", "*.test.js", "*.test.jsx"],
+      "files": ["*.test.ts", "*.test.tsx", "*.test.js", "*.test.jsx", "jest.setup.ts"],
       "env": { "jest": true },
       "rules": {
         "import/no-extraneous-dependencies": "off",

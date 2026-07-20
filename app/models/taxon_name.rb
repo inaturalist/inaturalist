@@ -200,7 +200,12 @@ class TaxonName < ApplicationRecord
     "ukrainian" => "uk",
     "vietnamese" => "vi"
   }.freeze
-  LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
+  # LOCALES.invert loses entries when multiple lexicons share the same locale code (last key wins).
+  # Explicit overrides restore the correct lexicon key for affected locales:
+  #   "nb" — LOCALES has both "norwegian" and "norwegian_bokmal" mapping to "nb"; invert picks
+  #           "norwegian_bokmal", but only "norwegian" exists in LEXICONS.
+  #   "zh-TW" — added to map the locale code used by I18n back to "chinese_traditional".
+  LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional", "nb" => "norwegian" )
 
   DEFAULT_LEXICONS = [LEXICONS[:SCIENTIFIC_NAMES]] + I18N_SUPPORTED_LOCALES.map do | locale |
     LEXICONS_BY_LOCALE[locale] || LEXICONS_BY_LOCALE[locale.sub( /-.+/,

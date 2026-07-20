@@ -464,6 +464,12 @@ describe Announcement do
         obs = create :observation, created_at: 1.day.ago
         expect( annc.targeted_to_user?( obs.user ) ).to be false
       end
+
+      it "includes users whose last observation is on the end date" do
+        annc = create :announcement, target_logged_in: Announcement::YES, last_observation_end_date: Date.current
+        obs = create :observation, created_at: Time.zone.now
+        expect( annc.targeted_to_user?( obs.user ) ).to be true
+      end
     end
 
     it "includes and excludes users by observation oauth application ids" do

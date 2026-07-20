@@ -245,14 +245,12 @@ class TaxonPageTabs extends React.Component {
                     { speciesOrLower ? I18n.t( "similar_species" ) : I18n.t( "similar_taxa" ) }
                   </a>
                 </li>
-                { currentUser?.canViewHelpfulIDTips( ) && (
-                  <li
-                    role="presentation"
-                    className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "identifications" ? "active" : ""}`}
-                  >
-                    <a href="#identifications-tab" role="tab" data-toggle="tab">{ I18n.t( "identifications" ) }</a>
-                  </li>
-                ) }
+                <li
+                  role="presentation"
+                  className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "identifications" ? "active" : ""}`}
+                >
+                  <a href="#identifications-tab" role="tab" data-toggle="tab">{ I18n.t( "views.taxa.show.identifications.identification_tips" ) }</a>
+                </li>
                 { curationTab }
               </ul>
             </Col>

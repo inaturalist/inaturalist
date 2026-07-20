@@ -24,7 +24,7 @@ class GlobalMap extends React.Component {
       scrollWheelZoom: false,
       gestureHandling: true
     } );
-    const apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
+    const apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" ).replace( "/v1", "/v2" );
     L.tileLayer( "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png", {
       attribution: "&copy; <a href='https://www.openstreetmap.org/copyright/'>OpenStreetMap</a> "
         + "contributors, &copy; <a href='https://carto.com/about-carto/'>CARTO</a>"

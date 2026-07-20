@@ -36,6 +36,7 @@
         id: current_user.id,
         login: current_user.login,
         email: current_user.email,
+        content_creation_restrictions: current_user.content_creation_restrictions?,
         curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
         icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
         roles: current_user.roles.map(&:name),

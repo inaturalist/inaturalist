@@ -48,6 +48,38 @@ describe TaxaController do
       session[:preferred_taxon_page_place_id] = "string"
       expect { get( :show, params: { id: taxon.id } ) }.not_to raise_error
     end
+
+    describe "locale-prefixed URLs" do
+      let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
+
+      it "returns 404 when the taxon has no common name in the requested locale" do
+        get :show, params: { id: taxon.to_param, locale: "fr" }
+        expect( response ).to be_not_found
+      end
+
+      it "renders successfully when the taxon has a valid common name in the requested locale" do
+        create( :taxon_name, taxon: taxon, lexicon: TaxonName::FRENCH )
+        expect( INatAPIService ).to receive( "get_json" ) { {}.to_json }
+        get :show, params: { id: taxon.to_param, locale: "fr" }
+        expect( response ).to be_successful
+      end
+
+      it "renders a locale canonical tag on a locale page" do
+        create( :taxon_name, taxon: taxon, lexicon: TaxonName::FRENCH )
+        expect( INatAPIService ).to receive( "get_json" ) { {}.to_json }
+        get :show, params: { id: taxon.to_param, locale: "fr" }
+        expect( response.body ).to have_tag( "link[rel=canonical][href*='/fr/taxa/']" )
+      end
+
+      it "renders hreflang alternate tags for each locale with a common name" do
+        create( :taxon_name, taxon: taxon, lexicon: TaxonName::FRENCH )
+        expect( INatAPIService ).to receive( "get_json" ) { {}.to_json }
+        get :show, params: { id: taxon.id }
+        expect( response.body ).to have_tag( "link[rel=alternate][hreflang=fr]" )
+        expect( response.body ).to have_tag( "link[rel=alternate][hreflang=x-default]" )
+        expect( response.body ).to have_tag( "link[rel=alternate][hreflang=en]" )
+      end
+    end
   end
 
   describe "merge" do
@@ -443,6 +475,71 @@ describe TaxaController do
       fi_desc = taxon.taxon_descriptions.detect {| td | td.locale == "fi" }
       expect( fi_desc ).not_to be_blank
       expect( fi_desc.body ).to include "Ihminen"
+    end
+  end
+
+  describe "describe when Wikipedia is throttling" do
+    render_views
+    let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+
+    before do
+      # Simulate Wikipedia rate-limiting at the HTTP boundary so the live
+      # describer fetch comes back throttled (status 429) instead of an article.
+      throttled_response = double( "Net::HTTPResponse", code: "429",
+        body: "You are making too many requests." )
+      allow( MetaService ).to receive( :fetch_with_redirects ).and_return( throttled_response )
+    end
+
+    it "renders the throttled message instead of the Wikipedia summary" do
+      # The partial keys the throttled message off the live endpoint check
+      # (@wikipedia_throttled), which fires because the stubbed fetch above returns a
+      # 429. We request the Wikipedia describer directly so the iNaturalist fallback
+      # (which would otherwise fill the description from auto_summary) is bypassed.
+      get :describe, params: { id: taxon.id, from: "Wikipedia" }
+      expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
+      expect( response.body ).not_to include I18n.t( :there_isnt_a_wikipedia_article_titled_x_html, x: taxon.name )
+    end
+
+    it "shows a throttled notice instead of the create-page prompt when it falls back to iNaturalist" do
+      allow( TaxonDescribers::Eol ).to receive( :describe ).and_return( nil )
+      allow( TaxonDescribers::Inaturalist ).to receive( :describe ).and_return( "Animalia is a kingdom.".dup )
+      get :describe, params: { id: taxon.id, wiki_prompt: true }
+      expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
+      expect( response.body ).to include "Animalia is a kingdom."
+      expect( response.body ).not_to include "create this page on Wikipedia"
+    end
+  end
+
+  describe "describe caches the Wikipedia response" do
+    let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+
+    before do
+      sign_in make_curator
+    end
+
+    it "only hits Wikipedia once across repeated requests (served from ApiEndpointCache)" do
+      ok_response = double( "Net::HTTPResponse", code: "200",
+        body: "<parse title='Animalia' pageid='1'><text>Animals are a kingdom.</text></parse>" )
+      expect( MetaService ).to receive( :fetch_with_redirects ).once.and_return( ok_response )
+      2.times { get :describe, params: { id: taxon.id, from: "Wikipedia" } }
+      expect( ApiEndpointCache.where( success: true ).count ).to eq 1
+    end
+  end
+
+  describe "refresh_wikipedia_summary" do
+    let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+
+    before do
+      sign_in make_curator
+    end
+
+    it "responds 429 with the throttled message when the live fetch is throttled" do
+      throttled_response = double( "Net::HTTPResponse", code: "429",
+        body: "You are making too many requests." )
+      allow( MetaService ).to receive( :fetch_with_redirects ).and_return( throttled_response )
+      post :refresh_wikipedia_summary, params: { id: taxon.id }
+      expect( response.status ).to eq 429
+      expect( response.body ).to eq I18n.t( :wikipedia_summary_throttled )
     end
   end
 

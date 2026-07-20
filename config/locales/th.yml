@@ -294,6 +294,7 @@ th:
   add_leaves_breaking_leaf_buds: 'เพิ่มหมายเหตุ "ใบ: แตกใบอ่อน"'
   add_leaves_green_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบเขียว"'
   add_leaves_colored_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบเปลี่ยนสี"'
+  add_leaves_no_live_leaves: 'เพิ่มหมายเหตุ "ใบ: ใบร่วงทั้งหมด"'
   add_life_stage_adult_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวเต็มวัย"'
   add_life_stage_teneral_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: หลังลอกคราบ"'
   add_life_stage_subimago_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวรองตัวเต็มวัย"'
@@ -837,8 +838,6 @@ th:
     %{user} เลิกซ่อน%{item}นี้ เนื่องจาก "%{reason}"
   #e.g. "With iNaturalist, you can contribute to real science"
   contribute: มีส่วนร่วม
-  #e.g. "Contribute to iNaturalist"
-  contribute_cta: มีส่วนร่วม
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: ไม่ระบุ
@@ -923,7 +922,7 @@ th:
     flower_buds: พบตาดอกที่หุบอยู่อย่างน้อยหนึ่งตา
     fruits_or_seeds: พบอย่างน้อยหนึ่งผลหรือเมล็ด
     green_leaves: มีใบเขียวหรือใบรูปเข็มอย่างน้อยหนึ่งใบ (หรือมีสีออกแดงซึ่งเป็นสีปกติและสุขภาพดี)
-    no_live_leaves: ไม่มีการแตกใบอ่อนหรือใบเขียวหรือใบเปลี่ยนสีหรือใบรูปเข็มปรากฏให้เห็น
+    no_live_leaves: ไม่มีการแตกใบอ่อน ใบเขียว ใบเปลี่ยนสี หรือใบรูปเข็มปรากฏให้เห็น
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
     hair: เส้นขนที่หลุดจากตัวสัตว์
     construction: สิ่งที่สัตว์เป็นผู้สร้างโดยขุดเอาหรือทำจากวัสดุอื่น ๆ
@@ -1919,7 +1918,7 @@ th:
   needs_id: รอจำแนกชนิด
   needs_id_: รอจำแนกชนิด
   needs_id_expandable_html: "<span class='full'>รอ</span>จำแนกชนิด"
-  needs_id_tooltip_html: 'การสังเกตที่ "รอจำแนกชนิด" มีสื่อ ตำแหน่ง และวันที่ แต่ยังขาดความเห็นพ้องของชุมชนในการจำแนกที่ระดับชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
+  needs_id_tooltip_html: 'การสังเกตที่ "รอจำแนกชนิด" มีสื่อ ตำแหน่ง และวันที่ แต่ชุมชนยังไม่เห็นพ้องกันที่ระดับชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
   #Column header in a table listing iNaturalist Network members
   network_member: สมาชิกเครือข่าย
   new_and_noteworthy: ใหม่ & น่าสนใจ
@@ -2343,6 +2342,7 @@ th:
     virgin_islands: หมู่เกาะเวอร์จิน
     west_africa: แอฟริกาตะวันตก
     zambia: แซมเบีย
+    zimbabwe: ซิมบับเว
   places_of_interest: สถานที่บนหน้าจอ
   places_merged_successfully: รวมสถานที่สำเร็จแล้ว!
   #user-facing guidance that new places cannot be too large
@@ -3412,6 +3412,14 @@ th:
     นี่คือตัวอย่างของสมาชิกผู้มีอุปการะคุณที่บริจาคให้ iNat ทุกเดือน
   you: คุณ
   you_: คุณ
+  you_are_now_following_x: "คุณกำลังติดตาม %{friend_user}"
+  you_are_now_the_admin_for_project_html: |
+    ขณะนี้<strong>คุณ</strong>เป็นแอดมินของ %{project}
+  you_are_now_a_curator_for_project_html: |
+    ขณะนี้<strong>คุณ</strong>เป็นผู้ดูแลของ %{project}
+  you_are_now_a_manager_for_project_html: |
+    ขณะนี้<strong>คุณ</strong>เป็นผู้จัดการของ %{project}
+  you_are_already_a_member_of_this_project: "คุณเป็นสมาชิกของโครงการนี้แล้ว!"
   you_are_submitting_obs_with_no_date_or_no_location: |
     คุณกำลังส่งการสังเกตที่ไม่มีวันที่หรือตำแหน่ง การสังเกตที่ไม่มีข้อมูลเหล่านี้มักจะจำแนกไม่ได้ และเบื้องต้นจะไม่สามารถมองเห็นจากการค้นหาการสังเกต
   you_are_subscribed_to_comments_on_this_flag: คุณติดตามความคิดเห็นในรายงานนี้แล้ว
@@ -3751,8 +3759,13 @@ th:
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: การสังเกตที่จำแนกถึงระดับสกุล
         obs_id_d_desc: สร้างขึ้นภายใน 7 วันก่อนหน้าและมีการจำแนก (อาจเป็นการจำแนกโดยผู้สังเกตเอง)
+        observations_1_week_moving_window: การสังเกต (ช่วง 1 สัปดาห์)
         observers_desc: เพิ่มการสังเกตในวันนี้
         recent_desc: ลงทะเบียนเมื่อ 7 วันก่อน
+        today_identified_by_others: การสังเกตที่จำแนกโดยผู้อื่น (1 วัน)
+        today_identified_by_others_by_iconic_taxon: การสังเกตที่จำแนกโดยผู้อื่น (1 วัน)
+        observations_unknown: การสังเกตที่ยังไม่จำแนกหลังผ่านไป 30 วัน
+        observations_total_unknown_ratio: สัดส่วนของการสังเกตที่ยังไม่จำแนก (30 วัน)
       year:
         #label used for a chart component that shows the count of users that
         #added both identifications and observations

@@ -29,6 +29,10 @@ const OverviewMap = ( { project, config, updateCurrentUser } ) => {
       }
     } );
   }
+  const observationLayerParams = _.omitBy( {
+    ...project.search_params,
+    color: "iconic"
+  }, v => v === "any" );
   return (
     <Grid>
       <Row>
@@ -36,7 +40,7 @@ const OverviewMap = ( { project, config, updateCurrentUser } ) => {
           <h2>{ title }</h2>
           <TaxonMap
             placement="projects-show-overview"
-            observationLayers={[Object.assign( { captive: "any" }, project.search_params, { color: "iconic" } )]}
+            observationLayers={[observationLayerParams]}
             showAccuracy
             enableShowAllLayer={false}
             overlayMenu={false}

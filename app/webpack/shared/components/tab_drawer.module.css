@@ -1,0 +1,76 @@
+.container {
+  --green: #74ac00;
+
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
+}
+
+.toggle,
+.drawer li a,
+.drawer li button {
+  width: 100%;
+  padding: 12px 20px;
+  font: inherit;
+  font-size: 18px;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px !important;
+  color: black;
+  background: white;
+  border-bottom: 3px solid var(--green) !important;
+}
+
+.drawer {
+  list-style: none;
+  padding: 0;
+  margin: 0 !important;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.open .drawer {
+  max-height: 900px;
+  transition: max-height 0.3s ease-in;
+}
+
+.separator {
+  border-top: 2px solid #ddd;
+  margin: 0;
+}
+
+.item-icon {
+  color: var(--green);
+  margin-right: 6px;
+}
+
+.drawer li a,
+.drawer li button {
+  display: block;
+  color: #555;
+  text-decoration: none;
+  border-top: 1px solid #eee;
+  background: none;
+
+  &:hover {
+    background: #f5f5f5;
+    color: black;
+  }
+}

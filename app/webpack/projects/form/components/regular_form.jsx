@@ -523,6 +523,22 @@ class RegularForm extends React.Component {
                 />
                 { I18n.t( "casual_" ) }
               </label>
+              { project.rule_quality_grade.casual && (
+                <div className="not-casual-excluding-captive">
+                  <div className="help-text">
+                    { I18n.t( "views.projects.new.exclude_casual_except_captive" ) }
+                  </div>
+                  <label className="inline checkboxradio" htmlFor="project-not-casual-excluding-captive">
+                    <input
+                      type="checkbox"
+                      id="project-not-casual-excluding-captive"
+                      defaultChecked={project.rule_not_casual_excluding_captive}
+                      onChange={e => setRulePreference( "not_casual_excluding_captive", e.target.checked || null )}
+                    />
+                    { I18n.t( "views.projects.new.exclude_all_casual_except_captive" ) }
+                  </label>
+                </div>
+              ) }
             </Col>
             <Col xs={4} className={`members-only${usingDelegation ? " disabled" : ""}`}>
               <label>{ I18n.t( "media_type" ) }</label>

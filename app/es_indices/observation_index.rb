@@ -11,11 +11,11 @@ class Observation < ApplicationRecord
   scope :load_for_index, lambda {
     includes(
       { user: [:flags, :stored_preferences] }, :confirmed_reviews, :flags,
-      :observation_links, :quality_metrics, :observation_geo_score,
+      :observation_links, :quality_metrics, :observation_geo_score, :community_taxon,
       :votes_for, :stored_preferences, :tags,
       { annotations: :votes_for },
-      { photos: :flags },
-      { sounds: :user },
+      { photos: [:flags, :moderator_actions] },
+      { sounds: [:user, :flags, :moderator_actions] },
       { identifications: [:stored_preferences, :taxon, :moderator_actions] }, :project_observations,
       { taxon: [:conservation_statuses] },
       { observation_field_values: :observation_field },
@@ -46,6 +46,7 @@ class Observation < ApplicationRecord
       end
       indexes :cached_votes_total, type: "short"
       indexes :captive, type: "boolean"
+      indexes :quality_grade_if_not_captive, type: "keyword"
       indexes :comments do
         indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :created_at, type: "date", index: false
@@ -359,6 +360,7 @@ class Observation < ApplicationRecord
         uuid: uuid,
         user: user&.as_indexed_json( no_details: true )&.merge( site_id: user.site_id ),
         captive: captive,
+        quality_grade_if_not_captive: quality_grade_if_not_captive,
         created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
         updated_at: updated_at.in_time_zone( timezone_object || "UTC" ),
         observed_time_zone: timezone_object.blank? ? nil : timezone_object.tzinfo.name,

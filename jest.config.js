@@ -11,5 +11,6 @@ module.exports = {
     "^.+\\.[jt]sx?$": "babel-jest"
   },
   transformIgnorePatterns: ["/node_modules/"],
-  clearMocks: true
+  clearMocks: true,
+  setupFilesAfterEnv: ["<rootDir>/app/webpack/jest.setup.ts"]
 };

@@ -1,0 +1,113 @@
+.taxon-photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.taxon-photo :global(.CoverImage) {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.photo-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
+.taxon-photo:hover .photo-hover {
+  opacity: 1;
+}
+
+.modal-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.modal-btn i {
+  font-size: 300%;
+  color: white;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.taxon-label {
+  width: 100%;
+  padding: 6px 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 90%;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  box-sizing: border-box;
+  margin-top: auto;
+}
+
+.taxon-label a {
+  color: white;
+  text-decoration: none;
+}
+
+.taxon-label a:hover {
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.taxon-label :global(.SplitTaxon > .display-name),
+.taxon-label :global(.display-names) {
+  display: block;
+}
+
+.taxon-label :global(.SplitTaxon a.display-name),
+.taxon-label :global(.SplitTaxon a.secondary-name) {
+  color: white;
+}
+
+.taxon-label :global(.display-name) {
+  font-size: 120%;
+}
+
+.taxon-label :global(.secondary-name) {
+  font-style: italic;
+}
+
+.info-link {
+  flex-shrink: 0;
+  color: white;
+  font-size: 130%;
+  line-height: 1;
+  pointer-events: all;
+  text-decoration: none;
+}

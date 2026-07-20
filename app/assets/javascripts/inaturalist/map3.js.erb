@@ -12,7 +12,7 @@ var loadMap3 = function ( ) {
 /* eslint-disable */
 
 // requires GoogleMap classes
-if ( typeof( google ) == "undefined" || typeof(google.maps) == "undefined") {
+if ( typeof( google ) == "undefined" || typeof( google.maps ) == "undefined") {
   return;
 }
 
@@ -1142,7 +1142,9 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
 };
 
 function elasticsearchTileservers( ) {
-  var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ];
+  var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ].map( function( url ) {
+    return url.replace( "/v1", "/v2" );
+  } );
   if( tileservers[0].match(/{n}/) ) {
     var pattern = tileservers[0];
     tileservers = _.map([ "1", "2", "3", "4" ], function( n ) {
@@ -1153,8 +1155,6 @@ function elasticsearchTileservers( ) {
 }
 
 function intereactionsServer( ) {
-  var interactionTileURL = "<%= CONFIG.tile_servers.interactions %>";
-  if( interactionTileURL ) { return interactionTileURL; }
   return elasticsearchTileservers( )[0];
 }
 
@@ -1162,7 +1162,7 @@ function intereactionsServer( ) {
 // different clusters running the same code. node_api_url will
 // be faster for DB/postgis queries
 function postgisTileservers( ) {
-  var nodeApiURL = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>";
+  var nodeApiURL = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>".replace( "/v1", "/v2" );
   if( nodeApiURL ) { return [ nodeApiURL ]; }
   return elasticsearchTileservers( );
 }

@@ -833,6 +833,9 @@ es:
     other: |
       Basado en una muestra del %{percent}% porciento de estas Identificaciones, estimamos que esto
       dará como resultado <strong>%{count} desacuerdos no deseados</strong> con la identificación de %{child}.
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    Según la evidencia, ¿se puede mejorar el taxón de la comunidad?
   batch: Grupo
   batch_edit: Editar por lotes
   #Where x is the title of a list of taxa
@@ -902,6 +905,7 @@ es:
   casual: casual
   casual_: Casual
   casual_tooltip_html: 'Las observaciones "casuales" no tienen medios, ubicación, o una fecha, o no cumplen los requisitos de las calificadas como calidad "Investigación" o "Necesita ID" por otras razones. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre los grados de calidad</a>'
+  casual_tooltip_html2: 'Las observaciones con etiqueta “Casual” suelen carecer de evidencia, ubicación o fecha, o no cumplen los requisitos para alcanzar el grado de “Investigación” o “Necesita ID” por otros motivos. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Aprende más sobre los grados de calidad</a>'
   categories: Categorías
   cc_0_description: "Esta licencia difunde tu trabajo al dominio público, permite a otros copiar, modificar, distribuir y construir en base a tu trabajo, incluso con fines comerciales, sin pedirte permiso o darte reconocimiento. Esta es la licencia más abierta que se ofrece. Se recomienda para dar máxima difusión y uso de los materiales con licencia."
   cc_0_name: No hay derechos de autor (CC0)
@@ -1603,6 +1607,10 @@ es:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: Fecha de actualización
   day: Día
   decrease_brightness: Reducir brillo
@@ -1682,6 +1690,12 @@ es:
         Por favor, revisa tu correo electrónico y haz clic en el enlace del correo que recibirás para confirmar tu cuenta.
       user:
         suspended: Tu cuenta ha sido suspendida
+        #Error message displayed when a suspended user logs in, telling them when the suspension will be lifted
+        #with a variable containing relative time (e.g. 1 day, 1 week.)
+        suspended_until: "Tu suspensión se levantará %{until}."
+        #Error message displayed when a suspended user logs in, telling them why they were suspended, which may be
+        #an arbitrary string.
+        suspension_reason: "Motivo: %{reason}"
       #Error message seen when using attempting to reset a password using an invalid reset token
       reset_password_token_invalid: El token de restablecimiento de contraseña no es válido. Utilice el enlace en el correo electrónico de restablecimiento de contraseña enviado más recientemente, o <a href="%{url}">Solicitar uno nuevo</a>.
     sessions:
@@ -1983,6 +1997,7 @@ es:
   external_taxon_including_children: Taxon (externo incluyendo descendientes)
   extinct: extinto
   extinct_in_the_wild: Extinta en estado silvestre
+  provisional_taxon: Provisional
   extra_properties: Propiedades extra
   evidence_accurately_depicts_organism_or_scene: La evidencia representa con precisión el organismo o la escena
   evidence_of_organism: Evidencia de organismo
@@ -2073,6 +2088,8 @@ es:
   flag_deleted: Marca eliminada
   flag_description: Marca este contenido para hacer saber a los curadores que algo no anda bien.
   flag_comment_description: Añadir un comentario opcional a esta marca que explique el por qué la estás añadiendo y proporciona enlaces que ayuden a su evidencia.
+  #Text reminding the user to cite sources
+  flag_comment_taxon_description: Las banderas que citan una fuente son más propensas a ser resueltas rápidamente por nuestros curadores voluntarios.
   flag_for_check_list_title_html: |
     Marca para la lista de verificación: %{title}
   flag_for_comment_id_html: Marcar para <a href="%{url}">comentario %{id}</a>
@@ -2313,6 +2330,8 @@ es:
   #Label for a checkbox to remove observations from search results where the
   #observation locations are private due to geoprivacy
   hide_observations_with_private_locations: Ocultar observaciones con ubicaciones privadas
+  #Label for a button to hide provisional taxa from the taxonomy tree
+  hide_provisional_taxa: Ocultar taxones provisionales
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
@@ -2374,7 +2393,6 @@ es:
   identification_saved: "¡Identificación guardada!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: La identificación se oculta
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: La identificación se muestra
   #Notification when an identification has been updated
   identification_updated: '¡Identificación actualizada!'
@@ -3782,7 +3800,7 @@ es:
   paste_in_a_bunch_of_names: Pegar un grupo de nombres, 1 por línea y ¡presionar el botón!
   people: Personas
   people_following_user: "Personas que siguen a %{user}"
-  people_user_follows: "Gente %{user} Seguidores"
+  people_user_follows: "Gente que %{user} sigue"
   people_added:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda

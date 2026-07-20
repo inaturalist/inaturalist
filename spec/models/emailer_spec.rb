@@ -203,6 +203,28 @@ describe Emailer, "user_unsuspended" do
     end
     Emailer.user_unsuspended( user, "hate_speech" )
   end
+
+  it "should delete an account-email suppression before sending" do
+    allow( RestClient ).to receive( :delete )
+    suppression = create :email_suppression,
+      user: user, email: user.email, suppression_type: EmailSuppression::BOUNCES
+    Emailer.user_unsuspended( user ).deliver_now
+    expect( EmailSuppression.find_by_id( suppression.id ) ).to be_blank
+  end
+
+  it "should not delete an unrelated suppression" do
+    allow( RestClient ).to receive( :delete )
+    suppression = create :email_suppression,
+      user: user, email: user.email, suppression_type: EmailSuppression::INVALID_EMAILS
+    Emailer.user_unsuspended( user ).deliver_now
+    expect( EmailSuppression.find_by_id( suppression.id ) ).not_to be_blank
+  end
+
+  it "should not send a Sendgrid ASM group so no unsubscribe footer is added" do
+    mail = Emailer.user_unsuspended( user )
+    smtpapi = JSON.parse( mail["X-SMTPAPI"].value )
+    expect( smtpapi ).not_to have_key( "asm_group_id" )
+  end
 end
 
 describe Emailer, "user_suspended" do
@@ -252,6 +274,28 @@ describe Emailer, "user_suspended" do
       reason
     end
     Emailer.user_suspended( user, "hate_speech", nil )
+  end
+
+  it "should delete an account-email suppression before sending" do
+    allow( RestClient ).to receive( :delete )
+    suppression = create :email_suppression,
+      user: user, email: user.email, suppression_type: EmailSuppression::BOUNCES
+    Emailer.user_suspended( user, "hate_speech", nil ).deliver_now
+    expect( EmailSuppression.find_by_id( suppression.id ) ).to be_blank
+  end
+
+  it "should not delete an unrelated suppression" do
+    allow( RestClient ).to receive( :delete )
+    suppression = create :email_suppression,
+      user: user, email: user.email, suppression_type: EmailSuppression::INVALID_EMAILS
+    Emailer.user_suspended( user, "hate_speech", nil ).deliver_now
+    expect( EmailSuppression.find_by_id( suppression.id ) ).not_to be_blank
+  end
+
+  it "should not send a Sendgrid ASM group so no unsubscribe footer is added" do
+    mail = Emailer.user_suspended( user, "hate_speech", nil )
+    smtpapi = JSON.parse( mail["X-SMTPAPI"].value )
+    expect( smtpapi ).not_to have_key( "asm_group_id" )
   end
 end
 

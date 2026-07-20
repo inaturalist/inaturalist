@@ -616,9 +616,6 @@ es-MX:
   app_owner_application_inelligible: |
     Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes
     haber hecho al menos 10 mejoras de identificaciones en el último mes.
-  app_owner_application_inelligible2: |
-    Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes
-    haber hecho al menos 10 mejoras de identificaciones en el último mes.
   app_owner_application_fields_explanation_html: Describe la funcionalidad que tu app tendrá y cómo planeas usarla.
   app_owner_application_success: Solicitud de "propietario de app" enviada
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -2378,7 +2375,6 @@ es-MX:
   identification_saved: "¡Identificación guardada!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Identificación oculta
-  #Notice when an identification has been unhidden by moderators
   identification_unhidden: Identificación sin ocultar
   #Notification when an identification has been updated
   identification_updated: '¡Identificación actualizada!'
@@ -7083,6 +7079,10 @@ es-MX:
         taxon_geoprivacy: "Se aplicaron políticas de geoprivacidad más conservadoras debido al estado de conservación del taxón identificado actualmente."
         coordinates_obscured: "Si las coordenadas se han ocultado, o no, por una condición de geoprivacidad o por tratarse de un taxón vulnerable"
         out_of_range: Si la observación entra o no dentro del área geográfica conocida del taxón
+        user_id: Identificador secuencial único para el observador
+        user_login: Nombre de usuario del observado, e.g. una identificación alfanumérica, corta y única para un usuario
+        user_name: |
+          Nombre del observador, generalmente usado para atribución en la página. Este campo es opcional y puede ser un seudónimo.
         created_at: Fecha de creación de la observación
         updated_at: Última fecha de actualización de la observación
         quality_grade: Grado de calidad de esta observación. Consulte la sección Ayuda para más detalles sobre lo que esto significa. Vea https://help.inaturalist.org/support/solutions/articles/151000169936
