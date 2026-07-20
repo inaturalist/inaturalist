@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { Taxon } from "inaturalistjs";
+import inatjs, { Taxon } from "inaturalistjs";
 import photosReducer, { reloadPhotos, hydrateFromUrlParams } from "./ducks/photos";
 import { setConfig } from "../../shared/ducks/config";
 import taxonReducer, { setTaxon, fetchTerms } from "../shared/ducks/taxon";
@@ -40,6 +40,19 @@ if ( serverPayload.ancestorsShown ) {
     ancestorsShown: serverPayload.ancestorsShown
   } ) );
 }
+
+const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+const defaultApiUrl = element && element.getAttribute( "content" );
+if ( defaultApiUrl ) {
+  sharedStore.dispatch( setConfig( {
+    testingApiV2: true
+  } ) );
+  inatjs.setConfig( {
+    apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+    writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+  } );
+}
+
 const taxon = new Taxon( serverPayload.taxon );
 sharedStore.dispatch( setTaxon( taxon ) );
 // fetch taxon terms before rendering the photo browser, in case
