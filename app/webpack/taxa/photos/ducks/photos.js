@@ -17,6 +17,45 @@ const DEFAULT_PARAMS = {
   quality_grade: "research"
 };
 
+const OBSERVATION_FIELDS = {
+  id: true,
+  taxon: {
+    iconic_taxon_name: true,
+    id: true,
+    is_active: true,
+    name: true,
+    preferred_common_name: true,
+    rank: true,
+    rank_level: true
+  },
+  photos: {
+    attribution: true,
+    attribution_name: true,
+    id: true,
+    license_code: true,
+    small_url: true,
+    medium_url: true,
+    original_dimensions: {
+      width: true,
+      height: true
+    },
+    url: true
+  },
+  user: {
+    login: true,
+    name: true,
+    icon_url: true
+  }
+};
+
+const PLACE_SEARCH_FIELDS = {
+  id: true,
+  uuid: true,
+  name: true,
+  display_name: true,
+  place_type: true
+};
+
 export function setUrl( newParams, options = {} ) {
   const defaultParams = options.defaultParams || DEFAULT_PARAMS;
   // don't put defaults in the URL
@@ -86,8 +125,10 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       newState.perPage = action.perPage;
       break;
     case UPDATE_OBSERVATION_PARAMS:
-      newState.observationParams = Object.assign( { }, state.observationParams,
-        action.params );
+      newState.observationParams = {
+        ...state.observationParams,
+        ...action.params
+      };
       _.forEach( newState.observationParams, ( v, k ) => {
         if (
           v === null
@@ -209,23 +250,25 @@ function observationPhotosFromObservations( observations ) {
 export function fetchObservationPhotos( options = {} ) {
   return function ( dispatch, getState ) {
     const s = getState( );
-    const params = Object.assign(
-      { },
-      defaultObservationParams( s ),
-      s.photos.observationParams,
-      {
-        photos: true,
-        page: options.page,
-        per_page: options.perPage || 12
-      }
-    );
+    const params = _.omitBy( {
+      ...defaultObservationParams( s ),
+      ...s.photos.observationParams,
+      photos: true,
+      page: options.page,
+      per_page: options.perPage || 12
+    }, v => v === "any" );
     delete params.verifiable;
+    if ( s.config.testingApiV2 ) {
+      params.fields = OBSERVATION_FIELDS;
+    }
     return inatjs.observations.search( params )
       .then( response => {
         let observationPhotos = observationPhotosFromObservations( response.results );
         if ( params.photo_license && params.photo_license !== "any" ) {
-          observationPhotos = _.filter( observationPhotos,
-            op => op.photo.license_code === params.photo_license );
+          observationPhotos = _.filter(
+            observationPhotos,
+            op => op.photo.license_code === params.photo_license
+          );
         }
         let action = appendObservationPhotos;
         if ( options.reload ) {
@@ -254,12 +297,14 @@ function fetchPhotosGroupedByParam( param, values ) {
   return function ( dispatch, getState ) {
     const s = getState( );
     const limit = 12;
-    const baseParams = Object.assign(
-      { },
-      defaultObservationParams( s ),
-      s.photos.observationParams,
-      { per_page: limit }
-    );
+    const baseParams = _.omitBy( {
+      ...defaultObservationParams( s ),
+      ...s.photos.observationParams,
+      per_page: limit
+    }, v => v === "any" );
+    if ( s.config.testingApiV2 ) {
+      baseParams.fields = OBSERVATION_FIELDS;
+    }
     _.forEach( values, value => {
       let groupName = value;
       let groupObject;
@@ -361,7 +406,7 @@ export function hydrateFromUrlParams( params ) {
     if ( !params ) {
       params = {};
     }
-    const { taxon } = getState( );
+    const { taxon, config } = getState( );
     if ( params.grouping ) {
       const termGroupingMatch = params.grouping.match( /terms:([0-9]+)$/ );
       if ( termGroupingMatch ) {
@@ -387,7 +432,11 @@ export function hydrateFromUrlParams( params ) {
       if ( params.place_id === "any" ) {
         dispatch( setConfig( { chosenPlace: null } ) );
       } else {
-        inatjs.places.fetch( params.place_id ).then(
+        const placeSearchParams = { };
+        if ( config.testingApiV2 ) {
+          placeSearchParams.fields = PLACE_SEARCH_FIELDS;
+        }
+        inatjs.places.fetch( params.place_id, placeSearchParams ).then(
           response => {
             dispatch( setConfig( { chosenPlace: response.results[0] } ) );
           },

@@ -29,10 +29,10 @@ const OverviewMap = ( { project, config, updateCurrentUser } ) => {
       }
     } );
   }
-  const observationLayerParams = _.omit( {
+  const observationLayerParams = _.omitBy( {
     ...project.search_params,
     color: "iconic"
-  }, "any" );
+  }, v => v === "any" );
   return (
     <Grid>
       <Row>
