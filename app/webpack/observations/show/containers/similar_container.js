@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 import ObservationsHighlight from "../components/observations_highlight";
+import ObservationsHighlightLegacy from "../components/observations_highlight_legacy";
+import gatedComponent from "../components/gated_component";
 import { showNewObservation } from "../ducks/observation";
 import { fetchMoreFromClade } from "../ducks/other_observations";
 
@@ -26,6 +28,6 @@ function mapDispatchToProps( dispatch ) {
 const SimilarContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( ObservationsHighlight );
+)( gatedComponent( ObservationsHighlight, ObservationsHighlightLegacy ) );
 
 export default SimilarContainer;

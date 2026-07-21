@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 import Assessment from "../components/assessment";
+import AssessmentLegacy from "../components/assessment_legacy";
+import gatedComponent from "../components/gated_component";
 import { updateSession } from "../ducks/users";
 
 function mapStateToProps( state ) {
@@ -18,6 +20,6 @@ function mapDispatchToProps( dispatch ) {
 const AssessmentContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( Assessment );
+)( gatedComponent( Assessment, AssessmentLegacy ) );
 
 export default AssessmentContainer;

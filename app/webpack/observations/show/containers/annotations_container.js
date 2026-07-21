@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 import Annotations from "../components/annotations";
+import AnnotationsLegacy from "../components/annotations_legacy";
+import gatedComponent from "../components/gated_component";
 import { fetchControlledTerms } from "../ducks/controlled_terms";
 import {
   addAnnotation,
@@ -35,6 +37,6 @@ function mapDispatchToProps( dispatch ) {
 const AnnotationsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( Annotations );
+)( gatedComponent( Annotations, AnnotationsLegacy ) );
 
 export default AnnotationsContainer;

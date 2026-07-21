@@ -1,4 +1,4 @@
-@import "../colors";
+@import "../../colors";
 .UserWithIcon {
   display: flex;
   align-items: center;
@@ -9,8 +9,12 @@
     flex-grow: 2;
     display: flex;
     flex-direction: column;
+    min-width: 0; // allow the flex column to shrink below content width so .title can ellipsize
   }
   .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     a {
       color: #000;
     }

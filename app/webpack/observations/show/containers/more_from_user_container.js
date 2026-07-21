@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 import MoreFromUser from "../components/more_from_user";
+import MoreFromUserLegacy from "../components/more_from_user_legacy";
+import gatedComponent from "../components/gated_component";
 import { showNewObservation } from "../ducks/observation";
 
 function mapStateToProps( state ) {
@@ -21,6 +23,6 @@ function mapDispatchToProps( dispatch ) {
 const MoreFromUserContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( MoreFromUser );
+)( gatedComponent( MoreFromUser, MoreFromUserLegacy ) );
 
 export default MoreFromUserContainer;

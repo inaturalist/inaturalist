@@ -227,6 +227,30 @@ describe ObservationsController do
       )
     end
 
+    describe "responsive-obs-detail test group gate" do
+      it "sets the responsive flags for a user in the test group" do
+        user = User.make!
+        user.update_column( :test_groups, "responsive-obs-detail" )
+        sign_in user
+        get :show, params: { id: observation.id }
+        expect( assigns( :obs_detail_responsive ) ).to be_truthy
+        expect( assigns( :responsive ) ).to be_truthy
+        expect( assigns( :skip_min_width ) ).to be_truthy
+      end
+
+      it "does not set the responsive flags for a user not in the test group" do
+        sign_in User.make!
+        get :show, params: { id: observation.id }
+        expect( assigns( :obs_detail_responsive ) ).to be_falsey
+        expect( assigns( :responsive ) ).to be_falsey
+      end
+
+      it "does not set the responsive flags for anonymous users" do
+        get :show, params: { id: observation.id }
+        expect( assigns( :responsive ) ).to be_falsey
+      end
+    end
+
     describe "missing observations" do
       it "renders a 404 for missing observations" do
         get :show, params: { id: 99 }

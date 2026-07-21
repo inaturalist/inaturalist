@@ -1,13 +1,14 @@
 @import "../../colors";
-@import "../../shared/activity_item";
-@import "../../shared/annotations";
-@import "../../shared/observation_fields";
+@import "../../breakpoints";
+@import "activity_item";
+@import "annotations";
+@import "observation_fields";
 @import "../../shared/observation_projects";
 @import "../../shared/quality_metrics";
 @import "../../shared/record_chooser_popover";
 @import "../../shared/taxon_autocomplete";
 @import "../../shared/text_editor";
-@import "../../shared/user_text";
+@import "user_text";
 
 .ObservationModal,
 body > [role="dialog"] .ObservationModal {
@@ -24,6 +25,9 @@ body > [role="dialog"] .ObservationModal {
     color: black;
   }
   .modal-dialog {
+    @media ( max-width: $md-max ) {
+      margin-top: 40px;
+    }
     .modal-content {
       .left-col,
       .right-col {
