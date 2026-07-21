@@ -1009,29 +1009,28 @@ class User < ApplicationRecord
     end
     true
   end
-    
+
   def get_lat_lon_from_ip
     return true if last_ip.nil?
+
     latitude = nil
     longitude = nil
     lat_lon_acc_admin_level = nil
-    geoip_response = INatAPIService.geoip_lookup( { ip: last_ip } )
-    if geoip_response && geoip_response.results
-      # don't set any location if the country is unknown
-      if geoip_response.results.country
-        ll = geoip_response.results.ll
-        latitude = ll[0]
-        longitude = ll[1]
-        if geoip_response.results.city
-          # also probably know the county
-          lat_lon_acc_admin_level = Place::COUNTY_LEVEL
-        elsif geoip_response.results.region
-          # also probably know the state
-          lat_lon_acc_admin_level = Place::STATE_LEVEL
-        else
-          # probably just know the country
-          lat_lon_acc_admin_level = Place::COUNTRY_LEVEL
-        end
+    geoip_response = INatAPIService.geoip_lookup( { ip: last_ip, fields: "all" }, v2: true )
+    geoip_result = geoip_response&.results&.first
+    if geoip_result && !geoip_result["country"].blank?
+      ll = geoip_result["ll"]
+      latitude = ll[0]
+      longitude = ll[1]
+      lat_lon_acc_admin_level = if geoip_result["city"]
+        # also probably know the county
+        Place::COUNTY_LEVEL
+      elsif geoip_result["region"]
+        # also probably know the state
+        Place::STATE_LEVEL
+      else
+        # probably just know the country
+        Place::COUNTRY_LEVEL
       end
     end
     self.latitude = latitude

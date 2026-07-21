@@ -718,7 +718,7 @@ describe Announcement do
       child_pl = create :announcement, ip_countries: ["PL"], parent_announcement_id: parent.id
       test_ip = "1.2.3.4"
       allow( INatAPIService ).to receive( :geoip_lookup ) do
-        OpenStruct.new_recursive( results: { country: "US" } )
+        OpenStruct.new_recursive( results: [{ "country" => "US" }] )
       end
       result_ids = Announcement.active( ip: test_ip ).map( &:id )
       expect( result_ids ).to include( child_us.id )
@@ -731,7 +731,7 @@ describe Announcement do
       child_pl = create :announcement, ip_countries: ["PL"], parent_announcement_id: parent.id
       test_ip = "1.2.3.4"
       allow( INatAPIService ).to receive( :geoip_lookup ) do
-        OpenStruct.new_recursive( results: { country: "US" } )
+        OpenStruct.new_recursive( results: [{ "country" => "US" }] )
       end
       result_ids = Announcement.active( ip: test_ip ).map( &:id )
       expect( result_ids ).to include( parent.id )
@@ -791,7 +791,7 @@ describe Announcement do
         annc = create :announcement, ip_countries: ["US"]
         test_ip = "1.2.3.4"
         allow( INatAPIService ).to receive( :geoip_lookup ) do
-          OpenStruct.new_recursive( results: { country: annc.ip_countries.first } )
+          OpenStruct.new_recursive( results: [{ "country" => annc.ip_countries.first }] )
         end
         expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).to include annc
       end
@@ -800,7 +800,7 @@ describe Announcement do
         annc = create :announcement, ip_countries: ["US"]
         test_ip = "1.2.3.4"
         allow( INatAPIService ).to receive( :geoip_lookup ) do
-          OpenStruct.new_recursive( results: { country: "PL" } )
+          OpenStruct.new_recursive( results: [{ "country" => "PL" }] )
         end
         expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).not_to include annc
       end
@@ -820,7 +820,7 @@ describe Announcement do
         annc = create :announcement, exclude_ip_countries: ["US"], ip_countries: []
         test_ip = "1.2.3.4"
         allow( INatAPIService ).to receive( :geoip_lookup ).
-          and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+          and_return( OpenStruct.new_recursive( results: [{ "country" => "US" }] ) )
 
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
@@ -832,7 +832,7 @@ describe Announcement do
         annc = create :announcement, ip_countries: ["US", "CA"], exclude_ip_countries: ["US"]
         test_ip = "1.2.3.4"
         allow( INatAPIService ).to receive( :geoip_lookup ).
-          and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+          and_return( OpenStruct.new_recursive( results: [{ "country" => "US" }] ) )
 
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )
@@ -844,7 +844,7 @@ describe Announcement do
         annc = create :announcement, ip_countries: ["US"], exclude_ip_countries: ["PL"]
         test_ip = "1.2.3.4"
         allow( INatAPIService ).to receive( :geoip_lookup ).
-          and_return( OpenStruct.new_recursive( results: { country: "US" } ) )
+          and_return( OpenStruct.new_recursive( results: [{ "country" => "US" }] ) )
 
         expect(
           Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } )

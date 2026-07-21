@@ -163,6 +163,7 @@ Rack::Utils.multipart_total_part_limit = 16_384
 # load SiteConfig class and config
 require "site_config"
 CONFIG = SiteConfig.load
+CONFIG.node_api_url_v2 = CONFIG.node_api_url&.sub( "/v1", "/v2" )
 CONFIG.usingS3 = Rails.env.production? || Rails.env.prod_dev?
 
 # A DEFAULT_SRID of -1 causes lots of warnings when running specs

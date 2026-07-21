@@ -107,10 +107,11 @@ class CohortLifecycle < ApplicationRecord
 
       next if user.email.nil? || !user.suspended_at.nil?
 
-      geoip_response = INatAPIService.geoip_lookup( ip: user.last_ip )
-      next unless geoip_response&.results && geoip_response.results.city.present? && geoip_response.results.ll.present?
+      geoip_response = INatAPIService.geoip_lookup( { ip: user.last_ip, fields: "all" }, v2: true )
+      geoip_result = geoip_response&.results&.first
+      next unless geoip_result && !geoip_result["city"].blank? && !geoip_result["ll"].blank?
 
-      geoip_latitude, geoip_longitude = geoip_response.results.ll
+      geoip_latitude, geoip_longitude = geoip_result["ll"]
       group = rand( 2 ).zero? ? "A" : "B"
       value[:observer_appeal_intervention_group] = group
       next unless group == "A"

@@ -18,7 +18,7 @@ class BuildInfoController < ApplicationController
     @app_build_info_json = INatAPIService.get(
       "/app_build_info",
       { authenticate: current_user },
-      { endpoint: INatAPIService::ENDPOINT.sub( "v1", "v2" ) }
+      { v2: true }
     )
     respond_to do | format |
       format.json { render json: @app_build_info_json }
