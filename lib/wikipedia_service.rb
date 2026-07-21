@@ -23,7 +23,8 @@ class WikipediaService < MetaService
     @default_params = {
       format: "xml"
     }
-    @user_agent = "#{Site.default.name}/#{SERVICE_VERSION} (#{Site.default.url}; devops@inaturalist.org) <WikipediaService/Rails/#{SERVICE_VERSION}>"
+    @user_agent = "#{Site.default.name}/#{SERVICE_VERSION} (#{Site.default.url}; " \
+      "#{CONFIG.meta_service_email}) WikipediaService/Rails/#{SERVICE_VERSION}"
 
     return unless subdomain.downcase == "zh"
 

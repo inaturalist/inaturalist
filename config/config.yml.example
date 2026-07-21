@@ -154,6 +154,9 @@ base: &base
             # the web app
             default: 1234
     help_email: help@inaturalist.org
+    meta_service_email: help@inaturalist.org
+    admin_user_email: help@inaturalist.org
+    noreply_email: no-reply@inaturalist.org
 
     model_taxonomy: taxonomy.csv
 
