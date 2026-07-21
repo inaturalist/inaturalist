@@ -7,8 +7,8 @@ describe MetaService do
     it "passes the class-specific user agent to fetch_with_redirects" do
       service = WikipediaService.new
       expected_user_agent = "#{Site.default.name}/1 " \
-        "(#{Site.default.url}; devops@inaturalist.org) " \
-        "<WikipediaService/Rails/1>"
+        "(#{Site.default.url}; #{CONFIG.meta_service_email}) " \
+        "WikipediaService/Rails/1"
       response = double( "Net::HTTPResponse", code: "200", body: "<parse><text>ok</text></parse>" )
       allow( MetaService ).to receive( :fetch_with_redirects ).and_return( response )
       service.parse( page: "Animalia" )
