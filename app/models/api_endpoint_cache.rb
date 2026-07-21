@@ -1,5 +1,5 @@
 class ApiEndpointCache < ApplicationRecord
-  THROTTLE_RETRY_MINUTES = 30
+  THROTTLE_RETRY_MINUTES = 90
   THROTTLED_STATUS_CODE = 429
   THROTTLED_BODY_PHRASE = "too many requests".freeze
 
