@@ -57,21 +57,31 @@ class TaxonImporter
       return @results
     end
 
-    @results ||= INatAPIService.get(
+    api_response = INatAPIService.get(
       "/taxa/#{full_ids.join( ',' )}",
       { fields: REQUESTED_FIELDS },
       v2: true,
       endpoint: PRODUCTION_API_ENDPOINT
-    ).results
+    )
+    if api_response.blank?
+      raise "Empty API response in `results` for `#{full_ids.join( ',' )}`"
+    end
+
+    @results ||= api_response.results
   end
 
   def ancestry_chain
-    @ancestry_chain ||= INatAPIService.get(
+    api_response = INatAPIService.get(
       "/taxa/#{taxon_id}",
       { fields: "ancestry" },
       v2: true,
       endpoint: PRODUCTION_API_ENDPOINT
-    ).results.first&.dig( "ancestry" ) || ""
+    )
+    if api_response.blank?
+      raise "Empty API response in `ancestry_chain` for `#{taxon_id}`"
+    end
+
+    @ancestry_chain ||= api_response.results.first&.dig( "ancestry" ) || ""
   end
 
   def full_ids

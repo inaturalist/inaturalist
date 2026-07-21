@@ -1478,7 +1478,7 @@ $.fn.textcompleteUsers = function( ) {
     index: 1,
     match: /\B@([A-z][\\\w\\\-_]*)$/,
     search: function( term, callback ) {
-      $.getJSON( "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
+      $.getJSON( "<%= CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
         done(function( data ) {
           callback( $.map( data.results, function( user ) {
             var icon = user.icon || "/attachment_defaults/users/icons/defaults/thumb.png";

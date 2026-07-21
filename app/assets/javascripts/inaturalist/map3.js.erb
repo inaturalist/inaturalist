@@ -1162,7 +1162,7 @@ function intereactionsServer( ) {
 // different clusters running the same code. node_api_url will
 // be faster for DB/postgis queries
 function postgisTileservers( ) {
-  var nodeApiURL = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>".replace( "/v1", "/v2" );
+  var nodeApiURL = "<%= CONFIG.node_api_url %>".replace( "/v1", "/v2" );
   if( nodeApiURL ) { return [ nodeApiURL ]; }
   return elasticsearchTileservers( );
 }
