@@ -5,7 +5,7 @@
   :javascript
     var SERVER_PAYLOAD = {
       taxon: #{ @node_taxon_json.encode.html_safe }.results[0],
-      place: #{ @place.to_json( only: [:id, :name, :display_name ] ).html_safe},
+      place: #{ @place.to_json( only: [:id, :uuid, :name, :display_name ] ).html_safe},
       ancestorsShown: #{ @ancestors_shown.to_json.html_safe },
       preferred_taxon_photos_query: #{ ( current_user ? current_user.preferred_taxon_photos_query : nil ).to_json.html_safe }
     }
