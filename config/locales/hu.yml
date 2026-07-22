@@ -5403,6 +5403,8 @@ hu:
     Ez a cikk felhasználja a
     <a href="%{url}">"%{title}"</a> Wikipédia-cikk anyagait, amely a
     <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.hu">Creative Commons Nevezd meg! - Így add tovább! 3.0</a> licencet használja. Lehetségesek kihagyások az eredeti tartalomból, de a tartalmat nem módosították vagy bővítették.
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: A Wikipédia összefoglalóját nem lehetett letölteni. Kérünk, próbáld meg újra 30 perc múlva.
   #Filter for observations not in a particular taxon
   without_taxon: E taxonon kívül
   #Label for a button to withdraw an identification, i.e. to deactivate it
