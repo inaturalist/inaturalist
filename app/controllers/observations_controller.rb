@@ -328,8 +328,10 @@ class ObservationsController < ApplicationController
 
         @skip_application_js = true
         @flash_js = true
-        if current_user&.in_test_group?( "responsive-header" ) &&
-            current_user.in_test_group?( "responsive-obs-detail" )
+        @obs_detail_responsive = current_user&.in_test_group?( "responsive-obs-detail" ) ||
+          current_user&.in_test_group?( "responsive-global" )
+        if @obs_detail_responsive
+          @responsive = true
           @skip_min_width = true
         end
         return render layout: "bootstrap"

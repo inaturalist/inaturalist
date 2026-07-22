@@ -187,12 +187,11 @@ class Annotations extends React.Component {
         </td>
         <td className="value">
           <UserImage user={a.user} />
-          <div className="value-content">
-            <span className="value-label" title={valueDefinition}>
-              { valueLabel }
-            </span>
-            { action }
-          </div>
+          <span className="value-label" title={valueDefinition}>
+            { valueLabel }
+          </span>
+          &nbsp;
+          { action }
         </td>
         <td className="agree">
           <span className="check">

@@ -1,0 +1,485 @@
+import _ from "lodash";
+import React from "react";
+import {
+  SplitButton,
+  MenuItem,
+  OverlayTrigger,
+  Tooltip
+} from "react-bootstrap";
+import LazyLoad from "react-lazy-load";
+import moment from "moment-timezone";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import UserText from "../../../shared/components/user_text";
+import Inativersary from "../../../shared/components/inativersary";
+import { formattedDateTimeInTimeZone } from "../../../shared/util";
+import UserWithIcon from "./user_with_icon";
+import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
+import ConservationStatusBadge from "./conservation_status_badge";
+import EstablishmentMeansBadge from "./establishment_means_badge";
+import ActivityContainer from "../containers/activity_container";
+import AnnotationsContainer from "../containers/annotations_container";
+import AssessmentContainer from "../containers/assessment_container";
+import CommunityIdentificationContainer from "../containers/community_identification_container";
+import CommunityIDModalContainer from "../containers/community_id_modal_container";
+import ConfirmModalContainer from "../../../shared/containers/confirm_modal_container";
+import DisagreementAlertContainer from "../containers/disagreement_alert_container";
+import CopyrightContainer from "../containers/copyright_container";
+import FavesContainer from "../containers/faves_container";
+import FlaggingModalContainer from "../containers/flagging_modal_container";
+import FollowButtonContainer from "../containers/follow_button_container";
+import IdentifiersContainer from "../containers/identifiers_container";
+import LicensingModalContainer from "../containers/licensing_modal_container";
+import MapContainer from "../containers/map_container";
+import MediaViewerContainer from "../containers/media_viewer_container";
+import MoreFromUserContainer from "../containers/more_from_user_container";
+import NearbyContainer from "../containers/nearby_container";
+import ObservationFieldsContainer from "../containers/observation_fields_container";
+import PhotoBrowserContainer from "../containers/photo_browser_container";
+import PreviousNextButtonsContainer from "../containers/previous_next_buttons_container";
+import ProjectFieldsModalContainer from "../containers/project_fields_modal_container";
+import ProjectsContainer from "../containers/projects_container";
+import SimilarContainer from "../containers/similar_container";
+import TagsContainer from "../containers/tags_container";
+import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
+import ObservationModalContainer from "../containers/observation_modal_container";
+import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
+import AssessmentLazyLoad from "./assessment_lazy_load";
+import type {
+  Config, CurrentUser, Observation, User
+} from "../../../shared/types";
+
+interface DateDetails {
+  year?: number;
+  month?: number;
+  day?: number;
+}
+
+// The obs-show page observation/config carry many fields not on the shared
+// (intentionally narrow) types; intersect with the page-specific shape here.
+interface ShowObservation extends Observation {
+  uuid?: string;
+  user?: User & { id: number; login: string };
+  species_guess?: string;
+  description?: string;
+  quality_grade: string;
+  observed_on?: string;
+  observed_on_details: DateDetails;
+  time_observed_at?: string;
+  observed_time_zone?: string;
+  created_at?: string;
+  created_at_details: DateDetails;
+  created_time_zone?: string;
+  obscured?: boolean;
+  private_geojson?: unknown;
+  sounds?: unknown[];
+  tags?: unknown[];
+}
+
+interface ShowConfig extends Config {
+  currentUser?: CurrentUser & { id?: number; time_zone?: string };
+  currentUserCanInteractWithResource: ( resource: ShowObservation ) => boolean;
+}
+
+interface AppProps {
+  observation: ShowObservation;
+  config: ShowConfig;
+  deleteObservation: ( ) => void;
+  setLicensingModalState: ( state: { show: boolean } ) => void;
+}
+
+type SearchParameters = Record<string, string | number | null | undefined>;
+
+moment.updateLocale( "en", {
+  relativeTime: {
+    future: "in %s",
+    past: "%s",
+    s: "%ds",
+    m: "1m",
+    mm: "%dm",
+    h: "1h",
+    hh: "%dh",
+    d: "1d",
+    dd: "%dd",
+    M: "1mo",
+    MM: "%dmo",
+    y: "1y",
+    yy: "%dy"
+  }
+} );
+
+class App extends React.Component<AppProps> {
+  linkDateToObservationSearch(
+    dateString?: string | null,
+    searchParameters: SearchParameters = { }
+  ) {
+    if ( _.isEmpty( dateString ) ) {
+      return null;
+    }
+
+    const { observation } = this.props;
+    let url = `/observations?user_id=${observation.user?.login}&place_id=any&verifiable=any&`;
+    url += $.param( _.pickBy( searchParameters, v => !_.isNil( v ) ) );
+    // dates are formatted with the `momentjs.datetime_with_offset` pattern. Currently
+    // all locales separate the date part of the string from the time and zone part of
+    // the string with an mdot followed by LT Z. Use that pattern to split the string
+    // to attempt to only link the date and not the time. If the pattern is not found
+    // (as would be the case when there is no time) link the entire string to the search
+    if ( I18n.t( "momentjs.datetime_with_offset" )?.match( / · LT Z$/ )
+      && dateString!.match( / · / ) ) {
+      const dateComponents = dateString!.split( " · " );
+      return (
+        <span>
+          <a href={url}>{dateComponents[0]}</a>
+          {" · "}
+          {dateComponents[1]}
+        </span>
+      );
+    }
+    return (
+      <a href={url}>{dateString}</a>
+    );
+  }
+
+  displayDateObserved( ) {
+    const { observation } = this.props;
+    const observedAt = moment( observation.time_observed_at || observation.observed_on );
+    let isoDateObserved = observedAt.format( );
+    let observedYear;
+    let observedMonth;
+    let observedDay;
+    let formattedDateObserved;
+
+    if ( observation.observed_on ) {
+      observedYear = observation.observed_on_details.year;
+      observedMonth = observation.observed_on_details.month;
+      observedDay = observation.observed_on_details.day;
+      if (
+        observation.obscured
+        && !observation.private_geojson
+      ) {
+        formattedDateObserved = observedAt.format( I18n.t( "momentjs.month_year" ) );
+        isoDateObserved = observedAt.format( "YYYY-MM" );
+        observedDay = null;
+      } else if ( observation.time_observed_at ) {
+        formattedDateObserved = formattedDateTimeInTimeZone(
+          observation.time_observed_at,
+          observation.observed_time_zone
+        );
+      } else {
+        formattedDateObserved = observedAt.format( "ll" );
+      }
+    }
+
+    const searchParameters: SearchParameters = observedYear && observedMonth && observedDay ? {
+      on: `${observedYear}-${observedMonth}-${observedDay}`
+    } : {
+      year: observedYear,
+      month: observedMonth,
+      day: observedDay
+    };
+    return (
+      <span className="date" title={isoDateObserved}>
+        { observation.observed_on
+          && observation.obscured
+          && !observation.private_geojson
+          && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
+        { this.linkDateToObservationSearch( formattedDateObserved, searchParameters )
+          || I18n.t( "missing_date" ) }
+      </span>
+    );
+  }
+
+  displayDateAdded( ) {
+    const { observation, config } = this.props;
+    let viewerTimeZone = moment.tz.guess();
+    if ( config && config.currentUser && config.currentUser.time_zone ) {
+      viewerTimeZone = config.currentUser.time_zone;
+    }
+    const createdAt = moment( observation.created_at );
+    let isoDateAdded = createdAt.format( );
+    const addedYear = observation.created_at_details.year;
+    const addedMonth = observation.created_at_details.month;
+    let addedDay: number | null | undefined = observation.created_at_details.day;
+    let formattedDateAdded = formattedDateTimeInTimeZone(
+      moment.tz(
+        observation.created_at as string,
+        observation.created_time_zone as string
+      ),
+      viewerTimeZone
+    );
+
+    if (
+      observation.obscured
+      && !observation.private_geojson
+    ) {
+      formattedDateAdded = createdAt.format( I18n.t( "momentjs.month_year" ) );
+      isoDateAdded = createdAt.format( "YYYY-MM" );
+      addedDay = null;
+    }
+
+    const searchParameters: SearchParameters = addedYear && addedMonth && addedDay ? {
+      created_on: `${addedYear}-${addedMonth}-${addedDay}`
+    } : {
+      created_year: addedYear,
+      created_month: addedMonth,
+      created_day: addedDay
+    };
+    return (
+      <span className="date" title={isoDateAdded}>
+        { observation.obscured
+          && !observation.private_geojson
+          && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
+        { this.linkDateToObservationSearch( formattedDateAdded, searchParameters ) }
+      </span>
+    );
+  }
+
+  render( ) {
+    const {
+      observation,
+      config,
+      deleteObservation,
+      setLicensingModalState
+    } = this.props;
+    if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
+      return (
+        <div id="initial-loading" className="text-center">
+          <div className="loading_spinner" />
+        </div>
+      );
+    }
+    const viewerIsObserver = config && config.currentUser
+      && config.currentUser.id === observation.user?.id;
+    const photosColClass = (
+      ( !observation.photos || observation.photos.length === 0 )
+      && ( !observation.sounds || observation.sounds.length === 0 )
+    ) ? "empty" : null;
+    const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
+    const description = observation.description
+      ? (
+        <div className="description">
+          <h3>
+            {
+              I18n.t( "notes", {
+                defaultValue: I18n.t( "activerecord.attributes.observation.description" )
+              } )
+            }
+          </h3>
+          <UserText text={observation.description} />
+        </div>
+      )
+      : "";
+    const qualityGrade = observation.quality_grade === "research"
+      ? "research_grade"
+      : observation.quality_grade;
+    let qualityGradeTooltipHtml;
+    if ( qualityGrade === "casual" ) {
+      qualityGradeTooltipHtml = I18n.t( "casual_tooltip_html2", {
+        defaultValuePreFallback: I18n.t( "casual_tooltip_html" )
+      } );
+    } else if ( qualityGrade === "needs_id" ) {
+      qualityGradeTooltipHtml = I18n.t( "needs_id_tooltip_html2", {
+        defaultValuePreFallback: I18n.t( "needs_id_tooltip_html" )
+      } );
+    } else {
+      qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html2", {
+        defaultValuePreFallback: I18n.t( "research_grade_tooltip_html" )
+      } );
+    }
+
+    return (
+      <div id="ObservationShow">
+        <FlashMessagesContainer
+          item={observation}
+          manageFlagsPath={`/observations/${observation.id}/flags`}
+          showBlocks
+        />
+        <div className="upper">
+          <div className="title_row">
+            <div className="ObservationTitle">
+              <SplitTaxon
+                taxon={observation.taxon}
+                url={taxonUrl}
+                placeholder={observation.species_guess}
+                user={config.currentUser}
+              />
+              <ConservationStatusBadge observation={observation} />
+              <EstablishmentMeansBadge observation={observation} />
+              <OverlayTrigger
+                placement="bottom"
+                trigger={["hover", "click"]}
+                delayHide={1000}
+                overlay={(
+                  <Tooltip id="quality-grade-tooltip">
+                    <p
+                      // eslint-disable-next-line react/no-danger
+                      dangerouslySetInnerHTML={{ __html: qualityGradeTooltipHtml }}
+                    />
+                  </Tooltip>
+                )}
+                container={$( "#wrapper.bootstrap" ).get( 0 )}
+              >
+                <span className={`quality_grade ${observation.quality_grade} `}>
+                  { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
+                </span>
+              </OverlayTrigger>
+            </div>
+            { viewerIsObserver
+              ? (
+                <div className="edit-button">
+                  <SplitButton
+                    bsStyle="primary"
+                    className="edit"
+                    href={`/observations/${observation.id}/edit`}
+                    title={I18n.t( "edit" )}
+                    id="edit-dropdown"
+                    pullRight
+                    onSelect={( key: string ) => {
+                      if ( key === "delete" ) {
+                        deleteObservation( );
+                      } else if ( key === "license" ) {
+                        setLicensingModalState( { show: true } );
+                      }
+                    }}
+                  >
+                    <MenuItem
+                      eventKey="edit"
+                      href={`/observations/${observation.id}/edit`}
+                    >
+                      <i className="fa fa-pencil" />
+                      { I18n.t( "edit" ) }
+                    </MenuItem>
+                    <MenuItem
+                      eventKey="duplicate"
+                      href={`/observations/new?copy=${observation.id}`}
+                    >
+                      <i className="fa fa-files-o" />
+                      { I18n.t( "duplicate_verb" ) }
+                    </MenuItem>
+                    <MenuItem eventKey="license">
+                      <i className="fa fa-copyright" />
+                      { I18n.t( "edit_license" ) }
+                    </MenuItem>
+                    <li role="separator" className="divider" />
+                    <MenuItem eventKey="delete">
+                      <i className="fa fa-trash" />
+                      { I18n.t( "delete" ) }
+                    </MenuItem>
+                  </SplitButton>
+                </div>
+              ) : config?.currentUserCanInteractWithResource( observation ) && (
+                <FollowButtonContainer />
+              ) }
+          </div>
+          <div className="top_container">
+            <div className="top_row">
+              <div className={`photos_column ${photosColClass}`}>
+                <PhotoBrowserContainer />
+              </div>
+              <div className="info_column">
+                <div className="user_info">
+                  <PreviousNextButtonsContainer />
+                  <UserWithIcon
+                    config={config}
+                    user={observation.user}
+                    hideSubtitle={
+                      observation.obscured
+                      && !observation.private_geojson
+                    }
+                  />
+                </div>
+                <div className="date_row">
+                  <div>
+                    <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
+                    {this.displayDateObserved( )}
+                    { observation.observed_on && !observation.obscured && (
+                      <Inativersary
+                        config={config}
+                        user={observation.user}
+                        date={observation.observed_on}
+                        uniqueKey="DateObserved"
+                      />
+                    ) }
+                  </div>
+                  <div>
+                    <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
+                    {this.displayDateAdded( )}
+                  </div>
+                </div>
+                <MapContainer />
+                <div className="faves_row">
+                  <FavesContainer />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="middle">
+            <div className="middle_left">
+              <div className="notes_col">
+                { description }
+              </div>
+              <div className="activity_col">
+                <ActivityContainer />
+              </div>
+            </div>
+            <div className="middle_right">
+              <div className="community_taxon_col">
+                <CommunityIdentificationContainer />
+              </div>
+              <div className="opposite_activity">
+                <LazyLoad
+                  debounce={false}
+                  offset={100}
+                >
+                  <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
+                </LazyLoad>
+                <ProjectsContainer />
+                { (
+                  ( config.currentUser && config.currentUser.id === observation.user?.id )
+                  || ( observation && observation.tags && observation.tags.length > 0 )
+                ) && (
+                  <TagsContainer />
+                ) }
+                <ObservationFieldsContainer />
+                <IdentifiersContainer />
+                <CopyrightContainer />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="data_quality_assessment">
+          <AssessmentContainer innerWrapper={AssessmentLazyLoad} />
+        </div>
+        { ( !observation.obscured || observation.private_geojson ) && (
+          <LazyLoad debounce={false} offset={500}>
+            <div className="more_from">
+              <div className="more_from_user">
+                <MoreFromUserContainer />
+              </div>
+              <div className="nearby_similar">
+                <div className="nearby_col">
+                  <NearbyContainer />
+                </div>
+                <div className="similar_col">
+                  <SimilarContainer />
+                </div>
+              </div>
+            </div>
+          </LazyLoad>
+        ) }
+        <FlaggingModalContainer />
+        <ConfirmModalContainer />
+        <DisagreementAlertContainer />
+        <CommunityIDModalContainer />
+        <LicensingModalContainer />
+        <MediaViewerContainer />
+        <ProjectFieldsModalContainer />
+        <ObservationModalContainer />
+        <ModeratorActionModalContainer />
+        <RtlTestGroupToggle config={config} />
+      </div>
+    );
+  }
+}
+
+export default App;

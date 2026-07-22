@@ -1,0 +1,429 @@
+@import "../../colors";
+@import "../../breakpoints";
+
+.ActivityItem,
+body > [role="dialog"] .ActivityItem {
+  .panel.loading {
+    .panel-title > span, .panel-title > .time, .panel-body {
+      opacity: 0.5;
+    }
+  }
+  &.comment {
+    overflow: inherit;
+  }
+  .identification {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    > .taxon {
+      display: flex;
+      overflow: hidden;
+    }
+    .hidden-content {
+      display: flex;
+      align-items: flex-start;
+      line-height: 22px;
+      margin-bottom: 0;
+      i {
+        flex: 2;
+      }
+    }
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .taxon-image {
+    width: 44px;
+    height: 44px;
+    border: 1px solid $border-grey;
+    border-radius: 2px;
+    margin-inline-end: 15px;
+    display: inline-block;
+  }
+  span.taxon {
+    & > a.display-name,
+    & > .display-name, & > .display-names .display-name {
+      color: #000;
+    }
+    a.secondary-name,
+    .secondary-name,
+    .secondary-names {
+      color: #000;
+    }
+    &.has-com-name .member-group:before {
+      content: " - ";
+    }
+    .member-group {
+      display: inline;
+      font-style: normal;
+      .sciname {
+        font-style: normal;
+        &.genus,
+        &.species,
+        &.subspecies,
+        &.hybrid
+        &.variety,
+        &.form,
+        &.infrahybrid {
+          font-style: italic;
+        }
+      }
+      a.display-name,
+      .display-name {
+        color: #000;
+        font-weight: normal;
+      }
+    }
+  }
+  .time {
+    margin-inline-end: 12px;
+    color: #999999;
+    a {
+      color: #999999;
+    }
+    .geoprivacy-icon,
+    .icon-icn-location-obscured {
+      line-height: 1.3;
+      margin-right: 5px;
+    }
+  }
+  .panel-title {
+    display: flex;
+    align-items: flex-start;
+    font-size: 14px;
+    .title_text {
+      flex: 2;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      margin-inline-end: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    a.user {
+      font-weight: 600;
+      color: black;
+    }
+    .item-status {
+      margin-inline-end: 15px;
+     .fa, i {
+        width: 20px;
+        text-align: center;
+      }
+    }
+    .ident-inactive {
+      color: $bootstrap-link-color;
+    }
+    .vision-status {
+      cursor: pointer;
+      color: #999;
+      margin-inline-end: 10px;
+      i {
+        font-size: 18px;
+        vertical-align: middle;
+        position: relative;
+        bottom: 4px;
+      }
+    }
+    .hidden-status {
+      cursor: pointer;
+    }
+  }
+  .panel.flagged .panel-heading {
+    background: #fcf8e3;
+    .item-status {
+      color: #8a6d3b;
+    }
+  }
+  .panel.maverick .panel-heading {
+    background: rgba(216, 84, 79, 0.05);
+    .item-status {
+      color: $fail-red;
+    }
+  }
+  .panel.improving .panel-heading {
+    background: rgba(116, 173, 0, 0.05);
+    .item-status {
+      color: $inat-green;
+    }
+  }
+  .panel.leading .panel-heading {
+    .item-status.ident-category {
+      color: $inat-green;
+      i {
+        margin-right: 2px;
+        position: relative;
+        bottom: 2px;
+      }
+    }
+  }
+  .panel.moderator-hidden {
+    border-bottom: 0px;
+  }
+  .panel-body {
+    padding: 0px;
+    line-height: 1;
+    .taxon-change {
+      padding: 7px 15px;
+      background: #FCF8E3;
+      color: #8A6D3B;
+      a {
+        color: $bootstrap-link-color;
+      }
+    }
+    .contents {
+      padding: 15px;
+      line-height: 0;
+      .content {
+        display: block;
+        overflow: hidden;
+      }
+      .edit-comment-id {
+        margin-bottom: 0;
+        .btn-group.edit-form-btns {
+          padding-top: 5px;
+          width: 100%;
+          button {
+            margin-right: 5px;
+          }
+          .btn-link {
+            color: $text-grey;
+          }
+        }
+      }
+      .UserText {
+        line-height: 20px;
+        img {
+          max-width: 100%;
+        }
+        .content {
+          overflow: hidden;
+        }
+      }
+    }
+    span.taxon {
+      display: inline-block;
+      .secondary-names, & > .secondary-name {
+        font-size: 14px;
+        line-height: 16px;
+        margin-top: 2px;
+        // This is weird but it allows the secondary-name to be on a new line
+        // without like it would if it was a block, but without filling the
+        // width of the available space like it would with a span or inline-
+        // block
+        display: table;
+      }
+      & > a.display-name,
+      & > .display-name, & > .display-names .display-name {
+        font-size: 20px;
+        line-height: 25px;
+      }
+      .member-group {
+        display: table;
+        .taxon,
+        .secondary-name {
+          display: inline;
+        }
+        a.display-name,
+        .display-name {
+          font-size: 14px;
+          font-weight: normal;
+          display: inline;
+          line-height: 14px;
+        }
+      }
+    }
+  }
+  .panel-footer {
+    display: flex;
+    background-color: white;
+    a {
+      font-weight: bold;
+      color: black;
+    }
+    .SplitTaxon {
+      display: inline;
+    }
+    .footer-text {
+        flex: 2;
+        margin-inline-end: 20px;
+    }
+    .time {
+      margin-inline-end: 0px;
+    }
+  }
+  .icon {
+    float: left;
+  }
+  .buttons {
+    button {
+      .fa {
+        color: $inat-green;
+      }
+    }
+  }
+  button.comment_id {
+    margin-left: 60px;
+  }
+  i.taxon-image.icon {
+    font-size: 36px;
+    line-height: 38px;
+    opacity: 0.9;
+    text-align: center;
+    padding-left: 1px
+  }
+  .panel {
+    margin-inline-start: 60px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    &.no-user-icon {
+      margin-left: 0px;
+    }
+  }
+  .id-body-wrapper {
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+  }
+  .id_body {
+    flex-grow: 1;
+  }
+  .votes {
+    white-space: nowrap;
+    border-inline-start: 1px solid #ddd;
+    margin-left: 8px;
+    align-content: center;
+    text-align: right;
+    white-space: nowrap;
+    .fa-thumbs-up,
+    .fa-thumbs-o-up,
+    .fa-thumbs-down,
+    .fa-thumbs-o-down {
+      font-size: 18px;
+      color: #BBBBBB;
+      margin-right: 5px;
+    }
+    & .fa {
+      margin-left: 10px;
+    }
+  }
+}
+
+[dir ="rtl"] .ActivityItem,
+[dir ="rtl"] body > [role="dialog"] .ActivityItem {
+  .icon {
+    float: right;
+  }
+  .buttons {
+    float: left;
+  }
+}
+
+.ActivityItem.withdrawn,
+body > [role="dialog"] .ActivityItem.withdrawn {
+  .title_text, .time {
+    opacity: 0.5;
+  }
+  .title_text {
+    text-decoration: line-through;
+  }
+  .panel-body {
+    .taxon-image,
+    .taxon .sciname,
+    .taxon .comname {
+      opacity: 0.5;
+    }
+    .taxon {
+      .comname,
+      .sciname,
+      .member-group {
+        text-decoration: line-through;
+      }
+    }
+  }
+  .panel-body, .panel-footer {
+    background-color: #f8f8f8;
+  }
+}
+
+.ActivityItemMenu,
+body > [role="dialog"] .ActivityItemMenu {
+  border-inline-start: 1px solid $border-grey;
+  .loading_spinner {
+    margin: 4px 0px 1px 12px;
+  }
+  .search {
+    line-height: 24px;
+    white-space: nowrap;
+    .fa, i {
+      color: $inat-green;
+      margin-inline-end: 5px;
+    }
+    a {
+      color: inherit;
+    }
+  }
+  .control-group {
+    .dropdown.btn-group {
+      button {
+        margin-bottom: 2px;
+        margin-inline-start: 12px;
+        padding: 0;
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+        &[disabled] {
+          opacity: 0.5;
+        }
+      }
+      .btn-group.open .dropdown-toggle {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .dropdown-menu {
+        margin-right: -10px;
+        .search-links {
+          padding: 3px 20px 5px 20px;
+          min-width: 200px;
+        }
+      }
+    }
+  }
+}
+
+@media ( max-width: $md-max ) {
+  // keep the caret dropdown menu inside the right edge instead of overflowing
+  .ActivityItemMenu .control-group .dropdown.btn-group .dropdown-menu,
+  body > [role="dialog"] .ActivityItemMenu .control-group .dropdown.btn-group .dropdown-menu {
+    margin-right: 0;
+    right: 0;
+    max-width: calc( 100vw - 30px );
+    .search-links {
+      min-width: 0;
+    }
+  }
+}
+
+@media ( max-width: $sm-max ) {
+  // hide status-badge labels on mobile, leaving just the icon (title carries the text)
+  .ActivityItem .item-status .item-status-label,
+  body > [role="dialog"] .ActivityItem .item-status .item-status-label {
+    display: none;
+  }
+}
+
+.unhide-popover {
+  .unhide-form {
+    .form-group {
+      display: flex;
+      input[type="text"] {
+        flex: 2;
+        margin-right: 5px
+      }
+    }
+  }
+}
+
