@@ -10,6 +10,16 @@
   font-size: 30px;
   font-weight: 500;
   line-height: 1.1;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+.description {
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
 }
 
 .body {
@@ -74,6 +84,10 @@
   font-size: 18px;
   font-weight: 400;
   margin-left: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .readmore::after {

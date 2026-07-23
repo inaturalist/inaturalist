@@ -12,6 +12,7 @@
 @import "../shared/flash_message";
 @import "../users/user_popover";
 @import "./shared/loading_spinner";
+@import "../breakpoints";
 
 #app {
   min-height: 600px;
@@ -21,52 +22,33 @@
   margin: 20px auto;
 }
 
-#TaxonDetail .container-fluid,
-#TaxonDetail .container {
-  min-width: 980px;
-}
 
-body.skip-min-width {
-  #TaxonDetail .container-fluid,
-  #TaxonDetail .container {
-    min-width: auto;
-  }
-}
-
-#TaxonHeader .inner {
-  display: flex;
-  justify-content: space-between;
-}
-
-#TaxonHeader h1 {
-  margin-top: 10px;
-  font-size: 32px;
-  font-weight: 200;
-
-  .btn-flags {
-    margin-left: 10px;
-    background-color: #EFD6D6;
-    i { color: red; }
-  }
-}
-
-#TaxonHeader .taxon .display-name {
-  color: black;
-  font-weight: 200;
-}
-
-#TaxonHeader .has-com-name {
-  .secondary-name, .secondary-names {
-    font-size: 20px;
-  }
-}
 
 #hero {
   background-color: #f8f8f8;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  padding: 20px 0;
   margin-top: 5px;
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    @include container-padding;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    align-items: center;
+    > * { min-width: 0; }
+    @media ( max-width: $md-max ) {
+      grid-template-columns: 1fr;
+      gap: 0;
+      .PhotoPreview {
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+  }
 }
 
 #charts {
@@ -158,6 +140,10 @@ body.skip-min-width {
   & [role="tabpanel"] {
     scroll-margin-top: 80px; // add some spacing at the top to prevent anchor behavior to hide the tabs
   }
+  .tab-pane.vanilla {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
 }
 
 #ChartsHelpModal .modal-title {
@@ -232,113 +218,65 @@ body.skip-min-width {
 
 .TaxonMap {
   height: 600px;
-  margin: 20px 0 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
   border: 1px solid #ddd;
-}
 
-.permalink {
-  position: relative;
-  top: -6px;
-}
-
-.TaxonCrumbs {
-  color: #aaa;
-  padding: 0;
-  margin: 0 7px 0 0;
-  line-height: 25px;
-  display: inline;
-  position: relative;
-  top: -4px;
-}
-.TaxonCrumbs.contracted .inner {
-  display: none;
-}
-.TaxonCrumbs.expanded .inner {
-  display: inline-block;
-}
-.TaxonCrumbs.contracted .expand-control {
-  display: inline-block;
-}
-.TaxonCrumbs.expanded .expand-control {
-  width: 0;
-}
-.TaxonCrumbs.contracted .contract-control {
-  display: none;
-}
-.TaxonCrumbs.expanded .contract-control {
-  display: inline-block;
-}
-.TaxonCrumbs .inner ul {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-}
-.TaxonCrumbs .taxon a {
-  color: #337ab7;
-}
-.TaxonCrumbs li {
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-}
-.TaxonCrumbs li div {
-  display: inline-block;
-}
-.TaxonCrumbs li:after {
-  content: '\203A';
-  margin: 0px 5px;
-}
-.TaxonCrumbs li:last-child:after {
-  display: none;
-}
-
-.TaxonCrumbs .has-com-name {
-  .secondary-name, .secondary-names {
-    display: none;
+  @media ( max-width: $md-max ) {
+    height: 300px;
   }
 }
 
-.TaxonCrumbs .contract-control {
-  margin-left: 10px;
-}
+.RecentObservations {
+  padding-bottom: 20px;
 
-.taxon-crumbs-children .taxon a {
-  color: #333;
-}
-.taxon-crumbs-children .taxon.has-com-name {
-  .secondary-name, .secondary-names {
-    color: #aaa;
+  @media ( min-width: $md ) {
+    .recent-observations-carousel {
+      position: relative;
+      top: -40px;
+    }
+    .recent-observations-title {
+      font-size: 18px;
+      margin-bottom: 20px;
+      border-radius: 0 2px 0 0;
+      background-color: white;
+      padding: 10px;
+      margin: 0;
+    }
+    .recent-observations-link {
+      font-size: 10px;
+    }
+  }
+
+  .TaxonPhoto {
+    width: 150px;
+
+    @media ( max-width: $md-max ) {
+      width: 85px;
+    }
   }
 }
-.taxon-crumbs-children .SplitTaxon:before {
-  content: '\021B3';
-  margin-right: 5px;
-  color: #aaa;
-}
 
-.preheader .ui-autocomplete-input {
-  width: 200px;
-}
 
-.preheader .ac-select-thumb {
-  line-height: 28px;
-}
-.preheader .ac-select-thumb img {
-  height: 30px;
-}
-.preheader .ac-select-thumb i {
-  font-size: 22px;
-}
-.preheader .form-group {
-  margin: 0;
-}
-.preheader .ac-chooser .searchclear.glyphicon {
-  top: 8px;
+.Leaders {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 0;
+  @media ( max-width: $md-max ) {
+    max-width: 400px;
+  }
+
+  .LeadersGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    > * { min-width: 0; }
+  }
 }
 
 $leaderItemImageDim: 56px;
 .LeaderItem {
-  margin: 20px 0 20px;
+   margin-bottom: 20px;
   .img-wrapper {
     border: 1px solid transparent;
     width: $leaderItemImageDim;
@@ -402,14 +340,38 @@ $leaderItemImageDim: 56px;
       color: $inat-green;
     }
   }
+  .icon-value {
+    white-space: nowrap;
+  }
   .value {
     color: #4a4a4a;
   }
-  .media-body {
-    vertical-align: middle;
+  .show-lg-up {
+    display: none;
+    @media ( min-width: 1200px ) { display: inline; }
+  }
+  .show-below-lg {
+    display: inline;
+    @media ( min-width: 1200px ) { display: none; }
+  }
+  .leader-item-media {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .leader-item-body {
+    flex: 1;
+    min-width: 0;
   }
   .img-wrapper .fa-binoculars {
     font-size: $leaderItemImageDim * 0.5;
+  }
+  @media ( max-width: $lg-max ) {
+    margin: 8px 0;
+    .item-label { text-align: center; }
+    .leader-item-media { flex-direction: column; align-items: stretch; }
+    .img-wrapper { margin: 0 auto; }
+    .leader-item-body { text-align: center; }
   }
 }
 
@@ -419,102 +381,127 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
-  height: 590px;
-}
-.PhotoPreview .photo-bg {
-  position: absolute;
-  left: -50px;
-  top: -50px;
-  background-size: cover;
-  width: 120%;
-  height: 120%;
-  background-color: black;
-  filter: blur(20px) brightness(0.5);
-  -webkit-filter: blur(20px) brightness(0.5);
-  -moz-filter: blur(20px) brightness(0.5);
-  -o-filter: blur(20px) brightness(0.5);
-  -ms-filter: "blur(20px)";
-}
-.PhotoPreview ul.others {
-  width: 100%;
-  background-color: rgba(0,0,0,0.25);
-}
-.PhotoPreview.gallery ul.others{
-  position: absolute;
-  bottom: 0;
-  margin: 0;
-  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;      /* TWEENER - IE 10 */
-  display: -webkit-flex;     /* NEW - Chrome */
-  display: flex;             /* New - everyone else */
-  flex-wrap: nowrap;
-}
-.PhotoPreview ul.others li {
-  overflow: hidden;
-  display: inline-block;
-}
-.PhotoPreview.gallery ul.others li {
-  flex: 1;
-  flex-grow: 1;
-  vertical-align: middle;
-  width: $photoPreviewThumbDim;
-  height: $photoPreviewThumbDim;
-  line-height: $photoPreviewThumbDim;
-  margin: $photoPreviewThumbGutterTop $photoPreviewThumbGutter / 2;
-}
-.PhotoPreview.grid .others {
-  line-height: 0;
-}
-.PhotoPreview.grid li {
-  width: 33.3333333333%;
-}
-.PhotoPreview .others a {
-  color: white;
-}
-.PhotoPreview .viewmore {
-  text-align: center;
-  font-weight: 600;
-}
-.PhotoPreview .viewmore a {
-  display: block;
-}
-.PhotoPreview.grid .viewmore a {
-  background-color: #333;
-  font-weight: 400;
-  font-size: 20px;
-  display: block;
-  position: relative;
-}
-.PhotoPreview.grid .viewmore a .inner {
-  width: 100%;
-  line-height: 1.6;
-  display: block;
-  position: absolute;
-  top: 50%;
-  margin-top: -25px;
-}
-.PhotoPreview.grid .viewmore a .inner .fa {
-  margin-top: 5px;
-  display: block;
-}
-.PhotoPreview.gallery .viewmore .fa {
-  margin-left: 5px;
-}
-.PhotoPreview.no-content {
-  display: flex;
-  flex-direction: row;
-  min-height: 533px;
-  align-items: center;
-  border: 1px solid #ddd;
-}
-.PhotoPreview.no-content > div {
-  width: 100%;
-}
-.PhotoPreview.no-content h3 {
-  color: #888;
-  text-transform: none;
-  margin-bottom: 20px;
+  align-self: flex-start;
+  height: 100%;
+
+  .foreground-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .photo-bg {
+    position: absolute;
+    left: -50px;
+    top: -50px;
+    background-size: cover;
+    width: 120%;
+    height: 120%;
+    background-color: black;
+    filter: blur(20px) brightness(0.5);
+    -webkit-filter: blur(20px) brightness(0.5);
+    -moz-filter: blur(20px) brightness(0.5);
+    -o-filter: blur(20px) brightness(0.5);
+    -ms-filter: "blur(20px)";
+  }
+
+  ul.others {
+    width: 100%;
+    background-color: rgba(0,0,0,0.25);
+
+    li {
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    a {
+      color: white;
+    }
+  }
+
+  .viewmore {
+    text-align: center;
+    font-weight: 600;
+
+    a {
+      display: block;
+    }
+  }
+
+  &.grid {
+    max-height: 600px;
+    max-width: 600px;
+
+    .others {
+      line-height: 0;
+    }
+
+    li {
+      width: 33.3333333333%;
+    }
+
+    .viewmore a {
+      background-color: #333;
+      font-weight: 400;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .inner {
+        text-align: center;
+        line-height: 1.6;
+
+        .fa {
+          margin-top: 5px;
+          display: block;
+        }
+      }
+    }
+  }
+
+  &.gallery {
+    ul.others {
+      margin: 0;
+      display: flex;
+      flex-wrap: nowrap;
+
+      li {
+        flex: 1;
+        flex-grow: 1;
+        vertical-align: middle;
+        width: $photoPreviewThumbDim;
+        height: $photoPreviewThumbDim;
+        line-height: $photoPreviewThumbDim;
+        margin: $photoPreviewThumbGutterTop $photoPreviewThumbGutter / 2;
+      }
+    }
+
+    .viewmore .fa {
+      margin-left: 5px;
+    }
+  }
+
+  &.no-content {
+    display: flex;
+    flex-direction: row;
+    min-height: 533px;
+    align-items: center;
+    border: 1px solid #ddd;
+
+    > div {
+      width: 100%;
+    }
+
+    h3 {
+      color: #888;
+      text-transform: none;
+      margin-bottom: 20px;
+    }
+  }
 }
 
 .CoverImage {
@@ -525,12 +512,54 @@ $photoPreviewThumbGutterTop: 3px;
   opacity: 1;
 }
 
-.tab-section > [class*="col-"] {
+// Shared two-column tab layout, replaces react-bootstrap Grid/Row/Col.
+// Main content and sidebar sit 2:1 side by side, stacking below the tab bar's
+// breakpoint (where the TabDrawer takes over).
+.tab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  > .tab-main {
+    flex: 2 1 0;
+    min-width: 0;
+  }
+  > .tab-side {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+@media ( max-width: $md-max ) {
+  .tab-row {
+    display: block;
+
+    > .tab-side {
+      margin-top: 20px;
+    }
+  }
+}
+
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  @include container-padding;
+  padding-top: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+
+  > .status-row-item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.tab-section {
   border-top: 1px solid #ddd;
   padding-top: 20px;
   margin-top: 20px;
 }
-.tab-section:first-child > [class*="col-"] {
+.tab-section:first-child {
   border-top: 0 transparent;
   padding-top: 0;
 }
@@ -570,6 +599,12 @@ $photoPreviewThumbGutterTop: 3px;
   th {
     font-weight: 600;
     white-space: nowrap;
+  }
+  td {
+    font-size: 14px;
+    a {
+      font-size: 14px;
+    }
   }
   .UserText {
     br {
@@ -637,22 +672,41 @@ $introducedColor: #E4007C;
   border-color: transparentize( $introducedColor, 0.80 );
   color: $introducedColor;
 }
+.TaxonPageTabs .tab-divider {
+  margin: 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 0;
+}
 
 .TaxonPageTabs .tab-content {
-  border-top: 1px solid #ccc;
+  @include container-padding;
+  max-width: 1300px;
+  margin: 0 auto;
   padding-top: 10px;
+  padding-bottom: 10px;
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .TaxonPageTabs .nav.nav-tabs {
   border: 0 transparent;
   margin-bottom: 0px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 .TaxonPageTabs .nav-tabs > li > a {
   color: #555;
   font-weight: 600;
   font-size: 18px;
-  padding: 20px 30px 16px;
+  padding: 20px 0 16px;
 }
 .TaxonPageTabs .nav-tabs > li > a {
   border: 0 transparent;
@@ -713,57 +767,19 @@ $introducedColor: #E4007C;
   font-weight: 400;
   margin-left: 10px;
 }
-
-$nav-btn-dim: 40px;
-.nav-buttons .nav-btn {
-  width: $nav-btn-dim;
-  height: $nav-btn-dim;
-  padding: 0 !important;
-  border: 0 transparent !important;
-  margin: 0 0 10px 10px;
-}
-.nav-buttons .nav-btn:hover,
-.nav-buttons .nav-btn:focus,
-.nav-buttons .nav-btn:active {
-  background: none;
-}
-.nav-buttons .nav-btn:before {
-  display: block;
-  content: '\276E';
-  width: $nav-btn-dim;
-  height: $nav-btn-dim;
-  border-radius: 100px;
-  background-color: $inat-green;
-  color: white;
-  line-height: $nav-btn-dim * 1.05;
-  font-weight: bold;
-  font-size: $nav-btn-dim / 2;
-}
-❯
-.nav-buttons .nav-btn:hover:before {
-  background-color: $inat-green-light;
-}
-.nav-buttons .next-btn:before {
-  content: '\276F';
-}
-.Carousel .viewall {
-  width: 100%;
-  height: 262px;
-  background-color: #333;
-  color: white;
-  display: block;
-  line-height: 262px;
-  text-align: center;
-  border-radius: 5px;
-  font-size: 16px;
-}
-.Carousel .viewall:hover,
-.Carousel .viewall:focus {
-  color: white;
+.HighlightsTab {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 20px;
 }
 
 #main-tabs {
   display: flex;
+  @include container-padding;
+  @media ( max-width: $md-max ) {
+    display: none;
+  }
 }
 #main-tabs.nav-tabs > li {
   float: none;
@@ -897,21 +913,6 @@ $nav-btn-dim: 40px;
   line-height: 120px;
 }
 
-.TaxonThumbnail .taxon .display-name {
-  color: black;
-}
-
-.TaxonThumbnail .taxon > .display-name,
-.TaxonThumbnail .taxon .display-names {
-  display: block;
-  font-size: 120%;
-  font-weight: 600;
-}
-
-.TaxonThumbnail .taxon .secondary-name {
-  white-space: normal;
-}
-
 .TaxonThumbnail .badge {
   position: absolute;
   top: 5px;
@@ -963,14 +964,31 @@ $nav-btn-dim: 40px;
 .SimilarTab .thumbnails {
   display: flex;
   flex-wrap: wrap;
-  margin: -5px;
-}
-.SimilarTab .TaxonThumbnail {
-  margin: 5px;
-  width: 18.9%;
+  justify-content: center;
+  gap: 15px;
 }
 
 .IdentificationsTab {
+  @media ( max-width: $md-max ) {
+    padding: 0;
+  }
+  .ident-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    > .ident-main {
+      flex: 2 1 0;
+      min-width: 0;
+    }
+    > .ident-side {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    @media ( max-width: $md-max ) {
+      display: block;
+    }
+  }
   .loading {
     text-align: center;
     .loading_spinner {
@@ -989,6 +1007,14 @@ $nav-btn-dim: 40px;
   }
   .btn-group.identification-categories {
     margin-bottom: 10px;
+    @media ( max-width: $md-max ) {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      .btn {
+        flex: 1 1 auto;
+      }
+    }
   }
   .search {
     margin-bottom: 40px;
@@ -1010,9 +1036,27 @@ $nav-btn-dim: 40px;
         z-index: 3;
       }
     }
+    .search-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .input-group {
+        flex: 1;
+      }
+      @media ( max-width: $md-max ) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+    }
     select[name="sort"] {
-      margin-left: 10px;
-      min-width: 215px;
+      min-width: 195px;
+      @media ( max-width: $md-max ) {
+        min-width: 0;
+        width: 100%;
+        margin-left: 0;
+        margin-top: 5px;
+      }
     }
   }
   .annotation-search {
@@ -1045,6 +1089,9 @@ $nav-btn-dim: 40px;
     margin-bottom: 25px;
     .contents {
       display: flex;
+      @media ( max-width: $md-max ) {
+        flex-direction: column;
+      }
     }
     .preview {
       width: 120px;
@@ -1058,10 +1105,21 @@ $nav-btn-dim: 40px;
         font-size: 100px;
         color: #ccc;
       }
+      @media ( max-width: $md-max ) {
+        width: 100%;
+        margin-bottom: 10px;
+        .image {
+          width: 100%;
+          height: 200px;
+        }
+      }
     }
     .content {
       flex: 1;
       padding-left: 10px;
+      @media ( max-width: $md-max ) {
+        padding-left: 0;
+      }
     }
     .panel {
       margin-bottom: 0px;
@@ -1133,7 +1191,7 @@ $nav-btn-dim: 40px;
         .vote-count {
           margin-left: 3px;
         }
-        & .fa {
+        & button {
           margin-left: 10px;
         }
       }
@@ -1143,7 +1201,7 @@ $nav-btn-dim: 40px;
       display: flex;
       align-items: center;
       .annotations {
-        flex-grow: 1,
+        flex-grow: 1;
       }
       .conversation {
         white-space: nowrap;
@@ -1300,70 +1358,6 @@ body > [role="dialog"] .PhotoChooserModal {
   content: '';
 }
 .AkaNames .name { color: black; }
-.RecentObservations { margin-bottom: 20px; }
-.RecentObservations .Carousel { position: relative; }
-.RecentObservations .TaxonPhoto {
-  display: inline-block;
-}
-.RecentObservations .carousel-inner .slide {
-  display: flex;
-  padding: 0 50px;
-}
-.RecentObservations.no-slides .carousel-inner .slide {
-  padding: 0;
-}
-.RecentObservations h2,
-.RecentObservations .nav-btn {
-  position: absolute;
-}
-.RecentObservations h2 {
-  top: -49px;
-  left: 0;
-  padding: 10px;
-  margin: 0;
-  background-color: white;
-  border-radius: 0 2px 0 0;
-  font-size: 18px;
-}
-.RecentObservations .nav-btn {
-  top: 0px;
-  z-index: 1;
-  background-color: white;
-  height: 120px;
-  margin: 0;
-  padding-right: 10px;
-}
-.RecentObservations .nav-btn:before {
-  border-radius: 0;
-  height: 120px;
-  line-height: 120px;
-}
-.RecentObservations .nav-btn[disabled]:before {
-  background-color: #ccc;
-}
-.RecentObservations .prev-btn {
-  left: 0;
-}
-.RecentObservations .next-btn {
-  right: 0;
-}
-.RecentObservations .TaxonPhoto {
-  margin-right: 10px;
-}
-.RecentObservations .TaxonPhoto:last-child {
-  margin-right: 0;
-}
-.RecentObservations .viewall {
-  width: 120px;
-  height: 120px;
-  line-height: 120px;
-}
-@media (min-width: 1200px) {
-  .RecentObservations .TaxonPhoto,
-  .RecentObservations .viewall {
-    width: 200px !important;
-  }
-}
 .iconified-list-group .list-group-item {
   display: flex;
 }

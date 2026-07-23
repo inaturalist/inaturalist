@@ -1,26 +1,40 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
+import { isCuratorOrAdmin } from "../../shared/util";
+import type { Taxon, CurrentUser } from "../../../shared/types";
+
+type TaxonWithVision = Taxon & { vision?: boolean };
+
+interface TaxonLink {
+  taxon_link: {
+    id: number;
+    site_title: string;
+  };
+  url: string;
+}
+
+interface Props {
+  taxon: TaxonWithVision;
+  description?: string;
+  descriptionSource?: string;
+  descriptionSourceUrl?: string;
+  links?: TaxonLink[];
+  currentUser?: CurrentUser;
+}
 
 const ArticlesTab = ( {
   taxon,
   description,
   descriptionSource,
   descriptionSourceUrl,
-  links,
+  links = [],
   currentUser
-} ) => {
-  const isCurator = currentUser && currentUser.roles && (
-    currentUser.roles.indexOf( "curator" ) >= 0
-    || currentUser.roles.indexOf( "admin" ) >= 0
-  );
-  const responsive = currentUser?.isAdmin
-    && currentUser?.isInTestGroup( "responsive-taxon-detail" );
+}: Props ) => {
+  const isCurator = isCuratorOrAdmin( currentUser );
   return (
-    <Grid className="ArticlesTab">
-      <Row>
-        <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
+    <div className="ArticlesTab">
+      <div className="tab-row">
+        <div className="tab-main">
           <h2
             className={`text-center ${description ? "hidden" : ""}`}
           >
@@ -33,15 +47,15 @@ const ArticlesTab = ( {
               { descriptionSource }
               { " " }
               { descriptionSourceUrl && (
-                <a href={descriptionSourceUrl}>
+                <a href={descriptionSourceUrl} aria-label={I18n.t( "source_url" )}>
                   <i className="icon-link-external" />
                 </a>
               ) }
             </h2>
-            <div dangerouslySetInnerHTML={{ __html: description }} />
+            <div dangerouslySetInnerHTML={{ __html: description || "" }} />
           </div>
-        </Col>
-        <Col xs={responsive ? null : 3} sm={responsive ? 3 : null} xsOffset={1}>
+        </div>
+        <div className="tab-side">
           <h2>{ I18n.t( "more_info_title" ) }</h2>
           <ul className="list-group iconified-list-group">
             { _.sortBy( links, l => _.lowerCase( l.taxon_link.site_title ) ).map( link => {
@@ -60,7 +74,7 @@ const ArticlesTab = ( {
                     { link.taxon_link.site_title }
                   </a>
                   { isCurator ? (
-                    <a href={`/taxon_links/${link.taxon_link.id}/edit`}>
+                    <a href={`/taxon_links/${link.taxon_link.id}/edit`} aria-label={I18n.t( "edit" )}>
                       <i className="fa fa-pencil" />
                     </a>
                   ) : null }
@@ -114,21 +128,10 @@ const ArticlesTab = ( {
               ) }
             </div>
           ) }
-        </Col>
-      </Row>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
-
-ArticlesTab.propTypes = {
-  taxon: PropTypes.object.isRequired,
-  description: PropTypes.string,
-  descriptionSource: PropTypes.string,
-  descriptionSourceUrl: PropTypes.string,
-  links: PropTypes.array,
-  currentUser: PropTypes.object
-};
-
-ArticlesTab.defaultProps = { links: [] };
 
 export default ArticlesTab;

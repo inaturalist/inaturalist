@@ -5,10 +5,16 @@ declare module "*.module.css" {
   export default styles;
 }
 
+interface MomentjsI18n {
+  shortRelativeTime?: Record<string, string>;
+}
+
 declare const I18n: {
-  t: ( key: string, options?: Record<string, unknown> ) => string;
-  toNumber: ( value: number, options?: Record<string, unknown> ) => string;
-  localize: ( format: string, value: unknown ) => string;
+  locale: string;
+  t( key: "momentjs", options?: Record<string, unknown> ): MomentjsI18n;
+  t( key: string, options?: Record<string, unknown> ): string;
+  toNumber( value: number, options?: Record<string, unknown> ): string;
+  localize( format: string, value: unknown ): string;
 };
 
 // Intentionally narrow — jQuery is a Rails-injected global, not a webpack dep. $.deparam is also
@@ -21,6 +27,10 @@ interface JQueryStubResult {
   data: ( key: string ) => unknown;
   get: ( index: number ) => Element | undefined;
   taxonMap: ( options?: unknown ) => void;
+  animate: ( properties: Record<string, unknown>, duration?: number ) => JQueryStubResult;
+  offset: ( ) => { top: number; left: number };
+  val: ( value?: string ) => string;
+  find: ( selector: string ) => JQueryStubResult;
 }
 interface JQueryDeparam {
   ( str: string ): Record<string, unknown>;

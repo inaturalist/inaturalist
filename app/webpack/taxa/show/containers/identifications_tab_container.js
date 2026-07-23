@@ -15,7 +15,6 @@ function mapStateToProps( state ) {
     identificationsQuery: state.taxon.identificationsQuery || {},
     identificationsAvailable: state.taxon.identificationsAvailable,
     config: state.config,
-    currentUser: state.config.currentUser,
     taxon: state.taxon.taxon
   };
   return props;
