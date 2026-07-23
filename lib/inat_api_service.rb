@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-require "inat_api_service/v2/client"
+require "inat_api_service/v2/custom_fields"
+require "rison"
 
 module INatAPIService
   ENDPOINT = CONFIG.node_api_url
+  ENDPOINT_V2 = CONFIG.node_api_url_v2
   TIMEOUT = 8
 
   MAPPABLE_PARAMS = [
@@ -182,27 +184,26 @@ module INatAPIService
     options[:retries] ||= 3
     options[:timeout] ||= INatAPIService::TIMEOUT
     options[:retry_delay] ||= 0.1
-    endpoint = options[:endpoint] || INatAPIService::ENDPOINT
-    url = endpoint + path
-    headers = {}
     auth_user = params.delete( :authenticate )
-    if auth_user.is_a?( User )
-      headers["Authorization"] = auth_user.api_token
+    if auth_user.is_a?( User ) && !options[:authorization]
+      options[:authorization] = auth_user.api_token
     end
-    authorization = options[:authorization]
-    if authorization && !headers["Authorization"]
-      headers["Authorization"] = authorization
-    end
-    uri = URI.parse( url )
-    if !params.blank? && params.is_a?( Hash )
-      uri.query = URI.encode_www_form( URI.decode_www_form( uri.query || "" ).to_h.merge( params ) )
+    if params[:fields]
+      uri_query = append_to_uri_query( URI.parse( path ), params )
+      # when providing a `fields` parameter, URLs can get extremely long to the point where web
+      # servers may start to have problems. If the URL will be long, switch to using a POST
+      # and set `X-HTTP-Method-Override=GET` to tell the API to treat the post as a GET
+      if uri_query.length > 2000
+        options[:http_method_override] = "GET"
+      end
     end
     begin
       Timeout.timeout( options[:timeout] ) do
-        http = Net::HTTP.new( uri.host, uri.port )
-        http.use_ssl = true if uri.scheme == "https"
-        # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        response = http.get( uri.request_uri, headers )
+        response = if options[:http_method_override] == "GET"
+          perform_get_as_post_with_method_override( path, params, options )
+        else
+          perform_get( path, params, options )
+        end
         if response.code == "200"
           return response.body.force_encoding( "utf-8" )
         end
@@ -231,4 +232,71 @@ module INatAPIService
 
     OpenStruct.new_recursive( parsed_json )
   end
+
+  def self.process_fields( fields )
+    if fields.is_a?( Array )
+      return fields.join( "," )
+    elsif fields.is_a?( Hash )
+      return Rison.dump( fields )
+    end
+
+    fields
+  end
+  private_class_method :process_fields
+
+  def self.append_to_uri_query( uri, params )
+    uri_query = URI.encode_www_form( URI.decode_www_form( uri.query || "" ).to_h.merge(
+      params.except( :fields )
+    ) )
+    if params[:fields]
+      uri_query += ( uri_query.blank? ? "" : "&" ) + "fields=#{process_fields( params[:fields] )}"
+    end
+    uri_query
+  end
+  private_class_method :append_to_uri_query
+
+  def self.setup_http_request( path, options = {} )
+    endpoint = options[:endpoint] || (
+      options[:v2] ? INatAPIService::ENDPOINT_V2 : INatAPIService::ENDPOINT
+    )
+    url = endpoint + path
+    uri = URI.parse( url )
+    http = Net::HTTP.new( uri.host, uri.port )
+    http.use_ssl = true if uri.scheme == "https"
+    [http, uri]
+  end
+  private_class_method :setup_http_request
+
+  def self.perform_get_as_post_with_method_override( path, params, options )
+    http, uri = setup_http_request( path, options )
+    request = Net::HTTP::Post.new(
+      uri.path,
+      "Content-Type": "application/json",
+      "X-HTTP-Method-Override": "GET"
+    )
+    if options[:authorization]
+      request["Authorization"] = options[:authorization]
+    end
+    body = URI.decode_www_form( uri.query || "" ).to_h
+    if !params.blank? && params.is_a?( Hash )
+      body.merge!( params )
+    end
+    request.body = body.to_json
+    http.request( request )
+  end
+  private_class_method :perform_get_as_post_with_method_override
+
+  def self.perform_get( path, params, options )
+    http, uri = setup_http_request( path, options )
+    if !params.blank? && params.is_a?( Hash )
+      uri_query = append_to_uri_query( uri, params )
+      uri.query = uri_query
+    end
+    headers = {}
+    if options[:authorization]
+      headers["Authorization"] = options[:authorization]
+    end
+    http.get( uri.request_uri, headers )
+  end
+  private_class_method :perform_get
 end

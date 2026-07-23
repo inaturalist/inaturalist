@@ -268,16 +268,16 @@ describe User do
     end
 
     it "should set latitude and longitude" do
-      stub_request( :get, /#{INatAPIService::ENDPOINT}/ ).
+      stub_request( :get, /#{INatAPIService::ENDPOINT_V2}/ ).
         to_return( status: 200, body: '{
-          "results": {
+          "results": [{
             "country": "US",
             "city": "Fairhaven",
             "ll": [
               41.6318,
               -70.8801
             ]
-          }
+          }]
         }', headers: { "Content-Type" => "application/json" } )
       u = User.make( last_ip: "128.128.128.128" )
       u.save!

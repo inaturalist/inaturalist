@@ -211,15 +211,17 @@ class TaxaController < ApplicationController
         end
         api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try( :id )}" \
           "&place_id=#{@place.try( :id )}&locale=#{I18n.locale}"
-        options = {}
-        options[:authenticate] = current_user
-        @node_taxon_json = INatAPIService.get_json( api_url, options )
+        params = {}
+        params[:authenticate] = current_user
+        params[:fields] = INatAPIService::V2::CustomFields.taxon_show_fields
+        @node_taxon_json = INatAPIService.get_json( api_url, params, v2: true )
         return render_404 unless @node_taxon_json
 
         @node_place_json = if place_id.blank? || place_id.to_i.zero?
           nil
         else
-          INatAPIService.get_json( "/places/#{place_id.to_i}" )
+          place_params = { fields: ["id", "uuid", "display_name", "name", "place_type"] }
+          INatAPIService.get_json( "/places/#{place_id.to_i}", place_params, v2: true )
         end
         @chosen_tab = current_user.preferred_taxon_page_tab if logged_in?
         @chosen_tab = session[:preferred_taxon_page_tab] if @chosen_tab.blank?
