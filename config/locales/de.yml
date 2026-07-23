@@ -3132,8 +3132,8 @@ de:
   must_be_not_in_taxon: darf nicht im Taxon %{taxon} sein
   must_be_not_observed_by_user: darf nicht von %{user} beobachtet worden sein
   must_be_not_observed_in_place: darf nicht in %{place} beobachtet worden sein
-  must_be_observed_after: muss beobachtet worden sein nach %{operand}
-  must_be_observed_before: muss beobachtet worden sein bevor %{operand}
+  must_be_observed_after: muss beobachtet worden sein nach dem %{operand}
+  must_be_observed_before: muss beobachtet worden sein vor dem %{operand}
   must_be_observed_by_user: muss von %{user} beobachtet worden sein
   must_be_observed_in_place: muss in %{place} beobachtet worden sein
   must_be_less_than_x_MB: "Muss weniger sein als %{x} MB"
@@ -6235,6 +6235,8 @@ de:
     Quelle: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     In diesem Artikel wird Material aus dem Wikipedia-Artikel <a href="%{url}">"%{title}"</a> verwendet, der unter <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a> veröffentlicht wird. Der Inhalt wurde möglicherweise aus dem Original ausgelassen, es wurden jedoch keine Änderungen oder Ergänzungen vorgenommen.
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: Die Wikipedia-Zusammenfassung ist derzeit nicht verfügbar. Bitte versuche es in 30 Minuten erneut.
   with: mit
   #Filter for observations not in a particular taxon
   without_taxon: Ohne Taxon
