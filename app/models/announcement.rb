@@ -342,6 +342,7 @@ class Announcement < ApplicationRecord
       last_observation_created_at = user.last_observation_created_at
       # if the user has never created an observation, don't show the announcement
       return false unless last_observation_created_at
+
       # compare on calendar dates so the end date is inclusive of the whole day;
       # the columns are dates, but last_observation_created_at is a timestamp
       last_observation_date = last_observation_created_at.to_date
@@ -522,7 +523,9 @@ class Announcement < ApplicationRecord
 
   def serializable_hash( opts = {} )
     options = opts.clone
-    options[:methods] ||= []
+    options[:methods] ||= [
+      :prefers_embed_fru
+    ]
     options[:only] ||= []
     options[:only] += [
       :clients,
