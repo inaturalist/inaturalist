@@ -12,6 +12,10 @@ process.env.E2E_BASE_URL = process.env.E2E_BASE_URL ?? baseURL;
 export default defineConfig( {
   testDir: "./visual-tests",
   snapshotDir: "./visual-snapshots",
+  // Seeds shared, fixed-identity fixtures (the dashboard) exactly once, before
+  // any worker starts — so no worker's teardown/rebuild races another's, and
+  // running tests only ever read the seeded data.
+  globalSetup: "./visual-global-setup",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,

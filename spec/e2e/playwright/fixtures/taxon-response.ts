@@ -283,6 +283,24 @@ export async function mockTaxonShowApi(
   await page.route( /\/taxa\/\d+\/links\.json/, route => route.fulfill( json( [] ) ) );
   await page.route( /\/taxon_names\.json/, route => route.fulfill( json( taxonNames( opts.speciesId ) ) ) );
 
+  // Taxon description (About tab, Rails-origin fetch). The real endpoint runs the
+  // server-side describers, which raise in the test env and render a NameError
+  // into the "Source" section. Return a clean summary + describer headers — the
+  // client reads X-Describer-Name/URL for the Source label and link.
+  await page.route( /\/taxa\/\d+\/description/, route =>
+    route.fulfill( {
+      status: 200,
+      contentType: "text/html",
+      headers: {
+        "X-Describer-Name": "Wikipedia",
+        "X-Describer-URL": "https://en.wikipedia.org/wiki/Monarch_butterfly"
+      },
+      body: "<p>The monarch butterfly is a milkweed butterfly in the family "
+        + "Nymphalidae, known for its bright orange-and-black wings and its "
+        + "multi-generational annual migration across North America.</p>"
+    } )
+  );
+
   // Recent-observations carousel (search only — not histogram/species_counts).
   await page.route( /\/v[12]\/observations(\?|$)/, route =>
     route.fulfill( json( { results: RECENT_OBS, total_results: RECENT_OBS.length, total_bounds: null } ) ) );

@@ -8,7 +8,9 @@ test.describe( "taxa browse_photos visual snapshots", () => {
   let stubPath: string;
 
   test.beforeAll( async () => {
-    const taxon = await appMake( "create", "taxon", {} );
+    // Fixed name so the rendered scientific name is deterministic across runs
+    // (the blueprint otherwise generates a random Faker name).
+    const taxon = await appMake( "create", "taxon", { name: "Drusilla sawayn" } );
     taxonId = taxon.id as number;
     // browse_photos fetches taxon JSON server-side (INatAPIService.get_json),
     // which page.route can't intercept — stub it at the Rails layer instead.
