@@ -1,3 +1,5 @@
+import { readFileSync } from "fs";
+import path from "path";
 import { Page } from "@playwright/test";
 import { mockObservationSubresources } from "./observation-response";
 
@@ -324,18 +326,28 @@ const IDENTIFIERS = [
 ];
 
 // Photo image files load from static.inaturalist.org, which is unreachable and
-// non-deterministic from the test container. Serve a fixed solid-colour square
-// per photo id (same colour across every requested size) so the photo column
-// renders identically each run and can be asserted on instead of masked.
-const PHOTO_COLOURS = ["#c0392b", "#27ae60", "#2980b9", "#f39c12", "#8e44ad", "#16a085"];
+// non-deterministic from the test container. Serve real sample photos (reused
+// from the rspec fixtures) so the gallery renders like it does with production
+// images — an SVG's intrinsic sizing escapes react-image-gallery's CSS and the
+// slides render at natural size, scattered across the page. Same photo for
+// every requested size of a given id; cycled by id.
+const SAMPLE_PHOTOS = [
+  "gecko-foot-malaysia.jpg",
+  "cuthona_abronia.jpg",
+  "hyalophora-gps-h-pos.jpg",
+  "spider-blank_title.jpg",
+  "polistes_dominula-png-metadata.png",
+  "cuthona_abronia-tagged.jpg"
+].map( name => ( {
+  body: readFileSync( path.join( process.cwd(), "spec", "fixtures", "files", name ) ),
+  contentType: name.endsWith( ".png" ) ? "image/png" : "image/jpeg"
+} ) );
 
 async function stubPhotoImages( page: Page ): Promise<void> {
   await page.route( /static\.inaturalist\.org\/photos\/(\d+)\//, route => {
     const id = Number( route.request().url().match( /\/photos\/(\d+)\// )?.[1] ?? 0 );
-    const fill = PHOTO_COLOURS[( id - 1 ) % PHOTO_COLOURS.length];
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">`
-      + `<rect width="300" height="300" fill="${fill}"/></svg>`;
-    return route.fulfill( { status: 200, contentType: "image/svg+xml", body: svg } );
+    const photo = SAMPLE_PHOTOS[( id - 1 ) % SAMPLE_PHOTOS.length];
+    return route.fulfill( { status: 200, contentType: photo.contentType, body: photo.body } );
   } );
 }
 
