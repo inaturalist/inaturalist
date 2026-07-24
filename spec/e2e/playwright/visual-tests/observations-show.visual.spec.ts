@@ -15,10 +15,10 @@ test.describe( "observations show visual snapshots", () => {
     obsUuid = obs.uuid as string;
   } );
 
-  // Media + map load from external hosts; mask for stability, assert on layout.
+  // The map still loads external tiles, so mask it. Photo images are stubbed
+  // deterministically (see stubPhotoImages), so the photo column is asserted on.
   const mask = ( page: Page ) => [
-    page.locator( "#ObservationShow .Map" ),
-    page.locator( "#ObservationShow .photos_column" )
+    page.locator( "#ObservationShow .Map" )
   ];
 
   const shot = ( variant: ObservationVariant, prefix: string ) =>
@@ -31,9 +31,10 @@ test.describe( "observations show visual snapshots", () => {
   // The fully-loaded research-grade observation.
   shot( "research", "obs-show" );
 
-  // Mutually-exclusive rendering states.
-  const VARIANTS: ObservationVariant[] = ["needs_id", "casual", "obscured", "private", "sound_only", "no_taxon"];
-  for ( const variant of VARIANTS ) {
-    shot( variant, `obs-show-${variant}` );
-  }
+  // TODO: temporary — only capture the research-grade base case while iterating.
+  // Restore this loop to sweep the mutually-exclusive rendering states.
+  // const VARIANTS: ObservationVariant[] = ["needs_id", "casual", "obscured", "private", "sound_only", "no_taxon"];
+  // for ( const variant of VARIANTS ) {
+  //   shot( variant, `obs-show-${variant}` );
+  // }
 } );

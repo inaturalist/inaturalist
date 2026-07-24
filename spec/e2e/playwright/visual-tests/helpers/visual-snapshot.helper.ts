@@ -9,15 +9,24 @@ const unwrap = <T>( value: MaybeThunk<T> ): T => (
   typeof value === "function" ? ( value as () => T )() : value
 );
 
-// react-lazyload sections (e.g. the taxon Highlights discoveries/wanted
-// carousels) only fetch once scrolled into view. Step through the full page so
-// they mount, then return to the top before capturing.
+// Lazy sections only mount once scrolled into view, and some (e.g. the obs-show
+// Data Quality Assessment, wrapped in react-lazy-load) mount ONLY when actually
+// in the viewport. As each mounts it adds height, shifting the bottom, so a
+// single pass can miss the lowest sections. Scroll to the bottom repeatedly
+// until the page height stabilizes, then return to the top. Sections stay
+// mounted once visible, so the final capture (scrolled to top) includes them.
 async function triggerLazyLoad( page: Page ): Promise<void> {
   await page.evaluate( async () => {
-    const step = window.innerHeight;
-    for ( let y = 0; y < document.body.scrollHeight; y += step ) {
-      window.scrollTo( 0, y );
-      await new Promise( resolve => { setTimeout( resolve, 100 ); } );
+    const delay = ( ms: number ) => new Promise( resolve => { setTimeout( resolve, ms ); } );
+    let previousHeight = -1;
+    for ( let pass = 0; pass < 10 && document.body.scrollHeight !== previousHeight; pass += 1 ) {
+      previousHeight = document.body.scrollHeight;
+      for ( let y = 0; y <= previousHeight; y += window.innerHeight ) {
+        window.scrollTo( 0, y );
+        await delay( 60 );
+      }
+      window.scrollTo( 0, document.body.scrollHeight );
+      await delay( 150 );
     }
     window.scrollTo( 0, 0 );
   } );
@@ -27,6 +36,8 @@ export interface VisualSnapshotOptions {
   waitForSelector?: string;
   setup?: ( page: Page ) => Promise<void>;
   mask?: ( page: Page ) => Locator[];
+  // Restrict to a subset of breakpoints. Defaults to every breakpoint.
+  breakpoints?: BreakpointName[];
 }
 
 export function expectVisualSnapshots(
@@ -35,7 +46,8 @@ export function expectVisualSnapshots(
   options: VisualSnapshotOptions = {}
 ): void {
   test.describe( "visual snapshots", () => {
-    for ( const name of Object.keys( VIEWPORTS ) as BreakpointName[] ) {
+    const names = options.breakpoints ?? ( Object.keys( VIEWPORTS ) as BreakpointName[] );
+    for ( const name of names ) {
       const viewport = VIEWPORTS[name];
       test( `${namePrefix} at ${name} (${viewport.width}px)`, async ( { page } ) => {
         if ( options.setup ) await options.setup( page );

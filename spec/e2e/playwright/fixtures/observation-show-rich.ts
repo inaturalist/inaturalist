@@ -49,6 +49,10 @@ function sampleTaxon( overrides: Record<string, unknown> = {} ) {
     preferred_common_name: "Monarch",
     english_common_name: "Monarch",
     ancestor_ids: [1, 47120, 372739, 47157, 48662],
+    // ancestry (slash-delimited ancestor ids, excluding self) drives the
+    // community-ID progress bar in community_identification.jsx; without it the
+    // ancestry matching fails and no vote cells render.
+    ancestry: "1/47120/372739/47157",
     ancestors: [],
     default_photo: {
       url: `${STATIC}/photos/1/square.jpg`,
@@ -92,7 +96,7 @@ function buildFixedDetails( year: number, month: number, day: number ) {
   };
 }
 
-const photos = [1, 2].map( id => ( {
+const photos = [1, 2, 3, 4, 5, 6].map( id => ( {
   id,
   uuid: `photo-${id}`,
   url: `${STATIC}/photos/${id}/square.jpg`,
@@ -150,39 +154,43 @@ function baseObservation( uuid: unknown ) {
     reviewed_by: [],
     identifications_most_agree: true,
     comments_count: 2,
-    identifications_count: 4,
+    identifications_count: 5,
     faves_count: 3,
-    num_identification_agreements: 3,
+    num_identification_agreements: 4,
     num_identification_disagreements: 1,
     taxon,
-    // Left null on purpose: a non-null community_taxon makes CommunityIDModal
-    // build its taxonomy table, which dereferences the LIFE_TAXON global. That
-    // global is `{}` here because Taxon::LIFE is nil in the test DB, so it would
-    // crash the whole React app (reading default_name.name of undefined).
-    community_taxon: null,
+    // The community taxon only forms once an observation has ≥2 identifications
+    // (satisfied above), so a real value renders the community-ID panel. Same
+    // taxon as the display taxon, the common "everyone agrees" case.
+    community_taxon: taxon,
     user: observer,
     preferences: { prefers_community_taxon: true },
     photos,
     sounds,
+    // A realistic research-grade progression: two IDs for Monarch, a dissenting
+    // ID for a different species (Queen, a Danaus congener), then the community
+    // re-converges on Monarch — 4 of 5 agree, so it stays research grade and the
+    // community-ID bar shows one vote against.
     identifications: [
       identification( {
         id: 1, category: "improving", current: true, user: identifier( 2, "improving_ider" ),
-        body: "Agree — the wing venation is a clear match."
+        body: "Beautiful — the wing venation is a clear match for Monarch."
       } ),
       identification( { id: 2, category: "supporting", current: true, user: identifier( 3, "supporting_ider" ) } ),
       identification( {
-        id: 3, category: "leading", current: false, user: identifier( 4, "withdrawn_ider" ),
-        body: "Withdrawing my earlier ID."
-      } ),
-      identification( {
-        id: 4, category: "improving", current: true, disagreement: true,
-        user: identifier( 5, "disagreeing_ider" ),
-        body: "Disagree with the finer ID; can only confirm to genus.",
-        previousObservationTaxon: sampleTaxon( {
-          id: 47157, name: "Danaus", rank: "genus", rank_level: 20, preferred_common_name: "Milkweed Butterflies"
+        id: 3, category: "maverick", current: true, user: identifier( 4, "queen_ider" ),
+        body: "I think this might be a Queen (Danaus gilippus) instead.",
+        taxon: sampleTaxon( {
+          id: 48663, uuid: "taxon-48663", name: "Danaus gilippus",
+          preferred_common_name: "Queen", english_common_name: "Queen",
+          ancestor_ids: [1, 47120, 372739, 47157, 48663]
         } )
       } ),
-      identification( { id: 5, category: "supporting", current: true, vision: true, user: identifier( 6, "vision_ider" ) } )
+      identification( {
+        id: 4, category: "improving", current: true, vision: true, user: identifier( 5, "vision_ider" ),
+        body: "Agreeing back to Monarch — the vein pattern rules out Queen."
+      } ),
+      identification( { id: 5, category: "supporting", current: true, user: identifier( 6, "confirming_ider" ) } )
     ],
     comments: [
       { id: 1, uuid: "comment-1", body: "Beautiful specimen — thanks for sharing!", created_at: "2024-01-03T10:00:00+00:00", user: identifier( 3, "supporting_ider" ) },
@@ -210,12 +218,19 @@ function baseObservation( uuid: unknown ) {
       { id: 3, user: identifier( 7, "commenter" ) }
     ],
     project_observations: [
-      { uuid: "po-1", current_user_is_member: false, preferences: { allows_curator_coordinate_access: true }, project: { id: 100, title: "Monarchs of North America", icon: `${STATIC}/projects/100-icon.png`, slug: "monarchs-na" } }
+      // admins: [] required — when logged in, MapDetails reads project.admins.map (map_details.jsx:105).
+      { uuid: "po-1", current_user_is_member: false, preferences: { allows_curator_coordinate_access: true }, project: { id: 100, title: "Monarchs of North America", icon: `${STATIC}/projects/100-icon.png`, slug: "monarchs-na", admins: [] } }
     ],
     non_traditional_projects: [],
     outlinks: [],
     flags: [],
-    votes: [],
+    // Vote-scoped votes drive the "can the Community Taxon be improved?"
+    // (needs_id) DQA row. The container groups these by vote_scope, and the
+    // metric reads vote_flag (quality_metrics.jsx:236). One voter each side.
+    votes: [
+      { id: 1, vote_scope: "needs_id", vote_flag: true, user: identifier( 2, "improving_ider" ) },
+      { id: 2, vote_scope: "needs_id", vote_flag: false, user: identifier( 3, "supporting_ider" ) }
+    ],
     application: { name: "iNaturalist Web", url: "https://www.inaturalist.org", icon: null }
   };
 }
@@ -271,6 +286,103 @@ const TAXON_SUMMARY = {
   wikipedia_summary: "The monarch butterfly is a milkweed butterfly in the family Nymphalidae."
 };
 
+// The Data Quality Assessment votes load from a separate
+// /observations/:uuid/quality_metrics fetch (see ducks/quality_metrics.js),
+// not the observation payload. Without it every metric shows zero votes. Give a
+// couple of agree votes across the standard metrics so the DQA is populated.
+const QUALITY_METRICS = ["wild", "evidence", "recent", "date", "location", "subject"]
+  .flatMap( ( metric, mi ) => [
+    { id: mi * 2 + 1, metric, agree: true, user: identifier( 2, "improving_ider" ) },
+    { id: mi * 2 + 2, metric, agree: true, user: identifier( 3, "supporting_ider" ) }
+  ] );
+
+// Annotations render from the controlled terms fetched via
+// controlled_terms/for_taxon (ducks/controlled_terms.js), NOT the observation
+// payload — without them the section shows "No Relevant Annotations" even with
+// an annotation present. Life Stage (id 1 / value Adult id 2) matches the
+// observation's annotation; Sex is an unused term so an empty add-row renders.
+const CONTROLLED_TERMS = [
+  {
+    id: 1, label: "Life Stage", multivalued: false,
+    values: [
+      { id: 2, label: "Adult" }, { id: 3, label: "Teneral" }, { id: 4, label: "Pupa" },
+      { id: 5, label: "Nymph" }, { id: 6, label: "Larva" }, { id: 7, label: "Egg" }
+    ]
+  },
+  {
+    id: 9, label: "Sex", multivalued: false,
+    values: [{ id: 10, label: "Female" }, { id: 11, label: "Male" }]
+  }
+];
+
+// The "Top Identifiers" panel loads from identifications/identifiers
+// (ducks/identifications.js), separate from the observation payload.
+const IDENTIFIERS = [
+  { count: 128, user: identifier( 2, "improving_ider" ) },
+  { count: 74, user: identifier( 3, "supporting_ider" ) },
+  { count: 39, user: identifier( 5, "vision_ider" ) }
+];
+
+// Photo image files load from static.inaturalist.org, which is unreachable and
+// non-deterministic from the test container. Serve a fixed solid-colour square
+// per photo id (same colour across every requested size) so the photo column
+// renders identically each run and can be asserted on instead of masked.
+const PHOTO_COLOURS = ["#c0392b", "#27ae60", "#2980b9", "#f39c12", "#8e44ad", "#16a085"];
+
+async function stubPhotoImages( page: Page ): Promise<void> {
+  await page.route( /static\.inaturalist\.org\/photos\/(\d+)\//, route => {
+    const id = Number( route.request().url().match( /\/photos\/(\d+)\// )?.[1] ?? 0 );
+    const fill = PHOTO_COLOURS[( id - 1 ) % PHOTO_COLOURS.length];
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">`
+      + `<rect width="300" height="300" fill="${fill}"/></svg>`;
+    return route.fulfill( { status: 200, contentType: "image/svg+xml", body: svg } );
+  } );
+}
+
+// A viewer distinct from the observer (id 1) and every identifier (ids 2–7),
+// with the interaction privilege. loggedIn + interaction is what gates the
+// Agree and Compare buttons on activity items (see activity_item.jsx).
+const VIEWER = {
+  id: 99,
+  login: "e2e_viewer",
+  name: "E2E Viewer",
+  icon_url: `${STATIC}/attachments/users/icons/99/thumb.png`,
+  roles: [],
+  privileges: ["interaction"],
+  curator_project_ids: [],
+  sites_admined: [],
+  blockedUserHashes: [],
+  blockedByUserHashes: [],
+  trusted_user_ids: [],
+  testGroups: [],
+  content_creation_restrictions: false,
+  preferred_observation_license: "cc-by-nc"
+};
+
+// Taxon::LIFE is nil in the test DB, so the server renders `var LIFE_TAXON = {}`.
+// Inject a valid one so the community-ID modal is safe if it ever mounts/opens.
+const LIFE_TAXON = { id: 48460, default_name: { name: "Life" } };
+
+// The obs-show HTML is server-rendered logged-out, inlining `var CURRENT_USER = {}`
+// and `var LIFE_TAXON = {}`. We must NOT rewrite the document to change these:
+// serving the main document via route.fulfill makes Chromium fail every
+// same-origin asset request (net::ERR_FAILED — CSS and JS never load, React
+// never boots). Instead inject via addInitScript, which runs before the page's
+// scripts. A plain global would be clobbered by the inline `var`, so define
+// accessor properties whose setter ignores the logged-out reassignment.
+async function injectLoggedInGlobals( page: Page ): Promise<void> {
+  await page.addInitScript( ( { currentUser, lifeTaxon } ) => {
+    const pin = ( name: string, value: unknown ) => Object.defineProperty( window, name, {
+      configurable: true,
+      enumerable: true,
+      get: () => value,
+      set: () => {}
+    } );
+    pin( "CURRENT_USER", currentUser );
+    pin( "LIFE_TAXON", lifeTaxon );
+  }, { currentUser: VIEWER, lifeTaxon: LIFE_TAXON } );
+}
+
 /**
  * Registers every route the obs-show page needs, in dependency order. Playwright
  * matches routes last-registered-first, so the generic empty stub goes first,
@@ -282,9 +394,35 @@ export async function setupObservationShow(
   opts: { uuid: string; variant?: ObservationVariant }
 ): Promise<void> {
   await mockObservationSubresources( page );
+  await stubPhotoImages( page );
+  await injectLoggedInGlobals( page );
 
   await page.route( /\/observations\/[^/]+\/taxon_summary/, route =>
     route.fulfill( { status: 200, contentType: "application/json", body: JSON.stringify( TAXON_SUMMARY ) } )
+  );
+
+  await page.route( /\/observations\/[^/]+\/quality_metrics/, route =>
+    route.fulfill( {
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify( { total_results: QUALITY_METRICS.length, page: 1, per_page: 30, results: QUALITY_METRICS } )
+    } )
+  );
+
+  await page.route( /\/controlled_terms/, route =>
+    route.fulfill( {
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify( { total_results: CONTROLLED_TERMS.length, page: 1, per_page: 30, results: CONTROLLED_TERMS } )
+    } )
+  );
+
+  await page.route( /\/identifications\/identifiers/, route =>
+    route.fulfill( {
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify( { total_results: IDENTIFIERS.length, page: 1, per_page: 30, results: IDENTIFIERS } )
+    } )
   );
 
   await page.route( new RegExp( `/v\\d/observations/${opts.uuid}(\\?|$)` ), route =>
