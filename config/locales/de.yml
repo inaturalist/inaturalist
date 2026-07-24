@@ -1877,7 +1877,7 @@ de:
   edit_taxon_range: Verbreitungsgebiet bearbeiten
   edit_the_observation: Die Beobachtung bearbeiten
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
-    Bearbeiten Sie dieses Taxon, nachdem Sie es erstellt haben, um einen Schutzstatus hinzuzufügen
+    Bearbeite dieses Taxon nach der Erstellung, um einen Schutzstatus hinzuzufügen
   edit_your_account_and_profile_html: "Bearbeite dein Konto & Profil"
   edit_your_default_settings: "Deine Standardeinstellungen bearbeiten"
   edit_your_global_project_settings: Die globalen Projekteinstellungen bearbeiten
@@ -3470,7 +3470,7 @@ de:
   observation_accuracy_validator_email_please_do_not_reply_html: |
     <b> Bitte antworte nicht auf diese Nachricht. Wenn du Fragen oder Feedback hast, kommentiere bitte unter <a href="%{url}">diesem Blogpost</a> oder schreibe eine Mail <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
-    <b>Bitte antworten Sie nicht auf diese Nachricht. Wenn Sie Fragen oder Feedback haben, bitte kontaktieren Sie uns unter <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+    <b>Bitte antworte nicht auf diese Nachricht. Wenn du Fragen oder Feedback hast, kontaktieren uns bitte unter <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
   observation_aggregation: Beobachtungs Ansammlung
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -5029,14 +5029,14 @@ de:
     iNaturalist hat formelle Vereinbarungen mit Organisationen in jedem dieser Länder, um die Nutzung der iNaturalist-Plattform zu unterstützen. Seit 2024 bieten wie einen einfachen Zugang zu Netzwerk-Partnerschaften an. <strong>Wenn Ihre Organisation daran interessiert ist, dem iNaturalist-Netzwerk beizutreten, finden Sie weitere Informationen %{start_tag_join}here%{end_tag_join}.</strong>
   sites_network_consists_of: "Das iNaturalist-Netzwerk besteht aus mehreren Organisationen:"
   sites_network_inaturalist_network_collection: |
-    Das iNaturalist-Netwerk ist eine Sammlung von regionalen Websites, die vollständig
+    Das iNaturalist-Netzwerk ist eine Sammlung von regionalen Websites, die vollständig
     mit der globalen iNaturalist-Community verbunden sind. Netzwerk-Standorte werden
     von lokalen Institutionen unterstützt, die die lokale Nutzung fördern und die Verwendung von Daten
     von iNaturalist zum Nutzen der örtlichen Biodiversität erleichtern. Sie haben Zugang zu echten
     Koordinaten innerhalb ihrer geografischen Gebieten, die automatisch vor der Öffentlichkeit
     verborgen sind, um bedrohte Arten besser zu schützen.
   sites_network_inaturalist_network_collection2: |
-    Das iNaturalist-Netwerk bietet für User eine regionale Erfahrung an, ist aber vollständig
+    Das iNaturalist-Netzwerk bietet für User eine regionale Erfahrung an, ist aber vollständig
     mit der globalen iNaturalist-Community verbunden. Netzwerk-Mitglieder sind lokale Institutionen, die die lokale Nutzung fördern und die Verwendung von Daten
     von iNaturalist zum Nutzen der örtlichen Biodiversität erleichtern. Sie haben Zugang zu echten
     Koordinaten innerhalb ihrer geografischen Gebieten, die automatisch vor der Öffentlichkeit
@@ -6446,7 +6446,7 @@ de:
   you_must_be_a_member_of_this_project_to_do_that: Du musst ein Mitglied dieses Projektes sein, um das tun zu können
   you_must_choose_an_observation_field: Du musst ein Beobachtungsfeld auswählen
   you_must_fill_out_the_required_fields: Du musst die erforderlichen Felder ausfüllen
-  you_must_have_a_header_row: Sie müssen eine Kopfzeile haben
+  you_must_have_a_header_row: Du müsst eine Kopfzeile haben
   you_must_select_a_place_to_merge_with: Du musst einen Ort auswählen zur Zusammenführung wählen.
   you_must_select_at_least_one_taxon: Du musst mindestens ein Taxon auswählen
   you_must_specify_and_confirm_a_new_password: Du musst ein neues Passwort erstellen und bestätigen.
@@ -8289,9 +8289,9 @@ de:
         Beim Versuch, diese Tags zu posten, ist etwas schief gelaufen: %{message}
     taxon_changes:
       #warning when changing taxon change status from withdrawn back to draft
-      are_you_sure_you_want_to_restore_this_taxon_change: Sind Sie sicher, dass Sie diese Taxonänderung wiederherstellen möchten?
+      are_you_sure_you_want_to_restore_this_taxon_change: Bist du sicher, dass du diese Taxon-Änderung wiederherstellen möchtest?
       #warning when changing taxon change status from draft to withdrawn
-      are_you_sure_you_want_to_withdraw_this_taxon_change: Sind Sie sicher, dass Sie diese Taxonänderung zurückziehen möchten?
+      are_you_sure_you_want_to_withdraw_this_taxon_change: Bist du sicher, dass du diese Taxon-Änderung zurückziehen möchtest?
       move_children_desc: |
         Untergeordnete Taxa des Input-Taxons auf Gattungsebene oder höher werden zum Output verschoben; Arten, Unterarten, Sorten usw. werden entsprechend der neuen Gattung oder des neuen Artennamens getauscht.
       #act of changing a taxon change status from withdrawn back to draft meaning reinstated as a draft
