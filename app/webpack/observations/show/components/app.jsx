@@ -287,6 +287,19 @@ class App extends React.Component {
                       { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
                     </span>
                   </OverlayTrigger>
+                  { config.currentUser?.isAdmin && (
+                    <a
+                      href={`/annotation_eval?observation_id=${observation.id}`}
+                      className="btn btn-default btn-xs annotation-eval-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Score this observation with the annotation eval tool"
+                    >
+                      <i className="fa fa-flask" />
+                      { " " }
+                      Annotation Eval
+                    </a>
+                  ) }
                 </div>
               </Col>
               { viewerIsObserver

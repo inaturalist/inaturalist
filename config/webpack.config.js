@@ -24,6 +24,10 @@ const config = {
       import: "./computer_vision/language/webpack-entry",
       dependOn: ["react-main"]
     },
+    "annotation-eval": {
+      import: "./annotations/eval/webpack-entry",
+      dependOn: ["react-main", "react-dropzone"]
+    },
     "id-summaries-demo": {
       import: "./id_summaries_demo/webpack-entry",
       dependOn: ["react-main"]

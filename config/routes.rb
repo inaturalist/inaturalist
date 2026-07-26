@@ -765,6 +765,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :annotation_eval, only: :index, controller: :annotation_eval do
+    collection do
+      get :index
+    end
+  end
+
   resource :vision_language_demo, only: :index, controller: :language_demo do
     collection do
       get :index
