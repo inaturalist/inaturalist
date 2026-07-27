@@ -275,7 +275,5 @@
     </p>
     <% end %>
   </div>
-  <% if Taxon::LIFE %>
-    <%= link_to "#{ t( :taxonomy_details ) } &raquo".html_safe, taxonomy_details_for_taxon_path(Taxon::LIFE) %>
-  <% end %>
+  <%= link_to "#{ t( :taxonomy_details ) } &raquo".html_safe, taxonomy_details_for_taxon_path(Taxon::LIFE) %>
 </div>
