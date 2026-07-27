@@ -327,3 +327,11 @@ body>.popover .label,
 body>div>.popover .label {
   font-weight: 600;
 }
+
+// Server-rendered test group opt-in banner (app/views/shared/_test_group_toggle).
+.bootstrap .TestGroupToggle.alert {
+  margin-top: 25px;
+  .TestGroupToggle-action {
+    padding-top: 10px;
+  }
+}

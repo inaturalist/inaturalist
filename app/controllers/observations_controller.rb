@@ -332,6 +332,7 @@ class ObservationsController < ApplicationController
             current_user.in_test_group?( "responsive-obs-detail" )
           @skip_min_width = true
         end
+        @test_group_toggle = "responsive-global"
         return render layout: "bootstrap"
       end
        

@@ -132,6 +132,8 @@
           </div>
         <% end -%>
         <%= content_for?(:content) ? yield(:content) : yield %>
+        <%# Inside #wrapper.bootstrap so the alert/btn classes actually style %>
+        <%= render "shared/test_group_toggle", group: @test_group_toggle if @test_group_toggle %>
       </div>
     </div>
 

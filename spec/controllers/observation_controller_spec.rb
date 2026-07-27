@@ -227,6 +227,66 @@ describe ObservationsController do
       )
     end
 
+    describe "responsive obs-detail test group gate" do
+      it "sets the responsive flags for a user in the responsive-obs-detail group" do
+        user = User.make!
+        user.update_column( :test_groups, "responsive-obs-detail" )
+        sign_in user
+        get :show, params: { id: observation.id }
+        expect( assigns( :obs_detail_responsive ) ).to be_truthy
+        expect( assigns( :responsive ) ).to be_truthy
+        expect( assigns( :skip_min_width ) ).to be_truthy
+      end
+
+      it "sets the responsive flags for a user in the responsive-global group" do
+        user = User.make!
+        user.update_column( :test_groups, "responsive-global" )
+        sign_in user
+        get :show, params: { id: observation.id }
+        expect( assigns( :obs_detail_responsive ) ).to be_truthy
+        expect( assigns( :responsive ) ).to be_truthy
+        expect( assigns( :skip_min_width ) ).to be_truthy
+      end
+
+      it "does not set the responsive flags for a user not in the test group" do
+        sign_in User.make!
+        get :show, params: { id: observation.id }
+        expect( assigns( :obs_detail_responsive ) ).to be_falsey
+        expect( assigns( :responsive ) ).to be_falsey
+      end
+
+      it "does not set the responsive flags for anonymous users" do
+        get :show, params: { id: observation.id }
+        expect( assigns( :responsive ) ).to be_falsey
+      end
+    end
+
+    describe "responsive-global test group toggle" do
+      it "prompts a signed-in user who is not in the group to join" do
+        sign_in User.make!
+        get :show, params: { id: observation.id }
+        expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
+        expect( response.body ).to have_tag( "div.TestGroupToggle" ) do
+          with_tag "form[action*='join_test'][action*='responsive-global']"
+        end
+      end
+
+      it "offers a signed-in user already in the group a way to leave" do
+        user = User.make!
+        user.update_column( :test_groups, "responsive-global" )
+        sign_in user
+        get :show, params: { id: observation.id }
+        expect( response.body ).to have_tag( "div.TestGroupToggle" ) do
+          with_tag "form[action*='leave_test'][action*='responsive-global']"
+        end
+      end
+
+      it "does not render the toggle for anonymous users" do
+        get :show, params: { id: observation.id }
+        expect( response.body ).not_to have_tag( "div.TestGroupToggle" )
+      end
+    end
+
     describe "missing observations" do
       it "renders a 404 for missing observations" do
         get :show, params: { id: 99 }
