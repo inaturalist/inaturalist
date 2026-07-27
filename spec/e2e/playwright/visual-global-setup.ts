@@ -12,7 +12,8 @@ async function globalSetup(): Promise<void> {
   if ( railsEnv !== "test" ) {
     throw new Error(
       `Refusing to seed: Rails server is in "${railsEnv}" mode, not test. ` +
-      "Start it with RAILS_ENV=test bundle exec rails server -p 3001."
+      "Run the suite via `npm run test:visual`, which builds assets and boots " +
+      "its own test-mode server."
     );
   }
   await app( "seed_dashboard", {} );
