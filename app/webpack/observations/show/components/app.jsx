@@ -46,7 +46,7 @@ import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
-import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
+import RtlTestGroupToggleLegacy from "../../../shared/components/rtl_test_group_toggle_legacy";
 import AssessmentLazyLoad from "./assessment_lazy_load";
 
 moment.updateLocale( "en", {
@@ -478,7 +478,7 @@ class App extends React.Component {
         <ProjectFieldsModalContainer />
         <ObservationModalContainer />
         <ModeratorActionModalContainer />
-        <RtlTestGroupToggle config={config} />
+        <RtlTestGroupToggleLegacy config={config} />
       </div>
     );
   }

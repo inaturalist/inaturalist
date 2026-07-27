@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * @deprecated Use the server-rendered `app/views/shared/_test_group_toggle`
+ * partial for new test group opt-ins.
+ */
 const TestGroupToggle = ( {
   group,
   joinPrompt,

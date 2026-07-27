@@ -1,17 +1,23 @@
 -# Opt a page in by setting @test_group_toggle to a test group name in its
--# controller action; the bootstrap layout renders this just above the footer.
+-# controller action; the bootstrap layout renders this at the top of the page.
 -#
 -# Locale keys are derived from the group name, so "responsive-global" needs
 -# responsive_global_test_prompt and responsive_global_test_joined_status.
 -#
 -# Must render inside .bootstrap: this app namespaces Bootstrap under that
 -# class, so .alert and .btn are unstyled outside it.
+-#
+-# Uses .TestGroupBanner, deliberately NOT the React component's
+-# .TestGroupToggle. The two used to share that class, so page stylesheets
+-# targeting one silently restyled the other.
 - if logged_in?
   - joined = current_user.in_test_group?( group )
   - key_prefix = group.tr( "-", "_" )
   - status_key = joined ? :"#{key_prefix}_test_joined_status" : :"#{key_prefix}_test_prompt"
   - path = joined ? leave_test_user_path( current_user, test: group ) : join_test_user_path( current_user, test: group )
-  .container
-    .TestGroupToggle.alert.alert-warning.text-center
+  -# Once someone has joined, this is just a standing reminder rather than a call
+  -# to action, so it collapses to a thin strip.
+  .test-group-container
+    .TestGroupBanner.alert.alert-warning.text-center{ class: ( "TestGroupBanner--compact" if joined ) }
       = t( status_key )
-      = button_to t( joined ? :stop_testing : :yes ), path, method: :put, class: "btn #{joined ? 'btn-warning' : 'btn-success'}", form_class: "TestGroupToggle-action"
+      = button_to t( joined ? :stop_testing : :yes ), path, method: :put, class: "btn #{joined ? 'btn-warning btn-xs' : 'btn-success'}", form_class: "TestGroupBanner-action"

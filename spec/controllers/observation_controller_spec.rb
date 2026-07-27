@@ -266,7 +266,7 @@ describe ObservationsController do
         sign_in User.make!
         get :show, params: { id: observation.id }
         expect( assigns( :test_group_toggle ) ).to eq "responsive-global"
-        expect( response.body ).to have_tag( "div.TestGroupToggle" ) do
+        expect( response.body ).to have_tag( "div.TestGroupBanner" ) do
           with_tag "form[action*='join_test'][action*='responsive-global']"
         end
       end
@@ -276,14 +276,37 @@ describe ObservationsController do
         user.update_column( :test_groups, "responsive-global" )
         sign_in user
         get :show, params: { id: observation.id }
-        expect( response.body ).to have_tag( "div.TestGroupToggle" ) do
+        expect( response.body ).to have_tag( "div.TestGroupBanner" ) do
           with_tag "form[action*='leave_test'][action*='responsive-global']"
         end
       end
 
       it "does not render the toggle for anonymous users" do
         get :show, params: { id: observation.id }
-        expect( response.body ).not_to have_tag( "div.TestGroupToggle" )
+        expect( response.body ).not_to have_tag( "div.TestGroupBanner" )
+      end
+
+      it "renders the toggle at the top of the page wrapper" do
+        sign_in User.make!
+        get :show, params: { id: observation.id }
+        wrapper = Nokogiri::HTML( response.body ).at_css( "#wrapper" )
+        expect( wrapper.element_children.first.to_html ).to include( "TestGroupBanner" )
+      end
+
+      it "renders a compact variant for a user already in the group" do
+        user = User.make!
+        user.update_column( :test_groups, "responsive-global" )
+        sign_in user
+        get :show, params: { id: observation.id }
+        expect( response.body ).to have_tag( "div.TestGroupBanner.TestGroupBanner--compact" )
+        expect( response.body ).to have_tag( "div.TestGroupBanner .btn-xs" )
+      end
+
+      it "renders the full-size variant for a user not in the group" do
+        sign_in User.make!
+        get :show, params: { id: observation.id }
+        expect( response.body ).not_to have_tag( "div.TestGroupBanner--compact" )
+        expect( response.body ).not_to have_tag( "div.TestGroupBanner .btn-xs" )
       end
     end
 

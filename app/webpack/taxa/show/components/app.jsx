@@ -15,7 +15,7 @@ import TaxonChangeAlertContainer from "../containers/taxon_change_alert_containe
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
-import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
+import RtlTestGroupToggleLegacy from "../../../shared/components/rtl_test_group_toggle_legacy";
 
 const App = ( { taxon, showNewTaxon, config } ) => {
   const responsive = config.currentUser?.isAdmin
@@ -113,7 +113,7 @@ const App = ( { taxon, showNewTaxon, config } ) => {
       <TaxonPageTabsContainer />
       <PhotoModalContainer />
       <PhotoChooserModalContainer />
-      <RtlTestGroupToggle config={config} />
+      <RtlTestGroupToggleLegacy config={config} />
     </div>
   );
 };
