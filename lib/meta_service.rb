@@ -93,18 +93,7 @@ class MetaService
         return Nokogiri::XML( api_endpoint_cache.response )
       end
 
-      # Providers like Wikipedia throttle by user agent, so being throttled for one request means
-      # every other request to this endpoint will be throttled too. Back off from the endpoint as a
-      # whole rather than sending requests we expect to fail: each failure extends the throttle
-      # window and overwrites whatever this URL had cached with the throttling message.
       if options[:api_endpoint].recently_throttled?
-        Logstasher.write_hash(
-          subtype: "ApiEndpointBackoff",
-          api_endpoint_id: options[:api_endpoint].id,
-          api_endpoint_title: options[:api_endpoint].title,
-          request_url: options[:request_uri].to_s,
-          last_throttled_at: options[:api_endpoint].last_throttled_at
-        )
         return
       end
     end
