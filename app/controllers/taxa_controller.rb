@@ -1188,6 +1188,9 @@ class TaxaController < ApplicationController
     @wikipedia_throttled = @taxon.shows_wikipedia? &&
       ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) &&
       wikipedia_recently_throttled?
+    # Wikipedia telling us an article doesn't exist is a definitive answer, so
+    # it takes precedence over the endpoint-wide throttled state in the view
+    @wikipedia_article_missing = @taxon.shows_wikipedia? && wikipedia_article_missing?
     @description&.force_encoding( "UTF-8" )
     respond_to do | format |
       format.html { render partial: "description" }
@@ -1212,6 +1215,14 @@ class TaxaController < ApplicationController
   end
 
   def refresh_wikipedia_summary
+    # force_update deliberately bypasses the cache, so refreshing while we are
+    # being throttled would both fire a doomed request and overwrite whatever
+    # we already have cached for this taxon with a throttle response
+    if wikipedia_recently_throttled?
+      render status: 429, plain: t( :wikipedia_summary_throttled )
+      return
+    end
+
     begin
       summary = @taxon.set_wikipedia_summary( force_update: true )
     rescue Timeout::Error => e
@@ -1329,6 +1340,15 @@ class TaxaController < ApplicationController
 
   def wikipedia_recently_throttled?
     WikipediaService.new( locale: I18n.locale ).api_endpoint&.recently_throttled? || false
+  end
+
+  # Whether any Wikipedia describer that ran for this taxon was told the
+  # article does not exist. Note that @describers mixes describer instances
+  # (Wikipedia) with describer classes (Eol, Inaturalist, AmphibiaWeb).
+  def wikipedia_article_missing?
+    ( [@describer] + Array( @describers ) ).uniq.any? do | d |
+      d.is_a?( TaxonDescribers::Wikipedia ) && d.article_missing?( @taxon )
+    end
   end
 
   def build_edit_ivars

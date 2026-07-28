@@ -3,6 +3,9 @@
     @description ||= "<p>#{@taxon.wikipedia_summary}</p>".html_safe
   end
   css_class = "clear taxon_description"
+  # A definitive "there is no such article" outranks the endpoint-wide throttle
+  # notice, so a missing article still gets the create-this-page prompt
+  wikipedia_throttled_message = @wikipedia_throttled && !@wikipedia_article_missing
   describer_is_wikipedia = (
     @describer.is_a?( TaxonDescribers::Wikipedia ) ||
     @describer.class.ancestors.include?( TaxonDescribers::Wikipedia )
@@ -26,7 +29,7 @@
     %p.nocontent.meta.center-block
       - if describer_is_wikipedia || @describer.blank?
         - if @taxon.shows_wikipedia?
-          - if @wikipedia_throttled
+          - if wikipedia_throttled_message
             =t :wikipedia_summary_throttled
           - else
             =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
@@ -36,7 +39,7 @@
         =t :no_matching_article_from_x, :x => @describer.describer_name
   - else
     =raw @description
-  - if @wikipedia_throttled && @taxon.shows_wikipedia?
+  - if wikipedia_throttled_message && @taxon.shows_wikipedia?
     - unless @description.blank?
       %p.nocontent.meta.center-block
         =t :wikipedia_summary_throttled

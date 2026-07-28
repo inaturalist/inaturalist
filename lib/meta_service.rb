@@ -31,7 +31,14 @@ class MetaService
     @debug = options[:debug]
   end
 
-  attr_reader :timeout, :method_param, :service_name, :api_endpoint
+  attr_reader :timeout, :method_param, :service_name, :api_endpoint, :last_api_endpoint_cache
+
+  # Whether the last request this instance made was answered with a definitive
+  # "this resource does not exist", as opposed to a throttle, a timeout, or a
+  # successful response.
+  def last_response_not_found?
+    !!last_api_endpoint_cache&.not_found?
+  end
 
   #
   # Sends a request to a service function, and returns an Hpricot object of
@@ -45,13 +52,23 @@ class MetaService
     endpoint    = api_endpoint ? api_endpoint.base_url : @endpoint
     url         = endpoint + URI.encode_www_form( params.reject {| k, _v | k == :force_update } )
     request_uri = URI.parse( url )
+    @last_api_endpoint_cache = nil
     begin
-      MetaService.fetch_request_uri( args.merge(
+      response = MetaService.fetch_request_uri( args.merge(
         request_uri: request_uri,
         timeout: @timeout,
         api_endpoint: api_endpoint,
         user_agent: @user_agent || "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}"
       ) )
+      # record the row that answered this request, whether it was fetched or
+      # served from the cache, so callers can ask what kind of answer it was
+      if api_endpoint
+        @last_api_endpoint_cache = ApiEndpointCache.find_by(
+          api_endpoint: api_endpoint,
+          request_url: url
+        )
+      end
+      response
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
     end
@@ -98,6 +115,7 @@ class MetaService
       api_endpoint_cache&.update(
         request_began_at: Time.now,
         request_completed_at: nil,
+        status_code: nil,
         success: nil,
         response: nil
       )

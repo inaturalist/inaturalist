@@ -397,6 +397,14 @@ describe Taxon, "updating" do
 
     before do
       allow( wikipedia ).to receive( :page_details ).and_return( nil )
+      allow( wikipedia ).to receive( :last_response_not_found? ).and_return( false )
+    end
+
+    it "stores a date string when the article is definitively missing even if throttled" do
+      endpoint.update( last_throttled_at: 1.minute.ago )
+      allow( wikipedia ).to receive( :last_response_not_found? ).and_return( true )
+      taxon.set_wikipedia_summary( wikipedia: wikipedia )
+      expect( taxon.reload.read_attribute( :wikipedia_summary ) ).to match( /^\d{4}-\d{2}-\d{2}$/ )
     end
 
     it "leaves wikipedia_summary untouched when the endpoint was recently throttled" do

@@ -1537,7 +1537,10 @@ class Taxon < ApplicationRecord
     end
 
     if details.blank? || details[:summary].blank?
-      if locale.to_s =~ /^en-?/ && !w.api_endpoint.recently_throttled?
+      # Only record that we tried and found nothing when the answer was
+      # definitive. A throttled endpoint means we never got an answer, unless
+      # this particular request came back as a missing article.
+      if locale.to_s =~ /^en-?/ && ( !w.api_endpoint.recently_throttled? || w.last_response_not_found? )
         Taxon.where( id: self ).update_all( wikipedia_summary: Date.today.to_s )
       end
       return nil

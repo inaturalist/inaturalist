@@ -39,6 +39,39 @@ describe MetaService do
     end
   end
 
+  describe "#last_response_not_found?" do
+    def stub_response( code:, body: )
+      allow( MetaService ).to receive( :fetch_with_redirects ).
+        and_return( double( "Net::HTTPResponse", code: code.to_s, body: body ) )
+    end
+
+    it "is true after a request for a page that does not exist" do
+      stub_response( code: 200,
+        body: "<api><error code=\"missingtitle\" info=\"The page you specified doesn't exist.\"/></api>" )
+      service = WikipediaService.new
+      service.parse( page: "Nonesuch", redirects: true )
+      expect( service.last_response_not_found? ).to be true
+    end
+
+    it "is false after a request for a page that exists" do
+      stub_response( code: 200, body: "<parse><text>ok</text></parse>" )
+      service = WikipediaService.new
+      service.parse( page: "Animalia", redirects: true )
+      expect( service.last_response_not_found? ).to be false
+    end
+
+    it "is false after a throttled request" do
+      stub_response( code: 429, body: "You are making too many requests." )
+      service = WikipediaService.new
+      service.parse( page: "Animalia", redirects: true )
+      expect( service.last_response_not_found? ).to be false
+    end
+
+    it "is false before any request is made" do
+      expect( WikipediaService.new.last_response_not_found? ).to be false
+    end
+  end
+
   describe ".fetch_request_uri" do
     let( :api_endpoint ) do
       ApiEndpoint.make!( base_url: "https://example.com/api?", cache_hours: 720 )
@@ -94,6 +127,41 @@ describe MetaService do
       expect( MetaService ).not_to receive( :fetch_with_redirects )
       result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
       expect( result ).to be_nil
+    end
+
+    it "stores a missing page as not found and returns the parsed error document" do
+      stub_fetch( code: 200,
+        body: "<api><error code=\"missingtitle\" info=\"The page you specified doesn't exist.\"/></api>" )
+      result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
+      expect( result ).to be_a( Nokogiri::XML::Document )
+      cache = cache_for
+      expect( cache.status_code ).to eq ApiEndpointCache::NOT_FOUND_STATUS_CODE
+      expect( cache.not_found? ).to be true
+      expect( cache.success ).to be false
+      expect( cache.api_endpoint.last_throttled_at ).to be_nil
+    end
+
+    it "serves a cached missing page without re-fetching" do
+      ApiEndpointCache.make!( api_endpoint: api_endpoint, request_url: request_uri.to_s,
+        status_code: 404, success: false,
+        response: "<api><error code=\"missingtitle\" info=\"The page you specified doesn't exist.\"/></api>",
+        request_began_at: 1.day.ago, request_completed_at: 1.day.ago )
+      expect( MetaService ).not_to receive( :fetch_with_redirects )
+      result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
+      expect( result ).to be_a( Nokogiri::XML::Document )
+      expect( result.at( "error" ) ).not_to be_nil
+    end
+
+    it "clears a stale status code before re-fetching" do
+      ApiEndpointCache.make!( api_endpoint: api_endpoint, request_url: request_uri.to_s,
+        status_code: 404, success: false, response: "<api><error code=\"missingtitle\"/></api>",
+        request_began_at: 721.hours.ago, request_completed_at: 721.hours.ago )
+      allow( MetaService ).to receive( :fetch_with_redirects ) do
+        expect( cache_for.status_code ).to be_nil
+        double( "Net::HTTPResponse", code: "200", body: "<parse><text>ok</text></parse>" )
+      end
+      MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
+      expect( cache_for.status_code ).to eq 200
     end
 
     it "re-fetches a throttled response once the retry window has passed" do

@@ -57,5 +57,47 @@ describe "TaxonDescribers" do
       t = Taxon.make!( name: "Some great name" )
       expect( wikipedia.page_url( t ) ).to eq( "https://en.wikipedia.org/wiki/Some_great_name" )
     end
+
+    describe "article_missing?" do
+      def stub_response( code:, body: )
+        allow( MetaService ).to receive( :fetch_with_redirects ).
+          and_return( double( "Net::HTTPResponse", code: code.to_s, body: body ) )
+      end
+
+      it "is false for a taxon that has not been described" do
+        expect( wikipedia.article_missing?( animalia ) ).to be false
+      end
+
+      it "is true when Wikipedia says the article does not exist" do
+        stub_response( code: 200,
+          body: "<api><error code=\"missingtitle\" info=\"The page you specified doesn't exist.\"/></api>" )
+        wikipedia.describe( animalia )
+        expect( wikipedia.article_missing?( animalia ) ).to be true
+      end
+
+      it "is false when Wikipedia returns an article" do
+        stub_response( code: 200,
+          body: "<parse title='Animalia' pageid='1'><text>Animals are a kingdom.</text></parse>" )
+        wikipedia.describe( animalia )
+        expect( wikipedia.article_missing?( animalia ) ).to be false
+      end
+
+      it "is false when Wikipedia is throttling us" do
+        stub_response( code: 429, body: "You are making too many requests." )
+        wikipedia.describe( animalia )
+        expect( wikipedia.article_missing?( animalia ) ).to be false
+      end
+
+      it "does not leak a missing result into a later describe of the same taxon" do
+        stub_response( code: 200,
+          body: "<api><error code=\"missingtitle\" info=\"The page you specified doesn't exist.\"/></api>" )
+        wikipedia.describe( animalia )
+        expect( wikipedia.article_missing?( animalia ) ).to be true
+        stub_response( code: 429, body: "You are making too many requests." )
+        ApiEndpointCache.delete_all
+        wikipedia.describe( animalia )
+        expect( wikipedia.article_missing?( animalia ) ).to be false
+      end
+    end
   end
 end

@@ -30,6 +30,31 @@ describe ApiEndpointCache do
       expect( cache.cached? ).to be true
     end
 
+    describe "not found responses" do
+      let( :endpoint ) { ApiEndpoint.make!( cache_hours: 720 ) }
+
+      it "is true when the request completed within cache_hours" do
+        cache = ApiEndpointCache.make!( api_endpoint: endpoint, success: false,
+          status_code: 404, request_began_at: 1.day.ago,
+          request_completed_at: 1.day.ago )
+        expect( cache.cached? ).to be true
+      end
+
+      it "is false when the request completed beyond cache_hours" do
+        cache = ApiEndpointCache.make!( api_endpoint: endpoint, success: false,
+          status_code: 404, request_began_at: 721.hours.ago,
+          request_completed_at: 721.hours.ago )
+        expect( cache.cached? ).to be false
+      end
+
+      it "is false when the request never completed" do
+        cache = ApiEndpointCache.make!( api_endpoint: endpoint, success: false,
+          status_code: 404, request_began_at: 1.minute.ago,
+          request_completed_at: nil )
+        expect( cache.cached? ).to be false
+      end
+    end
+
     describe "throttled responses" do
       let( :endpoint ) { ApiEndpoint.make!( cache_hours: 720 ) }
 
@@ -66,6 +91,47 @@ describe ApiEndpointCache do
     it "is false for a normal successful response" do
       cache = ApiEndpointCache.make!( status_code: 200, response: "<parse><text>ok</text></parse>" )
       expect( cache.throttled? ).to be false
+    end
+  end
+
+  describe "not_found_response?" do
+    it "is true for a 404 status code" do
+      expect( ApiEndpointCache.not_found_response?( 404, "" ) ).to be true
+    end
+
+    it "is true for a MediaWiki missingtitle error delivered with a 200 status" do
+      body = "<api><error code=\"missingtitle\" info=\"The page you specified doesn't exist.\"/></api>"
+      expect( ApiEndpointCache.not_found_response?( 200, body ) ).to be true
+    end
+
+    it "is true for a MediaWiki invalidtitle error" do
+      body = "<api><error code=\"invalidtitle\" info=\"Bad title\"/></api>"
+      expect( ApiEndpointCache.not_found_response?( 200, body ) ).to be true
+    end
+
+    it "is false for a successful article response" do
+      expect( ApiEndpointCache.not_found_response?( 200, "<parse><text>ok</text></parse>" ) ).to be false
+    end
+
+    it "is false for an action=query missing page, which has no error node" do
+      body = "<api><query><pages><page missing=\"\" title=\"Nonesuch\"/></pages></query></api>"
+      expect( ApiEndpointCache.not_found_response?( 200, body ) ).to be false
+    end
+
+    it "is false for some other MediaWiki error" do
+      body = "<api><error code=\"nosuchsection\" info=\"There is no section 3\"/></api>"
+      expect( ApiEndpointCache.not_found_response?( 200, body ) ).to be false
+    end
+  end
+
+  describe "not_found?" do
+    it "is true when the status code is 404" do
+      expect( ApiEndpointCache.make!( status_code: 404 ).not_found? ).to be true
+    end
+
+    it "is false for a normal successful response" do
+      cache = ApiEndpointCache.make!( status_code: 200, response: "<parse><text>ok</text></parse>" )
+      expect( cache.not_found? ).to be false
     end
   end
 
@@ -115,6 +181,28 @@ describe ApiEndpointCache do
       cache.cache_response( http_response( code: 200, body: "" ) )
       expect( cache.success ).to be false
       expect( cache.throttled? ).to be false
+    end
+
+    it "translates a missing page body to a 404 status code even with a 200 status" do
+      cache.cache_response( http_response( code: 200,
+        body: "<api><error code=\"missingtitle\" info=\"The page you specified doesn't exist.\"/></api>" ) )
+      expect( cache.status_code ).to eq ApiEndpointCache::NOT_FOUND_STATUS_CODE
+      expect( cache.not_found? ).to be true
+      expect( cache.success ).to be false
+      expect( cache.throttled? ).to be false
+    end
+
+    it "does not record last_throttled_at on the endpoint for a missing page" do
+      cache.cache_response( http_response( code: 200,
+        body: "<api><error code=\"missingtitle\" info=\"The page you specified doesn't exist.\"/></api>" ) )
+      expect( cache.api_endpoint.last_throttled_at ).to be_nil
+    end
+
+    it "treats a throttled response as throttled even when it mentions a missing title" do
+      cache.cache_response( http_response( code: 429,
+        body: "<api><error code=\"missingtitle\" info=\"nope\"/></api>" ) )
+      expect( cache.throttled? ).to be true
+      expect( cache.not_found? ).to be false
     end
   end
 end

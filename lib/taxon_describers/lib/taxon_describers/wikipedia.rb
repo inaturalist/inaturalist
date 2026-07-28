@@ -5,10 +5,13 @@ module TaxonDescribers
     def initialize( options = {} )
       @locale = options[:locale]
       @page_urls = {}
+      @articles_missing = {}
       super()
     end
 
     def describe( taxon )
+      # a describer instance can be reused, so don't leak a previous outcome
+      @articles_missing[taxon.id] = false
       title = nil
       page_title = title
       content = nil
@@ -24,7 +27,7 @@ module TaxonDescribers
           # If we got a title from Wikidata, try to retrieve content for that
           unless title.blank?
             title = CGI.unescape( title )
-            page_title, content = content_for_title( title )
+            page_title, content = content_for_taxon_title( taxon, title )
             @page_urls[taxon.id] = wikipedia_url unless content.blank?
           end
         end
@@ -34,7 +37,7 @@ module TaxonDescribers
       if content.blank?
         title = taxon.wikipedia_title if title.blank?
         title = taxon.name if title.blank?
-        page_title, content = content_for_title( title )
+        page_title, content = content_for_taxon_title( taxon, title )
       end
       return if content.blank?
 
@@ -70,7 +73,13 @@ module TaxonDescribers
     end
 
     def wikipedia
-      WikipediaService.new( debug: Rails.env.development?, locale: @locale )
+      @wikipedia ||= WikipediaService.new( debug: Rails.env.development?, locale: @locale )
+    end
+
+    # Whether Wikipedia definitively reported that there is no article for this
+    # taxon, as opposed to failing to answer, e.g. because we are throttled
+    def article_missing?( taxon )
+      !!@articles_missing[taxon.id]
     end
 
     def page_url( taxon )
@@ -92,6 +101,12 @@ module TaxonDescribers
     end
 
     private
+
+    def content_for_taxon_title( taxon, title )
+      result = content_for_title( title )
+      @articles_missing[taxon.id] = wikipedia.last_response_not_found?
+      result
+    end
 
     def content_for_title( title )
       page_title = title

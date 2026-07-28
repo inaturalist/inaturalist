@@ -510,6 +510,39 @@ describe TaxaController do
     end
   end
 
+  describe "describe when the Wikipedia article is missing" do
+    render_views
+    # the create-page prompt is not shown for every rank, so pin it
+    let( :taxon ) { Taxon.make!( name: "Animalia", rank: Taxon::KINGDOM ) }
+
+    before do
+      # Wikipedia reports a missing page as an HTTP 200 with an <error> body, not a 404
+      missing_response = double( "Net::HTTPResponse", code: "200",
+        body: "<api><error code=\"missingtitle\" info=\"The page you specified doesn't exist.\"/></api>" )
+      allow( MetaService ).to receive( :fetch_with_redirects ).and_return( missing_response )
+      # the endpoint has been throttled recently by requests for other taxa
+      WikipediaService.new.api_endpoint.update( last_throttled_at: 1.minute.ago )
+      allow( TaxonDescribers::Eol ).to receive( :describe ).and_return( nil )
+    end
+
+    it "says there is no article instead of showing the throttled message" do
+      get :describe, params: { id: taxon.id, from: "Wikipedia", wiki_prompt: true }
+      expect( response.body ).to include(
+        I18n.t( :there_isnt_a_wikipedia_article_titled_x_html, x: taxon.name )
+      )
+      expect( response.body ).to include "create this page on Wikipedia"
+      expect( response.body ).not_to include I18n.t( :wikipedia_summary_throttled )
+    end
+
+    it "shows the create-page prompt when it falls back to iNaturalist" do
+      allow( TaxonDescribers::Inaturalist ).to receive( :describe ).and_return( "Animalia is a kingdom.".dup )
+      get :describe, params: { id: taxon.id, wiki_prompt: true }
+      expect( response.body ).to include "Animalia is a kingdom."
+      expect( response.body ).to include "create this page on Wikipedia"
+      expect( response.body ).not_to include I18n.t( :wikipedia_summary_throttled )
+    end
+  end
+
   describe "describe caches the Wikipedia response" do
     let( :taxon ) { Taxon.make!( name: "Animalia" ) }
 
@@ -537,6 +570,14 @@ describe TaxaController do
       throttled_response = double( "Net::HTTPResponse", code: "429",
         body: "You are making too many requests." )
       allow( MetaService ).to receive( :fetch_with_redirects ).and_return( throttled_response )
+      post :refresh_wikipedia_summary, params: { id: taxon.id }
+      expect( response.status ).to eq 429
+      expect( response.body ).to eq I18n.t( :wikipedia_summary_throttled )
+    end
+
+    it "does not fetch at all when the endpoint was recently throttled" do
+      WikipediaService.new.api_endpoint.update( last_throttled_at: 1.minute.ago )
+      expect( MetaService ).not_to receive( :fetch_with_redirects )
       post :refresh_wikipedia_summary, params: { id: taxon.id }
       expect( response.status ).to eq 429
       expect( response.body ).to eq I18n.t( :wikipedia_summary_throttled )
