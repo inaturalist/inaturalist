@@ -4,16 +4,16 @@
 @import "../shared/flash_message";
 @import "../shared/full_screen_modal";
 @import "../shared/loading_spinner";
-@import "show_responsive/modals";
-@import "show_responsive/observation_fields";
+@import "../shared/responsive/modals";
+@import "../shared/responsive/observation_fields";
 @import "../shared/observation_projects";
 @import "../shared/quality_metrics";
 @import "../shared/split_taxon";
-@import "show_responsive/user_with_icon";
+@import "../shared/responsive/user_with_icon";
 @import "../shared/easyzoom";
 @import "../users/user_image";
 @import "../users/user_popover";
-@import "show_responsive/observation_modal";
+@import "../shared/responsive/observation_modal";
 @import "./identify/suggestions";
 @import "../breakpoints";
 
