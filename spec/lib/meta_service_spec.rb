@@ -3,6 +3,21 @@
 require "spec_helper"
 
 describe MetaService do
+  let( :api_endpoint ) do
+    ApiEndpoint.make!( base_url: "https://example.com/api?", cache_hours: 720 )
+  end
+  let( :request_uri ) { URI.parse( "https://example.com/api?page=Animalia" ) }
+
+  def stub_fetch( code:, body: )
+    response = double( "Net::HTTPResponse", code: code.to_s, body: body )
+    allow( MetaService ).to receive( :fetch_with_redirects ).and_return( response )
+    response
+  end
+
+  def cache_for( uri = request_uri )
+    ApiEndpointCache.find_by( api_endpoint: api_endpoint, request_url: uri.to_s )
+  end
+
   describe "#user_agent" do
     it "passes the class-specific user agent to fetch_with_redirects" do
       service = WikipediaService.new
@@ -40,21 +55,6 @@ describe MetaService do
   end
 
   describe ".fetch_request_uri" do
-    let( :api_endpoint ) do
-      ApiEndpoint.make!( base_url: "https://example.com/api?", cache_hours: 720 )
-    end
-    let( :request_uri ) { URI.parse( "https://example.com/api?page=Animalia" ) }
-
-    def stub_fetch( code:, body: )
-      response = double( "Net::HTTPResponse", code: code.to_s, body: body )
-      allow( MetaService ).to receive( :fetch_with_redirects ).and_return( response )
-      response
-    end
-
-    def cache_for( uri = request_uri )
-      ApiEndpointCache.find_by( api_endpoint: api_endpoint, request_url: uri.to_s )
-    end
-
     it "stores the status code and parses a normal response" do
       stub_fetch( code: 200, body: "<parse><text>ok</text></parse>" )
       result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
@@ -109,21 +109,7 @@ describe MetaService do
   end
 
   describe ".fetch_request_uri when the endpoint is throttling us" do
-    let( :api_endpoint ) do
-      ApiEndpoint.make!( base_url: "https://example.com/api?", cache_hours: 720 )
-    end
-    let( :request_uri ) { URI.parse( "https://example.com/api?page=Animalia" ) }
     let( :good_response ) { "<parse><text>ok</text></parse>" }
-
-    def stub_fetch( code:, body: )
-      response = double( "Net::HTTPResponse", code: code.to_s, body: body )
-      allow( MetaService ).to receive( :fetch_with_redirects ).and_return( response )
-      response
-    end
-
-    def cache_for( uri = request_uri )
-      ApiEndpointCache.find_by( api_endpoint: api_endpoint, request_url: uri.to_s )
-    end
 
     def make_expired_good_cache( uri = request_uri )
       ApiEndpointCache.make!( api_endpoint: api_endpoint, request_url: uri.to_s,
