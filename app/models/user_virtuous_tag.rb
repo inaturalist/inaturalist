@@ -13,5 +13,7 @@ class UserVirtuousTag < ApplicationRecord
     Ambassador
     Do\ Not\ Contact
     Mid-Range\ Donors
+    A\ Group
+    B\ Group
   ).freeze
 end

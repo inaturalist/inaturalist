@@ -34,7 +34,7 @@ $.fn.userAutocomplete = function ( options ) {
       }
       $.ajax( {
         // TODO: check if the API needs to return users given an ID
-        url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/autocomplete",
+        url: "<%= CONFIG.node_api_url %>/users/autocomplete",
         dataType: "jsonp",
         cache: true,
         jsonpCallback: "projectAutocompleteCallback",

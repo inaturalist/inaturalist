@@ -202,12 +202,12 @@ describe ApplicationController do
           # Stub this request to ensure the user's lat/lon is in the site place
           allow( INatAPIService ).to receive( :geoip_lookup ) {
             OpenStruct.new_recursive(
-              results: {
-                ll: [place.latitude, place.longitude],
-                country: { name: "foo" },
-                city: { name: "foo" },
-                region: { name: "foo" }
-              }
+              results: [{
+                "ll" => [place.latitude, place.longitude],
+                "country" => "foo",
+                "city" => "foo",
+                "region" => "foo"
+              }]
             )
           }
           expect( Site.default ).not_to eq alt_site
