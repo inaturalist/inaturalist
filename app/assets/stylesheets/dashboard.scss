@@ -2,6 +2,7 @@
 
 .dashboard-container .nav-tabs.user-subnav {
   @media ( max-width: $md-max ) { display: none; }
+  margin-bottom: 0;
 }
 
 .container.main {
@@ -25,11 +26,17 @@
 }
 
 .dashboard-main {
-  @media ( min-width: $lg ) { width: 66.66667%; }
+  @media ( min-width: $lg ) {
+    width: 66.66667%;
+  }
+  padding-top: 15px;
 }
 
 .dashboard-sidebar {
-  @media ( min-width: $lg ) { width: 33.33333%; }
+  @media ( min-width: $lg ) {
+    width: 33.33333%;
+    padding-top: 15px;
+  }
 }
 
 .dashboard-card-grid {
@@ -58,6 +65,11 @@
   @media ( min-width: $xl ) { flex: 1; }
 }
 
+.logged-in-user-image {
+  height: 34px;
+  width: 34px;
+}
+
 .followee {
   max-width:50px;
   max-height:50px;  
@@ -76,7 +88,7 @@
 
 .timeline {
   list-style: none;
-  padding-top: 20px;
+  padding-top: 15px;
   padding-left: 0;
   position: relative;
 }
@@ -106,8 +118,9 @@
   position: relative;
   -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-  // margin-left: 10%;
-  width: 100%
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
 }
 .hider {
   color: #fff;
@@ -235,6 +248,7 @@ h2.timeline-title { /* fix - added h2 */
   flex-shrink: 0;
   width: 34px;
   height: 34px;
+  margin: 7px 0;
   font-size: 1em;
 }
 
@@ -677,10 +691,6 @@ ul.timeline_observation > li:last-child > .timeline-panel > .timeline-body {
 }
 /* ------------------------- */
 
-.dashboard_tab_row {
-  padding: 15px 0;
-}
-
 .for_idents {
   padding: 10px;
   margin-bottom: 15px;
@@ -788,9 +798,7 @@ a.icon_container,
 #observe_panel h3.panel-title {
   font-size: 20px;
 }
-.timeline-badge.plain img {
-  max-width: 48px;
-}
+
 
 #subscriptions .list-group a,
 #subscriptions .list-group .taxon {

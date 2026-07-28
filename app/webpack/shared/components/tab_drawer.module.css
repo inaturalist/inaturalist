@@ -28,8 +28,13 @@
   align-items: center;
   font-size: 18px !important;
   color: black;
-  background: white;
-  border-bottom: 3px solid var(--green) !important;
+  background: #F2F2F2;
+  border-radius: 8px;
+}
+
+.container.open .toggle {
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
 .drawer {
@@ -44,6 +49,7 @@
   right: 0;
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 0 0 8px 8px;
 }
 
 .open .drawer {
