@@ -337,7 +337,10 @@ body>div>.popover .label {
 }
 
 .bootstrap .TestGroupBanner.alert {
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 
   .TestGroupBanner-action {
     display: inline-block;
@@ -345,10 +348,13 @@ body>div>.popover .label {
   }
 
   &.TestGroupBanner--compact {
+    gap: 0;
     margin-top: 0;
     margin-bottom: 0;
     padding: 2px 15px;
     font-size: 11px;
     line-height: 18px;
+    border-top: 0;
+    border-radius: 0  0 4px 4px;
   }
 }
