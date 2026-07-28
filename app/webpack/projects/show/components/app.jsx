@@ -21,7 +21,7 @@ import FlaggingModalContainer from "../containers/flagging_modal_container";
 import UsersPopover from "../../../observations/show/components/users_popover";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
 import ProjectMembershipButtonContainer from "../containers/project_membership_button_container";
-import RtlTestGroupToggleLegacy from "../../../shared/components/rtl_test_group_toggle_legacy";
+import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 
 const App = ( {
   config, project, leave, setSelectedTab, convertProject
@@ -333,7 +333,7 @@ const App = ( {
       </div>
       <FlaggingModalContainer />
       <ConfirmModalContainer />
-      <RtlTestGroupToggleLegacy config={config} />
+      <RtlTestGroupToggle config={config} />
     </div>
   );
 };
