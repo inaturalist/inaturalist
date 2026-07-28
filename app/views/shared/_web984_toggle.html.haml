@@ -1,0 +1,14 @@
+-# Self-service opt-in to the responsive taxon detail page. Server-rendered so it works
+-# without JS: join_test/leave_test redirect_back_or_default, reloading the current page.
+-# Remove along with the web-984-pr4-taxa-show test group once responsiveness ships.
+- if logged_in?
+  .Web984Toggle.container
+    .row
+      .col-xs-12
+        .alert.alert-warning.text-center
+          - if current_user.in_test_group?( "web-984-pr4-taxa-show" )
+            = t( :responsive_taxa_show_test_joined_status )
+            = button_to t( :stop_testing ), leave_test_user_path( current_user, test: "web-984-pr4-taxa-show" ), method: :put, class: "btn btn-warning", form_class: "inline"
+          - else
+            = t( :responsive_taxa_show_test_prompt )
+            = button_to t( "yes" ), join_test_user_path( current_user, test: "web-984-pr4-taxa-show" ), method: :put, class: "btn btn-success", form_class: "inline"

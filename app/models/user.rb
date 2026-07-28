@@ -1830,6 +1830,14 @@ class User < ApplicationRecord
     test_groups_array.include?( group)
   end
 
+  # Temporary: taxa#show responsiveness is opt-in via the admin-only pair of groups or the
+  # self-service web-984-pr4-taxa-show group. Delete this along with the old groups once
+  # responsiveness ships unconditionally.
+  def in_taxa_show_responsive_test_group?
+    ( in_test_group?( "responsive-header" ) && in_test_group?( "responsive-taxon-detail" ) ) ||
+      in_test_group?( "web-984-pr4-taxa-show" )
+  end
+
   def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
     elastic_index!

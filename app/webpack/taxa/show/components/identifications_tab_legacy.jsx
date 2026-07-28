@@ -1,28 +1,25 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import ReactDOMServer from "react-dom/server";
+import PropTypes from "prop-types";
 import {
+  Col,
+  Grid,
   Panel,
+  Row,
   Dropdown,
   MenuItem
 } from "react-bootstrap";
 import moment from "moment-timezone";
-// @ts-ignore
-import Pagination from "rc-pagination"; // eslint-disable-line
+import Pagination from "rc-pagination";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import { taxonLayerForTaxon } from "../../shared/util";
 import UserText from "../../../shared/components/user_text";
 import UsersPopover from "../../../observations/show/components/users_popover";
 import UserLink from "../../../shared/components/user_link";
-import type {
-  Taxon, CurrentUser, Config, User
-} from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import IdentificationsTabLegacy from "./identifications_tab_legacy";
 
 // Use custom relative times for moment
-const i18nMomentjs = I18n.t( "momentjs" );
-const shortRelativeTime = i18nMomentjs?.shortRelativeTime ?? null;
+const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
 const relativeTime = {
   ...I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
   ...shortRelativeTime
@@ -30,111 +27,10 @@ const relativeTime = {
 moment.locale( I18n.locale );
 moment.updateLocale( moment.locale( ), { relativeTime } );
 
-interface SortOption {
-  key: string;
-  label: string;
-  order_by: string;
-  order: string;
-}
-
-interface IdentificationsQuery {
-  downvoted?: string | null;
-  upvoted?: string | null;
-  nominated?: string | null;
-  q?: string | null;
-  term_value_id?: number | null;
-  order_by?: string;
-  order?: string;
-  sortKey?: string;
-  page?: number | null;
-}
-
-interface IdentificationVote {
-  vote_flag: boolean;
-  user?: { id: number };
-}
-
-interface AnnotationValue {
-  id: number;
-  label: string;
-}
-
-interface IdentificationObservation {
-  id: number;
-  photos: { photoUrl: ( size?: string ) => string }[];
-  annotations: {
-    uuid: string;
-    controlled_attribute: AnnotationValue;
-    controlled_value: AnnotationValue;
-  }[];
-  discussion_count: number;
-}
-
-interface Identification {
-  uuid: string;
-  id: number;
-  user: User;
-  observation: IdentificationObservation;
-  body: string;
-  created_at: string;
-}
-
-interface IdentificationResult {
-  id: number;
-  identification: Identification;
-  votes: IdentificationVote[];
-  nominated_by_user?: User;
-  nominated_at?: string;
-}
-
-interface IdentificationsResponse {
-  results?: IdentificationResult[];
-  total_results?: number;
-  page?: number;
-  per_page?: number;
-  loading?: boolean;
-  category_counts?: Record<string, number>;
-  category_controlled_terms?: {
-    controlled_attribute: AnnotationValue;
-    controlled_value: AnnotationValue;
-  }[];
-}
-
-interface Bounds {
-  swlng?: number;
-  swlat?: number;
-  nelng?: number;
-  nelat?: number;
-}
-
-interface Props {
-  response?: IdentificationsResponse;
-  identificationsQuery: IdentificationsQuery;
-  identificationsAvailable?: boolean;
-  setIdentificationsQuery: ( query: IdentificationsQuery ) => void;
-  updateCurrentUser?: ( user: Partial<CurrentUser> ) => void;
-  config: Config;
-  bounds?: Bounds;
-  latitude?: number;
-  longitude?: number;
-  zoomLevel?: number;
-  taxon: Taxon;
-  nominateIdentification?: ( uuid: string, id: number ) => void;
-  unnominateIdentification?: ( uuid: string, id: number ) => void;
-  voteIdentification?: ( id: number, type?: string ) => void;
-  unvoteIdentification?: ( id: number ) => void;
-}
-
-interface State {
-  searchSearchTermPresent: boolean | null;
-  allSorts: Record<string, SortOption>;
-  tabSorts: Record<string, SortOption[]>;
-}
-
-class IdentificationsTabResponsive extends Component<Props, State> {
-  constructor( props: Props, context: unknown ) {
+class IdentificationsTab extends Component {
+  constructor( props, context ) {
     super( props, context );
-    const allSorts: Record<string, SortOption> = {
+    const allSorts = {
       votesDesc: {
         key: "votesDesc",
         label: I18n.t( "views.taxa.show.identifications.sort.highest_to_lowest_votes" ),
@@ -166,7 +62,7 @@ class IdentificationsTabResponsive extends Component<Props, State> {
         order: "desc"
       }
     };
-    const tabSorts: Record<string, SortOption[]> = {
+    const tabSorts = {
       upvoted: [
         allSorts.votesDesc,
         allSorts.votesAsc,
@@ -196,7 +92,7 @@ class IdentificationsTabResponsive extends Component<Props, State> {
     };
   }
 
-  setSearchSearchTermPresent( present: boolean ) {
+  setSearchSearchTermPresent( present ) {
     if ( this.state.searchSearchTermPresent === present ) {
       return;
     }
@@ -206,7 +102,7 @@ class IdentificationsTabResponsive extends Component<Props, State> {
     } );
   }
 
-  panelMenu( result: IdentificationResult ) {
+  panelMenu( result ) {
     const {
       config,
       nominateIdentification,
@@ -226,7 +122,7 @@ class IdentificationsTabResponsive extends Component<Props, State> {
       if ( loggedInUser.isCurator ) {
         nominationMenuItems.push( (
           <MenuItem
-            key={`id-hide-${result.identification.uuid}`}
+            key={`id-hide-${result.uuid}`}
             eventKey="hide"
           >
             { I18n.t( "hide_content" ) }
@@ -267,7 +163,7 @@ class IdentificationsTabResponsive extends Component<Props, State> {
         <span className="control-group">
           <Dropdown
             id="grouping-control"
-            onSelect={( key: string ) => {
+            onSelect={key => {
               if ( key === "flag" ) {
                 const url = `/identifications/${result.identification.uuid}?_action=flag`;
                 window.open( url, "_blank", "noopener,noreferrer" );
@@ -275,9 +171,9 @@ class IdentificationsTabResponsive extends Component<Props, State> {
                 const url = `/identifications/${result.identification.uuid}?_action=hide`;
                 window.open( url, "_blank", "noopener,noreferrer" );
               } else if ( key === "nominate" ) {
-                nominateIdentification?.( result.identification.uuid, result.id );
+                nominateIdentification( result.identification.uuid, result.id );
               } else if ( key === "unnominate" ) {
-                unnominateIdentification?.( result.identification.uuid, result.id );
+                unnominateIdentification( result.identification.uuid, result.id );
               }
             }}
           >
@@ -293,7 +189,7 @@ class IdentificationsTabResponsive extends Component<Props, State> {
     );
   }
 
-  identificationPanel( result: IdentificationResult ) {
+  identificationPanel( result ) {
     const {
       config,
       identificationsQuery,
@@ -364,10 +260,10 @@ class IdentificationsTabResponsive extends Component<Props, State> {
         </a>
       </time>
     );
-    const votesFor: IdentificationVote[] = [];
-    const votesAgainst: IdentificationVote[] = [];
-    let userVotedFor = false;
-    let userVotedAgainst = false;
+    const votesFor = [];
+    const votesAgainst = [];
+    let userVotedFor;
+    let userVotedAgainst;
     _.each( result.votes, v => {
       if ( v.vote_flag === true ) {
         votesFor.push( v );
@@ -380,10 +276,10 @@ class IdentificationsTabResponsive extends Component<Props, State> {
       }
     } );
     const voteAction = () => (
-      userVotedFor ? unvoteIdentification?.( result.id ) : voteIdentification?.( result.id )
+      userVotedFor ? unvoteIdentification( result.id ) : voteIdentification( result.id )
     );
     const unvoteAction = () => (
-      userVotedAgainst ? unvoteIdentification?.( result.id ) : voteIdentification?.( result.id, "bad" )
+      userVotedAgainst ? unvoteIdentification( result.id ) : voteIdentification( result.id, "bad" )
     );
     const agreeClass = userVotedFor ? "fa-thumbs-up" : "fa-thumbs-o-up";
     const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
@@ -543,7 +439,7 @@ class IdentificationsTabResponsive extends Component<Props, State> {
     return activeTab;
   }
 
-  categoryTabDisabled( category: string ) {
+  categoryTabDisabled( category ) {
     const { response } = this.props;
     if ( !response?.category_counts ) {
       return true;
@@ -701,54 +597,50 @@ class IdentificationsTabResponsive extends Component<Props, State> {
         onSubmit={e => {
           setIdentificationsQuery( {
             ...identificationsQuery,
-            q: $( e.target as Element ).find( "[name='q']" ).val( ),
+            q: $( e.target ).find( "[name='q']" ).val( ),
             page: null
           } );
           e.preventDefault( );
         }}
       >
-        <div className="search-bar-row">
-          <div className="input-group">
-            <div className="search-input">
-              <input
-                className="form-control"
-                name="q"
-                id="identifications_search_query"
-                type="text"
-                placeholder={I18n.t( "views.taxa.show.identifications.search_identifications" )}
-                autoComplete="off"
-                onChange={e => {
-                  this.setSearchSearchTermPresent( !_.isEmpty( e.target.value ) );
+        <div className="input-group">
+          <div className="search-input">
+            <input
+              className="form-control"
+              name="q"
+              id="identifications_search_query"
+              type="text"
+              placeholder={I18n.t( "views.taxa.show.identifications.search_identifications" )}
+              autoComplete="off"
+              onChange={e => {
+                this.setSearchSearchTermPresent( !_.isEmpty( e.target.value ) );
+              }}
+            />
+            { this.state.searchSearchTermPresent && (
+              <span
+                type="button"
+                aria-hidden="true"
+                className="glyphicon glyphicon-remove-circle searchclear"
+                onClick={( ) => {
+                  $( "#identifications_search_query" ).val( "" );
+                  this.setSearchSearchTermPresent( false );
+                  setIdentificationsQuery( {
+                    ...identificationsQuery,
+                    q: null,
+                    page: null
+                  } );
                 }}
               />
-              { this.state.searchSearchTermPresent && (
-                <span
-                  role="button"
-                  aria-hidden="true"
-                  className="glyphicon glyphicon-remove-circle searchclear"
-                  onClick={( ) => {
-                    $( "#identifications_search_query" ).val( "" );
-                    this.setSearchSearchTermPresent( false );
-                    setIdentificationsQuery( {
-                      ...identificationsQuery,
-                      q: null,
-                      page: null
-                    } );
-                  }}
-                />
-              ) }
-            </div>
-            <span className="input-group-btn">
-              <input
-                type="submit"
-                className="btn btn-primary"
-                value={I18n.t( "search" )}
-              />
-            </span>
+            ) }
           </div>
-          <div className="sort-row">
-            { this.sortSelect( ) }
-          </div>
+          <span className="input-group-btn">
+            <input
+              type="submit"
+              className="btn btn-primary"
+              value={I18n.t( "search" )}
+            />
+          </span>
+          { this.sortSelect( ) }
         </div>
         { this.resultAnnotations( ) }
       </form>
@@ -797,9 +689,9 @@ class IdentificationsTabResponsive extends Component<Props, State> {
       setIdentificationsQuery
     } = this.props;
 
-    const allAttributeValues: { term: AnnotationValue; value: AnnotationValue }[] = [];
-    if ( ( response?.results?.length ?? 0 ) > 0 ) {
-      _.each( response?.category_controlled_terms, annotation => {
+    const allAttributeValues = [];
+    if ( response?.results?.length > 0 ) {
+      _.each( response.category_controlled_terms, annotation => {
         allAttributeValues.push( {
           term: annotation.controlled_attribute,
           value: annotation.controlled_value
@@ -858,10 +750,13 @@ class IdentificationsTabResponsive extends Component<Props, State> {
       longitude,
       zoomLevel,
       config,
-      taxon
+      taxon,
+      currentUser
     } = this.props;
     let content;
     let pagination;
+    const responsive = currentUser?.isAdmin
+      && currentUser?.isInTestGroup( "responsive-taxon-detail" );
     const activeTab = this.activeTab( );
     if ( response?.results?.length === 0 ) {
       content = (
@@ -873,18 +768,18 @@ class IdentificationsTabResponsive extends Component<Props, State> {
           }
         </div>
       );
-    } else if ( ( response?.results?.length ?? 0 ) > 0 ) {
-      content = _.map( response?.results, result => this.identificationPanel( result ) );
+    } else if ( response?.results?.length > 0 ) {
+      content = _.map( response.results, result => this.identificationPanel( result ) );
       pagination = (
         <Pagination
-          total={response?.total_results}
-          current={response?.page}
-          pageSize={response?.per_page}
+          total={response.total_results}
+          current={response.page}
+          pageSize={response.per_page}
           locale={{
             prev_page: I18n.t( "previous_page_short" ),
             next_page: I18n.t( "next_page_short" )
           }}
-          onChange={( page: number ) => setIdentificationsQuery( {
+          onChange={page => setIdentificationsQuery( {
             ...identificationsQuery,
             page
           } )}
@@ -892,9 +787,9 @@ class IdentificationsTabResponsive extends Component<Props, State> {
       );
     }
     return (
-      <div className="IdentificationsTab">
-        <div className="ident-layout">
-          <div className="ident-main">
+      <Grid className="IdentificationsTab">
+        <Row>
+          <Col xs={responsive ? null : 8} sm={responsive ? 12 : null}>
             <h2>
               {I18n.t( "views.taxa.show.identifications.identification_tips" )}
             </h2>
@@ -912,52 +807,60 @@ class IdentificationsTabResponsive extends Component<Props, State> {
                 {pagination}
               </>
             ) }
-          </div>
-          <div className="ident-side hidden-xs">
-            <div className="taxon-map-container">
-              <TaxonMap
-                placement="taxa-show-identifications"
-                showAllLayer={false}
-                minZoom={1}
-                gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
-                taxonLayers={[
-                  taxonLayerForTaxon( taxon, {
-                    currentUser: config.currentUser,
-                    updateCurrentUser
-                  } )
-                ]}
-                minX={bounds ? bounds.swlng : null}
-                minY={bounds ? bounds.swlat : null}
-                maxX={bounds ? bounds.nelng : null}
-                maxY={bounds ? bounds.nelat : null}
-                latitude={latitude}
-                longitude={longitude}
-                zoomLevel={zoomLevel}
-                gestureHandling="auto"
-                currentUser={config.currentUser}
-                updateCurrentUser={updateCurrentUser}
-                reloadKey={`taxa-show-identifications-map-${taxon.id}${bounds ? "-bounds" : ""}`}
-                showLegend
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+          </Col>
+          <Col xs={responsive ? null : 4} sm={responsive ? 4 : null} className={responsive ? "hidden-xs" : null}>
+            <Row>
+              <div className="taxon-map-container">
+                <TaxonMap
+                  placement="taxa-show-identifications"
+                  showAllLayer={false}
+                  minZoom={1}
+                  gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
+                  taxonLayers={[
+                    taxonLayerForTaxon( taxon, {
+                      currentUser: config.currentUser,
+                      updateCurrentUser
+                    } )
+                  ]}
+                  minX={bounds ? bounds.swlng : null}
+                  minY={bounds ? bounds.swlat : null}
+                  maxX={bounds ? bounds.nelng : null}
+                  maxY={bounds ? bounds.nelat : null}
+                  latitude={latitude}
+                  longitude={longitude}
+                  zoomLevel={zoomLevel}
+                  gestureHandling="auto"
+                  currentUser={config.currentUser}
+                  updateCurrentUser={updateCurrentUser}
+                  reloadKey={`taxa-show-identifications-map-${taxon.id}${bounds ? "-bounds" : ""}`}
+                  showLegend
+                />
+              </div>
+            </Row>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }
 
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = Props;
-const LegacyFallback = IdentificationsTabLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const IdentificationsTab = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <IdentificationsTabResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
+IdentificationsTab.propTypes = {
+  response: PropTypes.object,
+  identificationsQuery: PropTypes.object,
+  identificationsAvailable: PropTypes.bool,
+  setIdentificationsQuery: PropTypes.func,
+  updateCurrentUser: PropTypes.func,
+  config: PropTypes.object,
+  currentUser: PropTypes.object,
+  bounds: PropTypes.object,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  zoomLevel: PropTypes.number,
+  taxon: PropTypes.object,
+  nominateIdentification: PropTypes.func,
+  unnominateIdentification: PropTypes.func,
+  voteIdentification: PropTypes.func,
+  unvoteIdentification: PropTypes.func
+};
 
 export default IdentificationsTab;

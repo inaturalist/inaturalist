@@ -4,6 +4,8 @@ import ObservationsGridItem from "../../../shared/components/observations_grid_i
 import Carousel from "../../../shared/components/carousel";
 import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
 import type { Taxon, Observation, Config } from "../../../shared/types";
+import taxaShowResponsive from "../responsive";
+import HighlightsCarouselLegacy from "./highlights_carousel_legacy";
 
 interface Props {
   title?: string;
@@ -18,7 +20,7 @@ interface Props {
   config?: Config;
 }
 
-const HighlightsCarousel = ( {
+const HighlightsCarouselResponsive = ( {
   title,
   description,
   url,
@@ -81,5 +83,18 @@ const HighlightsCarousel = ( {
     />
   );
 };
+
+// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
+// The legacy module is untyped JS, so its props are asserted to match.
+type GateProps = React.ComponentProps<typeof HighlightsCarouselResponsive>;
+const LegacyFallback = HighlightsCarouselLegacy as unknown as React.ComponentType<GateProps>;
+
+/* eslint-disable react/jsx-props-no-spreading */
+const HighlightsCarousel = ( props: GateProps ) => (
+  taxaShowResponsive( )
+    ? <HighlightsCarouselResponsive {...props} />
+    : <LegacyFallback {...props} />
+);
+/* eslint-enable react/jsx-props-no-spreading */
 
 export default HighlightsCarousel;

@@ -1,38 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
-import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
-import type { Taxon, Config } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import SimilarTabLegacy from "./similar_tab_legacy";
+import TaxonThumbnail from "./taxon_thumbnail";
 
-interface Place {
-  id: number;
-  display_name: string;
-}
-
-// On the similar-taxa tab `rank` and `rank_level` are guaranteed by the API.
-type SimilarTaxon = Taxon & { rank: string; rank_level: number };
-
-interface SimilarResult {
-  taxon: SimilarTaxon;
-  count: number;
-}
-
-interface SimilarTabProps {
-  results?: SimilarResult[];
-  place?: Place | null;
-  showNewTaxon?: ( taxon: SimilarTaxon ) => void;
-  config?: Config;
-  taxon: SimilarTaxon;
-}
-
-const SimilarTabResponsive = ( {
+const SimilarTab = ( {
   results,
   place,
   showNewTaxon,
-  config = {},
+  config,
   taxon
-}: SimilarTabProps ) => {
+} ) => {
   let content;
   const rank = I18n.t( `ranks.${taxon.rank}`, { defaultValue: taxon.rank } ).toLowerCase( );
   if ( results && results.length > 0 ) {
@@ -55,12 +33,13 @@ const SimilarTabResponsive = ( {
             <TaxonThumbnail
               taxon={result.taxon}
               key={`similar-taxon-${result.taxon.id}`}
-              badge={{
-                text: result.count,
-                linkUrl: `/observations?ident_taxon_id_exclusive=${result.taxon.id},${taxon.id}&place_id=${place ? place.id : "any"}&verifiable=any`,
-                tip
-              }}
-              width={180}
+              badgeText={(
+                <a href={`/observations?ident_taxon_id_exclusive=${result.taxon.id},${taxon.id}&place_id=${place ? place.id : "any"}&verifiable=any`}>
+                  { result.count }
+                </a>
+              )}
+              badgeTip={tip}
+              height={190}
               onClick={e => {
                 if ( !showNewTaxon ) return true;
                 if ( e.metaKey || e.ctrlKey ) return true;
@@ -79,7 +58,7 @@ const SimilarTabResponsive = ( {
   } else {
     content = <div className="loading status">{ I18n.t( "loading" ) }</div>;
   }
-  let title: React.ReactNode = I18n.t( "other_species_commonly_misidentified_as_this_species" );
+  let title = I18n.t( "other_species_commonly_misidentified_as_this_species" );
   if ( taxon.rank_level > 10 ) {
     const snakeCaseRank = _.snakeCase( taxon.rank );
     if ( place ) {
@@ -123,24 +102,23 @@ const SimilarTabResponsive = ( {
     );
   }
   return (
-    <div className="SimilarTab">
-      <h2>{ title }</h2>
-      { content }
-    </div>
+    <Grid className="SimilarTab">
+      <Row>
+        <Col xs={12}>
+          <h2>{ title }</h2>
+          { content }
+        </Col>
+      </Row>
+    </Grid>
   );
 };
 
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof SimilarTabResponsive>;
-const LegacyFallback = SimilarTabLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const SimilarTab = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <SimilarTabResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
+SimilarTab.propTypes = {
+  results: PropTypes.array,
+  place: PropTypes.object,
+  showNewTaxon: PropTypes.func,
+  config: PropTypes.object,
+  taxon: PropTypes.object
+};
 
 export default SimilarTab;

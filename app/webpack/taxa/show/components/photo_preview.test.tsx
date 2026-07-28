@@ -3,6 +3,11 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import PhotoPreview from "./photo_preview";
 import type { Photo, Taxon } from "../../../shared/types";
 
+// Not under test, and its import chain reaches ESM-only deps jest does not transform.
+jest.mock( "./photo_preview_legacy", ( ) => ( {
+  __esModule: true,
+  default: ( ) => <div data-testid="legacy-photo-preview" />
+} ) );
 jest.mock( "../../../shared/components/taxon_photo", ( ) => ( {
   __esModule: true,
   default: ( { photo }: { photo: { id: number } } ) => (

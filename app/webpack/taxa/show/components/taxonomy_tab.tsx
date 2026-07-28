@@ -4,6 +4,8 @@ import UserText from "../../../shared/components/user_text";
 import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
 import { isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon, CurrentUser } from "../../../shared/types";
+import taxaShowResponsive from "../responsive";
+import TaxonomyTabLegacy from "./taxonomy_tab_legacy";
 
 interface PlaceTaxonName {
   place_id: number;
@@ -37,7 +39,7 @@ interface Props {
   currentUser?: CurrentUser;
 }
 
-const TaxonomyTab = ( {
+const TaxonomyTabResponsive = ( {
   taxon,
   taxonChangesCount = 0,
   taxonSchemesCount = 0,
@@ -251,5 +253,18 @@ const TaxonomyTab = ( {
     </div>
   );
 };
+
+// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
+// The legacy module is untyped JS, so its props are asserted to match.
+type GateProps = React.ComponentProps<typeof TaxonomyTabResponsive>;
+const LegacyFallback = TaxonomyTabLegacy as unknown as React.ComponentType<GateProps>;
+
+/* eslint-disable react/jsx-props-no-spreading */
+const TaxonomyTab = ( props: GateProps ) => (
+  taxaShowResponsive( )
+    ? <TaxonomyTabResponsive {...props} />
+    : <LegacyFallback {...props} />
+);
+/* eslint-enable react/jsx-props-no-spreading */
 
 export default TaxonomyTab;

@@ -58,6 +58,13 @@ declare const iNaturalist: {
   [key: string]: unknown;
 };
 
+// Rails-injected in the layout; undefined when logged out
+declare const CURRENT_USER: {
+  roles?: string[];
+  testGroups?: string[];
+  [key: string]: unknown;
+} | undefined;
+
 // v0.33.1 ships no types; @types/react-bootstrap is an empty stub pointing at newer versions
 declare module "react-bootstrap";
 // @types/react-redux starts at v5; project uses v4.4.9

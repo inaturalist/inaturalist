@@ -16,7 +16,8 @@
   = javascript_include_tag "webpack/user-text-webpack"
   = javascript_include_tag "webpack/taxa-show-webpack"
 - content_for :extracss do
-  = stylesheet_link_tag "taxa/show"
+  -# Paired with the *_legacy components: non-testers get the pre-WEB-984 stylesheet.
+  = stylesheet_link_tag( responsive? ? "taxa/show" : "taxa/show_legacy" )
 - content_for :extrahead do
   - if CONFIG.facebook && !CONFIG.facebook.namespace.blank?
     %meta{ property: "og:type", content: "#{CONFIG.facebook.namespace}:taxon"}

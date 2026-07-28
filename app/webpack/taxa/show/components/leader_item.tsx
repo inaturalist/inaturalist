@@ -1,6 +1,8 @@
 import React from "react";
 import _ from "lodash";
 import CoverImage from "../../../shared/components/cover_image";
+import taxaShowResponsive from "../responsive";
+import LeaderItemLegacy from "./leader_item_legacy";
 
 interface LeaderItemProps {
   noContent?: boolean;
@@ -23,7 +25,7 @@ interface LeaderItemProps {
   onClickUrlPayload?: Record<string, unknown>;
 }
 
-const LeaderItem = ( {
+const LeaderItemResponsive = ( {
   noContent,
   className = "",
   label,
@@ -97,5 +99,18 @@ const LeaderItem = ( {
     </div>
   );
 };
+
+// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
+// The legacy module is untyped JS, so its props are asserted to match.
+type GateProps = React.ComponentProps<typeof LeaderItemResponsive>;
+const LegacyFallback = LeaderItemLegacy as unknown as React.ComponentType<GateProps>;
+
+/* eslint-disable react/jsx-props-no-spreading */
+const LeaderItem = ( props: GateProps ) => (
+  taxaShowResponsive( )
+    ? <LeaderItemResponsive {...props} />
+    : <LegacyFallback {...props} />
+);
+/* eslint-enable react/jsx-props-no-spreading */
 
 export default LeaderItem;

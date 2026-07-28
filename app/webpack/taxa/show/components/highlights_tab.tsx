@@ -3,6 +3,8 @@ import LazyLoad from "react-lazy-load";
 import moment from "moment";
 import HighlightsCarousel from "./highlights_carousel";
 import type { Taxon, Config } from "../../../shared/types";
+import taxaShowResponsive from "../responsive";
+import HighlightsTabLegacy from "./highlights_tab_legacy";
 
 interface Discovery {
   taxon: Taxon;
@@ -28,7 +30,7 @@ interface HighlightsTabProps {
   fetchWanted?: ( ) => void;
 }
 
-const HighlightsTab = ( {
+const HighlightsTabResponsive = ( {
   trendingTaxa,
   wantedTaxa,
   discoveries,
@@ -128,5 +130,18 @@ const HighlightsTab = ( {
     </div>
   );
 };
+
+// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
+// The legacy module is untyped JS, so its props are asserted to match.
+type GateProps = React.ComponentProps<typeof HighlightsTabResponsive>;
+const LegacyFallback = HighlightsTabLegacy as unknown as React.ComponentType<GateProps>;
+
+/* eslint-disable react/jsx-props-no-spreading */
+const HighlightsTab = ( props: GateProps ) => (
+  taxaShowResponsive( )
+    ? <HighlightsTabResponsive {...props} />
+    : <LegacyFallback {...props} />
+);
+/* eslint-enable react/jsx-props-no-spreading */
 
 export default HighlightsTab;

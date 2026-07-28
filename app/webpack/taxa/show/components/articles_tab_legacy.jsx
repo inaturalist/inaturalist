@@ -1,42 +1,26 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
-import { isCuratorOrAdmin } from "../../shared/util";
-import type { Taxon, CurrentUser } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import ArticlesTabLegacy from "./articles_tab_legacy";
 
-type TaxonWithVision = Taxon & { vision?: boolean };
-
-interface TaxonLink {
-  taxon_link: {
-    id: number;
-    site_title: string;
-  };
-  url: string;
-}
-
-interface Props {
-  taxon: TaxonWithVision;
-  description?: string;
-  descriptionSource?: string;
-  descriptionSourceUrl?: string;
-  links?: TaxonLink[];
-  currentUser?: CurrentUser;
-}
-
-const ArticlesTabResponsive = ( {
+const ArticlesTab = ( {
   taxon,
   description,
   descriptionSource,
   descriptionSourceUrl,
-  links = [],
+  links,
   currentUser
-}: Props ) => {
-  const isCurator = isCuratorOrAdmin( currentUser );
+} ) => {
+  const isCurator = currentUser && currentUser.roles && (
+    currentUser.roles.indexOf( "curator" ) >= 0
+    || currentUser.roles.indexOf( "admin" ) >= 0
+  );
+  const responsive = currentUser?.isAdmin
+    && currentUser?.isInTestGroup( "responsive-taxon-detail" );
   return (
-    <div className="ArticlesTab">
-      <div className="tab-row">
-        <div className="tab-main">
+    <Grid className="ArticlesTab">
+      <Row>
+        <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
           <h2
             className={`text-center ${description ? "hidden" : ""}`}
           >
@@ -49,15 +33,15 @@ const ArticlesTabResponsive = ( {
               { descriptionSource }
               { " " }
               { descriptionSourceUrl && (
-                <a href={descriptionSourceUrl} aria-label={I18n.t( "source_url" )}>
+                <a href={descriptionSourceUrl}>
                   <i className="icon-link-external" />
                 </a>
               ) }
             </h2>
-            <div dangerouslySetInnerHTML={{ __html: description || "" }} />
+            <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
-        </div>
-        <div className="tab-side">
+        </Col>
+        <Col xs={responsive ? null : 3} sm={responsive ? 3 : null} xsOffset={1}>
           <h2>{ I18n.t( "more_info_title" ) }</h2>
           <ul className="list-group iconified-list-group">
             { _.sortBy( links, l => _.lowerCase( l.taxon_link.site_title ) ).map( link => {
@@ -76,7 +60,7 @@ const ArticlesTabResponsive = ( {
                     { link.taxon_link.site_title }
                   </a>
                   { isCurator ? (
-                    <a href={`/taxon_links/${link.taxon_link.id}/edit`} aria-label={I18n.t( "edit" )}>
+                    <a href={`/taxon_links/${link.taxon_link.id}/edit`}>
                       <i className="fa fa-pencil" />
                     </a>
                   ) : null }
@@ -130,23 +114,21 @@ const ArticlesTabResponsive = ( {
               ) }
             </div>
           ) }
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Grid>
   );
 };
 
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof ArticlesTabResponsive>;
-const LegacyFallback = ArticlesTabLegacy as unknown as React.ComponentType<GateProps>;
+ArticlesTab.propTypes = {
+  taxon: PropTypes.object.isRequired,
+  description: PropTypes.string,
+  descriptionSource: PropTypes.string,
+  descriptionSourceUrl: PropTypes.string,
+  links: PropTypes.array,
+  currentUser: PropTypes.object
+};
 
-/* eslint-disable react/jsx-props-no-spreading */
-const ArticlesTab = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <ArticlesTabResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
+ArticlesTab.defaultProps = { links: [] };
 
 export default ArticlesTab;
