@@ -672,14 +672,23 @@ $introducedColor: #E4007C;
   border-color: transparentize( $introducedColor, 0.80 );
   color: $introducedColor;
 }
+.TaxonPageTabs {
+  @media ( max-width: $md-max ) {
+    padding-top: 25px;
+    @include container-padding;
+  }
+}
+
 .TaxonPageTabs .tab-divider {
   margin: 0;
   border-top: 1px solid #ccc;
   border-bottom: 0;
+  @media ( max-width: $md-max ) {
+    display: none;
+  }
 }
 
 .TaxonPageTabs .tab-content {
-  @include container-padding;
   max-width: 1300px;
   margin: 0 auto;
   padding-top: 10px;
