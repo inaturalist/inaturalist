@@ -1188,9 +1188,6 @@ class TaxaController < ApplicationController
     @wikipedia_throttled = @taxon.shows_wikipedia? &&
       ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) &&
       wikipedia_recently_throttled?
-    # Resolve an outbound Wikipedia URL independent of which describer won. When
-    # Wikipedia is throttled the winner is usually iNaturalist, whose page_url is
-    # this taxon's own page, which is useless to link to (WEB-1115)
     if @taxon.shows_wikipedia?
       @wikipedia_url = TaxonDescribers::Wikipedia.new( locale: I18n.locale ).default_page_url( @taxon )
     end

@@ -87,8 +87,6 @@ module TaxonDescribers
       url
     end
 
-    # URL derived only from the taxon's Wikipedia title (or name). Makes no network
-    # calls, unlike page_url, so it's safe to use when Wikipedia is unreachable.
     def default_page_url( taxon )
       wname = taxon.wikipedia_title
       wname = taxon.name.to_s.gsub( /\s+/, "_" ) if wname.blank?

@@ -481,9 +481,6 @@ describe TaxaController do
   describe "describe when Wikipedia is throttling" do
     render_views
     let( :taxon ) { Taxon.make!( name: "Animalia" ) }
-    # The notice has to link out to Wikipedia, not to whichever describer ended up
-    # winning the fallback (usually iNaturalist, whose page_url is this taxon's own
-    # page). Interpolating the expected URL here is the regression check for WEB-1115.
     let( :throttled_message ) do
       I18n.t( :wikipedia_summary_throttled_html, url: "https://en.wikipedia.org/wiki/Animalia" )
     end
