@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { Row, Col } from "react-bootstrap";
-import ObservationsGridItem from "../../../shared/components/observations_grid_item";
+import ObservationsGridItem from "../../../shared/components/observations_grid_item_legacy";
 import Carousel from "./carousel";
 import TaxonThumbnail from "./taxon_thumbnail";
 

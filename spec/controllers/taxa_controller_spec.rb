@@ -50,9 +50,9 @@ describe TaxaController do
     end
 
     describe "responsive gating" do
-      it "is responsive for a member of the self-service web-984-pr4-taxa-show group" do
+      it "is responsive for a user in the responsive-taxon-detail group" do
         user = create( :user )
-        user.update( test_groups: "web-984-pr4-taxa-show" )
+        user.update_column( :test_groups, "responsive-taxon-detail" )
         sign_in user
         allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
         get :show, params: { id: taxon.id }
@@ -62,15 +62,6 @@ describe TaxaController do
         expect( response.body ).not_to have_tag( "link[href*='show_legacy']" )
       end
 
-      it "is responsive for an admin in the old responsive-header and responsive-taxon-detail groups" do
-        admin = create( :admin )
-        admin.update_column( :test_groups, "responsive-header|responsive-taxon-detail" )
-        sign_in admin
-        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
-        get :show, params: { id: taxon.id }
-        expect( assigns( :responsive ) ).to be true
-        expect( assigns( :skip_min_width ) ).to be true
-      end
 
       it "is not responsive for a user in no responsive test group" do
         sign_in create( :user )

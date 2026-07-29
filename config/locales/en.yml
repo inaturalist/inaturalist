@@ -5223,13 +5223,6 @@ en:
   resolved_by: Resolved by
   resolved_by_user_on_date_html: Resolved by %{user} on %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
-  # Prompt to join a test of the responsive (mobile-friendly) taxon detail page
-  responsive_taxa_show_test_prompt: |
-    Test the responsive taxon page? Only the taxon detail page changes; the
-    rest of the site is unaffected.
-  # Message displayed when you have joined the test of the responsive taxon
-  # detail page. Could also be translated as "You have joined..."
-  responsive_taxa_show_test_joined_status: Joined responsive taxon page test
   restart: Restart
   restore: Restore
   restoring: Restoring...
