@@ -28,7 +28,7 @@
   <div class="timeline-badge">
     <% if user && !no_thumb -%>
       <%= link_to_user user do %>
-        <%= user_image user, :no_inline_dimensions %>
+        <%= user_image user, size: "thumb", class: "padding" %>
       <% end -%>
     <% end -%>
   </div>
