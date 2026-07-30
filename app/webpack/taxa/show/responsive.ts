@@ -13,8 +13,7 @@ const inTestGroup = ( group: string ): boolean => (
 );
 
 const taxaShowResponsive = ( ): boolean => (
-  ( currentUser( )?.roles?.includes( "admin" ) === true && inTestGroup( "responsive-taxon-detail" ) )
-  || inTestGroup( "web-984-pr4-taxa-show" )
+  inTestGroup( "responsive-taxon-detail" ) || inTestGroup( "responsive-global" )
 );
 
 export default taxaShowResponsive;
