@@ -1,8 +1,7 @@
-<%-
+<%- 
   observation = observations.first
   for_idents ||= false
   target_id ||= bootstrap_target_id
-  grid_class ||= responsive? ? "dashboard-obs-grid" : "row"
 -%>
 <%- if observations.size == 1 %>
   <% photo_count, sound_count, link_text =
@@ -110,7 +109,7 @@
     </div>
   </div>
 <%- else %>
-  <div class="<%= grid_class %>">
+  <div class="row">
     <ul>
       <% for observation in observations[0..3] %>
         <%= render partial: "shared/mult_obs_component_for_dashboard", :locals => {:observation => observation, :first => true} %>
@@ -118,7 +117,7 @@
     </ul>
   </div>
   <% if observations.count > 4 -%>
-    <div class="<%= grid_class %> collapse out", id="<%= "expand#{target_id}" %>">
+    <div class="row collapse out", id="<%= "expand#{target_id}" %>">
       <ul>
         <% for observation in observations[4..-1] %>
           <%= render partial: "shared/mult_obs_component_for_dashboard", :locals => {:observation => observation, :first => false} %>

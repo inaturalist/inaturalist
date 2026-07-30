@@ -1,11 +1,10 @@
 <%-
   first ||= false
-  thumb_class ||= responsive? ? "dashboard-obs-thumb" : "col-md-3 col-sm-3 col-xs-3"
   photo_count, sound_count, link_text =
     observation.publicly_viewable_observation_photos.size,
     observation.publicly_viewable_observation_sounds.size, []
 %>
-<li class="<%= thumb_class %>">
+<li class="col-md-3 col-sm-3 col-xs-3">
   <div class="thumbnail<%= " first" if first %> <%= "has-photo" if photo_count > 0 %> <%= "has-sound" if sound_count > 0 %>">
     <% if photo_count == 0 && sound_count == 0 -%>
       <%= link_to observation_path(observation), :class => "icon_container" do %>
