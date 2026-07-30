@@ -606,6 +606,16 @@ Rails.application.routes.draw do
   end
 
   resources :flags
+
+  # WEB-1074. Flipper ships its own Rack app, so ApplicationController's
+  # admin_required filter does not apply to it and this constraint is the auth.
+  # Non-admins get a plain 404 rather than a redirect that advertises the path.
+  # Mounting the Flipper module rather than a captured instance so specs can
+  # swap Flipper.instance per example.
+  mount Flipper::UI.app( Flipper ) => "/admin/feature_flags",
+    as: "admin_feature_flags",
+    constraints: ->( request ) { request.env["warden"]&.user&.is_admin? }
+
   resource :admin, only: :index, controller: :admin do
     collection do
       get :index
