@@ -84,9 +84,9 @@ class MetaService
       if options[:api_endpoint].recently_throttled?
         return if options[:force_update]
 
-        if api_endpoint_cache.success? && api_endpoint_cache.status_code == 200
-          return return_response( api_endpoint_cache.response, options )
-        end
+        return unless api_endpoint_cache.success? && api_endpoint_cache.status_code == 200
+
+        return return_response( api_endpoint_cache.response, options )
       end
 
       if api_endpoint_cache.cached? && !options[:force_update]
