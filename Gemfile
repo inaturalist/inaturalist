@@ -56,6 +56,9 @@ gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem "exiftool_vendored" # Vendored version includes exiftool and exiftool gem
 gem "fastimage"
 gem "flickr"
+gem "flipper", "~> 1.4"
+gem "flipper-active_record", "~> 1.4"
+gem "flipper-ui", "~> 1.4"
 gem "friendly_id"
 gem "georuby"
 gem "haml"
