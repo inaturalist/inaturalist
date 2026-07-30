@@ -16,8 +16,6 @@ $xxl-max: 1399.98px;
 @mixin container-padding {
   padding-left: 60px;
   padding-right: 60px;
-  max-width: $xl + ( 60px * 2 );
-  margin-inline: auto;
 
   @media ( max-width: $md-max ) {
     padding-left: 30px;

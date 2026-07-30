@@ -1829,6 +1829,13 @@ class User < ApplicationRecord
     test_groups_array.include?( group)
   end
 
+  # Single fold-in point for responsive test groups. A member of the
+  # "responsive-global" umbrella is treated as being in any responsive group.
+  # (Placeholder until swift-globe's richer version merges.)
+  def in_responsive_test_group?( group )
+    in_test_group?( "responsive-global" ) || in_test_group?( group )
+  end
+
   def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
     elastic_index!
