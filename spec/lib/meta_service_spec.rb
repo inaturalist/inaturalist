@@ -150,8 +150,6 @@ describe MetaService do
       [cold_uri, expired_uri, lapsed_429_uri].each do | uri |
         MetaService.fetch_request_uri( request_uri: uri, api_endpoint: api_endpoint )
       end
-      # Only rows with no usable body have nothing to hand back. The expired row is covered by
-      # "serves an expired cached response rather than nothing" — it returns content, not nil.
       [cold_uri, lapsed_429_uri].each do | uri |
         expect(
           MetaService.fetch_request_uri( request_uri: uri, api_endpoint: api_endpoint )
@@ -160,8 +158,6 @@ describe MetaService do
     end
 
     it "serves an expired cached response rather than nothing" do
-      # Stale-serve: while we are backing off, a row whose cache_hours window has lapsed is still
-      # the best answer we have, so return it instead of leaving the user with no content.
       make_expired_good_cache
       api_endpoint.update( last_throttled_at: 1.minute.ago )
       expect( MetaService ).not_to receive( :fetch_with_redirects )
