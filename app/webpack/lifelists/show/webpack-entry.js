@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
+import inatjs from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import lifelistReducer, { fetchUser, updateWithHistoryState } from "./reducers/lifelist";
 import exportModalReducer from "./reducers/export_modal";
@@ -30,6 +31,18 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   sharedStore.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
+}
+
+const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+const defaultApiUrl = element && element.getAttribute( "content" );
+if ( defaultApiUrl ) {
+  sharedStore.dispatch( setConfig( {
+    testingApiV2: true
+  } ) );
+  inatjs.setConfig( {
+    apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+    writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+  } );
 }
 
 /* global LIFELIST_USER */
