@@ -218,6 +218,20 @@ const Account = ( {
                     <>
                       <tr>
                         <td className="col-xs-4 borderless table-row">
+                          Responsive Global
+                        </td>
+                        <td className="col-xs-4 borderless table-row">
+                          <button
+                            type="button"
+                            className="btn btn-success"
+                            onClick={( ) => toggleGroup( "responsive-global" )}
+                          >
+                            { config.currentUser.isInTestGroup( "responsive-global" ) ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="col-xs-4 borderless table-row">
                           Responsive Header
                         </td>
                         <td className="col-xs-4 borderless table-row">
