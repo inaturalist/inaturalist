@@ -674,8 +674,8 @@ $introducedColor: #E4007C;
 }
 .TaxonPageTabs {
   @media ( max-width: $md-max ) {
-    padding-top: 25px;
     @include container-padding;
+    padding-top: 25px;
   }
 }
 
@@ -693,6 +693,9 @@ $introducedColor: #E4007C;
   margin: 0 auto;
   padding-top: 10px;
   padding-bottom: 10px;
+  @media ( min-width: $md ) {
+    @include container-padding;
+  }
 
   .container {
     width: 100%;
