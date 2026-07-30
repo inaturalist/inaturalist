@@ -18,20 +18,18 @@ import StatusRow from "./status_row";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 
 const App = ( { taxon, showNewTaxon, config } ) => {
-  const responsive = config.currentUser?.isAdmin
-    && config.currentUser?.isInTestGroup( "responsive-taxon-detail" );
   return (
     <div id="TaxonDetail">
       <Grid>
         <TaxonChangeAlertContainer />
         <Row className="preheader">
-          <Col xs={responsive ? null : 8} sm={responsive ? 8 : null}>
+          <Col xs={8}>
             <TaxonCrumbsContainer />
             <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.replace( /[^a-zA-Z0-9]/g, "-" )}`}>
               <i className="icon-link" />
             </a>
           </Col>
-          <Col xs={responsive ? null : 4} sm={responsive ? 4 : null}>
+          <Col xs={4}>
             <div className="pull-right">
               <TaxonAutocomplete
                 inputClassName="input-sm"
@@ -92,10 +90,10 @@ const App = ( { taxon, showNewTaxon, config } ) => {
                 establishmentMeans={taxon.establishment_means}
               />
               <Row>
-                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                <Col xs={6}>
                   <PhotoPreviewContainer />
                 </Col>
-                <Col xs={responsive ? null : 6} sm={responsive ? 6 : null}>
+                <Col xs={6}>
                   <Leaders taxon={taxon} />
                   <Row>
                     <Col xs={12}>

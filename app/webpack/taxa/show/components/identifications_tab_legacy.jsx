@@ -755,8 +755,6 @@ class IdentificationsTab extends Component {
     } = this.props;
     let content;
     let pagination;
-    const responsive = currentUser?.isAdmin
-      && currentUser?.isInTestGroup( "responsive-taxon-detail" );
     const activeTab = this.activeTab( );
     if ( response?.results?.length === 0 ) {
       content = (
@@ -789,7 +787,7 @@ class IdentificationsTab extends Component {
     return (
       <Grid className="IdentificationsTab">
         <Row>
-          <Col xs={responsive ? null : 8} sm={responsive ? 12 : null}>
+          <Col xs={8}>
             <h2>
               {I18n.t( "views.taxa.show.identifications.identification_tips" )}
             </h2>
@@ -808,7 +806,7 @@ class IdentificationsTab extends Component {
               </>
             ) }
           </Col>
-          <Col xs={responsive ? null : 4} sm={responsive ? 4 : null} className={responsive ? "hidden-xs" : null}>
+          <Col xs={4}>
             <Row>
               <div className="taxon-map-container">
                 <TaxonMap
