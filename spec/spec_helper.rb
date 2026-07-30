@@ -18,6 +18,7 @@ require File.expand_path( "#{File.dirname( __FILE__ )}/helpers/example_helpers" 
 require File.expand_path( "#{File.dirname( __FILE__ )}/../lib/eol_service.rb" )
 require File.expand_path( "#{File.dirname( __FILE__ )}/../lib/meta_service.rb" )
 require File.expand_path( "#{File.dirname( __FILE__ )}/../lib/flickr_cache.rb" )
+require "flipper/adapters/memory"
 
 # rubocop:disable Style/MixinUsage
 include MakeHelpers
@@ -76,6 +77,12 @@ RSpec.configure do | config |
     make_default_site
     CONFIG.has_subscribers = :disabled
     CONFIG.content_creation_restriction_days = nil
+    # A fresh in-memory Flipper per example. Feature-flag state otherwise lives
+    # in process memory, which neither DatabaseCleaner's transaction rollback
+    # nor Rails.cache clearing would reset. Assigning a new instance IS the
+    # reset. The ActiveRecord adapter is exercised explicitly in
+    # spec/lib/feature_flagging_spec.rb.
+    Flipper.instance = Flipper.new( Flipper::Adapters::Memory.new )
   end
 
   config.after( :each ) do
