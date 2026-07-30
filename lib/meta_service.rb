@@ -92,6 +92,10 @@ class MetaService
 
         return Nokogiri::XML( api_endpoint_cache.response )
       end
+
+      if options[:api_endpoint].recently_throttled?
+        return
+      end
     end
     response = nil
     begin
