@@ -217,6 +217,14 @@ const Account = ( {
                   { viewerIsAdmin && (
                     <>
                       <tr>
+                        <td>
+                          Global Test Group?
+                        </td>
+                        <td>
+                          { config.currentUser.isInTestGroup( "responsive-global" ) ? I18n.t( "yes" ) : I18n.t( "no" ) }
+                        </td>
+                      </tr>
+                      <tr>
                         <td className="col-xs-4 borderless table-row">
                           Responsive Header
                         </td>
