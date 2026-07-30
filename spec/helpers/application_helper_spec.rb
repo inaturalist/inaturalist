@@ -3,6 +3,34 @@
 require "spec_helper"
 
 describe ApplicationHelper do
+  describe "feature_flags_json" do
+    it "renders a JSON object of the client flags" do
+      allow( self ).to receive( :current_user ).and_return nil
+      expect( JSON.parse( feature_flags_json ).keys.map( &:to_sym ) ).
+        to eq FeatureFlagging::CLIENT_FLAGS
+    end
+
+    it "resolves flags for the current user" do
+      user = User.make!
+      allow( self ).to receive( :current_user ).and_return user
+      Flipper.enable_actor( :flipper_smoke_test, user )
+      expect( JSON.parse( feature_flags_json ) ).to eq( "flipper_smoke_test" => true )
+    end
+
+    it "reports flags off for anonymous visitors" do
+      user = User.make!
+      allow( self ).to receive( :current_user ).and_return nil
+      Flipper.enable_actor( :flipper_smoke_test, user )
+      expect( JSON.parse( feature_flags_json ) ).to eq( "flipper_smoke_test" => false )
+    end
+
+    it "is safe to interpolate into a script tag" do
+      allow( self ).to receive( :current_user ).and_return nil
+      expect( feature_flags_json ).to be_html_safe
+      expect( feature_flags_json ).not_to include "<"
+    end
+  end
+
   describe "hyperlink_mentions" do
     it "links known user mentions in text" do
       User.make!( login: "testmention" )
