@@ -1,1 +1,34 @@
 <h2><%=t :admin_tools %></h2>
+
+<%# WEB-1074 pilot readout. flipper_smoke_test and hello_world gate nothing --
+    they exist to prove flag evaluation, percentage rollout, and variant
+    assignment work end to end. Delete this block once a real flag ships. %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>Feature flags</strong> &mdash;
+    <%= link_to "manage", admin_feature_flags_path %>
+  </div>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td><code>flipper_smoke_test</code></td>
+        <td>
+          enabled for you:
+          <strong><%= FeatureFlagging.enabled?( :flipper_smoke_test, current_user ) %></strong>
+        </td>
+      </tr>
+      <tr>
+        <td><code>hello_world</code> experiment</td>
+        <td>
+          your variant:
+          <strong><%= FeatureFlagging.variant( :hello_world, current_user ) || "not enrolled" %></strong>
+          <% unless FeatureFlagging.enabled?( :exp_hello_world, current_user ) %>
+            <span class="text-muted">
+              (enable <code>exp_hello_world</code> to enroll)
+            </span>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -40,6 +40,8 @@
           %li= link_to "Redirect Links", redirect_links_path
           %li= link_to "Blocked IPs", admin_blocked_ips_path
           %li= link_to t( :username_reserved_words ), admin_username_reserved_words_path
+          - if current_user&.is_admin?
+            %li= link_to "Feature Flags", admin_feature_flags_path
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
         = yield
 = render template: "layouts/bootstrap"
