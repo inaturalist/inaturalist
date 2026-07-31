@@ -228,9 +228,9 @@ class TaxaController < ApplicationController
         else
           session[:preferred_taxon_page_ancestors_shown]
         end
-        @responsive_taxon_detail = current_user&.in_test_group?( "responsive-taxon-detail" ) ||
+        @taxon_detail_responsive = current_user&.in_test_group?( "responsive-taxon-detail" ) ||
           current_user&.in_test_group?( "responsive-global" )
-        if @responsive_taxon_detail
+        if @taxon_detail_responsive
           @responsive = true
           @skip_min_width = true
         end
