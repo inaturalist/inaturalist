@@ -19,7 +19,16 @@ body > [role="dialog"] .ActivityItem {
     width: 100%;
     > .taxon {
       display: flex;
+      flex: 1 1 0;
+      min-width: 0;
+      overflow-wrap: anywhere;
       overflow: hidden;
+      > a {
+        flex: 0 0 auto;
+      }
+      .SplitTaxon {
+        min-width: 0;
+      }
     }
     .hidden-content {
       display: flex;
@@ -33,6 +42,7 @@ body > [role="dialog"] .ActivityItem {
   }
   .buttons {
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
     gap: 10px;
   }
@@ -286,6 +296,7 @@ body > [role="dialog"] .ActivityItem {
   .id-body-wrapper {
     margin-top: 15px;
     display: flex;
+    flex: 1 0 100%;
     width: 100%;
   }
   .id_body {
