@@ -6,7 +6,7 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import ChartsContainer from "../containers/charts_container";
-import Leaders from "./leaders";
+import Leaders from "./leaders_legacy";
 import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
 import PhotoModalContainer from "../containers/photo_modal_container";
 import PhotoChooserModalContainer from "../containers/photo_chooser_modal_container";
@@ -14,7 +14,7 @@ import PlaceChooserContainer from "../containers/place_chooser_container";
 import TaxonChangeAlertContainer from "../containers/taxon_change_alert_container";
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
-import StatusRow from "./status_row";
+import StatusRow from "./status_row_legacy";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 
 const App = ( { taxon, showNewTaxon, config } ) => {

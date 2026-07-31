@@ -4,7 +4,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import LazyLoad from "react-lazy-load";
 import moment from "moment";
 import _ from "lodash";
-import HighlightsCarousel from "./highlights_carousel";
+import HighlightsCarousel from "./highlights_carousel_legacy";
 
 const HighlightsTab = ( {
   trendingTaxa,

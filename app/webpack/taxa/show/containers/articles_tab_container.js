@@ -1,5 +1,8 @@
 import { connect } from "react-redux";
 import ArticlesTab from "../components/articles_tab";
+import ArticlesTabLegacy from "../components/articles_tab_legacy";
+import gatedComponent from "../../../shared/components/gated_component";
+import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 
 function mapStateToProps( state ) {
   return {
@@ -14,6 +17,6 @@ function mapStateToProps( state ) {
 
 const ArticlesTabContainer = connect(
   mapStateToProps
-)( ArticlesTab );
+)( gatedComponent( RESPONSIVE_TEST_GROUPS, ArticlesTab, ArticlesTabLegacy ) );
 
 export default ArticlesTabContainer;

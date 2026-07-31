@@ -2,8 +2,6 @@ import React from "react";
 import _ from "lodash";
 import TaxonThumbnail from "../../../shared/components/taxon_thumbnail";
 import type { Taxon, Config } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import SimilarTabLegacy from "./similar_tab_legacy";
 
 interface Place {
   id: number;
@@ -26,7 +24,7 @@ interface SimilarTabProps {
   taxon: SimilarTaxon;
 }
 
-const SimilarTabResponsive = ( {
+const SimilarTab = ( {
   results,
   place,
   showNewTaxon,
@@ -129,18 +127,5 @@ const SimilarTabResponsive = ( {
     </div>
   );
 };
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof SimilarTabResponsive>;
-const LegacyFallback = SimilarTabLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const SimilarTab = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <SimilarTabResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default SimilarTab;

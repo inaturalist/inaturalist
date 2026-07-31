@@ -21,11 +21,11 @@ import "@testing-library/jest-dom";
   }
 };
 
-// CURRENT_USER is a Rails-injected global. The taxa/show components dispatch to their
-// *_legacy siblings unless the user is testing responsiveness, so opt tests into the
-// group to exercise the responsive layouts.
+// CURRENT_USER is a Rails-injected global. It is the gate's fallback for components
+// whose container maps neither `config` nor `currentUser` (see gated_component.tsx), so
+// opt tests into the group to exercise the responsive layouts.
 ( global as unknown as Record<string, unknown> ).CURRENT_USER = {
-  testGroups: ["web-984-pr4-taxa-show"]
+  testGroups: ["responsive-taxon-detail"]
 };
 
 // jsdom does not implement ResizeObserver (carousel.tsx instantiates one on mount).

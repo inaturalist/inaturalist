@@ -1,8 +1,12 @@
+import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 import querystring from "querystring";
 import _ from "lodash";
 import HighlightsTab from "../components/highlights_tab";
+import HighlightsTabLegacy from "../components/highlights_tab_legacy";
+import gatedComponent from "../../../shared/components/gated_component";
+import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 import { defaultObservationParams, urlForPlace } from "../../shared/util";
 import { showNewTaxon } from "../actions/taxon";
 import { fetchRecent, fetchWanted } from "../../shared/ducks/taxon";
@@ -41,9 +45,13 @@ function mapDispatchToProps( dispatch: ( action: unknown ) => void ) {
   };
 }
 
+// The legacy module is untyped JS, so its props are asserted to match.
+type GateProps = React.ComponentProps<typeof HighlightsTab>;
+const LegacyFallback = HighlightsTabLegacy as unknown as React.ComponentType<GateProps>;
+
 const HighlightsTabContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( HighlightsTab );
+)( gatedComponent( RESPONSIVE_TEST_GROUPS, HighlightsTab, LegacyFallback ) );
 
 export default HighlightsTabContainer;

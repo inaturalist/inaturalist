@@ -1,6 +1,9 @@
 import _ from "lodash";
 import { connect } from "react-redux";
 import PhotoPreview from "../components/photo_preview";
+import PhotoPreviewLegacy from "../components/photo_preview_legacy";
+import gatedComponent from "../../../shared/components/gated_component";
+import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 import { showPhotoModal, setPhotoModal } from "../../shared/ducks/photo_modal";
 import { showPhotoChooserIfSignedIn } from "../../shared/ducks/taxon";
 import { showNewTaxon } from "../actions/taxon";
@@ -61,6 +64,6 @@ function mapDispatchToProps( dispatch ) {
 const PhotoPreviewContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( PhotoPreview );
+)( gatedComponent( RESPONSIVE_TEST_GROUPS, PhotoPreview, PhotoPreviewLegacy ) );
 
 export default PhotoPreviewContainer;

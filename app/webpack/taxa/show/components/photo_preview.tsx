@@ -5,8 +5,6 @@ import TaxonPhoto from "../../../shared/components/taxon_photo";
 import type {
   Photo, Taxon, Observation, Config
 } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import PhotoPreviewLegacy from "./photo_preview_legacy";
 
 const GRID_THUMBNAIL_HEIGHT = 196.5;
 const GALLERY_THUMBNAIL_HEIGHT = 98;
@@ -189,7 +187,7 @@ const GalleryPreview = ( {
   );
 };
 
-const PhotoPreviewResponsive = ( {
+const PhotoPreview = ( {
   taxon,
   taxonPhotos,
   layout,
@@ -227,18 +225,5 @@ const PhotoPreviewResponsive = ( {
     />
   );
 };
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof PhotoPreviewResponsive>;
-const LegacyFallback = PhotoPreviewLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const PhotoPreview = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <PhotoPreviewResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default PhotoPreview;

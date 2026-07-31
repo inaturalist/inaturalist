@@ -17,8 +17,6 @@ import UserLink from "../../../shared/components/user_link";
 import type {
   Taxon, CurrentUser, Config, User
 } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import IdentificationsTabLegacy from "./identifications_tab_legacy";
 
 // Use custom relative times for moment
 const i18nMomentjs = I18n.t( "momentjs" );
@@ -131,7 +129,7 @@ interface State {
   tabSorts: Record<string, SortOption[]>;
 }
 
-class IdentificationsTabResponsive extends Component<Props, State> {
+class IdentificationsTab extends Component<Props, State> {
   constructor( props: Props, context: unknown ) {
     super( props, context );
     const allSorts: Record<string, SortOption> = {
@@ -946,18 +944,5 @@ class IdentificationsTabResponsive extends Component<Props, State> {
     );
   }
 }
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = Props;
-const LegacyFallback = IdentificationsTabLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const IdentificationsTab = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <IdentificationsTabResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default IdentificationsTab;

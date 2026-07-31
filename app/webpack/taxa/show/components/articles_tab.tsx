@@ -2,8 +2,6 @@ import React from "react";
 import _ from "lodash";
 import { isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon, CurrentUser } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import ArticlesTabLegacy from "./articles_tab_legacy";
 
 type TaxonWithVision = Taxon & { vision?: boolean };
 
@@ -24,7 +22,7 @@ interface Props {
   currentUser?: CurrentUser;
 }
 
-const ArticlesTabResponsive = ( {
+const ArticlesTab = ( {
   taxon,
   description,
   descriptionSource,
@@ -135,18 +133,5 @@ const ArticlesTabResponsive = ( {
     </div>
   );
 };
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof ArticlesTabResponsive>;
-const LegacyFallback = ArticlesTabLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const ArticlesTab = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <ArticlesTabResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default ArticlesTab;

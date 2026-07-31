@@ -3,6 +3,9 @@ import _ from "lodash";
 import { stringify } from "querystring";
 import { defaultObservationParams } from "../../shared/util";
 import RecentObservations from "../components/recent_observations";
+import RecentObservationsLegacy from "../components/recent_observations_legacy";
+import gatedComponent from "../../../shared/components/gated_component";
+import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 import { showPhotoModal, setPhotoModal } from "../../shared/ducks/photo_modal";
 
 function mapStateToProps( state ) {
@@ -26,6 +29,6 @@ function mapDispatchToProps( dispatch ) {
 const RecentObservationsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( RecentObservations );
+)( gatedComponent( RESPONSIVE_TEST_GROUPS, RecentObservations, RecentObservationsLegacy ) );
 
 export default RecentObservationsContainer;

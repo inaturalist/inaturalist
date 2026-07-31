@@ -1,7 +1,8 @@
 import React from "react";
 import _ from "lodash";
 import CoverImage from "../../../shared/components/cover_image";
-import taxaShowResponsive from "../responsive";
+import gatedComponent from "../../../shared/components/gated_component";
+import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 import LeaderItemLegacy from "./leader_item_legacy";
 
 interface LeaderItemProps {
@@ -105,12 +106,10 @@ const LeaderItemResponsive = ( {
 type GateProps = React.ComponentProps<typeof LeaderItemResponsive>;
 const LegacyFallback = LeaderItemLegacy as unknown as React.ComponentType<GateProps>;
 
-/* eslint-disable react/jsx-props-no-spreading */
-const LeaderItem = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <LeaderItemResponsive {...props} />
-    : <LegacyFallback {...props} />
+const LeaderItem = gatedComponent<GateProps>(
+  RESPONSIVE_TEST_GROUPS,
+  LeaderItemResponsive,
+  LegacyFallback
 );
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default LeaderItem;

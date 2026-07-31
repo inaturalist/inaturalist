@@ -9,8 +9,6 @@ import UserText from "../../../shared/components/user_text";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon, isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon, CurrentUser } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import StatusTabLegacy from "./status_tab_legacy";
 
 interface Place {
   id: number;
@@ -55,7 +53,7 @@ interface StatusTabProps {
   currentUser?: CurrentUser;
 }
 
-const StatusTabResponsive = ( {
+const StatusTab = ( {
   statuses = [],
   listedTaxa = [],
   listedTaxaCount = 0,
@@ -427,18 +425,5 @@ const StatusTabResponsive = ( {
     </div>
   );
 };
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof StatusTabResponsive>;
-const LegacyFallback = StatusTabLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const StatusTab = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <StatusTabResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default StatusTab;

@@ -5,8 +5,6 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import ErrorBoundary from "../../../shared/components/error_boundary";
 import { urlForTaxon, taxonLayerForTaxon } from "../../shared/util";
 import type { Taxon, Config } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import TaxonPageMapLegacy from "./taxon_page_map_legacy";
 
 interface Bounds {
   swlng: number;
@@ -25,7 +23,7 @@ interface Props {
   updateCurrentUser?: ( updates: unknown ) => void;
 }
 
-const TaxonPageMapResponsive = ( {
+const TaxonPageMap = ( {
   taxon,
   bounds,
   latitude,
@@ -90,18 +88,5 @@ const TaxonPageMapResponsive = ( {
     </div>
   );
 };
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof TaxonPageMapResponsive>;
-const LegacyFallback = TaxonPageMapLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const TaxonPageMap = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <TaxonPageMapResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default TaxonPageMap;

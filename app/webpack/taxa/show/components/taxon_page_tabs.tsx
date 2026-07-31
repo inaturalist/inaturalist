@@ -16,8 +16,6 @@ import RecentObservationsContainer from "../containers/recent_observations_conta
 import TabDrawer, { TabItem } from "../../../shared/components/tab_drawer";
 import { isCuratorOrAdmin } from "../../shared/util";
 import type { Taxon as BaseTaxon, CurrentUser as BaseCurrentUser } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import TaxonPageTabsLegacy from "./taxon_page_tabs_legacy";
 
 const MAIN_TAB_VALUES = new Set( [
   "map", "articles", "highlights", "interactions",
@@ -48,7 +46,7 @@ interface Props {
 
 type DrawerItem = TabItem & { visible?: boolean };
 
-const TaxonPageTabsResponsive = ( {
+const TaxonPageTabs = ( {
   taxon,
   currentUser,
   chosenTab = "articles",
@@ -332,18 +330,5 @@ const TaxonPageTabsResponsive = ( {
     </div>
   );
 };
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof TaxonPageTabsResponsive>;
-const LegacyFallback = TaxonPageTabsLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const TaxonPageTabs = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <TaxonPageTabsResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default TaxonPageTabs;

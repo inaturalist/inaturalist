@@ -3,8 +3,6 @@ import React from "react";
 import moment from "moment";
 import { urlForTaxon, commasAnd } from "../../shared/util";
 import type { Taxon } from "../../../shared/types";
-import taxaShowResponsive from "../responsive";
-import TaxonChangeAlertLegacy from "./taxon_change_alert_legacy";
 
 interface TaxonChangeInput {
   id: number;
@@ -26,7 +24,7 @@ interface Props {
   taxonChange?: TaxonChange;
 }
 
-const TaxonChangeAlertResponsive = ( { taxon, taxonChange }: Props ) => {
+const TaxonChangeAlert = ( { taxon, taxonChange }: Props ) => {
   if ( !taxonChange ) return ( <div /> );
 
   const { status } = taxonChange; // "draft" | "committed" | "withdrawn" | ...
@@ -138,18 +136,5 @@ const TaxonChangeAlertResponsive = ( { taxon, taxonChange }: Props ) => {
     </div>
   );
 };
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof TaxonChangeAlertResponsive>;
-const LegacyFallback = TaxonChangeAlertLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const TaxonChangeAlert = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <TaxonChangeAlertResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default TaxonChangeAlert;

@@ -16,8 +16,6 @@ import StatusRow from "./status_row";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 import type { Taxon as BaseTaxon, Config } from "../../../shared/types";
 import { isCuratorOrAdmin } from "../../shared/util";
-import taxaShowResponsive from "../responsive";
-import AppLegacy from "./app_legacy";
 
 type Taxon = BaseTaxon & {
   conservationStatus?: object | null;
@@ -30,7 +28,7 @@ interface Props {
   config?: Config;
 }
 
-const AppResponsive = ( { taxon, showNewTaxon, config = {} }: Props ) => {
+const App = ( { taxon, showNewTaxon, config = {} }: Props ) => {
   const flagsButton = isCuratorOrAdmin( config.currentUser )
     && taxon.flag_counts
     && ( taxon.flag_counts.unresolved ?? 0 ) > 0
@@ -81,18 +79,5 @@ const AppResponsive = ( { taxon, showNewTaxon, config = {} }: Props ) => {
     </div>
   );
 };
-
-// Renders the pre-WEB-984 layout unless the user is testing responsiveness.
-// The legacy module is untyped JS, so its props are asserted to match.
-type GateProps = React.ComponentProps<typeof AppResponsive>;
-const LegacyFallback = AppLegacy as unknown as React.ComponentType<GateProps>;
-
-/* eslint-disable react/jsx-props-no-spreading */
-const App = ( props: GateProps ) => (
-  taxaShowResponsive( )
-    ? <AppResponsive {...props} />
-    : <LegacyFallback {...props} />
-);
-/* eslint-enable react/jsx-props-no-spreading */
 
 export default App;
