@@ -201,7 +201,8 @@ GEM
     aes_key_wrap (1.1.0)
     airbrussh (1.5.3)
       sshkit (>= 1.6.1, != 1.7.0)
-    akami (1.3.1)
+    akami (1.3.3)
+      base64
       gyoku (>= 0.4.0)
       nokogiri
     ancestry (4.1.0)
@@ -386,8 +387,9 @@ GEM
     georuby (2.5.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    gyoku (1.3.1)
+    gyoku (1.4.0)
       builder (>= 2.1.2)
+      rexml (~> 3.0)
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
@@ -406,9 +408,11 @@ GEM
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
-    httpi (2.5.0)
-      rack
-      socksify
+    httpi (4.0.4)
+      base64
+      mutex_m
+      nkf
+      rack (>= 2.0, < 4)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     i18n-inflector (2.6.7)
@@ -459,6 +463,7 @@ GEM
     multi_xml (0.8.0)
       bigdecimal (>= 3.1, < 5)
     multipart-post (2.4.1)
+    mutex_m (0.3.0)
     net-http (0.9.1)
       uri (>= 0.11.1)
     net-imap (0.5.15)
@@ -478,6 +483,7 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (9.19.0)
     nio4r (2.7.5)
+    nkf (0.3.0)
     nokogiri (1.19.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -489,7 +495,9 @@ GEM
       racc (~> 1.4)
     non-stupid-digest-assets (1.0.11)
       sprockets (>= 2.0)
-    nori (2.6.0)
+    nori (2.9.1)
+      bigdecimal
+      stringio
     numerizer (0.2.0)
     oauth (1.1.6)
       auth-sanitizer (~> 0.2, >= 0.2.1)
@@ -706,14 +714,15 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    savon (2.12.1)
+    savon (2.17.2)
       akami (~> 1.2)
       builder (>= 2.1.2)
       gyoku (~> 1.2)
-      httpi (~> 2.3)
+      httpi (>= 4, < 5)
+      mail (~> 2.5)
       nokogiri (>= 1.8.1)
-      nori (~> 2.4)
-      wasabi (~> 3.4)
+      nori (~> 2.7)
+      wasabi (>= 5.1.0, < 6)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
     simplecov (0.21.2)
@@ -726,7 +735,6 @@ GEM
     snaky_hash (2.0.7)
       hashie (>= 0.1.0, < 6)
       version_gem (~> 1.1, >= 1.1.14)
-    socksify (1.7.1)
     soundcloud (0.3.5)
       hashie
       httmultiparty (~> 0.3.0)
@@ -744,6 +752,7 @@ GEM
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
       ostruct
+    stringio (3.2.0)
     temple (0.8.2)
     terrapin (1.1.1)
       climate_control
@@ -767,10 +776,10 @@ GEM
     version_gem (1.1.14)
     warden (1.2.9)
       rack (>= 2.0.9)
-    wasabi (3.6.1)
+    wasabi (5.1.0)
       addressable
-      httpi (~> 2.0)
-      nokogiri (>= 1.4.2)
+      faraday (>= 1.9, < 3)
+      nokogiri (>= 1.13.9)
     watu_table_builder (0.3.0)
     webmock (3.14.0)
       addressable (>= 2.8.0)
