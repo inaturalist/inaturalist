@@ -6863,7 +6863,6 @@ en:
   wikipedia_summary_throttled_html: | 
     The Wikipedia summary could not be fetched right now, or it does not exist.
     Please try again in %{minutes} minutes or check if the article exists on <a href="%{url}">Wikipedia</a>.
-    Wikipedia summaries for missing taxa are more likely to display this message because they are not cached.
   with: with
   # Filter for observations not in a particular taxon
   without_taxon: Not in taxon
