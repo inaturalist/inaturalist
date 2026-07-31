@@ -482,7 +482,7 @@ describe TaxaController do
     render_views
     let( :taxon ) { Taxon.make!( name: "Animalia" ) }
     let( :throttled_message ) do
-      I18n.t( :wikipedia_summary_throttled_html, url: "https://en.wikipedia.org/wiki/Animalia" )
+      I18n.t( :wikipedia_summary_throttled_html, minutes: ApiEndpointCache::THROTTLE_RETRY_MINUTES, url: "https://en.wikipedia.org/wiki/Animalia" )
     end
 
     before do
