@@ -201,9 +201,6 @@ GEM
     aes_key_wrap (1.1.0)
     airbrussh (1.5.3)
       sshkit (>= 1.6.1, != 1.7.0)
-    akami (1.3.1)
-      gyoku (>= 0.4.0)
-      nokogiri
     ancestry (4.1.0)
       activerecord (>= 5.2.6)
     angular-rails-templates (1.1.0)
@@ -385,8 +382,6 @@ GEM
     georuby (2.5.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    gyoku (1.3.1)
-      builder (>= 2.1.2)
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
@@ -405,9 +400,6 @@ GEM
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
-    httpi (2.5.0)
-      rack
-      socksify
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     i18n-inflector (2.6.7)
@@ -488,7 +480,6 @@ GEM
       racc (~> 1.4)
     non-stupid-digest-assets (1.0.11)
       sprockets (>= 2.0)
-    nori (2.6.0)
     numerizer (0.2.0)
     oauth (1.1.8)
       anonymous_loader (~> 0.1, >= 0.1.3)
@@ -706,14 +697,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    savon (2.12.1)
-      akami (~> 1.2)
-      builder (>= 2.1.2)
-      gyoku (~> 1.2)
-      httpi (~> 2.3)
-      nokogiri (>= 1.8.1)
-      nori (~> 2.4)
-      wasabi (~> 3.4)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
     simplecov (0.21.2)
@@ -726,7 +709,6 @@ GEM
     snaky_hash (2.0.7)
       hashie (>= 0.1.0, < 6)
       version_gem (~> 1.1, >= 1.1.14)
-    socksify (1.7.1)
     soundcloud (0.3.5)
       hashie
       httmultiparty (~> 0.3.0)
@@ -767,10 +749,6 @@ GEM
     version_gem (1.1.14)
     warden (1.2.9)
       rack (>= 2.0.9)
-    wasabi (3.6.1)
-      addressable
-      httpi (~> 2.0)
-      nokogiri (>= 1.4.2)
     watu_table_builder (0.3.0)
     webmock (3.14.0)
       addressable (>= 2.8.0)
@@ -918,7 +896,6 @@ DEPENDENCIES
   rubocop-rspec
   rubyzip (~> 2.3.0)
   sass-rails
-  savon
   shoulda-matchers
   simplecov
   soundcloud
