@@ -27,7 +27,7 @@
       - if describer_is_wikipedia || @describer.blank?
         - if @taxon.shows_wikipedia?
           - if @wikipedia_throttled
-            =t :wikipedia_summary_throttled_html, url: @wikipedia_url
+            =t :wikipedia_summary_throttled_html, minutes: ApiEndpointCache::THROTTLE_RETRY_MINUTES, url: @wikipedia_url
           - else
             =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
         - else
