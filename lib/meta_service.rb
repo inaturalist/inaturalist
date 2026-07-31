@@ -81,20 +81,18 @@ class MetaService
       )
       return if api_endpoint_cache.in_progress?
 
-      if api_endpoint_cache.cached? && !options[:force_update]
-        # A throttled response is not a valid API response; treat it as if there
-        # was no response rather than parsing the throttling message.
-        return if api_endpoint_cache.throttled?
+      if options[:api_endpoint].recently_throttled?
+        return if options[:force_update]
 
-        if options[:raw_response]
-          return api_endpoint_cache.response
-        end
+        return unless api_endpoint_cache.success? && api_endpoint_cache.status_code == 200
 
-        return Nokogiri::XML( api_endpoint_cache.response )
+        return return_response( api_endpoint_cache.response, options )
       end
 
-      if options[:api_endpoint].recently_throttled?
-        return
+      if api_endpoint_cache.cached? && !options[:force_update]
+        return if api_endpoint_cache.throttled?
+
+        return return_response( api_endpoint_cache.response, options )
       end
     end
     response = nil
@@ -124,11 +122,7 @@ class MetaService
       return
     end
 
-    if options[:raw_response]
-      return response.body
-    end
-
-    Nokogiri::XML( response.body )
+    return_response( response.body, options )
   end
 
   def self.fetch_with_redirects( options, attempts = 3 )
@@ -146,4 +140,13 @@ class MetaService
     end
     response
   end
+
+  def self.return_response( body, options )
+    if options[:raw_response]
+      return body
+    end
+
+    Nokogiri::XML( body )
+  end
+  private_class_method :return_response
 end

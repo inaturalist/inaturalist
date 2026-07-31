@@ -148,10 +148,22 @@ describe MetaService do
       api_endpoint.update( last_throttled_at: 1.minute.ago )
       expect( MetaService ).not_to receive( :fetch_with_redirects )
       [cold_uri, expired_uri, lapsed_429_uri].each do | uri |
+        MetaService.fetch_request_uri( request_uri: uri, api_endpoint: api_endpoint )
+      end
+      [cold_uri, lapsed_429_uri].each do | uri |
         expect(
           MetaService.fetch_request_uri( request_uri: uri, api_endpoint: api_endpoint )
         ).to be_nil
       end
+    end
+
+    it "serves an expired cached response rather than nothing" do
+      make_expired_good_cache
+      api_endpoint.update( last_throttled_at: 1.minute.ago )
+      expect( MetaService ).not_to receive( :fetch_with_redirects )
+      result = MetaService.fetch_request_uri( request_uri: request_uri, api_endpoint: api_endpoint )
+      expect( result ).to be_a( Nokogiri::XML::Document )
+      expect( result.at( "text" ).inner_text ).to eq "ok"
     end
 
     it "still serves a fresh cached response" do
