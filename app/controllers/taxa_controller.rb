@@ -1188,6 +1188,9 @@ class TaxaController < ApplicationController
     @wikipedia_throttled = @taxon.shows_wikipedia? &&
       ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) &&
       wikipedia_recently_throttled?
+    if @taxon.shows_wikipedia?
+      @wikipedia_url = TaxonDescribers::Wikipedia.new( locale: I18n.locale ).default_page_url( @taxon )
+    end
     @description&.force_encoding( "UTF-8" )
     respond_to do | format |
       format.html { render partial: "description" }

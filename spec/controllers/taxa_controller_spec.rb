@@ -481,6 +481,9 @@ describe TaxaController do
   describe "describe when Wikipedia is throttling" do
     render_views
     let( :taxon ) { Taxon.make!( name: "Animalia" ) }
+    let( :throttled_message ) do
+      I18n.t( :wikipedia_summary_throttled_html, minutes: ApiEndpointCache::THROTTLE_RETRY_MINUTES, url: "https://en.wikipedia.org/wiki/Animalia" )
+    end
 
     before do
       # Simulate Wikipedia rate-limiting at the HTTP boundary so the live
@@ -496,7 +499,7 @@ describe TaxaController do
       # 429. We request the Wikipedia describer directly so the iNaturalist fallback
       # (which would otherwise fill the description from auto_summary) is bypassed.
       get :describe, params: { id: taxon.id, from: "Wikipedia" }
-      expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
+      expect( response.body ).to include throttled_message
       expect( response.body ).not_to include I18n.t( :there_isnt_a_wikipedia_article_titled_x_html, x: taxon.name )
     end
 
@@ -504,7 +507,7 @@ describe TaxaController do
       allow( TaxonDescribers::Eol ).to receive( :describe ).and_return( nil )
       allow( TaxonDescribers::Inaturalist ).to receive( :describe ).and_return( "Animalia is a kingdom.".dup )
       get :describe, params: { id: taxon.id, wiki_prompt: true }
-      expect( response.body ).to include I18n.t( :wikipedia_summary_throttled )
+      expect( response.body ).to include throttled_message
       expect( response.body ).to include "Animalia is a kingdom."
       expect( response.body ).not_to include "create this page on Wikipedia"
     end
