@@ -52,7 +52,7 @@ body .bootstrap .taxon a {
   flex-direction: column;
   flex: 1;
   width: 100%;
-  min-width: 980px;
+  min-width: fit-content;
   padding: 0px 30px;
   .lifelist-title button.export {
     float: right;

@@ -18,7 +18,7 @@
 .bootstrap [class*='col-'].bleedcol { padding: 0; }
 .bootstrap [class*='col-'].bigpadded { padding-top: 60px; padding-bottom: 60px; }
 #header {margin-bottom: 0;}
-#wrapper { margin-bottom: 0; min-width: 980px; }
+#wrapper { margin-bottom: 0; min-width: fit-content; }
 #hero { 
   overflow:hidden; 
   background-color: black;
