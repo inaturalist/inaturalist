@@ -928,6 +928,9 @@ da:
   card: Kort
   casual: uformel
   casual_: Almindelig
+  #Label for the Casual quality grade, but indicating it only includes observations that are marked
+  #casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Casual (kun ikke-vild)
   casual_tooltip_html: 'Observationstypen "Uformel" mangler medier, placering eller dato, eller opfylder af andre årsager ikke kriterierne for kvalitetsklasserne "Forskning" eller "Behøver ID". <a href="https://www.inaturalist.org/pages/help#quality"> Få mere at vide om kvalitetsklasser</a>'
   casual_tooltip_html2: '"Uformel"-observationer mangler medie, sted eller dato, eller opfylder af andre årsager ikke kravene til kvalitetsklassificeringerne "Forskning" eller "Behøver ID". <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Læs mere om kvalitetsklasser</a>'
   categories: kategorier
@@ -6379,6 +6382,8 @@ da:
   view_projects_from_place: "Vis projekter fra %{place}"
   view_sample: Vis prøve
   view_stats: Vis statistikker
+  #Text for a link that takes the user to the relevant taxon details page
+  view_taxon: Se taxon
   view_taxon_change: Vis takson ændring
   view_taxon_changes: Vis takson ændringer
   view_taxon_framework_relationship: Vis takson ramme forbindelse
@@ -6486,6 +6491,10 @@ da:
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
   #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
   wikipedia_summary_throttled: Wikipedia-resuméet kunne ikke hentes lige nu. Prøv igen om 30 minutter.
+  #Specifies that missing articles will display this message, with a link to the wikipedia page. Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled_html: |
+    Wikipedia-resuméet kunne ikke hentes lige nu eller det findes ikke.
+    Forsøg igen om %{minutes} eller tjek om artiklen findes på <a href="%{url}">Wikipedia</a>.
   with: med
   #Filter for observations not in a particular taxon
   without_taxon: Ikke i takson
