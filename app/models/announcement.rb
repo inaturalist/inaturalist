@@ -431,7 +431,9 @@ class Announcement < ApplicationRecord
     lang_only = locale_str.split( "-" ).first
 
     geoip_country = if options[:ip]
-      INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
+      geoip_response = INatAPIService.geoip_lookup( { ip: options[:ip], fields: "all" }, v2: true )
+      geoip_result = geoip_response&.results&.first
+      geoip_result && geoip_result["country"]
     end
 
     families = all_announcements.group_by {| a | a.parent_announcement_id || a.id }

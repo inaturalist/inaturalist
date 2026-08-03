@@ -6408,6 +6408,8 @@ nl:
   wikipedia_attribution_cc_by_sa_3_html: |
     Dit artikel maakt gebruik van materiaal uit het Wikipedia-artikel <a href="%{url}">"%{title}"</a>, uitgebracht onder de <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Naamsvermelding-GelijkDelen License 3.0</a>. Er is misschien inhoud weggelaten uit het origineel maar er is geen inhoud gewijzigd of toegevoegd.
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: De samenvatting van Wikipedia kon niet worden opgehaald. Probeer het over 30 minuten opnieuw.
   with: met
   #Filter for observations not in a particular taxon
   without_taxon: Niet in taxon
