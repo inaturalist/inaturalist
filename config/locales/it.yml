@@ -912,6 +912,9 @@ it:
   card: Carta
   casual: casuale
   casual_: Casuale
+  #Label for the Casual quality grade, but indicating it only includes observations that are marked
+  #casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Informale (solo non selvatico)
   casual_tooltip_html: 'Le osservazioni di livello "Casuale" mancano di contenuto multimediale, posizione o data, o non soddisfano i requisiti dei livelli di qualità "Ricerca" o "Serve ID" per altri motivi. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   casual_tooltip_html2: 'Le osservazioni "casuali" indicano la mancanza di contenuti multimediali, luogo o data, oppure non soddisfano i requisiti dei gradi di qualità "Ricerca" o "Serve di ID" per altri motivi. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Scopri di più sui gradi di qualità</a>'
   categories: Categorie
@@ -6177,6 +6180,8 @@ it:
   view_projects_from_place: "Visualizza i progetti in %{place}"
   view_sample: Visualizza Esempio
   view_stats: Vedi Statistiche
+  #Text for a link that takes the user to the relevant taxon details page
+  view_taxon: Visualizza Taxon
   view_taxon_change: Visualizza la Modifica Tassonomica
   view_taxon_changes: Visualizza le Modifiche Tassonomiche
   view_taxon_framework_relationship: Visualizza relazioni del quadro del taxon
@@ -6285,6 +6290,10 @@ it:
     Commons Attribuzione-Condividi allo stesso modo 3.0</a>. Alcuni contenuti possono essere stati omessi, ma nessuno è stato cambiato o esteso.
   #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
   wikipedia_summary_throttled: Il riassunto di Wikipedia non è stato recuperato al momento. Per favore, riprova tra 30 minuti.
+  #Specifies that missing articles will display this message, with a link to the wikipedia page. Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled_html: |
+    Il riassunto su Wikipedia non è stato recuperato al momento, o non esiste.
+    Per favore riprova tra %{minutes} minuti o verifica se l'articolo esiste su <a href="%{url}">Wikipedia</a>.
   with: con
   #Filter for observations not in a particular taxon
   without_taxon: Non nel taxon
