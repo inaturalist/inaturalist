@@ -80,31 +80,6 @@ describe TaxaController do
       end
     end
 
-    describe "web-984-pr4-taxa-show opt-in toggle" do
-      it "renders the join prompt for a logged-in non-member" do
-        sign_in create( :user )
-        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
-        get :show, params: { id: taxon.id }
-        expect( response.body ).to include( "Web984Toggle" )
-        expect( response.body ).to include( "join_test?test=web-984-pr4-taxa-show" )
-      end
-
-      it "renders the stop-testing button for a member" do
-        user = create( :user )
-        user.update( test_groups: "web-984-pr4-taxa-show" )
-        sign_in user
-        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
-        get :show, params: { id: taxon.id }
-        expect( response.body ).to include( "leave_test?test=web-984-pr4-taxa-show" )
-      end
-
-      it "renders nothing when logged out" do
-        allow( INatAPIService ).to receive( :get_json ).and_return( {}.to_json )
-        get :show, params: { id: taxon.id }
-        expect( response.body ).not_to include( "Web984Toggle" )
-      end
-    end
-
     describe "locale-prefixed URLs" do
       let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
 
