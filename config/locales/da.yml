@@ -6484,6 +6484,8 @@ da:
   wikipedia_attribution_cc_by_sa_3_html: |
     Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: Wikipedia-resuméet kunne ikke hentes lige nu. Prøv igen om 30 minutter.
   with: med
   #Filter for observations not in a particular taxon
   without_taxon: Ikke i takson

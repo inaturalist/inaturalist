@@ -570,6 +570,11 @@ zh-TW:
     保留拒絕申請的權利。
   app_owner_application_inelligible: |
     在提交申請前，你的帳號註冊時間需要至少2個月以上，並在過去的一個月內完成10次改進中鑑定。
+  app_owner_application_inelligible2_html: |
+    要提出申請前，你的帳號註冊時間至少須滿兩個月，且在過去一個月內<i>為其他使用者</i> 
+    提出至少10次的 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">改進鑑定</a>。
+
   app_owner_application_fields_explanation_html: 描述您的app將具有的功能以及您計畫如何使用它。
   app_owner_application_success: App 擁有者申請表已提交
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -698,6 +703,13 @@ zh-TW:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "由 %{user} 所上傳的 %{attribution}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: 已展開
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: 未展開
   authority_list:
     iucn_red_list: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄
     natureserve: NatureServe
@@ -750,10 +762,14 @@ zh-TW:
   back_to_your_observations: 返回至您的觀察
   back_to_your_profile: 返回至您的個人檔案
   badges: 徽章
+  base_map_copyright_openstreetmap_html: 底圖 © %{startTag}開放街圖(OpenStreetMap)%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
       基於這些ID %{percent}% 的樣本，我們估計這將導致ID %{child} 的 <strong>%{count} 個潛在不一致 </strong> 。
+  #A Data Quality Assessment Metric question accepting yes/no votes
+  based_on_the_evidence_can_id_be_improved_2: |
+    根據此證據，是否能改善社群的鑑定？
   batch: 批量
   batch_edit: 批次編輯
   #Where x is the title of a list of taxa
@@ -1022,6 +1038,7 @@ zh-TW:
   confirmation_email_sent_at_datetime: 確認電子郵件已於 %{datetime} 傳送
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 已於 %{date}確認
+  confirming_ids: 確認物種鑑定
   confirming_ids_description: |
     如果您關閉此功能，您將不再收到有關同意的 ID 的通知
     與您的 S 一起使用，除非他們有額外的備註。
@@ -1235,6 +1252,10 @@ zh-TW:
   couldnt_change_your_password: "無法更改您的密碼：%{e}"
   couldnt_find_a_user_matching_x_param: "查無用戶符合 %{id}"
   couldnt_find_that_taxon: 找不到分類。
+  #Sort option allowing users to sort results by count of chosen attribute from highest to lowest.
+  count_descending: 降冪排序
+  #Sort option allowing users to sort results by count of chosen attribute from lowest to highest.
+  count_ascending: 升冪排序
   create: 建立
   create_a_guide: 建立一個指南
   create_a_new_field: 創建一個新欄位

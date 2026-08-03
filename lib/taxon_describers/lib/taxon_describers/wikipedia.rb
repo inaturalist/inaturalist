@@ -83,12 +83,14 @@ module TaxonDescribers
           @page_urls[taxon.id] = wikipedia_url
         end
       end
-      if url.blank?
-        wname = taxon.wikipedia_title
-        wname = taxon.name.to_s.gsub( /\s+/, "_" ) if wname.blank?
-        url = wikipedia.url_for_title( wname )
-      end
+      url = default_page_url( taxon ) if url.blank?
       url
+    end
+
+    def default_page_url( taxon )
+      wname = taxon.wikipedia_title
+      wname = taxon.name.to_s.gsub( /\s+/, "_" ) if wname.blank?
+      wikipedia.url_for_title( wname )
     end
 
     private

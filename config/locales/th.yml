@@ -1264,6 +1264,11 @@ th:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: รายการโปรด
   Family: วงศ์
+  #Header for a section showing the user's favorite projects
+  favorite_projects: โครงการที่ชอบ
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    เลือกโครงการที่จะแสดงในส่วนหัวของเว็บไซต์ได้มากถึงเจ็ดโครงการ แล้วรีเฟรชเพื่ออัปเดตโครงการที่เลือกไว้
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
   favorites: "รายการโปรด"
   featured: แนะนำ
@@ -1456,6 +1461,13 @@ th:
   #Notification when an identification has been deleted
   identification_deleted: ลบการจำแนกแล้ว
   identification_saved: "บันทึกการจำแนกแล้ว!"
+  identification_tips:
+    #Label for a menu option to nominate an identification as an ID tip
+    nominate: เสนอ
+    #displayed next to an identification indicating which user nominated it as an ID tip
+    user_nominated_this_as_an_id_tip_html: "%{user} เสนอให้คำอธิบายนี้เป็นแนวทางจำแนกชนิด"
+    #displayed when creating IDs allowing the creator to nominate as an ID tip at the time of creation
+    nominate_as_an_id_tip_with_explanation: เสนอเป็นแนวทางจำแนกชนิด (ฉันเห็นว่าคำอธิบายนี้จะช่วยให้ผู้อื่นเรียนรู้วิธีจำแนกสิ่งมีชีวิตนี้ได้) #Notice when an identification has been unhidden by moderators
   #Notification when an identification has been updated
   identification_updated: อัปเดตการจำแนกแล้ว!
   #Notification when an identification has been withdrawn
@@ -3830,6 +3842,11 @@ th:
           แผนภูมินี้แสดงจำนวนการสังเกตรายเดือนย้อนหลังสิบปีของหน่วยอนุกรมวิธาน ซึ่งอาจคลาดเคลื่อนได้ตามจำนวนผู้สังเกต โดยจะเห็นได้จากช่วงที่มีจำนวนการสังเกตมากผิดปกติ และถ้าช่วงใดมีจำนวนการสังเกตลดลงทั้งที่มีจำนวนผู้สังเกตเพิ่มขึ้น แสดงว่าความชุกชุมของประชากรอาจมีการเปลี่ยนแปลง
         charts_help_other: |
           เราได้แสดงแผนภูมิตามฤดูกาลสำหรับหมายเหตุของแต่ละการสังเกตด้วย หมายเหตุคือการเพิ่มข้อมูลอภิพันธุ์ให้กับการสังเกตตามกลุ่มคำที่กำหนดไว้ เช่น การสังเกตที่มีหมายเหตุเพิ่มเติมว่าพืชกำลังออกดอกหรือออกผล
+        identifications:
+          #Empty state message saying there are no identifications to show because
+          #none of them have been nominated and upvoted
+          no_nominated_and_upvoted_identifications: |
+            สิ่งมีชีวิตนี้ยังไม่มีการจำแนกที่ได้รับการเสนอและโหวตในขณะนี้ กลับมาดูใหม่นะ!
         frequency:
           research: ระดับงานวิจัย
           verifiable: ตรวจสอบได้
