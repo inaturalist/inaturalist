@@ -967,7 +967,7 @@ class ApplicationController < ActionController::Base
     if current_user&.in_test_group?( "responsive-header" )
       @responsive = true
     end
-    if current_user&.in_responsive_test_group?( "responsive-global" )
+    if current_user&.in_test_group?( "responsive-global" )
       @responsive = true
       request.variant = :responsive
     end

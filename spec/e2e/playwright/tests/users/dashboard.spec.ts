@@ -24,4 +24,4 @@ test.beforeEach( async ( { page } ) => {
   await login( page, testEmail, TEST_PASSWORD );
 } );
 
-expectNoHorizontalOverflow( "/home", { screenshot: true } );
+expectNoHorizontalOverflow( "/home" );

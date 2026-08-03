@@ -23,15 +23,7 @@ export default defineConfig( {
   reporter: process.env.CI ? "html" : "list",
   timeout: 30_000,
   expect: {
-    timeout: 10_000,
-    toHaveScreenshot: {
-      // Freeze CSS animations/transitions and hide the text caret so captures
-      // are deterministic. A small tolerance absorbs sub-pixel font rendering
-      // noise without hiding real layout regressions.
-      animations: "disabled",
-      caret: "hide",
-      maxDiffPixelRatio: 0.01
-    }
+    timeout: 10_000
   },
   use: {
     baseURL: envConfig.baseUrl,
