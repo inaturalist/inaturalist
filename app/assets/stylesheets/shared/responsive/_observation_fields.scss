@@ -88,8 +88,6 @@
 body.responsive .CommunityIDPopoverOverlay.PopoverWithHeader {
   .popover-content {
     overflow-x: auto;
-    // Single max-content column so the header stretches to the full width of
-    // the widest child (the taxonomy) instead of stopping at the visible edge.
     display: grid;
     grid-template-columns: max-content;
   }
