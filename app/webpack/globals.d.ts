@@ -31,6 +31,7 @@ interface JQueryStubResult {
   offset: ( ) => { top: number; left: number };
   val: ( value?: string ) => string;
   find: ( selector: string ) => JQueryStubResult;
+  textcompleteUsers: ( ) => void;
 }
 interface JQueryDeparam {
   ( str: string ): Record<string, unknown>;

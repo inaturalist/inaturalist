@@ -21,13 +21,6 @@ import "@testing-library/jest-dom";
   }
 };
 
-// CURRENT_USER is a Rails-injected global. It is the gate's fallback for components
-// whose container maps neither `config` nor `currentUser` (see gated_component.tsx), so
-// opt tests into the group to exercise the responsive layouts.
-( global as unknown as Record<string, unknown> ).CURRENT_USER = {
-  testGroups: ["responsive-taxon-detail"]
-};
-
 // jsdom does not implement ResizeObserver (carousel.tsx instantiates one on mount).
 const noop = ( ) => undefined;
 function ResizeObserverStub( ) {

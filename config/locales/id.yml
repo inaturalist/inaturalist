@@ -836,6 +836,9 @@ id:
   card: Kartu
   casual: kasual
   casual_: Kasual
+  #Label for the Casual quality grade, but indicating it only includes observations that are marked
+  #casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Kasual (hanya pengamatan bukan liar)
   casual_tooltip_html: 'Pengamatan "Kasual" tidak memiliki media, lokasi, atau tanggal, atau tidak memenuhi persyaratan dan kualitas untuk menjadi bagian dari kelas "Riset" atau "Memerlukan ID" karena satu dan lain hal. <a href="https://www.inaturalist.org/pages/help#quality">Pelajari lebih lanjut tentang tingkat kualitas</a>'
   casual_tooltip_html2: 'Pengamatan "kasual" tidak memiliki media, lokasi, atau tanggal, atau tidak memenuhi persyaratan tingkat kualitas "Riset" atau "Memerlukan ID" karena alasan lain. <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Pelajari tingkat kualitas lebih lanjut</a>'
   categories: Kategori
@@ -6086,6 +6089,8 @@ id:
   view_projects_from_place: "Lihat proyek dari %{place}"
   view_sample: Lihat Sampel
   view_stats: Lihat Statistik
+  #Text for a link that takes the user to the relevant taxon details page
+  view_taxon: Lihat Takson
   view_taxon_change: Lihat Perubahan Takson
   view_taxon_changes: Lihat Perubahan Takson
   view_taxon_framework_relationship: Lihat hubungan framework takson
@@ -6193,6 +6198,10 @@ id:
     Commons Atribusi-BerbagiSerupa Lisensi 3.0</a>. Konten mungkin sudah dihilangkan dari aslinya, tetapi tidak ada konten yang diubah atau ditambahkan.
   #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
   wikipedia_summary_throttled: Ringkasan Wikipedia tidak dapat diambil untuk saat ini. Silakan coba lagi dalam 30 menit.
+  #Specifies that missing articles will display this message, with a link to the wikipedia page. Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled_html: |
+    Ringkasan Wikipedia tidak dapat diambil saat ini, atau belum ada.
+    Silakan coba lagi dalam %{minutes} menit atau periksa apakah artikel tersebut ada di <a href="%{url}">Wikipedia</a>.
   with: dengan
   #Filter for observations not in a particular taxon
   without_taxon: Tidak berada di dalam takson

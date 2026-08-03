@@ -1,27 +1,17 @@
 import React from "react";
 
-interface User { testGroups?: string[] }
-interface GatedProps {
-  config?: { currentUser?: User };
-  currentUser?: User;
+interface WithConfig {
+  config?: { currentUser?: { isInTestGroup?: ( group: string ) => boolean } };
 }
 
-// Prefers the connected user, whether the container maps it as `config` or `currentUser`,
-// and falls back to the Rails-injected global for containers that map neither.
-const userTestGroups = ( props: GatedProps ): string[] | undefined => (
-  props.config?.currentUser?.testGroups
-  ?? props.currentUser?.testGroups
-  ?? ( typeof CURRENT_USER === "undefined" ? undefined : CURRENT_USER?.testGroups )
-);
-
-function gatedComponent<P extends object>(
+function gatedComponent<P extends WithConfig>(
   testGroups: string[],
   InGroup: React.ComponentType<P>,
   Fallback: React.ComponentType<P>
 ): React.FC<P> {
   return function GatedComponent( props: P ) {
-    const groups = userTestGroups( props as GatedProps );
-    const inGroup = testGroups.some( group => groups?.includes( group ) );
+    const user = props.config?.currentUser;
+    const inGroup = testGroups.some( group => user?.isInTestGroup?.( group ) );
     return React.createElement( inGroup ? InGroup : Fallback, props );
   };
 }

@@ -26,7 +26,8 @@ function mapStateToProps( state ) {
   return {
     taxon: state.taxon.taxon,
     currentUser: state.config.currentUser,
-    chosenTab
+    chosenTab,
+    config: state.config
   };
 }
 

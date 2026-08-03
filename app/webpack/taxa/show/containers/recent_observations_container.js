@@ -13,7 +13,8 @@ function mapStateToProps( state ) {
     observations: _.filter( state.observations.recent, o => (
       o.photos.length > 0 && o.photos[0].photoUrl( "small" )
     ) ),
-    url: `/observations?${stringify( defaultObservationParams( state ) )}`
+    url: `/observations?${stringify( defaultObservationParams( state ) )}`,
+    config: state.config
   };
 }
 

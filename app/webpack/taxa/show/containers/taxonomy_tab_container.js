@@ -14,7 +14,8 @@ function mapStateToProps( state ) {
     names: state.taxon.names,
     allChildrenShown: state.config.allChildrenShown,
     provisionalChildrenShown: state.config.provisionalChildrenShown,
-    currentUser: state.config.currentUser
+    currentUser: state.config.currentUser,
+    config: state.config
   };
 }
 

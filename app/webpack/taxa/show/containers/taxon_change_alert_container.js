@@ -7,7 +7,8 @@ import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 function mapStateToProps( state ) {
   return {
     taxon: state.taxon.taxon,
-    taxonChange: state.taxon.taxonChange
+    taxonChange: state.taxon.taxonChange,
+    config: state.config
   };
 }
 

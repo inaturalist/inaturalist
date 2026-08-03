@@ -905,6 +905,9 @@ de:
   card: Karte
   casual: Hobbyqualität
   casual_: Hobbyqualität
+  #Label for the Casual quality grade, but indicating it only includes observations that are marked
+  #casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: Hobbyqualität (nur solche markiert als 'nicht-wild')
   casual_tooltip_html: 'Den "Hobbyqualität"-Beobachtungen fehlen Medien, Koordinaten oder ein Datum oder erfüllen aus anderen Gründen nicht die Anforderungen der Stufen "Forschungsqualität" oder "benötigt ID". <a href="https://www.inaturalist.org/pages/help#quality">Hier gibt es weitere Infos zu den Qualitätsstufen</a>'
   casual_tooltip_html2: 'Den "Hobbyqualität"-Beobachtungen fehlen Medien, Koordinaten oder ein Datum oder erfüllen aus anderen Gründen nicht die Anforderungen der Stufen "Forschungsqualität" oder "benötigt ID". <a href="https://help.inaturalist.org/support/solutions/articles/151000169936">Hier gibt es weitere Infos zu den Qualitätsstufen</a>'
   categories: Kategorien
@@ -6131,6 +6134,8 @@ de:
   view_projects_from_place: "Projekte von %{place} anzeigen"
   view_sample: Beispiel anzeigen
   view_stats: Statistiken
+  #Text for a link that takes the user to the relevant taxon details page
+  view_taxon: Taxon anzeigen
   view_taxon_change: Taxonänderung ansehen
   view_taxon_changes: Taxonänderungen ansehen
   view_taxon_framework_relationship: Taxon-Framework Beziehung anzeigen
@@ -6237,6 +6242,10 @@ de:
     In diesem Artikel wird Material aus dem Wikipedia-Artikel <a href="%{url}">"%{title}"</a> verwendet, der unter <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a> veröffentlicht wird. Der Inhalt wurde möglicherweise aus dem Original ausgelassen, es wurden jedoch keine Änderungen oder Ergänzungen vorgenommen.
   #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
   wikipedia_summary_throttled: Die Wikipedia-Zusammenfassung ist derzeit nicht verfügbar. Bitte versuche es in 30 Minuten erneut.
+  #Specifies that missing articles will display this message, with a link to the wikipedia page. Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled_html: |
+    Die Wikipedia-Zusammenfassung konnte momentan nicht abgerufen werden oder existiert nicht.
+    Bitte versuche es in %{minutes} Minuten noch einmal oder prüfe, ob der Artikel auf <a href="%{url}">Wikipedia</a> existiert.
   with: mit
   #Filter for observations not in a particular taxon
   without_taxon: Ohne Taxon
