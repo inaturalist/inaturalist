@@ -57,5 +57,24 @@ describe "TaxonDescribers" do
       t = Taxon.make!( name: "Some great name" )
       expect( wikipedia.page_url( t ) ).to eq( "https://en.wikipedia.org/wiki/Some_great_name" )
     end
+
+    describe "default_page_url" do
+      it "uses the taxon's wikipedia_title when it has one" do
+        t = Taxon.make!( name: "Some great name", wikipedia_title: "Another_title" )
+        expect( wikipedia.default_page_url( t ) ).to eq( "https://en.wikipedia.org/wiki/Another_title" )
+      end
+
+      it "falls back to the underscored taxon name" do
+        t = Taxon.make!( name: "Some great name" )
+        expect( wikipedia.default_page_url( t ) ).to eq( "https://en.wikipedia.org/wiki/Some_great_name" )
+      end
+
+      it "uses the subdomain for the describer's locale" do
+        t = Taxon.make!( name: "Some great name" )
+        expect( TaxonDescribers::Wikipedia.new( locale: :fr ).default_page_url( t ) ).to eq(
+          "https://fr.wikipedia.org/wiki/Some_great_name"
+        )
+      end
+    end
   end
 end

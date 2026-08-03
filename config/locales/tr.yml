@@ -6187,6 +6187,8 @@ tr:
     Kaynak: Vikipedi, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     Burada, <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Atıf-Aynı Lisansla Paylaş Lisansı 3.0</a> kullanılarak yayınlanan <a href="%{url}">%{title}</a> Vikipedi makalesinde kullanılan öğeler kullanılmıştır.
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: Vikipedi özeti şu anda alınamadı. Lütfen 30 dakika sonra tekrar deneyin.
   with: ile
   #Filter for observations not in a particular taxon
   without_taxon: Taksonda değil
