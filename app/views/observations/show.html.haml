@@ -27,7 +27,7 @@
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]).html_safe : "[]" };
 - content_for :extracss do
-  = stylesheet_link_tag "observations/show"
+  = stylesheet_link_tag @obs_detail_responsive ? "observations/show" : "observations/show_legacy"
 - content_for :extrajs do
   - if logged_in?
     :ruby

@@ -1,5 +1,8 @@
 import { connect } from "react-redux";
 import ObservationsHighlight from "../components/observations_highlight";
+import ObservationsHighlightLegacy from "../components/observations_highlight_legacy";
+import gatedComponent from "../../../shared/components/gated_component";
+import RESPONSIVE_TEST_GROUPS from "../responsive_test_groups";
 import { showNewObservation } from "../ducks/observation";
 import { fetchMoreFromClade } from "../ducks/other_observations";
 
@@ -26,6 +29,6 @@ function mapDispatchToProps( dispatch ) {
 const SimilarContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( ObservationsHighlight );
+)( gatedComponent( RESPONSIVE_TEST_GROUPS, ObservationsHighlight, ObservationsHighlightLegacy ) );
 
 export default SimilarContainer;

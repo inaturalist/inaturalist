@@ -1,0 +1,33 @@
+.UserText {
+  &.inline {
+    display: inline;
+    p {
+      display: inline;
+    }
+  }
+  a {
+    cursor: pointer;
+  }
+  .content {
+    position: relative;
+    overflow: hidden;
+    transition: height 2s;
+    overflow-wrap: anywhere;
+    img {
+      max-width: 100%;
+    }
+    pre {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    > p:last-child,
+    > ul:last-child,
+    > ol:last-child,
+    > blockquote:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .btn-nostyle.linky {
+    vertical-align: top;
+  }
+}
