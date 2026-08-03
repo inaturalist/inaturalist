@@ -101,7 +101,7 @@ class Annotations extends React.Component {
       action = ( <div className="loading_spinner" /> );
     } else if ( this.viewerIsObserver || viewerIsAnnotator ) {
       action = (
-        <button
+        <span
           type="button"
           className="btn btn-nostyle"
           onClick={() => {
@@ -110,7 +110,7 @@ class Annotations extends React.Component {
           }}
         >
           <i className="glyphicon glyphicon-remove-circle" />
-        </button>
+        </span>
       );
     }
     let voteAction;

@@ -43,6 +43,13 @@ body > [role="dialog"] .Annotations {
   }
   .value {
     display: flex;
+    .value-label::after {
+      content: "\00a0";
+    }
+    .value-content .btn,
+    .value-content .btn .glyphicon {
+      display: inline;
+    }
   }
   .UserImage {
     min-width: 22px;
