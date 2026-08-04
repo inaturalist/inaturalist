@@ -315,7 +315,7 @@ zh-CN:
   add_plant_phenology_no_evidence_of_flowering_annotation: '添加“植物物候学：没有开花迹象”的注释'
   add_flowers_and_fruits_flower_buds_annotation: '添加“开花和挂果：花芽”注释'
   add_flowers_and_fruits_flowers_annotation: '添加“开花和挂果：开花”注释'
-  add_flowers_and_fruits_fruits_and_seeds_annotation: '添加“开花和挂果：结实”注释'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: '添加“开花和挂果：挂果”注释'
   add_flowers_and_fruits_no_flower_or_fruits: '添加“开花和挂果：无花无果”注释'
   add_leaves_breaking_leaf_buds: '添加“叶片：叶芽萌发”注释'
   add_leaves_green_leaves: '添加“叶片：绿叶”注释'
@@ -581,6 +581,9 @@ zh-CN:
     且我们保留因任何理由拒绝申请的权利。
   app_owner_application_inelligible: |
     在提交申请前，您的账户注册时间需至少已有2个月，并在过去的一个月里完成了10次改进鉴定（Improving identifications）。
+  app_owner_application_inelligible2_html: |
+    提交申请时，您的帐户必须至少注册满两个月，且在过去一个月里必须有<i>给其他用户</i> 做出的不少于10个 <a href="https://help.inaturalist.org/support/solutions/articles/151000170241"
+    target="_blank" rel="noopener noreferrer">改进中的鉴定</a>。
   app_owner_application_fields_explanation_html: 描述您的应用将具有的功能以及您计划如何使用它。
   app_owner_application_success: 应用程序所有者的申请已提交
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -842,6 +845,9 @@ zh-CN:
   card: 卡
   casual: 非正式
   casual_: 非正式
+  #Label for the Casual quality grade, but indicating it only includes observations that are marked
+  #casual because they have a quality assessment vote that they are non-wild
+  casual_non_wild_only_: 非正式（仅限非野生）
   casual_tooltip_html: '“非正式”观察缺少媒体、位置或日期，或由于其他原因不符合“研究级”或“待鉴定”质量等级的要求。 <a href="https://www.inaturalist.org/pages/help#quality">了解更多关于质量等级</a>的信息'
   casual_tooltip_html2: '“非正式”级别观察指的是缺少媒体、位置或日期，或者由于其他原因不符合“研究级别”或“待鉴定”质量等级要求的观察。<a href="https://www.inaturalist.org/pages/help#quality">了解更多关于质量等级信息</a>'
   categories: 分类
@@ -1133,7 +1139,7 @@ zh-CN:
     no_flowers_or_fruits: 无花无果
     flower_buds: 花芽
     flowers: 开花
-    fruits_or_seeds: 结实
+    fruits_or_seeds: 挂果
     leaves: 叶片
     breaking_leaf_buds: 叶芽萌发
     green_leaves: 绿叶
@@ -1542,6 +1548,10 @@ zh-CN:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
+  #Express a single date with a time range. Better to use a flexible form
+  #here, e.g. not something like "start_time to end_time" if "to" might be
+  #translated differently for different values of start_time and end_time
+  date_time_to_time: "%{date}, %{start_time} - %{end_time}"
   date_updated: 更新日期
   day: 日
   decrease_brightness: 降低亮度
@@ -3019,6 +3029,10 @@ zh-CN:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h:mm a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_with_zone: "本地时间+时区"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_without_zone: "当地时间"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
@@ -3092,6 +3106,7 @@ zh-CN:
   mute_removed: 禁言已移除
   muted_users: 禁言用户
   muting_description: 屏蔽某用户后，您将不再收到任何有关其活动的通知，包括 @，消息以及针对您观察的评论和鉴定。
+  my_site: 我的站点
   n_ago: "%{n}前"
   n_people_agrees: "%{amount} 个人同意"
   n_people_disagrees: "%{amount} 个人不同意"
@@ -4786,6 +4801,8 @@ zh-CN:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "您的 %{noun}"
+  #link above the suspension form that opens the account's moderation history
+  see_moderation_history: 参见版主历史
   see_something_wrong_with_taxon: 在此分类单元看到一些问题了么？请让馆长知道。
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -5117,6 +5134,8 @@ zh-CN:
   supporting: 支持
   #label for a form field allowing a curator to specify a length of time a user will be suspended
   suspension_duration: 停用时间
+  #label for the suspension duration field, with a parenthetical link to the community guidelines
+  suspension_duration_guidelines_html: 停用时间（%{link_start_tag}参见指南%{link_end_tag})
   #a select form option indicating a user will be suspended for one day
   suspension_duration_1_day: 1天
   #a select form option indicating a user will be suspended for three days
@@ -5141,6 +5160,8 @@ zh-CN:
   suspension_reason_custom_note: 请注意，此原因将显示给被停用的用户。
   #note displayed when entering a suspension reason; warns the reason is shown to the suspended account
   suspension_reason_custom_note_account: 请注意，这个原因会展示在被停用的帐户上。
+  #note displayed when a curator is editing a suspension
+  suspension_reason_edit_note: 请更新原因并说明你为何更改用户的停用状态。
   #label for the edit reason dropdown when editing a suspension
   edit_reason_label: 编辑原因
   #label for the edit reason field in the moderation history table
@@ -5214,6 +5235,8 @@ zh-CN:
   take_me_flickr!: 是的，带我去Flickr！
   target_list_alert: 您确定要观察目标列表所涵盖的所有物种吗？ 请记住，您没有观察到的目标列表所包含的任何东西都会被解释为缺失，因此确认您的目标列表准确地反映了您试图发现的物种是非常重要的。
   target_list_warning: 请记住，目标列表中包含的任何您在活动范围和周期之内没有观察到的东西都会被解释为缺失。 您的目标列表准确地反映了您试图发现的物种是非常重要的。如果您没有尝试发现您的目标列表中所包含的所有物种， 请删除它。
+  #Section heading on announcement show page listing linked announcement variants
+  targeted_variants: 目标变体
   task_deleted: 任务已删除
   taxa: 分类单元
   taxa_show_obs_photo_search_tip: |
@@ -5892,6 +5915,8 @@ zh-CN:
   user_updated_an_observation_field_html: '%{user}为%{owner}的一项观察的“%{field_name}”字段更新了一个值'
   #An email subject line for an email informing a user that their account has been suspended.
   user_suspended_email_subject: "%{prefix}您的帐户已被停用"
+  #An email subject line for an email informing a user that their account has been unsuspended.
+  user_unsuspended_email_subject: "%{prefix} 您的帐户已被解除停用"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> 写道，
   username: 用户名
   username_description: 这是您用于登录的用户名，其他用户可以使用它在 iNaturalist 上识别您的身份
@@ -5994,6 +6019,8 @@ zh-CN:
   view_projects_from_place: "查看来自%{place}的项目"
   view_sample: 查看示例
   view_stats: 查看状态
+  #Text for a link that takes the user to the relevant taxon details page
+  view_taxon: 查看分类单元
   view_taxon_change: 查看分类学更改
   view_taxon_changes: 查看分类单元更改
   view_taxon_framework_relationship: 查看分类单元框架关系
@@ -6098,6 +6125,12 @@ zh-CN:
     资料来源：维基百科"%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     此文章使用源自维基百科条目<a href="%{url}">"%{title}"</a>中的内容，该基于<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">创用 CC 姓名标示协议-相同方式分享 3.0 未本地化</a>授权条款所释出。该内容可能已从原始内容中去除，但还未有更改或扩充的內容。
+  #Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled: 维基百科的摘要目前无法检索。请30分钟后再试。
+  #Specifies that missing articles will display this message, with a link to the wikipedia page. Shown when a Wikipedia summary cannot be fetched because we are currently being rate-limited (throttled) by Wikipedia
+  wikipedia_summary_throttled_html: |
+    维基百科摘要目前无法检索，或者根本不存在。
+    请在 %{minutes} 分钟后再试一次，或在 <a href="%{url}">维基百科</a>上检查该文章是否存在。
   with: 和
   #Filter for observations not in a particular taxon
   without_taxon: 不在分类单元中
@@ -6374,6 +6407,8 @@ zh-CN:
         请注意，用户最近创建的观察的创建日期会被缓存，因此定位可能需要几个小时才能生效
       observation_oauth_application_ids_desc: |
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论是否使用应用软件。
+      #Tooltip for the global announcement select when editing an announcement that already has variants
+      parent_announcement_disabled_desc: 本次公告针对多个变体，无法分配全球性公告。
       site_ids_desc: |
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论其属于哪个站点。
       start_desc: |
@@ -7387,6 +7422,8 @@ zh-CN:
         message_timed: "您的iNaturalist账号因以下原因被停用：%{reason}。您的停用状态将在%{duration}后被解除。"
         #A message in a suspension notification email for indefinite suspensions, with the reason.
         message_indefinite: "您的iNaturalist帐户因以下原因被无限期停用：%{reason}。"
+        #A paragraph in a suspension notification email telling users how to appeal and warning about sockpuppet accounts, with a link to support.
+        appeal_html: '如果您认为这次停用是错误的，或者想要申诉，请 <a href="%{contact_us_url}">联系iNaturalist支持中心</a>提出申诉。请记住，如果使用其他帐户逃避停用会导致其他帐户被停用，并删除其发布的内容。'
         #A paragraph in a suspension notification email asking users to follow community guidelines and terms of use, with links.
         abide_html: '所有iNaturalist社区成员都被要求遵守 <a href="%{community_guidelines_url}">社区指南</a> 以及 <a href="%{terms_of_use_url}">使用条款</a>。'
       users_updates_suspended:
@@ -7591,6 +7628,15 @@ zh-CN:
         end_date_must_be_after_start_date: 结束日期必须晚于开始日期
         #validation error when a project's end time is earlier than its start time
         end_time_must_be_after_start_time: 结束时间必须在开始时间之后
+        #description for a form option that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_casual_except_captive: |
+          排除那些因被标记为饲育栽培以外的非正式观察
+        #label for a form field that excludes from the project any observation that
+        #has quality_grade casual, unless the only reason it is casual is because it is marked
+        #captive
+        exclude_all_casual_except_captive: 排除所有非正式观察，除饲育/栽培外
         include_annotated_observations: |
           只包含注明特定属性(如生命阶段)或特定的属性和内容（如 生命阶段 = 成体）。
           每个项目只能有一个筛选注解的限制。
@@ -7979,7 +8025,7 @@ zh-CN:
           "Plant Phenology=No Evidence of Flowering": 没有开花迹象
           "Flowers and Fruits=Flower Buds": 花芽
           "Flowers and Fruits=Flowers": 开花
-          "Flowers and Fruits=Fruits or Seeds": 结实
+          "Flowers and Fruits=Fruits or Seeds": 挂果
           "Flowers and Fruits=No Flowers or Fruits": 无花无果
           "Leaves=Breaking Leaf Buds": 叶芽萌发
           "Leaves=Green Leaves": 绿叶
@@ -8428,6 +8474,8 @@ zh-CN:
           #Body text for the moth rediscovery story; %{moth_common_name} = common name of the moth from JSON
           moth_body: >
             该 %{moth_common_name} 蛾类已经几十年未被发现，曾一度被认为已灭绝——直到新西兰的一位游客偶然发现了它。
+          #Alt text for the frosted phoenix moth story image
+          frosted_phoenix_img_alt: "霜凤蛾"
           #Heading for the story about a new-to-science mantis species
           mantis_heading: 发现新进入科学的物种
           #Body text for the mantis discovery story
