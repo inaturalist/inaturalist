@@ -420,7 +420,7 @@ module ApplicationHelper
     css_class += " usericon" if %w(mini small thumb).include?( size )
     css_class += " #{options[:class]}"
     css_class += " user_image--#{size}"
-    options[:alt] ||= user.login
+    options[:alt] ||= ""
     options[:title] ||= user.login
     widths = User.attachment_definitions[:icon][:styles].
       map {| style_name, magick_size | [style_name.to_s, magick_size.to_i] }.
