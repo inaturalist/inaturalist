@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Annotations from "../../show/components/annotations";
+import Annotations from "../../show/components/annotations_legacy";
 import {
   addAnnotation,
   deleteAnnotation,
