@@ -671,6 +671,12 @@ Rails.application.routes.draw do
   get "build_info", to: "build_info#index"
   get "admin/app_build_info", to: "build_info#app_build_info", as: "admin_app_build_info"
 
+  # WEB-1074. Resolved feature flags for the caller, for non-web clients. Web
+  # pages get the same map inlined in the CONFIG payload instead. Distinct from
+  # the Flipper::UI mount at /admin/feature_flags, which is where flags are
+  # managed.
+  get "feature_flags", to: "feature_flags#index"
+
   resource :stats do
     collection do
       get :index

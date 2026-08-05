@@ -5,10 +5,15 @@
 How to verify the Flipper install locally. Covers the automated specs, a browser
 walkthrough, and a scripted equivalent for when you want it fast and repeatable.
 
+To *present* the install to the team rather than verify it, see
+[feature_flags_demo.md](feature_flags_demo.md).
+
 **What is in scope for this branch.** Flags evaluate server-side for **logged-in users
-only** — anonymous visitors get every flag off by design. There is no `/v2/feature_flags`
-endpoint yet (WEB-1167) and no exposure logging (WEB-1173). `flipper_smoke_test` and
-`hello_world` gate nothing; they exist to prove the pipeline.
+only** — anonymous visitors get every flag off by design. `GET /feature_flags` serves the
+resolved map to non-web clients; the Node `/v2/feature_flags` that proxies it is not built
+yet (WEB-1167), and there is no exposure logging (WEB-1173). `flipper_smoke_test` and
+`hello_world` gate nothing; they exist to prove the pipeline. `demo_banner` gates the two
+demo elements described in the demo guide.
 
 ---
 

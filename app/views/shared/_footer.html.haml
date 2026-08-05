@@ -67,6 +67,17 @@
             &nbsp;
           .footer-link
             =t :documentation_for_developers_html
+          -# WEB-1074 demo. Gates nothing real; it exists so one flag toggle is visible on the
+          -# public site through the server-rendered path, alongside the React banner that reads
+          -# the same flag out of CONFIG.feature_flags. Off by default, and meant to be enabled
+          -# for named actors only. Delete this block once a real flag ships.
+          - if FeatureFlagging.enabled?( :demo_banner, current_user )
+            .footer-link-separator
+              &nbsp;
+              |
+              &nbsp;
+            .footer-link
+              %span.label.label-info= t :feature_flag_demo_footer_badge
         #footer-locale-chooser.btn-group.dropup.pull-right
           %button.btn.btn-default.dropdown-toggle{ data: { toggle: "dropdown" }, "aria-haspopup" => true, "aria-expanded" => false }
             %i.icon-ios-world

@@ -47,6 +47,7 @@ import TagsContainer from "../containers/tags_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
+import FeatureFlagDemoBanner from "../../../shared/components/feature_flag_demo_banner";
 import AssessmentLazyLoad from "./assessment_lazy_load";
 
 moment.updateLocale( "en", {
@@ -256,6 +257,7 @@ class App extends React.Component {
           manageFlagsPath={`/observations/${observation.id}/flags`}
           showBlocks
         />
+        <FeatureFlagDemoBanner />
         <div className="upper">
           <Grid>
             <Row className="title_row">

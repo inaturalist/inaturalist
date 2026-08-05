@@ -90,6 +90,45 @@ describe FeatureFlagging do
       expect( FeatureFlagging.enabled?( flag, User.make! ) ).to be false
       expect( FeatureFlagging.enabled?( flag, make_admin ) ).to be true
     end
+
+    # Devise::Strategies::ApplicationJsonWebToken hands ApplicationController a
+    # User.new( id: -1 ) for application-token requests, which is how a
+    # logged-out mobile client arrives. It has a flipper_id ( "User;-1" ), so
+    # without an explicit guard the entire logged-out mobile population would
+    # share one bucket and a percentage gate would resolve to 0% or 100% of it.
+    describe "the shared anonymous user" do
+      let( :anonymous_user ) do
+        User.new( id: Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID,
+          login: "anonymous" )
+      end
+
+      it "is recognized as anonymous" do
+        expect( anonymous_user.anonymous? ).to be true
+        expect( anonymous_user.flipper_id ).to eq "User;-1"
+      end
+
+      it "resolves like no actor at all" do
+        Flipper.enable( flag )
+        expect( FeatureFlagging.enabled?( flag, anonymous_user ) ).to be true
+        Flipper.disable( flag )
+        expect( FeatureFlagging.enabled?( flag, anonymous_user ) ).to be false
+      end
+
+      it "does not pick up an actor gate on its own flipper_id" do
+        Flipper.enable_actor( flag, anonymous_user )
+        expect( FeatureFlagging.enabled?( flag, anonymous_user ) ).to be false
+      end
+
+      it "does not pick up a percentage gate" do
+        Flipper.enable_percentage_of_actors( flag, 100 )
+        expect( FeatureFlagging.enabled?( flag, anonymous_user ) ).to be false
+      end
+
+      it "is never assigned an experiment variant" do
+        Flipper.enable( FeatureFlagging.experiment_flag( experiment ) )
+        expect( FeatureFlagging.variant( experiment, anonymous_user ) ).to be_nil
+      end
+    end
   end
 
   describe "flags_for" do
@@ -106,8 +145,9 @@ describe FeatureFlagging do
     end
 
     it "serializes to a JSON object of booleans" do
-      expect( JSON.parse( FeatureFlagging.flags_for( actor ).to_json ) ).
-        to eq( flag.to_s => false )
+      parsed = JSON.parse( FeatureFlagging.flags_for( actor ).to_json )
+      expect( parsed.keys ).to eq FeatureFlagging::CLIENT_FLAGS.map( &:to_s )
+      expect( parsed.values ).to all( be false )
     end
   end
 
