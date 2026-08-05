@@ -24,7 +24,10 @@ module FeatureFlagging
   # immediately instead of silently evaluating false forever.
   KNOWN_FLAGS = {
     flipper_smoke_test: "WEB-1074 pilot flag. Gates nothing; proves the flag pipeline end to end.",
-    exp_hello_world: "WEB-1074 pilot experiment. Gates eligibility for the hello_world variant split."
+    exp_hello_world: "WEB-1074 pilot experiment. Gates eligibility for the hello_world variant split.",
+    demo_banner: "WEB-1074 demo. Shows a badge in the site footer and a banner on observation " \
+      "pages, so one toggle is visible through both the server-rendered and the client-side " \
+      "path. Enable for named actors only; delete with the demo elements once a real flag ships."
   }.freeze
 
   # The subset of KNOWN_FLAGS whose resolved values are sent to clients, in the
@@ -32,7 +35,8 @@ module FeatureFlagging
   # flags stay out of this list so unannounced feature names do not appear in
   # page source.
   CLIENT_FLAGS = [
-    :flipper_smoke_test
+    :flipper_smoke_test,
+    :demo_banner
   ].freeze
 
   # A/B experiments, as experiment key => ordered list of variant names. Each
@@ -121,8 +125,20 @@ module FeatureFlagging
     # With no actor, actor and percentage-of-actors gates evaluate false and
     # only a boolean ( fully enabled ) gate applies, so anonymous visitors see
     # flags off. Giving logged-out traffic a stable actor is a follow-up.
+    #
+    # The anonymous? check is load-bearing, not defensive. When a client sends
+    # an application-level JWT -- how a logged-out mobile user reaches Rails --
+    # Devise::Strategies::ApplicationJsonWebToken sets current_user to
+    # User.new( id: -1, login: "anonymous" ). That object is truthy, is not
+    # blank?, and its flipper_id is "User;-1", so without this guard every
+    # logged-out mobile user would be the same actor: a percentage_of_actors
+    # gate at 50% would resolve to 0% or 100% of that whole population
+    # depending on where one fixed string happens to hash, while looking
+    # perfectly healthy in the admin UI. Duck-typed to keep this file free of
+    # app constants under the classic autoloader.
     def resolve_actor( actor )
       return nil if actor.blank?
+      return nil if actor.respond_to?( :anonymous? ) && actor.anonymous?
       return actor if actor.respond_to?( :flipper_id )
 
       raise ArgumentError, "feature flag actor must respond to #flipper_id, got #{actor.class}"

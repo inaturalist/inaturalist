@@ -14,14 +14,14 @@ describe ApplicationHelper do
       user = User.make!
       allow( self ).to receive( :current_user ).and_return user
       Flipper.enable_actor( :flipper_smoke_test, user )
-      expect( JSON.parse( feature_flags_json ) ).to eq( "flipper_smoke_test" => true )
+      expect( JSON.parse( feature_flags_json ) ).to include( "flipper_smoke_test" => true )
     end
 
     it "reports flags off for anonymous visitors" do
       user = User.make!
       allow( self ).to receive( :current_user ).and_return nil
       Flipper.enable_actor( :flipper_smoke_test, user )
-      expect( JSON.parse( feature_flags_json ) ).to eq( "flipper_smoke_test" => false )
+      expect( JSON.parse( feature_flags_json ) ).to include( "flipper_smoke_test" => false )
     end
 
     it "is safe to interpolate into a script tag" do
