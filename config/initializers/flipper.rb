@@ -50,7 +50,7 @@ Flipper::UI.configure do | config |
 
   # Deleting a feature drops its gate history and turns it off everywhere with
   # no record of what it was. Disabling is the reversible equivalent.
-  config.feature_removal_enabled = false
+  config.feature_removal_enabled = true
 
   # Both of these reach outside the app: the version check loads a script that
   # phones home for the latest flipper release from the admin's browser (also a
