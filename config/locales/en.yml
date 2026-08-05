@@ -2759,10 +2759,12 @@ en:
   # Name of the newer version of iNaturalist's mobile app, called iNatNext
   inat_next: iNatNext
   # Chart series and legend label on the stats page
-  # Temp means "until we rename Classic Android"
   inat_classic_android_temp: Android
+  # Chart series and legend label on the stats page
   inat_classic_ios: Classic iOS
+  # Chart series and legend label on the stats page
   inat_next_android_temp: iNatNext Android
+  # Chart series and legend label on the stats page
   inat_next_ios: iOS
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network Affiliation
@@ -9215,22 +9217,21 @@ en:
     stats:
       index:
         active_desc: Created an ID, obs, comment, or post in the previous 30 days
-        # Deprecated
         android_desc_html: Created via the <a href="%{url}">iNaturalist Android app</a>
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTID
         identifiers_desc: Added an ID to someone else's obs on this day
         # Chart series and legend label on the stats page
-        # Temp means "until we rename Classic Android"
         inat_classic_android_desc_temp_html: Created via <a href="%{url}">iNaturalist (Android)</a>
+        # Chart series and legend label on the stats page
         inat_classic_ios_desc_html: Created via <a href="%{url}">iNaturalist Classic (iOS)</a>
+        # Chart series and legend label on the stats page
         inat_next_android_desc_temp_html: Created via <a href="%{url}">iNatNext (Android)</a> 
+        # Chart series and legend label on the stats page
         inat_next_ios_desc_html: Created via <a href="%{url}">iNaturalist (iOS)</a>
-        # Deprecated
+        # Chart series and legend label on the stats page
         inat_next_android_desc_html: Created via the <a href="%{url}">iNatNext Android app</a>        
-        # Deprecated
         inat_next_desc_html: Created via <a href="%{url}">iNatNext</a>
-        # Deprecated
         iphone_desc_html: Created via the <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTID
