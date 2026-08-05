@@ -1,7 +1,7 @@
 @import "../colors";
 
 body {
-  min-width: 980px;
+  min-width: fit-content;
 }
 #header {
   margin-bottom: 0px;
@@ -26,7 +26,7 @@ body {
 body.responsive {
   min-width: auto;
   #wrapper {
-    min-width: 980px;
+    min-width: fit-content;
   }
 }
 

@@ -27,7 +27,7 @@
 }
 
 body {
-  min-width: 980px;
+  min-width: fit-content;
 }
 
 a:hover, a:focus {
@@ -105,7 +105,7 @@ body.responsive {
     margin-bottom: 0px;
   }
   #app {
-    min-width: 980px;
+    min-width: fit-content;
     padding-top: 20px;
   }
   #ObservationShow {
