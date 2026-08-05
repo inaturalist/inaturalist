@@ -41,7 +41,7 @@ Neither step is needed on staging — the Docker build runs both.
 | 1 | Open `/admin` | The **Feature flags** panel. `demo_banner` is not shown here; `flipper_smoke_test` reads `false`. Nothing is on. |
 | 2 | Open an observation page, e.g. `/observations/<id>` | No banner. Scroll to the footer — no badge. This is the "before". |
 | 3 | Open `/admin/feature_flags` → `demo_banner` | This is the whole management surface. Four ways to turn a flag on: everyone, specific people, a group, or a percentage. |
-| 4 | Under **Actors**, add your own `User;<your id>` and save | It saved to Postgres. **No deploy, no restart, no cache wait.** |
+| 4 | Under **Actors**, add your own `User;927554` (caseyhh, staging), `User;10142736` (admin, local) and save | It saved to Postgres. **No deploy, no restart, no cache wait.** |
 | 5 | Reload the observation page | The blue banner is now at the top **and** the badge is in the footer. One toggle, two independent rendering paths. |
 | 6 | View Source, search `feature_flags` | `var CONFIG = { …, feature_flags: {"flipper_smoke_test":false,"demo_banner":true} }`. The page carries the *answers*, not the rules — no percentages, no actor lists. |
 | 7 | In another browser, logged out, load the same page | Nothing. The flag is on for one person, not for the site. |
