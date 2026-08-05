@@ -45,7 +45,7 @@ Neither step is needed on staging — the Docker build runs both.
 | 5 | Reload the observation page | The blue banner is now at the top **and** the badge is in the footer. One toggle, two independent rendering paths. |
 | 6 | View Source, search `feature_flags` | `var CONFIG = { …, feature_flags: {"flipper_smoke_test":false,"demo_banner":true} }`. The page carries the *answers*, not the rules — no percentages, no actor lists. |
 | 7 | In another browser, logged out, load the same page | Nothing. The flag is on for one person, not for the site. |
-| 8 | `curl` the endpoint (below) | The same map as JSON. This is what mobile will read. |
+| 8 | `curl` the endpoint (below) | The same map as JSON. This is what mobile will read. `curl -s http://localhost:3000/feature_flags`, `curl -s http://staging2.inaturalist.org/feature_flags` |
 | 9 | Back in the admin UI: remove your actor gate, set **Percentage of actors** to 50, reload a few times | Your value never flickers. Assignment is a hash of the user id, so it is stable and re-derivable — not a coin flip per request. |
 | 10 | Set the percentage to 0 and remove the gates | Gone from both places on the next request. Note the feature still *exists* in the list — the list is the flag inventory, not the on/off state. |
 
