@@ -24,6 +24,7 @@ describe Ambidextrous do
         "iNaturalist/720 CFNetwork/1568.200.51 Darwin/24.1.0",
         "iNaturalist/720 CFNetwork/1568.300.101 Darwin/24.2.0",
         "iNaturalist/3.3.5 (iPhone; iOS 18.1.1; Scale/3.00)",
+        "iNaturalist/3.3.5 (iPad; iOS 18.1.1; Scale/2.00)",
         "iNaturalist/720 CFNetwork/1485 Darwin/23.1.0",
         "iNaturalist/716 CFNetwork/1498.700.2 Darwin/23.6.0"
       ]
@@ -35,7 +36,10 @@ describe Ambidextrous do
         "iNaturalistRN/0.55.3 (Build 130; iOS 18.1.1; iPhone14,7; Handset; Apple)",
         "iNaturalistReactNative/130 CFNetwork/1568.200.51 Darwin/24.1.0",
         "iNaturalistReactNative/132 CFNetwork/1568.200.51 Darwin/24.1.0",
-        "iNaturalistRN/0.57.0 (Build 132; iOS 18.1.1; iPhone16,2; Handset; Apple)"
+        "iNaturalistRN/0.57.0 (Build 132; iOS 18.1.1; iPhone16,2; Handset; Apple)",
+        "iNaturalistRN/1.0.26 (Build 223; iOS 26.5.2; iPhone14,6; Handset; Apple)",
+        "iNaturalistRN/1.0.26 (Build 223; iPadOS 26.5; iPad15,7; Handset; Apple)",
+        "iNaturalistReactNative/155 CFNetwork/3860.600.12 Darwin/25.5.0"
       ]
     end
 

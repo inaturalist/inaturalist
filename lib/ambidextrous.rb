@@ -14,14 +14,20 @@ module Ambidextrous
   ].freeze
   REACT_IOS_APP_USER_AGENT_REGEX_PATTERNS = [
     "(iNaturalistRN)/([0-9.]+) \\(Build [0-9]+; iOS",
-    "(iNaturalistRN)/([0-9.]+) Handset",
-    "(iNaturalistReactNative)/([0-9.]+)"
+    "(iNaturalistRN)/([0-9.]+) \\(Build [0-9]+; iPad",
+    "(iNaturalistRN)/([0-9.]+) \\(Build [0-9]+; iPhone",
+    "(iNaturalistRN)/([0-9.]+) CFNetwork",
+    "(iNaturalistReactNative)/([0-9.]+) \\(Build [0-9]+; iOS",
+    "(iNaturalistReactNative)/([0-9.]+) \\(Build [0-9]+; iPad",
+    "(iNaturalistReactNative)/([0-9.]+) \\(Build [0-9]+; iPhone",
+    "(iNaturalistReactNative)/([0-9.]+) CFNetwork"
   ].freeze
   REACT_ANDROID_APP_USER_AGENT_REGEX_PATTERNS = [
-    "(iNaturalistRN)/([0-9.]+) \\(Build [0-9]+; Android"
+    "(iNaturalistRN)/([0-9.]+) \\(Build [0-9]+; Android",
+    "(iNaturalistReactNative)/([0-9.]+) \\(Build [0-9]+; Android"
   ].freeze
   SEEK_APP_USER_AGENT_REGEX_PATTERNS = [
-    "(Seek)/([0-9.]+).*Handset"
+    "(Seek)/([0-9.]+)"
   ].freeze
 
   def is_classic_android_app_user_agent?( user_agent )
